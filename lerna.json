@@ -1,8 +1,10 @@
 {
-    "packages": ["packages/*"],
+    "packages": [
+        "packages/*"
+    ],
     "npmClient": "yarn",
     "useWorkspaces": true,
-    "version": "0.1.4",
+    "version": "12.8.0",
     "command": {
         "version": {
             "allowBranch": "master"
@@ -18,7 +20,11 @@
             "yes": true,
             "license": "MIT",
             "description": "Angular-RU package",
-            "keywords": ["angular-ru", "angular", "sdk"]
+            "keywords": [
+                "angular-ru",
+                "angular",
+                "sdk"
+            ]
         }
     }
 }
