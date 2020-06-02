@@ -1,32 +1,34 @@
 language: node_js
 node_js:
-  - 'node' # latest
+    - 'node' # latest
 
 cache:
-  yarn: true
-  directories:
-    - node_modules
+    yarn: true
+    directories:
+        - node_modules
 
 install:
-  - yarn install --frozen-lockfile --non-interactive
+    - yarn install --frozen-lockfile --non-interactive
 
 script:
-  - yarn test
+    - yarn test
 
 before_deploy:
-  - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/Angular-RU/angular-ru-sdk.git" > /dev/null 2>&1
-  - git checkout master
-  - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
+    - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/Angular-RU/angular-ru-sdk.git" > /dev/null 2>&1
+    - git checkout master
+    - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
 
 deploy:
-  provider: script
-  script: "yarn lerna publish"
-  skip_cleanup: true
-  on:
-    branch: master
-    condition: "$TRAVIS_PULL_REQUEST =~ ^(true|false)$"
+    provider: script
+    script: 'yarn lerna publish'
+    skip_cleanup: true
+    on:
+        branch: master
+        condition: '$TRAVIS_PULL_REQUEST =~ ^(true|false)$'
 
 after_deploy:
-    - git checkout develop || exit
+    - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/Angular-RU/angular-ru-sdk.git" > /dev/null 2>&1
+    - git fetch || exit
+    - git checkout -t -b develop origin/develop || exit
     - git merge origin/master || exit
     - git push || exit
