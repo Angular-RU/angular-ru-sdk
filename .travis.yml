@@ -25,10 +25,3 @@ deploy:
     on:
         branch: master
         condition: '$TRAVIS_PULL_REQUEST =~ ^(true|false)$'
-
-after_deploy:
-    - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/Angular-RU/angular-ru-sdk.git" > /dev/null 2>&1
-    - git fetch || exit
-    - git checkout -t -b develop origin/develop || exit
-    - git merge origin/master || exit
-    - git push || exit
