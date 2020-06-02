@@ -1,26 +1,31 @@
 {
-  "name": "@angular-ru/sdk",
-  "version": "0.0.0",
-  "description": "Angular-RU SDK",
-  "scripts": {
-    "test": "echo 1",
-    "new-version": "lerna version --conventional-commits --yes"
-  },
-  "workspaces": [
-    "packages/*"
-  ],
-  "private": true,
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
-  },
-  "author": "splincode",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
-  },
-  "homepage": "https://github.com/Angular-RU/angular-ru-sdk#readme",
-  "devDependencies": {
-    "lerna": "3.22.0"
-  }
+    "name": "@angular-ru/sdk",
+    "version": "0.0.0",
+    "private": true,
+    "description": "Angular-RU SDK",
+    "homepage": "https://github.com/Angular-RU/angular-ru-sdk#readme",
+    "bugs": {
+        "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
+    },
+    "license": "MIT",
+    "author": "splincode",
+    "workspaces": [
+        "packages/*"
+    ],
+    "scripts": {
+        "format": "npx sort-package-json && npx prettier --write \"**/*.{ts,html,css,scss,md,js,json}\"",
+        "test": "echo 1"
+    },
+    "devDependencies": {
+        "@types/node": "13.13.5",
+        "lerna": "3.22.0",
+        "npx": "10.2.2",
+        "sort-package-json": "1.44.0",
+        "ts-node": "8.10.2",
+        "typescript": "3.9.3"
+    }
 }

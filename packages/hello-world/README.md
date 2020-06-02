@@ -1,1 +1,0 @@
-# `@angular-ru/hello-world`

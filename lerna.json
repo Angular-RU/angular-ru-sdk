@@ -1,20 +1,24 @@
 {
-  "packages": [
-    "packages/*"
-  ],
-  "npmClient": "yarn",
-  "useWorkspaces": true,
-  "version": "0.1.4",
-  "command": {
-    "version": {
-      "allowBranch": "master"
-    },
-    "publish": {
-      "yes": true,
-      "npmClient": "npm",
-      "conventionalCommits": true,
-      "message": "chore(release): publish [ci skip]",
-      "registry": "https://registry.npmjs.org"
+    "packages": ["packages/*"],
+    "npmClient": "yarn",
+    "useWorkspaces": true,
+    "version": "0.1.4",
+    "command": {
+        "version": {
+            "allowBranch": "master"
+        },
+        "publish": {
+            "yes": true,
+            "npmClient": "npm",
+            "conventionalCommits": true,
+            "message": "chore(release): publish [ci skip]",
+            "registry": "https://registry.npmjs.org"
+        },
+        "create": {
+            "yes": true,
+            "license": "MIT",
+            "description": "Angular-RU package",
+            "keywords": ["angular-ru", "angular", "sdk"]
+        }
     }
-  }
 }
