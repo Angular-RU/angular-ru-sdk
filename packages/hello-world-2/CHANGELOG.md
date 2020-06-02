@@ -5,15 +5,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.1.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v0.1.0...v0.1.1) (2020-06-02)
 
-**Note:** Version bump only for package @angular-ru/sdk
-
-
-
-
-
-# 0.1.0 (2020-06-02)
-
-
-### Features
-
-* integration lerna ([eb5292d](https://github.com/Angular-RU/angular-ru-sdk/commit/eb5292dd2db367e9ff67a1de903d0687f02a98b5))
+**Note:** Version bump only for package @angular-ru/hello-world-2
