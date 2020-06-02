@@ -25,3 +25,8 @@ deploy:
   on:
     branch: master
     condition: "$TRAVIS_PULL_REQUEST =~ ^(true|false)$"
+
+after_deploy:
+    - git checkout develop || exit
+    - git merge origin/master || exit
+    - git push || exit
