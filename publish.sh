@@ -9,5 +9,5 @@ fi
 
 if [[ $TRAVIS_COMMIT_MESSAGE != *"publish"* ]]; then
   echo "Publish...."
-  yarn lerna publish --yes
+  yarn lerna publish
 fi;

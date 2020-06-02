@@ -10,7 +10,9 @@
       "allowBranch": "master"
     },
     "publish": {
+      "yes": true,
       "npmClient": "npm",
+      "conventionalCommits": true,
       "message": "chore(release): publish",
       "registry": "https://registry.npmjs.org"
     }

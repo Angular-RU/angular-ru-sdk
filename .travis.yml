@@ -3,6 +3,7 @@ node_js:
   - 'node' # latest
 
 cache:
+  yarn: true
   directories:
     - node_modules
 
@@ -12,5 +13,14 @@ install:
 script:
   - yarn test
 
-after_success:
-  - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && bash publish.sh
+before_deploy:
+  - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/Angular-RU/angular-ru-sdk.git" > /dev/null 2>&1
+  - git checkout master
+  - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
+
+deploy:
+  provider: script
+  script: "yarn lerna publish"
+  skip_cleanup: true
+  on:
+    branch: master
