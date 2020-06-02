@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/Angular-RU/angular-ru-sdk#readme",
   "devDependencies": {
-    "lerna": "^3.22.0"
+    "lerna": "3.22.0"
   }
 }
