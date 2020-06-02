@@ -1,0 +1,26 @@
+{
+  "name": "@angular-ru/sdk",
+  "version": "0.0.0",
+  "description": "Angular-RU SDK",
+  "scripts": {
+    "test": "echo 1",
+    "new-version": "lerna version --conventional-commits --yes"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
+  },
+  "author": "splincode",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
+  },
+  "homepage": "https://github.com/Angular-RU/angular-ru-sdk#readme",
+  "devDependencies": {
+    "lerna": "^3.22.0"
+  }
+}
