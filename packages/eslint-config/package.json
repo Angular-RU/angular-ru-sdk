@@ -1,0 +1,58 @@
+{
+    "name": "@angular-ru/eslint-config",
+    "version": "12.16.0",
+    "description": "Angular-RU package",
+    "keywords": [
+        "angular-ru",
+        "angular",
+        "sdk"
+    ],
+    "author": "splincode <omaxphp@yandex.ru>",
+    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/eslint-config#readme",
+    "license": "MIT",
+    "main": "index.js",
+    "dependencies": {
+        "eslint": "7.1.0",
+        "@types/eslint": "6.8.1",
+        "@typescript-eslint/eslint-plugin": "2.34.0",
+        "@typescript-eslint/eslint-plugin-tslint": "2.34.0",
+        "@typescript-eslint/parser": "2.34.0",
+        "codelyzer": "5.2.2",
+        "es6-set": "0.1.5",
+        "eslint-import-resolver-typescript": "2.0.0",
+        "eslint-config-import": "0.13.0",
+        "eslint-plugin-import": "2.20.2",
+        "eslint-plugin-no-cyrillic-string": "1.0.4",
+        "eslint-plugin-prettier": "3.1.3",
+        "eslint-plugin-simple-import-sort": "5.0.3",
+        "tslint": "6.1.2",
+        "tslint-eslint-rules": "5.4.0",
+        "tslint-sonarts": "1.9.0"
+    },
+    "peerDependencies": {
+        "@angular/compiler": ">=8.0.0 <10.0.0",
+        "@angular/core": ">=8.0.0 <10.0.0",
+        "eslint": ">=6.8.0 < 8.0.0",
+        "prettier": ">=2.0.0 < 3.0.0",
+        "tslib": ">=1.11.1 < 3.0.0",
+        "typescript": ">=3.5.1 < 4.0.0"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
+    },
+    "scripts": {
+        "pretest": "yarn --frozen-lockfile --non-interactive --no-progress",
+        "copy:codelyzer": "cpx -v -C \"../../node_modules/codelyzer/**/*\" \"node_modules/codelyzer/\"",
+        "copy:tslint-sonarts": "cpx -v -C \"../../node_modules/tslint-sonarts/**/*\" \"node_modules/tslint-sonarts/\"",
+        "copy:tslint-eslint-rules": "cpx -v -C \"../../node_modules/tslint-eslint-rules/**/*\" \"node_modules/tslint-eslint-rules/\"",
+        "postinstall": "yarn copy:codelyzer && yarn copy:tslint-sonarts && yarn copy:tslint-eslint-rules",
+        "test": "sh test.sh"
+    },
+    "bugs": {
+        "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
+    }
+}

@@ -43,7 +43,7 @@ $ tsc --showConfig --project tsconfig.json
 
 ### FAQ
 
-- Uncaught ReferenceError: `__importDefault is not defined` in my Angular 8 project
+-   Uncaught ReferenceError: `__importDefault is not defined` in my Angular 8 project
 
 In the eighth version, this is not fixed, so you need to add such a line:
 
