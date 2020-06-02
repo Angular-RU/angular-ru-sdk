@@ -13,7 +13,7 @@
       "yes": true,
       "npmClient": "npm",
       "conventionalCommits": true,
-      "message": "chore(release): publish",
+      "message": "chore(release): publish [ci skip]",
       "registry": "https://registry.npmjs.org"
     }
   }
