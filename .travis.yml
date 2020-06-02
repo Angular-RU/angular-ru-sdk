@@ -24,3 +24,4 @@ deploy:
   skip_cleanup: true
   on:
     branch: master
+    condition: "$TRAVIS_PULL_REQUEST =~ ^(true|false)$"
