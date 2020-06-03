@@ -79,6 +79,8 @@ module.exports = {
                 ignoreReadonlyClassProperties: true
             }
         ],
+        'no-useless-constructor': 'off',
+        '@typescript-eslint/no-useless-constructor': ['error'],
         'sort-imports': 'off',
         'prettier/prettier': 'error',
         'import/first': 'error',

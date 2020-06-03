@@ -42,3 +42,19 @@ console.error(AbstractTest.hello);
 
 console.warn(A1);
 console.warn(new B1().hello('hello'));
+
+/****
+ * Test code
+ * @typescript-eslint/no-useless-constructor
+ */
+
+class G {
+    constructor(public value: string) {}
+}
+
+class D extends G {}
+
+const d: D = new D('123');
+
+// eslint-disable-next-line no-console
+console.log(d.value);
