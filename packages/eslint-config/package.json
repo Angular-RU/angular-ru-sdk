@@ -49,8 +49,7 @@
         "copy:codelyzer": "cpx -v -C \"../../node_modules/codelyzer/**/*\" \"node_modules/codelyzer/\"",
         "copy:tslint-sonarts": "cpx -v -C \"../../node_modules/tslint-sonarts/**/*\" \"node_modules/tslint-sonarts/\"",
         "copy:tslint-eslint-rules": "cpx -v -C \"../../node_modules/tslint-eslint-rules/**/*\" \"node_modules/tslint-eslint-rules/\"",
-        "postinstall": "yarn copy:codelyzer && yarn copy:tslint-sonarts && yarn copy:tslint-eslint-rules",
-        "test": "sh test.sh"
+        "test": "yarn copy:codelyzer && yarn copy:tslint-sonarts && yarn copy:tslint-eslint-rules && sh test.sh"
     },
     "bugs": {
         "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
