@@ -17,7 +17,8 @@
     "license": "MIT",
     "main": "tsconfig.json",
     "files": [
-        "tsconfig.json"
+        "tsconfig.json",
+        "README.md"
     ],
     "publishConfig": {
         "access": "public"
