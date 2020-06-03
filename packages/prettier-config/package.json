@@ -13,7 +13,8 @@
     "license": "MIT",
     "main": "prettier.config.js",
     "files": [
-        "prettier.config.js"
+        "prettier.config.js",
+        "README.md"
     ],
     "repository": {
         "type": "git",
