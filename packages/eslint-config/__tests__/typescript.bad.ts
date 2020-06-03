@@ -10,10 +10,9 @@ export class A {
     hello = 1;
 }
 
-// expect errors
+// eslint-disable-next-line no-console
 console.log(new A().hello);
-
-// expect errors
+// eslint-disable-next-line no-console
 console.log(new A().hi);
 
 // expect no errors
@@ -52,3 +51,23 @@ console.warn(new A1());
 console.warn(new B1().hello(1));
 console.warn(new B1().hello('hello'));
 console.warn(new C1());
+
+/****
+ * Test code
+ * @typescript-eslint/no-useless-constructor
+ */
+class G {
+    constructor(public value: string) {}
+}
+
+class D extends G {
+    // expect errors
+    constructor(value: string) {
+        super(value);
+    }
+}
+
+const d: D = new D('123');
+
+// eslint-disable-next-line no-console
+console.log(d.value);
