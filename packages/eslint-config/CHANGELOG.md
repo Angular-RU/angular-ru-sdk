@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.18.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.18.0...v12.18.1) (2020-06-03)
+
+
+### Bug Fixes
+
+* exclude useless files ([82b92ce](https://github.com/Angular-RU/angular-ru-sdk/commit/82b92ce6ce71ed68efa9d148231d7ccc6f1bf52b))
+
+
+
+
+
 # [12.18.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.17.1...v12.18.0) (2020-06-03)
 
 
