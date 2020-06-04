@@ -27,8 +27,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "git add . && git update-index --again && npx lint-staged",
-            "post-commit": "git update-index --again"
+            "pre-commit": "git add . && git update-index --again && npx lint-staged && git add ."
         }
     },
     "devDependencies": {

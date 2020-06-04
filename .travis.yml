@@ -12,6 +12,7 @@ install:
 
 script:
     - yarn clean
+    - yarn pretty:lint
     - yarn build:lib
     - yarn test
 
