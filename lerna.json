@@ -15,24 +15,13 @@
             "conventionalCommits": true,
             "message": "chore(release): publish [ci skip]",
             "registry": "https://registry.npmjs.org",
-            "ignoreChanges": [
-                "node_modules",
-                "dist",
-                "__tests__",
-                "jest.config.js",
-                "*.sh",
-                "CHANGELOG.md"
-            ]
+            "ignoreChanges": ["node_modules", "dist", "src", "__tests__", "jest.config.js", "*.sh", "CHANGELOG.md"]
         },
         "create": {
             "yes": true,
             "license": "MIT",
             "description": "Angular-RU package",
-            "keywords": [
-                "angular-ru",
-                "angular",
-                "sdk"
-            ]
+            "keywords": ["angular-ru", "angular", "sdk"]
         }
     }
 }

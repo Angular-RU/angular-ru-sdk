@@ -17,22 +17,21 @@
         "packages/*"
     ],
     "scripts": {
+        "clean": "rm -rf ./packages/**/dist ./packages/**/.cache",
         "format": "npx sort-package-json && npx prettier --write \"**/*.{ts,html,css,scss,md,js,json}\"",
         "pretest": "lerna run pretest",
+        "build:lib": "lerna run build:lib",
         "test": "lerna run test"
     },
     "devDependencies": {
         "@angular/compiler": "8.2.14",
         "@angular/core": "8.2.14",
-        "@types/jest": "25.2.3",
         "@types/node": "13.13.5",
         "cpx": "1.5.0",
-        "jest": "26.0.1",
         "lerna": "3.22.0",
         "npx": "10.2.2",
         "prettier": "2.0.5",
         "sort-package-json": "1.44.0",
-        "ts-jest": "26.1.0",
         "ts-node": "8.10.2",
         "tslib": "1.12.0",
         "typescript": "3.9.3"
