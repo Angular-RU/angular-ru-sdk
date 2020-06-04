@@ -1,5 +1,5 @@
 ### Create new package
 
 ```bash
-$ lerna create @angular-ru/my-pkg --yes
+$ lerna create @angular-ru/my-pkg
 ```
