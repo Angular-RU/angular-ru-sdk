@@ -1,19 +1,18 @@
 {
-    "packages": [
-        "packages/*"
-    ],
+    "packages": ["packages/*"],
     "npmClient": "yarn",
     "useWorkspaces": true,
     "version": "12.18.1",
     "command": {
         "version": {
-            "allowBranch": "master"
+            "allowBranch": "master",
+            "ignoreChanges": ["**/__fixtures__/**", "**/__tests__/**", "**/*.md"]
         },
         "publish": {
             "yes": true,
             "npmClient": "npm",
             "conventionalCommits": true,
-            "message": "chore(release): publish [ci skip]",
+            "message": "chore(release): publish %s [ci skip]",
             "registry": "https://registry.npmjs.org",
             "ignoreChanges": ["node_modules", "dist", "src", "__tests__", "jest.config.js", "*.sh", "CHANGELOG.md"]
         },
