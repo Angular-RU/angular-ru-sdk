@@ -12,6 +12,7 @@ install:
 
 script:
     - yarn clean
+    - yarn build:lib
     - yarn test
 
 before_deploy:
