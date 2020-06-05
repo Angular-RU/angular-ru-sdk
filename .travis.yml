@@ -11,7 +11,11 @@ install:
     - yarn install --frozen-lockfile --non-interactive
 
 script:
+    - yarn clean
+    - yarn build:lib
     - yarn test
+    - yarn lint
+    - yarn pretty:lint
 
 before_deploy:
     - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/Angular-RU/angular-ru-sdk.git" > /dev/null 2>&1

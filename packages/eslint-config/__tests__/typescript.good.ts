@@ -11,15 +11,20 @@ export class A {
 console.error(new A().hi);
 console.error(new A().hello);
 
-export enum foo {
+export const enum Foo {
     SECOND = 1000,
     VALUE_1 = 3,
     VALUE_2 = 4
 }
 
-console.error(foo.SECOND);
-console.error(foo.VALUE_1);
-console.error(foo.VALUE_2);
+export const enum HelloWorldAny {
+    WORLD
+}
+
+console.error(Foo.SECOND);
+console.error(Foo.VALUE_1);
+console.error(Foo.VALUE_2);
+console.error(HelloWorldAny.WORLD);
 
 export const enum HelloWorld {
     World
