@@ -20,7 +20,7 @@
         "build:lib": "lerna run build:lib",
         "clean": "rm -rf ./packages/**/dist ./packages/**/.cache",
         "format": "npx sort-package-json && yarn pretty:format --write",
-        "lint": "eslint --fix \"**/*.ts\"",
+        "lint": "eslint \"**/*.ts\" --ignore-pattern typescript.bad.ts",
         "pretty:format": "npx prettier \"**/*.{ts,html,css,scss,md,js,json}\"",
         "pretty:lint": "yarn pretty:format --check",
         "pretest": "lerna run pretest",

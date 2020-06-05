@@ -1,6 +1,6 @@
 // expect errors
-import { A1 } from './module/a1';
 import { B1 } from './module/b1';
+import { A1 } from './module/a1';
 import { C1 } from './module/c1';
 
 export class A {
