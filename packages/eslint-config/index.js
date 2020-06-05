@@ -114,6 +114,10 @@ module.exports = {
                 modifiers: ['abstract'],
                 format: ['PascalCase'],
                 prefix: ['Abstract']
+            },
+            {
+                selector: 'enum',
+                format: ['StrictPascalCase']
             }
         ],
         '@typescript-eslint/interface-name-prefix': 'off',

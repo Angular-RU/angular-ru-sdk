@@ -22,9 +22,15 @@ export enum foo {
     VALUE_2 = 4
 }
 
+// expect errors
+export const enum HELLO {
+    WORLD
+}
+
 console.error(foo.SECOND);
 console.error(foo.VALUE_1);
 console.error(foo.VALUE_2);
+console.error(HELLO.WORLD);
 
 // expect no errors
 const helloWorld: Function = function (): string {
