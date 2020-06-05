@@ -12,11 +12,10 @@ install:
 
 script:
     - yarn clean
-    - yarn pretty:lint
     - yarn build:lib
     - yarn test
-    - yarn pretty:lint
     - yarn lint
+    - yarn pretty:lint
 
 before_deploy:
     - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/Angular-RU/angular-ru-sdk.git" > /dev/null 2>&1
