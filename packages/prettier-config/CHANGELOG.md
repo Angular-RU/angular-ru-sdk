@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.19.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.19.0...v12.19.1) (2020-06-05)
+
+**Note:** Version bump only for package @angular-ru/prettier-config
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [12.18.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.18.0...v12.18.1) (2020-06-03)
 
 ### Bug Fixes
