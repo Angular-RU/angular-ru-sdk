@@ -1,12 +1,18 @@
 {
-    "packages": ["packages/*"],
+    "packages": [
+        "packages/*"
+    ],
     "npmClient": "yarn",
     "useWorkspaces": true,
-    "version": "12.18.1",
+    "version": "12.19.0",
     "command": {
         "version": {
             "allowBranch": "master",
-            "ignoreChanges": ["**/__fixtures__/**", "**/__tests__/**", "**/*.md"]
+            "ignoreChanges": [
+                "**/__fixtures__/**",
+                "**/__tests__/**",
+                "**/*.md"
+            ]
         },
         "publish": {
             "yes": true,
@@ -14,13 +20,25 @@
             "conventionalCommits": true,
             "message": "chore(release): publish %s [ci skip]",
             "registry": "https://registry.npmjs.org",
-            "ignoreChanges": ["node_modules", "dist", "src", "__tests__", "jest.config.js", "*.sh", "CHANGELOG.md"]
+            "ignoreChanges": [
+                "node_modules",
+                "dist",
+                "src",
+                "__tests__",
+                "jest.config.js",
+                "*.sh",
+                "CHANGELOG.md"
+            ]
         },
         "create": {
             "yes": true,
             "license": "MIT",
             "description": "Angular-RU package",
-            "keywords": ["angular-ru", "angular", "sdk"]
+            "keywords": [
+                "angular-ru",
+                "angular",
+                "sdk"
+            ]
         }
     }
 }

@@ -1,5 +1,22 @@
 # Change Log
 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [12.19.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.18.1...v12.19.0) (2020-06-05)
+
+
+### Features
+
+* don't declare non-const enums ([2b5b5ce](https://github.com/Angular-RU/angular-ru-sdk/commit/2b5b5ce0c201da6b3c2e249488883d85d270e203))
+* strict pascal case for Enum ([cfa5bf2](https://github.com/Angular-RU/angular-ru-sdk/commit/cfa5bf2041706da555634456dfeadb42f29fbf95))
+
+
+
+
+
+# Change Log
+
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
