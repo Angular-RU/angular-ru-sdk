@@ -1,0 +1,4 @@
+{
+    "extends": "./packages/eslint-config/index.js",
+    "ignorePatterns": ["typescript.bad.ts"]
+}

@@ -29,6 +29,7 @@ module.exports = {
         '**/*.spec.ts',
         '**/*-spec.ts',
         '**/*.lint.ts',
+        '**/*.d.ts',
         '**/dist/**',
         '**/docs/**',
         '.cache/**',
