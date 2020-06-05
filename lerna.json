@@ -17,6 +17,7 @@
         "publish": {
             "yes": true,
             "npmClient": "npm",
+            "force-publish": "*",
             "conventionalCommits": true,
             "message": "chore(release): publish %s [ci skip]",
             "registry": "https://registry.npmjs.org",
