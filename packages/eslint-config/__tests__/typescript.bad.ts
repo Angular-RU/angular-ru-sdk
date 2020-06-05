@@ -15,6 +15,17 @@ console.log(new A().hello);
 // eslint-disable-next-line no-console
 console.log(new A().hi);
 
+// expect errors
+export enum foo {
+    SECOND = 1000,
+    VALUE_1 = 3,
+    VALUE_2 = 4
+}
+
+console.error(foo.SECOND);
+console.error(foo.VALUE_1);
+console.error(foo.VALUE_2);
+
 // expect no errors
 const helloWorld: Function = function (): string {
     return 'Hello world';

@@ -11,7 +11,7 @@ export class A {
 console.error(new A().hi);
 console.error(new A().hello);
 
-export enum foo {
+export const enum foo {
     SECOND = 1000,
     VALUE_1 = 3,
     VALUE_2 = 4

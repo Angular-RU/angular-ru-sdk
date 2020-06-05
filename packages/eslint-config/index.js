@@ -232,6 +232,13 @@ module.exports = {
         'space-before-function-paren': ['error', { anonymous: 'always', named: 'never' }],
         'use-isnan': 'error',
         'valid-typeof': 'off',
+        'no-restricted-syntax': [
+            'error',
+            {
+                selector: 'TSEnumDeclaration:not([const=true])',
+                message: "Don't declare non-const enums"
+            }
+        ],
         '@typescript-eslint/tslint/config': [
             'error',
             {
