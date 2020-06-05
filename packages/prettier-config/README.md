@@ -30,6 +30,7 @@ or `.prettierrc.js`:
 ```js
 module.exports = {
     ...require('@angular-ru/prettier-config'),
+    // override
     semi: false
 };
 ```

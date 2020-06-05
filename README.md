@@ -35,6 +35,9 @@ in the Angular.
         <a href="packages/tsconfig/README.md">
             <img src="https://img.shields.io/badge/README--green.svg">
         </a>
+        <a href="packages/tsconfig/CHANGELOG.md">
+            <img src="https://img.shields.io/badge/CHANGELOG--green.svg">
+        </a>
     </td>
   </tr>
   <tr>
@@ -53,6 +56,9 @@ in the Angular.
         </a>
         <a href="packages/eslint-config/README.md">
             <img src="https://img.shields.io/badge/README--green.svg">
+        </a>
+        <a href="packages/eslint-config/CHANGELOG.md">
+            <img src="https://img.shields.io/badge/CHANGELOG--green.svg">
         </a>
     </td>
   </tr>
@@ -73,6 +79,9 @@ in the Angular.
         <a href="packages/prettier-config/README.md">
             <img src="https://img.shields.io/badge/README--green.svg">
         </a>
+        <a href="packages/prettier-config/CHANGELOG.md">
+            <img src="https://img.shields.io/badge/CHANGELOG--green.svg">
+        </a>
     </td>
   </tr>
   <tr>
@@ -91,6 +100,9 @@ in the Angular.
         </a>
         <a href="packages/jest-utils/README.md">
             <img src="https://img.shields.io/badge/README--green.svg">
+        </a>
+        <a href="packages/jest-utils/CHANGELOG.md">
+            <img src="https://img.shields.io/badge/CHANGELOG--green.svg">
         </a>
     </td>
   </tr>
