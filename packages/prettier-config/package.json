@@ -6,6 +6,7 @@
         "angular-ru",
         "angular",
         "sdk",
+        "prettier",
         "prettier-config"
     ],
     "author": "splincode <omaxphp@yandex.ru>",

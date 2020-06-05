@@ -6,6 +6,8 @@
         "angular-ru",
         "angular",
         "sdk",
+        "strict",
+        "typings",
         "tsconfig",
         "typescript",
         "ts",

@@ -11,7 +11,6 @@ in the Angular.
 <table>
 <thead>
   <tr>
-    <th><b>Project</b></th>
     <th><b>Package</b></th>
     <th><b>Version</b></th>
     <th><b>Links</b></th>
@@ -19,7 +18,6 @@ in the Angular.
 </thead>
 <tbody>
   <tr>
-    <td>Angular-RU TypeScript config</td>
     <td>
         <a href="https://npmjs.com/package/@angular-ru/tsconfig">
             @angular-ru/tsconfig
@@ -41,7 +39,6 @@ in the Angular.
     </td>
   </tr>
   <tr>
-    <td>Angular-RU ESLint rules</td>
     <td>
         <a href="https://npmjs.com/package/@angular-ru/eslint-config">
             @angular-ru/eslint-config
@@ -63,7 +60,6 @@ in the Angular.
     </td>
   </tr>
   <tr>
-    <td>Angular-RU Prettier config</td>
     <td>
         <a href="https://npmjs.com/package/@angular-ru/prettier-config">
             @angular-ru/prettier-config
@@ -85,7 +81,6 @@ in the Angular.
     </td>
   </tr>
   <tr>
-    <td>Angular-RU Jest utils</td>
     <td>
         <a href="https://npmjs.com/package/@angular-ru/jest-utils">
             @angular-ru/jest-utils
