@@ -1,20 +1,34 @@
 {
     "name": "@angular-ru/eslint-config",
-    "version": "12.19.0",
+    "version": "12.19.2",
     "description": "Angular-RU package",
     "keywords": [
         "angular-ru",
         "angular",
         "sdk"
     ],
-    "author": "splincode <omaxphp@yandex.ru>",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/eslint-config#readme",
+    "bugs": {
+        "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
+    },
     "license": "MIT",
+    "author": "splincode <omaxphp@yandex.ru>",
     "main": "index.js",
     "files": [
         "index.js",
         "README.md"
     ],
+    "scripts": {
+        "copy:codelyzer": "cpx -v -C \"../../node_modules/codelyzer/**/*\" \"node_modules/codelyzer/\"",
+        "copy:tslint-eslint-rules": "cpx -v -C \"../../node_modules/tslint-eslint-rules/**/*\" \"node_modules/tslint-eslint-rules/\"",
+        "copy:tslint-sonarts": "cpx -v -C \"../../node_modules/tslint-sonarts/**/*\" \"node_modules/tslint-sonarts/\"",
+        "pretest": "yarn --frozen-lockfile --non-interactive --no-progress",
+        "test": "yarn copy:codelyzer && yarn copy:tslint-sonarts && yarn copy:tslint-eslint-rules && sh test.sh"
+    },
     "dependencies": {
         "@types/eslint": "6.8.1",
         "@typescript-eslint/eslint-plugin": "2.34.0",
@@ -43,19 +57,5 @@
     },
     "publishConfig": {
         "access": "public"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
-    },
-    "scripts": {
-        "pretest": "yarn --frozen-lockfile --non-interactive --no-progress",
-        "copy:codelyzer": "cpx -v -C \"../../node_modules/codelyzer/**/*\" \"node_modules/codelyzer/\"",
-        "copy:tslint-sonarts": "cpx -v -C \"../../node_modules/tslint-sonarts/**/*\" \"node_modules/tslint-sonarts/\"",
-        "copy:tslint-eslint-rules": "cpx -v -C \"../../node_modules/tslint-eslint-rules/**/*\" \"node_modules/tslint-eslint-rules/\"",
-        "test": "yarn copy:codelyzer && yarn copy:tslint-sonarts && yarn copy:tslint-eslint-rules && sh test.sh"
-    },
-    "bugs": {
-        "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
     }
 }
