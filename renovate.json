@@ -12,7 +12,7 @@
             "depTypeList": ["dependencies"],
             "groupName": "dependencies",
             "groupSlug": "dependencies",
-            "commitMessagePrefix": "feat",
+            "commitMessagePrefix": "feat:",
             "commitMessageTopic": "only dependencies",
             "commitBody": "only dependencies"
         },
@@ -20,7 +20,7 @@
             "depTypeList": ["devDependencies"],
             "groupName": "devDependencies",
             "groupSlug": "devDependencies",
-            "commitMessagePrefix": "ci",
+            "commitMessagePrefix": "ci:",
             "commitMessageTopic": "only devDependencies",
             "commitBody": "only devDependencies"
         }
