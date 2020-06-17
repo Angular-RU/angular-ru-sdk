@@ -1,0 +1,83 @@
+{
+    "$schema": "../../node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "integration": {
+            "root": "",
+            "prefix": "",
+            "sourceRoot": "integration",
+            "projectType": "application",
+            "schematics": {},
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist/integration",
+                        "index": "integration/app/index.html",
+                        "main": "integration/app/main.ts",
+                        "polyfills": "integration/app/polyfills.ts",
+                        "tsConfig": "integration/app/tsconfig.app.json",
+                        "assets": ["integration/app/favicon.ico", "integration/app/assets"],
+                        "styles": ["integration/app/styles.css"],
+                        "scripts": [],
+                        "es5BrowserSupport": true
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "integration/app/environments/environment.ts",
+                                    "with": "integration/app/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": true,
+                            "buildOptimizer": true,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "integration:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "integration:build:production"
+                        }
+                    }
+                }
+            }
+        },
+        "logger": {
+            "root": "",
+            "prefix": "",
+            "sourceRoot": "",
+            "projectType": "library",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-ng-packagr:build",
+                    "options": {
+                        "tsConfig": "tsconfig.lib.json",
+                        "project": "ng-package.json"
+                    }
+                }
+            }
+        }
+    },
+    "defaultProject": "logger"
+}

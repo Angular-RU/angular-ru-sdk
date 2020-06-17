@@ -1,0 +1,37 @@
+{
+    "name": "@angular-ru/logger",
+    "version": "12.20.1",
+    "description": "Angular-RU package",
+    "keywords": [
+        "angular-ru",
+        "angular",
+        "logger",
+        "sdk"
+    ],
+    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/logger#readme",
+    "bugs": {
+        "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
+    },
+    "license": "MIT",
+    "author": "splincode <omaxphp@yandex.ru>",
+    "scripts": {
+        "build:app": "ng build integration --prod",
+        "build:lib": "ng build logger && cp README.md dist/logger",
+        "start": "ng serve",
+        "test": "yarn jest --config ./jest.config.js"
+    },
+    "devDependencies": {
+        "devtools-detect": "3.0.0"
+    },
+    "peerDependencies": {
+        "@angular/common": ">=7.0.0",
+        "@angular/core": ">=7.0.0"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}

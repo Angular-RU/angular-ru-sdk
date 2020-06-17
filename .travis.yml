@@ -13,6 +13,7 @@ install:
 script:
     - yarn clean
     - yarn build:lib
+    - yarn build:app
     - yarn test
     - yarn lint
     - yarn pretty:lint

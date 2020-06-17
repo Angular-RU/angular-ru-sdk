@@ -17,6 +17,7 @@
         "packages/*"
     ],
     "scripts": {
+        "build:app": "lerna run build:app",
         "build:lib": "lerna run build:lib",
         "clean": "rm -rf ./packages/**/dist ./packages/**/.cache",
         "format": "npx sort-package-json && yarn pretty:format --write",
@@ -34,17 +35,32 @@
         }
     },
     "devDependencies": {
+        "@angular-devkit/build-angular": "0.803.27",
+        "@angular-devkit/build-ng-packagr": "0.803.27",
+        "@angular/animations": "8.2.14",
+        "@angular/cli": "8.3.21",
+        "@angular/common": "8.2.14",
         "@angular/compiler": "8.2.14",
+        "@angular/compiler-cli": "8.2.14",
         "@angular/core": "8.2.14",
+        "@angular/forms": "8.2.14",
+        "@angular/language-service": "8.2.14",
+        "@angular/platform-browser": "8.2.14",
+        "@angular/platform-browser-dynamic": "8.2.14",
+        "@angular/router": "8.2.14",
         "@types/node": "14.0.13",
         "cpx": "1.5.0",
         "husky": "4.2.5",
         "lerna": "3.22.1",
         "lint-staged": "10.2.10",
+        "ng-packagr": "9.1.5",
         "npx": "10.2.2",
+        "rxjs": "6.5.5",
         "sort-package-json": "1.44.0",
         "ts-node": "8.10.2",
+        "tsickle": "0.38.1",
         "tslib": "1.12.0",
-        "typescript": "3.9.5"
+        "typescript": "3.9.5",
+        "zone.js": "0.10.3"
     }
 }
