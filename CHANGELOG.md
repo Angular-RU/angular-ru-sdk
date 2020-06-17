@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.20.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.19.6...v12.20.0) (2020-06-17)
+
+### Features
+
+-   space before never named and anonymous function
+    ([783c8f4](https://github.com/Angular-RU/angular-ru-sdk/commit/783c8f46195ef79098cfd82d38e23a5b03512e2d))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [12.19.6](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.19.5...v12.19.6) (2020-06-15)
 
 **Note:** Version bump only for package @angular-ru/sdk
