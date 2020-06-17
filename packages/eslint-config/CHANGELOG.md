@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.20.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.20.0...v12.20.1) (2020-06-17)
+
+### Bug Fixes
+
+-   **eslint-config:** ignore anonymous space before
+    ([8dbd818](https://github.com/Angular-RU/angular-ru-sdk/commit/8dbd818f770958e8f8c8de0c50c379176be3d604))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [12.20.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.19.6...v12.20.0) (2020-06-17)
 
 ### Features
