@@ -33,18 +33,14 @@ console.error(foo.VALUE_2);
 console.error(HELLO.WORLD);
 
 // expect no errors
-const helloWorld: Function = function (): string {
+const helloWorld: Function = async function (): Promise<string> {
     return 'Hello world';
 };
 
 // expect no errors
 helloWorld();
 
-// expect no errors
-const helloWorldAsync: Function = async function (): Promise<string> {
-    return 'Hello world';
-};
-
+const helloWorldAsync: Function = async (): Promise<string> => 'Hello world';
 await helloWorldAsync();
 
 // expect no errors
@@ -88,3 +84,10 @@ const d: D = new D('123');
 
 // eslint-disable-next-line no-console
 console.log(d.value);
+
+// space before
+function f (): void {
+    // hello
+}
+
+f();

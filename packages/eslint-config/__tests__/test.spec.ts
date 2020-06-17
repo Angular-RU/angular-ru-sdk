@@ -18,6 +18,7 @@ describe('[TEST]: Eslint', (): void => {
         expect(bad.includes(`Enum name foo must match one of the following formats: StrictPascalCase`)).toEqual(true);
         expect(bad.includes(`Enum name HELLO must match one of the following formats: StrictPascalCase`)).toEqual(true);
         expect(bad.includes('Class name TestClass must have one of the following prefixes: Abstract')).toEqual(true);
+        expect(bad.includes('Unexpected space before function parentheses')).toEqual(true);
         expect(bad.includes('Useless constructor')).toEqual(true);
     });
 

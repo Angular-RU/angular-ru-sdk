@@ -234,7 +234,14 @@ module.exports = {
         'prefer-object-spread': 'error',
         'quote-props': ['error', 'as-needed'],
         radix: 'off',
-        'space-before-function-paren': ['error', { anonymous: 'always', named: 'never' }],
+        'space-before-function-paren': [
+            'error',
+            {
+                anonymous: 'never',
+                named: 'never',
+                asyncArrow: 'always'
+            }
+        ],
         'use-isnan': 'error',
         'valid-typeof': 'off',
         'no-restricted-syntax': [
