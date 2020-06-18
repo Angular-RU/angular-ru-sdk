@@ -1,4 +1,4 @@
-import { createTsJestConfig } from '../src';
+import { createTsJestConfig } from '../../src';
 // @ts-ignore
 import { Hello } from '@mock/hello';
 
@@ -34,7 +34,7 @@ describe('[TEST]: Hello world', () => {
                 }
             },
             moduleNameMapper: {
-                '^@mock/(.*)$': '<rootDir>/__tests__/helpers/$1'
+                '^@mock/(.*)$': '<rootDir>/integration/tests/helpers/$1'
             },
             bail: 1,
             verbose: true,

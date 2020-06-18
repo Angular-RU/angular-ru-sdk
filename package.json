@@ -19,7 +19,7 @@
     "scripts": {
         "build:app": "lerna run build:app",
         "build:lib": "lerna run build:lib",
-        "clean": "rm -rf ./packages/**/dist ./packages/**/.cache",
+        "clean": "rm -rf ./packages/**/dist ./packages/**/lib ./packages/**/.cache",
         "deploy": "lerna run deploy",
         "format": "yarn package:sort && yarn pretty:format --write",
         "lint": "eslint \"**/*.ts\" --ignore-pattern typescript.bad.ts",

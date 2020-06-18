@@ -10,10 +10,12 @@
         "lib": ["es2015", "es2017", "es2018", "dom"],
         "typeRoots": ["../../node_modules/@types", "./"],
         "paths": {
-            "@mock/*": ["__tests__/helpers/*"]
+            "@mock/*": ["integration/tests/helpers/*"]
         }
     },
     "include": ["./src"],
-    "exclude": ["__tests__"],
+    "exclude": [
+      "integration"
+    ],
     "files": ["./src/index.ts"]
 }

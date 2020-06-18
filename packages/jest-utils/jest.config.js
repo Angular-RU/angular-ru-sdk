@@ -6,7 +6,7 @@ module.exports = createTsJestConfig({
     cacheDirectory: '../../.cache',
     displayName: '@angular-ru/jest-utils',
     rootDir: path.resolve('.'),
-    testMatch: ['<rootDir>/__tests__/**/*.spec.ts'],
     collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
+    testMatch: ['<rootDir>/integration/tests/**/*.spec.ts'],
     tsConfigRootPath: path.resolve('./tsconfig.json')
 });
