@@ -14,8 +14,6 @@
         }
     },
     "include": ["./src"],
-    "exclude": [
-      "integration"
-    ],
+    "exclude": ["integration"],
     "files": ["./src/index.ts"]
 }
