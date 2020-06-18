@@ -1,6 +1,6 @@
 export * from './logger.service';
-export * from './logger.module';
 export * from './logger.config';
+export * from './logger.module';
 export * from './decorators/logger.decorator';
 export * from './decorators/trace.decorator';
 export * from './decorators/debug.decorator';
