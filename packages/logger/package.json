@@ -23,7 +23,8 @@
         "build:lib": "ng build logger && cp README.md dist/logger",
         "deploy": "cp README.md dist/integration && ng deploy --no-build",
         "start": "ng serve",
-        "test": "yarn jest --config ./jest.config.js"
+        "test": "yarn jest --config ./jest.config.js",
+        "postversion": "npe version \"$(npe version)\" --package=\"$PWD/dist/logger/package.json\""
     },
     "devDependencies": {
         "devtools-detect": "3.0.0"
