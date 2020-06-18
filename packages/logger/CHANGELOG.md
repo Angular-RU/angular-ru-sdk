@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.21.2](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.21.1...v12.21.2) (2020-06-18)
+
+### Bug Fixes
+
+-   **logger:** change api export
+    ([77c705a](https://github.com/Angular-RU/angular-ru-sdk/commit/77c705aa10a188c68deae991d0a083a01e790b4b))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [12.21.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.21.0...v12.21.1) (2020-06-18)
 
 ### Bug Fixes
