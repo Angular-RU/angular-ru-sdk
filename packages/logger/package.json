@@ -29,7 +29,7 @@
         "devtools-detect": "3.0.0"
     },
     "peerDependencies": {
-        "@angular/common": ">=8.0.0",
+        "@angular/common": ">=9.1.11",
         "@angular/core": ">=8.0.0"
     },
     "publishConfig": {
