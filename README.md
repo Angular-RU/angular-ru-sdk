@@ -101,11 +101,44 @@ in the Angular.
         </a>
     </td>
   </tr>
+  <tr>
+      <td>
+          <a href="https://npmjs.com/package/@angular-ru/logger">
+              @angular-ru/logger
+          </a>
+      </td>
+      <td>
+          <img src="https://img.shields.io/npm/v/%40angular-ru%2Flogger/latest.svg">
+      </td>
+      <td>
+          <a href="https://npmjs.com/package/@angular-ru/logger">
+              <img src="https://img.shields.io/npm/dm/@angular-ru/logger">
+          </a>
+          <a href="packages/logger/README.md">
+              <img src="https://img.shields.io/badge/README--green.svg">
+          </a>
+          <a href="packages/logger/CHANGELOG.md">
+              <img src="https://img.shields.io/badge/CHANGELOG--green.svg">
+          </a>
+      </td>
+    </tr>
 </tbody>
 </table>
 
-#### Create new package
+##### Create new package
 
 ```bash
 $ lerna create @angular-ru/my-pkg
+```
+
+#### Build libraries
+
+```bash
+$ yarn build:lib
+```
+
+#### Build integration apps
+
+```bash
+$ yarn build:app
 ```

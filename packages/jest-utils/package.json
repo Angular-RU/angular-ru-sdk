@@ -7,20 +7,20 @@
         "angular",
         "sdk"
     ],
-    "author": "splincode <omaxphp@yandex.ru>",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/jest-utils#readme",
-    "license": "MIT",
-    "main": "lib/index.js",
-    "files": [
-        "lib"
-    ],
-    "publishConfig": {
-        "access": "public"
+    "bugs": {
+        "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
     },
+    "license": "MIT",
+    "author": "splincode <omaxphp@yandex.ru>",
+    "main": "lib/index.js",
+    "files": [
+        "lib"
+    ],
     "scripts": {
         "build:lib": "tsc -p ./tsconfig.json",
         "test": "npx jest --config ./jest.config.js"
@@ -31,7 +31,7 @@
         "jest-preset-angular": "8.2.0",
         "ts-jest": "26.1.0"
     },
-    "bugs": {
-        "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
+    "publishConfig": {
+        "access": "public"
     }
 }

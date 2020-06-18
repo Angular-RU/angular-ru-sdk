@@ -1,0 +1,130 @@
+<div class="ext-box" id="app" [class.load]="isLoaded">
+    <div class="int-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="center m-bottom">Simple logger for javascript</h3>
+                    <p class="center">
+                        In order to see examples, you need to open the browser console or press F12. <br />
+                    </p>
+                </div>
+            </div>
+
+            <div id="console-activate" class="row example" [class.no-display]="!devToolsIsOpen">
+                <div class="col-3">
+                    <button class="center-block" (click)="showExample1()">Show me (example 1)</button>
+                    <h5 class="center m-bottom">
+                        Basic method <br />
+                        (trace, debug, info, ..)
+                    </h5>
+                </div>
+
+                <div class="col-3">
+                    <button class="center-block" (click)="showExample2()">Show me (example 2)</button>
+                    <h5 class="center m-bottom">
+                        Example groups <br />
+                        (closed, opened)
+                    </h5>
+                </div>
+
+                <div class="col-3">
+                    <button class="center-block" (click)="showExample3()">Show me (example 3)</button>
+                    <h5 class="center m-bottom">
+                        Nested groups <br />
+                        (deep)
+                    </h5>
+                </div>
+
+                <div class="col-3">
+                    <button class="center-block" (click)="showExample4()">Show me (example 4)</button>
+                    <h5 class="center m-bottom">Show only warnings and error <br /></h5>
+                </div>
+
+                <div class="col-3">
+                    <button class="center-block" (click)="showExample5()">Show me (example 5)</button>
+                    <h5 class="center m-bottom">
+                        Custom CSS styles <br />
+                        for line
+                    </h5>
+                </div>
+
+                <div class="col-3">
+                    <button class="center-block" (click)="showExample6()">Show me (example 6)</button>
+                    <h5 class="center m-bottom">
+                        Pretty JSON <br />
+                        (output)
+                    </h5>
+                </div>
+
+                <div class="col-3">
+                    <button class="center-block" (click)="showExample7()">Show me (example 7)</button>
+                    <h5 class="center m-bottom">
+                        Copy to clipboard <br />
+                        ((string text))
+                    </h5>
+                </div>
+
+                <div class="col-3">
+                    <button class="center-block" (click)="showExample8()">Show me (example 8)</button>
+                    <h5 class="center m-bottom">
+                        Level groups <br />
+                        (trace, debug, info, ..)
+                    </h5>
+                </div>
+
+                <div class="col-3">
+                    <button class="center-block" (click)="showExample9()">Show me (example 9)</button>
+                    <h5 class="center m-bottom">
+                        Global style line<br />
+                        (css global style)
+                    </h5>
+                </div>
+
+                <div class="col-3">
+                    <button class="center-block" (click)="showExample10()">Show me (example 10)</button>
+                    <h5 class="center m-bottom">
+                        CSS classes<br />
+                        (set in console)
+                    </h5>
+                </div>
+
+                <div class="col-3">
+                    <button class="center-block" (click)="showExample11()">Show me (example 11)</button>
+                    <h5 class="center m-bottom">Decorator<br /></h5>
+                </div>
+
+                <div class="col-3">
+                    <button class="center-block" (click)="showExample12()">Show me (example 12)</button>
+                    <h5 class="center m-bottom">
+                        Decorator group<br />
+                        with function title
+                    </h5>
+                </div>
+
+                <div class="col-3">
+                    <button class="center-block" (click)="showExample13()">Show me (example 13)</button>
+                    <h5 class="center m-bottom">Decorator timer<br /></h5>
+                </div>
+
+                <div class="col-3">
+                    <button class="center-block" (click)="showExample14()">Show me (example 13)</button>
+                    <h5 class="center m-bottom">Advanced timer decorator<br /></h5>
+                </div>
+
+                <div class="col-3">
+                    <button class="center-block" (click)="showExample1()">Show me (example settings)</button>
+                    <h5 class="center m-bottom">
+                        Full configuration<br />
+                        (change labels, colors)
+                    </h5>
+                </div>
+            </div>
+        </div>
+
+        <div id="console-dis-activate" class="row example" [class.no-display]="devToolsIsOpen">
+            <div class="col-12">
+                <h4 class="center m-bottom">You need open console</h4>
+            </div>
+        </div>
+    </div>
+</div>
