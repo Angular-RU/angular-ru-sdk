@@ -2,21 +2,21 @@ import { LoggerLevel } from './interfaces/logger.external';
 import { ObjectKeyMap } from './interfaces/logger.internal';
 
 // eslint-disable-next-line no-restricted-syntax,@typescript-eslint/naming-convention
-export enum COLORS {
-    TRACE = '#000080',
-    DEBUG = '#00BFFE',
-    INFO = '#000000',
-    WARN = '#FF6419',
-    ERROR = '#F1062D'
-}
-
-// eslint-disable-next-line no-restricted-syntax,@typescript-eslint/naming-convention
 export enum LABELS {
     TRACE = 'TRACE',
     DEBUG = 'DEBUG',
     INFO = 'INFO',
     WARN = 'WARN',
     ERROR = 'ERROR'
+}
+
+// eslint-disable-next-line no-restricted-syntax,@typescript-eslint/naming-convention
+export enum COLORS {
+    TRACE = '#000080',
+    DEBUG = '#00BFFE',
+    INFO = '#000000',
+    WARN = '#FF6419',
+    ERROR = '#F1062D'
 }
 
 export const DEFAULT_METHODS: ObjectKeyMap = {
