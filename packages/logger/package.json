@@ -25,15 +25,12 @@
         "start": "ng serve",
         "test": "yarn jest --config ./jest.config.js"
     },
-    "dependencies": {
-        "angular-cli-ghpages": "^0.6.2"
-    },
     "devDependencies": {
         "devtools-detect": "3.0.0"
     },
     "peerDependencies": {
-        "@angular/common": ">=7.0.0",
-        "@angular/core": ">=7.0.0"
+        "@angular/common": ">=8.0.0",
+        "@angular/core": ">=8.0.0"
     },
     "publishConfig": {
         "access": "public"
