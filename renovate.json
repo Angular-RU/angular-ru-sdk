@@ -1,28 +1,4 @@
 {
-    "automerge": true,
-    "rangeStrategy": "bump",
-    "separateMajorMinor": false,
-    "packageFiles": ["package.json", "packages/**/package.json"],
-    "major": {
-        "dependencies": { "enabled": false },
-        "devDependencies": { "enabled": false }
-    },
-    "packageRules": [
-        {
-            "depTypeList": ["dependencies"],
-            "groupName": "dependencies",
-            "groupSlug": "dependencies",
-            "commitMessagePrefix": "feat:",
-            "commitMessageTopic": "only dependencies",
-            "commitBody": "only dependencies"
-        },
-        {
-            "depTypeList": ["devDependencies"],
-            "groupName": "devDependencies",
-            "groupSlug": "devDependencies",
-            "commitMessagePrefix": "ci:",
-            "commitMessageTopic": "only devDependencies",
-            "commitBody": "only devDependencies"
-        }
-    ]
+    "extends": ["github>Angular-RU/angular-renovate-config"],
+    "baseBranches": ["master"]
 }
