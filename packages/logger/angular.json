@@ -59,6 +59,14 @@
                             "browserTarget": "integration:build:production"
                         }
                     }
+                },
+                "deploy": {
+                    "builder": "angular-cli-ghpages:deploy",
+                    "options": {
+                        "noBuild": true,
+                        "branch": "master",
+                        "repo": "https://github.com/Angular-RU/angular-ru-logger-example-app.git"
+                    }
                 }
             }
         },
@@ -78,5 +86,5 @@
             }
         }
     },
-    "defaultProject": "logger"
+    "defaultProject": "integration"
 }
