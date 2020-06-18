@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.21.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.20.1...v12.21.0) (2020-06-18)
+
+**Note:** Version bump only for package @angular-ru/eslint-config
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [12.20.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.20.0...v12.20.1) (2020-06-17)
 
 ### Bug Fixes
