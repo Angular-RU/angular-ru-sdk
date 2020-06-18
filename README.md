@@ -125,8 +125,20 @@ in the Angular.
 </tbody>
 </table>
 
-#### Create new package
+##### Create new package
 
 ```bash
 $ lerna create @angular-ru/my-pkg
+```
+
+#### Build libraries
+
+```bash
+$ yarn build:lib
+```
+
+#### Build integration apps
+
+```bash
+$ yarn build:app
 ```

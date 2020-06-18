@@ -4,24 +4,23 @@
     "newProjectRoot": "projects",
     "projects": {
         "integration": {
-            "root": "",
             "prefix": "",
-            "sourceRoot": "integration",
+            "root": "",
+            "sourceRoot": "integration/app",
             "projectType": "application",
             "schematics": {},
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "dist/integration",
-                        "index": "integration/app/index.html",
+                        "es5BrowserSupport": true,
                         "main": "integration/app/main.ts",
+                        "index": "integration/app/index.html",
                         "polyfills": "integration/app/polyfills.ts",
+                        "outputPath": "dist/integration",
                         "tsConfig": "integration/app/tsconfig.app.json",
-                        "assets": ["integration/app/favicon.ico", "integration/app/assets"],
-                        "styles": ["integration/app/styles.css"],
-                        "scripts": [],
-                        "es5BrowserSupport": true
+                        "assets": ["integration/app/assets"],
+                        "styles": ["integration/app/styles.css"]
                     },
                     "configurations": {
                         "production": {
