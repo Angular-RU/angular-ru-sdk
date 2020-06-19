@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.22.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.21.5...v12.22.0) (2020-06-19)
+
+### Features
+
+-   Update only dependencies to v8.2.1
+    ([e9d94ce](https://github.com/Angular-RU/angular-ru-sdk/commit/e9d94cea029b6abe3c16b8517e884ecb84d2bb08))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [12.21.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.20.1...v12.21.0) (2020-06-18)
 
 ### Features
