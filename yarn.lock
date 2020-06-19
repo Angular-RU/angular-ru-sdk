@@ -2,14 +2,6 @@
 # yarn lockfile v1
 
 
-"@angular-devkit/architect@0.803.21":
-  version "0.803.21"
-  resolved "https://registry.npmjs.org/@angular-devkit/architect/-/architect-0.803.21.tgz#0e76b6f646ebdbd9bb88d3972b2ca66fed950f7d"
-  integrity sha512-E2K/YexIWVyKM/xmyxvDjkJf+wX9u4c8YYpNaK4htsRzA06juc7N1MhlL/jURZiRl5b/K9sapYeq3tMX76saxA==
-  dependencies:
-    "@angular-devkit/core" "8.3.21"
-    rxjs "6.4.0"
-
 "@angular-devkit/architect@0.803.27":
   version "0.803.27"
   resolved "https://registry.npmjs.org/@angular-devkit/architect/-/architect-0.803.27.tgz#cb40cc9686f80eaf2d3aed64c41ab2ea18344bba"
@@ -108,17 +100,6 @@
     "@angular-devkit/core" "8.3.27"
     rxjs "6.4.0"
 
-"@angular-devkit/core@8.3.21":
-  version "8.3.21"
-  resolved "https://registry.npmjs.org/@angular-devkit/core/-/core-8.3.21.tgz#447022813e46333e930816c287722d06b9c4dd3a"
-  integrity sha512-BYyVbrbys535FplX0+GVOlYBg/cyk1U5SRhSxRRFZYi9epVlEBBPk8/6wV4cQPGb6EwXkVj7YtPWXjXcGfzWmA==
-  dependencies:
-    ajv "6.10.2"
-    fast-json-stable-stringify "2.0.0"
-    magic-string "0.25.3"
-    rxjs "6.4.0"
-    source-map "0.7.3"
-
 "@angular-devkit/core@8.3.27":
   version "8.3.27"
   resolved "https://registry.npmjs.org/@angular-devkit/core/-/core-8.3.27.tgz#d99e797bb0c8be643f01c707fdb3904ab347b106"
@@ -130,12 +111,12 @@
     rxjs "6.4.0"
     source-map "0.7.3"
 
-"@angular-devkit/schematics@8.3.21":
-  version "8.3.21"
-  resolved "https://registry.npmjs.org/@angular-devkit/schematics/-/schematics-8.3.21.tgz#80d515f480180be18a4130ea691f90153bcab3ea"
-  integrity sha512-+wH0362CRr/SijVX4w2baY2ANZ4scQ1k2xO8lT+NMeZQkw3IJQPOfwk1IaqiAs2xuBJZcSDH1Gn80+Jh4Dit7w==
+"@angular-devkit/schematics@8.3.27":
+  version "8.3.27"
+  resolved "https://registry.npmjs.org/@angular-devkit/schematics/-/schematics-8.3.27.tgz#1e2c720cd464a14ec65a963025e7eb0d980eda33"
+  integrity sha512-SGh/yubOPT7jFZTfTyBLJqYUUBYU6pcTY3ifKVoa1JG28GegKSycusCMeX19gEY7awKYIuxR9WJeGgV6evSQPA==
   dependencies:
-    "@angular-devkit/core" "8.3.21"
+    "@angular-devkit/core" "8.3.27"
     rxjs "6.4.0"
 
 "@angular/animations@8.2.14":
@@ -145,16 +126,16 @@
   dependencies:
     tslib "^1.9.0"
 
-"@angular/cli@8.3.21":
-  version "8.3.21"
-  resolved "https://registry.npmjs.org/@angular/cli/-/cli-8.3.21.tgz#cbb05b86b7f34ecd81d52ccad922359e66a16a15"
-  integrity sha512-ZZpA7mMfIobFT06rBNxm8vucAh8W2s0huJZ4iL0BPujnhIr71PL+gDwssySWDEz2q6i4CkH9QRH76DHhtL6VSQ==
+"@angular/cli@8.3.27":
+  version "8.3.27"
+  resolved "https://registry.npmjs.org/@angular/cli/-/cli-8.3.27.tgz#b6ca252b5bf17c03552c3f981a8b8badca4baf03"
+  integrity sha512-GAhS5p5XgXNf7NAcJgWO0XM5fjae9WGCnJBjMmGGF0BZltM7THQExlxRgexnHqKbf+QALy/RvYCZiNavXhtoyw==
   dependencies:
-    "@angular-devkit/architect" "0.803.21"
-    "@angular-devkit/core" "8.3.21"
-    "@angular-devkit/schematics" "8.3.21"
-    "@schematics/angular" "8.3.21"
-    "@schematics/update" "0.803.21"
+    "@angular-devkit/architect" "0.803.27"
+    "@angular-devkit/core" "8.3.27"
+    "@angular-devkit/schematics" "8.3.27"
+    "@schematics/angular" "8.3.27"
+    "@schematics/update" "0.803.27"
     "@yarnpkg/lockfile" "1.1.0"
     ansi-colors "4.1.1"
     debug "^4.1.1"
@@ -2167,21 +2148,21 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
-"@schematics/angular@8.3.21":
-  version "8.3.21"
-  resolved "https://registry.npmjs.org/@schematics/angular/-/angular-8.3.21.tgz#4902e0b6e8be47006859009bf96a026e3d39dd27"
-  integrity sha512-KahQ+dHvTsGOZwY6IdzqJZLDEn0G89rrK3OY+7okZujoaLM+LXhxlPoznW1udnZJVTa3VNxYGx11fkgLtRJRqA==
+"@schematics/angular@8.3.27":
+  version "8.3.27"
+  resolved "https://registry.npmjs.org/@schematics/angular/-/angular-8.3.27.tgz#612d6a3f2fbdeb8a890b4fe793a191d0b8a31850"
+  integrity sha512-ur16yrqZAc8lOqXcdH0boehGKWh465oDTLkXcj974zd2LyGbsj4NmAojFRfgk5uUFWxMYeBLFEFimZkRFcDVpg==
   dependencies:
-    "@angular-devkit/core" "8.3.21"
-    "@angular-devkit/schematics" "8.3.21"
+    "@angular-devkit/core" "8.3.27"
+    "@angular-devkit/schematics" "8.3.27"
 
-"@schematics/update@0.803.21":
-  version "0.803.21"
-  resolved "https://registry.npmjs.org/@schematics/update/-/update-0.803.21.tgz#572c955bb132348bca03a128491ae264b0068a0a"
-  integrity sha512-D3BRvEBF2cJEgogvFaNOfqtTFHHv/ctSRfOeAYWjUxILtb+2DpuZ9h5QYDFhN9MPgz/vRaOqFORa3sEZCRkX4g==
+"@schematics/update@0.803.27":
+  version "0.803.27"
+  resolved "https://registry.npmjs.org/@schematics/update/-/update-0.803.27.tgz#105ef467ebe8b7ec12d20164630abef3fefd48dc"
+  integrity sha512-ZSTqjRIWdBjPtYy978NQHHy/Sr5N8CNIhBX1eLAb0vE5aX3xLxYHEdg3ZcF9dqvV4/446fVrxWSuuhmF1NYPwA==
   dependencies:
-    "@angular-devkit/core" "8.3.21"
-    "@angular-devkit/schematics" "8.3.21"
+    "@angular-devkit/core" "8.3.27"
+    "@angular-devkit/schematics" "8.3.27"
     "@yarnpkg/lockfile" "1.1.0"
     ini "1.3.5"
     pacote "9.5.5"
@@ -8599,10 +8580,10 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.npmjs.org/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
-lint-staged@10.2.10:
-  version "10.2.10"
-  resolved "https://registry.npmjs.org/lint-staged/-/lint-staged-10.2.10.tgz#f0f78bf8786bbe90e1775a0dc540f7f12b6a79b2"
-  integrity sha512-dgelFaNH6puUGAcU+OVMgbfpKSerNYsPSn6+nlbRDjovL0KigpsVpCu0PFZG6BJxX8gnHJqaZlR9krZamQsb0w==
+lint-staged@10.2.11:
+  version "10.2.11"
+  resolved "https://registry.npmjs.org/lint-staged/-/lint-staged-10.2.11.tgz#713c80877f2dc8b609b05bc59020234e766c9720"
+  integrity sha512-LRRrSogzbixYaZItE2APaS4l2eJMjjf5MbclRZpLJtcQJShcvUzKXsNeZgsLIZ0H0+fg2tL4B59fU9wHIHtFIA==
   dependencies:
     chalk "^4.0.0"
     cli-truncate "2.1.0"
