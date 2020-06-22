@@ -35,6 +35,6 @@
     },
     "publishConfig": {
         "access": "public",
-        "directory": "dist/logger"
+        "directory": "dist/library"
     }
 }
