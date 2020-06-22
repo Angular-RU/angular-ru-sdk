@@ -1,0 +1,158 @@
+<div *ngIf="(source && source.length) === 0 && !filterable.filtering">
+    <ng-content select="ngx-empty"></ng-content>
+</div>
+
+<div *ngIf="sourceIsNull">
+    <ng-content select="ngx-source-null"></ng-content>
+</div>
+
+<div
+    #root
+    [style.width]="width"
+    [sourceRef]="sourceRef"
+    class="table-grid__root"
+    [style.height.px]="height"
+    [class.table-grid__root-auto-height]="autoHeightDetect"
+    [class.table-grid__no-display]="!(columnSchema.length > 0)"
+    [class.table-grid__root--is-rendered]="isRendered"
+    [class.table-grid__root--is-scrolling]="viewPortInfo.isScrolling"
+    [class.table-grid__no-visible]="!sourceRef.length && !filterable.filtering"
+    [class.table-grid__root--is-scroll-overload]="tableViewport.scrollWidth > tableViewport.clientWidth"
+    [class.table-grid__root--visible]="contentInit && root.offsetHeight > clientRowHeight && columnHeight"
+    (contextmenu)="contextMenuTemplate ? contextMenu.openContextMenu($event) : null"
+    (recalculatedHeight)="recalculateHeight()"
+    [autoHeight]="{
+        detect: autoHeightDetect,
+        height: height,
+        inViewport: true,
+        headerHeight: headerRef?.nativeElement.clientHeight,
+        footerHeight: footerRef?.nativeElement.clientHeight,
+        columnHeight: columnHeight,
+        statusRendered: isRendered,
+        sourceLength: source?.length || 0
+    }"
+    [tableViewport]="tableViewport"
+>
+    <div
+        observerView
+        cdkDropList
+        #tableViewport
+        class="table-grid"
+        cdkDropListOrientation="horizontal"
+        (cdkDropListDropped)="drop($event)"
+        [cdkDropListDisabled]="!accessDragging"
+        (observeVisible)="calculateViewport(true)"
+        [class.table-grid__native-scrollbar]="nativeScrollbar"
+        [class.table-grid__scroll-offset]="viewPortInfo?.scrollTop > 0"
+        [style.width.px]="
+            columnListWidth !== 0 && root.offsetWidth !== 0 && columnListWidth < root.offsetWidth - scrollbarWidth
+                ? columnListWidth + scrollbarWidth
+                : null
+        "
+    >
+        <div class="table-grid__header-sticky" *ngIf="headerTemplate" #header>
+            <ng-content select="ngx-header"></ng-content>
+        </div>
+
+        <div
+            #area
+            [style.height.px]="columnHeight"
+            class="table-grid__column-area-content"
+            [style.width.px]="
+                tableViewportChecked && tableViewport.scrollWidth > tableViewport.clientWidth
+                    ? tableViewport.scrollWidth
+                    : null
+            "
+        >
+            <ng-container *ngFor="let schema of columnSchema; let index = index">
+                <div
+                    #column
+                    cdkDrag
+                    observerView
+                    [cdkDragBoundary]="area"
+                    class="table-grid__column"
+                    *ngIf="schema.isVisible"
+                    [ngStyle]="schema?.cssStyle"
+                    [ngClass]="schema?.cssClass"
+                    [attr.column-id]="schema.key"
+                    [style.width.px]="schema?.width"
+                    [cdkDragDisabled]="!accessDragging"
+                    [style.max-width.px]="schema?.width"
+                    [style.min-width.px]="schema?.width"
+                    (cdkDragMoved)="cdkDragMoved($event, root)"
+                    [class.table-grid__column--sticky-left]="schema?.stickyLeft"
+                    [class.table-grid__column--default-width]="!schema?.width"
+                    [class.table-grid__column--is-visible]="column['visible']"
+                    [class.table-grid__column--is-invisible]="!column['visible']"
+                    [class.table-grid__column--filter-enable]="filterTemplate"
+                    [class.table-grid__column--sticky-right]="schema?.stickyRight"
+                    [class.table-grid__column--custom-column]="schema?.customColumn"
+                    [class.table-grid__column--is-dragging]="isDragging[schema.key]"
+                    [class.table-grid__column--with-footer-content]="footerTemplate"
+                    [class.table-grid__column--selected-all]="selection.selectionModel.isAll"
+                    [class.table-grid__column--is-draggable]="schema?.isModel && schema?.draggable"
+                    [class.table-grid__column--auto-width-reset-default-with]="isEnableAutoWidthColumn"
+                    [class.table-grid__column--vertical-line]="
+                        verticalBorder !== false || schema?.verticalLine !== false
+                    "
+                    (observeVisible)="markVisibleColumn(column, $event)"
+                >
+                    <div *ngIf="column['visible']" [@fadeAnimation]>
+                        <table-thead
+                            cdkDragHandle
+                            [column-schema]="schema"
+                            (mouseleave)="disableDragging()"
+                            [column-width]="column.offsetWidth"
+                            [header-top]="headerRef?.nativeElement.offsetHeight || 0"
+                            [sortable-definition]="sortable.definition"
+                            [sortable-position]="sortable.positionMap"
+                            [sortable-count]="sortable.sortableCount"
+                            [filterable-definition]="filterable.definition"
+                            [client-row-height]="clientRowHeight"
+                            [head-height]="headLineHeight"
+                            (resize)="resizeColumn($event, column)"
+                            (sortByKey)="sortByKey($event)"
+                            (mouseenter)="enableDragging(schema.key)"
+                        >
+                        </table-thead>
+
+                        <table-tbody
+                            [striped]="striped"
+                            [source]="source"
+                            [primary-key]="primaryKey"
+                            [isRendered]="isRendered"
+                            [recalculated]="recalculated"
+                            [column-schema]="schema"
+                            [head-height]="headLineHeight"
+                            [viewport-info]="viewPortInfo"
+                            [table-viewport]="tableViewport"
+                            [offset-top]="viewPortInfo.scrollTop"
+                            [context-menu]="contextMenuTemplate"
+                            [enable-selection]="isEnableSelection"
+                            [enable-filtering]="isEnableFiltering"
+                            [client-row-height]="clientRowHeight"
+                            [selection-entries]="selectionEntries"
+                            [produce-disable-fn]="produceDisableFn"
+                            [virtual-indexes]="viewPortInfo.virtualIndexes"
+                            [column-virtual-height]="columnVirtualHeight"
+                            (changed)="idleDetectChanges()"
+                        >
+                        </table-tbody>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+
+        <div class="table-grid__footer-sticky" *ngIf="footerTemplate && isRendered" #footer>
+            <ng-content select="ngx-footer"></ng-content>
+        </div>
+    </div>
+</div>
+
+<ng-template [ngIf]="contextMenuTemplate && contextMenu.state?.opened">
+    <ng-content select="ngx-context-menu"></ng-content>
+</ng-template>
+
+<ng-template [ngIf]="filterTemplate">
+    <ng-content select="ngx-filter"></ng-content>
+</ng-template>

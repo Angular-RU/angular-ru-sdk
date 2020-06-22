@@ -1,6 +1,6 @@
-node_modules
-.idea
-.cache
 *.iml
-dist
-lib
+.idea
+**/lib/**
+**/dist/**
+**/.cache**/
+**/node_modules**/

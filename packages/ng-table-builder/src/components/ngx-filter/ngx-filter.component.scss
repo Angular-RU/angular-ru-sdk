@@ -1,0 +1,16 @@
+.table-grid__filter-menu {
+    .filter-menu {
+        display: flex;
+        position: fixed;
+        background: #fff;
+        z-index: 10000;
+        border: 1px solid #dcdcdc;
+        box-shadow: 1px 1px 2px #9c9c9c;
+        flex-direction: column;
+
+        .table-close__button {
+            top: -10px;
+            right: -10px;
+        }
+    }
+}

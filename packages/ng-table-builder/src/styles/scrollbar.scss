@@ -1,0 +1,35 @@
+.table-grid:not(.table-grid__native-scrollbar) {
+    color: rgba(0, 0, 0, 0);
+    background: white;
+
+    $tableScrollWidth: 10px;
+    $minPadding: 2px;
+
+    &::-webkit-scrollbar,
+    &::-webkit-scrollbar-thumb {
+        width: $tableScrollWidth;
+        height: $tableScrollWidth + $minPadding;
+        border-radius: $tableScrollWidth;
+        background-clip: padding-box;
+        border: 2px solid transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        box-shadow: inset 0 0 0 $tableScrollWidth;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: transparent;
+    }
+
+    &:hover {
+        color: rgba(0, 0, 0, 0.2);
+    }
+}
+
+.table-grid,
+.table-grid__root,
+.table-grid__column,
+.table-grid__column-area-content {
+    scroll-behavior: smooth;
+}

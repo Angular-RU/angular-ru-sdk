@@ -1,0 +1,50 @@
+{
+    "name": "@angular-ru/ng-table-builder",
+    "version": "12.20.1",
+    "description": "Angular-RU package",
+    "keywords": [
+        "angular-ru",
+        "angular",
+        "logger",
+        "sdk",
+        "ng-table-builder"
+    ],
+    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/ng-table-builder#readme",
+    "bugs": {
+        "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
+    },
+    "license": "MIT",
+    "author": "splincode <omaxphp@yandex.ru>",
+    "scripts": {
+        "build:app": "ng build integration --prod",
+        "build:lib": "ng build library && cp README.md dist/library",
+        "deploy": "cp README.md dist/integration && ng deploy --no-build",
+        "pre:build": "cpx -v -C \"../../node_modules/{@angular,ngx-toastr,hammerjs}/**/*\" \"node_modules/\"",
+        "start": "ng serve",
+        "test": "yarn jest --config ./jest.config.js",
+        "postversion": "npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\""
+    },
+    "devDependencies": {
+        "@angular/cdk": "file:../../node_modules/@angular/cdk",
+        "@angular/material": "file:../../node_modules/@angular/material",
+        "hammerjs": "file:../../node_modules/hammerjs",
+        "intersection-observer": "0.7.0",
+        "ngx-toastr": "12.1.0",
+        "pretty": "2.0.0"
+    },
+    "peerDependencies": {
+        "@angular/animations": ">=8.0.0 <10.0.0",
+        "@angular/cdk": ">=8.0.0  <10.0.0",
+        "@angular/common": ">=8.0.0 <10.0.0",
+        "@angular/core": ">=8.0.0  <10.0.0",
+        "rxjs": ">=6.1.0"
+    },
+    "publishConfig": {
+        "access": "public",
+        "directory": "dist/library"
+    }
+}

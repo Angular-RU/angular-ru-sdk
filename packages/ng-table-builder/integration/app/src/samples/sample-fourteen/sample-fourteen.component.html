@@ -1,0 +1,102 @@
+<mat-toolbar class="simple-toolbar">
+    <span>Example filters</span>
+    <div class="show-simple">
+        <button mat-raised-button (click)="clearFilter()">clear filter</button>
+        <button mat-raised-button (click)="showSample()">show code sample</button>
+    </div>
+</mat-toolbar>
+
+<ngx-table-builder #table [source]="data" [row-height]="40" class="filter-example" enable-filtering enable-selection>
+    <ngx-options is-sortable is-filterable is-draggable is-resizable></ngx-options>
+    <ngx-source-null>Loading...</ngx-source-null>
+    <ngx-empty>Not found</ngx-empty>
+
+    <ngx-header [css-class]="['my-filter']" height="65">
+        <div class="filter-form">
+            <mat-form-field appearance="outline">
+                <mat-label>Filter</mat-label>
+                <input
+                    matInput
+                    name="width"
+                    autocomplete="off"
+                    [(ngModel)]="table.filterable.filterValue"
+                    (ngModelChange)="table.filter()"
+                />
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field class="filter-options" appearance="outline">
+                <mat-label>Find options</mat-label>
+                <mat-select [(value)]="table.filterable.filterType" (valueChange)="table.filter()">
+                    <mat-option *ngFor="let type of table.filterable.types | keyvalue" [value]="type.value">
+                        {{ type.key }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </ngx-header>
+
+    <ngx-column key="selection" sticky width="55" custom-key>
+        <ng-template ngx-th>
+            <mat-checkbox
+                (change)="table.selection.toggleAll(data)"
+                [indeterminate]="table.selectionModel.isIndeterminate"
+                [checked]="table.selectionModel.isAll"
+            ></mat-checkbox>
+        </ng-template>
+        <ng-template ngx-td row let-row (onClick)="$event.preventDefault()">
+            <mat-checkbox
+                [checked]="table.selectionModel.get($any(row).id)"
+                (change)="table.selection.toggle(row)"
+            ></mat-checkbox>
+        </ng-template>
+    </ngx-column>
+
+    <ngx-column *ngFor="let key of table.modelColumnKeys" [key]="key">
+        <ng-template ngx-td [nowrap]="false" let-cell>
+            <a onclick="javascript:void(0)">
+                <ngx-filter-viewer [key]="key" [text]="cell"></ngx-filter-viewer>
+            </a>
+        </ng-template>
+    </ngx-column>
+
+    <ngx-column custom-key key="action" sticky-end width="50" empty-head>
+        <ng-template ngx-td>
+            <mat-icon>all_inbox</mat-icon>
+        </ng-template>
+    </ngx-column>
+
+    <ngx-filter #filter>
+        <div class="my-filter">
+            <mat-form-field appearance="outline">
+                <mat-label>Find options</mat-label>
+                <mat-select
+                    (valueChange)="table.filter()"
+                    [(value)]="table.filterable.filterTypeDefinition[filter.state.key!]"
+                >
+                    <mat-option *ngFor="let type of table.filterable.types | keyvalue" [value]="type.value">
+                        {{ type.key }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Filter by {{ filter.state.key! | uppercase }}</mat-label>
+                <input
+                    matInput
+                    name="width"
+                    autocomplete="off"
+                    [(ngModel)]="table.filterable.definition[filter.state.key!]"
+                    (ngModelChange)="table.filter()"
+                />
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+        </div>
+    </ngx-filter>
+
+    <ngx-footer>
+        <p style="padding: 3px 0 0 20px;">
+            <b>Size</b>: {{ table.source?.length }} x {{ table?.displayedColumns?.length }}
+        </p>
+    </ngx-footer>
+</ngx-table-builder>

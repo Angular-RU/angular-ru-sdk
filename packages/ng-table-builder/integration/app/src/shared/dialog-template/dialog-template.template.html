@@ -1,0 +1,9 @@
+<h3>Edit</h3>
+
+<form [formGroup]="form">
+    <mat-form-field *ngFor="let input of data | keyvalue">
+        <input matInput placeholder="{{input.key}}" [formControlName]="input.key" />
+    </mat-form-field>
+</form>
+
+<button class="dialog-close" mat-button (click)="save()">Save</button>

@@ -1,0 +1,10 @@
+<div [class.context-menu__content-place]="icon === null" [class.context-menu__icon-place]="icon !== null">
+    <div class="content" [class.align-center]="alignCenter !== null">
+        <ng-template [ngIf]="icon?.length > 0" [ngIfElse]="content">
+            <img [attr.src]="icon" alt="img" />
+        </ng-template>
+        <ng-template #content>
+            <ng-content></ng-content>
+        </ng-template>
+    </div>
+</div>

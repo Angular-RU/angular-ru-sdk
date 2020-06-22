@@ -1,0 +1,60 @@
+<mat-toolbar class="simple-toolbar">
+    <span>Persistent state</span>
+    <button class="show-simple" mat-raised-button>show code sample</button>
+</mat-toolbar>
+
+<ngx-table-builder
+    #table
+    [source]="data"
+    [name]="testName"
+    [schema-columns]="schema"
+    [vertical-border]="false"
+    [exclude-keys]="['reverseId']"
+>
+    <ngx-options is-draggable is-filterable is-sortable></ngx-options>
+
+    <ngx-context-menu>
+        <ngx-context-menu-item contextTitle divider>
+            <ngx-menu-content>Menu</ngx-menu-content>
+        </ngx-context-menu-item>
+
+        <ngx-context-menu-item>
+            <ngx-menu-content>Column list</ngx-menu-content>
+
+            <ngx-context-menu-item
+                *ngFor="let column of table.columnSchema"
+                (onClick)="table.toggleColumnVisibility(column.key); $event.preventDefault()"
+                [visible]="column.isModel"
+            >
+                <ngx-menu-content no-margin>{{ column.key }}</ngx-menu-content>
+                <ngx-menu-content no-margin align-center>
+                    <mat-checkbox color="primary" [checked]="column.isVisible"></mat-checkbox>
+                </ngx-menu-content>
+            </ngx-context-menu-item>
+        </ngx-context-menu-item>
+
+        <ngx-context-menu-item (onClick)="table.resetSchema()" divider>
+            <ngx-menu-content>Reset table settings</ngx-menu-content>
+        </ngx-context-menu-item>
+    </ngx-context-menu>
+
+    <ngx-column
+        key="id"
+        sticky
+        custom-key
+        width="100"
+        vertical-line
+        important-template
+        [is-draggable]="false"
+    ></ngx-column>
+
+    <ngx-column key="reverseId" custom-key width="150" vertical-line important-template></ngx-column>
+
+    <ngx-column *ngFor="let key of table.modelColumnKeys" [key]="key"></ngx-column>
+
+    <ngx-column key="edit" custom-key width="60" vertical-line sticky-end empty-head>
+        <ng-template ngx-td row>
+            <button mat-button><mat-icon>info</mat-icon></button>
+        </ng-template>
+    </ngx-column>
+</ngx-table-builder>
