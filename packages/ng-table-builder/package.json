@@ -30,7 +30,7 @@
     },
     "devDependencies": {
         "intersection-observer": "0.7.0",
-        "ngx-toastr": "12.1.0",
+        "ngx-toastr": "10.2.0",
         "pretty": "2.0.0"
     },
     "peerDependencies": {
