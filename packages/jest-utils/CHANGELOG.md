@@ -1,5 +1,14 @@
 # Change Log
 
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [12.23.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.22.0...v12.23.0) (2020-06-22)
+
+**Note:** Version bump only for package @angular-ru/jest-utils
+
+# Change Log
+
 # [12.22.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.21.5...v12.22.0) (2020-06-19)
 
 ### Features

@@ -5,7 +5,7 @@
     "stream": true,
     "npmClient": "yarn",
     "useWorkspaces": true,
-    "version": "12.22.0",
+    "version": "12.23.0",
     "command": {
         "version": {
             "allowBranch": "master",
@@ -46,12 +46,12 @@
     },
     "changelog": {
         "labels": {
-            "feature": "\uD83D\uDE80 Feature",
+            "feature": "🚀 Feature",
             "perf": "Performance Improvements",
             "ci": "CI changes",
             "bug": "Bug Fixes",
             "revert": "Reverts",
-            "breaking": "\uD83D\uDCA5 BREAKING CHANGES"
+            "breaking": "💥 BREAKING CHANGES"
         }
     }
 }

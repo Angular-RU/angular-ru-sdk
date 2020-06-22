@@ -1,5 +1,14 @@
 # Change Log
 
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [12.23.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.22.0...v12.23.0) (2020-06-22)
+
+**Note:** Version bump only for package @angular-ru/logger
+
+# Change Log
+
 ## [12.21.5](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.21.4...v12.21.5) (2020-06-18)
 
 **Note:** Version bump only for package @angular-ru/logger
