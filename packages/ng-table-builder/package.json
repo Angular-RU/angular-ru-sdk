@@ -22,8 +22,11 @@
     "scripts": {
         "build:app": "ng build integration --prod",
         "build:lib": "ng build library && cp README.md dist/library",
+        "copy:angular": "cp -v -r ../../node_modules/@angular node_modules",
+        "copy:hammerjs": "cp -v -r ../../node_modules/hammerjs node_modules",
+        "copy:ngx-toastr": "cp -v -r ../../node_modules/ngx-toastr node_modules",
         "deploy": "cp README.md dist/integration && ng deploy --no-build",
-        "pre:build": "cpx -v -C \"../../node_modules/{@angular,ngx-toastr,hammerjs}/**/*\" \"node_modules/\"",
+        "pre:build": "mkdir -p node_modules && yarn copy:angular && yarn copy:hammerjs && yarn copy:ngx-toastr",
         "start": "ng serve",
         "test": "yarn jest --config ./jest.config.js",
         "postversion": "npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\""
