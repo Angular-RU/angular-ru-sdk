@@ -1,7 +1,7 @@
 ---
 name: "\U0001F41E[BUG]: "
 about: Create a report to help us improve
-title: ''
+title: "\U0001F41E[BUG]: "
 labels: bug
 assignees: ''
 
