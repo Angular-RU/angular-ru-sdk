@@ -29,9 +29,6 @@
         "postversion": "npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\""
     },
     "devDependencies": {
-        "@angular/cdk": "file:../../node_modules/@angular/cdk",
-        "@angular/material": "file:../../node_modules/@angular/material",
-        "hammerjs": "file:../../node_modules/hammerjs",
         "intersection-observer": "0.7.0",
         "ngx-toastr": "12.1.0",
         "pretty": "2.0.0"
