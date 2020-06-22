@@ -24,9 +24,9 @@
     ],
     "scripts": {
         "copy:codelyzer": "cp -v -r ../../node_modules/codelyzer node_modules",
-        "copy:tslint-eslint-rules": "cp -v -r ../../node_modules/tslint-eslint-rules/ node_modules",
+        "copy:tslint-eslint-rules": "cp -v -r ../../node_modules/tslint-eslint-rules node_modules",
         "copy:tslint-sonarts": "cp -v -r ../../node_modules/tslint-sonarts node_modules",
-        "pre:build": "mkdir -p node_modules yarn copy:codelyzer && yarn copy:tslint-sonarts && yarn copy:tslint-eslint-rules",
+        "pre:build": "mkdir -p node_modules && yarn copy:codelyzer && yarn copy:tslint-sonarts && yarn copy:tslint-eslint-rules",
         "test": "sh test.sh"
     },
     "dependencies": {
