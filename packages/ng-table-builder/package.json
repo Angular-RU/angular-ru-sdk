@@ -1,0 +1,47 @@
+{
+    "name": "@angular-ru/ng-table-builder",
+    "version": "12.20.1",
+    "description": "Angular-RU package",
+    "keywords": [
+        "angular-ru",
+        "angular",
+        "logger",
+        "sdk",
+        "ng-table-builder"
+    ],
+    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/ng-table-builder#readme",
+    "bugs": {
+        "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
+    },
+    "license": "MIT",
+    "author": "splincode <omaxphp@yandex.ru>",
+    "scripts": {
+        "build:app": "ng build integration --prod",
+        "build:lib": "ng build library && cp README.md dist/library",
+        "build:prepare": "sh prepare.sh",
+        "deploy": "cp README.md dist/integration && ng deploy --no-build",
+        "start": "ng serve",
+        "test": "yarn jest --config ./jest.config.js",
+        "postversion": "npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\""
+    },
+    "devDependencies": {
+        "intersection-observer": "0.7.0",
+        "ngx-toastr": "10.2.0",
+        "pretty": "2.0.0"
+    },
+    "peerDependencies": {
+        "@angular/animations": ">=8.0.0 <10.0.0",
+        "@angular/cdk": ">=8.0.0  <10.0.0",
+        "@angular/common": ">=8.0.0 <10.0.0",
+        "@angular/core": ">=8.0.0  <10.0.0",
+        "rxjs": ">=6.1.0"
+    },
+    "publishConfig": {
+        "access": "public",
+        "directory": "dist/library"
+    }
+}

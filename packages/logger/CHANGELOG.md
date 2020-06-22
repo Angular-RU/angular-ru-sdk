@@ -1,25 +1,16 @@
 # Change Log
 
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
 ## [12.21.5](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.21.4...v12.21.5) (2020-06-18)
 
 **Note:** Version bump only for package @angular-ru/logger
 
 # Change Log
 
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
 ## [12.21.4](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.21.3...v12.21.4) (2020-06-18)
 
 **Note:** Version bump only for package @angular-ru/logger
 
 # Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [12.21.3](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.21.2...v12.21.3) (2020-06-18)
 
@@ -30,9 +21,6 @@ All notable changes to this project will be documented in this file. See
 
 # Change Log
 
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
 ## [12.21.2](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.21.1...v12.21.2) (2020-06-18)
 
 ### Bug Fixes
@@ -42,9 +30,6 @@ All notable changes to this project will be documented in this file. See
 
 # Change Log
 
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
 ## [12.21.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.21.0...v12.21.1) (2020-06-18)
 
 ### Bug Fixes
@@ -53,9 +38,6 @@ All notable changes to this project will be documented in this file. See
     ([f153960](https://github.com/Angular-RU/angular-ru-sdk/commit/f153960d714b66292964124c9d48fec98f9da8de))
 
 # Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # [12.21.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.20.1...v12.21.0) (2020-06-18)
 

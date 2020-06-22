@@ -23,11 +23,8 @@
         "README.md"
     ],
     "scripts": {
-        "copy:codelyzer": "cpx -v -C \"../../node_modules/codelyzer/**/*\" \"node_modules/codelyzer/\"",
-        "copy:tslint-eslint-rules": "cpx -v -C \"../../node_modules/tslint-eslint-rules/**/*\" \"node_modules/tslint-eslint-rules/\"",
-        "copy:tslint-sonarts": "cpx -v -C \"../../node_modules/tslint-sonarts/**/*\" \"node_modules/tslint-sonarts/\"",
-        "pretest": "yarn --frozen-lockfile --non-interactive --no-progress",
-        "test": "yarn copy:codelyzer && yarn copy:tslint-sonarts && yarn copy:tslint-eslint-rules && sh test.sh"
+        "build:prepare": "sh prepare.sh",
+        "test": "sh test.sh"
     },
     "dependencies": {
         "@types/eslint": "6.8.1",

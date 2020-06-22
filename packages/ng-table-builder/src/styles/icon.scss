@@ -1,0 +1,17 @@
+.table-grid-icon {
+    &--sortable,
+    &--draggable {
+        width: 24px;
+        height: 20px;
+    }
+
+    &--draggable {
+        cursor: move;
+    }
+
+    &--filterable {
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+    }
+}

@@ -23,7 +23,7 @@
     ],
     "scripts": {
         "build:lib": "tsc -p ./tsconfig.json",
-        "test": "npx jest --config ./jest.config.js"
+        "test": "yarn jest --config ./jest.config.js"
     },
     "dependencies": {
         "@types/jest": "25.2.3",

@@ -122,6 +122,27 @@ in the Angular.
           </a>
       </td>
     </tr>
+    <tr>
+      <td>
+          <a href="https://npmjs.com/package/@angular-ru/ng-table-builder">
+              @angular-ru/ng-table-builder
+          </a>
+      </td>
+      <td>
+          <img src="https://img.shields.io/npm/v/%40angular-ru%2Fng-table-builder/latest.svg">
+      </td>
+      <td>
+          <a href="https://npmjs.com/package/@angular-ru/ng-table-builder">
+              <img src="https://img.shields.io/npm/dm/@angular-ru/ng-table-builder">
+          </a>
+          <a href="packages/ng-table-builder/README.md">
+              <img src="https://img.shields.io/badge/README--green.svg">
+          </a>
+          <a href="packages/ng-table-builder/CHANGELOG.md">
+              <img src="https://img.shields.io/badge/CHANGELOG--green.svg">
+          </a>
+      </td>
+    </tr>
 </tbody>
 </table>
 
@@ -131,14 +152,18 @@ in the Angular.
 $ lerna create @angular-ru/my-pkg
 ```
 
-#### Build libraries
+#### Build steps
 
 ```bash
+# Pre install
+$ yarn install && yarn pre:build
+
+# Build libraries
 $ yarn build:lib
-```
 
-#### Build integration apps
-
-```bash
+# Build integration apps
 $ yarn build:app
+
+# Run unit tests
+$ yarn test
 ```

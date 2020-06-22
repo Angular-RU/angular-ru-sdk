@@ -12,6 +12,7 @@ install:
 
 script:
     - yarn clean
+    - yarn build:prepare
     - yarn build:lib
     - yarn build:app
     - yarn test

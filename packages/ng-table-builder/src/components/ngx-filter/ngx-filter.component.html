@@ -1,0 +1,22 @@
+<div class="table-grid__background-flat" *ngIf="state?.opened" (click)="close()" (contextmenu)="close()"></div>
+
+<div class="table-grid__filter-menu" *ngIf="state?.opened">
+    <div
+        #menu
+        class="filter-menu"
+        (contextmenu)="close()"
+        [ngStyle]="{
+            'width.px': width,
+            'min-height.px': height,
+            'max-height.px': maxHeight,
+            'top.px': state?.position?.top + leftX - overflowY,
+            'left.px': state?.position?.left - topY - overflowX,
+            visibility: state?.position ? 'visible' : 'hidden'
+        }"
+    >
+        <div class="table-close__button" (click)="closeFilter()"></div>
+        <ng-template [ngIf]="isViewed">
+            <ng-content></ng-content>
+        </ng-template>
+    </div>
+</div>

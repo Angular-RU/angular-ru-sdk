@@ -1,0 +1,154 @@
+<mat-toolbar class="simple-toolbar">
+    <span>Example nested models</span>
+</mat-toolbar>
+
+<div class="column-samples">
+    <div class="column">
+        <pre><code class="javascript">
+  // app.component.ts
+  import &#123; Component } from "@angular/core";
+  import &#123; Pizza } from "./pizza.interface";
+
+  @Component(&#123;
+    selector: 'app',
+    templateUrl: './app.component.html'
+  })
+  export class AppComponent &#123;
+
+    public pizzas: Pizza[] = [
+        &#123;
+            toppings: ['tomato sauce', 'mozzarella cheese'],
+            prices: &#123;
+              small: '5.00',
+              medium: '6.00',
+              large: '7.00'
+            }
+        },
+        &#123;
+            toppings: ['tomato sauce', 'mozzarella cheese', 'ham'],
+            prices: &#123;
+              small: '6.50',
+              medium: '7.50',
+              large: '8.50'
+            }
+        }
+    ];
+
+  }
+
+</code></pre>
+    </div>
+    <div class="column">
+        <pre><code class="javascript" ngNonBindable>
+  &lt;!-- app.component.html -->
+
+  &lt;ngx-table-builder [source]="data" auto-width>
+    &lt;ngx-column key="toppings" width="350">&lt;/ngx-column>
+
+    &lt;ngx-column key="prices.small">
+      &lt;ng-template ngx-th>Small&lt;/ng-template>
+      &lt;ng-template ngx-td let-cell>&#123;&#123; cell | currency &#125;&#125;&lt;/ng-template>
+    &lt;/ngx-column>
+
+     &lt;ngx-column key="prices.small">
+      &lt;ng-template ngx-th>Small&lt;/ng-template>
+      &lt;ng-template ngx-td let-cell>&#123;&#123; cell | currency &#125;&#125;&lt;/ng-template>
+    &lt;/ngx-column>
+
+    &lt;ngx-column key="prices.small">
+      &lt;ng-template ngx-th>Small&lt;/ng-template>
+      &lt;ng-template ngx-td let-cell>&#123;&#123; cell | currency &#125;&#125;&lt;/ng-template>
+    &lt;/ngx-column>
+  &lt;/ngx-table-builder>
+
+</code></pre>
+
+        <ngx-table-builder [source]="data" auto-width>
+            <ngx-column key="toppings" width="350"></ngx-column>
+
+            <ngx-column key="prices.small">
+                <ng-template ngx-th>Small</ng-template>
+                <ng-template ngx-td let-cell>{{ cell | currency }}</ng-template>
+            </ngx-column>
+
+            <ngx-column key="prices.medium">
+                <ng-template ngx-th>Medium</ng-template>
+                <ng-template ngx-td let-cell>{{ cell | currency }}</ng-template>
+            </ngx-column>
+
+            <ngx-column key="prices.large">
+                <ng-template ngx-th>Large</ng-template>
+                <ng-template ngx-td let-cell>{{ cell | currency }}</ng-template>
+            </ngx-column>
+        </ngx-table-builder>
+    </div>
+</div>
+
+<br />
+
+<div class="column-samples">
+    <div class="column">
+        <ngx-table-builder [source]="elements" auto-width>
+            <ngx-column key="date.value" important-template [stub]="null">
+                <ng-template ngx-th>Date</ng-template>
+                <ng-template ngx-td let-date>
+                    {{ date | date: 'dd.MM.yyyy HH:mm' }}
+                </ng-template>
+            </ngx-column>
+        </ngx-table-builder>
+        <br />
+
+        <pre><code class="javascript" ngNonBindable>
+   &lt;!-- app.component.html -->
+
+   &lt;ngx-table-builder [source]="data" auto-width>
+     &lt;!-- important-template - keyword to override table column styles -->
+     &lt;ngx-column key="date.value" important-template [stub]="null">
+        &lt;ng-template ngx-th>Date&lt;/ng-template>
+        &lt;ng-template ngx-td let-date>
+          &#123;&#123; date | date: 'dd.MM.yyyy HH:mm' }}
+        &lt;/ng-template>
+     &lt;/ngx-column>
+   &lt;/ngx-table-builder>
+
+        </code></pre>
+
+        By default we use '--' for stub invalid value. In some cases, you need not to use a stub. For example, if you
+        leave a stub, an error may occur: <br /><br />
+        <pre> InvalidPipeArgument: 'Unable to convert "-" into a date' for pipe 'DatePipe'.</pre>
+    </div>
+    <div class="column">
+        <pre><code class="javascript" ngNonBindable>
+  // app.component.ts
+  import &#123; Component } from "@angular/core";
+  import &#123; Elements } from "./elements.interface";
+
+  @Component(&#123;
+    selector: 'app',
+    templateUrl: './app.component.html'
+  })
+  export class AppComponent &#123;
+    public data: Elements[] = [
+     &#123; position: null, name: 'Hydrogen', date: &#123; value: NaN }, symbol: 'H', status: true },
+     &#123; position: 2, name: '', date: &#123; value: new Date() }, symbol: undefined, status: false },
+     &#123; position: 3, name: 'Lithium', date: &#123; value: Infinity }, symbol: 'Li', status: true },
+     &#123; position: 4, name: 'Beryllium', date: &#123; value: 0 }, symbol: '    ', status: false }
+    ];
+  }
+
+</code></pre>
+
+        <p>
+            <strong>Note</strong>: If you want to override the template body of the table, you just use only ng-template
+            with ngx-td. If you use templating, then you need to specify the keys (example with toppings) in the
+            template in the order in which you want to display your columns.
+        </p>
+
+        <p>
+            <strong>Note</strong>: By default, if the cell value is invalid, then the default separator is used. You can
+            override or disable it in the module settings.
+        </p>
+    </div>
+</div>
+
+<br /><br />

@@ -1,7 +1,7 @@
 {
     "$schema": "../../node_modules/@angular/cli/lib/config/schema.json",
     "version": 1,
-    "newProjectRoot": "projects",
+    "newProjectRoot": "integration",
     "projects": {
         "integration": {
             "prefix": "",
@@ -70,7 +70,7 @@
                 }
             }
         },
-        "logger": {
+        "library": {
             "root": "",
             "prefix": "",
             "sourceRoot": "",

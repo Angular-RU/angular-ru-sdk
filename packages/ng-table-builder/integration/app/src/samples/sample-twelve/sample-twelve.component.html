@@ -1,0 +1,135 @@
+<mat-toolbar class="simple-toolbar">
+    <span>Example table header, footer</span>
+</mat-toolbar>
+
+<style>
+    .no-data {
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+</style>
+
+<h3><i>&lt;ngx-source-null>&lt;/ngx-source-null></i> - display content when table value not set</h3>
+<br />
+
+<div class="column-samples">
+    <div class="column">
+        <ngx-table-builder [source]="null">
+            <ngx-source-null>
+                <div class="no-data">Source not set (null/undefined/NaN)</div>
+            </ngx-source-null>
+        </ngx-table-builder>
+
+        <pre><code class="html" ngNonBindable>
+  &lt;!-- app.component.html -->
+  &lt;ngx-table-builder [source]="null">
+    &lt;ngx-source-null>
+      &lt;div class="no-data">Source not set (null/undefined/NaN)&lt;/div>
+    &lt;/ngx-source-null>
+  &lt;/ngx-table-builder>
+
+</code></pre>
+    </div>
+
+    <div class="column">
+        <pre><code class="css" ngNonBindable>
+  /* app.component.css */
+
+  .no-data &#123;
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 10px;
+  }
+
+</code></pre>
+    </div>
+</div>
+
+<h3><i>&lt;ngx-empty>&lt;/ngx-empty></i> - display content when empty table</h3>
+<br />
+
+<div class="column-samples">
+    <div class="column">
+        <ngx-table-builder [source]="[]">
+            <ngx-empty>
+                <div class="no-data">No data</div>
+            </ngx-empty>
+        </ngx-table-builder>
+
+        <pre><code class="html" ngNonBindable>
+  &lt;!-- app.component.html -->
+  &lt;ngx-table-builder [source]="[]">
+    &lt;ngx-empty>
+      &lt;div class="no-data">No data&lt;/div>
+    &lt;/ngx-empty>
+  &lt;/ngx-table-builder>
+
+</code></pre>
+    </div>
+
+    <div class="column">
+        <pre><code class="css" ngNonBindable>
+  /* app.component.css */
+
+  .no-data &#123;
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 10px;
+  }
+
+</code></pre>
+    </div>
+</div>
+
+<h3>
+    <i>&lt;ngx-header>&lt;/ngx-header></i> - display table header, <i>&lt;ngx-footer>&lt;/ngx-footer></i> - display
+    table footer
+</h3>
+<br />
+
+<div class="column-samples">
+    <div class="column">
+        <ngx-table-builder [source]="licences">
+            <ngx-header content-cell align-center bold>License list</ngx-header>
+        </ngx-table-builder>
+        <br />
+
+        <pre><code class="html" ngNonBindable>
+  &lt;!-- app.component.html -->
+  &lt;ngx-table-builder [source]="data">
+     &lt;ngx-header content-cell align-center bold>License list&lt;/ngx-header>
+  &lt;/ngx-table-builder>
+
+</code></pre>
+    </div>
+
+    <div class="column">
+        <ngx-table-builder [source]="licences">
+            <ngx-footer content-cell align-center bold>Footer</ngx-footer>
+        </ngx-table-builder>
+        <br />
+
+        <pre><code class="html" ngNonBindable>
+  &lt;!-- app.component.html -->
+  &lt;ngx-table-builder [source]="data">
+     &lt;ngx-footer content-cell align-center bold>Footer&lt;/ngx-footer>
+  &lt;/ngx-table-builder>
+
+</code></pre>
+    </div>
+</div>
+
+<h3>Header and footer are always sticky position</h3>
+<br />
+
+<ngx-table-builder [source]="data" [height]="500">
+    <ngx-options is-draggable is-sortable></ngx-options>
+    <ngx-header content-cell align-center bold>Header 1</ngx-header>
+    <ngx-footer content-cell align-center bold>Footer 1</ngx-footer>
+</ngx-table-builder>
+
+<br /><br />
