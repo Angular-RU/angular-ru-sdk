@@ -42,5 +42,15 @@
                 "sdk"
             ]
         }
+    },
+    "changelog": {
+        "labels": {
+            "feature": "\uD83D\uDE80 Feature",
+            "perf": "Performance Improvements",
+            "ci": "CI changes",
+            "bug": "Bug Fixes",
+            "revert": "Reverts",
+            "breaking": "\uD83D\uDCA5 BREAKING CHANGES"
+        }
     }
 }
