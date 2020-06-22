@@ -1,13 +1,7 @@
-/*
- * Public API Surface of table-builder
- */
 export * from './interfaces/table-builder.external';
 export { TableBuilderModule } from './table-builder.module';
 export { TableFilterType } from './services/filterable/filterable.interface';
 export { NgxTableViewChangesService } from './services/table-view-changes/ngx-table-view-changes.service';
-/**
- *  Public component type
- */
 export { NgxContextMenuItemComponent } from './components/ngx-context-menu/ngx-context-menu-item/ngx-context-menu-item.component';
 export { TableBuilderComponent } from './table-builder.component';
 export { NgxColumnComponent } from './components/ngx-column/ngx-column.component';
