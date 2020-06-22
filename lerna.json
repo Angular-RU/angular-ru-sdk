@@ -2,6 +2,7 @@
     "packages": [
         "packages/*"
     ],
+    "stream": true,
     "npmClient": "yarn",
     "useWorkspaces": true,
     "version": "12.22.0",

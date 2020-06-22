@@ -1,5 +1,5 @@
 {
-    "*.ts": ["npx prettier --write", "npx eslint --fix"],
-    "*.{html,css,scss,md,js,json}": ["npx prettier --write"],
-    "package.json": ["npx prettier --write", "npx sort-package-json"]
+    "*.ts": ["yarn prettier --write", "yarn eslint --fix"],
+    "*.{html,css,scss,md,js,json}": ["yarn prettier --write"],
+    "package.json": ["yarn prettier --write", "yarn sort-package-json"]
 }
