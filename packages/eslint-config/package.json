@@ -23,10 +23,11 @@
         "README.md"
     ],
     "scripts": {
+        "copy": "mkdir -p node_modules && yarn copy:codelyzer && yarn copy:tslint-sonarts && yarn copy:tslint-eslint-rules",
         "copy:codelyzer": "cp -v -r ../../node_modules/codelyzer node_modules",
         "copy:tslint-eslint-rules": "cp -v -r ../../node_modules/tslint-eslint-rules node_modules",
         "copy:tslint-sonarts": "cp -v -r ../../node_modules/tslint-sonarts node_modules",
-        "pre:build": "mkdir -p node_modules && yarn copy:codelyzer && yarn copy:tslint-sonarts && yarn copy:tslint-eslint-rules",
+        "pre:build": "yarn --frozen-lockfile --non-interactive --no-progress && yarn copy",
         "test": "sh test.sh"
     },
     "dependencies": {
