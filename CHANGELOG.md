@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.0.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.24.0...v13.0.0) (2020-06-23)
+
+### Bug Fixes
+
+-   **logger:** compat with Angular Ivy
+    ([b563a8b](https://github.com/Angular-RU/angular-ru-sdk/commit/b563a8b1bbfad9a7070f71c8575890114a558d52))
+-   **ng-table-builder:** compat Ivy
+    ([0e752f3](https://github.com/Angular-RU/angular-ru-sdk/commit/0e752f312610221db760e466ec1bc5b1970ddbba))
+
+### BREAKING CHANGES
+
+-   **ng-table-builder:** virtual-for.directive.ts affected with Angular 9
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [12.24.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.23.0...v12.24.0) (2020-06-22)
 
 ### Bug Fixes
