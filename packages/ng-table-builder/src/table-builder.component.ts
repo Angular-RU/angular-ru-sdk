@@ -188,7 +188,6 @@ export class TableBuilderComponent extends TableBuilderApiImpl
     }
 
     public markVisibleColumn(column: HTMLDivElement, visible: boolean): void {
-        console.log('update', column);
         (column as Any)['visible'] = visible;
         this.idleDetectChanges();
     }
