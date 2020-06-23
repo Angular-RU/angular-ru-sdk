@@ -22,7 +22,6 @@
     "scripts": {
         "build:app": "ng build integration --prod",
         "build:lib": "ng build library && cp README.md dist/library",
-        "build:prepare": "sh prepare.sh",
         "deploy": "cp README.md dist/integration && ng deploy --no-build",
         "start": "ng serve",
         "test": "yarn jest --config ./jest.config.js",
