@@ -1,3 +1,4 @@
+export * from './interfaces/logger.external';
 export * from './logger.service';
 export * from './logger.config';
 export * from './logger.module';
@@ -11,4 +12,3 @@ export * from './decorators/warn.decorator';
 export * from './decorators/groups/group.decorator';
 export * from './decorators/timer.decorator';
 export * from './decorators/groups/group-collapsed.decorator';
-export * from './interfaces/logger.external';
