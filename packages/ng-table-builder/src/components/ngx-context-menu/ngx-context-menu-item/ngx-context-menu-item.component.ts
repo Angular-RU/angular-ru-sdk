@@ -32,10 +32,10 @@ const MENU_WIDTH: number = 300;
     encapsulation: ViewEncapsulation.None
 })
 export class NgxContextMenuItemComponent implements OnInit, OnDestroy {
-    @Input() public visible: boolean = true;
-    @Input() public contextTitle: boolean | null = null;
-    @Input() public disable: boolean = false;
-    @Input() public divider: boolean = false;
+    @Input() public visible: string | boolean = true;
+    @Input() public contextTitle: string | boolean | null = null;
+    @Input() public disable: string | boolean = false;
+    @Input() public divider: string | boolean = false;
     @Input('disable-sub-menu') public disableSubMenu: boolean = false;
     @Input('sub-menu-width') public subMenuWidth: number = MENU_WIDTH;
     @Output() public onClick: EventEmitter<ContextItemEvent> = new EventEmitter();

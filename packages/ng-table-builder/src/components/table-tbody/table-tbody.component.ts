@@ -40,8 +40,8 @@ export class TableTbodyComponent {
     @Input() public source: TableRow[] | null = null;
     @Input() public striped: boolean = false;
     @Input() public isRendered: boolean = false;
-    @Input('offset-top') public offsetTop: number | null = null;
-    @Input('primary-key') public primaryKey: string | null = null;
+    @Input('offset-top') public offsetTop?: number | null = null;
+    @Input('primary-key') public primaryKey?: string | null = null;
     @Input() public recalculated: RecalculatedStatus | null = null;
     @Input('head-height') public headLineHeight: number | null = null;
     @Input('viewport-info') public viewportInfo: ViewPortInfo | null = null;
@@ -84,13 +84,13 @@ export class TableTbodyComponent {
     }
 
     // eslint-disable-next-line max-params
-    public handleDblClick(row: TableRow, key: string, event: MouseEvent, emitter: TableClickEventEmitter): void {
+    public handleDblClick(row: TableRow, key: string, event: MouseEvent, emitter?: TableClickEventEmitter): void {
         window.clearInterval(this.selection.selectionTaskIdle!);
         this.handleEventEmitter(row, key, event, emitter);
     }
 
     // eslint-disable-next-line max-params
-    public handleOnClick(row: TableRow, key: string, event: MouseEvent, emitter: TableClickEventEmitter): void {
+    public handleOnClick(row: TableRow, key: string, event: MouseEvent, emitter?: TableClickEventEmitter): void {
         this.ngZone.run((): void => {
             if (this.enableSelection) {
                 this.selection.selectionTaskIdle = window.setTimeout((): void => {
@@ -115,7 +115,7 @@ export class TableTbodyComponent {
     }
 
     // eslint-disable-next-line max-params
-    private handleEventEmitter(row: TableRow, key: string, event: MouseEvent, emitter: TableClickEventEmitter): void {
+    private handleEventEmitter(row: TableRow, key: string, event: MouseEvent, emitter?: TableClickEventEmitter): void {
         if (emitter) {
             this.ngZone.runOutsideAngular((): void => {
                 window.setTimeout((): void => {

@@ -22,8 +22,8 @@ const MAX_HEIGHT: number = 400;
     encapsulation: ViewEncapsulation.None
 })
 export class NgxContextMenuComponent extends ModalViewLayer<ContextMenuState> implements OnInit {
-    @Input() public width: number = SIZE;
-    @Input() public height: number = SIZE;
+    @Input() public width: number | null = SIZE;
+    @Input() public height: number | null = SIZE;
     @Input('max-height') public maxHeight: number = MAX_HEIGHT;
 
     constructor(protected readonly cd: ChangeDetectorRef, injector: Injector) {

@@ -14,12 +14,12 @@ export enum TableSimpleChanges {
 export interface DynamicHeightOptions {
     detect: boolean;
     inViewport: boolean;
-    height: number | null;
     footerHeight: number;
     headerHeight: number;
     columnHeight: number;
-    statusRendered: boolean;
     sourceLength: number;
+    statusRendered: boolean;
+    height: string | number | null;
 }
 
 export interface RecalculatedStatus {

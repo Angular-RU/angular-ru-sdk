@@ -10,14 +10,16 @@ export class ColumnOptions {
     /**
      * preserve track global value for overflowTooltip if selected
      */
-    @Input('overflow-tooltip') public overflowTooltip: boolean | null = null;
-    @Input('filter-type') public filterType: TableFilterType | null = null;
-    @Input() public nowrap: boolean | null = null;
-    @Input() public width: number | null = null;
-    @Input('is-resizable') public isResizable: boolean | null = null;
-    @Input('is-sortable') public isSortable: boolean | null = null;
-    @Input('is-filterable') public isFilterable: boolean | null = null;
-    @Input('is-draggable') public isDraggable: boolean | null = null;
+    // eslint-disable-next-line @typescript-eslint/tslint/config
+    @Input('overflow-tooltip') public overflowTooltip: string | boolean | null = null;
+    @Input('filter-type') public filterType: string | TableFilterType | null = null;
+    // eslint-disable-next-line @typescript-eslint/tslint/config
+    @Input() public nowrap: string | boolean | null = null;
+    @Input() public width: string | number | null = null;
+    @Input('is-resizable') public isResizable: string | boolean | null = null;
+    @Input('is-sortable') public isSortable: string | boolean | null = null;
+    @Input('is-filterable') public isFilterable: string | boolean | null = null;
+    @Input('is-draggable') public isDraggable: string | boolean | null = null;
     @Input('css-class') public cssClass: string[] = [];
     @Input('css-style') public cssStyle: string[] = [];
     @Input() public stub: string | null = null;

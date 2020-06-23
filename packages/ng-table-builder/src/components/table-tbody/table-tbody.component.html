@@ -10,14 +10,14 @@
         <div
             #parent
             *ngIf="item"
-            [ngClass]="columnSchema?.td?.class"
-            [ngStyle]="columnSchema?.td?.style"
             (selectstart)="(canSelectTextInTable)"
+            [ngClass]="columnSchema?.td?.class || []"
+            [ngStyle]="columnSchema?.td?.style || []"
             class="table-grid__cell table-grid__cell--body"
             (contextmenu)="openContextMenu($event, columnSchema?.key, item)"
             [style.transform]="'translateY(' + virtualIndex.offsetTop + 'px)'"
-            (click)="handleOnClick(item, columnSchema?.key, $event, columnSchema?.td?.onClick)"
-            (dblclick)="handleDblClick(item, columnSchema?.key, $event, columnSchema?.td?.dblClick)"
+            (click)="handleOnClick(item, columnSchema?.key!, $event, columnSchema?.td?.onClick)"
+            (dblclick)="handleDblClick(item, columnSchema?.key!, $event, columnSchema?.td?.dblClick)"
             [style.min-height.px]="columnSchema?.td?.height || clientRowHeight"
             [style.max-height.px]="columnSchema?.td?.height || clientRowHeight"
             [class.table-grid__cell--resizable]="columnSchema?.resizable"
@@ -39,7 +39,7 @@
                     [viewport-info]="viewportInfo"
                     [column-schema]="columnSchema"
                     [enable-filtering]="enableFiltering"
-                    [is-filterable]="columnSchema?.filterable"
+                    [is-filterable]="columnSchema?.filterable!"
                 ></table-cell>
             </div>
         </div>

@@ -3,7 +3,7 @@ import { Fn, KeyMap, MousePosition } from '../../interfaces/table-builder.intern
 
 export interface FilterGlobalOpts {
     value: string | null;
-    type: TableFilterType | null;
+    type: string | TableFilterType | null;
 }
 
 export interface FilterColumnsOpts {
@@ -31,7 +31,7 @@ export interface FilterableMessage {
 
 export interface FilterEvent {
     value: string | null;
-    type: TableFilterType | null;
+    type: string | TableFilterType | null;
 }
 
 export class FilterStateEvent {

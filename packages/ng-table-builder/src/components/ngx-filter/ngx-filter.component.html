@@ -9,8 +9,8 @@
             'width.px': width,
             'min-height.px': height,
             'max-height.px': maxHeight,
-            'top.px': state?.position?.top + leftX - overflowY,
-            'left.px': state?.position?.left - topY - overflowX,
+            'top.px': state?.position?.top! + leftX - overflowY,
+            'left.px': state?.position?.left! - topY - overflowX,
             visibility: state?.position ? 'visible' : 'hidden'
         }"
     >

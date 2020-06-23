@@ -1,11 +1,11 @@
-import { Directive, EmbeddedViewRef, Input, OnDestroy, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, EmbeddedViewRef, Input, NgZone, OnDestroy, TemplateRef, ViewContainerRef } from '@angular/core';
 
 import { InternalVirtualRef, TableRow, VirtualContext, VirtualIndex } from '../interfaces/table-builder.external';
 import { detectChanges } from '../operators/detect-changes';
 
 @Directive({ selector: '[virtualFor][virtualForOf]' })
 export class VirtualForDirective implements OnDestroy {
-    @Input() public virtualForDiffIndexes: number[] = [];
+    @Input() public virtualForDiffIndexes?: number[];
     private cache: Map<number, InternalVirtualRef> = new Map();
     private _source: TableRow[] = [];
     private _indexes: VirtualIndex[] = [];
@@ -13,10 +13,14 @@ export class VirtualForDirective implements OnDestroy {
     private removeFrameId: number | null = null;
     private dirty: boolean = false;
 
-    constructor(private readonly view: ViewContainerRef, private readonly template: TemplateRef<VirtualContext>) {}
+    constructor(
+        private readonly view: ViewContainerRef,
+        private readonly template: TemplateRef<VirtualContext>,
+        private readonly ngZone: NgZone
+    ) {}
 
     @Input()
-    public set virtualForOriginSource(origin: TableRow[] | null) {
+    public set virtualForOriginSource(origin: TableRow[] | null | undefined) {
         if (this._source !== origin) {
             this._source = origin ?? [];
             this.dirty = true;
@@ -24,14 +28,18 @@ export class VirtualForDirective implements OnDestroy {
     }
 
     @Input()
-    public set virtualForOf(indexes: VirtualIndex[] | null) {
-        if (!this._source || this._indexes === indexes) {
-            return;
-        }
+    public set virtualForOf(indexes: VirtualIndex[] | null | undefined) {
+        this.ngZone.runOutsideAngular((): void => {
+            window.setTimeout((): void => {
+                if (!this._source || this._indexes === indexes) {
+                    return;
+                }
 
-        this._indexes = indexes ?? [];
-        this.removeOldNodes();
-        this.createNewNodes(this._indexes);
+                this._indexes = indexes ?? [];
+                this.removeOldNodes();
+                this.createNewNodes(this._indexes);
+            });
+        });
     }
 
     private get sourceRef(): TableRow[] {
@@ -81,7 +89,7 @@ export class VirtualForDirective implements OnDestroy {
             return;
         }
 
-        this.virtualForDiffIndexes.forEach((index: number): void => {
+        this.virtualForDiffIndexes?.forEach((index: number): void => {
             this.removeFrameId = window.requestAnimationFrame((): void => this.removeEmbeddedViewByIndex(index));
         });
     }
