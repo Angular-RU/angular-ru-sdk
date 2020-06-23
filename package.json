@@ -23,7 +23,7 @@
         "clean": "rm -rf ./packages/**/dist ./packages/**/lib ./packages/**/.cache",
         "deploy": "lerna run deploy",
         "format": "yarn package:sort && yarn pretty:format --write",
-        "postinstall": "ngcc",
+        "postinstall": "ngcc --async",
         "lint": "eslint \"**/*.ts\" --ignore-pattern typescript.bad.ts",
         "package:sort": "yarn sort-package-json \"package.json\" \"packages/*/package.json\"",
         "pre:commit": "git add . && git update-index --again && yarn lint-staged && git add .",
