@@ -6,7 +6,7 @@ import { KeyMap } from '../../interfaces/table-builder.internal';
 // eslint-disable-next-line
 export abstract class TemplateCellCommon {
     public type: string | null = null;
-    @Input() public row: boolean = false;
+    @Input() public row: string | boolean = false;
     @Input() public bold: boolean = false;
     @Input() public nowrap: boolean = true;
     @Input() public width: number | null = null;

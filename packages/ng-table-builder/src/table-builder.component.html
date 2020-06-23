@@ -25,11 +25,11 @@
         detect: autoHeightDetect,
         height: height,
         inViewport: true,
-        headerHeight: headerRef?.nativeElement.clientHeight,
-        footerHeight: footerRef?.nativeElement.clientHeight,
         columnHeight: columnHeight,
         statusRendered: isRendered,
-        sourceLength: source?.length || 0
+        sourceLength: source?.length || 0,
+        headerHeight: headerRef?.nativeElement?.clientHeight! || 0,
+        footerHeight: footerRef?.nativeElement?.clientHeight! || 0
     }"
     [tableViewport]="tableViewport"
 >
@@ -43,7 +43,7 @@
         [cdkDropListDisabled]="!accessDragging"
         (observeVisible)="calculateViewport(true)"
         [class.table-grid__native-scrollbar]="nativeScrollbar"
-        [class.table-grid__scroll-offset]="viewPortInfo?.scrollTop > 0"
+        [class.table-grid__scroll-offset]="viewPortInfo?.scrollTop! > 0"
         [style.width.px]="
             columnListWidth !== 0 && root.offsetWidth !== 0 && columnListWidth < root.offsetWidth - scrollbarWidth
                 ? columnListWidth + scrollbarWidth
@@ -72,22 +72,22 @@
                     [cdkDragBoundary]="area"
                     class="table-grid__column"
                     *ngIf="schema.isVisible"
-                    [ngStyle]="schema?.cssStyle"
-                    [ngClass]="schema?.cssClass"
                     [attr.column-id]="schema.key"
                     [style.width.px]="schema?.width"
+                    [ngClass]="schema?.cssClass || []"
+                    [ngStyle]="schema?.cssStyle || []"
                     [cdkDragDisabled]="!accessDragging"
                     [style.max-width.px]="schema?.width"
                     [style.min-width.px]="schema?.width"
                     (cdkDragMoved)="cdkDragMoved($event, root)"
                     [class.table-grid__column--sticky-left]="schema?.stickyLeft"
                     [class.table-grid__column--default-width]="!schema?.width"
-                    [class.table-grid__column--is-visible]="column['visible']"
-                    [class.table-grid__column--is-invisible]="!column['visible']"
+                    [class.table-grid__column--is-visible]="$any(column)['visible']!"
+                    [class.table-grid__column--is-invisible]="!$any(column)['visible']!"
                     [class.table-grid__column--filter-enable]="filterTemplate"
                     [class.table-grid__column--sticky-right]="schema?.stickyRight"
                     [class.table-grid__column--custom-column]="schema?.customColumn"
-                    [class.table-grid__column--is-dragging]="isDragging[schema.key]"
+                    [class.table-grid__column--is-dragging]="isDragging[schema.key!]"
                     [class.table-grid__column--with-footer-content]="footerTemplate"
                     [class.table-grid__column--selected-all]="selection.selectionModel.isAll"
                     [class.table-grid__column--is-draggable]="schema?.isModel && schema?.draggable"
@@ -97,13 +97,13 @@
                     "
                     (observeVisible)="markVisibleColumn(column, $event)"
                 >
-                    <div *ngIf="column['visible']" [@fadeAnimation]>
+                    <div *ngIf="$any(column)['visible']!" [@fadeAnimation]>
                         <table-thead
                             cdkDragHandle
                             [column-schema]="schema"
                             (mouseleave)="disableDragging()"
                             [column-width]="column.offsetWidth"
-                            [header-top]="headerRef?.nativeElement.offsetHeight || 0"
+                            [header-top]="headerRef?.nativeElement?.offsetHeight! || 0"
                             [sortable-definition]="sortable.definition"
                             [sortable-position]="sortable.positionMap"
                             [sortable-count]="sortable.sortableCount"
@@ -133,7 +133,7 @@
                             [client-row-height]="clientRowHeight"
                             [selection-entries]="selectionEntries"
                             [produce-disable-fn]="produceDisableFn"
-                            [virtual-indexes]="viewPortInfo.virtualIndexes"
+                            [virtual-indexes]="viewPortInfo.virtualIndexes!"
                             [column-virtual-height]="columnVirtualHeight"
                             (changed)="idleDetectChanges()"
                         >

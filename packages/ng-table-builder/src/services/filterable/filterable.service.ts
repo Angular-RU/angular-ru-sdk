@@ -30,7 +30,7 @@ export class FilterableService implements FilterableInterface {
     public readonly filterOpenEvents: Subject<void> = new Subject();
     public readonly events: Subject<FilterEvent> = new ReplaySubject();
     public readonly resetEvents: Subject<void> = new Subject<void>();
-    public filterType: TableFilterType | null = null;
+    public filterType: string | TableFilterType | null = null;
     public filterTypeDefinition: KeyMap<TableFilterType> = {};
     public filtering: boolean = false;
     private previousFiltering: boolean = false;
@@ -94,7 +94,7 @@ export class FilterableService implements FilterableInterface {
 
     // eslint-disable-next-line max-lines-per-function
     public filter(source: TableRow[]): Promise<FilterWorkerEvent> {
-        const type: TableFilterType | null = this.filterType;
+        const type: string | TableFilterType | null = this.filterType;
         const value: string | null = this.globalFilterValue ? String(this.globalFilterValue).trim() : null;
 
         return new Promise(

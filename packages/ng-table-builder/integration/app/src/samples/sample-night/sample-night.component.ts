@@ -8,7 +8,7 @@ import {
     NgZone,
     OnInit
 } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 
 import { Any } from '../../../../../src/interfaces/table-builder.internal';
 import { MocksGenerator } from '../../../../tests/helpers/utils/mocks-generator';

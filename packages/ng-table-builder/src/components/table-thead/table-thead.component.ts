@@ -31,7 +31,9 @@ export class TableTheadComponent {
 
     constructor(protected readonly filterable: FilterableService) {}
 
-    public openFilter(key: string, event: MouseEvent): void {
-        this.filterable.openFilter(key, event);
+    public openFilter(key: string | null | undefined, event: MouseEvent): void {
+        if (key) {
+            this.filterable.openFilter(key, event);
+        }
     }
 }

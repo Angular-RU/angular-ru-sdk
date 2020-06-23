@@ -69,7 +69,7 @@ export function filterAllWorker({ source, global, types, columns }: FilterableMe
     type Satisfies = [Terminate, boolean];
 
     // eslint-disable-next-line complexity,max-lines-per-function
-    function getSatisfies(field: string, substring: string, fieldType: TableFilterType): Satisfies {
+    function getSatisfies(field: string, substring: string, fieldType: TableFilterType | string): Satisfies {
         let satisfies: boolean = false;
         let terminate: Terminate = Terminate.NEXT;
 

@@ -36,7 +36,7 @@ export class AutoHeightDirective implements OnInit, OnChanges, OnDestroy {
     constructor(private readonly element: ElementRef, public readonly ngZone: NgZone) {}
 
     private get height(): number {
-        return this.autoHeight.height!;
+        return parseInt((this.autoHeight.height! ?? 0) as string);
     }
 
     private get canCalculated(): boolean {
