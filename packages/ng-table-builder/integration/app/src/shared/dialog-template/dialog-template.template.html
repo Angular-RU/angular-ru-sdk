@@ -1,6 +1,6 @@
 <h3>Edit</h3>
 
-<form [formGroup]="form">
+<form *ngIf="form" [formGroup]="form">
     <mat-form-field *ngFor="let input of data | keyvalue">
         <input matInput placeholder="{{input.key}}" [formControlName]="input.key" />
     </mat-form-field>

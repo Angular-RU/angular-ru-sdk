@@ -6,8 +6,8 @@ import { getDeepValue } from '../operators/deep-value';
 
 @Pipe({ name: 'deepPath', pure: true })
 export class DeepPathPipe implements PipeTransform {
-    public transform(item: KeyMap, path: string | null | undefined, stub: string = ''): Any {
+    public transform(item: KeyMap, path: string | null | undefined, stub: string | undefined = ''): Any {
         const result: Any = getDeepValue(item, path);
-        return checkValueIsEmpty(result) ? stub : result;
+        return checkValueIsEmpty(result) ? stub ?? '' : result;
     }
 }

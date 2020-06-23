@@ -56,8 +56,9 @@ const { ROW_HEIGHT, MACRO_TIME, TIME_IDLE }: typeof TABLE_GLOBAL_OPTIONS = TABLE
 // eslint-disable-next-line
 export abstract class TableBuilderApiImpl
     implements OnChanges, OnInit, AfterViewInit, AfterContentInit, AfterViewChecked, OnDestroy {
-    @Input() public height: number | null = null;
-    @Input() public width: string | null = null;
+    // eslint-disable-next-line @typescript-eslint/tslint/config
+    @Input() public height: string | number | null = null;
+    @Input() public width: string | number | null = null;
     @Input() public source: TableRow[] | null = null;
     @Input() public keys: string[] = [];
     @Input() public striped: boolean = true;
@@ -73,7 +74,7 @@ export abstract class TableBuilderApiImpl
     @Input('enable-selection') public enableSelection: boolean | string = false;
     @Input('enable-filtering') public enableFiltering: boolean | string = false;
     @Input('produce-disable-fn') public produceDisableFn: ProduceDisableFn = null;
-    @Input('schema-columns') public schemaColumns: SimpleSchemaColumns = [];
+    @Input('schema-columns') public schemaColumns: SimpleSchemaColumns | null = [];
     @Output() public afterRendered: EventEmitter<boolean> = new EventEmitter();
     @Output() public schemaChanges: EventEmitter<SimpleSchemaColumns> = new EventEmitter();
     @Output() public onChanges: EventEmitter<TableRow[] | null> = new EventEmitter();
@@ -149,8 +150,8 @@ export abstract class TableBuilderApiImpl
     }
 
     @Input('row-height')
-    public set rowHeight(val: string | number) {
-        this._rowHeight = parseInt(val as string);
+    public set rowHeight(val: string | number | null) {
+        this._rowHeight = parseInt((val ?? ROW_HEIGHT) as string);
     }
 
     /**
@@ -260,8 +261,8 @@ export abstract class TableBuilderApiImpl
         this.idleDetectChanges();
     }
 
-    public enableDragging(key: string): void {
-        if (this.templateParser.compiledTemplates[key].draggable) {
+    public enableDragging(key: string | null): void {
+        if (key && this.templateParser.compiledTemplates[key]?.draggable) {
             this.accessDragging = true;
             detectChanges(this.cd);
         }

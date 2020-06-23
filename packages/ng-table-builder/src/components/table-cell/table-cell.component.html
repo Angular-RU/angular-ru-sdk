@@ -4,15 +4,15 @@
     (mouseenter)="mouseEnterCell(divElement, $event)"
     (mouseleave)="mouseLeaveCell()"
 >
-    <ng-template [ngIf]="columnSchema?.td?.template" [ngIfElse]="defaultTd">
+    <ng-template [ngIf]="columnSchema?.td?.template!" [ngIfElse]="defaultTd">
         <ng-template
-            [ngTemplateOutlet]="columnSchema?.td?.template"
+            [ngTemplateOutlet]="columnSchema?.td?.template!"
             [ngTemplateOutletContext]="{
                 $implicit:
                     columnSchema?.td?.context === contextType.CELL
                         ? columnSchema?.td?.useDeepPath
-                            ? (item | deepPath: columnSchema?.key:columnSchema?.stub)
-                            : (item | defaultValue: columnSchema?.key:columnSchema?.stub)
+                            ? (item | deepPath: columnSchema?.key:columnSchema?.stub!)
+                            : (item | defaultValue: columnSchema?.key:columnSchema?.stub!)
                         : item
             }"
         ></ng-template>
@@ -24,16 +24,16 @@
                 [key]="columnSchema?.key"
                 [text]="
                     columnSchema?.td?.useDeepPath
-                        ? (item | deepPath: columnSchema?.key:columnSchema?.stub)
-                        : (item | defaultValue: columnSchema?.key:columnSchema?.stub)
+                        ? (item | deepPath: columnSchema?.key:columnSchema?.stub!)
+                        : (item | defaultValue: columnSchema?.key:columnSchema?.stub!)
                 "
             ></ngx-filter-viewer>
         </ng-template>
         <ng-template #simple>
             {{
                 columnSchema?.td?.useDeepPath
-                    ? (item | deepPath: columnSchema?.key:columnSchema?.stub)
-                    : (item | defaultValue: columnSchema?.key:columnSchema?.stub)
+                    ? (item | deepPath: columnSchema?.key:columnSchema?.stub!)
+                    : (item | defaultValue: columnSchema?.key:columnSchema?.stub!)
             }}
         </ng-template>
     </ng-template>

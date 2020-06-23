@@ -22,15 +22,14 @@
     "scripts": {
         "build:app": "ng build integration --prod",
         "build:lib": "ng build library && cp README.md dist/library",
-        "build:prepare": "sh prepare.sh",
         "deploy": "cp README.md dist/integration && ng deploy --no-build",
         "start": "ng serve",
         "test": "yarn jest --config ./jest.config.js",
         "postversion": "npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\""
     },
     "devDependencies": {
-        "intersection-observer": "0.7.0",
-        "ngx-toastr": "10.2.0",
+        "intersection-observer": "0.10.0",
+        "ngx-toastr": "12.1.0",
         "pretty": "2.0.0"
     },
     "peerDependencies": {

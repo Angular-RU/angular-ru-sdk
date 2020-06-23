@@ -40,7 +40,7 @@ export interface ColumnsSchema<T = Any> {
     key: string | null;
     td: TableCellOptions<T>;
     th: TableCellOptions<T> & TableHeadCellOptions;
-    width?: number | null;
+    width?: string | number | null;
     cssStyle: string[];
     cssClass: string[];
     stickyLeft: boolean;
@@ -55,7 +55,7 @@ export interface ColumnsSchema<T = Any> {
     excluded: boolean;
     isVisible: boolean;
     overflowTooltip: boolean;
-    stub?: string;
+    stub?: string | null;
 }
 
 export interface TableUpdateSchema {

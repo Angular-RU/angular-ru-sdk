@@ -287,15 +287,17 @@ export class TableBuilderComponent extends TableBuilderApiImpl
         }
     }
 
-    public toggleColumnVisibility(key: string): void {
-        this.recheckViewportChecked();
-        this.templateParser.toggleColumnVisibility(key);
-        this.utils
-            .requestAnimationFrame((): void => {
-                this.changeSchema();
-                this.recheckViewportChecked();
-            })
-            .then((): void => detectChanges(this.cd));
+    public toggleColumnVisibility(key?: string | null): void {
+        if (key) {
+            this.recheckViewportChecked();
+            this.templateParser.toggleColumnVisibility(key);
+            this.utils
+                .requestAnimationFrame((): void => {
+                    this.changeSchema();
+                    this.recheckViewportChecked();
+                })
+                .then((): void => detectChanges(this.cd));
+        }
     }
 
     public resetSchema(): void {

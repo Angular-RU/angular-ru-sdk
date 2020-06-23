@@ -28,10 +28,10 @@ const { TIME_RELOAD }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
     encapsulation: ViewEncapsulation.None
 })
 export class NgxFilterViewerComponent implements OnChanges, OnInit, OnDestroy {
-    @Input() public text: string | null = null;
-    @Input() public key: string | null = null;
-    @Input() public index: number = 0;
-    public html: string | SafeHtml | null = null;
+    @Input() public text?: string | null = null;
+    @Input() public key?: string | null = null;
+    @Input() public index?: number | null = 0;
+    public html?: string | SafeHtml | null = null;
     public founded: boolean = false;
     private subscription: Subscription | null = null;
     private taskId: number | null = null;
@@ -81,14 +81,14 @@ export class NgxFilterViewerComponent implements OnChanges, OnInit, OnDestroy {
                 }
 
                 detectChanges(this.cd);
-            }, TIME_RELOAD + this.index);
+            }, TIME_RELOAD + (this.index ?? 0));
         });
     }
 
     // eslint-disable-next-line max-lines-per-function,complexity
     private selected(event: FilterEvent): void {
         const value: string | null = this.filterable.definition[this.key!] || event.value;
-        const type: TableFilterType | null = this.filterable.definition[this.key!]
+        const type: string | TableFilterType | null = this.filterable.definition[this.key!]
             ? this.filterable.filterTypeDefinition[this.key!]
             : event.type;
 
