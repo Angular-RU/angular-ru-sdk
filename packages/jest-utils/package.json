@@ -27,7 +27,7 @@
     },
     "dependencies": {
         "@types/jest": "26.0.0",
-        "jest": "26.0.1",
+        "jest": "26.1.0",
         "jest-preset-angular": "8.2.1",
         "ts-jest": "26.1.1"
     },
