@@ -28,7 +28,7 @@
         "postversion": "npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\""
     },
     "devDependencies": {
-        "intersection-observer": "0.10.0",
+        "intersection-observer": "0.11.0",
         "ngx-toastr": "12.1.0",
         "pretty": "2.0.0"
     },
