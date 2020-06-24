@@ -26,7 +26,7 @@
         "test": "yarn jest --config ./jest.config.js"
     },
     "dependencies": {
-        "@types/jest": "26.0.0",
+        "@types/jest": "26.0.2",
         "jest": "26.0.1",
         "jest-preset-angular": "8.2.1",
         "ts-jest": "26.1.1"
