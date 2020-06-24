@@ -76,8 +76,8 @@ export class TableCellComponent implements OnDestroy {
 
     private isEllipsisActive(element: HTMLElement): boolean {
         return (
-            element.offsetWidth > this.parent?.offsetWidth! ||
-            element.offsetHeight > this.parent?.offsetHeight! ||
+            element.offsetWidth > (this.parent?.offsetWidth ?? 0) ||
+            element.offsetHeight > (this.parent?.offsetHeight ?? 0) ||
             element.scrollWidth > element.offsetWidth ||
             element.scrollHeight > element.offsetHeight
         );

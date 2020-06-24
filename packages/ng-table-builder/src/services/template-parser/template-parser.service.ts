@@ -148,21 +148,21 @@ export class TemplateParserService {
             cssClass: getValidPredicate(column.cssClass, this.columnOptions?.cssClass) || [],
             cssStyle: getValidPredicate(column.cssStyle, this.columnOptions?.cssStyle) || [],
             resizable: getValidHtmlBooleanAttribute(
-                getValidPredicate(column.isDraggable, this.columnOptions?.isDraggable!)
+                getValidPredicate(column.isDraggable, this.columnOptions?.isDraggable)
             ),
             stub: getValidPredicate(this.columnOptions?.stub, column.stub),
             filterable: getValidHtmlBooleanAttribute(
-                getValidPredicate(column.isFilterable, this.columnOptions?.isFilterable!)
+                getValidPredicate(column.isFilterable, this.columnOptions?.isFilterable)
             ),
             sortable: isModel
-                ? getValidHtmlBooleanAttribute(getValidPredicate(column.isSortable, this.columnOptions?.isSortable!))
+                ? getValidHtmlBooleanAttribute(getValidPredicate(column.isSortable, this.columnOptions?.isSortable))
                 : false,
             draggable: canBeAddDraggable
-                ? getValidHtmlBooleanAttribute(getValidPredicate(column.isDraggable, this.columnOptions?.isDraggable!))
+                ? getValidHtmlBooleanAttribute(getValidPredicate(column.isDraggable, this.columnOptions?.isDraggable))
                 : false,
             overflowTooltip: getValidHtmlBooleanAttribute(
                 getValidPredicate(
-                    this.columnOptions?.overflowTooltip!,
+                    this.columnOptions?.overflowTooltip,
                     typeof column.overflowTooltip === 'boolean' ? column.overflowTooltip : !isCustomKey
                 )
             ),

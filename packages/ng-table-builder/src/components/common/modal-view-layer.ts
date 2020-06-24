@@ -49,12 +49,12 @@ export abstract class ModalViewLayer<T extends PositionState> implements OnDestr
     }
 
     public get overflowX(): number {
-        const overflowX: number = this.width! + this.left - this.utils.bodyRect?.width!;
+        const overflowX: number = this.width! + this.left - (this.utils.bodyRect?.width ?? 0);
         return overflowX > 0 ? overflowX + SCROLLBAR_WIDTH : 0;
     }
 
     public get overflowY(): number {
-        const overflowY: number = this.calculatedHeight + this.top - this.utils.bodyRect?.height!;
+        const overflowY: number = this.calculatedHeight + this.top - (this.utils.bodyRect?.height ?? 0);
         return overflowY > 0 ? overflowY + SCROLLBAR_WIDTH : 0;
     }
 
