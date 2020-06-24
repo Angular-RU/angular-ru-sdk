@@ -27,13 +27,13 @@
         "test": "sh test.sh"
     },
     "dependencies": {
-        "@types/eslint": "6.8.1",
-        "@typescript-eslint/eslint-plugin": "2.34.0",
-        "@typescript-eslint/eslint-plugin-tslint": "2.34.0",
-        "@typescript-eslint/parser": "2.34.0",
+        "@types/eslint": "7.2.0",
+        "@typescript-eslint/eslint-plugin": "3.4.0",
+        "@typescript-eslint/eslint-plugin-tslint": "3.4.0",
+        "@typescript-eslint/parser": "3.4.0",
         "codelyzer": "5.2.2",
         "es6-set": "0.1.5",
-        "eslint": "7.2.0",
+        "eslint": "7.3.1",
         "eslint-config-import": "0.13.0",
         "eslint-import-resolver-typescript": "2.0.0",
         "eslint-plugin-import": "2.21.2",
