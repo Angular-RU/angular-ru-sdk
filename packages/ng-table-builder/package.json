@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/ng-table-builder",
-    "version": "13.0.0",
+    "version": "13.0.1",
     "description": "Angular-RU package",
     "keywords": [
         "angular-ru",
@@ -28,7 +28,7 @@
         "postversion": "npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\""
     },
     "devDependencies": {
-        "intersection-observer": "0.10.0",
+        "intersection-observer": "0.11.0",
         "ngx-toastr": "12.1.0",
         "pretty": "2.0.0"
     },
