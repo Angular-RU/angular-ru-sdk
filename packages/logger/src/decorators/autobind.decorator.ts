@@ -71,9 +71,7 @@ function handle(args: Any[]): Any {
     if (args.length === 1) {
         return autoBindClass(args[0]);
     } else {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
-        return autoBindMethod(...args);
+        return autoBindMethod(...(args as [Any, Any, Any]));
     }
 }
 
