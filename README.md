@@ -146,7 +146,7 @@ in the Angular.
 </tbody>
 </table>
 
-##### Create new package
+#### Create new package
 
 ```bash
 $ lerna create @angular-ru/my-pkg
@@ -166,4 +166,10 @@ $ yarn build:app
 
 # Run unit tests
 $ yarn test
+```
+
+#### Build single library
+
+```bash
+$ yarn build:lib --scope=@angular-ru/ng-table-builder
 ```

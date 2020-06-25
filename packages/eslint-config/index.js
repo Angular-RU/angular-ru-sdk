@@ -52,7 +52,7 @@ module.exports = {
     ],
     rules: {
         indent: 'off',
-        camelcase: 'error',
+        camelcase: 'off',
         'max-depth': ['error', 4],
         'no-unneeded-ternary': 'error',
         'require-atomic-updates': 'error',
@@ -71,6 +71,7 @@ module.exports = {
         'max-params': ['error', 3],
         'no-nested-ternary': 'error',
         'no-magic-numbers': 'off',
+        '@typescript-eslint/ban-ts-ignore': 'off',
         '@typescript-eslint/no-magic-numbers': [
             'error',
             {
@@ -90,7 +91,6 @@ module.exports = {
         '@typescript-eslint/adjacent-overload-signatures': 'error',
         '@typescript-eslint/array-type': 'error',
         '@typescript-eslint/ban-types': 'error',
-        '@typescript-eslint/class-name-casing': 'error',
         '@typescript-eslint/explicit-member-accessibility': [
             'error',
             {
@@ -112,6 +112,22 @@ module.exports = {
             'error',
             {
                 selector: 'class',
+                format: ['PascalCase']
+            },
+            {
+                selector: 'interface',
+                format: ['PascalCase']
+            },
+            {
+                selector: 'variable',
+                format: ['camelCase', 'UPPER_CASE']
+            },
+            {
+                selector: 'typeLike',
+                format: ['PascalCase']
+            },
+            {
+                selector: 'class',
                 modifiers: ['abstract'],
                 format: ['PascalCase'],
                 prefix: ['Abstract']
@@ -121,7 +137,6 @@ module.exports = {
                 format: ['StrictPascalCase']
             }
         ],
-        '@typescript-eslint/interface-name-prefix': 'off',
         '@typescript-eslint/member-ordering': [
             'error',
             {

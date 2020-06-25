@@ -21,7 +21,7 @@ export class UtilsService implements UtilsInterface {
         return JSON.parse(JSON.stringify(obj || null)) || {};
     }
 
-    public isObject<T = object>(obj: T): boolean {
+    public isObject<T = Record<string, unknown>>(obj: T): boolean {
         return obj === Object(obj);
     }
 

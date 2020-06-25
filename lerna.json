@@ -21,7 +21,7 @@
             "npmClient": "npm",
             "force-publish": "*",
             "conventionalCommits": true,
-            "message": "chore(release): publish %s [ci skip]",
+            "message": "chore(release): updated release notes and package versions [ci skip]",
             "registry": "https://registry.npmjs.org",
             "ignoreChanges": [
                 "node_modules",
@@ -42,16 +42,6 @@
                 "angular",
                 "sdk"
             ]
-        }
-    },
-    "changelog": {
-        "labels": {
-            "feature": "🚀 Feature",
-            "perf": "Performance Improvements",
-            "ci": "CI changes",
-            "bug": "Bug Fixes",
-            "revert": "Reverts",
-            "breaking": "💥 BREAKING CHANGES"
         }
     }
 }

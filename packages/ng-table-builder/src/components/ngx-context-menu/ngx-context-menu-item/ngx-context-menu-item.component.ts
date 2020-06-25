@@ -96,12 +96,12 @@ export class NgxContextMenuItemComponent implements OnInit, OnDestroy {
     }
 
     public overflowX(): number {
-        const overflowX: number = this.subMenuWidth + this.offsetX! - this.utils.bodyRect?.width!;
+        const overflowX: number = this.subMenuWidth + this.offsetX! - (this.utils.bodyRect?.width ?? 0);
         return overflowX > 0 ? overflowX + SCROLLBAR_WIDTH : 0;
     }
 
     public overflowY(ref: HTMLDivElement): number {
-        const overflowY: number = ref.offsetHeight + this.offsetY! - this.utils.bodyRect?.height!;
+        const overflowY: number = ref.offsetHeight + this.offsetY! - (this.utils.bodyRect?.height ?? 0);
         return overflowY > 0 ? overflowY + SCROLLBAR_WIDTH : 0;
     }
 

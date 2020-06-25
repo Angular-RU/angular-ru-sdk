@@ -91,3 +91,33 @@ function f (): void {
 }
 
 f();
+
+// expect errors
+class little {}
+
+const little1: little = new little();
+// eslint-disable-next-line no-console
+console.log(little1);
+
+// expect errors
+class Little_Bar {}
+
+const little2: little = new Little_Bar();
+// eslint-disable-next-line no-console
+console.log(little2);
+
+// expect interface errors
+interface myType {
+    a: string;
+}
+
+const m1: myType = { a: 'ast' };
+// eslint-disable-next-line no-console
+console.log(m1);
+
+// expect interface errors
+type alist = { b: string } & { c: string };
+
+const m2: alist = { b: '1', c: '2' };
+// eslint-disable-next-line no-console
+console.log(m2);

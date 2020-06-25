@@ -23,7 +23,7 @@
         "clean": "rm -rf ./packages/**/dist ./packages/**/lib ./packages/**/.cache",
         "deploy": "lerna run deploy",
         "format": "yarn package:sort && yarn pretty:format --write",
-        "postinstall": "ngcc",
+        "postinstall": "ngcc --async",
         "lint": "eslint \"**/*.ts\" --ignore-pattern typescript.bad.ts",
         "package:sort": "yarn sort-package-json \"package.json\" \"packages/*/package.json\"",
         "pre:commit": "git add . && git update-index --again && yarn lint-staged && git add .",
@@ -66,7 +66,6 @@
         "sort-package-json": "1.44.0",
         "ts-node": "8.10.2",
         "tsickle": "0.38.1",
-        "tslib": "2.0.0",
         "typescript": "3.9.5",
         "zone.js": "0.10.3"
     }

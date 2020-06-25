@@ -15,10 +15,27 @@ describe('[TEST]: Eslint', (): void => {
         expect(bad.includes('No magic number: 5')).toEqual(true);
         expect(bad.includes('No magic number: 10')).toEqual(true);
         expect(bad.includes(`Don't declare non-const enums`)).toEqual(true);
-        expect(bad.includes(`Enum name foo must match one of the following formats: StrictPascalCase`)).toEqual(true);
-        expect(bad.includes(`Enum name HELLO must match one of the following formats: StrictPascalCase`)).toEqual(true);
-        expect(bad.includes('Class name TestClass must have one of the following prefixes: Abstract')).toEqual(true);
+        expect(bad.includes(`Enum name \`foo\` must match one of the following formats: StrictPascalCase`)).toEqual(
+            true
+        );
+        expect(bad.includes(`Enum name \`HELLO\` must match one of the following formats: StrictPascalCase`)).toEqual(
+            true
+        );
+        expect(bad.includes('Class name `TestClass` must have one of the following prefixes: Abstract')).toEqual(true);
         expect(bad.includes('Unexpected space before function parentheses')).toEqual(true);
+        expect(
+            bad.includes(`Don't use \`Function\` as a type. The \`Function\` type accepts any function-like value.`)
+        ).toEqual(true);
+        expect(bad.includes(`Class name \`little\` must match one of the following formats: PascalCase`)).toEqual(true);
+        expect(bad.includes(`Class name \`Little_Bar\` must match one of the following formats: PascalCase`)).toEqual(
+            true
+        );
+        expect(bad.includes(`Interface name \`myType\` must match one of the following formats: PascalCase`)).toEqual(
+            true
+        );
+        expect(bad.includes(`Type Alias name \`alist\` must match one of the following formats: PascalCase`)).toEqual(
+            true
+        );
         expect(bad.includes('Useless constructor')).toEqual(true);
     });
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { LexerJSON } from '../logger.config';
+import { LEXER_JSON } from '../logger.config';
 
 @Injectable()
 export class JsonFactory {
@@ -9,7 +9,7 @@ export class JsonFactory {
     private readonly _boolean: string = 'color:blue';
     private readonly _null: string = 'color:magenta';
     private readonly _key: string = 'color:red';
-    private readonly lexerTypeFinder: RegExp = LexerJSON;
+    private readonly lexerTypeFinder: RegExp = LEXER_JSON;
 
     // eslint-disable-next-line max-lines-per-function
     public colorsJSON(json: string): string[] {

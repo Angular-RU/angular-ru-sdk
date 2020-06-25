@@ -63,7 +63,7 @@ export interface LoggerOptions<T = unknown> {
     instance: T extends Console ? T : unknown;
     minLevel: LoggerLevel;
     globalLineStyle: string;
-    cssClassMap: object;
+    cssClassMap: Record<string, unknown>;
     useLevelGroup: boolean;
     labelColors: ObjectKeyMap;
     labelNames: ObjectKeyMap;
