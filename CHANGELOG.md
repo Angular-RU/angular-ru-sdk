@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.3.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.2.0...v13.3.0) (2020-06-25)
+
+### Bug Fixes
+
+-   **eslint-config:** remove deprecated rules
+    ([386b037](https://github.com/Angular-RU/angular-ru-sdk/commit/386b0379988aa16bb1ab9fde64019c3f46765e8b))
+-   **jest-utils:** upgrade ts-jest
+    ([0dab156](https://github.com/Angular-RU/angular-ru-sdk/commit/0dab15675634096b7a7765d25a82f9503f6f517a))
+-   **logger:** fixup linting errors
+    ([38d90fd](https://github.com/Angular-RU/angular-ru-sdk/commit/38d90fd25e526f091cda00b4f1518395be964d65))
+-   **ng-table-builder:** support Angular 8
+    ([6070925](https://github.com/Angular-RU/angular-ru-sdk/commit/6070925bf9259dbe14cd862c5dc79b091692d4e3))
+-   **ng-table-builder:** support Angular 8
+    ([ef66903](https://github.com/Angular-RU/angular-ru-sdk/commit/ef6690322c3637bd46a24572b2404d954d7c4b99))
+-   **ng-table-builder:** use any type for fields when filtering by definitions
+    ([ae0e75a](https://github.com/Angular-RU/angular-ru-sdk/commit/ae0e75af101869aee86100551795ea302e50a080))
+
+### Features
+
+-   **tsconfig:** add tslib as dependency
+    ([64a567c](https://github.com/Angular-RU/angular-ru-sdk/commit/64a567c9d12016f499661d03a0fef8de5ea82a04))
+-   update ESLint
+    ([ec093e5](https://github.com/Angular-RU/angular-ru-sdk/commit/ec093e58a161e1076128b863c9810f312ce97ea9))
+-   update ESLint
+    ([6748be2](https://github.com/Angular-RU/angular-ru-sdk/commit/6748be2a8329bb9de78d4c93aca872848376138b))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.2.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.1.0...v13.2.0) (2020-06-24)
 
 ### Features

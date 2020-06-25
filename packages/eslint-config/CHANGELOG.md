@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.3.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.2.0...v13.3.0) (2020-06-25)
+
+### Bug Fixes
+
+-   **eslint-config:** improved ts-ban-comment
+    ([14ade01](https://github.com/Angular-RU/angular-ru-sdk/commit/14ade01e42ac6a8762284030b923cd6e880c72de))
+-   **eslint-config:** remove deprecated rules
+    ([386b037](https://github.com/Angular-RU/angular-ru-sdk/commit/386b0379988aa16bb1ab9fde64019c3f46765e8b))
+
+### Features
+
+-   update ESLint
+    ([6748be2](https://github.com/Angular-RU/angular-ru-sdk/commit/6748be2a8329bb9de78d4c93aca872848376138b))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.0.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.24.0...v13.0.0) (2020-06-23)
 
 **Note:** Version bump only for package @angular-ru/eslint-config

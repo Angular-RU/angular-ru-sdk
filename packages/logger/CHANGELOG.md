@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.3.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.2.0...v13.3.0) (2020-06-25)
+
+### Bug Fixes
+
+-   **logger:** fixup linting errors
+    ([38d90fd](https://github.com/Angular-RU/angular-ru-sdk/commit/38d90fd25e526f091cda00b4f1518395be964d65))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.0.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.24.0...v13.0.0) (2020-06-23)
 
 ### Bug Fixes
