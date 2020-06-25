@@ -1,4 +1,5 @@
 *.iml
+*.log
 .idea
 **/lib/**
 **/dist/**
