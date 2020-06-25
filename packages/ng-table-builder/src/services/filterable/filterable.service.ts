@@ -24,7 +24,7 @@ interface FilterableInterface {
 @Injectable()
 export class FilterableService implements FilterableInterface {
     public filterValue: string | null = null;
-    public definition: KeyMap<string> = {};
+    public definition: KeyMap = {};
     public state: FilterStateEvent = new FilterStateEvent();
     public types: KeyMap = TableFilterType;
     public readonly filterOpenEvents: Subject<void> = new Subject();
