@@ -146,6 +146,16 @@ in the Angular.
 </tbody>
 </table>
 
+Choose the version corresponding to your Angular version:
+
+| Angular | @angular-ru/\*\*\* | Status   |
+| ------- | ------------------ | -------- |
+| 10      | 14.x               | Not yet  |
+| 9       | 13.x               | Released |
+| 8       | 12.x               | Released |
+
+---
+
 #### Create new package
 
 ```bash
