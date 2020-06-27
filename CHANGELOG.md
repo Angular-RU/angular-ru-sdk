@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.4.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.3.0...v13.4.0) (2020-06-27)
+
+### Features
+
+-   update dependency eslint-plugin-import to v2.22.0
+    ([5740da7](https://github.com/Angular-RU/angular-ru-sdk/commit/5740da77aaad6bc27f198c611a0b403456f193ea))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.3.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.2.0...v13.3.0) (2020-06-25)
 
 ### Bug Fixes
