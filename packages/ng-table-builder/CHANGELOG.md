@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.5.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.4.0...v13.5.0) (2020-06-29)
+
+### Bug Fixes
+
+-   **ng-table-builder:** correct update view in filter modal
+    ([cf1ec18](https://github.com/Angular-RU/angular-ru-sdk/commit/cf1ec188ed1196957a0c2431493513ae566d1c34))
+-   **ng-table-builder:** prevent memory leak when leave elements
+    ([2bce5a4](https://github.com/Angular-RU/angular-ru-sdk/commit/2bce5a4046a9c05460a9985e8c84a1f8bb7dd5b4))
+
+### Features
+
+-   **ng-table-builder:** add animation for ngx-filter
+    ([da58bf0](https://github.com/Angular-RU/angular-ru-sdk/commit/da58bf0f30c1ef6cd3decd673e73c626a46ba36b))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.3.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.2.0...v13.3.0) (2020-06-25)
 
 ### Bug Fixes
