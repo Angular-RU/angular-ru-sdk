@@ -9,6 +9,7 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 
+import { NGX_ANIMATION } from '../../animations/fade.animation';
 import { NgxFilterDirective } from '../../directives/ngx-filter.directive';
 import { FilterStateEvent } from '../../services/filterable/filterable.interface';
 import { ModalViewLayer } from '../common/modal-view-layer';
@@ -22,7 +23,8 @@ const FILTER_MIN_TOP_Y: number = 50;
     templateUrl: './ngx-filter.component.html',
     styleUrls: ['./ngx-filter.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    animations: [NGX_ANIMATION]
 })
 export class NgxFilterComponent extends ModalViewLayer<FilterStateEvent> implements OnInit {
     @Input() public width: number = FILTER_WIDTH;

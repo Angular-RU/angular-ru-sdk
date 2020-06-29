@@ -9,8 +9,8 @@ export class VirtualForDirective implements OnDestroy {
     private cache: Map<number, InternalVirtualRef> = new Map();
     private _source: TableRow[] = [];
     private _indexes: VirtualIndex[] = [];
-    private readonly createFrameId: number | null = null;
     private removeFrameId: number | null = null;
+    private initFrameId: number | null = null;
     private dirty: boolean = false;
 
     constructor(
@@ -30,7 +30,7 @@ export class VirtualForDirective implements OnDestroy {
     @Input()
     public set virtualForOf(indexes: VirtualIndex[] | null | undefined) {
         this.ngZone.runOutsideAngular((): void => {
-            window.setTimeout((): void => {
+            this.initFrameId = window.requestAnimationFrame((): void => {
                 if (!this._source || this._indexes === indexes) {
                     return;
                 }
@@ -47,7 +47,7 @@ export class VirtualForDirective implements OnDestroy {
     }
 
     public ngOnDestroy(): void {
-        window.cancelAnimationFrame(this.createFrameId!);
+        window.cancelAnimationFrame(this.initFrameId!);
         window.cancelAnimationFrame(this.removeFrameId!);
         this.view.clear();
     }
