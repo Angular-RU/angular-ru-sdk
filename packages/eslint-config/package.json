@@ -28,9 +28,9 @@
     },
     "dependencies": {
         "@types/eslint": "7.2.0",
-        "@typescript-eslint/eslint-plugin": "3.4.0",
-        "@typescript-eslint/eslint-plugin-tslint": "3.4.0",
-        "@typescript-eslint/parser": "3.4.0",
+        "@typescript-eslint/eslint-plugin": "3.5.0",
+        "@typescript-eslint/eslint-plugin-tslint": "3.5.0",
+        "@typescript-eslint/parser": "3.5.0",
         "codelyzer": "5.2.2",
         "es6-set": "0.1.5",
         "eslint": "7.3.1",
