@@ -1,7 +1,4 @@
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+# CHANGELOG
 
 # [13.7.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.6.0...v13.7.0) (2020-06-30)
 
@@ -10,22 +7,12 @@ All notable changes to this project will be documented in this file. See
 -   **ng-table-builder:** add updateFilterTypeBy, updateFilterValueBy method for immutable filtering
     ([eaa2e19](https://github.com/Angular-RU/angular-ru-sdk/commit/eaa2e1998a56502b9ef2243d76c8dfab5723988b))
 
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
 # [13.6.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.5.0...v13.6.0) (2020-06-29)
 
 ### Features
 
 -   update ESLint to v3.5.0
     ([6d877ee](https://github.com/Angular-RU/angular-ru-sdk/commit/6d877ee9bd4a3f7d6852101d146b8fd7bb0555e8))
-
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # [13.5.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.4.0...v13.5.0) (2020-06-29)
 
@@ -41,22 +28,12 @@ All notable changes to this project will be documented in this file. See
 -   **ng-table-builder:** add animation for ngx-filter
     ([da58bf0](https://github.com/Angular-RU/angular-ru-sdk/commit/da58bf0f30c1ef6cd3decd673e73c626a46ba36b))
 
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
 # [13.4.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.3.0...v13.4.0) (2020-06-27)
 
 ### Features
 
 -   update dependency eslint-plugin-import to v2.22.0
     ([5740da7](https://github.com/Angular-RU/angular-ru-sdk/commit/5740da77aaad6bc27f198c611a0b403456f193ea))
-
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # [13.3.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.2.0...v13.3.0) (2020-06-25)
 
@@ -84,22 +61,12 @@ All notable changes to this project will be documented in this file. See
 -   update ESLint
     ([6748be2](https://github.com/Angular-RU/angular-ru-sdk/commit/6748be2a8329bb9de78d4c93aca872848376138b))
 
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
 # [13.2.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.1.0...v13.2.0) (2020-06-24)
 
 ### Features
 
 -   update dependency @types/jest to v26.0.3
     ([eee6ebc](https://github.com/Angular-RU/angular-ru-sdk/commit/eee6ebcb59ec2ca0125622b2b365135584d9d28e))
-
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # [13.1.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.0.1...v13.1.0) (2020-06-24)
 
@@ -108,19 +75,9 @@ All notable changes to this project will be documented in this file. See
 -   update dependency @types/jest to v26.0.2
     ([9c92a02](https://github.com/Angular-RU/angular-ru-sdk/commit/9c92a025c6c1f8261fd9160de1e5878dd9984d96))
 
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
 ## [13.0.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.0.0...v13.0.1) (2020-06-23)
 
 **Note:** Version bump only for package @angular-ru/sdk
-
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # [13.0.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.24.0...v13.0.0) (2020-06-23)
 
@@ -134,11 +91,6 @@ All notable changes to this project will be documented in this file. See
 ### BREAKING CHANGES
 
 -   **ng-table-builder:** virtual-for.directive.ts affected with Angular 9
-
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # [12.24.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.23.0...v12.24.0) (2020-06-22)
 
@@ -154,19 +106,12 @@ All notable changes to this project will be documented in this file. See
 -   **jest-utils:** upgrade @types/jest
     ([ce909fb](https://github.com/Angular-RU/angular-ru-sdk/commit/ce909fb1c587d1d81f416b46232aade13985b8ba))
 
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
 # [12.23.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.22.0...v12.23.0) (2020-06-22)
 
 ### Features
 
 -   **ng-table-builder:** integration with LernaJS
     ([775a222](https://github.com/Angular-RU/angular-ru-sdk/commit/775a2223380e449b076fff02e1ec73b0317a142a))
-
-# Change Log
 
 # [12.22.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.21.5...v12.22.0) (2020-06-19)
 
@@ -180,19 +125,13 @@ All notable changes to this project will be documented in this file. See
 -   Update only dependencies to v8.2.1
     ([e9d94ce](https://github.com/Angular-RU/angular-ru-sdk/commit/e9d94cea029b6abe3c16b8517e884ecb84d2bb08))
 
-# Change Log
-
 ## [12.21.5](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.21.4...v12.21.5) (2020-06-18)
 
 **Note:** Version bump only for package @angular-ru/sdk
 
-# Change Log
-
 ## [12.21.4](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.21.3...v12.21.4) (2020-06-18)
 
 **Note:** Version bump only for package @angular-ru/sdk
-
-# Change Log
 
 ## [12.21.3](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.21.2...v12.21.3) (2020-06-18)
 
@@ -201,16 +140,12 @@ All notable changes to this project will be documented in this file. See
 -   **logger:** change exports enum
     ([a704517](https://github.com/Angular-RU/angular-ru-sdk/commit/a7045170d144b21b916760cc0c383e4838273253))
 
-# Change Log
-
 ## [12.21.2](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.21.1...v12.21.2) (2020-06-18)
 
 ### Bug Fixes
 
 -   **logger:** change api export
     ([77c705a](https://github.com/Angular-RU/angular-ru-sdk/commit/77c705aa10a188c68deae991d0a083a01e790b4b))
-
-# Change Log
 
 ## [12.21.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.21.0...v12.21.1) (2020-06-18)
 
@@ -219,16 +154,12 @@ All notable changes to this project will be documented in this file. See
 -   **logger:** change dist publish
     ([f153960](https://github.com/Angular-RU/angular-ru-sdk/commit/f153960d714b66292964124c9d48fec98f9da8de))
 
-# Change Log
-
 # [12.21.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.20.1...v12.21.0) (2020-06-18)
 
 ### Features
 
 -   **logger:** integration with lerna
     ([a1a451e](https://github.com/Angular-RU/angular-ru-sdk/commit/a1a451e1d89c78cb39cac7d5dd2099a6b4ef5834))
-
-# Change Log
 
 ## [12.20.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.20.0...v12.20.1) (2020-06-17)
 
@@ -237,8 +168,6 @@ All notable changes to this project will be documented in this file. See
 -   **eslint-config:** ignore anonymous space before
     ([8dbd818](https://github.com/Angular-RU/angular-ru-sdk/commit/8dbd818f770958e8f8c8de0c50c379176be3d604))
 
-# Change Log
-
 # [12.20.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.19.6...v12.20.0) (2020-06-17)
 
 ### Features
@@ -246,43 +175,29 @@ All notable changes to this project will be documented in this file. See
 -   space before never named and anonymous function
     ([783c8f4](https://github.com/Angular-RU/angular-ru-sdk/commit/783c8f46195ef79098cfd82d38e23a5b03512e2d))
 
-# Change Log
-
 ## [12.19.6](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.19.5...v12.19.6) (2020-06-15)
 
 **Note:** Version bump only for package @angular-ru/sdk
-
-# Change Log
 
 ## [12.19.5](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.19.4...v12.19.5) (2020-06-10)
 
 **Note:** Version bump only for package @angular-ru/sdk
 
-# Change Log
-
 ## [12.19.4](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.19.3...v12.19.4) (2020-06-08)
 
 **Note:** Version bump only for package @angular-ru/sdk
-
-# Change Log
 
 ## [12.19.3](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.19.2...v12.19.3) (2020-06-08)
 
 **Note:** Version bump only for package @angular-ru/sdk
 
-# Change Log
-
 ## [12.19.2](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.19.1...v12.19.2) (2020-06-06)
 
 **Note:** Version bump only for package @angular-ru/sdk
 
-# Change Log
-
 ## [12.19.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.19.0...v12.19.1) (2020-06-05)
 
 **Note:** Version bump only for package @angular-ru/sdk
-
-# Change Log
 
 # [12.19.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.18.1...v12.19.0) (2020-06-05)
 
@@ -294,8 +209,6 @@ All notable changes to this project will be documented in this file. See
     ([cfa5bf2](https://github.com/Angular-RU/angular-ru-sdk/commit/cfa5bf2041706da555634456dfeadb42f29fbf95))
 -   **jest-utils:** integration with LernaJS
     ([5cb3fbd](https://github.com/Angular-RU/angular-ru-sdk/commit/5cb3fbd04fcc5fb65f71ccd71f83a85c95f9eaf5))
-
-# Change Log
 
 ## [12.18.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.18.0...v12.18.1) (2020-06-03)
 
@@ -324,8 +237,6 @@ All notable changes to this project will be documented in this file. See
 
 -   **eslint-config:** add integration LernaJS
     ([182c34d](https://github.com/Angular-RU/angular-ru-sdk/commit/182c34d39687dc438168bf05453e0190972ff915))
-
-# Change Log
 
 # [12.9.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.8.0...v12.9.0) (2020-06-02)
 

@@ -6,14 +6,14 @@
     "npmClient": "yarn",
     "useWorkspaces": true,
     "version": "13.7.0",
+    "changelogPreset": "angular",
     "command": {
         "version": {
             "allowBranch": "master",
             "ignoreChanges": [
                 "**/__fixtures__/**",
                 "**/__tests__/**",
-                "**/integration/**",
-                "**/*.md"
+                "**/integration/**"
             ]
         },
         "publish": {
@@ -29,8 +29,7 @@
                 "__tests__",
                 "integration",
                 "jest.config.js",
-                "*.sh",
-                "CHANGELOG.md"
+                "*.sh"
             ]
         },
         "create": {

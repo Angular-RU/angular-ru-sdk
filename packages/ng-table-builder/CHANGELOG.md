@@ -1,7 +1,4 @@
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+# CHANGELOG
 
 # [13.7.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.6.0...v13.7.0) (2020-06-30)
 
@@ -9,11 +6,6 @@ All notable changes to this project will be documented in this file. See
 
 -   **ng-table-builder:** add updateFilterTypeBy, updateFilterValueBy method for immutable filtering
     ([eaa2e19](https://github.com/Angular-RU/angular-ru-sdk/commit/eaa2e1998a56502b9ef2243d76c8dfab5723988b))
-
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # [13.5.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.4.0...v13.5.0) (2020-06-29)
 
@@ -29,11 +21,6 @@ All notable changes to this project will be documented in this file. See
 -   **ng-table-builder:** add animation for ngx-filter
     ([da58bf0](https://github.com/Angular-RU/angular-ru-sdk/commit/da58bf0f30c1ef6cd3decd673e73c626a46ba36b))
 
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
 # [13.3.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.2.0...v13.3.0) (2020-06-25)
 
 ### Bug Fixes
@@ -45,19 +32,9 @@ All notable changes to this project will be documented in this file. See
 -   **ng-table-builder:** use any type for fields when filtering by definitions
     ([ae0e75a](https://github.com/Angular-RU/angular-ru-sdk/commit/ae0e75af101869aee86100551795ea302e50a080))
 
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
 ## [13.0.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.0.0...v13.0.1) (2020-06-23)
 
 **Note:** Version bump only for package @angular-ru/ng-table-builder
-
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # [13.0.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.24.0...v13.0.0) (2020-06-23)
 
@@ -70,22 +47,12 @@ All notable changes to this project will be documented in this file. See
 
 -   **ng-table-builder:** virtual-for.directive.ts affected with Angular 9
 
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
 # [12.24.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.23.0...v12.24.0) (2020-06-22)
 
 ### Bug Fixes
 
 -   **ng-table-builder:** remove comments
     ([adb6d8c](https://github.com/Angular-RU/angular-ru-sdk/commit/adb6d8c6e332adff9f0ab227a5ed5281d0fb2e39))
-
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # [12.23.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.22.0...v12.23.0) (2020-06-22)
 

@@ -1,7 +1,4 @@
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+# CHANGELOG
 
 # [13.3.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.2.0...v13.3.0) (2020-06-25)
 
@@ -10,22 +7,12 @@ All notable changes to this project will be documented in this file. See
 -   **logger:** fixup linting errors
     ([38d90fd](https://github.com/Angular-RU/angular-ru-sdk/commit/38d90fd25e526f091cda00b4f1518395be964d65))
 
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
 # [13.0.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.24.0...v13.0.0) (2020-06-23)
 
 ### Bug Fixes
 
 -   **logger:** compat with Angular Ivy
     ([b563a8b](https://github.com/Angular-RU/angular-ru-sdk/commit/b563a8b1bbfad9a7070f71c8575890114a558d52))
-
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # [12.24.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.23.0...v12.24.0) (2020-06-22)
 
@@ -34,28 +21,17 @@ All notable changes to this project will be documented in this file. See
 -   **logger:** remove comments
     ([d4d0cf3](https://github.com/Angular-RU/angular-ru-sdk/commit/d4d0cf3f0cf48be0161f5989d2c6ff6f76883aa1))
 
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
 # [12.23.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.22.0...v12.23.0) (2020-06-22)
 
 **Note:** Version bump only for package @angular-ru/logger
-
-# Change Log
 
 ## [12.21.5](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.21.4...v12.21.5) (2020-06-18)
 
 **Note:** Version bump only for package @angular-ru/logger
 
-# Change Log
-
 ## [12.21.4](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.21.3...v12.21.4) (2020-06-18)
 
 **Note:** Version bump only for package @angular-ru/logger
-
-# Change Log
 
 ## [12.21.3](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.21.2...v12.21.3) (2020-06-18)
 
@@ -64,8 +40,6 @@ All notable changes to this project will be documented in this file. See
 -   **logger:** change exports enum
     ([a704517](https://github.com/Angular-RU/angular-ru-sdk/commit/a7045170d144b21b916760cc0c383e4838273253))
 
-# Change Log
-
 ## [12.21.2](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.21.1...v12.21.2) (2020-06-18)
 
 ### Bug Fixes
@@ -73,16 +47,12 @@ All notable changes to this project will be documented in this file. See
 -   **logger:** change api export
     ([77c705a](https://github.com/Angular-RU/angular-ru-sdk/commit/77c705aa10a188c68deae991d0a083a01e790b4b))
 
-# Change Log
-
 ## [12.21.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.21.0...v12.21.1) (2020-06-18)
 
 ### Bug Fixes
 
 -   **logger:** change dist publish
     ([f153960](https://github.com/Angular-RU/angular-ru-sdk/commit/f153960d714b66292964124c9d48fec98f9da8de))
-
-# Change Log
 
 # [12.21.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v12.20.1...v12.21.0) (2020-06-18)
 
