@@ -1,5 +1,5 @@
 <mat-toolbar class="simple-toolbar">
-    <span>Example filters</span>
+    <span>Example filters ({{ table?.size }})</span>
     <div class="show-simple">
         <button mat-raised-button (click)="clearFilter()">clear filter</button>
         <button mat-raised-button (click)="showSample()">show code sample</button>
@@ -19,8 +19,8 @@
                     matInput
                     name="width"
                     autocomplete="off"
-                    [(ngModel)]="table.filterable.filterValue"
                     (ngModelChange)="table.filter()"
+                    [(ngModel)]="table.filterable.filterValue"
                 />
                 <mat-icon matSuffix>search</mat-icon>
             </mat-form-field>
@@ -71,8 +71,8 @@
             <mat-form-field appearance="outline">
                 <mat-label>Find options</mat-label>
                 <mat-select
-                    (valueChange)="table.filter()"
-                    [(value)]="table.filterable.filterTypeDefinition[filter.state.key!]"
+                    [value]="table.filterable.filterTypeDefinition[filter.state.key!]"
+                    (valueChange)="table.filterable.updateFilterTypeBy($event, filter.state.key); table.filter()"
                 >
                     <mat-option *ngFor="let type of table.filterable.types | keyvalue" [value]="type.value">
                         {{ type.key }}
@@ -86,8 +86,8 @@
                     matInput
                     name="width"
                     autocomplete="off"
-                    [(ngModel)]="table.filterable.definition[filter.state.key!]"
-                    (ngModelChange)="table.filter()"
+                    [ngModel]="table.filterable.definition[filter.state.key!]"
+                    (ngModelChange)="table.filterable.updateFilterValueBy($event, filter.state.key); table.filter()"
                 />
                 <mat-icon matSuffix>search</mat-icon>
             </mat-form-field>

@@ -51,7 +51,7 @@ import { TemplateParserService } from './services/template-parser/template-parse
 import { UtilsService } from './services/utils/utils.service';
 import { SCROLLBAR_WIDTH } from './symbols';
 
-const { ROW_HEIGHT, MACRO_TIME, TIME_IDLE }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
+const { ROW_HEIGHT, FILTER_DELAY_TIME, TIME_IDLE }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
 
 // eslint-disable-next-line
 export abstract class TableBuilderApiImpl
@@ -303,7 +303,7 @@ export abstract class TableBuilderApiImpl
                         after();
                     }
                 });
-            }, MACRO_TIME);
+            }, FILTER_DELAY_TIME);
         });
     }
 
@@ -369,6 +369,7 @@ export abstract class TableBuilderApiImpl
         this.filterable.definition = { ...this.filterable.definition };
         this.filterable.changeFilteringStatus();
         this.calculateViewport(true);
+        window.setTimeout((): void => this.app.tick(), TABLE_GLOBAL_OPTIONS.TIME_RELOAD);
     }
 
     protected forceCalculateViewport(): void {

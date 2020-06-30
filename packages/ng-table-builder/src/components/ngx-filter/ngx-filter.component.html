@@ -1,9 +1,9 @@
 <div class="table-grid__background-flat" *ngIf="state?.opened" (click)="close()" (contextmenu)="close()"></div>
 
-<div class="table-grid__filter-menu" *ngIf="state?.opened" [@fadeAnimation]>
+<div class="table-grid__filter-menu" *ngIf="state?.opened">
     <div
-        #menu
         class="filter-menu"
+        *ngIf="isViewed"
         (contextmenu)="close()"
         [ngStyle]="{
             'width.px': width,
@@ -15,6 +15,8 @@
         }"
     >
         <div class="table-close__button" (click)="closeFilter()"></div>
-        <ng-content></ng-content>
+        <div *ngIf="isViewed" [@fadeAnimation]>
+            <ng-content></ng-content>
+        </div>
     </div>
 </div>

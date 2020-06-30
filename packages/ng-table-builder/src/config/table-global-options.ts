@@ -1,6 +1,7 @@
 interface TableGlobalOptions {
     MACRO_TIME: number;
     TIME_RELOAD: number;
+    FILTER_DELAY_TIME: number;
     COLUMN_RESIZE_MIN_WIDTH: number;
     FRAME_TIME: number;
     ROW_HEIGHT: number;
@@ -11,6 +12,7 @@ interface TableGlobalOptions {
 
 export const TABLE_GLOBAL_OPTIONS: TableGlobalOptions = {
     MACRO_TIME: 1000,
+    FILTER_DELAY_TIME: 600,
     TIME_RELOAD: 400,
     COLUMN_RESIZE_MIN_WIDTH: 50,
     FRAME_TIME: 66,

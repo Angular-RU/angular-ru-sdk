@@ -1,7 +1,16 @@
-import { ApplicationRef, ChangeDetectorRef, ElementRef, Injector, NgZone, OnDestroy, ViewChild } from '@angular/core';
+/* eslint-disable @typescript-eslint/naming-convention */
+import {
+    ApplicationRef,
+    ChangeDetectorRef,
+    Directive,
+    ElementRef,
+    Injector,
+    NgZone,
+    OnDestroy,
+    ViewChild
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { TABLE_GLOBAL_OPTIONS } from '../../config/table-global-options';
 import { MousePosition } from '../../interfaces/table-builder.internal';
 import { detectChanges } from '../../operators/detect-changes';
 import { ContextMenuService } from '../../services/context-menu/context-menu.service';
@@ -15,7 +24,7 @@ export interface PositionState {
     position: MousePosition;
 }
 
-// eslint-disable-next-line
+@Directive()
 export abstract class ModalViewLayer<T extends PositionState> implements OnDestroy {
     public width: number | null = null;
     public height: number | null = null;
@@ -79,17 +88,6 @@ export abstract class ModalViewLayer<T extends PositionState> implements OnDestr
         return height!;
     }
 
-    public updateView(): void {
-        detectChanges(this.cd);
-
-        this.ngZone.runOutsideAngular((): void => {
-            window.requestAnimationFrame((): void => {
-                detectChanges(this.cd);
-                this.refresh();
-            });
-        });
-    }
-
     public ngOnDestroy(): void {
         if (!this.subscription?.closed) {
             this.subscription?.unsubscribe();
@@ -99,11 +97,10 @@ export abstract class ModalViewLayer<T extends PositionState> implements OnDestr
     public abstract close(event: MouseEvent): void;
 
     protected update(): void {
+        this.isViewed = !!this.state.opened;
         detectChanges(this.cd);
 
         window.setTimeout((): void => {
-            this.isViewed = !!this.state.opened;
-            this.updateView();
             this.app.tick();
 
             this.ngZone.runOutsideAngular((): void => {
@@ -111,18 +108,9 @@ export abstract class ModalViewLayer<T extends PositionState> implements OnDestr
                     this.isRendered = true;
                     this.minHeight = this.calculatedHeight;
                     detectChanges(this.cd);
+                    this.app.tick();
                 });
             });
-        }, TABLE_GLOBAL_OPTIONS.TIME_RELOAD);
-    }
-
-    private refresh(): void {
-        this.ngZone.runOutsideAngular((): void => {
-            window.setTimeout((): void => {
-                this.isRendered = true;
-                this.minHeight = this.calculatedHeight;
-                detectChanges(this.cd);
-            }, TABLE_GLOBAL_OPTIONS.TIME_IDLE);
         });
     }
 }
