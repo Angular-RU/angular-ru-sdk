@@ -1,9 +1,9 @@
-import { ApplicationRef, Injectable, Injector, NgZone } from '@angular/core';
+import { ApplicationRef, Injectable, Injector } from '@angular/core';
 import { ReplaySubject, Subject } from 'rxjs';
 
 import { TABLE_GLOBAL_OPTIONS } from '../../config/table-global-options';
 import { TableRow } from '../../interfaces/table-builder.external';
-import { KeyMap, Resolver } from '../../interfaces/table-builder.internal';
+import { Any, KeyMap, Resolver } from '../../interfaces/table-builder.internal';
 import { WebWorkerThreadService } from '../../worker/worker-thread.service';
 import { UtilsService } from '../utils/utils.service';
 import { filterAllWorker } from './filter.worker';
@@ -36,12 +36,10 @@ export class FilterableService implements FilterableInterface {
     private previousFiltering: boolean = false;
     private readonly thread: WebWorkerThreadService;
     private readonly utils: UtilsService;
-    private readonly ngZone: NgZone;
     private readonly app: ApplicationRef;
 
     constructor(injector: Injector) {
         this.app = injector.get<ApplicationRef>(ApplicationRef);
-        this.ngZone = injector.get<NgZone>(NgZone);
         this.utils = injector.get<UtilsService>(UtilsService);
         this.thread = injector.get<WebWorkerThreadService>(WebWorkerThreadService);
     }
@@ -57,6 +55,18 @@ export class FilterableService implements FilterableInterface {
         );
 
         return (this.globalFilterValue && this.globalFilterValue.length > 0) || keyFilterValues.length > 0;
+    }
+
+    public updateFilterTypeBy(type: TableFilterType, key?: string): void {
+        if (key) {
+            this.filterTypeDefinition = { ...this.filterTypeDefinition, [key]: type };
+        }
+    }
+
+    public updateFilterValueBy(value: Any, key?: string): void {
+        if (key) {
+            this.definition = { ...this.definition, [key]: value };
+        }
     }
 
     public reset(): void {
@@ -114,19 +124,15 @@ export class FilterableService implements FilterableInterface {
                 this.thread
                     .run<TableRow[], FilterableMessage>(filterAllWorker, message)
                     .then((sorted: TableRow[]): void => {
-                        this.ngZone.runOutsideAngular((): void => {
-                            window.setTimeout((): void => {
-                                resolve({
-                                    source: sorted,
-                                    fireSelection: (): void => {
-                                        // eslint-disable-next-line max-nested-callbacks
-                                        window.setTimeout((): void => {
-                                            this.events.next({ value, type });
-                                            this.app.tick();
-                                        }, TIME_IDLE);
-                                    }
-                                });
-                            }, TIME_IDLE);
+                        resolve({
+                            source: sorted,
+                            fireSelection: (): void => {
+                                // eslint-disable-next-line max-nested-callbacks
+                                window.setTimeout((): void => {
+                                    this.events.next({ value, type });
+                                    this.app.tick();
+                                }, TIME_IDLE);
+                            }
                         });
                     });
             }

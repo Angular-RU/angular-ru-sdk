@@ -75,31 +75,33 @@ export class SampleFourteenComponent implements OnInit, AfterViewInit {
                     'In order to use the API for string highlighting, you can use the table.selection service. <br>' +
                     'In more detail you can read in the guide.',
                 code: `
-<ngx-table-builder #table [source]="data" enable-selection>
-    <ngx-column key="selection" sticky width="55" custom-key>
-        <ng-template ngx-th>
-            <mat-checkbox
-                (change)="table.selection.toggleAll(data)"
-                [indeterminate]="table.selectionModel.isIndeterminate"
-                [checked]="table.selectionModel.isAll"
-            ></mat-checkbox>
-        </ng-template>
-        <ng-template ngx-td row let-row (onClick)="$event.preventDefault()">
-            <mat-checkbox
-                [checked]="table.selectionModel.get($any(row).id)"
-                (change)="table.selection.toggle(row)"
-            ></mat-checkbox>
-        </ng-template>
-    </ngx-column>
+    <ngx-filter #filter>
+        <div class="my-filter">
+            <mat-form-field appearance="outline">
+                <mat-label>Find options</mat-label>
+                <mat-select
+                    [value]="table.filterable.filterTypeDefinition[filter.state.key!]"
+                    (valueChange)="table.filterable.updateFilterTypeBy($event, filter.state.key); table.filter()"
+                >
+                    <mat-option *ngFor="let type of table.filterable.types | keyvalue" [value]="type.value">
+                        {{ type.key }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
 
-    <ngx-column *ngFor="let key of table.modelColumnKeys" [key]="key">
-       <!--
-        If you want to parameterize your templates, you can describe the code here.
-        <ng-template ngx-th>{{ key }}</ng-template>
-        <ng-template ngx-td let-cell>{{ cell }}</ng-template>
-       -->
-    </ngx-column>
-</ngx-table-builder>
+            <mat-form-field appearance="outline">
+                <mat-label>Filter by {{ filter.state.key! | uppercase }}</mat-label>
+                <input
+                    matInput
+                    name="width"
+                    autocomplete="off"
+                    [ngModel]="table.filterable.definition[filter.state.key!]"
+                    (ngModelChange)="table.filterable.updateFilterValueBy($event, filter.state.key); table.filter()"
+                />
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+        </div>
+    </ngx-filter>
                     `
             },
             height: '650px',
