@@ -57,13 +57,13 @@ export class FilterableService implements FilterableInterface {
         return (this.globalFilterValue && this.globalFilterValue.length > 0) || keyFilterValues.length > 0;
     }
 
-    public updateFilterTypeBy(type: TableFilterType, key?: string): void {
+    public updateFilterTypeBy(type: TableFilterType, key?: string | null): void {
         if (key) {
             this.filterTypeDefinition = { ...this.filterTypeDefinition, [key]: type };
         }
     }
 
-    public updateFilterValueBy(value: Any, key?: string): void {
+    public updateFilterValueBy(value: Any, key?: string | null): void {
         if (key) {
             this.definition = { ...this.definition, [key]: value };
         }
