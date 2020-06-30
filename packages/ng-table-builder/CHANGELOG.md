@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.7.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.6.0...v13.7.0) (2020-06-30)
+
+### Features
+
+-   **ng-table-builder:** add updateFilterTypeBy, updateFilterValueBy method for immutable filtering
+    ([eaa2e19](https://github.com/Angular-RU/angular-ru-sdk/commit/eaa2e1998a56502b9ef2243d76c8dfab5723988b))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.5.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.4.0...v13.5.0) (2020-06-29)
 
 ### Bug Fixes
