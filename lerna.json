@@ -23,7 +23,6 @@
             "npmClient": "npm",
             "force-publish": "*",
             "conventionalCommits": true,
-            "changelogPreset": "spectrum",
             "message": "chore(release): updated release notes and package versions [ci skip]",
             "registry": "https://registry.npmjs.org",
             "ignoreChanges": [
