@@ -3,6 +3,7 @@
         "packages/*"
     ],
     "stream": true,
+    "concurrency": 1,
     "npmClient": "yarn",
     "useWorkspaces": true,
     "version": "13.7.1",
@@ -21,6 +22,7 @@
             "npmClient": "npm",
             "force-publish": "*",
             "conventionalCommits": true,
+            "changelogPreset": "spectrum",
             "message": "chore(release): updated release notes and package versions [ci skip]",
             "registry": "https://registry.npmjs.org",
             "ignoreChanges": [
