@@ -143,43 +143,36 @@ in the Angular.
           </a>
       </td>
     </tr>
+    <tr>
+      <td>
+          <a href="https://npmjs.com/package/@angular-ru/ng-excel-builder">
+              @angular-ru/ng-excel-builder
+          </a>
+      </td>
+      <td>
+          <img src="https://img.shields.io/npm/v/%40angular-ru%2Fng-excel-builder/latest.svg">
+      </td>
+      <td>
+          <a href="https://npmjs.com/package/@angular-ru/ng-excel-builder">
+              <img src="https://img.shields.io/npm/dm/@angular-ru/ng-excel-builder">
+          </a>
+          <a href="packages/ng-excel-builder/README.md">
+              <img src="https://img.shields.io/badge/README--green.svg">
+          </a>
+          <a href="packages/ng-excel-builder/CHANGELOG.md">
+              <img src="https://img.shields.io/badge/CHANGELOG--green.svg">
+          </a>
+      </td>
+    </tr>
 </tbody>
 </table>
 
 Choose the version corresponding to your Angular version:
 
-| Angular | @angular-ru/\*\*\* | Status   |
-| ------- | ------------------ | -------- |
-| 10      | 14.x               | Not yet  |
-| 9       | 13.x               | Released |
-| 8       | 12.x               | Released |
+| Angular | @angular-ru/\*\*\* | Status   | View Engine | Ivy     |
+| ------- | ------------------ | -------- | ----------- | ------- |
+| 10      | 14.x               | Not yet  | Not yet     | Not yet |
+| 9       | 13.x               | Released | +           | +       |
+| 8       | 12.x               | Released | +           | +       |
 
 ---
-
-#### Create new package
-
-```bash
-$ lerna create @angular-ru/my-pkg
-```
-
-#### Build steps
-
-```bash
-# Pre install
-$ yarn install && yarn pre:build
-
-# Build libraries
-$ yarn build:lib
-
-# Build integration apps
-$ yarn build:app
-
-# Run unit tests
-$ yarn test
-```
-
-#### Build single library
-
-```bash
-$ yarn build:lib --scope=@angular-ru/ng-table-builder
-```

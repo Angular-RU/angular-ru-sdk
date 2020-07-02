@@ -48,7 +48,12 @@
 
             &:not(.context-menu__title):hover {
                 cursor: pointer;
-                background: rgba(0, 0, 0, 0.04);
+                background: #4874ed;
+                background: linear-gradient(to bottom, #4874ed 1%, #0d36e6 100%);
+            }
+
+            &:not(.context-menu__title):hover > ngx-menu-content {
+                color: #fff;
             }
 
             ngx-menu-content:not(.icon-place) {

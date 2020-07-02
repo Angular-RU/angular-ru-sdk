@@ -3,6 +3,7 @@
         "packages/*"
     ],
     "stream": true,
+    "concurrency": 1,
     "npmClient": "yarn",
     "useWorkspaces": true,
     "version": "13.7.1",
@@ -13,7 +14,8 @@
             "ignoreChanges": [
                 "**/__fixtures__/**",
                 "**/__tests__/**",
-                "**/integration/**"
+                "**/integration/**",
+                "**/*.md"
             ]
         },
         "publish": {
@@ -21,6 +23,7 @@
             "npmClient": "npm",
             "force-publish": "*",
             "conventionalCommits": true,
+            "changelogPreset": "spectrum",
             "message": "chore(release): updated release notes and package versions [ci skip]",
             "registry": "https://registry.npmjs.org",
             "ignoreChanges": [
@@ -29,7 +32,8 @@
                 "__tests__",
                 "integration",
                 "jest.config.js",
-                "*.sh"
+                "*.sh",
+                "CHANGELOG.md"
             ]
         },
         "create": {
