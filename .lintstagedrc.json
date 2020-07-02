@@ -1,5 +1,0 @@
-{
-    "*.ts": ["yarn prettier --write", "yarn eslint --fix"],
-    "*.{html,css,scss,md,js,json}": ["yarn prettier --write"],
-    "package.json": ["yarn prettier --write", "yarn sort-package-json"]
-}

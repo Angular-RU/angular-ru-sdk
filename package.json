@@ -38,6 +38,23 @@
             "pre-commit": "yarn pre:commit"
         }
     },
+    "lint-staged": {
+        "*.ts": [
+            "yarn prettier --write",
+            "yarn eslint --fix"
+        ],
+        "*.{html,css,scss,md,js,json}": [
+            "yarn prettier --write"
+        ],
+        "package.json": [
+            "yarn prettier --write",
+            "yarn sort-package-json"
+        ]
+    },
+    "prettier": "./packages/prettier-config/prettier.config.js",
+    "eslintConfig": {
+        "extends": "./packages/eslint-config/index.js"
+    },
     "devDependencies": {
         "@angular-devkit/build-angular": "0.901.9",
         "@angular-devkit/build-ng-packagr": "0.901.9",

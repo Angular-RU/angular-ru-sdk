@@ -15,7 +15,6 @@ interface WebWorkerThread<R = Any, U = Any> {
 
 type Executor<T = void> = (...args: Any[]) => T;
 
-
 interface ObjectKeyMap<T = Any> {
     [key: string]: T;
 }
