@@ -1,0 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [13.8.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.7.1...v13.8.0) (2020-07-02)
+
+### Bug Fixes
+
+-   update peerDependencies
+    ([d722d80](https://github.com/Angular-RU/angular-ru-sdk/commit/d722d80412268d05acb773f065c5b40646c2e7f3))
+
+### Features
+
+-   **ng-excel-builder:** integrate with LernaJS
+    ([8d13138](https://github.com/Angular-RU/angular-ru-sdk/commit/8d13138d7273c2df4a5c253e7c1340fc7e4cb1b6))
