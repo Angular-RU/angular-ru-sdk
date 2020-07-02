@@ -21,6 +21,7 @@
         "build:lib": "lerna run build:lib",
         "build:prepare": "lerna run build:prepare",
         "clean": "rm -rf ./packages/**/dist ./packages/**/lib ./packages/**/.cache",
+        "commit": "git add . && git cz",
         "deploy": "lerna run deploy",
         "format": "yarn package:sort && yarn pretty:format --write",
         "postinstall": "ngcc --async",
