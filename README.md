@@ -167,6 +167,8 @@ in the Angular.
 </tbody>
 </table>
 
+---
+
 Choose the version corresponding to your Angular version:
 
 | Angular | @angular-ru/\*\*\* | Status   | View Engine | Ivy     |
@@ -174,5 +176,3 @@ Choose the version corresponding to your Angular version:
 | 10      | 14.x               | Not yet  | Not yet     | Not yet |
 | 9       | 13.x               | Released | +           | +       |
 | 8       | 12.x               | Released | +           | +       |
-
----
