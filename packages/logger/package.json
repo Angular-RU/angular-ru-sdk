@@ -27,7 +27,7 @@
         "postversion": "npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\""
     },
     "devDependencies": {
-        "devtools-detect": "3.0.0"
+        "devtools-detect": "3.0.1"
     },
     "peerDependencies": {
         "@angular/common": ">=8.0.0 <11.0.0",

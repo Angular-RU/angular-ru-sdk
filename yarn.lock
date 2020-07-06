@@ -4951,10 +4951,10 @@ detect-node@^2.0.4:
   resolved "https://registry.npmjs.org/detect-node/-/detect-node-2.0.4.tgz#014ee8f8f669c5c58023da64b8179c083a28c46c"
   integrity sha512-ZIzRpLJrOj7jjP2miAtgqIfmzbxa4ZOr5jJc601zklsfEx9oTzmmj2nVpIPRpNlRTIh8lc1kyViIY7BWSGNmKw==
 
-devtools-detect@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/devtools-detect/-/devtools-detect-3.0.0.tgz#1d7e23b77a2b6be3871d2ee694d8e60b50434444"
-  integrity sha512-bI0ccVWpQFUwHp9V/HNcVkqCavJdb3KBYtpGkJrw4TWJ33vuIoasVHSq3eZRb0RRzBfywrqDHN1xBwmnoAFenQ==
+devtools-detect@3.0.1:
+  version "3.0.1"
+  resolved "https://registry.npmjs.org/devtools-detect/-/devtools-detect-3.0.1.tgz#b862f64be80ac6627e3164c68424e7c2c7257481"
+  integrity sha512-nmp9QLSDKqHYtUPIMRtg1uX5euxTbTHf+ATCsPqZqCfROSwu3Sm0yfJD4Zc/LqgCjA6mgj3zpnBUUZMvSJcROg==
 
 dezalgo@^1.0.0:
   version "1.0.3"
