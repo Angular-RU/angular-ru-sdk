@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.8.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.8.0...v13.8.1) (2020-07-06)
+
+**Note:** Version bump only for package @angular-ru/logger
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.8.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.7.1...v13.8.0) (2020-07-02)
 
 ### Bug Fixes
