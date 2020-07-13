@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.11.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.10.0...v13.11.0) (2020-07-13)
+
+### Features
+
+-   update dependency ts-jest to v26.1.2
+    ([9fc2ea5](https://github.com/Angular-RU/angular-ru-sdk/commit/9fc2ea563ae19732446e6db16a60a7c6d0bb21ad))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.10.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.9.0...v13.10.0) (2020-07-07)
 
 ### Features
