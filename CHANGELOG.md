@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.15.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.14.0...v13.15.0) (2020-07-18)
+
+### Features
+
+-   update dependency eslint to v7.5.0
+    ([67c8529](https://github.com/Angular-RU/angular-ru-sdk/commit/67c85291cc066025f7037d8287c5505a8abb42c0))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.14.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.13.0...v13.14.0) (2020-07-18)
 
 ### Features
