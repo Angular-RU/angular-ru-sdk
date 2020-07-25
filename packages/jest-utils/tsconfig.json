@@ -11,8 +11,7 @@
         "typeRoots": ["../../node_modules/@types", "./"],
         "paths": {
             "@mock/*": ["integration/tests/helpers/*"],
-            "@angular-ru/common": ["../common/src/public_api"],
-            "@angular-ru/common/typings": ["../common/typings/src/public_api"]
+            "@angular-ru/common/typings": ["../common/dist/library/typings/public_api.d.ts"]
         }
     },
     "include": ["./src"],
