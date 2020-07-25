@@ -34,7 +34,8 @@ describe('[TEST]: Hello world', () => {
                 }
             },
             moduleNameMapper: {
-                '^@mock/(.*)$': '<rootDir>/integration/tests/helpers/$1'
+                '^@mock/(.*)$': '<rootDir>/integration/tests/helpers/$1',
+                '^@angular\\-ru/common/typings$': '<rootDir>/../common/dist/library/typings/public_api.d.ts'
             },
             bail: 1,
             verbose: true,

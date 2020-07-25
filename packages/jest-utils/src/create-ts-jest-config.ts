@@ -1,7 +1,8 @@
+import { Any } from '@angular-ru/common/typings';
 import type { Config } from '@jest/types';
 
 import { validateOptions } from './common';
-import { Any, JestConfigOptions, ModuleMapper } from './jest-config.interface';
+import { JestConfigOptions, ModuleMapper } from './jest-config.interface';
 
 // eslint-disable-next-line complexity,max-lines-per-function
 export function createTsJestConfig(options: JestConfigOptions): Config.InitialOptions {
