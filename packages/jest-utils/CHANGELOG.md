@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.20.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.19.0...v13.20.0) (2020-07-25)
+
+### Features
+
+-   **@angular-ru/jest-utils:** add @angular-ru/common as peerDependency
+    ([b512f29](https://github.com/Angular-RU/angular-ru-sdk/commit/b512f29f4967486d67df4a449244b010f32b8505))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.18.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.17.0...v13.18.0) (2020-07-24)
 
 ### Features
