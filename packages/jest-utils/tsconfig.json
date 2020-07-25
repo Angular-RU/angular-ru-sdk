@@ -10,7 +10,9 @@
         "lib": ["es2015", "es2017", "es2018", "dom"],
         "typeRoots": ["../../node_modules/@types", "./"],
         "paths": {
-            "@mock/*": ["integration/tests/helpers/*"]
+            "@mock/*": ["integration/tests/helpers/*"],
+            "@angular-ru/common": ["../common/src/public_api"],
+            "@angular-ru/common/typings": ["../common/typings/src/public_api"]
         }
     },
     "include": ["./src"],
