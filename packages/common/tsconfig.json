@@ -1,0 +1,26 @@
+{
+    "extends": "../tsconfig/tsconfig",
+    "angularCompilerOptions": {
+        "fullTemplateTypeCheck": true,
+        "annotateForClosureCompiler": true,
+        "strictInjectionParameters": true,
+        "skipTemplateCodegen": false,
+        "preserveWhitespaces": true,
+        "skipMetadataEmit": false,
+        "disableTypeScriptVersionCheck": true
+    },
+    "compilerOptions": {
+        "rootDir": ".",
+        "baseUrl": "./",
+        "module": "esnext",
+        "outDir": "./dist/out-tsc",
+        "target": "es2015",
+        "types": ["node"],
+        "typeRoots": ["../../node_modules/@types"],
+        "lib": ["es2018", "dom"],
+        "paths": {
+            "@angular-ru/common": ["./src/public_api"],
+            "@angular-ru/common/typings": ["./typings/src/public_api"]
+        }
+    }
+}

@@ -17,6 +17,27 @@ in the Angular.
   </tr>
 </thead>
 <tbody>
+<tr>
+    <td>
+        <a href="https://npmjs.com/package/@angular-ru/common">
+            @angular-ru/common
+        </a>
+    </td>
+    <td>
+        <img src="https://img.shields.io/npm/v/%40angular-ru%2Fcommon/latest.svg">
+    </td>
+    <td>
+        <a href="https://npmjs.com/package/@angular-ru/common">
+            <img src="https://img.shields.io/npm/dm/@angular-ru/common">
+        </a>
+        <a href="packages/common/README.md">
+            <img src="https://img.shields.io/badge/README--green.svg">
+        </a>
+        <a href="packages/common/CHANGELOG.md">
+            <img src="https://img.shields.io/badge/CHANGELOG--green.svg">
+        </a>
+    </td>
+  </tr>
   <tr>
     <td>
         <a href="https://npmjs.com/package/@angular-ru/tsconfig">
