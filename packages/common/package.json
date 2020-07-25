@@ -1,0 +1,38 @@
+{
+    "name": "@angular-ru/common",
+    "version": "13.8.0",
+    "description": "Angular-RU package",
+    "keywords": [
+        "angular-ru",
+        "angular",
+        "logger",
+        "sdk",
+        "common"
+    ],
+    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/ng-table-builder#readme",
+    "bugs": {
+        "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
+    },
+    "license": "MIT",
+    "author": "splincode <omaxphp@yandex.ru>",
+    "scripts": {
+        "build:lib": "ng build library && cp README.md dist/library",
+        "deploy": "cp README.md dist/integration && ng deploy --no-build",
+        "start": "ng serve --open",
+        "test": "yarn jest --config ./jest.config.js",
+        "postversion": "npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\""
+    },
+    "peerDependencies": {
+        "@angular/common": ">=8.0.0 <10.0.0",
+        "@angular/core": ">=8.0.0  <10.0.0",
+        "rxjs": ">=6.1.0"
+    },
+    "publishConfig": {
+        "access": "public",
+        "directory": "dist/library"
+    }
+}
