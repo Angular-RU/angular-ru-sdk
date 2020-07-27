@@ -8,6 +8,7 @@ import {
     ChangeDetectorRef,
     Component,
     ElementRef,
+    HostListener,
     Injector,
     NgZone,
     OnChanges,
@@ -160,6 +161,13 @@ export class TableBuilderComponent extends TableBuilderApiImpl
         this.recalculated = { recalculateHeight: true };
         this.forceCalculateViewport();
         this.idleDetectChanges();
+    }
+
+    @HostListener('contextmenu', ['$event'])
+    public openContextMenu($event: MouseEvent): void {
+        if (this.contextMenuTemplate) {
+            this.contextMenu.openContextMenu($event);
+        }
     }
 
     public ngOnChanges(changes: SimpleChanges = {}): void {

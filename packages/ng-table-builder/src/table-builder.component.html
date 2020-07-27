@@ -19,7 +19,6 @@
     [class.table-grid__no-visible]="!sourceRef.length && !filterable.filtering"
     [class.table-grid__root--is-scroll-overload]="tableViewport.scrollWidth > tableViewport.clientWidth"
     [class.table-grid__root--visible]="contentInit && root.offsetHeight > clientRowHeight && columnHeight"
-    (contextmenu)="contextMenuTemplate ? contextMenu.openContextMenu($event) : null"
     (recalculatedHeight)="recalculateHeight()"
     [autoHeight]="{
         detect: autoHeightDetect,
@@ -97,7 +96,7 @@
                     "
                     (observeVisible)="markVisibleColumn(column, $event)"
                 >
-                    <div *ngIf="$any(column)['visible']!" [@fadeAnimation]>
+                    <div *ngIf="$any(column)['visible']!">
                         <table-thead
                             cdkDragHandle
                             [column-schema]="schema"

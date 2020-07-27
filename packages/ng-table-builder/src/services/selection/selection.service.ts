@@ -1,4 +1,4 @@
-import { Injectable, NgZone, OnDestroy } from '@angular/core';
+import { Injectable, isDevMode, NgZone, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 
 import { ProduceDisableFn, TableRow } from '../../interfaces/table-builder.external';
@@ -73,7 +73,7 @@ export class SelectionService implements OnDestroy {
     public selectRow(row: TableRow, event: MouseEvent, rows: TableRow[]): void {
         const { shiftKey, ctrlKey }: MouseEvent = event;
         const index: number = rows.findIndex(
-            (item: TableRow): boolean => item[this.primaryKey] === row[this.primaryKey]
+            (item: TableRow): boolean => (item || {})[this.primaryKey] === (row || {})[this.primaryKey]
         );
 
         if (shiftKey) {
@@ -88,9 +88,9 @@ export class SelectionService implements OnDestroy {
     }
 
     public getIdByRow(row: TableRow): RowId {
-        const id: RowId = row[this.primaryKey];
+        const id: RowId = (row || {})[this.primaryKey];
 
-        if (checkValueIsEmpty(id)) {
+        if (checkValueIsEmpty(id) && isDevMode()) {
             throw new Error(
                 `Can't select item, make sure you pass the correct primary key, or you forgot enable selection
                 <ngx-table-builder enable-selection primary-key="fieldId" />

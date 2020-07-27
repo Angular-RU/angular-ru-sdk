@@ -8,7 +8,7 @@
     .context-menu {
         display: flex;
         position: fixed;
-        z-index: 10;
+        z-index: 100;
         border: 1px solid #dcdcdc;
         flex-direction: column;
         visibility: hidden;
@@ -17,7 +17,7 @@
         max-height: 0;
         overflow: initial;
         background: rgb(255, 255, 255);
-        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.35);
+        box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.4);
         border-radius: 4px;
         opacity: 0;
         font-family: Lucida Grande, sans-serif;
@@ -43,17 +43,18 @@
             }
 
             .content.align-center {
-                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-content: center;
             }
 
             &:not(.context-menu__title):hover {
                 cursor: pointer;
-                background: #4874ed;
-                background: linear-gradient(to bottom, #4874ed 1%, #0d36e6 100%);
+                background: #ecf1f7;
             }
 
             &:not(.context-menu__title):hover > ngx-menu-content {
-                color: #fff;
+                color: #1771e6;
             }
 
             ngx-menu-content:not(.icon-place) {
@@ -94,7 +95,7 @@
                 background: #fff;
                 z-index: 100000;
                 border: 1px solid #dcdcdc;
-                box-shadow: 2px 1px 1px #9c9c9c;
+                box-shadow: 0px 3px 3px 0 rgba(0, 0, 0, 0.4);
                 transition: visibility 100ms linear, opacity 100ms linear;
             }
 
