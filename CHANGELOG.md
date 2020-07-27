@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.20.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.20.0...v13.20.1) (2020-07-27)
+
+### Bug Fixes
+
+-   **@angular-ru/ng-table-builder:** refactor context menu invoker
+    ([5df2a38](https://github.com/Angular-RU/angular-ru-sdk/commit/5df2a38200c44c497353a448a4e69e4926991df1))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.20.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.19.0...v13.20.0) (2020-07-25)
 
 ### Features
