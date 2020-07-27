@@ -2,3 +2,78 @@
 
 [![npm version](https://badge.fury.io/js/%40angular-ru%2Fcommon.svg)](https://badge.fury.io/js/%40angular-ru%2Fcommon)
 [![npm-stat](https://img.shields.io/npm/dt/@angular-ru/common.svg)](https://npm-stat.com/charts.html?package=@angular-ru/common&from=2017-01-12)
+
+#### `@angular-ru/common/typings`
+
+-   `Any` - alias for `any` type
+
+```ts
+let a: Any = 5;
+a = {};
+b = null;
+```
+
+-   `Timestamp` - alias for timestamp type.
+
+```ts
+let time: Timestamp = new Date().toISOString();
+// or
+time = new Date().getTime();
+```
+
+-   `NonEmptyArray`
+
+```ts
+export function assertIsEmptyList(arr: string[]): asserts arr is NonEmptyArray<string> {
+    if (!Array.isArray(arr) || arr.length === 0) {
+        throw new EmptyArrayList();
+    }
+}
+```
+
+-   `PlainObject`, `PlainObjectOf<T>`
+
+```ts
+const a: PlainObject = { a: 1, b: '2' };
+const b: PlainObjectOf<number> = { a: 1, b: 2 };
+```
+
+-   `Fn<T, U>`
+
+```ts
+const fn1: Fn = () => {};
+const fn2: Fn = function (val: string) {};
+```
+
+-   `Immutable<T>, Mutable<T>`
+
+```ts
+const obj: Immutable<PlainObject> = {};
+obj['a'] = 5; // TS: Index signature in type 'Immutable<PlainObject>' only permits reading
+```
+
+-   `ClassType`
+
+```ts
+function inject(typeRef: ClassType) {}
+
+class A {}
+
+inject(A);
+```
+
+#### `@angular-ru/common/utils`
+
+-   `$any(val)`
+
+```ts
+const left: number | string | null = '12';
+const result: boolean = $any(left) > 13;
+```
+
+-   `$cast(val)`
+
+```ts
+const left: number | string | null = '12';
+const result: boolean = $cast<number>(left) > 13;
+```
