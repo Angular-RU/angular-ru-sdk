@@ -6,3 +6,5 @@ export { PlainObjectOf, PlainObject } from './object-types';
 export { Fn } from './fn';
 export { Timestamp } from './timestamp';
 export { NonEmptyArray } from './array-types';
+export { Arguments } from './arguments';
+export { DecoratorMethod } from './decorator-method';

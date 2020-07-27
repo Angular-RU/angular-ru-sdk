@@ -1,7 +1,7 @@
+import { PlainObject } from '@angular-ru/common/typings';
 import { InjectionToken } from '@angular/core';
 
 import { LoggerService } from '../logger.service';
-import { ObjectKeyMap } from './logger.internal';
 
 export type ConsoleOperation<T = unknown, P = unknown> = (message?: T, ...optionalParams: P[]) => void;
 
@@ -18,6 +18,7 @@ export type TimerLevels =
     | LoggerLevel.INFO
     | LoggerLevel.WARN
     | LoggerLevel.ERROR;
+
 export type LogFn = GroupMethods & ConsoleOperation;
 
 export interface FormatOutput {
@@ -25,6 +26,9 @@ export interface FormatOutput {
     style: string;
 }
 
+/**
+ * Used in factory methods
+ */
 // eslint-disable-next-line no-restricted-syntax
 export enum LoggerLevel {
     ALL = 1,
@@ -37,8 +41,7 @@ export enum LoggerLevel {
     OFF
 }
 
-// eslint-disable-next-line no-restricted-syntax
-export enum GroupLevel {
+export const enum GroupLevel {
     GROUP = 'group',
     GROUP_COLLAPSED = 'groupCollapsed'
 }
@@ -65,8 +68,8 @@ export interface LoggerOptions<T = unknown> {
     globalLineStyle: string;
     cssClassMap: Record<string, unknown>;
     useLevelGroup: boolean;
-    labelColors: ObjectKeyMap;
-    labelNames: ObjectKeyMap;
+    labelColors: PlainObject;
+    labelNames: PlainObject;
 
     format?(label: string, style: string): FormatOutput;
 

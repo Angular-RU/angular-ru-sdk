@@ -1,8 +1,9 @@
-import { LoggerLevel } from './interfaces/logger.external';
-import { ObjectKeyMap } from './interfaces/logger.internal';
+import { PlainObject } from '@angular-ru/common/typings';
 
-// eslint-disable-next-line no-restricted-syntax,@typescript-eslint/naming-convention
-export enum LABELS {
+import { LoggerLevel } from './interfaces/logger.external';
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const enum LABELS {
     TRACE = 'TRACE',
     DEBUG = 'DEBUG',
     INFO = 'INFO',
@@ -10,8 +11,8 @@ export enum LABELS {
     ERROR = 'ERROR'
 }
 
-// eslint-disable-next-line no-restricted-syntax,@typescript-eslint/naming-convention
-export enum COLORS {
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const enum COLORS {
     TRACE = '#000080',
     DEBUG = '#00BFFE',
     INFO = '#000000',
@@ -19,7 +20,7 @@ export enum COLORS {
     ERROR = '#F1062D'
 }
 
-export const DEFAULT_METHODS: ObjectKeyMap = {
+export const DEFAULT_METHODS: PlainObject = {
     /**
      * Used `debug` instead `trace` method because need
      * output without stack trace in console

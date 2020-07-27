@@ -1,7 +1,6 @@
-/* eslint-disable */
-import { ObjectKeyMap } from '../../../src/interfaces/logger.internal';
+import { Any, PlainObject } from '@angular-ru/common/typings';
 
-export enum TestLoggerLineType {
+export const enum TestLoggerLineType {
     TABLE = 'table',
     ASSERT = 'assert',
     TRACE_OR_DEBUG = 'debug',
@@ -12,16 +11,15 @@ export enum TestLoggerLineType {
     ERROR = 'error'
 }
 
-export enum TestLoggerGroupType {
+export const enum TestLoggerGroupType {
     GROUP_OPEN = 'group_open',
     GROUP_COLLAPSED_OPEN = 'group_collapsed_open',
     GROUP_END = 'group_end'
 }
 
 export class ConsoleFake implements Console {
-    // tslint:disable-next-line:no-any
-    public Console: any;
-    private _stack: ObjectKeyMap[] = [];
+    public Console: Any;
+    private _stack: PlainObject[] = [];
 
     public log(...args: string[]): void {
         args.unshift(null!, null!);
@@ -66,17 +64,18 @@ export class ConsoleFake implements Console {
         this._stack.push({ [TestLoggerGroupType.GROUP_END]: [] });
     }
 
-    public createStack(...args: ObjectKeyMap[]): string {
+    public createStack(...args: PlainObject[]): string {
         return JSON.stringify(args);
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     public stack(withoutLabel: number = 2): string {
-        const history: ObjectKeyMap = [...this._stack];
-        history.forEach((line: object, index: number) => {
+        const history: PlainObject = [...this._stack];
+        history.forEach((line: PlainObject, index: number): void => {
             for (const arg in line) {
                 if (line.hasOwnProperty(arg)) {
-                    const isArray: boolean = Array.isArray((line as any)[arg]);
-                    history[index] = { [arg]: isArray ? (line as any)[arg].slice(withoutLabel) : (line as any)[arg] };
+                    const isArray: boolean = Array.isArray(line[arg]);
+                    history[index] = { [arg]: isArray ? line[arg].slice(withoutLabel) : line[arg] };
                 }
             }
         });
@@ -85,10 +84,10 @@ export class ConsoleFake implements Console {
     }
 
     public stackList(stack: string): string[] {
-        const stackObject: ObjectKeyMap = JSON.parse(stack);
+        const stackObject: PlainObject = JSON.parse(stack);
         const stackList: string[] = [];
 
-        stackObject.forEach((line: string[]) => {
+        stackObject.forEach((line: string[]): void => {
             for (const levelLog in line) {
                 if (line.hasOwnProperty(levelLog)) {
                     stackList.push(line[levelLog]);
@@ -98,34 +97,20 @@ export class ConsoleFake implements Console {
 
         return stackList;
     }
-    public stackOptionsList(usageNext: boolean = false): ObjectKeyMap {
-        const stackList: string[] = this.stackList(this.stack(0));
-        const stackOptionsList: ObjectKeyMap = [];
 
-        stackList.forEach((line: string) => {
+    public stackOptionsList(usageNext: boolean = false): PlainObject {
+        const stackList: string[] = this.stackList(this.stack(0));
+        const stackOptionsList: PlainObject = [];
+
+        stackList.forEach((line: string): void => {
             stackOptionsList.push({
                 label: String(line[0]).replace('%c', ''),
+                // eslint-disable-next-line @typescript-eslint/no-magic-numbers
                 styles: this.parseCssString(line[usageNext ? 2 : 1])
             });
         });
 
         return stackOptionsList;
-    }
-
-    private parseCssString(css: string): ObjectKeyMap {
-        const result: ObjectKeyMap = {};
-        const attributes: string[] = css.split(';');
-
-        attributes.forEach((attribute: string) => {
-            const entry: string[] = attribute.split(':');
-            const property: string = String(entry.splice(0, 1)[0]).trim();
-            const options: string = entry.join(':').trim();
-            if (property.length) {
-                result[property] = options;
-            }
-        });
-
-        return result;
     }
 
     public clear(): void {
@@ -194,5 +179,21 @@ export class ConsoleFake implements Console {
 
     public timeLog(): void {
         // noop;
+    }
+
+    private parseCssString(css: string): PlainObject {
+        const result: PlainObject = {};
+        const attributes: string[] = css.split(';');
+
+        attributes.forEach((attribute: string): void => {
+            const entry: string[] = attribute.split(':');
+            const property: string = String(entry.splice(0, 1)[0]).trim();
+            const options: string = entry.join(':').trim();
+            if (property.length) {
+                result[property] = options;
+            }
+        });
+
+        return result;
     }
 }

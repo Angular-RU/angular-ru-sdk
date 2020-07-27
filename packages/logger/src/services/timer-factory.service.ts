@@ -1,7 +1,7 @@
+import { Any } from '@angular-ru/common/typings';
 import { Injectable } from '@angular/core';
 
 import { LoggerLevel, TimerInfo } from '../interfaces/logger.external';
-import { Any } from '../interfaces/logger.internal';
 import { DEFAULT_METHODS } from '../logger.config';
 import { LoggerService } from '../logger.service';
 import { ConsoleService } from './console.service';
@@ -10,6 +10,7 @@ import { ConsoleService } from './console.service';
 export class TimerFactory {
     private readonly DIGITS_TO_FIX: number = 4;
     private readonly SECONDS: number = 1000;
+
     constructor(private readonly console: ConsoleService) {}
 
     public startTime(title: string, level: LoggerLevel): TimerInfo | null {

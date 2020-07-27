@@ -1,10 +1,10 @@
+import { PlainObject } from '@angular-ru/common/typings';
 import { TestBed } from '@angular/core/testing';
 import { LoggerModule } from '../../src/logger.module';
 import { LoggerService } from '../../src/logger.service';
 import { ConsoleFake } from './helpers/console-fake';
 import { CUSTOM_COLORS, CUSTOM_LABELS } from './helpers/custom-colors.enum';
 import { FormatOutput, LoggerLevel } from '../../src/interfaces/logger.external';
-import { ObjectKeyMap } from '../../src/interfaces/logger.internal';
 
 describe('[TEST]: Check global style', () => {
     let logger: LoggerService;
@@ -68,13 +68,13 @@ describe('[TEST]: Check global style', () => {
         const errorLine: number = 4;
         logger.error(errorIsWork, 5, (2.55).toFixed());
 
-        const stackOptionsList: ObjectKeyMap = fakeConsole.stackOptionsList();
+        const stackOptionsList: PlainObject = fakeConsole.stackOptionsList();
 
-        const { label: traceLabel }: ObjectKeyMap = stackOptionsList[traceLine];
-        const { label: debugLabel }: ObjectKeyMap = stackOptionsList[debugLine];
-        const { label: infoLabel }: ObjectKeyMap = stackOptionsList[infoLine];
-        const { label: warnLabel }: ObjectKeyMap = stackOptionsList[warnLine];
-        const { label: errorLabel }: ObjectKeyMap = stackOptionsList[errorLine];
+        const { label: traceLabel }: PlainObject = stackOptionsList[traceLine];
+        const { label: debugLabel }: PlainObject = stackOptionsList[debugLine];
+        const { label: infoLabel }: PlainObject = stackOptionsList[infoLine];
+        const { label: warnLabel }: PlainObject = stackOptionsList[warnLine];
+        const { label: errorLabel }: PlainObject = stackOptionsList[errorLine];
 
         expect(traceLabel).toEqual(CUSTOM_LABELS.TRACE);
         expect(debugLabel).toEqual(CUSTOM_LABELS.DEBUG);
@@ -101,13 +101,13 @@ describe('[TEST]: Check global style', () => {
         const errorLine: number = 4;
         logger.error(errorIsWork, 5, (2.55).toFixed());
 
-        const stackOptionsList: ObjectKeyMap = fakeConsole.stackOptionsList();
+        const stackOptionsList: PlainObject = fakeConsole.stackOptionsList();
 
-        const { styles: traceStyle }: ObjectKeyMap = stackOptionsList[traceLine];
-        const { styles: debugStyle }: ObjectKeyMap = stackOptionsList[debugLine];
-        const { styles: infoStyle }: ObjectKeyMap = stackOptionsList[infoLine];
-        const { styles: warnStyle }: ObjectKeyMap = stackOptionsList[warnLine];
-        const { styles: errorStyle }: ObjectKeyMap = stackOptionsList[errorLine];
+        const { styles: traceStyle }: PlainObject = stackOptionsList[traceLine];
+        const { styles: debugStyle }: PlainObject = stackOptionsList[debugLine];
+        const { styles: infoStyle }: PlainObject = stackOptionsList[infoLine];
+        const { styles: warnStyle }: PlainObject = stackOptionsList[warnLine];
+        const { styles: errorStyle }: PlainObject = stackOptionsList[errorLine];
 
         expect(traceStyle.color).toEqual(CUSTOM_COLORS.TRACE);
         expect(debugStyle.color).toEqual(CUSTOM_COLORS.DEBUG);
@@ -140,13 +140,13 @@ describe('[TEST]: Check global style', () => {
         const errorLine: number = 4;
         logger.error(errorIsWork, 5, (2.55).toFixed());
 
-        const stackOptionsList: ObjectKeyMap = fakeConsole.stackOptionsList();
+        const stackOptionsList: PlainObject = fakeConsole.stackOptionsList();
 
-        const { label: traceLabel }: ObjectKeyMap = stackOptionsList[traceLine];
-        const { label: debugLabel }: ObjectKeyMap = stackOptionsList[debugLine];
-        const { label: infoLabel }: ObjectKeyMap = stackOptionsList[infoLine];
-        const { label: warnLabel }: ObjectKeyMap = stackOptionsList[warnLine];
-        const { label: errorLabel }: ObjectKeyMap = stackOptionsList[errorLine];
+        const { label: traceLabel }: PlainObject = stackOptionsList[traceLine];
+        const { label: debugLabel }: PlainObject = stackOptionsList[debugLine];
+        const { label: infoLabel }: PlainObject = stackOptionsList[infoLine];
+        const { label: warnLabel }: PlainObject = stackOptionsList[warnLine];
+        const { label: errorLabel }: PlainObject = stackOptionsList[errorLine];
 
         expect(traceLabel).toEqual(CUSTOM_LABELS.TRACE);
         expect(debugLabel).toEqual(CUSTOM_LABELS.DEBUG);
@@ -182,13 +182,13 @@ describe('[TEST]: Check global style', () => {
         const errorLine: number = 4;
         logger.error(errorIsWork, 5, (2.55).toFixed());
 
-        const stackOptionsList: ObjectKeyMap = fakeConsole.stackOptionsList();
+        const stackOptionsList: PlainObject = fakeConsole.stackOptionsList();
 
-        const { styles: traceStyle }: ObjectKeyMap = stackOptionsList[traceLine];
-        const { styles: debugStyle }: ObjectKeyMap = stackOptionsList[debugLine];
-        const { styles: infoStyle }: ObjectKeyMap = stackOptionsList[infoLine];
-        const { styles: warnStyle }: ObjectKeyMap = stackOptionsList[warnLine];
-        const { styles: errorStyle }: ObjectKeyMap = stackOptionsList[errorLine];
+        const { styles: traceStyle }: PlainObject = stackOptionsList[traceLine];
+        const { styles: debugStyle }: PlainObject = stackOptionsList[debugLine];
+        const { styles: infoStyle }: PlainObject = stackOptionsList[infoLine];
+        const { styles: warnStyle }: PlainObject = stackOptionsList[warnLine];
+        const { styles: errorStyle }: PlainObject = stackOptionsList[errorLine];
 
         expect(traceStyle.color).toEqual(CUSTOM_COLORS.TRACE);
         expect(debugStyle.color).toEqual(CUSTOM_COLORS.DEBUG);

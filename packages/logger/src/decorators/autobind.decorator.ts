@@ -1,17 +1,17 @@
-import { Any, Fn, ObjectKeyMap } from '../interfaces/logger.internal';
+import { Any, Fn, PlainObject } from '@angular-ru/common/typings';
 
-const { defineProperty, getOwnPropertyDescriptor, getOwnPropertyNames, getOwnPropertySymbols }: ObjectKeyMap = Object;
+const { defineProperty, getOwnPropertyDescriptor, getOwnPropertyNames, getOwnPropertySymbols }: PlainObject = Object;
 
 function bind(fn: Fn, context: Any): Fn {
     return fn.bind(context);
 }
 
-function getOwnKeys(descriptors: ObjectKeyMap): string[] {
+function getOwnKeys(descriptors: PlainObject): string[] {
     return getOwnPropertyNames(descriptors).concat(getOwnPropertySymbols(descriptors));
 }
 
-function autoBindClass(target: ObjectKeyMap): Any {
-    const descriptors: ObjectKeyMap = getOwnPropertyDescriptors(target.prototype);
+function autoBindClass(target: PlainObject): Any {
+    const descriptors: PlainObject = getOwnPropertyDescriptors(target.prototype);
     const keys: string[] = getOwnKeys(descriptors);
 
     for (let i: number = 0, l: number = keys.length; i < l; i++) {
@@ -26,8 +26,8 @@ function autoBindClass(target: ObjectKeyMap): Any {
     }
 }
 
-function getOwnPropertyDescriptors(target: ObjectKeyMap): ObjectKeyMap {
-    const descriptors: ObjectKeyMap = {};
+function getOwnPropertyDescriptors(target: PlainObject): PlainObject {
+    const descriptors: PlainObject = {};
 
     getOwnKeys(target).forEach((key: string): void => {
         descriptors[key] = getOwnPropertyDescriptor(target, key);
@@ -38,7 +38,7 @@ function getOwnPropertyDescriptors(target: ObjectKeyMap): ObjectKeyMap {
 
 // eslint-disable-next-line max-lines-per-function
 function autoBindMethod(
-    target: ObjectKeyMap,
+    target: PlainObject,
     key: string,
     { value: fn, configurable, enumerable }: Any
 ): PropertyDescriptor {

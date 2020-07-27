@@ -30,6 +30,7 @@
         "devtools-detect": "3.0.1"
     },
     "peerDependencies": {
+        "@angular-ru/common": ">=13.19.0",
         "@angular/common": ">=8.0.0 <11.0.0",
         "@angular/core": ">=8.0.0 <11.0.0"
     },
