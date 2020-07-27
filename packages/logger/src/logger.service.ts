@@ -131,6 +131,9 @@ export class LoggerService {
         return this;
     }
 
+    /**
+     * @deprecated will be remove since v14
+     */
     public copy(example: unknown): boolean {
         return this.clipboard.copyOnBuffer(example);
     }
