@@ -1,8 +1,8 @@
+import { PlainObject } from '@angular-ru/common/typings';
+import { TestBed } from '@angular/core/testing';
 import { LoggerService } from '../../src/logger.service';
 import { ConsoleFake } from './helpers/console-fake';
-import { TestBed } from '@angular/core/testing';
 import { LoggerModule } from '../../src/logger.module';
-import { ObjectKeyMap } from '../../src/interfaces/logger.internal';
 
 describe('[TEST]: Check clipboard', () => {
     let logger: LoggerService;
@@ -65,7 +65,7 @@ describe('[TEST]: Check clipboard', () => {
             }
         });
 
-        const JsonValue: ObjectKeyMap = { a: 1, b: [1, 2, 3] };
+        const JsonValue: PlainObject = { a: 1, b: [1, 2, 3] };
         const isExec: boolean = logger.copy(JsonValue);
 
         expect(isExec).toEqual(true);
@@ -75,7 +75,7 @@ describe('[TEST]: Check clipboard', () => {
     it('should be throw exception when incorrect execCommand', () => {
         createMockQueryCommands(textarea);
 
-        const JsonValue: ObjectKeyMap = { a: 1, b: [1, 2, 3] };
+        const JsonValue: PlainObject = { a: 1, b: [1, 2, 3] };
         const isExec: boolean = logger.copy(JsonValue);
 
         expect(isExec).toEqual(false);

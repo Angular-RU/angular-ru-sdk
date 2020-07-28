@@ -1,3 +1,4 @@
+import { Any, Arguments, PlainObject } from '@angular-ru/common/typings';
 import { Inject, Injectable } from '@angular/core';
 
 import {
@@ -9,7 +10,6 @@ import {
     Pipeline,
     PipeOperation
 } from '../interfaces/logger.external';
-import { Any, Arguments, Descriptor, ObjectKeyMap } from '../interfaces/logger.internal';
 import { DEFAULT_METHODS } from '../logger.config';
 import { LoggerOptionsImpl } from '../logger.options';
 import { LoggerService } from '../logger.service';
@@ -44,17 +44,15 @@ export class LoggerFactory {
     }
 
     private defineLevelGroups(level: LoggerLevel, operation: Operation, logger: LoggerService): Operation {
-        const { GROUP, GROUP_COLLAPSED }: typeof GroupLevel = GroupLevel;
-
         Object.defineProperties(operation, {
-            [GROUP]: this.setGroupMethod(GROUP, level, logger),
-            [GROUP_COLLAPSED]: this.setGroupMethod(GROUP_COLLAPSED, level, logger)
+            [GroupLevel.GROUP]: this.setGroupMethod(GroupLevel.GROUP, level, logger),
+            [GroupLevel.GROUP_COLLAPSED]: this.setGroupMethod(GroupLevel.GROUP_COLLAPSED, level, logger)
         });
 
         return operation;
     }
 
-    private setGroupMethod(methodName: GroupLevel, level: LoggerLevel, logger: LoggerService): Descriptor {
+    private setGroupMethod(methodName: GroupLevel, level: LoggerLevel, logger: LoggerService): PropertyDescriptor {
         return {
             enumerable: true,
             configurable: true,
@@ -75,7 +73,7 @@ export class LoggerFactory {
         const withLabel: boolean = level !== LoggerLevel.LOG;
 
         if (withLabel) {
-            const { label: formatLabel, style }: ObjectKeyMap = this.options.format(
+            const { label: formatLabel, style }: PlainObject = this.options.format(
                 this.options.labelNames[level],
                 styleLabel
             );

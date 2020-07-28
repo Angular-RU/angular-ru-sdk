@@ -1,15 +1,15 @@
+import { Any, DecoratorMethod, Fn } from '@angular-ru/common/typings';
 import { Type } from '@angular/core';
 
 import { GroupLevel, LoggerLevel } from '../../interfaces/logger.external';
-import { Any, Callback, DecoratorMethod, Fn } from '../../interfaces/logger.internal';
 import { groupDecoratorFactory } from './group.common';
 
-export function Group(title: string | Callback<Any>, level: LoggerLevel = LoggerLevel.INFO): DecoratorMethod {
+export function Group(title: string | Fn, level: LoggerLevel = LoggerLevel.INFO): DecoratorMethod {
     return (_target: Type<unknown>, _key: string, descriptor: PropertyDescriptor): PropertyDescriptor => {
-        const method: Callback = descriptor.value;
+        const method: Fn = descriptor.value;
 
         descriptor.value = function (...args: Any[]): unknown {
-            return groupDecoratorFactory(level, GroupLevel.GROUP, method as Fn, title, args, this as Any);
+            return groupDecoratorFactory(level, GroupLevel.GROUP, method, title, args, this as Any);
         };
 
         return descriptor;

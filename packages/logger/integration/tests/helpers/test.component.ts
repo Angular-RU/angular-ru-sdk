@@ -1,3 +1,4 @@
+import { Fn } from '@angular-ru/common/typings';
 import { Component, OnInit } from '@angular/core';
 
 import { DebugLog } from '../../../src/decorators/debug.decorator';
@@ -11,7 +12,6 @@ import { TimerLog } from '../../../src/decorators/timer.decorator';
 import { TraceLog } from '../../../src/decorators/trace.decorator';
 import { WarnLog } from '../../../src/decorators/warn.decorator';
 import { LogFn, LoggerLevel, TimerInfo } from '../../../src/interfaces/logger.external';
-import { Fn } from '../../../src/interfaces/logger.internal';
 import { LoggerService } from '../../../src/logger.service';
 
 interface HttpDebugInterface {

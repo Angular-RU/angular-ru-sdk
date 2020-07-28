@@ -94,13 +94,12 @@ export class AppComponent implements OnInit {
 import { LoggerService } from '@angular-ru/logger';
 
 export class AppComponent implements OnInit {
-    private readonly traceIsWork: string = 'trace is worked';
     constructor(private readonly logger: LoggerService) {}
 
     public ngOnInit(): void {
         this.logger.group('Show trace in opened group', ({ trace }: LoggerService): void => {
             for (let i: number = 0; i < 20; i++) {
-                trace(this.traceIsWork, i);
+                trace('trace is worked', i);
             }
         });
     }
@@ -115,32 +114,26 @@ export class AppComponent implements OnInit {
 import { LoggerService } from '@angular-ru/logger';
 
 export class AppComponent implements OnInit {
-    private readonly traceIsWork: string = 'trace is worked';
-    private readonly debugIsWork: string = 'debug is worked';
-    private readonly infoIsWork: string = 'info is worked';
-    private readonly warnIsWork: string = 'warn is worked';
-    private readonly errorIsWork: string = 'error is worked';
-
     constructor(private readonly logger: LoggerService) {}
 
     public ngOnInit(): void {
         this.logger.groupCollapsed('EXAMPLE 2: show stack', () => {
-            this.logger.trace(this.traceIsWork, 1, { a: 1 });
-            this.logger.debug(this.debugIsWork, 2, console);
-            this.logger.info(this.infoIsWork, 3, Object);
-            this.logger.warn(this.warnIsWork, 4, String);
-            this.logger.error(this.errorIsWork, 5, (2.55).toFixed());
+            this.logger.trace('trace is worked', 1, { a: 1 });
+            this.logger.debug('debug is worked', 2, console);
+            this.logger.info('info is worked', 3, Object);
+            this.logger.warn('warn is worked', 4, String);
+            this.logger.error('error is worked', 5, (2.55).toFixed());
         });
 
         this.logger.group('Show trace in opened group', ({ trace }: LoggerService): void => {
             for (let i: number = 0; i < 20; i++) {
-                trace(this.traceIsWork, i);
+                trace('trace is worked', i);
             }
         });
 
         this.logger.groupCollapsed('Show trace in collapsed group', ({ debug }: LoggerService): void => {
             for (let i: number = 0; i < 15; i++) {
-                debug(this.traceIsWork, i);
+                debug('debug is worked', i);
             }
         });
     }
@@ -157,50 +150,44 @@ export class AppComponent implements OnInit {
 import { LoggerService } from '@angular-ru/logger';
 
 export class AppComponent implements OnInit {
-    private readonly traceIsWork: string = 'trace is worked';
-    private readonly debugIsWork: string = 'debug is worked';
-    private readonly infoIsWork: string = 'info is worked';
-    private readonly warnIsWork: string = 'warn is worked';
-    private readonly errorIsWork: string = 'error is worked';
-
     constructor(private readonly logger: LoggerService) {}
 
     public ngOnInit(): void {
         this.logger
             .groupCollapsed('GROUP TEST')
             .pipe(({ trace, debug, info, warn, error }: LoggerService) => {
-                trace(this.traceIsWork);
-                debug(this.debugIsWork);
-                info(this.infoIsWork);
-                warn(this.warnIsWork);
-                error(this.errorIsWork);
+                trace('trace is worked');
+                debug('debug is worked');
+                info('info is worked');
+                warn('warn is worked');
+                error('error is worked');
             })
             .close();
 
         this.logger
             .group('A')
             .pipe(
-                ({ trace }: LoggerService) => trace(this.traceIsWork),
-                ({ debug }: LoggerService) => debug(this.debugIsWork),
-                ({ info }: LoggerService) => info(this.infoIsWork),
-                ({ warn }: LoggerService) => warn(this.warnIsWork),
-                ({ error }: LoggerService) => error(this.errorIsWork)
+                ({ trace }: LoggerService) => trace('trace is worked'),
+                ({ debug }: LoggerService) => debug('debug is worked'),
+                ({ info }: LoggerService) => info('info is worked'),
+                ({ warn }: LoggerService) => warn('warn is worked'),
+                ({ error }: LoggerService) => error('error is worked')
             )
             .groupCollapsed('B')
             .pipe(
-                ({ trace }: LoggerService) => trace(this.traceIsWork),
-                ({ debug }: LoggerService) => debug(this.debugIsWork),
-                ({ info }: LoggerService) => info(this.infoIsWork),
-                ({ warn }: LoggerService) => warn(this.warnIsWork),
-                ({ error }: LoggerService) => error(this.errorIsWork)
+                ({ trace }: LoggerService) => trace('trace is worked'),
+                ({ debug }: LoggerService) => debug('debug is worked'),
+                ({ info }: LoggerService) => info('info is worked'),
+                ({ warn }: LoggerService) => warn('warn is worked'),
+                ({ error }: LoggerService) => error('error is worked')
             )
             .group('C')
             .pipe(
-                ({ trace }: LoggerService) => trace(this.traceIsWork),
-                ({ debug }: LoggerService) => debug(this.debugIsWork),
-                ({ info }: LoggerService) => info(this.infoIsWork),
-                ({ warn }: LoggerService) => warn(this.warnIsWork),
-                ({ error }: LoggerService) => error(this.errorIsWork)
+                ({ trace }: LoggerService) => trace('trace is worked'),
+                ({ debug }: LoggerService) => debug('debug is worked'),
+                ({ info }: LoggerService) => info('info is worked'),
+                ({ warn }: LoggerService) => warn('warn is worked'),
+                ({ error }: LoggerService) => error('error is worked')
             )
             .closeAll();
     }
@@ -217,29 +204,23 @@ Basic parameterization
 import { LoggerService } from '@angular-ru/logger';
 
 export class AppComponent implements OnInit {
-    private readonly traceIsWork: string = 'trace is worked';
-    private readonly debugIsWork: string = 'debug is worked';
-    private readonly infoIsWork: string = 'info is worked';
-    private readonly warnIsWork: string = 'warn is worked';
-    private readonly errorIsWork: string = 'error is worked';
-
     constructor(private readonly logger: LoggerService) {}
 
     public ngOnInit(): void {
-        this.logger.trace(this.traceIsWork, 1, { a: 1 });
-        this.logger.debug(this.debugIsWork, 2, console);
-        this.logger.info(this.infoIsWork, 3, Object);
-        this.logger.warn(this.warnIsWork, 4, String);
-        this.logger.error(this.errorIsWork, 5, (2.55).toFixed());
+        this.logger.trace('trace is worked', 1, { a: 1 });
+        this.logger.debug('debug is worked', 2, console);
+        this.logger.info('info is worked', 3, Object);
+        this.logger.warn('warn is worked', 4, String);
+        this.logger.error('error is worked', 5, (2.55).toFixed());
 
         this.logger.level = LoggerLevel.INFO;
         this.logger.log('Set new logger level');
 
-        this.logger.trace(this.traceIsWork, 1, { a: 1 });
-        this.logger.debug(this.debugIsWork, 2, console);
-        this.logger.info(this.infoIsWork, 3, Object);
-        this.logger.warn(this.warnIsWork, 4, String);
-        this.logger.error(this.errorIsWork, 5, (2.55).toFixed());
+        this.logger.trace('trace is worked', 1, { a: 1 });
+        this.logger.debug('debug is worked', 2, console);
+        this.logger.info('info is worked', 3, Object);
+        this.logger.warn('warn is worked', 4, String);
+        this.logger.error('error is worked', 5, (2.55).toFixed());
     }
 }
 ```
@@ -252,12 +233,6 @@ export class AppComponent implements OnInit {
 import { LoggerService, LoggerLevel } from '@angular-ru/logger';
 
 export class AppComponent implements OnInit {
-    private readonly traceIsWork: string = 'trace is worked';
-    private readonly debugIsWork: string = 'debug is worked';
-    private readonly infoIsWork: string = 'info is worked';
-    private readonly warnIsWork: string = 'warn is worked';
-    private readonly errorIsWork: string = 'error is worked';
-
     constructor(private readonly logger: LoggerService) {}
 
     public ngOnInit(): void {
@@ -266,51 +241,51 @@ export class AppComponent implements OnInit {
         this.logger.trace
             .group('A')
             .pipe(
-                ({ trace }: LoggerService) => trace(this.traceIsWork),
-                ({ debug }: LoggerService) => debug(this.debugIsWork),
-                ({ info }: LoggerService) => info(this.infoIsWork),
-                ({ warn }: LoggerService) => warn(this.warnIsWork),
-                ({ error }: LoggerService) => error(this.errorIsWork)
+                ({ trace }: LoggerService) => trace('trace is worked'),
+                ({ debug }: LoggerService) => debug('debug is worked'),
+                ({ info }: LoggerService) => info('info is worked'),
+                ({ warn }: LoggerService) => warn('warn is worked'),
+                ({ error }: LoggerService) => error('error is worked')
             )
             .close()
 
             .debug.group('B')
             .pipe(
-                ({ trace }: LoggerService) => trace(this.traceIsWork),
-                ({ debug }: LoggerService) => debug(this.debugIsWork),
-                ({ info }: LoggerService) => info(this.infoIsWork),
-                ({ warn }: LoggerService) => warn(this.warnIsWork),
-                ({ error }: LoggerService) => error(this.errorIsWork)
+                ({ trace }: LoggerService) => trace('trace is worked'),
+                ({ debug }: LoggerService) => debug('debug is worked'),
+                ({ info }: LoggerService) => info('info is worked'),
+                ({ warn }: LoggerService) => warn('warn is worked'),
+                ({ error }: LoggerService) => error('error is worked')
             )
             .close()
 
             .info.group('C')
             .pipe(
-                ({ trace }: LoggerService) => trace(this.traceIsWork),
-                ({ debug }: LoggerService) => debug(this.debugIsWork),
-                ({ info }: LoggerService) => info(this.infoIsWork),
-                ({ warn }: LoggerService) => warn(this.warnIsWork),
-                ({ error }: LoggerService) => error(this.errorIsWork)
+                ({ trace }: LoggerService) => trace('trace is worked'),
+                ({ debug }: LoggerService) => debug('debug is worked'),
+                ({ info }: LoggerService) => info('info is worked'),
+                ({ warn }: LoggerService) => warn('warn is worked'),
+                ({ error }: LoggerService) => error('error is worked')
             )
             .close()
 
             .warn.group('D')
             .pipe(
-                ({ trace }: LoggerService) => trace(this.traceIsWork),
-                ({ debug }: LoggerService) => debug(this.debugIsWork),
-                ({ info }: LoggerService) => info(this.infoIsWork),
-                ({ warn }: LoggerService) => warn(this.warnIsWork),
-                ({ error }: LoggerService) => error(this.errorIsWork)
+                ({ trace }: LoggerService) => trace('trace is worked'),
+                ({ debug }: LoggerService) => debug('debug is worked'),
+                ({ info }: LoggerService) => info('info is worked'),
+                ({ warn }: LoggerService) => warn('warn is worked'),
+                ({ error }: LoggerService) => error('error is worked')
             )
             .close()
 
             .error.group('E')
             .pipe(
-                ({ trace }: LoggerService) => trace(this.traceIsWork),
-                ({ debug }: LoggerService) => debug(this.debugIsWork),
-                ({ info }: LoggerService) => info(this.infoIsWork),
-                ({ warn }: LoggerService) => warn(this.warnIsWork),
-                ({ error }: LoggerService) => error(this.errorIsWork)
+                ({ trace }: LoggerService) => trace('trace is worked'),
+                ({ debug }: LoggerService) => debug('debug is worked'),
+                ({ info }: LoggerService) => info('info is worked'),
+                ({ warn }: LoggerService) => warn('warn is worked'),
+                ({ error }: LoggerService) => error('error is worked')
             )
             .close();
 
@@ -462,20 +437,14 @@ export class AppComponent {
     @WarnLog() public warn: LogFn;
     @Log() public log: LogFn;
 
-    private readonly traceIsWork: string = 'trace is worked';
-    private readonly debugIsWork: string = 'debug is worked';
-    private readonly infoIsWork: string = 'info is worked';
-    private readonly warnIsWork: string = 'warn is worked';
-    private readonly errorIsWork: string = 'error is worked';
-
     public showExample(): void {
         this.logger.clear();
         this.logger.log('log is worked');
-        this.trace(this.traceIsWork, 1, { a: 1 });
-        this.debug(this.debugIsWork, 2, console);
-        this.info(this.infoIsWork, 3, Object);
-        this.warn(this.warnIsWork, 4, String);
-        this.error(this.errorIsWork, 5, (2.55).toFixed());
+        this.trace('trace is worked', 1, { a: 1 });
+        this.debug('debug is worked', 2, console);
+        this.info('info is worked', 3, Object);
+        this.warn('warn is worked', 4, String);
+        this.error('error is worked', 5, (2.55).toFixed());
     }
 }
 ```
@@ -636,21 +605,15 @@ import { LoggerService } from '@angular-ru/logger';
 export class AppComponent implements OnInit {
 
   public ngOnInit(): void {
-    private readonly traceIsWork: string = 'trace is worked';
-    private readonly debugIsWork: string = 'debug is worked';
-    private readonly infoIsWork: string = 'info is worked';
-    private readonly warnIsWork: string = 'warn is worked';
-    private readonly errorIsWork: string = 'error is worked';
-
     constructor(private readonly logger: LoggerService) {}
 
     public showExample(): void {
         this.logger.log('Example');
-        this.logger.trace(this.traceIsWork, 1, { a: 1 });
-        this.logger.debug(this.debugIsWork, 2, console);
-        this.logger.info(this.infoIsWork, 3, Object);
-        this.logger.warn(this.warnIsWork, 4, String);
-        this.logger.error(this.errorIsWork, 5, (2.55).toFixed());
+        this.logger.trace('trace is worked', 1, { a: 1 });
+        this.logger.debug('debug is worked', 2, console);
+        this.logger.info('info is worked', 3, Object);
+        this.logger.warn('warn is worked', 4, String);
+        this.logger.error('error is worked', 5, (2.55).toFixed());
     }
 }
 ```

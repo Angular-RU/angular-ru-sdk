@@ -1,8 +1,8 @@
+import { PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
 import { Inject, Injectable } from '@angular/core';
 
 import { autoBind } from './decorators/autobind.decorator';
 import { LogFn, LOGGER_OPTIONS, LoggerLevel, Pipeline, TimerInfo } from './interfaces/logger.external';
-import { ObjectKeyMap } from './interfaces/logger.internal';
 import { LoggerOptionsImpl } from './logger.options';
 import { ClipboardFactory } from './services/clipboard-factory.service';
 import { ConsoleService } from './services/console.service';
@@ -81,11 +81,11 @@ export class LoggerService {
         this.cssFactory.style = '';
     }
 
-    public setLabels(labels: ObjectKeyMap<string>): void {
+    public setLabels(labels: PlainObjectOf<string>): void {
         this.options.labelNames = { ...this.options.labelNames, ...labels };
     }
 
-    public setColors(colors: ObjectKeyMap<string>): void {
+    public setColors(colors: PlainObjectOf<string>): void {
         this.options.labelColors = { ...this.options.labelColors, ...colors };
     }
 
@@ -122,7 +122,7 @@ export class LoggerService {
         return this;
     }
 
-    public prettyJSON(json: ObjectKeyMap): string[] {
+    public prettyJSON(json: PlainObject): string[] {
         return this.jsonFactory.colorsJSON(JSON.stringify(json, null, this.DEFAULT_DEPTH));
     }
 
@@ -131,6 +131,9 @@ export class LoggerService {
         return this;
     }
 
+    /**
+     * @deprecated will be remove since v14
+     */
     public copy(example: unknown): boolean {
         return this.clipboard.copyOnBuffer(example);
     }

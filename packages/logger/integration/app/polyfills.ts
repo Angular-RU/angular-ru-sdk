@@ -1,6 +1,6 @@
 import 'zone.js/dist/zone';
 
-import { Any } from '../../src/interfaces/logger.internal';
+import { Any } from '@angular-ru/common/typings';
 
 (window as Any)['__importDefault'] =
     (window as Any)['__importDefault'] ||

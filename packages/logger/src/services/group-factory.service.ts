@@ -1,7 +1,7 @@
+import { Any } from '@angular-ru/common/typings';
 import { Inject, Injectable } from '@angular/core';
 
 import { FormatOutput, GroupMethod, LOGGER_OPTIONS, LoggerLevel, Pipeline } from '../interfaces/logger.external';
-import { Any } from '../interfaces/logger.internal';
 import { LoggerOptionsImpl } from '../logger.options';
 import { LoggerService } from '../logger.service';
 import { ConsoleService } from './console.service';

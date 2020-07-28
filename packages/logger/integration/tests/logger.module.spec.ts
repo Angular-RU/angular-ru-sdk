@@ -1,9 +1,9 @@
+import { PlainObject } from '@angular-ru/common/typings';
 import { TestBed } from '@angular/core/testing';
 import { LoggerModule } from '../../src/logger.module';
 import { LoggerService } from '../../src/logger.service';
 import { ConsoleFake, TestLoggerLineType } from './helpers/console-fake';
 import { LoggerLevel } from '../../src/interfaces/logger.external';
-import { ObjectKeyMap } from '../../src/interfaces/logger.internal';
 
 describe('[TEST]: Execute method by Level', () => {
     let logger: LoggerService;
@@ -179,7 +179,7 @@ describe('[TEST]: Execute method by Level', () => {
     });
 
     it(`Table`, () => {
-        const data: ObjectKeyMap = [
+        const data: PlainObject = [
             { name: 'Yusuf', age: 26 },
             { age: 34, name: 'Chen' }
         ];

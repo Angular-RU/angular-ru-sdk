@@ -1,7 +1,7 @@
+import { Any, DecoratorMethod, Fn } from '@angular-ru/common/typings';
 import { Type } from '@angular/core';
 
 import { LoggerLevel, TimerInfo, TimerLevels } from '../interfaces/logger.external';
-import { Any, DecoratorMethod, Fn } from '../interfaces/logger.internal';
 import { LoggerInjector } from '../logger.injector';
 import { LoggerService } from '../logger.service';
 
