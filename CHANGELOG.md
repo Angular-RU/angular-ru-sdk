@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.22.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.21.0...v13.22.0) (2020-07-28)
+
+### Features
+
+-   update dependency ts-jest to v26.1.4 ([#87](https://github.com/Angular-RU/angular-ru-sdk/issues/87))
+    ([9846fa2](https://github.com/Angular-RU/angular-ru-sdk/commit/9846fa232982a3f16a8d8ad22d6987a4c4d82708))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [13.21.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.20.2...v13.21.0) (2020-07-27)
+
+### Features
+
+-   update ESLint to v3.7.1
+    ([b1a5f93](https://github.com/Angular-RU/angular-ru-sdk/commit/b1a5f93573c533c8fd74758d8a41a89bdb88ac4f))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [13.20.2](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.20.1...v13.20.2) (2020-07-27)
+
+**Note:** Version bump only for package @angular-ru/sdk
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [13.20.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.20.0...v13.20.1) (2020-07-27)
 
 ### Bug Fixes
