@@ -1,8 +1,8 @@
 import { Any, PlainObject } from '@angular-ru/common/typings';
 import { Injectable } from '@angular/core';
 
-import { WebWorkerThreadService } from './web-worker-thread.service';
 import { ExcelWorkbook, SerialDate } from './symbols';
+import { WebWorkerThreadService } from './web-worker-thread.service';
 
 @Injectable()
 export class ExcelBuilderService {
