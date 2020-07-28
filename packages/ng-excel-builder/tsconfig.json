@@ -18,7 +18,8 @@
         "typeRoots": ["../../node_modules/@types", "./"],
         "lib": ["es2018", "dom"],
         "paths": {
-            "@angular-ru/ng-excel-builder": ["./src/public-api"]
+            "@angular-ru/ng-excel-builder": ["./src/public-api"],
+            "@angular-ru/common/typings": ["../common/dist/library/typings/public_api.d.ts"]
         }
     }
 }

@@ -6,9 +6,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 
 @NgModule({
+    bootstrap: [AppComponent],
     declarations: [AppComponent],
-    imports: [BrowserModule, HttpClientModule, ExcelBuilderModule.forRoot()],
-    providers: [],
-    bootstrap: [AppComponent]
+    imports: [BrowserModule, HttpClientModule, ExcelBuilderModule]
 })
 export class AppModule {}
