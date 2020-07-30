@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.23.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.22.2...v13.23.0) (2020-07-30)
+
+### Features
+
+-   update dependency eslint-import-resolver-typescript to v2.1.0
+    ([c3c3717](https://github.com/Angular-RU/angular-ru-sdk/commit/c3c3717b4fdb81895d54aaa702b2c7b855dda207))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.21.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.20.2...v13.21.0) (2020-07-27)
 
 ### Features
