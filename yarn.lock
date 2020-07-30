@@ -5413,10 +5413,10 @@ eslint-import-resolver-node@^0.3.3:
     debug "^2.6.9"
     resolve "^1.13.1"
 
-eslint-import-resolver-typescript@2.1.0:
-  version "2.1.0"
-  resolved "https://registry.npmjs.org/eslint-import-resolver-typescript/-/eslint-import-resolver-typescript-2.1.0.tgz#dc19a289fd7ddb0a38dcdab2a965630d1fb88aa7"
-  integrity sha512-sWpQYfW9zL2T11kEVRY8extXS6xAw+Fzh8qouwxDxDKhv2IOYpf6jXNJ+vqudptRqO9QwXoISLoMvb9YoVWELA==
+eslint-import-resolver-typescript@2.2.0:
+  version "2.2.0"
+  resolved "https://registry.npmjs.org/eslint-import-resolver-typescript/-/eslint-import-resolver-typescript-2.2.0.tgz#f7b261e41a38b690f3044660f6d496cc312323b0"
+  integrity sha512-/NhKEH1gbRlcb9RcaZJe5zRn5eIffGTf1qh3JAyvkEuPli3DEa5HQWWUO5OTfUjj7buUXsDq8lEsdwbbSeqywg==
   dependencies:
     debug "^4.1.1"
     glob "^7.1.6"
