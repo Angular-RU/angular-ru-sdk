@@ -109,5 +109,6 @@ export function sortWorker(message: SortableMessage): TableRow[] {
         }
     }
 
+    // eslint-disable-next-line @typescript-eslint/tslint/config
     return Sortable.sortByKeys(message.source, message.definition as Any);
 }

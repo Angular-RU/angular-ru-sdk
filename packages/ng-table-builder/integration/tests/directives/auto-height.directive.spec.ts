@@ -1,4 +1,4 @@
-import { Any, Fn } from "@angular-ru/common/typings";
+import { Any, Fn } from '@angular-ru/common/typings';
 import { ElementRef, NgZone } from '@angular/core';
 import { fakeAsync, tick } from '@angular/core/testing';
 

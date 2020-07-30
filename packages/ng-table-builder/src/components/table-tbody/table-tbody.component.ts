@@ -1,4 +1,4 @@
-import { PlainObjectOf } from "@angular-ru/common/typings";
+import { PlainObjectOf } from '@angular-ru/common/typings';
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
