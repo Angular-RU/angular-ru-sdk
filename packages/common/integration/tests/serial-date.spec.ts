@@ -73,7 +73,7 @@ describe('[TEST]: SerialDate', (): void => {
     });
 
     it('toUnix', () => {
-        expect(toUnix(new Date('01.01.2020'))).toEqual(1577826000000);
+        expect(toUnix(new Date('Thu Jul 30 2020 20:25:59 GMT+0300'))).toEqual(1596129959000);
     });
 
     it('toPrettyFormat', () => {
