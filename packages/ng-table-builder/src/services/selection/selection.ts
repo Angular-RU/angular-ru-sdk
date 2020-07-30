@@ -1,10 +1,12 @@
+import { PlainObjectOf } from '@angular-ru/common/typings';
+
 import { ProduceDisableFn, TableRow } from '../../interfaces/table-builder.external';
-import { KeyMap, RowId } from '../../interfaces/table-builder.internal';
+import { RowId } from '../../interfaces/table-builder.internal';
 
 export class SelectionMap {
     public isAll: boolean = false;
     public toggledAll: boolean = false;
-    public entries: KeyMap<boolean> = {};
+    public entries: PlainObjectOf<boolean> = {};
     public produceDisableFn: ProduceDisableFn = null;
     private readonly map: Map<RowId, boolean> = new Map<RowId, boolean>();
 
@@ -14,7 +16,7 @@ export class SelectionMap {
 
     public generateImmutableEntries(): void {
         const arrayBuffer: [RowId, boolean][] = Array.from(this.map.entries());
-        const newEntries: KeyMap<boolean> = {};
+        const newEntries: PlainObjectOf<boolean> = {};
 
         arrayBuffer.forEach(([key, value]: [RowId, boolean]): void => {
             newEntries[key] = value;

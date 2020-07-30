@@ -19,7 +19,8 @@
         "lib": ["es2018", "dom"],
         "paths": {
             "@angular-ru/ng-excel-builder": ["./src/public-api"],
-            "@angular-ru/common/typings": ["../common/dist/library/typings/public_api.d.ts"]
+            "@angular-ru/common/typings": ["../common/dist/library/typings/public_api.d.ts"],
+            "@angular-ru/common/webworker": ["../common/dist/library/webworker/public_api.d.ts"]
         }
     }
 }

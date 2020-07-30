@@ -1,4 +1,4 @@
-import { Any } from '../interfaces/table-builder.internal';
+import { Any } from '@angular-ru/common/typings';
 
 export function getDeepValue(obj: Any, path: string | null | undefined): Any {
     if (!(path && path.length)) {

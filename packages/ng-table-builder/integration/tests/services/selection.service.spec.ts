@@ -1,8 +1,8 @@
-/* eslint-disable */
+import { Any } from '@angular-ru/common/typings';
 import { NgZone } from '@angular/core';
 
 import { TableRow } from '../../../src/interfaces/table-builder.external';
-import { Any, RowId } from '../../../src/interfaces/table-builder.internal';
+import { RowId } from '../../../src/interfaces/table-builder.internal';
 import { SelectionMap } from '../../../src/services/selection/selection';
 import { SelectionService } from '../../../src/services/selection/selection.service';
 

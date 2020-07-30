@@ -1,3 +1,4 @@
+import { Any } from '@angular-ru/common/typings';
 import {
     Directive,
     ElementRef,
@@ -15,7 +16,7 @@ import { delay, takeUntil } from 'rxjs/operators';
 
 import { TABLE_GLOBAL_OPTIONS } from '../config/table-global-options';
 import { TableRow } from '../interfaces/table-builder.external';
-import { Any, BoxView, DynamicHeightOptions } from '../interfaces/table-builder.internal';
+import { BoxView, DynamicHeightOptions } from '../interfaces/table-builder.internal';
 import { BORDER_TOB_WITH_BOTTOM, HEAD_TOP, SCROLLBAR_WIDTH } from '../symbols';
 
 const MIN_RESIZE_DELAY: number = 500;

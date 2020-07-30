@@ -1,11 +1,11 @@
+import { Any, PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
+
 import { TableRow } from '../../interfaces/table-builder.external';
-import { Any, KeyMap } from '../../interfaces/table-builder.internal';
 import { FilterableMessage, FilterGlobalOpts, TableFilterType } from './filterable.interface';
 
 // eslint-disable-next-line max-lines-per-function
 export function filterAllWorker({ source, global, types, columns }: FilterableMessage): TableRow[] {
-    // eslint-disable-next-line
-    enum Terminate {
+    const enum Terminate {
         CONTINUE = -1,
         BREAK = 0,
         NEXT = 1
@@ -26,7 +26,7 @@ export function filterAllWorker({ source, global, types, columns }: FilterableMe
 
     function globalFilter(item: TableRow): boolean {
         let satisfiesItem: boolean = false;
-        const flattenedItem: KeyMap = flatten(item);
+        const flattenedItem: PlainObject = flatten(item);
 
         for (const keyModel of Object.keys(flattenedItem)) {
             const fieldValue: string = String(flattenedItem[keyModel]);
@@ -103,8 +103,8 @@ export function filterAllWorker({ source, global, types, columns }: FilterableMe
         return escapedValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     }
 
-    function flatten<T = string>(object: KeyMap, excludeKeys: string[] = []): KeyMap<T> {
-        const depthGraph: KeyMap<T> = {};
+    function flatten<T = string>(object: PlainObject, excludeKeys: string[] = []): PlainObjectOf<T> {
+        const depthGraph: PlainObjectOf<T> = {};
 
         for (const key in object) {
             if (object.hasOwnProperty(key) && !excludeKeys.includes(key)) {
@@ -115,21 +115,22 @@ export function filterAllWorker({ source, global, types, columns }: FilterableMe
         return depthGraph;
     }
 
-    function getValueByPath(object: KeyMap, path: string): KeyMap | undefined {
+    function getValueByPath(object: PlainObject, path: string): PlainObject | undefined {
         return path
             ? path
                   .split('.')
                   .reduce(
-                      (str: string | KeyMap | undefined, key: string): KeyMap | undefined => str && (str as Any)[key],
+                      (str: string | PlainObject | undefined, key: string): PlainObject | undefined =>
+                          str && (str as Any)[key],
                       object
                   )
             : object;
     }
 
-    function mutate<T>(object: KeyMap, depthGraph: KeyMap<T>, key: string): void {
+    function mutate<T>(object: PlainObject, depthGraph: PlainObjectOf<T>, key: string): void {
         const isObject: boolean = typeof object[key] === 'object' && object[key] !== null;
         if (isObject) {
-            const flatObject: KeyMap = flatten(object[key]);
+            const flatObject: PlainObject = flatten(object[key]);
             for (const path in flatObject) {
                 if (flatObject.hasOwnProperty(path)) {
                     depthGraph[`${key}.${path}`] = flatObject[path];

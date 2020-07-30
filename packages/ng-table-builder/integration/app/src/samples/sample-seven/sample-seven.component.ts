@@ -1,7 +1,7 @@
+import { Any } from '@angular-ru/common/typings';
 import { TableRow } from '@angular-ru/ng-table-builder';
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
-import { Any } from '../../../../../src/interfaces/table-builder.internal';
 import { MocksGenerator } from '../../../../tests/helpers/utils/mocks-generator';
 
 declare const hljs: Any;

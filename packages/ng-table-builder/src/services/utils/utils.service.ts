@@ -1,7 +1,7 @@
+import { Any, Fn, PlainObject } from '@angular-ru/common/typings';
 import { Injectable, NgZone, Optional } from '@angular/core';
 
 import { TableRow } from '../../interfaces/table-builder.external';
-import { Any, Fn, KeyMap } from '../../interfaces/table-builder.internal';
 import { checkValueIsEmpty } from '../../operators/check-value-is-empty';
 import { UtilsInterface } from './utils.interface';
 
@@ -66,7 +66,7 @@ export class UtilsService implements UtilsInterface {
         return keys;
     }
 
-    public clean(obj: KeyMap): KeyMap {
+    public clean(obj: PlainObject): PlainObject {
         return JSON.parse(JSON.stringify(obj, UtilsService.replaceUndefinedOrNull.bind(this)));
     }
 

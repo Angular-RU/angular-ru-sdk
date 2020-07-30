@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-magic-numbers */
+import { Any } from '@angular-ru/common/typings';
 import { TableRow } from '@angular-ru/ng-table-builder';
 import {
     AfterViewInit,
@@ -10,7 +10,6 @@ import {
     OnInit
 } from '@angular/core';
 
-import { Any } from '../../../../../src/interfaces/table-builder.internal';
 import { detectChanges } from '../../../../../src/operators/detect-changes';
 
 declare const hljs: Any;
@@ -141,7 +140,7 @@ export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
                     'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. ' +
                     'Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in' +
                     ' their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.',
-                // eslint-disable-next-line no-magic-numbers
+                // eslint-disable-next-line @typescript-eslint/no-magic-numbers
                 cost: Math.floor(Math.random() * 100) + 1,
                 active: true,
                 name:
@@ -149,17 +148,17 @@ export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
                     ' ' +
                     NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
                     '.',
-                // eslint-disable-next-line no-magic-numbers
+                // eslint-disable-next-line @typescript-eslint/no-magic-numbers
                 weight: Math.round(Math.random() * 100).toString(),
                 firstName: NAMES[Math.round(Math.random() * (NAMES.length - 1))],
                 lastName: NAMES[Math.round(Math.random() * (NAMES.length - 1))],
                 dateOfBirth: 1985,
                 spokenLanguages: {
-                    // eslint-disable-next-line no-magic-numbers
+                    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
                     native: 'English' + Math.round(Math.random() * 100).toString(),
-                    // eslint-disable-next-line no-magic-numbers
+                    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
                     fluent: 'Spanish' + Math.round(Math.random() * 100).toString(),
-                    // eslint-disable-next-line no-magic-numbers
+                    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
                     intermediate: 'Chinese' + Math.round(Math.random() * 100).toString()
                 }
             })

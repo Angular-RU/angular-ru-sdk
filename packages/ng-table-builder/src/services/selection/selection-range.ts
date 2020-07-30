@@ -1,4 +1,4 @@
-import { Any } from '../../interfaces/table-builder.internal';
+import { Any } from '@angular-ru/common/typings';
 
 export class SelectionRange {
     public start: number | null = null;

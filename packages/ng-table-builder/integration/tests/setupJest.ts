@@ -1,7 +1,7 @@
 import 'intersection-observer';
 import 'jest-preset-angular';
 
-import { Any } from '../../src/interfaces/table-builder.internal';
+import { Any } from '@angular-ru/common/typings';
 
 const jsdom: Any = require('jsdom');
 const { JSDOM }: Any = jsdom;

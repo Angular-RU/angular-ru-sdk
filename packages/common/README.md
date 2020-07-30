@@ -45,6 +45,19 @@ const fn1: Fn = () => {};
 const fn2: Fn = function (val: string) {};
 ```
 
+-   `DeepPartial<T>`
+
+```ts
+const myWindow: DeepPartial<Window> = {};
+console.log(myWindow?.navigator?.userAgent);
+```
+
+-   `PrimaryKey`
+
+```ts
+const idKey: string = PrimaryKey.ID;
+```
+
 -   `Immutable<T>, Mutable<T>`
 
 ```ts
@@ -76,4 +89,21 @@ const result: boolean = $any(left) > 13;
 ```ts
 const left: number | string | null = '12';
 const result: boolean = $cast<number>(left) > 13;
+```
+
+#### `@angular-ru/common/webworker`
+
+-   `WebWorkerThreadService` - Web workers allow you to run CPU-intensive computations in a background thread, freeing
+    the main thread to update the user interface. If you find your application performs a lot of computations, such as
+    generating CAD drawings or doing heavy geometrical calculations, using web workers can help increase your
+    application's performance.
+
+```ts
+@Component({
+    // ...
+    providers: [WebWorkerThreadService]
+})
+export class MyComponent {
+    constructor(private readonly worker: WebWorkerThreadService) {}
+}
 ```

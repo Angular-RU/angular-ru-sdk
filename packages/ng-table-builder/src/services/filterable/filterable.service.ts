@@ -1,13 +1,14 @@
+import { Any, PlainObject, PlainObjectOf, Resolver } from '@angular-ru/common/typings';
+import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { ApplicationRef, Injectable, Injector } from '@angular/core';
 import { ReplaySubject, Subject } from 'rxjs';
 
 import { TABLE_GLOBAL_OPTIONS } from '../../config/table-global-options';
 import { TableRow } from '../../interfaces/table-builder.external';
-import { Any, KeyMap, Resolver } from '../../interfaces/table-builder.internal';
-import { WebWorkerThreadService } from '../../worker/worker-thread.service';
 import { UtilsService } from '../utils/utils.service';
 import { filterAllWorker } from './filter.worker';
 import {
+    FilterableInterface,
     FilterableMessage,
     FilterEvent,
     FilterStateEvent,
@@ -17,21 +18,17 @@ import {
 
 const { TIME_IDLE }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
 
-interface FilterableInterface {
-    reset(): void;
-}
-
 @Injectable()
 export class FilterableService implements FilterableInterface {
     public filterValue: string | null = null;
-    public definition: KeyMap = {};
+    public definition: PlainObject = {};
     public state: FilterStateEvent = new FilterStateEvent();
-    public types: KeyMap = TableFilterType;
+    public types: PlainObject = TableFilterType;
     public readonly filterOpenEvents: Subject<void> = new Subject();
     public readonly events: Subject<FilterEvent> = new ReplaySubject();
     public readonly resetEvents: Subject<void> = new Subject<void>();
     public filterType: string | TableFilterType | null = null;
-    public filterTypeDefinition: KeyMap<TableFilterType> = {};
+    public filterTypeDefinition: PlainObjectOf<TableFilterType> = {};
     public filtering: boolean = false;
     private previousFiltering: boolean = false;
     private readonly thread: WebWorkerThreadService;
@@ -139,7 +136,7 @@ export class FilterableService implements FilterableInterface {
         );
     }
 
-    private checkIsEmpty(definition: KeyMap<string>): boolean {
+    private checkIsEmpty(definition: PlainObjectOf<string>): boolean {
         return Object.keys(this.utils.clean(definition)).length === 0;
     }
 }

@@ -1,6 +1,7 @@
+import { Any, DeepPartial, PlainObject } from '@angular-ru/common/typings';
 import { EmbeddedViewRef, EventEmitter, TemplateRef } from '@angular/core';
 
-import { Any, DeepPartial, KeyMap, TableBrowserEvent } from './table-builder.internal';
+import { TableBrowserEvent } from './table-builder.internal';
 
 export type TableRow<T = Any> =
     | Any
@@ -18,11 +19,11 @@ export type TableClickEventEmitter = EventEmitter<TableEvent> | null;
 
 export interface TableCellOptions<T = Any> {
     // eslint-disable-next-line @typescript-eslint/tslint/config
-    class: string | string[] | KeyMap | null;
+    class: string | string[] | PlainObject | null;
     textBold: boolean;
     nowrap: boolean;
     useDeepPath: boolean;
-    style: KeyMap | null;
+    style: PlainObject | null;
     width: number | null;
     height: number | null;
     template?: TemplateRef<T> | null;

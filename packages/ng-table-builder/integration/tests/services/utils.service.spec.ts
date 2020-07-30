@@ -1,5 +1,4 @@
-/* eslint-disable */
-import { KeyMap } from '../../../src/interfaces/table-builder.internal';
+import { PlainObject } from '@angular-ru/common/typings';
 import { checkValueIsEmpty } from '../../../src/operators/check-value-is-empty';
 import { UtilsService } from '../../../src/services/utils/utils.service';
 
@@ -12,7 +11,7 @@ describe('UtilsService', () => {
     });
 
     it('should be correct flatten keys', () => {
-        const row: KeyMap = {
+        const row: PlainObject = {
             a: 1,
             b: {
                 c: 2,

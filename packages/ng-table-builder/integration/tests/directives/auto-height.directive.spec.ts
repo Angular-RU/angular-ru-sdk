@@ -1,9 +1,8 @@
-/* eslint-disable */
+import { Any, Fn } from "@angular-ru/common/typings";
 import { ElementRef, NgZone } from '@angular/core';
 import { fakeAsync, tick } from '@angular/core/testing';
 
 import { AutoHeightDirective } from '../../../src/directives/auto-height.directive';
-import { Any, Fn } from '../../../src/interfaces/table-builder.internal';
 
 describe('[TEST]: auto height', () => {
     let directive: AutoHeightDirective;

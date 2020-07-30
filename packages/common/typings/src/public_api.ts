@@ -8,3 +8,6 @@ export { Timestamp } from './timestamp';
 export { NonEmptyArray } from './array-types';
 export { Arguments } from './arguments';
 export { DecoratorMethod } from './decorator-method';
+export { Resolver } from './resolver';
+export { DeepPartial } from './deep-partial';
+export { PrimaryKey } from './primary-key';

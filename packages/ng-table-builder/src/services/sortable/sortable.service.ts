@@ -1,16 +1,16 @@
+import { Any, PlainObjectOf, Resolver } from '@angular-ru/common/typings';
+import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { EventEmitter, Injectable, NgZone } from '@angular/core';
 
 import { TABLE_GLOBAL_OPTIONS } from '../../config/table-global-options';
 import { OrderedField, TableRow } from '../../interfaces/table-builder.external';
-import { Any, KeyMap, Resolver } from '../../interfaces/table-builder.internal';
-import { WebWorkerThreadService } from '../../worker/worker-thread.service';
 import { sortWorker } from './sort.worker';
 import { SortableMessage, SortOrderType } from './sortable.interfaces';
 
 @Injectable()
 export class SortableService {
-    public definition: KeyMap<SortOrderType> = {};
-    public positionMap: KeyMap<number> = {};
+    public definition: PlainObjectOf<SortOrderType> = {};
+    public positionMap: PlainObjectOf<number> = {};
     public sortableCount: number = 0;
     private skipInternalSort: boolean = false;
     private sortChanges: EventEmitter<OrderedField[]> | null = null;
@@ -38,8 +38,8 @@ export class SortableService {
         });
     }
 
-    public setDefinition(definition: KeyMap<string>): void {
-        this.definition = this.empty ? (definition as KeyMap<SortOrderType>) || {} : this.definition;
+    public setDefinition(definition: PlainObjectOf<string>): void {
+        this.definition = (this.empty ? definition || {} : this.definition) as PlainObjectOf<SortOrderType>;
     }
 
     public setSkipSort(skipInternalSort: boolean): void {
@@ -76,7 +76,7 @@ export class SortableService {
         });
     }
 
-    private updateImmutableDefinitions(key: string): KeyMap<SortOrderType> {
+    private updateImmutableDefinitions(key: string): PlainObjectOf<SortOrderType> {
         const existKey: SortOrderType = this.definition[key];
 
         if (existKey) {

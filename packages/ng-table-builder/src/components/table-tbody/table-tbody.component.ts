@@ -1,3 +1,4 @@
+import { PlainObjectOf } from "@angular-ru/common/typings";
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
@@ -19,7 +20,7 @@ import {
     ViewPortInfo,
     VirtualIndex
 } from '../../interfaces/table-builder.external';
-import { KeyMap, RecalculatedStatus, TableBrowserEvent } from '../../interfaces/table-builder.internal';
+import { RecalculatedStatus, TableBrowserEvent } from '../../interfaces/table-builder.internal';
 import { getDeepValue } from '../../operators/deep-value';
 import { ContextMenuService } from '../../services/context-menu/context-menu.service';
 import { SelectionService } from '../../services/selection/selection.service';
@@ -50,7 +51,7 @@ export class TableTbodyComponent {
     @Input('enable-filtering') public enableFiltering: boolean = false;
     @Input('table-viewport') public tableViewport: HTMLElement | null = null;
     @Input('column-virtual-height') public columnVirtualHeight: number | null = null;
-    @Input('selection-entries') public selectionEntries: KeyMap<boolean> = {};
+    @Input('selection-entries') public selectionEntries: PlainObjectOf<boolean> = {};
     @Input('context-menu') public contextMenuTemplate: NgxContextMenuComponent | null = null;
     @Input('produce-disable-fn') public produceDisableFn: ProduceDisableFn = null;
     @Input('client-row-height') public clientRowHeight: number | null = null;

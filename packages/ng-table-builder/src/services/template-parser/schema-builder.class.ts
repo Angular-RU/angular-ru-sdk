@@ -1,5 +1,6 @@
+import { DeepPartial } from '@angular-ru/common/typings';
+
 import { ColumnsSchema } from '../../interfaces/table-builder.external';
-import { DeepPartial } from '../../interfaces/table-builder.internal';
 
 export class SchemaBuilder {
     constructor(public columns: ColumnsSchema[] = []) {}
