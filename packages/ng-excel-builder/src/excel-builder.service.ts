@@ -1,8 +1,9 @@
+import { SerialDate } from '@angular-ru/common/date';
 import { Any, PlainObject } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { Injectable } from '@angular/core';
 
-import { ExcelWorkbook, SerialDate } from './symbols';
+import { ExcelWorkbook } from './symbols';
 
 @Injectable()
 export class ExcelBuilderService {
