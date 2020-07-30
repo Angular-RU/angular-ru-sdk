@@ -1,3 +1,5 @@
+import type { Config } from '@jest/types';
+
 export interface JestConfigOptions {
     displayName: string;
     testMatch: string[];
@@ -5,14 +7,14 @@ export interface JestConfigOptions {
     rootDir?: string;
     tsConfigRootPath: string;
     cacheDirectory?: string;
-    collectCoverageFrom: string[];
-    coverageReporters?: string[];
     tsConfigSpecPath?: string;
     maxConcurrency?: number;
     setupFilesAfterEnv?: string[];
+    maxWorkers?: number | string;
+    collectCoverageFrom: string[];
     testPathIgnorePatterns?: string[];
     modulePathIgnorePatterns?: string[];
-    maxWorkers?: number | string;
+    coverageReporters?: Config.CoverageReporters;
     moduleNameMapper?: Record<string, string | string[]>;
 }
 

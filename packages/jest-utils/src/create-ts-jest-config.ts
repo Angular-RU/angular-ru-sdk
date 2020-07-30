@@ -5,7 +5,7 @@ import { validateOptions } from './common';
 import { JestConfigOptions, ModuleMapper } from './jest-config.interface';
 
 // eslint-disable-next-line complexity,max-lines-per-function
-export function createTsJestConfig(options: JestConfigOptions): Config.InitialOptions {
+export function createTsJestConfig(options: JestConfigOptions & Config.InitialOptions): Config.InitialOptions {
     const maxConcurrency: number = 2;
     const rootDir: string = options?.rootDir ?? __dirname;
 
