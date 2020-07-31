@@ -1,3 +1,4 @@
+import { Timestamp } from '@angular-ru/common/typings';
 import { DatePipe } from '@angular/common';
 
 import { SerialDateConfig } from './serial-date.interfaces';
@@ -63,15 +64,15 @@ abstract class AbstractSerialDate {
         return new Date(Date.UTC(fullYear, month, date, hours + timeZoneHours, minutes, seconds)).toISOString();
     }
 
-    public static toISOString(time: number | string, defaultValue: string = ''): string {
+    public static toISOString(time: Timestamp, defaultValue: string = ''): string {
         return time ? new Date(time).toISOString() : defaultValue;
     }
 
-    public static toFormat(value: string | number | Date, format: string): string {
+    public static toFormat(value: Timestamp, format: string): string {
         return value ? new DatePipe('en-US').transform(value, format)! : null!;
     }
 
-    public static toUnix(date: Date | string | number): number {
+    public static toUnix(date: Timestamp): number {
         if (date instanceof Date) {
             return date.getTime();
         } else if (typeof date === 'string') {
