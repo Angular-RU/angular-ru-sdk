@@ -120,3 +120,14 @@ expect(date).toEqual('2019-07-05 00:00:00');
 const date = '11.12.202018 15:41:37';
 expect(SerialDate.dateStringToDate(date).getFullYear()).toEqual(new Date().getFullYear());
 ```
+
+-   `toFormatDateTime, toUnix, toPrettyFormat` - shortcut alias
+
+#### `@angular-ru/common/date`
+
+-   `toStringVal(value: T, converter?: (val: T) => string)`
+
+```ts
+let value: string = toStringVal([1, 2, 3]); // "1,2,3"
+value = toStringVal([1, 2, 3], (values: string[]) => values.join('; ')); // "1; 2; 3"
+```

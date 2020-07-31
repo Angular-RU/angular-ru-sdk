@@ -7,3 +7,8 @@ export interface SerialDateConfig {
     seconds: number;
     timeZoneHours: number;
 }
+
+export interface SerialDateFormatOptions {
+    format?: string;
+    timezone?: string;
+}

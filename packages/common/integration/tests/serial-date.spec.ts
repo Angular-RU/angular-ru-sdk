@@ -1,9 +1,9 @@
-import { SerialDate, toPrettyFormat, toUnix } from '@angular-ru/common/date';
+import { SerialDate, toFormatDateTime, toPrettyFormat, toUnix } from '@angular-ru/common/date';
 
 const isoFormat: string = 'yyyy-MM-dd HH:mm:ss';
 
 describe('[TEST]: SerialDate', (): void => {
-    it('Should be correct date pipe', (): void => {
+    it('should be correct date pipe', (): void => {
         const dateTime: number = 1544532097434;
         expect(
             SerialDate.formatDateTime(dateTime, {
@@ -85,11 +85,24 @@ describe('[TEST]: SerialDate', (): void => {
         expect(date).toEqual('2019-07-25 00:00:00');
     });
 
+    it('toISOString', () => {
+        expect(SerialDate.toISOString(new Date(0))).toEqual('1970-01-01T00:00:00.000Z');
+    });
+
     it('toUnix', () => {
         expect(toUnix(new Date('Thu Jul 30 2020 20:25:59 GMT+0300'))).toEqual(1596129959000);
     });
 
     it('toPrettyFormat', () => {
         expect(toPrettyFormat(new Date('01.01.2020'))).toEqual('01.01.2020 00:00:00');
+    });
+
+    it('toPrettyFormat', () => {
+        expect(
+            toFormatDateTime(1544532097434, {
+                format: 'HH:mm dd.MM.yyyy',
+                timezone: '+0300'
+            })
+        ).toEqual('15:41 11.12.2018');
     });
 });

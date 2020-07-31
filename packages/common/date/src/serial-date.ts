@@ -1,7 +1,7 @@
 import { Timestamp } from '@angular-ru/common/typings';
 import { DatePipe } from '@angular/common';
 
-import { SerialDateConfig } from './serial-date.interfaces';
+import { SerialDateConfig, SerialDateFormatOptions } from './serial-date.interfaces';
 
 // @dynamic
 abstract class AbstractSerialDate {
@@ -40,7 +40,7 @@ abstract class AbstractSerialDate {
         return AbstractSerialDate.toFormat(correctDate, format);
     }
 
-    public static formatDateTime(time?: number, options: { format?: string; timezone?: string } = {}): string {
+    public static formatDateTime(time?: number, options: SerialDateFormatOptions = {}): string {
         const timeValue: number = time ?? new Date().getTime();
         const formatValue: string = options.format ?? 'dd.MM.yyyy HH:mm:ss';
         return new DatePipe('en-US').transform(timeValue, formatValue, options.timezone) || '';
@@ -92,4 +92,6 @@ abstract class AbstractSerialDate {
     }
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 export { AbstractSerialDate as SerialDate };
