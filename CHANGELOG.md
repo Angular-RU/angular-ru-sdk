@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.29.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.28.0...v13.29.0) (2020-07-31)
+
+### Features
+
+-   update dependency tslint to v6.1.3 ([#97](https://github.com/Angular-RU/angular-ru-sdk/issues/97))
+    ([ca0aa6a](https://github.com/Angular-RU/angular-ru-sdk/commit/ca0aa6a76855289547c54f03c70bc03bab3e1732))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.28.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.27.0...v13.28.0) (2020-07-31)
 
 ### Features
