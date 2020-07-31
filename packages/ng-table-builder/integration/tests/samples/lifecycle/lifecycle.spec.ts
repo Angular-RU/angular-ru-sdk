@@ -1,8 +1,9 @@
-/* eslint-disable */
+import { Any, Fn } from '@angular-ru/common/typings';
+import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { NgxColumnComponent, NgxTableViewChangesService, TableBuilderComponent } from '@angular-ru/ng-table-builder';
 import { ApplicationRef, ChangeDetectorRef, ElementRef, NgZone, QueryList, SimpleChanges } from '@angular/core';
+
 import { fakeAsync, tick } from '@angular/core/testing';
-import { Any, Fn } from '../../../../src/interfaces/table-builder.internal';
 import { ContextMenuService } from '../../../../src/services/context-menu/context-menu.service';
 import { DraggableService } from '../../../../src/services/draggable/draggable.service';
 import { FilterableService } from '../../../../src/services/filterable/filterable.service';
@@ -11,7 +12,6 @@ import { SelectionService } from '../../../../src/services/selection/selection.s
 import { SortableService } from '../../../../src/services/sortable/sortable.service';
 import { TemplateParserService } from '../../../../src/services/template-parser/template-parser.service';
 import { UtilsService } from '../../../../src/services/utils/utils.service';
-import { WebWorkerThreadService } from '../../../../src/worker/worker-thread.service';
 
 describe('[TEST]: Lifecycle table', () => {
     let table: TableBuilderComponent;

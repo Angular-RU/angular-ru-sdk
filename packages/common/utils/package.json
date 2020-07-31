@@ -1,4 +1,8 @@
 {
     "$schema": "../../../node_modules/ng-packagr/package.schema.json",
-    "ngPackage": {}
+    "ngPackage": {
+        "lib": {
+            "flatModuleFile": "angular-ru-common-utils"
+        }
+    }
 }

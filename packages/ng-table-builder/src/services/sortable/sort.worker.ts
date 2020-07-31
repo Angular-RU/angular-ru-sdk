@@ -1,5 +1,6 @@
+import { Any, PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
+
 import { TableRow } from '../../interfaces/table-builder.external';
-import { Any, KeyMap } from '../../interfaces/table-builder.internal';
 import { SortableMessage } from './sortable.interfaces';
 
 // eslint-disable-next-line max-lines-per-function
@@ -10,11 +11,11 @@ export function sortWorker(message: SortableMessage): TableRow[] {
         SKIP = 'skip'
     }
 
-    function getValueByPath(object: KeyMap, path: string): KeyMap | undefined {
+    function getValueByPath(object: PlainObject, path: string): PlainObject | undefined {
         return path
             ? path
                   .split('.')
-                  .reduce((value: KeyMap | undefined, key: string): Any => value && (value as Any)[key], object as Any)
+                  .reduce((value: PlainObject | undefined, key: string): Any => value && (value as Any)[key], object)
             : object;
     }
 
@@ -24,18 +25,18 @@ export function sortWorker(message: SortableMessage): TableRow[] {
     }
 
     class Sortable {
-        public static sortByKeys(data: TableRow[], keys: KeyMap<OrderType>): Any[] {
+        public static sortByKeys(data: TableRow[], keys: PlainObjectOf<OrderType>): Any[] {
             const countKeys: number = Object.keys(keys).length;
 
             if (!countKeys) {
                 return data.sort(Sortable.shallowSort);
             }
 
-            const matches: KeyMap<number> = Sortable.getMatchesKeys(keys);
+            const matches: PlainObjectOf<number> = Sortable.getMatchesKeys(keys);
             return data.sort((a: unknown, b: unknown): Any => Sortable.multiSort(a, b, matches));
         }
 
-        private static multiSort(a: unknown, b: unknown, matches: KeyMap<number>): Any {
+        private static multiSort(a: unknown, b: unknown, matches: PlainObjectOf<number>): Any {
             const countKeys: number = Object.keys(matches).length;
             let sorted: number = 0;
             let ix: number = 0;
@@ -53,8 +54,8 @@ export function sortWorker(message: SortableMessage): TableRow[] {
         }
 
         // eslint-disable-next-line complexity
-        private static getMatchesKeys(keys: KeyMap<OrderType | number>): KeyMap<number> {
-            const matches: KeyMap<number> = {};
+        private static getMatchesKeys(keys: PlainObjectOf<OrderType | number>): PlainObjectOf<number> {
+            const matches: PlainObjectOf<number> = {};
 
             for (const key in keys) {
                 if (keys.hasOwnProperty(key)) {
@@ -90,7 +91,7 @@ export function sortWorker(message: SortableMessage): TableRow[] {
             return a > b ? currentDepth! : -1 * currentDepth!;
         }
 
-        private static observeKey(keys: KeyMap<number>, count: number): string | null {
+        private static observeKey(keys: PlainObjectOf<number>, count: number): string | null {
             let key: string;
             let size: number = 0;
 
@@ -108,5 +109,6 @@ export function sortWorker(message: SortableMessage): TableRow[] {
         }
     }
 
+    // eslint-disable-next-line @typescript-eslint/tslint/config
     return Sortable.sortByKeys(message.source, message.definition as Any);
 }

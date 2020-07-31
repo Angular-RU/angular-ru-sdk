@@ -1,7 +1,8 @@
 /* eslint-disable no-magic-numbers,@typescript-eslint/no-magic-numbers */
+import { Any } from '@angular-ru/common/typings';
+import { WebWorkerThreadService } from '@angular-ru/common/webworker';
+
 import { TableRow } from '../../../../src/interfaces/table-builder.external';
-import { Any } from '../../../../src/interfaces/table-builder.internal';
-import { WebWorkerThreadService } from '../../../../src/worker/worker-thread.service';
 
 export class MocksGenerator {
     // eslint-disable-next-line max-lines-per-function

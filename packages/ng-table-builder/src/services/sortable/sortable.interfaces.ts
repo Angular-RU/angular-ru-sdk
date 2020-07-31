@@ -1,5 +1,6 @@
+import { PlainObjectOf } from '@angular-ru/common/typings';
+
 import { TableRow } from '../../interfaces/table-builder.external';
-import { KeyMap } from '../../interfaces/table-builder.internal';
 
 // eslint-disable-next-line
 export enum SortOrderType {
@@ -8,6 +9,6 @@ export enum SortOrderType {
 }
 
 export interface SortableMessage {
-    definition: KeyMap<SortOrderType>;
+    definition: PlainObjectOf<SortOrderType>;
     source: TableRow[];
 }

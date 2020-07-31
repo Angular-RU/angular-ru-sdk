@@ -1,5 +1,7 @@
+import { Fn, PlainObjectOf } from '@angular-ru/common/typings';
+
 import { TableRow } from '../../interfaces/table-builder.external';
-import { Fn, KeyMap, MousePosition } from '../../interfaces/table-builder.internal';
+import { MousePosition } from '../../interfaces/table-builder.internal';
 
 export interface FilterGlobalOpts {
     value: string | null;
@@ -8,8 +10,8 @@ export interface FilterGlobalOpts {
 
 export interface FilterColumnsOpts {
     isEmpty: boolean;
-    values: KeyMap<string>;
-    types: KeyMap<TableFilterType>;
+    values: PlainObjectOf<string>;
+    types: PlainObjectOf<TableFilterType>;
 }
 
 // eslint-disable-next-line
@@ -43,4 +45,8 @@ export class FilterStateEvent {
 export interface FilterWorkerEvent {
     source: TableRow[];
     fireSelection: Fn;
+}
+
+export interface FilterableInterface {
+    reset(): void;
 }

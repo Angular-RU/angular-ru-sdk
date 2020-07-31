@@ -1,9 +1,9 @@
+import { Any, Fn } from '@angular-ru/common/typings';
 import { Injectable } from '@angular/core';
 import { fromEvent, ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { TABLE_GLOBAL_OPTIONS } from '../../config/table-global-options';
-import { Any, Fn } from '../../interfaces/table-builder.internal';
 
 const { COLUMN_RESIZE_MIN_WIDTH }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
 

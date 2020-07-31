@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Any, PlainObjectOf } from '@angular-ru/common/typings';
+import { Injectable, QueryList } from '@angular/core';
 
 import { ColumnOptions } from '../../components/common/column-options';
 import { NgxColumnComponent } from '../../components/ngx-column/ngx-column.component';
@@ -6,7 +7,6 @@ import { TemplateBodyTdDirective } from '../../directives/rows/template-body-td.
 import { TemplateCellCommon } from '../../directives/rows/template-cell.common';
 import { TemplateHeadThDirective } from '../../directives/rows/template-head-th.directive';
 import { ColumnsSchema, ImplicitContext, TableCellOptions } from '../../interfaces/table-builder.external';
-import { Any, KeyMap, QueryListRef } from '../../interfaces/table-builder.internal';
 import { getValidHtmlBooleanAttribute } from '../../operators/get-valid-html-boolean-attribute';
 import { getValidPredicate } from '../../operators/get-valid-predicate';
 import { SchemaBuilder } from './schema-builder.class';
@@ -18,7 +18,7 @@ export class TemplateParserService {
     public fullTemplateKeys: Set<string> | null = null;
     public overrideTemplateKeys: Set<string> | null = null;
     public columnOptions: ColumnOptions | null = null;
-    public compiledTemplates: KeyMap<ColumnsSchema> = {};
+    public compiledTemplates: PlainObjectOf<ColumnsSchema> = {};
 
     /**
      * @description: the custom names of the column list to be displayed in the view.
@@ -30,7 +30,7 @@ export class TemplateParserService {
      *    ------------------------
      *    allowedKeyMap === { 'id': true, 'hello': true, 'value': true }
      */
-    public allowedKeyMap: KeyMap<boolean> = {};
+    public allowedKeyMap: PlainObjectOf<boolean> = {};
 
     /**
      * @description: the custom names of the column list to be displayed in the view.
@@ -42,7 +42,7 @@ export class TemplateParserService {
      *    ------------------------
      *    allowedKeyMap === { 'id': true, 'hello': true, 'value': true, 'description': false }
      */
-    public keyMap: KeyMap<boolean> = {};
+    public keyMap: PlainObjectOf<boolean> = {};
 
     private static templateContext(key: string, cell: TemplateCellCommon, options: ColumnOptions): TableCellOptions {
         return {
@@ -87,7 +87,7 @@ export class TemplateParserService {
     }
 
     // eslint-disable-next-line max-lines-per-function
-    public parse(templates: QueryListRef<NgxColumnComponent>): void {
+    public parse(templates: QueryList<NgxColumnComponent>): void {
         if (!templates) {
             return;
         }
@@ -113,6 +113,7 @@ export class TemplateParserService {
 
     public mutateColumnSchema(key: string, partialSchema: Partial<ColumnsSchema>): void {
         for (const option of Object.keys(partialSchema)) {
+            // eslint-disable-next-line @typescript-eslint/tslint/config
             (this.compiledTemplates[key] as Any)[option] = (partialSchema as Any)[option];
         }
     }

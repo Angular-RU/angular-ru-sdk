@@ -1,4 +1,4 @@
-import { Any } from '../../src/interfaces/table-builder.internal';
+import { Any } from '@angular-ru/common/typings';
 
 (window as Any)['__zone_symbol__UNPATCHED_EVENTS'] = [
     'scroll',

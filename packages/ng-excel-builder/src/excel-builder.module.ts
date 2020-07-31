@@ -1,9 +1,9 @@
 import { PlainObject } from '@angular-ru/common/typings';
+import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { ExcelBuilderService } from './excel-builder.service';
-import { WebWorkerThreadService } from './web-worker-thread.service';
 
 @NgModule({
     imports: [CommonModule],

@@ -1,7 +1,6 @@
 /* tslint:disable:no-unused-css */
+import { Any } from '@angular-ru/common/typings';
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
-
-import { Any } from '../../../../../src/interfaces/table-builder.internal';
 
 interface LicenseSample {
     id: number;

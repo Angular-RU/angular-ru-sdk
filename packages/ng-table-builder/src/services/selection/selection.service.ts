@@ -1,8 +1,9 @@
+import { Fn, PlainObjectOf, PrimaryKey } from '@angular-ru/common/typings';
 import { Injectable, isDevMode, NgZone, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 
 import { ProduceDisableFn, TableRow } from '../../interfaces/table-builder.external';
-import { Fn, KeyMap, KeyType, PrimaryKey, RowId, SelectionStatus } from '../../interfaces/table-builder.internal';
+import { KeyType, RowId, SelectionStatus } from '../../interfaces/table-builder.internal';
 import { checkValueIsEmpty } from '../../operators/check-value-is-empty';
 import { SelectionMap } from './selection';
 import { SelectionRange } from './selection-range';
@@ -15,7 +16,7 @@ export class SelectionService implements OnDestroy {
     public primaryKey: string = PrimaryKey.ID;
     public selectionTaskIdle: number | null = null;
     public onChanges: Subject<void> = new Subject<void>();
-    private readonly handler: KeyMap<Fn> = {};
+    private readonly handler: PlainObjectOf<Fn> = {};
 
     constructor(private readonly ngZone: NgZone) {}
 

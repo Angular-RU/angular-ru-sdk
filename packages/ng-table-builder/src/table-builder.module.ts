@@ -1,3 +1,5 @@
+import { Any } from '@angular-ru/common/typings';
+import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
@@ -24,14 +26,12 @@ import { ObserverViewDirective } from './directives/observer-view.directive';
 import { TemplateBodyTdDirective } from './directives/rows/template-body-td.directive';
 import { TemplateHeadThDirective } from './directives/rows/template-head-th.directive';
 import { VirtualForDirective } from './directives/virtual-for.directive';
-import { Any } from './interfaces/table-builder.internal';
 import { DeepPathPipe } from './pipes/deep-path.pipe';
 import { DefaultValuePipe } from './pipes/default-value.pipe';
 import { DisableRowPipe } from './pipes/disable-row.pipe';
 import { SelectedItemsPipe } from './pipes/selected-items.pipe';
 import { UtilsService } from './services/utils/utils.service';
 import { TableBuilderComponent } from './table-builder.component';
-import { WebWorkerThreadService } from './worker/worker-thread.service';
 
 if ((window as Any)['Zone']) {
     (window as Any)[(window as Any)['Zone'].__symbol__('MutationObserver')] = MutationObserver;

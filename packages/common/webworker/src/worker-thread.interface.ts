@@ -1,4 +1,4 @@
-import { Any } from '../interfaces/table-builder.internal';
+import { Any } from '@angular-ru/common/typings';
 
 export interface WebWorkerThread<R = Any, U = Any> {
     run<T>(workerFunction: (input: R) => T, data?: Any): Promise<T>;
@@ -6,5 +6,3 @@ export interface WebWorkerThread<R = Any, U = Any> {
     terminate<T>(promise: Promise<T>): Promise<T>;
     getWorker(promise: Promise<Any>): Worker | undefined;
 }
-
-export type Executor<T = void> = (...args: Any[]) => T;

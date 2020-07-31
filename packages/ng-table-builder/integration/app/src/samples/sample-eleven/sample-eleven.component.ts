@@ -1,3 +1,4 @@
+import { Any } from '@angular-ru/common/typings';
 import { SimpleSchemaColumns, TableRow } from '@angular-ru/ng-table-builder';
 import {
     AfterViewInit,
@@ -9,7 +10,6 @@ import {
 } from '@angular/core';
 
 import { NGX_ANIMATION } from '../../../../../src/animations/fade.animation';
-import { Any } from '../../../../../src/interfaces/table-builder.internal';
 import { MocksGenerator } from '../../../../tests/helpers/utils/mocks-generator';
 
 declare const hljs: Any;

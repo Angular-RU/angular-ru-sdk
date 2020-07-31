@@ -1,7 +1,7 @@
+import { Any, Fn } from '@angular-ru/common/typings';
 import { Injectable } from '@angular/core';
 
-import { Any, Fn } from '../interfaces/table-builder.internal';
-import { Executor, WebWorkerThread } from './worker-thread.interface';
+import { WebWorkerThread } from './worker-thread.interface';
 
 @Injectable()
 export class WebWorkerThreadService implements WebWorkerThread {
@@ -47,7 +47,7 @@ export class WebWorkerThreadService implements WebWorkerThread {
     }
 
     private createPromiseForWorker<T>(worker: Worker, data: Any): Promise<T> {
-        return new Promise<T>((resolve: Executor<Any>, reject: Executor<Any>): void => {
+        return new Promise<T>((resolve: Fn, reject: Fn): void => {
             worker.addEventListener('message', (event: MessageEvent): boolean => resolve(event.data));
             worker.addEventListener('error', reject);
             worker.postMessage(data);

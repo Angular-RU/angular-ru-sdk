@@ -1,4 +1,6 @@
-import { Any, MousePosition } from '../../interfaces/table-builder.internal';
+import { Any } from '@angular-ru/common/typings';
+
+import { MousePosition } from '../../interfaces/table-builder.internal';
 
 export class ContextMenuState {
     public opened: boolean = false;

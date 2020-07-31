@@ -1,8 +1,8 @@
+import { Any } from '@angular-ru/common/typings';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 import { TableRow } from '../../interfaces/table-builder.external';
-import { Any } from '../../interfaces/table-builder.internal';
 import { getDeepValue } from '../../operators/deep-value';
 import { ContextMenuState } from './context-menu.interface';
 

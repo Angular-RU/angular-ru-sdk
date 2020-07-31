@@ -1,3 +1,4 @@
+import { Any, DeepPartial, PlainObjectOf } from '@angular-ru/common/typings';
 import { CdkDragStart } from '@angular/cdk/drag-drop';
 import {
     AfterContentInit,
@@ -26,14 +27,7 @@ import { NGX_ANIMATION } from './animations/fade.animation';
 import { NgxColumnComponent } from './components/ngx-column/ngx-column.component';
 import { TABLE_GLOBAL_OPTIONS } from './config/table-global-options';
 import { CalculateRange, ColumnsSchema, TableRow } from './interfaces/table-builder.external';
-import {
-    Any,
-    DeepPartial,
-    KeyMap,
-    RecalculatedStatus,
-    TableSimpleChanges,
-    TemplateKeys
-} from './interfaces/table-builder.internal';
+import { RecalculatedStatus, TableSimpleChanges, TemplateKeys } from './interfaces/table-builder.internal';
 import { detectChanges } from './operators/detect-changes';
 import { ContextMenuService } from './services/context-menu/context-menu.service';
 import { DraggableService } from './services/draggable/draggable.service';
@@ -113,7 +107,7 @@ export class TableBuilderComponent extends TableBuilderApiImpl
         this.viewChanges = injector.get<NgxTableViewChangesService>(NgxTableViewChangesService);
     }
 
-    public get selectionEntries(): KeyMap<boolean> {
+    public get selectionEntries(): PlainObjectOf<boolean> {
         return this.selection.selectionModel.entries;
     }
 
@@ -260,8 +254,8 @@ export class TableBuilderComponent extends TableBuilderApiImpl
      * @description: Key table generation for internal use
      * @sample: keys - ['id', 'value'] -> { id: true, value: true }
      */
-    public generateColumnsKeyMap(keys: string[]): KeyMap<boolean> {
-        const map: KeyMap<boolean> = {};
+    public generateColumnsKeyMap(keys: string[]): PlainObjectOf<boolean> {
+        const map: PlainObjectOf<boolean> = {};
         keys.forEach((key: string): void => {
             map[key] = true;
         });
@@ -673,6 +667,7 @@ export class TableBuilderComponent extends TableBuilderApiImpl
         const { simpleRenderedKeys, allRenderedKeys }: TemplateKeys = this.parseTemplateKeys();
 
         if (this.schemaColumns && this.schemaColumns.length) {
+            // eslint-disable-next-line @typescript-eslint/tslint/config
             generatedList = this.schemaColumns.map((column: DeepPartial<ColumnsSchema>): string => column.key!);
         } else if (this.keys.length) {
             generatedList = this.customModelColumnsKeys;

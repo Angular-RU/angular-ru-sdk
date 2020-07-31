@@ -1,3 +1,4 @@
+import { Any } from '@angular-ru/common/typings';
 import {
     NgxTableViewChangesService,
     SimpleSchemaColumns,
@@ -8,7 +9,6 @@ import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, O
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 
-import { Any } from '../../../../../src/interfaces/table-builder.internal';
 import { MocksGenerator } from '../../../../tests/helpers/utils/mocks-generator';
 
 declare const hljs: Any;

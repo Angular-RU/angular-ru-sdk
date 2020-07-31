@@ -45,6 +45,19 @@ const fn1: Fn = () => {};
 const fn2: Fn = function (val: string) {};
 ```
 
+-   `DeepPartial<T>`
+
+```ts
+const myWindow: DeepPartial<Window> = {};
+console.log(myWindow?.navigator?.userAgent);
+```
+
+-   `PrimaryKey`
+
+```ts
+const idKey: string = PrimaryKey.ID;
+```
+
 -   `Immutable<T>, Mutable<T>`
 
 ```ts
@@ -76,4 +89,34 @@ const result: boolean = $any(left) > 13;
 ```ts
 const left: number | string | null = '12';
 const result: boolean = $cast<number>(left) > 13;
+```
+
+#### `@angular-ru/common/webworker`
+
+-   `WebWorkerThreadService` - Web workers allow you to run CPU-intensive computations in a background thread, freeing
+    the main thread to update the user interface. If you find your application performs a lot of computations, such as
+    generating CAD drawings or doing heavy geometrical calculations, using web workers can help increase your
+    application's performance.
+
+```ts
+@Component({
+    // ...
+    providers: [WebWorkerThreadService]
+})
+export class MyComponent {
+    constructor(private readonly worker: WebWorkerThreadService) {}
+}
+```
+
+#### `@angular-ru/common/date`
+
+-   `SerialDate` - An abstract class that defines our requirements for manipulating dates, without tying down a
+    particular implementation.
+
+```ts
+const date: string = SerialDate.toTimestamp('5.07.2019 00:00', isoFormat);
+expect(date).toEqual('2019-07-05 00:00:00');
+
+const date = '11.12.202018 15:41:37';
+expect(SerialDate.dateStringToDate(date).getFullYear()).toEqual(new Date().getFullYear());
 ```

@@ -1,3 +1,4 @@
+import { Any, Fn, PlainObject, PlainObjectOf, PrimaryKey } from '@angular-ru/common/typings';
 import { CdkDragSortEvent } from '@angular/cdk/drag-drop';
 import {
     AfterContentInit,
@@ -36,7 +37,7 @@ import {
     TableRow,
     ViewPortInfo
 } from './interfaces/table-builder.external';
-import { Any, Fn, KeyMap, PrimaryKey, QueryListRef, ResizeEvent } from './interfaces/table-builder.internal';
+import { ResizeEvent } from './interfaces/table-builder.internal';
 import { detectChanges } from './operators/detect-changes';
 import { ContextMenuService } from './services/context-menu/context-menu.service';
 import { DraggableService } from './services/draggable/draggable.service';
@@ -64,7 +65,7 @@ export abstract class TableBuilderApiImpl
     @Input() public striped: boolean = true;
     @Input() public name: string | null = null;
     @Input('skip-sort') public skipSort: boolean | string = false;
-    @Input('sort-types') public sortTypes: KeyMap | null = null;
+    @Input('sort-types') public sortTypes: PlainObject | null = null;
     @Input('exclude-keys') public excludeKeys: (string | RegExp)[] = [];
     @Input('auto-width') public autoWidth: boolean | string = false;
     @Input('auto-height') public autoHeightDetect: boolean = true;
@@ -82,7 +83,7 @@ export abstract class TableBuilderApiImpl
     @ContentChild(NgxOptionsComponent, { static: false })
     public columnOptions: NgxOptionsComponent | null = null;
     @ContentChildren(NgxColumnComponent)
-    public columnTemplates: QueryListRef<NgxColumnComponent> | null = null;
+    public columnTemplates: QueryList<NgxColumnComponent> | null = null;
     @ContentChild(NgxContextMenuComponent, { static: false })
     public contextMenuTemplate: NgxContextMenuComponent | null = null;
     @ContentChild(NgxHeaderComponent, { static: false })
@@ -121,7 +122,7 @@ export abstract class TableBuilderApiImpl
      *    customModelColumnsKeys === [ 'name' ]
      */
     public customModelColumnsKeys: string[] = [];
-    public isDragging: KeyMap<boolean> = {};
+    public isDragging: PlainObjectOf<boolean> = {};
     public accessDragging: boolean = false;
     public abstract readonly templateParser: TemplateParserService;
     public abstract readonly selection: SelectionService;

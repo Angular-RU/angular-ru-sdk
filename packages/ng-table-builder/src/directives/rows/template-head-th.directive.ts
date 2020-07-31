@@ -1,6 +1,6 @@
+import { Any } from '@angular-ru/common/typings';
 import { Directive, Input, Optional, TemplateRef } from '@angular/core';
 
-import { Any } from '../../interfaces/table-builder.internal';
 import { TemplateCellCommon } from './template-cell.common';
 
 @Directive({ selector: 'ng-template[ngx-th]' })

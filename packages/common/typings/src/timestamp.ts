@@ -1,1 +1,1 @@
-export type Timestamp<T = number | string> = T | number | string;
+export type Timestamp<T = Date | number | string> = T;
