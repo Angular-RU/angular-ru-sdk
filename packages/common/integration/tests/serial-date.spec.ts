@@ -5,8 +5,17 @@ const isoFormat: string = 'yyyy-MM-dd HH:mm:ss';
 describe('[TEST]: SerialDate', (): void => {
     it('Should be correct date pipe', (): void => {
         const dateTime: number = 1544532097434;
-        expect(SerialDate.formatDateTime(dateTime)).toEqual('11.12.2018 15:41:37');
-        expect(SerialDate.formatDateTime(dateTime, 'HH:mm dd.MM.yyyy')).toEqual('15:41 11.12.2018');
+        expect(
+            SerialDate.formatDateTime(dateTime, {
+                timezone: '+0300'
+            })
+        ).toEqual('11.12.2018 15:41:37');
+        expect(
+            SerialDate.formatDateTime(dateTime, {
+                format: 'HH:mm dd.MM.yyyy',
+                timezone: '+0300'
+            })
+        ).toEqual('15:41 11.12.2018');
     });
 
     it('Should correct return date', (): void => {
