@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.27.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.26.2...v13.27.0) (2020-07-31)
+
+### Features
+
+-   **@angular-ru/common:** add toFormatDateTime
+    ([ebbb26e](https://github.com/Angular-RU/angular-ru-sdk/commit/ebbb26eb0046cfdc9a3d7d311e6ac6920371d479))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [13.26.2](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.26.1...v13.26.2) (2020-07-31)
 
 ### Bug Fixes
