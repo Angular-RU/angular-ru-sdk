@@ -18,6 +18,10 @@ describe('[TEST]: SerialDate', (): void => {
         ).toEqual('15:41 11.12.2018');
     });
 
+    it('toISOString', () => {
+        expect(SerialDate.toISOString(new Date(0))).toEqual('1970-01-01T00:00:00.000Z');
+    });
+
     it('Should correct return date', (): void => {
         const date = '11.12.202018 15:41:37';
         expect(SerialDate.dateStringToDate(date).getFullYear()).toEqual(new Date().getFullYear());
