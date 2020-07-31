@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.26.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.25.0...v13.26.0) (2020-07-31)
+
+### Features
+
+-   update dependency @types/jest to v26.0.8
+    ([ae1295a](https://github.com/Angular-RU/angular-ru-sdk/commit/ae1295a064d116fb96176aab1b43b35b40ccf4bf))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.25.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.24.0...v13.25.0) (2020-07-30)
 
 ### Features
