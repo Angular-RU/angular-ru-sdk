@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.26.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.26.0...v13.26.1) (2020-07-31)
+
+**Note:** Version bump only for package @angular-ru/ng-excel-builder
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [13.22.2](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.22.1...v13.22.2) (2020-07-28)
 
 **Note:** Version bump only for package @angular-ru/ng-excel-builder
