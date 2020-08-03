@@ -1,4 +1,13 @@
-import { $any, $cast, isFunctionLike, isNil, isNotNil, isNumber, isString, checkValueIsEmpty } from '@angular-ru/common/utils';
+import {
+    $any,
+    $cast,
+    isFunctionLike,
+    isNil,
+    isNotNil,
+    isNumber,
+    isString,
+    checkValueIsEmpty
+} from '@angular-ru/common/utils';
 
 describe('[TEST]: Common utils', () => {
     it('$any/$cast', () => {
@@ -57,5 +66,5 @@ describe('[TEST]: Common utils', () => {
         expect(checkValueIsEmpty(NaN)).toEqual(true);
         expect(checkValueIsEmpty(undefined)).toEqual(true);
         expect(checkValueIsEmpty(null)).toEqual(true);
-    })
+    });
 });
