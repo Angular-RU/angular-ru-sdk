@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.31.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.30.0...v13.31.0) (2020-08-03)
+
+### Features
+
+-   **@angular-ru/common:** add array and some common utils
+    ([#99](https://github.com/Angular-RU/angular-ru-sdk/issues/99))
+    ([a2c192e](https://github.com/Angular-RU/angular-ru-sdk/commit/a2c192e72249622ec639c958a9adddd172cfb13d))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.30.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.29.0...v13.30.0) (2020-08-01)
 
 ### Features
