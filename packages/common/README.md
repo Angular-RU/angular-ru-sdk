@@ -91,6 +91,69 @@ const left: number | string | null = '12';
 const result: boolean = $cast<number>(left) > 13;
 ```
 
+-   `isFunctionLike(val)`
+
+```ts
+class A {}
+
+console.log(isFunctionLike(() => {})); // true
+console.log(isFunctionLike(A)); // true
+console.log(isFunctionLike({ a: 1 })); // false
+```
+
+-   `isNill`
+
+```ts
+expect(isNil(null)).toEqual(true);
+expect(isNil(undefined)).toEqual(true);
+expect(isNil('')).toEqual(false);
+expect(isNil(0)).toEqual(false);
+```
+
+-   `isNotNil`
+
+```ts
+expect(isNotNil(0)).toEqual(true);
+expect(isNotNil('')).toEqual(true);
+expect(isNotNil(null)).toEqual(false);
+expect(isNotNil(undefined)).toEqual(false);
+```
+
+-   `isNumber`
+
+```ts
+expect(isNumber(0)).toEqual(true);
+expect(isNumber(NaN)).toEqual(true);
+expect(isNumber(Infinity)).toEqual(true);
+expect(isNumber('')).toEqual(false);
+expect(isNumber(null)).toEqual(false);
+expect(isNumber(undefined)).toEqual(false);
+```
+
+-   `isString`
+
+```ts
+expect(isString('')).toEqual(true);
+expect(isString(0)).toEqual(false);
+expect(isString(NaN)).toEqual(false);
+expect(isString(Infinity)).toEqual(false);
+expect(isString(null)).toEqual(false);
+expect(isString(undefined)).toEqual(false);
+```
+
+-   `checkValueIsEmpty`
+
+```ts
+expect(checkValueIsEmpty(0)).toEqual(false);
+expect(checkValueIsEmpty('x')).toEqual(false);
+expect(checkValueIsEmpty('')).toEqual(true);
+expect(checkValueIsEmpty('null')).toEqual(true);
+expect(checkValueIsEmpty('    ')).toEqual(true);
+expect(checkValueIsEmpty(NaN)).toEqual(true);
+expect(checkValueIsEmpty(undefined)).toEqual(true);
+expect(checkValueIsEmpty(null)).toEqual(true);
+```
+
 #### `@angular-ru/common/webworker`
 
 -   `WebWorkerThreadService` - Web workers allow you to run CPU-intensive computations in a background thread, freeing
@@ -123,11 +186,84 @@ expect(SerialDate.dateStringToDate(date).getFullYear()).toEqual(new Date().getFu
 
 -   `toFormatDateTime, toUnix, toPrettyFormat` - shortcut alias
 
-#### `@angular-ru/common/date`
+#### `@angular-ru/common/string`
 
 -   `toStringVal(value: T, converter?: (val: T) => string)`
 
 ```ts
 let value: string = toStringVal([1, 2, 3]); // "1,2,3"
 value = toStringVal([1, 2, 3], (values: string[]) => values.join('; ')); // "1; 2; 3"
+```
+
+#### `@angular-ru/common/array`
+
+-   `updateArray<T>(source: T[], updated: T[], compareFnOrKey: string | CompareFn<T>)`
+
+```ts
+expect(
+    updateArray(origin, [
+        { id: 3, value: 3 },
+        { id: 5, value: 5 }
+    ])
+).toEqual([
+    { id: 1, value: 1 },
+    { id: 2, value: 1 },
+    { id: 3, value: 3 },
+    { id: 4, value: 1 },
+    { id: 5, value: 5 },
+    { id: 6, value: 1 }
+]);
+
+// OR
+
+expect(
+    updateArray(
+        origin,
+        [
+            { id: 3, value: 3 },
+            { id: 5, value: 5 }
+        ],
+        (a: Value, b: Value): boolean => a.id === b.id
+    )
+).toEqual([
+    { id: 1, value: 1 },
+    { id: 2, value: 1 },
+    { id: 3, value: 3 },
+    { id: 4, value: 1 },
+    { id: 5, value: 5 },
+    { id: 6, value: 1 }
+]);
+```
+
+-   `firstItem, secondItem, thirdItem`
+
+```ts
+console.log(firstItem([1, 2, 3])); // 1
+console.log(secondItem([1, 2, 3])); // 2
+console.log(thirdItem([1, 2, 3])); // 3
+```
+
+-   `isSingleList`
+
+```ts
+console.log(isSingleList([1])); // true
+console.log(isSingleList([])); // false
+console.log(isSingleList([1, 2, 3])); // false
+```
+
+-   `isMultipleList`
+
+```ts
+console.log(isMultipleList([1])); // false
+console.log(isMultipleList([])); // false
+console.log(isMultipleList([1, 2])); // true
+console.log(isMultipleList([1, 2, 3])); // true
+```
+
+-   `isEmptyList`
+
+```ts
+console.log(isEmptyList([])); // true
+console.log(isEmptyList([1])); // false
+console.log(isEmptyList([1, 2, 3])); // false
 ```
