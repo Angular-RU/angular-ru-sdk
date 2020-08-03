@@ -1,3 +1,4 @@
-export const enum PrimaryKey {
+// eslint-disable-next-line no-restricted-syntax
+export enum PrimaryKey {
     ID = 'id'
 }

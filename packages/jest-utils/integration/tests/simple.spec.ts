@@ -22,9 +22,7 @@ describe('[TEST]: Hello world', () => {
         ).toEqual({
             globals: {
                 'ts-jest': {
-                    diagnostics: {
-                        warnOnly: true
-                    },
+                    isolatedModules: true,
                     tsConfig: '../tsconfig.json',
                     stringifyContentPathRegex: '\\.html$',
                     astTransformers: [

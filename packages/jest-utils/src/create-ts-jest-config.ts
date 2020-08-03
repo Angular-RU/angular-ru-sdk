@@ -56,7 +56,7 @@ export function createTsJestConfig(options: JestConfigOptions & Config.InitialOp
          */
         globals: {
             'ts-jest': {
-                diagnostics: { warnOnly: true },
+                isolatedModules: true,
                 tsConfig: options?.tsConfigSpecPath ?? options.tsConfigRootPath,
                 stringifyContentPathRegex: '\\.html$',
                 astTransformers: [
