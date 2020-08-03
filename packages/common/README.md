@@ -195,6 +195,13 @@ let value: string = toStringVal([1, 2, 3]); // "1,2,3"
 value = toStringVal([1, 2, 3], (values: string[]) => values.join('; ')); // "1; 2; 3"
 ```
 
+-   `getByteSize(val: string)`
+
+```ts
+expect(getByteSize('сын')).toEqual(6);
+expect(getByteSize('son')).toEqual(3);
+```
+
 #### `@angular-ru/common/array`
 
 -   `updateArray<T>(source: T[], updated: T[], compareFnOrKey: string | CompareFn<T>)`
