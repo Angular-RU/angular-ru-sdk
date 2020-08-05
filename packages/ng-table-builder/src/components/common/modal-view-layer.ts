@@ -16,7 +16,7 @@ import { detectChanges } from '../../operators/detect-changes';
 import { ContextMenuService } from '../../services/context-menu/context-menu.service';
 import { FilterableService } from '../../services/filterable/filterable.service';
 import { UtilsService } from '../../services/utils/utils.service';
-import { SCROLLBAR_WIDTH } from '../../symbols';
+import { MINIMAL_TIMEOUT, SCROLLBAR_WIDTH } from '../../symbols';
 
 export interface PositionState {
     key: string | null;
@@ -98,19 +98,18 @@ export abstract class ModalViewLayer<T extends PositionState> implements OnDestr
 
     protected update(): void {
         this.isViewed = !!this.state.opened;
+        this.isRendered = true;
         detectChanges(this.cd);
+        this.app.tick();
 
-        window.setTimeout((): void => {
-            this.app.tick();
-
-            this.ngZone.runOutsideAngular((): void => {
-                window.requestAnimationFrame((): void => {
-                    this.isRendered = true;
+        this.ngZone.runOutsideAngular((): void => {
+            window.setTimeout((): void => {
+                detectChanges(this.cd);
+                window.setTimeout((): void => {
                     this.minHeight = this.calculatedHeight;
                     detectChanges(this.cd);
-                    this.app.tick();
-                });
-            });
+                }, MINIMAL_TIMEOUT);
+            }, MINIMAL_TIMEOUT);
         });
     }
 }
