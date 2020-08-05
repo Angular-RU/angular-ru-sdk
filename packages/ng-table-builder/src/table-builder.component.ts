@@ -1,4 +1,5 @@
 import { Any, DeepPartial, PlainObjectOf } from '@angular-ru/common/typings';
+import { isNil, isNotNil } from '@angular-ru/common/utils';
 import { CdkDragStart } from '@angular/cdk/drag-drop';
 import {
     AfterContentInit,
@@ -135,17 +136,6 @@ export class TableBuilderComponent extends TableBuilderApiImpl
         return this.sourceExists && this.getCountKeys() !== this.renderedCountKeys;
     }
 
-    private static checkCorrectInitialSchema(changes: SimpleChanges = {}): void {
-        if (TableSimpleChanges.SCHEMA_COLUMNS in changes) {
-            const schemaChange: SimpleChange = changes[TableSimpleChanges.SCHEMA_COLUMNS];
-            if (!schemaChange.currentValue) {
-                throw new Error(
-                    `You need set correct <ngx-table-builder [schema-columns]="[] || [..]" /> for one time binding`
-                );
-            }
-        }
-    }
-
     public checkSourceIsNull(): boolean {
         // eslint-disable-next-line
         return !('length' in (this.source || {}));
@@ -165,7 +155,7 @@ export class TableBuilderComponent extends TableBuilderApiImpl
     }
 
     public ngOnChanges(changes: SimpleChanges = {}): void {
-        TableBuilderComponent.checkCorrectInitialSchema(changes);
+        this.checkCorrectInitialSchema(changes);
 
         this.sourceIsNull = this.checkSourceIsNull();
         this.setSortTypes();
@@ -304,7 +294,7 @@ export class TableBuilderComponent extends TableBuilderApiImpl
 
     public resetSchema(): void {
         this.columnListWidth = 0;
-        this.schemaColumns = [];
+        this.schemaColumns = null;
         detectChanges(this.cd);
 
         this.renderTable();
@@ -407,6 +397,21 @@ export class TableBuilderComponent extends TableBuilderApiImpl
 
         this.createDiffIndexes();
         this.viewPortInfo.scrollTop = start * this.clientRowHeight;
+    }
+
+    private checkCorrectInitialSchema(changes: SimpleChanges = {}): void {
+        if (TableSimpleChanges.SCHEMA_COLUMNS in changes) {
+            const schemaChange: SimpleChange = changes[TableSimpleChanges.SCHEMA_COLUMNS];
+            if (isNotNil(schemaChange.currentValue)) {
+                if (isNil(this.name)) {
+                    console.error(`Table name is required! Example: <ngx-table-builder name="my-table-name" />`);
+                }
+
+                if (isNil(this.schemaVersion)) {
+                    console.error(`Table version is required! Example: <ngx-table-builder [schema-version]="2" />`);
+                }
+            }
+        }
     }
 
     private setSortTypes(): void {
@@ -603,7 +608,7 @@ export class TableBuilderComponent extends TableBuilderApiImpl
     }
 
     private getCustomColumnSchemaByIndex(index: number): Partial<ColumnsSchema> {
-        return ((this.schemaColumns && this.schemaColumns[index]) || ({} as Any)) as Partial<ColumnsSchema>;
+        return (this.schemaColumns?.columns && this.schemaColumns?.columns?.[index]) ?? ({} as Any);
     }
 
     /**
@@ -662,13 +667,16 @@ export class TableBuilderComponent extends TableBuilderApiImpl
      * @description: parsing templates and input parameters (keys, schemaColumns) for the number of columns
      */
     private generateDisplayedColumns(): string[] {
-        let generatedList: string[] = [];
+        let generatedList: string[];
         this.templateParser.initialSchema(this.columnOptions!);
         const { simpleRenderedKeys, allRenderedKeys }: TemplateKeys = this.parseTemplateKeys();
+        const isValid: boolean = this.validationSchemaColumnsAndResetIfInvalid();
 
-        if (this.schemaColumns && this.schemaColumns.length) {
-            // eslint-disable-next-line @typescript-eslint/tslint/config
-            generatedList = this.schemaColumns.map((column: DeepPartial<ColumnsSchema>): string => column.key!);
+        if (isValid) {
+            generatedList =
+                this.schemaColumns?.columns?.map(
+                    (column: DeepPartial<ColumnsSchema>): string => column.key as string
+                ) ?? [];
         } else if (this.keys.length) {
             generatedList = this.customModelColumnsKeys;
         } else if (simpleRenderedKeys.size) {
@@ -678,6 +686,34 @@ export class TableBuilderComponent extends TableBuilderApiImpl
         }
 
         return generatedList;
+    }
+
+    // eslint-disable-next-line max-lines-per-function
+    private validationSchemaColumnsAndResetIfInvalid(): boolean {
+        let isValid: boolean = !!this.schemaColumns && !!this.schemaColumns.columns?.length;
+
+        if (isValid) {
+            const nameIsValid: boolean = this.schemaColumns?.name === this.name;
+            const versionIsValid: boolean = this.schemaColumns?.version === this.schemaVersion;
+            const invalid: boolean = !nameIsValid || !versionIsValid;
+
+            if (invalid) {
+                isValid = false;
+                console.error(
+                    'The table name or version is mismatched by your schema, your schema will be reset.',
+                    'Current name: ',
+                    this.name,
+                    'Current version: ',
+                    this.schemaVersion,
+                    'Schema: ',
+                    this.schemaColumns
+                );
+
+                this.changeSchema([]);
+            }
+        }
+
+        return isValid;
     }
 
     /**

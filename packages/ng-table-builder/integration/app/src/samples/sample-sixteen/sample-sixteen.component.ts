@@ -1,10 +1,5 @@
 import { Any } from '@angular-ru/common/typings';
-import {
-    NgxTableViewChangesService,
-    SimpleSchemaColumns,
-    TableRow,
-    TableUpdateSchema
-} from '@angular-ru/ng-table-builder';
+import { NgxTableViewChangesService, TableRow, TableUpdateSchema } from '@angular-ru/ng-table-builder';
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
@@ -20,7 +15,7 @@ declare const hljs: Any;
 })
 export class SampleSixteenComponent implements OnInit, AfterViewInit, OnDestroy {
     public data: TableRow[] = [];
-    public schema: SimpleSchemaColumns | null = null;
+    public schema: TableUpdateSchema | null = null;
     public readonly testName: string = 'test';
     private sub: Subscription | null = null;
 
@@ -31,14 +26,9 @@ export class SampleSixteenComponent implements OnInit, AfterViewInit, OnDestroy 
     ) {}
 
     public ngOnInit(): void {
-        const schema: TableUpdateSchema = JSON.parse(
-            window.localStorage.getItem(this.testName) ?? '{}'
-        ) as TableUpdateSchema;
-
-        this.schema = (schema && schema.columns) || [];
-
-        const rowNumber: number = 1000;
-        const colsNumber: number = 59;
+        this.schema = JSON.parse(window.localStorage.getItem(this.testName) ?? '{}') as TableUpdateSchema;
+        const rowNumber: number = 3;
+        const colsNumber: number = 10;
 
         MocksGenerator.generator(rowNumber, colsNumber).then((data: TableRow[]): void => {
             this.data = data;
@@ -60,9 +50,7 @@ export class SampleSixteenComponent implements OnInit, AfterViewInit, OnDestroy 
 
     private save(event: TableUpdateSchema): void {
         // eslint-disable-next-line no-console
-        console.log(event); // NOSONAR
+        console.log('update schema', event);
         window.localStorage.setItem(this.testName, JSON.stringify(event));
-        this.schema = [...event.columns];
-        this.cd.detectChanges();
     }
 }

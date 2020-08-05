@@ -1,0 +1,12 @@
+<mat-toolbar class="simple-toolbar">
+    <span>
+        Example invalidate schema
+    </span>
+</mat-toolbar>
+
+<ngx-table-builder
+    name="hello"
+    [source]="licenses"
+    [schema-version]="2"
+    [schema-columns]="invalidCachedSchema"
+></ngx-table-builder>

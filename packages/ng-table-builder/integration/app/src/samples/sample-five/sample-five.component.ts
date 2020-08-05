@@ -1,5 +1,5 @@
 import { Any } from '@angular-ru/common/typings';
-import { SimpleSchemaColumns, TableRow } from '@angular-ru/ng-table-builder';
+import { TableRow, TableUpdateSchema } from '@angular-ru/ng-table-builder';
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -55,7 +55,7 @@ export class SampleFiveComponent implements OnInit, AfterViewInit {
         });
     }
 
-    public updatedSchema(event: SimpleSchemaColumns): void {
+    public updatedSchema(event: TableUpdateSchema): void {
         // eslint-disable-next-line no-console
         console.log(event);
     }

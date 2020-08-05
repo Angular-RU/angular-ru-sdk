@@ -1,4 +1,4 @@
-import { Any, Fn, PlainObject, PlainObjectOf, PrimaryKey } from '@angular-ru/common/typings';
+import { Any, DeepPartial, Fn, PlainObject, PlainObjectOf, PrimaryKey } from '@angular-ru/common/typings';
 import { CdkDragSortEvent } from '@angular/cdk/drag-drop';
 import {
     AfterContentInit,
@@ -33,8 +33,8 @@ import {
     ColumnsSchema,
     OrderedField,
     ProduceDisableFn,
-    SimpleSchemaColumns,
     TableRow,
+    TableUpdateSchema,
     ViewPortInfo
 } from './interfaces/table-builder.external';
 import { ResizeEvent } from './interfaces/table-builder.internal';
@@ -75,9 +75,10 @@ export abstract class TableBuilderApiImpl
     @Input('enable-selection') public enableSelection: boolean | string = false;
     @Input('enable-filtering') public enableFiltering: boolean | string = false;
     @Input('produce-disable-fn') public produceDisableFn: ProduceDisableFn = null;
-    @Input('schema-columns') public schemaColumns: SimpleSchemaColumns | null = [];
+    @Input('schema-columns') public schemaColumns: TableUpdateSchema | null = null;
+    @Input('schema-version') public schemaVersion: number = 1;
     @Output() public afterRendered: EventEmitter<boolean> = new EventEmitter();
-    @Output() public schemaChanges: EventEmitter<SimpleSchemaColumns> = new EventEmitter();
+    @Output() public schemaChanges: EventEmitter<TableUpdateSchema> = new EventEmitter();
     @Output() public onChanges: EventEmitter<TableRow[] | null> = new EventEmitter();
     @Output() public sortChanges: EventEmitter<OrderedField[]> = new EventEmitter();
     @ContentChild(NgxOptionsComponent, { static: false })
@@ -326,13 +327,19 @@ export abstract class TableBuilderApiImpl
         this.changeSchema();
     }
 
-    public changeSchema(defaultColumns: SimpleSchemaColumns | null = null): void {
-        const renderedColumns: SimpleSchemaColumns | undefined = this.templateParser.schema?.exportColumns();
-        const columns: SimpleSchemaColumns | undefined = defaultColumns || renderedColumns;
+    public changeSchema(defaultColumns: DeepPartial<ColumnsSchema>[] | null = null): void {
+        const renderedColumns: DeepPartial<ColumnsSchema>[] | undefined = this.templateParser.schema?.exportColumns();
+        const columns: DeepPartial<ColumnsSchema>[] | undefined = defaultColumns || renderedColumns;
 
         if (columns) {
-            this.viewChanges.update({ name: this.name, columns });
-            this.schemaChanges.emit(columns);
+            const updateSchema: TableUpdateSchema = {
+                columns,
+                name: this.name!,
+                version: this.schemaVersion
+            };
+
+            this.viewChanges.update(updateSchema);
+            this.schemaChanges.emit(updateSchema);
             this.idleDetectChanges();
         }
     }
