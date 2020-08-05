@@ -60,8 +60,9 @@ export interface ColumnsSchema<T = Any> {
 }
 
 export interface TableUpdateSchema {
-    columns: SimpleSchemaColumns;
+    columns: DeepPartial<ColumnsSchema>[];
     name: string | null;
+    version: number;
 }
 
 export interface TableEvent<T = Any> {
@@ -74,8 +75,6 @@ export interface TableEvent<T = Any> {
 export interface ContextItemEvent {
     preventDefault(): void;
 }
-
-export type SimpleSchemaColumns = DeepPartial<ColumnsSchema>[];
 
 export interface ViewPortInfo {
     isScrolling?: boolean;

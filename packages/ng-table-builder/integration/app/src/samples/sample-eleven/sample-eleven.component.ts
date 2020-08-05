@@ -1,5 +1,5 @@
 import { Any } from '@angular-ru/common/typings';
-import { SimpleSchemaColumns, TableRow } from '@angular-ru/ng-table-builder';
+import { TableRow, TableUpdateSchema } from '@angular-ru/ng-table-builder';
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
@@ -102,7 +102,7 @@ export class SampleElevenComponent implements OnInit, AfterViewInit {
         window.alert('Copy on buffer - ' + id);
     }
 
-    public updatedSchema(event: SimpleSchemaColumns): void {
+    public updatedSchema(event: TableUpdateSchema): void {
         // eslint-disable-next-line no-console
         console.log('Update schema', event); // NOSONAR
     }
