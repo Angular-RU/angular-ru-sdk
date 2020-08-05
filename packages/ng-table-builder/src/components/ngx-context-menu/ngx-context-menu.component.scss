@@ -1,3 +1,5 @@
+$boxShadow: rgba(60, 64, 67, 0.3) 0 1px 2px 0, rgba(60, 64, 67, 0.15) 0 1px 3px 1px;
+
 @keyframes delayedShow {
     to {
         visibility: visible;
@@ -17,7 +19,7 @@
         max-height: 0;
         overflow: initial;
         background: rgb(255, 255, 255);
-        box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.4);
+        box-shadow: $boxShadow;
         border-radius: 4px;
         opacity: 0;
         font-family: Lucida Grande, sans-serif;
@@ -95,7 +97,7 @@
                 background: #fff;
                 z-index: 100000;
                 border: 1px solid #dcdcdc;
-                box-shadow: 0px 3px 3px 0 rgba(0, 0, 0, 0.4);
+                box-shadow: $boxShadow;
                 transition: visibility 100ms linear, opacity 100ms linear;
             }
 

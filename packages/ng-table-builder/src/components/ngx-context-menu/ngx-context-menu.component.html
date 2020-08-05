@@ -17,7 +17,7 @@
             'min-height.px': isRendered ? minHeight : 0,
             'top.px': state?.position?.top! - overflowY,
             'left.px': state?.position?.left! - overflowX,
-            visibility: isRendered ? 'visible' : 'hidden'
+            visibility: isRendered && (menu?.offsetHeight || 0 > 10) ? 'visible' : 'hidden'
         }"
     >
         <ng-content></ng-content>
