@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.33.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.32.0...v13.33.0) (2020-08-05)
+
+### Features
+
+-   **@angular-ru/ng-table-builder:** refactor schema-columns model for correct investigate difference model
+    ([#101](https://github.com/Angular-RU/angular-ru-sdk/issues/101))
+    ([be3ae38](https://github.com/Angular-RU/angular-ru-sdk/commit/be3ae38cb90ba0a123194267a3c4a92006de9eeb))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.32.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.31.0...v13.32.0) (2020-08-03)
 
 ### Features
