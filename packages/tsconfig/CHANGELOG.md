@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.35.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.34.0...v13.35.0) (2020-08-07)
+
+### Features
+
+-   update dependency tslib to v2.0.1
+    ([3cba803](https://github.com/Angular-RU/angular-ru-sdk/commit/3cba8035ca57abd33699e5013483f66513ff7a0a))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [13.7.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.7.0...v13.7.1) (2020-06-30)
 
 **Note:** Version bump only for package @angular-ru/tsconfig
