@@ -77,6 +77,8 @@ inject(A);
 
 #### `@angular-ru/common/utils`
 
+-   `detectChanges(cds: ChangeDetectorRef | ChangeDetectorRef[])` - run detect changes if view reference not destroyed.
+
 -   `$any(val)`
 
 ```ts

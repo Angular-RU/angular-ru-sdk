@@ -6,8 +6,10 @@ import {
     isNotNil,
     isNumber,
     isString,
-    checkValueIsEmpty
+    checkValueIsEmpty,
+    detectChanges
 } from '@angular-ru/common/utils';
+import { ChangeDetectorRef } from '@angular/core';
 
 describe('[TEST]: Common utils', () => {
     it('$any/$cast', () => {
@@ -66,5 +68,21 @@ describe('[TEST]: Common utils', () => {
         expect(checkValueIsEmpty(NaN)).toEqual(true);
         expect(checkValueIsEmpty(undefined)).toEqual(true);
         expect(checkValueIsEmpty(null)).toEqual(true);
+    });
+
+    it('detect changes invoked three times', () => {
+        let count: number = 0;
+        const cd: ChangeDetectorRef = {
+            detectChanges() {
+                count++;
+            }
+        } as ChangeDetectorRef;
+
+        detectChanges();
+        detectChanges(cd);
+        detectChanges(null);
+        detectChanges([cd, cd]);
+
+        expect(count).toEqual(3);
     });
 });
