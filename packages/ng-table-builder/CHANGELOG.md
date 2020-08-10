@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.38.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.37.0...v13.38.0) (2020-08-10)
+
+### Features
+
+-   **@angular-ru/ng-table-builder:** refactor use detectChanges from @angular-ru/common
+    ([a38d808](https://github.com/Angular-RU/angular-ru-sdk/commit/a38d808fc53911eb826f5049370befa6dea6b3d4))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [13.33.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.33.0...v13.33.1) (2020-08-05)
 
 **Note:** Version bump only for package @angular-ru/ng-table-builder

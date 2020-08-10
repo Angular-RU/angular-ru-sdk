@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.38.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.37.0...v13.38.0) (2020-08-10)
+
+### Features
+
+-   **@angular-ru/common:** add detectChanges util
+    ([d601a58](https://github.com/Angular-RU/angular-ru-sdk/commit/d601a58feb50200b7cb0e2d69aaa5fbbd709856d))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.31.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.30.0...v13.31.0) (2020-08-03)
 
 ### Features
