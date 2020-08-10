@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.37.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.36.0...v13.37.0) (2020-08-10)
+
+### Features
+
+-   update ESLint to v3.9.0
+    ([5f69165](https://github.com/Angular-RU/angular-ru-sdk/commit/5f69165e6afaecf32b30988fb4bf02028a51abcd))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.32.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.31.0...v13.32.0) (2020-08-03)
 
 ### Features
