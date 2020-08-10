@@ -9,7 +9,7 @@
         "sdk",
         "common"
     ],
-    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/ng-table-builder#readme",
+    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/common#readme",
     "bugs": {
         "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
     },
