@@ -1,3 +1,4 @@
+import { detectChanges } from '@angular-ru/common/utils';
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
@@ -17,7 +18,6 @@ import {
 import { Subscription } from 'rxjs';
 
 import { ContextItemEvent } from '../../../interfaces/table-builder.external';
-import { detectChanges } from '../../../operators/detect-changes';
 import { ContextMenuState } from '../../../services/context-menu/context-menu.interface';
 import { ContextMenuService } from '../../../services/context-menu/context-menu.service';
 import { UtilsService } from '../../../services/utils/utils.service';

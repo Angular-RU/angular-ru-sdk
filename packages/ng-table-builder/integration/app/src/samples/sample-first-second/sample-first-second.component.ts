@@ -1,8 +1,8 @@
+import { detectChanges } from '@angular-ru/common/utils';
 import { TableRow } from '@angular-ru/ng-table-builder';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
-import { detectChanges } from '../../../../../src/operators/detect-changes';
 import { MocksGenerator } from '../../../../tests/helpers/utils/mocks-generator';
 import { DialogTemplateComponent } from '../../shared/dialog-template/dialog-template.component';
 

@@ -1,5 +1,5 @@
 import { Any, DeepPartial, PlainObjectOf } from '@angular-ru/common/typings';
-import { isNil, isNotNil } from '@angular-ru/common/utils';
+import { detectChanges, isNil, isNotNil } from '@angular-ru/common/utils';
 import { CdkDragStart } from '@angular/cdk/drag-drop';
 import {
     AfterContentInit,
@@ -29,7 +29,6 @@ import { NgxColumnComponent } from './components/ngx-column/ngx-column.component
 import { TABLE_GLOBAL_OPTIONS } from './config/table-global-options';
 import { CalculateRange, ColumnsSchema, TableRow } from './interfaces/table-builder.external';
 import { RecalculatedStatus, TableSimpleChanges, TemplateKeys } from './interfaces/table-builder.internal';
-import { detectChanges } from './operators/detect-changes';
 import { ContextMenuService } from './services/context-menu/context-menu.service';
 import { DraggableService } from './services/draggable/draggable.service';
 import { TableFilterType } from './services/filterable/filterable.interface';

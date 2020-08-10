@@ -1,4 +1,5 @@
 import { Any, DeepPartial, Fn, PlainObject, PlainObjectOf, PrimaryKey } from '@angular-ru/common/typings';
+import { detectChanges } from '@angular-ru/common/utils';
 import { CdkDragSortEvent } from '@angular/cdk/drag-drop';
 import {
     AfterContentInit,
@@ -38,7 +39,6 @@ import {
     ViewPortInfo
 } from './interfaces/table-builder.external';
 import { ResizeEvent } from './interfaces/table-builder.internal';
-import { detectChanges } from './operators/detect-changes';
 import { ContextMenuService } from './services/context-menu/context-menu.service';
 import { DraggableService } from './services/draggable/draggable.service';
 import { FilterWorkerEvent } from './services/filterable/filterable.interface';

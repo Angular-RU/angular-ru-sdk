@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 
 import { ContextMenuState } from '../../services/context-menu/context-menu.interface';
-import { ModalViewLayer } from '../common/modal-view-layer';
+import { AbstractModalViewLayer } from '../common/abstract-modal-view-layer.directive';
 
 const SIZE: number = 300;
 const MAX_HEIGHT: number = 400;
@@ -21,7 +21,7 @@ const MAX_HEIGHT: number = 400;
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })
-export class NgxContextMenuComponent extends ModalViewLayer<ContextMenuState> implements OnInit {
+export class NgxContextMenuComponent extends AbstractModalViewLayer<ContextMenuState> implements OnInit {
     @Input() public width: number | null = SIZE;
     @Input() public height: number | null = SIZE;
     @Input('max-height') public maxHeight: number = MAX_HEIGHT;

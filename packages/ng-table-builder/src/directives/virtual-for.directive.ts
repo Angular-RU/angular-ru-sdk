@@ -1,7 +1,7 @@
+import { detectChanges } from '@angular-ru/common/utils';
 import { Directive, EmbeddedViewRef, Input, NgZone, OnDestroy, TemplateRef, ViewContainerRef } from '@angular/core';
 
 import { InternalVirtualRef, TableRow, VirtualContext, VirtualIndex } from '../interfaces/table-builder.external';
-import { detectChanges } from '../operators/detect-changes';
 
 @Directive({ selector: '[virtualFor][virtualForOf]' })
 export class VirtualForDirective implements OnDestroy {

@@ -1,3 +1,4 @@
+import { detectChanges } from '@angular-ru/common/utils';
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
@@ -15,7 +16,6 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 
 import { TABLE_GLOBAL_OPTIONS } from '../../config/table-global-options';
-import { detectChanges } from '../../operators/detect-changes';
 import { FilterEvent, TableFilterType } from '../../services/filterable/filterable.interface';
 import { FilterableService } from '../../services/filterable/filterable.service';
 

@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/naming-convention */
+import { detectChanges } from '@angular-ru/common/utils';
 import {
     ApplicationRef,
     ChangeDetectorRef,
@@ -12,7 +12,6 @@ import {
 import { Subscription } from 'rxjs';
 
 import { MousePosition } from '../../interfaces/table-builder.internal';
-import { detectChanges } from '../../operators/detect-changes';
 import { ContextMenuService } from '../../services/context-menu/context-menu.service';
 import { FilterableService } from '../../services/filterable/filterable.service';
 import { UtilsService } from '../../services/utils/utils.service';
@@ -25,7 +24,7 @@ export interface PositionState {
 }
 
 @Directive()
-export abstract class ModalViewLayer<T extends PositionState> implements OnDestroy {
+export abstract class AbstractModalViewLayer<T extends PositionState> implements OnDestroy {
     public width: number | null = null;
     public height: number | null = null;
     public isViewed: boolean = false;
