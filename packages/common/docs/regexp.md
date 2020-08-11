@@ -15,15 +15,6 @@ console.log(isRegexpStr('HELLO')); // false
 console.log(isRegexpStr('123')); // false
 ```
 
--   `isRegexpStr`
-
-```ts
-console.log(isRegexpStr('/hello/')); // true
-console.log(isRegexpStr('/^abc$/')); // true
-console.log(isRegexpStr('HELLO')); // false
-console.log(isRegexpStr('123')); // false
-```
-
 -   `matchedByRegExp`
 
 ```ts
