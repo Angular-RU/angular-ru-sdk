@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.40.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.39.0...v13.40.0) (2020-08-11)
+
+### Features
+
+-   **@angular-ru/common:** add fadeIn\* animations
+    ([423624b](https://github.com/Angular-RU/angular-ru-sdk/commit/423624b8c733bc5c5716663bb53d80417057967a))
+-   **@angular-ru/common:** add http package
+    ([7ca1a7d](https://github.com/Angular-RU/angular-ru-sdk/commit/7ca1a7d64fe87202a991131b9eb421d2e0f55226))
+-   **@angular-ru/common:** add stringify util
+    ([db6cb2c](https://github.com/Angular-RU/angular-ru-sdk/commit/db6cb2ca96665d248edd6709fc8b9153a6872f49))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.39.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.38.0...v13.39.0) (2020-08-11)
 
 ### Features
