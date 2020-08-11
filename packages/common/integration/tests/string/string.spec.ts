@@ -25,6 +25,6 @@ describe('[TEST]: String', () => {
         expect(stringify(null)).toEqual('null');
         expect(stringify(NaN)).toEqual('null');
         expect(stringify(Infinity)).toEqual('null');
-        expect(stringify(undefined)).toEqual(undefined);
+        expect(stringify(undefined)).toEqual('undefined');
     });
 });
