@@ -1,4 +1,4 @@
-import { toStringVal, getByteSize, stringify, capitalize, ensureRegexp } from '@angular-ru/common/string';
+import { toStringVal, getByteSize, stringify, capitalize } from '@angular-ru/common/string';
 
 describe('[TEST]: String', () => {
     it('toString', () => {
@@ -30,12 +30,5 @@ describe('[TEST]: String', () => {
 
     it('capitalize', () => {
         expect(capitalize('hello world')).toEqual('Hello world');
-    });
-
-    it('ensureRegexp', () => {
-        expect(ensureRegexp('/hello/')).toEqual('hello');
-        expect(ensureRegexp('/hello/')).toEqual('hello');
-        expect(ensureRegexp('/^a$/')).toEqual('^a$');
-        expect(ensureRegexp('/^a$/')).toEqual('^a$');
     });
 });
