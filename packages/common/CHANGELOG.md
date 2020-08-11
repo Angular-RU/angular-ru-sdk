@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.42.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.41.0...v13.42.0) (2020-08-11)
+
+### Features
+
+-   **@angular-ru/common:** add regexp package
+    ([9a72281](https://github.com/Angular-RU/angular-ru-sdk/commit/9a72281aabc2e8ebb5eae2a8b1254c6c794adfb7))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.41.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.40.0...v13.41.0) (2020-08-11)
 
 ### Features
