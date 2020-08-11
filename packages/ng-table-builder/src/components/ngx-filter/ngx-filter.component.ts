@@ -1,3 +1,4 @@
+import { fadeInLinearAnimation } from '@angular-ru/common/animations';
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
@@ -9,7 +10,6 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 
-import { NGX_ANIMATION } from '../../animations/fade.animation';
 import { NgxFilterDirective } from '../../directives/ngx-filter.directive';
 import { FilterStateEvent } from '../../services/filterable/filterable.interface';
 import { AbstractModalViewLayer } from '../common/abstract-modal-view-layer.directive';
@@ -24,7 +24,7 @@ const FILTER_MIN_TOP_Y: number = 50;
     styleUrls: ['./ngx-filter.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-    animations: [NGX_ANIMATION]
+    animations: [fadeInLinearAnimation]
 })
 export class NgxFilterComponent extends AbstractModalViewLayer<FilterStateEvent> implements OnInit {
     @Input() public width: number = FILTER_WIDTH;

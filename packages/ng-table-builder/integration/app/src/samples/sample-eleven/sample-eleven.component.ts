@@ -9,7 +9,6 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 
-import { NGX_ANIMATION } from '../../../../../src/animations/fade.animation';
 import { MocksGenerator } from '../../../../tests/helpers/utils/mocks-generator';
 
 declare const hljs: Any;
@@ -19,7 +18,6 @@ declare const hljs: Any;
     templateUrl: './sample-eleven.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-    animations: [NGX_ANIMATION],
     styles: [
         // tslint:disable-next-line:component-max-inline-declarations
         `

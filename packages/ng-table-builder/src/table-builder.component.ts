@@ -24,7 +24,6 @@ import {
 import { EMPTY, fromEvent, Observable, Subject } from 'rxjs';
 import { catchError, takeUntil } from 'rxjs/operators';
 
-import { NGX_ANIMATION } from './animations/fade.animation';
 import { NgxColumnComponent } from './components/ngx-column/ngx-column.component';
 import { TABLE_GLOBAL_OPTIONS } from './config/table-global-options';
 import { CalculateRange, ColumnsSchema, TableRow } from './interfaces/table-builder.external';
@@ -57,8 +56,7 @@ const { TIME_IDLE, TIME_RELOAD, FRAME_TIME, MACRO_TIME }: typeof TABLE_GLOBAL_OP
         FilterableService,
         DraggableService
     ],
-    encapsulation: ViewEncapsulation.None,
-    animations: [NGX_ANIMATION]
+    encapsulation: ViewEncapsulation.None
 })
 export class TableBuilderComponent extends TableBuilderApiImpl
     implements OnChanges, OnInit, AfterContentInit, AfterViewInit, AfterViewChecked, OnDestroy {

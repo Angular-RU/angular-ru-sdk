@@ -1,10 +1,10 @@
 import { PlainObject } from '@angular-ru/common/typings';
-import { EventEmitter, Input, Optional, Output, TemplateRef } from '@angular/core';
+import { Directive, EventEmitter, Input, Optional, Output, TemplateRef } from '@angular/core';
 
 import { TableEvent } from '../../interfaces/table-builder.external';
 
-// eslint-disable-next-line
-export abstract class TemplateCellCommon {
+@Directive()
+export abstract class AbstractTemplateCellCommon {
     public type: string | null = null;
     @Input() public row: string | boolean = false;
     @Input() public bold: boolean = false;

@@ -3,8 +3,8 @@ import { Injectable, QueryList } from '@angular/core';
 
 import { ColumnOptions } from '../../components/common/column-options';
 import { NgxColumnComponent } from '../../components/ngx-column/ngx-column.component';
+import { AbstractTemplateCellCommon } from '../../directives/rows/abstract-template-cell-common.directive';
 import { TemplateBodyTdDirective } from '../../directives/rows/template-body-td.directive';
-import { TemplateCellCommon } from '../../directives/rows/template-cell.common';
 import { TemplateHeadThDirective } from '../../directives/rows/template-head-th.directive';
 import { ColumnsSchema, ImplicitContext, TableCellOptions } from '../../interfaces/table-builder.external';
 import { getValidHtmlBooleanAttribute } from '../../operators/get-valid-html-boolean-attribute';
@@ -44,7 +44,11 @@ export class TemplateParserService {
      */
     public keyMap: PlainObjectOf<boolean> = {};
 
-    private static templateContext(key: string, cell: TemplateCellCommon, options: ColumnOptions): TableCellOptions {
+    private static templateContext(
+        key: string,
+        cell: AbstractTemplateCellCommon,
+        options: ColumnOptions
+    ): TableCellOptions {
         return {
             textBold: cell.bold,
             template: cell.template,
@@ -121,8 +125,8 @@ export class TemplateParserService {
     // eslint-disable-next-line complexity,max-lines-per-function
     public compileColumnMetadata(column: NgxColumnComponent): void {
         const { key, th, td, emptyHead, headTitle }: NgxColumnComponent = column;
-        const thTemplate: TemplateCellCommon = th || new TemplateHeadThDirective();
-        const tdTemplate: TemplateCellCommon = td || new TemplateBodyTdDirective();
+        const thTemplate: AbstractTemplateCellCommon = th || new TemplateHeadThDirective();
+        const tdTemplate: AbstractTemplateCellCommon = td || new TemplateBodyTdDirective();
         const isEmptyHead: boolean = getValidHtmlBooleanAttribute(emptyHead);
         const thOptions: TableCellOptions = TemplateParserService.templateContext(
             key!,

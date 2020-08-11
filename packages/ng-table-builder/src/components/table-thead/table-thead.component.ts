@@ -1,7 +1,7 @@
+import { fadeInLinearAnimation } from '@angular-ru/common/animations';
 import { PlainObjectOf } from '@angular-ru/common/typings';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 
-import { NGX_ANIMATION } from '../../animations/fade.animation';
 import { ColumnsSchema } from '../../interfaces/table-builder.external';
 import { ResizeEvent } from '../../interfaces/table-builder.internal';
 import { FilterableService } from '../../services/filterable/filterable.service';
@@ -13,7 +13,7 @@ import { OVERLOAD_WIDTH_TABLE_HEAD_CELL } from '../../symbols';
     templateUrl: './table-thead.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-    animations: [NGX_ANIMATION]
+    animations: [fadeInLinearAnimation]
 })
 export class TableTheadComponent {
     @Input('header-top') public headerTop: number | null = null;
