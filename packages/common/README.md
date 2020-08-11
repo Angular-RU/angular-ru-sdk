@@ -276,3 +276,35 @@ console.log(isEmptyList([])); // true
 console.log(isEmptyList([1])); // false
 console.log(isEmptyList([1, 2, 3])); // false
 ```
+
+#### `@angular-ru/common/animation`
+
+-   `fadeInLinearAnimation`
+
+```ts
+import { fadeInLinearAnimation } from '@angular-ru/common/animation';
+import { Component } from '@angular-ru/core';
+
+@Component({
+    //...
+    template: `<div *ngIf="showed" [@fadeInLinear]></div>`,
+    animation: [fadeInLinearAnimation]
+})
+export class AppComponent {
+    public showed: boolean = true;
+}
+```
+
+-   `fadeInBezierAnimation`
+
+```ts
+import { fadeInBezierAnimation } from '@angular-ru/common/animation';
+import { Component } from '@angular-ru/core';
+
+@Component({
+    //...
+    template: `<div *ngFor="let i of [1, 2, 3]" [@fadeInBezier]>{{ i }}</div>`,
+    animation: [fadeInBezierAnimation]
+})
+export class AppComponent {}
+```
