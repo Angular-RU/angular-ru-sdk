@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.41.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.40.0...v13.41.0) (2020-08-11)
+
+### Features
+
+-   **@angular-ru/common:** add capitalize, ensureRegexp, isIE utils
+    ([ccccafa](https://github.com/Angular-RU/angular-ru-sdk/commit/ccccafa5d6c416b4969dc6b083ccaad87c1b81c9))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.40.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.39.0...v13.40.0) (2020-08-11)
 
 ### Features
