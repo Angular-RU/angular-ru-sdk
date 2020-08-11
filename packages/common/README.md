@@ -314,3 +314,11 @@ import { Component } from '@angular-ru/core';
 })
 export class AppComponent {}
 ```
+
+#### `@angular-ru/common/http`
+
+-   `isLocalhost()`
+
+```ts
+console.log(isLocalhost()); // true || false
+```
