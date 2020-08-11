@@ -156,6 +156,12 @@ expect(checkValueIsEmpty(undefined)).toEqual(true);
 expect(checkValueIsEmpty(null)).toEqual(true);
 ```
 
+-   `isIE`
+
+```ts
+console.log(isIE()); // false
+```
+
 #### `@angular-ru/common/webworker`
 
 -   `WebWorkerThreadService` - Web workers allow you to run CPU-intensive computations in a background thread, freeing
@@ -190,6 +196,12 @@ expect(SerialDate.dateStringToDate(date).getFullYear()).toEqual(new Date().getFu
 
 #### `@angular-ru/common/string`
 
+-   `capitalize`
+
+```ts
+console.log(capitalize('hello world')); // Hello world
+```
+
 -   `stringify`
 
 ```ts
@@ -208,6 +220,12 @@ value = toStringVal([1, 2, 3], (values: string[]) => values.join('; ')); // "1; 
 ```ts
 expect(getByteSize('сын')).toEqual(6);
 expect(getByteSize('son')).toEqual(3);
+```
+
+-   `ensureRegexp`
+
+```ts
+console.log(ensureRegexp('/^a$/')); // "^a$"
 ```
 
 #### `@angular-ru/common/array`

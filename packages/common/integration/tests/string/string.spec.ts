@@ -1,4 +1,4 @@
-import { toStringVal, getByteSize, stringify } from '@angular-ru/common/string';
+import { toStringVal, getByteSize, stringify, capitalize, ensureRegexp } from '@angular-ru/common/string';
 
 describe('[TEST]: String', () => {
     it('toString', () => {
@@ -26,5 +26,16 @@ describe('[TEST]: String', () => {
         expect(stringify(NaN)).toEqual('null');
         expect(stringify(Infinity)).toEqual('null');
         expect(stringify(undefined)).toEqual('undefined');
+    });
+
+    it('capitalize', () => {
+        expect(capitalize('hello world')).toEqual('Hello world');
+    });
+
+    it('ensureRegexp', () => {
+        expect(ensureRegexp('/hello/')).toEqual('hello');
+        expect(ensureRegexp('/hello/')).toEqual('hello');
+        expect(ensureRegexp('/^a$/')).toEqual('^a$');
+        expect(ensureRegexp('/^a$/')).toEqual('^a$');
     });
 });

@@ -7,7 +7,8 @@ import {
     isNumber,
     isString,
     checkValueIsEmpty,
-    detectChanges
+    detectChanges,
+    isIE
 } from '@angular-ru/common/utils';
 import { ChangeDetectorRef } from '@angular/core';
 
@@ -84,5 +85,10 @@ describe('[TEST]: Common utils', () => {
         detectChanges([cd, cd]);
 
         expect(count).toEqual(3);
+    });
+
+    it('isIE', () => {
+        expect(isIE('Internet Explorer 9 (MSIE 9.0)')).toEqual(true);
+        expect(isIE('Chrome')).toEqual(false);
     });
 });
