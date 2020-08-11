@@ -190,6 +190,12 @@ expect(SerialDate.dateStringToDate(date).getFullYear()).toEqual(new Date().getFu
 
 #### `@angular-ru/common/string`
 
+-   `stringify`
+
+```ts
+stringify({ a: 1, b: { c: 2 } }); // pretty print
+```
+
 -   `toStringVal(value: T, converter?: (val: T) => string)`
 
 ```ts
