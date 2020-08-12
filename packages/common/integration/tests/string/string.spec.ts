@@ -1,4 +1,4 @@
-import { toStringVal, getByteSize, stringify, capitalize } from '@angular-ru/common/string';
+import { toStringVal, getByteSize, stringify, capitalize, splitOnUniqueValues } from '@angular-ru/common/string';
 
 describe('[TEST]: String', () => {
     it('toString', () => {
@@ -30,5 +30,20 @@ describe('[TEST]: String', () => {
 
     it('capitalize', () => {
         expect(capitalize('hello world')).toEqual('Hello world');
+    });
+
+    it('splitOnUniqueValues', () => {
+        expect(splitOnUniqueValues(null)).toEqual([]);
+        expect(splitOnUniqueValues('1; 2; 3, 5.6;   ;, ; 3, 6, 2; 1; -52; 0')).toEqual([
+            '1',
+            '2',
+            '3',
+            '5.6',
+            '6',
+            '-52',
+            '0'
+        ]);
+
+        expect(splitOnUniqueValues('1 - 2 - 3 - 3 - 2 - 1', /-/g)).toEqual(['1', '2', '3']);
     });
 });
