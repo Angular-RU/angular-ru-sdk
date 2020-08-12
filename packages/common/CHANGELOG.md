@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.43.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.42.0...v13.43.0) (2020-08-12)
+
+### Features
+
+-   **@angular-ru/common:** add splitOnUniqueValues util
+    ([b16981f](https://github.com/Angular-RU/angular-ru-sdk/commit/b16981f7aa3c25f3809f4f3827c882f0d93af529))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.42.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.41.0...v13.42.0) (2020-08-11)
 
 ### Features
