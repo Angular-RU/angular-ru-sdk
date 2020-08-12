@@ -1,4 +1,11 @@
-import { toStringVal, getByteSize, stringify, capitalize, splitOnUniqueValues } from '@angular-ru/common/string';
+import {
+    toStringVal,
+    getByteSize,
+    stringify,
+    capitalize,
+    splitOnUniqueValues,
+    generateQuickGuid
+} from '@angular-ru/common/string';
 
 describe('[TEST]: String', () => {
     it('toString', () => {
@@ -45,5 +52,9 @@ describe('[TEST]: String', () => {
         ]);
 
         expect(splitOnUniqueValues('1 - 2 - 3 - 3 - 2 - 1', /-/g)).toEqual(['1', '2', '3']);
+    });
+
+    it('generateQuickGuid', () => {
+        expect(generateQuickGuid().length).toEqual(22);
     });
 });

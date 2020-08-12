@@ -69,3 +69,15 @@ class A {}
 
 inject(A);
 ```
+
+-   `KeyValueComparator`
+
+```ts
+@Component({
+    template: `<ng-container *ngFor="let item of data | keyvalue: compare"></ng-container>`
+})
+export class MyComponent {
+    public compare: KeyValueComparator = compareKeys;
+    // ..
+}
+```

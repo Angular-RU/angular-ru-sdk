@@ -32,3 +32,9 @@ expect(getByteSize('son')).toEqual(3);
 expect(splitOnUniqueValues('1; 2; 3, 5.6;   ;, ; 3, 6, 2; 1; -52; 0')).toEqual(['1', '2', '3', '5.6', '6', '-52', '0']);
 expect(splitOnUniqueValues('1 - 2 - 3 - 3 - 2 - 1', /-/g)).toEqual(['1', '2', '3']);
 ```
+
+-   `generateQuickGuid`
+
+```ts
+console.log(generateQuickGuid()); // udn0la1mhfq4tudhnympq
+```
