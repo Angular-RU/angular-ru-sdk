@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.46.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.45.0...v13.46.0) (2020-08-12)
+
+### Features
+
+-   **@angular-ru/common:** add check object utils (isObject, isPlainObject, isSimpleObject)
+    ([a728bfc](https://github.com/Angular-RU/angular-ru-sdk/commit/a728bfca42eda47cbef7b5cba2839084d8dd8bcc))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.45.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.44.0...v13.45.0) (2020-08-12)
 
 ### Features
