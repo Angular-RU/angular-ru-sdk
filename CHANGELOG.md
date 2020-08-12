@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.47.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.46.1...v13.47.0) (2020-08-12)
+
+### Features
+
+-   update dependency jest to v26.4.0
+    ([8387522](https://github.com/Angular-RU/angular-ru-sdk/commit/83875220e76f7b9d44092cd3253dbb56f2912ad7))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [13.46.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.46.0...v13.46.1) (2020-08-12)
 
 **Note:** Version bump only for package @angular-ru/sdk
