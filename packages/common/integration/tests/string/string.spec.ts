@@ -55,6 +55,6 @@ describe('[TEST]: String', () => {
     });
 
     it('generateQuickGuid', () => {
-        expect(generateQuickGuid().length).toEqual(22);
+        expect(generateQuickGuid().length >= 20).toEqual(true);
     });
 });
