@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.45.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.44.0...v13.45.0) (2020-08-12)
+
+### Features
+
+-   **@angular-ru/common:** support generic in keyValueComparator
+    ([faabd30](https://github.com/Angular-RU/angular-ru-sdk/commit/faabd30b99ffaa560a169b27b832f86af01c3cfc))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.44.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.43.0...v13.44.0) (2020-08-12)
 
 ### Features
