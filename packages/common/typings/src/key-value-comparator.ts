@@ -1,5 +1,3 @@
 import { KeyValue } from '@angular/common';
 
-import { Any } from './any';
-
-export type KeyValueComparator = (a: KeyValue<string, Any>, b: KeyValue<string, Any>) => number;
+export type KeyValueComparator<K, V> = (a: KeyValue<K, V>, b: KeyValue<K, V>) => number;
