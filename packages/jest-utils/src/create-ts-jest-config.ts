@@ -59,10 +59,12 @@ export function createTsJestConfig(options: JestConfigOptions & Config.InitialOp
                 isolatedModules: true,
                 tsConfig: options?.tsConfigSpecPath ?? options.tsConfigRootPath,
                 stringifyContentPathRegex: '\\.html$',
-                astTransformers: [
-                    'jest-preset-angular/build/InlineFilesTransformer',
-                    'jest-preset-angular/build/StripStylesTransformer'
-                ]
+                astTransformers: {
+                    before: [
+                        'jest-preset-angular/build/InlineFilesTransformer',
+                        'jest-preset-angular/build/StripStylesTransformer'
+                    ]
+                }
             }
         },
 

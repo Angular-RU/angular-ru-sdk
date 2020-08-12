@@ -25,10 +25,12 @@ describe('[TEST]: Hello world', () => {
                     isolatedModules: true,
                     tsConfig: '../tsconfig.json',
                     stringifyContentPathRegex: '\\.html$',
-                    astTransformers: [
-                        'jest-preset-angular/build/InlineFilesTransformer',
-                        'jest-preset-angular/build/StripStylesTransformer'
-                    ]
+                    astTransformers: {
+                        before: [
+                            'jest-preset-angular/build/InlineFilesTransformer',
+                            'jest-preset-angular/build/StripStylesTransformer'
+                        ]
+                    }
                 }
             },
             moduleNameMapper: {
