@@ -15,7 +15,6 @@ export { NgxEmptyComponent } from './components/ngx-empty/ngx-empty.component';
 export { NgxHeaderComponent } from './components/ngx-header/ngx-header.component';
 export { NgxFooterComponent } from './components/ngx-footer/ngx-footer.component';
 export { NgxOptionsComponent } from './components/ngx-options/ngx-options.component';
-export { SelectedItemsPipe } from './pipes/selected-items.pipe';
 export { NgxFilterDirective } from './directives/ngx-filter.directive';
 export { TemplateHeadThDirective } from './directives/rows/template-head-th.directive';
 export { TemplateBodyTdDirective } from './directives/rows/template-body-td.directive';

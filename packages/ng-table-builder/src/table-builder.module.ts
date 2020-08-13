@@ -29,7 +29,6 @@ import { VirtualForDirective } from './directives/virtual-for.directive';
 import { DeepPathPipe } from './pipes/deep-path.pipe';
 import { DefaultValuePipe } from './pipes/default-value.pipe';
 import { DisableRowPipe } from './pipes/disable-row.pipe';
-import { SelectedItemsPipe } from './pipes/selected-items.pipe';
 import { UtilsService } from './services/utils/utils.service';
 import { TableBuilderComponent } from './table-builder.component';
 
@@ -65,8 +64,7 @@ if ((window as Any)['Zone']) {
         DragIconComponent,
         NgxSourceNullComponent,
         DisableRowPipe,
-        VirtualForDirective,
-        SelectedItemsPipe
+        VirtualForDirective
     ],
     providers: [UtilsService, WebWorkerThreadService],
     exports: [
@@ -85,8 +83,7 @@ if ((window as Any)['Zone']) {
         NgxFilterViewerComponent,
         NgxFilterComponent,
         NgxFilterDirective,
-        NgxSourceNullComponent,
-        SelectedItemsPipe
+        NgxSourceNullComponent
     ]
 })
 export class TableBuilderModule {
