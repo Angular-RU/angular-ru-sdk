@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.47.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.47.0...v13.47.1) (2020-08-13)
+
+### Bug Fixes
+
+-   **@angular-ru/common:** splitOnUniqueValues support multiline
+    ([3cf1832](https://github.com/Angular-RU/angular-ru-sdk/commit/3cf18326e4979c5340339f34cbb9cb9ff33cabf4))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [13.46.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.46.0...v13.46.1) (2020-08-12)
 
 **Note:** Version bump only for package @angular-ru/common
