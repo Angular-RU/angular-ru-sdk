@@ -1,8 +1,4 @@
-import { Any, Fn } from '@angular-ru/common/typings';
-
-export function isFunctionLike<U = Fn>(fn: Any): fn is U {
-    return typeof fn === 'function';
-}
+import { Any } from '@angular-ru/common/typings';
 
 export function isNumber(value: Any): value is number {
     return typeof value === 'number';

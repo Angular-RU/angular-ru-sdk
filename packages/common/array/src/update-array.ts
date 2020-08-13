@@ -1,5 +1,5 @@
+import { isFunctionLike } from '@angular-ru/common/function';
 import { Any, CompareFn, PrimaryKey } from '@angular-ru/common/typings';
-import { isFunctionLike } from '@angular-ru/common/utils';
 
 // eslint-disable-next-line max-lines-per-function,complexity
 export function updateArray<T>(

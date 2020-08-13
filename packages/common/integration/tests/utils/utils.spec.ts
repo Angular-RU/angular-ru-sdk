@@ -1,7 +1,6 @@
 import {
     $any,
     $cast,
-    isFunctionLike,
     isNil,
     isNotNil,
     isNumber,
@@ -15,17 +14,6 @@ import { ChangeDetectorRef } from '@angular/core';
 describe('[TEST]: Common utils', () => {
     it('$any/$cast', () => {
         expect(parseInt($any(1) + $cast('2'))).toEqual(12);
-    });
-
-    it('isFunctionLike', () => {
-        class A {}
-
-        expect(isFunctionLike(A)).toEqual(true);
-        expect(isFunctionLike(() => {})).toEqual(true);
-        expect(isFunctionLike(1)).toEqual(false);
-        expect(isFunctionLike({})).toEqual(false);
-        expect(isFunctionLike([])).toEqual(false);
-        expect(isFunctionLike('')).toEqual(false);
     });
 
     it('is null or undefined', () => {

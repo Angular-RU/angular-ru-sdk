@@ -16,5 +16,6 @@
     - [(@)angular-ru/common/regexp](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/regexp.md)
     - [(@)angular-ru/common/array](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/array.md)
     - [(@)angular-ru/common/object](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/object.md)
+    - [(@)angular-ru/common/function](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/function.md)
     - [(@)angular-ru/common/animations](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/animations.md)
     - [(@)angular-ru/common/http](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/http.md)

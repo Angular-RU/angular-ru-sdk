@@ -16,16 +16,6 @@ const left: number | string | null = '12';
 const result: boolean = $cast<number>(left) > 13;
 ```
 
--   `isFunctionLike(val)`
-
-```ts
-class A {}
-
-console.log(isFunctionLike(() => {})); // true
-console.log(isFunctionLike(A)); // true
-console.log(isFunctionLike({ a: 1 })); // false
-```
-
 -   `isNill`
 
 ```ts
