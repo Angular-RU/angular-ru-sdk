@@ -112,3 +112,46 @@ expect(isSimpleObject(new Number(6))).toBe(false);
 expect(isSimpleObject(Math)).toBe(false);
 expect(isSimpleObject(document.createElement('div'))).toBe(false);
 ```
+
+-   `isGetter`
+
+```ts
+import { Any } from '@angular-ru/common/typings';
+import { isGetter } from '@angular-ru/common/object';
+
+class A {
+    public get a(): number {
+        return 1;
+    }
+
+    public b: string = '2';
+}
+
+expect(isGetter(new A(), 'a')).toEqual(true);
+expect(isGetter(new A(), 'b')).toEqual(false);
+
+expect(
+    isGetter(
+        {
+            get a() {
+                return 2;
+            }
+        },
+        'a'
+    )
+).toEqual(true);
+
+expect(
+    isGetter(
+        {
+            _a: null,
+            set a(value: Any) {
+                this._a = value;
+            }
+        },
+        'a'
+    )
+).toEqual(false);
+
+expect(isGetter({ a: 2 }, 'a')).toEqual(false);
+```

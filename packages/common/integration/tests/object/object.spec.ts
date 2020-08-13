@@ -1,4 +1,13 @@
-import { firstKey, sortByAsc, sortByDesc, isObject, isPlainObject, isSimpleObject } from '@angular-ru/common/object';
+import {
+    firstKey,
+    sortByAsc,
+    sortByDesc,
+    isObject,
+    isPlainObject,
+    isSimpleObject,
+    isGetter
+} from '@angular-ru/common/object';
+import { Any } from '@angular-ru/common/typings';
 
 describe('[TEST]: Object', () => {
     describe('sorting', () => {
@@ -109,5 +118,43 @@ describe('[TEST]: Object', () => {
             expect(isSimpleObject(Math)).toBe(false);
             expect(isSimpleObject(document.createElement('div'))).toBe(false);
         });
+    });
+
+    it('is getter', () => {
+        class A {
+            public get a(): number {
+                return 1;
+            }
+
+            public b: string = '2';
+        }
+
+        expect(isGetter(new A(), 'a')).toEqual(true);
+        expect(isGetter(new A(), 'b')).toEqual(false);
+
+        expect(
+            isGetter(
+                {
+                    get a() {
+                        return 2;
+                    }
+                },
+                'a'
+            )
+        ).toEqual(true);
+
+        expect(
+            isGetter(
+                {
+                    _a: null,
+                    set a(value: Any) {
+                        this._a = value;
+                    }
+                },
+                'a'
+            )
+        ).toEqual(false);
+
+        expect(isGetter({ a: 2 }, 'a')).toEqual(false);
     });
 });
