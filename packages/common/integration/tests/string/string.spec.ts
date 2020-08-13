@@ -52,6 +52,18 @@ describe('[TEST]: String', () => {
         ]);
 
         expect(splitOnUniqueValues('1 - 2 - 3 - 3 - 2 - 1', /-/g)).toEqual(['1', '2', '3']);
+
+        expect(
+            splitOnUniqueValues(`
+
+   1;
+
+   2
+
+   3
+
+`)
+        ).toEqual(['1', '2', '3']);
     });
 
     it('generateQuickGuid', () => {
