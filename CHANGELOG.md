@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.49.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.48.0...v13.49.0) (2020-08-13)
+
+### Features
+
+-   **@angular-ru/ng-table-builder:** remove selectedItems pipe because it working with incorrect behaviour
+    ([e9ae84a](https://github.com/Angular-RU/angular-ru-sdk/commit/e9ae84ab58038227383226f2d5330d6e36191d07))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.48.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.47.1...v13.48.0) (2020-08-13)
 
 ### Bug Fixes
