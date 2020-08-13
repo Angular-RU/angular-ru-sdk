@@ -6,7 +6,7 @@
     "concurrency": 1,
     "npmClient": "yarn",
     "useWorkspaces": true,
-    "version": "13.47.1",
+    "version": "13.48.0",
     "changelogPreset": "angular",
     "command": {
         "version": {

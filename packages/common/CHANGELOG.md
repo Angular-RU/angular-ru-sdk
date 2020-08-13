@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.48.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.47.1...v13.48.0) (2020-08-13)
+
+### Bug Fixes
+
+-   **@angular-ru/common:** correct handle converter in toStringVal
+    ([6964e9c](https://github.com/Angular-RU/angular-ru-sdk/commit/6964e9cd35f547583b6f9dc3ba02c5db96e4966b))
+
+### Features
+
+-   **@angular-ru/common:** add isGetter util
+    ([68d5b83](https://github.com/Angular-RU/angular-ru-sdk/commit/68d5b83314f1a717e2ba86af6d4dbd5b0e719fc6))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [13.47.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.47.0...v13.47.1) (2020-08-13)
 
 ### Bug Fixes
