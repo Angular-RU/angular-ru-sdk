@@ -6,16 +6,24 @@ import {
     isPlainObject,
     isSimpleObject,
     isGetter,
-    deepClone
+    deepClone,
+    deepFreeze
 } from '@angular-ru/common/object';
 import { Any } from '@angular-ru/common/typings';
 
 describe('[TEST]: Object', () => {
-    describe('sorting', () => {
-        interface A {
-            a: number;
-        }
+    interface A {
+        a: number;
+    }
 
+    interface Origin {
+        a: number;
+        b: {
+            c: number;
+        };
+    }
+
+    describe('sorting', () => {
         const objectList: A[] = [{ a: 1 }, { a: 3 }, { a: 2 }, { a: -1 }, { a: 0 }];
 
         it('sort by asc', () => {
@@ -200,13 +208,6 @@ describe('[TEST]: Object', () => {
     });
 
     describe('clone', () => {
-        interface Origin {
-            a: number;
-            b: {
-                c: number;
-            };
-        }
-
         it('deep clone', () => {
             const origin: Origin = { a: 1, b: { c: 2 } };
             const copy: Origin = deepClone(origin);
@@ -226,6 +227,21 @@ describe('[TEST]: Object', () => {
             expect(deepClone(Infinity)).toEqual(null);
             expect(deepClone(null)).toEqual(null);
             expect(deepClone(undefined)).toEqual(null);
+        });
+    });
+
+    describe('freeze', () => {
+        it('deep freeze', () => {
+            const origin: Origin = deepFreeze({ a: 1, b: { c: 2 } });
+            let message: string | null = null;
+
+            try {
+                origin.b.c = 5;
+            } catch (e) {
+                message = e.message;
+            }
+
+            expect(message).toEqual(`Cannot assign to read only property 'c' of object '[object Object]'`);
         });
     });
 });

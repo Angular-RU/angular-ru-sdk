@@ -155,3 +155,39 @@ expect(
 
 expect(isGetter({ a: 2 }, 'a')).toEqual(false);
 ```
+
+-   `deepClone`
+
+```ts
+import { deepClone } from '@angular-ru/common/object';
+import { Origin } from './origin';
+
+const origin: Origin = { a: 1, b: { c: 2 } };
+const copy: Origin = deepClone(origin);
+expect(Object.is(origin, copy)).toEqual(false);
+
+copy.b.c = 4;
+expect(origin.b.c).toEqual(2);
+
+origin.b.c = 3;
+expect(origin.b.c).toEqual(3);
+expect(copy.b.c).toEqual(4);
+```
+
+-   `deepFreeze`
+
+```ts
+import { deepFreeze } from '@angular-ru/common/object';
+import { Origin } from './origin';
+
+const origin: Origin = deepFreeze({ a: 1, b: { c: 2 } });
+let message: string | null = null;
+
+try {
+    origin.b.c = 5;
+} catch (e) {
+    message = e.message;
+}
+
+expect(message).toEqual(`Cannot assign to read only property 'c' of object '[object Object]'`);
+```
