@@ -38,3 +38,14 @@ expect(splitOnUniqueValues('1 - 2 - 3 - 3 - 2 - 1', /-/g)).toEqual(['1', '2', '3
 ```ts
 console.log(generateQuickGuid()); // udn0la1mhfq4tudhnympq
 ```
+
+-   `isString`
+
+```ts
+expect(isString('')).toEqual(true);
+expect(isString(0)).toEqual(false);
+expect(isString(NaN)).toEqual(false);
+expect(isString(Infinity)).toEqual(false);
+expect(isString(null)).toEqual(false);
+expect(isString(undefined)).toEqual(false);
+```

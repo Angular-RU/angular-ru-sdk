@@ -34,28 +34,6 @@ expect(isNotNil(null)).toEqual(false);
 expect(isNotNil(undefined)).toEqual(false);
 ```
 
--   `isNumber`
-
-```ts
-expect(isNumber(0)).toEqual(true);
-expect(isNumber(NaN)).toEqual(true);
-expect(isNumber(Infinity)).toEqual(true);
-expect(isNumber('')).toEqual(false);
-expect(isNumber(null)).toEqual(false);
-expect(isNumber(undefined)).toEqual(false);
-```
-
--   `isString`
-
-```ts
-expect(isString('')).toEqual(true);
-expect(isString(0)).toEqual(false);
-expect(isString(NaN)).toEqual(false);
-expect(isString(Infinity)).toEqual(false);
-expect(isString(null)).toEqual(false);
-expect(isString(undefined)).toEqual(false);
-```
-
 -   `checkValueIsEmpty`
 
 ```ts

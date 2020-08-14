@@ -1,14 +1,4 @@
-import {
-    $any,
-    $cast,
-    isNil,
-    isNotNil,
-    isNumber,
-    isString,
-    checkValueIsEmpty,
-    detectChanges,
-    isIE
-} from '@angular-ru/common/utils';
+import { $any, $cast, isNil, isNotNil, checkValueIsEmpty, detectChanges, isIE } from '@angular-ru/common/utils';
 import { ChangeDetectorRef } from '@angular/core';
 
 describe('[TEST]: Common utils', () => {
@@ -28,24 +18,6 @@ describe('[TEST]: Common utils', () => {
         expect(isNotNil('')).toEqual(true);
         expect(isNotNil(null)).toEqual(false);
         expect(isNotNil(undefined)).toEqual(false);
-    });
-
-    it('is number', () => {
-        expect(isNumber(0)).toEqual(true);
-        expect(isNumber(NaN)).toEqual(true);
-        expect(isNumber(Infinity)).toEqual(true);
-        expect(isNumber('')).toEqual(false);
-        expect(isNumber(null)).toEqual(false);
-        expect(isNumber(undefined)).toEqual(false);
-    });
-
-    it('is string', () => {
-        expect(isString('')).toEqual(true);
-        expect(isString(0)).toEqual(false);
-        expect(isString(NaN)).toEqual(false);
-        expect(isString(Infinity)).toEqual(false);
-        expect(isString(null)).toEqual(false);
-        expect(isString(undefined)).toEqual(false);
     });
 
     it('is empty value', () => {

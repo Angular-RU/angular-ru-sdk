@@ -4,7 +4,8 @@ import {
     stringify,
     capitalize,
     splitOnUniqueValues,
-    generateQuickGuid
+    generateQuickGuid,
+    isString
 } from '@angular-ru/common/string';
 
 describe('[TEST]: String', () => {
@@ -69,5 +70,14 @@ describe('[TEST]: String', () => {
 
     it('generateQuickGuid', () => {
         expect(generateQuickGuid().length >= 20).toEqual(true);
+    });
+
+    it('is string', () => {
+        expect(isString('')).toEqual(true);
+        expect(isString(0)).toEqual(false);
+        expect(isString(NaN)).toEqual(false);
+        expect(isString(Infinity)).toEqual(false);
+        expect(isString(null)).toEqual(false);
+        expect(isString(undefined)).toEqual(false);
     });
 });
