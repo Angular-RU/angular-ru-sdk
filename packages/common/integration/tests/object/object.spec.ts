@@ -120,41 +120,81 @@ describe('[TEST]: Object', () => {
         });
     });
 
-    it('is getter', () => {
-        class A {
-            public get a(): number {
-                return 1;
+    describe('Getter', () => {
+        it('is getter', () => {
+            class A {
+                public get a(): number {
+                    return 1;
+                }
+
+                public b: string = '2';
             }
 
-            public b: string = '2';
-        }
+            expect(isGetter(new A(), 'a')).toEqual(true);
+            expect(isGetter(new A(), 'b')).toEqual(false);
 
-        expect(isGetter(new A(), 'a')).toEqual(true);
-        expect(isGetter(new A(), 'b')).toEqual(false);
+            expect(
+                isGetter(
+                    {
+                        get a() {
+                            return 2;
+                        }
+                    },
+                    'a'
+                )
+            ).toEqual(true);
 
-        expect(
-            isGetter(
-                {
-                    get a() {
-                        return 2;
-                    }
-                },
-                'a'
-            )
-        ).toEqual(true);
+            expect(
+                isGetter(
+                    {
+                        _a: null,
+                        set a(value: Any) {
+                            this._a = value;
+                        }
+                    },
+                    'a'
+                )
+            ).toEqual(false);
 
-        expect(
-            isGetter(
-                {
-                    _a: null,
-                    set a(value: Any) {
-                        this._a = value;
-                    }
-                },
-                'a'
-            )
-        ).toEqual(false);
+            expect(isGetter({ a: 2 }, 'a')).toEqual(false);
+        });
 
-        expect(isGetter({ a: 2 }, 'a')).toEqual(false);
+        it('inheritance getter', () => {
+            class Base {
+                public get base(): string {
+                    return 'base';
+                }
+            }
+
+            class A extends Base {}
+
+            expect(new A().base).toEqual('base');
+            expect(isGetter(new A(), 'base')).toEqual(true);
+
+            class Z {
+                get base() {
+                    return 'base';
+                }
+            }
+
+            class R extends Z {}
+
+            const r = new R();
+            Object.defineProperty(r, 'base', { value: 'joke' });
+
+            expect(r.base).toEqual('joke');
+            expect(isGetter(r, 'base')).toEqual(false);
+        });
+
+        it('correct check invalid', () => {
+            expect(isGetter(null, 'a')).toEqual(false);
+            expect(isGetter({}, 'a')).toEqual(false);
+            expect(isGetter(Infinity, 'a')).toEqual(false);
+            expect(isGetter(undefined, 'a')).toEqual(false);
+            expect(isGetter(NaN, 'a')).toEqual(false);
+            expect(isGetter(5, 'a')).toEqual(false);
+            expect(isGetter(Number(5), 'a')).toEqual(false);
+            expect(isGetter(String(5), 'a')).toEqual(false);
+        });
     });
 });
