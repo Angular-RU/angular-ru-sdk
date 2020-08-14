@@ -13,3 +13,4 @@ export { DeepPartial } from './deep-partial';
 export { PrimaryKey } from './primary-key';
 export { CompareFn } from './compare-fn';
 export { KeyValueComparator } from './key-value-comparator';
+export { KeyboardKeys } from './keyboard.enum';
