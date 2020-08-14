@@ -23,3 +23,15 @@ export class A {
     @Expose() @Type(typeofType(B)) public b: B;
 }
 ```
+
+-   `$args(fnRef)`
+
+```ts
+import { $args } from '@angular-ru/common/function';
+
+function hello(name: string, value: number, a?: string[]): string {
+    return 'world' + name + value + a;
+}
+
+console.log($args(hello)); // ['name', 'value', 'a']
+```

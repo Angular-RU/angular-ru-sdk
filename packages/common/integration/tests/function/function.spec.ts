@@ -1,4 +1,4 @@
-import { isFunctionLike } from '@angular-ru/common/function';
+import { isFunctionLike, $args } from '@angular-ru/common/function';
 import { KeyboardKeys } from '@angular-ru/common/typings';
 
 describe('[TEST]: Function', () => {
@@ -22,5 +22,13 @@ describe('[TEST]: Function', () => {
         expect(KeyboardKeys.BACKSPACE).toEqual('Backspace');
         expect(KeyboardKeys.SHIFT).toEqual('Shift');
         expect(KeyboardKeys.CAPS_LOCK).toEqual('CapsLock');
+    });
+
+    it('$arg', () => {
+        function hello(name: string, value: number, a?: string[]): string {
+            return 'world' + name + value + a;
+        }
+
+        expect($args(hello)).toEqual(['name', 'value', 'a']);
     });
 });
