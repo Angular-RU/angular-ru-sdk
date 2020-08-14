@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.50.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.49.0...v13.50.0) (2020-08-14)
+
+### Features
+
+-   **@angular-ru/common:** add KeyboardKeys
+    ([db0ddbf](https://github.com/Angular-RU/angular-ru-sdk/commit/db0ddbf90dd2d47e1cd43721d790d170a1e0c5d7))
+-   **@angular-ru/common:** add typeofType
+    ([1d9585e](https://github.com/Angular-RU/angular-ru-sdk/commit/1d9585eac1df69f60d1a23e1cc4fda0ca4fe442a))
+-   **@angular-ru/common:** move isNumber to @angular-ru/common/number
+    ([3536c8c](https://github.com/Angular-RU/angular-ru-sdk/commit/3536c8c5962e967ea20d8c282f5d513843b48b75))
+-   **@angular-ru/common:** move isString to @angular-ru/common/string
+    ([e744505](https://github.com/Angular-RU/angular-ru-sdk/commit/e74450580cca76de517eeb28162c7768e00ddeff))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.49.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.48.0...v13.49.0) (2020-08-13)
 
 ### Features
