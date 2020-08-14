@@ -5,3 +5,4 @@ export { isObject } from './is-object';
 export { isPlainObject } from './is-plain-object';
 export { isSimpleObject } from './is-simple-object';
 export { isGetter } from './is-getter';
+export { deepClone } from './deep-clone';

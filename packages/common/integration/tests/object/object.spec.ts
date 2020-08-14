@@ -5,7 +5,8 @@ import {
     isObject,
     isPlainObject,
     isSimpleObject,
-    isGetter
+    isGetter,
+    deepClone
 } from '@angular-ru/common/object';
 import { Any } from '@angular-ru/common/typings';
 
@@ -120,7 +121,7 @@ describe('[TEST]: Object', () => {
         });
     });
 
-    describe('Getter', () => {
+    describe('getter', () => {
         it('is getter', () => {
             class A {
                 public get a(): number {
@@ -195,6 +196,36 @@ describe('[TEST]: Object', () => {
             expect(isGetter(5, 'a')).toEqual(false);
             expect(isGetter(Number(5), 'a')).toEqual(false);
             expect(isGetter(String(5), 'a')).toEqual(false);
+        });
+    });
+
+    describe('clone', () => {
+        interface Origin {
+            a: number;
+            b: {
+                c: number;
+            };
+        }
+
+        it('deep clone', () => {
+            const origin: Origin = { a: 1, b: { c: 2 } };
+            const copy: Origin = deepClone(origin);
+            expect(Object.is(origin, copy)).toEqual(false);
+
+            copy.b.c = 4;
+            expect(origin.b.c).toEqual(2);
+
+            origin.b.c = 3;
+            expect(origin.b.c).toEqual(3);
+            expect(copy.b.c).toEqual(4);
+        });
+
+        it('copy null/NaN/undefined/0/Infinity', () => {
+            expect(deepClone(0)).toEqual(0);
+            expect(deepClone(NaN)).toEqual(null);
+            expect(deepClone(Infinity)).toEqual(null);
+            expect(deepClone(null)).toEqual(null);
+            expect(deepClone(undefined)).toEqual(null);
         });
     });
 });
