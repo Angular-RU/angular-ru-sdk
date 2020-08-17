@@ -243,7 +243,7 @@ describe('[TEST]: Object', () => {
                 b: [{ c: 1, d: 2 }],
                 e: null,
                 f: null,
-                g: '2018-11-27T21:00:00.000Z'
+                g: expect.any(String)
             });
         });
     });
