@@ -1,11 +1,10 @@
 import { fadeInLinearAnimation } from '@angular-ru/common/animations';
-import { PlainObjectOf } from '@angular-ru/common/typings';
+import { PlainObjectOf, SortOrderType } from '@angular-ru/common/typings';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 
 import { ColumnsSchema } from '../../interfaces/table-builder.external';
 import { ResizeEvent } from '../../interfaces/table-builder.internal';
 import { FilterableService } from '../../services/filterable/filterable.service';
-import { SortOrderType } from '../../services/sortable/sortable.interfaces';
 import { OVERLOAD_WIDTH_TABLE_HEAD_CELL } from '../../symbols';
 
 @Component({
