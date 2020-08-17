@@ -191,3 +191,82 @@ try {
 
 expect(message).toEqual(`Cannot assign to read only property 'c' of object '[object Object]'`);
 ```
+
+-   `replaceWithNull`
+
+```ts
+import { PlainObject } from '@angular-ru/common/typings';
+import { replaceWithNull } from '@angular-ru/common/object';
+
+const wrongElem: PlainObject = {
+    a: '',
+    b: [
+        { c: NaN, d: 1 },
+        { c: '   ', d: undefined },
+        { c: 0, d: 0 }
+    ],
+    e: Infinity
+};
+
+expect(replaceWithNull(wrongElem)).toEqual({
+    a: null,
+    b: [
+        { c: null, d: 1 },
+        { c: null, d: null },
+        { c: 0, d: 0 }
+    ],
+    e: null
+});
+```
+
+-   `clean`
+
+```ts
+import { PlainObject } from '@angular-ru/common/typings';
+import { clean } from '@angular-ru/common/object';
+
+const A: PlainObject = clean({
+    a: 1,
+    b: undefined,
+    c: '',
+    d: null,
+    e: NaN,
+    f: [
+        {
+            a: 2,
+            b: undefined,
+            c: '',
+            d: Infinity
+        },
+        {
+            a: 3,
+            b: undefined,
+            c: '',
+            d: Infinity
+        }
+    ],
+    g: {
+        a: 4,
+        b: undefined,
+        c: '',
+        d: Infinity
+    },
+    h: Infinity
+});
+
+const B: PlainObject = { a: 1, f: [{ a: 2 }, { a: 3 }], g: { a: 4 } };
+
+expect(A).toEqual(B);
+```
+
+-   `getValueByPath`
+
+```ts
+const obj: PlainObject = { a: 1, f: [{ a: 2 }, { a: 3 }], g: { a: 4 } };
+
+expect(getValueByPath(obj, 'g.a')).toEqual(4);
+expect(getValueByPath(obj, 'f.0')).toEqual({ a: 2 });
+expect(getValueByPath(obj, 'f.0.a')).toEqual(2);
+expect(getValueByPath(obj, 'abc')).toEqual(undefined);
+expect(getValueByPath(obj, 'f.0.a.Z', [])).toEqual([]);
+```

@@ -20,3 +20,4 @@
     - [(@)angular-ru/common/function](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/function.md)
     - [(@)angular-ru/common/animations](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/animations.md)
     - [(@)angular-ru/common/http](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/http.md)
+    - [(@)angular-ru/common/pipes](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/pipes.md)

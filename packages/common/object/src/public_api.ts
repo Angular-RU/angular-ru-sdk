@@ -7,3 +7,6 @@ export { isSimpleObject } from './is-simple-object';
 export { isGetter } from './is-getter';
 export { deepClone } from './deep-clone';
 export { deepFreeze } from './deep-freeze';
+export { replaceWithNull } from './replace-with-null';
+export { clean } from './clean';
+export { getValueByPath } from './get-value-by-path';
