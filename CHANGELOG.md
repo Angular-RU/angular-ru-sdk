@@ -3,6 +3,63 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.54.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.53.0...v13.54.0) (2020-08-15)
+
+### Features
+
+-   update dependency @types/jest to v26.0.10
+    ([1f8b357](https://github.com/Angular-RU/angular-ru-sdk/commit/1f8b357c9edae9b2f25520105ea533bfb5ca8d8f))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [13.53.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.52.0...v13.53.0) (2020-08-14)
+
+### Features
+
+-   update dependency eslint to v7.7.0
+    ([62a7735](https://github.com/Angular-RU/angular-ru-sdk/commit/62a7735753df4627763eade2b4c378ca8147ac1d))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [13.52.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.51.0...v13.52.0) (2020-08-14)
+
+### Features
+
+-   update dependency eslint-import-resolver-typescript to v2.2.1
+    ([dcf5ace](https://github.com/Angular-RU/angular-ru-sdk/commit/dcf5ace04b185d0206d101ab9633b45893a189d6))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [13.51.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.50.0...v13.51.0) (2020-08-14)
+
+### Bug Fixes
+
+-   **@angular-ru/common:** correct handle getter properties in object
+    ([276e887](https://github.com/Angular-RU/angular-ru-sdk/commit/276e88740eb5a6a6ed15bf674519663bd57e538a))
+
+### Features
+
+-   **@angular-ru/common:** add \$args
+    ([7471eac](https://github.com/Angular-RU/angular-ru-sdk/commit/7471eac1598fada0205a6a01b9f331689f04653e))
+-   **@angular-ru/common:** add deepClone
+    ([7e18a28](https://github.com/Angular-RU/angular-ru-sdk/commit/7e18a28e5aec0899be6231d176563d167f25be19))
+-   **@angular-ru/common:** add deepFreeze
+    ([434a1ac](https://github.com/Angular-RU/angular-ru-sdk/commit/434a1ac736dfe8bdc731303123cad910d5300104))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.50.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.49.0...v13.50.0) (2020-08-14)
 
 ### Features

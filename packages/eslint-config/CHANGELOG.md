@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.53.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.52.0...v13.53.0) (2020-08-14)
+
+### Features
+
+-   update dependency eslint to v7.7.0
+    ([62a7735](https://github.com/Angular-RU/angular-ru-sdk/commit/62a7735753df4627763eade2b4c378ca8147ac1d))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [13.52.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.51.0...v13.52.0) (2020-08-14)
+
+### Features
+
+-   update dependency eslint-import-resolver-typescript to v2.2.1
+    ([dcf5ace](https://github.com/Angular-RU/angular-ru-sdk/commit/dcf5ace04b185d0206d101ab9633b45893a189d6))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.38.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.37.0...v13.38.0) (2020-08-10)
 
 **Note:** Version bump only for package @angular-ru/eslint-config
