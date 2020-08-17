@@ -1,11 +1,11 @@
-import { Any, PlainObjectOf, Resolver } from '@angular-ru/common/typings';
+import { PlainObjectOf, Resolver, SortOrderType } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { EventEmitter, Injectable, NgZone } from '@angular/core';
 
 import { TABLE_GLOBAL_OPTIONS } from '../../config/table-global-options';
 import { OrderedField, TableRow } from '../../interfaces/table-builder.external';
 import { sortWorker } from './sort.worker';
-import { SortableMessage, SortOrderType } from './sortable.interfaces';
+import { SortableMessage } from './sortable.interfaces';
 
 @Injectable()
 export class SortableService {
@@ -62,7 +62,7 @@ export class SortableService {
         if (this.sortChanges) {
             Object.entries(this.definition).forEach(([key, ordered]: [string, SortOrderType], index: number): void => {
                 this.positionMap[key] = index + 1;
-                orderedFields.push({ field: key, order: ordered.toLocaleUpperCase() as Any });
+                orderedFields.push({ field: key, order: ordered.toLocaleUpperCase() as OrderedField['order'] });
             });
 
             this.sortableCount = orderedFields.length;
