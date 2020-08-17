@@ -1,11 +1,18 @@
 #### `@angular-ru/common/pipes`
 
--   `MutableTypePipe`
+-   `MutableTypeModule, MutableTypePipe`
 
 ```ts
+import { MutableTypeModule } from '@angular-ru/common/pipes';
+import { Component, NgModule } from '@angular/core';
 import { Immutable } from '@angular-ru/typings';
-import { Component } from '@angular/core';
 import { Data } from './data';
+
+@NgModule({
+    // ..
+    imports: [MutableTypeModule]
+})
+export class AppModule {}
 
 @Component({
     //...

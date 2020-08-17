@@ -14,3 +14,4 @@ export { PrimaryKey } from './primary-key';
 export { CompareFn } from './compare-fn';
 export { KeyValueComparator } from './key-value-comparator';
 export { KeyboardKeys } from './keyboard.enum';
+export { SortOrderType } from './sort-order-type';

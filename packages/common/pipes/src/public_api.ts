@@ -1,1 +1,1 @@
-export { MutableTypePipe } from './mutable-type.pipe';
+export { MutableTypePipe, MutableTypeModule } from './mutable';
