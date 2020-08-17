@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.55.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.54.0...v13.55.0) (2020-08-17)
+
+### Features
+
+-   **@angular-ru/common:** add mutable pipe, sort order type, entity collection
+    ([1cf8ea2](https://github.com/Angular-RU/angular-ru-sdk/commit/1cf8ea20ead47a9243a1958b1d4b6b1c20cc32ba))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.51.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.50.0...v13.51.0) (2020-08-14)
 
 **Note:** Version bump only for package @angular-ru/ng-table-builder
