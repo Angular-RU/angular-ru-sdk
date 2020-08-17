@@ -1,4 +1,4 @@
-#### `@angular-ru/common/regexp`
+#### `@angular-ru/common/object`
 
 -   `sortByAsc`
 
