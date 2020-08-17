@@ -210,7 +210,7 @@ describe('[TEST]: Object', () => {
     describe('clone', () => {
         it('deep clone', () => {
             const origin: Origin = { a: 1, b: { c: 2 } };
-            const copy: Origin = deepClone(origin);
+            const copy: Origin = deepClone(origin) as Origin;
             expect(Object.is(origin, copy)).toEqual(false);
 
             copy.b.c = 4;
@@ -227,6 +227,24 @@ describe('[TEST]: Object', () => {
             expect(deepClone(Infinity)).toEqual(null);
             expect(deepClone(null)).toEqual(null);
             expect(deepClone(undefined)).toEqual(null);
+        });
+
+        it('should be correct clone object', () => {
+            class Mock {
+                public a: string = null!;
+                public b: object[] = [{ c: 1, d: 2 }];
+                public e: number = NaN;
+                public f: number = Infinity;
+                public g: Date | string = new Date(2018, 10, 28);
+            }
+
+            expect(deepClone(new Mock())).toEqual({
+                a: null,
+                b: [{ c: 1, d: 2 }],
+                e: null,
+                f: null,
+                g: '2018-11-27T21:00:00.000Z'
+            });
         });
     });
 
