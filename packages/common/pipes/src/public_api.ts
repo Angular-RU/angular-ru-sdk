@@ -1,3 +1,6 @@
-export { DefaultValueModule, DefaultValuePipe } from './default-value';
-export { DeepPathPipe, DeepPathModule } from './deep-path';
-export { MutableTypePipe, MutableTypeModule } from './mutable';
+export { DefaultValuePipe } from './default-value/default-value.pipe';
+export { DefaultValueModule } from './default-value/default-value.module';
+export { DeepPathPipe } from './deep-path/deep-path.pipe';
+export { DeepPathModule } from './deep-path/deep-path.module';
+export { MutableTypePipe } from './mutable/mutable-type.pipe';
+export { MutableTypeModule } from './mutable/mutable-type.module';
