@@ -14,7 +14,7 @@ describe('[TEST]: Pipes', () => {
         let pipe: MutableTypePipe;
 
         beforeEach(() => {
-            TestBed.configureTestingModule({ imports: [MutableTypeModule] });
+            TestBed.configureTestingModule({ imports: [MutableTypeModule] }).compileComponents();
             pipe = TestBed.inject(MutableTypePipe);
         });
 
@@ -28,14 +28,14 @@ describe('[TEST]: Pipes', () => {
         });
 
         describe('Instance', () => {
-            let pipe: DeepPathPipe;
+            let pipePath: DeepPathPipe;
 
             beforeEach(() => {
-                pipe = new DeepPathPipe();
+                pipePath = new DeepPathPipe();
             });
 
             it('should be correct extract', () => {
-                const b: PlainObject = pipe.transform(
+                const b: PlainObject | undefined = pipePath.transform(
                     {
                         a: {
                             b: {
@@ -50,7 +50,7 @@ describe('[TEST]: Pipes', () => {
                     c: 1
                 });
 
-                const c: number = pipe.transform(
+                const c: number | undefined = pipePath.transform(
                     {
                         a: {
                             b: {
@@ -65,7 +65,7 @@ describe('[TEST]: Pipes', () => {
             });
 
             it('should be correct return object when set empty path', () => {
-                const result: PlainObject = pipe.transform({ a: { b: 1 } }, '');
+                const result: PlainObject | undefined = pipePath.transform({ a: { b: 1 } }, '');
                 expect(result).toEqual({ a: { b: 1 } });
             });
 
@@ -73,10 +73,10 @@ describe('[TEST]: Pipes', () => {
                 const a: PlainObject = { a: { b: 1 } };
                 const b: PlainObject = { a: { b: 2 } };
                 const c: PlainObject = { a: { b: [1, 2, 3] } };
-                expect(pipe.transform(a, 'a.b')).toEqual(1);
-                expect(pipe.transform(b, 'a.b')).toEqual(2);
-                expect(pipe.transform(b, 'a')).toEqual({ b: 2 });
-                expect(pipe.transform(c, 'a.b.2')).toEqual(3);
+                expect(pipePath.transform(a, 'a.b')).toEqual(1);
+                expect(pipePath.transform(b, 'a.b')).toEqual(2);
+                expect(pipePath.transform(b, 'a')).toEqual({ b: 2 });
+                expect(pipePath.transform(c, 'a.b.2')).toEqual(3);
             });
         });
     });
@@ -85,7 +85,7 @@ describe('[TEST]: Pipes', () => {
         let pipe: DeepPathPipe;
 
         beforeEach(() => {
-            TestBed.configureTestingModule({ imports: [DeepPathModule] });
+            TestBed.configureTestingModule({ imports: [DeepPathModule] }).compileComponents();
             pipe = TestBed.inject(DeepPathPipe);
         });
 
@@ -100,7 +100,7 @@ describe('[TEST]: Pipes', () => {
         let pipe: DefaultValuePipe;
 
         beforeEach(() => {
-            TestBed.configureTestingModule({ imports: [DefaultValueModule] });
+            TestBed.configureTestingModule({ imports: [DefaultValueModule] }).compileComponents();
             pipe = TestBed.inject(DefaultValuePipe);
         });
 

@@ -1,1 +1,1 @@
-export { AngularRuCommonModule } from './common.module';
+export { noop } from './noop';

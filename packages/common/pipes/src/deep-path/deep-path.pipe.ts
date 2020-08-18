@@ -5,12 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({ name: 'deepPath' })
 export class DeepPathPipe implements PipeTransform {
-    public transform<T, K = Any>(
-        item: T,
-        path: string | null | undefined,
-        fallback: K | string | undefined = ''
-    ): K | string | undefined {
-        const result: K | undefined = getValueByPath<T, K>(item, path);
+    public transform<T = Any>(item: Any, path: string | null | undefined, fallback: string = ''): T | undefined {
+        const result: Any = getValueByPath<T>(item, path);
         return checkValueIsEmpty(result) ? fallback ?? '' : result;
     }
 }
