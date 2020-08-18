@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.57.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.56.0...v13.57.0) (2020-08-18)
+
+### Bug Fixes
+
+-   **@angular-ru/logger:** support Angular 10 ModuleWithProviders<T>
+    ([8b76358](https://github.com/Angular-RU/angular-ru-sdk/commit/8b763582ff69cc71b17573c06a8893a733cb1ae1))
+
+### Features
+
+-   support Angular 10
+    ([0e92ce1](https://github.com/Angular-RU/angular-ru-sdk/commit/0e92ce1cd56dea246fecbca997172cd8308ab031))
+-   **@angular-ru/logger:** remove clipboard service (because deprecated)
+    ([4fb23cf](https://github.com/Angular-RU/angular-ru-sdk/commit/4fb23cfad71eebe31a35be7b59bd818113f065aa))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [13.26.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.26.0...v13.26.1) (2020-07-31)
 
 **Note:** Version bump only for package @angular-ru/logger
