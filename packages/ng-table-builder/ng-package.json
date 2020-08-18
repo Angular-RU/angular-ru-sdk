@@ -5,6 +5,7 @@
         "umdModuleIds": {
             "@angular-ru/common/typings": "angular-ru-common-typings",
             "@angular-ru/common/utils": "angular-ru-common-utils",
+            "@angular-ru/common/object": "angular-ru-common-object",
             "@angular-ru/common/webworker": "angular-ru-common-webworker",
             "@angular-ru/common/animations": "angular-ru-common-animations"
         }

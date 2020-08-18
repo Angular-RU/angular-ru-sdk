@@ -1,13 +1,12 @@
+import { getValueByPath } from '@angular-ru/common/object';
 import { Any, PlainObject } from '@angular-ru/common/typings';
+import { checkValueIsEmpty } from '@angular-ru/common/utils';
 import { Pipe, PipeTransform } from '@angular/core';
-
-import { checkValueIsEmpty } from '../operators/check-value-is-empty';
-import { getDeepValue } from '../operators/deep-value';
 
 @Pipe({ name: 'deepPath' })
 export class DeepPathPipe implements PipeTransform {
     public transform(item: PlainObject, path: string | null | undefined, stub: string | undefined = ''): Any {
-        const result: Any = getDeepValue(item, path);
+        const result: Any = getValueByPath(item, path);
         return checkValueIsEmpty(result) ? stub ?? '' : result;
     }
 }

@@ -1,5 +1,5 @@
+import { checkValueIsEmpty } from "@angular-ru/common/utils";
 import { PlainObject } from '@angular-ru/common/typings';
-import { checkValueIsEmpty } from '../../../src/operators/check-value-is-empty';
 import { UtilsService } from '../../../src/services/utils/utils.service';
 
 describe('UtilsService', () => {

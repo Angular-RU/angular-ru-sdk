@@ -1,7 +1,6 @@
 import { Any, PlainObject } from '@angular-ru/common/typings';
+import { checkValueIsEmpty } from '@angular-ru/common/utils';
 import { Pipe, PipeTransform } from '@angular/core';
-
-import { checkValueIsEmpty } from '../operators/check-value-is-empty';
 
 @Pipe({ name: 'defaultValue' })
 export class DefaultValuePipe implements PipeTransform {

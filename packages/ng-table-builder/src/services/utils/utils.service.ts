@@ -1,35 +1,19 @@
-import { Any, Fn, PlainObject } from '@angular-ru/common/typings';
+import { isObject } from '@angular-ru/common/object';
+import { Any, Fn } from '@angular-ru/common/typings';
 import { Injectable, NgZone, Optional } from '@angular/core';
 
 import { TableRow } from '../../interfaces/table-builder.external';
-import { checkValueIsEmpty } from '../../operators/check-value-is-empty';
 import { UtilsInterface } from './utils.interface';
 
 @Injectable()
 export class UtilsService implements UtilsInterface {
     constructor(@Optional() private readonly zone?: NgZone) {}
 
-    public get bodyRect(): ClientRect | DOMRect | undefined {
-        return document.querySelector('body')?.getBoundingClientRect();
-    }
-
-    private static replaceUndefinedOrNull(_: string, value: unknown): unknown {
-        return checkValueIsEmpty(value) ? undefined : value;
-    }
-
-    public clone<T = Any>(obj: T): T {
-        return JSON.parse(JSON.stringify(obj || null)) || {};
-    }
-
-    public isObject<T = Record<string, unknown>>(obj: T): boolean {
-        return obj === Object(obj);
-    }
-
     public mergeDeep<T>(target: T, source: T): T {
         const output: T = { ...target };
-        if (this.isObject(target) && this.isObject(source)) {
+        if (isObject(target) && isObject(source)) {
             Object.keys(source).forEach((key: string): void => {
-                if (this.isObject((source as Any)[key])) {
+                if (isObject((source as Any)[key])) {
                     const empty: boolean = !(key in target);
                     if (empty) {
                         Object.assign(output, { [key]: (source as Any)[key] });
@@ -53,9 +37,9 @@ export class UtilsService implements UtilsInterface {
             }
 
             const element: Any = row[key];
-            const isObject: boolean = typeof element === 'object' && element !== null && !Array.isArray(element);
+            const isObjectValue: boolean = typeof element === 'object' && element !== null && !Array.isArray(element);
 
-            if (isObject) {
+            if (isObjectValue) {
                 const implicitKey: string = parentKey ? `${parentKey}.${key}` : key;
                 this.flattenKeysByRow(row[key], implicitKey, keys);
             } else {
@@ -64,10 +48,6 @@ export class UtilsService implements UtilsInterface {
         }
 
         return keys;
-    }
-
-    public clean(obj: PlainObject): PlainObject {
-        return JSON.parse(JSON.stringify(obj, UtilsService.replaceUndefinedOrNull.bind(this)));
     }
 
     public requestAnimationFrame(callback: Fn): Promise<void> {

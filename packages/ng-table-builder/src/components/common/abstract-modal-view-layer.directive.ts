@@ -1,4 +1,4 @@
-import { detectChanges } from '@angular-ru/common/utils';
+import { detectChanges, getBodyRect } from '@angular-ru/common/utils';
 import {
     ApplicationRef,
     ChangeDetectorRef,
@@ -57,12 +57,12 @@ export abstract class AbstractModalViewLayer<T extends PositionState> implements
     }
 
     public get overflowX(): number {
-        const overflowX: number = this.width! + this.left - (this.utils.bodyRect?.width ?? 0);
+        const overflowX: number = this.width! + this.left - (getBodyRect()?.width ?? 0);
         return overflowX > 0 ? overflowX + SCROLLBAR_WIDTH : 0;
     }
 
     public get overflowY(): number {
-        const overflowY: number = this.calculatedHeight + this.top - (this.utils.bodyRect?.height ?? 0);
+        const overflowY: number = this.calculatedHeight + this.top - (getBodyRect()?.height ?? 0);
         return overflowY > 0 ? overflowY + SCROLLBAR_WIDTH : 0;
     }
 

@@ -1,3 +1,4 @@
+import { getValueByPath } from '@angular-ru/common/object';
 import { PlainObjectOf } from '@angular-ru/common/typings';
 import {
     ChangeDetectionStrategy,
@@ -21,7 +22,6 @@ import {
     VirtualIndex
 } from '../../interfaces/table-builder.external';
 import { RecalculatedStatus, TableBrowserEvent } from '../../interfaces/table-builder.internal';
-import { getDeepValue } from '../../operators/deep-value';
 import { ContextMenuService } from '../../services/context-menu/context-menu.service';
 import { SelectionService } from '../../services/selection/selection.service';
 import { NgxContextMenuComponent } from '../ngx-context-menu/ngx-context-menu.component';
@@ -108,7 +108,7 @@ export class TableTbodyComponent {
         return {
             row: item,
             event: $event,
-            value: getDeepValue(item, key),
+            value: getValueByPath(item, key),
             preventDefault: (): void => {
                 window.clearInterval(this.selection.selectionTaskIdle!);
             }

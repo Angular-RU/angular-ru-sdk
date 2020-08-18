@@ -1,3 +1,4 @@
+import { checkIsShallowEmpty } from '@angular-ru/common/object';
 import { Any, PlainObject, PlainObjectOf, Resolver } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { ApplicationRef, Injectable, Injector } from '@angular/core';
@@ -5,7 +6,6 @@ import { ReplaySubject, Subject } from 'rxjs';
 
 import { TABLE_GLOBAL_OPTIONS } from '../../config/table-global-options';
 import { TableRow } from '../../interfaces/table-builder.external';
-import { UtilsService } from '../utils/utils.service';
 import { filterAllWorker } from './filter.worker';
 import {
     FilterableInterface,
@@ -32,12 +32,10 @@ export class FilterableService implements FilterableInterface {
     public filtering: boolean = false;
     private previousFiltering: boolean = false;
     private readonly thread: WebWorkerThreadService;
-    private readonly utils: UtilsService;
     private readonly app: ApplicationRef;
 
     constructor(injector: Injector) {
         this.app = injector.get<ApplicationRef>(ApplicationRef);
-        this.utils = injector.get<UtilsService>(UtilsService);
         this.thread = injector.get<WebWorkerThreadService>(WebWorkerThreadService);
     }
 
@@ -114,7 +112,7 @@ export class FilterableService implements FilterableInterface {
                     columns: {
                         values: this.definition,
                         types: this.filterTypeDefinition,
-                        isEmpty: this.checkIsEmpty(this.definition)
+                        isEmpty: checkIsShallowEmpty(this.definition)
                     }
                 };
 
@@ -134,9 +132,5 @@ export class FilterableService implements FilterableInterface {
                     });
             }
         );
-    }
-
-    private checkIsEmpty(definition: PlainObjectOf<string>): boolean {
-        return Object.keys(this.utils.clean(definition)).length === 0;
     }
 }

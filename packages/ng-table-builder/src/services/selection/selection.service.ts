@@ -1,10 +1,10 @@
 import { Fn, PlainObjectOf, PrimaryKey } from '@angular-ru/common/typings';
+import { checkValueIsEmpty } from '@angular-ru/common/utils';
 import { Injectable, isDevMode, NgZone, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 
 import { ProduceDisableFn, TableRow } from '../../interfaces/table-builder.external';
 import { KeyType, RowId, SelectionStatus } from '../../interfaces/table-builder.internal';
-import { checkValueIsEmpty } from '../../operators/check-value-is-empty';
 import { SelectionMap } from './selection';
 import { SelectionRange } from './selection-range';
 

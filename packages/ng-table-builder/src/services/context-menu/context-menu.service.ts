@@ -1,9 +1,9 @@
+import { getValueByPath } from '@angular-ru/common/object';
 import { Any } from '@angular-ru/common/typings';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 import { TableRow } from '../../interfaces/table-builder.external';
-import { getDeepValue } from '../../operators/deep-value';
 import { ContextMenuState } from './context-menu.interface';
 
 @Injectable()
@@ -16,7 +16,7 @@ export class ContextMenuService {
             key,
             item: row,
             opened: true,
-            value: getDeepValue(row, key) || null,
+            value: getValueByPath(row, key) || null,
             textContent: ((event.target || {}) as Node).textContent,
             position: { left: event.clientX, top: event.clientY }
         });
