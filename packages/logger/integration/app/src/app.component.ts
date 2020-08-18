@@ -167,15 +167,6 @@ export class AppComponent implements OnInit {
         this.logger.log(...this.logger.prettyJSON(jsonExample));
     }
 
-    public showExample7(): void {
-        this.logger.clear();
-
-        const example: string = 'test string';
-
-        this.logger.log(example);
-        this.logger.copy(example);
-    }
-
     public showExample8(): void {
         this.logger.clear();
         this.logger.level = LoggerLevel.INFO;

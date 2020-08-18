@@ -4,7 +4,6 @@ import { LOGGER_OPTIONS, LoggerOptions } from './interfaces/logger.external';
 import { LoggerInjector } from './logger.injector';
 import { LoggerOptionsImpl } from './logger.options';
 import { LoggerService } from './logger.service';
-import { ClipboardFactory } from './services/clipboard-factory.service';
 import { ConsoleService } from './services/console.service';
 import { CssFactory } from './services/css-factory.service';
 import { LoggerFactory } from './services/factory.service';
@@ -20,7 +19,6 @@ import { TimerFactory } from './services/timer-factory.service';
         GroupFactory,
         CssFactory,
         JsonFactory,
-        ClipboardFactory,
         TimerFactory,
         LoggerInjector
     ]

@@ -4,7 +4,6 @@ import { Inject, Injectable } from '@angular/core';
 import { autoBind } from './decorators/autobind.decorator';
 import { LogFn, LOGGER_OPTIONS, LoggerLevel, Pipeline, TimerInfo } from './interfaces/logger.external';
 import { LoggerOptionsImpl } from './logger.options';
-import { ClipboardFactory } from './services/clipboard-factory.service';
 import { ConsoleService } from './services/console.service';
 import { CssFactory } from './services/css-factory.service';
 import { LoggerFactory } from './services/factory.service';
@@ -19,7 +18,6 @@ export class LoggerService {
 
     // eslint-disable-next-line max-params
     constructor(
-        private readonly clipboard: ClipboardFactory,
         private readonly cssFactory: CssFactory,
         private readonly console: ConsoleService,
         private readonly factory: LoggerFactory,
@@ -129,13 +127,6 @@ export class LoggerService {
     public cssClass(cssClassName: string): LoggerService {
         this.cssFactory.setClass(cssClassName);
         return this;
-    }
-
-    /**
-     * @deprecated will be remove since v14
-     */
-    public copy(example: unknown): boolean {
-        return this.clipboard.copyOnBuffer(example);
     }
 
     public startTime(title: string, level: LoggerLevel = LoggerLevel.DEBUG): TimerInfo | null {
