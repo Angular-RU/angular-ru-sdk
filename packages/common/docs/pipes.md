@@ -71,7 +71,7 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `{{ data | default: '-' }}` // view: '-'
+    template: `{{ data | defaultValue: '-' }}` // view: '-'
 })
 export class AppComponent {
     public data = null;
