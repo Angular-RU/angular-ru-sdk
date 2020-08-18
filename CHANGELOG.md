@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.57.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.56.0...v13.57.0) (2020-08-18)
+
+### Bug Fixes
+
+-   **@angular-ru/common:** correct resolve pipes ng module
+    ([1c0e977](https://github.com/Angular-RU/angular-ru-sdk/commit/1c0e97742f055b1d59821671a21c6a8b3ab57704))
+-   **@angular-ru/logger:** support Angular 10 ModuleWithProviders<T>
+    ([8b76358](https://github.com/Angular-RU/angular-ru-sdk/commit/8b763582ff69cc71b17573c06a8893a733cb1ae1))
+
+### Features
+
+-   support Angular 10
+    ([0e92ce1](https://github.com/Angular-RU/angular-ru-sdk/commit/0e92ce1cd56dea246fecbca997172cd8308ab031))
+-   **@angular-ru/common:** add checkIsEmpty
+    ([d9a2220](https://github.com/Angular-RU/angular-ru-sdk/commit/d9a2220fe89f19a9e742ccb1f3bf6ea352284e2e))
+-   **@angular-ru/common:** add defaultValue, deepPath pipe
+    ([e7987f8](https://github.com/Angular-RU/angular-ru-sdk/commit/e7987f8302a88b477071aaae53cb627affea42fe))
+-   **@angular-ru/common:** add getValueByPath, clean, replaceWithNull
+    ([e91f059](https://github.com/Angular-RU/angular-ru-sdk/commit/e91f059b297a60a4b953ff6bc8abd54b14350cbb))
+-   **@angular-ru/logger:** remove clipboard service (because deprecated)
+    ([4fb23cf](https://github.com/Angular-RU/angular-ru-sdk/commit/4fb23cfad71eebe31a35be7b59bd818113f065aa))
+-   **@angular-ru/ng-table-builder:** use @angular-ru/common
+    ([d720887](https://github.com/Angular-RU/angular-ru-sdk/commit/d7208871c05f5a9b611ca0367c396e285ffe0368))
+-   **@angular-ru/ng-table-builder:** use pipes from @angular-ru/common/pipes
+    ([f7e5c25](https://github.com/Angular-RU/angular-ru-sdk/commit/f7e5c25fdf7eaa5e3eb14fc68f0e20a36b8ecbb6))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.56.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.55.1...v13.56.0) (2020-08-18)
 
 ### Features

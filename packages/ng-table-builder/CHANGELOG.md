@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.57.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.56.0...v13.57.0) (2020-08-18)
+
+### Features
+
+-   support Angular 10
+    ([0e92ce1](https://github.com/Angular-RU/angular-ru-sdk/commit/0e92ce1cd56dea246fecbca997172cd8308ab031))
+-   **@angular-ru/ng-table-builder:** use @angular-ru/common
+    ([d720887](https://github.com/Angular-RU/angular-ru-sdk/commit/d7208871c05f5a9b611ca0367c396e285ffe0368))
+-   **@angular-ru/ng-table-builder:** use pipes from @angular-ru/common/pipes
+    ([f7e5c25](https://github.com/Angular-RU/angular-ru-sdk/commit/f7e5c25fdf7eaa5e3eb14fc68f0e20a36b8ecbb6))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [13.55.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.55.0...v13.55.1) (2020-08-17)
 
 **Note:** Version bump only for package @angular-ru/ng-table-builder
