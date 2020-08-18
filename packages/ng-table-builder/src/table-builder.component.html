@@ -95,8 +95,9 @@
                         verticalBorder !== false || schema?.verticalLine !== false
                     "
                     (observeVisible)="markVisibleColumn(column, $event)"
+                    [@fadeInLinear]
                 >
-                    <div *ngIf="$any(column)['visible']!">
+                    <div *ngIf="$any(column)['visible']!" [@fadeInLinear]>
                         <table-thead
                             cdkDragHandle
                             [column-schema]="schema"

@@ -1,3 +1,4 @@
+import { fadeInLinearAnimation } from '@angular-ru/common/animations';
 import { Any, DeepPartial, PlainObjectOf } from '@angular-ru/common/typings';
 import { detectChanges, isNil, isNotNil } from '@angular-ru/common/utils';
 import { CdkDragStart } from '@angular/cdk/drag-drop';
@@ -56,7 +57,8 @@ const { TIME_IDLE, TIME_RELOAD, FRAME_TIME, MACRO_TIME }: typeof TABLE_GLOBAL_OP
         FilterableService,
         DraggableService
     ],
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    animations: [fadeInLinearAnimation]
 })
 export class TableBuilderComponent extends TableBuilderApiImpl
     implements OnChanges, OnInit, AfterContentInit, AfterViewInit, AfterViewChecked, OnDestroy {
