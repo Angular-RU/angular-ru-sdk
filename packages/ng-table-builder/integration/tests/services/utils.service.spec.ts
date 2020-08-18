@@ -1,4 +1,4 @@
-import { checkValueIsEmpty } from "@angular-ru/common/utils";
+import { checkValueIsEmpty } from '@angular-ru/common/utils';
 import { PlainObject } from '@angular-ru/common/typings';
 import { UtilsService } from '../../../src/services/utils/utils.service';
 
