@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.55.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.55.0...v13.55.1) (2020-08-17)
+
+### Bug Fixes
+
+-   **@angular-ru/common:** EntityCollection as public api
+    ([a1ad4c8](https://github.com/Angular-RU/angular-ru-sdk/commit/a1ad4c8e9ae548d81e756bf0ee4583e3900169af))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [13.55.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.54.0...v13.55.0) (2020-08-17)
 
 ### Features
