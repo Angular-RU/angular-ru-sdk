@@ -2455,15 +2455,10 @@
   resolved "https://registry.npmjs.org/@types/minimist/-/minimist-1.2.0.tgz#69a23a3ad29caf0097f06eda59b361ee2f0639f6"
   integrity sha1-aaI6OtKcrwCX8G7aWbNh7i8GOfY=
 
-"@types/node@*", "@types/node@>= 8":
+"@types/node@*", "@types/node@14.6.0", "@types/node@>= 8":
   version "14.6.0"
   resolved "https://registry.npmjs.org/@types/node/-/node-14.6.0.tgz#7d4411bf5157339337d7cff864d9ff45f177b499"
   integrity sha512-mikldZQitV94akrc4sCcSjtJfsTKt4p+e/s0AGscVA6XArQ9kFclP+ZiYUMnq987rc6QlYxXv/EivqlfSLxpKA==
-
-"@types/node@14.0.27":
-  version "14.0.27"
-  resolved "https://registry.npmjs.org/@types/node/-/node-14.0.27.tgz#a151873af5a5e851b51b3b065c9e63390a9e0eb1"
-  integrity sha512-kVrqXhbclHNHGu9ztnAwSncIgJv/FaxmzXJvGXNdcCpV1b8u1/Mi6z6m0vwy0LzKeXFTPLH0NzwmoJ3fNCIq0g==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -9158,12 +9153,12 @@ ng-packagr@10.0.4:
     terser "^5.0.0"
     update-notifier "^4.0.0"
 
-ngx-toastr@12.1.0:
-  version "12.1.0"
-  resolved "https://registry.npmjs.org/ngx-toastr/-/ngx-toastr-12.1.0.tgz#50f6eee4262f4ba342918f06f98a657f223194cf"
-  integrity sha512-rytCRBhvuudj614Kfj9GoIVQDrFuLvHSMP1YrMwTmR1SNkNJZOpGKmaSDCCBrNDkSrGouzMWBlFbl1UDBBsiqw==
+ngx-toastr@13.0.0:
+  version "13.0.0"
+  resolved "https://registry.npmjs.org/ngx-toastr/-/ngx-toastr-13.0.0.tgz#7d011117c4352d824399de2478d2aedeec5c9391"
+  integrity sha512-p/isNGkuCTCrCaUimrHzmR/OFP9u0HomkbqBJDmbIzpUNdCGILfRF6FiuJKhb7X9XQsFAKDe3MK3PejFPRCyrg==
   dependencies:
-    tslib "^1.10.0"
+    tslib "^2.0.0"
 
 nice-try@^1.0.4:
   version "1.0.5"
@@ -12788,10 +12783,10 @@ tsconfig-paths@^3.9.0:
     minimist "^1.2.0"
     strip-bom "^3.0.0"
 
-tsickle@0.38.1:
-  version "0.38.1"
-  resolved "https://registry.npmjs.org/tsickle/-/tsickle-0.38.1.tgz#30762db759d40c435943093b6972c7f2efb384ef"
-  integrity sha512-4xZfvC6+etRu6ivKCNqMOd1FqcY/m6JY3Y+yr5+Xw+i751ciwrWINi6x/3l1ekcODH9GZhlf0ny2LpzWxnjWYA==
+tsickle@0.39.1:
+  version "0.39.1"
+  resolved "https://registry.npmjs.org/tsickle/-/tsickle-0.39.1.tgz#7ccf672cde5b430f5dd0b281ee49e170ef390ff9"
+  integrity sha512-CCc9cZhZbKoNizVM+K3Uqgit/go8GacjpqTv1cpwG/n2P0gB9GMoWZbxrUULDE9Wz26Lh86CGf6QyIPUVV1lnQ==
 
 tslib@1.9.0:
   version "1.9.0"
