@@ -10,4 +10,4 @@ export { deepFreeze } from './deep-freeze';
 export { replaceWithNull } from './replace-with-null';
 export { clean } from './clean';
 export { getValueByPath } from './get-value-by-path';
-export { checkIsEmpty } from './check-is-empty';
+export { checkIsShallowEmpty } from './check-is-shallow-empty';

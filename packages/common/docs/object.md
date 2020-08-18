@@ -262,6 +262,9 @@ expect(A).toEqual(B);
 -   `getValueByPath`
 
 ```ts
+import { PlainObject } from '@angular-ru/common/typings';
+import { getValueByPath } from '@angular-ru/common/object';
+
 const obj: PlainObject = { a: 1, f: [{ a: 2 }, { a: 3 }], g: { a: 4 } };
 
 expect(getValueByPath(obj, 'g.a')).toEqual(4);
@@ -269,4 +272,18 @@ expect(getValueByPath(obj, 'f.0')).toEqual({ a: 2 });
 expect(getValueByPath(obj, 'f.0.a')).toEqual(2);
 expect(getValueByPath(obj, 'abc')).toEqual(undefined);
 expect(getValueByPath(obj, 'f.0.a.Z', [])).toEqual([]);
+```
+
+-   `checkIsShallowEmpty`
+
+```ts
+import { checkIsShallowEmpty } from '@angular-ru/common/object';
+
+expect(checkIsShallowEmpty({ a: 0 })).toEqual(false);
+expect(checkIsShallowEmpty({ a: { b: '' } })).toEqual(false);
+expect(checkIsShallowEmpty({ a: 'hello' })).toEqual(false);
+// shallow empty object
+expect(checkIsShallowEmpty({})).toEqual(true);
+expect(checkIsShallowEmpty({ a: null })).toEqual(true);
+expect(checkIsShallowEmpty({ a: '', b: undefined, c: NaN, d: '   ' })).toEqual(true);
 ```

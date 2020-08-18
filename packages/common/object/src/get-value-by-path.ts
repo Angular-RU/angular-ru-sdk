@@ -1,6 +1,10 @@
 import { Any } from '@angular-ru/common/typings';
 
-export function getValueByPath<T, K = Any>(obj: T, path: string | null | undefined, fallback: K): K | undefined {
+export function getValueByPath<T, K = Any>(
+    obj: T,
+    path: string | null | undefined,
+    fallback: K | undefined = undefined
+): K | undefined {
     if (!(path && path.length)) {
         return obj as Any;
     }

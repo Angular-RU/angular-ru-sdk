@@ -10,7 +10,8 @@ import {
     deepFreeze,
     replaceWithNull,
     clean,
-    getValueByPath
+    getValueByPath,
+    checkIsShallowEmpty
 } from '@angular-ru/common/object';
 import { Any, PlainObject } from '@angular-ru/common/typings';
 
@@ -331,5 +332,15 @@ describe('[TEST]: Object', () => {
         expect(getValueByPath(obj, 'f.0.a')).toEqual(2);
         expect(getValueByPath(obj, 'abc')).toEqual(undefined);
         expect(getValueByPath(obj, 'f.0.a.Z', [])).toEqual([]);
+    });
+
+    it('checkIsShallowEmpty', () => {
+        expect(checkIsShallowEmpty({ a: 0 })).toEqual(false);
+        expect(checkIsShallowEmpty({ a: { b: '' } })).toEqual(false);
+        expect(checkIsShallowEmpty({ a: 'hello' })).toEqual(false);
+        // shallow empty object
+        expect(checkIsShallowEmpty({})).toEqual(true);
+        expect(checkIsShallowEmpty({ a: null })).toEqual(true);
+        expect(checkIsShallowEmpty({ a: '', b: undefined, c: NaN, d: '   ' })).toEqual(true);
     });
 });
