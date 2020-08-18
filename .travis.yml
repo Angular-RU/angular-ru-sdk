@@ -14,8 +14,8 @@ script:
     - yarn clean
     - yarn build:prepare
     - yarn build:lib
-    - yarn build:app
     - yarn test
+    - yarn build:app
     - yarn lint
     - yarn pretty:lint
     - yarn package:sort --check

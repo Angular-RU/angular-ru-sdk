@@ -1,7 +1,8 @@
-import { Input } from '@angular/core';
+import { Directive, Input } from '@angular/core';
 
 import { TABLE_GLOBAL_OPTIONS } from '../../config/table-global-options';
 
+@Directive()
 export class TableContent {
     @Input() public height: string | number = TABLE_GLOBAL_OPTIONS.ROW_HEIGHT;
     // eslint-disable-next-line @typescript-eslint/tslint/config

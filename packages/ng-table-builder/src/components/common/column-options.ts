@@ -1,4 +1,4 @@
-import { Input } from '@angular/core';
+import { Directive, Input } from '@angular/core';
 
 import { TableFilterType } from '../../services/filterable/filterable.interface';
 
@@ -6,6 +6,7 @@ import { TableFilterType } from '../../services/filterable/filterable.interface'
  * Global options
  * <ngx-options .../>
  */
+@Directive()
 export class ColumnOptions {
     /**
      * preserve track global value for overflowTooltip if selected

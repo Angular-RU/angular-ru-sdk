@@ -9,6 +9,7 @@ import {
     ChangeDetectorRef,
     ContentChild,
     ContentChildren,
+    Directive,
     ElementRef,
     EventEmitter,
     Input,
@@ -54,8 +55,8 @@ import { SCROLLBAR_WIDTH } from './symbols';
 
 const { ROW_HEIGHT, FILTER_DELAY_TIME, TIME_IDLE }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
 
-// eslint-disable-next-line
-export abstract class TableBuilderApiImpl
+@Directive()
+export abstract class AbstractTableBuilderApiImpl
     implements OnChanges, OnInit, AfterViewInit, AfterContentInit, AfterViewChecked, OnDestroy {
     // eslint-disable-next-line @typescript-eslint/tslint/config
     @Input() public height: string | number | null = null;

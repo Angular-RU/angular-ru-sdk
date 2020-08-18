@@ -20,9 +20,7 @@
                         "tsConfig": "integration/app/tsconfig.app.json",
                         "assets": ["integration/app/favicon.ico", "integration/app/assets"],
                         "styles": ["integration/app/custom-theme.scss", "integration/app/styles.css"],
-                        "scripts": [],
-                        "preserveSymlinks": true,
-                        "es5BrowserSupport": true
+                        "scripts": []
                     },
                     "configurations": {
                         "production": {

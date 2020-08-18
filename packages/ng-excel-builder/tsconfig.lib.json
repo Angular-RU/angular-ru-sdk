@@ -16,14 +16,5 @@
         "types": [],
         "lib": ["dom", "es2018"]
     },
-    "angularCompilerOptions": {
-        "enableIvy": false,
-        "fullTemplateTypeCheck": true,
-        "annotateForClosureCompiler": true,
-        "strictInjectionParameters": true,
-        "skipTemplateCodegen": true,
-        "preserveWhitespaces": true,
-        "skipMetadataEmit": true
-    },
     "exclude": ["**/*.spec.ts"]
 }

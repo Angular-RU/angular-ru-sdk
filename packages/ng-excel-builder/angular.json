@@ -13,7 +13,6 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "es5BrowserSupport": true,
                         "main": "integration/app/main.ts",
                         "index": "integration/app/index.html",
                         "polyfills": "integration/app/polyfills.ts",

@@ -1,6 +1,8 @@
 {
     "extends": "../tsconfig/tsconfig",
     "angularCompilerOptions": {
+        "enableIvy": true,
+        "strictTemplates": true,
         "fullTemplateTypeCheck": true,
         "annotateForClosureCompiler": true,
         "strictInjectionParameters": true,

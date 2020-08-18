@@ -39,7 +39,7 @@ import { SortableService } from './services/sortable/sortable.service';
 import { NgxTableViewChangesService } from './services/table-view-changes/ngx-table-view-changes.service';
 import { TemplateParserService } from './services/template-parser/template-parser.service';
 import { UtilsService } from './services/utils/utils.service';
-import { TableBuilderApiImpl } from './table-builder.api';
+import { AbstractTableBuilderApiImpl } from './table-builder.api';
 
 const { TIME_IDLE, TIME_RELOAD, FRAME_TIME, MACRO_TIME }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
 
@@ -60,7 +60,7 @@ const { TIME_IDLE, TIME_RELOAD, FRAME_TIME, MACRO_TIME }: typeof TABLE_GLOBAL_OP
     encapsulation: ViewEncapsulation.None,
     animations: [fadeInLinearAnimation]
 })
-export class TableBuilderComponent extends TableBuilderApiImpl
+export class TableBuilderComponent extends AbstractTableBuilderApiImpl
     implements OnChanges, OnInit, AfterContentInit, AfterViewInit, AfterViewChecked, OnDestroy {
     public dirty: boolean = true;
     public rendering: boolean = false;

@@ -192,8 +192,8 @@ in the Angular.
 
 Choose the version corresponding to your Angular version:
 
-| Angular | @angular-ru/\*\*\* | Status   | View Engine | Ivy     |
-| ------- | ------------------ | -------- | ----------- | ------- |
-| 10      | 14.x               | Not yet  | Not yet     | Not yet |
-| 9       | 13.x               | Released | +           | +       |
-| 8       | 12.x               | Released | +           | +       |
+| Angular | @angular-ru/\*\*\* | Status   | View Engine | Ivy |
+| ------- | ------------------ | -------- | ----------- | --- |
+| 10      | 14.x               | Released | -           | +   |
+| 9       | 13.x               | Released | +           | +   |
+| 8       | 12.x               | Released | +           | +   |

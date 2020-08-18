@@ -14,14 +14,5 @@
         "types": [],
         "lib": ["dom", "es2018"]
     },
-    "angularCompilerOptions": {
-        "enableIvy": false,
-        "annotateForClosureCompiler": true,
-        "skipTemplateCodegen": true,
-        "strictMetadataEmit": true,
-        "fullTemplateTypeCheck": true,
-        "strictInjectionParameters": true,
-        "enableResourceInlining": true
-    },
     "files": ["src/**/*.ts"]
 }
