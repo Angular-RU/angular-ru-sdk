@@ -1,3 +1,4 @@
+import { DeepPathModule, DefaultValueModule } from '@angular-ru/common/pipes';
 import { Any } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -26,8 +27,6 @@ import { ObserverViewDirective } from './directives/observer-view.directive';
 import { TemplateBodyTdDirective } from './directives/rows/template-body-td.directive';
 import { TemplateHeadThDirective } from './directives/rows/template-head-th.directive';
 import { VirtualForDirective } from './directives/virtual-for.directive';
-import { DeepPathPipe } from './pipes/deep-path.pipe';
-import { DefaultValuePipe } from './pipes/default-value.pipe';
 import { DisableRowPipe } from './pipes/disable-row.pipe';
 import { UtilsService } from './services/utils/utils.service';
 import { TableBuilderComponent } from './table-builder.component';
@@ -37,7 +36,7 @@ if ((window as Any)['Zone']) {
 }
 
 @NgModule({
-    imports: [CommonModule, DragDropModule],
+    imports: [CommonModule, DragDropModule, DeepPathModule, DefaultValueModule],
     declarations: [
         TableBuilderComponent,
         AutoHeightDirective,
@@ -46,8 +45,6 @@ if ((window as Any)['Zone']) {
         NgxColumnComponent,
         TemplateHeadThDirective,
         TemplateBodyTdDirective,
-        DeepPathPipe,
-        DefaultValuePipe,
         NgxOptionsComponent,
         TableCellComponent,
         ObserverViewDirective,
@@ -88,9 +85,6 @@ if ((window as Any)['Zone']) {
 })
 export class TableBuilderModule {
     public static forRoot(): ModuleWithProviders<TableBuilderModule> {
-        return {
-            ngModule: TableBuilderModule,
-            providers: []
-        };
+        return { ngModule: TableBuilderModule, providers: [] };
     }
 }
