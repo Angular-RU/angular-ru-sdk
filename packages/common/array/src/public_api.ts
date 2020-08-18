@@ -1,3 +1,4 @@
+export { uniqueArrayOf } from './unique-array-of';
 export { updateArray } from './update-array';
 export { firstItem } from './first-item';
 export { isEmptyList } from './is-empty-list';

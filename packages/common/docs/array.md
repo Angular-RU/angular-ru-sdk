@@ -70,3 +70,37 @@ console.log(isEmptyList([])); // true
 console.log(isEmptyList([1])); // false
 console.log(isEmptyList([1, 2, 3])); // false
 ```
+
+-   `uniqueArrayOf`
+
+```ts
+expect(
+    uniqueArrayOf(
+        [
+            { id: 1, value: 2 },
+            { id: 2, value: 3 },
+            { id: 1, value: 4 }
+        ],
+        (item) => item.id
+    )
+).toEqual([
+    { id: 1, value: 2 },
+    { id: 2, value: 3 }
+]);
+
+expect(
+    uniqueArrayOf(
+        [
+            { ip: '1.2.3.4', info: { username: 'a' } },
+            { ip: '1.2.3.5', info: { username: 'a' } },
+            { ip: '1.2.3.6', info: { username: 'b' } },
+            { ip: '1.2.3.7', info: { username: 'c' } }
+        ],
+        'info.username'
+    )
+).toEqual([
+    { ip: '1.2.3.4', info: { username: 'a' } },
+    { ip: '1.2.3.6', info: { username: 'b' } },
+    { ip: '1.2.3.7', info: { username: 'c' } }
+]);
+```
