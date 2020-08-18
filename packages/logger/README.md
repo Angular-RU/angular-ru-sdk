@@ -35,7 +35,6 @@ setting of logging levels and convenient work with groups. Among other things, y
     -   [Customization global style line](#example-set-global-style-line)
     -   [Add css classes](#example-css-classes)
     -   [Output pretty json `stringify`](#example-pretty-json)
-    -   [Copy `json, object, text` to clipboard](#example-clipboard)
     -   [Basic decorators](#example-decorators)
     -   [Decorator groups](#example-decorator-groups)
     -   [Decorator groups with function title](#example-decorator-group-with-function-title)
@@ -404,24 +403,6 @@ export class AppComponent implements OnInit {
 ```
 
 ![](https://habrastorage.org/webt/eo/ej/k5/eoejk5t_hqvo2xeaitkbzm43grm.png)
-
-### Example: clipboard
-
-```typescript
-import { LoggerService } from '@angular-ru/logger';
-
-export class AppComponent implements OnInit {
-    constructor(private readonly logger: LoggerService) {}
-
-    public ngOnInit(): void {
-        const example: string = 'test string';
-        this.logger.log(example);
-        this.logger.copy(example);
-    }
-}
-```
-
-![](https://habrastorage.org/webt/sd/uo/3a/sduo3ags-5rsnoanvxtckysresw.gif)
 
 ### Example: decorators
 

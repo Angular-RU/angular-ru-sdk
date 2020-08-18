@@ -50,7 +50,7 @@ export class AppComponent implements OnInit {
         });
     }
 
-    public showExample1(): void {
+    public exampleBasicMethods(): void {
         this.logger.clear();
         this.log('log is worked');
         this.trace(this.traceIsWork, 1, { a: 1 });
@@ -60,7 +60,7 @@ export class AppComponent implements OnInit {
         this.error(this.errorIsWork, 5, (2.55).toFixed());
     }
 
-    public showExample2(): void {
+    public exampleGroups(): void {
         this.logger.clear();
 
         this.logger.groupCollapsed('EXAMPLE 2: show stack', () => {
@@ -86,7 +86,7 @@ export class AppComponent implements OnInit {
             .closeAll();
     }
 
-    public showExample3(): void {
+    public exampleNestedGroups(): void {
         this.logger.clear();
 
         this.logger
@@ -128,7 +128,7 @@ export class AppComponent implements OnInit {
             .closeAll();
     }
 
-    public showExample4(): void {
+    public exampleSetMinimalLoggingLevel(): void {
         this.logger.clear();
 
         this.logger.level = LoggerLevel.INFO;
@@ -142,7 +142,7 @@ export class AppComponent implements OnInit {
         this.logger.level = LoggerLevel.ALL;
     }
 
-    public showExample5(): void {
+    public exampleSetStyleLine(): void {
         this.logger.clear();
 
         this.logger.css('text-transform: uppercase; font-weight: bold').debug('window current ', window);
@@ -154,7 +154,7 @@ export class AppComponent implements OnInit {
         this.info('For global configuration, use the constructor parameters');
     }
 
-    public showExample6(): void {
+    public examplePrettyJson(): void {
         this.logger.clear();
 
         const jsonExample: object = {
@@ -167,7 +167,7 @@ export class AppComponent implements OnInit {
         this.logger.log(...this.logger.prettyJSON(jsonExample));
     }
 
-    public showExample8(): void {
+    public exampleLevelGroups(): void {
         this.logger.clear();
         this.logger.level = LoggerLevel.INFO;
 
@@ -225,7 +225,7 @@ export class AppComponent implements OnInit {
         this.logger.level = LoggerLevel.ALL;
     }
 
-    public showExample9(): void {
+    public exampleSetGlobalStyleLine(): void {
         this.logger.clear();
 
         this.logger.css('font-weight: normal; text-decoration: none; font-style: italic;').info(3.14);
@@ -233,7 +233,7 @@ export class AppComponent implements OnInit {
         this.warn('global format with style!');
     }
 
-    public showExample10(): void {
+    public exampleCssClasses(): void {
         this.logger.clear();
 
         this.logger.cssClass('bold line-through').log('JavaScript sucks', 'JavaScript is the best');
@@ -247,7 +247,7 @@ export class AppComponent implements OnInit {
         this.logger.level = LoggerLevel.INFO;
     }
 
-    public showExample11(): void {
+    public exampleDecorators(): void {
         this.loggerInjection.clear();
         this.logger.log(this.helloWorld('Max'));
     }
@@ -258,19 +258,19 @@ export class AppComponent implements OnInit {
         return name;
     }
 
-    public showExample12(): void {
+    public exampleDecoratorGroups(): void {
         this.loggerInjection.clear();
         this.method('hello world');
     }
 
     @TimerLog('Test timer')
-    public showExample13(): void {
+    public exampleTimeDecorator(): void {
         this.logger.clear();
         this.log('test log');
     }
 
     @TimerLog('Advanced timer', LoggerLevel.WARN, false)
-    public showExample14(): void {
+    public exampleTimerDecorator(): void {
         this.logger.clear();
         this.log('Advanced test log');
     }
