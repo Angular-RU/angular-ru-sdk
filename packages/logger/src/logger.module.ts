@@ -30,7 +30,7 @@ export class LoggerModule {
 
     constructor(@Self() public loggerInjector: LoggerInjector) {}
 
-    public static forRoot(config: Partial<LoggerOptions> = {}): ModuleWithProviders {
+    public static forRoot(config: Partial<LoggerOptions> = {}): ModuleWithProviders<LoggerModule> {
         return {
             ngModule: LoggerModule,
             providers: [
