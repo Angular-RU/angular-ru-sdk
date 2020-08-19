@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.1.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v14.0.2...v14.1.0) (2020-08-19)
+
+### Features
+
+-   **@angular-ru/common:** rename pipes module with postfix \*PipeModule
+    ([5b8294b](https://github.com/Angular-RU/angular-ru-sdk/commit/5b8294b71e0c35a9669f426f8e4898b961539bf3))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [14.0.2](https://github.com/Angular-RU/angular-ru-sdk/compare/v14.0.1...v14.0.2) (2020-08-18)
 
 **Note:** Version bump only for package @angular-ru/ng-table-builder
