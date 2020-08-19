@@ -8,3 +8,6 @@ export { IsNotNullPipe } from './is-not-null/is-not-null.pipe';
 export { IsNotNullPipeModule } from './is-not-null/is-not-null-pipe.module';
 export { IsObjectPipe } from './is-object/is-object.pipe';
 export { IsObjectPipeModule } from './is-object/is-object-pipe.module';
+export { DetectBrowserPipeOptions } from './detect-browser/detect-browser-pipe.interface';
+export { DetectBrowserPipe } from './detect-browser/detect-browser.pipe';
+export { DetectBrowserPipeModule } from './detect-browser/detect-browser-pipe.module';

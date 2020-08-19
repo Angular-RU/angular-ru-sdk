@@ -119,3 +119,25 @@ export class AppComponent {
     public data = {};
 }
 ```
+
+-   `DetectBrowserPipe, DetectBrowserPipeModule`
+
+```ts
+import { DetectBrowserPipeModule } from '@angular-ru/common/pipes';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ..
+    imports: [DetectBrowserPipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `{{ browser | detectBrowser }}` // Chrome 84
+})
+export class AppComponent {
+    public browser =
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36';
+}
+```
