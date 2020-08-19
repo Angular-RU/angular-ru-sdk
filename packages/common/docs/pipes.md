@@ -141,3 +141,24 @@ export class AppComponent {
         'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36';
 }
 ```
+
+-   `IsStringPipe, IsStringPipeModule`
+
+```ts
+import { IsStringPipeModule } from '@angular-ru/common/pipes';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ..
+    imports: [IsStringPipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `{{ data | isString }}` // true
+})
+export class AppComponent {
+    public data = 'hello world';
+}
+```
