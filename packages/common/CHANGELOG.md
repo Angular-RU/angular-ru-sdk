@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.3.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v14.2.0...v14.3.0) (2020-08-19)
+
+### Features
+
+-   **@angular-ru/common:** add copyBuffer
+    ([cb01fcc](https://github.com/Angular-RU/angular-ru-sdk/commit/cb01fcc807f9cc4e1a12dbf524813e30d2e7736d))
+-   **@angular-ru/common:** add isArrayPipe
+    ([dd0d430](https://github.com/Angular-RU/angular-ru-sdk/commit/dd0d4300fd936b51885171c082549ddf9c67e25a))
+-   **@angular-ru/common:** add toNumber
+    ([17cae62](https://github.com/Angular-RU/angular-ru-sdk/commit/17cae623a8c34f6cc3a43fad0dcd9ef27e915d00))
+-   **@angular-ru/common:** add toNumberPipe
+    ([326358c](https://github.com/Angular-RU/angular-ru-sdk/commit/326358c9e6fc028effed5a1f295840942668a4c2))
+-   **@angular-ru/common:** add toStringPipe
+    ([8dd67b3](https://github.com/Angular-RU/angular-ru-sdk/commit/8dd67b3f5ff9d309162f2b726813da9bb9682c72))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [14.2.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v14.1.0...v14.2.0) (2020-08-19)
 
 ### Features
