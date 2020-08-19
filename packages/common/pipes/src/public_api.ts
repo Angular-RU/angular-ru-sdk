@@ -1,3 +1,5 @@
+export { IsArrayPipe } from './is-array/is-array.pipe';
+export { IsArrayPipeModule } from './is-array/is-array-pipe.module';
 export { DefaultValuePipe } from './default-value/default-value.pipe';
 export { DefaultValuePipeModule } from './default-value/default-value-pipe.module';
 export { DeepPathPipe } from './deep-path/deep-path.pipe';

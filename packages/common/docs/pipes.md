@@ -162,3 +162,24 @@ export class AppComponent {
     public data = 'hello world';
 }
 ```
+
+-   `IsArrayPipe, IsArrayPipeModule`
+
+```ts
+import { IsArrayPipeModule } from '@angular-ru/common/pipes';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ..
+    imports: [IsArrayPipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `{{ data | isArray }}` // true
+})
+export class AppComponent {
+    public data = [];
+}
+```
