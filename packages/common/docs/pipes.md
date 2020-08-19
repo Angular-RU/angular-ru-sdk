@@ -204,3 +204,24 @@ export class AppComponent {
     public data = [1, 2];
 }
 ```
+
+-   `ToNumberPipe, ToNumberPipeModule`
+
+```ts
+import { ToNumberPipeModule } from '@angular-ru/common/pipes';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ..
+    imports: [ToNumberPipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `{{ data | toNumber }}` // 12
+})
+export class AppComponent {
+    public data = '12';
+}
+```

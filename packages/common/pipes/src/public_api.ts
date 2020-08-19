@@ -1,3 +1,5 @@
+export { ToNumberPipe } from './to-number/to-number.pipe';
+export { ToNumberPipeModule } from './to-number/to-number-pipe.module';
 export { ToStringPipe } from './to-string/to-string.pipe';
 export { ToStringPipeModule } from './to-string/to-string-pipe.module';
 export { IsArrayPipe } from './is-array/is-array.pipe';
