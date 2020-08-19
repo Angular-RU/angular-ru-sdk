@@ -72,3 +72,11 @@ import { getBodyRect } from '@angular-ru/common/utils';
 
 const rect: DOMRect = getBodyRect();
 ```
+
+-   `copyBuffer`
+
+```ts
+import { copyBuffer } from '@angular-ru/common/utils';
+
+copyBuffer('hello world'); // copied in your buffer
+```
