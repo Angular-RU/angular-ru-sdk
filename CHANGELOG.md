@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.2.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v14.1.0...v14.2.0) (2020-08-19)
+
+### Features
+
+-   **@angular-ru/common:** add detectBrowserPipe
+    ([446720e](https://github.com/Angular-RU/angular-ru-sdk/commit/446720eeacc96f2c1f037299eb1ac6bfb2f66d7e))
+-   **@angular-ru/common:** add isStringPipe
+    ([a9be5a3](https://github.com/Angular-RU/angular-ru-sdk/commit/a9be5a34e21e30fd917127f19045cc8b6af73596))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [14.1.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v14.0.2...v14.1.0) (2020-08-19)
 
 ### Features
