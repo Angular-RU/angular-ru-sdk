@@ -77,3 +77,25 @@ export class AppComponent {
     public data = null;
 }
 ```
+
+
+-   `IsNotNullPipe, IsNotNullModule`
+
+```ts
+import { IsNotNullModule } from '@angular-ru/common/pipes';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ..
+    imports: [IsNotNullModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `{{ data | isNotNull }}` // false
+})
+export class AppComponent {
+    public data = null;
+}
+```
