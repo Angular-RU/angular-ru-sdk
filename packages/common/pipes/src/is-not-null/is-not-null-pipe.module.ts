@@ -7,4 +7,4 @@ import { IsNotNullPipe } from './is-not-null.pipe';
     exports: [IsNotNullPipe],
     providers: [IsNotNullPipe]
 })
-export class IsNotNullModule {}
+export class IsNotNullPipeModule {}

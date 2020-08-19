@@ -1,16 +1,16 @@
 #### `@angular-ru/common/pipes`
 
--   `MutableTypeModule, MutableTypePipe`
+-   `MutableTypePipe, MutableTypePipeModule`
 
 ```ts
-import { MutableTypeModule } from '@angular-ru/common/pipes';
+import { MutableTypePipeModule } from '@angular-ru/common/pipes';
 import { Component, NgModule } from '@angular/core';
 import { Immutable } from '@angular-ru/typings';
 import { Data } from './data';
 
 @NgModule({
     // ..
-    imports: [MutableTypeModule]
+    imports: [MutableTypePipeModule]
 })
 export class AppModule {}
 
@@ -36,15 +36,15 @@ expect(obj.a).toEqual('str2');
 expect(mutableObj.a).toEqual('str2');
 ```
 
--   `DeepPathPipe, DeepPathModule`
+-   `DeepPathPipe, DeepPathPipeModule`
 
 ```ts
-import { DeepPathModule } from '@angular-ru/common/pipes';
+import { DeepPathPipeModule } from '@angular-ru/common/pipes';
 import { Component, NgModule } from '@angular/core';
 
 @NgModule({
     // ..
-    imports: [DeepPathModule]
+    imports: [DeepPathPipeModule]
 })
 export class AppModule {}
 
@@ -57,15 +57,15 @@ export class AppComponent {
 }
 ```
 
--   `DefaultValuePipe, DefaultValueModule`
+-   `DefaultValuePipe, DefaultValuePipeModule`
 
 ```ts
-import { DefaultValueModule } from '@angular-ru/common/pipes';
+import { DefaultValuePipeModule } from '@angular-ru/common/pipes';
 import { Component, NgModule } from '@angular/core';
 
 @NgModule({
     // ..
-    imports: [DefaultValueModule]
+    imports: [DefaultValuePipeModule]
 })
 export class AppModule {}
 
@@ -78,16 +78,15 @@ export class AppComponent {
 }
 ```
 
-
--   `IsNotNullPipe, IsNotNullModule`
+-   `IsNotNullPipe, IsNotNullPipeModule`
 
 ```ts
-import { IsNotNullModule } from '@angular-ru/common/pipes';
+import { IsNotNullPipeModule } from '@angular-ru/common/pipes';
 import { Component, NgModule } from '@angular/core';
 
 @NgModule({
     // ..
-    imports: [IsNotNullModule]
+    imports: [IsNotNullPipeModule]
 })
 export class AppModule {}
 
@@ -97,5 +96,26 @@ export class AppModule {}
 })
 export class AppComponent {
     public data = null;
+}
+```
+
+-   `IsObjectPipe, IsObjectPipeModule`
+
+```ts
+import { IsObjectPipeModule } from '@angular-ru/common/pipes';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ..
+    imports: [IsObjectPipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `{{ data | isObject }}` // true
+})
+export class AppComponent {
+    public data = {};
 }
 ```

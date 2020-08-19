@@ -7,4 +7,4 @@ import { DefaultValuePipe } from './default-value.pipe';
     providers: [DefaultValuePipe],
     declarations: [DefaultValuePipe]
 })
-export class DefaultValueModule {}
+export class DefaultValuePipeModule {}

@@ -7,4 +7,4 @@ import { MutableTypePipe } from './mutable-type.pipe';
     providers: [MutableTypePipe],
     declarations: [MutableTypePipe]
 })
-export class MutableTypeModule {}
+export class MutableTypePipeModule {}

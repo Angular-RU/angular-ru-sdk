@@ -1,5 +1,4 @@
-import { DeepPathModule, DefaultValueModule } from '@angular-ru/common/pipes';
-import { Any } from '@angular-ru/common/typings';
+import { DeepPathPipeModule, DefaultValuePipeModule } from '@angular-ru/common/pipes';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
@@ -31,12 +30,8 @@ import { DisableRowPipe } from './pipes/disable-row.pipe';
 import { UtilsService } from './services/utils/utils.service';
 import { TableBuilderComponent } from './table-builder.component';
 
-if ((window as Any)['Zone']) {
-    (window as Any)[(window as Any)['Zone'].__symbol__('MutationObserver')] = MutationObserver;
-}
-
 @NgModule({
-    imports: [CommonModule, DragDropModule, DeepPathModule, DefaultValueModule],
+    imports: [CommonModule, DragDropModule, DeepPathPipeModule, DefaultValuePipeModule],
     declarations: [
         TableBuilderComponent,
         AutoHeightDirective,

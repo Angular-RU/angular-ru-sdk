@@ -1,8 +1,10 @@
 export { DefaultValuePipe } from './default-value/default-value.pipe';
-export { DefaultValueModule } from './default-value/default-value.module';
+export { DefaultValuePipeModule } from './default-value/default-value-pipe.module';
 export { DeepPathPipe } from './deep-path/deep-path.pipe';
-export { DeepPathModule } from './deep-path/deep-path.module';
+export { DeepPathPipeModule } from './deep-path/deep-path-pipe.module';
 export { MutableTypePipe } from './mutable/mutable-type.pipe';
-export { MutableTypeModule } from './mutable/mutable-type.module';
+export { MutableTypePipeModule } from './mutable/mutable-type-pipe.module';
 export { IsNotNullPipe } from './is-not-null/is-not-null.pipe';
-export { IsNotNullModule } from './is-not-null/is-not-null.module';
+export { IsNotNullPipeModule } from './is-not-null/is-not-null-pipe.module';
+export { IsObjectPipe } from './is-object/is-object.pipe';
+export { IsObjectPipeModule } from './is-object/is-object-pipe.module';

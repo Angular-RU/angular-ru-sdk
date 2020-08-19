@@ -7,4 +7,4 @@ import { DeepPathPipe } from './deep-path.pipe';
     providers: [DeepPathPipe],
     declarations: [DeepPathPipe]
 })
-export class DeepPathModule {}
+export class DeepPathPipeModule {}

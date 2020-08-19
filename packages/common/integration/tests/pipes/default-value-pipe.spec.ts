@@ -1,11 +1,11 @@
-import { DefaultValueModule, DefaultValuePipe } from '@angular-ru/common/pipes';
+import { DefaultValuePipe, DefaultValuePipeModule } from '@angular-ru/common/pipes';
 import { TestBed } from '@angular/core/testing';
 
 describe('default value', () => {
     let pipe: DefaultValuePipe;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({ imports: [DefaultValueModule] }).compileComponents();
+        TestBed.configureTestingModule({ imports: [DefaultValuePipeModule] }).compileComponents();
         pipe = TestBed.inject(DefaultValuePipe);
     });
 

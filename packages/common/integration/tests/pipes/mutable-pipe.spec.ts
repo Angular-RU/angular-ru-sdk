@@ -1,4 +1,4 @@
-import { DeepPathPipe, MutableTypeModule, MutableTypePipe } from '@angular-ru/common/pipes';
+import { DeepPathPipe, MutableTypePipeModule, MutableTypePipe } from '@angular-ru/common/pipes';
 import { TestBed } from '@angular/core/testing';
 import { Immutable, PlainObject } from '@angular-ru/common/typings';
 
@@ -6,7 +6,7 @@ describe('mutable', () => {
     let pipe: MutableTypePipe;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({ imports: [MutableTypeModule] }).compileComponents();
+        TestBed.configureTestingModule({ imports: [MutableTypePipeModule] }).compileComponents();
         pipe = TestBed.inject(MutableTypePipe);
     });
 
