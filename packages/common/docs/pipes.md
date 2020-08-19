@@ -183,3 +183,24 @@ export class AppComponent {
     public data = [];
 }
 ```
+
+-   `ToStringPipe, ToStringPipeModule`
+
+```ts
+import { ToStringPipeModule } from '@angular-ru/common/pipes';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ..
+    imports: [ToStringPipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `{{ data | toString }}` // "1,2"
+})
+export class AppComponent {
+    public data = [1, 2];
+}
+```

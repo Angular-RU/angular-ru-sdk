@@ -1,3 +1,5 @@
+export { ToStringPipe } from './to-string/to-string.pipe';
+export { ToStringPipeModule } from './to-string/to-string-pipe.module';
 export { IsArrayPipe } from './is-array/is-array.pipe';
 export { IsArrayPipeModule } from './is-array/is-array-pipe.module';
 export { DefaultValuePipe } from './default-value/default-value.pipe';
