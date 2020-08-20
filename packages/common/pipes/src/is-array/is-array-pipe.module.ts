@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { IsArrayPipe } from './is-array.pipe';
 
 @NgModule({
-    declarations: [IsArrayPipe],
     exports: [IsArrayPipe],
-    providers: [IsArrayPipe]
+    providers: [IsArrayPipe],
+    declarations: [IsArrayPipe]
 })
 export class IsArrayPipeModule {}

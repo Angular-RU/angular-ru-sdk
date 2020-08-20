@@ -15,10 +15,10 @@ describe('[TEST]: Number', () => {
         expect(toNumber(NaN)).toEqual(NaN);
         expect(toNumber(Infinity)).toEqual(Infinity);
         expect(toNumber('')).toEqual(NaN);
-        expect(toNumber(null)).toEqual(NaN);
-        expect(toNumber(undefined)).toEqual(NaN);
+        expect(toNumber(null as any)).toEqual(NaN);
+        expect(toNumber(undefined as any)).toEqual(NaN);
         expect(toNumber('', 0)).toEqual(0);
-        expect(toNumber(undefined, 0)).toEqual(0);
+        expect(toNumber(undefined as any, 0)).toEqual(0);
         expect(toNumber('1 000 000', 0)).toEqual(1000000);
         expect(toNumber('1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16', 0)).toEqual(1.2345678910111212e22);
     });

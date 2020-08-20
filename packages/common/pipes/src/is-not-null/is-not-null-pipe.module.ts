@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { IsNotNullPipe } from './is-not-null.pipe';
 
 @NgModule({
-    declarations: [IsNotNullPipe],
     exports: [IsNotNullPipe],
-    providers: [IsNotNullPipe]
+    providers: [IsNotNullPipe],
+    declarations: [IsNotNullPipe]
 })
 export class IsNotNullPipeModule {}

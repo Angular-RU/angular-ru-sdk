@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { IsStringPipe } from './is-string.pipe';
 
 @NgModule({
-    declarations: [IsStringPipe],
     exports: [IsStringPipe],
-    providers: [IsStringPipe]
+    providers: [IsStringPipe],
+    declarations: [IsStringPipe]
 })
 export class IsStringPipeModule {}

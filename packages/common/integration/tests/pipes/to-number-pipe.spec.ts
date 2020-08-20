@@ -11,11 +11,11 @@ describe('to number pipe', () => {
 
     it('to number', () => {
         expect(pipe.transform(1)).toEqual(1);
-        expect(pipe.transform(null)).toEqual(NaN);
+        expect(pipe.transform(null as any)).toEqual(NaN);
         expect(pipe.transform('1')).toEqual(1);
         expect(pipe.transform('  ')).toEqual(NaN);
-        expect(pipe.transform([])).toEqual(NaN);
-        expect(pipe.transform([1, 2])).toEqual(1);
-        expect(pipe.transform({ a: 1, b: 2 })).toEqual(NaN);
+        expect(pipe.transform([] as any)).toEqual(NaN);
+        expect(pipe.transform([1, 2] as any)).toEqual(1);
+        expect(pipe.transform({ a: 1, b: 2 } as any)).toEqual(NaN);
     });
 });
