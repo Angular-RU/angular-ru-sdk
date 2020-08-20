@@ -1,3 +1,6 @@
+export { FormatDatePipeOptions } from './format-date/format-date.interfaces';
+export { FormatDatePipe } from './format-date/format-date.pipe';
+export { FormatDatePipeModule } from './format-date/format-date-pipe.module';
 export { ToNumberPipe } from './to-number/to-number.pipe';
 export { ToNumberPipeModule } from './to-number/to-number-pipe.module';
 export { ToStringPipe } from './to-string/to-string.pipe';

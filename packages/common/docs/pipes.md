@@ -225,3 +225,24 @@ export class AppComponent {
     public data = '12';
 }
 ```
+
+-   `FormatDatePipe, FormatDatePipeModule`
+
+```ts
+import { FormatDatePipeModule } from '@angular-ru/common/pipes';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ..
+    imports: [FormatDatePipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `{{ data | formatDate }}` // 11.12.2018
+})
+export class AppComponent {
+    public data = 1544532097434;
+}
+```
