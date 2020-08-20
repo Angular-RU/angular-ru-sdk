@@ -16,9 +16,9 @@ script:
     - yarn package:sort --check
     - yarn build:prepare
     - yarn build:lib
+    - yarn lint
     - yarn test
     - yarn build:app
-    - yarn lint
 
 
 before_deploy:
