@@ -2,16 +2,13 @@
 
 > Small library for generate xls files via Webworker
 
-```typescript
+```ts
+import { NgModule } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { ExcelBuilderModule } from '@angular-ru/ng-excel-builder';
-...
 
 @NgModule({
-    imports: [
-        ExcelBuilderModule.forRoot(),
-
-    ],
-    ...
+    imports: [TranslateModule.forRoot(), ExcelBuilderModule]
 })
 export class AppModule {}
 ```
@@ -31,12 +28,13 @@ $ npm install @angular-ru/ng-excel-builder --save
 
 ## Example
 
-```typescript
-import { ExcelBuilderService, ObjectKeyMap } from '@angular-ru/ng-excel-builder';
+```ts
+import { Component } from '@angular/core';
+import { ExcelService } from '@angular-ru/ng-excel-builder';
 
-@Component({ .. })
+@Component()
 export class AppComponent {
-    public data: ObjectKeyMap[] = [
+    public data = [
       {
         id: 'id',
         name: 'Maria',
@@ -46,10 +44,10 @@ export class AppComponent {
       {...}
     ];
 
-    constructor(protected excel: ExcelBuilderService) {}
+    constructor(protected excel: ExcelService) {}
 
     public exportExcel(): void {
-        this.excel.exportExcelByWorkbook({
+        this.excel.exportExcel({
             filename: 'TITLE',
             worksheets: [
                 {
@@ -72,12 +70,12 @@ export class AppComponent {
 
 <div>
 <ul>
- <li>"filename" - the generated file will be named like this. 
- <li>"worksheets" - array of objects with your data. 
+ <li>"filename" - the generated file will be named like this.
+ <li>"worksheets" - array of objects with your data.
  <ul>
   <li>titleKey will be used in translate function.
   <li>worksheetName - name of the sheet.
-  <li>table is arraay of objects, which contains data for sheet. 
+  <li>table is array of objects, which contains data for sheet.
  </ul>
  <li>"translateColumns" - it's a dictionary for you column headers, you can leave it empty and then the column keys will be generated as is.
  </ul>

@@ -6,7 +6,7 @@ import { ExcelBuilderService } from './excel-builder.service';
 import { ExcelService } from './excel.service';
 
 @NgModule({
-    imports: [TranslateModule.forRoot()],
+    imports: [TranslateModule],
     providers: [ExcelBuilderService, ExcelService, WebWorkerThreadService]
 })
 export class ExcelBuilderModule {}
