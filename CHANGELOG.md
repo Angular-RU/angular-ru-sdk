@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.4.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v14.4.0...v14.4.1) (2020-08-20)
+
+### Bug Fixes
+
+-   **@angular-ru/ng-table-builder:** fix invalid resolve translate module
+    ([e818e5d](https://github.com/Angular-RU/angular-ru-sdk/commit/e818e5d573eed61876524c61d152289d5261d097))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [14.4.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v14.3.0...v14.4.0) (2020-08-20)
 
 ### Features
