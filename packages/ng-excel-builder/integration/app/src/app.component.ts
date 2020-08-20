@@ -1,6 +1,6 @@
-/* eslint-disable */
+import { Any } from '@angular-ru/common/typings';
+import { ExcelService } from '@angular-ru/ng-excel-builder';
 import { Component, ViewEncapsulation } from '@angular/core';
-import { ExcelBuilderService } from '@angular-ru/ng-excel-builder';
 
 @Component({
     selector: 'app-root',
@@ -9,7 +9,7 @@ import { ExcelBuilderService } from '@angular-ru/ng-excel-builder';
     encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-    public data: any[] = [
+    public data: Any[] = [
         {
             id: 'id',
             name: 'Maria',
@@ -17,10 +17,10 @@ export class AppComponent {
         }
     ];
 
-    constructor(protected excel: ExcelBuilderService) {}
+    constructor(protected excel: ExcelService) {}
 
     public exportExcel(): void {
-        this.excel.exportExcelByWorkbook({
+        this.excel.exportExcel({
             filename: 'TITLE',
             worksheets: [
                 {
@@ -33,7 +33,9 @@ export class AppComponent {
                 // Example by RU
                 MODEL_KEY_NAME: {
                     id: 'id',
+                    // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
                     name: 'Имя',
+                    // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
                     description: 'Описание'
                 }
             }

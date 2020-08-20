@@ -5,7 +5,8 @@
         "umdModuleIds": {
             "@angular-ru/common/typings": "angular-ru-common-typings",
             "@angular-ru/common/webworker": "angular-ru-common-webworker",
-            "@angular-ru/common/date": "angular-ru-common-date"
+            "@angular-ru/common/date": "angular-ru-common-date",
+            "@ngx-translate/core": "ngx-translate-core"
         }
     },
     "dest": "./dist/library"
