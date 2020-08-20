@@ -9,3 +9,4 @@ export { FlexNoneDirective } from './flex-none.directive';
 export { FlexSpaceBetweenDirective } from './flex-space-between.directive';
 export { FlexStartDirective } from './flex-start.directive';
 export { FlexLayoutComponent } from './flex-layout.component';
+export { FlexLayoutModule } from './flex-layout.module';
