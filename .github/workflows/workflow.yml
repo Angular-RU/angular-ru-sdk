@@ -25,11 +25,14 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - run: yarn clean
-    - run: yarn pretty:lint
-    - run: yarn package:sort --check
-    - run: yarn build:prepare
-    - run: yarn build:lib
-    - run: yarn lint
-    - run: yarn test
-    - run: yarn build:app
+    - run: |
+        yarn install
+        yarn clean
+        yarn pretty:lint
+        yarn package:sort --check
+        yarn build:prepare
+        yarn build:lib
+        yarn lint
+        yarn test
+        yarn build:app
+ 
