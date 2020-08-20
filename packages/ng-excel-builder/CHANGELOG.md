@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.4.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v14.3.0...v14.4.0) (2020-08-20)
+
+### Features
+
+-   **@angular-ru/ng-excel-builder:** add excel.service.ts
+    ([8943413](https://github.com/Angular-RU/angular-ru-sdk/commit/89434137147fdeedf9e2e2d067269c0bac724c97))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [14.0.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.57.1...v14.0.1) (2020-08-18)
 
 **Note:** Version bump only for package @angular-ru/ng-excel-builder

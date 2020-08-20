@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.4.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v14.3.0...v14.4.0) (2020-08-20)
+
+### Features
+
+-   **@angular-ru/common:** add formatDatePipe
+    ([5b54eab](https://github.com/Angular-RU/angular-ru-sdk/commit/5b54eab739140935670e022765b3067b73de7b38))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [14.3.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v14.2.0...v14.3.0) (2020-08-19)
 
 ### Features
