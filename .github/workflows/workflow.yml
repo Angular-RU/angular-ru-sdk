@@ -59,6 +59,8 @@ jobs:
             - name: Deploy npm packages
               if: contains('refs/heads/master', github.ref)
               run: |
+                  git config --global user.name "angular-ru"
+                  git config --global user.email "angular-ru@yandex.ru"
                   git remote set-url origin "https://${{ secrets.GH_DEPLOY }}@github.com/Angular-RU/angular-ru-sdk.git" > /dev/null 2>&1
                   git checkout master
                   echo "//registry.npmjs.org/:_authToken=\${{ secrets.NPM_TOKEN }}" >> $HOME/.npmrc 2> /dev/null
