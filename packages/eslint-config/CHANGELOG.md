@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 14.6.0 (2020-08-21)
+
+### Features
+
+-   update dependency @types/eslint to v7.2.1
+    ([2fd2375](https://github.com/Angular-RU/angular-ru-sdk/commit/2fd237502be10552684dff9acba66f0abe85568a))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## 14.5.14 (2020-08-21)
 
 **Note:** Version bump only for package @angular-ru/eslint-config
