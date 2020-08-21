@@ -33,5 +33,6 @@
     "publishConfig": {
         "access": "public",
         "directory": "dist/library"
-    }
+    },
+    "gitHead": "a959e6eb6557bca3d10e77a53aacec9442eb181d"
 }
