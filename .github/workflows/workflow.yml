@@ -26,7 +26,8 @@ jobs:
                   path: '**/node_modules'
                   key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
-            - run: |
+            - name: Install step
+              run: |
                   yarn install
                   yarn clean
                   yarn pretty:lint
