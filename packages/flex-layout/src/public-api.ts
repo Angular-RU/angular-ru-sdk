@@ -1,0 +1,12 @@
+export { FlexColumnDirective } from './flex-column.directive';
+export { FlexContainerDirective } from './flex-container.directive';
+export { FlexEndDirective } from './flex-end.directive';
+export { FlexFullWidthDirective } from './flex-full-width.directive';
+export { FlexInlineDirective } from './flex-inline.directive';
+export { FlexItemDirective } from './flex-item.directive';
+export { FlexJustifyNormalDirective } from './flex-justify-normal.directive';
+export { FlexNoneDirective } from './flex-none.directive';
+export { FlexSpaceBetweenDirective } from './flex-space-between.directive';
+export { FlexStartDirective } from './flex-start.directive';
+export { FlexLayoutComponent } from './flex-layout.component';
+export { FlexLayoutModule } from './flex-layout.module';

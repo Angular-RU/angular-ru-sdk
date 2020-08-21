@@ -1,0 +1,12 @@
+{
+    "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+    "lib": {
+        "entryFile": "src/public-api.ts",
+        "umdModuleIds": {
+            "@angular-ru/common/typings": "angular-ru-common-typings",
+            "@angular-ru/common/webworker": "angular-ru-common-webworker",
+            "@angular-ru/common/date": "angular-ru-common-date"
+        }
+    },
+    "dest": "./dist/library"
+}
