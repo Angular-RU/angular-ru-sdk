@@ -3,11 +3,14 @@
 
 name: Angular-RU SDK CI
 
-on: [push]
+on:
+    push:
+        branches: [master]
+    pull_request:
+        branches: [master]
 
 jobs:
     build:
-        name: Building
         runs-on: ubuntu-latest
 
         strategy:
@@ -16,49 +19,34 @@ jobs:
 
         steps:
             - uses: actions/checkout@v2
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
 
             - uses: actions/cache@v2
               with:
                   path: '**/node_modules'
                   key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+            - run: |
+                  yarn install
+                  yarn clean
+                  yarn pretty:lint
+                  yarn package:sort --check
+                  yarn build:prepare
+                  yarn build:lib
+                  yarn lint
+                  yarn test
+                  yarn build:app
 
-            - name: Run install packages
-              uses: actions/setup-node@v1
-              run: yarn install --frozen-lockfile --non-interactive
-
-            - name: Run clean dist, other cache
-              uses: actions/setup-node@v1
-              run: yarn clean
-
-            - name: Run prettier lint
-              uses: actions/setup-node@v1
-              run: yarn pretty:lint
-
-            - name: Run lint package.json
-              uses: actions/setup-node@v1
-              run: yarn package:sort --check
-
-            - name: Run prepare build
-              uses: actions/setup-node@v1
-              run: yarn build:prepare
-
-            - name: Run build libraries
-              uses: actions/setup-node@v1
-              run: yarn build:lib
-
-            - name: Run ESlint
-              uses: actions/setup-node@v1
-              run: yarn lint
-
-            - name: Run Jest
-              uses: actions/setup-node@v1
-              run: yarn test
-
-            - name: Run building integration apps
-              uses: actions/setup-node@v1
-              run: yarn build:app
+    deployment:
+        name: Deployments
+        runs-on: ubuntu-latest
+        needs: [build]
+        if: contains('refs/heads/master', github.ref)
+        steps:
+            - uses: actions/checkout@v2
+            - name: Deploy
+            - run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF##*/})"
+            - run: yarn deploy
