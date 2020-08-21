@@ -37,5 +37,6 @@ jobs:
                   yarn test
                   yarn build:app
 
-            if: contains('refs/heads/master', github.ref)
-            - run: yarn deploy
+            - name: Deploy step
+              if: contains('refs/heads/master', github.ref)
+              run: yarn deploy
