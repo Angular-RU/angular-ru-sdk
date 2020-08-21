@@ -18,6 +18,6 @@
     - [(@)angular-ru/common/number](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/number.md)
     - [(@)angular-ru/common/string](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/string.md)
     - [(@)angular-ru/common/regexp](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/regexp.md)
-    - [(@)angular-ru/common/array](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/array.md)
     - [(@)angular-ru/common/object](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/object.md)
+    - [(@)angular-ru/common/array](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/array.md)
     - [(@)angular-ru/common/function](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/function.md)
