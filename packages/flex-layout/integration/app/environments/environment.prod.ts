@@ -1,5 +1,7 @@
 // eslint-disable-next-line
-export const environment: any = {
+import { Any } from '@angular-ru/common/typings';
+
+export const environment: Any = {
     production: true,
     useConfig: true
 };

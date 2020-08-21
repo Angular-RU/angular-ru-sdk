@@ -185,6 +185,27 @@ in the Angular.
           </a>
       </td>
     </tr>
+    <tr>
+          <td>
+              <a href="https://npmjs.com/package/@angular-ru/flex-layout">
+                  @angular-ru/flex-layout
+              </a>
+          </td>
+          <td>
+              <img src="https://img.shields.io/npm/v/%40angular-ru%2Fflex-layout/latest.svg">
+          </td>
+          <td>
+              <a href="https://npmjs.com/package/@angular-ru/flex-layout">
+                  <img src="https://img.shields.io/npm/dm/@angular-ru/flex-layout">
+              </a>
+              <a href="packages/flex-layout/README.md">
+                  <img src="https://img.shields.io/badge/README--green.svg">
+              </a>
+              <a href="packages/flex-layout/CHANGELOG.md">
+                  <img src="https://img.shields.io/badge/CHANGELOG--green.svg">
+              </a>
+          </td>
+        </tr>
 </tbody>
 </table>
 

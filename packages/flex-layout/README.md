@@ -1,6 +1,6 @@
 # Flex Layouts
 
-```typescript
+```ts
 import { FlexLayoutModule } from '@angular-ru/flex-layout';
 ...
 
@@ -16,9 +16,7 @@ export class AppModule {}
 
 ## About
 
-<div>
 You can use our flex directives instead of writing css rules in every component.
-</div>
 
 ## Install
 
