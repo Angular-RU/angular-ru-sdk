@@ -37,12 +37,5 @@ jobs:
                   yarn test
                   yarn build:app
 
-    deployment:
-        name: Deployment
-        runs-on: ubuntu-latest
-        needs: [build]
-        if: contains('refs/heads/master', github.ref)
-        steps:
-            - uses: actions/checkout@v2
-            - name: Deploy
-              run: yarn deploy
+            if: contains('refs/heads/master', github.ref)
+            - run: yarn deploy
