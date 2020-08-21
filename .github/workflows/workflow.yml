@@ -3,36 +3,64 @@
 
 name: Angular-RU SDK CI
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [push]
 
 jobs:
-  build:
+    build:
+        name: Building
+        runs-on: ubuntu-latest
 
-    runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [14.x]
 
-    strategy:
-      matrix:
-        node-version: [14.x]
+        steps:
+            - uses: actions/checkout@v2
 
-    steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
+            - uses: actions/cache@v2
+              with:
+                  path: '**/node_modules'
+                  key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
-    - run: |
-        yarn install
-        yarn clean
-        yarn pretty:lint
-        yarn package:sort --check
-        yarn build:prepare
-        yarn build:lib
-        yarn lint
-        yarn test
-        yarn build:app
- 
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+
+            - name: Run install packages
+              run: yarn install --frozen-lockfile --non-interactive
+
+            - name: Run clean dist, other cache
+              run: yarn clean
+
+            - name: Run prettier lint
+              run: yarn pretty:lint
+
+            - name: Run lint package.json
+              run: yarn package:sort --check
+
+            - name: Run prepare build
+              run: yarn build:prepare
+
+            - name: Run build libraries
+              run: yarn build:lib
+
+            - name: Run ESlint
+              run: yarn lint
+
+            - name: Run Jest
+              run: yarn test
+
+            - name: Run building integration apps
+              run: yarn build:app
+
+    deployment:
+        name: Deployments
+        runs-on: ubuntu-latest
+        needs: [build]
+        if: contains('refs/heads/master', github.ref)
+        steps:
+            - uses: actions/checkout@v2
+            - name: Deploy
+            - run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF##*/})"
+            - run: yarn deploy
