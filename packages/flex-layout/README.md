@@ -1,25 +1,22 @@
 # Flex Layouts
 
+You can use our flex directives instead of writing css rules in every component.
+
+## Install
+
+```bash
+$ npm install @angular-ru/flex-layout
+```
+
 ```ts
+import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular-ru/flex-layout';
 ...
 
 @NgModule({
     imports: [
-        FlexLayoutModule.forRoot(),
-
-    ],
-    ...
+        FlexLayoutModule.forRoot()
+    ]
 })
 export class AppModule {}
-```
-
-## About
-
-You can use our flex directives instead of writing css rules in every component.
-
-## Install
-
-```
-$ npm install @angular-ru/flex-layout --save
 ```
