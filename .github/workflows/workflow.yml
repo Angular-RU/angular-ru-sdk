@@ -6,7 +6,7 @@ name: Angular-RU SDK CI
 on: [push]
 
 jobs:
-    build:
+    build-and-deploy:
         runs-on: ubuntu-latest
 
         strategy:
@@ -26,17 +26,27 @@ jobs:
                   path: '**/node_modules'
                   key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
-            - name: Install step
+            - name: Run install step
               run: |
                   yarn install
                   yarn clean
+                  yarn build:prepare
+
+            - name: Run building libraries step
+              run: |
+                  yarn build:lib
+
+            - name: Run lint step
+              run: |
                   yarn pretty:lint
                   yarn package:sort --check
-                  yarn build:prepare
-                  yarn build:lib
                   yarn lint
-                  yarn test
-                  yarn build:app
+
+            - name: Run test step
+              run: yarn test
+
+            - name: Run building integration apps step
+              run: yarn build:app
 
             - name: Deploy step
               if: contains('refs/heads/master', github.ref)
