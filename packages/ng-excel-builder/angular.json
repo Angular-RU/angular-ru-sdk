@@ -62,6 +62,7 @@
                 "deploy": {
                     "builder": "angular-cli-ghpages:deploy",
                     "options": {
+                        "noSilent": true,
                         "noBuild": true,
                         "branch": "master",
                         "repo": "https://github.com/Angular-RU/angular-ru-excel-example-app.git"
