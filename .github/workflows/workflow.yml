@@ -3,36 +3,46 @@
 
 name: Angular-RU SDK CI
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [push]
 
 jobs:
-  build:
+    build:
+        runs-on: ubuntu-latest
 
-    runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [14.x]
 
-    strategy:
-      matrix:
-        node-version: [14.x]
+        steps:
+            - uses: actions/checkout@v2
 
-    steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
 
-    - run: |
-        yarn install
-        yarn clean
-        yarn pretty:lint
-        yarn package:sort --check
-        yarn build:prepare
-        yarn build:lib
-        yarn lint
-        yarn test
-        yarn build:app
- 
+            - uses: actions/cache@v2
+              with:
+                  path: '**/node_modules'
+                  key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+            - run: |
+                  yarn install
+                  yarn clean
+                  yarn pretty:lint
+                  yarn package:sort --check
+                  yarn build:prepare
+                  yarn build:lib
+                  yarn lint
+                  yarn test
+                  yarn build:app
+
+    deployment:
+        name: Deployment
+        runs-on: ubuntu-latest
+        needs: [build]
+        if: contains('refs/heads/master', github.ref)
+        steps:
+            - uses: actions/checkout@v2
+            - name: Deploy
+              run: yarn deploy
