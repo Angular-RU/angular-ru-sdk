@@ -39,20 +39,17 @@ jobs:
 
     deployment:
         runs-on: ubuntu-latest
-
         strategy:
             matrix:
                 node-version: [14.x]
-
         needs: [build]
-
-        if: contains('refs/heads/master', github.ref)
 
         steps:
             - uses: actions/checkout@v2
 
             - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
-              - run: yarn deploy
+                if: github.ref == 'refs/heads/master'
+                uses: actions/setup-node@v1
+                with:
+                    node-version: ${{ matrix.node-version }}
+                - run: yarn deploy
