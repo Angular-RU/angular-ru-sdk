@@ -65,6 +65,8 @@
                         "noSilent": true,
                         "noBuild": true,
                         "branch": "master",
+                        "name": "angular-ru",
+                        "email": "angular-ru@yandex.ru",
                         "repo": "https://github.com/Angular-RU/angular-ru-excel-example-app.git"
                     }
                 }
