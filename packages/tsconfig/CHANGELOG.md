@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 14.5.1 (2020-08-21)
+
+**Note:** Version bump only for package @angular-ru/tsconfig
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [14.0.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v13.57.1...v14.0.1) (2020-08-18)
 
 **Note:** Version bump only for package @angular-ru/tsconfig

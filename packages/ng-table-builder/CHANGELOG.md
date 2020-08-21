@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 14.5.1 (2020-08-21)
+
+**Note:** Version bump only for package @angular-ru/ng-table-builder
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [14.1.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v14.0.2...v14.1.0) (2020-08-19)
 
 ### Features
