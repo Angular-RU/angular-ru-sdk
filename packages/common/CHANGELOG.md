@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 14.5.1 (2020-08-21)
+
+**Note:** Version bump only for package @angular-ru/common
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [14.4.1](https://github.com/Angular-RU/angular-ru-sdk/compare/v14.4.0...v14.4.1) (2020-08-20)
 
 **Note:** Version bump only for package @angular-ru/common
