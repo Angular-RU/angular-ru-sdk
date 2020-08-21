@@ -27,42 +27,6 @@ jobs:
               with:
                   node-version: ${{ matrix.node-version }}
 
-            - name: Run install packages
-              uses: actions/setup-node@v1
-              run: yarn install --frozen-lockfile --non-interactive
-
-            - name: Run clean dist, other cache
-              uses: actions/setup-node@v1
-              run: yarn clean
-
-            - name: Run prettier lint
-              uses: actions/setup-node@v1
-              run: yarn pretty:lint
-
-            - name: Run lint package.json
-              uses: actions/setup-node@v1
-              run: yarn package:sort --check
-
-            - name: Run prepare build
-              uses: actions/setup-node@v1
-              run: yarn build:prepare
-
-            - name: Run build libraries
-              uses: actions/setup-node@v1
-              run: yarn build:lib
-
-            - name: Run ESlint
-              uses: actions/setup-node@v1
-              run: yarn lint
-
-            - name: Run Jest
-              uses: actions/setup-node@v1
-              run: yarn test
-
-            - name: Run building integration apps
-              uses: actions/setup-node@v1
-              run: yarn build:app
-
     deployment:
         name: Deployments
         runs-on: ubuntu-latest
