@@ -39,14 +39,3 @@ jobs:
                   yarn lint
                   yarn test
                   yarn build:app
-
-    deployment:
-        name: Deployments
-        runs-on: ubuntu-latest
-        needs: [build]
-        if: contains('refs/heads/master', github.ref)
-        steps:
-            - uses: actions/checkout@v2
-            - name: Deploy
-            - run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF##*/})"
-            - run: yarn deploy
