@@ -7,6 +7,7 @@ on: [push]
 
 jobs:
     build-and-deploy:
+        if: !contains(github.event.head_commit.message , 'ci skip')
         runs-on: ubuntu-latest
 
         strategy:
@@ -48,8 +49,16 @@ jobs:
             - name: Run building integration apps step
               run: yarn build:app
 
-            - name: Deploy step
+            - name: Deploy integration apps
               env:
                   GH_TOKEN: ${{ secrets.GH_DEPLOY }}
               if: contains('refs/heads/master', github.ref)
               run: yarn deploy
+
+            - name: Deploy npm packages
+              if: contains('refs/heads/master', github.ref)
+              run: |
+                  git remote set-url origin "https://${{ secrets.GH_DEPLOY }}@github.com/Angular-RU/angular-ru-sdk.git" > /dev/null 2>&1
+                  git checkout master
+                  echo "//registry.npmjs.org/:_authToken=\${{ secrets.NPM_TOKEN }}" >> $HOME/.npmrc 2> /dev/null
+                  yarn lerna publish
