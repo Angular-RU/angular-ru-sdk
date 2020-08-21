@@ -62,8 +62,11 @@
                 "deploy": {
                     "builder": "angular-cli-ghpages:deploy",
                     "options": {
+                        "noSilent": true,
                         "noBuild": true,
                         "branch": "master",
+                        "name": "angular-ru",
+                        "email": "angular-ru@yandex.ru",
                         "repo": "https://github.com/Angular-RU/angular-ru-flex-layout-example-app.git"
                     }
                 }
