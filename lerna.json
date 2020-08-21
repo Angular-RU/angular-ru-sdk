@@ -15,7 +15,7 @@
                 "**/__fixtures__/**",
                 "**/__tests__/**",
                 "**/integration/**",
-                "**/*.md"
+                "**/CHANGELOG.md"
             ]
         },
         "publish": {
