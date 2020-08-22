@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 14.7.0 (2020-08-22)
+
+### Features
+
+-   update dependency jest to v26.4.2
+    ([7cf3cc1](https://github.com/Angular-RU/angular-ru-sdk/commit/7cf3cc16362bb8167c86e9c15b055a4944bcf366))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # 14.6.0 (2020-08-21)
 
 ### Features
