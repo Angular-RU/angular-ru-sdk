@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/common",
-    "version": "14.8.6",
+    "version": "14.8.7",
     "description": "Angular-RU package",
     "keywords": [
         "angular-ru",
@@ -33,5 +33,6 @@
     "publishConfig": {
         "access": "public",
         "directory": "dist/library"
-    }
+    },
+    "gitHead": "a3ff503a7d7b5a568f0d15ff002ace27ca6b2daa"
 }
