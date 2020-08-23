@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 14.8.0 (2020-08-23)
+
+### Features
+
+-   update dependency jest-preset-angular to v8.3.1 ([#125](https://github.com/Angular-RU/angular-ru-sdk/issues/125))
+    ([4102747](https://github.com/Angular-RU/angular-ru-sdk/commit/41027478e1d4a6fe7576c7902217017c0a67a91f))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # 14.7.0 (2020-08-22)
 
 ### Features
