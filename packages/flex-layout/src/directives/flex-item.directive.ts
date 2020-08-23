@@ -1,9 +1,9 @@
 import { AfterViewInit, Directive, ElementRef, Input } from '@angular/core';
 
-import { AbstractFlexContainer } from './abstract-flex.container';
+import { AbstractFlexLayoutDirective } from './abstract-flex-layout.directive';
 
 @Directive({ selector: '[flex-item]' })
-export class FlexItemDirective extends AbstractFlexContainer implements AfterViewInit {
+export class FlexItemDirective extends AbstractFlexLayoutDirective implements AfterViewInit {
     @Input('flex-wide') public wide: boolean | string = false;
 
     constructor(protected readonly el: ElementRef) {

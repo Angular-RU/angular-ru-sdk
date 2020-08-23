@@ -8,14 +8,22 @@ You can use our flex directives instead of writing css rules in every component.
 $ npm install @angular-ru/flex-layout
 ```
 
+-   Add styles to `styles.scss`
+
+```scss
+@import '~@angular-ru/flex-layout/styles';
+
+// ...
+```
+
 ```ts
-import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular-ru/flex-layout';
-...
+import { NgModule } from '@angular/core';
 
 @NgModule({
     imports: [
-        FlexLayoutModule.forRoot()
+        // ...
+        FlexLayoutModule
     ]
 })
 export class AppModule {}

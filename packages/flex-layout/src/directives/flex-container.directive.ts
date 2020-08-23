@@ -1,9 +1,9 @@
 import { AfterViewInit, Directive, ElementRef, Input } from '@angular/core';
 
-import { AbstractFlexContainer } from './abstract-flex.container';
+import { AbstractFlexLayoutDirective } from './abstract-flex-layout.directive';
 
 @Directive({ selector: '[flex-container]' })
-export class FlexContainerDirective extends AbstractFlexContainer implements AfterViewInit {
+export class FlexContainerDirective extends AbstractFlexLayoutDirective implements AfterViewInit {
     @Input('flex-center') public center: boolean = false;
     @Input('no-wrap') public noWrap: boolean | string = false;
     @Input('full-width') public fullWidth: boolean | string = false;

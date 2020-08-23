@@ -1,17 +1,15 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { FlexColumnDirective } from './flex-column.directive';
-import { FlexContainerDirective } from './flex-container.directive';
-import { FlexEndDirective } from './flex-end.directive';
-import { FlexFullWidthDirective } from './flex-full-width.directive';
-import { FlexInlineDirective } from './flex-inline.directive';
-import { FlexItemDirective } from './flex-item.directive';
-import { FlexJustifyNormalDirective } from './flex-justify-normal.directive';
-import { FlexLayoutComponent } from './flex-layout.component';
-import { FlexNoneDirective } from './flex-none.directive';
-import { FlexSpaceBetweenDirective } from './flex-space-between.directive';
-import { FlexStartDirective } from './flex-start.directive';
+import { FlexColumnDirective } from './directives/flex-column.directive';
+import { FlexContainerDirective } from './directives/flex-container.directive';
+import { FlexEndDirective } from './directives/flex-end.directive';
+import { FlexFullWidthDirective } from './directives/flex-full-width.directive';
+import { FlexInlineDirective } from './directives/flex-inline.directive';
+import { FlexItemDirective } from './directives/flex-item.directive';
+import { FlexJustifyNormalDirective } from './directives/flex-justify-normal.directive';
+import { FlexNoneDirective } from './directives/flex-none.directive';
+import { FlexSpaceBetweenDirective } from './directives/flex-space-between.directive';
+import { FlexStartDirective } from './directives/flex-start.directive';
 
 @NgModule({
     declarations: [
@@ -24,8 +22,7 @@ import { FlexStartDirective } from './flex-start.directive';
         FlexInlineDirective,
         FlexFullWidthDirective,
         FlexJustifyNormalDirective,
-        FlexSpaceBetweenDirective,
-        FlexLayoutComponent
+        FlexSpaceBetweenDirective
     ],
     exports: [
         FlexContainerDirective,
@@ -38,7 +35,6 @@ import { FlexStartDirective } from './flex-start.directive';
         FlexFullWidthDirective,
         FlexJustifyNormalDirective,
         FlexSpaceBetweenDirective
-    ],
-    imports: [CommonModule]
+    ]
 })
 export class FlexLayoutModule {}

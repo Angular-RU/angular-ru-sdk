@@ -1,9 +1,9 @@
 import { AfterViewInit, Directive, ElementRef } from '@angular/core';
 
-import { AbstractFlexContainer } from './abstract-flex.container';
+import { AbstractFlexLayoutDirective } from './abstract-flex-layout.directive';
 
 @Directive({ selector: '[flex-start]' })
-export class FlexStartDirective extends AbstractFlexContainer implements AfterViewInit {
+export class FlexStartDirective extends AbstractFlexLayoutDirective implements AfterViewInit {
     constructor(protected readonly el: ElementRef) {
         super();
     }

@@ -8,5 +8,6 @@
             "@angular-ru/common/date": "angular-ru-common-date"
         }
     },
-    "dest": "./dist/library"
+    "dest": "./dist/library",
+    "assets": ["styles"]
 }

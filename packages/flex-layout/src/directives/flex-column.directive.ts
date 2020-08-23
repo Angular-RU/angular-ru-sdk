@@ -1,9 +1,9 @@
 import { AfterViewInit, Directive, ElementRef, Input } from '@angular/core';
 
-import { AbstractFlexContainer } from './abstract-flex.container';
+import { AbstractFlexLayoutDirective } from './abstract-flex-layout.directive';
 
 @Directive({ selector: '[flex-column]' })
-export class FlexColumnDirective extends AbstractFlexContainer implements AfterViewInit {
+export class FlexColumnDirective extends AbstractFlexLayoutDirective implements AfterViewInit {
     @Input('flex-direction') public flexDirection: string | null = null;
 
     constructor(protected readonly el: ElementRef) {
