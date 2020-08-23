@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/prettier-config",
-    "version": "14.8.8",
+    "version": "14.8.9",
     "description": "Shared Prettier config for Angular projects",
     "keywords": [
         "angular-ru",
