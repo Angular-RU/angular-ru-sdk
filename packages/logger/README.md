@@ -5,7 +5,7 @@
 [![npm version](https://badge.fury.io/js/%40angular-ru%2Flogger.svg)](https://badge.fury.io/js/%40angular-ru%2Flogger)
 [![npm-stat](https://img.shields.io/npm/dt/@angular-ru/logger.svg)](https://npm-stat.com/charts.html?package=@angular-ru/logger&from=2017-01-12)
 
-```typescript
+```ts
 import { LoggerModule } from '@angular-ru/logger';
 ...
 
@@ -48,7 +48,7 @@ setting of logging levels and convenient work with groups. Among other things, y
 $ npm install @angular-ru/logger --save
 ```
 
-```typescript
+```ts
 import { LoggerModule } from '@angular-ru/logger';
 ...
 
@@ -67,7 +67,7 @@ export class AppModule {}
 
 ### Example: basic methods
 
-```typescript
+```ts
 import { LoggerService } from '@angular-ru/logger';
 
 export class AppComponent implements OnInit {
@@ -89,7 +89,7 @@ export class AppComponent implements OnInit {
 
 -   **Disable trace on console (filter):**
 
-```typescript
+```ts
 import { LoggerService } from '@angular-ru/logger';
 
 export class AppComponent implements OnInit {
@@ -109,7 +109,7 @@ export class AppComponent implements OnInit {
 
 -   **Logger groups with auto closed (usage callback):**
 
-```typescript
+```ts
 import { LoggerService } from '@angular-ru/logger';
 
 export class AppComponent implements OnInit {
@@ -145,7 +145,7 @@ export class AppComponent implements OnInit {
 
 -   **Logger nested groups (with pipe):**
 
-```typescript
+```ts
 import { LoggerService } from '@angular-ru/logger';
 
 export class AppComponent implements OnInit {
@@ -199,7 +199,7 @@ export class AppComponent implements OnInit {
 
 Basic parameterization
 
-```typescript
+```ts
 import { LoggerService } from '@angular-ru/logger';
 
 export class AppComponent implements OnInit {
@@ -228,7 +228,7 @@ export class AppComponent implements OnInit {
 
 -   **Logger level groups (pretty usage API):**
 
-```typescript
+```ts
 import { LoggerService, LoggerLevel } from '@angular-ru/logger';
 
 export class AppComponent implements OnInit {
@@ -297,7 +297,7 @@ export class AppComponent implements OnInit {
 
 ### Example: set style line
 
-```typescript
+```ts
 import { LoggerService } from '@angular-ru/logger';
 
 export class AppComponent implements OnInit {
@@ -320,7 +320,7 @@ export class AppComponent implements OnInit {
 
 ### Example: set global style line
 
-```typescript
+```ts
 import { LoggerService } from '@angular-ru/logger';
 
 export class AppComponent implements OnInit {
@@ -340,7 +340,7 @@ export class AppComponent implements OnInit {
 
 ### Example: CSS classes
 
-```typescript
+```ts
 import { LoggerModule } from '@angular-ru/logger';
 
 @NgModule({
@@ -363,7 +363,7 @@ import { LoggerModule } from '@angular-ru/logger';
 })
 ```
 
-```typescript
+```ts
 import { LoggerService } from '@angular-ru/logger';
 
 export class AppComponent implements OnInit {
@@ -386,7 +386,7 @@ export class AppModule {}
 
 ### Example: pretty json
 
-```typescript
+```ts
 import { LoggerService } from '@angular-ru/logger';
 
 export class AppComponent implements OnInit {
@@ -406,7 +406,7 @@ export class AppComponent implements OnInit {
 
 ### Example: decorators
 
-```typescript
+```ts
 import { LoggerService, Logger, DebugLog, TraceLog, InfoLog, WarnLog, ErrorLog, Log, LogFn } from '@angular-ru/logger';
 
 export class AppComponent {
@@ -434,7 +434,7 @@ export class AppComponent {
 
 ### Example: decorator groups
 
-```typescript
+```ts
 import { LoggerService, Logger, LoggerLevel, Group } from '@angular-ru/logger';
 
 export class AppComponent {
@@ -456,7 +456,7 @@ export class AppComponent {
 
 ### Example: decorator group with function title
 
-```typescript
+```ts
 import { Log, LogFn, Group } from '@angular-ru/logger';
 
 export class AppComponent {
@@ -478,7 +478,7 @@ export class AppComponent {
 
 ### Example: timer decorator
 
-```typescript
+```ts
 import { Log, LogFn, TimerLog, LoggerLevel, LoggerService, Logger } from '@angular-ru/logger';
 export class AppComponent {
     @Log() public log: LogFn;
@@ -502,7 +502,7 @@ export class AppComponent {
 
 ### Example: format output
 
-```typescript
+```ts
 import { LoggerModule, NgModule, FormatOutput } from '@angular-ru/logger';
 
 @NgModule({
@@ -520,7 +520,7 @@ import { LoggerModule, NgModule, FormatOutput } from '@angular-ru/logger';
 export class AppModule {}
 ```
 
-```typescript
+```ts
 import { LoggerService, OnInit } from '@angular-ru/logger';
 
 export class AppComponent implements OnInit {
@@ -540,7 +540,7 @@ export class AppComponent implements OnInit {
 
 ### Example: full configurations
 
-```typescript
+```ts
 import { LoggerModule, NgModule, LoggerLevel } from '@angular-ru/logger';
 
 @NgModule({
@@ -580,7 +580,7 @@ import { LoggerModule, NgModule, LoggerLevel } from '@angular-ru/logger';
 export class AppModule {}
 ```
 
-```typescript
+```ts
 import { LoggerService } from '@angular-ru/logger';
 
 export class AppComponent implements OnInit {
