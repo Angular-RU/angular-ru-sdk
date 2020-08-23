@@ -62,4 +62,8 @@ jobs:
                   git config --global user.name "angular-ru"
                   git config --global user.email "angular-ru@yandex.ru"
                   echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc && ls -la
-                  yarn lerna version --force-publish
+                  yarn lerna publish
+                  yarn release:bump
+                  yarn generate-changelog
+                  git commit -m "chore(release): updated release notes and package versions [ci skip]"
+                  git push origin master
