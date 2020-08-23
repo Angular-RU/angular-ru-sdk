@@ -33,9 +33,6 @@ in the Angular.
         <a href="packages/common/README.md">
             <img src="https://img.shields.io/badge/README--green.svg">
         </a>
-        <a href="packages/common/CHANGELOG.md">
-            <img src="https://img.shields.io/badge/CHANGELOG--green.svg">
-        </a>
     </td>
   </tr>
   <tr>
@@ -53,9 +50,6 @@ in the Angular.
         </a>
         <a href="packages/tsconfig/README.md">
             <img src="https://img.shields.io/badge/README--green.svg">
-        </a>
-        <a href="packages/tsconfig/CHANGELOG.md">
-            <img src="https://img.shields.io/badge/CHANGELOG--green.svg">
         </a>
     </td>
   </tr>
@@ -75,9 +69,6 @@ in the Angular.
         <a href="packages/eslint-config/README.md">
             <img src="https://img.shields.io/badge/README--green.svg">
         </a>
-        <a href="packages/eslint-config/CHANGELOG.md">
-            <img src="https://img.shields.io/badge/CHANGELOG--green.svg">
-        </a>
     </td>
   </tr>
   <tr>
@@ -95,9 +86,6 @@ in the Angular.
         </a>
         <a href="packages/prettier-config/README.md">
             <img src="https://img.shields.io/badge/README--green.svg">
-        </a>
-        <a href="packages/prettier-config/CHANGELOG.md">
-            <img src="https://img.shields.io/badge/CHANGELOG--green.svg">
         </a>
     </td>
   </tr>
@@ -117,9 +105,6 @@ in the Angular.
         <a href="packages/jest-utils/README.md">
             <img src="https://img.shields.io/badge/README--green.svg">
         </a>
-        <a href="packages/jest-utils/CHANGELOG.md">
-            <img src="https://img.shields.io/badge/CHANGELOG--green.svg">
-        </a>
     </td>
   </tr>
   <tr>
@@ -137,9 +122,6 @@ in the Angular.
           </a>
           <a href="packages/logger/README.md">
               <img src="https://img.shields.io/badge/README--green.svg">
-          </a>
-          <a href="packages/logger/CHANGELOG.md">
-              <img src="https://img.shields.io/badge/CHANGELOG--green.svg">
           </a>
       </td>
     </tr>
@@ -159,9 +141,6 @@ in the Angular.
           <a href="packages/ng-table-builder/README.md">
               <img src="https://img.shields.io/badge/README--green.svg">
           </a>
-          <a href="packages/ng-table-builder/CHANGELOG.md">
-              <img src="https://img.shields.io/badge/CHANGELOG--green.svg">
-          </a>
       </td>
     </tr>
     <tr>
@@ -179,9 +158,6 @@ in the Angular.
           </a>
           <a href="packages/ng-excel-builder/README.md">
               <img src="https://img.shields.io/badge/README--green.svg">
-          </a>
-          <a href="packages/ng-excel-builder/CHANGELOG.md">
-              <img src="https://img.shields.io/badge/CHANGELOG--green.svg">
           </a>
       </td>
     </tr>
@@ -201,9 +177,6 @@ in the Angular.
               <a href="packages/flex-layout/README.md">
                   <img src="https://img.shields.io/badge/README--green.svg">
               </a>
-              <a href="packages/flex-layout/CHANGELOG.md">
-                  <img src="https://img.shields.io/badge/CHANGELOG--green.svg">
-              </a>
           </td>
         </tr>
 </tbody>
@@ -213,8 +186,8 @@ in the Angular.
 
 Choose the version corresponding to your Angular version:
 
-| Angular | @angular-ru/\*\*\* | Status   | View Engine | Ivy |
-| ------- | ------------------ | -------- | ----------- | --- |
-| 10      | 14.x               | Released | -           | +   |
-| 9       | 13.x               | Released | +           | +   |
-| 8       | 12.x               | Released | +           | +   |
+| Angular | @angular-ru/\*\*\* | Status   | Ivy | VE  |
+| ------- | ------------------ | -------- | --- | --- |
+| 10      | 14.x               | Released | +   | -   |
+| 9       | 13.x               | Released | +   | +   |
+| 8       | 12.x               | Released | +   | +   |
