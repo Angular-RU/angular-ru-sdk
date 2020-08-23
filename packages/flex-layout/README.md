@@ -2,7 +2,7 @@
 
 You can use our flex directives instead of writing css rules in every component.
 
-## Install
+## Introduction
 
 ```bash
 $ npm install @angular-ru/flex-layout
