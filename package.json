@@ -1,92 +1,92 @@
 {
-    "name": "@angular-ru/sdk",
-    "version": "14.8.9",
-    "private": true,
-    "description": "Angular-RU SDK",
-    "homepage": "https://github.com/Angular-RU/angular-ru-sdk#readme",
-    "bugs": {
-        "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
-    },
-    "license": "MIT",
-    "author": "splincode",
-    "workspaces": [
-        "packages/*"
-    ],
-    "scripts": {
-        "build:app": "lerna run build:app",
-        "build:lib": "lerna run build:lib",
-        "build:prepare": "lerna run build:prepare",
-        "clean": "rm -rf .cache ./packages/**/dist ./packages/**/lib ./packages/**/.cache",
-        "deploy": "lerna run deploy",
-        "format": "yarn package:sort && yarn pretty:format --write",
-        "postinstall": "ngcc --async",
-        "lint": "eslint \"**/*.ts\" --ignore-pattern typescript.bad.ts",
-        "package:sort": "yarn sort-package-json \"package.json\" \"packages/*/package.json\"",
-        "pre:commit": "git add . && git update-index --again && yarn lint-staged && git add .",
-        "pretty:format": "yarn prettier \"**/*.{ts,html,css,scss,md,js,json}\"",
-        "pretty:lint": "yarn pretty:format --check",
-        "release:bump": "RELEASE_VERSION=$(node -p -e \"require('./lerna.json').version\") && yarn npe version \"$RELEASE_VERSION\"",
-        "release:changelog": "yarn generate-changelog && git add . && git commit -m \"chore(release): updated changelog [ci skip]\" && git push origin master",
-        "pretest": "lerna run pretest",
-        "test": "lerna run test",
-        "version": "yarn pre:commit"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "yarn pre:commit"
-        }
-    },
-    "lint-staged": {
-        "*.ts": [
-            "yarn prettier --write",
-            "yarn eslint --fix"
-        ],
-        "*.{html,css,scss,md,js,json}": [
-            "yarn prettier --write"
-        ],
-        "package.json": [
-            "yarn prettier --write",
-            "yarn sort-package-json"
-        ]
-    },
-    "prettier": "./packages/prettier-config/prettier.config.js",
-    "eslintConfig": {
-        "extends": "./packages/eslint-config/index.js"
-    },
-    "devDependencies": {
-        "@angular-devkit/build-angular": "0.1000.7",
-        "@angular-devkit/build-ng-packagr": "0.1000.7",
-        "@angular/animations": "10.0.11",
-        "@angular/cdk": "10.1.3",
-        "@angular/cli": "10.0.7",
-        "@angular/common": "10.0.11",
-        "@angular/compiler": "10.0.11",
-        "@angular/compiler-cli": "10.0.11",
-        "@angular/core": "10.0.11",
-        "@angular/forms": "10.0.11",
-        "@angular/language-service": "10.0.11",
-        "@angular/material": "10.1.3",
-        "@angular/platform-browser": "10.0.11",
-        "@angular/platform-browser-dynamic": "10.0.11",
-        "@angular/router": "10.0.11",
-        "@ngx-translate/core": "13.0.0",
-        "@types/node": "14.6.0",
-        "angular-cli-ghpages": "0.6.2",
-        "generate-changelog": "1.8.0",
-        "hammerjs": "2.0.8",
-        "husky": "4.2.5",
-        "lerna": "3.22.1",
-        "lint-staged": "10.2.11",
-        "ng-packagr": "10.0.4",
-        "npe": "1.1.3",
-        "rxjs": "6.6.2",
-        "sort-package-json": "1.44.0",
-        "tsickle": "0.39.1",
-        "typescript": "3.9.7",
-        "zone.js": "0.11.1"
+  "name": "@angular-ru/sdk",
+  "version": "14.8.10",
+  "private": true,
+  "description": "Angular-RU SDK",
+  "homepage": "https://github.com/Angular-RU/angular-ru-sdk#readme",
+  "bugs": {
+    "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
+  },
+  "license": "MIT",
+  "author": "splincode",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build:app": "lerna run build:app",
+    "build:lib": "lerna run build:lib",
+    "build:prepare": "lerna run build:prepare",
+    "clean": "rm -rf .cache ./packages/**/dist ./packages/**/lib ./packages/**/.cache",
+    "deploy": "lerna run deploy",
+    "format": "yarn package:sort && yarn pretty:format --write",
+    "postinstall": "ngcc --async",
+    "lint": "eslint \"**/*.ts\" --ignore-pattern typescript.bad.ts",
+    "package:sort": "yarn sort-package-json \"package.json\" \"packages/*/package.json\"",
+    "pre:commit": "git add . && git update-index --again && yarn lint-staged && git add .",
+    "pretty:format": "yarn prettier \"**/*.{ts,html,css,scss,md,js,json}\"",
+    "pretty:lint": "yarn pretty:format --check",
+    "release:bump": "RELEASE_VERSION=$(node -p -e \"require('./lerna.json').version\") && yarn npe version \"$RELEASE_VERSION\"",
+    "release:changelog": "yarn generate-changelog && git add . && git commit -m \"chore(release): updated changelog [ci skip]\" && git push origin master",
+    "pretest": "lerna run pretest",
+    "test": "lerna run test",
+    "version": "yarn pre:commit"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn pre:commit"
     }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "yarn prettier --write",
+      "yarn eslint --fix"
+    ],
+    "*.{html,css,scss,md,js,json}": [
+      "yarn prettier --write"
+    ],
+    "package.json": [
+      "yarn prettier --write",
+      "yarn sort-package-json"
+    ]
+  },
+  "prettier": "./packages/prettier-config/prettier.config.js",
+  "eslintConfig": {
+    "extends": "./packages/eslint-config/index.js"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "0.1000.7",
+    "@angular-devkit/build-ng-packagr": "0.1000.7",
+    "@angular/animations": "10.0.11",
+    "@angular/cdk": "10.1.3",
+    "@angular/cli": "10.0.7",
+    "@angular/common": "10.0.11",
+    "@angular/compiler": "10.0.11",
+    "@angular/compiler-cli": "10.0.11",
+    "@angular/core": "10.0.11",
+    "@angular/forms": "10.0.11",
+    "@angular/language-service": "10.0.11",
+    "@angular/material": "10.1.3",
+    "@angular/platform-browser": "10.0.11",
+    "@angular/platform-browser-dynamic": "10.0.11",
+    "@angular/router": "10.0.11",
+    "@ngx-translate/core": "13.0.0",
+    "@types/node": "14.6.0",
+    "angular-cli-ghpages": "0.6.2",
+    "generate-changelog": "1.8.0",
+    "hammerjs": "2.0.8",
+    "husky": "4.2.5",
+    "lerna": "3.22.1",
+    "lint-staged": "10.2.11",
+    "ng-packagr": "10.0.4",
+    "npe": "1.1.3",
+    "rxjs": "6.6.2",
+    "sort-package-json": "1.44.0",
+    "tsickle": "0.39.1",
+    "typescript": "3.9.7",
+    "zone.js": "0.11.1"
+  }
 }
