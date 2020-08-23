@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 14.8.1 (2020-08-23)
+
+### Bug Fixes
+
+-   **@angular-ru/flex-layout:** correct resolve flex layout styles
+    ([073e7d9](https://github.com/Angular-RU/angular-ru-sdk/commit/073e7d9de389e9f708a134d4beafec107f530a1c))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # 14.8.0 (2020-08-23)
 
 ### Features
