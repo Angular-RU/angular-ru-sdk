@@ -5,9 +5,9 @@
     "stream": true,
     "concurrency": 1,
     "npmClient": "yarn",
+    "changelog": false,
     "useWorkspaces": true,
     "version": "14.8.1",
-    "changelogPreset": "angular",
     "command": {
         "version": {
             "allowBranch": "master",

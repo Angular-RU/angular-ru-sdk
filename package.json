@@ -29,9 +29,10 @@
         "pre:commit": "git add . && git update-index --again && yarn lint-staged && git add .",
         "pretty:format": "yarn prettier \"**/*.{ts,html,css,scss,md,js,json}\"",
         "pretty:lint": "yarn pretty:format --check",
+        "release:bump": "RELEASE_VERSION=$(node -p -e \"require('./lerna.json').version\") && npe version \"$RELEASE_VERSION\"",
         "pretest": "lerna run pretest",
         "test": "lerna run test",
-        "version": "yarn pre:commit"
+        "version": "yarn pre:commit && yarn release:bump"
     },
     "husky": {
         "hooks": {
