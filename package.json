@@ -29,10 +29,11 @@
         "pre:commit": "git add . && git update-index --again && yarn lint-staged && git add .",
         "pretty:format": "yarn prettier \"**/*.{ts,html,css,scss,md,js,json}\"",
         "pretty:lint": "yarn pretty:format --check",
+        "publish": " yarn release:bump && yarn generate-changelog",
         "release:bump": "RELEASE_VERSION=$(node -p -e \"require('./lerna.json').version\") && npe version \"$RELEASE_VERSION\"",
         "pretest": "lerna run pretest",
         "test": "lerna run test",
-        "version": "yarn pre:commit && yarn release:bump && yarn generate-changelog"
+        "version": "yarn pre:commit"
     },
     "husky": {
         "hooks": {
