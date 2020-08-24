@@ -8,7 +8,7 @@ You can use our flex directives instead of writing css rules in every component.
 $ npm install @angular-ru/flex-layout
 ```
 
--   Add styles to `styles.scss`
+-   Add styles to `styles.scss` file:
 
 ```scss
 @import '~@angular-ru/flex-layout/styles';
