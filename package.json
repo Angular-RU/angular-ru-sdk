@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/sdk",
-    "version": "",
+    "version": "14.8.17",
     "private": true,
     "description": "Angular-RU SDK",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk#readme",
@@ -29,7 +29,7 @@
         "pre:commit": "git add . && git update-index --again && yarn lint-staged && git add .",
         "pretty:format": "yarn prettier \"**/*.{ts,html,css,scss,md,js,json}\"",
         "pretty:lint": "yarn pretty:format --check",
-        "release:bump": "RELEASE_VERSION=$(git describe --tags --abbrev=0 | cut -c 2-) && yarn npe version \"$RELEASE_VERSION\"",
+        "release:bump": "RELEASE_VERSION=$(node -p -e \"require('./lerna.json').version\") && yarn npe version \"$RELEASE_VERSION\"",
         "release:changelog": "yarn generate-changelog",
         "pretest": "lerna run pretest",
         "test": "lerna run test",
