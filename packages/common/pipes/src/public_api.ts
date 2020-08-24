@@ -1,3 +1,6 @@
+export { SafeType, SafeValueType } from './safe/safe.interfaces';
+export { SafePipe } from './safe/safe.pipe';
+export { SafePipeModule } from './safe/safe-pipe.module';
 export { FormatDatePipeOptions } from './format-date/format-date.interfaces';
 export { FormatDatePipe } from './format-date/format-date.pipe';
 export { FormatDatePipeModule } from './format-date/format-date-pipe.module';

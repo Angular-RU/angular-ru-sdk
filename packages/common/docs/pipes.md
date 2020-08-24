@@ -246,3 +246,24 @@ export class AppComponent {
     public data = 1544532097434;
 }
 ```
+
+-   `SafePipe, SafePipeModule`
+
+```ts
+import { SafePipeModule } from '@angular-ru/common/pipes';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ..
+    imports: [SafePipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `<div [innerHTML]="data | safe: 'html'"></div>`
+})
+export class AppComponent {
+    public data = '<p>Hello world</p>';
+}
+```
