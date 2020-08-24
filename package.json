@@ -33,7 +33,7 @@
         "release:changelog": "yarn generate-changelog",
         "pretest": "lerna run pretest",
         "test": "lerna run test",
-        "version": "yarn release:bump && yarn release:changelog && yarn pre:commit"
+        "version": "yarn release:bump && echo \"RELEASE: v$RELEASE_VERSION\" &&  && yarn release:changelog && yarn pre:commit"
     },
     "husky": {
         "hooks": {
