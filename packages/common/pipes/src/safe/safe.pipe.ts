@@ -1,14 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { SafeType, SafeValueType } from './safe.interfaces';
+import { SafeType, SafeTypeOptions, SafeValueType } from './safe.interfaces';
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
     constructor(protected sanitizer: DomSanitizer) {}
 
     // eslint-disable-next-line complexity
-    public transform(value: string | undefined, type: SafeValueType): SafeType | string {
+    public transform(value: string | undefined, type: SafeTypeOptions): SafeType | string {
         const prepared: string = value ?? '';
         switch (type) {
             case SafeValueType.HTML:

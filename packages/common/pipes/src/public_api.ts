@@ -1,7 +1,7 @@
 export { NumberFormatOptions } from './number-format/number-format.interfaces';
 export { NumberFormatPipe } from './number-format/number-format.pipe';
 export { NumberFormatPipeModule } from './number-format/number-format-pipe.module';
-export { SafeType, SafeValueType } from './safe/safe.interfaces';
+export { SafeType, SafeTypeOptions } from './safe/safe.interfaces';
 export { SafePipe } from './safe/safe.pipe';
 export { SafePipeModule } from './safe/safe-pipe.module';
 export { FormatDatePipeOptions } from './format-date/format-date.interfaces';
