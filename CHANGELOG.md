@@ -1,3 +1,17 @@
+#### 14.20.0 (2020-08-24)
+
+##### New Features
+
+-   **@angular-ru/ng-excel-builder:** use only toFormatDateTime from @angular-ru/common
+    ([37315936](https://github.com/Angular-RU/angular-ru-sdk/commit/3731593673b251ab9c0b75fe741b6358e985890b))
+-   **@angular-ru/common:** tree shakable date functions
+    ([8a76cade](https://github.com/Angular-RU/angular-ru-sdk/commit/8a76cadee3ad74b6f529101c042afdf898809ae5))
+
+##### Refactors
+
+-   **@angular-ru/ng-table-builder:** small fix with prettier
+    ([3aae1250](https://github.com/Angular-RU/angular-ru-sdk/commit/3aae1250d993cfbd6b6624ed8ca24d6bc4029d08))
+
 #### 14.19.0 (2020-08-24)
 
 ##### New Features
