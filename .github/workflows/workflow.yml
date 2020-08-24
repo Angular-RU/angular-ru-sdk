@@ -18,8 +18,8 @@ jobs:
         steps:
             - uses: actions/checkout@v2
               with:
-                  # pulls all commits (needed for lerna / semantic release to correctly version
-                  fetch-depth: 0
+                  fetch-depth: '0'
+              run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
 
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -64,5 +64,4 @@ jobs:
               run: |
                   git config --global user.name "angular-ru"
                   git config --global user.email "angular-ru@yandex.ru"
-                  echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
-                  yarn lerna publish
+                  yarn lerna publish --registry https://registry.npmjs.org/:_authToken=${NPM_TOKEN}

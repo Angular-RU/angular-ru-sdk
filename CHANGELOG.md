@@ -1,18 +1,4 @@
-#### 14.17.3 (2020-08-24)
-
-##### Continuous Integration
-
--   fix fetch ([771ce9fc](https://github.com/Angular-RU/angular-ru-sdk/commit/771ce9fccfc07b9547edf09dc6244bbc80a55a96))
--   fix fetch ([af4b2c02](https://github.com/Angular-RU/angular-ru-sdk/commit/af4b2c0201e879b7b706689ad9f79d900228e209))
-
-#### 14.17.2 (2020-08-24)
-
-##### Documentation Changes
-
--   **@angular-ru/common:** update README.md
-    ([6dbacb2e](https://github.com/Angular-RU/angular-ru-sdk/commit/6dbacb2eaf5b226fc11dd9982e36f45ae1e30e81))
-
-#### 14.8.6 - 14.8.17 (2020-08-24)
+#### 14.8.6 - 14.17.3 (2020-08-24)
 
 -   A yanked software release
 
