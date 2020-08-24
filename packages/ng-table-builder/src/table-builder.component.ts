@@ -60,7 +60,9 @@ const { TIME_IDLE, TIME_RELOAD, FRAME_TIME, MACRO_TIME }: typeof TABLE_GLOBAL_OP
     encapsulation: ViewEncapsulation.None,
     animations: [fadeInLinearAnimation]
 })
-export class TableBuilderComponent extends AbstractTableBuilderApiImpl
+// eslint-disable-next-line prettier/prettier
+export class TableBuilderComponent
+    extends AbstractTableBuilderApiImpl
     implements OnChanges, OnInit, AfterContentInit, AfterViewInit, AfterViewChecked, OnDestroy {
     public dirty: boolean = true;
     public rendering: boolean = false;
