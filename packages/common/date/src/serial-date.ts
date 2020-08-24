@@ -1,94 +1,88 @@
 import { Timestamp } from '@angular-ru/common/typings';
-import { DatePipe } from '@angular/common';
 
+import { dateStringToDate } from './date-string-to-date';
+import { isDateValid } from './is-date-valid';
+import { isToday } from './is-today';
 import { SerialDateConfig, SerialDateFormatOptions } from './serial-date.interfaces';
+import { toFormat } from './to-format';
+import { toFormatDateTime } from './to-format-date-time';
+import { toISOString } from './to-iso-string';
+import { toTimestamp } from './to-timestamp';
+import { toUnix } from './to-unix';
+import { toUtc } from './to-utc';
 
+/**
+ * @deprecated
+ * isDateValid instead SerialDate.isDateValid
+ * isDateValid instead SerialDate.isDateValid
+ * toTimestamp instead SerialDate.toTimestamp
+ * toISOString instead SerialDate.toISOString
+ * toUnix instead SerialDate.toUnix
+ * isToday instead SerialDate.isToday
+ */
 // @dynamic
 abstract class AbstractSerialDate {
-    private static readonly maxYear: number = 3000;
-
+    /**
+     * @deprecated use dateStringToDate instead SerialDate.dateStringToDate
+     */
     public static dateStringToDate(date: string | Date): Date {
-        if (date instanceof Date) {
-            return date;
-        }
-
-        const firstItem: number = 1;
-        const parsedDate: string = (date || '')
-            .replace(/^(\d{1,1})/, '0$1')
-            .replace(/\.(\d{1,1})\./, '.0$1.')
-            .replace('..', '.01.')
-            .replace(/^\./, '01.')
-            .replace(/(\d{3})\./g, (str: string): string => str.slice(firstItem))
-            .replace(/(\d{2}).(\d{2}).(\d{4})/, '$2/$1/$3')
-            .replace(/00\//g, '01/');
-
-        const dateValue: Date = new Date(parsedDate);
-
-        if (dateValue.getFullYear() > AbstractSerialDate.maxYear) {
-            return new Date();
-        }
-
-        return isNaN(dateValue.getTime()) ? new Date() : dateValue;
+        return dateStringToDate(date);
     }
 
+    /**
+     * @deprecated use isDateValid instead SerialDate.isDateValid
+     */
     public static isDateValid(date?: Date): boolean {
-        return date instanceof Date && !!date.getTime();
+        return isDateValid(date);
     }
 
+    /**
+     * @deprecated use toTimestamp instead SerialDate.toTimestamp
+     */
     public static toTimestamp(date: string, format: string): string {
-        const correctDate: Date = AbstractSerialDate.dateStringToDate(date);
-        return AbstractSerialDate.toFormat(correctDate, format);
+        return toTimestamp(date, format);
     }
 
+    /**
+     * @deprecated use toFormatDateTime instead SerialDate.formatDateTime
+     */
     public static formatDateTime(time?: number, options: SerialDateFormatOptions = {}): string {
-        const timeValue: number = time ?? new Date().getTime();
-        const formatValue: string = options.format ?? 'dd.MM.yyyy HH:mm:ss';
-        return new DatePipe('en-US').transform(timeValue, formatValue, options.timezone) || '';
+        return toFormatDateTime(time, options);
     }
 
+    /**
+     * @deprecated use toUtc instead SerialDate.utc
+     */
     public static utc(config: Partial<SerialDateConfig> = {}): string {
-        const { fullYear, month, date, hours, minutes, seconds, timeZoneHours }: SerialDateConfig = {
-            ...{
-                fullYear: new Date().getFullYear(),
-                month: new Date().getMonth(),
-                date: new Date().getDate(),
-                hours: 0,
-                minutes: 0,
-                seconds: 0,
-                // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-                timeZoneHours: new Date().getTimezoneOffset() /* TIMEZONE_OFFSET */ / 60 /* ONE_HOUR */
-            },
-            ...config
-        };
-
-        return new Date(Date.UTC(fullYear, month, date, hours + timeZoneHours, minutes, seconds)).toISOString();
+        return toUtc(config);
     }
 
+    /**
+     * @deprecated use toISOString instead SerialDate.toISOString
+     */
     public static toISOString(time: Timestamp, defaultValue: string = ''): string {
-        return time ? new Date(time).toISOString() : defaultValue;
+        return toISOString(time, defaultValue);
     }
 
+    /**
+     * @deprecated use toFormat instead SerialDate.toFormat
+     */
     public static toFormat(value: Timestamp, format: string): string {
-        return value ? new DatePipe('en-US').transform(value, format)! : null!;
+        return toFormat(value, format);
     }
 
+    /**
+     * @deprecated use toUnix instead SerialDate.toUnix
+     */
     public static toUnix(date: Timestamp): number {
-        if (date instanceof Date) {
-            return date.getTime();
-        } else if (typeof date === 'string') {
-            return new Date(date).getTime();
-        }
-
-        return date;
+        return toUnix(date);
     }
 
+    /**
+     * @deprecated use isToday instead SerialDate.isToday
+     */
     public static isToday(someDate: Date): boolean {
-        const today: Date = new Date();
-        return (
-            someDate.getDate() === today.getDate() &&
-            someDate.getMonth() === today.getMonth() &&
-            someDate.getFullYear() === today.getFullYear()
-        );
+        return isToday(someDate);
     }
 }
 

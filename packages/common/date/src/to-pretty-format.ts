@@ -1,7 +1,7 @@
 import { Timestamp } from '@angular-ru/common/typings';
 
-import { SerialDate } from '../serial-date';
+import { toFormat } from './to-format';
 
 export function toPrettyFormat(timestamp: Timestamp): string {
-    return SerialDate.toFormat(timestamp, 'dd.MM.yyyy HH:mm:ss');
+    return toFormat(timestamp, 'dd.MM.yyyy HH:mm:ss');
 }
