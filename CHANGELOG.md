@@ -1,3 +1,15 @@
+#### 14.8.12 (2020-08-24)
+
+##### Continuous Integration
+
+-   update workflow
+    ([5502034e](https://github.com/Angular-RU/angular-ru-sdk/commit/5502034e2da6ed6302f0600aed140dd5c94f8ed9))
+
+##### Documentation Changes
+
+-   **@angular-ru/common:** update README.md
+    ([72a0bd5c](https://github.com/Angular-RU/angular-ru-sdk/commit/72a0bd5c7f581608c301c0e82e0c03a5b6d35868))
+
 #### 14.8.10 (2020-08-23)
 
 #### 14.8.5 (2020-08-23)
