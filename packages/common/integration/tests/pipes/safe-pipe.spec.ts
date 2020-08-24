@@ -1,4 +1,4 @@
-import { SafePipe, SafePipeModule, SafeValueType } from '@angular-ru/common/pipes';
+import { SafePipe, SafePipeModule } from '@angular-ru/common/pipes';
 import { TestBed } from '@angular/core/testing';
 
 describe('safe pipe', () => {
@@ -10,13 +10,13 @@ describe('safe pipe', () => {
     });
 
     it('html', () => {
-        expect(pipe.transform('<p>Hello world</p>', SafeValueType.HTML)).toEqual({
+        expect(pipe.transform('<p>Hello world</p>', 'html')).toEqual({
             changingThisBreaksApplicationSecurity: '<p>Hello world</p>'
         });
     });
 
     it('style', () => {
-        expect(pipe.transform('font-size: 12px', SafeValueType.STYLE)).toEqual({
+        expect(pipe.transform('font-size: 12px', 'style')).toEqual({
             changingThisBreaksApplicationSecurity: 'font-size: 12px'
         });
     });
