@@ -1,10 +1,3 @@
-#### 14.17.1 (2020-08-24)
-
-##### Continuous Integration
-
--   update workflow
-    ([7820084c](https://github.com/Angular-RU/angular-ru-sdk/commit/7820084c9470cfaf41b968f5545a0a4e1c5a2635))
-
 #### 14.8.6 - 14.8.17 (2020-08-24)
 
 -   A yanked software release
