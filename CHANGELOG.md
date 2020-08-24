@@ -1,3 +1,10 @@
+#### 14.17.2 (2020-08-24)
+
+##### Documentation Changes
+
+-   **@angular-ru/common:** update README.md
+    ([6dbacb2e](https://github.com/Angular-RU/angular-ru-sdk/commit/6dbacb2eaf5b226fc11dd9982e36f45ae1e30e81))
+
 #### 14.8.6 - 14.8.17 (2020-08-24)
 
 -   A yanked software release
