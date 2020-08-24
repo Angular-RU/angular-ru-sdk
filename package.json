@@ -30,7 +30,7 @@
         "pretty:format": "yarn prettier \"**/*.{ts,html,css,scss,md,js,json}\"",
         "pretty:lint": "yarn pretty:format --check",
         "release:bump": "RELEASE_VERSION=$(node -p -e \"require('./lerna.json').version\") && yarn npe version \"$RELEASE_VERSION\"",
-        "release:changelog": "yarn generate-changelog && git add . && git commit -m \"chore(release): updated changelog [ci skip]\" && git push origin master",
+        "release:changelog": "yarn generate-changelog",
         "pretest": "lerna run pretest",
         "test": "lerna run test",
         "version": "yarn release:bump && yarn release:changelog && yarn pre:commit"
