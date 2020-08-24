@@ -1,3 +1,15 @@
+#### 14.18.1 (2020-08-24)
+
+##### Chores
+
+-   fixup tests
+    ([f6570cfd](https://github.com/Angular-RU/angular-ru-sdk/commit/f6570cfd8d7b03ec86895286a86313dde16fdf79))
+
+##### Bug Fixes
+
+-   **@angular-ru/common:** remove SafeValueType enum for correct resolve option in template
+    ([772b23c1](https://github.com/Angular-RU/angular-ru-sdk/commit/772b23c1b485371be8bfce3dbfdb896cec18aaad))
+
 #### 14.18.0 (2020-08-24)
 
 ##### New Features
