@@ -1,3 +1,24 @@
+#### 14.17.5 (2020-08-24)
+
+##### Chores
+
+-   **release:** updated release notes and package versions
+    [ci skip](<[de999075](https://github.com/Angular-RU/angular-ru-sdk/commit/de99907540bc574a4925e6bc1faba3c521945ac2)>)
+
+##### Continuous Integration
+
+-   use .npmrc for registry
+    ([081a577b](https://github.com/Angular-RU/angular-ru-sdk/commit/081a577ba4dbb2f2d89c83681bb669d77f904812))
+-   update workflow.yml
+    ([e5782650](https://github.com/Angular-RU/angular-ru-sdk/commit/e57826503587c2f6570952321ec47fb1b78903a0))
+-   update workflow.yml
+    ([9decfcfb](https://github.com/Angular-RU/angular-ru-sdk/commit/9decfcfb2132328b3f104d7f8ef55dc300fa861f))
+
+##### Documentation Changes
+
+-   **@angular-ru/flex-layouts:** update README.md
+    ([99d1c1b7](https://github.com/Angular-RU/angular-ru-sdk/commit/99d1c1b745e79805dd7a052f05f11268e8e5cdf9))
+
 #### 14.17.4 (2020-08-24)
 
 ##### Continuous Integration
