@@ -1,3 +1,10 @@
+#### 14.19.0 (2020-08-24)
+
+##### New Features
+
+-   update dependency prettier to v2.1.0 ([#126](https://github.com/Angular-RU/angular-ru-sdk/pull/126))
+    ([0bb949c1](https://github.com/Angular-RU/angular-ru-sdk/commit/0bb949c1e782c006330b5ca99f032664c09f71ea))
+
 #### 14.18.1 (2020-08-24)
 
 ##### Chores
