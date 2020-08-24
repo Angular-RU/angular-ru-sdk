@@ -47,18 +47,6 @@ module.exports = createTsJestConfig({
 });
 ```
 
--   How can I define other properties that do not exist in `createTsJestConfig`?
-
-```ts
-// jest.config.js
-module.exports = {
-    ...createTsJestConfig({
-        // ...
-    }),
-    watch: true
-};
-```
-
 -   How can I add setupFilesAfterEnv files?
 
 ```ts
