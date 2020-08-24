@@ -1,3 +1,13 @@
+#### 14.18.0 (2020-08-24)
+
+##### New Features
+
+-   **@angular-ru/common:**
+    -   add NumberFormatPipe
+        ([6e44227f](https://github.com/Angular-RU/angular-ru-sdk/commit/6e44227f596ec77caccfebd8e874f6544acc7dfe))
+    -   add SafePipe
+        ([66932204](https://github.com/Angular-RU/angular-ru-sdk/commit/66932204c98814374a3b370b48bc056c3c31d77f))
+
 #### 14.17.5 (2020-08-24)
 
 ##### Chores
