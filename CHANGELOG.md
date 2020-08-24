@@ -11,8 +11,6 @@
     ([081a577b](https://github.com/Angular-RU/angular-ru-sdk/commit/081a577ba4dbb2f2d89c83681bb669d77f904812))
 -   update workflow.yml
     ([e5782650](https://github.com/Angular-RU/angular-ru-sdk/commit/e57826503587c2f6570952321ec47fb1b78903a0))
--   update workflow.yml
-    ([9decfcfb](https://github.com/Angular-RU/angular-ru-sdk/commit/9decfcfb2132328b3f104d7f8ef55dc300fa861f))
 
 ##### Documentation Changes
 
