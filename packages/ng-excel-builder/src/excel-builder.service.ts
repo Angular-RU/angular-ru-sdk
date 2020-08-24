@@ -1,4 +1,4 @@
-import { SerialDate } from '@angular-ru/common/date';
+import { toFormatDateTime } from '@angular-ru/common/date';
 import { Any, PlainObject } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { Injectable } from '@angular/core';
@@ -13,7 +13,7 @@ export class ExcelBuilderService {
         const anchor: HTMLAnchorElement = document.createElement('a');
         const url: string = window.URL.createObjectURL(fileBlob);
         anchor.href = url;
-        anchor.download = `${fileName}.${SerialDate.formatDateTime()}.xls`;
+        anchor.download = `${fileName}.${toFormatDateTime()}.xls`;
         anchor.click();
         window.URL.revokeObjectURL(url);
     }
