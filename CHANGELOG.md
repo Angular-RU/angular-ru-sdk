@@ -1,3 +1,15 @@
+#### 14.8.15 (2020-08-24)
+
+##### Continuous Integration
+
+-   force publish
+    ([b46b3aa2](https://github.com/Angular-RU/angular-ru-sdk/commit/b46b3aa27f352a04b53ee63752d5c2dff6cb6c67))
+
+##### Documentation Changes
+
+-   **@angular-ru/common:** update README.md
+    ([1bc3b8c2](https://github.com/Angular-RU/angular-ru-sdk/commit/1bc3b8c23be386edb6796c8e755bfb00e1e82d15))
+
 #### 14.8.13 (2020-08-24)
 
 ##### Chores
