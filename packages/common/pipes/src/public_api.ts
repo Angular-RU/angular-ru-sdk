@@ -1,3 +1,5 @@
+export { TakeSecondItemPipe } from './take-second-item/take-second-item.pipe';
+export { TakeSecondItemPipeModule } from './take-second-item/take-second-item-pipe.module';
 export { TakeFirstItemPipe } from './take-first-item/take-first-item.pipe';
 export { TakeFirstItemPipeModule } from './take-first-item/take-first-item-pipe.module';
 export { HttpReplacerPipe } from './http-replacer/http-replacer.pipe';

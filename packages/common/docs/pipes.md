@@ -330,3 +330,24 @@ export class AppComponent {
     public data = [1, 2];
 }
 ```
+
+-   `TakeSecondItemPipe, TakeSecondItemPipeModule`
+
+```ts
+import { TakeSecondItemPipeModule } from '@angular-ru/common/pipes';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ..
+    imports: [TakeSecondItemPipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `{{ data | takeSecondItem }}` // 2
+})
+export class AppComponent {
+    public data = [1, 2];
+}
+```
