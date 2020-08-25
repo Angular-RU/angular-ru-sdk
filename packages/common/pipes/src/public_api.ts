@@ -1,3 +1,5 @@
+export { EntrySingleSetPipe } from './entry-single-set/entry-single-set.pipe';
+export { EntrySingleSetPipeModule } from './entry-single-set/entry-single-set-pipe.module';
 export { DateToNativePipe } from './date-to-native/date-to-native.pipe';
 export { DateToNativePipeModule } from './date-to-native/date-to-native-pipe.module';
 export { TakeSecondItemPipe } from './take-second-item/take-second-item.pipe';

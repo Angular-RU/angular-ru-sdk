@@ -372,3 +372,24 @@ export class AppComponent {
     public data = '27.02.2019 14:25';
 }
 ```
+
+-   `EntrySingleSetPipe, EntrySingleSetPipeModule`
+
+```ts
+import { EntrySingleSetPipeModule } from '@angular-ru/common/pipes';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ..
+    imports: [EntrySingleSetPipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `{{ 'a' | entrySingleSet: setList }}` // true
+})
+export class AppComponent {
+    public setList = new Set(['a']);
+}
+```
