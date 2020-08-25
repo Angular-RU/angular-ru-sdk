@@ -351,3 +351,24 @@ export class AppComponent {
     public data = [1, 2];
 }
 ```
+
+-   `DateToNativePipe, DateToNativePipeModule`
+
+```ts
+import { DateToNativePipeModule } from '@angular-ru/common/pipes';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ..
+    imports: [DateToNativePipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `{{ data | dateNative }}` // Date(type)
+})
+export class AppComponent {
+    public data = '27.02.2019 14:25';
+}
+```

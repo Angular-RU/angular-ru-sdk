@@ -1,3 +1,5 @@
+export { DateToNativePipe } from './date-to-native/date-to-native.pipe';
+export { DateToNativePipeModule } from './date-to-native/date-to-native-pipe.module';
 export { TakeSecondItemPipe } from './take-second-item/take-second-item.pipe';
 export { TakeSecondItemPipeModule } from './take-second-item/take-second-item-pipe.module';
 export { TakeFirstItemPipe } from './take-first-item/take-first-item.pipe';
