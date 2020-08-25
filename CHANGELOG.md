@@ -1,3 +1,37 @@
+#### 14.23.0 (2020-08-25)
+
+##### Chores
+
+-   **release:** updated release notes and package versions [ci skip]
+    ([741e507d](https://github.com/Angular-RU/angular-ru-sdk/commit/741e507d7cf3a68bfb0318b2bf222bd51ee7002c))
+
+##### New Features
+
+-   **@angular-ru/common:**
+    -   add emptyValidator
+        ([ef2c8cee](https://github.com/Angular-RU/angular-ru-sdk/commit/ef2c8ceeceeb98443317cbc2441cd9b7735974c1))
+    -   add MarkByFilter
+        ([ac5b1d25](https://github.com/Angular-RU/angular-ru-sdk/commit/ac5b1d254f8193c38b5d44c7c597851a462996a2))
+    -   add EntrySingleSet
+        ([c13a9b8a](https://github.com/Angular-RU/angular-ru-sdk/commit/c13a9b8a0de6e6a638d2a145083e247573d87bd3))
+    -   add DateToNativePipe
+        ([bd13a190](https://github.com/Angular-RU/angular-ru-sdk/commit/bd13a1905c66adf4f6d412175bad229a06661deb))
+    -   add TakeSecondItemPipe
+        ([c5c53b40](https://github.com/Angular-RU/angular-ru-sdk/commit/c5c53b407776bb3c0b9147f0dc366b650524b741))
+    -   add TakeFirstItemPipe
+        ([fb1615ee](https://github.com/Angular-RU/angular-ru-sdk/commit/fb1615eeb2b6abae9ad3a6f18d6b5da4dbe3273e))
+    -   add HttpReplacer pipe
+        ([f5374523](https://github.com/Angular-RU/angular-ru-sdk/commit/f53745238bdc8b46e691a3dccffb635c6d4b325c))
+    -   tree shakable date functions
+        ([8a76cade](https://github.com/Angular-RU/angular-ru-sdk/commit/8a76cadee3ad74b6f529101c042afdf898809ae5))
+-   **@angular-ru/ng-excel-builder:** use only toFormatDateTime from @angular-ru/common
+    ([37315936](https://github.com/Angular-RU/angular-ru-sdk/commit/3731593673b251ab9c0b75fe741b6358e985890b))
+
+##### Refactors
+
+-   **@angular-ru/ng-table-builder:** small fix with prettier
+    ([3aae1250](https://github.com/Angular-RU/angular-ru-sdk/commit/3aae1250d993cfbd6b6624ed8ca24d6bc4029d08))
+
 #### 14.22.0 (2020-08-25)
 
 ##### Continuous Integration
