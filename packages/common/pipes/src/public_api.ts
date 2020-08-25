@@ -1,3 +1,5 @@
+export { TakeFirstItemPipe } from './take-first-item/take-first-item.pipe';
+export { TakeFirstItemPipeModule } from './take-first-item/take-first-item-pipe.module';
 export { HttpReplacerPipe } from './http-replacer/http-replacer.pipe';
 export { HttpReplacerPipeModule } from './http-replacer/http-replacer-pipe.module';
 export { NumberFormatOptions } from './number-format/number-format.interfaces';

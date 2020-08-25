@@ -309,3 +309,24 @@ export class AppComponent {
     public data = 'https://www.hello.com/new/index.php';
 }
 ```
+
+-   `TakeFirstItemPipe, TakeFirstItemPipeModule`
+
+```ts
+import { TakeFirstItemPipeModule } from '@angular-ru/common/pipes';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ..
+    imports: [TakeFirstItemPipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `{{ data | takeFirstItem }}` // 1
+})
+export class AppComponent {
+    public data = [1, 2];
+}
+```
