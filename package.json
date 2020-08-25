@@ -80,7 +80,7 @@
         "hammerjs": "2.0.8",
         "husky": "4.2.5",
         "lerna": "3.22.1",
-        "lint-staged": "10.2.12",
+        "lint-staged": "10.2.13",
         "ng-packagr": "10.0.4",
         "npe": "1.1.3",
         "rxjs": "6.6.2",
