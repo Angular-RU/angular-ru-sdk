@@ -19,6 +19,9 @@ jobs:
             - uses: actions/checkout@v2
               with:
                   fetch-depth: '0'
+              env:
+                  PY_COLORS: '1'
+                  ANSIBLE_FORCE_COLOR: '1'
 
             - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
 
