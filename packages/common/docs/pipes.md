@@ -288,3 +288,24 @@ export class AppComponent {
     public data = 1500300.5;
 }
 ```
+
+-   `HttpReplacerPipe, HttpReplacerPipeModule`
+
+```ts
+import { HttpReplacerPipeModule } from '@angular-ru/common/pipes';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ..
+    imports: [HttpReplacerPipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `{{ data | httpReplacer }}` // hello.com/new
+})
+export class AppComponent {
+    public data = 'https://www.hello.com/new/index.php';
+}
+```

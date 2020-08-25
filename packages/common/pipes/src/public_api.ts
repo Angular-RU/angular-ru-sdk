@@ -1,3 +1,5 @@
+export { HttpReplacerPipe } from './http-replacer/http-replacer.pipe';
+export { HttpReplacerPipeModule } from './http-replacer/http-replacer-pipe.module';
 export { NumberFormatOptions } from './number-format/number-format.interfaces';
 export { NumberFormatPipe } from './number-format/number-format.pipe';
 export { NumberFormatPipeModule } from './number-format/number-format-pipe.module';
