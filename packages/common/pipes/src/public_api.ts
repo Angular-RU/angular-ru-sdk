@@ -1,3 +1,6 @@
+export { MarkedValue } from './mark-by-filter/mark-by-filter.interfaces';
+export { MarkByFilterPipe } from './mark-by-filter/mark-by-filter.pipe';
+export { MarkByFilterPipeModule } from './mark-by-filter/mark-by-filter-pipe.module';
 export { EntrySingleSetPipe } from './entry-single-set/entry-single-set.pipe';
 export { EntrySingleSetPipeModule } from './entry-single-set/entry-single-set-pipe.module';
 export { DateToNativePipe } from './date-to-native/date-to-native.pipe';

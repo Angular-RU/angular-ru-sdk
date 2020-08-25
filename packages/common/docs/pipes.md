@@ -393,3 +393,24 @@ export class AppComponent {
     public setList = new Set(['a']);
 }
 ```
+
+-   `MarkByFilterPipe, MarkByFilterPipeModuleModule`
+
+```ts
+import { MarkByFilterPipeModule } from '@angular-ru/common/pipes';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ..
+    imports: [MarkByFilterPipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `{{ 'hello word' | markByFilter: filter }}` // hello <span style="background: #ffdd2d">world</span>
+})
+export class AppComponent {
+    public filter = 'world';
+}
+```
