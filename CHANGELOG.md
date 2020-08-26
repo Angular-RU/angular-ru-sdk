@@ -1,3 +1,10 @@
+#### 14.27.1 (2020-08-26)
+
+##### Continuous Integration
+
+-   update workspace
+    ([538808b2](https://github.com/Angular-RU/angular-ru-sdk/commit/538808b27184d035add26464a3f6bf1c1f5bc655))
+
 #### 14.27.0 (2020-08-26)
 
 ##### Chores
