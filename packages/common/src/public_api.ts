@@ -1,1 +1,1 @@
-export { noop } from './noop';
+export { _noop } from './_noop';
