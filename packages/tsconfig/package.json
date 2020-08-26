@@ -29,9 +29,6 @@
         "tsconfig.json",
         "README.md"
     ],
-    "dependencies": {
-        "tslib": "2.0.1"
-    },
     "peerDependencies": {
         "tslib": ">=2.0.0 <3.0.0"
     },
