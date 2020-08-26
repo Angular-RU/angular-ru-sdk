@@ -1,3 +1,19 @@
+#### 14.24.0 (2020-08-26)
+
+##### Continuous Integration
+
+-   update dependency lint-staged to v10.2.13
+    ([f50eacf2](https://github.com/Angular-RU/angular-ru-sdk/commit/f50eacf2409c762cacaf83c174d04af779770303))
+-   update dependency lint-staged to v10.2.12
+    ([15108987](https://github.com/Angular-RU/angular-ru-sdk/commit/151089876e06da521edbb42f8d767b75a8464bfc))
+-   remove ansible color
+    ([05cc3652](https://github.com/Angular-RU/angular-ru-sdk/commit/05cc36520eac86ed7bea08bee1e50f58b35854a1))
+
+##### New Features
+
+-   update dependency prettier to v2.1.1
+    ([1db71287](https://github.com/Angular-RU/angular-ru-sdk/commit/1db7128708a98be85ca8aeeac0c46ac2c8c39081))
+
 #### 14.23.0 (2020-08-25)
 
 ##### Chores
