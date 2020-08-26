@@ -1,3 +1,25 @@
+#### 14.27.0 (2020-08-26)
+
+##### Chores
+
+-   **release:**
+    -   updated release notes and package versions [ci skip]
+        ([1b2459b2](https://github.com/Angular-RU/angular-ru-sdk/commit/1b2459b2041622c7265a1219dae10eb763f377d8))
+    -   updated release notes and package versions [ci skip]
+        ([bee1209f](https://github.com/Angular-RU/angular-ru-sdk/commit/bee1209fe3cb2b4cbb59f8131b23e1d72ebcfc56))
+
+##### Continuous Integration
+
+-   remove ansible color
+    ([05cc3652](https://github.com/Angular-RU/angular-ru-sdk/commit/05cc36520eac86ed7bea08bee1e50f58b35854a1))
+
+##### New Features
+
+-   **@angular-ru/tsconfig:** remove tslib, you need install explicit tslib for your project now
+    ([b42b62ee](https://github.com/Angular-RU/angular-ru-sdk/commit/b42b62ee09e969a320440afa7d7721070c3bbd9c))
+-   **@angular-ru/common:** remove unused module AngularRuCommonModule
+    ([f8848a35](https://github.com/Angular-RU/angular-ru-sdk/commit/f8848a35d34c586609cf5d9d7996d2657a5d42d6))
+
 #### 14.26.0 (2020-08-26)
 
 ##### Chores
