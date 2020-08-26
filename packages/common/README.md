@@ -5,7 +5,7 @@
 
 ## Table of contents:
 
-1. [📖 Changelog](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/CHANGELOG.md)
+1. [📖 Changelog](https://github.com/Angular-RU/angular-ru-sdk/blob/master/CHANGELOG.md)
 2. [📦 Advanced](#table-of-contents)
 
     - [(@)angular-ru/common/typings](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/typings.md)

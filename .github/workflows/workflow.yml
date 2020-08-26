@@ -45,7 +45,7 @@ jobs:
             - name: Run lint step
               run: |
                   yarn pretty:lint
-                  yarn package:sort --check
+                  yarn package:lint
                   yarn lint
 
             - name: Run test step
