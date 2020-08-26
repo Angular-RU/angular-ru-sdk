@@ -1,3 +1,10 @@
+#### 14.25.0 (2020-08-26)
+
+##### New Features
+
+-   update dependency ts-jest to v26.3.0
+    ([c9b4bc9f](https://github.com/Angular-RU/angular-ru-sdk/commit/c9b4bc9f34983c5fc0d51495ddb233f7c13f0d9f))
+
 #### 14.24.0 (2020-08-26)
 
 ##### Continuous Integration
