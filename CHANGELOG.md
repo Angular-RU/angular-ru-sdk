@@ -1,3 +1,19 @@
+#### 14.28.0 (2020-08-27)
+
+##### Continuous Integration
+
+-   update dependency @types/node to v14.6.1
+    ([f3e95b48](https://github.com/Angular-RU/angular-ru-sdk/commit/f3e95b482e28321da8a736241839c533bd59e7c7))
+-   update angular-cli
+    ([697b2123](https://github.com/Angular-RU/angular-ru-sdk/commit/697b2123b6d232e77247b3640ee69501abff2771))
+-   update angular-framework to v10.0.14
+    ([90bd5c15](https://github.com/Angular-RU/angular-ru-sdk/commit/90bd5c157b2b818ba06d883ab6e158fc57c880a9))
+
+##### New Features
+
+-   update dependency @types/eslint to v7.2.2
+    ([95f0341e](https://github.com/Angular-RU/angular-ru-sdk/commit/95f0341ef196233aa826c3305b6f778e0ceef779))
+
 #### 14.27.1 (2020-08-26)
 
 ##### Continuous Integration
