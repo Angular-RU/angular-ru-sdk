@@ -1,4 +1,5 @@
 @import '~@angular-ru/flex-layout/styles';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
 html,
 body {
@@ -171,65 +172,4 @@ mat-form-field.mat-form-field.mat-form-field-appearance-outline
 
 .mat-form-field-appearance-outline .mat-form-field-outline-thick {
     color: #e0e0e0;
-}
-
-.content-visible {
-    min-height: 700px;
-}
-
-.regenerate {
-    margin-left: 10px;
-    margin-right: 20px;
-}
-
-#main-column {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    height: calc(100% - 100px);
-}
-
-#widget1,
-#widget2 {
-    flex: 1;
-    flex-shrink: 0;
-    overflow: auto;
-    margin: 5px;
-}
-
-.my-action {
-    padding: 0 !important;
-}
-
-.my-filter {
-    padding: 10px 5px 10px 5px;
-}
-
-.my-filter .mat-form-field {
-    width: 100%;
-}
-
-.my-filter .filter-form {
-    display: flex;
-}
-
-.my-filter .filter-options.mat-form-field {
-    margin-right: 0;
-}
-
-.my-filter .filter-options {
-    width: 40%;
-}
-
-.my-filter .mat-form-field-appearance-outline .mat-form-field-wrapper {
-    margin-bottom: 0;
-    padding: 2px 0;
-}
-
-.flex-box {
-    & > * {
-        width: 200px;
-        height: 30px;
-        background-color: rebeccapurple;
-    }
 }
