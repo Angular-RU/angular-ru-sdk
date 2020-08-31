@@ -1,12 +1,25 @@
 import { FlexLayoutModule } from '@angular-ru/flex-layout';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
 
 import { SampleFirstComponent } from './sample-first.component';
 
 @NgModule({
     declarations: [SampleFirstComponent],
-    imports: [CommonModule, RouterModule.forChild([{ path: '', component: SampleFirstComponent }]), FlexLayoutModule]
+    imports: [
+        CommonModule,
+        RouterModule.forChild([
+            {
+                path: '',
+                component: SampleFirstComponent
+            }
+        ]),
+        FlexLayoutModule,
+        MatFormFieldModule,
+        MatInputModule
+    ]
 })
 export class SampleFirstModule {}
