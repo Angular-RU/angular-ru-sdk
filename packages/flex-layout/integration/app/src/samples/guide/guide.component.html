@@ -1,0 +1,38 @@
+<div class="main__wrap">
+    <h1>Guide overview</h1>
+
+    <p>
+        The <strong>flex-layout</strong> provides a styled library with simple directives. You can use
+        <strong>ngx-table-builder</strong> instead of writing css rules for each component.
+    </p>
+
+    <pre><code class="plaintext">
+  $ npm install --save @angular-ru/flex-layout
+
+</code></pre>
+
+    <p>
+        After a few seconds of waiting, you should be good to go. Let's get to the actual coding! As a first step, let's
+        add the Angular flex layout module to our app module (src/app.module.ts):
+    </p>
+
+    <pre><code class="javascript" ngNonBindable>
+    import &#123; FlexLayoutModule &#125; from '@angular-ru/flex-layout';
+
+    @NgModule(&#123;
+       imports: [
+          FlexLayoutModule
+       ],
+       ...
+    &#125;)
+    export class AppModule &#123; &#125;
+    </code></pre>
+
+    <p>Next, let's import styles to your project. Edit src/styles.css:</p>
+
+    <pre><code class="css">
+    @import '~@angular-ru/flex-layout/styles';
+
+    app-root {{'{}'}}
+    </code></pre>
+</div>
