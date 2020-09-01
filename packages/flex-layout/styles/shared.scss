@@ -3,13 +3,11 @@
 }
 
 .flex-end {
-    display: flex;
-    justify-content: flex-end;
+    justify-content: flex-end !important;
 }
 
 .flex-start {
-    display: flex;
-    justify-content: flex-start;
+    justify-content: flex-start !important;
 }
 
 .flex-inline {
@@ -33,7 +31,7 @@
     }
 
     &__nowrap {
-        flex-wrap: nowrap;
+        flex-wrap: nowrap !important;
     }
 
     &__full-width {
