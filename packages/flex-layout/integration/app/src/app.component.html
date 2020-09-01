@@ -1,13 +1,23 @@
-<div flex-space-between>
-    <div flex-container>
-        <div flex-item>One</div>
-        <div flex-item>Two</div>
-        <div flex-item>Three</div>
-    </div>
+<mat-drawer-container class="dashboard">
+    <mat-drawer mode="side" class="dashboard__menu" opened>
+        <mat-toolbar class="title">
+            <img class="logo" src="assets/favicon.ico" alt="angular" />
+            <a routerLink="/">Flex layouts</a>
+        </mat-toolbar>
 
-    <div flex-column>
-        <div flex-item flex-wide>One</div>
-        <div flex-item flex-wide>Two</div>
-        <div flex-item flex-wide>Three</div>
-    </div>
-</div>
+        <mat-list class="menu">
+            <mat-list-item class="menu__item">
+                <a routerLink="samples/guide">- <strong>Guide overview</strong></a>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item class="menu__item">
+                <a routerLink="samples/first">- Examples</a>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+        </mat-list>
+    </mat-drawer>
+
+    <mat-drawer-content class="dashboard__content">
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>
