@@ -1,4 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Any } from '@angular-ru/common/typings';
+import { AfterViewInit, ChangeDetectionStrategy, Component } from '@angular/core';
+
+declare const hljs: Any;
 
 @Component({
     selector: 'sample-first',
@@ -6,4 +9,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     styleUrls: ['./sample-first.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SampleFirstComponent {}
+export class SampleFirstComponent implements AfterViewInit {
+    public ngAfterViewInit(): void {
+        document.querySelectorAll('pre code').forEach((block: Any): void => {
+            hljs.highlightBlock(block);
+        });
+    }
+}
