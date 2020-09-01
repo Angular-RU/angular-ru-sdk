@@ -1,37 +1,68 @@
-<span>This in complicated </span>
+<mat-toolbar class="simple-toolbar">
+    <span>Example complicated flex</span>
+</mat-toolbar>
 
-<div flex-container class="form-wrapper my-filter">
-    <div flex-column >
-        <mat-form-field class="form-wrapper__input" flex-item appearance="outline">
+<span>
+    Below you can see a form consisting of two columns of three fields. These columns are controlled by a directive that
+    determines the position of the fields.
+</span>
+
+<div class="form-wrapper my-filter" flex-container>
+    <div flex-column>
+        <mat-form-field appearance="outline" class="form-wrapper__input" flex-item>
             <mat-label>Outline form field</mat-label>
             <input matInput />
         </mat-form-field>
 
-        <mat-form-field flex-item appearance="outline">
+        <mat-form-field appearance="outline" flex-item>
             <mat-label>Outline form field</mat-label>
             <input matInput />
         </mat-form-field>
 
-        <mat-form-field flex-item appearance="outline">
+        <mat-form-field appearance="outline" flex-item>
             <mat-label>Outline form field</mat-label>
             <input matInput />
         </mat-form-field>
     </div>
 
     <div flex-column>
-        <mat-form-field flex-item appearance="outline">
+        <mat-form-field appearance="outline" flex-item>
             <mat-label>Outline form field</mat-label>
             <input matInput />
         </mat-form-field>
 
-        <mat-form-field flex-item appearance="outline">
+        <mat-form-field appearance="outline" flex-item>
             <mat-label>Outline form field</mat-label>
             <input matInput />
         </mat-form-field>
 
-        <mat-form-field flex-item appearance="outline">
+        <mat-form-field appearance="outline" flex-item>
             <mat-label>Outline form field</mat-label>
             <input matInput />
         </mat-form-field>
     </div>
+</div>
+
+<div class="column">
+    <pre><code class="javascript" ngNonBindable>
+    &lt;!-- app.component.html -->
+    &lt;div flex-container>
+        &lt;div flex-column>
+        &lt;mat-form-field appearance="outline" flex-item>
+            &lt;mat-label>Outline form field&lt;/mat-label>
+            &lt;input matInput />
+        &lt;/mat-form-field>
+
+            &lt;mat-form-field appearance="outline" flex-item>
+            &lt;mat-label>Outline form field&lt;/mat-label>
+            &lt;input matInput />
+        &lt;/mat-form-field>
+
+        &lt;mat-form-field appearance="outline" flex-item>
+            &lt;mat-label>Outline form field&lt;/mat-label>
+            &lt;input matInput />
+        &lt;/mat-form-field>
+         &lt;/div>
+            &lt;/div>
+</code></pre>
 </div>
