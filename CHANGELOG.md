@@ -1,3 +1,37 @@
+#### 14.29.0 (2020-09-01)
+
+##### Chores
+
+-   **release:** updated release notes and package versions [ci skip]
+    ([e1f5cb8a](https://github.com/Angular-RU/angular-ru-sdk/commit/e1f5cb8a73dbce76226d9c57db06dc63fd937f92))
+
+##### Continuous Integration
+
+-   update dependency @types/node to v14.6.2
+    ([5f9177b0](https://github.com/Angular-RU/angular-ru-sdk/commit/5f9177b0777b743263097453a200cbc1a0d3a226))
+
+##### New Features
+
+-   **flex-layout:**
+    -   change integration app
+        ([9cd33d40](https://github.com/Angular-RU/angular-ru-sdk/commit/9cd33d40be02559d6450ce602ba5cc2264360c88))
+    -   change integration app
+        ([bc0e2165](https://github.com/Angular-RU/angular-ru-sdk/commit/bc0e2165a6b8606f0f580320c03d32b78a5bcb8d))
+    -   change integration app
+        ([839539de](https://github.com/Angular-RU/angular-ru-sdk/commit/839539de1b9fc363e815604bf3013fd55d0d001c))
+
+##### Bug Fixes
+
+-   **@angular-ru/flex-layout:**
+    -   fix sample
+        ([1c00b8fc](https://github.com/Angular-RU/angular-ru-sdk/commit/1c00b8fcc5a6e50ccebc410b0ec92dff8fa24709))
+    -   fix flex
+        ([d9cf1055](https://github.com/Angular-RU/angular-ru-sdk/commit/d9cf10550e2a8109cd9b37a99dd2ddeacfe719da))
+    -   update integration
+        ([f685f9e1](https://github.com/Angular-RU/angular-ru-sdk/commit/f685f9e1e7ad9812633ac275c23298b63700147a))
+-   **flex-layout:** fix lint
+    ([bf2beeb1](https://github.com/Angular-RU/angular-ru-sdk/commit/bf2beeb1ee737a1fbe9e5e03e9615a9f3a2e2d2e))
+
 #### 14.28.1 (2020-09-01)
 
 ##### Continuous Integration
