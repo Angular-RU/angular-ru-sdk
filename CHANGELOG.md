@@ -1,3 +1,11 @@
+#### 14.30.0 (2020-09-02)
+
+##### New Features
+
+-   **@angular-ru/stream:** compress, decompress, base64 api
+    ([#145](https://github.com/Angular-RU/angular-ru-sdk/pull/145))
+    ([af1b2eee](https://github.com/Angular-RU/angular-ru-sdk/commit/af1b2eeea4c6219f36fa0922bf88877555472837))
+
 #### 14.29.0 (2020-09-01)
 
 ##### Chores
