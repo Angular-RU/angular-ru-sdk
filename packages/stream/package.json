@@ -1,0 +1,47 @@
+{
+    "name": "@angular-ru/stream",
+    "version": "14.0.0",
+    "description": "Angular-RU package",
+    "keywords": [
+        "angular-ru",
+        "angular",
+        "logger",
+        "sdk",
+        "common"
+    ],
+    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/common#readme",
+    "bugs": {
+        "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
+    },
+    "license": "MIT",
+    "author": "splincode <omaxphp@yandex.ru>",
+    "scripts": {
+        "build:app": "yarn ng build --prod",
+        "build:lib": "ng build library && cp README.md dist/library",
+        "start": "yarn ng serve --open",
+        "test": "export CI=true && yarn ng test",
+        "test:browser": "export CI=false && yarn ng test",
+        "postversion": "npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\""
+    },
+    "devDependencies": {
+        "@types/jasmine": "~3.5.0",
+        "@types/jasminewd2": "~2.0.3",
+        "@types/node": "^12.11.1",
+        "jasmine-core": "~3.5.0",
+        "jasmine-spec-reporter": "~5.0.0",
+        "karma": "~5.0.0",
+        "karma-chrome-launcher": "~3.1.0",
+        "karma-coverage-istanbul-reporter": "~3.0.2",
+        "karma-jasmine": "~3.3.0",
+        "karma-jasmine-html-reporter": "^1.5.0",
+        "ts-node": "~8.3.0"
+    },
+    "publishConfig": {
+        "access": "public",
+        "directory": "dist/library"
+    }
+}

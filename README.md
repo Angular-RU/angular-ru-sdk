@@ -162,23 +162,41 @@ in the Angular.
       </td>
     </tr>
     <tr>
-          <td>
-              <a href="https://npmjs.com/package/@angular-ru/flex-layout">
-                  @angular-ru/flex-layout
-              </a>
-          </td>
-          <td>
-              <img src="https://img.shields.io/npm/v/%40angular-ru%2Fflex-layout/latest.svg">
-          </td>
-          <td>
-              <a href="https://npmjs.com/package/@angular-ru/flex-layout">
-                  <img src="https://img.shields.io/npm/dm/@angular-ru/flex-layout">
-              </a>
-              <a href="packages/flex-layout/README.md">
-                  <img src="https://img.shields.io/badge/README--green.svg">
-              </a>
-          </td>
-        </tr>
+      <td>
+          <a href="https://npmjs.com/package/@angular-ru/flex-layout">
+              @angular-ru/flex-layout
+          </a>
+      </td>
+      <td>
+          <img src="https://img.shields.io/npm/v/%40angular-ru%2Fflex-layout/latest.svg">
+      </td>
+      <td>
+          <a href="https://npmjs.com/package/@angular-ru/flex-layout">
+              <img src="https://img.shields.io/npm/dm/@angular-ru/flex-layout">
+          </a>
+          <a href="packages/flex-layout/README.md">
+              <img src="https://img.shields.io/badge/README--green.svg">
+          </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+          <a href="https://npmjs.com/package/@angular-ru/stream">
+              @angular-ru/stream
+          </a>
+      </td>
+      <td>
+          <img src="https://img.shields.io/npm/v/%40angular-ru%2Fstream/latest.svg">
+      </td>
+      <td>
+          <a href="https://npmjs.com/package/@angular-ru/stream">
+              <img src="https://img.shields.io/npm/dm/@angular-ru/stream">
+          </a>
+          <a href="packages/stream/README.md">
+              <img src="https://img.shields.io/badge/README--green.svg">
+          </a>
+      </td>
+    </tr>
 </tbody>
 </table>
 

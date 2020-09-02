@@ -30,6 +30,7 @@
                 "dist",
                 "__tests__",
                 "integration",
+                "**/integration/**",
                 "jest.config.js",
                 "*.sh",
                 "CHANGELOG.md"
