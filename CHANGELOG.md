@@ -1,3 +1,10 @@
+#### 14.30.1 (2020-09-02)
+
+##### Continuous Integration
+
+-   update devDependencies
+    ([de458dc8](https://github.com/Angular-RU/angular-ru-sdk/commit/de458dc8fff76e6558efbf50df312bab824bb4cb))
+
 #### 14.30.0 (2020-09-02)
 
 ##### New Features
