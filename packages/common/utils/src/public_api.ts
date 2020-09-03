@@ -1,3 +1,4 @@
+export { parseXmlFromString } from './parse-xml-from-string';
 export { checkValueIsEmpty } from './check-value-is-empty';
 export { detectChanges } from './detect-changes';
 export { getBodyRect } from './get-body-rect';

@@ -1,4 +1,13 @@
-import { $any, $cast, isNil, isNotNil, checkValueIsEmpty, detectChanges, isIE } from '@angular-ru/common/utils';
+import {
+    $any,
+    $cast,
+    isNil,
+    isNotNil,
+    checkValueIsEmpty,
+    detectChanges,
+    isIE,
+    parseXmlFromString
+} from '@angular-ru/common/utils';
 import { ChangeDetectorRef } from '@angular/core';
 
 describe('[TEST]: Common utils', () => {
@@ -50,5 +59,24 @@ describe('[TEST]: Common utils', () => {
     it('isIE', () => {
         expect(isIE('Internet Explorer 9 (MSIE 9.0)')).toEqual(true);
         expect(isIE('Chrome')).toEqual(false);
+    });
+
+    it('simple parse xml', () => {
+        const xml = parseXmlFromString('<hello>123</hello>');
+        expect(xml.querySelector('hello')?.textContent).toEqual('123');
+    });
+
+    it('parse nested xml', () => {
+        const xml = parseXmlFromString(`
+          <root>
+            <a>
+                <b>1</b>
+                <c>2</c>
+            </a>
+          </root>
+        `);
+
+        expect(xml.querySelector('a b')?.textContent).toEqual('1');
+        expect(xml.querySelector('c')?.textContent).toEqual('2');
     });
 });

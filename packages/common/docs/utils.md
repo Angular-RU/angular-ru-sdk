@@ -80,3 +80,21 @@ import { copyBuffer } from '@angular-ru/common/utils';
 
 copyBuffer('hello world'); // copied in your buffer
 ```
+
+-   `parseXmlFromString`
+
+```ts
+import { parseXmlFromString } from '@angular-ru/common/utils';
+
+const xml = parseXmlFromString(`
+  <root>
+    <a>
+        <b>1</b>
+        <c>2</c>
+    </a>
+  </root>
+`);
+
+expect(xml.querySelector('a b')?.textContent).toEqual('1');
+expect(xml.querySelector('c')?.textContent).toEqual('2');
+```
