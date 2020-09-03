@@ -1,3 +1,23 @@
+#### 14.32.0 (2020-09-03)
+
+##### Chores
+
+-   **release:** updated release notes and package versions [ci skip]
+    ([5edd7e3c](https://github.com/Angular-RU/angular-ru-sdk/commit/5edd7e3c2479ad28c6f5c17407d0ccc968b0ce71))
+
+##### Continuous Integration
+
+-   update dependency @types/node to v14.6.3
+    ([9e9b2252](https://github.com/Angular-RU/angular-ru-sdk/commit/9e9b2252808998fa7ce893f3e7bc176ee55bf228))
+
+##### New Features
+
+-   **@angular-ru/common:**
+    -   add serializeXmlToString
+        ([ebd60f46](https://github.com/Angular-RU/angular-ru-sdk/commit/ebd60f463ab76d38460244dba40a1e7b8da4cd60))
+    -   add parseXmlFromString
+        ([69a49f86](https://github.com/Angular-RU/angular-ru-sdk/commit/69a49f8683ed493470501fcc2d677ff69858fecb))
+
 #### 14.31.0 (2020-09-03)
 
 ##### Continuous Integration
