@@ -1,3 +1,15 @@
+#### 14.31.0 (2020-09-03)
+
+##### Continuous Integration
+
+-   update dependency @types/node to v14.6.3
+    ([9e9b2252](https://github.com/Angular-RU/angular-ru-sdk/commit/9e9b2252808998fa7ce893f3e7bc176ee55bf228))
+
+##### New Features
+
+-   **@angular-ru/common:** add parseXmlFromString
+    ([69a49f86](https://github.com/Angular-RU/angular-ru-sdk/commit/69a49f8683ed493470501fcc2d677ff69858fecb))
+
 #### 14.30.1 (2020-09-02)
 
 ##### Continuous Integration
