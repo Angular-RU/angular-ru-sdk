@@ -1,15 +1,21 @@
 /* eslint-disable */
 const CI = process.env['CI'] === 'true';
 
+// @ts-ignore
 module.exports = function (config) {
     config.set({
         basePath: '',
         frameworks: ['jasmine', '@angular-devkit/build-angular'],
         plugins: [
+            // @ts-ignore
             require('karma-jasmine'),
+            // @ts-ignore
             require('karma-chrome-launcher'),
+            // @ts-ignore
             require('karma-jasmine-html-reporter'),
+            // @ts-ignore
             require('karma-coverage-istanbul-reporter'),
+            // @ts-ignore
             require('@angular-devkit/build-angular/plugins/karma')
         ],
         client: {
