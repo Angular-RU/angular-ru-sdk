@@ -1,3 +1,4 @@
+export { serializeXmlToString } from './serialize-xml-to-string';
 export { parseXmlFromString } from './parse-xml-from-string';
 export { checkValueIsEmpty } from './check-value-is-empty';
 export { detectChanges } from './detect-changes';

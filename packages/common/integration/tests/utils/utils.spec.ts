@@ -4,6 +4,7 @@ import {
     isNil,
     isNotNil,
     checkValueIsEmpty,
+    serializeXmlToString,
     detectChanges,
     isIE,
     parseXmlFromString
@@ -78,5 +79,10 @@ describe('[TEST]: Common utils', () => {
 
         expect(xml.querySelector('a b')?.textContent).toEqual('1');
         expect(xml.querySelector('c')?.textContent).toEqual('2');
+    });
+
+    it('xml to string', () => {
+        const xml = parseXmlFromString('<hello>123</hello>');
+        expect(serializeXmlToString(xml)).toEqual('<hello>123</hello>');
     });
 });
