@@ -1,3 +1,10 @@
+#### 14.32.2 (2020-09-04)
+
+##### Continuous Integration
+
+-   update devDependencies ([#115](https://github.com/Angular-RU/angular-ru-sdk/pull/115))
+    ([c6d70075](https://github.com/Angular-RU/angular-ru-sdk/commit/c6d70075f40f2b702ecfc2782eeea3475691933c))
+
 #### 14.32.1 (2020-09-03)
 
 ##### Bug Fixes
