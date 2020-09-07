@@ -1,3 +1,19 @@
+#### 14.33.0 (2020-09-07)
+
+##### Continuous Integration
+
+-   update dependency husky to v4.3.0
+    ([cbbe1165](https://github.com/Angular-RU/angular-ru-sdk/commit/cbbe11653d4b18b568eb30028d15fe5df8f1e395))
+-   update dependency rxjs to v6.6.3
+    ([2bacee21](https://github.com/Angular-RU/angular-ru-sdk/commit/2bacee210e2acadf1eac450c6f90a645714c138e))
+-   update dependency @types/node to v14.6.4
+    ([3cfa6bfc](https://github.com/Angular-RU/angular-ru-sdk/commit/3cfa6bfc476a58e8e1bc3ef642cc3df5dca58ff7))
+
+##### New Features
+
+-   **@angular-ru/stream:** add decodeJwt, toBase64
+    ([75462b30](https://github.com/Angular-RU/angular-ru-sdk/commit/75462b300795d91b47dae4aa838b66a32158a8c2))
+
 #### 14.32.2 (2020-09-04)
 
 ##### Continuous Integration
