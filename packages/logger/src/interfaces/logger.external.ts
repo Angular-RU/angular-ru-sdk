@@ -3,6 +3,7 @@ import { InjectionToken } from '@angular/core';
 
 import { LoggerService } from '../logger.service';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type ConsoleOperation<T = unknown, P = unknown> = (message?: T, ...optionalParams: P[]) => void;
 
 export interface GroupMethods extends Function {
@@ -54,7 +55,10 @@ export interface TimerInfo {
 }
 
 export type PipeOperation = GroupMethods | ConsoleOperation;
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type GroupMethod<T = unknown> = (groupTitle?: string, ...optionalParams: T[]) => unknown;
+
 export type GroupFactoryMethod = (
     title: string,
     pipeline: Pipeline | undefined,
