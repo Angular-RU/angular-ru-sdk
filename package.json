@@ -79,7 +79,7 @@
         "angular-cli-ghpages": "0.6.2",
         "generate-changelog": "1.8.0",
         "hammerjs": "2.0.8",
-        "husky": "4.2.5",
+        "husky": "4.3.0",
         "lerna": "3.22.1",
         "lint-staged": "10.3.0",
         "ng-packagr": "10.1.0",
