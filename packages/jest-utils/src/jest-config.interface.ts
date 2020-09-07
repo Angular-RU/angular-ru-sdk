@@ -1,5 +1,3 @@
-import type { Config } from '@jest/types';
-
 export interface JestConfigOptions {
     displayName: string;
     testMatch: string[];
@@ -14,7 +12,7 @@ export interface JestConfigOptions {
     collectCoverageFrom: string[];
     testPathIgnorePatterns?: string[];
     modulePathIgnorePatterns?: string[];
-    coverageReporters?: Config.CoverageReporters;
+    coverageReporters?: string[];
     moduleNameMapper?: Record<string, string | string[]>;
 }
 
