@@ -19,3 +19,26 @@ it('decompress', async () => {
     expect(result).toEqual('hello world');
 });
 ```
+
+#### `@angular-ru/stream/jwt`
+
+-   `toBase64`
+
+```ts
+import { decodeJwt, toBase64 } from '@angular-ru/stream/jwt';
+
+it('toBase64', () => {
+    expect(toBase64({ login: 'username', password: 'password' })).toEqual(
+        'eyJsb2dpbiI6InVzZXJuYW1lIiwicGFzc3dvcmQiOiJwYXNzd29yZCJ9'
+    );
+});
+
+/**
+ * simple algorithm
+ * const token = 'xxxxxxxxx.XXXXXXXX.xxxxxxxx'
+ * const [headerEncoded, payloadEncoded, signature] = token.split('.')
+ */
+it('decodeJwt', () => {
+    expect(decodeJwt(jwtToken)).toEqual(decodeModel);
+});
+```
