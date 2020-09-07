@@ -25,3 +25,15 @@ expect(dateStringToDate(date).getFullYear()).toEqual(new Date().getFullYear());
 -   `toUtc`
 -   `toFormatDateTime`
 -   `isDateValid`
+
+-   `toMilliseconds`
+
+```ts
+import { toMilliseconds } from '@angular-ru/common/date';
+
+it(`toMilliseconds`, () => {
+    expect(toMilliseconds(1599485851)).toEqual(1599485851000);
+    expect(toMilliseconds('1599485851')).toEqual(1599485851000);
+    expect(toMilliseconds(new Date(0))).toEqual(0);
+});
+```

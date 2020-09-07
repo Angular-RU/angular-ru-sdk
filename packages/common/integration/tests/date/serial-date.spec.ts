@@ -2,6 +2,7 @@ import {
     dateStringToDate,
     toFormatDateTime,
     toISOString,
+    toMilliseconds,
     toPrettyFormat,
     toTimestamp,
     toUnix
@@ -111,5 +112,11 @@ describe('[TEST]: Date', (): void => {
                 timezone: '+0300'
             })
         ).toEqual('15:41 11.12.2018');
+    });
+
+    it(`toMilliseconds`, () => {
+        expect(toMilliseconds(1599485851)).toEqual(1599485851000);
+        expect(toMilliseconds('1599485851')).toEqual(1599485851000);
+        expect(toMilliseconds(new Date(0))).toEqual(0);
     });
 });
