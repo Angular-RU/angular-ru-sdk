@@ -1,3 +1,12 @@
+#### 14.35.0 (2020-09-07)
+
+##### New Features
+
+-   update ESLint ([#140](https://github.com/Angular-RU/angular-ru-sdk/pull/140))
+    ([a5fcb765](https://github.com/Angular-RU/angular-ru-sdk/commit/a5fcb765b5f8fdc0a00083558dcb9e6fa44ae93b))
+-   **@angular-ru/common:** add toMilliseconds
+    ([44b6dded](https://github.com/Angular-RU/angular-ru-sdk/commit/44b6ddedbd943a26e6e0c1dcac95ceda061912ef))
+
 #### 14.34.0 (2020-09-07)
 
 ##### New Features
