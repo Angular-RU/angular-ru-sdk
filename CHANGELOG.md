@@ -1,3 +1,10 @@
+#### 14.34.0 (2020-09-07)
+
+##### New Features
+
+-   update dependency @types/jest to v26.0.13 ([#141](https://github.com/Angular-RU/angular-ru-sdk/pull/141))
+    ([b2c40b0a](https://github.com/Angular-RU/angular-ru-sdk/commit/b2c40b0a246198b10681dea51921f395f0666027))
+
 #### 14.33.0 (2020-09-07)
 
 ##### Continuous Integration
