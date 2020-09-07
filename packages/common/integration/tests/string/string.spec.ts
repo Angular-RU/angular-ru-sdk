@@ -69,7 +69,7 @@ describe('[TEST]: String', () => {
     });
 
     it('generateQuickGuid', () => {
-        expect(generateQuickGuid().length >= 20).toEqual(true);
+        expect(generateQuickGuid().length > 0).toEqual(true);
     });
 
     it('is string', () => {
