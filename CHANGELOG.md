@@ -1,3 +1,10 @@
+#### 14.36.1 (2020-09-08)
+
+##### Continuous Integration
+
+-   update dependency karma to v5.2.2
+    ([ba0c203f](https://github.com/Angular-RU/angular-ru-sdk/commit/ba0c203f7ff2914de2e42156ebb1cc172615a2d3))
+
 #### 14.36.0 (2020-09-07)
 
 ##### New Features
