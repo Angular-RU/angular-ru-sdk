@@ -1,3 +1,10 @@
+#### 14.37.0 (2020-09-09)
+
+##### New Features
+
+-   **@angular-ru/common:** add equals, objectToString, flatten, strictEquals, shallowTrimProperties
+    ([4221588a](https://github.com/Angular-RU/angular-ru-sdk/commit/4221588a4f29d23e024a8f56d39ad9e0f238cbb4))
+
 #### 14.36.1 (2020-09-08)
 
 ##### Continuous Integration
