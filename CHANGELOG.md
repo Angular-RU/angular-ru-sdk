@@ -1,3 +1,14 @@
+#### 14.37.1 (2020-09-11)
+
+##### Continuous Integration
+
+-   update dependency @types/node to v14.10.1 ([#154](https://github.com/Angular-RU/angular-ru-sdk/pull/154))
+    ([dbf08239](https://github.com/Angular-RU/angular-ru-sdk/commit/dbf08239117415f879d6692818021e0556e1eb76))
+-   update angular-cli
+    ([6434bb49](https://github.com/Angular-RU/angular-ru-sdk/commit/6434bb49e3467d7d3cf2e2fd03b9851f88ca78a7))
+-   update angular-framework to v10.1.1
+    ([3b3a3a83](https://github.com/Angular-RU/angular-ru-sdk/commit/3b3a3a838cd9e7424cf61a65f1a0e725173e3dc6))
+
 #### 14.37.0 (2020-09-09)
 
 ##### New Features
