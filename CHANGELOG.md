@@ -1,3 +1,12 @@
+#### 14.39.1 (2020-09-15)
+
+##### Continuous Integration
+
+-   update dependency @types/node to v14.10.2
+    ([bc8810fc](https://github.com/Angular-RU/angular-ru-sdk/commit/bc8810fc4f9b8fea68acaef1fd68e9dfe9dc4fcf))
+-   update angular-components to v10.2.1
+    ([4eb2596a](https://github.com/Angular-RU/angular-ru-sdk/commit/4eb2596ad7cd9f4fe208f81dc35f157ee1c9d72a))
+
 #### 14.39.0 (2020-09-14)
 
 ##### New Features
