@@ -1,3 +1,12 @@
+#### 14.41.1 (2020-09-16)
+
+##### Continuous Integration
+
+-   update angular-framework
+    ([c42b2c11](https://github.com/Angular-RU/angular-ru-sdk/commit/c42b2c1136fe69737fb17e91a661d9f1b3aa55f6))
+-   update dependency sort-package-json to v1.46.0
+    ([f5464199](https://github.com/Angular-RU/angular-ru-sdk/commit/f54641997883366d15263380fefdec0935656f34))
+
 #### 14.41.0 (2020-09-16)
 
 ##### Continuous Integration
