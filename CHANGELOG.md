@@ -1,3 +1,17 @@
+#### 14.41.0 (2020-09-16)
+
+##### Continuous Integration
+
+-   update dependency lint-staged to v10.4.0
+    ([20ee07e5](https://github.com/Angular-RU/angular-ru-sdk/commit/20ee07e52d17ef18f15a674adf06ad7c73db5f42))
+-   update dependency sort-package-json to v1.45.0
+    ([39bab2ab](https://github.com/Angular-RU/angular-ru-sdk/commit/39bab2abeb99a9711b0b35763c3b4639f4988e02))
+
+##### New Features
+
+-   update dependency @types/jest to v26.0.14
+    ([df5d1173](https://github.com/Angular-RU/angular-ru-sdk/commit/df5d11732041cc56dec34b98c18112c21ec601e8))
+
 #### 14.40.0 (2020-09-16)
 
 ##### New Features
