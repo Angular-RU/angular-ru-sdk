@@ -1,3 +1,14 @@
+#### 14.41.4 (2020-09-22)
+
+##### Continuous Integration
+
+-   update dependency @types/node to v14.11.2
+    ([f31ee802](https://github.com/Angular-RU/angular-ru-sdk/commit/f31ee8029bc9f52095c825ca5ca9790c48968648))
+-   update angular-components to v10.2.2
+    ([03e6b73a](https://github.com/Angular-RU/angular-ru-sdk/commit/03e6b73a7942880633a2c27ce54487c8fcf9e99c))
+-   update dependency typescript to v4.0.3
+    ([0b4150a4](https://github.com/Angular-RU/angular-ru-sdk/commit/0b4150a46ab1220aea934680561e1952a13dc305))
+
 #### 14.41.3 (2020-09-17)
 
 ##### Continuous Integration
