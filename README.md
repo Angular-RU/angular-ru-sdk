@@ -28,7 +28,7 @@ in the Angular.
     </td>
     <td>
         <a href="https://npmjs.com/package/@angular-ru/common">
-            <img src="https://img.shields.io/npm/dm/@angular-ru/common">
+            <img src="https://img.shields.io/npm/dw/@angular-ru/common">
         </a>
         <a href="packages/common/README.md">
             <img src="https://img.shields.io/badge/README--green.svg">
@@ -46,7 +46,7 @@ in the Angular.
     </td>
     <td>
         <a href="https://npmjs.com/package/@angular-ru/tsconfig">
-            <img src="https://img.shields.io/npm/dm/@angular-ru/tsconfig">
+            <img src="https://img.shields.io/npm/dw/@angular-ru/tsconfig">
         </a>
         <a href="packages/tsconfig/README.md">
             <img src="https://img.shields.io/badge/README--green.svg">
@@ -64,7 +64,7 @@ in the Angular.
     </td>
     <td>
         <a href="https://npmjs.com/package/@angular-ru/eslint-config">
-            <img src="https://img.shields.io/npm/dm/@angular-ru/jest-utils">
+            <img src="https://img.shields.io/npm/dw/@angular-ru/jest-utils">
         </a>
         <a href="packages/eslint-config/README.md">
             <img src="https://img.shields.io/badge/README--green.svg">
@@ -82,7 +82,7 @@ in the Angular.
     </td>
     <td>
         <a href="https://npmjs.com/package/@angular-ru/prettier-config">
-            <img src="https://img.shields.io/npm/dm/@angular-ru/prettier-config">
+            <img src="https://img.shields.io/npm/dw/@angular-ru/prettier-config">
         </a>
         <a href="packages/prettier-config/README.md">
             <img src="https://img.shields.io/badge/README--green.svg">
@@ -100,7 +100,7 @@ in the Angular.
     </td>
     <td>
         <a href="https://npmjs.com/package/@angular-ru/jest-utils">
-            <img src="https://img.shields.io/npm/dm/@angular-ru/jest-utils">
+            <img src="https://img.shields.io/npm/dw/@angular-ru/jest-utils">
         </a>
         <a href="packages/jest-utils/README.md">
             <img src="https://img.shields.io/badge/README--green.svg">
@@ -118,7 +118,7 @@ in the Angular.
       </td>
       <td>
           <a href="https://npmjs.com/package/@angular-ru/logger">
-              <img src="https://img.shields.io/npm/dm/@angular-ru/logger">
+              <img src="https://img.shields.io/npm/dw/@angular-ru/logger">
           </a>
           <a href="packages/logger/README.md">
               <img src="https://img.shields.io/badge/README--green.svg">
@@ -136,7 +136,7 @@ in the Angular.
       </td>
       <td>
           <a href="https://npmjs.com/package/@angular-ru/ng-table-builder">
-              <img src="https://img.shields.io/npm/dm/@angular-ru/ng-table-builder">
+              <img src="https://img.shields.io/npm/dw/@angular-ru/ng-table-builder">
           </a>
           <a href="packages/ng-table-builder/README.md">
               <img src="https://img.shields.io/badge/README--green.svg">
@@ -154,7 +154,7 @@ in the Angular.
       </td>
       <td>
           <a href="https://npmjs.com/package/@angular-ru/ng-excel-builder">
-              <img src="https://img.shields.io/npm/dm/@angular-ru/ng-excel-builder">
+              <img src="https://img.shields.io/npm/dw/@angular-ru/ng-excel-builder">
           </a>
           <a href="packages/ng-excel-builder/README.md">
               <img src="https://img.shields.io/badge/README--green.svg">
@@ -172,7 +172,7 @@ in the Angular.
       </td>
       <td>
           <a href="https://npmjs.com/package/@angular-ru/flex-layout">
-              <img src="https://img.shields.io/npm/dm/@angular-ru/flex-layout">
+              <img src="https://img.shields.io/npm/dw/@angular-ru/flex-layout">
           </a>
           <a href="packages/flex-layout/README.md">
               <img src="https://img.shields.io/badge/README--green.svg">
@@ -190,7 +190,7 @@ in the Angular.
       </td>
       <td>
           <a href="https://npmjs.com/package/@angular-ru/stream">
-              <img src="https://img.shields.io/npm/dm/@angular-ru/stream">
+              <img src="https://img.shields.io/npm/dw/@angular-ru/stream">
           </a>
           <a href="packages/stream/README.md">
               <img src="https://img.shields.io/badge/README--green.svg">
