@@ -1,3 +1,10 @@
+#### 14.42.0 (2020-09-23)
+
+##### New Features
+
+-   update dependency eslint-plugin-no-cyrillic-string to v1.0.5
+    ([114eb562](https://github.com/Angular-RU/angular-ru-sdk/commit/114eb5626865b2c2759d9a4ee04806451ed77500))
+
 #### 14.41.4 (2020-09-22)
 
 ##### Continuous Integration
