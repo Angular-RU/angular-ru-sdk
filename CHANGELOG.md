@@ -1,3 +1,15 @@
+#### 14.43.0 (2020-09-23)
+
+##### Continuous Integration
+
+-   update angular-framework to v10.1.3
+    ([dc668876](https://github.com/Angular-RU/angular-ru-sdk/commit/dc668876fe42934ac04ceeeee006c1a3b913ffc1))
+
+##### New Features
+
+-   update dependency @types/eslint to v7.2.3
+    ([ed1b365a](https://github.com/Angular-RU/angular-ru-sdk/commit/ed1b365ad599c5932b61a66dfc138d4b5c82deab))
+
 #### 14.42.1 (2020-09-23)
 
 ##### Chores
