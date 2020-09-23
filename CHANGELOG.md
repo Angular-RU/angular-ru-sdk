@@ -1,3 +1,17 @@
+#### 14.42.1 (2020-09-23)
+
+##### Chores
+
+-   **deps:** bump node-fetch from 2.6.0 to 2.6.1 ([#157](https://github.com/Angular-RU/angular-ru-sdk/pull/157))
+    ([e06faf89](https://github.com/Angular-RU/angular-ru-sdk/commit/e06faf89b692482a46bf01d23754107d706a96d1))
+-   update README.md
+    ([62028ce8](https://github.com/Angular-RU/angular-ru-sdk/commit/62028ce8f81a16bdbc4209c91463f08cfd304112))
+
+##### Continuous Integration
+
+-   update dependency jasmine-spec-reporter to v6 ([#171](https://github.com/Angular-RU/angular-ru-sdk/pull/171))
+    ([e7582493](https://github.com/Angular-RU/angular-ru-sdk/commit/e758249393678314c3e527991933220b36f1f462))
+
 #### 14.42.0 (2020-09-23)
 
 ##### New Features
