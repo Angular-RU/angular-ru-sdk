@@ -59,7 +59,24 @@ class G {
 
 class D extends G {}
 
-const d: D = new D('123');
+const dx: D = new D('123');
 
 // eslint-disable-next-line no-console
-console.log(d.value);
+console.log(dx.value);
+
+class TestMaxParams {
+    constructor(
+        public a: number,
+        public b: number,
+        public c: number,
+        public d: number,
+        public e: number,
+        public f: number
+    ) {}
+}
+
+// eslint-disable-next-line @typescript-eslint/no-magic-numbers
+const t: TestMaxParams = new TestMaxParams(1, 2, 3, 4, 5, 6);
+
+// eslint-disable-next-line no-console
+console.log(t.a);

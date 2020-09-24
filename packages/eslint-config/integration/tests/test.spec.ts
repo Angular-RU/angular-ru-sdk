@@ -37,6 +37,9 @@ describe('[TEST]: Eslint', (): void => {
             true
         );
         expect(bad.includes('Useless constructor')).toEqual(true);
+        expect(bad.includes("function 'f1' has too many parameters (4). Maximum allowed is 3")).toEqual(true);
+        expect(bad.includes('arrow function has too many parameters (4). Maximum allowed is 3')).toEqual(true);
+        expect(bad.includes("method 'f3' has too many parameters (4). Maximum allowed is 3")).toEqual(true);
     });
 
     it('check success files', (): void => {

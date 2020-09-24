@@ -5709,6 +5709,11 @@ eslint-plugin-import@2.22.0:
     resolve "^1.17.0"
     tsconfig-paths "^3.9.0"
 
+eslint-plugin-max-params-no-constructor@0.0.4:
+  version "0.0.4"
+  resolved "https://registry.npmjs.org/eslint-plugin-max-params-no-constructor/-/eslint-plugin-max-params-no-constructor-0.0.4.tgz#87f4834c3fbac1d9e7471a635d4a441785a2d0e1"
+  integrity sha512-YNy2hKV+0Q3T4Ys4evByDvyruqzthK/PmduVkyE7x7B31oBSOfgEyhYoSt0iWZp7MN9gnpiBPJ5c0jXSEdIBVA==
+
 eslint-plugin-no-cyrillic-string@1.0.5:
   version "1.0.5"
   resolved "https://registry.npmjs.org/eslint-plugin-no-cyrillic-string/-/eslint-plugin-no-cyrillic-string-1.0.5.tgz#7ad42e5041e47ae614ca199100762907bd94d208"

@@ -44,6 +44,7 @@ module.exports = {
         'plugin:import/typescript'
     ],
     plugins: [
+        'max-params-no-constructor',
         '@typescript-eslint',
         '@typescript-eslint/tslint',
         'prettier',
@@ -68,7 +69,8 @@ module.exports = {
         'max-lines-per-function': ['error', { max: 20, skipBlankLines: true, skipComments: true, IIFEs: true }],
         'max-nested-callbacks': ['error', 3],
         'no-return-assign': ['error', 'always'],
-        'max-params': ['error', 3],
+        'max-params': 'off',
+        'max-params-no-constructor/max-params-no-constructor': ['error', 3],
         'no-nested-ternary': 'error',
         'no-magic-numbers': 'off',
         '@typescript-eslint/ban-ts-ignore': 'off',

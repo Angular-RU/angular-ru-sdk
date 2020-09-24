@@ -80,10 +80,10 @@ class D extends G {
     }
 }
 
-const d: D = new D('123');
+const dx: D = new D('123');
 
 // eslint-disable-next-line no-console
-console.log(d.value);
+console.log(dx.value);
 
 // space before
 function f (): void {
@@ -121,3 +121,39 @@ type alist = { b: string } & { c: string };
 const m2: alist = { b: '1', c: '2' };
 // eslint-disable-next-line no-console
 console.log(m2);
+
+(function f1(a: number, b: number, c: number, d: number): void {
+    console.error(a, b, c, d);
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+})(1, 2, 3, 4);
+
+(function f2(a: number, b: number): void {
+    console.error(a, b);
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+})(1, 2);
+
+((a: number, b: number, c: number, d: number): void => {
+    console.error(a, b, c, d);
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+})(1, 2, 3, 4);
+
+((a: number, b: number): void => {
+    console.error(a, b);
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+})(1, 2);
+
+class TestMaxParams {
+    public f3(a: number, b: number, c: number, d: number): void {
+        console.error(a, b, c, d);
+    }
+
+    public f4(a: number, b: number): void {
+        console.error(a, b);
+    }
+}
+
+// eslint-disable-next-line @typescript-eslint/no-magic-numbers
+new TestMaxParams().f3(1, 2, 3, 4);
+
+// eslint-disable-next-line @typescript-eslint/no-magic-numbers
+new TestMaxParams().f4(1, 2);

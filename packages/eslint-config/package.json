@@ -37,6 +37,7 @@
         "eslint-config-import": "0.13.0",
         "eslint-import-resolver-typescript": "2.3.0",
         "eslint-plugin-import": "2.22.0",
+        "eslint-plugin-max-params-no-constructor": "0.0.4",
         "eslint-plugin-no-cyrillic-string": "1.0.5",
         "eslint-plugin-prettier": "3.1.4",
         "eslint-plugin-simple-import-sort": "5.0.3",
