@@ -2,6 +2,8 @@
 
 You can use our flex directives instead of writing css rules in every component.
 
+Demo: https://angular-ru.github.io/angular-ru-flex-layout-example-app/
+
 ## Introduction
 
 ```bash
