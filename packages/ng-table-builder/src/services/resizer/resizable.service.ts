@@ -21,7 +21,7 @@ export class ResizableService {
         }
     }
 
-    // eslint-disable-next-line max-params
+    // eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
     public resize(event: MouseEvent, column: HTMLElement, mousemove: Fn, mouseup: Fn): void {
         this.destroyed$ = new ReplaySubject(1);
         this.startX = event.pageX;

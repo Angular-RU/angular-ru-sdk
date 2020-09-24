@@ -72,7 +72,7 @@ export function sortWorker(message: SortableMessage): TableRow[] {
             return matches;
         }
 
-        // eslint-disable-next-line max-params
+        // eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
         private static deepSort(key: string, leftHand: Any, rightHand: Any, depth: number): number {
             const a: Any = getValueByPath(leftHand, key);
             const b: Any = getValueByPath(rightHand, key);

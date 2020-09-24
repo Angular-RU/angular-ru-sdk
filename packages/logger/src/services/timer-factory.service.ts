@@ -22,7 +22,7 @@ export class TimerFactory {
         return result;
     }
 
-    // eslint-disable-next-line max-params
+    // eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
     public endTime(info: TimerInfo, level: LoggerLevel, isMillisecond: boolean, logger: LoggerService): void {
         const canExecute: boolean = !(this.console.minLevel > level);
 

@@ -31,13 +31,13 @@ export class GroupFactory {
         }
     }
 
-    // eslint-disable-next-line max-params
+    // eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
     public group<T>(title: string, pipeline: Pipeline<T> | undefined, logger: LoggerService, level: LoggerLevel): T {
         const group: GroupMethod = this.console.instance.group.bind(this.console.instance);
         return this.createGroupLogger<T>(group, title, pipeline, logger, level);
     }
 
-    // eslint-disable-next-line max-params
+    // eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
     public groupCollapsed<T = unknown>(
         title: string,
         pipeline: Pipeline<T> | undefined,
@@ -48,7 +48,7 @@ export class GroupFactory {
         return this.createGroupLogger<T>(groupCollapsed, title, pipeline, logger, level);
     }
 
-    // eslint-disable-next-line max-lines-per-function,max-params
+    // eslint-disable-next-line max-lines-per-function,max-params-no-constructor/max-params-no-constructor
     private createGroupLogger<T = unknown>(
         groupType: GroupMethod,
         title: string,

@@ -84,13 +84,13 @@ export class TableTbodyComponent {
         }
     }
 
-    // eslint-disable-next-line max-params
+    // eslint-disable-next-line max-params,max-params-no-constructor/max-params-no-constructor
     public handleDblClick(row: TableRow, key: string, event: MouseEvent, emitter?: TableClickEventEmitter): void {
         window.clearInterval(this.selection.selectionTaskIdle!);
         this.handleEventEmitter(row, key, event, emitter);
     }
 
-    // eslint-disable-next-line max-params
+    // eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
     public handleOnClick(row: TableRow, key: string, event: MouseEvent, emitter?: TableClickEventEmitter): void {
         this.ngZone.run((): void => {
             if (this.enableSelection) {
@@ -115,7 +115,7 @@ export class TableTbodyComponent {
         };
     }
 
-    // eslint-disable-next-line max-params
+    // eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
     private handleEventEmitter(row: TableRow, key: string, event: MouseEvent, emitter?: TableClickEventEmitter): void {
         if (emitter) {
             this.ngZone.runOutsideAngular((): void => {

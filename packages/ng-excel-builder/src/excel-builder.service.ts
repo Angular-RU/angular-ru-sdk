@@ -45,7 +45,7 @@ export class ExcelBuilderService {
                     StyleType
                 );
 
-                // eslint-disable-next-line @typescript-eslint/tslint/config,max-lines-per-function,max-params
+                // eslint-disable-next-line @typescript-eslint/tslint/config,max-lines-per-function,max-params-no-constructor/max-params-no-constructor
                 function generateWorksheet(
                     worksheets: Any,
                     translatedColumns: Any,
@@ -96,7 +96,7 @@ export class ExcelBuilderService {
                     }, '');
                 }
 
-                // eslint-disable-next-line @typescript-eslint/tslint/config,max-lines-per-function,max-params
+                // eslint-disable-next-line @typescript-eslint/tslint/config,max-lines-per-function,max-params-no-constructor/max-params-no-constructor
                 function generateRow(
                     worksheets: Any,
                     data: Any,
@@ -122,13 +122,13 @@ export class ExcelBuilderService {
                     return rowsTemplates;
                 }
 
-                // eslint-disable-next-line @typescript-eslint/tslint/config,max-params
+                // eslint-disable-next-line @typescript-eslint/tslint/config,max-params-no-constructor/max-params-no-constructor
                 function generateCell(worksheet: Any, cell: Any, ptWidth: Any, colWidth: Any, styleType: Any) {
                     const flatCell: PlainObject = flatten(cell, worksheet.excludeKeys);
                     return generateBodyCell(flatCell, ptWidth, colWidth, styleType);
                 }
 
-                // eslint-disable-next-line @typescript-eslint/tslint/config,max-params
+                // eslint-disable-next-line @typescript-eslint/tslint/config,max-params-no-constructor/max-params-no-constructor
                 function generateBodyCell(flatCell: Any, ptWidth: Any, colWidth: Any, styleType: Any) {
                     let bodyCellTemplate: string = '';
                     for (const key in flatCell) {
