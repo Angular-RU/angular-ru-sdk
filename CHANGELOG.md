@@ -1,3 +1,15 @@
+#### 14.44.0 (2020-09-24)
+
+##### Continuous Integration
+
+-   update angular-cli
+    ([707d4b36](https://github.com/Angular-RU/angular-ru-sdk/commit/707d4b3615a7e1710adb36c017513cc1c204611f))
+
+##### New Features
+
+-   **@angular-ru/string:** add trim ([#179](https://github.com/Angular-RU/angular-ru-sdk/pull/179))
+    ([3ff4a725](https://github.com/Angular-RU/angular-ru-sdk/commit/3ff4a7254941030c538d02940a35a4e89804b773))
+
 #### 14.43.0 (2020-09-23)
 
 ##### Continuous Integration
