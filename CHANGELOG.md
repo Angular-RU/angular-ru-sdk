@@ -1,3 +1,10 @@
+#### 14.45.0 (2020-09-24)
+
+##### New Features
+
+-   **@angular-ru/eslint-config:** update @typescript-eslint/eslint-plugin
+    ([cb4c0e97](https://github.com/Angular-RU/angular-ru-sdk/commit/cb4c0e97228b51cc31f018f25c38dd2e930a71fd))
+
 #### 14.44.0 (2020-09-24)
 
 ##### Continuous Integration
