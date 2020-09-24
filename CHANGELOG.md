@@ -1,3 +1,15 @@
+#### 14.47.0 (2020-09-24)
+
+##### Documentation Changes
+
+-   **@angular-ru/flex-layout:** update README.md
+    ([90bc2d8e](https://github.com/Angular-RU/angular-ru-sdk/commit/90bc2d8e9fee221c48d9f3361c4f16907117e7bb))
+
+##### New Features
+
+-   **@angular-ru/eslint-config:** support multiple params in constructor
+    ([722a3a2c](https://github.com/Angular-RU/angular-ru-sdk/commit/722a3a2ca363371974dc3790ffec27d6c1650221))
+
 #### 14.46.0 (2020-09-24)
 
 ##### New Features
