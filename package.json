@@ -89,7 +89,6 @@
         "karma-jasmine": "4.0.1",
         "karma-jasmine-html-reporter": "1.5.4",
         "lerna": "3.22.1",
-        "ng-packagr": "10.1.0",
         "rxjs": "6.6.3",
         "tsickle": "0.39.1",
         "tslib": "2.0.1",

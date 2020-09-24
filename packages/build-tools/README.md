@@ -15,12 +15,16 @@ yarn add @angular-ru/build-tools
 
 Included packages in your project:
 
--   `@types/node`
--   `generate-changelog`
--   `husky`
--   `inquirer-directory`
--   `lint-staged`
--   `npe`
--   `npm-run-all`
--   `sort-package-json`
--   `ts-node`
+-   `@types/node` - This package contains type definitions for Node.js.
+-   `generate-changelog` - Generate a changelog from git commits. This is meant to be used so that for every patch,
+    minor, or major version, you update the changelog prior to running npm version so that the git tag contains the
+    commit that updated both the changelog and version.
+-   `husky` - Husky can prevent bad git commit, git push and more!
+-   `inquirer-directory` - Relative Directory prompt for the inquirer.
+-   `lint-staged` - Run linters against staged git files and don't let slip into your code base!
+-   `ng-packagr` - Transpile your libraries to Angular Package Format.
+-   `npe` - Node Package Editor: a CLI for one-off inspection and editing of properties in package.json files.
+-   `npm-run-all` - A CLI tool to run multiple npm-scripts in parallel or sequential.
+-   `sort-package-json` - The package.json file can be sorted automatically before committing, install husky and
+    lint-staged and add the following to your package.json file!
+-   `ts-node` - TypeScript execution and REPL for Node.js, with source map support.
