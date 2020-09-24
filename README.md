@@ -9,195 +9,213 @@ in the Angular.
 #### Packages
 
 <table>
-<thead>
-  <tr>
-    <th><b>Package</b></th>
-    <th><b>Version</b></th>
-    <th><b>Links</b></th>
-  </tr>
-</thead>
-<tbody>
-<tr>
-    <td>
-        <a href="https://npmjs.com/package/@angular-ru/common">
+   <thead>
+      <tr>
+         <th><b>Package</b></th>
+         <th><b>Version</b></th>
+         <th><b>Links</b></th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td>
+            <a href="https://npmjs.com/package/@angular-ru/build-tools">
+            @angular-ru/build-tools
+            </a>
+         </td>
+         <td>
+            <img src="https://img.shields.io/npm/v/%40angular-ru%2Fbuild-tools/latest.svg">
+         </td>
+         <td>
+            <a href="https://npmjs.com/package/@angular-ru/build-tools">
+            <img src="https://img.shields.io/npm/dw/@angular-ru/build-tools">
+            </a>
+            <a href="packages/build-tools/README.md">
+            <img src="https://img.shields.io/badge/README--green.svg">
+            </a>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <a href="https://npmjs.com/package/@angular-ru/common">
             @angular-ru/common
-        </a>
-    </td>
-    <td>
-        <img src="https://img.shields.io/npm/v/%40angular-ru%2Fcommon/latest.svg">
-    </td>
-    <td>
-        <a href="https://npmjs.com/package/@angular-ru/common">
+            </a>
+         </td>
+         <td>
+            <img src="https://img.shields.io/npm/v/%40angular-ru%2Fcommon/latest.svg">
+         </td>
+         <td>
+            <a href="https://npmjs.com/package/@angular-ru/common">
             <img src="https://img.shields.io/npm/dw/@angular-ru/common">
-        </a>
-        <a href="packages/common/README.md">
+            </a>
+            <a href="packages/common/README.md">
             <img src="https://img.shields.io/badge/README--green.svg">
-        </a>
-    </td>
-  </tr>
-  <tr>
-    <td>
-        <a href="https://npmjs.com/package/@angular-ru/tsconfig">
+            </a>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <a href="https://npmjs.com/package/@angular-ru/tsconfig">
             @angular-ru/tsconfig
-        </a>
-    </td>
-    <td>
-        <img src="https://img.shields.io/npm/v/%40angular-ru%2Ftsconfig/latest.svg">
-    </td>
-    <td>
-        <a href="https://npmjs.com/package/@angular-ru/tsconfig">
+            </a>
+         </td>
+         <td>
+            <img src="https://img.shields.io/npm/v/%40angular-ru%2Ftsconfig/latest.svg">
+         </td>
+         <td>
+            <a href="https://npmjs.com/package/@angular-ru/tsconfig">
             <img src="https://img.shields.io/npm/dw/@angular-ru/tsconfig">
-        </a>
-        <a href="packages/tsconfig/README.md">
+            </a>
+            <a href="packages/tsconfig/README.md">
             <img src="https://img.shields.io/badge/README--green.svg">
-        </a>
-    </td>
-  </tr>
-  <tr>
-    <td>
-        <a href="https://npmjs.com/package/@angular-ru/eslint-config">
+            </a>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <a href="https://npmjs.com/package/@angular-ru/eslint-config">
             @angular-ru/eslint-config
-        </a>
-    </td>
-    <td>
-        <img src="https://img.shields.io/npm/v/%40angular-ru%2Feslint-config/latest.svg">
-    </td>
-    <td>
-        <a href="https://npmjs.com/package/@angular-ru/eslint-config">
+            </a>
+         </td>
+         <td>
+            <img src="https://img.shields.io/npm/v/%40angular-ru%2Feslint-config/latest.svg">
+         </td>
+         <td>
+            <a href="https://npmjs.com/package/@angular-ru/eslint-config">
             <img src="https://img.shields.io/npm/dw/@angular-ru/jest-utils">
-        </a>
-        <a href="packages/eslint-config/README.md">
+            </a>
+            <a href="packages/eslint-config/README.md">
             <img src="https://img.shields.io/badge/README--green.svg">
-        </a>
-    </td>
-  </tr>
-  <tr>
-    <td>
-        <a href="https://npmjs.com/package/@angular-ru/prettier-config">
+            </a>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <a href="https://npmjs.com/package/@angular-ru/prettier-config">
             @angular-ru/prettier-config
-        </a>
-    </td>
-    <td>
-        <img src="https://img.shields.io/npm/v/%40angular-ru%2Fprettier-config/latest.svg">
-    </td>
-    <td>
-        <a href="https://npmjs.com/package/@angular-ru/prettier-config">
+            </a>
+         </td>
+         <td>
+            <img src="https://img.shields.io/npm/v/%40angular-ru%2Fprettier-config/latest.svg">
+         </td>
+         <td>
+            <a href="https://npmjs.com/package/@angular-ru/prettier-config">
             <img src="https://img.shields.io/npm/dw/@angular-ru/prettier-config">
-        </a>
-        <a href="packages/prettier-config/README.md">
+            </a>
+            <a href="packages/prettier-config/README.md">
             <img src="https://img.shields.io/badge/README--green.svg">
-        </a>
-    </td>
-  </tr>
-  <tr>
-    <td>
-        <a href="https://npmjs.com/package/@angular-ru/jest-utils">
+            </a>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <a href="https://npmjs.com/package/@angular-ru/jest-utils">
             @angular-ru/jest-utils
-        </a>
-    </td>
-    <td>
-        <img src="https://img.shields.io/npm/v/%40angular-ru%2Fjest-utils/latest.svg">
-    </td>
-    <td>
-        <a href="https://npmjs.com/package/@angular-ru/jest-utils">
+            </a>
+         </td>
+         <td>
+            <img src="https://img.shields.io/npm/v/%40angular-ru%2Fjest-utils/latest.svg">
+         </td>
+         <td>
+            <a href="https://npmjs.com/package/@angular-ru/jest-utils">
             <img src="https://img.shields.io/npm/dw/@angular-ru/jest-utils">
-        </a>
-        <a href="packages/jest-utils/README.md">
+            </a>
+            <a href="packages/jest-utils/README.md">
             <img src="https://img.shields.io/badge/README--green.svg">
-        </a>
-    </td>
-  </tr>
-  <tr>
-      <td>
-          <a href="https://npmjs.com/package/@angular-ru/logger">
-              @angular-ru/logger
-          </a>
-      </td>
-      <td>
-          <img src="https://img.shields.io/npm/v/%40angular-ru%2Flogger/latest.svg">
-      </td>
-      <td>
-          <a href="https://npmjs.com/package/@angular-ru/logger">
-              <img src="https://img.shields.io/npm/dw/@angular-ru/logger">
-          </a>
-          <a href="packages/logger/README.md">
-              <img src="https://img.shields.io/badge/README--green.svg">
-          </a>
-      </td>
-    </tr>
-    <tr>
-      <td>
-          <a href="https://npmjs.com/package/@angular-ru/ng-table-builder">
-              @angular-ru/ng-table-builder
-          </a>
-      </td>
-      <td>
-          <img src="https://img.shields.io/npm/v/%40angular-ru%2Fng-table-builder/latest.svg">
-      </td>
-      <td>
-          <a href="https://npmjs.com/package/@angular-ru/ng-table-builder">
-              <img src="https://img.shields.io/npm/dw/@angular-ru/ng-table-builder">
-          </a>
-          <a href="packages/ng-table-builder/README.md">
-              <img src="https://img.shields.io/badge/README--green.svg">
-          </a>
-      </td>
-    </tr>
-    <tr>
-      <td>
-          <a href="https://npmjs.com/package/@angular-ru/ng-excel-builder">
-              @angular-ru/ng-excel-builder
-          </a>
-      </td>
-      <td>
-          <img src="https://img.shields.io/npm/v/%40angular-ru%2Fng-excel-builder/latest.svg">
-      </td>
-      <td>
-          <a href="https://npmjs.com/package/@angular-ru/ng-excel-builder">
-              <img src="https://img.shields.io/npm/dw/@angular-ru/ng-excel-builder">
-          </a>
-          <a href="packages/ng-excel-builder/README.md">
-              <img src="https://img.shields.io/badge/README--green.svg">
-          </a>
-      </td>
-    </tr>
-    <tr>
-      <td>
-          <a href="https://npmjs.com/package/@angular-ru/flex-layout">
-              @angular-ru/flex-layout
-          </a>
-      </td>
-      <td>
-          <img src="https://img.shields.io/npm/v/%40angular-ru%2Fflex-layout/latest.svg">
-      </td>
-      <td>
-          <a href="https://npmjs.com/package/@angular-ru/flex-layout">
-              <img src="https://img.shields.io/npm/dw/@angular-ru/flex-layout">
-          </a>
-          <a href="packages/flex-layout/README.md">
-              <img src="https://img.shields.io/badge/README--green.svg">
-          </a>
-      </td>
-    </tr>
-    <tr>
-      <td>
-          <a href="https://npmjs.com/package/@angular-ru/stream">
-              @angular-ru/stream
-          </a>
-      </td>
-      <td>
-          <img src="https://img.shields.io/npm/v/%40angular-ru%2Fstream/latest.svg">
-      </td>
-      <td>
-          <a href="https://npmjs.com/package/@angular-ru/stream">
-              <img src="https://img.shields.io/npm/dw/@angular-ru/stream">
-          </a>
-          <a href="packages/stream/README.md">
-              <img src="https://img.shields.io/badge/README--green.svg">
-          </a>
-      </td>
-    </tr>
-</tbody>
+            </a>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <a href="https://npmjs.com/package/@angular-ru/logger">
+            @angular-ru/logger
+            </a>
+         </td>
+         <td>
+            <img src="https://img.shields.io/npm/v/%40angular-ru%2Flogger/latest.svg">
+         </td>
+         <td>
+            <a href="https://npmjs.com/package/@angular-ru/logger">
+            <img src="https://img.shields.io/npm/dw/@angular-ru/logger">
+            </a>
+            <a href="packages/logger/README.md">
+            <img src="https://img.shields.io/badge/README--green.svg">
+            </a>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <a href="https://npmjs.com/package/@angular-ru/ng-table-builder">
+            @angular-ru/ng-table-builder
+            </a>
+         </td>
+         <td>
+            <img src="https://img.shields.io/npm/v/%40angular-ru%2Fng-table-builder/latest.svg">
+         </td>
+         <td>
+            <a href="https://npmjs.com/package/@angular-ru/ng-table-builder">
+            <img src="https://img.shields.io/npm/dw/@angular-ru/ng-table-builder">
+            </a>
+            <a href="packages/ng-table-builder/README.md">
+            <img src="https://img.shields.io/badge/README--green.svg">
+            </a>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <a href="https://npmjs.com/package/@angular-ru/ng-excel-builder">
+            @angular-ru/ng-excel-builder
+            </a>
+         </td>
+         <td>
+            <img src="https://img.shields.io/npm/v/%40angular-ru%2Fng-excel-builder/latest.svg">
+         </td>
+         <td>
+            <a href="https://npmjs.com/package/@angular-ru/ng-excel-builder">
+            <img src="https://img.shields.io/npm/dw/@angular-ru/ng-excel-builder">
+            </a>
+            <a href="packages/ng-excel-builder/README.md">
+            <img src="https://img.shields.io/badge/README--green.svg">
+            </a>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <a href="https://npmjs.com/package/@angular-ru/flex-layout">
+            @angular-ru/flex-layout
+            </a>
+         </td>
+         <td>
+            <img src="https://img.shields.io/npm/v/%40angular-ru%2Fflex-layout/latest.svg">
+         </td>
+         <td>
+            <a href="https://npmjs.com/package/@angular-ru/flex-layout">
+            <img src="https://img.shields.io/npm/dw/@angular-ru/flex-layout">
+            </a>
+            <a href="packages/flex-layout/README.md">
+            <img src="https://img.shields.io/badge/README--green.svg">
+            </a>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <a href="https://npmjs.com/package/@angular-ru/stream">
+            @angular-ru/stream
+            </a>
+         </td>
+         <td>
+            <img src="https://img.shields.io/npm/v/%40angular-ru%2Fstream/latest.svg">
+         </td>
+         <td>
+            <a href="https://npmjs.com/package/@angular-ru/stream">
+            <img src="https://img.shields.io/npm/dw/@angular-ru/stream">
+            </a>
+            <a href="packages/stream/README.md">
+            <img src="https://img.shields.io/badge/README--green.svg">
+            </a>
+         </td>
+      </tr>
+   </tbody>
 </table>
 
 ---
