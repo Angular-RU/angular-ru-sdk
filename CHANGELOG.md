@@ -1,3 +1,11 @@
+#### 14.46.0 (2020-09-24)
+
+##### New Features
+
+-   **@angular-ru/build-tools:** add new package as common build utils
+    ([#180](https://github.com/Angular-RU/angular-ru-sdk/pull/180))
+    ([d31167b0](https://github.com/Angular-RU/angular-ru-sdk/commit/d31167b09490248f58092a71794ed90893f1cc3f))
+
 #### 14.45.0 (2020-09-24)
 
 ##### New Features
