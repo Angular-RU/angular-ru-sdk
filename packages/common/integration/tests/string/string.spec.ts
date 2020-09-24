@@ -1,11 +1,12 @@
 import {
-    toStringVal,
-    getByteSize,
-    stringify,
     capitalize,
-    splitOnUniqueValues,
     generateQuickGuid,
-    isString
+    getByteSize,
+    isString,
+    splitOnUniqueValues,
+    stringify,
+    toStringVal,
+    trim
 } from '@angular-ru/common/string';
 
 describe('[TEST]: String', () => {
@@ -79,5 +80,11 @@ describe('[TEST]: String', () => {
         expect(isString(Infinity)).toEqual(false);
         expect(isString(null)).toEqual(false);
         expect(isString(undefined)).toEqual(false);
+    });
+
+    it('correct trim', () => {
+        expect(trim('test ')).toEqual('test');
+        expect(trim('      test  ')).toEqual('test');
+        expect(trim('   test  test  ')).toEqual('test  test');
     });
 });

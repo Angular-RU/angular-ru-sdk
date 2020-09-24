@@ -5,3 +5,4 @@ export { capitalize } from './capitalize';
 export { splitOnUniqueValues } from './split-on-unique-values';
 export { generateQuickGuid } from './generate-quick-guid';
 export { isString } from './is-string';
+export { trim } from './trim';

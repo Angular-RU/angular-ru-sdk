@@ -49,3 +49,11 @@ expect(isString(Infinity)).toEqual(false);
 expect(isString(null)).toEqual(false);
 expect(isString(undefined)).toEqual(false);
 ```
+
+-   `trim`
+
+```ts
+expect(trim('test ')).toEqual('test');
+expect(trim('      test  ')).toEqual('test');
+expect(trim('   test  test  ')).toEqual('test  test');
+```
