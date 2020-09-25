@@ -1,3 +1,10 @@
+#### 14.48.0 (2020-09-25)
+
+##### New Features
+
+-   update dependency ng-packagr to v10.1.1
+    ([c982c7f7](https://github.com/Angular-RU/angular-ru-sdk/commit/c982c7f7a040cac2d4a5ff9a2ee7793b48c65be8))
+
 #### 14.47.0 (2020-09-24)
 
 ##### Documentation Changes
