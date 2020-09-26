@@ -1,3 +1,15 @@
+#### 14.49.0 (2020-09-26)
+
+##### Continuous Integration
+
+-   update dependency karma to v5.2.3
+    ([6c9ee28e](https://github.com/Angular-RU/angular-ru-sdk/commit/6c9ee28e4a9725cedcae015ad298645ec696a811))
+
+##### New Features
+
+-   update dependency ng-packagr to v10.1.2
+    ([048ecdfd](https://github.com/Angular-RU/angular-ru-sdk/commit/048ecdfdc0d4dc0165790c0ea397190a2b830baf))
+
 #### 14.48.0 (2020-09-25)
 
 ##### New Features
