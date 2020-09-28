@@ -1,3 +1,10 @@
+#### 14.50.0 (2020-09-28)
+
+##### New Features
+
+-   update dependency eslint-plugin-import to v2.22.1
+    ([71d2920d](https://github.com/Angular-RU/angular-ru-sdk/commit/71d2920d2d7ac6e1c621c91b06b50cd3f3ce09bc))
+
 #### 14.49.0 (2020-09-26)
 
 ##### Continuous Integration
