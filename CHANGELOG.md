@@ -1,3 +1,15 @@
+#### 14.51.0 (2020-09-29)
+
+##### Continuous Integration
+
+-   update angular-components to v10.2.3
+    ([add69d7c](https://github.com/Angular-RU/angular-ru-sdk/commit/add69d7c8acecd59531112bf0a1470628b811244))
+
+##### New Features
+
+-   update ESLint
+    ([82e2b9a8](https://github.com/Angular-RU/angular-ru-sdk/commit/82e2b9a8c464a97ddbcf6a2722c8807aa135784a))
+
 #### 14.50.0 (2020-09-28)
 
 ##### New Features
