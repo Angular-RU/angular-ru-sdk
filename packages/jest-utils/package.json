@@ -29,7 +29,7 @@
         "@types/jest": "26.0.14",
         "jest": "26.4.2",
         "jest-preset-angular": "8.3.1",
-        "ts-jest": "26.3.0"
+        "ts-jest": "26.4.1"
     },
     "peerDependencies": {
         "@angular-ru/common": ">=13.19.0"
