@@ -1,3 +1,15 @@
+#### 14.52.0 (2020-09-30)
+
+##### Continuous Integration
+
+-   update angular-framework to v10.1.4
+    ([24b1bf7d](https://github.com/Angular-RU/angular-ru-sdk/commit/24b1bf7d8295ce545b6b9eded174bf596ff31663))
+
+##### New Features
+
+-   update dependency codelyzer to v6.0.1
+    ([fd2220f8](https://github.com/Angular-RU/angular-ru-sdk/commit/fd2220f8404b777a6b7220d3b5d2288278583de2))
+
 #### 14.51.0 (2020-09-29)
 
 ##### Continuous Integration
