@@ -1,3 +1,12 @@
+#### 14.52.1 (2020-10-01)
+
+##### Continuous Integration
+
+-   update dependency ngx-toastr to v13.0.1
+    ([3d6ea743](https://github.com/Angular-RU/angular-ru-sdk/commit/3d6ea7434bf3ed170f51c3cf20cffcb179e0381f))
+-   update angular-cli
+    ([a0850fdc](https://github.com/Angular-RU/angular-ru-sdk/commit/a0850fdc3b56c9f0e1d65a3528ac3e8c718743d1))
+
 #### 14.52.0 (2020-09-30)
 
 ##### Continuous Integration
