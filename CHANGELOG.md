@@ -1,3 +1,10 @@
+#### 14.53.1 (2020-10-05)
+
+##### Continuous Integration
+
+-   use devDependencies only root package.json
+    ([a5bc85b0](https://github.com/Angular-RU/angular-ru-sdk/commit/a5bc85b02091af1a6c7fba508da6ecda971abb00))
+
 #### 14.53.0 (2020-10-05)
 
 ##### New Features
