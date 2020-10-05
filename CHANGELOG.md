@@ -1,3 +1,10 @@
+#### 14.53.0 (2020-10-05)
+
+##### New Features
+
+-   update dependency jest to v26.5.0
+    ([0aafcf17](https://github.com/Angular-RU/angular-ru-sdk/commit/0aafcf1780db28be0254f9c805fe95ad80db5dd3))
+
 #### 14.52.1 (2020-10-01)
 
 ##### Continuous Integration
