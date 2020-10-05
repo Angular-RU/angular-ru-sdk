@@ -27,11 +27,6 @@
         "test": "yarn jest --config ./jest.config.js",
         "postversion": "npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\""
     },
-    "devDependencies": {
-        "intersection-observer": "0.11.0",
-        "ngx-toastr": "13.0.1",
-        "pretty": "2.0.0"
-    },
     "peerDependencies": {
         "@angular/animations": ">=8.0.0 <11.0.0",
         "@angular/cdk": ">=8.0.0  <11.0.0",
