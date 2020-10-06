@@ -1,3 +1,17 @@
+#### 14.56.0 (2020-10-06)
+
+##### Continuous Integration
+
+-   update dependency @types/node to v14.11.5
+    ([d2389c2a](https://github.com/Angular-RU/angular-ru-sdk/commit/d2389c2ac78d5dbb8e8b0e0f9cb8f4026c9f734e))
+-   update dependency ngx-toastr to v13.1.0
+    ([42822996](https://github.com/Angular-RU/angular-ru-sdk/commit/428229966860d7857022f8f10eaacdb7f0ec3eed))
+
+##### New Features
+
+-   update dependency @types/node to v14.11.5
+    ([60883ba6](https://github.com/Angular-RU/angular-ru-sdk/commit/60883ba6d158dccf86d3acb91c093ee9a8a1e3d6))
+
 #### 14.55.0 (2020-10-06)
 
 ##### Continuous Integration
