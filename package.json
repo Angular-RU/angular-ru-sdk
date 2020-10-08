@@ -59,11 +59,11 @@
         "extends": "./packages/eslint-config/index.js"
     },
     "devDependencies": {
-        "@angular-devkit/build-angular": "0.1001.4",
-        "@angular-devkit/build-ng-packagr": "0.1001.4",
+        "@angular-devkit/build-angular": "0.1001.5",
+        "@angular-devkit/build-ng-packagr": "0.1001.5",
         "@angular/animations": "10.1.5",
         "@angular/cdk": "10.2.4",
-        "@angular/cli": "10.1.4",
+        "@angular/cli": "10.1.5",
         "@angular/common": "10.1.5",
         "@angular/compiler": "10.1.5",
         "@angular/compiler-cli": "10.1.5",
