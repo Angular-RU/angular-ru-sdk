@@ -1,3 +1,19 @@
+#### 14.58.0 (2020-10-08)
+
+##### Continuous Integration
+
+-   update angular-cli
+    ([d11eee98](https://github.com/Angular-RU/angular-ru-sdk/commit/d11eee98def95e9a8af993d9f73e9e986488db67))
+-   update angular-framework to v10.1.5
+    ([226d0ee5](https://github.com/Angular-RU/angular-ru-sdk/commit/226d0ee550c81b608ae8126a56cc02f8307f48df))
+-   update dependency tslib to v2.0.2
+    ([805ffd43](https://github.com/Angular-RU/angular-ru-sdk/commit/805ffd43be7c3132377415a4fbf8f2a795dd3b6a))
+
+##### New Features
+
+-   update dependency @types/eslint to v7.2.4
+    ([86c546e6](https://github.com/Angular-RU/angular-ru-sdk/commit/86c546e684273d930d4fc6dc918014e0eadb1688))
+
 #### 14.57.0 (2020-10-06)
 
 ##### New Features
