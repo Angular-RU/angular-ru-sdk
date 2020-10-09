@@ -1,3 +1,15 @@
+#### 14.59.0 (2020-10-09)
+
+##### Continuous Integration
+
+-   update angular-cli
+    ([1a175c6b](https://github.com/Angular-RU/angular-ru-sdk/commit/1a175c6b4f2ffad012ea6c3366990b932798588f))
+
+##### New Features
+
+-   update dependency @types/node to v14.11.7
+    ([a64158ef](https://github.com/Angular-RU/angular-ru-sdk/commit/a64158efa02b44d92b404950958be237d2622f06))
+
 #### 14.58.0 (2020-10-08)
 
 ##### Continuous Integration
