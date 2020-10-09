@@ -1,3 +1,15 @@
+#### 14.60.0 (2020-10-09)
+
+##### Continuous Integration
+
+-   update dependency @types/node to v14.11.8
+    ([7400e113](https://github.com/Angular-RU/angular-ru-sdk/commit/7400e1136c70436cab53f37a01ae2e57ca479b6a))
+
+##### New Features
+
+-   update dependency @types/node to v14.11.8 ([#207](https://github.com/Angular-RU/angular-ru-sdk/pull/207))
+    ([7a21dfa8](https://github.com/Angular-RU/angular-ru-sdk/commit/7a21dfa8a293f6b47159454e1cdd0af62243a44f))
+
 #### 14.59.0 (2020-10-09)
 
 ##### Continuous Integration
