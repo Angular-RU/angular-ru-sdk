@@ -1,3 +1,15 @@
+#### 14.62.0 (2020-10-11)
+
+##### Continuous Integration
+
+-   update dependency tslib to v2.0.3
+    ([9cfe1ac9](https://github.com/Angular-RU/angular-ru-sdk/commit/9cfe1ac94137472f4646fea7d931c6aa86e2630e))
+
+##### New Features
+
+-   update dependency jest to v26.5.3
+    ([ace052e2](https://github.com/Angular-RU/angular-ru-sdk/commit/ace052e203352c7470207917460d0627650e33bd))
+
 #### 14.61.0 (2020-10-09)
 
 ##### New Features
