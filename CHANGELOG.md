@@ -1,3 +1,10 @@
+#### 14.64.0 (2020-10-13)
+
+##### New Features
+
+-   **@angular-ru/websocket:** add websocket client
+    ([de349a31](https://github.com/Angular-RU/angular-ru-sdk/commit/de349a31b3a9b7fcea943d185f95dd223d472a2d))
+
 #### 14.63.0 (2020-10-12)
 
 ##### New Features
