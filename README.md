@@ -215,6 +215,24 @@ in the Angular.
             </a>
          </td>
       </tr>
+      <tr>
+         <td>
+            <a href="https://npmjs.com/package/@angular-ru/websocket">
+            @angular-ru/websocket
+            </a>
+         </td>
+         <td>
+            <img src="https://img.shields.io/npm/v/%40angular-ru%2Fwebsocket/latest.svg">
+         </td>
+         <td>
+            <a href="https://npmjs.com/package/@angular-ru/websocket">
+            <img src="https://img.shields.io/npm/dw/@angular-ru/websocket">
+            </a>
+            <a href="packages/websocket/README.md">
+            <img src="https://img.shields.io/badge/README--green.svg">
+            </a>
+         </td>
+      </tr>
    </tbody>
 </table>
 
