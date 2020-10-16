@@ -3,11 +3,8 @@
     "lib": {
         "entryFile": "src/public-api.ts",
         "umdModuleIds": {
-            "@angular-ru/common/typings": "angular-ru-common-typings",
-            "@angular-ru/common/webworker": "angular-ru-common-webworker",
-            "@angular-ru/common/date": "angular-ru-common-date"
+            "@angular-ru/common/typings": "angular-ru-common-typings"
         }
     },
-    "dest": "./dist/library",
-    "assets": ["styles"]
+    "dest": "./dist/library"
 }

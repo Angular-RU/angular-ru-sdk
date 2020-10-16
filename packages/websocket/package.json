@@ -16,7 +16,7 @@
         "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
     },
     "license": "MIT",
-    "author": "kingofferelden <king.of.ferelden@gmail.com",
+    "author": "splincode@yandex.ru",
     "main": "lib/index.js",
     "scripts": {
         "build:lib": "ng build library && cp README.md dist/library",
