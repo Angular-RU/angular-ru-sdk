@@ -1,3 +1,14 @@
+#### 14.64.1 (2020-10-16)
+
+##### Continuous Integration
+
+-   **@angular-ru/websocket:** remove redundant umd modules refs
+    ([47d78c53](https://github.com/Angular-RU/angular-ru-sdk/commit/47d78c531eb8a52abdaeae2c73a120bd308c2bf1))
+-   update angular-cli
+    ([9a2000ff](https://github.com/Angular-RU/angular-ru-sdk/commit/9a2000ff61fc752f526b1fb61caf6e12574bdb13))
+-   update angular-framework to v10.1.6
+    ([1cf3a41d](https://github.com/Angular-RU/angular-ru-sdk/commit/1cf3a41d4c0da28400727324a63abf4c8a6266cb))
+
 #### 14.64.0 (2020-10-13)
 
 ##### New Features
