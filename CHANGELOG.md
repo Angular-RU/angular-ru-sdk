@@ -1,3 +1,21 @@
+#### 14.64.2 (2020-10-18)
+
+##### Chores
+
+-   **release:** updated release notes and package versions [ci skip]
+    ([bd222dc9](https://github.com/Angular-RU/angular-ru-sdk/commit/bd222dc9509e46923c4da7d9f50cce32dca2d24d))
+
+##### Continuous Integration
+
+-   use public_api.ts instead public-api.ts as entry point
+    ([a51c618d](https://github.com/Angular-RU/angular-ru-sdk/commit/a51c618d3c93a77135f8ba928b5d6bff4e9acf8b))
+-   update angular-cli
+    ([9a2000ff](https://github.com/Angular-RU/angular-ru-sdk/commit/9a2000ff61fc752f526b1fb61caf6e12574bdb13))
+-   update angular-framework to v10.1.6
+    ([1cf3a41d](https://github.com/Angular-RU/angular-ru-sdk/commit/1cf3a41d4c0da28400727324a63abf4c8a6266cb))
+-   **@angular-ru/websocket:** remove redundant umd modules refs
+    ([47d78c53](https://github.com/Angular-RU/angular-ru-sdk/commit/47d78c531eb8a52abdaeae2c73a120bd308c2bf1))
+
 #### 14.64.1 (2020-10-16)
 
 ##### Continuous Integration
