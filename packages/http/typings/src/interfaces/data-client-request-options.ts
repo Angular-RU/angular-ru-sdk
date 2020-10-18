@@ -1,4 +1,4 @@
-import { PlainObject } from '@angular-ru/common/typings';
+import { Any, PlainObject } from '@angular-ru/common/typings';
 
 export interface DataHeadersParams {
     [key: string]: string | string[];
@@ -6,7 +6,7 @@ export interface DataHeadersParams {
 
 export type DataResponseType = 'arraybuffer' | 'blob' | 'json' | 'text';
 
-export interface DataRequestOptions {
+export interface DataClientRequestOptions<T extends PlainObject = Any> {
     /**
      * @description
      * prepare your model before sending on server
@@ -54,13 +54,13 @@ export interface DataRequestOptions {
      * @description
      * emit success event about sent request
      */
-    showOk: boolean;
+    emitSuccess: boolean;
 
     /**
      * @description
      * emit failure event about sent request
      */
-    showError: boolean;
+    emitFailure: boolean;
 
     /**
      * @description
@@ -70,7 +70,7 @@ export interface DataRequestOptions {
 
     /**
      * @description
-     * emit lock page after send request
+     * custom properties
      */
-    lock: boolean;
+    additionalOptions: T;
 }

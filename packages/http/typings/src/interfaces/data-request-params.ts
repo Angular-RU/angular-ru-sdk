@@ -1,8 +1,8 @@
 import { HttpHeaders, HttpParams } from '@angular/common/http';
 
-import { DataResponseType } from './data-request-options';
+import { DataResponseType } from './data-client-request-options';
 
-export interface DataHttpRequestParams {
+export interface DataHttpRequestOptions {
     body: unknown;
     headers: HttpHeaders;
     params: HttpParams;

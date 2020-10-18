@@ -9,7 +9,6 @@ Custom http client, with the ability to customize requests, auto unsubscribe and
 
     - [(@)angular-ru/http/utils](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/http/docs/utils.md)
 
-
 #### First step
 
 ```ts

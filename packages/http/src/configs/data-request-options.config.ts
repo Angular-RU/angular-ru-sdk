@@ -1,15 +1,15 @@
-import { DataRequestOptions } from '@angular-ru/http/typings';
+import { DataClientRequestOptions } from '@angular-ru/http/typings';
 
-export const DATA_REQUEST_OPTIONS_CONFIG: DataRequestOptions = {
-    nullInsteadEmpty: true,
+export const DATA_REQUEST_OPTIONS_CONFIG: DataClientRequestOptions = {
     baseUrl: null,
     hostUrl: null,
     body: null,
-    lock: true,
     headers: {},
     queryParams: {},
-    showOk: false,
-    showError: true,
+    emitSuccess: false,
+    emitFailure: true,
     responseType: 'json',
-    reportProgress: true
+    reportProgress: true,
+    additionalOptions: {},
+    nullInsteadEmpty: true
 };
