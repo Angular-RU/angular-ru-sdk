@@ -2,7 +2,7 @@ import { Any } from '@angular-ru/common/typings';
 import { DataRequestOptions } from '@angular-ru/http/typings';
 import { Inject, Injectable } from '@angular/core';
 
-import { DATA_CONFIG_SERVICE_TOKEN } from '../tokens/data-config-service.token';
+import { DATA_CONFIG_SERVICE_TOKEN } from '../configs/data-config-service.token';
 
 @Injectable()
 export class DataConfiguratorService {
