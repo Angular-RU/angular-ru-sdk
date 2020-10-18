@@ -1,3 +1,15 @@
+#### 14.65.0 (2020-10-18)
+
+##### Continuous Integration
+
+-   update devDependencies
+    ([102c80bc](https://github.com/Angular-RU/angular-ru-sdk/commit/102c80bce39ab5169a29fb064745881e0a166c1f))
+
+##### New Features
+
+-   update dependencies
+    ([e8e347d6](https://github.com/Angular-RU/angular-ru-sdk/commit/e8e347d6e32f10a1aa0351fbee5bf396477e923c))
+
 #### 14.64.2 (2020-10-18)
 
 ##### Chores
