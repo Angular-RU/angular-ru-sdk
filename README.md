@@ -55,6 +55,24 @@ in the Angular.
       </tr>
       <tr>
          <td>
+            <a href="https://npmjs.com/package/@angular-ru/http">
+            @angular-ru/http
+            </a>
+         </td>
+         <td>
+            <img src="https://img.shields.io/npm/v/%40angular-ru%2Fhttp/latest.svg">
+         </td>
+         <td>
+            <a href="https://npmjs.com/package/@angular-ru/http">
+            <img src="https://img.shields.io/npm/dw/@angular-ru/http">
+            </a>
+            <a href="packages/http/README.md">
+            <img src="https://img.shields.io/badge/README--green.svg">
+            </a>
+         </td>
+      </tr>
+      <tr>
+         <td>
             <a href="https://npmjs.com/package/@angular-ru/tsconfig">
             @angular-ru/tsconfig
             </a>

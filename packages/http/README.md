@@ -11,13 +11,19 @@ Custom http client, with the ability to customize requests, auto unsubscribe and
 
 #### First step
 
+Example, if your API base url placed here `https://my-server.com/api/***` and have swagger documentation:
+
+![](https://habrastorage.org/webt/af/bg/n9/afbgn985tehybqdpk2gs1ymq9se.jpeg)
+
 ```ts
-import { DataHttpClientModule } from '@angular-ru/websocket';
+import { DataHttpClientModule } from '@angular-ru/http';
 
 @NgModule({
     imports: [
         // ...
-        DataHttpClientModule.forRoot()
+        DataHttpClientModule.forRoot([ApiUsersClient], {
+            hostUrl: 'https://my-server.com/api/'
+        })
     ],
     declarations: [AppComponent],
     bootstrap: [AppComponent]
@@ -27,8 +33,13 @@ export class AppModule {}
 
 #### Create your http client for your api controller
 
-Example, if your API base url placed here `https://my-server.com/api/***` and have swagger documentation:
-
-![](https://habrastorage.org/webt/af/bg/n9/afbgn985tehybqdpk2gs1ymq9se.jpeg)
-
 -   `api-users.client.ts`
+
+```ts
+import { DataHttpClient } from '@angular-ru/http';
+import { Observable } from 'rxjs';
+
+@Injectable()
+@RestClient('/users')
+export class ApiUsersClient extends DataHttpClient {}
+```

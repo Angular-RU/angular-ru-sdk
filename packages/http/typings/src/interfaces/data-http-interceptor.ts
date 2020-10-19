@@ -18,5 +18,5 @@ export interface DataHttpInterceptor<K extends PlainObject = Any> {
     onEmitFailure?(error: HttpErrorResponse, options: DataBeforeRequestOptions<K>, meta: MetaDataRequest): void;
     onErrorAfterRequest?(error: HttpErrorResponse, meta: MetaDataRequest): void;
     onCatchErrorAfterRequest?(error: HttpErrorResponse, meta: MetaDataRequest): Observable<never>;
-    onFinalizeAfterRequest?(): void;
+    onFinalizeAfterRequest?(meta: MetaDataRequest): void;
 }

@@ -1,6 +1,6 @@
 import { DataClientRequestOptions } from '@angular-ru/http/typings';
 import { HttpClientModule } from '@angular/common/http';
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule, Type } from '@angular/core';
 
 import { DATA_REQUEST_OPTIONS_CONFIG } from './configs/data-request-options.config';
 import { DataConfiguratorService } from './services/data-configurator.service';
@@ -14,21 +14,23 @@ import { DATA_HTTP_CLIENT_INTERCEPTOR } from './tokens/data-http-client-intercep
     exports: [HttpClientModule]
 })
 export class DataHttpClientModule {
-    public static forRoot(options: Partial<DataClientRequestOptions> = {}): ModuleWithProviders<DataHttpClientModule> {
+    public static forRoot(
+        clients: Type<unknown>[] = [],
+        options: Partial<DataClientRequestOptions> = {}
+    ): ModuleWithProviders<DataHttpClientModule> {
         return {
             ngModule: DataHttpClientModule,
             providers: [
                 DataConfiguratorService,
-                {
-                    provide: DATA_CONFIG_SERVICE_TOKEN,
-                    useValue: { ...DATA_REQUEST_OPTIONS_CONFIG, ...options }
-                },
-                {
-                    provide: DATA_HTTP_CLIENT_INTERCEPTOR,
-                    useClass: DefaultHttpClientInterceptor
-                },
-                DataHttpClient
+                { provide: DATA_CONFIG_SERVICE_TOKEN, useValue: { ...DATA_REQUEST_OPTIONS_CONFIG, ...options } },
+                { provide: DATA_HTTP_CLIENT_INTERCEPTOR, useClass: DefaultHttpClientInterceptor },
+                DataHttpClient,
+                ...clients
             ]
         };
+    }
+
+    public static forFeature(clients: Type<unknown>[] = []): ModuleWithProviders<DataHttpClientModule> {
+        return { ngModule: DataHttpClientModule, providers: clients };
     }
 }

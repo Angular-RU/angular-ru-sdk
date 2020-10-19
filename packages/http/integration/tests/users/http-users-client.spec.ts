@@ -30,7 +30,6 @@ describe('[TEST]: HTTP Client', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
-                ApiUsersClient,
                 {
                     provide: HTTP_INTERCEPTORS,
                     useClass: HttpMockInterceptor,
@@ -38,7 +37,7 @@ describe('[TEST]: HTTP Client', () => {
                 }
             ],
             declarations: [UserComponent],
-            imports: [CommonModule, HttpClientTestingModule, DataHttpClientModule.forRoot()]
+            imports: [CommonModule, HttpClientTestingModule, DataHttpClientModule.forRoot([ApiUsersClient])]
         });
 
         TestBed.compileComponents();
