@@ -1,3 +1,29 @@
+#### 14.68.0 (2020-10-20)
+
+##### Continuous Integration
+
+-   update dependency @types/node to v14.11.11
+    ([30023c8f](https://github.com/Angular-RU/angular-ru-sdk/commit/30023c8fe3f76067e7292abd6b7a53c7d82159d8))
+
+##### New Features
+
+-   update Jest
+    ([497c7e3b](https://github.com/Angular-RU/angular-ru-sdk/commit/497c7e3b6ad7f3726e0914d14b352bda2a8a491c))
+
+#### 14.67.0 (2020-10-19)
+
+##### New Features
+
+-   update ESLint to v4.5.0
+    ([fadfde04](https://github.com/Angular-RU/angular-ru-sdk/commit/fadfde0415ce788bbb1b24bfbb5e1db255652cc1))
+
+#### 14.66.0 (2020-10-19)
+
+##### New Features
+
+-   update dependency jest to v26.6.0
+    ([703424b0](https://github.com/Angular-RU/angular-ru-sdk/commit/703424b08ba8a8bd495537ddbcc8428e071fe670))
+
 #### 14.65.0 (2020-10-18)
 
 ##### Continuous Integration

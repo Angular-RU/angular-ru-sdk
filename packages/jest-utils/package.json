@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/jest-utils",
-    "version": "14.62.0",
+    "version": "14.68.0",
     "description": "Angular-RU package",
     "keywords": [
         "angular-ru",
@@ -26,8 +26,8 @@
         "test": "yarn jest --config ./jest.config.js"
     },
     "dependencies": {
-        "@types/jest": "26.0.14",
-        "jest": "26.5.3",
+        "@types/jest": "26.0.15",
+        "jest": "26.6.0",
         "jest-preset-angular": "8.3.1",
         "ts-jest": "26.4.1"
     },
