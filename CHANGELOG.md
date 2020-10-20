@@ -1,3 +1,10 @@
+#### 14.69.0 (2020-10-20)
+
+##### New Features
+
+-   **@angular-ru/http:** add http client ([#216](https://github.com/Angular-RU/angular-ru-sdk/pull/216))
+    ([7c7d18bd](https://github.com/Angular-RU/angular-ru-sdk/commit/7c7d18bd7ea3a77fdcc579f9e05db27ebb8436d1))
+
 #### 14.68.0 (2020-10-20)
 
 ##### Continuous Integration
