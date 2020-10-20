@@ -16,8 +16,8 @@ import { DATA_HTTP_CLIENT_INTERCEPTOR } from '../tokens/data-http-client-interce
 import { DataConfiguratorService } from './data-configurator.service';
 
 @Injectable()
-export abstract class AbstractHttpClient<T = unknown> {
-    public interceptor: T & DataHttpInterceptor;
+export abstract class AbstractHttpClient<K = unknown> {
+    public interceptor: K & DataHttpInterceptor;
     private local: Partial<DataClientRequestOptions> = {};
 
     protected constructor(
