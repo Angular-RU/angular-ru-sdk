@@ -13,6 +13,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, finalize, take, tap } from 'rxjs/operators';
 
 import { DATA_HTTP_CLIENT_INTERCEPTOR } from '../tokens/data-http-client-interceptor.token';
+import { RestTemplate } from '../utils/rest-template';
 import { AbstractHttpClient } from './abstract-http.client';
 import { DataConfiguratorService } from './data-configurator.service';
 
@@ -31,6 +32,10 @@ export class DataHttpClient<K = unknown> extends AbstractHttpClient<K> {
         const meta: MetaDataRequest = this.createMetaDataRequest(options);
         const observable: Observable<R> = this.http.request(options.method, meta.url, meta.requestOptions);
         return this.wrapHttpRequestWithMeta<T, R>(meta, options, observable);
+    }
+
+    protected restTemplate<T>(): Observable<T> {
+        return new RestTemplate<T>().asProxyObservable();
     }
 
     private createMetaDataRequest(options: DataBeforeRequestOptions): MetaDataRequest {

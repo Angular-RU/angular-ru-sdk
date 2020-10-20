@@ -15,10 +15,16 @@ import { Observable } from 'rxjs';
 import { DATA_HTTP_CLIENT_INTERCEPTOR } from '../tokens/data-http-client-interceptor.token';
 import { DataConfiguratorService } from './data-configurator.service';
 
+interface ReqProperty {
+    method: string;
+    path: string;
+    options: Partial<DataClientRequestOptions>;
+}
+
 @Injectable()
 export abstract class AbstractHttpClient<K = unknown> {
     public interceptor: K & DataHttpInterceptor;
-    private local: Partial<DataClientRequestOptions> = {};
+    protected local!: Partial<DataClientRequestOptions>;
 
     protected constructor(
         protected http: HttpClient,
@@ -29,19 +35,19 @@ export abstract class AbstractHttpClient<K = unknown> {
     }
 
     public get<T = Any, R = T>(path: string, options: Partial<DataClientRequestOptions> = {}): Observable<R> {
-        return this.request<T, R>(this.createDataBeforeRequestOptions(DataHttpRequestType.GET, path, options));
+        return this.request<T, R>(this.createRequestOptions({ method: DataHttpRequestType.GET, path, options }));
     }
 
     public post<T = Any, R = T>(path: string, options: Partial<DataClientRequestOptions> = {}): Observable<R> {
-        return this.request<T, R>(this.createDataBeforeRequestOptions(DataHttpRequestType.POST, path, options));
+        return this.request<T, R>(this.createRequestOptions({ method: DataHttpRequestType.POST, path, options }));
     }
 
     public put<T = Any, R = T>(path: string, options: Partial<DataClientRequestOptions> = {}): Observable<R> {
-        return this.request<T, R>(this.createDataBeforeRequestOptions(DataHttpRequestType.PUT, path, options));
+        return this.request<T, R>(this.createRequestOptions({ method: DataHttpRequestType.PUT, path, options }));
     }
 
     public delete<T = Any, R = T>(path: string, options: Partial<DataClientRequestOptions> = {}): Observable<R> {
-        return this.request<T, R>(this.createDataBeforeRequestOptions(DataHttpRequestType.DELETE, path, options));
+        return this.request<T, R>(this.createRequestOptions({ method: DataHttpRequestType.DELETE, path, options }));
     }
 
     protected createDataHttpRequestOptions<T>(options: DataBeforeRequestOptions): DataHttpRequestOptions {
@@ -57,15 +63,11 @@ export abstract class AbstractHttpClient<K = unknown> {
         };
     }
 
-    protected abstract request<T = Any, R = T>(options: DataBeforeRequestOptions): Observable<R>;
-
-    private createDataBeforeRequestOptions(
-        method: string,
-        path: string,
-        options: Partial<DataClientRequestOptions> = {}
-    ): DataBeforeRequestOptions {
-        return { path, method, clientOptions: this.configurator.mergeGlobalOptionsWith(this.local, options) };
+    protected createRequestOptions({ method, path, options }: ReqProperty): DataBeforeRequestOptions {
+        return { path, method, clientOptions: this.configurator.mergeGlobalOptionsWith(this.local, options ?? {}) };
     }
+
+    protected abstract request<T = Any, R = T>(options: DataBeforeRequestOptions): Observable<R>;
 
     private createHttpBody<T>(options: DataBeforeRequestOptions): T | FormData {
         const payload: T = options.clientOptions.body as T;

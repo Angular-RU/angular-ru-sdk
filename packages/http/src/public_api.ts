@@ -5,3 +5,6 @@ export { DataConfiguratorService } from './services/data-configurator.service';
 export { DataHttpClient } from './services/data-http.client';
 export { DataHttpClientModule } from './data-http-client.module';
 export { DefaultHttpClientInterceptor } from './services/default-http-client-interceptor';
+export { RestClient } from './decorators/rest-client.decorator';
+export { Get } from './decorators/get.decorator';
+export { RestTemplate } from './utils/rest-template';
