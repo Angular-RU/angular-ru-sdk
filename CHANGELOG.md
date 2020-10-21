@@ -1,3 +1,17 @@
+#### 14.71.0 (2020-10-21)
+
+##### Continuous Integration
+
+-   update angular-framework to v10.2.0
+    ([61fc7c3a](https://github.com/Angular-RU/angular-ru-sdk/commit/61fc7c3afe43845746895c0107d3e002d6e993bf))
+-   update dependency @types/node to v14.14.1
+    ([ef4283cc](https://github.com/Angular-RU/angular-ru-sdk/commit/ef4283cc174aec5df23823b276b7c10c17f7d670))
+
+##### New Features
+
+-   update dependency @types/node to v14.14.1
+    ([7dab7c11](https://github.com/Angular-RU/angular-ru-sdk/commit/7dab7c1183cafb8e8fa1af5b71ec30ce59f18f9a))
+
 #### 14.70.0 (2020-10-20)
 
 ##### Continuous Integration
