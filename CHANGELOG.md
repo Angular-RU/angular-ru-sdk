@@ -1,3 +1,10 @@
+#### 14.76.0 (2020-10-23)
+
+##### New Features
+
+-   **@angular-ru/http:** add RestClient, Get decorators ([#223](https://github.com/Angular-RU/angular-ru-sdk/pull/223))
+    ([1921cab8](https://github.com/Angular-RU/angular-ru-sdk/commit/1921cab828b9a5d919e89892a260e8732deea464))
+
 #### 14.75.0 (2020-10-23)
 
 ##### New Features
