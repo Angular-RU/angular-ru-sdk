@@ -1,12 +1,12 @@
 import { Any } from '@angular-ru/common/typings';
-import { DataBeforeRequestOptions, DataClientRequestOptions, DataHttpRequestType } from '@angular-ru/http/typings';
+import { DataBeforeRequestOptions, DataClientRequestOptions, RequestType } from '@angular-ru/http/typings';
 import { Observable, OperatorFunction } from 'rxjs';
 
 import { DataHttpClient } from '../services/data-http.client';
 
 export class RestTemplate<T> {
     public path!: string;
-    public methodType!: DataHttpRequestType;
+    public methodType!: RequestType;
     public options: Partial<DataClientRequestOptions> = {};
     protected operators: OperatorFunction<T, Any>[] = [];
     private markAsRequest: boolean = false;
@@ -17,13 +17,18 @@ export class RestTemplate<T> {
         return this;
     }
 
-    public setMethodType(type: DataHttpRequestType): RestTemplate<T> {
+    public setMethodType(type: RequestType): RestTemplate<T> {
         this.methodType = type;
         return this;
     }
 
     public setClient(client: DataHttpClient): RestTemplate<T> {
         this._client = client;
+        return this;
+    }
+
+    public setBody(body: unknown): RestTemplate<T> {
+        this.options.body = body;
         return this;
     }
 
@@ -55,12 +60,13 @@ export class RestTemplate<T> {
         return fakeProxy as Observable<T>;
     }
 
+    // noinspection JSUnusedGlobalSymbols
     protected asObservable(): Observable<T> {
         this.markAsRequest = true;
 
         if (!this._client) {
             throw new Error('Not found http client');
-        } else if (!this._client[this.methodType]) {
+        } else if (!(this._client as Any)?.[this.methodType]) {
             throw new Error(`Method ${this.methodType} not supported`);
         }
 

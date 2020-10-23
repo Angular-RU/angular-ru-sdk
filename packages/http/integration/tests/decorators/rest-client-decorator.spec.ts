@@ -1,9 +1,10 @@
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { DataHttpClient, DataHttpClientModule, RestClient } from '@angular-ru/http';
+import { DataHttpClient, DataHttpClientModule } from '@angular-ru/http';
 import { Component, Injectable } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
 import { Any } from '@angular-ru/common/typings';
+import { RestClient } from "@angular-ru/http/decorators";
 
 describe('[TEST]: HTTP decorators for client', () => {
     const MOCK_API: string = 'http://localhost';

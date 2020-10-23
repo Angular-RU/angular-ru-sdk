@@ -33,13 +33,75 @@ export class AppModule {}
 
 #### Create your http client for your api controller
 
+-   `user.interface.ts`
+
+```ts
+export interface User {
+    id: number;
+    name: string;
+}
+```
+
 -   `api-users.client.ts`
 
 ```ts
+import { Delete, Get, Patch, PathVariable, RequestBody, Put, RestClient } from '@angular-ru/http/decorators';
 import { DataHttpClient } from '@angular-ru/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable()
 @RestClient('/users')
-export class ApiUsersClient extends DataHttpClient {}
+export class ApiUsersClient extends DataHttpClient {
+    @Get()
+    public findAllUsers(): Observable<User[]> {
+        return this.restTemplate();
+    }
+
+    @Post()
+    public createUser(@RequestBody() _body: User): Observable<void> {
+        return this.restTemplate();
+    }
+
+    @Get('/{id}')
+    public findByIdUser(@PathVariable('id') _id: number): Observable<User> {
+        return this.restTemplate();
+    }
+
+    @Put('/{id}')
+    public updateUser(@PathVariable('id') _id: number, @RequestBody() _body: User): Observable<void> {
+        return this.restTemplate();
+    }
+
+    @Delete('/{id}')
+    public deleteByIdUser(@PathVariable('id') _id: number): Observable<void> {
+        return this.restTemplate();
+    }
+
+    @Patch('/{id}')
+    public mutateUser(@PathVariable('id') _id: number, @RequestBody() _body: Partial<User>): Observable<void> {
+        return this.restTemplate();
+    }
+}
+```
+
+-   `app.component.ts`
+
+```ts
+@Component({
+    //...
+    changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class UsersComponent {
+    private readonly users: User[] = [];
+
+    constructor(private readonly users: ApiUsersClient, private readonly cd: ChangeDetectorRef) {}
+
+    public ngOnInit(): void {
+        this.users.findAllUsers().subscribe((users) => {
+            this.users = users;
+            this.cd.detectChanges();
+        });
+    }
+}
 ```

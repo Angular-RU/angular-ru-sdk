@@ -7,3 +7,4 @@ export { urlParse } from './url-parse';
 export { getHttpHeader } from './get-http-header';
 export { parseQueryParams } from './parse-query-params';
 export { getHttpParams } from './get-http-params';
+export { ensurePathByPathVariables } from './ensure-path-by-path-variables';

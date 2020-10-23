@@ -5,7 +5,7 @@ import {
     DataClientRequestOptions,
     DataHttpInterceptor,
     DataHttpRequestOptions,
-    DataHttpRequestType
+    RequestType
 } from '@angular-ru/http/typings';
 import { getHttpHeader, getHttpParams } from '@angular-ru/http/utils';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
@@ -35,19 +35,23 @@ export abstract class AbstractHttpClient<K = unknown> {
     }
 
     public get<T = Any, R = T>(path: string, options: Partial<DataClientRequestOptions> = {}): Observable<R> {
-        return this.request<T, R>(this.createRequestOptions({ method: DataHttpRequestType.GET, path, options }));
+        return this.request<T, R>(this.createRequestOptions({ method: RequestType.GET, path, options }));
     }
 
     public post<T = Any, R = T>(path: string, options: Partial<DataClientRequestOptions> = {}): Observable<R> {
-        return this.request<T, R>(this.createRequestOptions({ method: DataHttpRequestType.POST, path, options }));
+        return this.request<T, R>(this.createRequestOptions({ method: RequestType.POST, path, options }));
     }
 
     public put<T = Any, R = T>(path: string, options: Partial<DataClientRequestOptions> = {}): Observable<R> {
-        return this.request<T, R>(this.createRequestOptions({ method: DataHttpRequestType.PUT, path, options }));
+        return this.request<T, R>(this.createRequestOptions({ method: RequestType.PUT, path, options }));
+    }
+
+    public patch<T = Any, R = T>(path: string, options: Partial<DataClientRequestOptions> = {}): Observable<R> {
+        return this.request<T, R>(this.createRequestOptions({ method: RequestType.PATCH, path, options }));
     }
 
     public delete<T = Any, R = T>(path: string, options: Partial<DataClientRequestOptions> = {}): Observable<R> {
-        return this.request<T, R>(this.createRequestOptions({ method: DataHttpRequestType.DELETE, path, options }));
+        return this.request<T, R>(this.createRequestOptions({ method: RequestType.DELETE, path, options }));
     }
 
     protected createDataHttpRequestOptions<T>(options: DataBeforeRequestOptions): DataHttpRequestOptions {

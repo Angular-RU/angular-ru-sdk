@@ -1,4 +1,5 @@
 import {
+    ensurePathByPathVariables,
     getHttpHeader,
     getHttpParams,
     getPathWithoutQueryParams,
@@ -83,5 +84,14 @@ describe('[TEST]: http utils', () => {
         expect(params.get('pageSize')).toEqual('5');
         expect(params.get('value')).toEqual('2');
         expect(params.get('pageIndex')).toEqual(0);
+    });
+
+    it('ensurePathByPathVariables', () => {
+        const map = new Map();
+        map.set('id', 5);
+        map.set('newId', 6);
+
+        expect(ensurePathByPathVariables(`/a/{newId}/b/{id}/d`, map)).toEqual('/a/6/b/5/d');
+        expect(ensurePathByPathVariables(`/a/{invalidName}`, map)).toEqual('/a/{invalidName}');
     });
 });
