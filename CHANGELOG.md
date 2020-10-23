@@ -1,3 +1,15 @@
+#### 14.77.0 (2020-10-23)
+
+##### Continuous Integration
+
+-   update dependency @types/jasmine to v3.6.0
+    ([0d1e7ab9](https://github.com/Angular-RU/angular-ru-sdk/commit/0d1e7ab9ec34fa46635774bd84873efb688322d5))
+
+##### New Features
+
+-   update dependency ts-jest to v26.4.2
+    ([f8e6d410](https://github.com/Angular-RU/angular-ru-sdk/commit/f8e6d4108d16554688c5a3ac7cd323b1d6e5f10a))
+
 #### 14.76.1 (2020-10-23)
 
 #### 14.76.0 (2020-10-23)
