@@ -34,8 +34,8 @@ export class DataHttpClient<K = unknown> extends AbstractHttpClient<K> {
         return this.wrapHttpRequestWithMeta<T, R>(meta, options, observable);
     }
 
-    protected restTemplate<T>(): Observable<T> {
-        return new RestTemplate<T>().asProxyObservable();
+    protected restTemplate<T>(options?: Partial<DataClientRequestOptions>): Observable<T> {
+        return new RestTemplate<T>(options).asProxyObservable();
     }
 
     private createMetaDataRequest(options: DataBeforeRequestOptions): MetaDataRequest {

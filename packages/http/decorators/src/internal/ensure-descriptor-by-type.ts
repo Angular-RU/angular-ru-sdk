@@ -23,10 +23,12 @@ export function ensureDescriptorByType<T>({ path, type, target, descriptor }: En
 
         if (restTemplate) {
             path = mutatePathByPathVariables(path, originalMethod, args);
-
             const bodyRegistry: MethodArgsRegistry = ensureMethodArgsRegistry(originalMethod, META_REQUEST_BODY);
             const indexBody: number | null = bodyRegistry.getIndexByKey(KEY_REQUEST_BODY);
-            const body: Any = isNil(indexBody) ? restTemplate.options.body : args?.[indexBody];
+            const body: Any = isNil(indexBody)
+                ? restTemplate.options.body
+                : restTemplate.options.body ?? args?.[indexBody];
+
             restTemplate = restTemplate.setPath(path).setMethodType(type).setBody(body).setClient(httpClient);
         } else {
             throw new Error('You must return observable from your method');
