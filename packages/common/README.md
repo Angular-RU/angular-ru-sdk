@@ -21,3 +21,4 @@
     - [(@)angular-ru/common/regexp](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/regexp.md)
     - [(@)angular-ru/common/string](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/string.md)
     - [(@)angular-ru/common/number](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/number.md)
+    - [(@)angular-ru/common/runtime](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/runtime.md)

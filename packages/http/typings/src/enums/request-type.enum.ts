@@ -1,7 +1,8 @@
 // eslint-disable-next-line no-restricted-syntax
-export enum DataHttpRequestType {
+export enum RequestType {
     GET = 'get',
     POST = 'post',
+    PATCH = 'patch',
     PUT = 'put',
     DELETE = 'delete'
 }
