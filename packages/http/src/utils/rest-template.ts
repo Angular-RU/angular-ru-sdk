@@ -7,10 +7,11 @@ import { DataHttpClient } from '../services/data-http.client';
 export class RestTemplate<T> {
     public path!: string;
     public methodType!: RequestType;
-    public options: Partial<DataClientRequestOptions> = {};
     protected operators: OperatorFunction<T, Any>[] = [];
     private markAsRequest: boolean = false;
     private _client: DataHttpClient | null = null;
+
+    constructor(public options: Partial<DataClientRequestOptions> = {}) {}
 
     public setPath(path: string): RestTemplate<T> {
         this.path = path;
