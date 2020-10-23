@@ -1,3 +1,15 @@
+#### 14.74.0 (2020-10-23)
+
+##### Continuous Integration
+
+-   update angular-cli
+    ([23fe3007](https://github.com/Angular-RU/angular-ru-sdk/commit/23fe30071d3750c7488c147c0d6035848b93a38f))
+
+##### New Features
+
+-   update dependency jest-preset-angular to v8.3.2
+    ([c9b3a2b5](https://github.com/Angular-RU/angular-ru-sdk/commit/c9b3a2b5f6f9dd451ce3028cc191d54015cbd61f))
+
 #### 14.73.0 (2020-10-22)
 
 ##### New Features
