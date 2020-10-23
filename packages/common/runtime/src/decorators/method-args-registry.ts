@@ -6,7 +6,7 @@ export interface MethodArgsRegistryMeta {
 }
 
 export class MethodArgsRegistry {
-    private argumentsIndexMap: Map<number | string, { key: string; index: number }> = new Map();
+    private argumentsIndexMap: Map<number | string, MethodArgsRegistryMeta> = new Map();
 
     public get size(): number {
         return this.argumentsIndexMap.size;
