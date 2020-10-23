@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/jest-utils",
-    "version": "14.68.0",
+    "version": "14.74.0",
     "description": "Angular-RU package",
     "keywords": [
         "angular-ru",
@@ -27,8 +27,8 @@
     },
     "dependencies": {
         "@types/jest": "26.0.15",
-        "jest": "26.6.0",
-        "jest-preset-angular": "8.3.1",
+        "jest": "26.6.1",
+        "jest-preset-angular": "8.3.2",
         "ts-jest": "26.4.1"
     },
     "peerDependencies": {

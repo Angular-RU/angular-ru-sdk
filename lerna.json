@@ -7,7 +7,7 @@
     "npmClient": "yarn",
     "changelog": false,
     "useWorkspaces": true,
-    "version": "14.70.0",
+    "version": "14.74.0",
     "command": {
         "version": {
             "allowBranch": "master",

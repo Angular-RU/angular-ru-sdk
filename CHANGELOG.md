@@ -1,3 +1,48 @@
+#### 14.74.0 (2020-10-23)
+
+##### Continuous Integration
+
+-   update angular-cli
+    ([23fe3007](https://github.com/Angular-RU/angular-ru-sdk/commit/23fe30071d3750c7488c147c0d6035848b93a38f))
+
+##### New Features
+
+-   update dependency jest-preset-angular to v8.3.2
+    ([c9b3a2b5](https://github.com/Angular-RU/angular-ru-sdk/commit/c9b3a2b5f6f9dd451ce3028cc191d54015cbd61f))
+
+#### 14.73.0 (2020-10-22)
+
+##### New Features
+
+-   update dependency sort-package-json to v1.46.1
+    ([4f4bd3fb](https://github.com/Angular-RU/angular-ru-sdk/commit/4f4bd3fb3980c83ecc92c71800793c32cdee4a20))
+
+#### 14.72.0 (2020-10-21)
+
+##### Continuous Integration
+
+-   update dependency @types/node to v14.14.2
+    ([12247617](https://github.com/Angular-RU/angular-ru-sdk/commit/122476175bba87a31b8dfc841ceafe62c9a8349d))
+
+##### New Features
+
+-   update dependency @types/node to v14.14.2
+    ([55d268b6](https://github.com/Angular-RU/angular-ru-sdk/commit/55d268b6356c3e5a0599a20e21d12cddec8edbd4))
+
+#### 14.71.0 (2020-10-21)
+
+##### Continuous Integration
+
+-   update angular-framework to v10.2.0
+    ([61fc7c3a](https://github.com/Angular-RU/angular-ru-sdk/commit/61fc7c3afe43845746895c0107d3e002d6e993bf))
+-   update dependency @types/node to v14.14.1
+    ([ef4283cc](https://github.com/Angular-RU/angular-ru-sdk/commit/ef4283cc174aec5df23823b276b7c10c17f7d670))
+
+##### New Features
+
+-   update dependency @types/node to v14.14.1
+    ([7dab7c11](https://github.com/Angular-RU/angular-ru-sdk/commit/7dab7c1183cafb8e8fa1af5b71ec30ce59f18f9a))
+
 #### 14.70.0 (2020-10-20)
 
 ##### Continuous Integration
