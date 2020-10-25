@@ -13,6 +13,7 @@ import { Any } from '@angular-ru/common/typings';
 import { HttpMockInterceptor } from '../helpers/http-mock-interceptor';
 import { DataBeforeRequestOptions, DataHttpInterceptor } from '@angular-ru/http/typings';
 import { MetaDataRequest } from '../../../typings/src/interfaces/meta-data-request';
+import { RestClient } from "@angular-ru/http/decorators";
 
 describe('[TEST]: HTTP Intercept Client', () => {
     const MOCK_API: string = 'http://localhost';
@@ -21,6 +22,7 @@ describe('[TEST]: HTTP Intercept Client', () => {
     let req: TestRequest;
 
     @Injectable()
+    @RestClient()
     class ApiEventsClient extends DataHttpClient<MyInterceptor> {}
 
     @Component({

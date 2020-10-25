@@ -5,7 +5,17 @@ import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Delete, Get, Patch, PathVariable, Post, Put, RequestBody, RestClient } from '@angular-ru/http/decorators';
+import {
+    Delete,
+    Get,
+    Patch,
+    PathVariable,
+    Post,
+    Put,
+    RequestBody,
+    RequestParam,
+    RestClient
+} from '@angular-ru/http/decorators';
 
 describe('[TEST]: HTTP decorators for client', () => {
     const MOCK_API: string = 'http://localhost';
@@ -24,6 +34,14 @@ describe('[TEST]: HTTP decorators for client', () => {
         @Get('/')
         public findAllUsers(): Observable<User[]> {
             return this.restTemplate();
+        }
+
+        @Get()
+        public findAllUsersWithPaginator(
+            @RequestParam('index') _pageIndex: number,
+            @RequestParam('size') _pageSize: number
+        ): Observable<User[]> {
+            return this.restTemplate({ queryParams: { size: 5 } });
         }
 
         @Get('/{id}')
@@ -161,6 +179,18 @@ describe('[TEST]: HTTP decorators for client', () => {
         });
 
         req = httpMock.expectOne(`${MOCK_API}/users/4`);
+        req.flush(null);
+
+        tick(100);
+    }));
+
+    it('should be correct GET request with request params', fakeAsync(() => {
+        client?.findAllUsersWithPaginator(4, 20).subscribe((): void => {
+            expect(req.request.params.toString()).toEqual('index=4&size=5');
+            expect(req.request.method).toEqual('GET');
+        });
+
+        req = httpMock.expectOne(`${MOCK_API}/users/?index=4&size=5`);
         req.flush(null);
 
         tick(100);

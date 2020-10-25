@@ -24,6 +24,7 @@ interface ReqProperty {
 @Injectable()
 export abstract class AbstractHttpClient<K = unknown> {
     public interceptor: K & DataHttpInterceptor;
+    protected controllerUrl!: string;
     protected local!: Partial<DataClientRequestOptions>;
 
     protected constructor(

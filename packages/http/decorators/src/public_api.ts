@@ -6,3 +6,6 @@ export { Post } from './post.decorator';
 export { Patch } from './patch.decorator';
 export { Put } from './put.decorator';
 export { Delete } from './delete.decorator';
+export { RequestParam } from './request-param.decorator';
+export { BaseUrl } from './base-url.decorator';
+export { HostUrl } from './host-url.decorator';

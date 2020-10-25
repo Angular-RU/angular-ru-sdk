@@ -28,6 +28,10 @@ export class DataHttpClient<K = unknown> extends AbstractHttpClient<K> {
     }
 
     protected request<T, R = T>(options: DataBeforeRequestOptions): Observable<R> {
+        if (!this.local) {
+            throw new Error(`You must use the @RestClient('controller') decorator for work correctly`);
+        }
+
         this.interceptor.onBeforeRequest?.(options);
         const meta: MetaDataRequest = this.createMetaDataRequest(options);
         const observable: Observable<R> = this.http.request(options.method, meta.url, meta.requestOptions);

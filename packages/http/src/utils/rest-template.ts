@@ -1,4 +1,4 @@
-import { Any } from '@angular-ru/common/typings';
+import { Any, PlainObject } from '@angular-ru/common/typings';
 import { DataBeforeRequestOptions, DataClientRequestOptions, RequestType } from '@angular-ru/http/typings';
 import { Observable, OperatorFunction } from 'rxjs';
 
@@ -30,6 +30,11 @@ export class RestTemplate<T> {
 
     public setBody(body: unknown): RestTemplate<T> {
         this.options.body = body;
+        return this;
+    }
+
+    public setParams(queryParams: PlainObject | undefined): RestTemplate<T> {
+        this.options.queryParams = queryParams;
         return this;
     }
 

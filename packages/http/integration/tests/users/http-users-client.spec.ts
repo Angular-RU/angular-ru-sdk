@@ -6,6 +6,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
 import { Fn, PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
 import { HttpMockInterceptor } from '../helpers/http-mock-interceptor';
+import { RestClient } from "@angular-ru/http/decorators";
 
 describe('[TEST]: HTTP Client', () => {
     const MOCK_API: string = 'http://localhost';
@@ -17,6 +18,7 @@ describe('[TEST]: HTTP Client', () => {
     let req: TestRequest;
 
     @Injectable()
+    @RestClient()
     class ApiUsersClient extends DataHttpClient {}
 
     @Component({
