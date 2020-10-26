@@ -8,6 +8,7 @@ Custom http client, with the ability to customize requests, auto unsubscribe and
 2. [📦 Advanced](#table-of-contents)
 
     - [(@)angular-ru/http/utils](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/http/docs/utils.md)
+    - [(@)angular-ru/http/decorators](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/http/docs/decorators.md)
 
 #### First step
 
@@ -102,6 +103,42 @@ export class UsersComponent {
             this.users = users;
             this.cd.detectChanges();
         });
+    }
+}
+```
+
+#### Different use cases
+
+each of these examples works the same
+
+```ts
+@Injectable()
+@RestClient('/cities')
+class MyCitiesClient extends DataHttpClient {
+    @Put()
+    public updateCity(@RequestBody() _body: CityRecordDto, @RequestParam('id') _id: number): Observable<void> {
+        return this.restTemplate({ emitSuccess: true });
+    }
+}
+```
+
+```ts
+@Injectable()
+@RestClient('/cities')
+class MyCitiesClient extends DataHttpClient {
+    @Put()
+    public updateCity(body: CityRecordDto, id: number): Observable<void> {
+        return this.restTemplate({ emitSuccess: true, body, queryParams: { id } });
+    }
+}
+```
+
+```ts
+@Injectable()
+@RestClient('/cities')
+class MyCitiesClient extends DataHttpClient {
+    public updateCity(body: CityRecordDto, id: number): Observable<void> {
+        return this.put({ emitSuccess: true, body, queryParams: { id } });
     }
 }
 ```
