@@ -1,3 +1,4 @@
+import { Any } from '@angular-ru/common/typings';
 import { DataClientRequestOptions } from '@angular-ru/http/typings';
 import { HttpClientModule } from '@angular/common/http';
 import { ModuleWithProviders, NgModule, Type } from '@angular/core';
@@ -14,9 +15,9 @@ import { DATA_HTTP_CLIENT_INTERCEPTOR } from './tokens/data-http-client-intercep
     exports: [HttpClientModule]
 })
 export class DataHttpClientModule {
-    public static forRoot(
+    public static forRoot<K = Any>(
         clients: Type<unknown>[] = [],
-        options: Partial<DataClientRequestOptions> = {}
+        options: Partial<DataClientRequestOptions<K>> = {}
     ): ModuleWithProviders<DataHttpClientModule> {
         return {
             ngModule: DataHttpClientModule,
