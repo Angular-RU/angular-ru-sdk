@@ -1,3 +1,15 @@
+#### 14.79.0 (2020-10-26)
+
+##### New Features
+
+-   **@angular-ru/http:** add HostUrl, BaseUrl, RequestParam decorators
+    ([57da7bd1](https://github.com/Angular-RU/angular-ru-sdk/commit/57da7bd1c092c7efa7d984df7b9a89eac4596c48))
+
+##### Other Changes
+
+-   **@angular-ru/http:** add HostUrl, BaseUrl, RequestParam decorators
+    ([45cca501](https://github.com/Angular-RU/angular-ru-sdk/commit/45cca501da95d4afaa7881197c5ff30a2b2be527))
+
 #### 14.78.0 (2020-10-24)
 
 ##### New Features
