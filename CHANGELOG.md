@@ -1,3 +1,12 @@
+#### 14.86.0 (2020-10-26)
+
+##### New Features
+
+-   **@angular-ru/http:** add emit options to @Get, @Put, @Post, @Delete, @Patch
+    ([764284a0](https://github.com/Angular-RU/angular-ru-sdk/commit/764284a0e8595672256b331947cbdc3bdfd8411f))
+-   update dependency lint-staged to v10.5.0
+    ([0b1c77c0](https://github.com/Angular-RU/angular-ru-sdk/commit/0b1c77c00d29951f388ca5700f8577a88045e23f))
+
 #### 14.85.0 (2020-10-26)
 
 ##### Chores
