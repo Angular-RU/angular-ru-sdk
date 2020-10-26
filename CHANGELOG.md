@@ -1,3 +1,10 @@
+#### 14.84.0 (2020-10-26)
+
+##### New Features
+
+-   update ESLint to v4.6.0
+    ([1cc02f60](https://github.com/Angular-RU/angular-ru-sdk/commit/1cc02f60e211b405b96942bb0c009a20c77c165a))
+
 #### 14.83.0 (2020-10-26)
 
 ##### New Features
