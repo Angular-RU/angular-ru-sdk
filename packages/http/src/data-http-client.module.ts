@@ -1,6 +1,5 @@
 import { Any } from '@angular-ru/common/typings';
 import { DataClientRequestOptions } from '@angular-ru/http/typings';
-import { HttpClientModule } from '@angular/common/http';
 import { ModuleWithProviders, NgModule, Type } from '@angular/core';
 
 import { DATA_REQUEST_OPTIONS_CONFIG } from './configs/data-request-options.config';
@@ -10,10 +9,7 @@ import { DefaultHttpClientInterceptor } from './services/default-http-client-int
 import { DATA_CONFIG_SERVICE_TOKEN } from './tokens/data-config-service.token';
 import { DATA_HTTP_CLIENT_INTERCEPTOR } from './tokens/data-http-client-interceptor.token';
 
-@NgModule({
-    imports: [HttpClientModule],
-    exports: [HttpClientModule]
-})
+@NgModule()
 export class DataHttpClientModule {
     public static forRoot<K = Any>(
         clients: Type<unknown>[] = [],

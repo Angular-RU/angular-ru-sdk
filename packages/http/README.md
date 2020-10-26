@@ -17,11 +17,13 @@ Example, if your API base url placed here `https://my-server.com/api/***` and ha
 ![](https://habrastorage.org/webt/af/bg/n9/afbgn985tehybqdpk2gs1ymq9se.jpeg)
 
 ```ts
+import { HttpClientModule } from '@angular/common/http';
 import { DataHttpClientModule } from '@angular-ru/http';
 
 @NgModule({
     imports: [
         // ...
+        HttpClientModule,
         DataHttpClientModule.forRoot([ApiUsersClient], {
             hostUrl: 'https://my-server.com/api/'
         })
