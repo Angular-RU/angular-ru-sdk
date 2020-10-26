@@ -1,3 +1,31 @@
+#### 14.81.0 (2020-10-26)
+
+##### Chores
+
+-   **release:**
+    -   updated release notes and package versions [ci skip]
+        ([f06884a4](https://github.com/Angular-RU/angular-ru-sdk/commit/f06884a4188204f671db517f299d67fea4f1441f))
+    -   updated release notes and package versions [ci skip]
+        ([ed8d7f42](https://github.com/Angular-RU/angular-ru-sdk/commit/ed8d7f42618b282d043b655addbfe288f8fcff60))
+
+##### Documentation Changes
+
+-   **@angular-ru/http:** update README.md
+    ([8004511a](https://github.com/Angular-RU/angular-ru-sdk/commit/8004511a986cdf0cb3bc9484e7a89a3e77e618c1))
+
+##### New Features
+
+-   **@angular-ru/http:**
+    -   add generic type forRoot method
+        ([f519e4bd](https://github.com/Angular-RU/angular-ru-sdk/commit/f519e4bd4ef60974dc9f0ce4f6c103f8d9d491ac))
+    -   add HostUrl, BaseUrl, RequestParam decorators
+        ([57da7bd1](https://github.com/Angular-RU/angular-ru-sdk/commit/57da7bd1c092c7efa7d984df7b9a89eac4596c48))
+
+##### Other Changes
+
+-   **@angular-ru/http:** add HostUrl, BaseUrl, RequestParam decorators
+    ([45cca501](https://github.com/Angular-RU/angular-ru-sdk/commit/45cca501da95d4afaa7881197c5ff30a2b2be527))
+
 #### 14.80.0 (2020-10-26)
 
 ##### Chores
