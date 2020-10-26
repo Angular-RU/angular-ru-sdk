@@ -49,7 +49,7 @@ export class RestTemplate<T> {
 
         const fakeProxy: Any = {
             restTemplateRef: that,
-            pipe(operators: OperatorFunction<T, Any>[]): Observable<T> {
+            pipe(...operators: OperatorFunction<T, Any>[]): Observable<T> {
                 that.operators.push(...operators);
                 return fakeProxy;
             },
