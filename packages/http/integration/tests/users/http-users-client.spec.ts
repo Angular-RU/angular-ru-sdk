@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { RestClient } from '@angular-ru/http/decorators';
 import { DataHttpClient, DataHttpClientModule } from '@angular-ru/http';
 import { Component, Injectable } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -6,7 +7,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
 import { Fn, PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
 import { HttpMockInterceptor } from '../helpers/http-mock-interceptor';
-import { RestClient } from "@angular-ru/http/decorators";
 
 describe('[TEST]: HTTP Client', () => {
     const MOCK_API: string = 'http://localhost';

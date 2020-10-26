@@ -1,4 +1,5 @@
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { RestClient } from '@angular-ru/http/decorators';
 import {
     DATA_HTTP_CLIENT_INTERCEPTOR,
     DataHttpClient,
@@ -13,7 +14,6 @@ import { Any } from '@angular-ru/common/typings';
 import { HttpMockInterceptor } from '../helpers/http-mock-interceptor';
 import { DataBeforeRequestOptions, DataHttpInterceptor } from '@angular-ru/http/typings';
 import { MetaDataRequest } from '../../../typings/src/interfaces/meta-data-request';
-import { RestClient } from "@angular-ru/http/decorators";
 
 describe('[TEST]: HTTP Intercept Client', () => {
     const MOCK_API: string = 'http://localhost';
