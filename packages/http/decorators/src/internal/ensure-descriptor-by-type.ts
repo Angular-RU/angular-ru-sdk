@@ -12,10 +12,17 @@ import { mutateQueryParams } from './mutate-query-params';
 import { validateMethod } from './validate-method';
 
 // eslint-disable-next-line max-lines-per-function
-export function ensureDescriptorByType<T>({ path, type, target, descriptor }: EnsureDecoratorOptions): Descriptor {
+export function ensureDescriptorByType<T>({
+    path,
+    type,
+    target,
+    descriptor,
+    emitOptions
+}: EnsureDecoratorOptions): Descriptor {
     validateMethod(target, descriptor);
     const originalMethod: Any = descriptor.value;
 
+    // eslint-disable-next-line max-lines-per-function
     descriptor.value = function (...args: Any[]): Observable<T> {
         // eslint-disable-next-line @typescript-eslint/tslint/config
         const httpClient: DataHttpClient = (this as Any) as DataHttpClient;
@@ -33,7 +40,13 @@ export function ensureDescriptorByType<T>({ path, type, target, descriptor }: En
                 args
             );
 
-            template = template.setPath(path).setParams(params).setMethodType(type).setBody(body).setClient(httpClient);
+            template = template
+                .setPath(path)
+                .setMethodType(type)
+                .setBody(body)
+                .setParams(params)
+                .setEmitOptions(emitOptions)
+                .setClient(httpClient);
         } else {
             throw new Error('You must return observable from your method');
         }

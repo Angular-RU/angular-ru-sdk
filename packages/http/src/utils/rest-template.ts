@@ -1,5 +1,5 @@
 import { Any, PlainObject } from '@angular-ru/common/typings';
-import { DataBeforeRequestOptions, DataClientRequestOptions, RequestType } from '@angular-ru/http/typings';
+import { DataBeforeRequestOptions, DataClientRequestOptions, EmitOptions, RequestType } from '@angular-ru/http/typings';
 import { Observable, OperatorFunction } from 'rxjs';
 
 import { DataHttpClient } from '../services/data-http.client';
@@ -25,6 +25,12 @@ export class RestTemplate<T> {
 
     public setClient(client: DataHttpClient): RestTemplate<T> {
         this._client = client;
+        return this;
+    }
+
+    public setEmitOptions(options: EmitOptions): RestTemplate<T> {
+        this.options.emitSuccess = options.emitSuccess;
+        this.options.emitFailure = options.emitFailure;
         return this;
     }
 

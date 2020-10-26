@@ -1,3 +1,4 @@
+export { HttpStatusCode } from './enums/http-status-code.enum';
 export { RequestType } from './enums/request-type.enum';
 export { DataClientRequestOptions, DataHeadersParams } from './interfaces/data-client-request-options';
 export { DataUrlPathSegment } from './interfaces/data-url-path-segment';
@@ -7,3 +8,4 @@ export { DataHttpInterceptor } from './interfaces/data-http-interceptor';
 export { DataBeforeRequestOptions } from './interfaces/data-before-request-options';
 export { DataHttpSuccessEvent, DataHttpFailureEvent } from './interfaces/data-http-client-events';
 export { EnsureDecoratorOptions } from './interfaces/internal/ensure-decorator-options';
+export { EmitOptions } from './interfaces/emit-options';
