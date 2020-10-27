@@ -1,3 +1,15 @@
+#### 14.89.1 (2020-10-27)
+
+##### Other Changes
+
+-   **@angular-ru/common:** add form extensions
+    ([d049fb7c](https://github.com/Angular-RU/angular-ru-sdk/commit/d049fb7cb04daaa85c75e718334766cafddf705d))
+
+##### Tests
+
+-   **@angular-ru/common:** add test form amount-format
+    ([56ea9d5d](https://github.com/Angular-RU/angular-ru-sdk/commit/56ea9d5d772aafa18af3896eb90a7a0cf94a2352))
+
 #### 14.89.0 (2020-10-27)
 
 ##### Continuous Integration
