@@ -1,3 +1,15 @@
+#### 14.89.4 (2020-10-27)
+
+##### Chores
+
+-   fix changelog
+    ([6cb8c78e](https://github.com/Angular-RU/angular-ru-sdk/commit/6cb8c78ef69a542fba0da4cd4af06b37ee398b80))
+
+##### Refactors
+
+-   fix package for export styles
+    ([43760a3c](https://github.com/Angular-RU/angular-ru-sdk/commit/43760a3c118c8ae48aef91f9fee12fe2c41a8a4b))
+
 #### 14.89.3 (2020-10-27)
 
 ##### Chores
