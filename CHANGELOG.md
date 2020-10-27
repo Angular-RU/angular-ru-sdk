@@ -5,12 +5,9 @@
 -   **release:** updated release notes and package versions [ci skip]
     ([cd027486](https://github.com/Angular-RU/angular-ru-sdk/commit/cd02748663eda5f58f7fce8275fd447616a3f0f1))
 
-##### Tests
-
+##### New Features
 -   **@angular-ru/tooltip:** add tooltips
     ([f9b8b345](https://github.com/Angular-RU/angular-ru-sdk/commit/f9b8b345f4f7cc189857bdee4ae4c5c0da870268))
--   **@angular-ru/common:** add tooltip
-    ([15e0bbd6](https://github.com/Angular-RU/angular-ru-sdk/commit/15e0bbd63a29080a7141dde130334729551cf00e))
 
 #### 14.89.2 (2020-10-27)
 
