@@ -1,3 +1,15 @@
+#### 14.89.0 (2020-10-27)
+
+##### Continuous Integration
+
+-   update dependency typescript to v4.0.5
+    ([57e43ac1](https://github.com/Angular-RU/angular-ru-sdk/commit/57e43ac1e5e8f6cfe323691861e9fb4e89f8976b))
+
+##### New Features
+
+-   update dependency eslint to v7.12.1
+    ([2dba0741](https://github.com/Angular-RU/angular-ru-sdk/commit/2dba07416ef413682c08bb6798f697ae33a54af0))
+
 #### 14.88.0 (2020-10-26)
 
 ##### New Features
