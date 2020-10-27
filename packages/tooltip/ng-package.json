@@ -6,5 +6,6 @@
             "@angular-ru/common/typings": "angular-ru-common-typings"
         }
     },
-    "dest": "./dist/library"
+    "dest": "./dist/library",
+    "assets": ["styles"]
 }
