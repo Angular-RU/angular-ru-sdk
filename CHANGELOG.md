@@ -1,6 +1,6 @@
 #### 14.89.2 (2020-10-27)
 
-##### Tests
+##### New Features
 
 -   **@angular-ru/common:** add tooltip
     ([15e0bbd6](https://github.com/Angular-RU/angular-ru-sdk/commit/15e0bbd63a29080a7141dde130334729551cf00e))
