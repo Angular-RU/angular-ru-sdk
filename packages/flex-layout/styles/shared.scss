@@ -58,6 +58,11 @@
             margin: auto;
         }
 
+        &--equal-width {
+            flex-grow: 1;
+            flex-basis: 0;
+        }
+
         &--wide {
             margin-right: 35px;
         }
