@@ -1,3 +1,15 @@
+#### 14.90.0 (2020-10-28)
+
+##### Continuous Integration
+
+-   update angular-components to v10.2.6
+    ([249c4bfa](https://github.com/Angular-RU/angular-ru-sdk/commit/249c4bfaf1decb246edce293903dc8ffae747101))
+
+##### New Features
+
+-   **@angular-ru/flex-layout:** add flex-equal for set equal width flex items
+    ([43d58b59](https://github.com/Angular-RU/angular-ru-sdk/commit/43d58b591cb4586a3fbe7a856d90c04b0a7ca10c))
+
 #### 14.89.4 (2020-10-27)
 
 ##### Chores
