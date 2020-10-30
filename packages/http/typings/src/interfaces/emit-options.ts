@@ -10,4 +10,9 @@ export interface EmitOptions {
      * emit failure event about sent request
      */
     emitFailure: boolean;
+
+    /**
+     * override default options
+     */
+    override?: boolean;
 }

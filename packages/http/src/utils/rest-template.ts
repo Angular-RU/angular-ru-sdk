@@ -29,8 +29,14 @@ export class RestTemplate<T> {
     }
 
     public setEmitOptions(options: EmitOptions): RestTemplate<T> {
-        this.options.emitSuccess = options.emitSuccess;
-        this.options.emitFailure = options.emitFailure;
+        if (options.override) {
+            this.options.emitSuccess = options.emitSuccess;
+            this.options.emitFailure = options.emitFailure;
+        } else {
+            this.options.emitSuccess = this.options.emitSuccess ?? options.emitSuccess;
+            this.options.emitFailure = this.options.emitFailure ?? options.emitFailure;
+        }
+
         return this;
     }
 
