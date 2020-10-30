@@ -1,3 +1,22 @@
+#### 14.91.1 (2020-10-30)
+
+##### Chores
+
+-   **release:** updated release notes and package versions [ci skip]
+    ([65b1a74d](https://github.com/Angular-RU/angular-ru-sdk/commit/65b1a74da6ebc2c864707100554596c298c961e1))
+
+##### Continuous Integration
+
+-   update dependency @types/karma to v5.0.1
+    ([9a050ebc](https://github.com/Angular-RU/angular-ru-sdk/commit/9a050ebc909dcd74bda56723698b162cef66550c))
+-   update angular-framework to v10.2.1
+    ([8af2112c](https://github.com/Angular-RU/angular-ru-sdk/commit/8af2112ccc3dd048534e36efb7bdf956579b4b2a))
+
+##### Bug Fixes
+
+-   **@angular-ru/http:** restTemplate options is priority for emit options
+    ([43ffeefc](https://github.com/Angular-RU/angular-ru-sdk/commit/43ffeefc224437129a9c9070d4bc756c807ba528))
+
 #### 14.91.0 (2020-10-28)
 
 ##### New Features
