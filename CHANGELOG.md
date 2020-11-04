@@ -1,3 +1,17 @@
+#### 14.95.0 (2020-11-04)
+
+##### Continuous Integration
+
+-   update devDependencies
+    ([6b775e5b](https://github.com/Angular-RU/angular-ru-sdk/commit/6b775e5bb978cc9f0d1be14ebb1f695a4b312415))
+-   update angular-components to v10.2.7
+    ([455561f2](https://github.com/Angular-RU/angular-ru-sdk/commit/455561f2c614ec0f3eafd7ded11a000abec39d12))
+
+##### New Features
+
+-   update dependency jest to v26.6.3
+    ([a8bc3cc9](https://github.com/Angular-RU/angular-ru-sdk/commit/a8bc3cc9b207476b3295c03f7961138c4c499cea))
+
 #### 14.94.0 (2020-11-02)
 
 ##### New Features
