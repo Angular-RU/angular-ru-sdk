@@ -75,7 +75,7 @@
         "@angular/platform-browser-dynamic": "10.2.1",
         "@angular/router": "10.2.1",
         "@ngx-translate/core": "13.0.0",
-        "@types/jasmine": "3.6.0",
+        "@types/jasmine": "3.6.1",
         "@types/jasminewd2": "2.0.8",
         "@types/karma": "5.0.1",
         "angular-cli-ghpages": "0.6.2",
@@ -96,6 +96,6 @@
         "tsickle": "0.39.1",
         "tslib": "2.0.3",
         "typescript": "4.0.5",
-        "zone.js": "0.11.2"
+        "zone.js": "0.11.3"
     }
 }
