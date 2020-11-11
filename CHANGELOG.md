@@ -1,3 +1,10 @@
+#### 14.101.0 (2020-11-11)
+
+##### New Features
+
+-   add commitlint ([#268](https://github.com/Angular-RU/angular-ru-sdk/pull/268))
+    ([374ca1ea](https://github.com/Angular-RU/angular-ru-sdk/commit/374ca1ea79c01a6fe4bb21f8730710032ad7b0fc))
+
 #### 14.100.0 (2020-11-11)
 
 ##### Chores
