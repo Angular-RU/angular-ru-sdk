@@ -1,3 +1,90 @@
+#### 14.99.0 (2020-11-09)
+
+##### New Features
+
+-   update dependency @types/node to v14.14.7
+    ([b471bec9](https://github.com/Angular-RU/angular-ru-sdk/commit/b471bec9840f80a10380ce1fe0737cf199b9d8fd))
+
+#### 14.98.0 (2020-11-09)
+
+##### New Features
+
+-   update ESLint to v4.7.0
+    ([470654fc](https://github.com/Angular-RU/angular-ru-sdk/commit/470654fcfff86be20e06ef70374d5222c049c1e1))
+
+#### 14.97.0 (2020-11-08)
+
+##### New Features
+
+-   update dependency ts-jest to v26.4.4
+    ([07b86c90](https://github.com/Angular-RU/angular-ru-sdk/commit/07b86c900b5860032744c86511d3aefb39f5750d))
+
+#### 14.96.0 (2020-11-07)
+
+##### Continuous Integration
+
+-   update angular-framework to v10.2.2
+    ([c0b5892f](https://github.com/Angular-RU/angular-ru-sdk/commit/c0b5892f35d5c596ffa001691feb874b191703b9))
+
+##### New Features
+
+-   update dependency eslint to v7.13.0
+    ([bbe63f5a](https://github.com/Angular-RU/angular-ru-sdk/commit/bbe63f5a65e2b9d408ea83f668108fc3a13190f6))
+
+#### 14.95.0 (2020-11-04)
+
+##### Continuous Integration
+
+-   update devDependencies
+    ([6b775e5b](https://github.com/Angular-RU/angular-ru-sdk/commit/6b775e5bb978cc9f0d1be14ebb1f695a4b312415))
+-   update angular-components to v10.2.7
+    ([455561f2](https://github.com/Angular-RU/angular-ru-sdk/commit/455561f2c614ec0f3eafd7ded11a000abec39d12))
+
+##### New Features
+
+-   update dependency jest to v26.6.3
+    ([a8bc3cc9](https://github.com/Angular-RU/angular-ru-sdk/commit/a8bc3cc9b207476b3295c03f7961138c4c499cea))
+
+#### 14.94.0 (2020-11-02)
+
+##### New Features
+
+-   update ESLint to v4.6.1
+    ([40cd7ee2](https://github.com/Angular-RU/angular-ru-sdk/commit/40cd7ee286a77903e57bc9523adcbf7f09e8faa3))
+
+#### 14.93.0 (2020-11-02)
+
+##### New Features
+
+-   update dependency jest to v26.6.2
+    ([88766916](https://github.com/Angular-RU/angular-ru-sdk/commit/88766916d1638c6785e66c07fc0a1f109eee9359))
+
+#### 14.92.0 (2020-10-31)
+
+##### New Features
+
+-   update dependency lint-staged to v10.5.1
+    ([1e1e790a](https://github.com/Angular-RU/angular-ru-sdk/commit/1e1e790a0b904a502f30b09b94792825e6be5853))
+
+#### 14.91.1 (2020-10-30)
+
+##### Chores
+
+-   **release:** updated release notes and package versions [ci skip]
+    ([65b1a74d](https://github.com/Angular-RU/angular-ru-sdk/commit/65b1a74da6ebc2c864707100554596c298c961e1))
+
+##### Continuous Integration
+
+-   update dependency @types/karma to v5.0.1
+    ([9a050ebc](https://github.com/Angular-RU/angular-ru-sdk/commit/9a050ebc909dcd74bda56723698b162cef66550c))
+-   update angular-framework to v10.2.1
+    ([8af2112c](https://github.com/Angular-RU/angular-ru-sdk/commit/8af2112ccc3dd048534e36efb7bdf956579b4b2a))
+
+##### Bug Fixes
+
+-   **@angular-ru/http:** restTemplate options is priority for emit options
+    ([43ffeefc](https://github.com/Angular-RU/angular-ru-sdk/commit/43ffeefc224437129a9c9070d4bc756c807ba528))
+
 #### 14.91.0 (2020-10-28)
 
 ##### New Features
