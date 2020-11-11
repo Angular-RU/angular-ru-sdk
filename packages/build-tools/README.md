@@ -15,8 +15,6 @@ yarn add @angular-ru/build-tools
 
 Included packages in your project:
 
--   `@commitlint/cli` - Lint commit messages.
--   `@angular-ru/commitlint-config` - Sharable commitlint config for Angular projects.
 -   `@types/node` - This package contains type definitions for Node.js.
 -   `generate-changelog` - Generate a changelog from git commits. This is meant to be used so that for every patch,
     minor, or major version, you update the changelog prior to running npm version so that the git tag contains the
