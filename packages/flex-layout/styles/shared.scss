@@ -16,6 +16,11 @@
 
 .flex-container,
 .flex-column {
+    &.flex-justify-normal {
+        justify-content: normal;
+        align-items: center;
+    }
+
     &__around {
         justify-content: space-around;
     }
