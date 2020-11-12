@@ -1,3 +1,11 @@
+#### 14.101.1 (2020-11-12)
+
+##### Bug Fixes
+
+-   **build-config:** add missing publishConfig in package.json
+    ([#270](https://github.com/Angular-RU/angular-ru-sdk/pull/270))
+    ([9529416f](https://github.com/Angular-RU/angular-ru-sdk/commit/9529416f93ef5b2d623388a1c4f830c7bc69996d))
+
 #### 14.101.0 (2020-11-11)
 
 ##### New Features
