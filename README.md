@@ -90,6 +90,24 @@ in the Angular.
          </td>
       </tr>
       <tr>
+       <td>
+          <a href="https://npmjs.com/package/@angular-ru/commitlint-config">
+          @angular-ru/commitlint-config
+          </a>
+       </td>
+       <td>
+          <img src="https://img.shields.io/npm/v/%40angular-ru%2Fcommitlint-config/latest.svg">
+       </td>
+       <td>
+          <a href="https://npmjs.com/package/@angular-ru/commitlint-config">
+          <img src="https://img.shields.io/npm/dw/@angular-ru/commitlint-config">
+          </a>
+          <a href="packages/commitlint-config/README.md">
+          <img src="https://img.shields.io/badge/README--green.svg">
+          </a>
+       </td>
+    </tr>
+      <tr>
          <td>
             <a href="https://npmjs.com/package/@angular-ru/eslint-config">
             @angular-ru/eslint-config

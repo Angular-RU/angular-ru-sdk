@@ -12,5 +12,8 @@
     "dependencies": {
         "@commitlint/cli": "11.0.0",
         "@commitlint/config-conventional": "11.0.0"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }
