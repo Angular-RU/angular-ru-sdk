@@ -1,3 +1,10 @@
+#### 14.101.2 (2020-11-12)
+
+##### Bug Fixes
+
+-   **@angular-ru/flex-layout:** support flex-justify-normal in flex-column
+    ([30e8a535](https://github.com/Angular-RU/angular-ru-sdk/commit/30e8a5356a3415a80be94fb49ca1bf7a1d655cd9))
+
 #### 14.101.1 (2020-11-12)
 
 ##### Bug Fixes
