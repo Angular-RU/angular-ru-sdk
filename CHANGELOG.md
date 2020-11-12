@@ -1,3 +1,39 @@
+#### 14.101.0 (2020-11-11)
+
+##### New Features
+
+-   add commitlint ([#268](https://github.com/Angular-RU/angular-ru-sdk/pull/268))
+    ([374ca1ea](https://github.com/Angular-RU/angular-ru-sdk/commit/374ca1ea79c01a6fe4bb21f8730710032ad7b0fc))
+
+#### 14.100.0 (2020-11-11)
+
+##### Chores
+
+-   **release:**
+    -   updated release notes and package versions [ci skip]
+        ([58668d2b](https://github.com/Angular-RU/angular-ru-sdk/commit/58668d2bbc2c3f7a50c599e76ef5b582c701f3de))
+    -   updated release notes and package versions [ci skip]
+        ([65b1a74d](https://github.com/Angular-RU/angular-ru-sdk/commit/65b1a74da6ebc2c864707100554596c298c961e1))
+
+##### Continuous Integration
+
+-   update angular-framework to v10.2.3
+    ([d8705b2e](https://github.com/Angular-RU/angular-ru-sdk/commit/d8705b2e48cee77b4143fe44deaf67bc9b3a5698))
+-   update dependency @types/karma to v5.0.1
+    ([9a050ebc](https://github.com/Angular-RU/angular-ru-sdk/commit/9a050ebc909dcd74bda56723698b162cef66550c))
+-   update angular-framework to v10.2.1
+    ([8af2112c](https://github.com/Angular-RU/angular-ru-sdk/commit/8af2112ccc3dd048534e36efb7bdf956579b4b2a))
+
+##### New Features
+
+-   **@angular-ru/common:** add isTrue, isFalse
+    ([8ba992a0](https://github.com/Angular-RU/angular-ru-sdk/commit/8ba992a0c0daf3818a5fb546688f63c0bd2cf1dd))
+
+##### Bug Fixes
+
+-   **@angular-ru/http:** restTemplate options is priority for emit options
+    ([43ffeefc](https://github.com/Angular-RU/angular-ru-sdk/commit/43ffeefc224437129a9c9070d4bc756c807ba528))
+
 #### 14.99.0 (2020-11-09)
 
 ##### New Features

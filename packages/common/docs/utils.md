@@ -109,3 +109,14 @@ it('xml to string', () => {
     expect(serializeXmlToString(xml)).toEqual('<hello>123</hello>');
 });
 ```
+
+-   `isTruthy, isFalsy`
+
+```ts
+import { isTrue, isFalse } from '@angular-ru/common/utils';
+
+isTrue('123'); // false
+isTrue(true); // true
+isFalse(true); // false
+isFalse(false); // true
+```

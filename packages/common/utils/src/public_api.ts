@@ -9,3 +9,5 @@ export { isNil } from './is-nil';
 export { $cast } from './$cast';
 export { $any } from './$any';
 export { isIE } from './is-ie';
+export { isFalse } from './is-false';
+export { isTrue } from './is-true';
