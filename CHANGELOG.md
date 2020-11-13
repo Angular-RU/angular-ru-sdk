@@ -1,3 +1,10 @@
+#### 14.103.1 (2020-11-13)
+
+##### Bug Fixes
+
+-   **commitlint-config:** disable subject-case rule ([#271](https://github.com/Angular-RU/angular-ru-sdk/pull/271))
+    ([38fb5772](https://github.com/Angular-RU/angular-ru-sdk/commit/38fb57722f79236c801233a07b516228188d52a1))
+
 #### 14.103.0 (2020-11-13)
 
 ##### Chores
