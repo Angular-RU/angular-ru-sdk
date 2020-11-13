@@ -1,3 +1,17 @@
+#### 14.102.0 (2020-11-12)
+
+##### New Features
+
+-   update dependency ng-packagr to v11 ([#267](https://github.com/Angular-RU/angular-ru-sdk/pull/267))
+    ([c119cc9a](https://github.com/Angular-RU/angular-ru-sdk/commit/c119cc9ab9f024b96de954d1e60c6e594bef387e))
+
+#### 14.101.2 (2020-11-12)
+
+##### Bug Fixes
+
+-   **@angular-ru/flex-layout:** support flex-justify-normal in flex-column
+    ([30e8a535](https://github.com/Angular-RU/angular-ru-sdk/commit/30e8a5356a3415a80be94fb49ca1bf7a1d655cd9))
+
 #### 14.101.1 (2020-11-12)
 
 ##### Bug Fixes
