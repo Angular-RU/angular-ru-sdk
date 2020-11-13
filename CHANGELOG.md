@@ -1,3 +1,20 @@
+#### 14.103.0 (2020-11-13)
+
+##### Chores
+
+-   **release:** updated release notes and package versions [ci skip]
+    ([0655086b](https://github.com/Angular-RU/angular-ru-sdk/commit/0655086b0241d65a6a98c974b6d9a351829bc529))
+
+##### New Features
+
+-   **@angular-ru/flex-layout:** add flex-bottom-indent directive
+    ([8c92ec3a](https://github.com/Angular-RU/angular-ru-sdk/commit/8c92ec3a86babaa5ba11383a0275047f7b99edd8))
+
+##### Bug Fixes
+
+-   **@angular-ru/flex-layout:** support flex-justify-normal in flex-column
+    ([30e8a535](https://github.com/Angular-RU/angular-ru-sdk/commit/30e8a5356a3415a80be94fb49ca1bf7a1d655cd9))
+
 #### 14.102.0 (2020-11-12)
 
 ##### New Features
