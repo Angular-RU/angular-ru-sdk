@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/eslint-config",
-    "version": "14.100.0",
+    "version": "15.1.0",
     "description": "Angular-RU package",
     "keywords": [
         "angular-ru",
@@ -29,7 +29,7 @@
         "@angular-eslint/eslint-plugin": "^0.8.0-beta.0",
         "@angular-eslint/eslint-plugin-template": "^0.8.0-beta.0",
         "@angular-eslint/template-parser": "^0.8.0-beta.0",
-        "@types/eslint": "7.2.4",
+        "@types/eslint": "7.2.5",
         "@typescript-eslint/eslint-plugin": "4.7.0",
         "@typescript-eslint/parser": "4.7.0",
         "codelyzer": "6.0.1",
