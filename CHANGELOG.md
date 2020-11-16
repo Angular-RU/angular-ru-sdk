@@ -1,3 +1,28 @@
+#### 15.0.0 (2020-11-16)
+
+##### Continuous Integration
+
+-   update angular-cli ([#273](https://github.com/Angular-RU/angular-ru-sdk/pull/273))
+    ([6926d1f8](https://github.com/Angular-RU/angular-ru-sdk/commit/6926d1f8c13f7d63e37674f70fa46399ff59d050))
+-   update angular-cli (minor) ([#269](https://github.com/Angular-RU/angular-ru-sdk/pull/269))
+    ([9bea70e1](https://github.com/Angular-RU/angular-ru-sdk/commit/9bea70e1a2d106471bd00e8bab3ac38bca53e7ba))
+
+##### Bug Fixes
+
+-   **@angular-ru/flex-layout:** support string type for flex-bottom-indent
+    ([017135a8](https://github.com/Angular-RU/angular-ru-sdk/commit/017135a8f60ffac56c0a369e0c2977a24bf45493))
+-   **commitlint-config:** disable subject-case rule ([#271](https://github.com/Angular-RU/angular-ru-sdk/pull/271))
+    ([38fb5772](https://github.com/Angular-RU/angular-ru-sdk/commit/38fb57722f79236c801233a07b516228188d52a1))
+
+##### Other Changes
+
+-   //github.com/angular-schule/angular-cli-ghpages/pull/118
+    ([af6900bd](https://github.com/Angular-RU/angular-ru-sdk/commit/af6900bd186458160a51d1e1978c98d39c6fe5f8))
+-   //github.com/angular-schule/angular-cli-ghpages/pull/118
+    ([a3c8d729](https://github.com/Angular-RU/angular-ru-sdk/commit/a3c8d729b71b3dfb23100beec9d6a37f8bdf46a7))
+-   update angular-cli (minor) ([#269](https://github.com/Angular-RU/angular-ru-sdk/pull/269))"
+    ([917ef64a](https://github.com/Angular-RU/angular-ru-sdk/commit/917ef64aad9064c15e6f31c0b73f54ba575f192e))
+
 #### 14.103.0 (2020-11-13)
 
 ##### Chores
