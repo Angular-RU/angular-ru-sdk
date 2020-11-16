@@ -27,7 +27,7 @@
         "test": "sh test.sh"
     },
     "dependencies": {
-        "@types/eslint": "7.2.4",
+        "@types/eslint": "7.2.5",
         "@typescript-eslint/eslint-plugin": "4.7.0",
         "@typescript-eslint/eslint-plugin-tslint": "4.7.0",
         "@typescript-eslint/parser": "4.7.0",
