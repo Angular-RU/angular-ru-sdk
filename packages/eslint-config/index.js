@@ -6,11 +6,11 @@ module.exports = {
     env: {
         browser: true,
         es6: true,
-        node: true,
+        node: true
     },
     settings: {
         'import/parsers': { '@typescript-eslint/parser': ['.ts'] },
-        'import/resolver': { 'eslint-import-resolver-typescript': true },
+        'import/resolver': { 'eslint-import-resolver-typescript': true }
     },
     ignorePatterns: [
         '**/node_modules/**',
@@ -26,7 +26,7 @@ module.exports = {
         '**/docs/**',
         '.cache/**',
         '.git/**',
-        '.idea/**',
+        '.idea/**'
     ],
     overrides: [
         {
@@ -37,14 +37,14 @@ module.exports = {
                 project: './tsconfig.json',
                 sourceType: 'module',
                 errorOnUnknownASTType: true,
-                errorOnTypeScriptSyntacticAndSemanticIssues: true,
+                errorOnTypeScriptSyntacticAndSemanticIssues: true
             },
             extends: [
                 'eslint:recommended',
                 'plugin:@typescript-eslint/eslint-recommended',
                 'plugin:@typescript-eslint/recommended',
                 'plugin:import/warnings',
-                'plugin:import/typescript',
+                'plugin:import/typescript'
             ],
             plugins: [
                 'prettier',
@@ -55,7 +55,7 @@ module.exports = {
                 'eslint-plugin-import',
                 '@typescript-eslint',
                 '@angular-eslint/eslint-plugin',
-                'sonarjs',
+                'sonarjs'
             ],
             rules: {
                 /**
@@ -70,14 +70,14 @@ module.exports = {
                     'error',
                     {
                         before: false,
-                        after: true,
-                    },
+                        after: true
+                    }
                 ],
                 complexity: [
                     'error',
                     {
-                        max: 6,
-                    },
+                        max: 6
+                    }
                 ],
                 'constructor-super': 'error',
                 curly: 'error',
@@ -91,15 +91,15 @@ module.exports = {
                     {
                         properties: true,
                         ignoreDestructuring: false,
-                        onlyDeclarations: false,
-                    },
+                        onlyDeclarations: false
+                    }
                 ],
                 indent: 'off',
                 'keyword-spacing': [
                     'error',
                     {
-                        before: true,
-                    },
+                        before: true
+                    }
                 ],
                 'max-classes-per-file': 'off',
                 'max-depth': ['error', 4],
@@ -110,8 +110,8 @@ module.exports = {
                         ignoreTemplateLiterals: true,
                         ignoreRegExpLiterals: true,
                         ignoreStrings: true,
-                        ignoreComments: true,
-                    },
+                        ignoreComments: true
+                    }
                 ],
                 'max-lines-per-function': [
                     'error',
@@ -119,8 +119,8 @@ module.exports = {
                         max: 20,
                         skipBlankLines: true,
                         skipComments: true,
-                        IIFEs: true,
-                    },
+                        IIFEs: true
+                    }
                 ],
                 'max-nested-callbacks': ['error', 3],
                 'max-params': 'off',
@@ -131,8 +131,8 @@ module.exports = {
                 'no-console': [
                     'error',
                     {
-                        allow: ['warn', 'error'],
-                    },
+                        allow: ['warn', 'error']
+                    }
                 ],
                 'no-constant-condition': 'error',
                 'no-debugger': 'error',
@@ -153,12 +153,12 @@ module.exports = {
                     'error',
                     {
                         selector: 'TSEnumDeclaration:not([const=true])',
-                        message: "Don't declare non-const enums",
-                    },
+                        message: "Don't declare non-const enums"
+                    }
                 ],
                 'no-return-assign': ['error', 'always'],
                 'no-self-assign': 'error',
-                'no-shadow': "off",
+                'no-shadow': 'off',
                 'no-sparse-arrays': 'error',
                 'no-throw-literal': 'error',
                 'no-trailing-spaces': 'error',
@@ -177,8 +177,8 @@ module.exports = {
                     {
                         var: 'never',
                         let: 'never',
-                        const: 'never',
-                    },
+                        const: 'never'
+                    }
                 ],
                 'prefer-const': 'error',
                 'prefer-object-spread': 'error',
@@ -194,16 +194,16 @@ module.exports = {
                     {
                         named: 'never',
                         anonymous: 'ignore',
-                        asyncArrow: 'always',
-                    },
+                        asyncArrow: 'always'
+                    }
                 ],
                 'space-infix-ops': 'error',
                 'spaced-comment': [
                     'error',
                     'always',
                     {
-                        exceptions: ['*'],
-                    },
+                        exceptions: ['*']
+                    }
                 ],
                 'unicode-bom': 'error',
                 'use-isnan': 'error',
@@ -249,18 +249,15 @@ module.exports = {
                 '@typescript-eslint/ban-ts-ignore': 'off',
                 '@typescript-eslint/ban-types': 'error',
                 '@typescript-eslint/consistent-type-assertions': 'error',
-                '@typescript-eslint/consistent-type-definitions': [
-                    'error',
-                    'interface',
-                ],
+                '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
                 '@typescript-eslint/explicit-function-return-type': 'error',
                 '@typescript-eslint/explicit-member-accessibility': [
                     'error',
                     {
                         overrides: {
-                            constructors: 'off',
-                        },
-                    },
+                            constructors: 'off'
+                        }
+                    }
                 ],
                 '@typescript-eslint/explicit-module-boundary-types': 'error',
                 '@typescript-eslint/member-ordering': [
@@ -288,38 +285,38 @@ module.exports = {
                             'protected-instance-method',
                             'protected-abstract-method',
                             'private-instance-method',
-                            'private-abstract-method',
-                        ],
-                    },
+                            'private-abstract-method'
+                        ]
+                    }
                 ],
                 '@typescript-eslint/naming-convention': [
                     'error',
                     {
                         selector: 'class',
-                        format: ['PascalCase'],
+                        format: ['PascalCase']
                     },
                     {
                         selector: 'interface',
-                        format: ['PascalCase'],
+                        format: ['PascalCase']
                     },
                     {
                         selector: 'variable',
-                        format: ['camelCase', 'UPPER_CASE'],
+                        format: ['camelCase', 'UPPER_CASE']
                     },
                     {
                         selector: 'typeLike',
-                        format: ['PascalCase'],
+                        format: ['PascalCase']
                     },
                     {
                         selector: 'class',
                         modifiers: ['abstract'],
                         format: ['PascalCase'],
-                        prefix: ['Abstract'],
+                        prefix: ['Abstract']
                     },
                     {
                         selector: 'enum',
-                        format: ['StrictPascalCase'],
-                    },
+                        format: ['StrictPascalCase']
+                    }
                 ],
                 '@typescript-eslint/no-empty-interface': 'error',
                 '@typescript-eslint/no-explicit-any': 'error',
@@ -330,8 +327,8 @@ module.exports = {
                         ignore: [-1, 0, 1],
                         ignoreEnums: true,
                         ignoreNumericLiteralTypes: true,
-                        ignoreReadonlyClassProperties: true,
-                    },
+                        ignoreReadonlyClassProperties: true
+                    }
                 ],
                 '@typescript-eslint/no-misused-new': 'error',
                 '@typescript-eslint/no-namespace': 'error',
@@ -345,8 +342,8 @@ module.exports = {
                         vars: 'all',
                         args: 'after-used',
                         ignoreRestSiblings: false,
-                        argsIgnorePattern: '^_',
-                    },
+                        argsIgnorePattern: '^_'
+                    }
                 ],
                 '@typescript-eslint/no-use-before-declare': 'off',
                 '@typescript-eslint/no-use-before-define': [
@@ -354,8 +351,8 @@ module.exports = {
                     {
                         functions: false,
                         classes: false,
-                        variables: true,
-                    },
+                        variables: true
+                    }
                 ],
                 '@typescript-eslint/no-useless-constructor': ['error'],
                 '@typescript-eslint/no-var-requires': 'off',
@@ -365,15 +362,15 @@ module.exports = {
                 '@typescript-eslint/prefer-readonly': [
                     'error',
                     {
-                        onlyInlineLambdas: true,
-                    },
+                        onlyInlineLambdas: true
+                    }
                 ],
                 '@typescript-eslint/quotes': [
                     'error',
                     'single',
                     {
-                        allowTemplateLiterals: true,
-                    },
+                        allowTemplateLiterals: true
+                    }
                 ],
                 '@typescript-eslint/semi': ['error', 'always'],
                 '@typescript-eslint/triple-slash-reference': 'error',
@@ -387,8 +384,8 @@ module.exports = {
                         variableDeclaration: true,
                         memberVariableDeclaration: true,
                         objectDestructuring: true,
-                        arrayDestructuring: true,
-                    },
+                        arrayDestructuring: true
+                    }
                 ],
                 '@typescript-eslint/unified-signatures': 'error',
 
@@ -428,7 +425,7 @@ module.exports = {
                 'sonarjs/no-unused-collection': 'error',
                 'sonarjs/no-use-of-empty-return-value': 'error',
                 'sonarjs/no-useless-catch': 'error',
-                'sonarjs/prefer-immediate-return': 'error',
+                'sonarjs/prefer-immediate-return': 'error'
 
                 /**
                  * not implemented yet
@@ -471,19 +468,19 @@ module.exports = {
                 // 'sonarjs/prefer-promise-shorthand': 'error',
                 // 'sonarjs/prefer-type-guard': 'error',
                 // 'sonarjs/use-type-alias': 'error'
-            },
+            }
         },
         {
             files: ['*.component.html'],
             extends: ['plugin:@angular-eslint/template/recommended'],
             rules: {
                 '@angular-eslint/template/no-negated-async': 'error',
-                'max-len': ['error', { code: 140 }],
-            },
+                'max-len': ['error', { code: 140 }]
+            }
         },
         {
             files: ['*.component.ts'],
-            extends: ['plugin:@angular-eslint/template/process-inline-templates'],
-        },
-    ],
+            extends: ['plugin:@angular-eslint/template/process-inline-templates']
+        }
+    ]
 };
