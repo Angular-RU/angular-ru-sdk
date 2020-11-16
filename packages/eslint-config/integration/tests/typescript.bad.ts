@@ -2,6 +2,7 @@
 import { B1 } from './module/b1';
 import { A1 } from './module/a1';
 import { C1 } from './module/c1';
+import { Component, EventEmitter, Injectable, OnInit, Pipe } from '@angular/core';
 
 export class A {
     // expect errors
@@ -157,3 +158,110 @@ new TestMaxParams().f3(1, 2, 3, 4);
 
 // eslint-disable-next-line @typescript-eslint/no-magic-numbers
 new TestMaxParams().f4(1, 2);
+
+// except errors
+let someNum:number;
+
+// except errors
+someNum=1+1;
+
+
+@Injectable()
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+class SomeInjectable implements OnInit {
+    public ngOnInit(): void {
+        // noop
+    }
+}
+
+@Component({
+    template: `
+    <div>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+    </div>
+    `,
+    host: { '[class.app]': 'true' },
+    inputs: ['inputVariable'],
+    outputs: ['outputVariable']
+})
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+class AppComponent {
+    public inputVariable: number = 1;
+    public outputVariable: EventEmitter<number> = new EventEmitter<number>();
+    public ngOnInit(): void {
+        // noop
+    }
+}
+
+@Pipe({
+    name: 'somePipe'
+})
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+class SomePipe {
+    public transform(value: string, pool: string[]): boolean {
+        return pool.includes(value);
+    }
+}
+
+function log(something: any) {
+    // eslint-disable-next-line no-console
+    console.log(something);
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function someComplexFunction(): void {
+    const someVar: string = Math.random() + '';
+    switch (someVar) {
+    case '0':
+        log('0');
+        break;
+    case '1':
+        log('1');
+        break;
+    case '2':
+        log('2');
+        break;
+    case '3':
+        log('3');
+        break;
+    case '4':
+        log('4');
+        break;
+    case '5':
+        log('5');
+        break;
+    case '6':
+        log('6');
+        break;
+    case '7':
+        log('7');
+        break;
+    default:
+        // eslint-disable-next-line no-console
+        log('default');
+        break;
+    }
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function otherComplexFunction(): void {
+    const someVar: number = Math.random();
+    switch (someVar) {
+    case 0:
+        // noop
+        break;
+    case 1:
+        // noop
+        break;
+    default:
+        // noop
+        break;
+    }
+}
+
+const someBoolean: boolean = !(Math.random() > Date.now());
+log(someBoolean);

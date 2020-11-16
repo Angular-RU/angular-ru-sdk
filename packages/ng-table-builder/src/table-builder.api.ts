@@ -58,7 +58,6 @@ const { ROW_HEIGHT, FILTER_DELAY_TIME, TIME_IDLE }: typeof TABLE_GLOBAL_OPTIONS 
 @Directive()
 export abstract class AbstractTableBuilderApiImpl
     implements OnChanges, OnInit, AfterViewInit, AfterContentInit, AfterViewChecked, OnDestroy {
-    // eslint-disable-next-line @typescript-eslint/tslint/config
     @Input() public height: string | number | null = null;
     @Input() public width: string | number | null = null;
     @Input() public source: TableRow[] | null = null;

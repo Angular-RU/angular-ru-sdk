@@ -15,6 +15,7 @@ export class TimerFactory {
 
     public startTime(title: string, level: LoggerLevel): TimerInfo | null {
         let result: TimerInfo | null = null;
+        // eslint-disable-next-line sonarjs/no-inverted-boolean-check
         const canExecute: boolean = !(this.console.minLevel > level);
         if (canExecute) {
             result = { startTime: performance.now(), title };
@@ -24,6 +25,7 @@ export class TimerFactory {
 
     // eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
     public endTime(info: TimerInfo, level: LoggerLevel, isMillisecond: boolean, logger: LoggerService): void {
+        // eslint-disable-next-line sonarjs/no-inverted-boolean-check
         const canExecute: boolean = !(this.console.minLevel > level);
 
         if (canExecute) {

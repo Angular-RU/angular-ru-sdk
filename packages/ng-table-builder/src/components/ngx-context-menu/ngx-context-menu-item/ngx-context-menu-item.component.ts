@@ -77,6 +77,7 @@ export class NgxContextMenuItemComponent implements OnInit, OnDestroy {
     public ngOnDestroy(): void {
         this.itemRef = null;
         if (this.subscription && !this.subscription.closed) {
+            // eslint-disable-next-line no-unused-expressions
             this.subscription && this.subscription.unsubscribe();
         }
     }

@@ -79,7 +79,6 @@ export class GroupFactory {
             this.executePipesGroup = false;
         }
 
-        // eslint-disable-next-line @typescript-eslint/tslint/config
         return pipeLineResult!;
     }
 
