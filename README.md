@@ -278,6 +278,7 @@ Choose the version corresponding to your Angular version:
 
 | Angular | @angular-ru/\*\*\* | Status   | Ivy | VE  |
 | ------- | ------------------ | -------- | --- | --- |
+| 11      | 15.x               | Released | +   | -   |
 | 10      | 14.x               | Released | +   | -   |
 | 9       | 13.x               | Released | +   | +   |
 | 8       | 12.x               | Released | +   | +   |
