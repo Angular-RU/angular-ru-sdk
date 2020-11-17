@@ -36,7 +36,6 @@ jobs:
               run: |
                   yarn install --frozen-lockfile --non-interactive
                   yarn clean
-                  yarn build:prepare
 
             - name: Run building libraries step
               run: |

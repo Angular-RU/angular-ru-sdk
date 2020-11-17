@@ -20,8 +20,8 @@ declare const hljs: Any;
 @Component({
     selector: 'sample-fourteen',
     templateUrl: './sample-fourteen.component.html',
+    // eslint-disable-next-line @angular-eslint/component-max-inline-declarations
     styles: [
-        // tslint:disable-next-line:component-max-inline-declarations
         `
             .filter-example .table-grid__column {
                 text-transform: uppercase;

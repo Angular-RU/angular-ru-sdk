@@ -3,7 +3,7 @@ import { Any, PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
 import { TableRow } from '../../interfaces/table-builder.external';
 import { FilterableMessage, FilterGlobalOpts, TableFilterType } from './filterable.interface';
 
-// eslint-disable-next-line max-lines-per-function
+// eslint-disable-next-line sonarjs/cognitive-complexity,max-lines-per-function
 export function filterAllWorker({ source, global, types, columns }: FilterableMessage): TableRow[] {
     const enum Terminate {
         CONTINUE = -1,

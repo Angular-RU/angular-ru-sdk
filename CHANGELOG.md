@@ -1,3 +1,11 @@
+#### 15.2.0 (2020-11-17)
+
+##### New Features
+
+-   **eslint-config:** replace deprecated tslint with eslint plugins
+    ([#275](https://github.com/Angular-RU/angular-ru-sdk/pull/275))
+    ([7aa37b66](https://github.com/Angular-RU/angular-ru-sdk/commit/7aa37b6627a910564c287cbae0906852734c9888))
+
 #### 15.1.0 (2020-11-16)
 
 ##### New Features

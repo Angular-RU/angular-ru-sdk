@@ -13,7 +13,6 @@ export function RequestParam(name: string): ParameterDecorator {
             throw new Error(`@RequestParam name should be initialized`);
         }
 
-        // eslint-disable-next-line @typescript-eslint/tslint/config
         const originalMethod: Fn = (target as Any)?.[methodName as Any];
         const registry: MethodArgsRegistry = ensureMethodArgsRegistry(originalMethod, META_REQUEST_PARAM);
         registry.putIndexByName(key, methodName as string, parameterIndex);

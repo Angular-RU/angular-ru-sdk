@@ -34,5 +34,4 @@ export const DEFAULT_METHODS: PlainObject = {
     [LoggerLevel.ERROR]: 'error'
 };
 
-// tslint:disable-next-line:max-line-length
 export const LEXER_JSON: RegExp = /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g;

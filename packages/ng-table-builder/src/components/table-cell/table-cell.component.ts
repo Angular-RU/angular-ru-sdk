@@ -143,7 +143,9 @@ export class TableCellComponent implements OnDestroy {
                         this.overflowContentElem.parentNode?.removeChild(this.overflowContentElem);
                     }
 
+                    // eslint-disable-next-line no-unused-expressions
                     this.nodeSubscription && this.nodeSubscription.unsubscribe();
+                    // eslint-disable-next-line no-unused-expressions
                     this.closeElemSub && this.closeElemSub.unsubscribe();
                 }, TABLE_GLOBAL_OPTIONS.TIME_IDLE);
             });

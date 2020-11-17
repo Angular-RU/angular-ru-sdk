@@ -18,8 +18,8 @@ declare const hljs: Any;
     templateUrl: './sample-eleven.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
+    // eslint-disable-next-line @angular-eslint/component-max-inline-declarations
     styles: [
-        // tslint:disable-next-line:component-max-inline-declarations
         `
             .night {
                 position: relative;

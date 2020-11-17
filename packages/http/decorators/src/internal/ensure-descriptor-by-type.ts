@@ -24,7 +24,6 @@ export function ensureDescriptorByType<T>({
 
     // eslint-disable-next-line max-lines-per-function
     descriptor.value = function (...args: Any[]): Observable<T> {
-        // eslint-disable-next-line @typescript-eslint/tslint/config
         const httpClient: DataHttpClient = (this as Any) as DataHttpClient;
         const result: Observable<T> | Any = originalMethod.apply(httpClient, args);
         let template: RestTemplate<T> | null = result?.restTemplateRef ?? null;

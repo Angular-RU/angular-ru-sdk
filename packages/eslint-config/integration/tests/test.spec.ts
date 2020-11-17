@@ -8,7 +8,7 @@ describe('[TEST]: Eslint', (): void => {
     it('check failed files', (): void => {
         const bad: string = ensureDistFile('bad');
         expect(bad.includes(`Run autofix to sort these imports!`)).toEqual(true);
-        expect(bad.includes(`expected member-variable-declaration: 'hello' to have a typedef`)).toEqual(true);
+        expect(bad.includes(`Expected hello to have a type annotation`)).toEqual(true);
         expect(bad.includes('Missing accessibility modifier on class property hello')).toEqual(true);
         expect(bad.includes('Unexpected console statement')).toEqual(true);
         expect(bad.includes('No magic number: 2')).toEqual(true);
@@ -40,6 +40,35 @@ describe('[TEST]: Eslint', (): void => {
         expect(bad.includes("function 'f1' has too many parameters (4). Maximum allowed is 3")).toEqual(true);
         expect(bad.includes('arrow function has too many parameters (4). Maximum allowed is 3')).toEqual(true);
         expect(bad.includes("method 'f3' has too many parameters (4). Maximum allowed is 3")).toEqual(true);
+        expect(bad.includes("Expected a space after the ':'")).toEqual(true);
+        expect(bad.includes("Operator '=' must be spaced")).toEqual(true);
+        expect(bad.includes("Operator '+' must be spaced")).toEqual(true);
+        expect(bad.includes("'someNum' is assigned a value but never used")).toEqual(true);
+        expect(bad.includes("'someNum' is never reassigned. Use 'const' instead")).toEqual(true);
+        expect(
+            bad.includes(
+                'The method ngOnInit is not allowed for class SomeInjectable because it is decorated with Injectable'
+            )
+        ).toEqual(true);
+        expect(bad.includes("The selector of the component 'AppComponent' is mandatory")).toEqual(true);
+        expect(bad.includes('Exceeds the maximum allowed inline lines for template')).toEqual(true);
+        expect(bad.includes('Use @HostBinding or @HostListener rather than the `host` metadata property')).toEqual(
+            true
+        );
+        expect(bad.includes('Use @Input rather than the `inputs` metadata property')).toEqual(true);
+        expect(bad.includes('Use @Output rather than the `outputs` metadata property')).toEqual(true);
+        expect(bad.includes("Lifecycle interface 'OnInit' should be implemented for method 'ngOnInit'")).toEqual(true);
+        expect(bad.includes('Classes decorated with @Pipe decorator should implement PipeTransform interface')).toEqual(
+            true
+        );
+        expect(bad.includes('Missing return type on function')).toEqual(true);
+        expect(bad.includes('Unexpected any. Specify a different type')).toEqual(true);
+        expect(bad.includes("Function 'someComplexFunction' has too many lines (32)")).toEqual(true);
+        expect(bad.includes("Function 'someComplexFunction' has a complexity of 9")).toEqual(true);
+        expect(
+            bad.includes("Remove this conditional structure or edit its code blocks so that they're not all the same")
+        ).toEqual(true);
+        expect(bad.includes('Use the opposite operator (<=) instead')).toEqual(true);
     });
 
     it('check success files', (): void => {

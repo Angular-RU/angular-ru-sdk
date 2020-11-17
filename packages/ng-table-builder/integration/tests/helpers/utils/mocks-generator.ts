@@ -27,7 +27,7 @@ export class MocksGenerator {
                                     guid: '5cdae5b2ba0a57f709b72142' + '__' + idx
                                 };
 
-                                // eslint-disable-next-line @typescript-eslint/tslint/config,@typescript-eslint/explicit-function-return-type
+                                // eslint-disable-next-line @typescript-eslint/typedef,@typescript-eslint/explicit-function-return-type
                                 const random = (min: number, max: number) => min + Math.random() * (max - min);
 
                                 if (cols > 6) {
