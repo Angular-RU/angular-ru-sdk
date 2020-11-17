@@ -1,3 +1,10 @@
+#### 15.3.0 (2020-11-17)
+
+##### New Features
+
+-   update ESLint (minor) ([#272](https://github.com/Angular-RU/angular-ru-sdk/pull/272))
+    ([98b18e12](https://github.com/Angular-RU/angular-ru-sdk/commit/98b18e1271fda87a2da2865ccc95a17bb7c284d6))
+
 #### 15.2.0 (2020-11-17)
 
 ##### New Features
