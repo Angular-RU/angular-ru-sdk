@@ -1,4 +1,3 @@
-import { detectChanges } from '@angular-ru/common/utils';
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
@@ -13,6 +12,7 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { detectChanges } from '@angular-ru/common/utils';
 import { Subscription } from 'rxjs';
 
 import { TABLE_GLOBAL_OPTIONS } from '../../config/table-global-options';

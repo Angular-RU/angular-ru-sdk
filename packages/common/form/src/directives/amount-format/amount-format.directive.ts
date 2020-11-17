@@ -1,8 +1,8 @@
-import { toStringVal } from '@angular-ru/common/string';
-import { isNil } from '@angular-ru/common/utils';
 import { AfterViewInit, Directive, ElementRef, HostListener, Input, Optional } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
+import { toStringVal } from '@angular-ru/common/string';
+import { isNil } from '@angular-ru/common/utils';
 
 @Directive({ selector: '[amount-format]' })
 export class AmountFormatDirective implements AfterViewInit {

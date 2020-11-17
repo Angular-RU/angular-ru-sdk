@@ -1,5 +1,5 @@
-import { detectChanges } from '@angular-ru/common/utils';
 import { Directive, EmbeddedViewRef, Input, NgZone, OnDestroy, TemplateRef, ViewContainerRef } from '@angular/core';
+import { detectChanges } from '@angular-ru/common/utils';
 
 import { InternalVirtualRef, TableRow, VirtualContext, VirtualIndex } from '../interfaces/table-builder.external';
 

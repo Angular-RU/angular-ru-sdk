@@ -1,4 +1,3 @@
-import { detectChanges, getBodyRect } from '@angular-ru/common/utils';
 import {
     ApplicationRef,
     ChangeDetectorRef,
@@ -9,6 +8,7 @@ import {
     OnDestroy,
     ViewChild
 } from '@angular/core';
+import { detectChanges, getBodyRect } from '@angular-ru/common/utils';
 import { Subscription } from 'rxjs';
 
 import { MousePosition } from '../../interfaces/table-builder.internal';

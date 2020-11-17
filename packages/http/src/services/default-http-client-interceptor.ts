@@ -1,5 +1,5 @@
-import { DataHttpFailureEvent, DataHttpInterceptor, DataHttpSuccessEvent } from '@angular-ru/http/typings';
 import { Injectable } from '@angular/core';
+import { DataHttpFailureEvent, DataHttpInterceptor, DataHttpSuccessEvent } from '@angular-ru/http/typings';
 import { Subject } from 'rxjs';
 
 @Injectable()

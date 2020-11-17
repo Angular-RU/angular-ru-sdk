@@ -1,5 +1,5 @@
-import { PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
 import { Injectable } from '@angular/core';
+import { PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
 
 import { FormatOutput, LoggerLevel, LoggerOptions } from './interfaces/logger.external';
 import { COLORS, LABELS } from './logger.config';

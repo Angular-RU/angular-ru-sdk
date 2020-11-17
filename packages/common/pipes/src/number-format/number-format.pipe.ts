@@ -1,6 +1,6 @@
+import { Pipe, PipeTransform } from '@angular/core';
 import { Any } from '@angular-ru/common/typings';
 import { checkValueIsEmpty, isNil } from '@angular-ru/common/utils';
-import { Pipe, PipeTransform } from '@angular/core';
 
 import { NumberFormatOptions } from './number-format.interfaces';
 

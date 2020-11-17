@@ -1,5 +1,5 @@
-import { Any, DeepPartial, PlainObject } from '@angular-ru/common/typings';
 import { EmbeddedViewRef, EventEmitter, TemplateRef } from '@angular/core';
+import { Any, DeepPartial, PlainObject } from '@angular-ru/common/typings';
 
 import { TableBrowserEvent } from './table-builder.internal';
 

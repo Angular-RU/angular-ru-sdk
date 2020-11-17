@@ -1,7 +1,7 @@
-import { Any } from '@angular-ru/common/typings';
-import { TableRow, TableUpdateSchema } from '@angular-ru/ng-table-builder';
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Any } from '@angular-ru/common/typings';
+import { TableRow, TableUpdateSchema } from '@angular-ru/ng-table-builder';
 
 import { MocksGenerator } from '../../../../tests/helpers/utils/mocks-generator';
 import { CodeDialogComponent } from '../../shared/dialog/code-dialog.component';

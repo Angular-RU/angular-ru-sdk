@@ -1,5 +1,5 @@
-import { Any } from '@angular-ru/common/typings';
 import { Injectable, NgZone, OnDestroy } from '@angular/core';
+import { Any } from '@angular-ru/common/typings';
 import { Observable, ReplaySubject, Subject, Subscription, throwError } from 'rxjs';
 import { catchError, filter, map, take, takeUntil } from 'rxjs/operators';
 import { webSocket, WebSocketSubject, WebSocketSubjectConfig } from 'rxjs/webSocket';

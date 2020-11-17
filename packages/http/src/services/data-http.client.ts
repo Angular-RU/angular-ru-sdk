@@ -1,3 +1,5 @@
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
 import {
     DataBeforeRequestOptions,
     DataClientRequestOptions,
@@ -7,8 +9,6 @@ import {
     MetaDataRequest
 } from '@angular-ru/http/typings';
 import { getUrlSegments, urlParse } from '@angular-ru/http/utils';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, finalize, take, tap } from 'rxjs/operators';
 

@@ -1,7 +1,7 @@
+import { ApplicationRef, Injectable, Injector } from '@angular/core';
 import { checkIsShallowEmpty } from '@angular-ru/common/object';
 import { Any, PlainObject, PlainObjectOf, Resolver } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
-import { ApplicationRef, Injectable, Injector } from '@angular/core';
 import { ReplaySubject, Subject } from 'rxjs';
 
 import { TABLE_GLOBAL_OPTIONS } from '../../config/table-global-options';

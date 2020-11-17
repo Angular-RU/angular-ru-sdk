@@ -1,6 +1,6 @@
-import { PlainObject } from '@angular-ru/common/typings';
 import { Directive, Input } from '@angular/core';
 import { NgControl } from '@angular/forms';
+import { PlainObject } from '@angular-ru/common/typings';
 
 @Directive({ selector: '[disableControl]' })
 export class DisableControlDirective {

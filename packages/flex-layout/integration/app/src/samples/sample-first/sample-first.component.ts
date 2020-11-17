@@ -1,5 +1,5 @@
-import { Any } from '@angular-ru/common/typings';
 import { AfterViewInit, ChangeDetectionStrategy, Component } from '@angular/core';
+import { Any } from '@angular-ru/common/typings';
 
 declare const hljs: Any;
 

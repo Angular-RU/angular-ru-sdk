@@ -1,5 +1,5 @@
-import { Any, PlainObjectOf } from '@angular-ru/common/typings';
 import { Injectable, QueryList } from '@angular/core';
+import { Any, PlainObjectOf } from '@angular-ru/common/typings';
 
 import { ColumnOptions } from '../../components/common/column-options';
 import { NgxColumnComponent } from '../../components/ngx-column/ngx-column.component';

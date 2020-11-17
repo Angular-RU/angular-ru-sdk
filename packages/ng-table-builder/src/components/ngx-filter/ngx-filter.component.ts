@@ -1,4 +1,3 @@
-import { fadeInLinearAnimation } from '@angular-ru/common/animations';
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
@@ -9,6 +8,7 @@ import {
     OnInit,
     ViewEncapsulation
 } from '@angular/core';
+import { fadeInLinearAnimation } from '@angular-ru/common/animations';
 
 import { NgxFilterDirective } from '../../directives/ngx-filter.directive';
 import { FilterStateEvent } from '../../services/filterable/filterable.interface';

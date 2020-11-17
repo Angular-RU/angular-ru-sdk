@@ -1,5 +1,5 @@
-import { Any, Fn } from '@angular-ru/common/typings';
 import { Type } from '@angular/core';
+import { Any, Fn } from '@angular-ru/common/typings';
 
 import { GroupLevel, GroupMethod, LoggerLevel } from '../../interfaces/logger.external';
 import { LoggerInjector } from '../../logger.injector';

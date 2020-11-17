@@ -1,5 +1,3 @@
-import { Any } from '@angular-ru/common/typings';
-import { TableRow, TableUpdateSchema } from '@angular-ru/ng-table-builder';
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
@@ -8,6 +6,8 @@ import {
     OnInit,
     ViewEncapsulation
 } from '@angular/core';
+import { Any } from '@angular-ru/common/typings';
+import { TableRow, TableUpdateSchema } from '@angular-ru/ng-table-builder';
 
 import { MocksGenerator } from '../../../../tests/helpers/utils/mocks-generator';
 

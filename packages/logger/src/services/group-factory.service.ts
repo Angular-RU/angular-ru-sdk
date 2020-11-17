@@ -1,5 +1,5 @@
-import { Any } from '@angular-ru/common/typings';
 import { Inject, Injectable } from '@angular/core';
+import { Any } from '@angular-ru/common/typings';
 
 import { FormatOutput, GroupMethod, LOGGER_OPTIONS, LoggerLevel, Pipeline } from '../interfaces/logger.external';
 import { LoggerOptionsImpl } from '../logger.options';

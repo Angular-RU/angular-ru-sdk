@@ -1,5 +1,3 @@
-import { Any, DeepPartial, Fn, PlainObject, PlainObjectOf, PrimaryKey } from '@angular-ru/common/typings';
-import { detectChanges } from '@angular-ru/common/utils';
 import { CdkDragSortEvent } from '@angular/cdk/drag-drop';
 import {
     AfterContentInit,
@@ -23,6 +21,8 @@ import {
     ViewChild,
     ViewChildren
 } from '@angular/core';
+import { Any, DeepPartial, Fn, PlainObject, PlainObjectOf, PrimaryKey } from '@angular-ru/common/typings';
+import { detectChanges } from '@angular-ru/common/utils';
 
 import { NgxColumnComponent } from './components/ngx-column/ngx-column.component';
 import { NgxContextMenuComponent } from './components/ngx-context-menu/ngx-context-menu.component';

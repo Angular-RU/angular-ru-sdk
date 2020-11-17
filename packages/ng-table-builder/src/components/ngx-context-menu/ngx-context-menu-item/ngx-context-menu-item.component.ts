@@ -1,4 +1,3 @@
-import { detectChanges, getBodyRect } from '@angular-ru/common/utils';
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
@@ -15,6 +14,7 @@ import {
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
+import { detectChanges, getBodyRect } from '@angular-ru/common/utils';
 import { Subscription } from 'rxjs';
 
 import { ContextItemEvent } from '../../../interfaces/table-builder.external';

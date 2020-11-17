@@ -1,5 +1,5 @@
-import { Any, Arguments, PlainObject } from '@angular-ru/common/typings';
 import { Inject, Injectable } from '@angular/core';
+import { Any, Arguments, PlainObject } from '@angular-ru/common/typings';
 
 import {
     ConsoleOperation as Operation,

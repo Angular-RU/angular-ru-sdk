@@ -1,6 +1,3 @@
-import { fadeInLinearAnimation } from '@angular-ru/common/animations';
-import { Any, DeepPartial, PlainObjectOf } from '@angular-ru/common/typings';
-import { detectChanges, isNil, isNotNil } from '@angular-ru/common/utils';
 import { CdkDragStart } from '@angular/cdk/drag-drop';
 import {
     AfterContentInit,
@@ -22,6 +19,9 @@ import {
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
+import { fadeInLinearAnimation } from '@angular-ru/common/animations';
+import { Any, DeepPartial, PlainObjectOf } from '@angular-ru/common/typings';
+import { detectChanges, isNil, isNotNil } from '@angular-ru/common/utils';
 import { EMPTY, fromEvent, Observable, Subject } from 'rxjs';
 import { catchError, takeUntil } from 'rxjs/operators';
 

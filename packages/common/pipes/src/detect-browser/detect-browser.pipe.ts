@@ -1,5 +1,5 @@
-import { secondItem, thirdItem } from '@angular-ru/common/array';
 import { Pipe, PipeTransform } from '@angular/core';
+import { secondItem, thirdItem } from '@angular-ru/common/array';
 
 import { DetectBrowserPipeOptions } from './detect-browser-pipe.interface';
 

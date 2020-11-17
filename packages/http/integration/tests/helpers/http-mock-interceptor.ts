@@ -1,6 +1,6 @@
-import { Any, Fn } from '@angular-ru/common/typings';
 import { HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Any, Fn } from '@angular-ru/common/typings';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 

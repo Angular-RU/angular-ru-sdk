@@ -1,6 +1,6 @@
+import { Component, ViewEncapsulation } from '@angular/core';
 import { Any } from '@angular-ru/common/typings';
 import { ExcelService } from '@angular-ru/ng-excel-builder';
-import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
     selector: 'app-root',

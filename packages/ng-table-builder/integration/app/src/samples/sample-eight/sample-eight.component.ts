@@ -1,6 +1,3 @@
-import { Any } from '@angular-ru/common/typings';
-import { detectChanges } from '@angular-ru/common/utils';
-import { TableRow } from '@angular-ru/ng-table-builder';
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
@@ -10,6 +7,9 @@ import {
     OnDestroy,
     OnInit
 } from '@angular/core';
+import { Any } from '@angular-ru/common/typings';
+import { detectChanges } from '@angular-ru/common/utils';
+import { TableRow } from '@angular-ru/ng-table-builder';
 
 declare const hljs: Any;
 

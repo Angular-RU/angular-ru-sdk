@@ -1,3 +1,4 @@
+export { FlexBottomIndentDirective } from './directives/flex-bottom-indent.directive';
 export { FlexColumnDirective } from './directives/flex-column.directive';
 export { FlexContainerDirective } from './directives/flex-container.directive';
 export { FlexEndDirective } from './directives/flex-end.directive';
@@ -8,5 +9,4 @@ export { FlexJustifyNormalDirective } from './directives/flex-justify-normal.dir
 export { FlexNoneDirective } from './directives/flex-none.directive';
 export { FlexSpaceBetweenDirective } from './directives/flex-space-between.directive';
 export { FlexStartDirective } from './directives/flex-start.directive';
-export { FlexBottomIndentDirective } from './directives/flex-bottom-indent.directive';
 export { FlexLayoutModule } from './flex-layout.module';
