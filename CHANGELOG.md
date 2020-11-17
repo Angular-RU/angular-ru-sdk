@@ -1,3 +1,10 @@
+#### 15.5.0 (2020-11-17)
+
+##### New Features
+
+-   update dependencies to v0.8.0-beta.1
+    ([0a4b182c](https://github.com/Angular-RU/angular-ru-sdk/commit/0a4b182c3e4af924cdc3bbbe2584af8c604be76c))
+
 #### 15.4.0 (2020-11-17)
 
 ##### New Features
