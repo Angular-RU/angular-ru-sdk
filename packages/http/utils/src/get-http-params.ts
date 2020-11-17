@@ -1,6 +1,6 @@
+import { HttpParams } from '@angular/common/http';
 import { clean } from '@angular-ru/common/object';
 import { PlainObject } from '@angular-ru/common/typings';
-import { HttpParams } from '@angular/common/http';
 
 import { parseQueryParams } from './parse-query-params';
 

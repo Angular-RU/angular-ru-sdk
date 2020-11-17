@@ -1,8 +1,8 @@
+import { Pipe, PipeTransform } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ensureRegexp, isRegexpStr } from '@angular-ru/common/regexp';
 import { toStringVal } from '@angular-ru/common/string';
 import { Any } from '@angular-ru/common/typings';
-import { Pipe, PipeTransform } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 import { MarkedValue, Value } from './mark-by-filter.interfaces';
 

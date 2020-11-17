@@ -1,18 +1,18 @@
-import { DeepPathPipeModule, DefaultValuePipeModule } from '@angular-ru/common/pipes';
-import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { DeepPathPipeModule, DefaultValuePipeModule } from '@angular-ru/common/pipes';
+import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 
 import { DragIconComponent } from './components/drag-icon/drag-icon.component';
 import { NgxColumnComponent } from './components/ngx-column/ngx-column.component';
+import { NgxContextMenuComponent } from './components/ngx-context-menu/ngx-context-menu.component';
 import { NgxContextMenuDividerComponent } from './components/ngx-context-menu/ngx-context-menu-divider/ngx-context-menu-divider.component';
 import { NgxContextMenuItemComponent } from './components/ngx-context-menu/ngx-context-menu-item/ngx-context-menu-item.component';
 import { NgxMenuContentComponent } from './components/ngx-context-menu/ngx-context-menu-item/ngx-menu-content-place/ngx-menu-content.component';
-import { NgxContextMenuComponent } from './components/ngx-context-menu/ngx-context-menu.component';
 import { NgxEmptyComponent } from './components/ngx-empty/ngx-empty.component';
-import { NgxFilterViewerComponent } from './components/ngx-filter-viewer/ngx-filter-viewer.component';
 import { NgxFilterComponent } from './components/ngx-filter/ngx-filter.component';
+import { NgxFilterViewerComponent } from './components/ngx-filter-viewer/ngx-filter-viewer.component';
 import { NgxFooterComponent } from './components/ngx-footer/ngx-footer.component';
 import { NgxHeaderComponent } from './components/ngx-header/ngx-header.component';
 import { NgxOptionsComponent } from './components/ngx-options/ngx-options.component';

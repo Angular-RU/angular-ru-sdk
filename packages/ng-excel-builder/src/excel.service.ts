@@ -1,5 +1,5 @@
-import { PlainObject } from '@angular-ru/common/typings';
 import { Injectable } from '@angular/core';
+import { PlainObject } from '@angular-ru/common/typings';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ExcelBuilderService } from './excel-builder.service';

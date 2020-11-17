@@ -1,5 +1,5 @@
-import { Any } from '@angular-ru/common/typings';
 import { Injectable } from '@angular/core';
+import { Any } from '@angular-ru/common/typings';
 
 import { LoggerLevel, TimerInfo } from '../interfaces/logger.external';
 import { DEFAULT_METHODS } from '../logger.config';

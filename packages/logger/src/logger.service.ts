@@ -1,5 +1,5 @@
-import { PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
 import { Inject, Injectable } from '@angular/core';
+import { PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
 
 import { autoBind } from './decorators/autobind.decorator';
 import { LogFn, LOGGER_OPTIONS, LoggerLevel, Pipeline, TimerInfo } from './interfaces/logger.external';

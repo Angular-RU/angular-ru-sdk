@@ -1,4 +1,3 @@
-import { Any } from '@angular-ru/common/typings';
 import {
     Directive,
     ElementRef,
@@ -11,6 +10,7 @@ import {
     Output,
     SimpleChanges
 } from '@angular/core';
+import { Any } from '@angular-ru/common/typings';
 import { fromEvent, Subject } from 'rxjs';
 import { delay, takeUntil } from 'rxjs/operators';
 

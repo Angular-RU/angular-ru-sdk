@@ -1,6 +1,6 @@
-import { toStringVal } from '@angular-ru/common/string';
 import { AfterViewInit, Directive, ElementRef, HostListener, Input } from '@angular/core';
 import { MatInput } from '@angular/material/input';
+import { toStringVal } from '@angular-ru/common/string';
 
 @Directive({ selector: '[convertCase]' })
 export class ConvertCaseDirective implements AfterViewInit {

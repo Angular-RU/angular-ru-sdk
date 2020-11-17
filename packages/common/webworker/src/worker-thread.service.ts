@@ -1,5 +1,5 @@
-import { Any, Fn } from '@angular-ru/common/typings';
 import { Injectable } from '@angular/core';
+import { Any, Fn } from '@angular-ru/common/typings';
 
 import { WebWorkerThread } from './worker-thread.interface';
 

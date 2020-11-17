@@ -1,5 +1,5 @@
-import { Immutable, Mutable } from '@angular-ru/common/typings';
 import { Pipe, PipeTransform } from '@angular/core';
+import { Immutable, Mutable } from '@angular-ru/common/typings';
 
 @Pipe({ name: 'mutable' })
 export class MutableTypePipe implements PipeTransform {

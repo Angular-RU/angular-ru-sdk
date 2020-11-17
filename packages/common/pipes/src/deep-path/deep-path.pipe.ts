@@ -1,7 +1,7 @@
+import { Pipe, PipeTransform } from '@angular/core';
 import { getValueByPath } from '@angular-ru/common/object';
 import { Any } from '@angular-ru/common/typings';
 import { checkValueIsEmpty } from '@angular-ru/common/utils';
-import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({ name: 'deepPath' })
 export class DeepPathPipe implements PipeTransform {

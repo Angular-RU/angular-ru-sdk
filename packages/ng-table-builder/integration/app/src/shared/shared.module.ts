@@ -1,4 +1,3 @@
-import { TableBuilderModule } from '@angular-ru/ng-table-builder';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
@@ -20,9 +19,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { TableBuilderModule } from '@angular-ru/ng-table-builder';
 
-import { DialogTemplateComponent } from './dialog-template/dialog-template.component';
 import { CodeDialogComponent } from './dialog/code-dialog.component';
+import { DialogTemplateComponent } from './dialog-template/dialog-template.component';
 
 @NgModule({
     imports: [

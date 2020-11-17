@@ -1,5 +1,5 @@
-import { PlainObject } from '@angular-ru/common/typings';
 import { Directive, EventEmitter, Input, Optional, Output, TemplateRef } from '@angular/core';
+import { PlainObject } from '@angular-ru/common/typings';
 
 import { TableEvent } from '../../interfaces/table-builder.external';
 

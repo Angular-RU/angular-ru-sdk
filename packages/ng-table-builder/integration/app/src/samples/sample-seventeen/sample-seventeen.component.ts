@@ -1,5 +1,5 @@
-import { TableUpdateSchema } from '@angular-ru/ng-table-builder';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { TableUpdateSchema } from '@angular-ru/ng-table-builder';
 
 interface LicenseSample {
     id: number;

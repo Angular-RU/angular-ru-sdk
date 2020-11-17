@@ -1,5 +1,5 @@
-import { secondItem } from '@angular-ru/common/array';
 import { Pipe, PipeTransform } from '@angular/core';
+import { secondItem } from '@angular-ru/common/array';
 
 @Pipe({ name: 'takeSecondItem' })
 export class TakeSecondItemPipe implements PipeTransform {

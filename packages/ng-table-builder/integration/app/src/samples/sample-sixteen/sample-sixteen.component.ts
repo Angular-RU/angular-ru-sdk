@@ -1,7 +1,7 @@
-import { Any } from '@angular-ru/common/typings';
-import { NgxTableViewChangesService, TableRow, TableUpdateSchema } from '@angular-ru/ng-table-builder';
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Any } from '@angular-ru/common/typings';
+import { NgxTableViewChangesService, TableRow, TableUpdateSchema } from '@angular-ru/ng-table-builder';
 import { Subscription } from 'rxjs';
 
 import { MocksGenerator } from '../../../../tests/helpers/utils/mocks-generator';

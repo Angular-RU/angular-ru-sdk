@@ -1,6 +1,6 @@
+import { ModuleWithProviders, NgModule, Type } from '@angular/core';
 import { Any } from '@angular-ru/common/typings';
 import { DataClientRequestOptions } from '@angular-ru/http/typings';
-import { ModuleWithProviders, NgModule, Type } from '@angular/core';
 
 import { DATA_REQUEST_OPTIONS_CONFIG } from './configs/data-request-options.config';
 import { DataConfiguratorService } from './services/data-configurator.service';

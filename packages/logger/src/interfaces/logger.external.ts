@@ -1,5 +1,5 @@
-import { PlainObject } from '@angular-ru/common/typings';
 import { InjectionToken } from '@angular/core';
+import { PlainObject } from '@angular-ru/common/typings';
 
 import { LoggerService } from '../logger.service';
 

@@ -1,5 +1,5 @@
-import { Any } from '@angular-ru/common/typings';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Any } from '@angular-ru/common/typings';
 
 import { A1 } from './module/a1';
 import { B1 } from './module/b1';

@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type,max-params-no-constructor/max-params-no-constructor */
+import { Injectable } from '@angular/core';
 import { toFormatDateTime } from '@angular-ru/common/date';
 import { Any, PlainObject } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
-import { Injectable } from '@angular/core';
 
 import { ExcelWorkbook } from './symbols';
 

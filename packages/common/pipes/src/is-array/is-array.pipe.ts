@@ -1,5 +1,5 @@
-import { Any } from '@angular-ru/common/typings';
 import { Pipe, PipeTransform } from '@angular/core';
+import { Any } from '@angular-ru/common/typings';
 
 @Pipe({ name: 'isArray' })
 export class IsArrayPipe implements PipeTransform {

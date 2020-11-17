@@ -1,6 +1,6 @@
+import { EventEmitter, Injectable, NgZone } from '@angular/core';
 import { PlainObjectOf, Resolver, SortOrderType } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
-import { EventEmitter, Injectable, NgZone } from '@angular/core';
 
 import { TABLE_GLOBAL_OPTIONS } from '../../config/table-global-options';
 import { OrderedField, TableRow } from '../../interfaces/table-builder.external';

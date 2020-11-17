@@ -1,6 +1,6 @@
+import { AfterViewInit, ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { Any } from '@angular-ru/common/typings';
 import { TableEvent, TableRow } from '@angular-ru/ng-table-builder';
-import { AfterViewInit, ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
 declare const hljs: Any;

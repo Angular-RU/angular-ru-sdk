@@ -1,6 +1,6 @@
+import { Injectable } from '@angular/core';
 import { getValueByPath } from '@angular-ru/common/object';
 import { Any } from '@angular-ru/common/typings';
-import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 import { TableRow } from '../../interfaces/table-builder.external';

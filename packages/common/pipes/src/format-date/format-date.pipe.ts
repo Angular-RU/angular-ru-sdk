@@ -1,6 +1,6 @@
-import { firstItem } from '@angular-ru/common/array';
 import { DatePipe } from '@angular/common';
 import { Pipe, PipeTransform } from '@angular/core';
+import { firstItem } from '@angular-ru/common/array';
 
 import { FormatDatePipeOptions } from './format-date.interfaces';
 

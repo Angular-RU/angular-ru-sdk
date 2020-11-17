@@ -1,5 +1,3 @@
-import { getValueByPath } from '@angular-ru/common/object';
-import { PlainObjectOf } from '@angular-ru/common/typings';
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
@@ -11,6 +9,8 @@ import {
     Output,
     ViewEncapsulation
 } from '@angular/core';
+import { getValueByPath } from '@angular-ru/common/object';
+import { PlainObjectOf } from '@angular-ru/common/typings';
 
 import {
     ColumnsSchema,

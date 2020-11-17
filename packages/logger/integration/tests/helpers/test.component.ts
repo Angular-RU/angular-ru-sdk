@@ -1,10 +1,10 @@
-import { Fn } from '@angular-ru/common/typings';
 import { Component, OnInit } from '@angular/core';
+import { Fn } from '@angular-ru/common/typings';
 
 import { DebugLog } from '../../../src/decorators/debug.decorator';
 import { ErrorLog } from '../../../src/decorators/error.decorator';
-import { GroupCollapsed } from '../../../src/decorators/groups/group-collapsed.decorator';
 import { Group } from '../../../src/decorators/groups/group.decorator';
+import { GroupCollapsed } from '../../../src/decorators/groups/group-collapsed.decorator';
 import { InfoLog } from '../../../src/decorators/info.decorator';
 import { Log } from '../../../src/decorators/log.decorator';
 import { Logger } from '../../../src/decorators/logger.decorator';

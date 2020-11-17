@@ -1,5 +1,5 @@
-import { PlainObject } from '@angular-ru/common/typings';
 import { FormControl, FormGroup, ValidationErrors } from '@angular/forms';
+import { PlainObject } from '@angular-ru/common/typings';
 
 export type EmptyValidatorFn = (control: FormGroup) => ValidationErrors | null;
 

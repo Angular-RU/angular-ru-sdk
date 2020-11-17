@@ -1,6 +1,6 @@
+import { AfterViewInit, ChangeDetectionStrategy, Component } from '@angular/core';
 import { Any } from '@angular-ru/common/typings';
 import { TableRow } from '@angular-ru/ng-table-builder';
-import { AfterViewInit, ChangeDetectionStrategy, Component } from '@angular/core';
 
 declare const hljs: Any;
 

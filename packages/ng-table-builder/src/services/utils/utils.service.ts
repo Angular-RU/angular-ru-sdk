@@ -1,6 +1,6 @@
+import { Injectable, NgZone, Optional } from '@angular/core';
 import { isObject } from '@angular-ru/common/object';
 import { Any, Fn } from '@angular-ru/common/typings';
-import { Injectable, NgZone, Optional } from '@angular/core';
 
 import { TableRow } from '../../interfaces/table-builder.external';
 import { UtilsInterface } from './utils.interface';

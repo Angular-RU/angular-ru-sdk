@@ -1,5 +1,5 @@
-import { Any, Fn } from '@angular-ru/common/typings';
 import { Injectable } from '@angular/core';
+import { Any, Fn } from '@angular-ru/common/typings';
 import { fromEvent, ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 

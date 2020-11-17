@@ -1,6 +1,6 @@
-import { Any } from '@angular-ru/common/typings';
 import { AfterViewInit, Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Any } from '@angular-ru/common/typings';
 
 declare const hljs: Any;
 

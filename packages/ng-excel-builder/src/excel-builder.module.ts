@@ -1,9 +1,9 @@
-import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { NgModule } from '@angular/core';
+import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { ExcelBuilderService } from './excel-builder.service';
 import { ExcelService } from './excel.service';
+import { ExcelBuilderService } from './excel-builder.service';
 
 @NgModule({
     imports: [TranslateModule],

@@ -217,7 +217,8 @@ module.exports = {
                 /**
                  * simple-import-sort
                  */
-                'simple-import-sort/sort': 'error',
+                "simple-import-sort/imports": "error",
+                "simple-import-sort/exports": "error",
 
                 /**
                  * max-params-no-constructor
