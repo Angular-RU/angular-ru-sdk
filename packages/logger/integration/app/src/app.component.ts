@@ -1,5 +1,4 @@
 /* eslint-disable */
-/* tslint:disable:no-duplicate-string */
 import {
     DebugLog,
     ErrorLog,

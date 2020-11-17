@@ -117,7 +117,6 @@ export class TemplateParserService {
 
     public mutateColumnSchema(key: string, partialSchema: Partial<ColumnsSchema>): void {
         for (const option of Object.keys(partialSchema)) {
-            // eslint-disable-next-line @typescript-eslint/tslint/config
             (this.compiledTemplates[key] as Any)[option] = (partialSchema as Any)[option];
         }
     }

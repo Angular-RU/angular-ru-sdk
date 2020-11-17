@@ -18,7 +18,6 @@ export enum ImplicitContext {
 export type TableClickEventEmitter = EventEmitter<TableEvent> | null;
 
 export interface TableCellOptions<T = Any> {
-    // eslint-disable-next-line @typescript-eslint/tslint/config
     class: string | string[] | PlainObject | null;
     textBold: boolean;
     nowrap: boolean;

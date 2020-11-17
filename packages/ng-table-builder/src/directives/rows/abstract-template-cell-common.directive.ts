@@ -12,7 +12,6 @@ export abstract class AbstractTemplateCellCommon {
     @Input() public width: number | null = null;
     @Input() public height: number | null = null;
     @Input('ng-style') public cssStyles: PlainObject | null = null;
-    // eslint-disable-next-line @typescript-eslint/tslint/config
     @Input('ng-class') public cssClasses: string | string[] | PlainObject | null = null;
     @Output() public onClick: EventEmitter<TableEvent> = new EventEmitter();
     @Output() public dblClick: EventEmitter<TableEvent> = new EventEmitter();

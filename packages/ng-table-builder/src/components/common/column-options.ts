@@ -11,10 +11,8 @@ export class ColumnOptions {
     /**
      * preserve track global value for overflowTooltip if selected
      */
-    // eslint-disable-next-line @typescript-eslint/tslint/config
     @Input('overflow-tooltip') public overflowTooltip: string | boolean | null = null;
     @Input('filter-type') public filterType: string | TableFilterType | null = null;
-    // eslint-disable-next-line @typescript-eslint/tslint/config
     @Input() public nowrap: string | boolean | null = null;
     @Input() public width: string | number | null = null;
     @Input('is-resizable') public isResizable: string | boolean | null = null;

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type,max-params-no-constructor/max-params-no-constructor */
 import { toFormatDateTime } from '@angular-ru/common/date';
 import { Any, PlainObject } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
@@ -21,7 +22,7 @@ export class ExcelBuilderService {
     // eslint-disable-next-line max-lines-per-function
     public exportExcelByWorkbook(workbook: ExcelWorkbook): void {
         this.webWorker
-            // eslint-disable-next-line max-lines-per-function
+            // eslint-disable-next-line sonarjs/cognitive-complexity,max-lines-per-function
             .run((input: Any): Blob => {
                 const PT_WIDTH: number = 5;
                 const PT_SIZE: number = 7;
@@ -45,7 +46,7 @@ export class ExcelBuilderService {
                     StyleType
                 );
 
-                // eslint-disable-next-line @typescript-eslint/tslint/config,max-lines-per-function,max-params-no-constructor/max-params-no-constructor
+                // eslint-disable-next-line max-lines-per-function
                 function generateWorksheet(
                     worksheets: Any,
                     translatedColumns: Any,
@@ -86,7 +87,6 @@ export class ExcelBuilderService {
                     return worksheetTemplates;
                 }
 
-                // eslint-disable-next-line @typescript-eslint/tslint/config
                 function generateColumns(headerTitles: Any, ptSize: Any, colWidth: Any) {
                     return headerTitles.reduce((columnTemplate: Any, title: Any): string => {
                         const size: number = title.length * ptSize;
@@ -96,7 +96,7 @@ export class ExcelBuilderService {
                     }, '');
                 }
 
-                // eslint-disable-next-line @typescript-eslint/tslint/config,max-lines-per-function,max-params-no-constructor/max-params-no-constructor
+                // eslint-disable-next-line max-lines-per-function
                 function generateRow(
                     worksheets: Any,
                     data: Any,
@@ -122,13 +122,11 @@ export class ExcelBuilderService {
                     return rowsTemplates;
                 }
 
-                // eslint-disable-next-line @typescript-eslint/tslint/config,max-params-no-constructor/max-params-no-constructor
                 function generateCell(worksheet: Any, cell: Any, ptWidth: Any, colWidth: Any, styleType: Any) {
                     const flatCell: PlainObject = flatten(cell, worksheet.excludeKeys);
                     return generateBodyCell(flatCell, ptWidth, colWidth, styleType);
                 }
 
-                // eslint-disable-next-line @typescript-eslint/tslint/config,max-params-no-constructor/max-params-no-constructor
                 function generateBodyCell(flatCell: Any, ptWidth: Any, colWidth: Any, styleType: Any) {
                     let bodyCellTemplate: string = '';
                     for (const key in flatCell) {
@@ -143,7 +141,6 @@ export class ExcelBuilderService {
                     return bodyCellTemplate;
                 }
 
-                // eslint-disable-next-line @typescript-eslint/tslint/config
                 function generateHeadCell(titles: Any, styleType: Any) {
                     return titles.reduce((headCellTemplate: Any, title: Any): string => {
                         headCellTemplate += renderCell(title, styleType.HEAD);
@@ -151,7 +148,6 @@ export class ExcelBuilderService {
                     }, '');
                 }
 
-                // eslint-disable-next-line @typescript-eslint/tslint/config
                 function renderCell(value: Any, styleId: Any, defaultType: string = 'String') {
                     const type: Any = typeof value === 'number' ? 'Number' : defaultType;
                     let cellValue: Any = transform(value, '-');
@@ -162,18 +158,15 @@ export class ExcelBuilderService {
                     return `<Cell ss:StyleID="${styleId}"><Data ss:Type="${type}">${cellValue}</Data></Cell>`;
                 }
 
-                // eslint-disable-next-line @typescript-eslint/tslint/config
                 function transform(value: Any, fallback: Any) {
                     return checkValueIsEmpty(value) ? fallback : value;
                 }
 
-                // eslint-disable-next-line @typescript-eslint/tslint/config
                 function checkValueIsEmpty(value: Any) {
                     const val: Any = typeof value === 'string' ? value.trim() : value;
                     return [undefined, null, NaN, '', 'null', Infinity].includes(val);
                 }
 
-                // eslint-disable-next-line @typescript-eslint/tslint/config
                 function getHeaderTitles(worksheet: Any, cell: Any, dictionary: Any) {
                     const flatCell: PlainObject = flatten(cell, worksheet.excludeKeys);
                     const columnKeys: string[] = Object.keys(flatCell);
@@ -187,7 +180,6 @@ export class ExcelBuilderService {
                     });
                 }
 
-                // eslint-disable-next-line @typescript-eslint/tslint/config
                 function mutate(object: Any, depthGraph: Any, key: Any) {
                     const isObject: boolean = typeof object[key] === 'object' && object[key] !== null;
                     if (isObject) {
@@ -202,7 +194,6 @@ export class ExcelBuilderService {
                     }
                 }
 
-                // eslint-disable-next-line @typescript-eslint/tslint/config
                 function flatten(object: Any, excludeKeys: Any[] = []) {
                     const depthGraph: PlainObject = {};
                     for (const key in object) {
@@ -213,17 +204,15 @@ export class ExcelBuilderService {
                     return depthGraph;
                 }
 
-                // eslint-disable-next-line @typescript-eslint/tslint/config
                 function isTranslated(keyLeftPad: Any, keyRightPad: Any) {
                     return getPostfix(keyLeftPad) !== getPostfix(keyRightPad);
                 }
 
-                // eslint-disable-next-line @typescript-eslint/tslint/config
                 function getPostfix(key: Any) {
                     return key.split('.').pop();
                 }
 
-                // eslint-disable-next-line @typescript-eslint/tslint/config
+                // eslint-disable-next-line @typescript-eslint/typedef
                 function commonStyles(font = '<Font ss:Bold="0" ss:FontName="Arial" />') {
                     return `${font} <Borders><Border ss:Position="Bottom" ss:Color="#000000" ss:LineStyle="Continuous" ss:Weight="1"/><Border ss:Position="Right" ss:Color="#000000" ss:LineStyle="Continuous" ss:Weight="1"/></Borders>`; // NOSONAR
                 }

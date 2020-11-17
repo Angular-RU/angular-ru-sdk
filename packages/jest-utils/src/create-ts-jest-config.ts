@@ -4,7 +4,7 @@ import type { Config } from '@jest/types';
 import { validateOptions } from './common';
 import { JestConfigOptions, ModuleMapper } from './jest-config.interface';
 
-// eslint-disable-next-line complexity,max-lines-per-function
+// eslint-disable-next-line sonarjs/cognitive-complexity,complexity,max-lines-per-function
 export function createTsJestConfig(options: JestConfigOptions & Config.InitialOptions): Config.InitialOptions {
     const maxConcurrency: number = 2;
     const rootDir: string = options?.rootDir ?? __dirname;

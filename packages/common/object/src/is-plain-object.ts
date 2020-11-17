@@ -11,14 +11,14 @@ export function isPlainObject(plainObject: Any): boolean {
     }
 
     // If has modified constructor
-    // eslint-disable-next-line @typescript-eslint/tslint/config,prefer-const
+    // eslint-disable-next-line prefer-const
     constructorRef = plainObject.constructor as Any;
     if (constructorRef === undefined) {
         return true;
     }
 
     // If has modified prototype
-    // eslint-disable-next-line @typescript-eslint/tslint/config,prefer-const
+    // eslint-disable-next-line prefer-const
     prototypeRef = constructorRef.prototype as Any;
     if (!instanceOfPlainObject(prototypeRef)) {
         return false;

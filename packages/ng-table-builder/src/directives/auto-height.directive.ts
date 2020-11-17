@@ -69,6 +69,7 @@ export class AutoHeightDirective implements OnInit, OnChanges, OnDestroy {
     }
 
     private get isNotEmptyParentHeight(): boolean {
+        // eslint-disable-next-line sonarjs/no-inverted-boolean-check
         return !(this.parentOffsetHeight < parseInt(HEAD_TOP));
     }
 

@@ -1,3 +1,6 @@
+import { Any } from '@angular-ru/common/typings';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
 import { A1 } from './module/a1';
 import { B1 } from './module/b1';
 
@@ -80,3 +83,20 @@ const t: TestMaxParams = new TestMaxParams(1, 2, 3, 4, 5, 6);
 
 // eslint-disable-next-line no-console
 console.log(t.a);
+
+@Component({
+    selector: 'good-component',
+    template: `<p>Good component works!</p>`
+})
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+class GoodComponent implements OnInit {
+    @Input('var-a') public a: Any;
+    @Input() public _a: Any;
+    @Input() public b: Any;
+    @Output() public e!: EventEmitter<Any>;
+    @Output('_e') public _e!: EventEmitter<Any>;
+
+    public ngOnInit(): void {
+        // noop
+    }
+}
