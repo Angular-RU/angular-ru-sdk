@@ -135,6 +135,16 @@ describe('[TEST]: HTTP decorators for client', () => {
         req.flush({ id: 2, name: 'b' });
 
         tick(100);
+
+        client?.findByIdUser(3).subscribe((response: User) => {
+            expect(response).toEqual({ id: 3, name: 'c' });
+            expect(req.request.method).toEqual('GET');
+        });
+
+        req = httpMock.expectOne(`${MOCK_API}/users/3`);
+        req.flush({ id: 3, name: 'c' });
+
+        tick(100);
     }));
 
     it('should be correct POST request with path variable', fakeAsync(() => {

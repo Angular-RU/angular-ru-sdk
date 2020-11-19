@@ -6,6 +6,7 @@ import { ensureMethodArgsRegistry } from './ensure-method-args-registry';
 import { META_PATH_VARIABLE } from './meta-keys.config';
 
 export function mutatePathByPathVariables(path: string, originalMethod: Fn, args: Any[]): string {
+    let interpolationPath: string = path.toString();
     const registry: MethodArgsRegistry = ensureMethodArgsRegistry(originalMethod, META_PATH_VARIABLE);
 
     if (registry.size) {
@@ -18,8 +19,8 @@ export function mutatePathByPathVariables(path: string, originalMethod: Fn, args
             }
         });
 
-        path = ensurePathByPathVariables(path, variableMap);
+        interpolationPath = ensurePathByPathVariables(interpolationPath, variableMap);
     }
 
-    return path;
+    return interpolationPath;
 }

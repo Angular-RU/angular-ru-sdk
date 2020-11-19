@@ -24,12 +24,13 @@ export function ensureDescriptorByType<T>({
 
     // eslint-disable-next-line max-lines-per-function
     descriptor.value = function (...args: Any[]): Observable<T> {
+        let newPath: string = path.toString();
         const httpClient: DataHttpClient = (this as Any) as DataHttpClient;
         const result: Observable<T> | Any = originalMethod.apply(httpClient, args);
         let template: RestTemplate<T> | null = result?.restTemplateRef ?? null;
 
         if (template) {
-            path = mutatePathByPathVariables(path, originalMethod, args);
+            newPath = mutatePathByPathVariables(newPath, originalMethod, args);
             const bodyRegistry: MethodArgsRegistry = ensureMethodArgsRegistry(originalMethod, META_REQUEST_BODY);
             const indexBody: number | null = bodyRegistry.getIndexByKey(KEY_REQUEST_BODY);
             const body: Any = isNil(indexBody) ? template.options.body : template.options.body ?? args?.[indexBody];
@@ -40,7 +41,7 @@ export function ensureDescriptorByType<T>({
             );
 
             template = template
-                .setPath(path)
+                .setPath(newPath)
                 .setMethodType(type)
                 .setBody(body)
                 .setParams(params)

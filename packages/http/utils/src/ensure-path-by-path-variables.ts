@@ -1,15 +1,16 @@
 import { Any } from '@angular-ru/common/typings';
 
 export function ensurePathByPathVariables(path: string, map: Map<string, Any>): string {
-    const parsedUrls: string[] = path.match(/\{(.*?)\}/g) ?? [];
+    let newPath: string = path.toString();
+    const parsedUrls: string[] = newPath.match(/\{(.*?)\}/g) ?? [];
 
     for (const variable of parsedUrls) {
         const key: string = variable.replace(/{|}/g, '');
 
         if (map.has(key)) {
-            path = path.replace(variable, map.get(key));
+            newPath = newPath.replace(variable, map.get(key));
         }
     }
 
-    return path;
+    return newPath;
 }
