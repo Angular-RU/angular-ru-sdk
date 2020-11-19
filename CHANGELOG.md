@@ -1,3 +1,15 @@
+#### 15.9.0 (2020-11-19)
+
+##### Continuous Integration
+
+-   update angular-framework to v11.0.2
+    ([1cfa69cf](https://github.com/Angular-RU/angular-ru-sdk/commit/1cfa69cf303b0248b09ec6e4d090fc8f4a5b041f))
+
+##### New Features
+
+-   update dependency @types/node to v14.14.9
+    ([6e55447c](https://github.com/Angular-RU/angular-ru-sdk/commit/6e55447ca4b3f10d946f75432f800dcf208c0a00))
+
 #### 15.8.0 (2020-11-19)
 
 ##### Continuous Integration
