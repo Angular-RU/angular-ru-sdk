@@ -28,10 +28,10 @@
         "postversion": "npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\""
     },
     "peerDependencies": {
-        "@angular/animations": ">=8.0.0 <11.0.0",
-        "@angular/cdk": ">=8.0.0  <11.0.0",
-        "@angular/common": ">=8.0.0 <11.0.0",
-        "@angular/core": ">=8.0.0  <11.0.0",
+        "@angular/animations": ">=8.0.0 <12.0.0",
+        "@angular/cdk": ">=8.0.0  <12.0.0",
+        "@angular/common": ">=8.0.0 <12.0.0",
+        "@angular/core": ">=8.0.0  <12.0.0",
         "rxjs": ">=6.1.0"
     },
     "publishConfig": {
