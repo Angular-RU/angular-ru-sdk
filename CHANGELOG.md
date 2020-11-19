@@ -1,3 +1,15 @@
+#### 15.8.0 (2020-11-19)
+
+##### Continuous Integration
+
+-   update dependency @types/jasmine to v3.6.2
+    ([a7600164](https://github.com/Angular-RU/angular-ru-sdk/commit/a7600164156a813343a41cf64f3e6d10dc62261d))
+
+##### New Features
+
+-   update dependency eslint-plugin-simple-import-sort to v6.0.1
+    ([c7fdab86](https://github.com/Angular-RU/angular-ru-sdk/commit/c7fdab86bfcc6019d555ef619768fb58c7f4d5f1))
+
 #### 15.7.0 (2020-11-19)
 
 ##### New Features
