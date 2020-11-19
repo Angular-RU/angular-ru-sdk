@@ -1,3 +1,17 @@
+#### 15.6.1 (2020-11-19)
+
+##### Continuous Integration
+
+-   update angular-cli
+    ([1f36416e](https://github.com/Angular-RU/angular-ru-sdk/commit/1f36416ea232e6d9acc9fb7c7dca7087b4d340f3))
+-   update angular-framework to v11.0.1
+    ([7dfd5c53](https://github.com/Angular-RU/angular-ru-sdk/commit/7dfd5c53caf743d2bc29564820973f1e7427c233))
+
+##### Bug Fixes
+
+-   **@angular-ru/http:** do not mutate path
+    ([3b032f7f](https://github.com/Angular-RU/angular-ru-sdk/commit/3b032f7f6dfdacf2c3883932dbf5b170c3d5a692))
+
 #### 15.6.0 (2020-11-18)
 
 ##### New Features
