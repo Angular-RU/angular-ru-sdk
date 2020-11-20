@@ -1,3 +1,10 @@
+#### 15.11.0 (2020-11-20)
+
+##### New Features
+
+-   update dependency sort-package-json to v1.48.0
+    ([9408d7e7](https://github.com/Angular-RU/angular-ru-sdk/commit/9408d7e7bd565a53ed53c7d8a44bc2dbc48b324f))
+
 #### 15.10.0 (2020-11-20)
 
 ##### New Features
