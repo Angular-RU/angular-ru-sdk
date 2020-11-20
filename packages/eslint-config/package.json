@@ -34,7 +34,7 @@
         "@typescript-eslint/parser": "4.8.1",
         "codelyzer": "6.0.1",
         "es6-set": "0.1.5",
-        "eslint": "7.13.0",
+        "eslint": "7.14.0",
         "eslint-config-import": "0.13.0",
         "eslint-import-resolver-typescript": "2.3.0",
         "eslint-plugin-import": "2.22.1",
