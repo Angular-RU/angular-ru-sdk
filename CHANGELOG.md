@@ -1,3 +1,10 @@
+#### 15.10.0 (2020-11-20)
+
+##### New Features
+
+-   update dependency prettier to v2.2.0
+    ([6f7256fa](https://github.com/Angular-RU/angular-ru-sdk/commit/6f7256fa3cb07cbba6acc6a66807f64a6ab643e4))
+
 #### 15.9.0 (2020-11-19)
 
 ##### Continuous Integration
