@@ -1,3 +1,10 @@
+#### 15.13.0 (2020-11-21)
+
+##### New Features
+
+-   update dependency ng-packagr to v11.0.3
+    ([81f1bd59](https://github.com/Angular-RU/angular-ru-sdk/commit/81f1bd59ad69ccc1dd3726ac4f0a72528f6f3005))
+
 #### 15.12.0 (2020-11-21)
 
 ##### New Features
