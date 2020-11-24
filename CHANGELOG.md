@@ -1,3 +1,10 @@
+#### 15.16.0 (2020-11-24)
+
+##### New Features
+
+-   update dependency lint-staged to v10.5.2
+    ([ed7bd428](https://github.com/Angular-RU/angular-ru-sdk/commit/ed7bd428bd032a5f0bb79c483e8266bc6dfa418e))
+
 #### 15.15.0 (2020-11-23)
 
 ##### New Features
