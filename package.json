@@ -61,7 +61,10 @@
     },
     "prettier": "./packages/prettier-config/prettier.config.js",
     "eslintConfig": {
-        "extends": "./packages/eslint-config/index.js"
+        "extends": "./packages/eslint-config/index.js",
+        "ignorePatterns": [
+            "typescript.bad.ts"
+        ]
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "0.1100.2",
