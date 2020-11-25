@@ -37,8 +37,14 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "yarn pre:commit"
+            "pre-commit": "yarn pre:commit",
+            "commit-msg": "yarn commitlint -E HUSKY_GIT_PARAMS"
         }
+    },
+    "commitlint": {
+        "extends": [
+            "./packages/commitlint-config/index.js"
+        ]
     },
     "lint-staged": {
         "*.ts": [
