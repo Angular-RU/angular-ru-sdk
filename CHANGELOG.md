@@ -1,3 +1,15 @@
+#### 15.17.0 (2020-11-25)
+
+##### Continuous Integration
+
+-   update angular-components to v11.0.1
+    ([dab299e8](https://github.com/Angular-RU/angular-ru-sdk/commit/dab299e82f9df938dedb7221c723c64296a771a2))
+
+##### New Features
+
+-   update dependency @types/node to v14.14.10
+    ([122516cf](https://github.com/Angular-RU/angular-ru-sdk/commit/122516cf4fd8c215d401504c45fcfda21bc0fc21))
+
 #### 15.16.0 (2020-11-24)
 
 ##### New Features
