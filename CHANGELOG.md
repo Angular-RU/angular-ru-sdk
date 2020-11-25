@@ -1,3 +1,10 @@
+#### 15.17.1 (2020-11-25)
+
+##### Chores
+
+-   update documentation commitlint-config
+    ([fd2dcd85](https://github.com/Angular-RU/angular-ru-sdk/commit/fd2dcd8573f2f3c3e4b1a105fe39bd0cb0eeb7dc))
+
 #### 15.17.0 (2020-11-25)
 
 ##### Continuous Integration
