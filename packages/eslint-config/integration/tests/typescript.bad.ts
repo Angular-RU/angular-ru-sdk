@@ -278,4 +278,4 @@ document.addEventListener('click', function () {
 });
 
 const fooZ: number[] = [].map((i: number) => i * i);
-console.error(fooZ);
+log(fooZ);
