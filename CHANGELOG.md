@@ -1,3 +1,22 @@
+#### 15.18.0 (2020-11-26)
+
+##### Chores
+
+-   update documentation commitlint-config
+    ([fd2dcd85](https://github.com/Angular-RU/angular-ru-sdk/commit/fd2dcd8573f2f3c3e4b1a105fe39bd0cb0eeb7dc))
+-   **release:** updated release notes and package versions [ci skip]
+    ([a3759d1b](https://github.com/Angular-RU/angular-ru-sdk/commit/a3759d1b04c4f7fffaa8e49053a7dab479238a4c))
+
+##### New Features
+
+-   **@angular-ru/eslint-config:** set allowExpressions: false, allowTypedFunctionExpressions: false
+    ([87e6e3d2](https://github.com/Angular-RU/angular-ru-sdk/commit/87e6e3d2b98e2befc4cc044b2f91b19c6e073e67))
+
+##### Other Changes
+
+-   **@angular-ru/eslint-config:** set allowExpressions: false, allowTypedFunctionExpressions: false
+    ([513d342e](https://github.com/Angular-RU/angular-ru-sdk/commit/513d342e9c3efb41b964258f45c72f268317d94e))
+
 #### 15.17.1 (2020-11-25)
 
 ##### Chores
