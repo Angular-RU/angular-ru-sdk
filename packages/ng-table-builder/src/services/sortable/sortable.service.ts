@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable, NgZone } from '@angular/core';
-import { PlainObjectOf, Resolver, SortOrderType } from '@angular-ru/common/typings';
+import { PlainObjectOf, SortOrderType } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 
 import { TABLE_GLOBAL_OPTIONS } from '../../config/table-global-options';
@@ -26,7 +26,7 @@ export class SortableService {
     }
 
     public sort(data: TableRow[]): Promise<TableRow[]> {
-        return new Promise((resolve: Resolver<TableRow[]>): void => {
+        return new Promise((resolve: (value: TableRow[]) => void): void => {
             if (this.skipInternalSort) {
                 resolve(data);
                 return;
@@ -70,7 +70,7 @@ export class SortableService {
         }
     }
 
-    private idleResolve(resolve: Resolver<TableRow[]>, sorted: TableRow[]): void {
+    private idleResolve(resolve: (value: TableRow[]) => void, sorted: TableRow[]): void {
         this.zone.runOutsideAngular((): void => {
             window.setTimeout((): void => resolve(sorted), TABLE_GLOBAL_OPTIONS.TIME_IDLE);
         });

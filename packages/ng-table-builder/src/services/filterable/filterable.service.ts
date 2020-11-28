@@ -1,6 +1,6 @@
 import { ApplicationRef, Injectable, Injector } from '@angular/core';
 import { checkIsShallowEmpty } from '@angular-ru/common/object';
-import { Any, PlainObject, PlainObjectOf, Resolver } from '@angular-ru/common/typings';
+import { Any, PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { ReplaySubject, Subject } from 'rxjs';
 
@@ -104,7 +104,7 @@ export class FilterableService implements FilterableInterface {
 
         return new Promise(
             // eslint-disable-next-line max-lines-per-function
-            (resolve: Resolver<FilterWorkerEvent>): void => {
+            (resolve: (value: FilterWorkerEvent) => void): void => {
                 const message: FilterableMessage = {
                     source,
                     types: TableFilterType,
