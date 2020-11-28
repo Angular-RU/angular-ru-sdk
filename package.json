@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/sdk",
-    "version": "15.17.0",
+    "version": "15.20.0",
     "private": true,
     "description": "Angular-RU SDK",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk#readme",
@@ -37,13 +37,19 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "yarn pre:commit"
+            "pre-commit": "yarn pre:commit",
+            "commit-msg": "yarn commitlint -E HUSKY_GIT_PARAMS"
         }
+    },
+    "commitlint": {
+        "extends": [
+            "./packages/commitlint-config/index.js"
+        ]
     },
     "lint-staged": {
         "*.ts": [
             "yarn prettier --write",
-            "yarn eslint --fix"
+            "yarn eslint --fix --ingonre-pattern \"typescript.bad.ts\""
         ],
         "*.{html,css,scss,md,js,json}": [
             "yarn prettier --write"

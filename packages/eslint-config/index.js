@@ -251,7 +251,16 @@ module.exports = {
                 '@typescript-eslint/ban-types': 'error',
                 '@typescript-eslint/consistent-type-assertions': 'error',
                 '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
-                '@typescript-eslint/explicit-function-return-type': 'error',
+                '@typescript-eslint/explicit-function-return-type': [
+                    'error',
+                    {
+                        allowExpressions: false,
+                        allowTypedFunctionExpressions: false,
+                        allowHigherOrderFunctions: true,
+                        allowDirectConstAssertionInArrowFunctions: true,
+                        allowConciseArrowFunctionExpressionsStartingWithVoid: true
+                    }
+                ],
                 '@typescript-eslint/explicit-member-accessibility': [
                     'error',
                     {
@@ -337,6 +346,7 @@ module.exports = {
                 '@typescript-eslint/no-parameter-properties': 'off',
                 '@typescript-eslint/no-require-imports': 'off',
                 '@typescript-eslint/no-shadow': ['error'],
+                'no-unused-vars': ['error', { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }],
                 '@typescript-eslint/no-unused-vars': [
                     'error',
                     {
@@ -385,7 +395,8 @@ module.exports = {
                         variableDeclaration: true,
                         memberVariableDeclaration: true,
                         objectDestructuring: true,
-                        arrayDestructuring: true
+                        arrayDestructuring: true,
+                        variableDeclarationIgnoreFunction: true
                     }
                 ],
                 '@typescript-eslint/unified-signatures': 'error',

@@ -15,8 +15,18 @@
 $ npm install @angular-ru/commitlint-config -D
 ```
 
-Create file `commitlint.config.js` in the root of your project:
+Create file `package.json` in the root of your project:
 
-```js
-module.exports = { extends: ['@commitlint/config-conventional'] };
+```json5
+{
+    // ...
+    husky: {
+        hooks: {
+            'commit-msg': 'yarn commitlint -E HUSKY_GIT_PARAMS'
+        }
+    },
+    commitlint: {
+        extends: ['@angular-ru/commitlint-config']
+    }
+}
 ```

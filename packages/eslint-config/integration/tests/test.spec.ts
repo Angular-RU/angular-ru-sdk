@@ -61,8 +61,13 @@ describe('[TEST]: Eslint', (): void => {
         expect(bad.includes('Classes decorated with @Pipe decorator should implement PipeTransform interface')).toEqual(
             true
         );
-        expect(bad.includes('Missing return type on function')).toEqual(true);
         expect(bad.includes('Unexpected any. Specify a different type')).toEqual(true);
+        expect(bad.includes("'otherComplexFunction' is defined but never used")).toEqual(true);
+        expect(bad.includes('215:1   error  Missing return type on function')).toEqual(true);
+        expect(bad.includes('274:11  error  Missing return type on function')).toEqual(true);
+        expect(bad.includes('276:36  error  Missing return type on function')).toEqual(true);
+        expect(bad.includes('276:36  error  Missing return type on function')).toEqual(true);
+        expect(bad.includes('280:31  error  Missing return type on function')).toEqual(true);
         expect(bad.includes("Function 'someComplexFunction' has too many lines (32)")).toEqual(true);
         expect(bad.includes("Function 'someComplexFunction' has a complexity of 9")).toEqual(true);
         expect(

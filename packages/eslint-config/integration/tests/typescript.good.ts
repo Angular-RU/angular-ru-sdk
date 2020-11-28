@@ -1,8 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Injectable, Input, OnInit, Output } from '@angular/core';
 import { Any } from '@angular-ru/common/typings';
+import { BaseUrl, RequestBody, RestClient } from '@angular-ru/http/decorators';
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 import { A1 } from './module/a1';
 import { B1 } from './module/b1';
+import { ExampleDeep } from './module/deep/deep/deep/deep/deep/deep/deeeeeeeeeeeeeeeeeeep/deeeeeeeeeeeeeeeeeeep/deeeeeeeeeeeeeeeeeeep/example-deep';
 
 type SmallPrimes = 2 | 3 | 5 | 7 | 11;
 
@@ -84,11 +88,27 @@ const t: TestMaxParams = new TestMaxParams(1, 2, 3, 4, 5, 6);
 // eslint-disable-next-line no-console
 console.log(t.a);
 
+@BaseUrl()
+@RestClient()
+@Injectable()
+class HttpClient {
+    public invoke1(@RequestBody() _request: Any): void {
+        // ...
+    }
+
+    public invoke2(@RequestBody() request: Any): void {
+        console.error(request);
+    }
+}
+
+// noinspection AngularMissingOrInvalidDeclarationInModule
 @Component({
     selector: 'good-component',
     template: `<p>Good component works!</p>`
 })
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+// eslint-disable-next-line @typescript-eslint/no-unused-vars,no-unused-vars
 class GoodComponent implements OnInit {
     @Input('var-a') public a: Any;
     @Input() public _a: Any;
@@ -96,7 +116,28 @@ class GoodComponent implements OnInit {
     @Output() public e!: EventEmitter<Any>;
     @Output('_e') public _e!: EventEmitter<Any>;
 
+    constructor(private readonly api: HttpClient) {}
+
     public ngOnInit(): void {
-        // noop
+        this.api.invoke1({});
+        this.api.invoke2({});
     }
 }
+
+const foo = (): number => 0;
+console.error(foo);
+
+const arrowFn = () => (): Any => ({});
+console.error(arrowFn);
+
+const error = (message: string) => void console.error(message);
+error('hello world');
+
+switchMap((): Observable<ExampleDeep> => of(new ExampleDeep()));
+
+document.addEventListener('click', (): void => {
+    // hello
+});
+
+const fooZ: number[] = [].map((i: number): number => i * i);
+console.error(fooZ);
