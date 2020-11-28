@@ -1,3 +1,10 @@
+#### 15.20.1 (2020-11-28)
+
+##### Continuous Integration
+
+-   update dependency typescript to v4.1.2 ([#296](https://github.com/Angular-RU/angular-ru-sdk/pull/296))
+    ([3ca6319d](https://github.com/Angular-RU/angular-ru-sdk/commit/3ca6319dc95e9456e5a3601a9034b5af75a457bb))
+
 #### 15.20.0 (2020-11-28)
 
 ##### New Features
