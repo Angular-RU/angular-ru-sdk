@@ -1,3 +1,10 @@
+#### 15.21.0 (2020-11-30)
+
+##### New Features
+
+-   **@angular-ru/http:** add HttpMethod enum
+    ([0f79b74b](https://github.com/Angular-RU/angular-ru-sdk/commit/0f79b74b2b1dfc9e048514e057117a15f1254340))
+
 #### 15.20.1 (2020-11-28)
 
 ##### Continuous Integration
