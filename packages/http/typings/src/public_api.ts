@@ -1,3 +1,4 @@
+export { HttpMethod } from './enums/http-method.enum';
 export { HttpStatusCode } from './enums/http-status-code.enum';
 export { RequestType } from './enums/request-type.enum';
 export { DataBeforeRequestOptions } from './interfaces/data-before-request-options';
