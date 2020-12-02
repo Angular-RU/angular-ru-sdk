@@ -14,6 +14,7 @@
     - [(@)angular-ru/common/utils](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/utils.md)
     - [(@)angular-ru/common/webworker](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/webworker.md)
     - [(@)angular-ru/common/object](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/object.md)
+    - [(@)angular-ru/common/directives](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/directives.md)
     - [(@)angular-ru/common/pipes](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/pipes.md)
     - [(@)angular-ru/common/array](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/array.md)
     - [(@)angular-ru/common/function](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/function.md)
