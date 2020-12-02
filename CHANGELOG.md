@@ -1,3 +1,10 @@
+#### 15.24.0 (2020-12-02)
+
+##### New Features
+
+-   **@angular-ru/common:** add input focus
+    ([4a083f85](https://github.com/Angular-RU/angular-ru-sdk/commit/4a083f85892ffb3f40901ab8849fbdb15a1fde66))
+
 #### 15.23.0 (2020-12-01)
 
 ##### New Features
