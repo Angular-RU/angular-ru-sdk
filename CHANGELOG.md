@@ -1,3 +1,25 @@
+#### 15.25.0 (2020-12-02)
+
+##### Chores
+
+-   **release:** updated release notes and package versions [ci skip]
+    ([8f47d36c](https://github.com/Angular-RU/angular-ru-sdk/commit/8f47d36cfeca0e04b56af4355dd1fdcbb2b673b1))
+
+##### New Features
+
+-   update dependency @types/eslint to v7.2.6 ([#301](https://github.com/Angular-RU/angular-ru-sdk/pull/301))
+    ([e6500570](https://github.com/Angular-RU/angular-ru-sdk/commit/e6500570322bca57dc7ae36ca1a290f1064b08ec))
+-   **@angular-ru/common:**
+    -   add file size module
+        ([a25bb472](https://github.com/Angular-RU/angular-ru-sdk/commit/a25bb472b76de2a65410a7300fd4923d97ee553b))
+    -   add input focus
+        ([4a083f85](https://github.com/Angular-RU/angular-ru-sdk/commit/4a083f85892ffb3f40901ab8849fbdb15a1fde66))
+
+##### Other Changes
+
+-   **@angular-ru/common:** add input focus
+    ([be56cff4](https://github.com/Angular-RU/angular-ru-sdk/commit/be56cff436bdafe194a33e48e5a8f6f7b0d34fff))
+
 #### 15.24.0 (2020-12-02)
 
 ##### New Features
