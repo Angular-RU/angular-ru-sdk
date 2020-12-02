@@ -1,2 +1,2 @@
-export { InitialFocusDirective } from './input-focus/initial-focus.directive';
-export { InitialFocusModule } from './input-focus/initial-focus.module';
+export { InitialFocusDirective } from './initial-focus/initial-focus.directive';
+export { InitialFocusModule } from './initial-focus/initial-focus.module';
