@@ -23,7 +23,7 @@ describe('[TEST]: Hello world', () => {
             globals: {
                 'ts-jest': {
                     isolatedModules: true,
-                    tsConfig: '../tsconfig.json',
+                    tsconfig: '../tsconfig.json',
                     stringifyContentPathRegex: '\\.html$',
                     astTransformers: {
                         before: [
