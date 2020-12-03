@@ -1,3 +1,17 @@
+#### 15.26.0 (2020-12-03)
+
+##### Continuous Integration
+
+-   update angular-cli
+    ([6cac8688](https://github.com/Angular-RU/angular-ru-sdk/commit/6cac8688c8bac86b09abbbb247233678415c2d7a))
+-   update angular-framework to v11.0.3
+    ([52e92c52](https://github.com/Angular-RU/angular-ru-sdk/commit/52e92c528f55bf5eb5a106a9a2f7e69981a91061))
+
+##### New Features
+
+-   update dependency eslint-plugin-prettier to v3.2.0
+    ([3564ce5a](https://github.com/Angular-RU/angular-ru-sdk/commit/3564ce5a8312d3cc96123aab4a682831c5b544a8))
+
 #### 15.25.0 (2020-12-02)
 
 ##### Chores
