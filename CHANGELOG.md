@@ -1,3 +1,10 @@
+#### 15.27.1 (2020-12-03)
+
+##### Bug Fixes
+
+-   **@angular-ru/jest-utils:** use tsconfig instead tsConfig property
+    ([ebed5336](https://github.com/Angular-RU/angular-ru-sdk/commit/ebed5336697b91aaea77e312ae4066d267fbf95f))
+
 #### 15.27.0 (2020-12-03)
 
 ##### New Features
