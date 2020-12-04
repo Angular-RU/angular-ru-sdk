@@ -1,3 +1,15 @@
+#### 15.28.0 (2020-12-04)
+
+##### Continuous Integration
+
+-   update dependency ngx-toastr to v13.2.0
+    ([cf0ba3e7](https://github.com/Angular-RU/angular-ru-sdk/commit/cf0ba3e79d842844f5e0262093ab5c0d5e51e06c))
+
+##### New Features
+
+-   update dependency lint-staged to v10.5.3
+    ([66cb319b](https://github.com/Angular-RU/angular-ru-sdk/commit/66cb319b776ccd891138c536c62da14df52436dd))
+
 #### 15.27.1 (2020-12-03)
 
 ##### Bug Fixes
