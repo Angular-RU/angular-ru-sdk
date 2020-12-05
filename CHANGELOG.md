@@ -1,3 +1,10 @@
+#### 15.29.0 (2020-12-05)
+
+##### New Features
+
+-   update dependency eslint to v7.15.0
+    ([5c1219b2](https://github.com/Angular-RU/angular-ru-sdk/commit/5c1219b2aa552d9d9733f29b7d9158636a2bc7d4))
+
 #### 15.28.0 (2020-12-04)
 
 ##### Continuous Integration
