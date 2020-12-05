@@ -1,3 +1,10 @@
+#### 15.30.0 (2020-12-05)
+
+##### New Features
+
+-   update dependency husky to v4.3.4
+    ([fcc6d273](https://github.com/Angular-RU/angular-ru-sdk/commit/fcc6d273568f2f79f4e82224a23da2df8d847a6f))
+
 #### 15.29.0 (2020-12-05)
 
 ##### New Features
