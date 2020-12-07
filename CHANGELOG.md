@@ -1,3 +1,10 @@
+#### 15.32.0 (2020-12-07)
+
+##### New Features
+
+-   update dependency ts-node to v9.1.1
+    ([e240957e](https://github.com/Angular-RU/angular-ru-sdk/commit/e240957edaf3bafd678ff747cd18c61ee86b203b))
+
 #### 15.31.0 (2020-12-07)
 
 ##### New Features
