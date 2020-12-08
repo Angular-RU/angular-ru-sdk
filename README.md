@@ -181,6 +181,24 @@ in the Angular.
       </tr>
       <tr>
          <td>
+            <a href="https://npmjs.com/package/@angular-ru/tooltip">
+            @angular-ru/tooltip
+            </a>
+         </td>
+         <td>
+            <img src="https://img.shields.io/npm/v/%40angular-ru%2Ftooltip/latest.svg">
+         </td>
+         <td>
+            <a href="https://npmjs.com/package/@angular-ru/tooltip">
+            <img src="https://img.shields.io/npm/dw/@angular-ru/tooltip">
+            </a>
+            <a href="packages/tooltip/README.md">
+            <img src="https://img.shields.io/badge/README--green.svg">
+            </a>
+         </td>
+      </tr>
+      <tr>
+         <td>
             <a href="https://npmjs.com/package/@angular-ru/ng-table-builder">
             @angular-ru/ng-table-builder
             </a>
