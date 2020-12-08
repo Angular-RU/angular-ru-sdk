@@ -1,3 +1,15 @@
+#### 15.34.1 (2020-12-08)
+
+##### Chores
+
+-   update README.md
+    ([a127a073](https://github.com/Angular-RU/angular-ru-sdk/commit/a127a0737bca92ed0759a621169b81f0d8ffabf0))
+
+##### Bug Fixes
+
+-   **@angular-ru/common:** add rxjs utils
+    ([56b0721d](https://github.com/Angular-RU/angular-ru-sdk/commit/56b0721df0d5751396ed3aafd68b0cdaa8cd7c07))
+
 #### 15.34.0 (2020-12-08)
 
 ##### New Features
