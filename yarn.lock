@@ -152,24 +152,24 @@
     ora "5.1.0"
     rxjs "6.6.3"
 
-"@angular-eslint/eslint-plugin-template@0.8.0-beta.4":
-  version "0.8.0-beta.4"
-  resolved "https://registry.npmjs.org/@angular-eslint/eslint-plugin-template/-/eslint-plugin-template-0.8.0-beta.4.tgz#d8ac27ec58872583fe1cd3a83edfec6a691a82a9"
-  integrity sha512-CjhKuir56UC9ae1DVGq7MevVEEXSaz4RAGoofeowOtT8J/uzvC1HKNmYk5qmGZRu5kOgXhZKAzwMkrQG2XZ0Nw==
+"@angular-eslint/eslint-plugin-template@0.8.0-beta.5":
+  version "0.8.0-beta.5"
+  resolved "https://registry.npmjs.org/@angular-eslint/eslint-plugin-template/-/eslint-plugin-template-0.8.0-beta.5.tgz#a884a6044ce88e40dd4239b7a1b0be98ef8e1143"
+  integrity sha512-0sn+w2VVFSHS3zXMcYCkUjveuMQXO2Y4Gf8lq0YnmTcscynsLB3Nqj74hyQ+znE9LEciawt8fXtqY74oFpbQkA==
   dependencies:
     "@typescript-eslint/experimental-utils" "4.3.0"
 
-"@angular-eslint/eslint-plugin@0.8.0-beta.4":
-  version "0.8.0-beta.4"
-  resolved "https://registry.npmjs.org/@angular-eslint/eslint-plugin/-/eslint-plugin-0.8.0-beta.4.tgz#2b1ac38026eb27e41c3d196fdbcbf325f4143b06"
-  integrity sha512-VJIEbbLecb+m32ajhRfHwSiU0OihZai5Q2kPA+U9UC7Odq8QOYBEo7D8oLHVJk1DuyCvTpB9Wswl9WUoQ/S2aQ==
+"@angular-eslint/eslint-plugin@0.8.0-beta.5":
+  version "0.8.0-beta.5"
+  resolved "https://registry.npmjs.org/@angular-eslint/eslint-plugin/-/eslint-plugin-0.8.0-beta.5.tgz#c9617fcf74fdd7f840ac336b23af6731fb1f47bb"
+  integrity sha512-S7fLcMNRasgUKyKO0o51OsQxddGh8FRCrxZ2CeyUF8f/Kk3Yh06cMgvoD2hYqmrk65oO2M6OdP2P9+1VXxX1gw==
   dependencies:
     "@typescript-eslint/experimental-utils" "4.3.0"
 
-"@angular-eslint/template-parser@0.8.0-beta.4":
-  version "0.8.0-beta.4"
-  resolved "https://registry.npmjs.org/@angular-eslint/template-parser/-/template-parser-0.8.0-beta.4.tgz#acdd275b40db426b8ae2c35d43729c3460d4b9f9"
-  integrity sha512-MmFceAmbPDOqA43fcZUMbuGdZ5TFSYXWyxmJ/Txlwp4QsQgQcwhT66pbIGt6b0NvfG0cczjRk61thSKClGfFYg==
+"@angular-eslint/template-parser@0.8.0-beta.5":
+  version "0.8.0-beta.5"
+  resolved "https://registry.npmjs.org/@angular-eslint/template-parser/-/template-parser-0.8.0-beta.5.tgz#ffdfcd4eb493a29943fe7a22bebb9a67e061460b"
+  integrity sha512-Nt+lzyyF0N6l58KtoXZexWbb2P2rG++JoOpr54xAa2jqLppyL056cRH0kGredxpw3jI3qM6oHHgbBNO13FsQ0A==
   dependencies:
     eslint-scope "^5.1.0"
 

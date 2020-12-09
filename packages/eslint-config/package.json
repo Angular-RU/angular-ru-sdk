@@ -26,9 +26,9 @@
         "test": "sh test.sh"
     },
     "dependencies": {
-        "@angular-eslint/eslint-plugin": "0.8.0-beta.4",
-        "@angular-eslint/eslint-plugin-template": "0.8.0-beta.4",
-        "@angular-eslint/template-parser": "0.8.0-beta.4",
+        "@angular-eslint/eslint-plugin": "0.8.0-beta.5",
+        "@angular-eslint/eslint-plugin-template": "0.8.0-beta.5",
+        "@angular-eslint/template-parser": "0.8.0-beta.5",
         "@types/eslint": "7.2.6",
         "@typescript-eslint/eslint-plugin": "4.9.1",
         "@typescript-eslint/parser": "4.9.1",
