@@ -1,3 +1,11 @@
+#### 15.37.0 (2020-12-09)
+
+##### New Features
+
+-   update dependency eslint-plugin-simple-import-sort to v7
+    ([#318](https://github.com/Angular-RU/angular-ru-sdk/pull/318))
+    ([9023262a](https://github.com/Angular-RU/angular-ru-sdk/commit/9023262a119997a2ea027e0db653015ee67a8b70))
+
 #### 15.36.0 (2020-12-08)
 
 ##### New Features
