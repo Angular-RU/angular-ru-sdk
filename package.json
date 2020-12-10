@@ -86,7 +86,7 @@
         "angular-cli-ghpages": "0.6.2",
         "devtools-detect": "3.0.1",
         "hammerjs": "2.0.8",
-        "intersection-observer": "0.11.0",
+        "intersection-observer": "0.12.0",
         "jasmine-core": "3.6.0",
         "jasmine-spec-reporter": "6.0.0",
         "karma": "5.2.3",
