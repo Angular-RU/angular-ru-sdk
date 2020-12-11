@@ -1,3 +1,15 @@
+#### 15.41.0 (2020-12-11)
+
+##### Continuous Integration
+
+-   update dependency intersection-observer to v0.12.0
+    ([c893af8b](https://github.com/Angular-RU/angular-ru-sdk/commit/c893af8bba0224fa5ceb48a30220a1f8c75c28f0))
+
+##### New Features
+
+-   update dependency @types/jest to v26.0.19
+    ([28d82519](https://github.com/Angular-RU/angular-ru-sdk/commit/28d82519493d4d6ebca104a6a8ba8c9b2395bd5b))
+
 #### 15.40.0 (2020-12-10)
 
 ##### Continuous Integration
