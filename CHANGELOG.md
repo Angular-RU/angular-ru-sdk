@@ -1,3 +1,10 @@
+#### 15.44.0 (2020-12-14)
+
+##### New Features
+
+-   update dependency eslint-plugin-prettier to v3.3.0
+    ([61fc67a6](https://github.com/Angular-RU/angular-ru-sdk/commit/61fc67a6654f5e6699164cc88e7814d62911a909))
+
 #### 15.43.0 (2020-12-13)
 
 ##### New Features
