@@ -1,3 +1,15 @@
+#### 15.45.0 (2020-12-14)
+
+##### Continuous Integration
+
+-   update angular-components to v11.0.3
+    ([be361989](https://github.com/Angular-RU/angular-ru-sdk/commit/be3619896ef94bce2d3ce31495bec7cb5743ea7d))
+
+##### New Features
+
+-   update ESLint to v4.10.0
+    ([6d158510](https://github.com/Angular-RU/angular-ru-sdk/commit/6d158510f2ee83c2d452069310b1cc8cbfa12c54))
+
 #### 15.44.0 (2020-12-14)
 
 ##### New Features
