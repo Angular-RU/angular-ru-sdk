@@ -18,7 +18,7 @@
     "license": "MIT",
     "author": "splincode <omaxphp@yandex.ru>",
     "dependencies": {
-        "@types/node": "14.14.13",
+        "@types/node": "14.14.14",
         "generate-changelog": "1.8.0",
         "husky": "4.3.6",
         "inquirer-directory": "2.2.0",
