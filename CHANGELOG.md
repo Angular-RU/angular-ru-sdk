@@ -1,3 +1,10 @@
+#### 15.46.0 (2020-12-15)
+
+##### New Features
+
+-   **@angular-ru/common:** add zone.js utils
+    ([3027aec0](https://github.com/Angular-RU/angular-ru-sdk/commit/3027aec027db2a34341c6f2a4c8ae37dc6c69f1f))
+
 #### 15.45.0 (2020-12-14)
 
 ##### Continuous Integration
