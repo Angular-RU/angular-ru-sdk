@@ -12,6 +12,8 @@
     - [(@)angular-ru/common/form](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/form.md)
     - [(@)angular-ru/common/animations](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/animations.md)
     - [(@)angular-ru/common/utils](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/utils.md)
+    - [(@)angular-ru/common/rxjs](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/rxjs.md)
+    - [(@)angular-ru/common/zone.js](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/zone.js.md)
     - [(@)angular-ru/common/webworker](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/webworker.md)
     - [(@)angular-ru/common/object](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/object.md)
     - [(@)angular-ru/common/directives](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/directives.md)
