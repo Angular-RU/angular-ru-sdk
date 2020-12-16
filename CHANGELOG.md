@@ -1,3 +1,25 @@
+#### 15.50.0 (2020-12-16)
+
+##### Build System / Dependencies
+
+-   enable deploy integration app
+    ([470df1ee](https://github.com/Angular-RU/angular-ru-sdk/commit/470df1ee9ccef23425893ff1a9a50321b9717a37))
+
+##### Chores
+
+-   **release:** updated release notes and package versions [ci skip]
+    ([10bae2c9](https://github.com/Angular-RU/angular-ru-sdk/commit/10bae2c996f83e6d68fdb66cdc16ead99c39868d))
+
+##### New Features
+
+-   **@angular-ru/ng-table-builder:** refactor update method when open context menu
+    ([039c9de6](https://github.com/Angular-RU/angular-ru-sdk/commit/039c9de6c9142445fd63f289838bb544aa13063f))
+
+##### Other Changes
+
+-   **@angular-ru/ng-table-builder:** refactor update method when open context menu
+    ([6e00fc72](https://github.com/Angular-RU/angular-ru-sdk/commit/6e00fc72197373088a4ce264d655b77337dd96be))
+
 #### 15.49.0 (2020-12-16)
 
 ##### New Features
