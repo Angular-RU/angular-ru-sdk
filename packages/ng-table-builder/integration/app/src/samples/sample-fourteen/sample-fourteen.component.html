@@ -71,7 +71,7 @@
             <mat-form-field appearance="outline">
                 <mat-label>Find options</mat-label>
                 <mat-select
-                    [value]="table.filterable.filterTypeDefinition[filter.state.key!]"
+                    [value]="$any(table.filterable.filterTypeDefinition)[filter.state.key!]"
                     (valueChange)="table.filterable.updateFilterTypeBy($event, filter.state.key); table.filter()"
                 >
                     <mat-option *ngFor="let type of table.filterable.types | keyvalue" [value]="type.value">
@@ -86,7 +86,7 @@
                     matInput
                     name="width"
                     autocomplete="off"
-                    [ngModel]="table.filterable.definition[filter.state.key!]"
+                    [ngModel]="$any(table.filterable.definition)[filter.state.key!]"
                     (ngModelChange)="table.filterable.updateFilterValueBy($event, filter.state.key); table.filter()"
                 />
                 <mat-icon matSuffix>search</mat-icon>
