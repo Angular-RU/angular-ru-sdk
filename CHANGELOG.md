@@ -1,3 +1,15 @@
+#### 15.48.0 (2020-12-16)
+
+##### Chores
+
+-   **release:** updated release notes and package versions [ci skip]
+    ([cfd53b1f](https://github.com/Angular-RU/angular-ru-sdk/commit/cfd53b1fb2c832bd03ea01a8452c32938475cf56))
+
+##### New Features
+
+-   **@angular-ru/eslint-config:** add no-param-reassign
+    ([5065b24c](https://github.com/Angular-RU/angular-ru-sdk/commit/5065b24cf55ce8331d1c6c3677a66c9a25292a0f))
+
 #### 15.47.0 (2020-12-15)
 
 ##### New Features
