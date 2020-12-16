@@ -553,8 +553,8 @@ export class TableBuilderComponent
                 TableFilterType.CONTAINS;
 
             this.modelColumnKeys.forEach((key: string): void => {
-                this.filterable.filterTypeDefinition[key] =
-                    this.filterable.filterTypeDefinition[key] || this.filterable.filterType;
+                (this.filterable.filterTypeDefinition as Any)[key] =
+                    (this.filterable.filterTypeDefinition as Any)[key] || this.filterable.filterType;
             });
         }
     }

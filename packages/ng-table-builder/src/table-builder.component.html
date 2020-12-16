@@ -32,6 +32,8 @@
     }"
     [tableViewport]="tableViewport"
 >
+    <div class="table-grid__root-filtering" *ngIf="filteringRun">filtering...</div>
+
     <div
         observerView
         cdkDropList

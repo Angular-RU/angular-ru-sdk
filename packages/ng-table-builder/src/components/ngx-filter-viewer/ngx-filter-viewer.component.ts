@@ -12,6 +12,7 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Any } from '@angular-ru/common/typings';
 import { detectChanges } from '@angular-ru/common/utils';
 import { Subscription } from 'rxjs';
 
@@ -56,7 +57,7 @@ export class NgxFilterViewerComponent implements OnChanges, OnInit, OnDestroy {
 
     public ngOnInit(): void {
         this.subscription = this.filterable.events.subscribe((event: FilterEvent): void => {
-            if (this.filterable.definition[this.key!] || this.filterable.globalFilterValue) {
+            if ((this.filterable.definition as Any)[this.key!] || this.filterable.globalFilterValue) {
                 this.changeSelection(event);
             } else {
                 this.defaultHtmlValue();
@@ -74,7 +75,7 @@ export class NgxFilterViewerComponent implements OnChanges, OnInit, OnDestroy {
         this.ngZone.runOutsideAngular((): void => {
             window.clearInterval(this.taskId!);
             this.taskId = window.setTimeout((): void => {
-                if (event.value || this.filterable.definition[this.key!]) {
+                if (event.value || (this.filterable.definition as Any)[this.key!]) {
                     this.selected(event);
                 } else {
                     this.defaultHtmlValue();
@@ -87,9 +88,9 @@ export class NgxFilterViewerComponent implements OnChanges, OnInit, OnDestroy {
 
     // eslint-disable-next-line max-lines-per-function,complexity
     private selected(event: FilterEvent): void {
-        const value: string | null = this.filterable.definition[this.key!] || event.value;
-        const type: string | TableFilterType | null = this.filterable.definition[this.key!]
-            ? this.filterable.filterTypeDefinition[this.key!]
+        const value: string | null = (this.filterable.definition as Any)[this.key!] || event.value;
+        const type: string | TableFilterType | null = (this.filterable.definition as Any)[this.key!]
+            ? (this.filterable.filterTypeDefinition as Any)[this.key!]
             : event.type;
 
         if (type === TableFilterType.DOES_NOT_EQUAL || type === TableFilterType.DOES_NOT_CONTAIN) {

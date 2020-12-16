@@ -21,7 +21,9 @@ export class TableTheadComponent {
     @Input('sortable-definition') public sortableDefinition: PlainObjectOf<SortOrderType> = {};
     @Input('sortable-position') public positionMap: PlainObjectOf<number> = {};
     @Input('sortable-count') public sortableCount: number = 0;
-    @Input('filterable-definition') public filterableDefinition: PlainObjectOf<string> = {};
+    @Input('filterable-definition') public filterableDefinition:
+        | PlainObjectOf<string>
+        | ReadonlyMap<unknown, unknown> = {};
     @Input('client-row-height') public clientRowHeight: number | null = null;
     @Input('column-schema') public columnSchema: ColumnsSchema | null = null;
     @Output() public resize: EventEmitter<ResizeEvent> = new EventEmitter();

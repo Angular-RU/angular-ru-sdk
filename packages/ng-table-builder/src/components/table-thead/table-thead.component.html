@@ -59,7 +59,7 @@
             class="table-grid__column--filterable"
             *ngIf="columnSchema?.isModel && columnSchema?.filterable"
             (click)="columnSchema?.filterable ? openFilter(columnSchema?.key, $event) : null"
-            [class.table-grid__column--filterable-active]="filterableDefinition[columnSchema?.key!]"
+            [class.table-grid__column--filterable-active]="$any(filterableDefinition)[columnSchema?.key!]"
         >
             <svg
                 class="table-grid-icon--filterable"

@@ -15,7 +15,7 @@
         }"
     >
         <div class="table-close__button" (click)="closeFilter()"></div>
-        <div *ngIf="isViewed" [@fadeInLinear]>
+        <div *ngIf="isRendered" [@fadeInLinear]>
             <ng-content></ng-content>
         </div>
     </div>

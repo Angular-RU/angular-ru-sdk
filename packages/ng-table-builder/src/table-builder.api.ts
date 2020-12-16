@@ -125,6 +125,7 @@ export abstract class AbstractTableBuilderApiImpl
     public customModelColumnsKeys: string[] = [];
     public isDragging: PlainObjectOf<boolean> = {};
     public accessDragging: boolean = false;
+    public filteringRun: boolean = false;
     public abstract readonly templateParser: TemplateParserService;
     public abstract readonly selection: SelectionService;
     public abstract readonly utils: UtilsService;
@@ -294,6 +295,8 @@ export abstract class AbstractTableBuilderApiImpl
     public filter(after?: Fn): void {
         this.ngZone.runOutsideAngular((): void => {
             window.clearInterval(this.filterIdTask!);
+            this.filteringRun = true;
+            detectChanges(this.cd);
             this.filterIdTask = window.setTimeout((): void => {
                 if (!this.isEnableFiltering) {
                     throw new Error('You forgot to enable filtering: \n <ngx-table-builder enable-filtering />');
@@ -304,6 +307,9 @@ export abstract class AbstractTableBuilderApiImpl
                     if (after) {
                         after();
                     }
+
+                    this.filteringRun = false;
+                    detectChanges(this.cd);
                 });
             }, FILTER_DELAY_TIME);
         });

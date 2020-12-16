@@ -36,9 +36,7 @@ export abstract class AbstractModalViewLayer<T extends PositionState> implements
     protected readonly filterable: FilterableService;
     protected readonly ngZone: NgZone;
     protected readonly contextMenu: ContextMenuService;
-
-    @ViewChild('menu', { static: false })
-    protected menu!: ElementRef<HTMLDivElement>;
+    @ViewChild('menu', { static: false }) protected menu!: ElementRef<HTMLDivElement>;
 
     protected constructor(protected readonly cd: ChangeDetectorRef, injector: Injector) {
         this.app = injector.get<ApplicationRef>(ApplicationRef);
@@ -98,17 +96,13 @@ export abstract class AbstractModalViewLayer<T extends PositionState> implements
     protected update(): void {
         this.isViewed = !!this.state.opened;
         this.isRendered = true;
-        detectChanges(this.cd);
         this.app.tick();
+        detectChanges(this.cd);
 
-        this.ngZone.runOutsideAngular((): void => {
-            window.setTimeout((): void => {
-                detectChanges(this.cd);
-                window.setTimeout((): void => {
-                    this.minHeight = this.calculatedHeight;
-                    detectChanges(this.cd);
-                }, MINIMAL_TIMEOUT);
-            }, MINIMAL_TIMEOUT);
-        });
+        window.setTimeout((): void => {
+            this.minHeight = this.calculatedHeight;
+            this.app.tick();
+            detectChanges(this.cd);
+        }, MINIMAL_TIMEOUT);
     }
 }

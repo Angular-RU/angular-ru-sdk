@@ -1,6 +1,6 @@
-import { ApplicationRef, Injectable, Injector } from '@angular/core';
+import { ApplicationRef, Injectable, Injector, NgZone } from '@angular/core';
 import { checkIsShallowEmpty } from '@angular-ru/common/object';
-import { Any, PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
+import { Any } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { ReplaySubject, Subject } from 'rxjs';
 
@@ -20,23 +20,25 @@ const { TIME_IDLE }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
 
 @Injectable()
 export class FilterableService implements FilterableInterface {
-    public filterValue: string | null = null;
-    public definition: PlainObject = {};
-    public state: FilterStateEvent = new FilterStateEvent();
-    public types: PlainObject = TableFilterType;
+    public types: ReadonlyMap<unknown, unknown> = (TableFilterType as Any) as ReadonlyMap<unknown, unknown>;
+    public definition: ReadonlyMap<unknown, unknown> = ({} as Any) as ReadonlyMap<unknown, unknown>;
+    public filterTypeDefinition: ReadonlyMap<unknown, TableFilterType> = {} as Any;
     public readonly filterOpenEvents: Subject<void> = new Subject();
     public readonly events: Subject<FilterEvent> = new ReplaySubject();
     public readonly resetEvents: Subject<void> = new Subject<void>();
+    public state: FilterStateEvent = new FilterStateEvent();
+    public filterValue: string | null = null;
     public filterType: string | TableFilterType | null = null;
-    public filterTypeDefinition: PlainObjectOf<TableFilterType> = {};
     public filtering: boolean = false;
     private previousFiltering: boolean = false;
     private readonly thread: WebWorkerThreadService;
     private readonly app: ApplicationRef;
+    private readonly ngZone: NgZone;
 
     constructor(injector: Injector) {
         this.app = injector.get<ApplicationRef>(ApplicationRef);
         this.thread = injector.get<WebWorkerThreadService>(WebWorkerThreadService);
+        this.ngZone = injector.get<NgZone>(NgZone);
     }
 
     public get globalFilterValue(): string | null {
@@ -65,10 +67,10 @@ export class FilterableService implements FilterableInterface {
     }
 
     public reset(): void {
-        this.definition = {};
+        this.definition = {} as Any;
         this.filterValue = null;
         this.state = new FilterStateEvent();
-        this.filterTypeDefinition = {};
+        this.filterTypeDefinition = {} as Any;
         this.filtering = false;
         this.previousFiltering = false;
         this.events.next({ value: null, type: null });
@@ -110,8 +112,8 @@ export class FilterableService implements FilterableInterface {
                     types: TableFilterType,
                     global: { value, type },
                     columns: {
-                        values: this.definition,
-                        types: this.filterTypeDefinition,
+                        values: this.definition as Any,
+                        types: this.filterTypeDefinition as Any,
                         isEmpty: checkIsShallowEmpty(this.definition)
                     }
                 };
@@ -123,10 +125,12 @@ export class FilterableService implements FilterableInterface {
                             source: sorted,
                             fireSelection: (): void => {
                                 // eslint-disable-next-line max-nested-callbacks
-                                window.setTimeout((): void => {
-                                    this.events.next({ value, type });
-                                    this.app.tick();
-                                }, TIME_IDLE);
+                                this.ngZone.runOutsideAngular((): void => {
+                                    window.setTimeout((): void => {
+                                        this.events.next({ value, type });
+                                        this.app.tick();
+                                    }, TIME_IDLE);
+                                });
                             }
                         });
                     });
