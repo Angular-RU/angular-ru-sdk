@@ -1,3 +1,15 @@
+#### 15.49.0 (2020-12-16)
+
+##### New Features
+
+-   **@angular-ru/ng-table-builder:** refactor update method when open context menu
+    ([039c9de6](https://github.com/Angular-RU/angular-ru-sdk/commit/039c9de6c9142445fd63f289838bb544aa13063f))
+
+##### Other Changes
+
+-   **@angular-ru/ng-table-builder:** refactor update method when open context menu
+    ([6e00fc72](https://github.com/Angular-RU/angular-ru-sdk/commit/6e00fc72197373088a4ce264d655b77337dd96be))
+
 #### 15.48.0 (2020-12-16)
 
 ##### Chores
