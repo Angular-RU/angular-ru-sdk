@@ -89,10 +89,11 @@ export class ExcelBuilderService {
 
                 function generateColumns(headerTitles: Any, ptSize: Any, colWidth: Any) {
                     return headerTitles.reduce((columnTemplate: Any, title: Any): string => {
+                        let templates: Any = columnTemplate;
                         const size: number = title.length * ptSize;
                         const width: number = size > colWidth ? size : colWidth;
-                        columnTemplate += `<Column ss:Width="${width}" />`;
-                        return columnTemplate;
+                        templates += `<Column ss:Width="${width}" />`;
+                        return templates;
                     }, '');
                 }
 
@@ -143,8 +144,9 @@ export class ExcelBuilderService {
 
                 function generateHeadCell(titles: Any, styleType: Any) {
                     return titles.reduce((headCellTemplate: Any, title: Any): string => {
-                        headCellTemplate += renderCell(title, styleType.HEAD);
-                        return headCellTemplate;
+                        let templates: Any = headCellTemplate;
+                        templates += renderCell(title, styleType.HEAD);
+                        return templates;
                     }, '');
                 }
 

@@ -134,6 +134,7 @@ module.exports = {
                         allow: ['warn', 'error']
                     }
                 ],
+                'no-param-reassign': ['error'],
                 'no-constant-condition': 'error',
                 'no-debugger': 'error',
                 'no-duplicate-imports': 'error',

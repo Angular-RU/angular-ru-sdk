@@ -279,3 +279,9 @@ document.addEventListener('click', function () {
 
 const fooZ: number[] = [].map((i: number) => i * i);
 log(fooZ);
+
+// expect mutate variable
+(function a(variable: string): void {
+    variable += 'world';
+    console.error(variable);
+})('hello');

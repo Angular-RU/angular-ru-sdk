@@ -3,8 +3,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({ name: 'httpReplacer' })
 export class HttpReplacerPipe implements PipeTransform {
     public transform(value: string | undefined): string {
-        if (typeof value === 'string') {
-            value = value
+        let result: string | undefined = value;
+
+        if (typeof result === 'string') {
+            result = result
                 .replace(/^(http|https):\/\//, '')
                 .replace(/\/$/, '')
                 .replace('www.', '')
@@ -12,6 +14,6 @@ export class HttpReplacerPipe implements PipeTransform {
                 .toLocaleLowerCase();
         }
 
-        return value || '';
+        return result ?? '';
     }
 }

@@ -74,6 +74,7 @@ describe('[TEST]: Eslint', (): void => {
             bad.includes("Remove this conditional structure or edit its code blocks so that they're not all the same")
         ).toEqual(true);
         expect(bad.includes('Use the opposite operator (<=) instead')).toEqual(true);
+        expect(bad.includes("285:5   error  Assignment to function parameter 'variable'")).toEqual(true);
     });
 
     it('check success files', (): void => {

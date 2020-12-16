@@ -7,13 +7,15 @@ import { FormatDatePipeOptions } from './format-date.interfaces';
 @Pipe({ name: 'formatDate' })
 export class FormatDatePipe implements PipeTransform {
     public transform(value?: string | number | Date, options?: FormatDatePipeOptions): string {
-        if (typeof value === 'string') {
-            value = firstItem(value.split('+')) || '';
+        let result: string | number | Date | undefined = value;
+
+        if (typeof result === 'string') {
+            result = firstItem(result.split('+')) || '';
         }
 
         return (
             new DatePipe(options?.locale ?? 'en-US').transform(
-                value,
+                result,
                 options?.dateFormat ?? 'dd.MM.yyyy',
                 options?.timezone
             ) ?? ''

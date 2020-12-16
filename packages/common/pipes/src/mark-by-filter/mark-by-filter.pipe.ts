@@ -27,13 +27,14 @@ export class MarkByFilterPipe implements PipeTransform {
 
     private highLightingString(value: string, filter: string, color: string): string {
         let newString: string;
+        let filterValue: string = filter;
 
         try {
-            filter = filter.replace(/\s/g, '&nbsp;');
+            filterValue = filterValue.replace(/\s/g, '&nbsp;');
 
-            const regexp: RegExp = isRegexpStr(filter)
-                ? new RegExp(ensureRegexp(filter), 'ig')
-                : new RegExp(filter, 'i');
+            const regexp: RegExp = isRegexpStr(filterValue)
+                ? new RegExp(ensureRegexp(filterValue), 'ig')
+                : new RegExp(filterValue, 'i');
 
             newString = value
                 ?.toString()

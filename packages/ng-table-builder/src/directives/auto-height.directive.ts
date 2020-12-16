@@ -111,16 +111,17 @@ export class AutoHeightDirective implements OnInit, OnChanges, OnDestroy {
 
     private static getStyle(element: Element | Any, strCssRule: string): string {
         let strValue: string = '';
+        let strRule: string = strCssRule;
 
         if (document.defaultView && document.defaultView.getComputedStyle) {
             try {
-                strValue = document.defaultView.getComputedStyle(element, '').getPropertyValue(strCssRule);
+                strValue = document.defaultView.getComputedStyle(element, '').getPropertyValue(strRule);
             } catch (e) {
                 strValue = '0px';
             }
         } else if (element.currentStyle) {
-            strCssRule = strCssRule.replace(/\-(\w)/g, (_: string, p1: string): string => p1.toUpperCase());
-            strValue = element.currentStyle[strCssRule];
+            strRule = strRule.replace(/\-(\w)/g, (_: string, p1: string): string => p1.toUpperCase());
+            strValue = element.currentStyle[strRule];
         }
 
         return strValue;

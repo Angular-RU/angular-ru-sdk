@@ -4,7 +4,7 @@ import { Any, Fn, PlainObject } from '@angular-ru/common/typings';
 import { ensureMethodArgsRegistry } from './ensure-method-args-registry';
 import { META_REQUEST_PARAM } from './meta-keys.config';
 
-export function mutateQueryParams(
+export function ensureQueryParams(
     queryParams: PlainObject | undefined,
     originalMethod: Fn,
     args: Any[]
@@ -21,7 +21,7 @@ export function mutateQueryParams(
             }
         });
 
-        queryParams = { ...newParams, ...queryParams };
+        return { ...newParams, ...queryParams };
     }
 
     return queryParams;

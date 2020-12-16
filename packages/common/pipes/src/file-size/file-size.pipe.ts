@@ -8,17 +8,19 @@ export class FileSizePipe implements PipeTransform {
 
     public transform(bytes: number = 0, precision: number = this.commonPrecision): string {
         let result: string;
-        if (isNaN(parseFloat(String(bytes))) || !isFinite(bytes)) {
+        let calculatedBytes: number = bytes;
+
+        if (isNaN(parseFloat(String(calculatedBytes))) || !isFinite(calculatedBytes)) {
             result = '?';
         } else {
             let unit: number = 0;
 
-            while (bytes >= this.byteSize) {
-                bytes /= this.byteSize;
+            while (calculatedBytes >= this.byteSize) {
+                calculatedBytes /= this.byteSize;
                 unit++;
             }
 
-            result = `${bytes.toFixed(+precision)} ${this.units[unit]}`;
+            result = `${calculatedBytes.toFixed(+precision)} ${this.units[unit]}`;
         }
         return result;
     }

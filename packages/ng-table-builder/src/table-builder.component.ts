@@ -329,15 +329,16 @@ export class TableBuilderComponent
     }
 
     protected calculateViewPortByRange({ start, end, bufferOffset, force }: CalculateRange): void {
+        let newStartIndex: number = start;
         if (this.startIndexIsNull()) {
-            this.updateViewportInfo(start, end);
+            this.updateViewportInfo(newStartIndex, end);
         } else if (this.needRecalculateBuffer(bufferOffset)) {
-            start = this.recalculateStartIndex(start);
-            this.updateViewportInfo(start, end);
+            newStartIndex = this.recalculateStartIndex(newStartIndex);
+            this.updateViewportInfo(newStartIndex, end);
             detectChanges(this.cd);
         } else if (bufferOffset < 0 || force) {
-            start = this.recalculateStartIndex(start);
-            this.updateViewportInfo(start, end);
+            newStartIndex = this.recalculateStartIndex(newStartIndex);
+            this.updateViewportInfo(newStartIndex, end);
             detectChanges(this.cd);
             return;
         }

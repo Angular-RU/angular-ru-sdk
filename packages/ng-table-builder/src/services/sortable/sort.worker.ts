@@ -80,15 +80,16 @@ export function sortWorker(message: SortableMessage): TableRow[] {
         }
 
         private static shallowSort(a: Any, b: Any, depth?: number): number {
+            let newB: Any = b;
             // eslint-disable-next-line no-negated-condition
             const currentDepth: number | undefined = depth !== null ? depth : 1;
-            b = checkValueIsEmpty(b) ? '' : b;
+            newB = checkValueIsEmpty(newB) ? '' : newB;
 
-            if (a === b) {
+            if (a === newB) {
                 return 0;
             }
 
-            return a > b ? currentDepth! : -1 * currentDepth!;
+            return a > newB ? currentDepth! : -1 * currentDepth!;
         }
 
         private static observeKey(keys: PlainObjectOf<number>, count: number): string | null {

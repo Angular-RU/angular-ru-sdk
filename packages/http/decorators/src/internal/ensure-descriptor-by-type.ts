@@ -6,9 +6,9 @@ import { EnsureDecoratorOptions } from '@angular-ru/http/typings';
 import { Observable } from 'rxjs';
 
 import { ensureMethodArgsRegistry } from './ensure-method-args-registry';
+import { ensureQueryParams } from './ensure-query-params';
 import { KEY_REQUEST_BODY, META_REQUEST_BODY } from './meta-keys.config';
 import { mutatePathByPathVariables } from './mutate-path-by-path-variables';
-import { mutateQueryParams } from './mutate-query-params';
 import { validateMethod } from './validate-method';
 
 // eslint-disable-next-line max-lines-per-function
@@ -34,7 +34,7 @@ export function ensureDescriptorByType<T>({
             const bodyRegistry: MethodArgsRegistry = ensureMethodArgsRegistry(originalMethod, META_REQUEST_BODY);
             const indexBody: number | null = bodyRegistry.getIndexByKey(KEY_REQUEST_BODY);
             const body: Any = isNil(indexBody) ? template.options.body : template.options.body ?? args?.[indexBody];
-            const params: PlainObject | undefined = mutateQueryParams(
+            const params: PlainObject | undefined = ensureQueryParams(
                 template.options.queryParams,
                 originalMethod,
                 args

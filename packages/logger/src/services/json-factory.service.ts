@@ -13,8 +13,10 @@ export class JsonFactory {
 
     // eslint-disable-next-line max-lines-per-function
     public colorsJSON(json: string): string[] {
+        let resultJson: string = json;
         const arr: string[] = [];
-        json = json.replace(this.lexerTypeFinder, (match: string): string => {
+
+        resultJson = resultJson.replace(this.lexerTypeFinder, (match: string): string => {
             let style: string = this._number;
             if (/^"/.test(match)) {
                 if (/:$/.test(match)) {
@@ -32,7 +34,7 @@ export class JsonFactory {
             return `%c${match}%c`;
         });
 
-        arr.unshift(json);
+        arr.unshift(resultJson);
 
         return arr;
     }
