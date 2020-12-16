@@ -1,3 +1,10 @@
+#### 15.50.1 (2020-12-16)
+
+##### Bug Fixes
+
+-   **@angular-ru/ng-table-builder:** remove runOutsideAngular
+    ([01b8f35d](https://github.com/Angular-RU/angular-ru-sdk/commit/01b8f35d3585a220cf6c1c3be3b570d3a4a52b81))
+
 #### 15.50.0 (2020-12-16)
 
 ##### Build System / Dependencies
