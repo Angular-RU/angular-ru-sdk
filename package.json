@@ -83,7 +83,7 @@
         "@types/jasmine": "3.6.2",
         "@types/jasminewd2": "2.0.8",
         "@types/karma": "5.0.1",
-        "angular-cli-ghpages": "0.6.2",
+        "angular-cli-ghpages": "1.0.0-rc.1",
         "devtools-detect": "3.0.1",
         "hammerjs": "2.0.8",
         "intersection-observer": "0.12.0",

@@ -22,7 +22,7 @@
     "scripts": {
         "build:app": "ng build integration --prod",
         "build:lib": "ng build library && cp README.md dist/library",
-        "deploy": "echo 'skip deploy' # cp README.md dist/integration && ng deploy --no-build",
+        "deploy": "cp README.md dist/integration && ng deploy --no-build",
         "start": "ng serve --open",
         "test": "yarn jest --config ./jest.config.js",
         "postversion": "npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\""
