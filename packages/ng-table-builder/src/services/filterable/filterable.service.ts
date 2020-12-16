@@ -1,10 +1,9 @@
-import { ApplicationRef, Injectable, Injector, NgZone } from '@angular/core';
+import { ApplicationRef, Injectable, Injector } from '@angular/core';
 import { checkIsShallowEmpty } from '@angular-ru/common/object';
 import { Any } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { ReplaySubject, Subject } from 'rxjs';
 
-import { TABLE_GLOBAL_OPTIONS } from '../../config/table-global-options';
 import { TableRow } from '../../interfaces/table-builder.external';
 import { filterAllWorker } from './filter.worker';
 import {
@@ -15,8 +14,6 @@ import {
     FilterWorkerEvent,
     TableFilterType
 } from './filterable.interface';
-
-const { TIME_IDLE }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
 
 @Injectable()
 export class FilterableService implements FilterableInterface {
@@ -33,12 +30,10 @@ export class FilterableService implements FilterableInterface {
     private previousFiltering: boolean = false;
     private readonly thread: WebWorkerThreadService;
     private readonly app: ApplicationRef;
-    private readonly ngZone: NgZone;
 
     constructor(injector: Injector) {
         this.app = injector.get<ApplicationRef>(ApplicationRef);
         this.thread = injector.get<WebWorkerThreadService>(WebWorkerThreadService);
-        this.ngZone = injector.get<NgZone>(NgZone);
     }
 
     public get globalFilterValue(): string | null {
@@ -124,13 +119,8 @@ export class FilterableService implements FilterableInterface {
                         resolve({
                             source: sorted,
                             fireSelection: (): void => {
-                                // eslint-disable-next-line max-nested-callbacks
-                                this.ngZone.runOutsideAngular((): void => {
-                                    window.setTimeout((): void => {
-                                        this.events.next({ value, type });
-                                        this.app.tick();
-                                    }, TIME_IDLE);
-                                });
+                                this.events.next({ value, type });
+                                this.app.tick();
                             }
                         });
                     });

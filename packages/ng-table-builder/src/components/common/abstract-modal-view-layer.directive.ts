@@ -96,8 +96,8 @@ export abstract class AbstractModalViewLayer<T extends PositionState> implements
     protected update(): void {
         this.isViewed = !!this.state.opened;
         this.isRendered = true;
-        this.app.tick();
         detectChanges(this.cd);
+        this.app.tick();
 
         window.setTimeout((): void => {
             this.minHeight = this.calculatedHeight;
