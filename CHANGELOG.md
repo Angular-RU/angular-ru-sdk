@@ -1,3 +1,15 @@
+#### 15.51.0 (2020-12-17)
+
+##### Continuous Integration
+
+-   update angular-framework to v11.0.5
+    ([09aefb34](https://github.com/Angular-RU/angular-ru-sdk/commit/09aefb34a564e44c795aa77aa024d5f41345c157))
+
+##### New Features
+
+-   update dependencies to v0.8.0-beta.6
+    ([bae24321](https://github.com/Angular-RU/angular-ru-sdk/commit/bae24321c0099273aec093d3884b56dfc5de1a91))
+
 #### 15.50.1 (2020-12-16)
 
 ##### Bug Fixes
