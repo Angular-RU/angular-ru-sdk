@@ -1,4 +1,4 @@
-import { ApplicationRef, Injectable, Injector } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { checkIsShallowEmpty } from '@angular-ru/common/object';
 import { Any } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
@@ -29,10 +29,8 @@ export class FilterableService implements FilterableInterface {
     public filtering: boolean = false;
     private previousFiltering: boolean = false;
     private readonly thread: WebWorkerThreadService;
-    private readonly app: ApplicationRef;
 
     constructor(injector: Injector) {
-        this.app = injector.get<ApplicationRef>(ApplicationRef);
         this.thread = injector.get<WebWorkerThreadService>(WebWorkerThreadService);
     }
 
@@ -120,7 +118,6 @@ export class FilterableService implements FilterableInterface {
                             source: sorted,
                             fireSelection: (): void => {
                                 this.events.next({ value, type });
-                                this.app.tick();
                             }
                         });
                     });

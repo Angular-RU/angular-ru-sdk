@@ -51,7 +51,7 @@ export class NgxFilterViewerComponent implements OnChanges, OnInit, OnDestroy {
 
     public ngOnChanges(changes: SimpleChanges): void {
         if (changes['text'] && changes['text'].firstChange) {
-            this.defaultHtmlValue();
+            this.defaultHtmlValue({ forceUpdate: false });
         }
     }
 
@@ -60,10 +60,8 @@ export class NgxFilterViewerComponent implements OnChanges, OnInit, OnDestroy {
             if ((this.filterable.definition as Any)[this.key!] || this.filterable.globalFilterValue) {
                 this.changeSelection(event);
             } else {
-                this.defaultHtmlValue();
+                this.defaultHtmlValue({ forceUpdate: true });
             }
-
-            detectChanges(this.cd);
         });
     }
 
@@ -78,7 +76,7 @@ export class NgxFilterViewerComponent implements OnChanges, OnInit, OnDestroy {
                 if (event.value || (this.filterable.definition as Any)[this.key!]) {
                     this.selected(event);
                 } else {
-                    this.defaultHtmlValue();
+                    this.defaultHtmlValue({ forceUpdate: false });
                 }
 
                 detectChanges(this.cd);
@@ -121,8 +119,12 @@ export class NgxFilterViewerComponent implements OnChanges, OnInit, OnDestroy {
         }
     }
 
-    private defaultHtmlValue(): void {
+    private defaultHtmlValue({ forceUpdate }: { forceUpdate: boolean }): void {
         this.html = this.text;
         this.founded = false;
+
+        if (forceUpdate) {
+            detectChanges(this.cd);
+        }
     }
 }

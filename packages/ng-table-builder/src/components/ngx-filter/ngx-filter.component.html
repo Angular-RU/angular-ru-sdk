@@ -3,7 +3,6 @@
 <div class="table-grid__filter-menu" *ngIf="state?.opened">
     <div
         class="filter-menu"
-        *ngIf="isViewed"
         (contextmenu)="close()"
         [ngStyle]="{
             'width.px': width,
@@ -15,7 +14,7 @@
         }"
     >
         <div class="table-close__button" (click)="closeFilter()"></div>
-        <div *ngIf="isRendered" [@fadeInLinear]>
+        <div>
             <ng-content></ng-content>
         </div>
     </div>

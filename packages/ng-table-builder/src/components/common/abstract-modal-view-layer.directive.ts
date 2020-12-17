@@ -15,7 +15,7 @@ import { MousePosition } from '../../interfaces/table-builder.internal';
 import { ContextMenuService } from '../../services/context-menu/context-menu.service';
 import { FilterableService } from '../../services/filterable/filterable.service';
 import { UtilsService } from '../../services/utils/utils.service';
-import { MINIMAL_TIMEOUT, SCROLLBAR_WIDTH } from '../../symbols';
+import { MINIMAL_TIMEOUT, SCROLLBAR_WIDTH, TIME_500_MS } from '../../symbols';
 
 export interface PositionState {
     key: string | null;
@@ -96,13 +96,17 @@ export abstract class AbstractModalViewLayer<T extends PositionState> implements
     protected update(): void {
         this.isViewed = !!this.state.opened;
         this.isRendered = true;
-        detectChanges(this.cd);
         this.app.tick();
 
-        window.setTimeout((): void => {
-            this.minHeight = this.calculatedHeight;
-            this.app.tick();
-            detectChanges(this.cd);
-        }, MINIMAL_TIMEOUT);
+        this.ngZone.run((): void => {
+            window.setTimeout((): void => {
+                this.minHeight = this.calculatedHeight;
+                detectChanges(this.cd);
+                // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+                // window.setTimeout((): void => this.app.tick(), 500);
+            }, MINIMAL_TIMEOUT);
+        });
+
+        window.setTimeout((): void => this.app.tick(), TIME_500_MS);
     }
 }
