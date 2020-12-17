@@ -1,3 +1,20 @@
+#### 15.51.1 (2020-12-17)
+
+##### Chores
+
+-   **release:** updated release notes and package versions [ci skip]
+    ([41bea396](https://github.com/Angular-RU/angular-ru-sdk/commit/41bea39618c8180931a950c89a4b323344851896))
+
+##### Continuous Integration
+
+-   update angular-cli
+    ([abb2befc](https://github.com/Angular-RU/angular-ru-sdk/commit/abb2befc718e4b7c5d6ce2425a128c4df9d93d5a))
+
+##### Refactors
+
+-   **@angular-ru/ng-table-builder:** trigger detectChanges in zone
+    ([9ca85baa](https://github.com/Angular-RU/angular-ru-sdk/commit/9ca85baaeaeea707168b4cef1aa6ec3280722fbc))
+
 #### 15.51.0 (2020-12-17)
 
 ##### Continuous Integration
