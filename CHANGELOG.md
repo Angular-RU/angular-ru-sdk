@@ -1,3 +1,10 @@
+#### 15.52.0 (2020-12-18)
+
+##### New Features
+
+-   **@angular-ru/ng-table-builder:** improved performance for detect changes when open context menu, filter menu
+    ([d284e6e6](https://github.com/Angular-RU/angular-ru-sdk/commit/d284e6e672dfe1416665eaf827fbfeff5292288b))
+
 #### 15.51.2 (2020-12-18)
 
 ##### Bug Fixes
