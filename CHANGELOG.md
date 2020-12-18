@@ -1,3 +1,10 @@
+#### 15.51.2 (2020-12-18)
+
+##### Bug Fixes
+
+-   **@angular-ru/ng-table-builder:** expose filter event
+    ([513b7d04](https://github.com/Angular-RU/angular-ru-sdk/commit/513b7d04e9158de3e0de6941c4b1bb43d65ef3bf))
+
 #### 15.51.1 (2020-12-17)
 
 ##### Chores
