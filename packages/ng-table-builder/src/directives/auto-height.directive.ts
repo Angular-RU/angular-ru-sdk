@@ -17,7 +17,7 @@ import { delay, takeUntil } from 'rxjs/operators';
 import { TABLE_GLOBAL_OPTIONS } from '../config/table-global-options';
 import { TableRow } from '../interfaces/table-builder.external';
 import { BoxView, DynamicHeightOptions } from '../interfaces/table-builder.internal';
-import { BORDER_TOB_WITH_BOTTOM, HEAD_TOP, SCROLLBAR_WIDTH } from '../symbols';
+import { BORDER_TOB_WITH_BOTTOM, HEAD_TOP, SCROLLBAR_SIZE } from '../symbols';
 
 const MIN_RESIZE_DELAY: number = 500;
 const RECALCULATE_HEIGHT: number = 100;
@@ -96,7 +96,7 @@ export class AutoHeightDirective implements OnInit, OnChanges, OnDestroy {
     private get scrollbarHeight(): number {
         const scrollHeight: number =
             this.sourceRef.length === 1
-                ? SCROLLBAR_WIDTH
+                ? SCROLLBAR_SIZE
                 : (this.tableViewport.offsetHeight ?? 0) - (this.tableViewport.clientHeight ?? 0);
         return scrollHeight + BORDER_TOB_WITH_BOTTOM;
     }

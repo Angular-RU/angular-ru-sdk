@@ -15,7 +15,7 @@ import { MousePosition } from '../../interfaces/table-builder.internal';
 import { ContextMenuService } from '../../services/context-menu/context-menu.service';
 import { FilterableService } from '../../services/filterable/filterable.service';
 import { UtilsService } from '../../services/utils/utils.service';
-import { MINIMAL_TIMEOUT, SCROLLBAR_WIDTH, TIME_500_MS } from '../../symbols';
+import { MINIMAL_TIMEOUT, SCROLLBAR_SIZE } from '../../symbols';
 
 export interface PositionState {
     key: string | null;
@@ -29,6 +29,8 @@ export abstract class AbstractModalViewLayer<T extends PositionState> implements
     public height: number | null = null;
     public isViewed: boolean = false;
     public isRendered: boolean = false;
+    public isShowed: boolean = false;
+    public maxHeight: number | null = null;
     public minHeight: number | null = null;
     protected subscription: Subscription | null = null;
     protected readonly app: ApplicationRef;
@@ -56,12 +58,17 @@ export abstract class AbstractModalViewLayer<T extends PositionState> implements
 
     public get overflowX(): number {
         const overflowX: number = this.width! + this.left - (getBodyRect()?.width ?? 0);
-        return overflowX > 0 ? overflowX + SCROLLBAR_WIDTH : 0;
+        return overflowX > 0 ? overflowX + SCROLLBAR_SIZE : 0;
     }
 
     public get overflowY(): number {
-        const overflowY: number = this.calculatedHeight + this.top - (getBodyRect()?.height ?? 0);
-        return overflowY > 0 ? overflowY + SCROLLBAR_WIDTH : 0;
+        const remainHeight: number = (getBodyRect()?.height ?? 0) - this.top;
+
+        if (this.calculatedHeight > remainHeight) {
+            return this.calculatedHeight - remainHeight + SCROLLBAR_SIZE;
+        } else {
+            return 0;
+        }
     }
 
     public abstract get state(): Partial<T>;
@@ -96,17 +103,18 @@ export abstract class AbstractModalViewLayer<T extends PositionState> implements
     protected update(): void {
         this.isViewed = !!this.state.opened;
         this.isRendered = true;
-        this.app.tick();
+        detectChanges(this.cd);
 
         this.ngZone.run((): void => {
             window.setTimeout((): void => {
                 this.minHeight = this.calculatedHeight;
                 detectChanges(this.cd);
-                // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-                // window.setTimeout((): void => this.app.tick(), 500);
+
+                window.setTimeout((): void => {
+                    this.isShowed = true;
+                    detectChanges(this.cd);
+                }, MINIMAL_TIMEOUT);
             }, MINIMAL_TIMEOUT);
         });
-
-        window.setTimeout((): void => this.app.tick(), TIME_500_MS);
     }
 }

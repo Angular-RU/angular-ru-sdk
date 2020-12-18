@@ -67,31 +67,7 @@
     </ngx-column>
 
     <ngx-filter #filter>
-        <div class="my-filter">
-            <mat-form-field appearance="outline">
-                <mat-label>Find options</mat-label>
-                <mat-select
-                    [value]="$any(table.filterable.filterTypeDefinition)[filter.state.key!]"
-                    (valueChange)="table.filterable.updateFilterTypeBy($event, filter.state.key); table.filter()"
-                >
-                    <mat-option *ngFor="let type of table.filterable.types | keyvalue" [value]="type.value">
-                        {{ type.key }}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline">
-                <mat-label>Filter by {{ filter.state.key! | uppercase }}</mat-label>
-                <input
-                    matInput
-                    name="width"
-                    autocomplete="off"
-                    [ngModel]="$any(table.filterable.definition)[filter.state.key!]"
-                    (ngModelChange)="table.filterable.updateFilterValueBy($event, filter.state.key); table.filter()"
-                />
-                <mat-icon matSuffix>search</mat-icon>
-            </mat-form-field>
-        </div>
+        <context-menu-sample [state]="filter.state" [table]="table"></context-menu-sample>
     </ngx-filter>
 
     <ngx-footer>

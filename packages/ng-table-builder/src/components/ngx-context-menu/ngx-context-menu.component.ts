@@ -7,8 +7,10 @@ import {
     OnInit,
     ViewEncapsulation
 } from '@angular/core';
+import { detectChanges } from '@angular-ru/common/utils';
 
 import { ContextMenuState } from '../../services/context-menu/context-menu.interface';
+import { MINIMAL_TIMEOUT } from '../../symbols';
 import { AbstractModalViewLayer } from '../common/abstract-modal-view-layer.directive';
 
 const SIZE: number = 300;
@@ -39,7 +41,14 @@ export class NgxContextMenuComponent extends AbstractModalViewLayer<ContextMenuS
     }
 
     public close(event: MouseEvent): void {
-        this.contextMenu.close();
-        event.preventDefault();
+        this.isShowed = false;
+        detectChanges(this.cd);
+
+        this.ngZone.runOutsideAngular((): void => {
+            window.setTimeout((): void => {
+                this.contextMenu.close();
+                event.preventDefault();
+            }, MINIMAL_TIMEOUT);
+        });
     }
 }

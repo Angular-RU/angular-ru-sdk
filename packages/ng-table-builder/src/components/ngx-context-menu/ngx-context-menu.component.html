@@ -12,7 +12,7 @@
         (contextmenu)="close($event)"
         [ngStyle]="{
             'width.px': width,
-            opacity: isRendered ? 1 : 0,
+            opacity: isShowed ? 1 : 0,
             'max-height.px': isRendered ? maxHeight : 0,
             'min-height.px': isRendered ? minHeight : 0,
             'top.px': state?.position?.top! - overflowY,

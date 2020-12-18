@@ -51,7 +51,7 @@ import { SortableService } from './services/sortable/sortable.service';
 import { NgxTableViewChangesService } from './services/table-view-changes/ngx-table-view-changes.service';
 import { TemplateParserService } from './services/template-parser/template-parser.service';
 import { UtilsService } from './services/utils/utils.service';
-import { SCROLLBAR_WIDTH } from './symbols';
+import { SCROLLBAR_SIZE } from './symbols';
 
 const { ROW_HEIGHT, FILTER_DELAY_TIME, TIME_IDLE }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
 
@@ -97,7 +97,7 @@ export abstract class AbstractTableBuilderApiImpl
     public scrollContainer!: ElementRef<HTMLElement>;
     @ViewChildren('column', { read: false })
     public columnList!: QueryList<ElementRef<HTMLDivElement>>;
-    public scrollbarWidth: number = SCROLLBAR_WIDTH;
+    public scrollbarWidth: number = SCROLLBAR_SIZE;
     public columnListWidth: number = 0;
     public viewPortInfo: ViewPortInfo = {};
     public tableViewportChecked: boolean = true;

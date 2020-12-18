@@ -20,7 +20,7 @@ import { Subscription } from 'rxjs';
 import { ContextItemEvent } from '../../../interfaces/table-builder.external';
 import { ContextMenuState } from '../../../services/context-menu/context-menu.interface';
 import { ContextMenuService } from '../../../services/context-menu/context-menu.service';
-import { MIN_PADDING_CONTEXT_ITEM, SCROLLBAR_WIDTH } from '../../../symbols';
+import { MIN_PADDING_CONTEXT_ITEM, SCROLLBAR_SIZE } from '../../../symbols';
 
 const MENU_WIDTH: number = 300;
 
@@ -95,12 +95,12 @@ export class NgxContextMenuItemComponent implements OnInit, OnDestroy {
 
     public overflowX(): number {
         const overflowX: number = this.subMenuWidth + this.offsetX! - (getBodyRect()?.width ?? 0);
-        return overflowX > 0 ? overflowX + SCROLLBAR_WIDTH : 0;
+        return overflowX > 0 ? overflowX + SCROLLBAR_SIZE : 0;
     }
 
     public overflowY(ref: HTMLDivElement): number {
         const overflowY: number = ref.offsetHeight + this.offsetY! - (getBodyRect()?.height ?? 0);
-        return overflowY > 0 ? overflowY + SCROLLBAR_WIDTH : 0;
+        return overflowY > 0 ? overflowY + SCROLLBAR_SIZE : 0;
     }
 
     public emitClick(event: MouseEvent): void {
