@@ -14,7 +14,16 @@ export { NgxFilterDirective } from './directives/ngx-filter.directive';
 export { TemplateBodyTdDirective } from './directives/rows/template-body-td.directive';
 export { TemplateHeadThDirective } from './directives/rows/template-head-th.directive';
 export * from './interfaces/table-builder.external';
-export { TableFilterType } from './services/filterable/filterable.interface';
+export {
+    FilterableInterface,
+    FilterableMessage,
+    FilterColumnsOpts,
+    FilterEvent,
+    FilterGlobalOpts,
+    FilterStateEvent,
+    FilterWorkerEvent,
+    TableFilterType
+} from './services/filterable/filterable.interface';
 export { NgxTableViewChangesService } from './services/table-view-changes/ngx-table-view-changes.service';
 export { TableBuilderComponent } from './table-builder.component';
 export { TableBuilderModule } from './table-builder.module';
