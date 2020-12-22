@@ -118,7 +118,7 @@ in the Angular.
          </td>
          <td>
             <a href="https://npmjs.com/package/@angular-ru/eslint-config">
-            <img src="https://img.shields.io/npm/dw/@angular-ru/jest-utils">
+            <img src="https://img.shields.io/npm/dw/@angular-ru/eslint-config">
             </a>
             <a href="packages/eslint-config/README.md">
             <img src="https://img.shields.io/badge/README--green.svg">
