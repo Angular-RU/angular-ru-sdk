@@ -152,25 +152,26 @@
     ora "5.1.0"
     rxjs "6.6.3"
 
-"@angular-eslint/eslint-plugin-template@0.8.0-beta.6":
-  version "0.8.0-beta.6"
-  resolved "https://registry.npmjs.org/@angular-eslint/eslint-plugin-template/-/eslint-plugin-template-0.8.0-beta.6.tgz#1a0925525681fd48470a3858a485acfc6e81c2c8"
-  integrity sha512-iC9YJSqeokMlFFLP0ZyWalzhVU++2bBdY9vfwrTaNC4JNLszAOOlkFRtPXZZQZpJ/3PM0FlVhD4OSZL36Gw6Iw==
+"@angular-eslint/eslint-plugin-template@0.8.0-beta.7":
+  version "0.8.0-beta.7"
+  resolved "https://registry.npmjs.org/@angular-eslint/eslint-plugin-template/-/eslint-plugin-template-0.8.0-beta.7.tgz#c5210deed2f4936076f119ae274df48ef9723a7e"
+  integrity sha512-NaypVRYR+AjC/LXuBEZSHv6EpyjIVu2+YpMI2CPWuPDjmBi/x+g+jZXkqD/QtT6voKGtlII77QfuZMbGgfNhiQ==
   dependencies:
     "@typescript-eslint/experimental-utils" "4.3.0"
     aria-query "^4.2.2"
+    axobject-query "^2.2.0"
 
-"@angular-eslint/eslint-plugin@0.8.0-beta.6":
-  version "0.8.0-beta.6"
-  resolved "https://registry.npmjs.org/@angular-eslint/eslint-plugin/-/eslint-plugin-0.8.0-beta.6.tgz#42dd7cc9bede7289d91488a52bab6e40c71d8742"
-  integrity sha512-yXyNSTUA0Nosh1ZI/iJerbwqeakhI495P5O1luxE9Fw7Vcdmb+JdmE++6Ipq2oO7rEyv2rHpci84tqNTE3wr2g==
+"@angular-eslint/eslint-plugin@0.8.0-beta.7":
+  version "0.8.0-beta.7"
+  resolved "https://registry.npmjs.org/@angular-eslint/eslint-plugin/-/eslint-plugin-0.8.0-beta.7.tgz#fcdb33e2fc83e0448c09c6f00d0a6e9021936b10"
+  integrity sha512-MsOzL+7O6bzNA18MZoPKc2SZCD5oavQQEnBeHNGERvZuqrj2Omf/9xjFzoRmAlvGqYUmsF8x6qTdSjLmE5IDVQ==
   dependencies:
     "@typescript-eslint/experimental-utils" "4.3.0"
 
-"@angular-eslint/template-parser@0.8.0-beta.6":
-  version "0.8.0-beta.6"
-  resolved "https://registry.npmjs.org/@angular-eslint/template-parser/-/template-parser-0.8.0-beta.6.tgz#7e9463cd1cf49c49986278449a90b15324aa2d0d"
-  integrity sha512-uyl5PoKDdOrJ9E/rnxqSkFOA8TCzqZpiH5MNnR8TYCrho0fAQkxVVyevgZxV7ocHZAGnl5aZ7tsB/VVX+R2Q2g==
+"@angular-eslint/template-parser@0.8.0-beta.7":
+  version "0.8.0-beta.7"
+  resolved "https://registry.npmjs.org/@angular-eslint/template-parser/-/template-parser-0.8.0-beta.7.tgz#af244060addde3a8f4a26d86136fb9c7cc10d935"
+  integrity sha512-e2nzNQlnbcB8G8/lUSA1ZH+UUvyD+WVXO8hgAOvBWjslXvpkrKhwMSvF7N2A9VBDPFD4K4jEX2/KSiFQAB6/fA==
   dependencies:
     eslint-scope "^5.1.0"
 
@@ -3579,6 +3580,11 @@ axobject-query@2.0.2:
   integrity sha512-MCeek8ZH7hKyO1rWUbKNQBbl4l2eY0ntk7OGi+q0RlafrCnfPxC06WZA+uebCfmYp4mNU9jRBP1AhGyf8+W3ww==
   dependencies:
     ast-types-flow "0.0.7"
+
+axobject-query@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.npmjs.org/axobject-query/-/axobject-query-2.2.0.tgz#943d47e10c0b704aa42275e20edf3722648989be"
+  integrity sha512-Td525n+iPOOyUQIeBfcASuG6uJsDOITl7Mds5gFyerkWiX7qhUTdYUBlSgNMyVqtSJqwpt1kXGLdUt6SykLMRA==
 
 babel-jest@^26.6.3:
   version "26.6.3"
