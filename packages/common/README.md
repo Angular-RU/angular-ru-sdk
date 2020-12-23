@@ -25,3 +25,4 @@
     - [(@)angular-ru/common/string](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/string.md)
     - [(@)angular-ru/common/number](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/number.md)
     - [(@)angular-ru/common/runtime](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/runtime.md)
+    - [(@)angular-ru/common/ivy](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/ivy.md)
