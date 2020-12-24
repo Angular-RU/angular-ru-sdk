@@ -1,8 +1,8 @@
 import { ApplicationRef, DebugElement, NgZone } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { Any } from '@angular-ru/common/typings';
 
-import { Any } from '../../../dist/library/typings';
 import { TestModule } from './helpers/test.module';
 import {
     FeatureTestComponent,
