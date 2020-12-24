@@ -13,6 +13,7 @@ import {
     TestService
 } from './helpers/test-default';
 import { ExtendingTestComponent, TestStairsC } from './helpers/test-extending';
+import { TestTokenComponent, TestTokenService } from './helpers/test-token';
 
 describe('[TEST]: Ivy utils', (): void => {
     let componentFixture: ComponentFixture<TestComponent>;
@@ -102,6 +103,23 @@ describe('[TEST]: Ivy utils', (): void => {
         testStairsComponentFixture.detectChanges();
         const content: string = testStairsComponentFixture.debugElement.nativeElement.innerHTML;
         expect(content).toBe(`${NgZone.name} test ${FeatureTestService.name}`);
+    });
+
+    it('should work with injection tokens', async function (): Promise<void> {
+        const testTokenComponentFixture: ComponentFixture<TestTokenComponent> = TestBed.createComponent(
+            TestTokenComponent
+        );
+        const component: TestTokenComponent = testTokenComponentFixture.componentInstance;
+        expect(component.appRef.constructor).toBe(ApplicationRef);
+        expect(component.componentToken).toBe('COMPONENT_TOKEN');
+        expect(component.moduleToken).toBe('MODULE_TOKEN');
+        expect(component.serviceToken).toBe('SERVICE_TOKEN');
+
+        const testService: TestTokenService = component.testTokenService;
+        expect(testService.ngZone.constructor).toBe(NgZone);
+        expect(testService.componentToken).toBe('COMPONENT_TOKEN');
+        expect(testService.moduleToken).toBe('MODULE_TOKEN');
+        expect(testService.serviceToken).toBe('SERVICE_TOKEN');
     });
 
     it('should not work with non-injectable classes', async function (): Promise<void> {
