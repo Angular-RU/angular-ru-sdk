@@ -29,7 +29,7 @@ export class TestStairsC extends TestStairsB {
 @Directive({
     selector: '[super-test-directive]'
 })
-export abstract class SuperTestDirective {
+export abstract class AbstractSuperTestDirective {
     @InjectFeatureTestService()
     public featureTestService!: FeatureTestService;
 
@@ -42,7 +42,7 @@ export abstract class SuperTestDirective {
     selector: 'extending-test-component',
     template: ''
 })
-export class ExtendingTestComponent extends SuperTestDirective {
+export class ExtendingTestComponent extends AbstractSuperTestDirective {
     @InjectNgZone()
     public ngZone!: NgZone;
 

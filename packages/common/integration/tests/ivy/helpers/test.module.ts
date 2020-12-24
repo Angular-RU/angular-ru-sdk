@@ -1,5 +1,4 @@
-import { ApplicationRef, NgModule, NgZone } from '@angular/core';
-import { useInjector } from '@angular-ru/common/ivy';
+import { NgModule } from '@angular/core';
 
 import {
     FeatureTestComponent,
@@ -15,11 +14,4 @@ import { ExtendingTestComponent, TestStairsC } from './test-extending';
     declarations: [TestDirective, TestComponent, FeatureTestComponent, ExtendingTestComponent, TestPipe, TestStairsC],
     providers: [TestService, FeatureTestService]
 })
-export class TestModule {
-    @W
-    public ngZone!: NgZone;
-}
-
-function W(c, k) {
-    useInjector(c, (inj, i) => (i[k] = inj.get(ApplicationRef)));
-}
+export class TestModule {}

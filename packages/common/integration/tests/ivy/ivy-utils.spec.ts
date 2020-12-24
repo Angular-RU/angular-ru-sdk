@@ -2,10 +2,12 @@ import { ApplicationRef, DebugElement, NgZone } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
+import { Any } from '../../../dist/library/typings';
 import { TestModule } from './helpers/test.module';
 import {
     FeatureTestComponent,
     FeatureTestService,
+    NonInjectable,
     TestComponent,
     TestDirective,
     TestService
@@ -14,10 +16,15 @@ import { ExtendingTestComponent, TestStairsC } from './helpers/test-extending';
 
 describe('[TEST]: Ivy utils', (): void => {
     let componentFixture: ComponentFixture<TestComponent>;
+    console.error = jest.fn();
 
     beforeEach(function (): void {
         TestBed.configureTestingModule({ imports: [TestModule] });
         componentFixture = TestBed.createComponent(TestComponent);
+    });
+
+    afterAll(function (): void {
+        (console.error as Any).mockRestore();
     });
 
     /** @description due to test running Angular in JIT mode,
@@ -85,8 +92,7 @@ describe('[TEST]: Ivy utils', (): void => {
     it('should work useInjector with component 3-level extending chain', async function (): Promise<void> {
         const testStairsComponentFixture: ComponentFixture<TestStairsC> = TestBed.createComponent(TestStairsC);
         const component: TestStairsC = testStairsComponentFixture.componentInstance;
-        const a = TestBed.inject(TestModule);
-        console.log(a);
+
         expect(component.featureTestService.constructor).toBe(FeatureTestService);
         expect(component.featureTestService.testService.testField).toBe('test');
         expect(component.testService.constructor).toBe(TestService);
@@ -96,5 +102,11 @@ describe('[TEST]: Ivy utils', (): void => {
         testStairsComponentFixture.detectChanges();
         const content: string = testStairsComponentFixture.debugElement.nativeElement.innerHTML;
         expect(content).toBe(`${NgZone.name} test ${FeatureTestService.name}`);
+    });
+
+    it('should not work with non-injectable classes', async function (): Promise<void> {
+        const nonInjectable: NonInjectable = new NonInjectable();
+        expect(nonInjectable.ngZone).not.toBeDefined();
+        expect(console.error).toHaveBeenCalledWith(new Error('Class with useInjector in decorator must be Injectable'));
     });
 });

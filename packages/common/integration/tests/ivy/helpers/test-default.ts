@@ -68,3 +68,8 @@ export class FeatureTestComponent {
 
     constructor(public appRef: ApplicationRef) {}
 }
+
+export class NonInjectable {
+    @InjectNgZone()
+    public ngZone!: NgZone;
+}

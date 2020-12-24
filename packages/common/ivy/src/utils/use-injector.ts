@@ -3,7 +3,7 @@ import {
     Injector,
     ɵNG_COMP_DEF as NG_COMP_DEF,
     ɵNG_DIR_DEF as NG_DIR_REF,
-    ɵNG_MOD_DEF as NG_MOD_DEF,
+    ɵNG_INJ_DEF as NG_INJ_DEF,
     ɵNG_PIPE_DEF as NG_PIPE_DEF,
     ɵNG_PROV_DEF as NG_PROV_DEF,
     ɵɵdirectiveInject as directiveInject
@@ -23,7 +23,7 @@ export function useInjector<T>(
     if (deferWrapping) {
         Promise.resolve()
             .then((): void => wrapFactory(constructor, effectFunction))
-            .catch(console.error);
+            .catch((error: Error): void => console.error(error));
     } else {
         wrapFactory(constructor, effectFunction);
     }
@@ -34,9 +34,19 @@ function wrapFactory<T>(
     effectFunction: (injector: Injector, instance: T) => void
 ): void {
     const definition: Any = getOwnDefinitionOfClass(constructor);
+    if (!definition) {
+        throw new Error('Class with useInjector in decorator must be Injectable');
+    }
+
+    definition.factory = getFactoryWrapper(constructor, definition);
+    insertFactoryWrapper(constructor, definition.factory);
+    insertPatcher(constructor, effectFunction);
+}
+
+function getFactoryWrapper<T>(constructor: Any, definition: Any): (...args: Any[]) => T {
     const ngFactory: (...args: Any[]) => T = definition.factory ?? getNgFactoryOfClass(constructor);
 
-    definition.factory = function (...args: Any[]): T {
+    return function (...args: Any[]): T {
         const instance: Any = ngFactory(...args);
         const injector: Injector = directiveInject(INJECTOR);
         const patch: PatchFunction<T> | undefined = getPatcherOfClass(constructor);
@@ -45,8 +55,6 @@ function wrapFactory<T>(
         }
         return instance;
     };
-    insertFactoryWrapper(constructor, definition.factory);
-    insertPatcher(constructor, effectFunction);
 }
 
 function insertFactoryWrapper<T>(constructor: Any, factory: (...args: Any[]) => T): void {
@@ -77,11 +85,11 @@ function insertPatcher<T>(constructor: Any, effectFunction: (injector: Injector,
 
 function getOwnDefinitionOfClass(constructor: Any): Any | undefined {
     const definedProperty: string | undefined = [
-        NG_COMP_DEF,
-        NG_DIR_REF,
-        NG_PIPE_DEF,
-        NG_PROV_DEF,
-        NG_MOD_DEF
+        NG_COMP_DEF, // for component
+        NG_DIR_REF, //  for directive
+        NG_PIPE_DEF, // for pipe
+        NG_PROV_DEF, // for service
+        NG_INJ_DEF //   for module
     ].find((property: string): boolean => constructor.hasOwnProperty(property));
     return definedProperty ? constructor[definedProperty] : undefined;
 }
