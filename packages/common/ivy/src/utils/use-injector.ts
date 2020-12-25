@@ -38,19 +38,22 @@ function wrapFactory<T>(
         throw new Error('Class with useInjector in decorator must be Injectable');
     }
 
-    definition.factory = getFactoryWrapper(constructor, definition);
-    insertFactoryWrapper(constructor, definition.factory);
+    const ngFactoryNotWrapped: boolean = !getPatcherOfClass(constructor);
+    if (ngFactoryNotWrapped) {
+        definition.factory = generateFactoryWrapper(constructor, definition);
+        insertFactoryWrapper(constructor, definition.factory);
+    }
     insertPatcher(constructor, effectFunction);
 }
 
-function getFactoryWrapper<T>(constructor: Any, definition: Any): (...args: Any[]) => T {
+function generateFactoryWrapper<T>(constructor: Any, definition: Any): (...args: Any[]) => T {
     const ngFactory: (...args: Any[]) => T = definition.factory ?? getNgFactoryOfClass(constructor);
 
     return function (...args: Any[]): T {
         const instance: Any = ngFactory(...args);
-        const injector: Injector = directiveInject(INJECTOR);
         const patch: PatchFunction<T> | undefined = getPatcherOfClass(constructor);
         if (patch) {
+            const injector: Injector = directiveInject(INJECTOR);
             patch(injector, instance);
         }
         return instance;
