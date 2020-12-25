@@ -1,3 +1,11 @@
+#### 15.58.1 (2020-12-25)
+
+##### Other Changes
+
+-   **@angular-ru/common:** add useInjector method for accessing…
+    ([#344](https://github.com/Angular-RU/angular-ru-sdk/pull/344))
+    ([680bf2b2](https://github.com/Angular-RU/angular-ru-sdk/commit/680bf2b25c713863cd305c96f75a5fe0b42bc159))
+
 #### 15.58.0 (2020-12-25)
 
 ##### Build System / Dependencies
