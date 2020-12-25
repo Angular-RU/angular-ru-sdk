@@ -1,3 +1,32 @@
+#### 15.58.0 (2020-12-25)
+
+##### Build System / Dependencies
+
+-   **deps:** bump node-notifier from 8.0.0 to 8.0.1 ([#340](https://github.com/Angular-RU/angular-ru-sdk/pull/340))
+    ([c2b7552f](https://github.com/Angular-RU/angular-ru-sdk/commit/c2b7552f624a5922d15584495f7a78c22eb7042d))
+
+##### Chores
+
+-   **release:** updated release notes and package versions [ci skip]
+    ([14316193](https://github.com/Angular-RU/angular-ru-sdk/commit/143161938242b0f537cb9e2a4485d6524b535e09))
+
+##### New Features
+
+-   **@angular-ru/common:** add useInjector method for accessing DI inside decorators & tests
+    ([91beba68](https://github.com/Angular-RU/angular-ru-sdk/commit/91beba68703daa87519830078b48d111b00121ac))
+
+##### Other Changes
+
+-   **@angular-ru/common:**
+    -   add useInjector method for accessing DI inside decorators & tests
+        ([be14c9a3](https://github.com/Angular-RU/angular-ru-sdk/commit/be14c9a3c685d2c863f1c44761aa6078705ddee0))
+    -   add useInjector method for accessing DI inside decorators & tests
+        ([99b55074](https://github.com/Angular-RU/angular-ru-sdk/commit/99b55074ba7f1565c2b518bda0b178d5ac129159))
+    -   add useInjector method for accessing DI inside decorators & tests
+        ([5dd10ba3](https://github.com/Angular-RU/angular-ru-sdk/commit/5dd10ba3f50c39261b018a48c25950cb5d2bff5f))
+    -   add useInjector method for accessing DI inside decorators & tests
+        ([47330f59](https://github.com/Angular-RU/angular-ru-sdk/commit/47330f595358fc7780e3da45931290cf710d43cb))
+
 #### 15.57.0 (2020-12-23)
 
 ##### New Features
