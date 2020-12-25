@@ -52,6 +52,8 @@ export class FeatureTestService {
     @InjectTestService()
     public testService!: TestService;
 
+    public callsCounter: number = 0;
+
     constructor(public ngZone: NgZone) {}
 }
 

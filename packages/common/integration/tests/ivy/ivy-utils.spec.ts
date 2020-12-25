@@ -75,6 +75,7 @@ describe('[TEST]: Ivy utils', (): void => {
         expect(component.featureTestService.constructor).toBe(FeatureTestService);
         expect(component.featureTestService.testService.constructor).toBe(TestService);
         expect(component.featureTestService.testService.testField).toBe('test');
+        expect(component.featureTestService.callsCounter).toBe(1);
     });
 
     it('should work useInjector with component extending directive', async function (): Promise<void> {
