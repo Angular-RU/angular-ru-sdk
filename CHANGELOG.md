@@ -1,3 +1,10 @@
+#### 15.66.0 (2021-01-04)
+
+##### New Features
+
+-   update dependency sort-package-json to v1.48.1
+    ([e076ad2a](https://github.com/Angular-RU/angular-ru-sdk/commit/e076ad2a695d053d5066f838336d342d21944fac))
+
 #### 15.65.0 (2021-01-03)
 
 ##### New Features
