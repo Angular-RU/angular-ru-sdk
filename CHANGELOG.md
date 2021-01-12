@@ -1,3 +1,10 @@
+#### 15.70.1 (2021-01-12)
+
+##### Performance Improvements
+
+-   **@angular-ru/ng-table-builder:** remove twice detect changes
+    ([5bfc8700](https://github.com/Angular-RU/angular-ru-sdk/commit/5bfc870011abee620afb75197567419bbed23a8d))
+
 #### 15.70.0 (2021-01-07)
 
 ##### New Features
