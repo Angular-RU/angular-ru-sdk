@@ -1,3 +1,15 @@
+#### 15.71.0 (2021-01-14)
+
+##### Continuous Integration
+
+-   update angular-cli
+    ([77091f28](https://github.com/Angular-RU/angular-ru-sdk/commit/77091f2891137ce4503f071209a600cd8bc5a53b))
+
+##### New Features
+
+-   update ESLint ([#358](https://github.com/Angular-RU/angular-ru-sdk/pull/358))
+    ([4de488b6](https://github.com/Angular-RU/angular-ru-sdk/commit/4de488b6e84290843fea09148c2c8ae57feca05f))
+
 #### 15.70.1 (2021-01-12)
 
 ##### Performance Improvements
