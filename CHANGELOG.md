@@ -1,3 +1,10 @@
+#### 15.76.0 (2021-01-18)
+
+##### New Features
+
+-   update dependency eslint-plugin-jsdoc to v31.0.7
+    ([2ff81fc7](https://github.com/Angular-RU/angular-ru-sdk/commit/2ff81fc783487b030f2fab07818bae9a976a099b))
+
 #### 15.75.0 (2021-01-17)
 
 ##### New Features
