@@ -80,7 +80,7 @@
         "@angular/platform-browser-dynamic": "11.0.9",
         "@angular/router": "11.0.9",
         "@ngx-translate/core": "13.0.0",
-        "@types/jasmine": "3.6.2",
+        "@types/jasmine": "3.6.3",
         "@types/jasminewd2": "2.0.8",
         "@types/karma": "5.0.1",
         "angular-cli-ghpages": "1.0.0-rc.1",
