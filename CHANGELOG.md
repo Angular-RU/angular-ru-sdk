@@ -1,3 +1,15 @@
+#### 15.77.0 (2021-01-20)
+
+##### Continuous Integration
+
+-   update dependency @types/jasmine to v3.6.3
+    ([541adf02](https://github.com/Angular-RU/angular-ru-sdk/commit/541adf02ea0553f1bdb480cdc2c9cc180a1e6934))
+
+##### New Features
+
+-   update dependency @types/node to v14.14.22
+    ([748c37c9](https://github.com/Angular-RU/angular-ru-sdk/commit/748c37c9336b3bf263539459ef6f05928359eb44))
+
 #### 15.76.0 (2021-01-18)
 
 ##### New Features
