@@ -16,6 +16,7 @@ export class SelectionService implements OnDestroy {
     public primaryKey: string = PrimaryKey.ID;
     public selectionTaskIdle: number | null = null;
     public onChanges: Subject<void> = new Subject<void>();
+    public originRows: TableRow[] | null = null;
     private readonly handler: PlainObjectOf<Fn> = {};
 
     constructor(private readonly ngZone: NgZone) {}
@@ -35,6 +36,7 @@ export class SelectionService implements OnDestroy {
     }
 
     public ngOnDestroy(): void {
+        this.originRows = null;
         this.unListenShiftKey();
     }
 
@@ -48,15 +50,13 @@ export class SelectionService implements OnDestroy {
     public toggleAll(rows: TableRow[] | null): void {
         window.clearInterval(this.selectionTaskIdle!);
 
-        if (this.selectionModel.toggledAll) {
-            this.selectionModel.toggledAll = false;
+        if (this.selectionModel.isAll) {
             this.selectionModel.clear();
         } else {
-            this.selectionModel.toggledAll = true;
             (rows ?? []).forEach((row: TableRow): void => this.selectionModel.select(this.getIdByRow(row), row, false));
         }
 
-        this.checkIsAllSelected(rows ?? []);
+        this.checkIsAllSelected();
     }
 
     public reset(): void {
@@ -69,23 +69,25 @@ export class SelectionService implements OnDestroy {
         this.ngZone.runOutsideAngular((): void => window.clearInterval(this.selectionTaskIdle!));
         this.selectionModel.toggle(this.getIdByRow(row), row, true);
         this.onChanges.next();
+        this.checkIsAllSelected();
     }
 
-    public selectRow(row: TableRow, event: MouseEvent, rows: TableRow[]): void {
+    public selectRow(row: TableRow, event: MouseEvent): void {
+        const rows: TableRow[] = this.originRows ?? [];
         const { shiftKey, ctrlKey }: MouseEvent = event;
         const index: number = rows.findIndex(
             (item: TableRow): boolean => (item || {})[this.primaryKey] === (row || {})[this.primaryKey]
         );
 
         if (shiftKey) {
-            this.multipleSelectByShiftKeydown(index, rows);
+            this.multipleSelectByShiftKeydown(index);
         } else if (ctrlKey) {
             this.multipleSelectByCtrlKeydown(row, index);
         } else {
             this.singleSelect(row, index);
         }
 
-        this.checkIsAllSelected(rows);
+        this.checkIsAllSelected();
     }
 
     public getIdByRow(row: TableRow): RowId {
@@ -119,13 +121,14 @@ export class SelectionService implements OnDestroy {
         window.removeEventListener(type, this.handler[type], true);
     }
 
-    private checkIsAllSelected(rows: TableRow[]): void {
-        this.selectionModel.isAll = rows.length === this.selectionModel.size;
+    private checkIsAllSelected(): void {
+        this.selectionModel.isAll = this.originRows?.length === this.selectionModel.size;
         this.selectionModel.generateImmutableEntries();
         this.onChanges.next();
     }
 
-    private multipleSelectByShiftKeydown(index: number, rows: TableRow[]): void {
+    private multipleSelectByShiftKeydown(index: number): void {
+        const rows: TableRow[] = this.originRows ?? [];
         this.selectionModel.clear();
         this.range.put(index);
         const selectedRange: boolean = this.range.selectedRange();

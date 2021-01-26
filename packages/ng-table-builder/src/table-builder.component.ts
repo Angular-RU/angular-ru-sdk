@@ -92,6 +92,7 @@ export class TableBuilderComponent
     private timeoutScrolledId: number | null = null;
     private timeoutViewCheckedId: number | null = null;
     private frameCalculateViewportId: number | null = null;
+    private selectionUpdateTaskId: number | null = null;
 
     constructor(public readonly cd: ChangeDetectorRef, injector: Injector) {
         super();
@@ -326,6 +327,7 @@ export class TableBuilderComponent
     public setSource(source: TableRow[]): void {
         this.originalSource = source;
         this.source = source;
+        this.selection.originRows = source;
     }
 
     protected calculateViewPortByRange({ start, end, bufferOffset, force }: CalculateRange): void {
@@ -523,6 +525,7 @@ export class TableBuilderComponent
         this.customModelColumnsKeys = this.generateCustomModelColumnsKeys();
         this.modelColumnKeys = this.generateModelColumnKeys();
         this.originalSource = this.source;
+        this.selection.originRows = this.originalSource;
         const unDirty: boolean = !this.dirty;
 
         this.checkSelectionValue();
@@ -570,7 +573,8 @@ export class TableBuilderComponent
             this.selection.onChanges.pipe(takeUntil(this.destroy$)).subscribe((): void => {
                 detectChanges(this.cd);
                 this.ngZone.runOutsideAngular((): void => {
-                    window.requestAnimationFrame((): void => this.app.tick());
+                    window.clearInterval(this.selectionUpdateTaskId!);
+                    this.selectionUpdateTaskId = window.setTimeout((): void => this.app.tick(), FRAME_TIME);
                 });
             });
         }

@@ -48,11 +48,12 @@ describe('[TEST]: Selection service', () => {
 
     beforeEach(() => {
         selection = new SelectionService(mockNgZone as NgZone);
+        selection.originRows = data;
     });
 
     it('should be correct exception', () => {
         try {
-            selection.selectRow(data[0], mockPreventDefault as MouseEvent, data);
+            selection.selectRow(data[0], mockPreventDefault as MouseEvent);
         } catch (e) {
             expect(e.message).toContain(`Can't select item, make sure you pass the correct primary key`);
         }
@@ -63,28 +64,20 @@ describe('[TEST]: Selection service', () => {
         const firstIndex: number = 0;
 
         selection.primaryKey = 'position';
-        selection.selectRow(
-            data[lastIndex],
-            {
-                ...mockPreventDefault,
-                shiftKey: true
-            } as MouseEvent,
-            data
-        );
+        selection.selectRow(data[lastIndex], {
+            ...mockPreventDefault,
+            shiftKey: true
+        } as MouseEvent);
 
         expect(selection.selectionModel.entries).toEqual({});
         expect(selection.selectionModel.isAll).toEqual(false);
         expect(selection.range).toEqual({ start: 2, end: null });
         expect(selection.range.selectedRange()).toEqual(false);
 
-        selection.selectRow(
-            data[firstIndex],
-            {
-                ...mockPreventDefault,
-                shiftKey: true
-            } as MouseEvent,
-            data
-        );
+        selection.selectRow(data[firstIndex], {
+            ...mockPreventDefault,
+            shiftKey: true
+        } as MouseEvent);
 
         expect(selection.selectionModel.entries).toEqual({ 1: true, 2: true, 3: true });
         expect(selection.selectionModel.isAll).toEqual(true);
@@ -98,28 +91,20 @@ describe('[TEST]: Selection service', () => {
 
         selection.primaryKey = 'position';
 
-        selection.selectRow(
-            data[lastIndex],
-            {
-                ...mockPreventDefault,
-                ctrlKey: true
-            } as MouseEvent,
-            data
-        );
+        selection.selectRow(data[lastIndex], {
+            ...mockPreventDefault,
+            ctrlKey: true
+        } as MouseEvent);
 
         expect(selection.selectionModel.entries).toEqual({ 3: true });
         expect(selection.selectionModel.isAll).toEqual(false);
         expect(selection.range).toEqual({ start: 2, end: null });
         expect(selection.range.selectedRange()).toEqual(false);
 
-        selection.selectRow(
-            data[firstIndex],
-            {
-                ...mockPreventDefault,
-                ctrlKey: true
-            } as MouseEvent,
-            data
-        );
+        selection.selectRow(data[firstIndex], {
+            ...mockPreventDefault,
+            ctrlKey: true
+        } as MouseEvent);
 
         expect(selection.selectionModel.entries).toEqual({ 1: true, 3: true });
         expect(selection.selectionModel.isAll).toEqual(false);
@@ -133,14 +118,14 @@ describe('[TEST]: Selection service', () => {
 
         selection.primaryKey = 'position';
 
-        selection.selectRow(data[lastIndex], mockPreventDefault as MouseEvent, data);
+        selection.selectRow(data[lastIndex], mockPreventDefault as MouseEvent);
 
         expect(selection.selectionModel.entries).toEqual({ 3: true });
         expect(selection.selectionModel.isAll).toEqual(false);
         expect(selection.range).toEqual({ start: 2, end: null });
         expect(selection.range.selectedRange()).toEqual(false);
 
-        selection.selectRow(data[firstIndex], mockPreventDefault as MouseEvent, data);
+        selection.selectRow(data[firstIndex], mockPreventDefault as MouseEvent);
 
         expect(selection.selectionModel.entries).toEqual({ 1: true });
         expect(selection.selectionModel.isAll).toEqual(false);
