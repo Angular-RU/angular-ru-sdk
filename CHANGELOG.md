@@ -1,3 +1,11 @@
+#### 15.78.1 (2021-01-26)
+
+##### Bug Fixes
+
+-   **@angular-ru/ng-table-builder:** invalid detect changes when trigger all selection method
+    ([#371](https://github.com/Angular-RU/angular-ru-sdk/pull/371))
+    ([e5eedd17](https://github.com/Angular-RU/angular-ru-sdk/commit/e5eedd17ee6df28e004c285838e9db4e7debcf03))
+
 #### 15.78.0 (2021-01-20)
 
 ##### New Features
