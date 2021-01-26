@@ -75,7 +75,7 @@ export class TableTbodyComponent {
                 const selectOnlyUnSelectedRow: boolean = this.enableSelection && !this.checkSelectedItem(row);
 
                 if (selectOnlyUnSelectedRow) {
-                    this.selection.selectRow(row, event, this.source ?? []);
+                    this.selection.selectRow(row, event);
                 }
 
                 this.contextMenu.openContextMenu(event, key, row);
@@ -95,7 +95,7 @@ export class TableTbodyComponent {
         this.ngZone.run((): void => {
             if (this.enableSelection) {
                 this.selection.selectionTaskIdle = window.setTimeout((): void => {
-                    this.selection.selectRow(row, event, this.source ?? []);
+                    this.selection.selectRow(row, event);
                     this.changed.emit();
                 }, SELECTION_DELAY);
             }

@@ -5,7 +5,6 @@ import { RowId } from '../../interfaces/table-builder.internal';
 
 export class SelectionMap {
     public isAll: boolean = false;
-    public toggledAll: boolean = false;
     public entries: PlainObjectOf<boolean> = {};
     public produceDisableFn: ProduceDisableFn = null;
     private readonly map: Map<RowId, boolean> = new Map<RowId, boolean>();
