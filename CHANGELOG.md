@@ -1,3 +1,10 @@
+#### 15.78.2 (2021-01-26)
+
+##### Build System / Dependencies
+
+-   upgrade to Angular 11.1.0 ([#372](https://github.com/Angular-RU/angular-ru-sdk/pull/372))
+    ([28f8c036](https://github.com/Angular-RU/angular-ru-sdk/commit/28f8c036a2771ff2754c1902b70579525fa0454e))
+
 #### 15.78.1 (2021-01-26)
 
 ##### Bug Fixes
