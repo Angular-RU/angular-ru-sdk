@@ -13,6 +13,5 @@
         "importHelpers": true,
         "types": [],
         "lib": ["dom", "es2018"]
-    },
-    "files": ["src/**/*.ts"]
+    }
 }
