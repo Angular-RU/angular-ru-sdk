@@ -1,3 +1,10 @@
+#### 15.79.0 (2021-01-27)
+
+##### New Features
+
+-   upgrade to new ng-packagr ([#373](https://github.com/Angular-RU/angular-ru-sdk/pull/373))
+    ([6831529a](https://github.com/Angular-RU/angular-ru-sdk/commit/6831529a8239ba4b24bbd4c8a9bef67768ce3e3f))
+
 #### 15.78.2 (2021-01-26)
 
 ##### Build System / Dependencies
