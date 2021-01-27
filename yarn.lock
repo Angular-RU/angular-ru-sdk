@@ -183,10 +183,10 @@
   dependencies:
     tslib "^2.0.0"
 
-"@angular/cdk@11.1.0":
-  version "11.1.0"
-  resolved "https://registry.npmjs.org/@angular/cdk/-/cdk-11.1.0.tgz#35a5f60b79265cbd340c9ed1519b5c460ee5d6da"
-  integrity sha512-yFEHtdp0o/xGnYebrU/PQqWVIlB7SaP3cSviq/LTv/h2EINn3PzU/Zhdhg0k0fk09BrKoS+o8AVIddduIdDpYw==
+"@angular/cdk@11.1.1":
+  version "11.1.1"
+  resolved "https://registry.npmjs.org/@angular/cdk/-/cdk-11.1.1.tgz#87cf1ff8eef898296129742b503bff1f979b7bc1"
+  integrity sha512-rIog+eqv6RtpSWKM+iHQ5oHyOALMxRXkeTiJyvPfBCYQ2hzPN16+eNxP/JOR+C4y7pMaJyPur0pC572IZEnCsw==
   dependencies:
     tslib "^2.0.0"
   optionalDependencies:
@@ -283,10 +283,10 @@
   resolved "https://registry.npmjs.org/@angular/language-service/-/language-service-11.1.0.tgz#d5a435f10ee8b79ceaf32352baaa104c089171c7"
   integrity sha512-7NQcwNHgUGOdqQsyp1Xw/WFbYvC4WA+Et2DJJvkitmg2ejndtm45FALUu1Z2X6bbKzdJOuNGU5vNh1ZJ/IyGRQ==
 
-"@angular/material@11.1.0":
-  version "11.1.0"
-  resolved "https://registry.npmjs.org/@angular/material/-/material-11.1.0.tgz#2f68f55efc049fa9b036cb2bb3b4f4aae0f67fa2"
-  integrity sha512-k7KpU8T32mmi1vaU27SSZ/gwO2YpxEUCTSzAOZNK8YugAXC+A5xPYLcNU8dlzBP4EW7XBkeSSnUacpI199YcyQ==
+"@angular/material@11.1.1":
+  version "11.1.1"
+  resolved "https://registry.npmjs.org/@angular/material/-/material-11.1.1.tgz#06104a6e456c3e56a1375fbb2890bed5d25d634b"
+  integrity sha512-atQyGG1/Xz1Q4udmQ7HWOYCAl14evL29EWhsrk4q/5OAumqKMEcJI4Ro/Pgn0N31HpsT2zHyDsPYe0bnjy+/Ww==
   dependencies:
     tslib "^2.0.0"
 
