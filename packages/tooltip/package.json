@@ -16,17 +16,19 @@
         "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
     },
     "license": "MIT",
-    "author": "king.of.ferelden@gmail.com",
+    "author": "angular-ru@yandex.ru",
     "main": "lib/index.js",
     "scripts": {
+        "build:app": "ng build integration --prod",
+        "deploy": "cp README.md dist/integration && ng deploy --no-build",
         "build:lib": "ng build library && cp README.md dist/library",
-        "start": "ng serve",
+        "start": "ng serve --open",
         "postversion": "npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\""
     },
     "peerDependencies": {
-        "@angular-ru/common": ">=13.19.0",
-        "@angular/common": ">=8.0.0 <12.0.0",
-        "@angular/core": ">=8.0.0 <12.0.0"
+        "@angular-ru/common": ">=15.0.0",
+        "@angular/common": ">=11.1.0",
+        "@angular/core": ">=11.1.0"
     },
     "publishConfig": {
         "access": "public",

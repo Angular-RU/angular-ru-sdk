@@ -1,4 +1,14 @@
 export { TooltipDirective } from './tooltip.directive';
-export { TooltipOffset, TooltipPlacement, TooltipSize } from './tooltip.interface';
+export {
+    TooltipContextValue,
+    TooltipOffset,
+    TooltipOptions,
+    TooltipPlacement,
+    TooltipSize,
+    TooltipTextInterceptor,
+    TooltipValue
+} from './tooltip.interfaces';
 export { TooltipModule } from './tooltip.module';
-export { TOOLTIP_DELTA, TOOLTIP_MIN_DURATION, TOOLTIP_OFFSET_ELEMENT_PX } from './tooltip.properties';
+export { TOOLTIP_DEFAULT_OPTIONS } from './tooltip.properties';
+export { TOOLTIP_OPTIONS_TOKEN, TOOLTIP_TEXT_INTERCEPTOR_TOKEN } from './tooltip.tokens';
+export { TooltipDefaultTextInterceptor } from './tooltip-default-text.interceptor';
