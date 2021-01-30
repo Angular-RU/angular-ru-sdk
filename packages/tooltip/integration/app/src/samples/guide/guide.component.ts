@@ -1,12 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    NgZone,
-    TrackByFunction,
-    VERSION,
-    Version
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, VERSION, Version } from '@angular/core';
 
 interface Favorite {
     id: number;
@@ -35,10 +27,6 @@ export class GuideComponent {
             isMarked: false
         })
     );
-
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/typedef
-    // @ts-ignore
-    public trackById: TrackByFunction<Favorite> = (_: number, favorite: Favorite): number => favorite.id;
 
     constructor(private readonly zone: NgZone, protected readonly cd: ChangeDetectorRef) {}
 
