@@ -22,6 +22,8 @@
     color: #fff;
     padding: 8px 10px;
     font-size: 12px;
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     text-shadow: 0 -1px 0 #000;
     transition-delay: 0.2s !important;
@@ -38,8 +40,6 @@
 
     & > *::selection {
         text-shadow: 1px 1px 1px rgb(0 0 0 / 0%);
-        text-rendering: optimizeLegibility !important;
-        -webkit-font-smoothing: antialiased !important;
         background-color: var(--tooltip-color-bg-selection);
         color: var(--tooltip-color-selection);
     }

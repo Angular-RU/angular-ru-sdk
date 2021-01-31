@@ -1,3 +1,13 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$ng-app-variable-primary: mat-palette($mat-indigo);
+$ng-app-variable-accent: mat-palette($mat-pink, A200, A100, A400);
+$ng-app-variable-warn: mat-palette($mat-red);
+$ng-app-variable-theme: mat-light-theme($ng-app-variable-primary, $ng-app-variable-accent, $ng-app-variable-warn);
+
+@include angular-material-theme($ng-app-variable-theme);
+
 @import '~@angular-ru/tooltip/styles';
 
 html,
