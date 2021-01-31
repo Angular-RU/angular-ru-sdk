@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { Any } from '@angular-ru/common/typings';
 
 declare const hljs: Any;
@@ -7,7 +7,8 @@ declare const hljs: Any;
     selector: 'sample-first',
     templateUrl: './sample-first.component.html',
     styleUrls: ['./sample-first.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None
 })
 export class SampleFirstComponent implements AfterViewInit {
     public ngAfterViewInit(): void {
