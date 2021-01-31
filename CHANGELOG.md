@@ -1,3 +1,22 @@
+#### 15.80.0 (2021-01-31)
+
+##### Continuous Integration
+
+-   update dependency karma to v6 ([#377](https://github.com/Angular-RU/angular-ru-sdk/pull/377))
+    ([16a8b704](https://github.com/Angular-RU/angular-ru-sdk/commit/16a8b7045dd799bc021e0e522d028509cf0de4de))
+-   update devDependencies
+    ([16aeac92](https://github.com/Angular-RU/angular-ru-sdk/commit/16aeac921771a2d7e039e4f79417e3f9da9e70a9))
+-   update Angular to v11.1.1
+    ([027e06e3](https://github.com/Angular-RU/angular-ru-sdk/commit/027e06e3b957f83364556b722a13bc9cfb5971aa))
+-   update devDependencies to v11.1.1
+    ([d1460d42](https://github.com/Angular-RU/angular-ru-sdk/commit/d1460d42db4b385fd8f96bdb248743bead2daec5))
+
+##### New Features
+
+-   **@angular-ru/tooltip:** improved api and performance
+    ([#378](https://github.com/Angular-RU/angular-ru-sdk/pull/378))
+    ([182754a2](https://github.com/Angular-RU/angular-ru-sdk/commit/182754a25dc08294959bcb8df57d6de93d1c75c6))
+
 #### 15.79.0 (2021-01-27)
 
 ##### New Features
