@@ -1,3 +1,24 @@
+#### 15.81.0 (2021-01-31)
+
+##### Documentation Changes
+
+-   **@angular-ru/tooltip:**
+    -   update README.md
+        ([b80ad103](https://github.com/Angular-RU/angular-ru-sdk/commit/b80ad10325d3755809c0b7e7b358cad62575ae68))
+    -   update integration app
+        ([54265ed2](https://github.com/Angular-RU/angular-ru-sdk/commit/54265ed25d98508a669e867dd4e85099400cb0f5))
+-   update email in package.json
+    ([63cacb29](https://github.com/Angular-RU/angular-ru-sdk/commit/63cacb29a5fb3b510942f1595c78628ce8a3e33e))
+-   update integration app
+    ([0097d8f6](https://github.com/Angular-RU/angular-ru-sdk/commit/0097d8f616f756fd0b72352b53260127fd31036d))
+-   **@angular-ru/ng-table-builder:** update integration app
+    ([a30ac683](https://github.com/Angular-RU/angular-ru-sdk/commit/a30ac683ea3a43fc2bed16537098b5ae76f8376c))
+
+##### New Features
+
+-   **@angular-ru/build-tools:** add @types/karma, @types/jasmine, @types/jasminewd2
+    ([ebd4be2c](https://github.com/Angular-RU/angular-ru-sdk/commit/ebd4be2cdc5932142cceeff7cfc2db85e0436c1c))
+
 #### 15.80.0 (2021-01-31)
 
 ##### Continuous Integration
