@@ -41,7 +41,7 @@ export class AppModule {}
 <div tooltip="Top" tooltip-placement="top">Top</div>
 ```
 
-`The option 'tooltip-placement' is true by default`
+The value of option `'[tooltip-placement]'` by default is `'top'`.
 
 #### A custom template for the tooltip (html)
 
