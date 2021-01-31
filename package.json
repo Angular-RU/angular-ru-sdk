@@ -49,7 +49,7 @@
     "lint-staged": {
         "*.ts": [
             "yarn prettier --write",
-            "yarn eslint --fix --ingonre-pattern \"typescript.bad.ts\""
+            "yarn eslint --fix --ignore-pattern \"typescript.bad.ts\""
         ],
         "*.{html,css,scss,md,js,json}": [
             "yarn prettier --write"

@@ -73,4 +73,10 @@ export interface DataClientRequestOptions<T extends PlainObject = Any> {
      * custom properties
      */
     additionalOptions: T;
+
+    /**
+     * @description
+     * limit on the number of concurrent requests
+     */
+    limitConcurrency?: number;
 }
