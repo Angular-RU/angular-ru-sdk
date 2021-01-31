@@ -1,0 +1,97 @@
+<div>
+    <h2>Basic</h2>
+
+    <div class="wrapper wrapper--4">
+        <div class="cell" tooltip="Bottom" tooltip-placement="bottom">Bottom</div>
+        <div class="cell" tooltip="Right" tooltip-placement="right">Right</div>
+        <div class="cell" tooltip="Left" tooltip-placement="left">Left</div>
+        <div class="cell" tooltip="Top" tooltip-placement="top">Top</div>
+    </div>
+
+    <h2>With ng-template</h2>
+
+    <div class="wrapper wrapper--4">
+        <div class="cell" [tooltip]="template1" [tooltip-context]="{ name: 'Max' }" tooltip-placement="bottom">
+            Bottom with HTML
+
+            <ng-template #template1 let-context>
+                <span style="text-decoration: underline; color: yellow">Hello {{ context.name }}</span>
+            </ng-template>
+        </div>
+        <div class="cell" [tooltip]="template2" tooltip-placement="right" [tooltip-context]="version">
+            Right with HTML
+
+            <ng-template #template2 let-version>
+                <img src="assets/img/angular.svg" alt="logo" />
+                Angular {{ version.full }}
+            </ng-template>
+        </div>
+        <div class="cell" [tooltip]="template3" tooltip-placement="left">
+            Left with HTML
+
+            <ng-template #template3> ... </ng-template>
+        </div>
+        <div
+            class="cell"
+            [tooltip]="template4"
+            tooltip-size="medium"
+            tooltip-placement="top"
+            tooltip-css-style="height: 100px; overflow: auto"
+        >
+            Top with HTML
+
+            <ng-template #template4>
+                Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web
+                designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have
+                scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book. It usually
+                begins with: “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                ut labore et dolore magna aliqua.” The purpose of lorem ipsum is to addTooltipElementToBody a natural
+                looking block of text (sentence, paragraph, page, etc.) that doesn't distract from the layout. A
+                practice not without controversy, laying out pages with meaningless filler text can be very useful when
+                the focus is meant to be on design, not content. The passage experienced a surge in popularity during
+                the 1960s when Letraset used it on their dry-transfer sheets, and again during the 90s as desktop
+                publishers bundled the text with their software. Today it's seen all around the web; on templates,
+                websites, and stock designs. Use our generator to get your own, or read on for the authoritative history
+                of lorem ipsum.
+            </ng-template>
+        </div>
+    </div>
+
+    <h2>Example with remove Nodes</h2>
+
+    <div>
+        <cdk-virtual-scroll-viewport minBufferPx="200" maxBufferPx="200" [itemSize]="24" [style.height.px]="200">
+            <ng-container *cdkVirtualFor="let favorite of favorites">
+                <ng-template
+                    [ngTemplateOutlet]="virtualRef"
+                    [ngTemplateOutletContext]="{ $implicit: favorite }"
+                ></ng-template>
+            </ng-container>
+        </cdk-virtual-scroll-viewport>
+
+        <ng-template #virtualRef let-favorite>
+            <div class="favorite-line">
+                <mat-icon
+                    [tooltip]="templateRef"
+                    tooltip-placement="right"
+                    class="favorite-line--icon"
+                    [tooltip-context]="favorite"
+                    (click)="markFavorite(favorite)"
+                    [class.favorite-line--is-favorite]="favorite.isMarked"
+                >
+                    star_rate
+                </mat-icon>
+
+                <mat-icon tooltip="remove element" tooltip-placement="right" (click)="remove(favorite)">
+                    delete
+                </mat-icon>
+
+                {{ favorite.title }}
+            </div>
+
+            <ng-template #templateRef let-favorite>
+                {{ favorite.isMarked ? 'Remove from favorite list' : 'Add to favorite list' }}
+            </ng-template>
+        </ng-template>
+    </div>
+</div>
