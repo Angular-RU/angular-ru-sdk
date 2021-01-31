@@ -18,7 +18,7 @@
         "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
     },
     "license": "MIT",
-    "author": "splincode <omaxphp@yandex.ru>",
+    "author": "angular-ru@yandex.ru",
     "scripts": {
         "build:app": "ng build integration --prod",
         "build:lib": "ng build library && cp README.md dist/library",

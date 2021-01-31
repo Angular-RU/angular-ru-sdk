@@ -16,7 +16,7 @@
         "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
     },
     "license": "MIT",
-    "author": "splincode <omaxphp@yandex.ru>",
+    "author": "angular-ru@yandex.ru",
     "main": "index.js",
     "files": [
         "index.js",
