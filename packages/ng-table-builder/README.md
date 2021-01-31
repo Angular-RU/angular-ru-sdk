@@ -19,7 +19,10 @@ Angular table builder module to our app module (src/app.module.ts):
 import { TableBuilderModule } from '@angular-ru/ng-table-builder';
 
 @NgModule({
-    imports: [TableBuilderModule.forRoot() /*, ... */]
+    imports: [
+        // ...
+        TableBuilderModule.forRoot()
+    ]
 })
 export class AppModule {}
 ```
