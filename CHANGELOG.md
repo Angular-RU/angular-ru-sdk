@@ -1,3 +1,17 @@
+#### 15.82.2 (2021-02-01)
+
+##### Bug Fixes
+
+-   **@angular-ru/common:** sync modelView with model in ngControl for amount-format, convertCase, maxLength, trimInput
+    directives
+    ([cd541f50](https://github.com/Angular-RU/angular-ru-sdk/commit/cd541f501b3aee13cc93e5bb46ee4123aebbd24b))
+
+##### Other Changes
+
+-   **@angular-ru/common:** sync modelView with model in ngControl for amount-format, convertCase, maxLength, trimInput
+    directives
+    ([7126aaa6](https://github.com/Angular-RU/angular-ru-sdk/commit/7126aaa61e25ff744d0ddb68882a47bfe2be0325))
+
 #### 15.82.1 (2021-02-01)
 
 ##### Build System / Dependencies
