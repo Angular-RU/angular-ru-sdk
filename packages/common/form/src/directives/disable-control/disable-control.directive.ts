@@ -1,10 +1,10 @@
-import { Directive, Input } from '@angular/core';
+import { Directive, Input, Optional } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { PlainObject } from '@angular-ru/common/typings';
 
 @Directive({ selector: '[disableControl]' })
 export class DisableControlDirective {
-    constructor(private readonly ngControl: NgControl) {}
+    constructor(@Optional() private readonly ngControl: NgControl) {}
 
     @Input()
     public set disableControl(condition: boolean) {

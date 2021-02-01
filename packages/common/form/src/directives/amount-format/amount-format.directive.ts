@@ -55,6 +55,8 @@ export class AmountFormatDirective implements AfterViewInit {
             this.ngControl?.reset(modelValue);
             this.element.value = formattedValue;
         }
+
+        this.ngControl?.reset(this.element.value);
     }
 
     private setup(): void {
