@@ -1,3 +1,15 @@
+#### 15.82.0 (2021-02-01)
+
+##### New Features
+
+-   **@angular-ru/common:** support class-transformer 0.3.2
+    ([e52ab219](https://github.com/Angular-RU/angular-ru-sdk/commit/e52ab219437535120622a36a29b81746edd80597))
+
+##### Other Changes
+
+-   **@angular-ru/common:** support class-transformer 0.3.2
+    ([e6b89a09](https://github.com/Angular-RU/angular-ru-sdk/commit/e6b89a09121ed9c7026f546b68b71e252a1ddcb9))
+
 #### 15.81.0 (2021-01-31)
 
 ##### Documentation Changes
