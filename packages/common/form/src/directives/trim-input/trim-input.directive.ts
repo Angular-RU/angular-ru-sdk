@@ -21,7 +21,7 @@ export class TrimInputDirective implements AfterViewInit {
 
     private trimValue(): void {
         const dirtyValue: string = this.el.nativeElement.value?.trim();
-        this.ngControl?.reset(dirtyValue);
         this.el.nativeElement.value = dirtyValue;
+        this.ngControl?.reset(dirtyValue);
     }
 }
