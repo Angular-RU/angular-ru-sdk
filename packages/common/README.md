@@ -10,6 +10,7 @@
 
     - [(@)angular-ru/common/typings](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/typings.md)
     - [(@)angular-ru/common/form](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/form.md)
+    - [(@)angular-ru/common/class-transformer](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/class-transformer.md)
     - [(@)angular-ru/common/animations](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/animations.md)
     - [(@)angular-ru/common/utils](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/utils.md)
     - [(@)angular-ru/common/rxjs](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/rxjs.md)
