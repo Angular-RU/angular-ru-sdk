@@ -1,3 +1,25 @@
+#### 15.82.1 (2021-02-01)
+
+##### Build System / Dependencies
+
+-   **@angular-ru/tooltip:** forgot add @import '~@angular-ru/tooltip/styles';
+    ([880258d4](https://github.com/Angular-RU/angular-ru-sdk/commit/880258d4b603862bad5eef989e7ff792e6b162d5))
+
+##### Chores
+
+-   **release:** updated release notes and package versions [ci skip]
+    ([cd0b04ae](https://github.com/Angular-RU/angular-ru-sdk/commit/cd0b04ae61d43e3ba61674320629d0e61e3bd623))
+
+##### New Features
+
+-   **@angular-ru/common:** support class-transformer 0.3.2
+    ([e52ab219](https://github.com/Angular-RU/angular-ru-sdk/commit/e52ab219437535120622a36a29b81746edd80597))
+
+##### Other Changes
+
+-   **@angular-ru/common:** support class-transformer 0.3.2
+    ([e6b89a09](https://github.com/Angular-RU/angular-ru-sdk/commit/e6b89a09121ed9c7026f546b68b71e252a1ddcb9))
+
 #### 15.82.0 (2021-02-01)
 
 ##### New Features
