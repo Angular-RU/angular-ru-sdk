@@ -1,3 +1,15 @@
+#### 15.83.0 (2021-02-02)
+
+##### Continuous Integration
+
+-   update dependency karma to v6.0.4
+    ([52edbe65](https://github.com/Angular-RU/angular-ru-sdk/commit/52edbe65a4c313cf708d5232185f3cac1abf9301))
+
+##### New Features
+
+-   **@angular-ru/ng-table-builder:** use ngx-empty after filtering if data list is empty
+    ([cd2f27c6](https://github.com/Angular-RU/angular-ru-sdk/commit/cd2f27c61f9ae433829a313a0e0b98540f510f6b))
+
 #### 15.82.2 (2021-02-01)
 
 ##### Bug Fixes
