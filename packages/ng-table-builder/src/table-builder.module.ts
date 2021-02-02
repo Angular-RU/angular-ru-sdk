@@ -1,7 +1,7 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { DeepPathPipeModule, DefaultValuePipeModule } from '@angular-ru/common/pipes';
+import { DeepPathPipeModule, DefaultValuePipeModule, SafePipeModule } from '@angular-ru/common/pipes';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 
 import { DragIconComponent } from './components/drag-icon/drag-icon.component';
@@ -31,7 +31,7 @@ import { UtilsService } from './services/utils/utils.service';
 import { TableBuilderComponent } from './table-builder.component';
 
 @NgModule({
-    imports: [CommonModule, DragDropModule, DeepPathPipeModule, DefaultValuePipeModule],
+    imports: [CommonModule, DragDropModule, DeepPathPipeModule, DefaultValuePipeModule, SafePipeModule],
     declarations: [
         TableBuilderComponent,
         AutoHeightDirective,

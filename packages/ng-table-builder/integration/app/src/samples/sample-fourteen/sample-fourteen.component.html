@@ -9,7 +9,7 @@
 <ngx-table-builder #table [source]="data" [row-height]="40" class="filter-example" enable-filtering enable-selection>
     <ngx-options is-sortable is-filterable is-draggable is-resizable></ngx-options>
     <ngx-source-null>Loading...</ngx-source-null>
-    <ngx-empty>Not found</ngx-empty>
+    <ngx-empty><not-found></not-found></ngx-empty>
 
     <ngx-header [css-class]="['my-filter']" height="65">
         <div class="filter-form">
