@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { emptyValidator } from '@angular-ru/common/form';
+import { emptyValidator } from '@angular-ru/common/validators';
 
 describe('empty validator', () => {
     it('without empty validator', () => {

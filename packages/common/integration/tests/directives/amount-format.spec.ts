@@ -1,6 +1,6 @@
 import { NgControl } from '@angular/forms';
 import { ElementRef } from '@angular/core';
-import { AmountFormatDirective } from '@angular-ru/common/form';
+import { AmountFormatDirective } from '@angular-ru/common/directives';
 
 describe('[TEST]: Amount separator', () => {
     it('should be correct formatted amount (disable decimals)', () => {

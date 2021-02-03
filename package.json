@@ -93,6 +93,7 @@
         "karma-jasmine": "4.0.1",
         "karma-jasmine-html-reporter": "1.5.4",
         "lerna": "3.22.1",
+        "ngx-mask": "11.1.4",
         "ngx-toastr": "13.2.0",
         "pretty": "2.0.0",
         "rxjs": "6.6.3",

@@ -9944,6 +9944,13 @@ ng-packagr@11.1.2:
     stylus "^0.54.8"
     terser "^5.5.1"
 
+ngx-mask@11.1.4:
+  version "11.1.4"
+  resolved "https://registry.npmjs.org/ngx-mask/-/ngx-mask-11.1.4.tgz#5e10763c6862dfafa69d8dc49ea914831f396c98"
+  integrity sha512-TyKObQvgr6xol1/cFuI8pyVF6kGQVgw7Xl83eOv8SfoOm8iUdfQODlyUOCGu1yRnQCBj/IF46RFDd1DlJJF2nw==
+  dependencies:
+    tslib "^2.0.0"
+
 ngx-toastr@13.2.0:
   version "13.2.0"
   resolved "https://registry.npmjs.org/ngx-toastr/-/ngx-toastr-13.2.0.tgz#3ef047c977a7d0fb67fed9338b8f5add3c87b356"
