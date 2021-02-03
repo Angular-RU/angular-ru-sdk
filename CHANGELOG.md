@@ -1,3 +1,33 @@
+#### 15.84.2 (2021-02-03)
+
+##### Chores
+
+-   **release:**
+    -   updated release notes and package versions [ci skip]
+        ([0a32db0b](https://github.com/Angular-RU/angular-ru-sdk/commit/0a32db0b5a190148cd2b92218c63a0d3b9789725))
+    -   updated release notes and package versions [ci skip]
+        ([ed3b1958](https://github.com/Angular-RU/angular-ru-sdk/commit/ed3b1958be705fc364db0c320c2ce0f324852dd5))
+
+##### Continuous Integration
+
+-   update dependency karma to v6.0.4
+    ([52edbe65](https://github.com/Angular-RU/angular-ru-sdk/commit/52edbe65a4c313cf708d5232185f3cac1abf9301))
+
+##### Documentation Changes
+
+-   **@angular-ru/common:** update directives.md and validators.md
+    ([6b924dec](https://github.com/Angular-RU/angular-ru-sdk/commit/6b924decd10ba4878430f611b1674c10d5866328))
+
+##### New Features
+
+-   **@angular-ru/ng-table-builder:** use ngx-empty after filtering if data list is empty
+    ([cd2f27c6](https://github.com/Angular-RU/angular-ru-sdk/commit/cd2f27c61f9ae433829a313a0e0b98540f510f6b))
+
+##### Bug Fixes
+
+-   **@angular-ru/common:** remove form secondary package, also fix trimInput regression
+    ([fb4987f3](https://github.com/Angular-RU/angular-ru-sdk/commit/fb4987f33be2e1e23ba78350b22da1498f41b36e))
+
 #### 15.84.1 (2021-02-03)
 
 ##### Chores
