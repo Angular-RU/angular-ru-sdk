@@ -1,3 +1,15 @@
+#### 15.84.3 (2021-02-03)
+
+##### Bug Fixes
+
+-   **@angular-ru/ng-table-builder:** correct mark is all selection when skip any element
+    ([6fa2e0c7](https://github.com/Angular-RU/angular-ru-sdk/commit/6fa2e0c7ad18e608846fdd9fa62a43ca58a2602a))
+
+##### Other Changes
+
+-   **@angular-ru/ng-table-builder:** correct mark is all selection when skip any element
+    ([f33e2962](https://github.com/Angular-RU/angular-ru-sdk/commit/f33e2962d1e5a0c439fdfbc66a0b59720137c24d))
+
 #### 15.84.2 (2021-02-03)
 
 ##### Chores
