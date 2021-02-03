@@ -32,13 +32,13 @@ export class SelectionMap {
         return this.hasValue() && !this.isAll;
     }
 
-    public get(key: RowId): boolean {
-        return this.map.get(key) || false;
+    public get(key?: RowId): boolean {
+        return key ? this.map.get(key) ?? false : false;
     }
 
-    public select(key: RowId, row: TableRow, emit: boolean): void {
+    public select(key: RowId, row: TableRow, emit: boolean): boolean {
         if (this.produceDisableFn && this.produceDisableFn(row)) {
-            return;
+            return false;
         }
 
         this.map.set(key, true);
@@ -46,6 +46,8 @@ export class SelectionMap {
         if (emit) {
             this.generateImmutableEntries();
         }
+
+        return true;
     }
 
     public toggle(key: string | number, row: TableRow, emit: boolean): void {
