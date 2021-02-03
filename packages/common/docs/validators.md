@@ -1,4 +1,4 @@
-#### `@angular-ru/common/form`
+#### `@angular-ru/common/validators`
 
 -   `emptyValidator`
 
