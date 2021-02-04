@@ -177,10 +177,10 @@
   dependencies:
     eslint-scope "^5.1.0"
 
-"@angular/animations@11.1.1":
-  version "11.1.1"
-  resolved "https://registry.npmjs.org/@angular/animations/-/animations-11.1.1.tgz#3ae6754e70ecf858322a432f6484a1bab1013315"
-  integrity sha512-okideoWvlTz6VqHXDWKlMGj1beWxq/ag4n/+7y8IENQFgrKQWu4m52Igr5sJUfT1W8rXqLPaSGEpp9h+1SCDcQ==
+"@angular/animations@11.1.2":
+  version "11.1.2"
+  resolved "https://registry.npmjs.org/@angular/animations/-/animations-11.1.2.tgz#df5d5284625e17a4b094a6cf8c420d3c5f187693"
+  integrity sha512-n3mn5Fll4HxMb4aLN8oRrk7lQiToSNA7nI59Q+O4XPwA4Z8Mjtm2NZe2U/IvYrprh0y/6KdOI5u/+yyF5sKlsQ==
   dependencies:
     tslib "^2.0.0"
 
@@ -220,17 +220,17 @@
     universal-analytics "0.4.23"
     uuid "8.3.2"
 
-"@angular/common@11.1.1":
-  version "11.1.1"
-  resolved "https://registry.npmjs.org/@angular/common/-/common-11.1.1.tgz#fcf16d3d35cdc64c40458a51f879ab61ed2ecdf2"
-  integrity sha512-YHAmbjmwqIv43CdzRJkXJiT7p6Xm6DpsGKLuCGPoomUk7Nf5U5LsSZm/uvyTu0O+OQp2RUFUdGqW5DzSZZnKtQ==
+"@angular/common@11.1.2":
+  version "11.1.2"
+  resolved "https://registry.npmjs.org/@angular/common/-/common-11.1.2.tgz#500ca8c380ce57642d7c6e479e798275e9711c12"
+  integrity sha512-/+tMeFikT55VgOnx30y6M/WTuSwUarehpKhJ9F61hLZBTzWAIWuaD5DODZVnZ7b15pwgEO8UWnfr4778HTQlTw==
   dependencies:
     tslib "^2.0.0"
 
-"@angular/compiler-cli@11.1.1":
-  version "11.1.1"
-  resolved "https://registry.npmjs.org/@angular/compiler-cli/-/compiler-cli-11.1.1.tgz#72dc37f0ef079a556661d2b87683c1d39dde4e88"
-  integrity sha512-9m5GHcb0UwqFRlbB079FcZcKSDaIxJQVdXWlkKpiLs9aC7aoZt+q98gFxRUVcL0/9fGeY9orsnV413JB5Z+2wQ==
+"@angular/compiler-cli@11.1.2":
+  version "11.1.2"
+  resolved "https://registry.npmjs.org/@angular/compiler-cli/-/compiler-cli-11.1.2.tgz#476a3520ee73873859b4d3a029aa58bc5cc63be4"
+  integrity sha512-J+j200qgq+qqcBx0GQLnfE0dITwSO3IPPidbvsnuZ3iDmSvxfeJvbuu1PMbpb7Mi7J+StEnMWfRk5q7dnm7kFA==
   dependencies:
     "@babel/core" "^7.8.6"
     "@babel/types" "^7.8.6"
@@ -248,10 +248,10 @@
     tslib "^2.0.0"
     yargs "^16.1.1"
 
-"@angular/compiler@11.1.1":
-  version "11.1.1"
-  resolved "https://registry.npmjs.org/@angular/compiler/-/compiler-11.1.1.tgz#cafe43b52fb69f0b9493e597baec14fcffd13d7d"
-  integrity sha512-kybGddMBL6E2BFBOHIX39VsKVxH3yD7NA1g2mQUE9KIqLAavH0KLBr8B03R9MKb6+BElGpk/5yCyCkzkwQES7w==
+"@angular/compiler@11.1.2":
+  version "11.1.2"
+  resolved "https://registry.npmjs.org/@angular/compiler/-/compiler-11.1.2.tgz#1bfec2892c7ddbc40331de3a1bb6ea3997f3e436"
+  integrity sha512-+GyKPAdwkXVq6xfSRVhF2tlheDLGf2ziTzaMcpjRk8sM0VeJAqrbDI/vqpZq9y6GXceKGDPrXdPY7bPwBPpDYg==
   dependencies:
     tslib "^2.0.0"
 
@@ -260,10 +260,10 @@
   resolved "https://registry.npmjs.org/@angular/compiler/-/compiler-9.0.0.tgz#87e0bef4c369b6cadae07e3a4295778fc93799d5"
   integrity sha512-ctjwuntPfZZT2mNj2NDIVu51t9cvbhl/16epc5xEwyzyDt76pX9UgwvY+MbXrf/C/FWwdtmNtfP698BKI+9leQ==
 
-"@angular/core@11.1.1":
-  version "11.1.1"
-  resolved "https://registry.npmjs.org/@angular/core/-/core-11.1.1.tgz#62bf9ad93d5d88afacce3ea5b03803ec5790d20b"
-  integrity sha512-yBBLekXeDviZ+KW3DmGeOK0CK/yQ9gCy2uHY47KUDI4UTRRLz0NI5nS9NdKwk5bpCPId6ZPNsJtHPBFXRhAnNA==
+"@angular/core@11.1.2":
+  version "11.1.2"
+  resolved "https://registry.npmjs.org/@angular/core/-/core-11.1.2.tgz#8aa910860309886090d66cce45dd166b1082eb05"
+  integrity sha512-5urIQTcRZ2hd9Q2JE0KQocjlIvuRdlrSGzxjf9OZbOuapXDNF0Sb3uEcVnt980NS7vw0Am5thVP9gDspS45c7Q==
   dependencies:
     tslib "^2.0.0"
 
@@ -272,17 +272,17 @@
   resolved "https://registry.npmjs.org/@angular/core/-/core-9.0.0.tgz#227dc53e1ac81824f998c6e76000b7efc522641e"
   integrity sha512-6Pxgsrf0qF9iFFqmIcWmjJGkkCaCm6V5QNnxMy2KloO3SDq6QuMVRbN9RtC8Urmo25LP+eZ6ZgYqFYpdD8Hd9w==
 
-"@angular/forms@11.1.1":
-  version "11.1.1"
-  resolved "https://registry.npmjs.org/@angular/forms/-/forms-11.1.1.tgz#c8c468aba528f1f2764cf0bc7d9ab36636795473"
-  integrity sha512-MVysENcKonjMowdd2SxXQGcvNVpMTWVhwr5IZ2FBZKW/FNnSBq0R3nsr25zU0h8QWQHkROPtFF0+AEaENh/yAg==
+"@angular/forms@11.1.2":
+  version "11.1.2"
+  resolved "https://registry.npmjs.org/@angular/forms/-/forms-11.1.2.tgz#bb45bfb8f97f90e41473afc893097048bc38fd55"
+  integrity sha512-zdOWgRgX8P1ULAzlv1fEjL/LZDdlJAD/0IfuFm0TiA4YyYopla+n6PC/9R6AfFWlZhvWEIzSNdk8s23UYEh3HQ==
   dependencies:
     tslib "^2.0.0"
 
-"@angular/language-service@11.1.1":
-  version "11.1.1"
-  resolved "https://registry.npmjs.org/@angular/language-service/-/language-service-11.1.1.tgz#f43e9541933efe5102f9ea5ad372d8d5255f9300"
-  integrity sha512-87PYlTBBaMr0DYMYxkyeFas1qXIRYM0soNYkXC8yE+hxkGWTN15Zjk19+lx5z43++uNOiZw1mqnKTJoO46kE6A==
+"@angular/language-service@11.1.2":
+  version "11.1.2"
+  resolved "https://registry.npmjs.org/@angular/language-service/-/language-service-11.1.2.tgz#e220f5a2084e5c7efb0470c16142c49d3a3b33ad"
+  integrity sha512-nYkue4aqoBVBR/bEPMfHQZQjEKCCEdUJz2P25iN5mad0VNliQ+vxmBczBca0j78WEaUnrxLIbRCk7FXd788oUg==
 
 "@angular/material@11.1.1":
   version "11.1.1"
@@ -291,24 +291,24 @@
   dependencies:
     tslib "^2.0.0"
 
-"@angular/platform-browser-dynamic@11.1.1":
-  version "11.1.1"
-  resolved "https://registry.npmjs.org/@angular/platform-browser-dynamic/-/platform-browser-dynamic-11.1.1.tgz#2e05d719a1d134a9a22fb4e4a40234ac49ba122a"
-  integrity sha512-fI44VfQvwzNeZdSMGZEYqYZ6Q4Y1fSbyqh2hzbhVW4/Tq6s4qKdKn3TfAD6iK6te5ewZwbccfr4Y0zMbcwTSRA==
+"@angular/platform-browser-dynamic@11.1.2":
+  version "11.1.2"
+  resolved "https://registry.npmjs.org/@angular/platform-browser-dynamic/-/platform-browser-dynamic-11.1.2.tgz#f9167fe41c649b1dce0e05902a39d85571bd818b"
+  integrity sha512-xxA3x0+qz3daHiS/jR85XuaLyZP22p57Aws9nBIHEFvQ6H6BIRuPyJBOgh6MCE44MO3/1Xruk6lyAjhSwXGHlQ==
   dependencies:
     tslib "^2.0.0"
 
-"@angular/platform-browser@11.1.1":
-  version "11.1.1"
-  resolved "https://registry.npmjs.org/@angular/platform-browser/-/platform-browser-11.1.1.tgz#d9940e92664b06a3c6a10221f1b9438ba94b9b5f"
-  integrity sha512-z3OmXK9viTxNp2KpGdCiFkFCI69WVYyuMQerCwjuD2oymRpltc64uujIq3+j32UJ+sTGrjMSmgMo7ReAYMp7sg==
+"@angular/platform-browser@11.1.2":
+  version "11.1.2"
+  resolved "https://registry.npmjs.org/@angular/platform-browser/-/platform-browser-11.1.2.tgz#2b794799cb3edffcdac27637cc6e75d5bab9f1c5"
+  integrity sha512-jgOCBGlvVSqR5PN7vyhlQxrg6lLZDur+e5pgP6Gmi2NcywSq7fNAJjZSNLv/FptTLlGl9dVAbrAkyeQaPU1KfQ==
   dependencies:
     tslib "^2.0.0"
 
-"@angular/router@11.1.1":
-  version "11.1.1"
-  resolved "https://registry.npmjs.org/@angular/router/-/router-11.1.1.tgz#2b4cd78a53c9b5e282d60177b02f6bd963ec99dd"
-  integrity sha512-18jMJ/q6TYe7BHz1ScFYdkBKDHL0maAgW5o62m/B2S9oe7jmFQ2hHpp2yys37d6r12i8uvmIwLGtIrv/4yoTMQ==
+"@angular/router@11.1.2":
+  version "11.1.2"
+  resolved "https://registry.npmjs.org/@angular/router/-/router-11.1.2.tgz#c057c626796bc83178f09df766212fa7ae82a426"
+  integrity sha512-pN+TZrrkMlL/IhiB1fJLZocNIwAaQSaSE84K0OPdZebvUmhXhbGgMjByrhwsV7zHYPg8oWoIey6KMLSpn08uww==
   dependencies:
     tslib "^2.0.0"
 
@@ -2747,10 +2747,15 @@
   resolved "https://registry.npmjs.org/@types/minimist/-/minimist-1.2.1.tgz#283f669ff76d7b8260df8ab7a4262cc83d988256"
   integrity sha512-fZQQafSREFyuZcdWFAExYjBiCL7AUCdgsk80iO0q4yihYYdcIiH28CcuPTGFgLOCC8RlW49GSQxdHwZP+I7CNg==
 
-"@types/node@*", "@types/node@14.14.22", "@types/node@>= 8", "@types/node@^14.14.10":
+"@types/node@*", "@types/node@>= 8", "@types/node@^14.14.10":
   version "14.14.22"
   resolved "https://registry.npmjs.org/@types/node/-/node-14.14.22.tgz#0d29f382472c4ccf3bd96ff0ce47daf5b7b84b18"
   integrity sha512-g+f/qj/cNcqKkc3tFqlXOYjrmZA+jNBiDzbP3kH+B+otKFqAdPgVTGP1IeKRdMml/aE69as5S4FqtxAbl+LaMw==
+
+"@types/node@14.14.24":
+  version "14.14.24"
+  resolved "https://registry.npmjs.org/@types/node/-/node-14.14.24.tgz#541c00e4f7c41c8f108bd5b045248b5224c62946"
+  integrity sha512-6BAlkS4seVjszhrwN0W1WabqWwuJwcYF36Z1rPPyQm80LGRKsIeUPdzI51TezXenjetFNy1gRTpuDn1NBg33LA==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"

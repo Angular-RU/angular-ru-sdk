@@ -1,3 +1,27 @@
+#### 15.85.0 (2021-02-04)
+
+##### Continuous Integration
+
+-   update Angular to v11.1.2
+    ([44aa5762](https://github.com/Angular-RU/angular-ru-sdk/commit/44aa57622302e8910234be5fff146dd76fd22583))
+
+##### New Features
+
+-   update dependency @types/node to v14.14.24
+    ([a03ef8e1](https://github.com/Angular-RU/angular-ru-sdk/commit/a03ef8e1e3adf7afcdb8ea7d00eca878a4e61421))
+
+#### 15.84.3 (2021-02-03)
+
+##### Bug Fixes
+
+-   **@angular-ru/ng-table-builder:** correct mark is all selection when skip any element
+    ([6fa2e0c7](https://github.com/Angular-RU/angular-ru-sdk/commit/6fa2e0c7ad18e608846fdd9fa62a43ca58a2602a))
+
+##### Other Changes
+
+-   **@angular-ru/ng-table-builder:** correct mark is all selection when skip any element
+    ([f33e2962](https://github.com/Angular-RU/angular-ru-sdk/commit/f33e2962d1e5a0c439fdfbc66a0b59720137c24d))
+
 #### 15.84.2 (2021-02-03)
 
 ##### Chores
