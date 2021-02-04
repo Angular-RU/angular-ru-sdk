@@ -95,15 +95,15 @@ export class AppModule {}
 export class AppComponent {}
 ```
 
--   `TrimInputDirective, TrimInputDirectiveModule`
+-   `TrimInputDirective, TrimInputModule`
 
 ```ts
-import { TrimInputDirectiveModule } from '@angular-ru/common/directives';
+import { TrimInputModule } from '@angular-ru/common/directives';
 import { Component, NgModule } from '@angular/core';
 
 @NgModule({
     // ..
-    imports: [MaxLengthDirectiveModule]
+    imports: [TrimInputModule]
 })
 export class AppModule {}
 

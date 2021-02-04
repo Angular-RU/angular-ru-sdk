@@ -1,11 +1,11 @@
-import { AfterViewInit, Directive, ElementRef, HostListener, Optional } from '@angular/core';
+import { Directive, ElementRef, HostListener, OnInit, Optional } from '@angular/core';
 import { NgControl } from '@angular/forms';
 
 @Directive({ selector: '[trimInput]' })
-export class TrimInputDirective implements AfterViewInit {
+export class TrimInputDirective implements OnInit {
     constructor(private readonly el: ElementRef, @Optional() private readonly ngControl?: NgControl) {}
 
-    public ngAfterViewInit(): void {
+    public ngOnInit(): void {
         this.trimValue();
     }
 
@@ -20,7 +20,8 @@ export class TrimInputDirective implements AfterViewInit {
     }
 
     private trimValue(): void {
-        this.el.nativeElement.value = this.el.nativeElement.value?.trim();
-        this.ngControl?.reset(this.ngControl?.value?.trim());
+        this.el.nativeElement.value = this.el.nativeElement.value?.toString().trim();
+        const modelValue: string = this.ngControl?.value?.toString().trim();
+        this.ngControl?.reset(modelValue);
     }
 }

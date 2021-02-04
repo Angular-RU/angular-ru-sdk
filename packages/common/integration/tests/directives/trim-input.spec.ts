@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DebugElement } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TrimInputModule } from '@angular-ru/common/directives';
 import { NgxMaskModule } from 'ngx-mask';
@@ -17,10 +17,11 @@ describe('[TEST]: Trim Input', () => {
             <div [formGroup]="form">
                 <input matInput type="text" formControlName="value" trimInput mask="0000-0000-0000-0000" />
             </div>
-        `
+        `,
+        changeDetection: ChangeDetectionStrategy.OnPush
     })
     class TestComponent {
-        public form = this.fb.group({ value: '' });
+        public form = this.fb.group({ value: 1234000012340000 });
 
         constructor(private readonly fb: FormBuilder) {}
     }
@@ -47,17 +48,16 @@ describe('[TEST]: Trim Input', () => {
     });
 
     it('correct sync modelView with model', () => {
-        expect(component?.form.value).toEqual({ value: '' });
+        expect(component?.form.value).toEqual({ value: '1234000012340000' });
+        expect(debugElement!.nativeElement.value).toEqual({ value: '1234-0000-1234-0000' });
 
-        if (debugElement) {
-            debugElement!.nativeElement.value = '\t  1234000012340000   ';
-            debugElement!.triggerEventHandler('input', {
-                target: debugElement!.nativeElement
-            });
-            debugElement!.triggerEventHandler('blur', {
-                target: debugElement!.nativeElement
-            });
-        }
+        debugElement!.nativeElement.value = '\t  1234000012340000   ';
+        debugElement!.triggerEventHandler('input', {
+            target: debugElement!.nativeElement
+        });
+        debugElement!.triggerEventHandler('blur', {
+            target: debugElement!.nativeElement
+        });
 
         fixture?.whenStable().then(() => {
             fixture?.detectChanges();
