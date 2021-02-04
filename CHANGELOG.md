@@ -1,3 +1,24 @@
+#### 15.85.1 (2021-02-04)
+
+##### Chores
+
+-   **release:** updated release notes and package versions [ci skip]
+    ([33c1c72c](https://github.com/Angular-RU/angular-ru-sdk/commit/33c1c72c1bfdc8b9b96deedbdcaea87da731b8f5))
+
+##### Bug Fixes
+
+-   **@angular-ru/common:** fix null pointer when call trim method
+    ([39d181ab](https://github.com/Angular-RU/angular-ru-sdk/commit/39d181abe9be5e74ca952804618da9a617093146))
+-   **@angular-ru/ng-table-builder:** correct mark is all selection when skip any element
+    ([6fa2e0c7](https://github.com/Angular-RU/angular-ru-sdk/commit/6fa2e0c7ad18e608846fdd9fa62a43ca58a2602a))
+
+##### Other Changes
+
+-   **@angular-ru/common:** fix null pointer when call trim method
+    ([22615d81](https://github.com/Angular-RU/angular-ru-sdk/commit/22615d810d978a78504bfa6db27bd6f85ecb87ba))
+-   **@angular-ru/ng-table-builder:** correct mark is all selection when skip any element
+    ([f33e2962](https://github.com/Angular-RU/angular-ru-sdk/commit/f33e2962d1e5a0c439fdfbc66a0b59720137c24d))
+
 #### 15.85.0 (2021-02-04)
 
 ##### Continuous Integration
