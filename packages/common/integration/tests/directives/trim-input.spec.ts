@@ -49,7 +49,7 @@ describe('[TEST]: Trim Input', () => {
 
     it('correct sync modelView with model', () => {
         expect(component?.form.value).toEqual({ value: '1234000012340000' });
-        expect(debugElement!.nativeElement.value).toEqual({ value: '1234-0000-1234-0000' });
+        expect(debugElement!.nativeElement.value).toEqual('1234-0000-1234-0000');
 
         debugElement!.nativeElement.value = '\t  1234000012340000   ';
         debugElement!.triggerEventHandler('input', {
