@@ -1,3 +1,15 @@
+#### 15.85.0 (2021-02-04)
+
+##### Continuous Integration
+
+-   update Angular to v11.1.2
+    ([44aa5762](https://github.com/Angular-RU/angular-ru-sdk/commit/44aa57622302e8910234be5fff146dd76fd22583))
+
+##### New Features
+
+-   update dependency @types/node to v14.14.24
+    ([a03ef8e1](https://github.com/Angular-RU/angular-ru-sdk/commit/a03ef8e1e3adf7afcdb8ea7d00eca878a4e61421))
+
 #### 15.84.3 (2021-02-03)
 
 ##### Bug Fixes
