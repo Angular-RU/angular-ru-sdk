@@ -1,3 +1,21 @@
+#### 15.87.0 (2021-02-05)
+
+##### Continuous Integration
+
+-   update Angular
+    ([1142d514](https://github.com/Angular-RU/angular-ru-sdk/commit/1142d514d35ce26dcf7afc5555115ebb619c9350))
+
+##### New Features
+
+-   update dependency @types/karma to v6 ([#387](https://github.com/Angular-RU/angular-ru-sdk/pull/387))
+    ([78a6889f](https://github.com/Angular-RU/angular-ru-sdk/commit/78a6889fd466aace1ac3b4c2e3568ca56b9b4a2b))
+
+##### Bug Fixes
+
+-   **@angular-ru/common:** support dynamic changes formControlName in trimInput
+    ([#386](https://github.com/Angular-RU/angular-ru-sdk/pull/386))
+    ([4c6fc2b7](https://github.com/Angular-RU/angular-ru-sdk/commit/4c6fc2b7c467c6ad7ceaac0c9fbba806ab80bd6b))
+
 #### 15.86.0 (2021-02-04)
 
 ##### New Features
