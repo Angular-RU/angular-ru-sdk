@@ -36,15 +36,19 @@ export class DataHttpClient<K = unknown> extends AbstractHttpClient<K> {
         this.interceptor.onBeforeRequest?.(options);
         const meta: MetaDataRequest = this.createMetaDataRequest(options);
         const observable: Observable<R> = this.http.request(options.method, meta.url, meta.requestOptions);
-        const queueRequest: Observable<R> = this.limitConcurrencyService.queue<R>(
-            observable,
-            options.clientOptions.limitConcurrency
-        );
+        const queueRequest: Observable<R> = this.limitConcurrency(observable, options.clientOptions.limitConcurrency);
         return this.wrapHttpRequestWithMeta<T, R>(meta, options, queueRequest);
     }
 
     protected restTemplate<T>(options?: Partial<DataClientRequestOptions>): Observable<T> {
         return new RestTemplate<T>(options).asProxyObservable();
+    }
+
+    private limitConcurrency<R>(observable: Observable<R>, limit: number | undefined): Observable<R> {
+        if (limit) {
+            return this.limitConcurrencyService.queue<R>(observable, limit);
+        }
+        return observable;
     }
 
     private createMetaDataRequest(options: DataBeforeRequestOptions): MetaDataRequest {
