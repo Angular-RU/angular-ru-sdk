@@ -1,4 +1,4 @@
-<div *ngIf="(source && source.length) === 0 && !filterable.filtering">
+<div *ngIf="source?.length === 0 && !filterable.filtering">
     <ng-content select="ngx-empty"></ng-content>
 </div>
 
@@ -33,6 +33,12 @@
     [tableViewport]="tableViewport"
 >
     <div class="table-grid__root-filtering" *ngIf="filteringRun">filtering...</div>
+
+    <div
+        class="table-grid__root-empty-after-filter"
+        *ngIf="source?.length === 0 && filterable.filterValueExist"
+        [innerHTML]="ngxEmptyContent?.nativeElement?.innerHTML | safe: 'html'"
+    ></div>
 
     <div
         observerView

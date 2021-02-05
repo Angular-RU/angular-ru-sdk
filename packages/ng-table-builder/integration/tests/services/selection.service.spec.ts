@@ -49,6 +49,7 @@ describe('[TEST]: Selection service', () => {
     beforeEach(() => {
         selection = new SelectionService(mockNgZone as NgZone);
         selection.originRows = data;
+        selection.selectionModeIsEnabled = true;
     });
 
     it('should be correct exception', () => {

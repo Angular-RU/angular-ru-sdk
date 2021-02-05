@@ -19,7 +19,7 @@
                         "outputPath": "dist/integration",
                         "tsConfig": "integration/app/tsconfig.app.json",
                         "assets": ["integration/app/assets"],
-                        "styles": ["integration/app/styles.scss"]
+                        "styles": ["../../styles/integration-app.style.scss", "integration/app/styles.scss"]
                     },
                     "configurations": {
                         "production": {
@@ -56,6 +56,17 @@
                         "production": {
                             "browserTarget": "integration:build:production"
                         }
+                    }
+                },
+                "deploy": {
+                    "builder": "angular-cli-ghpages:deploy",
+                    "options": {
+                        "noSilent": true,
+                        "noBuild": true,
+                        "branch": "master",
+                        "name": "angular-ru",
+                        "email": "angular-ru@yandex.ru",
+                        "repo": "https://github.com/Angular-RU/angular-ru-tooltip-example-app.git"
                     }
                 }
             }

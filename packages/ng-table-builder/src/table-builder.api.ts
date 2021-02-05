@@ -26,6 +26,7 @@ import { detectChanges } from '@angular-ru/common/utils';
 
 import { NgxColumnComponent } from './components/ngx-column/ngx-column.component';
 import { NgxContextMenuComponent } from './components/ngx-context-menu/ngx-context-menu.component';
+import { NgxEmptyComponent } from './components/ngx-empty/ngx-empty.component';
 import { NgxFilterComponent } from './components/ngx-filter/ngx-filter.component';
 import { NgxFooterComponent } from './components/ngx-footer/ngx-footer.component';
 import { NgxHeaderComponent } from './components/ngx-header/ngx-header.component';
@@ -87,6 +88,8 @@ export abstract class AbstractTableBuilderApiImpl
     public columnTemplates: QueryList<NgxColumnComponent> | null = null;
     @ContentChild(NgxContextMenuComponent, { static: false })
     public contextMenuTemplate: NgxContextMenuComponent | null = null;
+    @ContentChild(NgxEmptyComponent, { read: ElementRef })
+    public ngxEmptyContent: ElementRef | null = null;
     @ContentChild(NgxHeaderComponent, { static: false })
     public headerTemplate: NgxHeaderComponent | null = null;
     @ContentChild(NgxFooterComponent, { static: false })

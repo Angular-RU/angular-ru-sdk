@@ -21,7 +21,8 @@
         "lib": ["es2018", "dom"],
         "paths": {
             "@angular-ru/common": ["../common/dist/library"],
-            "@angular-ru/common/*": ["../common/dist/library/*"]
+            "@angular-ru/common/*": ["../common/dist/library/*"],
+            "@angular-ru/tooltip": ["./src/public_api.ts"]
         }
     }
 }

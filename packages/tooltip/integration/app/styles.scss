@@ -1,0 +1,36 @@
+@import '~@angular-ru/tooltip/styles';
+
+.wrapper {
+    display: grid;
+    gap: 20px;
+    margin-bottom: 20px;
+
+    &--2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    &--4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .cell {
+        text-align: center;
+        background: rgba(91, 192, 235, 0.37);
+        padding: 10px;
+        font-size: 0.8em;
+    }
+}
+
+.favorite-line {
+    display: flex;
+    align-items: center;
+
+    &--icon {
+        color: rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+    }
+
+    &--is-favorite {
+        color: #ffdd2d;
+    }
+}

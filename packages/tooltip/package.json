@@ -1,13 +1,13 @@
 {
     "name": "@angular-ru/tooltip",
-    "version": "15.6.2",
+    "version": "15.81.0",
     "description": "Angular-RU package",
     "keywords": [
         "angular-ru",
         "angular",
         "flex"
     ],
-    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/websocket#readme",
+    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/tooltip#readme",
     "bugs": {
         "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
     },
@@ -16,17 +16,19 @@
         "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
     },
     "license": "MIT",
-    "author": "king.of.ferelden@gmail.com",
+    "author": "angular-ru@yandex.ru",
     "main": "lib/index.js",
     "scripts": {
+        "build:app": "ng build integration --prod",
         "build:lib": "ng build library && cp README.md dist/library",
-        "start": "ng serve",
+        "deploy": "cp README.md dist/integration && ng deploy --no-build",
+        "start": "ng serve --open --hmr",
         "postversion": "npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\""
     },
     "peerDependencies": {
-        "@angular-ru/common": ">=13.19.0",
-        "@angular/common": ">=8.0.0 <12.0.0",
-        "@angular/core": ">=8.0.0 <12.0.0"
+        "@angular-ru/common": ">=15.0.0",
+        "@angular/common": ">=11.1.0",
+        "@angular/core": ">=11.1.0"
     },
     "publishConfig": {
         "access": "public",

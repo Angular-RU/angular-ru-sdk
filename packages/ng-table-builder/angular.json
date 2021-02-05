@@ -19,7 +19,7 @@
                         "polyfills": "integration/app/polyfills.ts",
                         "tsConfig": "integration/app/tsconfig.app.json",
                         "assets": ["integration/app/favicon.ico", "integration/app/assets"],
-                        "styles": ["integration/app/custom-theme.scss", "integration/app/styles.css"],
+                        "styles": ["../../styles/integration-app.style.scss", "integration/app/styles.scss"],
                         "scripts": []
                     },
                     "configurations": {

@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/common",
-    "version": "15.79.0",
+    "version": "15.87.0",
     "description": "Angular-RU package",
     "keywords": [
         "angular-ru",
@@ -18,7 +18,7 @@
         "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
     },
     "license": "MIT",
-    "author": "splincode <omaxphp@yandex.ru>",
+    "author": "angular-ru@yandex.ru",
     "scripts": {
         "build:lib": "ng build library && cp README.md dist/library",
         "start": "ng serve --open",

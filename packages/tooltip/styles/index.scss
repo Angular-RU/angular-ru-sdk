@@ -1,15 +1,29 @@
+:root {
+    --tooltip-color: rgba(56, 56, 56, 0.9);
+    --tooltip-color-bg-selection: rgba(66, 131, 244, 0.5);
+    --tooltip-color-selection: #fff;
+}
+
+.ng-tooltip::selection {
+    color: initial;
+}
+
 .ng-tooltip {
+    pointer-events: none;
     position: absolute;
     text-align: center;
-    pointer-events: none;
     border-radius: 4px;
     opacity: 0;
-    transition: 0.3s ease;
+    transform: translate3d(0, 0, 0);
+    will-change: transition;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s cubic-bezier(0.71, 1.7, 0.77, 1.24);
     z-index: 10000;
     background: var(--tooltip-color);
     color: #fff;
     padding: 8px 10px;
     font-size: 12px;
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     text-shadow: 0 -1px 0 #000;
     transition-delay: 0.2s !important;
@@ -23,11 +37,34 @@
     &-medium {
         max-width: 300px;
     }
+
+    & > *::selection {
+        text-shadow: 1px 1px 1px rgb(0 0 0 / 0%);
+        background-color: var(--tooltip-color-bg-selection);
+        color: var(--tooltip-color-selection);
+    }
 }
 
 .ng-tooltip-show {
     opacity: 1;
+    pointer-events: inherit;
     transition-delay: 0.5s !important;
+
+    &.ng-tooltip-top {
+        transform: translateY(-10px);
+    }
+
+    &.ng-tooltip-bottom {
+        transform: translateY(10px);
+    }
+
+    &.ng-tooltip-left {
+        transform: translateX(-10px);
+    }
+
+    &.ng-tooltip-right {
+        transform: translateX(10px);
+    }
 }
 
 .ng-tooltip:after {
@@ -36,11 +73,17 @@
     border-style: solid;
 }
 
+.ng-tooltip-top:after,
+.ng-tooltip-bottom:after,
+.ng-tooltip-left:after,
+.ng-tooltip-right:after {
+    border-width: 5px;
+}
+
 .ng-tooltip-top:after {
     top: 100%;
     left: 50%;
     margin-left: -5px;
-    border-width: 5px;
     border-color: var(--tooltip-color) transparent transparent transparent;
 }
 
@@ -48,7 +91,6 @@
     bottom: 100%;
     left: 50%;
     margin-left: -5px;
-    border-width: 5px;
     border-color: transparent transparent var(--tooltip-color) transparent;
 }
 
@@ -56,7 +98,6 @@
     top: 50%;
     left: 100%;
     margin-top: -5px;
-    border-width: 5px;
     border-color: transparent transparent transparent var(--tooltip-color);
 }
 
@@ -64,6 +105,5 @@
     top: 50%;
     right: 100%;
     margin-top: -5px;
-    border-width: 5px;
     border-color: transparent var(--tooltip-color) transparent transparent;
 }

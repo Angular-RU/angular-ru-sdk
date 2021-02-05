@@ -1,6 +1,6 @@
 import { Injectable, isDevMode, NgZone, OnDestroy } from '@angular/core';
 import { Fn, PlainObjectOf, PrimaryKey } from '@angular-ru/common/typings';
-import { checkValueIsEmpty } from '@angular-ru/common/utils';
+import { checkValueIsEmpty, isNil } from '@angular-ru/common/utils';
 import { Subject } from 'rxjs';
 
 import { ProduceDisableFn, TableRow } from '../../interfaces/table-builder.external';
@@ -16,6 +16,7 @@ export class SelectionService implements OnDestroy {
     public primaryKey: string = PrimaryKey.ID;
     public selectionTaskIdle: number | null = null;
     public onChanges: Subject<void> = new Subject<void>();
+    public selectionModeIsEnabled: boolean = false;
     public originRows: TableRow[] | null = null;
     private readonly handler: PlainObjectOf<Fn> = {};
 
@@ -48,15 +49,21 @@ export class SelectionService implements OnDestroy {
     }
 
     public toggleAll(rows: TableRow[] | null): void {
+        let selectedSize: number | null = null;
         window.clearInterval(this.selectionTaskIdle!);
 
         if (this.selectionModel.isAll) {
             this.selectionModel.clear();
         } else {
-            (rows ?? []).forEach((row: TableRow): void => this.selectionModel.select(this.getIdByRow(row), row, false));
+            rows?.forEach((row: TableRow): void => {
+                const selected: boolean = this.selectionModel.select(this.getIdByRow(row), row, false);
+                if (selected) {
+                    selectedSize = (selectedSize ?? 0) + 1;
+                }
+            });
         }
 
-        this.checkIsAllSelected();
+        this.checkIsAllSelected(selectedSize);
     }
 
     public reset(): void {
@@ -121,8 +128,15 @@ export class SelectionService implements OnDestroy {
         window.removeEventListener(type, this.handler[type], true);
     }
 
-    private checkIsAllSelected(): void {
-        this.selectionModel.isAll = this.originRows?.length === this.selectionModel.size;
+    private checkIsAllSelected(allSize: number | null = null): void {
+        if (!this.selectionModeIsEnabled) {
+            throw new Error('Please enable selection mode: <ngx-table-builder enable-selection />');
+        }
+
+        this.selectionModel.isAll = isNil(allSize)
+            ? this.originRows?.length === this.selectionModel.size
+            : allSize === this.selectionModel.size;
+
         this.selectionModel.generateImmutableEntries();
         this.onChanges.next();
     }

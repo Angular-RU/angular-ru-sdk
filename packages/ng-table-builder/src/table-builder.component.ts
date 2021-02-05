@@ -176,6 +176,7 @@ export class TableBuilderComponent
         if (this.isEnableSelection) {
             this.selection.listenShiftKey();
             this.selection.primaryKey = this.primaryKey;
+            this.selection.selectionModeIsEnabled = true;
             this.selection.setProducerDisableFn(this.produceDisableFn);
         }
     }
@@ -572,12 +573,16 @@ export class TableBuilderComponent
         if (this.isEnableSelection) {
             this.selection.onChanges.pipe(takeUntil(this.destroy$)).subscribe((): void => {
                 detectChanges(this.cd);
-                this.ngZone.runOutsideAngular((): void => {
-                    window.clearInterval(this.selectionUpdateTaskId!);
-                    this.selectionUpdateTaskId = window.setTimeout((): void => this.app.tick(), FRAME_TIME);
-                });
+                this.tryRefreshViewModelBySelection();
             });
         }
+    }
+
+    private tryRefreshViewModelBySelection(): void {
+        this.ngZone.runOutsideAngular((): void => {
+            window.cancelAnimationFrame(this.selectionUpdateTaskId!);
+            this.selectionUpdateTaskId = window.requestAnimationFrame((): void => this.app.tick());
+        });
     }
 
     private viewForceRefresh(): void {

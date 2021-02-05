@@ -35,6 +35,14 @@
         transition: all 0.2s;
     }
 
+    &-empty-after-filter {
+        top: 50%;
+        left: 50%;
+        z-index: 1000000;
+        position: absolute;
+        transform: translate(-50%, -50%);
+    }
+
     &-filtering {
         padding: 5px;
         width: 70px;

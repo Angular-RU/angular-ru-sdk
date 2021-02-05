@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/eslint-config",
-    "version": "15.78.0",
+    "version": "15.81.0",
     "description": "Angular-RU package",
     "keywords": [
         "angular-ru",
@@ -16,7 +16,7 @@
         "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
     },
     "license": "MIT",
-    "author": "splincode <omaxphp@yandex.ru>",
+    "author": "angular-ru@yandex.ru",
     "main": "index.js",
     "files": [
         "index.js",

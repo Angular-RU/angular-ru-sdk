@@ -1,3 +1,239 @@
+#### 15.88.0 (2021-02-05)
+
+##### New Features
+
+-   update dependency ng-packagr to v11.1.4
+    ([67b44117](https://github.com/Angular-RU/angular-ru-sdk/commit/67b441179eabb692c604c65fd67cfe5a5089f465))
+
+#### 15.87.0 (2021-02-05)
+
+##### Continuous Integration
+
+-   update Angular
+    ([1142d514](https://github.com/Angular-RU/angular-ru-sdk/commit/1142d514d35ce26dcf7afc5555115ebb619c9350))
+
+##### New Features
+
+-   update dependency @types/karma to v6 ([#387](https://github.com/Angular-RU/angular-ru-sdk/pull/387))
+    ([78a6889f](https://github.com/Angular-RU/angular-ru-sdk/commit/78a6889fd466aace1ac3b4c2e3568ca56b9b4a2b))
+
+##### Bug Fixes
+
+-   **@angular-ru/common:** support dynamic changes formControlName in trimInput
+    ([#386](https://github.com/Angular-RU/angular-ru-sdk/pull/386))
+    ([4c6fc2b7](https://github.com/Angular-RU/angular-ru-sdk/commit/4c6fc2b7c467c6ad7ceaac0c9fbba806ab80bd6b))
+
+#### 15.86.0 (2021-02-04)
+
+##### New Features
+
+-   update dependency @types/node to v14.14.25
+    ([b87d6eae](https://github.com/Angular-RU/angular-ru-sdk/commit/b87d6eae07b157924d8366250607f37cfec884c1))
+
+#### 15.85.1 (2021-02-04)
+
+##### Chores
+
+-   **release:** updated release notes and package versions [ci skip]
+    ([33c1c72c](https://github.com/Angular-RU/angular-ru-sdk/commit/33c1c72c1bfdc8b9b96deedbdcaea87da731b8f5))
+
+##### Bug Fixes
+
+-   **@angular-ru/common:** fix null pointer when call trim method
+    ([39d181ab](https://github.com/Angular-RU/angular-ru-sdk/commit/39d181abe9be5e74ca952804618da9a617093146))
+-   **@angular-ru/ng-table-builder:** correct mark is all selection when skip any element
+    ([6fa2e0c7](https://github.com/Angular-RU/angular-ru-sdk/commit/6fa2e0c7ad18e608846fdd9fa62a43ca58a2602a))
+
+##### Other Changes
+
+-   **@angular-ru/common:** fix null pointer when call trim method
+    ([22615d81](https://github.com/Angular-RU/angular-ru-sdk/commit/22615d810d978a78504bfa6db27bd6f85ecb87ba))
+-   **@angular-ru/ng-table-builder:** correct mark is all selection when skip any element
+    ([f33e2962](https://github.com/Angular-RU/angular-ru-sdk/commit/f33e2962d1e5a0c439fdfbc66a0b59720137c24d))
+
+#### 15.85.0 (2021-02-04)
+
+##### Continuous Integration
+
+-   update Angular to v11.1.2
+    ([44aa5762](https://github.com/Angular-RU/angular-ru-sdk/commit/44aa57622302e8910234be5fff146dd76fd22583))
+
+##### New Features
+
+-   update dependency @types/node to v14.14.24
+    ([a03ef8e1](https://github.com/Angular-RU/angular-ru-sdk/commit/a03ef8e1e3adf7afcdb8ea7d00eca878a4e61421))
+
+#### 15.84.3 (2021-02-03)
+
+##### Bug Fixes
+
+-   **@angular-ru/ng-table-builder:** correct mark is all selection when skip any element
+    ([6fa2e0c7](https://github.com/Angular-RU/angular-ru-sdk/commit/6fa2e0c7ad18e608846fdd9fa62a43ca58a2602a))
+
+##### Other Changes
+
+-   **@angular-ru/ng-table-builder:** correct mark is all selection when skip any element
+    ([f33e2962](https://github.com/Angular-RU/angular-ru-sdk/commit/f33e2962d1e5a0c439fdfbc66a0b59720137c24d))
+
+#### 15.84.2 (2021-02-03)
+
+##### Chores
+
+-   **release:**
+    -   updated release notes and package versions [ci skip]
+        ([0a32db0b](https://github.com/Angular-RU/angular-ru-sdk/commit/0a32db0b5a190148cd2b92218c63a0d3b9789725))
+    -   updated release notes and package versions [ci skip]
+        ([ed3b1958](https://github.com/Angular-RU/angular-ru-sdk/commit/ed3b1958be705fc364db0c320c2ce0f324852dd5))
+
+##### Continuous Integration
+
+-   update dependency karma to v6.0.4
+    ([52edbe65](https://github.com/Angular-RU/angular-ru-sdk/commit/52edbe65a4c313cf708d5232185f3cac1abf9301))
+
+##### Documentation Changes
+
+-   **@angular-ru/common:** update directives.md and validators.md
+    ([6b924dec](https://github.com/Angular-RU/angular-ru-sdk/commit/6b924decd10ba4878430f611b1674c10d5866328))
+
+##### New Features
+
+-   **@angular-ru/ng-table-builder:** use ngx-empty after filtering if data list is empty
+    ([cd2f27c6](https://github.com/Angular-RU/angular-ru-sdk/commit/cd2f27c61f9ae433829a313a0e0b98540f510f6b))
+
+##### Bug Fixes
+
+-   **@angular-ru/common:** remove form secondary package, also fix trimInput regression
+    ([fb4987f3](https://github.com/Angular-RU/angular-ru-sdk/commit/fb4987f33be2e1e23ba78350b22da1498f41b36e))
+
+#### 15.84.1 (2021-02-03)
+
+##### Chores
+
+-   **release:** updated release notes and package versions [ci skip]
+    ([ed3b1958](https://github.com/Angular-RU/angular-ru-sdk/commit/ed3b1958be705fc364db0c320c2ce0f324852dd5))
+
+##### Continuous Integration
+
+-   update dependency karma to v6.0.4
+    ([52edbe65](https://github.com/Angular-RU/angular-ru-sdk/commit/52edbe65a4c313cf708d5232185f3cac1abf9301))
+
+##### New Features
+
+-   **@angular-ru/ng-table-builder:** use ngx-empty after filtering if data list is empty
+    ([cd2f27c6](https://github.com/Angular-RU/angular-ru-sdk/commit/cd2f27c61f9ae433829a313a0e0b98540f510f6b))
+
+##### Bug Fixes
+
+-   **@angular-ru/common:** remove form secondary package, also fix trimInput regression
+    ([fb4987f3](https://github.com/Angular-RU/angular-ru-sdk/commit/fb4987f33be2e1e23ba78350b22da1498f41b36e))
+
+#### 15.84.0 (2021-02-02)
+
+##### New Features
+
+-   update dependency ng-packagr to v11.1.3
+    ([814ab4d1](https://github.com/Angular-RU/angular-ru-sdk/commit/814ab4d14ee4dfac3c1622f028d64de745002b5f))
+
+#### 15.83.0 (2021-02-02)
+
+##### Continuous Integration
+
+-   update dependency karma to v6.0.4
+    ([52edbe65](https://github.com/Angular-RU/angular-ru-sdk/commit/52edbe65a4c313cf708d5232185f3cac1abf9301))
+
+##### New Features
+
+-   **@angular-ru/ng-table-builder:** use ngx-empty after filtering if data list is empty
+    ([cd2f27c6](https://github.com/Angular-RU/angular-ru-sdk/commit/cd2f27c61f9ae433829a313a0e0b98540f510f6b))
+
+#### 15.82.2 (2021-02-01)
+
+##### Bug Fixes
+
+-   **@angular-ru/common:** sync modelView with model in ngControl for amount-format, convertCase, maxLength, trimInput
+    directives
+    ([cd541f50](https://github.com/Angular-RU/angular-ru-sdk/commit/cd541f501b3aee13cc93e5bb46ee4123aebbd24b))
+
+##### Other Changes
+
+-   **@angular-ru/common:** sync modelView with model in ngControl for amount-format, convertCase, maxLength, trimInput
+    directives
+    ([7126aaa6](https://github.com/Angular-RU/angular-ru-sdk/commit/7126aaa61e25ff744d0ddb68882a47bfe2be0325))
+
+#### 15.82.1 (2021-02-01)
+
+##### Build System / Dependencies
+
+-   **@angular-ru/tooltip:** forgot add @import '~@angular-ru/tooltip/styles';
+    ([880258d4](https://github.com/Angular-RU/angular-ru-sdk/commit/880258d4b603862bad5eef989e7ff792e6b162d5))
+
+##### Chores
+
+-   **release:** updated release notes and package versions [ci skip]
+    ([cd0b04ae](https://github.com/Angular-RU/angular-ru-sdk/commit/cd0b04ae61d43e3ba61674320629d0e61e3bd623))
+
+##### New Features
+
+-   **@angular-ru/common:** support class-transformer 0.3.2
+    ([e52ab219](https://github.com/Angular-RU/angular-ru-sdk/commit/e52ab219437535120622a36a29b81746edd80597))
+
+##### Other Changes
+
+-   **@angular-ru/common:** support class-transformer 0.3.2
+    ([e6b89a09](https://github.com/Angular-RU/angular-ru-sdk/commit/e6b89a09121ed9c7026f546b68b71e252a1ddcb9))
+
+#### 15.82.0 (2021-02-01)
+
+##### New Features
+
+-   **@angular-ru/common:** support class-transformer 0.3.2
+    ([e52ab219](https://github.com/Angular-RU/angular-ru-sdk/commit/e52ab219437535120622a36a29b81746edd80597))
+
+##### Other Changes
+
+-   **@angular-ru/common:** support class-transformer 0.3.2
+    ([e6b89a09](https://github.com/Angular-RU/angular-ru-sdk/commit/e6b89a09121ed9c7026f546b68b71e252a1ddcb9))
+
+#### 15.81.0 (2021-01-31)
+
+##### Documentation Changes
+
+-   **@angular-ru/tooltip:**
+    -   update README.md
+        ([b80ad103](https://github.com/Angular-RU/angular-ru-sdk/commit/b80ad10325d3755809c0b7e7b358cad62575ae68))
+    -   update integration app
+        ([54265ed2](https://github.com/Angular-RU/angular-ru-sdk/commit/54265ed25d98508a669e867dd4e85099400cb0f5))
+-   update email in package.json
+    ([63cacb29](https://github.com/Angular-RU/angular-ru-sdk/commit/63cacb29a5fb3b510942f1595c78628ce8a3e33e))
+-   update integration app
+    ([0097d8f6](https://github.com/Angular-RU/angular-ru-sdk/commit/0097d8f616f756fd0b72352b53260127fd31036d))
+-   **@angular-ru/ng-table-builder:** update integration app
+    ([a30ac683](https://github.com/Angular-RU/angular-ru-sdk/commit/a30ac683ea3a43fc2bed16537098b5ae76f8376c))
+
+##### New Features
+
+-   **@angular-ru/build-tools:** add @types/karma, @types/jasmine, @types/jasminewd2
+    ([ebd4be2c](https://github.com/Angular-RU/angular-ru-sdk/commit/ebd4be2cdc5932142cceeff7cfc2db85e0436c1c))
+
+#### 15.80.0 (2021-01-31)
+
+##### Continuous Integration
+
+-   update dependency karma to v6 ([#377](https://github.com/Angular-RU/angular-ru-sdk/pull/377))
+    ([16a8b704](https://github.com/Angular-RU/angular-ru-sdk/commit/16a8b7045dd799bc021e0e522d028509cf0de4de))
+-   update devDependencies
+    ([16aeac92](https://github.com/Angular-RU/angular-ru-sdk/commit/16aeac921771a2d7e039e4f79417e3f9da9e70a9))
+-   update Angular to v11.1.1
+    ([027e06e3](https://github.com/Angular-RU/angular-ru-sdk/commit/027e06e3b957f83364556b722a13bc9cfb5971aa))
+-   update devDependencies to v11.1.1
+    ([d1460d42](https://github.com/Angular-RU/angular-ru-sdk/commit/d1460d42db4b385fd8f96bdb248743bead2daec5))
+
+##### New Features
+
+-   **@angular-ru/tooltip:** improved api and performance
+    ([#378](https://github.com/Angular-RU/angular-ru-sdk/pull/378))
+    ([182754a2](https://github.com/Angular-RU/angular-ru-sdk/commit/182754a25dc08294959bcb8df57d6de93d1c75c6))
+
 #### 15.79.0 (2021-01-27)
 
 ##### New Features
