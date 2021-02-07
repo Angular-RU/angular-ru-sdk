@@ -285,3 +285,10 @@ log(fooZ);
     variable += 'world';
     console.error(variable);
 })('hello');
+
+// expect errors
+export const enum HelloWorldNonCase {
+    worldName
+}
+
+console.error(HelloWorldNonCase.worldName);

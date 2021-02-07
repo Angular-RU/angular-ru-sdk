@@ -69,6 +69,9 @@ describe('[TEST]: Eslint', (): void => {
         ).toEqual(true);
         expect(bad.includes('Use the opposite operator (<=) instead')).toEqual(true);
         expect(bad.includes("285:5   error  Assignment to function parameter 'variable'")).toEqual(true);
+        expect(
+            bad.includes('Enum Member name `worldName` must match one of the following formats: PascalCase, UPPER_CASE')
+        ).toEqual(true);
     });
 
     it('check success files', (): void => {
