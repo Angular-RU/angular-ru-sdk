@@ -8843,10 +8843,10 @@ karma-source-map-support@1.4.0:
   dependencies:
     source-map-support "^0.5.5"
 
-karma@6.0.4:
-  version "6.0.4"
-  resolved "https://registry.npmjs.org/karma/-/karma-6.0.4.tgz#5c73bb1fdecd9acf8b8d5318c48ce9c85c035f79"
-  integrity sha512-Yk451MSSV82wwThwissGvTpaHYhKDOzzzcguj+XYMmLF9ZN6QDnUmOexzYPeDcne6g0eWEkP1QttzX0N9lQybw==
+karma@6.1.0:
+  version "6.1.0"
+  resolved "https://registry.npmjs.org/karma/-/karma-6.1.0.tgz#8d9f61252a3f8e935f8456c8df3fa796ca132339"
+  integrity sha512-QmRZ6HdKe6mHd89Az6yb85URRyDbXmn2IBo3lic7cwkkLjDWpjrMJxPAKlwNa5dFM1iHdT+kjtNJM0J5YAH90A==
   dependencies:
     body-parser "^1.19.0"
     braces "^3.0.2"
@@ -13812,11 +13812,6 @@ tsickle@0.39.1:
   version "0.39.1"
   resolved "https://registry.npmjs.org/tsickle/-/tsickle-0.39.1.tgz#7ccf672cde5b430f5dd0b281ee49e170ef390ff9"
   integrity sha512-CCc9cZhZbKoNizVM+K3Uqgit/go8GacjpqTv1cpwG/n2P0gB9GMoWZbxrUULDE9Wz26Lh86CGf6QyIPUVV1lnQ==
-
-tslib@2.0.3:
-  version "2.0.3"
-  resolved "https://registry.npmjs.org/tslib/-/tslib-2.0.3.tgz#8e0741ac45fc0c226e58a17bfc3e64b9bc6ca61c"
-  integrity sha512-uZtkfKblCEQtZKBF6EBXVZeQNl82yqtDQdv+eck8u7tdPxjLu2/lp5/uPW+um2tpuxINHWy3GhiccY7QgEaVHQ==
 
 tslib@2.1.0, tslib@^2.0.0:
   version "2.1.0"
