@@ -1,3 +1,11 @@
+#### 15.90.2 (2021-02-08)
+
+##### Bug Fixes
+
+-   **@angular-ru/common:** call the `setValue` method instead the `rese…
+    ([#397](https://github.com/Angular-RU/angular-ru-sdk/pull/397))
+    ([9adb3989](https://github.com/Angular-RU/angular-ru-sdk/commit/9adb398933446edd588e87c8970de76958424119))
+
 #### 15.90.1 (2021-02-08)
 
 ##### Continuous Integration
