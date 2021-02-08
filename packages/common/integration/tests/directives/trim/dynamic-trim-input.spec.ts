@@ -66,14 +66,14 @@ describe('[TEST]: Trim Input', () => {
 
     it('correct sync modelView with model and dynamic control name', () => {
         expect(component!.controlName).toEqual('b');
-        expect(component?.form.value).toEqual({ a: 1234000012340000, b: null });
+        expect(component?.form.value).toEqual({ a: 1234000012340000, b: undefined });
         expect(debugElement!.nativeElement.value).toEqual('');
 
         component!.controlName = 'a';
         localDetectChanges();
         setValueAndDispatchBlur('\t  2222000022220000   ');
         expect(component!.controlName).toEqual('a');
-        expect(component?.form.value).toEqual({ a: '2222000022220000', b: null });
+        expect(component?.form.value).toEqual({ a: '2222000022220000', b: undefined });
         expect(debugElement!.nativeElement.value).toEqual('2222-0000-2222-0000');
 
         component!.controlName = 'b';
