@@ -1,3 +1,15 @@
+#### 15.90.1 (2021-02-08)
+
+##### Continuous Integration
+
+-   update devDependencies
+    ([0b6ff079](https://github.com/Angular-RU/angular-ru-sdk/commit/0b6ff079ea2f87b4dcdb1d512f74bb3a352ab00f))
+
+##### Bug Fixes
+
+-   **@angular-ru/eslint-config:** support new APIs
+    ([161679f9](https://github.com/Angular-RU/angular-ru-sdk/commit/161679f9a4ba2ac1b8b7b7361c1abda09c0b0056))
+
 #### 15.90.0 (2021-02-07)
 
 ##### Continuous Integration
