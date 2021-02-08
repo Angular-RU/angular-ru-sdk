@@ -327,6 +327,10 @@ module.exports = {
                     {
                         selector: 'enum',
                         format: ['StrictPascalCase']
+                    },
+                    {
+                        selector: 'enumMember',
+                        format: ['PascalCase', 'UPPER_CASE']
                     }
                 ],
                 '@typescript-eslint/no-empty-interface': 'error',
