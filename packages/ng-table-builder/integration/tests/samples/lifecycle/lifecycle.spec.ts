@@ -123,8 +123,17 @@ describe('[TEST]: Lifecycle table', () => {
 
     it('should be basic api', () => {
         table.source = JSON.parse(JSON.stringify(data));
+
         expect(new TableSelectedItemsPipe(table).transform({})).toEqual([]);
-        expect(new TableSelectedItemsPipe(table).transform({ 1: true })).toEqual([]);
+        expect(new TableSelectedItemsPipe(table).transform({ 1: true })).toEqual([
+            {
+                name: 'Hydrogen',
+                position: 1,
+                symbol: 'H',
+                weight: 1.0079
+            }
+        ]);
+
         expect(table.lastItem).toEqual({ position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' });
     });
 
