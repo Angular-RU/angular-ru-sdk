@@ -1,3 +1,15 @@
+#### 15.95.0 (2021-02-09)
+
+##### Continuous Integration
+
+-   update dependency typescript to v4.1.4 ([#401](https://github.com/Angular-RU/angular-ru-sdk/pull/401))
+    ([9e852319](https://github.com/Angular-RU/angular-ru-sdk/commit/9e852319e9fdd57c684316cb28e3e30c8b6e2901))
+
+##### New Features
+
+-   update dependency husky to v5 ([#399](https://github.com/Angular-RU/angular-ru-sdk/pull/399))
+    ([dcecf5de](https://github.com/Angular-RU/angular-ru-sdk/commit/dcecf5de53d1e082e4dd43431bae5d1d2a4a1f9f))
+
 #### 15.94.0 (2021-02-09)
 
 ##### New Features
