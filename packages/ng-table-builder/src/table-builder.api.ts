@@ -187,6 +187,7 @@ export abstract class AbstractTableBuilderApiImpl
     }
 
     /**
+     * @deprecated - use {{ table.selectionEntries | tableSelectedItems }}
      * @description - return selected item by selection map
      * Don't use in angular templates, because function not pure
      * avoid: {{ table.selectedItems.length  }}

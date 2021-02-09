@@ -27,6 +27,7 @@ import { TemplateBodyTdDirective } from './directives/rows/template-body-td.dire
 import { TemplateHeadThDirective } from './directives/rows/template-head-th.directive';
 import { VirtualForDirective } from './directives/virtual-for.directive';
 import { DisableRowPipe } from './pipes/disable-row.pipe';
+import { TableSelectedItemsPipe } from './pipes/table-selected-items.pipe';
 import { UtilsService } from './services/utils/utils.service';
 import { TableBuilderComponent } from './table-builder.component';
 
@@ -56,6 +57,7 @@ import { TableBuilderComponent } from './table-builder.component';
         DragIconComponent,
         NgxSourceNullComponent,
         DisableRowPipe,
+        TableSelectedItemsPipe,
         VirtualForDirective
     ],
     providers: [UtilsService, WebWorkerThreadService],
@@ -75,6 +77,7 @@ import { TableBuilderComponent } from './table-builder.component';
         NgxFilterViewerComponent,
         NgxFilterComponent,
         NgxFilterDirective,
+        TableSelectedItemsPipe,
         NgxSourceNullComponent
     ]
 })

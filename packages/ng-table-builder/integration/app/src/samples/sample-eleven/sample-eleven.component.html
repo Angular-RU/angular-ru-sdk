@@ -114,7 +114,7 @@
                                 <ngx-context-menu-item>
                                     <ngx-menu-content icon></ngx-menu-content>
                                     <ngx-menu-content>
-                                        Selected items ({{ table1?.selectedItems?.length! }})
+                                        Selected items ({{ (table1?.selectionEntries | tableSelectedItems).length }})
                                     </ngx-menu-content>
                                 </ngx-context-menu-item>
                             </ngx-context-menu>

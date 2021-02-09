@@ -13,7 +13,25 @@ export { NgxSourceNullComponent } from './components/ngx-source-null/ngx-source-
 export { NgxFilterDirective } from './directives/ngx-filter.directive';
 export { TemplateBodyTdDirective } from './directives/rows/template-body-td.directive';
 export { TemplateHeadThDirective } from './directives/rows/template-head-th.directive';
-export * from './interfaces/table-builder.external';
+export {
+    CalculateRange,
+    ColumnsSchema,
+    ContextItemEvent,
+    ImplicitContext,
+    InternalVirtualRef,
+    OrderedField,
+    ProduceDisableFn,
+    TableCellOptions,
+    TableClickEventEmitter,
+    TableEvent,
+    TableHeadCellOptions,
+    TableRow,
+    TableUpdateSchema,
+    ViewPortInfo,
+    VirtualContext,
+    VirtualIndex
+} from './interfaces/table-builder.external';
+export { TableSelectedItemsPipe } from './pipes/table-selected-items.pipe';
 export {
     FilterableInterface,
     FilterableMessage,
