@@ -1,3 +1,15 @@
+#### 15.93.0 (2021-02-09)
+
+##### New Features
+
+-   **@angular-ru/ng-table-builder:** add tableSelectionPipe module
+    ([3cd58173](https://github.com/Angular-RU/angular-ru-sdk/commit/3cd58173a636bed7749635af5d4dada97084fa47))
+
+##### Other Changes
+
+-   **@angular-ru/ng-table-builder:** add tableSelectionPipe module
+    ([4c9a7530](https://github.com/Angular-RU/angular-ru-sdk/commit/4c9a7530957524722b4529c69e956d08674bae6b))
+
 #### 15.92.0 (2021-02-09)
 
 ##### Chores
