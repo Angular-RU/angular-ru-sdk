@@ -1,3 +1,15 @@
+#### 15.92.0 (2021-02-09)
+
+##### Chores
+
+-   **release:** updated release notes and package versions [ci skip]
+    ([968f273c](https://github.com/Angular-RU/angular-ru-sdk/commit/968f273c557c4fd52ce938e3e995985e9ae8d593))
+
+##### New Features
+
+-   **@angular-ru/common:** add ObjectSizePipe module
+    ([0ebdc459](https://github.com/Angular-RU/angular-ru-sdk/commit/0ebdc45929fd0bb60ff3b14820090745c85eaa36))
+
 #### 15.91.0 (2021-02-08)
 
 ##### New Features
