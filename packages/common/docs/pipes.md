@@ -414,3 +414,30 @@ export class AppComponent {
     public filter = 'world';
 }
 ```
+
+-   `MarkByFilterPipe, MarkByFilterPipeModuleModule`
+
+```ts
+import { ObjectSizePipeModule } from '@angular-ru/common/pipes';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ..
+    imports: [ObjectSizePipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `
+        <!-- result: 2 -->
+        {{ [{ a: 1 }, { a: 2 }] | objectSize }}
+
+        <!-- result: 3 -->
+        {{ { a: 1, b: 2, c: 3 } | objectSize }}
+    `
+})
+export class AppComponent {
+    public filter = 'world';
+}
+```
