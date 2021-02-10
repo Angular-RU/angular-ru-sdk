@@ -1,3 +1,15 @@
+#### 15.95.1 (2021-02-10)
+
+##### Bug Fixes
+
+-   **@angular-ru/eslint-config:** set off for `no-unused-vars`
+    ([2342bdd1](https://github.com/Angular-RU/angular-ru-sdk/commit/2342bdd1da62ba8483d1efef601327b993e21cd6))
+
+##### Other Changes
+
+-   **@angular-ru/eslint-config:** set off for `no-unused-vars`
+    ([860299aa](https://github.com/Angular-RU/angular-ru-sdk/commit/860299aa365aecf667327347a166dce619ac9385))
+
 #### 15.95.0 (2021-02-09)
 
 ##### Continuous Integration
