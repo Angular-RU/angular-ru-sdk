@@ -351,7 +351,7 @@ module.exports = {
                 '@typescript-eslint/no-parameter-properties': 'off',
                 '@typescript-eslint/no-require-imports': 'off',
                 '@typescript-eslint/no-shadow': ['error'],
-                'no-unused-vars': ['error', { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }],
+                'no-unused-vars': 'off',
                 '@typescript-eslint/no-unused-vars': [
                     'error',
                     {
