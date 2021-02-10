@@ -1,3 +1,10 @@
+#### 15.96.0 (2021-02-10)
+
+##### New Features
+
+-   update dependency ng-packagr to v11.2.0 ([#402](https://github.com/Angular-RU/angular-ru-sdk/pull/402))
+    ([e838ad9e](https://github.com/Angular-RU/angular-ru-sdk/commit/e838ad9e96cfc83cec77545a038a1b7db484fee5))
+
 #### 15.95.1 (2021-02-10)
 
 ##### Bug Fixes
