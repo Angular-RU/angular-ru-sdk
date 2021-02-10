@@ -57,6 +57,9 @@ describe('[TEST]: Eslint', (): void => {
         expect(bad.includes('Pipes should implement `PipeTransform` interface')).toEqual(true);
         expect(bad.includes('Unexpected any. Specify a different type')).toEqual(true);
         expect(bad.includes("'otherComplexFunction' is defined but never used")).toEqual(true);
+        expect(
+            bad.includes("Remove this conditional structure or edit its code blocks so that they're not all the same")
+        ).toEqual(true);
         expect(bad.includes('215:1   error  Missing return type on function')).toEqual(true);
         expect(bad.includes('274:11  error  Missing return type on function')).toEqual(true);
         expect(bad.includes('276:36  error  Missing return type on function')).toEqual(true);

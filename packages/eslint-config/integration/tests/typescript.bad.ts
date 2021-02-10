@@ -252,7 +252,7 @@ function someComplexFunction(): void {
     }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// expect error
 function otherComplexFunction(): void {
     const someVar: number = Math.random();
     switch (someVar) {
