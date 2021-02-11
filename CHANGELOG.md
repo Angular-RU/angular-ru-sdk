@@ -1,3 +1,17 @@
+#### 15.97.0 (2021-02-11)
+
+##### Continuous Integration
+
+-   update dependency typescript to v4.1.5
+    ([f4cf9371](https://github.com/Angular-RU/angular-ru-sdk/commit/f4cf937171c52134f5b18711bfab1a31bacbd79b))
+-   update Angular to v11.2.0
+    ([9ca8e651](https://github.com/Angular-RU/angular-ru-sdk/commit/9ca8e651dcbec2724bff6c1364a461dad94315d6))
+
+##### New Features
+
+-   update dependency @types/node to v14.14.26
+    ([8bfb9aed](https://github.com/Angular-RU/angular-ru-sdk/commit/8bfb9aed9f41a09fadf889f91e58826250bc7ddc))
+
 #### 15.96.0 (2021-02-10)
 
 ##### New Features
