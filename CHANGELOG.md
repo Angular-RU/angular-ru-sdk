@@ -1,3 +1,15 @@
+#### 15.98.0 (2021-02-12)
+
+##### Continuous Integration
+
+-   update Angular
+    ([f18ea545](https://github.com/Angular-RU/angular-ru-sdk/commit/f18ea5450187cdeaad7e55421f83de14758b6ae0))
+
+##### New Features
+
+-   update dependencies
+    ([caf1f753](https://github.com/Angular-RU/angular-ru-sdk/commit/caf1f75366a9069eac68aa29e7582fe648c72d48))
+
 #### 15.97.0 (2021-02-11)
 
 ##### Continuous Integration
