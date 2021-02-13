@@ -1,3 +1,15 @@
+#### 15.99.0 (2021-02-13)
+
+##### Continuous Integration
+
+-   update dependency karma to v6.1.1
+    ([de6d87bd](https://github.com/Angular-RU/angular-ru-sdk/commit/de6d87bd538a41b8c267d38efae5ddbbadebe7a2))
+
+##### New Features
+
+-   update dependency eslint to v7.20.0
+    ([42d23ae4](https://github.com/Angular-RU/angular-ru-sdk/commit/42d23ae4cc0d7b6ee9576c02607aaac74a4bfaee))
+
 #### 15.98.0 (2021-02-12)
 
 ##### Continuous Integration
