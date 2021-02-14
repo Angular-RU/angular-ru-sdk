@@ -1,3 +1,15 @@
+#### 15.100.0 (2021-02-14)
+
+##### Continuous Integration
+
+-   update dependency class-transformer to v0.4.0
+    ([25fe2e60](https://github.com/Angular-RU/angular-ru-sdk/commit/25fe2e604c6233fe780948031a973d677bd05116))
+
+##### New Features
+
+-   update dependency @types/node to v14.14.28
+    ([7fe4edc7](https://github.com/Angular-RU/angular-ru-sdk/commit/7fe4edc75d78c87b2b346b60f06e1ea5409496e8))
+
 #### 15.99.0 (2021-02-13)
 
 ##### Continuous Integration
