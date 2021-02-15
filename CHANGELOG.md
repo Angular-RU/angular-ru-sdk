@@ -1,3 +1,12 @@
+#### 15.101.0 (2021-02-15)
+
+##### New Features
+
+-   update dependency eslint-plugin-jsdoc to v32 ([#412](https://github.com/Angular-RU/angular-ru-sdk/pull/412))
+    ([e10016b7](https://github.com/Angular-RU/angular-ru-sdk/commit/e10016b7dbc288cbebfe9481c8039297a3a3b94e))
+-   update dependency eslint-plugin-sonarjs to v0.6.0
+    ([9550a2dd](https://github.com/Angular-RU/angular-ru-sdk/commit/9550a2ddcb860d7b8e80b916cdc012b2bace1774))
+
 #### 15.100.0 (2021-02-14)
 
 ##### Continuous Integration
