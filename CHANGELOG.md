@@ -1,3 +1,19 @@
+#### 15.104.0 (2021-02-16)
+
+##### New Features
+
+-   **@angular-ru/common:**
+    -   add checkValueIsFilled function
+        ([52c28271](https://github.com/Angular-RU/angular-ru-sdk/commit/52c28271a46df18961ebde81b535b3c28f58dccf))
+    -   add checkValueIsFilled function ([#416](https://github.com/Angular-RU/angular-ru-sdk/pull/416))
+        ([5737cda2](https://github.com/Angular-RU/angular-ru-sdk/commit/5737cda2bc453a38200e8e53d8a842e84f4b5c88))
+
+##### Other Changes
+
+-   **@angular-ru/common:** add checkValueIsFilled function
+    ([#416](https://github.com/Angular-RU/angular-ru-sdk/pull/416))
+    ([2b07b70a](https://github.com/Angular-RU/angular-ru-sdk/commit/2b07b70aa4ab0fa87700b352c077dc94e8a9f8c7))
+
 #### 15.103.0 (2021-02-16)
 
 ##### New Features
