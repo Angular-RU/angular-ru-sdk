@@ -1,3 +1,10 @@
+#### 15.103.0 (2021-02-16)
+
+##### New Features
+
+-   update ESLint ([#415](https://github.com/Angular-RU/angular-ru-sdk/pull/415))
+    ([e306f8ae](https://github.com/Angular-RU/angular-ru-sdk/commit/e306f8ae174c37d6b8600a8dcbc3aeee44106c4c))
+
 #### 15.102.0 (2021-02-15)
 
 ##### New Features
