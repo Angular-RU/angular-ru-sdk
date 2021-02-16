@@ -57,6 +57,21 @@ expect(checkValueIsEmpty(undefined)).toEqual(true);
 expect(checkValueIsEmpty(null)).toEqual(true);
 ```
 
+-   `checkValueIsFilled`
+
+```ts
+import { checkValueIsEmpty } from '@angular-ru/common/utils';
+
+expect(checkValueIsEmpty(0)).toEqual(true);
+expect(checkValueIsEmpty('x')).toEqual(true);
+expect(checkValueIsEmpty('')).toEqual(false);
+expect(checkValueIsEmpty('null')).toEqual(false);
+expect(checkValueIsEmpty('    ')).toEqual(false);
+expect(checkValueIsEmpty(NaN)).toEqual(false);
+expect(checkValueIsEmpty(undefined)).toEqual(false);
+expect(checkValueIsEmpty(null)).toEqual(false);
+```
+
 -   `isIE`
 
 ```ts

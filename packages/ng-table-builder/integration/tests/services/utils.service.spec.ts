@@ -1,4 +1,4 @@
-import { checkValueIsEmpty } from '@angular-ru/common/utils';
+import { checkValueIsEmpty, checkValueIsFilled } from '@angular-ru/common/utils';
 import { PlainObject } from '@angular-ru/common/typings';
 import { UtilsService } from '../../../src/services/utils/utils.service';
 
@@ -33,6 +33,20 @@ describe('UtilsService', () => {
         expect(checkValueIsEmpty('    ')).toEqual(true);
         expect(checkValueIsEmpty(false)).toEqual(false);
         expect(checkValueIsEmpty(true)).toEqual(false);
+        expect(checkValueIsEmpty(0)).toEqual(false);
+        expect(checkValueIsEmpty('x')).toEqual(false);
+    });
+
+    it('should be correct check filled value', () => {
+        expect(checkValueIsFilled(null)).toEqual(false);
+        expect(checkValueIsFilled(NaN)).toEqual(false);
+        expect(checkValueIsFilled(Infinity)).toEqual(false);
+        expect(checkValueIsFilled(undefined)).toEqual(false);
+        expect(checkValueIsFilled('    ')).toEqual(false);
+        expect(checkValueIsFilled(false)).toEqual(true);
+        expect(checkValueIsFilled(true)).toEqual(true);
+        expect(checkValueIsFilled(0)).toEqual(true);
+        expect(checkValueIsFilled('x')).toEqual(true);
     });
 
     it('should be correct deep object', () => {

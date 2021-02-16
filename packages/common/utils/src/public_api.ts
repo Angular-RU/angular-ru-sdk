@@ -1,6 +1,7 @@
 export { $any } from './$any';
 export { $cast } from './$cast';
 export { checkValueIsEmpty } from './check-value-is-empty';
+export { checkValueIsFilled } from './check-value-is-filled';
 export { copyBuffer } from './copy-buffer';
 export { detectChanges } from './detect-changes';
 export { getBodyRect } from './get-body-rect';
