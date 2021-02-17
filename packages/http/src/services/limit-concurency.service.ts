@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { finalize, switchMap } from 'rxjs/operators';
 
+const DEFAULT_LIMIT: number = 255;
+
 @Injectable()
 export class LimitConcurrencyService {
     private activeRequestCount: number = 0;
     private requestQueue: Subject<boolean>[] = [];
 
-    public queue<R>(request: Observable<R>, limitConcurrency: number): Observable<R> {
+    public add<R>(request: Observable<R>, limitConcurrency: number = DEFAULT_LIMIT): Observable<R> {
         this.validate(limitConcurrency);
         if (this.activeRequestCount < limitConcurrency) {
             this.activeRequestCount++;
@@ -39,6 +41,9 @@ export class LimitConcurrencyService {
     private validate(limitConcurrency: number): void {
         if (limitConcurrency <= 0) {
             throw new Error('Limit concurrency should be more than 0');
+        }
+        if (limitConcurrency === Infinity) {
+            throw new Error('Limit concurrency can not be Infinity');
         }
     }
 }

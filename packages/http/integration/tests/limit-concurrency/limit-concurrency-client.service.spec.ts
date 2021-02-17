@@ -1,92 +1,20 @@
-import { LimitConcurrencyService } from '../../../src/services/limit-concurency.service';
-import { cold } from 'jasmine-marbles';
-import { merge } from 'rxjs';
 import { Any } from '@angular-ru/common/typings/any';
-import { DataHttpClient, DataHttpClientModule } from '@angular-ru/http';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { Injectable } from '@angular/core';
 import { RestClient } from '@angular-ru/http/decorators';
-
-describe('[TEST]: HTTP Limit Concurrency Service with Marbel', () => {
-    const limit: number = 3;
-    const TEST_DATA: Any = {
-        a: 'AAA',
-        b: 'BBB',
-        c: 'CCC',
-        d: 'DDD',
-        e: 'EEE'
-    };
-    let service: LimitConcurrencyService;
-
-    beforeEach(() => {
-        service = new LimitConcurrencyService();
-    });
-
-    it('should throw an error if limitConcurrency = 0', () => {
-        const expected$ = cold('-a|', TEST_DATA);
-        expect(() => service.queue(expected$, 0)).toThrow(new Error('Limit concurrency should be more than 0'));
-    });
-
-    it('should throw an error if limitConcurrency = -1', () => {
-        const expected$ = cold('-a|', TEST_DATA);
-        expect(() => service.queue(expected$, -1)).toThrow(new Error('Limit concurrency should be more than 0'));
-    });
-
-    it('should return Observable with the same data', () => {
-        const expected$ = cold('1s-a-b|', TEST_DATA);
-        expect(service.queue(expected$, 1)).toBeObservable(expected$);
-    });
-
-    it('should run all Observables in parallel if the limit allows', () => {
-        const request_1$ = cold('-----a|', TEST_DATA);
-        const request_2$ = cold('-b|', TEST_DATA);
-        const request_3$ = cold('---c|', TEST_DATA);
-        const expected$ = cold('-b-c-a|', TEST_DATA);
-
-        const mergedObservable = merge(
-            service.queue(request_1$, limit),
-            service.queue(request_2$, limit),
-            service.queue(request_3$, limit)
-        );
-
-        expect(mergedObservable).toBeObservable(expected$);
-    });
-
-    it('should wait until one observable complete before start another if limit is reached', () => {
-        const request_1$ = cold('-----a|', TEST_DATA);
-        const request_2$ = cold('-b|', TEST_DATA);
-        const expected$ = cold('-----a-b|', TEST_DATA);
-
-        const mergedObservable = merge(service.queue(request_1$, 1), service.queue(request_2$, 1));
-
-        expect(mergedObservable).toBeObservable(expected$);
-    });
-
-    it('maximum of 3 Observables must be executed in parallel. And immediately start the next one if one of them is completed', () => {
-        const request_1$ = cold('---------------------a|', TEST_DATA);
-        const request_2$ = cold('----b|', TEST_DATA);
-        const request_3$ = cold('--------------c|', TEST_DATA);
-        const request_4$ = cold('----d|', TEST_DATA);
-        const request_5$ = cold('-------e|', TEST_DATA);
-        const expected$ = cold('----b----d----c--e---a|', TEST_DATA);
-
-        const mergedObservable$ = merge(
-            service.queue(request_1$, limit),
-            service.queue(request_2$, limit),
-            service.queue(request_3$, limit),
-            service.queue(request_4$, limit),
-            service.queue(request_5$, limit)
-        );
-
-        expect(mergedObservable$).toBeObservable(expected$);
-    });
-});
+import { DataHttpClient } from 'src/services/data-http.client';
+import { DataHttpClientModule } from 'src/data-http-client.module';
 
 describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
     const mockApi: string = 'http://localhost';
     const restClient: string = 'hello';
     const baseUrl: string = `${mockApi}/${restClient}`;
+    const api: string = 'api';
+    const apiUrl: string = `${baseUrl}/${api}`;
+    const defaultLimit: number = 255;
+    const exceedTheLimit: number = 10;
+
     let responseOrder: string[] = [];
     let expectOrder: string[] = [];
     let client: MyClient | null = null;
@@ -159,13 +87,10 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
     });
 
     afterEach(() => {
-        responseOrder.forEach((item: string, index: number): void => {
-            expect(item).toEqual(expectOrder[index]);
-        });
         httpMock.verify();
     });
 
-    function configureTestingModule(limitConcurrency: number): HttpServices {
+    function configureTestingModule(limitConcurrency?: number): HttpServices {
         TestBed.configureTestingModule({
             imports: [
                 HttpClientTestingModule,
@@ -186,28 +111,20 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
         });
     }
 
-    it('requests must complete in a right order: Limit Concurrency = 0', fakeAsync(() => {
+    function expectRsponseOrder(): void {
+        responseOrder.forEach((item: string, index: number): void => {
+            expect(item).toEqual(expectOrder[index]);
+        });
+    }
+
+    it('should throw an error if limitConcurrency = 0', fakeAsync(() => {
         ({ client, httpMock } = configureTestingModule(0));
+        expect(() => generateRequests(3)).toThrow(new Error('Limit concurrency should be more than 0'));        
+    }));
 
-        expectOrder = [requestList[1].response, requestList[2].response, requestList[0].response];
-
-        generateRequests(3);
-
-        req_0 = httpMock.expectOne(requestList[0].url);
-        req_1 = httpMock.expectOne(requestList[1].url);
-        req_2 = httpMock.expectOne(requestList[2].url);
-
-        setTimeout(() => {
-            req_0.flush(requestList[0].response);
-        }, requestList[0].delay);
-        setTimeout(() => {
-            req_1.flush(requestList[1].response);
-        }, requestList[1].delay);
-        setTimeout(() => {
-            req_2.flush(requestList[2].response);
-        }, requestList[2].delay);
-
-        tick(5100);
+    it('should throw an error if limitConcurrency = Infinity', fakeAsync(() => {
+        ({ client, httpMock } = configureTestingModule(Infinity));
+        expect(() => generateRequests(3)).toThrow(new Error('Limit concurrency can not be Infinity'));    
     }));
 
     it('requests must complete in a right order: Limit Concurrency = 1', fakeAsync(() => {
@@ -237,6 +154,8 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
             req_2.flush(requestList[2].response);
         }, requestList[2].delay);
         tick(requestList[2].delay);
+
+        expectRsponseOrder();
     }));
 
     it('requests must complete in a right order: Limit Concurrency = 3', fakeAsync(() => {
@@ -283,6 +202,8 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
         }, requestList[4].delay);
 
         tick(3000);
+
+        expectRsponseOrder();
     }));
 
     it('requests must complete in a right order: Limit Concurrency = 5', fakeAsync(() => {
@@ -321,5 +242,20 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
         }, requestList[4].delay);
 
         tick(5100);
+
+        expectRsponseOrder();
+    }));
+
+    it(`limit concurrency by default should be ${defaultLimit}`, fakeAsync(() => {
+        ({ client, httpMock } = configureTestingModule());
+        for(let i = 0; i < defaultLimit + exceedTheLimit; i++) {            
+            client?.get(`api-${i}`).subscribe();
+        }
+        for(let k = 0; k < defaultLimit; k++) {
+            httpMock.expectOne(`${apiUrl}-${k}`);
+        }
+        for(let k = defaultLimit; k < defaultLimit + exceedTheLimit; k++) {
+            httpMock.expectNone(`${apiUrl}-${k}`);
+        }
     }));
 });
