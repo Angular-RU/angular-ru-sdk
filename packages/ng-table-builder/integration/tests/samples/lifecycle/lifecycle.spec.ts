@@ -12,6 +12,7 @@ import { SelectionService } from '../../../../src/services/selection/selection.s
 import { SortableService } from '../../../../src/services/sortable/sortable.service';
 import { TemplateParserService } from '../../../../src/services/template-parser/template-parser.service';
 import { UtilsService } from '../../../../src/services/utils/utils.service';
+import { TableSelectedItemsPipe } from '../../../../src/pipes/table-selected-items.pipe';
 
 describe('[TEST]: Lifecycle table', () => {
     let table: TableBuilderComponent;
@@ -122,7 +123,17 @@ describe('[TEST]: Lifecycle table', () => {
 
     it('should be basic api', () => {
         table.source = JSON.parse(JSON.stringify(data));
-        expect(table.selectedItems).toEqual([]);
+
+        expect(new TableSelectedItemsPipe(table).transform({})).toEqual([]);
+        expect(new TableSelectedItemsPipe(table).transform({ 1: true })).toEqual([
+            {
+                name: 'Hydrogen',
+                position: 1,
+                symbol: 'H',
+                weight: 1.0079
+            }
+        ]);
+
         expect(table.lastItem).toEqual({ position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' });
     });
 

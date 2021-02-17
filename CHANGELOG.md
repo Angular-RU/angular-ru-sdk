@@ -1,3 +1,212 @@
+#### 15.105.0 (2021-02-17)
+
+##### Continuous Integration
+
+-   update dependency zone.js to v0.11.4
+    ([aea4df37](https://github.com/Angular-RU/angular-ru-sdk/commit/aea4df3742a53abdf0254933a3a7be966f2048c1))
+
+##### New Features
+
+-   update dependency eslint-plugin-jsdoc to v32.0.2
+    ([ca6c1f1b](https://github.com/Angular-RU/angular-ru-sdk/commit/ca6c1f1be090d03173403b895fa9ec4556ec58c7))
+
+#### 15.104.0 (2021-02-16)
+
+##### New Features
+
+-   **@angular-ru/common:**
+    -   add checkValueIsFilled function
+        ([52c28271](https://github.com/Angular-RU/angular-ru-sdk/commit/52c28271a46df18961ebde81b535b3c28f58dccf))
+    -   add checkValueIsFilled function ([#416](https://github.com/Angular-RU/angular-ru-sdk/pull/416))
+        ([5737cda2](https://github.com/Angular-RU/angular-ru-sdk/commit/5737cda2bc453a38200e8e53d8a842e84f4b5c88))
+
+##### Other Changes
+
+-   **@angular-ru/common:** add checkValueIsFilled function
+    ([#416](https://github.com/Angular-RU/angular-ru-sdk/pull/416))
+    ([2b07b70a](https://github.com/Angular-RU/angular-ru-sdk/commit/2b07b70aa4ab0fa87700b352c077dc94e8a9f8c7))
+
+#### 15.103.0 (2021-02-16)
+
+##### New Features
+
+-   update ESLint ([#415](https://github.com/Angular-RU/angular-ru-sdk/pull/415))
+    ([e306f8ae](https://github.com/Angular-RU/angular-ru-sdk/commit/e306f8ae174c37d6b8600a8dcbc3aeee44106c4c))
+
+#### 15.102.0 (2021-02-15)
+
+##### New Features
+
+-   update ESLint to v4.15.1
+    ([30d1efbb](https://github.com/Angular-RU/angular-ru-sdk/commit/30d1efbb83b1d442244623a7bcc24a57abd21895))
+
+#### 15.101.0 (2021-02-15)
+
+##### New Features
+
+-   update dependency eslint-plugin-jsdoc to v32 ([#412](https://github.com/Angular-RU/angular-ru-sdk/pull/412))
+    ([e10016b7](https://github.com/Angular-RU/angular-ru-sdk/commit/e10016b7dbc288cbebfe9481c8039297a3a3b94e))
+-   update dependency eslint-plugin-sonarjs to v0.6.0
+    ([9550a2dd](https://github.com/Angular-RU/angular-ru-sdk/commit/9550a2ddcb860d7b8e80b916cdc012b2bace1774))
+
+#### 15.100.0 (2021-02-14)
+
+##### Continuous Integration
+
+-   update dependency class-transformer to v0.4.0
+    ([25fe2e60](https://github.com/Angular-RU/angular-ru-sdk/commit/25fe2e604c6233fe780948031a973d677bd05116))
+
+##### New Features
+
+-   update dependency @types/node to v14.14.28
+    ([7fe4edc7](https://github.com/Angular-RU/angular-ru-sdk/commit/7fe4edc75d78c87b2b346b60f06e1ea5409496e8))
+
+#### 15.99.0 (2021-02-13)
+
+##### Continuous Integration
+
+-   update dependency karma to v6.1.1
+    ([de6d87bd](https://github.com/Angular-RU/angular-ru-sdk/commit/de6d87bd538a41b8c267d38efae5ddbbadebe7a2))
+
+##### New Features
+
+-   update dependency eslint to v7.20.0
+    ([42d23ae4](https://github.com/Angular-RU/angular-ru-sdk/commit/42d23ae4cc0d7b6ee9576c02607aaac74a4bfaee))
+
+#### 15.98.0 (2021-02-12)
+
+##### Continuous Integration
+
+-   update Angular
+    ([f18ea545](https://github.com/Angular-RU/angular-ru-sdk/commit/f18ea5450187cdeaad7e55421f83de14758b6ae0))
+
+##### New Features
+
+-   update dependencies
+    ([caf1f753](https://github.com/Angular-RU/angular-ru-sdk/commit/caf1f75366a9069eac68aa29e7582fe648c72d48))
+
+#### 15.97.0 (2021-02-11)
+
+##### Continuous Integration
+
+-   update dependency typescript to v4.1.5
+    ([f4cf9371](https://github.com/Angular-RU/angular-ru-sdk/commit/f4cf937171c52134f5b18711bfab1a31bacbd79b))
+-   update Angular to v11.2.0
+    ([9ca8e651](https://github.com/Angular-RU/angular-ru-sdk/commit/9ca8e651dcbec2724bff6c1364a461dad94315d6))
+
+##### New Features
+
+-   update dependency @types/node to v14.14.26
+    ([8bfb9aed](https://github.com/Angular-RU/angular-ru-sdk/commit/8bfb9aed9f41a09fadf889f91e58826250bc7ddc))
+
+#### 15.96.0 (2021-02-10)
+
+##### New Features
+
+-   update dependency ng-packagr to v11.2.0 ([#402](https://github.com/Angular-RU/angular-ru-sdk/pull/402))
+    ([e838ad9e](https://github.com/Angular-RU/angular-ru-sdk/commit/e838ad9e96cfc83cec77545a038a1b7db484fee5))
+
+#### 15.95.1 (2021-02-10)
+
+##### Bug Fixes
+
+-   **@angular-ru/eslint-config:** set off for `no-unused-vars`
+    ([2342bdd1](https://github.com/Angular-RU/angular-ru-sdk/commit/2342bdd1da62ba8483d1efef601327b993e21cd6))
+
+##### Other Changes
+
+-   **@angular-ru/eslint-config:** set off for `no-unused-vars`
+    ([860299aa](https://github.com/Angular-RU/angular-ru-sdk/commit/860299aa365aecf667327347a166dce619ac9385))
+
+#### 15.95.0 (2021-02-09)
+
+##### Continuous Integration
+
+-   update dependency typescript to v4.1.4 ([#401](https://github.com/Angular-RU/angular-ru-sdk/pull/401))
+    ([9e852319](https://github.com/Angular-RU/angular-ru-sdk/commit/9e852319e9fdd57c684316cb28e3e30c8b6e2901))
+
+##### New Features
+
+-   update dependency husky to v5 ([#399](https://github.com/Angular-RU/angular-ru-sdk/pull/399))
+    ([dcecf5de](https://github.com/Angular-RU/angular-ru-sdk/commit/dcecf5de53d1e082e4dd43431bae5d1d2a4a1f9f))
+
+#### 15.94.0 (2021-02-09)
+
+##### New Features
+
+-   update dependency ts-jest to v26.5.1
+    ([f37f5068](https://github.com/Angular-RU/angular-ru-sdk/commit/f37f50682ec4eb2d67c8e8ad9e569c7ad65599ee))
+
+#### 15.93.0 (2021-02-09)
+
+##### New Features
+
+-   **@angular-ru/ng-table-builder:** add tableSelectionPipe module
+    ([3cd58173](https://github.com/Angular-RU/angular-ru-sdk/commit/3cd58173a636bed7749635af5d4dada97084fa47))
+
+##### Other Changes
+
+-   **@angular-ru/ng-table-builder:** add tableSelectionPipe module
+    ([4c9a7530](https://github.com/Angular-RU/angular-ru-sdk/commit/4c9a7530957524722b4529c69e956d08674bae6b))
+
+#### 15.92.0 (2021-02-09)
+
+##### Chores
+
+-   **release:** updated release notes and package versions [ci skip]
+    ([968f273c](https://github.com/Angular-RU/angular-ru-sdk/commit/968f273c557c4fd52ce938e3e995985e9ae8d593))
+
+##### New Features
+
+-   **@angular-ru/common:** add ObjectSizePipe module
+    ([0ebdc459](https://github.com/Angular-RU/angular-ru-sdk/commit/0ebdc45929fd0bb60ff3b14820090745c85eaa36))
+
+#### 15.91.0 (2021-02-08)
+
+##### New Features
+
+-   update ESLint to v4.15.0 ([#398](https://github.com/Angular-RU/angular-ru-sdk/pull/398))
+    ([2582294e](https://github.com/Angular-RU/angular-ru-sdk/commit/2582294e306b48eb1f84dd0821226ab78bce8f26))
+
+#### 15.90.2 (2021-02-08)
+
+##### Bug Fixes
+
+-   **@angular-ru/common:** call the `setValue` method instead the `rese…
+    ([#397](https://github.com/Angular-RU/angular-ru-sdk/pull/397))
+    ([9adb3989](https://github.com/Angular-RU/angular-ru-sdk/commit/9adb398933446edd588e87c8970de76958424119))
+
+#### 15.90.1 (2021-02-08)
+
+##### Continuous Integration
+
+-   update devDependencies
+    ([0b6ff079](https://github.com/Angular-RU/angular-ru-sdk/commit/0b6ff079ea2f87b4dcdb1d512f74bb3a352ab00f))
+
+##### Bug Fixes
+
+-   **@angular-ru/eslint-config:** support new APIs
+    ([161679f9](https://github.com/Angular-RU/angular-ru-sdk/commit/161679f9a4ba2ac1b8b7b7361c1abda09c0b0056))
+
+#### 15.90.0 (2021-02-07)
+
+##### Continuous Integration
+
+-   update Angular
+    ([8f8d3e94](https://github.com/Angular-RU/angular-ru-sdk/commit/8f8d3e9481cbf983ffc913dabc2c52649619d975))
+
+##### New Features
+
+-   update ESLint (minor) ([#361](https://github.com/Angular-RU/angular-ru-sdk/pull/361))
+    ([0da2f344](https://github.com/Angular-RU/angular-ru-sdk/commit/0da2f34405fb9b1a7f97e2c3e2e1a53ff416e809))
+
+#### 15.89.0 (2021-02-05)
+
+##### New Features
+
+-   update dependency lint-staged to v10.5.4
+    ([2e737bb8](https://github.com/Angular-RU/angular-ru-sdk/commit/2e737bb84ad70001ece7146c53d2ac5aaeab730c))
+
 #### 15.88.0 (2021-02-05)
 
 ##### New Features

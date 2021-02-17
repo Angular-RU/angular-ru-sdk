@@ -327,6 +327,10 @@ module.exports = {
                     {
                         selector: 'enum',
                         format: ['StrictPascalCase']
+                    },
+                    {
+                        selector: 'enumMember',
+                        format: ['PascalCase', 'UPPER_CASE']
                     }
                 ],
                 '@typescript-eslint/no-empty-interface': 'error',
@@ -347,7 +351,7 @@ module.exports = {
                 '@typescript-eslint/no-parameter-properties': 'off',
                 '@typescript-eslint/no-require-imports': 'off',
                 '@typescript-eslint/no-shadow': ['error'],
-                'no-unused-vars': ['error', { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }],
+                'no-unused-vars': 'off',
                 '@typescript-eslint/no-unused-vars': [
                     'error',
                     {

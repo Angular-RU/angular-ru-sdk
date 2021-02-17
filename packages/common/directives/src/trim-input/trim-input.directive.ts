@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, InjectFlags, Injector, Input, OnInit } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, OnInit, Optional } from '@angular/core';
 import { AbstractControl, NgControl } from '@angular/forms';
 import { Any } from '@angular-ru/common/typings';
 
@@ -8,17 +8,13 @@ export class TrimInputDirective implements OnInit {
     private previousName: string | number | null | undefined;
     private previousValue: Any;
 
-    constructor(public readonly el: ElementRef, private readonly injector: Injector) {}
+    constructor(public readonly el: ElementRef, @Optional() private readonly ngControl?: NgControl) {}
 
     @Input()
     public set formControlName(name: string | number | null | undefined) {
         this.previousValue = this.ngControl?.control?.parent?.get(this.name as Any)?.value;
         this.previousName = this.name;
         this.name = name;
-    }
-
-    public get ngControl(): NgControl | undefined {
-        return this.injector.get(NgControl, undefined, InjectFlags.Self);
     }
 
     public ngOnInit(): void {
@@ -46,10 +42,10 @@ export class TrimInputDirective implements OnInit {
             const modelValue: string = (this.ngControl?.value ?? control?.value)?.toString().trim();
 
             if (this.ngControl?.control === control) {
-                this.ngControl?.control?.reset(modelValue);
+                this.ngControl?.control?.setValue(modelValue, { emitEvent: false });
             } else {
                 control?.setValue(modelValue, { emitEvent: false });
-                control?.parent?.get(this.previousName as Any)?.reset(this.previousValue);
+                control?.parent?.get(this.previousName as Any)?.setValue(this.previousValue, { emitEvent: false });
             }
         }
     }

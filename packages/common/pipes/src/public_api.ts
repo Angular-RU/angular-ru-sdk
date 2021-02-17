@@ -32,6 +32,8 @@ export { MutableTypePipeModule } from './mutable/mutable-type-pipe.module';
 export { NumberFormatOptions } from './number-format/number-format.interfaces';
 export { NumberFormatPipe } from './number-format/number-format.pipe';
 export { NumberFormatPipeModule } from './number-format/number-format-pipe.module';
+export { ObjectSizePipe } from './object-size/object-size.pipe';
+export { ObjectSizePipeModule } from './object-size/object-size-pipe.module';
 export { SafeType, SafeTypeOptions } from './safe/safe.interfaces';
 export { SafePipe } from './safe/safe.pipe';
 export { SafePipeModule } from './safe/safe-pipe.module';

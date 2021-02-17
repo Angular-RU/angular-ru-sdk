@@ -62,6 +62,9 @@ describe('[TEST]: Trim Input', () => {
         fixture?.whenStable().then(() => {
             fixture?.detectChanges();
 
+            expect(component!.form.pristine).toEqual(false);
+            expect(component!.form.dirty).toEqual(true);
+
             expect(component?.form.value).toEqual({ value: '1234000012340000' });
             expect(debugElement!.nativeElement.value).toEqual('1234-0000-1234-0000');
         });

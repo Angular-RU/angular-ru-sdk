@@ -252,7 +252,7 @@ function someComplexFunction(): void {
     }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// expect error
 function otherComplexFunction(): void {
     const someVar: number = Math.random();
     switch (someVar) {
@@ -285,3 +285,10 @@ log(fooZ);
     variable += 'world';
     console.error(variable);
 })('hello');
+
+// expect errors
+export const enum HelloWorldNonCase {
+    worldName
+}
+
+console.error(HelloWorldNonCase.worldName);
