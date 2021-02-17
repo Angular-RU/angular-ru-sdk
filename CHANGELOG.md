@@ -1,3 +1,15 @@
+#### 15.105.0 (2021-02-17)
+
+##### Continuous Integration
+
+-   update dependency zone.js to v0.11.4
+    ([aea4df37](https://github.com/Angular-RU/angular-ru-sdk/commit/aea4df3742a53abdf0254933a3a7be966f2048c1))
+
+##### New Features
+
+-   update dependency eslint-plugin-jsdoc to v32.0.2
+    ([ca6c1f1b](https://github.com/Angular-RU/angular-ru-sdk/commit/ca6c1f1be090d03173403b895fa9ec4556ec58c7))
+
 #### 15.104.0 (2021-02-16)
 
 ##### New Features
