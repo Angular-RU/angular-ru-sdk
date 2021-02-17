@@ -23,8 +23,8 @@ export class DataHttpClientModule {
                 { provide: DATA_CONFIG_SERVICE_TOKEN, useValue: { ...DATA_REQUEST_OPTIONS_CONFIG, ...options } },
                 { provide: DATA_HTTP_CLIENT_INTERCEPTOR, useClass: DefaultHttpClientInterceptor },
                 DataHttpClient,
-                ...clients,
-                LimitConcurrencyService
+                LimitConcurrencyService,
+                ...clients
             ]
         };
     }
