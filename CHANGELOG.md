@@ -1,3 +1,11 @@
+#### 15.107.0 (2021-02-18)
+
+##### New Features
+
+-   **@angular-ru/ng-table-builder:** add row-css-classes input into TableBuilder
+    ([#420](https://github.com/Angular-RU/angular-ru-sdk/pull/420))
+    ([dd18a0c9](https://github.com/Angular-RU/angular-ru-sdk/commit/dd18a0c94e4dd43a6bd5601f2921131a874f9b26))
+
 #### 15.106.0 (2021-02-18)
 
 ##### Continuous Integration
