@@ -415,7 +415,7 @@ export class AppComponent {
 }
 ```
 
--   `MarkByFilterPipe, MarkByFilterPipeModuleModule`
+-   `ObjectSizePipe, ObjectSizePipeModule`
 
 ```ts
 import { ObjectSizePipeModule } from '@angular-ru/common/pipes';
@@ -439,5 +439,38 @@ export class AppModule {}
 })
 export class AppComponent {
     public filter = 'world';
+}
+```
+
+-   `MergeCssClassesPipe, MergeCssClassesPipeModule`
+
+```ts
+import { MergeCssClassesPipe } from '@angular-ru/common/pipes';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ..
+    imports: [MergeCssClassesPipe]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `
+        <div [ngClass]="'some-class' | mergeCssClasses: ['class-a', 'class-b']:{ enabled: isEnabled }">
+            <!--
+            result:
+            {
+                'some-class': true,
+                'class-a': true,
+                'class-b': true,
+                enabled: false
+            }
+            -->
+        </div>
+    `
+})
+export class AppComponent {
+    public isEnabled = false;
 }
 ```
