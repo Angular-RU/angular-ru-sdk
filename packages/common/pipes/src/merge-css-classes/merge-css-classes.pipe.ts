@@ -18,15 +18,15 @@ export class MergeCssClassesPipe implements PipeTransform {
             return {};
         }
         if (typeof descriptor === 'string') {
-            return this.makeObjectOfTrue(descriptor.split(/\s+/));
+            return this.makePlainObjectOfTrues(descriptor.split(/\s+/));
         }
         if (isIterable(descriptor)) {
-            return this.makeObjectOfTrue(Array.from(descriptor));
+            return this.makePlainObjectOfTrues(Array.from(descriptor));
         }
         return descriptor;
     }
 
-    private makeObjectOfTrue(array: string[]): PlainObjectOf<true> {
+    private makePlainObjectOfTrues(array: string[]): PlainObjectOf<true> {
         return array.reduce(
             (object: PlainObjectOf<true>, item: string): PlainObjectOf<true> => Object.assign(object, { [item]: true }),
             {}
