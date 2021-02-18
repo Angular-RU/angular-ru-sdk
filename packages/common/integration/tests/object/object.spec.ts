@@ -1,17 +1,18 @@
 import {
+    checkIsShallowEmpty,
+    clean,
+    deepClone,
+    deepFreeze,
     firstKey,
-    sortByAsc,
-    sortByDesc,
+    getValueByPath,
+    isGetter,
+    isIterable,
     isObject,
     isPlainObject,
     isSimpleObject,
-    isGetter,
-    deepClone,
-    deepFreeze,
     replaceWithNull,
-    clean,
-    getValueByPath,
-    checkIsShallowEmpty
+    sortByAsc,
+    sortByDesc
 } from '@angular-ru/common/object';
 import { Any, PlainObject } from '@angular-ru/common/typings';
 
@@ -342,5 +343,33 @@ describe('[TEST]: Object', () => {
         expect(checkIsShallowEmpty({})).toEqual(true);
         expect(checkIsShallowEmpty({ a: null })).toEqual(true);
         expect(checkIsShallowEmpty({ a: '', b: undefined, c: NaN, d: '   ' })).toEqual(true);
+    });
+
+    it('should correct recognize iterable values', function () {
+        expect(isIterable([1, 2])).toBe(true);
+        expect(isIterable('Some String')).toBe(true);
+        expect(isIterable(new Set([1, 2]))).toBe(true);
+        expect(
+            isIterable(
+                new Map([
+                    ['a', 1],
+                    ['b', 2]
+                ])
+            )
+        ).toBe(true);
+        expect(
+            isIterable(
+                new Map([
+                    ['a', 1],
+                    ['b', 2]
+                ]).entries()
+            )
+        ).toBe(true);
+        expect(isIterable({ a: 1, b: 2 })).toBe(false);
+        expect(isIterable(null)).toBe(false);
+        expect(isIterable(undefined)).toBe(false);
+        expect(isIterable(0)).toBe(false);
+        expect(isIterable(true)).toBe(false);
+        expect(isIterable(() => {})).toBe(false);
     });
 });

@@ -11,7 +11,7 @@
             #parent
             *ngIf="item"
             (selectstart)="(canSelectTextInTable)"
-            [ngClass]="columnSchema?.td?.class || []"
+            [ngClass]="columnSchema?.td?.class | mergeCssClasses: rowCssClasses[item[primaryKey!]]"
             [ngStyle]="columnSchema?.td?.style || []"
             class="table-grid__cell table-grid__cell--body"
             (contextmenu)="openContextMenu($event, columnSchema?.key, item)"

@@ -11,6 +11,7 @@ export {
     ObjectReduceOptions
 } from './internal/extra-object-options';
 export { isGetter } from './is-getter';
+export { isIterable } from './is-iterable';
 export { isObject } from './is-object';
 export { isPlainObject } from './is-plain-object';
 export { isSimpleObject } from './is-simple-object';

@@ -1,0 +1,11 @@
+<mat-toolbar class="simple-toolbar">
+    <span> Example cell css classes </span>
+
+    <button class="show-simple" mat-raised-button (click)="showSample()">show code sample</button>
+</mat-toolbar>
+
+<ngx-table-builder [source]="data" [row-css-classes]="rowCssClasses" primary-key="id">
+    <ngx-empty>No data</ngx-empty>
+    <ngx-source-null>Loading</ngx-source-null>
+    <ngx-options is-sortable></ngx-options>
+</ngx-table-builder>

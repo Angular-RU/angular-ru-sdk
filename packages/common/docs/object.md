@@ -156,6 +156,37 @@ expect(
 expect(isGetter({ a: 2 }, 'a')).toEqual(false);
 ```
 
+-   `isIterable`
+
+```ts
+expect(isIterable([1, 2])).toBe(true);
+expect(isIterable('Some String')).toBe(true);
+expect(isIterable(new Set([1, 2]))).toBe(true);
+expect(
+    isIterable(
+        new Map([
+            ['a', 1],
+            ['b', 2]
+        ])
+    )
+).toBe(true);
+expect(
+    isIterable(
+        new Map([
+            ['a', 1],
+            ['b', 2]
+        ]).entries()
+    )
+).toBe(true);
+
+expect(isIterable({ a: 1, b: 2 })).toBe(false);
+expect(isIterable(null)).toBe(false);
+expect(isIterable(undefined)).toBe(false);
+expect(isIterable(0)).toBe(false);
+expect(isIterable(true)).toBe(false);
+expect(isIterable(() => {})).toBe(false);
+```
+
 -   `deepClone`
 
 ```ts

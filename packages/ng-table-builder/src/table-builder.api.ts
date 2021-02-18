@@ -76,6 +76,7 @@ export abstract class AbstractTableBuilderApiImpl
     @Input('enable-selection') public enableSelection: boolean | string = false;
     @Input('enable-filtering') public enableFiltering: boolean | string = false;
     @Input('produce-disable-fn') public produceDisableFn: ProduceDisableFn = null;
+    @Input('row-css-classes') public rowCssClasses: PlainObjectOf<string[]> = {};
     @Input('schema-columns') public schemaColumns: TableUpdateSchema | null = null;
     @Input('schema-version') public schemaVersion: number = 1;
     @Output() public afterRendered: EventEmitter<boolean> = new EventEmitter();
