@@ -3,8 +3,7 @@ import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@an
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { Injectable } from '@angular/core';
 import { RestClient } from '@angular-ru/http/decorators';
-import { DataHttpClient } from 'src/services/data-http.client';
-import { DataHttpClientModule } from 'src/data-http-client.module';
+import { DataHttpClient, DataHttpClientModule } from '@angular-ru/http';
 
 describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
     const mockApi: string = 'http://localhost';
@@ -91,10 +90,11 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
     });
 
     function configureTestingModule(limitConcurrency?: number): HttpServices {
+        const options: Any = (limitConcurrency || limitConcurrency === 0) ? { limitConcurrency: limitConcurrency }: {};
         TestBed.configureTestingModule({
             imports: [
                 HttpClientTestingModule,
-                DataHttpClientModule.forRoot([MyClient], { limitConcurrency: limitConcurrency })
+                DataHttpClientModule.forRoot([MyClient], options)
             ]
         });
         return {

@@ -148,8 +148,10 @@ class MyCitiesClient extends DataHttpClient {
 #### Limiting the number of concurrent requests (optional)
 
 there is almost no limit on the number of requests that can be sent in parallel, by default this value is 255
+<br>
+Note: various browsers have various limits for maximum connections per host name (Chrome: 6)
 
-![](./docs/limit-concurrency-none.jpg)
+![](./docs/limit-concurrency-none.png)
 
 but if necessary, you can change it, for example by setting <b>limitConcurrency: 5</b>. This mean that maximum of 5
 requests can be executed in parallel. Next one immediately start only if one of the previous requests is completed
@@ -172,4 +174,5 @@ import { DataHttpClientModule } from '@angular-ru/http';
 export class AppModule {}
 ```
 
-![](./docs/limit-concurrency-5.jpg)
+![](./docs/limit-concurrency-5.png)
+
