@@ -2,28 +2,33 @@ import { Any } from '@angular-ru/common/typings';
 import type { Config } from '@jest/types';
 
 import { validateOptions } from './common';
+import {
+    DEFAULT_BAIL,
+    DEFAULT_CACHE,
+    DEFAULT_CACHE_DIR,
+    DEFAULT_COVERAGE_REPORTS,
+    DEFAULT_DISPLAY_NAME,
+    DEFAULT_MAX_CONCURRENCY,
+    DEFAULT_MAX_WORKERS,
+    DEFAULT_ONLY_CHANGED,
+    DEFAULT_TEST_PATH_IGNORE_PATTERS,
+    DEFAULT_VERBOSE,
+    DEFAULT_WATCH
+} from './default.config';
 import { JestConfigOptions, ModuleMapper } from './jest-config.interface';
 
 // eslint-disable-next-line sonarjs/cognitive-complexity,complexity,max-lines-per-function
-export function createTsJestConfig(options: JestConfigOptions & Config.InitialOptions): Config.InitialOptions {
-    const maxConcurrency: number = 2;
-    const rootDir: string = options?.rootDir ?? __dirname;
-
-    if (options.debug) {
-        // eslint-disable-next-line no-console
-        console.log(
-            `[DEBUG]: rootDir = ${rootDir}\nIf the address is not defined correctly, you can specify it:\n module.exports = createJestConfig({ rootDir: path.resolve('.') }); \n`
-        );
-    }
-
+export function createTsJestConfig(options: JestConfigOptions & Config.InitialOptions = {}): Config.InitialOptions {
     validateOptions(options);
 
     if (!options?.tsConfigSpecPath && options.debug) {
         // eslint-disable-next-line no-console
-        console.log(`[DEBUG]: tsConfigSpecPath not initialized, use tsConfig by: ${options.tsConfigRootPath}`);
+        console.log(
+            `[DEBUG]: tsConfigSpecPath not initialized, use tsConfig by default for ts-jest: ${options.tsConfigRootPath}`
+        );
     }
 
-    const tsconfig: Record<string, Any> = require(options.tsConfigRootPath);
+    const tsconfig: Record<string, Any> = require(options.tsConfigRootPath!);
     const { pathsToModuleNameMapper: resolver }: Any = require('ts-jest/utils');
     const prefix: Record<string, Any> = {
         prefix: `<rootDir>/${tsconfig?.compilerOptions?.baseUrl ?? ''}/`.replace(/\.\//g, '/').replace(/\/\/+/g, '/')
@@ -46,10 +51,16 @@ export function createTsJestConfig(options: JestConfigOptions & Config.InitialOp
         console.log('[DEBUG]: ', JSON.stringify(moduleNameMapper, null, 4), '\n');
     }
 
+    // remove fields tsConfigRootPath, debug, tsConfigSpecPath
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/typedef
+    const { tsConfigRootPath, debug, tsConfigSpecPath, ...jestConfig } = options;
+
     return {
-        cache: true,
-        watch: false,
-        projects: ['<rootDir>'],
+        ...jestConfig,
+        rootDir: options.rootDir,
+        onlyChanged: options.onlyChanged ?? DEFAULT_ONLY_CHANGED,
+        cache: options.cache ?? DEFAULT_CACHE,
+        watch: options.watch ?? DEFAULT_WATCH,
 
         /**
          * A set of global variables that need to be available in all test environments.
@@ -73,13 +84,13 @@ export function createTsJestConfig(options: JestConfigOptions & Config.InitialOp
          * The bail config option can be used here to have Jest stop running tests after n failures.
          * Setting bail to true is the same as setting bail to 1
          */
-        bail: 1,
+        bail: options.bail ?? DEFAULT_BAIL,
 
         /**
          * Indicates whether each individual test should be reported during the run.
          * All errors will also still be shown on the bottom after execution.
          */
-        verbose: true,
+        verbose: options.verbose ?? DEFAULT_VERBOSE,
 
         /**
          * A map from regular expressions to module names that allow to stub out resources,
@@ -88,17 +99,17 @@ export function createTsJestConfig(options: JestConfigOptions & Config.InitialOp
          * Use <rootDir> string token to refer to rootDir value if you want to use file paths.
          * Additionally, you can substitute captured regex groups using numbered back references.
          */
-        moduleNameMapper,
+        moduleNameMapper: options.moduleNameMapper ?? moduleNameMapper,
 
         /**
          * The glob patterns Jest uses to detect test files.
          */
-        testMatch: options.testMatch,
+        testMatch: options.testMatch ?? [],
 
         preset: 'jest-preset-angular',
-        displayName: options.displayName,
-        rootDir: options.rootDir ?? __dirname,
-        maxWorkers: options?.maxWorkers ?? '50%',
+
+        displayName: options.displayName ?? DEFAULT_DISPLAY_NAME,
+        maxWorkers: options?.maxWorkers ?? DEFAULT_MAX_WORKERS,
 
         /**
          * An array of glob patterns indicating a set of files for which coverage
@@ -106,7 +117,7 @@ export function createTsJestConfig(options: JestConfigOptions & Config.InitialOp
          * coverage information will be collected for it even if no tests exist for this file and
          * it's never required in the test suite.
          */
-        collectCoverageFrom: options.collectCoverageFrom,
+        collectCoverageFrom: options.collectCoverageFrom ?? [],
 
         /**
          * A list of paths to modules that run some code to configure or set up the testing
@@ -132,25 +143,25 @@ export function createTsJestConfig(options: JestConfigOptions & Config.InitialOp
          * project's root directory to prevent it from accidentally ignoring all of
          * your files in different environments that may have different root directories.
          */
-        testPathIgnorePatterns: options?.testPathIgnorePatterns ?? ['/node_modules/', '/dist/'],
+        testPathIgnorePatterns: options?.testPathIgnorePatterns ?? DEFAULT_TEST_PATH_IGNORE_PATTERS,
 
         /**
          * A number limiting the number of tests that are allowed to run at the same time when
          * using test.concurrent. Any test above this limit will be queued and executed once
          * a slot is released.
          */
-        maxConcurrency: options?.maxConcurrency ?? maxConcurrency,
+        maxConcurrency: options?.maxConcurrency ?? DEFAULT_MAX_CONCURRENCY,
 
         /**
          * The directory where Jest should store its cached dependency information.
          */
-        cacheDirectory: options?.cacheDirectory ?? '<rootDir>/.cache',
+        cacheDirectory: options?.cacheDirectory ?? DEFAULT_CACHE_DIR,
 
         /**
          * A list of reporter names that Jest uses when writing coverage reports.
          * Any istanbul reporter can be used.
          * https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib
          */
-        coverageReporters: options?.coverageReporters ?? ['html', 'lcov', 'json', 'text', 'lcov', 'clover']
+        coverageReporters: options?.coverageReporters ?? DEFAULT_COVERAGE_REPORTS
     };
 }

@@ -1,3 +1,4 @@
+/// <reference types="jest" />
 import { createTsJestConfig } from '../../src';
 // @ts-ignore
 import { Hello } from '@mock/hello';
@@ -14,6 +15,7 @@ describe('[TEST]: Hello world', () => {
     it('should be correct create', () => {
         expect(
             createTsJestConfig({
+                rootDir: '.',
                 testMatch: [],
                 collectCoverageFrom: [],
                 displayName: 'Hello world',
@@ -42,13 +44,13 @@ describe('[TEST]: Hello world', () => {
             verbose: true,
             watch: false,
             cache: true,
-            projects: ['<rootDir>'],
             testMatch: [],
             modulePathIgnorePatterns: [],
-            testPathIgnorePatterns: ['/node_modules/', '/dist/'],
+            onlyChanged: true,
+            testPathIgnorePatterns: ['/node_modules/', '/dist/', '/e2e/'],
             preset: 'jest-preset-angular',
             displayName: 'Hello world',
-            rootDir: expect.any(String),
+            rootDir: '.',
             maxWorkers: '50%',
             setupFilesAfterEnv: [],
             maxConcurrency: 2,

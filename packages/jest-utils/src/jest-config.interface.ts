@@ -1,19 +1,20 @@
 export interface JestConfigOptions {
-    displayName: string;
-    testMatch: string[];
-    debug?: boolean;
     rootDir?: string;
-    tsConfigRootPath: string;
+    displayName?: string;
+    testMatch?: string[];
     cacheDirectory?: string;
-    tsConfigSpecPath?: string;
     maxConcurrency?: number;
     setupFilesAfterEnv?: string[];
     maxWorkers?: number | string;
-    collectCoverageFrom: string[];
+    collectCoverageFrom?: string[];
     testPathIgnorePatterns?: string[];
     modulePathIgnorePatterns?: string[];
     coverageReporters?: string[];
     moduleNameMapper?: Record<string, string | string[]>;
+    /* custom: */
+    tsConfigRootPath?: string;
+    tsConfigSpecPath?: string;
+    debug?: boolean;
 }
 
 export interface ModuleMapper {
