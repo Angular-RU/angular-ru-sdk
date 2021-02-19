@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 
 import { DATA_HTTP_CLIENT_INTERCEPTOR } from '../tokens/data-http-client-interceptor.token';
 import { DataConfiguratorService } from './data-configurator.service';
+import { LimitConcurrencyService } from './limit-concurency.service';
 
 interface ReqProperty {
     method: string;
@@ -30,6 +31,7 @@ export abstract class AbstractHttpClient<K = unknown> {
     protected constructor(
         protected http: HttpClient,
         protected configurator: DataConfiguratorService,
+        protected limitConcurrency: LimitConcurrencyService,
         @Inject(DATA_HTTP_CLIENT_INTERCEPTOR) _interceptor: Any
     ) {
         this.interceptor = _interceptor;

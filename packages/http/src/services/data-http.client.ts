@@ -16,6 +16,7 @@ import { DATA_HTTP_CLIENT_INTERCEPTOR } from '../tokens/data-http-client-interce
 import { RestTemplate } from '../utils/rest-template';
 import { AbstractHttpClient } from './abstract-http.client';
 import { DataConfiguratorService } from './data-configurator.service';
+import { LimitConcurrencyService } from './limit-concurency.service';
 
 @Injectable()
 export class DataHttpClient<K = unknown> extends AbstractHttpClient<K> {
@@ -23,6 +24,7 @@ export class DataHttpClient<K = unknown> extends AbstractHttpClient<K> {
         super(
             inject<HttpClient>(HttpClient),
             inject<DataConfiguratorService>(DataConfiguratorService),
+            inject<LimitConcurrencyService>(LimitConcurrencyService),
             inject<DataHttpInterceptor>(DATA_HTTP_CLIENT_INTERCEPTOR)
         );
     }
@@ -35,7 +37,11 @@ export class DataHttpClient<K = unknown> extends AbstractHttpClient<K> {
         this.interceptor.onBeforeRequest?.(options);
         const meta: MetaDataRequest = this.createMetaDataRequest(options);
         const observable: Observable<R> = this.http.request(options.method, meta.url, meta.requestOptions);
-        return this.wrapHttpRequestWithMeta<T, R>(meta, options, observable);
+        const queueRequest: Observable<R> = this.limitConcurrency.add<R>(
+            observable,
+            options.clientOptions.limitConcurrency
+        );
+        return this.wrapHttpRequestWithMeta<T, R>(meta, options, queueRequest);
     }
 
     protected restTemplate<T>(options?: Partial<DataClientRequestOptions>): Observable<T> {
