@@ -27,6 +27,8 @@ export { IsStringPipeModule } from './is-string/is-string-pipe.module';
 export { MarkedValue } from './mark-by-filter/mark-by-filter.interfaces';
 export { MarkByFilterPipe } from './mark-by-filter/mark-by-filter.pipe';
 export { MarkByFilterPipeModule } from './mark-by-filter/mark-by-filter-pipe.module';
+export { MergeCssClassesPipe } from './merge-css-classes/merge-css-classes.pipe';
+export { MergeCssClassesPipeModule } from './merge-css-classes/merge-css-classes-pipe.module';
 export { MutableTypePipe } from './mutable/mutable-type.pipe';
 export { MutableTypePipeModule } from './mutable/mutable-type-pipe.module';
 export { NumberFormatOptions } from './number-format/number-format.interfaces';

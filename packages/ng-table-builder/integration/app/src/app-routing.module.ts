@@ -119,6 +119,13 @@ import { RouterModule } from '@angular/router';
                                 import('./samples/sample-seventeen/sample-seventeen.module').then(
                                     (m) => m.SampleSeventeenModule
                                 )
+                        },
+                        {
+                            path: 'eighteen',
+                            loadChildren: () =>
+                                import('./samples/sample-eighteen/sample-eighteen.module').then(
+                                    (m) => m.SampleEighteenModule
+                                )
                         }
                     ]
                 }

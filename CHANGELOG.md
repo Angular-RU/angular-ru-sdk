@@ -1,3 +1,25 @@
+#### 15.109.0 (2021-02-19)
+
+##### New Features
+
+-   update dependency @types/node to v14.14.30
+    ([554788ca](https://github.com/Angular-RU/angular-ru-sdk/commit/554788cac4e31c914463ace528fbdf906a671744))
+
+#### 15.108.0 (2021-02-18)
+
+##### New Features
+
+-   update dependency @types/node to v14.14.29
+    ([ab0bd199](https://github.com/Angular-RU/angular-ru-sdk/commit/ab0bd1997c61a3568e73ed44223497c3d53912ab))
+
+#### 15.107.0 (2021-02-18)
+
+##### New Features
+
+-   **@angular-ru/ng-table-builder:** add row-css-classes input into TableBuilder
+    ([#420](https://github.com/Angular-RU/angular-ru-sdk/pull/420))
+    ([dd18a0c9](https://github.com/Angular-RU/angular-ru-sdk/commit/dd18a0c94e4dd43a6bd5601f2921131a874f9b26))
+
 #### 15.106.0 (2021-02-18)
 
 ##### Continuous Integration

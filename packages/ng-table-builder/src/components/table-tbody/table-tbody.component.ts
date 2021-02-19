@@ -55,6 +55,7 @@ export class TableTbodyComponent {
     @Input('context-menu') public contextMenuTemplate: NgxContextMenuComponent | null = null;
     @Input('produce-disable-fn') public produceDisableFn: ProduceDisableFn = null;
     @Input('client-row-height') public clientRowHeight: number | null = null;
+    @Input('row-css-classes') public rowCssClasses: PlainObjectOf<string[]> = {};
     @Input('column-schema') public columnSchema: ColumnsSchema | null = null;
     @Output() public changed: EventEmitter<void> = new EventEmitter(true);
     private readonly ngZone: NgZone;
