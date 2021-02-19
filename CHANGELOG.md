@@ -1,3 +1,20 @@
+#### 15.111.0 (2021-02-19)
+
+##### Chores
+
+-   **release:** updated release notes and package versions [ci skip]
+    ([be2db968](https://github.com/Angular-RU/angular-ru-sdk/commit/be2db968100ee7f6a1dda21282efee41f455f120))
+
+##### Continuous Integration
+
+-   update dependency jasmine-marbles to v0.8.1 ([#426](https://github.com/Angular-RU/angular-ru-sdk/pull/426))
+    ([1cb8f935](https://github.com/Angular-RU/angular-ru-sdk/commit/1cb8f935b203e86999178a152f553fb5ee0677a4))
+
+##### New Features
+
+-   **@angular-ru/jest-utils:** support another jest config properties, remove projects properties
+    ([fe8f0464](https://github.com/Angular-RU/angular-ru-sdk/commit/fe8f0464f49fba8b4dc73ec7d17193a7bc00360c))
+
 #### 15.110.0 (2021-02-19)
 
 ##### New Features
