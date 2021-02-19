@@ -29,10 +29,20 @@ describe('[TEST]: HTTP Limit Concurrency Service with Marbel', () => {
         expect(() => service.add(expected$, -1)).toThrow(new Error('Limit concurrency should be more than 0'));
     });
 
-    it('should throw an error if limitConcurrency = Infinity', fakeAsync(() => {
-        const expected$ = cold('-a|', TEST_DATA);
-        expect(() => service.add(expected$, Infinity)).toThrow(new Error('Limit concurrency can not be Infinity'));
-    }));
+    it('should run all Observables in parallel if there is no limit Infinity', () => {
+        const request_1$ = cold('-----a|', TEST_DATA);
+        const request_2$ = cold('-b|', TEST_DATA);
+        const request_3$ = cold('---c|', TEST_DATA);
+        const expected$ = cold('-b-c-a|', TEST_DATA);
+
+        const mergedObservable = merge(
+            service.add(request_1$, Infinity),
+            service.add(request_2$, Infinity),
+            service.add(request_3$, Infinity)
+        );
+
+        expect(mergedObservable).toBeObservable(expected$);
+    });
 
     it('should return Observable with the same data', () => {
         const expected$ = cold('1s-a-b|', TEST_DATA);

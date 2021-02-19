@@ -122,11 +122,6 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
         expect(() => generateRequests(3)).toThrow(new Error('Limit concurrency should be more than 0'));
     }));
 
-    it('should throw an error if limitConcurrency = Infinity', fakeAsync(() => {
-        ({ client, httpMock } = configureTestingModule(Infinity));
-        expect(() => generateRequests(3)).toThrow(new Error('Limit concurrency can not be Infinity'));
-    }));
-
     it('requests must complete in a right order: Limit Concurrency = 1', fakeAsync(() => {
         ({ client, httpMock } = configureTestingModule(1));
 
@@ -251,11 +246,21 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
         for (let i = 0; i < defaultLimit + exceedTheLimit; i++) {
             client?.get(`api-${i}`).subscribe();
         }
-        for (let k = 0; k < defaultLimit; k++) {
-            httpMock.expectOne(`${apiUrl}-${k}`);
+        for (let i = 0; i < defaultLimit; i++) {
+            httpMock.expectOne(`${apiUrl}-${i}`);
         }
-        for (let k = defaultLimit; k < defaultLimit + exceedTheLimit; k++) {
-            httpMock.expectNone(`${apiUrl}-${k}`);
+        for (let i = defaultLimit; i < defaultLimit + exceedTheLimit; i++) {
+            httpMock.expectNone(`${apiUrl}-${i}`);
+        }
+    }));
+
+    it(`should be no limits if LimitConcurrency is Infinity`, fakeAsync(() => {
+        ({ client, httpMock } = configureTestingModule(Infinity));
+        for (let i = 0; i < defaultLimit + exceedTheLimit; i++) {
+            client?.get(`api-${i}`).subscribe();
+        }
+        for (let i = 0; i < defaultLimit + exceedTheLimit; i++) {
+            httpMock.expectOne(`${apiUrl}-${i}`);
         }
     }));
 });

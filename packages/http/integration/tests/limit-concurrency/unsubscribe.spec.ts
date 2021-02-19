@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
 import { Observable, Subject } from 'rxjs';
 import { Get, RestClient } from '@angular-ru/http/decorators';
-import { takeUntil } from 'rxjs/operators';
+import { delay, takeUntil } from 'rxjs/operators';
 
 describe('[TEST]: Canceling requests and unsubscribing', () => {
     const mockApi: string = 'http://localhost';
@@ -73,16 +73,16 @@ describe('[TEST]: Canceling requests and unsubscribing', () => {
         }
 
         private generateRequests(): void {
-            this.api.getData_0().pipe(takeUntil(this.destroy$)).subscribe();
-            this.api.getData_1().pipe(takeUntil(this.destroy$)).subscribe();
-            this.api.getData_2().pipe(takeUntil(this.destroy$)).subscribe();
-            this.api.getData_3().pipe(takeUntil(this.destroy$)).subscribe();
-            this.api.getData_4().pipe(takeUntil(this.destroy$)).subscribe();
-            this.api.getData_5().pipe(takeUntil(this.destroy$)).subscribe();
-            this.api.getData_6().pipe(takeUntil(this.destroy$)).subscribe();
-            this.api.getData_7().pipe(takeUntil(this.destroy$)).subscribe();
-            this.api.getData_8().pipe(takeUntil(this.destroy$)).subscribe();
-            this.api.getData_9().pipe(takeUntil(this.destroy$)).subscribe();
+            this.api.getData_0().pipe(delay(2000), takeUntil(this.destroy$)).subscribe();
+            this.api.getData_1().pipe(delay(2000), takeUntil(this.destroy$)).subscribe();
+            this.api.getData_2().pipe(delay(2000), takeUntil(this.destroy$)).subscribe();
+            this.api.getData_3().pipe(delay(2000), takeUntil(this.destroy$)).subscribe();
+            this.api.getData_4().pipe(delay(2000), takeUntil(this.destroy$)).subscribe();
+            this.api.getData_5().pipe(delay(2000), takeUntil(this.destroy$)).subscribe();
+            this.api.getData_6().pipe(delay(2000), takeUntil(this.destroy$)).subscribe();
+            this.api.getData_7().pipe(delay(2000), takeUntil(this.destroy$)).subscribe();
+            this.api.getData_8().pipe(delay(2000), takeUntil(this.destroy$)).subscribe();
+            this.api.getData_9().pipe(delay(2000), takeUntil(this.destroy$)).subscribe();
         }
     }
 

@@ -9,6 +9,9 @@ export class LimitConcurrencyService {
 
     public add<R>(request: Observable<R>, limitConcurrency: number): Observable<R> {
         this.validate(limitConcurrency);
+        if (limitConcurrency === Infinity) {
+            return request;
+        }
         if (this.activeRequestCount < limitConcurrency) {
             this.activeRequestCount++;
             return this.onComplete(request);
@@ -39,9 +42,6 @@ export class LimitConcurrencyService {
     private validate(limitConcurrency: number): void {
         if (limitConcurrency <= 0) {
             throw new Error('Limit concurrency should be more than 0');
-        }
-        if (limitConcurrency === Infinity) {
-            throw new Error('Limit concurrency can not be Infinity');
         }
     }
 }

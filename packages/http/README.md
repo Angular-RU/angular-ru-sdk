@@ -147,14 +147,23 @@ class MyCitiesClient extends DataHttpClient {
 
 #### Limiting the number of concurrent requests (optional)
 
-there is almost no limit on the number of requests that can be sent in parallel, by default this value is 255
+|Option|Value|Description|
+|:---|:---|:---|
+|limitConcurrency|255|default|
+|limitConcurrency|Infinity|no limits|
+|limitConcurrency|n|only n requests|
+
+there is almost no limit on the number of requests that can be sent in parallel
 <br>
 Note: various browsers have various limits for maximum connections per host name (Chrome: 6)
 
 ![](./docs/limit-concurrency-none.png)
 
-but if necessary, you can change it, for example by setting <b>limitConcurrency: 5</b>. This mean that maximum of 5
-requests can be executed in parallel. Next one immediately start only if one of the previous requests is completed
+but if necessary, you can change it
+<br>
+for example, <b>limitConcurrency: 5</b>
+<br>
+This mean that maximum of 5 requests can be executed in parallel. Next one immediately start only if one of the previous requests is completed
 
 -   `app.module.ts`
 
