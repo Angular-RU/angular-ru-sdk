@@ -22,7 +22,7 @@
         "clean": "rm -rf .cache ./packages/**/dist ./packages/**/lib ./packages/**/.cache",
         "deploy": "lerna run deploy",
         "format": "yarn package:sort && yarn pretty:format --write",
-        "postinstall": "ngcc --async",
+        "postinstall": "ngcc --async && husky install",
         "lint": "eslint \"**/*.ts\" --ignore-pattern typescript.bad.ts",
         "package:lint": "yarn package:sort --check",
         "package:sort": "yarn sort-package-json \"package.json\" \"packages/*/package.json\"",
@@ -34,12 +34,6 @@
         "pretest": "lerna run pretest",
         "test": "lerna run test",
         "version": "yarn release:bump && yarn release:changelog && yarn pre:commit"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "yarn pre:commit",
-            "commit-msg": "yarn commitlint -E HUSKY_GIT_PARAMS"
-        }
     },
     "commitlint": {
         "extends": [

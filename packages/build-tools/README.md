@@ -9,8 +9,23 @@
   </a>
 </p>
 
+### Quick start
+
 ```bash
-yarn add @angular-ru/build-tools
+$ yarn add @angular-ru/build-tools
+```
+
+Edit file `package.json` in the root of your project:
+
+```json5
+{
+    // ...
+    scripts: {
+        // ...
+        // Append Husky 5 installer into 'postinstall' script
+        postinstall: '<...> && husky install'
+    }
+}
 ```
 
 Included packages in your project:
