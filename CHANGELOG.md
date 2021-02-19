@@ -1,3 +1,10 @@
+#### 15.109.1 (2021-02-19)
+
+##### Continuous Integration
+
+-   **common:** upgrade husky ([#425](https://github.com/Angular-RU/angular-ru-sdk/pull/425))
+    ([a4b2a196](https://github.com/Angular-RU/angular-ru-sdk/commit/a4b2a19637eb85bec6fab78cf71d7b06ae9a4cff))
+
 #### 15.109.0 (2021-02-19)
 
 ##### New Features
