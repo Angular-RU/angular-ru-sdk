@@ -26,34 +26,38 @@ describe('[TEST]: Canceling requests and unsubscribing', () => {
     @RestClient(restClient)
     class ApiClient extends DataHttpClient {
         @Get(`${api}0`) public getData_0(): Observable<string> {
-            return this.restTemplate();
+            return this.emulate();
         }
         @Get(`${api}1`) public getData_1(): Observable<string> {
-            return this.restTemplate();
+            return this.emulate();
         }
         @Get(`${api}2`) public getData_2(): Observable<string> {
-            return this.restTemplate();
+            return this.emulate();
         }
         @Get(`${api}3`) public getData_3(): Observable<string> {
-            return this.restTemplate();
+            return this.emulate();
         }
         @Get(`${api}4`) public getData_4(): Observable<string> {
-            return this.restTemplate();
+            return this.emulate();
         }
         @Get(`${api}5`) public getData_5(): Observable<string> {
-            return this.restTemplate();
+            return this.emulate();
         }
         @Get(`${api}6`) public getData_6(): Observable<string> {
-            return this.restTemplate();
+            return this.emulate();
         }
         @Get(`${api}7`) public getData_7(): Observable<string> {
-            return this.restTemplate();
+            return this.emulate();
         }
         @Get(`${api}8`) public getData_8(): Observable<string> {
-            return this.restTemplate();
+            return this.emulate();
         }
         @Get(`${api}9`) public getData_9(): Observable<string> {
-            return this.restTemplate();
+            return this.emulate();
+        }
+
+        private emulate(): Observable<string> {
+            return this.restTemplate<string>().pipe(delay(2000));
         }
     }
 
@@ -73,16 +77,16 @@ describe('[TEST]: Canceling requests and unsubscribing', () => {
         }
 
         private generateRequests(): void {
-            this.api.getData_0().pipe(delay(2000), takeUntil(this.destroy$)).subscribe();
-            this.api.getData_1().pipe(delay(2000), takeUntil(this.destroy$)).subscribe();
-            this.api.getData_2().pipe(delay(2000), takeUntil(this.destroy$)).subscribe();
-            this.api.getData_3().pipe(delay(2000), takeUntil(this.destroy$)).subscribe();
-            this.api.getData_4().pipe(delay(2000), takeUntil(this.destroy$)).subscribe();
-            this.api.getData_5().pipe(delay(2000), takeUntil(this.destroy$)).subscribe();
-            this.api.getData_6().pipe(delay(2000), takeUntil(this.destroy$)).subscribe();
-            this.api.getData_7().pipe(delay(2000), takeUntil(this.destroy$)).subscribe();
-            this.api.getData_8().pipe(delay(2000), takeUntil(this.destroy$)).subscribe();
-            this.api.getData_9().pipe(delay(2000), takeUntil(this.destroy$)).subscribe();
+            this.api.getData_0().pipe(takeUntil(this.destroy$)).subscribe();
+            this.api.getData_1().pipe(takeUntil(this.destroy$)).subscribe();
+            this.api.getData_2().pipe(takeUntil(this.destroy$)).subscribe();
+            this.api.getData_3().pipe(takeUntil(this.destroy$)).subscribe();
+            this.api.getData_4().pipe(takeUntil(this.destroy$)).subscribe();
+            this.api.getData_5().pipe(takeUntil(this.destroy$)).subscribe();
+            this.api.getData_6().pipe(takeUntil(this.destroy$)).subscribe();
+            this.api.getData_7().pipe(takeUntil(this.destroy$)).subscribe();
+            this.api.getData_8().pipe(takeUntil(this.destroy$)).subscribe();
+            this.api.getData_9().pipe(takeUntil(this.destroy$)).subscribe();
         }
     }
 
