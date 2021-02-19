@@ -1,3 +1,11 @@
+#### 15.110.0 (2021-02-19)
+
+##### New Features
+
+-   **@angular-ru/http:** added option for http requests 'LimitConcurrency'
+    ([#390](https://github.com/Angular-RU/angular-ru-sdk/pull/390))
+    ([14cdb60f](https://github.com/Angular-RU/angular-ru-sdk/commit/14cdb60fa8945c07099ae2281e790ce05bc89329))
+
 #### 15.109.1 (2021-02-19)
 
 ##### Continuous Integration
