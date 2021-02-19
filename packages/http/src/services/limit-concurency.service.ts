@@ -8,10 +8,10 @@ export class LimitConcurrencyService {
     private requestQueue: Subject<boolean>[] = [];
 
     public add<R>(request: Observable<R>, limitConcurrency: number): Observable<R> {
-        this.validate(limitConcurrency);
         if (limitConcurrency === Infinity) {
             return request;
         }
+        this.validate(limitConcurrency);
         if (this.activeRequestCount < limitConcurrency) {
             this.activeRequestCount++;
             return this.onComplete(request);
