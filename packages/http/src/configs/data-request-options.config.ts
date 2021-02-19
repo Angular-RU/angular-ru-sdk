@@ -11,5 +11,6 @@ export const DATA_REQUEST_OPTIONS_CONFIG: DataClientRequestOptions = {
     responseType: 'json',
     reportProgress: true,
     additionalOptions: {},
-    nullInsteadEmpty: true
+    nullInsteadEmpty: true,
+    limitConcurrency: 255
 };

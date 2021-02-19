@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/sdk",
-    "version": "15.109.0",
+    "version": "15.110.0",
     "private": true,
     "description": "Angular-RU SDK",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk#readme",
@@ -22,7 +22,7 @@
         "clean": "rm -rf .cache ./packages/**/dist ./packages/**/lib ./packages/**/.cache",
         "deploy": "lerna run deploy",
         "format": "yarn package:sort && yarn pretty:format --write",
-        "postinstall": "ngcc --async",
+        "postinstall": "ngcc --async && husky install",
         "lint": "eslint \"**/*.ts\" --ignore-pattern typescript.bad.ts",
         "package:lint": "yarn package:sort --check",
         "package:sort": "yarn sort-package-json \"package.json\" \"packages/*/package.json\"",
@@ -35,12 +35,6 @@
         "test": "lerna run test",
         "version": "yarn release:bump && yarn release:changelog && yarn pre:commit"
     },
-    "husky": {
-        "hooks": {
-            "pre-commit": "yarn pre:commit",
-            "commit-msg": "yarn commitlint -E HUSKY_GIT_PARAMS"
-        }
-    },
     "commitlint": {
         "extends": [
             "./packages/commitlint-config/index.js"
@@ -49,7 +43,7 @@
     "lint-staged": {
         "*.ts": [
             "yarn prettier --write",
-            "yarn eslint --fix --ingonre-pattern \"typescript.bad.ts\""
+            "yarn eslint --fix --ignore-pattern \"typescript.bad.ts\""
         ],
         "*.{html,css,scss,md,js,json}": [
             "yarn prettier --write"
@@ -86,6 +80,7 @@
         "hammerjs": "2.0.8",
         "intersection-observer": "0.12.0",
         "jasmine-core": "3.6.0",
+        "jasmine-marbles": "0.8.1",
         "jasmine-spec-reporter": "6.0.0",
         "karma": "6.1.1",
         "karma-chrome-launcher": "3.1.0",
@@ -97,6 +92,7 @@
         "ngx-toastr": "13.2.0",
         "pretty": "2.0.0",
         "rxjs": "6.6.3",
+        "rxjs-marbles": "6.0.1",
         "tsickle": "0.39.1",
         "tslib": "2.1.0",
         "typescript": "4.1.5",

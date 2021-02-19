@@ -15,16 +15,17 @@
 $ npm install @angular-ru/commitlint-config -D
 ```
 
-Create file `package.json` in the root of your project:
+Edit file `package.json` in the root of your project:
 
 ```json5
 {
     // ...
-    husky: {
-        hooks: {
-            'commit-msg': 'yarn commitlint -E HUSKY_GIT_PARAMS'
-        }
+    scripts: {
+        // ...
+        // Append Husky 5 installer into 'postinstall' script
+        postinstall: '<...> && husky install'
     },
+    // Add 'commitlint' section
     commitlint: {
         extends: ['@angular-ru/commitlint-config']
     }
