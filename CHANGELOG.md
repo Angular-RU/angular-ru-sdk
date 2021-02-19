@@ -1,3 +1,10 @@
+#### 15.109.0 (2021-02-19)
+
+##### New Features
+
+-   update dependency @types/node to v14.14.30
+    ([554788ca](https://github.com/Angular-RU/angular-ru-sdk/commit/554788cac4e31c914463ace528fbdf906a671744))
+
 #### 15.108.0 (2021-02-18)
 
 ##### New Features
