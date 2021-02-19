@@ -90,12 +90,9 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
     });
 
     function configureTestingModule(limitConcurrency?: number): HttpServices {
-        const options: Any = (limitConcurrency || limitConcurrency === 0) ? { limitConcurrency: limitConcurrency }: {};
+        const options: Any = limitConcurrency || limitConcurrency === 0 ? { limitConcurrency: limitConcurrency } : {};
         TestBed.configureTestingModule({
-            imports: [
-                HttpClientTestingModule,
-                DataHttpClientModule.forRoot([MyClient], options)
-            ]
+            imports: [HttpClientTestingModule, DataHttpClientModule.forRoot([MyClient], options)]
         });
         return {
             client: TestBed.inject(MyClient),
