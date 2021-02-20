@@ -1,3 +1,30 @@
+#### 15.114.0 (2021-02-20)
+
+##### Chores
+
+-   **release:**
+    -   updated release notes and package versions [ci skip]
+        ([0cff5512](https://github.com/Angular-RU/angular-ru-sdk/commit/0cff5512c0962c50296e3328a9791e9fcd843750))
+    -   updated release notes and package versions [ci skip]
+        ([56a7bc9a](https://github.com/Angular-RU/angular-ru-sdk/commit/56a7bc9a022d3766c823cdc83b5efb31397bbe18))
+    -   updated release notes and package versions [ci skip]
+        ([be2db968](https://github.com/Angular-RU/angular-ru-sdk/commit/be2db968100ee7f6a1dda21282efee41f455f120))
+
+##### Continuous Integration
+
+-   update dependency jasmine-marbles to v0.8.1 ([#426](https://github.com/Angular-RU/angular-ru-sdk/pull/426))
+    ([1cb8f935](https://github.com/Angular-RU/angular-ru-sdk/commit/1cb8f935b203e86999178a152f553fb5ee0677a4))
+
+##### New Features
+
+-   **@angular-ru/jest-utils:**
+    -   use options for combine-with-jest-config.ts
+        ([dec18010](https://github.com/Angular-RU/angular-ru-sdk/commit/dec1801065685da219bd211dae1e4f5e7d4091e2))
+    -   add combine utility
+        ([ac66178b](https://github.com/Angular-RU/angular-ru-sdk/commit/ac66178b7308a4246fbd1d12638b6f5f9531b634))
+    -   support another jest config properties, remove projects properties
+        ([fe8f0464](https://github.com/Angular-RU/angular-ru-sdk/commit/fe8f0464f49fba8b4dc73ec7d17193a7bc00360c))
+
 #### 15.113.0 (2021-02-20)
 
 ##### Chores
