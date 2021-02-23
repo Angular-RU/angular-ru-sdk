@@ -6062,10 +6062,10 @@ eslint-plugin-import@2.22.1:
     resolve "^1.17.0"
     tsconfig-paths "^3.9.0"
 
-eslint-plugin-jsdoc@32.1.1:
-  version "32.1.1"
-  resolved "https://registry.npmjs.org/eslint-plugin-jsdoc/-/eslint-plugin-jsdoc-32.1.1.tgz#9eeda91c40ef1e328a4f82be5f5a46307a3426c3"
-  integrity sha512-HiVe7cWfEMkkpj9+SYpRVIEIC80bETpt8dXOmbVtZHkgobOcxxVORiS2iOuH9gj7TO+rwXIni15WuOr2wnrt9w==
+eslint-plugin-jsdoc@32.2.0:
+  version "32.2.0"
+  resolved "https://registry.npmjs.org/eslint-plugin-jsdoc/-/eslint-plugin-jsdoc-32.2.0.tgz#d848ea8475a9be63d8d261bd7fa01cf2a2bb32d5"
+  integrity sha512-ikeVeF3JVmzjcmGd04OZK0rXjgiw46TWtNX+OhyF2jQlw3w1CAU1vyAyLv8PZcIjp7WxP4N20Vg1CI9bp/52dw==
   dependencies:
     comment-parser "1.1.2"
     debug "^4.3.1"
@@ -9916,10 +9916,10 @@ next-tick@~1.0.0:
   resolved "https://registry.npmjs.org/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
-ng-packagr@11.2.3:
-  version "11.2.3"
-  resolved "https://registry.npmjs.org/ng-packagr/-/ng-packagr-11.2.3.tgz#7b59eecce6df0e72cc35b1a4bbca4aa5ddca6232"
-  integrity sha512-KBkKw5gMtmtxm4aC1Ley2HGnV/N3MaS4y1NOh3vTY+vgSFMNUbCuuSHDG5x6dGhUerk5RsaCUYuTSp94CeDigA==
+ng-packagr@11.2.4:
+  version "11.2.4"
+  resolved "https://registry.npmjs.org/ng-packagr/-/ng-packagr-11.2.4.tgz#9deda83beb831bda7b753686d0f90e12a02dbb47"
+  integrity sha512-pAZYRWe4duLx6bXgfNKgT2XBHiepWz2sA+CaJ9UYEbLHE+QxYGtw/PJAC6o0zRDv1bBCkv5oquKTyTZtYjkAQQ==
   dependencies:
     "@rollup/plugin-commonjs" "^17.0.0"
     "@rollup/plugin-json" "^4.1.0"
