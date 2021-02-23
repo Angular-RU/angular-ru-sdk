@@ -1,3 +1,24 @@
+#### 15.118.0 (2021-02-23)
+
+##### Chores
+
+-   disable shellcheck
+    ([518db8e8](https://github.com/Angular-RU/angular-ru-sdk/commit/518db8e8a0c7396c808fef7633c7d7363cecac8c))
+
+##### Continuous Integration
+
+-   update Angular to v11.2.2
+    ([0fcacfbb](https://github.com/Angular-RU/angular-ru-sdk/commit/0fcacfbbb9dad0063b6a9eb26054d04639571001))
+
+##### New Features
+
+-   update ESLint ([#436](https://github.com/Angular-RU/angular-ru-sdk/pull/436))
+    ([b73b197f](https://github.com/Angular-RU/angular-ru-sdk/commit/b73b197f829b4da6e0071e437d827ff1d68a8c36))
+-   update dependency eslint-plugin-jsdoc to v32.1.1
+    ([5e18553c](https://github.com/Angular-RU/angular-ru-sdk/commit/5e18553c55356120956aa8e9e4473ac6bcf638ec))
+-   update ESLint
+    ([153cd7f7](https://github.com/Angular-RU/angular-ru-sdk/commit/153cd7f73e43f8b9b812d7debc4aee8c17b64c92))
+
 #### 15.117.0 (2021-02-22)
 
 ##### New Features
