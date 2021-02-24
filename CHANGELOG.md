@@ -1,3 +1,10 @@
+#### 15.119.0 (2021-02-24)
+
+##### New Features
+
+-   update dependency ts-jest to v26.5.2
+    ([359d1e9c](https://github.com/Angular-RU/angular-ru-sdk/commit/359d1e9c4347093f90293e82cb12bdd9382abef2))
+
 #### 15.118.0 (2021-02-23)
 
 ##### Chores
