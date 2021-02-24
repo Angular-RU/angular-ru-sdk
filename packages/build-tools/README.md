@@ -43,4 +43,5 @@ Included packages in your project:
 -   `sort-package-json` - The package.json file can be sorted automatically before committing, install husky and
     lint-staged and add the following to your package.json file!
 -   `ts-node` - TypeScript execution and REPL for Node.js, with source map support.
--   `instanbul` - TypeScript execution and REPL for Node.js, with source map support.
+-   `instanbul`
+-   `cross-env`
