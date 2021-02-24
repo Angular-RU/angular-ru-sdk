@@ -1,3 +1,24 @@
+#### 15.120.0 (2021-02-24)
+
+##### Continuous Integration
+
+-   fix commitlint
+    ([812c3409](https://github.com/Angular-RU/angular-ru-sdk/commit/812c3409e5c81fbf86098fe6801fe575bb91909d))
+
+##### New Features
+
+-   **@angular-ru/build-tools:** add istanbul package
+    ([f2af6e86](https://github.com/Angular-RU/angular-ru-sdk/commit/f2af6e86f34fe3082ed0b47e61ab2a98ff13d3ff))
+-   **@angular-ru/jest-utils:** improved performance as skip switch workers
+    ([ebeb8a07](https://github.com/Angular-RU/angular-ru-sdk/commit/ebeb8a07137b83fdf0af007efe70ff29a54960dd))
+-   update dependencies to v12 ([#435](https://github.com/Angular-RU/angular-ru-sdk/pull/435))
+    ([f5f84b1c](https://github.com/Angular-RU/angular-ru-sdk/commit/f5f84b1ccbbd8d15d503b59a74cb9acc2ce67879))
+
+##### Other Changes
+
+-   **@angular-ru/build-tools:** add istanbul package
+    ([41df8879](https://github.com/Angular-RU/angular-ru-sdk/commit/41df88799d2f224ee49ad68e122c0c5176cab143))
+
 #### 15.119.0 (2021-02-24)
 
 ##### New Features
