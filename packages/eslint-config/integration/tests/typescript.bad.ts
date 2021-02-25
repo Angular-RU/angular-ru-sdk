@@ -292,3 +292,10 @@ export const enum HelloWorldNonCase {
 }
 
 console.error(HelloWorldNonCase.worldName);
+
+const promise: Promise<unknown> = Promise.resolve('value');
+
+// expect error
+if (promise) {
+    // Do something
+}

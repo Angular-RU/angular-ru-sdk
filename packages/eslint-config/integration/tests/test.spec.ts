@@ -75,6 +75,7 @@ describe('[TEST]: Eslint', (): void => {
         expect(
             bad.includes('Enum Member name `worldName` must match one of the following formats: PascalCase, UPPER_CASE')
         ).toEqual(true);
+        expect(bad.includes('Expected non-Promise value in a boolean conditional')).toEqual(true);
     });
 
     it('check success files', (): void => {

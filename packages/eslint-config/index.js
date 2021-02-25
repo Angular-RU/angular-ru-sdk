@@ -346,6 +346,13 @@ module.exports = {
                     }
                 ],
                 '@typescript-eslint/no-misused-new': 'error',
+                '@typescript-eslint/no-misused-promises': [
+                    'error',
+                    {
+                        checksConditionals: true,
+                        checksVoidReturn: false
+                    }
+                ],
                 '@typescript-eslint/no-namespace': 'error',
                 '@typescript-eslint/no-non-null-assertion': 'off',
                 '@typescript-eslint/no-parameter-properties': 'off',
