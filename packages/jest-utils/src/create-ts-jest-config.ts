@@ -67,7 +67,7 @@ export function createTsJestConfig(options: JestConfigOptions & Config.InitialOp
          */
         globals: {
             'ts-jest': {
-                isolatedModules: true,
+                isolatedModules: options.isolatedModules ?? false,
                 tsconfig: options?.tsConfigSpecPath ?? options.tsConfigRootPath,
                 stringifyContentPathRegex: '\\.html$',
                 astTransformers: {

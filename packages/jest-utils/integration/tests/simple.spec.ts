@@ -24,7 +24,7 @@ describe('[TEST]: Hello world', () => {
         ).toEqual({
             globals: {
                 'ts-jest': {
-                    isolatedModules: true,
+                    isolatedModules: false,
                     tsconfig: '../tsconfig.json',
                     stringifyContentPathRegex: '\\.html$',
                     astTransformers: {

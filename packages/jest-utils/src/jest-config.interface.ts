@@ -12,6 +12,7 @@ export interface JestConfigOptions {
     coverageReporters?: string[];
     moduleNameMapper?: Record<string, string | string[]>;
     /* custom: */
+    isolatedModules?: boolean;
     tsConfigRootPath?: string;
     tsConfigSpecPath?: string;
     debug?: boolean;
