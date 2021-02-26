@@ -1,3 +1,10 @@
+#### 15.122.0 (2021-02-25)
+
+##### New Features
+
+-   **@angular-ru/eslint-config:** add @typescript-eslint/no-misused-promises
+    ([5be76826](https://github.com/Angular-RU/angular-ru-sdk/commit/5be76826dc6e8834587cfa6614bdbb1ab958a1a6))
+
 #### 15.121.0 (2021-02-24)
 
 ##### Chores
