@@ -18,6 +18,7 @@
         "sourceMap": true,
         "declaration": false,
         "importHelpers": true,
+        "isolatedModules": false,
         "moduleResolution": "node",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
