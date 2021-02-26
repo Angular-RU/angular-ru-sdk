@@ -1,3 +1,19 @@
+#### 15.123.0 (2021-02-26)
+
+##### Documentation Changes
+
+-   updated release notes and package versions [ci skip]
+    ([e1d2a981](https://github.com/Angular-RU/angular-ru-sdk/commit/e1d2a98180884a0e632bc6d0fed7fbfc101328e5))
+
+##### New Features
+
+-   **@angular-ru/jest-utils:** set isolatedModules as false for TS 4.2
+    ([cd504fbf](https://github.com/Angular-RU/angular-ru-sdk/commit/cd504fbf41726715ce414eb1efe80df422fd2c65))
+-   **@angular-ru/tsconfig:** set isolatedModules as false for TS 4.2
+    ([450fc118](https://github.com/Angular-RU/angular-ru-sdk/commit/450fc118e4eb436792d8404efb30f225ab06be80))
+-   **@angular-ru/eslint-config:** add @typescript-eslint/no-misused-promises
+    ([5be76826](https://github.com/Angular-RU/angular-ru-sdk/commit/5be76826dc6e8834587cfa6614bdbb1ab958a1a6))
+
 #### 15.122.0 (2021-02-25)
 
 ##### New Features
