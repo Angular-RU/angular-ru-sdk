@@ -10,9 +10,9 @@
         "index.js"
     ],
     "dependencies": {
-        "@commitlint/cli": "12.0.0",
-        "@commitlint/config-angular": "12.0.0",
-        "@commitlint/config-conventional": "12.0.0"
+        "@commitlint/cli": "12.0.1",
+        "@commitlint/config-angular": "12.0.1",
+        "@commitlint/config-conventional": "12.0.1"
     },
     "publishConfig": {
         "access": "public"
