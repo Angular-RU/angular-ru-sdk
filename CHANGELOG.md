@@ -1,3 +1,15 @@
+#### 15.126.1 (2021-03-01)
+
+##### Chores
+
+-   deprecated max-length.module.ts
+    ([24e4e437](https://github.com/Angular-RU/angular-ru-sdk/commit/24e4e437e1b9594f39454e361d5d8a835a61f4ad))
+
+##### Documentation Changes
+
+-   updated release notes and package versions [ci skip]
+    ([be967730](https://github.com/Angular-RU/angular-ru-sdk/commit/be96773054feb594caf1331cf75376109d858f26))
+
 #### 15.126.0 (2021-03-01)
 
 ##### New Features
