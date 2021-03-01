@@ -3,6 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { MaxLengthDirective } from './max-length.directive';
 
+/**
+ * @deprecated
+ * removed will be later
+ */
 @NgModule({
     declarations: [MaxLengthDirective],
     imports: [CommonModule],
