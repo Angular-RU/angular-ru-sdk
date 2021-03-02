@@ -1,3 +1,20 @@
+#### 15.128.1 (2021-03-02)
+
+##### Documentation Changes
+
+-   updated release notes and package versions [ci skip]
+    ([91bcec9e](https://github.com/Angular-RU/angular-ru-sdk/commit/91bcec9efc74bbb4d0c211d52bdd9b20df615d82))
+
+##### Bug Fixes
+
+-   **@angular-ru/ng-table-builder:** fix sort-types input works only once
+    ([d947a6ad](https://github.com/Angular-RU/angular-ru-sdk/commit/d947a6ad2e01c2105e2afd229922fe7819588ab4))
+
+##### Other Changes
+
+-   **@angular-ru/ng-table-builder:** fix sort-types input works only once
+    ([5d370c83](https://github.com/Angular-RU/angular-ru-sdk/commit/5d370c83349fb1d06b8e78ae7a7017c2d9c69c3a))
+
 #### 15.128.0 (2021-03-02)
 
 ##### New Features
