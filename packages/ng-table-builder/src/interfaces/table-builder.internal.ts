@@ -1,6 +1,8 @@
 export const enum TableSimpleChanges {
     SOURCE_KEY = 'source',
-    SCHEMA_COLUMNS = 'schemaColumns'
+    SCHEMA_COLUMNS = 'schemaColumns',
+    SKIP_SORT = 'skipSort',
+    SORT_TYPES = 'sortTypes'
 }
 
 export interface DynamicHeightOptions {

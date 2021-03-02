@@ -2,6 +2,7 @@
     <span>
         Example sorting
 
+        <button mat-raised-button (click)="sortByIdDirection = !sortByIdDirection">Toggle sort by ID</button>
         <mat-checkbox class="regenerate" [(ngModel)]="skipSort" [ngModelOptions]="{ standalone: true }">
             Skip internal sort
         </mat-checkbox>
@@ -13,7 +14,7 @@
 <ngx-table-builder
     [source]="data"
     [skip-sort]="skipSort"
-    [sort-types]="{ id: 'desc' }"
+    [sort-types]="sortByIdDirection ? { id: 'asc' } : { id: 'desc' }"
     (sortChanges)="sortChanges($event)"
 >
     <ngx-empty>No data</ngx-empty>

@@ -159,12 +159,19 @@ export class TableBuilderComponent
         this.checkCorrectInitialSchema(changes);
 
         this.sourceIsNull = this.checkSourceIsNull();
-        this.setSortTypes();
+
+        if (TableSimpleChanges.SKIP_SORT in changes) {
+            this.sortable.setSkipSort(this.isSkippedInternalSort);
+        }
 
         if (this.nonIdenticalStructure) {
             this.preRenderTable();
         } else if (TableSimpleChanges.SOURCE_KEY in changes && this.isRendered) {
             this.preSortAndFilterTable(changes);
+        }
+
+        if (TableSimpleChanges.SORT_TYPES in changes) {
+            this.setSortTypes();
         }
     }
 
@@ -179,6 +186,7 @@ export class TableBuilderComponent
             this.selection.selectionModeIsEnabled = true;
             this.selection.setProducerDisableFn(this.produceDisableFn);
         }
+        this.sortable.setSortChanges(this.sortChanges);
     }
 
     public markVisibleColumn(column: HTMLDivElement, visible: boolean): void {
@@ -420,9 +428,9 @@ export class TableBuilderComponent
 
     private setSortTypes(): void {
         this.sortable.setDefinition({ ...this.sortTypes });
-        this.sortable.setSkipSort(this.isSkippedInternalSort);
-        this.sortable.setSortChanges(this.sortChanges);
-        this.sortTypes = {};
+        if (this.sourceExists) {
+            this.sortAndFilter().then((): void => this.reCheckDefinitions());
+        }
     }
 
     private listenColumnListChanges(): void {
