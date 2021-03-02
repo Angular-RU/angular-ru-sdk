@@ -39,7 +39,7 @@ export class SortableService {
     }
 
     public setDefinition(definition: PlainObjectOf<string>): void {
-        this.definition = (this.empty ? definition || {} : this.definition) as PlainObjectOf<SortOrderType>;
+        this.definition = definition as PlainObjectOf<SortOrderType>;
     }
 
     public setSkipSort(skipInternalSort: boolean): void {
@@ -51,7 +51,7 @@ export class SortableService {
     }
 
     public updateSortKey(key: string): void {
-        this.definition = this.updateImmutableDefinitions(key);
+        this.setDefinition(this.updateDefinitionByKeyImmutably(key));
         this.triggerOnChanges();
     }
 
@@ -76,19 +76,20 @@ export class SortableService {
         });
     }
 
-    private updateImmutableDefinitions(key: string): PlainObjectOf<SortOrderType> {
-        const existKey: SortOrderType = this.definition[key];
+    private updateDefinitionByKeyImmutably(key: string): PlainObjectOf<SortOrderType> {
+        const definition: PlainObjectOf<SortOrderType> = { ...this.definition };
+        const existKey: SortOrderType = definition[key];
 
         if (existKey) {
             if (existKey === SortOrderType.ASC) {
-                this.definition[key] = SortOrderType.DESC;
+                definition[key] = SortOrderType.DESC;
             } else {
-                delete this.definition[key];
+                delete definition[key];
             }
         } else {
-            this.definition[key] = SortOrderType.ASC;
+            definition[key] = SortOrderType.ASC;
         }
 
-        return { ...this.definition };
+        return definition;
     }
 }

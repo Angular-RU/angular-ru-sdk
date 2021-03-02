@@ -14,6 +14,7 @@ declare const hljs: Any;
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SampleSixComponent implements OnInit, AfterViewInit {
+    public sortByIdDirection: boolean = true;
     public data: TableRow[] = [];
     public skipSort: boolean = false;
     constructor(public readonly dialog: MatDialog, private readonly cd: ChangeDetectorRef) {}
@@ -43,7 +44,13 @@ export class SampleSixComponent implements OnInit, AfterViewInit {
             data: {
                 title: 'Overview sortable table',
                 description: '',
-                code: `<ngx-table-builder [source]="data"  [sort-types]="{ myKey: 'asc' }"></ngx-table-builder>`
+                code: `
+<ngx-table-builder
+    [source]="data"
+    [skip-sort]="skipSort"
+    [sort-types]="sortByIdDirection ? { id: 'asc' } : { id: 'desc' }"
+    (sortChanges)="sortChanges($event)"
+></ngx-table-builder>`
             },
             height: '350px',
             width: '700px'
