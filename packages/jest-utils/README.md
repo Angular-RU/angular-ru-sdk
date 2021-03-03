@@ -52,6 +52,6 @@ module.exports = createTsJestConfig({
 ```ts
 module.exports = createTsJestConfig({
     // ...
-    setupFilesAfterEnv: ['<rootDir>/setupJest.ts']
+    setupFilesAfterEnv: ['<rootDir>/setup-jest.ts']
 });
 ```
