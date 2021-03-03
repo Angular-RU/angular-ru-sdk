@@ -81,3 +81,13 @@ export class MyComponent {
     // ..
 }
 ```
+
+-   `Couple<T>`
+
+```ts
+let operands: Couple<number> = [1, 2];
+let number: Couple<number> = [1];
+//                           ~~~
+let numbers: Couple<number> = [1, 2, 3];
+//                            ~~~~~~~~~
+```
