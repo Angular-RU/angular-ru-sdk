@@ -51,16 +51,16 @@ export function createTsJestConfig(options: JestConfigOptions & Config.InitialOp
         console.log('[DEBUG]: ', JSON.stringify(moduleNameMapper, null, 4), '\n');
     }
 
-    // remove fields tsConfigRootPath, debug, tsConfigSpecPath
+    // remove fields tsConfigRootPath, debug, tsConfigSpecPath, isolatedModules
     // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/typedef
-    const { tsConfigRootPath, debug, tsConfigSpecPath, ...jestConfig } = options;
+    const { tsConfigRootPath, debug, tsConfigSpecPath, isolatedModules, ...jestConfig } = options;
 
     return {
         ...jestConfig,
         rootDir: options.rootDir,
-        onlyChanged: options.onlyChanged ?? DEFAULT_ONLY_CHANGED,
         cache: options.cache ?? DEFAULT_CACHE,
         watch: options.watch ?? DEFAULT_WATCH,
+        onlyChanged: options.onlyChanged ?? DEFAULT_ONLY_CHANGED,
 
         /**
          * A set of global variables that need to be available in all test environments.

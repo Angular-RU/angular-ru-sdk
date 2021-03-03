@@ -1,8 +1,0 @@
-{
-    "extends": "../../tsconfig.json",
-    "compilerOptions": {
-        "outDir": "../out-tsc/spec",
-        "types": ["jest", "node"]
-    },
-    "include": ["**/*.spec.ts", "main.ts", "polyfills.ts", "zone-flags.ts"]
-}

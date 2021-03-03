@@ -2,6 +2,8 @@
 
 Custom http client, with the ability to customize requests, auto unsubscribe and additional request interceptors.
 
+Demo: https://github.com/Angular-RU/angular-ru-http-example-app
+
 ## Table of contents:
 
 1. [📖 Changelog](https://github.com/Angular-RU/angular-ru-sdk/blob/master/CHANGELOG.md)
