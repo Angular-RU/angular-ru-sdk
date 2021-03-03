@@ -46,7 +46,7 @@ describe('[TEST]: Hello world', () => {
             cache: true,
             testMatch: [],
             modulePathIgnorePatterns: [],
-            onlyChanged: true,
+            onlyChanged: false,
             testPathIgnorePatterns: ['/node_modules/', '/dist/', '/e2e/'],
             preset: 'jest-preset-angular',
             displayName: 'Hello world',
