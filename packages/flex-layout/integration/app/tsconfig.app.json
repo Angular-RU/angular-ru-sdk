@@ -2,7 +2,11 @@
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "outDir": "../out-tsc/app",
-        "types": []
+        "types": [],
+        "paths": {
+            "@angular-ru/flex-layout": ["dist/library"],
+            "@angular-ru/common/*": ["../common/dist/library/*"]
+        }
     },
     "files": ["main.ts", "polyfills.ts"],
     "include": ["src/**/*.d.ts"],

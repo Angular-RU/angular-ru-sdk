@@ -8,7 +8,6 @@ module.exports = createTsJestConfig({
     modulePathIgnorePatterns: ['<rootDir>/dist/'],
     collectCoverageFrom: ['<rootDir>/lib/**/*.ts'],
     testMatch: ['<rootDir>/integration/tests/**/*.spec.ts'],
-    tsConfigSpecPath: '<rootDir>/integration/tests/tsconfig.spec.json',
     setupFilesAfterEnv: ['<rootDir>/integration/tests/setup-jest.ts'],
-    tsConfigRootPath: path.resolve('./tsconfig.json')
+    tsConfigRootPath: path.resolve('./integration/tests/tsconfig.spec.json')
 });

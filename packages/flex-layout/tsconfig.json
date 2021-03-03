@@ -18,11 +18,6 @@
         "outDir": "./dist/out-tsc",
         "target": "es5",
         "typeRoots": ["../../node_modules/@types", "./"],
-        "lib": ["es2018", "dom"],
-        "paths": {
-            "@angular-ru/flex-layout": ["dist/library"],
-            "@angular-ru/common": ["../common/dist/library"],
-            "@angular-ru/common/*": ["../common/dist/library/*"]
-        }
+        "lib": ["es2018", "dom"]
     }
 }

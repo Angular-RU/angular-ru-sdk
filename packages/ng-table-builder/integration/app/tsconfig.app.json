@@ -4,8 +4,7 @@
         "outDir": "../out-tsc/app",
         "types": [],
         "paths": {
-            "@angular-ru/ng-table-builder": ["src/public_api.ts"],
-            "@angular-ru/common": ["../common/dist/library"],
+            "@angular-ru/ng-table-builder": ["./dist/library"],
             "@angular-ru/common/*": ["../common/dist/library/*"]
         }
     },
