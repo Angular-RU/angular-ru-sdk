@@ -3,6 +3,7 @@ export { Arguments } from './arguments';
 export { NonEmptyArray } from './array-types';
 export { ClassType } from './class-type';
 export { CompareFn } from './compare-fn';
+export { Couple } from './couple';
 export { DecoratorMethod } from './decorator-method';
 export { DeepPartial } from './deep-partial';
 export { Descriptor } from './descriptor';

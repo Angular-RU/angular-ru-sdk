@@ -3,6 +3,7 @@ export { isEmptyList } from './is-empty-list';
 export { isFilledList } from './is-filled-list';
 export { isMultipleList } from './is-multiple-list';
 export { isSingleList } from './is-single-list';
+export { partition } from './partition';
 export { secondItem } from './second-item';
 export { thirdItem } from './third-item';
 export { uniqueArrayOf } from './unique-array-of';

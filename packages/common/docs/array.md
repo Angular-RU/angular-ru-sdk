@@ -112,3 +112,11 @@ expect(
     { ip: '1.2.3.7', info: { username: 'c' } }
 ]);
 ```
+
+-   `partition`
+
+```ts
+const [evens, odds] = partition([0, 1, 2, 3], (e) => e % 2 === 0);
+console.log(evens); // [0, 2]
+console.log(odds); // [1, 3]
+```
