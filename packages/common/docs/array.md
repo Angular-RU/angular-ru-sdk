@@ -71,6 +71,14 @@ console.log(isEmptyList([1])); // false
 console.log(isEmptyList([1, 2, 3])); // false
 ```
 
+-   `isFilledList`
+
+```ts
+console.log(isEmptyList([])); // false
+console.log(isEmptyList([1])); // true
+console.log(isEmptyList([1, 2, 3])); // true
+```
+
 -   `uniqueArrayOf`
 
 ```ts
