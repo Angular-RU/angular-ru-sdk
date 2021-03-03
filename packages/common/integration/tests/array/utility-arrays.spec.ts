@@ -1,4 +1,12 @@
-import { firstItem, isEmptyList, isMultipleList, isSingleList, secondItem, thirdItem } from '@angular-ru/common/array';
+import {
+    firstItem,
+    isEmptyList,
+    isFilledList,
+    isMultipleList,
+    isSingleList,
+    secondItem,
+    thirdItem
+} from '@angular-ru/common/array';
 
 describe('[TEST]: Array utility', () => {
     it('is single list', () => {
@@ -17,6 +25,12 @@ describe('[TEST]: Array utility', () => {
         expect(isEmptyList([])).toEqual(true);
         expect(isEmptyList([1])).toEqual(false);
         expect(isEmptyList([1, 2])).toEqual(false);
+    });
+
+    it('is filled list', () => {
+        expect(isFilledList([])).toEqual(false);
+        expect(isFilledList([1])).toEqual(true);
+        expect(isFilledList([1, 2])).toEqual(true);
     });
 
     it('is first item', () => {

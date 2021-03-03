@@ -1,5 +1,6 @@
 export { firstItem } from './first-item';
 export { isEmptyList } from './is-empty-list';
+export { isFilledList } from './is-filled-list';
 export { isMultipleList } from './is-multiple-list';
 export { isSingleList } from './is-single-list';
 export { secondItem } from './second-item';
