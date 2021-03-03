@@ -51,9 +51,9 @@ describe('[TEST]: Hello world', () => {
             preset: 'jest-preset-angular',
             displayName: 'Hello world',
             rootDir: '.',
-            maxWorkers: '50%',
+            maxWorkers: 1,
             setupFilesAfterEnv: [],
-            maxConcurrency: 2,
+            maxConcurrency: 1,
             cacheDirectory: '<rootDir>/.cache',
             coverageReporters: ['html', 'lcov', 'json', 'text', 'lcov', 'clover'],
             collectCoverageFrom: []
