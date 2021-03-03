@@ -2,7 +2,10 @@
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "outDir": "../../out-tsc/spec",
-        "types": ["jest", "node"]
+        "types": ["jest", "node"],
+        "paths": {
+            "@angular-ru/common/*": ["./dist/library/*"]
+        }
     },
     "include": ["**/*.spec.ts", "**/*.d.ts"]
 }
