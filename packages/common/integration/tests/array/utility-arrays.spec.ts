@@ -4,9 +4,11 @@ import {
     isFilledList,
     isMultipleList,
     isSingleList,
+    partition,
     secondItem,
     thirdItem
 } from '@angular-ru/common/array';
+import { isNumber } from '@angular-ru/common/number';
 
 describe('[TEST]: Array utility', () => {
     it('is single list', () => {
@@ -50,5 +52,16 @@ describe('[TEST]: Array utility', () => {
         expect(thirdItem([1])).toEqual(null);
         expect(thirdItem([1, 2])).toEqual(null);
         expect(thirdItem([1, 2, 3])).toEqual(3);
+    });
+
+    it('should divide array by condition', function () {
+        expect(partition([1, '2', { v: 3 }, 4], isNumber)).toEqual([
+            [1, 4],
+            ['2', { v: 3 }]
+        ]);
+        expect(partition([1, 2, 3, 4], (elem: number): boolean => elem % 2 === 0)).toEqual([
+            [2, 4],
+            [1, 3]
+        ]);
     });
 });
