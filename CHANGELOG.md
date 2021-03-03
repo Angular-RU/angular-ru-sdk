@@ -1,3 +1,42 @@
+#### 15.129.0 (2021-03-03)
+
+##### Build System / Dependencies
+
+-   cleanup tsconfig.\*.json
+    ([88cd16f9](https://github.com/Angular-RU/angular-ru-sdk/commit/88cd16f9a0e0a604e750285a2f3a10fdba7889ae))
+-   **@angular-ru/ng-table-builder:**
+    -   rename setupJest.ts to setup-jest.ts
+        ([89788a1e](https://github.com/Angular-RU/angular-ru-sdk/commit/89788a1ebbdd15d10eec550a40bd032b71bc217b))
+    -   correct resolve modules by tsconfig
+        ([4fd4e93c](https://github.com/Angular-RU/angular-ru-sdk/commit/4fd4e93c3f6605cdcc44fa9121656c01eb9c6a97))
+-   **@angular-ru/logger:** rename setupJest.ts to setup-jest.ts
+    ([efc00c69](https://github.com/Angular-RU/angular-ru-sdk/commit/efc00c69ecbbec4c4c069d823d1b2b6f6cca867f))
+-   **@angular-ru/http:** rename setupJest.ts to setup-jest.ts
+    ([61cfe184](https://github.com/Angular-RU/angular-ru-sdk/commit/61cfe1847dc9ade411d849cbd6642163955a72c4))
+-   **@angular-ru/common:** use isolatedModules as true for tests
+    ([9ab0c864](https://github.com/Angular-RU/angular-ru-sdk/commit/9ab0c864a6ecad363c65d940034178aface57f75))
+
+##### Continuous Integration
+
+-   **@angular-ru/jest-utils:**
+    -   update spec file
+        ([19b357f0](https://github.com/Angular-RU/angular-ru-sdk/commit/19b357f0e8777c3ded3d9c06e490002f30273f03))
+    -   update spec file
+        ([62f2624a](https://github.com/Angular-RU/angular-ru-sdk/commit/62f2624add3d607648b735e965b76e4cc078a018))
+
+##### New Features
+
+-   **@angular-ru/common:** add isFilledList method ([#445](https://github.com/Angular-RU/angular-ru-sdk/pull/445))
+    ([3e8a1f37](https://github.com/Angular-RU/angular-ru-sdk/commit/3e8a1f37c7c9f83527920c7e11ac15e59aaa7bc1))
+
+##### Bug Fixes
+
+-   **@angular-ru/jest-utils:**
+    -   skip isolatedModules from jest config
+        ([92738aef](https://github.com/Angular-RU/angular-ru-sdk/commit/92738aef7640960da74f8ef4a27e01955c0dc53e))
+    -   set onlyChanged as false
+        ([a1306ca0](https://github.com/Angular-RU/angular-ru-sdk/commit/a1306ca05e88713862878c463aacf8c35386bfe8))
+
 #### 15.128.1 (2021-03-02)
 
 ##### Documentation Changes
