@@ -1,3 +1,15 @@
+#### 15.131.0 (2021-03-04)
+
+##### Continuous Integration
+
+-   update dependency lerna to v4 ([#444](https://github.com/Angular-RU/angular-ru-sdk/pull/444))
+    ([69a18c99](https://github.com/Angular-RU/angular-ru-sdk/commit/69a18c9992987a3df219b514f5ab07998ef1547d))
+
+##### New Features
+
+-   update dependency ts-jest to v26.5.3
+    ([ee6c23d2](https://github.com/Angular-RU/angular-ru-sdk/commit/ee6c23d2590c83eb2466a8d13317d90632cf6a6e))
+
 #### 15.130.0 (2021-03-03)
 
 ##### Build System / Dependencies
