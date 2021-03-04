@@ -15,17 +15,19 @@ describe('[TEST]: Hello world', () => {
     it('should be correct create', () => {
         expect(
             createTsJestConfig({
-                rootDir: '.',
-                testMatch: [],
-                collectCoverageFrom: [],
-                displayName: 'Hello world',
-                tsConfigRootPath: '../tsconfig.json'
+                tsConfig: 'tsconfig.test.json',
+                jestConfig: {
+                    testMatch: [],
+                    collectCoverageFrom: [],
+                    displayName: 'Hello world',
+                    rootDir: __dirname
+                }
             })
         ).toEqual({
             globals: {
                 'ts-jest': {
                     isolatedModules: false,
-                    tsconfig: '../tsconfig.json',
+                    tsconfig: expect.any(String),
                     stringifyContentPathRegex: '\\.html$',
                     astTransformers: {
                         before: [
@@ -50,7 +52,7 @@ describe('[TEST]: Hello world', () => {
             testPathIgnorePatterns: ['/node_modules/', '/dist/', '/e2e/'],
             preset: 'jest-preset-angular',
             displayName: 'Hello world',
-            rootDir: '.',
+            rootDir: expect.any(String),
             maxWorkers: 1,
             setupFilesAfterEnv: [],
             maxConcurrency: 1,
