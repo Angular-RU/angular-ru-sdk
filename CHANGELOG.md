@@ -1,3 +1,10 @@
+#### 15.132.0 (2021-03-04)
+
+##### New Features
+
+-   update dependency jest-preset-angular to v8.4.0
+    ([c8670cdc](https://github.com/Angular-RU/angular-ru-sdk/commit/c8670cdce1ab416e666350970a7490a1dff705b9))
+
 #### 15.131.0 (2021-03-04)
 
 ##### Continuous Integration
