@@ -10,6 +10,8 @@ import {
 } from '@angular-ru/common/array';
 import { isNumber } from '@angular-ru/common/number';
 
+import { exclude } from '../../../array/src/exclude';
+
 describe('[TEST]: Array utility', () => {
     it('is single list', () => {
         expect(isSingleList([1])).toEqual(true);
@@ -63,5 +65,10 @@ describe('[TEST]: Array utility', () => {
             [2, 4],
             [1, 3]
         ]);
+    });
+
+    it('should exclude values white filtering', function () {
+        expect([1, 2, 3, 4].filter(exclude([1, 2, 3]))).toEqual([4]);
+        expect([1, 2, 3, 4].filter(exclude(4))).toEqual([1, 2, 3]);
     });
 });

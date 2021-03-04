@@ -120,3 +120,10 @@ const [evens, odds] = partition([0, 1, 2, 3], (e) => e % 2 === 0);
 console.log(evens); // [0, 2]
 console.log(odds); // [1, 3]
 ```
+
+-   `exclude`
+
+```ts
+expect([1, 2, 3, 4].filter(exclude([1, 2, 3]))).toEqual([4]);
+expect([1, 2, 3, 4].filter(exclude(4))).toEqual([1, 2, 3]);
+```
