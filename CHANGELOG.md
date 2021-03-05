@@ -1,3 +1,22 @@
+#### 15.133.0 (2021-03-05)
+
+##### New Features
+
+-   **@angular-ru/common:** add exclude array function
+    ([f183c3dc](https://github.com/Angular-RU/angular-ru-sdk/commit/f183c3dc11b4bee82fc40d4326276ba51c0dd293))
+
+##### Other Changes
+
+-   **@angular-ru/common:**
+    -   add exclude array function
+        ([12df7514](https://github.com/Angular-RU/angular-ru-sdk/commit/12df75141e09433f7868a1bacb8668ba1a5ce9cf))
+    -   add exclude array function
+        ([64e58b77](https://github.com/Angular-RU/angular-ru-sdk/commit/64e58b7746ba14d1ea428a3b0ec8f7f46675bf88))
+    -   add exclude array function
+        ([89824acd](https://github.com/Angular-RU/angular-ru-sdk/commit/89824acd319e85adf8fb166b98b02b80b681e714))
+    -   add exclude array function
+        ([f544302f](https://github.com/Angular-RU/angular-ru-sdk/commit/f544302f632426c0188954a2801e49b885dfe58d))
+
 #### 15.132.1 (2021-03-04)
 
 #### 15.132.0 (2021-03-04)
