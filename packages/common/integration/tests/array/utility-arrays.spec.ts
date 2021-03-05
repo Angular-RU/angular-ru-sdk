@@ -67,7 +67,7 @@ describe('[TEST]: Array utility', () => {
         ]);
     });
 
-    it('should exclude values white filtering', () => {
+    it('should exclude values while filtering', () => {
         expect([1, 2, 3, 4].filter(exclude([1, 2, 3]))).toEqual([4]);
         expect([1, 2, 3, 4].filter(exclude(4))).toEqual([1, 2, 3]);
         expect([{ v: 1 }, { v: 2 }, { v: 3 }, { v: 4 }].filter(exclude({ v: 1 }))).toEqual([
