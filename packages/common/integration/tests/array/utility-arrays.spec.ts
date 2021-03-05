@@ -1,4 +1,5 @@
 import {
+    exclude,
     firstItem,
     isEmptyList,
     isFilledList,
@@ -9,6 +10,7 @@ import {
     thirdItem
 } from '@angular-ru/common/array';
 import { isNumber } from '@angular-ru/common/number';
+import { PlainObject } from '@angular-ru/common/typings';
 
 describe('[TEST]: Array utility', () => {
     it('is single list', () => {
@@ -54,7 +56,7 @@ describe('[TEST]: Array utility', () => {
         expect(thirdItem([1, 2, 3])).toEqual(3);
     });
 
-    it('should divide array by condition', function () {
+    it('should divide array by condition', () => {
         expect(partition([1, '2', { v: 3 }, 4], isNumber)).toEqual([
             [1, 4],
             ['2', { v: 3 }]
@@ -62,6 +64,24 @@ describe('[TEST]: Array utility', () => {
         expect(partition([1, 2, 3, 4], (elem: number): boolean => elem % 2 === 0)).toEqual([
             [2, 4],
             [1, 3]
+        ]);
+    });
+
+    it('should exclude values while filtering', () => {
+        expect([1, 2, 3, 4].filter(exclude([1, 2, 3]))).toEqual([4]);
+        expect([1, 2, 3, 4].filter(exclude(4))).toEqual([1, 2, 3]);
+        expect([{ v: 1 }, { v: 2 }, { v: 3 }, { v: 4 }].filter(exclude({ v: 1 }))).toEqual([
+            { v: 1 },
+            { v: 2 },
+            { v: 3 },
+            { v: 4 }
+        ]);
+
+        const unique: PlainObject = { v: 1 };
+        expect([unique, { v: 2 }, { v: 3 }, { v: 4 }].filter(exclude([unique, { v: 2 }]))).toEqual([
+            { v: 2 },
+            { v: 3 },
+            { v: 4 }
         ]);
     });
 });

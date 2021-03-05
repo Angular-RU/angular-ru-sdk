@@ -120,3 +120,24 @@ const [evens, odds] = partition([0, 1, 2, 3], (e) => e % 2 === 0);
 console.log(evens); // [0, 2]
 console.log(odds); // [1, 3]
 ```
+
+-   `exclude`
+
+```ts
+expect([1, 2, 3, 4].filter(exclude([1, 2, 3]))).toEqual([4]);
+expect([1, 2, 3, 4].filter(exclude(4))).toEqual([1, 2, 3]);
+
+// No check for deep equality
+expect([{ v: 1 }, { v: 2 }, { v: 3 }, { v: 4 }].filter(exclude({ v: 1 }))).toEqual([
+    { v: 1 },
+    { v: 2 },
+    { v: 3 },
+    { v: 4 }
+]);
+const unique = { v: 1 };
+expect([unique, { v: 2 }, { v: 3 }, { v: 4 }].filter(exclude([unique, { v: 2 }]))).toEqual([
+    { v: 2 },
+    { v: 3 },
+    { v: 4 }
+]);
+```

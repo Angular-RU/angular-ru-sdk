@@ -1,3 +1,4 @@
+export { exclude } from './exclude';
 export { firstItem } from './first-item';
 export { isEmptyList } from './is-empty-list';
 export { isFilledList } from './is-filled-list';
