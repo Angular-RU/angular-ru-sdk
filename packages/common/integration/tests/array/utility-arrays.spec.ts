@@ -10,6 +10,7 @@ import {
     thirdItem
 } from '@angular-ru/common/array';
 import { isNumber } from '@angular-ru/common/number';
+import { PlainObject } from '@angular-ru/common/typings';
 
 describe('[TEST]: Array utility', () => {
     it('is single list', () => {
@@ -71,6 +72,13 @@ describe('[TEST]: Array utility', () => {
         expect([1, 2, 3, 4].filter(exclude(4))).toEqual([1, 2, 3]);
         expect([{ v: 1 }, { v: 2 }, { v: 3 }, { v: 4 }].filter(exclude({ v: 1 }))).toEqual([
             { v: 1 },
+            { v: 2 },
+            { v: 3 },
+            { v: 4 }
+        ]);
+
+        const unique: PlainObject = { v: 1 };
+        expect([unique, { v: 2 }, { v: 3 }, { v: 4 }].filter(exclude([unique, { v: 2 }]))).toEqual([
             { v: 2 },
             { v: 3 },
             { v: 4 }

@@ -1,6 +1,8 @@
-export function exclude<T = unknown>(value: T | T[]): (current: T) => boolean {
-    const excludeValues: T[] = Array.isArray(value) ? value : [value];
-    return function (current: T): boolean {
-        return !excludeValues.includes(current);
+import { Any } from '@angular-ru/common/typings';
+
+export function exclude<T = Any>(valueOrValues: T | T[]): (current: T) => boolean {
+    const excludeValues: T[] = Array.isArray(valueOrValues) ? valueOrValues : [valueOrValues];
+    return function (value: T): boolean {
+        return !excludeValues.includes(value);
     };
 }

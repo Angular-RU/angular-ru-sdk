@@ -126,9 +126,15 @@ console.log(odds); // [1, 3]
 ```ts
 expect([1, 2, 3, 4].filter(exclude([1, 2, 3]))).toEqual([4]);
 expect([1, 2, 3, 4].filter(exclude(4))).toEqual([1, 2, 3]);
+
 // No check for deep equality
 expect([{ v: 1 }, { v: 2 }, { v: 3 }, { v: 4 }].filter(exclude({ v: 1 }))).toEqual([
     { v: 1 },
+    { v: 2 },
+    { v: 3 },
+    { v: 4 }
+]);
+expect([unique, { v: 2 }, { v: 3 }, { v: 4 }].filter(exclude([unique, { v: 2 }]))).toEqual([
     { v: 2 },
     { v: 3 },
     { v: 4 }
