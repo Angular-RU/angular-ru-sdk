@@ -134,6 +134,7 @@ expect([{ v: 1 }, { v: 2 }, { v: 3 }, { v: 4 }].filter(exclude({ v: 1 }))).toEqu
     { v: 3 },
     { v: 4 }
 ]);
+const unique = { v: 1 };
 expect([unique, { v: 2 }, { v: 3 }, { v: 4 }].filter(exclude([unique, { v: 2 }]))).toEqual([
     { v: 2 },
     { v: 3 },
