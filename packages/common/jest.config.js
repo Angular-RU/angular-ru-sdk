@@ -1,7 +1,6 @@
 const createTsJestConfig = require('../jest-utils/lib/index').createTsJestConfig;
 
 module.exports = createTsJestConfig({
-    isolatedModules: true,
     tsConfig: './integration/tests/tsconfig.spec.json',
     jestConfig: {
         rootDir: '.',

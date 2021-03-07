@@ -27,3 +27,4 @@
     - [(@)angular-ru/common/animations](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/animations.md)
     - [(@)angular-ru/common/zone.js](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/zone.js.md)
     - [(@)angular-ru/common/webworker](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/webworker.md)
+    - [(@)angular-ru/common/node.js](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/webworker.md)
