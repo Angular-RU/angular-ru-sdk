@@ -40,6 +40,7 @@ jobs:
             - name: Run building libraries step
               run: |
                   yarn build:lib
+                  yarn build:link
 
             - name: Run lint step
               run: |
@@ -48,16 +49,16 @@ jobs:
                   yarn lint
 
             - name: Run test step
-              run: yarn test
+              run: yarn test --parallel
 
             - name: Run building integration apps step
-              run: yarn build:app
+              run: yarn build:app --parallel
 
             - name: Deploy integration apps
               env:
                   GH_TOKEN: ${{ secrets.GH_DEPLOY }}
               if: contains('refs/heads/master', github.ref)
-              run: yarn deploy
+              run: yarn deploy --parallel
 
             - name: Deploy npm packages
               if: contains('refs/heads/master', github.ref)
@@ -65,4 +66,4 @@ jobs:
                   git config --global user.name "angular-ru"
                   git config --global user.email "angular-ru@yandex.ru"
                   echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
-                  yarn lerna publish
+                  yarn lerna publish --parallel
