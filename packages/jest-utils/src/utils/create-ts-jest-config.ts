@@ -1,9 +1,10 @@
 /* eslint-disable no-console,@typescript-eslint/no-magic-numbers */
 import { exposeTsCompilerOptionsByTsConfig } from '@angular-ru/common/node.js';
-import { Any } from '@angular-ru/common/typings';
 import type { Config } from '@jest/types';
 import * as fs from 'fs';
 import * as path from 'path';
+import * as tsJestUtils from 'ts-jest/utils';
+import { CompilerOptions } from 'typescript';
 
 import {
     DEFAULT_BAIL,
@@ -41,21 +42,18 @@ export function createTsJestConfig(options: JestConfigOptions): Config.InitialOp
         );
     }
 
-    const compilerOptions: Record<string, Any> = exposeTsCompilerOptionsByTsConfig(resolvedTsConfigPath);
+    const compilerOptions: CompilerOptions = exposeTsCompilerOptionsByTsConfig(resolvedTsConfigPath);
+    const prefix: string = `<rootDir>/${compilerOptions?.baseUrl ?? ''}/`.replace(/\.\//g, '/').replace(/\/\/+/g, '/');
+    const rootModuleNameMapper:
+        | { [key: string]: string | string[] }
+        | undefined = tsJestUtils.pathsToModuleNameMapper(compilerOptions?.paths ?? {}, { prefix });
 
-    const { pathsToModuleNameMapper: resolver }: Any = require('ts-jest/utils');
-
-    const prefix: Record<string, Any> = {
-        prefix: `<rootDir>/${compilerOptions?.baseUrl ?? ''}/`.replace(/\.\//g, '/').replace(/\/\/+/g, '/')
-    };
-
-    const rootModuleNameMapper: { [key: string]: string | string[] } = resolver(compilerOptions?.paths ?? {}, prefix);
     const moduleNameMapper: JestModuleMapper = options.jestConfig?.moduleNameMapper ?? rootModuleNameMapper;
 
     if (options.debug) {
         console.log('[DEBUG]: rootDir: ', resolvedRootDir);
         console.log('[DEBUG]: tsConfig: ', resolvedTsConfigPath);
-        console.log('[DEBUG]: prefix: ', JSON.stringify(prefix, null, 4));
+        console.log('[DEBUG]: prefix: ', prefix);
         console.log('[DEBUG]: moduleNameMapper: ', JSON.stringify(moduleNameMapper, null, 4), '\n');
     }
 
