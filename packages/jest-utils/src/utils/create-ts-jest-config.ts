@@ -1,8 +1,10 @@
 /* eslint-disable no-console,@typescript-eslint/no-magic-numbers */
-import { Any } from '@angular-ru/common/typings';
+import { exposeTsCompilerOptionsByTsConfig } from '@angular-ru/common/node.js';
 import type { Config } from '@jest/types';
 import * as fs from 'fs';
 import * as path from 'path';
+import * as tsJestUtils from 'ts-jest/utils';
+import { CompilerOptions } from 'typescript';
 
 import {
     DEFAULT_BAIL,
@@ -13,49 +15,51 @@ import {
     DEFAULT_ISOLATED_MODULES,
     DEFAULT_MAX_CONCURRENCY,
     DEFAULT_MAX_WORKERS,
+    DEFAULT_MODULE_PATH_IGNORE_PATTERS,
     DEFAULT_ONLY_CHANGED,
+    DEFAULT_PRESET,
     DEFAULT_TEST_PATH_IGNORE_PATTERS,
+    DEFAULT_TS_JEST_IGNORE_CODES,
     DEFAULT_VERBOSE,
     DEFAULT_WATCH
-} from './default.config';
-import { exposeTsConfigExtendedCompilerOptions } from './expose-ts-config-extended-compiler-options';
-import { JestConfigOptions, ModuleMapper } from './jest-config.interface';
+} from '../constants/configurations';
+import { JestConfigOptions } from '../interfaces/jest-config.interface';
+import { JestModuleMapper } from '../interfaces/jest-module-mapper.interface';
 
 // eslint-disable-next-line sonarjs/cognitive-complexity,complexity,max-lines-per-function
 export function createTsJestConfig(options: JestConfigOptions): Config.InitialOptions {
     const rootDir: string = options.jestConfig?.rootDir ?? path.resolve('.');
+    const resolvedRootDir: string = path.isAbsolute(rootDir) ? rootDir : path.resolve(rootDir);
 
-    const tsConfigPath: string = path.isAbsolute(options.tsConfig)
+    const resolvedTsConfigPath: string = path.isAbsolute(options.tsConfig)
         ? options.tsConfig
-        : path.resolve(rootDir, options.tsConfig);
+        : path.resolve(resolvedRootDir, options.tsConfig);
 
-    const exist: boolean = fs.existsSync(tsConfigPath);
-
-    if (!exist) {
-        throw new Error(`[ERROR]: Doesn't exist tsConfig by path: ${tsConfigPath}\n rootDir: ${rootDir}`);
+    const nonExist: boolean = !fs.existsSync(resolvedTsConfigPath);
+    if (nonExist) {
+        throw new Error(
+            `[ERROR]: Doesn't exist tsConfig by path: ${resolvedTsConfigPath}\n rootDir: ${resolvedRootDir}`
+        );
     }
 
-    const compilerOptions: Record<string, Any> = exposeTsConfigExtendedCompilerOptions(tsConfigPath);
+    const compilerOptions: CompilerOptions = exposeTsCompilerOptionsByTsConfig(resolvedTsConfigPath);
+    const prefix: string = `<rootDir>/${compilerOptions?.baseUrl ?? ''}/`.replace(/\.\//g, '/').replace(/\/\/+/g, '/');
+    const rootModuleNameMapper:
+        | { [key: string]: string | string[] }
+        | undefined = tsJestUtils.pathsToModuleNameMapper(compilerOptions?.paths ?? {}, { prefix });
 
-    const { pathsToModuleNameMapper: resolver }: Any = require('ts-jest/utils');
-
-    const prefix: Record<string, Any> = {
-        prefix: `<rootDir>/${compilerOptions?.baseUrl ?? ''}/`.replace(/\.\//g, '/').replace(/\/\/+/g, '/')
-    };
-
-    const rootModuleNameMapper: { [key: string]: string | string[] } = resolver(compilerOptions?.paths ?? {}, prefix);
-    const moduleNameMapper: ModuleMapper = options.jestConfig?.moduleNameMapper ?? rootModuleNameMapper;
+    const moduleNameMapper: JestModuleMapper = options.jestConfig?.moduleNameMapper ?? rootModuleNameMapper;
 
     if (options.debug) {
-        console.log('[DEBUG]: rootDir: ', rootDir);
-        console.log('[DEBUG]: tsConfig: ', tsConfigPath);
-        console.log('[DEBUG]: prefix: ', JSON.stringify(prefix, null, 4));
+        console.log('[DEBUG]: rootDir: ', resolvedRootDir);
+        console.log('[DEBUG]: tsConfig: ', resolvedTsConfigPath);
+        console.log('[DEBUG]: prefix: ', prefix);
         console.log('[DEBUG]: moduleNameMapper: ', JSON.stringify(moduleNameMapper, null, 4), '\n');
     }
 
     return {
         ...options.jestConfig,
-        rootDir,
+        rootDir: resolvedRootDir,
         cache: options.jestConfig?.cache ?? DEFAULT_CACHE,
         watch: options.jestConfig?.watch ?? DEFAULT_WATCH,
         onlyChanged: options.jestConfig?.onlyChanged ?? DEFAULT_ONLY_CHANGED,
@@ -63,9 +67,10 @@ export function createTsJestConfig(options: JestConfigOptions): Config.InitialOp
         /**
          * A set of global variables that need to be available in all test environments.
          */
-        globals: {
+        globals: options.jestConfig?.globals ?? {
             'ts-jest': {
-                tsconfig: tsConfigPath,
+                tsconfig: resolvedTsConfigPath,
+                diagnostics: { ignoreCodes: DEFAULT_TS_JEST_IGNORE_CODES },
                 isolatedModules: options.isolatedModules ?? DEFAULT_ISOLATED_MODULES,
                 stringifyContentPathRegex: '\\.html$',
                 astTransformers: {
@@ -104,7 +109,7 @@ export function createTsJestConfig(options: JestConfigOptions): Config.InitialOp
          */
         testMatch: options.jestConfig?.testMatch ?? [],
 
-        preset: 'jest-preset-angular',
+        preset: options.jestConfig?.preset ?? DEFAULT_PRESET,
 
         displayName: options.jestConfig?.displayName ?? DEFAULT_DISPLAY_NAME,
         maxWorkers: options?.jestConfig?.maxWorkers ?? DEFAULT_MAX_WORKERS,
@@ -131,7 +136,7 @@ export function createTsJestConfig(options: JestConfigOptions): Config.InitialOp
          * paths are to be considered 'visible' to the module loader. If a given module's path
          * matches any of the patterns, it will not be require()-able in the test environment.
          */
-        modulePathIgnorePatterns: options?.jestConfig?.modulePathIgnorePatterns ?? [],
+        modulePathIgnorePatterns: options?.jestConfig?.modulePathIgnorePatterns ?? DEFAULT_MODULE_PATH_IGNORE_PATTERS,
 
         /**
          * An array of regexp pattern strings that are matched against all

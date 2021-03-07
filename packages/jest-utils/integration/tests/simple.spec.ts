@@ -26,7 +26,8 @@ describe('[TEST]: Hello world', () => {
         ).toEqual({
             globals: {
                 'ts-jest': {
-                    isolatedModules: false,
+                    diagnostics: { ignoreCodes: ['6059'] },
+                    isolatedModules: true,
                     tsconfig: expect.any(String),
                     stringifyContentPathRegex: '\\.html$',
                     astTransformers: {
@@ -39,7 +40,6 @@ describe('[TEST]: Hello world', () => {
             },
             moduleNameMapper: {
                 '^@mock/(.*)$': '<rootDir>/integration/tests/helpers/$1',
-                '^@angular\\-ru/common$': '<rootDir>/../common/dist/library',
                 '^@angular\\-ru/common/(.*)$': '<rootDir>/../common/dist/library/$1'
             },
             bail: 1,
@@ -47,7 +47,7 @@ describe('[TEST]: Hello world', () => {
             watch: false,
             cache: true,
             testMatch: [],
-            modulePathIgnorePatterns: [],
+            modulePathIgnorePatterns: ['.cache', 'dist'],
             onlyChanged: false,
             testPathIgnorePatterns: ['/node_modules/', '/dist/', '/e2e/'],
             preset: 'jest-preset-angular',

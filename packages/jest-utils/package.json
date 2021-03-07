@@ -32,7 +32,7 @@
         "ts-jest": "26.5.3"
     },
     "peerDependencies": {
-        "@angular-ru/common": ">=13.19.0"
+        "@angular-ru/common": ">=15.133.0"
     },
     "publishConfig": {
         "access": "public"

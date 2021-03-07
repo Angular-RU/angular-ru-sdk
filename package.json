@@ -19,6 +19,7 @@
     "scripts": {
         "build:app": "lerna run build:app",
         "build:lib": "lerna run build:lib",
+        "build:link": "lerna run build:link",
         "clean": "rm -rf .cache ./packages/**/dist ./packages/**/lib ./packages/**/.cache",
         "deploy": "lerna run deploy",
         "format": "yarn package:sort && yarn pretty:format --write",

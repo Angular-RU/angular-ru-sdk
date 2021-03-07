@@ -21,14 +21,15 @@ Create `jest.config.js`
 
 ```ts
 const { createTsJestConfig } = require('@angular-ru/jest-utils');
-const path = require('path');
 
 module.exports = createTsJestConfig({
-    rootDir: path.resolve('.'),
-    displayName: 'My Angular App',
-    testMatch: ['<rootDir>/tests/**/*.spec.ts'],
-    collectCoverageFrom: ['<rootDir>/src/app/**/*.ts'],
-    tsConfigRootPath: path.resolve('./tsconfig.json')
+    tsConfig: './tsconfig.json',
+    jestConfig: {
+        rootDir: '.',
+        displayName: 'My Angular App',
+        testMatch: ['<rootDir>/tests/**/*.spec.ts'],
+        collectCoverageFrom: ['<rootDir>/src/app/**/*.ts']
+    }
 });
 ```
 
@@ -43,7 +44,10 @@ $ jest --config jest.config.js --coverage
 ```ts
 module.exports = createTsJestConfig({
     // ...
-    modulePathIgnorePatterns: ['<rootDir>/dist/']
+    jestConfig: {
+        // ...
+        modulePathIgnorePatterns: ['<rootDir>/dist/']
+    }
 });
 ```
 
@@ -52,6 +56,9 @@ module.exports = createTsJestConfig({
 ```ts
 module.exports = createTsJestConfig({
     // ...
-    setupFilesAfterEnv: ['<rootDir>/setup-jest.ts']
+    jestConfig: {
+        // ...
+        setupFilesAfterEnv: ['<rootDir>/setup-jest.ts']
+    }
 });
 ```

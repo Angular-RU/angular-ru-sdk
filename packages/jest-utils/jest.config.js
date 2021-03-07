@@ -2,7 +2,6 @@ const createTsJestConfig = require('./lib/index').createTsJestConfig;
 
 module.exports = createTsJestConfig({
     tsConfig: './tsconfig.json',
-    debug: true,
     jestConfig: {
         cacheDirectory: '../../.cache',
         collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
