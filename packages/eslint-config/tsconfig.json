@@ -6,7 +6,6 @@
         "lib": ["es2017", "dom"],
         "module": "esnext",
         "paths": {
-            "@angular-ru/common": ["../common/dist/library"],
             "@angular-ru/common/*": ["../common/dist/library/*"],
             "@angular-ru/http": ["../http/dist/library"],
             "@angular-ru/http/*": ["../http/dist/library/*"]
