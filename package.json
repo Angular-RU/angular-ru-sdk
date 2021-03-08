@@ -27,13 +27,13 @@
         "lint": "eslint \"**/*.ts\" --ignore-pattern typescript.bad.ts",
         "package:lint": "yarn package:sort --check",
         "package:sort": "yarn sort-package-json \"package.json\" \"packages/*/package.json\"",
+        "pre:commit": "git add . && git update-index --again && yarn lint-staged && git add .",
         "pretty:format": "yarn prettier \"**/*.{ts,html,css,scss,md,js,json}\"",
         "pretty:lint": "yarn pretty:format --check",
         "release:bump": "RELEASE_VERSION=$(node -p -e \"require('./lerna.json').version\") && yarn npe version \"$RELEASE_VERSION\"",
-        "release:changelog": "yarn generate-changelog",
         "pretest": "lerna run pretest",
         "test": "lerna run test",
-        "version": "yarn release:bump && yarn release:changelog && yarn pre:commit"
+        "version": "yarn release:bump && yarn generate-changelog && yarn pre:commit"
     },
     "commitlint": {
         "extends": [
