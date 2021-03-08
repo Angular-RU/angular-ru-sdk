@@ -1,3 +1,23 @@
+#### 15.140.0 (2021-03-08)
+
+##### Continuous Integration
+
+-   access is public
+    ([56f359ee](https://github.com/Angular-RU/angular-ru-sdk/commit/56f359ee17dc8a7675be42189996e9f6bc27a04e))
+-   provide cache
+    ([43c25fe9](https://github.com/Angular-RU/angular-ru-sdk/commit/43c25fe971e484cb26e057efe0f6176daf68fc0b))
+
+##### Documentation Changes
+
+-   updated release notes and package versions [ci skip]
+    ([52e0eabd](https://github.com/Angular-RU/angular-ru-sdk/commit/52e0eabddf5a340200bd919daada3baf4e509944))
+
+##### New Features
+
+-   **@angular-ru/renovate-config:** add renovate preset package
+    ([#457](https://github.com/Angular-RU/angular-ru-sdk/pull/457))
+    ([d0d369fd](https://github.com/Angular-RU/angular-ru-sdk/commit/d0d369fd66264a6190fe51d733061e7eabc44d86))
+
 #### 15.139.0 (2021-03-08)
 
 ##### Continuous Integration
