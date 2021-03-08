@@ -26,8 +26,6 @@
 
 #### 15.132.1 (2021-03-04)
 
-#### 15.132.0 (2021-03-04)
-
 ##### New Features
 
 -   update dependency jest-preset-angular to v8.4.0
