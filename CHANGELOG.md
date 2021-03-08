@@ -21,8 +21,6 @@
         ([64e58b77](https://github.com/Angular-RU/angular-ru-sdk/commit/64e58b7746ba14d1ea428a3b0ec8f7f46675bf88))
     -   add exclude array function
         ([89824acd](https://github.com/Angular-RU/angular-ru-sdk/commit/89824acd319e85adf8fb166b98b02b80b681e714))
-    -   add exclude array function
-        ([f544302f](https://github.com/Angular-RU/angular-ru-sdk/commit/f544302f632426c0188954a2801e49b885dfe58d))
 
 #### 15.132.1 (2021-03-04)
 
