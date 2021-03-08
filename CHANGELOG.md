@@ -1,3 +1,67 @@
+#### 15.138.0 (2021-03-08)
+
+##### Chores
+
+-   update README.md
+    ([797038b9](https://github.com/Angular-RU/angular-ru-sdk/commit/797038b9f8c4f65087bc2b16a3c3a722cd6e4405))
+-   add CODEOWNERS
+    ([ecc97e64](https://github.com/Angular-RU/angular-ru-sdk/commit/ecc97e64da3e8b894f20ef3735b28db0763ded9f))
+-   fixup FUNDING.yml
+    ([54378fe2](https://github.com/Angular-RU/angular-ru-sdk/commit/54378fe2925ffca059f14a95893d525d9d6099f3))
+-   fixup FUNDING.yml
+    ([9f0e305f](https://github.com/Angular-RU/angular-ru-sdk/commit/9f0e305fa60005ad1821fc4cec880871f79c9d4d))
+-   fixup docs
+    ([22bc5ea2](https://github.com/Angular-RU/angular-ru-sdk/commit/22bc5ea219e9ed700d6a27dfe8688c7aefc85bb8))
+-   remove deprecated imports for jest presets
+    ([e7610664](https://github.com/Angular-RU/angular-ru-sdk/commit/e76106642d69a799eedeccd41d9c0dabe57a18a2))
+
+##### Continuous Integration
+
+-   update workflow.yml
+    ([7c5be23d](https://github.com/Angular-RU/angular-ru-sdk/commit/7c5be23d22eade6ed631e4d0b9605f665e3afaf4))
+-   provide GH_TOKEN
+    ([5772a4d6](https://github.com/Angular-RU/angular-ru-sdk/commit/5772a4d617de936f2363bafbf912dd2233788d2c))
+-   cleanup ([c3581095](https://github.com/Angular-RU/angular-ru-sdk/commit/c35810956ee602171e4ecda88e443fb817abe86d))
+-   use parallel for improved build
+    ([0e41cfd3](https://github.com/Angular-RU/angular-ru-sdk/commit/0e41cfd3140318367b1d0f71baedc6cd324f7f09))
+
+##### Documentation Changes
+
+-   update FUNDING.yml
+    ([cd841fac](https://github.com/Angular-RU/angular-ru-sdk/commit/cd841fac3dbc9df6488d08cf2e5e6885291b3728))
+-   update README.md
+    ([63aa2103](https://github.com/Angular-RU/angular-ru-sdk/commit/63aa2103051d16ab1069dfc878b835ad675c00d7))
+-   update README.md
+    ([abb2d789](https://github.com/Angular-RU/angular-ru-sdk/commit/abb2d7899963c2a82a5a105723440400d2db840e))
+-   update README.md
+    ([2b045e63](https://github.com/Angular-RU/angular-ru-sdk/commit/2b045e63272f1778ac1940b95dababc0d3fdb59a))
+-   hello ([8ca2af36](https://github.com/Angular-RU/angular-ru-sdk/commit/8ca2af3624175f2997628afb2a029dee953c0def))
+-   updated release notes and package versions [ci skip]
+    ([832fb86e](https://github.com/Angular-RU/angular-ru-sdk/commit/832fb86e83be9d0305b02c85c337b1572f035eba))
+
+##### New Features
+
+-   update dependency @types/jasmine to v3.6.6
+    ([90e43ef7](https://github.com/Angular-RU/angular-ru-sdk/commit/90e43ef703a5ce392ad758b247f4e51c029e127d))
+-   update dependency @types/jasmine to v3.6.5
+    ([4760b612](https://github.com/Angular-RU/angular-ru-sdk/commit/4760b6121f8dae024242d93d7fb3625307e87296))
+-   update ESLint ([#454](https://github.com/Angular-RU/angular-ru-sdk/pull/454))
+    ([86627d21](https://github.com/Angular-RU/angular-ru-sdk/commit/86627d211876d3e75facd37c4a0202f73f183809))
+-   **@angular-ru/jest-utils:** refactor configuration
+    ([71619c3d](https://github.com/Angular-RU/angular-ru-sdk/commit/71619c3d7746cb4690743840386cd9febcbcab0a))
+-   **@angular-ru/common:** add secondary package @angular-ru/common/node.js
+    ([d005965a](https://github.com/Angular-RU/angular-ru-sdk/commit/d005965a29ce520f41b425f6e5dd9467237683f2))
+
+##### Bug Fixes
+
+-   **@angular-ru/common:** circular dependency: dist/library/esm2015/array/public_api.js
+    ([d6f86b94](https://github.com/Angular-RU/angular-ru-sdk/commit/d6f86b94c34d908caafcf465d0389c16f5dd2c1d))
+
+##### Other Changes
+
+-   **@angular-ru/jest-utils:** refactor configuration
+    ([f93a53f2](https://github.com/Angular-RU/angular-ru-sdk/commit/f93a53f2fe1ebcc46cb7816ada70be82ddadf57f))
+
 #### 15.134.0 (2021-03-07)
 
 ##### New Features
