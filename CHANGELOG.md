@@ -1,3 +1,13 @@
+#### 15.140.2 (2021-03-08)
+
+##### Continuous Integration
+
+-   cleanup workflow.yml
+    ([240435cd](https://github.com/Angular-RU/angular-ru-sdk/commit/240435cdc851ef8a21892c9df9aa6372cb0019ed))
+-   cleanup workflow.yml
+    ([650966a5](https://github.com/Angular-RU/angular-ru-sdk/commit/650966a513e498a5b562d33a29c0df4e9b7a9433))
+-   cleanup ([b9c61192](https://github.com/Angular-RU/angular-ru-sdk/commit/b9c611925f0da39a4e7e86a1080daefcdb8f343f))
+
 #### 15.140.1 (2021-03-08)
 
 ##### Bug Fixes
