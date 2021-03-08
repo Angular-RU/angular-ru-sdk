@@ -1,3 +1,16 @@
+#### 15.139.0 (2021-03-08)
+
+##### Continuous Integration
+
+-   provide cache
+    ([43c25fe9](https://github.com/Angular-RU/angular-ru-sdk/commit/43c25fe971e484cb26e057efe0f6176daf68fc0b))
+
+##### New Features
+
+-   **@angular-ru/renovate-config:** add renovate preset package
+    ([#457](https://github.com/Angular-RU/angular-ru-sdk/pull/457))
+    ([d0d369fd](https://github.com/Angular-RU/angular-ru-sdk/commit/d0d369fd66264a6190fe51d733061e7eabc44d86))
+
 #### 15.138.1 (2021-03-08)
 
 ##### Chores
