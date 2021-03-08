@@ -1,3 +1,11 @@
+#### 15.140.1 (2021-03-08)
+
+##### Bug Fixes
+
+-   **@angular-ru/eslint-config:** remove codelyzer from dependency
+    ([#459](https://github.com/Angular-RU/angular-ru-sdk/pull/459))
+    ([3644a30e](https://github.com/Angular-RU/angular-ru-sdk/commit/3644a30e15a709faf9a33f658b8ffb02ab8724e1))
+
 #### 15.140.0 (2021-03-08)
 
 ##### Continuous Integration
