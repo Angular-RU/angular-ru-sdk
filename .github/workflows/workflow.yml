@@ -29,9 +29,15 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - uses: actions/cache@v2
+              env:
+                  cache-name: cache-node-modules
               with:
                   path: '**/node_modules'
-                  key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-build-${{ env.cache-name }}-
+                      ${{ runner.os }}-build-
+                      ${{ runner.os }}-
 
             - name: Run install step
               run: |
