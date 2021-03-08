@@ -19,6 +19,9 @@
     },
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
+    "publishConfig": {
+        "access": "public"
+    },
     "renovate-config": {
         "default": {
             "automerge": true,
