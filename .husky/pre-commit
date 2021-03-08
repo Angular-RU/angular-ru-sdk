@@ -4,9 +4,6 @@
 
 yarn pre:commit
 
-
-### PROTECTED BRANCHES
-
 # shellcheck disable=SC2006
 BRANCH=`git rev-parse --abbrev-ref HEAD`
 PROTECTED_BRANCHES="^(master|develop)"
