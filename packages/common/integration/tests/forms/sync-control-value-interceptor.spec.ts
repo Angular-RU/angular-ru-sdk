@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ControlValueInterceptor } from '@angular-ru/common/forms';
 
 import { AutoSplitDirective, TrimDirective } from './helpers/sync-control-directives';
 
@@ -12,7 +13,7 @@ describe('sync control value interceptor', () => {
     @Component({
         selector: 'sync-test',
         template: `
-            <input #ngModelInputElement [(ngModel)]="value" trim [autoSplit]="enableAutoSplit" />
+            <input *ngIf="enableControl" #ngModelInputElement [(ngModel)]="value" trim [autoSplit]="enableAutoSplit" />
             <input #formControlInputElement [formControl]="formControl" trim autoSplit />
             <form [formGroup]="formGroup">
                 <input #formGroupControlA formControlName="controlA" trim autoSplit />
@@ -27,8 +28,11 @@ describe('sync control value interceptor', () => {
         @ViewChild('formGroupControlA') public readonly formGroupControlARef!: ElementRef<HTMLInputElement>;
         @ViewChild('formGroupControlB') public readonly formGroupControlBRef!: ElementRef<HTMLInputElement>;
         @ViewChild('formGroupControlC') public readonly formGroupControlCRef!: ElementRef<HTMLInputElement>;
+        @ViewChild('ngModelInputElement', { read: ControlValueInterceptor })
+        public interceptor!: ControlValueInterceptor;
 
         public enableAutoSplit: boolean = true;
+        public enableControl: boolean = true;
 
         public value: string[] = ['value1', 'value2'];
         public formControl = new FormControl(['valueA', 'valueB']);
@@ -120,4 +124,22 @@ describe('sync control value interceptor', () => {
 
         expect(component.value).toEqual(['value3', 'value4']);
     }));
+
+    it('should unsubscribe after ngOnDestroy', function () {
+        expect(component.inputElementRef.nativeElement.value).toBe('value1, value2');
+        expect(component.interceptor.constructor).toBe(ControlValueInterceptor);
+
+        component.interceptor.ngOnDestroy();
+
+        // values does not pass
+        component.inputElementRef.nativeElement.value = '    value3,value4    ';
+        component.inputElementRef.nativeElement.dispatchEvent(new Event('input'));
+        expect(component.value).toEqual('    value3,value4    ');
+
+        // another value interceptor still works
+        expect(component.formControlInputElementRef.nativeElement.value).toBe('valueA, valueB');
+        component.formControlInputElementRef.nativeElement.value = '    valueC,valueD    ';
+        component.formControlInputElementRef.nativeElement.dispatchEvent(new Event('input'));
+        expect(component.formControl.value).toEqual(['valueC', 'valueD']);
+    });
 });
