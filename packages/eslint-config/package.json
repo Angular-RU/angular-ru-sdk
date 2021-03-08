@@ -32,8 +32,6 @@
         "@types/eslint": "7.2.7",
         "@typescript-eslint/eslint-plugin": "4.16.1",
         "@typescript-eslint/parser": "4.16.1",
-        "codelyzer": "6.0.1",
-        "es6-set": "0.1.5",
         "eslint": "7.21.0",
         "eslint-config-import": "0.13.0",
         "eslint-import-resolver-typescript": "2.4.0",

@@ -28,21 +28,22 @@ jobs:
               with:
                   node-version: ${{ matrix.node-version }}
 
+            - name: Get yarn cache directory path
+              id: yarn-cache-dir-path
+              run: echo "::set-output name=dir::$(yarn cache dir)"
+
             - uses: actions/cache@v2
-              env:
-                  cache-name: cache-node-modules
+              id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
               with:
-                  path: '**/node_modules'
-                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+                  path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+                  key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
                   restore-keys: |
-                      ${{ runner.os }}-build-${{ env.cache-name }}-
-                      ${{ runner.os }}-build-
-                      ${{ runner.os }}-
+                      ${{ runner.os }}-yarn-
 
             - name: Run install step
+              if: steps.yarn-cache.outputs.cache-hit != 'true' # Over here!
               run: |
-                  yarn install --frozen-lockfile --non-interactive
-                  yarn clean
+                  yarn --ignore-engines --frozen-lockfile
 
             - name: Run building libraries step
               run: |
