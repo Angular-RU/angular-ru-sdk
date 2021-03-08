@@ -1,0 +1,139 @@
+{
+    "name": "@angular-ru/renovate-config",
+    "version": "15.138.1",
+    "description": "Shared Renovate config for Angular projects",
+    "keywords": [
+        "angular-ru",
+        "angular",
+        "sdk",
+        "renovate",
+        "renovate-config"
+    ],
+    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/renovate-config#readme",
+    "bugs": {
+        "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
+    },
+    "license": "MIT",
+    "author": "angular-ru@yandex.ru",
+    "renovate-config": {
+        "default": {
+            "automerge": true,
+            "rangeStrategy": "bump",
+            "timezone": "Europe/Moscow",
+            "separateMajorMinor": true,
+            "separateMinorPatch": false,
+            "semanticCommits": true,
+            "semanticCommitType": "build",
+            "packageFiles": [
+                "package.json",
+                "packages/**/package.json"
+            ],
+            "major": {
+                "automerge": false
+            },
+            "packageRules": [
+                {
+                    "depTypeList": [
+                        "peerDependencies"
+                    ],
+                    "enabled": false
+                },
+                {
+                    "depTypeList": [
+                        "dependencies"
+                    ],
+                    "groupName": "dependencies",
+                    "groupSlug": "dependencies",
+                    "commitMessagePrefix": "feat:",
+                    "commitMessageAction": "update",
+                    "commitBody": "only dependencies"
+                },
+                {
+                    "depTypeList": [
+                        "devDependencies"
+                    ],
+                    "groupName": "devDependencies",
+                    "groupSlug": "devDependencies",
+                    "commitMessagePrefix": "ci:",
+                    "commitMessageAction": "update",
+                    "commitBody": "only dev dependencies"
+                },
+                {
+                    "packagePatterns": [
+                        "^@angular/*",
+                        "^@angular-builders/*",
+                        "^@angular-devkit/*",
+                        "^@angular-ru/*",
+                        "^@angular-builders/*",
+                        "^@angular-devkit/*",
+                        "^@angular-ru/*",
+                        "^@angular/cli$",
+                        "^@angular/cdk$",
+                        "^@angular/cdk-experimental$",
+                        "^@angular/fire$",
+                        "^@angular/flex-layout$",
+                        "^@angular/material",
+                        "ng-packagr"
+                    ],
+                    "groupName": "Angular"
+                },
+                {
+                    "packagePatterns": [
+                        "class-transformer"
+                    ],
+                    "groupName": "class-transformer"
+                },
+                {
+                    "packagePatterns": [
+                        "^@ngxs/*",
+                        "^@ngxs-labs/*"
+                    ],
+                    "groupName": "NGXS"
+                },
+                {
+                    "packagePatterns": [
+                        "@types/eslint",
+                        "^@typescript-eslint/*",
+                        "^eslint*",
+                        "^@angular-eslint/*"
+                    ],
+                    "groupName": "ESLint"
+                },
+                {
+                    "packagePatterns": [
+                        "@types/jest",
+                        "^jest*",
+                        "ts-jest",
+                        "jest-preset-angular"
+                    ],
+                    "groupName": "Jest"
+                },
+                {
+                    "packageNames": [
+                        "typescript",
+                        "tslib",
+                        "^@types*"
+                    ],
+                    "groupName": "TypeScript",
+                    "separateMinorPatch": true
+                },
+                {
+                    "packageNames": [
+                        "typescript",
+                        "tslib"
+                    ],
+                    "updateTypes": [
+                        "minor",
+                        "major"
+                    ],
+                    "groupName": "TypeScript",
+                    "masterIssueApproval": true
+                }
+            ]
+        }
+    }
+}
