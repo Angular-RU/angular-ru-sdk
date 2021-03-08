@@ -28,14 +28,14 @@ jobs:
               with:
                   node-version: ${{ matrix.node-version }}
 
-            - name: restore lerna
+            - name: Restore lerna
               uses: actions/cache@v2
               with:
                   path: |
                       .cache
                       node_modules
                       */*/node_modules
-                  key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+                  key: ${{ runner.os }}--build-cache-hash--${{ hashFiles('**/yarn.lock') }}
 
             - name: Run install step
               run: |

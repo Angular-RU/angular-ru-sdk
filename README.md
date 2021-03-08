@@ -31,9 +31,9 @@ in the Angular.
 
 Choose the version corresponding to your Angular version:
 
-| Angular | @angular-ru/\*\*\* | Status   | Ivy | VE  |
-| ------- | ------------------ | -------- | --- | --- |
-| 11      | 15.x               | Released | +   | -   |
-| 10      | 14.x               | Released | +   | -   |
-| 9       | 13.x               | Released | +   | +   |
-| 8       | 12.x               | Released | +   | +   |
+| Angular | @angular-ru/\*\*\* | Status   | Ivy | VE  | Node.js |
+| ------- | ------------------ | -------- | --- | --- | ------- |
+| 11      | 15.x               | Released | +   | -   | 14.x    |
+| 10      | 14.x               | Released | +   | -   | 10.x    |
+| 9       | 13.x               | Released | +   | +   | 9.x     |
+| 8       | 12.x               | Released | +   | +   | 8.x     |
