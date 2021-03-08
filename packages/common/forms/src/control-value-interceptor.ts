@@ -56,18 +56,25 @@ export class ControlValueInterceptor<ModelValue = unknown, ViewValue = ModelValu
     }
 
     private makeSequencesAndPassValues(): void {
-        this.interceptor.onViewValueChanged
-            .pipe(
-                map((viewValue: ViewValue): ModelValue => this.toModelValueConveyor(viewValue)),
-                takeUntil(this.onDestroy)
-            )
-            .subscribe((modelValue: ModelValue): void => this.interceptor.pushModelValue(modelValue));
+        this.listenViewConvertToModelValue();
+        this.listenModelConvertToViewValue();
+    }
 
+    private listenModelConvertToViewValue(): void {
         this.interceptor.onModelValueChanged
             .pipe(
                 map((modelValue: ModelValue): ViewValue => this.toViewValueConveyor(modelValue)),
                 takeUntil(this.onDestroy)
             )
             .subscribe((viewValue: ViewValue): void => this.interceptor.pushViewValue(viewValue));
+    }
+
+    private listenViewConvertToModelValue(): void {
+        this.interceptor.onViewValueChanged
+            .pipe(
+                map((viewValue: ViewValue): ModelValue => this.toModelValueConveyor(viewValue)),
+                takeUntil(this.onDestroy)
+            )
+            .subscribe((modelValue: ModelValue): void => this.interceptor.pushModelValue(modelValue));
     }
 }
