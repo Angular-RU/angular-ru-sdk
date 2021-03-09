@@ -9,16 +9,13 @@ export class ControlValueAccessorPatcher<ModelValue = Any, ViewValue = ModelValu
     private readonly onViewValueChangedSubject: Subject<ViewValue> = new Subject<ViewValue>();
     private readonly onModelValueChangedSubject: Subject<ModelValue> = new Subject<ModelValue>();
 
-    private readonly accessor: ControlValueAccessor;
     private writeViewValueFunction!: (viewValue: ViewValue) => void;
     private registerOnViewValueChangeFunction!: (onViewValueChangeFunction: (viewValue: ViewValue) => void) => void;
     private onModelValueChangeFunction?: (modelValue: ModelValue) => void;
 
-    constructor(accessor: ControlValueAccessor) {
+    constructor(private readonly accessor: ControlValueAccessor) {
         this.onViewValueChanged = this.onViewValueChangedSubject.asObservable();
         this.onModelValueChanged = this.onModelValueChangedSubject.asObservable();
-
-        this.accessor = accessor;
 
         this.saveOriginalAccessorFunctions();
         this.patchAccessorFunctions();

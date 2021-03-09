@@ -39,7 +39,7 @@ export class ControlValueInterceptor<ModelValue = unknown, ViewValue = ModelValu
         this.controlValueOperators = this.controlValueOperators.filter(exclude(descriptor));
     }
 
-    private toModelValueConveyor(viewValue: ViewValue): ModelValue {
+    private toModelValue(viewValue: ViewValue): ModelValue {
         let value: Any = viewValue;
         for (const operator of this.controlValueOperators) {
             value = isFunctionLike(operator.toModelValue) ? operator.toModelValue(value) : value;
@@ -47,7 +47,7 @@ export class ControlValueInterceptor<ModelValue = unknown, ViewValue = ModelValu
         return value as ModelValue;
     }
 
-    private toViewValueConveyor(modelValue: ModelValue): ViewValue {
+    private toViewValue(modelValue: ModelValue): ViewValue {
         let value: Any = modelValue;
         for (const operator of this.controlValueOperators) {
             value = isFunctionLike(operator.toViewValue) ? operator.toViewValue(value) : value;
@@ -63,7 +63,7 @@ export class ControlValueInterceptor<ModelValue = unknown, ViewValue = ModelValu
     private listenModelConvertToViewValue(): void {
         this.interceptor.onModelValueChanged
             .pipe(
-                map((modelValue: ModelValue): ViewValue => this.toViewValueConveyor(modelValue)),
+                map((modelValue: ModelValue): ViewValue => this.toViewValue(modelValue)),
                 takeUntil(this.onDestroy)
             )
             .subscribe((viewValue: ViewValue): void => this.interceptor.pushViewValue(viewValue));
@@ -72,7 +72,7 @@ export class ControlValueInterceptor<ModelValue = unknown, ViewValue = ModelValu
     private listenViewConvertToModelValue(): void {
         this.interceptor.onViewValueChanged
             .pipe(
-                map((viewValue: ViewValue): ModelValue => this.toModelValueConveyor(viewValue)),
+                map((viewValue: ViewValue): ModelValue => this.toModelValue(viewValue)),
                 takeUntil(this.onDestroy)
             )
             .subscribe((modelValue: ModelValue): void => this.interceptor.pushModelValue(modelValue));
