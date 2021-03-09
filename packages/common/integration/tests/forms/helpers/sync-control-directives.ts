@@ -1,4 +1,4 @@
-import { Directive, Input } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 import { ControlValueInterceptor, ControlValueInterceptorDescriptor } from '@angular-ru/common/forms';
 import { isNotNil } from '@angular-ru/common/utils';
 
@@ -7,8 +7,16 @@ import { isNotNil } from '@angular-ru/common/utils';
     providers: [ControlValueInterceptor]
 })
 export class TrimDirective {
-    constructor(private readonly interceptor: ControlValueInterceptor) {
+    constructor(
+        private readonly interceptor: ControlValueInterceptor,
+        private readonly elementRef: ElementRef<HTMLInputElement>
+    ) {
         this.interceptor.attach({ toModelValue: (inline: string): string => inline.trim() });
+    }
+
+    @HostListener('blur')
+    public onBlur(): void {
+        this.elementRef.nativeElement.value = this.elementRef.nativeElement.value.trim();
     }
 }
 

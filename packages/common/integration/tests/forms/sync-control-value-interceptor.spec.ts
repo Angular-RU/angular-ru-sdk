@@ -90,7 +90,14 @@ describe('sync control value interceptor', () => {
     it('should trim and split view value on Reactive FormControl', fakeAsync(async () => {
         expect(component.formControlInputElementRef.nativeElement.value).toBe('valueA, valueB');
         component.formControlInputElementRef.nativeElement.value = '    valueC,valueD    ';
+
         component.formControlInputElementRef.nativeElement.dispatchEvent(new Event('input'));
+        expect(component.formControl.value).toEqual(['valueC', 'valueD']);
+
+        // check on blur
+        expect(component.formControlInputElementRef.nativeElement.value).toBe('    valueC,valueD    ');
+        component.formControlInputElementRef.nativeElement.dispatchEvent(new Event('blur'));
+        expect(component.formControlInputElementRef.nativeElement.value).toBe('valueC,valueD');
         expect(component.formControl.value).toEqual(['valueC', 'valueD']);
     }));
 

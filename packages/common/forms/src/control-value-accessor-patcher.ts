@@ -10,10 +10,8 @@ export class ControlValueAccessorPatcher<ModelValue = Any, ViewValue = ModelValu
     private readonly onModelValueChangedSubject: Subject<ModelValue> = new Subject<ModelValue>();
 
     private readonly accessor: ControlValueAccessor;
-    private readonly writeViewValueFunction: (viewValue: ViewValue) => void;
-    private readonly registerOnViewValueChangeFunction: (
-        onViewValueChangeFunction: (viewValue: ViewValue) => void
-    ) => void;
+    private writeViewValueFunction!: (viewValue: ViewValue) => void;
+    private registerOnViewValueChangeFunction!: (onViewValueChangeFunction: (viewValue: ViewValue) => void) => void;
     private onModelValueChangeFunction?: (modelValue: ModelValue) => void;
 
     constructor(accessor: ControlValueAccessor) {
@@ -21,20 +19,9 @@ export class ControlValueAccessorPatcher<ModelValue = Any, ViewValue = ModelValu
         this.onModelValueChanged = this.onModelValueChangedSubject.asObservable();
 
         this.accessor = accessor;
-        this.writeViewValueFunction = this.accessor.writeValue.bind(this.accessor);
-        this.registerOnViewValueChangeFunction = this.accessor.registerOnChange.bind(this.accessor);
 
-        this.accessor.registerOnChange = (onModelValueChangeFunction: (modelValue: ModelValue) => void): void => {
-            this.onModelValueChangeFunction = onModelValueChangeFunction;
-            const proxyUpdateViewValue = (viewValue: ViewValue): void => {
-                this.onViewValueChangedSubject.next(viewValue);
-            };
-            this.registerOnViewValueChangeFunction(proxyUpdateViewValue);
-        };
-
-        this.accessor.writeValue = (modelValue: ModelValue): void => {
-            this.onModelValueChangedSubject.next(modelValue);
-        };
+        this.saveOriginalAccessorFunctions();
+        this.patchAccessorFunctions();
     }
 
     public pushModelValue(modelValue: ModelValue): void {
@@ -49,5 +36,24 @@ export class ControlValueAccessorPatcher<ModelValue = Any, ViewValue = ModelValu
         this.accessor.registerOnChange = this.registerOnViewValueChangeFunction;
         this.accessor.registerOnChange(this.onModelValueChangeFunction);
         this.accessor.writeValue = this.writeViewValueFunction;
+    }
+
+    private patchAccessorFunctions(): void {
+        this.accessor.registerOnChange = (onModelValueChangeFunction: (modelValue: ModelValue) => void): void => {
+            this.onModelValueChangeFunction = onModelValueChangeFunction;
+            const proxyUpdateViewValue = (viewValue: ViewValue): void => {
+                this.onViewValueChangedSubject.next(viewValue);
+            };
+            this.registerOnViewValueChangeFunction(proxyUpdateViewValue);
+        };
+
+        this.accessor.writeValue = (modelValue: ModelValue): void => {
+            this.onModelValueChangedSubject.next(modelValue);
+        };
+    }
+
+    private saveOriginalAccessorFunctions(): void {
+        this.writeViewValueFunction = this.accessor.writeValue.bind(this.accessor);
+        this.registerOnViewValueChangeFunction = this.accessor.registerOnChange.bind(this.accessor);
     }
 }
