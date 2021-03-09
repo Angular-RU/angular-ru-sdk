@@ -1,3 +1,15 @@
+#### 15.141.0 (2021-03-09)
+
+##### Documentation Changes
+
+-   update lerna.json
+    ([478469a1](https://github.com/Angular-RU/angular-ru-sdk/commit/478469a110005b4b39babe242d6dacfaec926e5e))
+
+##### New Features
+
+-   update ESLint to v4.17.0 ([#460](https://github.com/Angular-RU/angular-ru-sdk/pull/460))
+    ([8b1d5bf0](https://github.com/Angular-RU/angular-ru-sdk/commit/8b1d5bf065c514c9db0e55b0f222193c1b91472b))
+
 #### 15.140.2 (2021-03-08)
 
 ##### Continuous Integration
