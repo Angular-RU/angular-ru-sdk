@@ -1,6 +1,6 @@
 #### `@angular-ru/common/directives`
 
--   `InputFocusDirective, InitialFocusModule`
+-   `InitialFocusDirective, InitialFocusModule`
 
 ```ts
 import { InitialFocusModule } from '@angular-ru/common/directives';
