@@ -1,3 +1,55 @@
+#### 15.142.0 (2021-03-09)
+
+##### Chores
+
+-   fixup docs
+    ([22bc5ea2](https://github.com/Angular-RU/angular-ru-sdk/commit/22bc5ea219e9ed700d6a27dfe8688c7aefc85bb8))
+-   remove deprecated imports for jest presets
+    ([e7610664](https://github.com/Angular-RU/angular-ru-sdk/commit/e76106642d69a799eedeccd41d9c0dabe57a18a2))
+
+##### Continuous Integration
+
+-   use parallel for improved build
+    ([0e41cfd3](https://github.com/Angular-RU/angular-ru-sdk/commit/0e41cfd3140318367b1d0f71baedc6cd324f7f09))
+
+##### Documentation Changes
+
+-   updated release notes and package versions [ci skip]
+    ([832fb86e](https://github.com/Angular-RU/angular-ru-sdk/commit/832fb86e83be9d0305b02c85c337b1572f035eba))
+-   updated release notes and package versions [ci skip]
+    ([912544f4](https://github.com/Angular-RU/angular-ru-sdk/commit/912544f44916dce820f2b91d505cbfdc9961726e))
+
+##### New Features
+
+-   **@angular-ru/common:**
+    -   add ControlValueInterceptor service
+        ([19150c0b](https://github.com/Angular-RU/angular-ru-sdk/commit/19150c0b7d0bd10de04f9f953eaa4c6eb697a110))
+    -   add secondary package @angular-ru/common/node.js
+        ([d005965a](https://github.com/Angular-RU/angular-ru-sdk/commit/d005965a29ce520f41b425f6e5dd9467237683f2))
+-   update ESLint ([#454](https://github.com/Angular-RU/angular-ru-sdk/pull/454))
+    ([86627d21](https://github.com/Angular-RU/angular-ru-sdk/commit/86627d211876d3e75facd37c4a0202f73f183809))
+-   **@angular-ru/jest-utils:** refactor configuration
+    ([71619c3d](https://github.com/Angular-RU/angular-ru-sdk/commit/71619c3d7746cb4690743840386cd9febcbcab0a))
+
+##### Bug Fixes
+
+-   **@angular-ru/common:** circular dependency: dist/library/esm2015/array/public_api.js
+    ([d6f86b94](https://github.com/Angular-RU/angular-ru-sdk/commit/d6f86b94c34d908caafcf465d0389c16f5dd2c1d))
+
+##### Other Changes
+
+-   **@angular-ru/common:**
+    -   add ControlValueInterceptor service
+        ([5e27150e](https://github.com/Angular-RU/angular-ru-sdk/commit/5e27150edea9e3e0314be8d7121469df47eda183))
+    -   add ControlValueInterceptor service
+        ([65dd0716](https://github.com/Angular-RU/angular-ru-sdk/commit/65dd0716b4393030e71ee5dfeba1433eea321034))
+    -   add ControlValueInterceptor service
+        ([7399d1b5](https://github.com/Angular-RU/angular-ru-sdk/commit/7399d1b5950e0bf1c79443f4859c4f6f29e41fef))
+    -   add ControlValueInterceptor service
+        ([0305dfcc](https://github.com/Angular-RU/angular-ru-sdk/commit/0305dfcc015bf4793acfb28ae1e54a247e900098))
+-   **@angular-ru/jest-utils:** refactor configuration
+    ([f93a53f2](https://github.com/Angular-RU/angular-ru-sdk/commit/f93a53f2fe1ebcc46cb7816ada70be82ddadf57f))
+
 #### 15.141.0 (2021-03-09)
 
 ##### Documentation Changes
