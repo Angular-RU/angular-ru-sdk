@@ -4,7 +4,7 @@ import { AbstractFlexLayoutDirective } from './abstract-flex-layout.directive';
 
 @Directive({ selector: '[flex-container]' })
 export class FlexContainerDirective extends AbstractFlexLayoutDirective implements AfterViewInit {
-    @Input('flex-center') public center: boolean = false;
+    @Input('flex-center') public center: boolean | string = false;
     @Input('no-wrap') public noWrap: boolean | string = false;
     @Input('full-width') public fullWidth: boolean | string = false;
 
@@ -14,7 +14,7 @@ export class FlexContainerDirective extends AbstractFlexLayoutDirective implemen
 
     public ngAfterViewInit(): void {
         this.classList.add(`flex-container`);
-        if (this.center) {
+        if (this.center !== false) {
             this.classList.add(`flex-container--center`);
         }
 
