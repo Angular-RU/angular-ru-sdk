@@ -24,6 +24,8 @@ export { IsObjectPipe } from './is-object/is-object.pipe';
 export { IsObjectPipeModule } from './is-object/is-object-pipe.module';
 export { IsStringPipe } from './is-string/is-string.pipe';
 export { IsStringPipeModule } from './is-string/is-string-pipe.module';
+export { JoinPipe } from './join/join.pipe';
+export { JoinPipeModule } from './join/join-pipe.module';
 export { MarkedValue } from './mark-by-filter/mark-by-filter.interfaces';
 export { MarkByFilterPipe } from './mark-by-filter/mark-by-filter.pipe';
 export { MarkByFilterPipeModule } from './mark-by-filter/mark-by-filter-pipe.module';
