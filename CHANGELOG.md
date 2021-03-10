@@ -1,3 +1,15 @@
+#### 15.144.0 (2021-03-10)
+
+##### Documentation Changes
+
+-   update pipes.md
+    ([fc81d10d](https://github.com/Angular-RU/angular-ru-sdk/commit/fc81d10d3dc317570d34a917f11267e182ab3e71))
+
+##### New Features
+
+-   **@angular-ru/common:** add JoinPipeModule
+    ([8927e943](https://github.com/Angular-RU/angular-ru-sdk/commit/8927e9430a364a98405de091f4ac6be48d8ade60))
+
 #### 15.143.0 (2021-03-09)
 
 ##### New Features
