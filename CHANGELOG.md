@@ -1,3 +1,11 @@
+#### 15.144.1 (2021-03-10)
+
+##### Refactors
+
+-   **flex-layout:** support string type for flex-container
+    ([#465](https://github.com/Angular-RU/angular-ru-sdk/pull/465))
+    ([3fe4e60e](https://github.com/Angular-RU/angular-ru-sdk/commit/3fe4e60ed526f90fb3774237f278ab1641ebec38))
+
 #### 15.144.0 (2021-03-10)
 
 ##### Documentation Changes
