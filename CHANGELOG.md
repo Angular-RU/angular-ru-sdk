@@ -1,3 +1,10 @@
+#### 15.145.0 (2021-03-10)
+
+##### New Features
+
+-   **@angular-ru/common:** add options for JoinPipe
+    ([953bbbea](https://github.com/Angular-RU/angular-ru-sdk/commit/953bbbea048d56f986446b533e04eecf7a25d29c))
+
 #### 15.144.1 (2021-03-10)
 
 ##### Refactors
