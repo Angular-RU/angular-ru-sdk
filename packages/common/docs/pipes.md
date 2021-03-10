@@ -437,9 +437,7 @@ export class AppModule {}
         {{ { a: 1, b: 2, c: 3 } | objectSize }}
     `
 })
-export class AppComponent {
-    public filter = 'world';
-}
+export class AppComponent {}
 ```
 
 -   `MergeCssClassesPipe, MergeCssClassesPipeModule`
@@ -473,4 +471,46 @@ export class AppModule {}
 export class AppComponent {
     public isEnabled = false;
 }
+```
+
+`JoinPipe, JoinPipeModule`
+
+```ts
+import { JoinPipeModule } from '@angular-ru/common/pipes';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ..
+    imports: [JoinPipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `
+        {{ ['1', '2'] | join }}
+        <!-- result: 1, 2 -->
+    `
+})
+export class AppComponent {}
+```
+
+```ts
+import { JoinPipeModule } from '@angular-ru/common/pipes';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ..
+    imports: [JoinPipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `
+        <p [innerHTML]="['1', '2'] | join: '<br>'"></p>
+        <!-- result html: 1<br>2 -->
+    `
+})
+export class AppComponent {}
 ```
