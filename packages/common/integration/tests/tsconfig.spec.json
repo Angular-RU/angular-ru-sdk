@@ -4,7 +4,7 @@
         "outDir": "../../out-tsc/spec",
         "types": ["jest", "node"],
         "paths": {
-            "@angular-ru/common/*": ["./dist/library/*"]
+            "@angular-ru/common/*": ["*/src/public_api.ts"]
         }
     },
     "include": ["**/*.spec.ts", "**/*.d.ts"]

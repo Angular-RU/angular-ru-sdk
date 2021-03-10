@@ -488,8 +488,8 @@ export class AppModule {}
 @Component({
     //...
     template: `
-        {{ ['1', '2'] | join }}
-        <!-- result: 1, 2 -->
+        {{ [1, 2] | join }}
+        <!-- result: 1,2 -->
     `
 })
 export class AppComponent {}
@@ -508,9 +508,35 @@ export class AppModule {}
 @Component({
     //...
     template: `
-        <p [innerHTML]="['1', '2'] | join: '<br>'"></p>
+        <p [innerHTML]="[1, 2] | join: { separator: '<br>' }"></p>
         <!-- result html: 1<br>2 -->
     `
 })
 export class AppComponent {}
+```
+
+```ts
+import { JoinPipeModule, JoinMapTransformer } from '@angular-ru/common/pipes';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ..
+    imports: [JoinPipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `
+        <p
+            [innerHTML]="
+                [{ a: 1 }, { a: 2 }, { a: 3 }, { a: 4 }] | join: { separator: '::', mapTransformer: transformer }
+            "
+        ></p>
+        <!-- result html: 1 :: 10 :: 11 :: 100 -->
+    `
+})
+export class AppComponent {
+    public transformer: JoinMapTransformer<{ a: number }> = (item: { a: number }): string => item.a.toString(2);
+}
 ```

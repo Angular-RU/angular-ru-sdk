@@ -8,7 +8,7 @@ $ lerna create @angular-ru/my-pkg
 
 ```bash
 # Pre install
-$ yarn install && yarn pre:build
+$ yarn install
 
 # Build libraries
 $ yarn build:lib
