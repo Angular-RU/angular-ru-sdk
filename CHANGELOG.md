@@ -1,3 +1,10 @@
+#### 15.148.0 (2021-03-11)
+
+##### New Features
+
+-   **@angular-ru/common:** add util functions ([#468](https://github.com/Angular-RU/angular-ru-sdk/pull/468))
+    ([3811fe86](https://github.com/Angular-RU/angular-ru-sdk/commit/3811fe86b3265c18367434b999dffdb79e732bf9))
+
 #### 15.147.0 (2021-03-11)
 
 ##### New Features
