@@ -1,3 +1,11 @@
+#### 15.147.0 (2021-03-11)
+
+##### New Features
+
+-   **@angular-ru/common:** add type guards for check-value-is-empty.ts, check-value-is-filled.ts
+    ([#467](https://github.com/Angular-RU/angular-ru-sdk/pull/467))
+    ([7de9a50b](https://github.com/Angular-RU/angular-ru-sdk/commit/7de9a50b5f1e16fc4d095ba9a8a9251b9f018a02))
+
 #### 15.146.0 (2021-03-11)
 
 ##### Documentation Changes
