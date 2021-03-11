@@ -7,6 +7,7 @@ export { Couple } from './couple';
 export { DecoratorMethod } from './decorator-method';
 export { DeepPartial } from './deep-partial';
 export { Descriptor } from './descriptor';
+export { EmptyValue } from './empty-value';
 export { Fn } from './fn';
 export { Immutable, Mutable, PrimitiveType } from './immutability';
 export { KeyValueComparator } from './key-value-comparator';

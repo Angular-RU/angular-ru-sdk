@@ -1,5 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { isFunctionLike } from '@angular-ru/common/function';
+import { EmptyValue } from '@angular-ru/common/typings';
+import { checkValueIsEmpty } from '@angular-ru/common/utils';
 
 import { JoinPipeOptions } from './join-pipe.interface';
 
@@ -7,18 +9,26 @@ import { JoinPipeOptions } from './join-pipe.interface';
 export class JoinPipe implements PipeTransform {
     private readonly defaultSeparator: string = ',';
 
-    public transform<T>(input: T[], { separator, mapTransformer }: JoinPipeOptions<T> = {}): string {
+    public transform<T>(input: T[] | EmptyValue, { separator, mapTransformer }: JoinPipeOptions<T> = {}): string {
+        let result: string = '';
+
+        if (checkValueIsEmpty(input)) {
+            return result;
+        }
+
         const currentSeparator: string = separator ?? this.defaultSeparator;
 
         if (isFunctionLike(mapTransformer)) {
             // eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
-            return input.reduce((prev: string, next: T, index: number, arr: T[]): string => {
+            result = input.reduce((prev: string, next: T, index: number, arr: T[]): string => {
                 const transformed: string = mapTransformer(next, index, arr);
                 const separatorOrEmpty: string = arr.length - 1 === index ? '' : currentSeparator;
                 return prev ? `${prev}${transformed}${separatorOrEmpty}` : `${transformed}${separatorOrEmpty}`;
             }, '');
         } else {
-            return input.join(currentSeparator);
+            result = input.join(currentSeparator);
         }
+
+        return result;
     }
 }

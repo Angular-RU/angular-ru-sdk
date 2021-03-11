@@ -1,7 +1,13 @@
+import { Any } from '@angular-ru/common/typings';
 import { JoinPipe } from '@angular-ru/common/pipes';
 
 describe('[TEST]: Join Pipe', () => {
     it('only separator', () => {
+        expect(new JoinPipe().transform('' as Any)).toEqual('');
+        expect(new JoinPipe().transform(' ' as Any)).toEqual('');
+        expect(new JoinPipe().transform(Infinity as Any)).toEqual('');
+        expect(new JoinPipe().transform(undefined)).toEqual('');
+        expect(new JoinPipe().transform(null)).toEqual('');
         expect(new JoinPipe().transform([])).toEqual('');
         expect(new JoinPipe().transform([1, 2])).toEqual('1,2');
         expect(new JoinPipe().transform([1])).toEqual('1');
