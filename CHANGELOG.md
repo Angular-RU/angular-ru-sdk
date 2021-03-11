@@ -1,3 +1,15 @@
+#### 15.146.0 (2021-03-11)
+
+##### Documentation Changes
+
+-   updated release notes and package versions [ci skip]
+    ([6077ead5](https://github.com/Angular-RU/angular-ru-sdk/commit/6077ead5bc1ba122ce7201d84c0b5f4826116809))
+
+##### New Features
+
+-   **@angular-ru/common:** add date & interval limit validators
+    ([f00208ec](https://github.com/Angular-RU/angular-ru-sdk/commit/f00208ec6f705538b629f23d7dd73ef1903b760d))
+
 #### 15.145.0 (2021-03-10)
 
 ##### New Features
