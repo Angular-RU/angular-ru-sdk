@@ -1,5 +1,7 @@
 export { $any } from './$any';
 export { $cast } from './$cast';
+export { checkEveryValueIsEmpty } from './check-every-value-is-empty';
+export { checkSomeValueIsEmpty } from './check-some-value-is-empty';
 export { checkValueIsEmpty } from './check-value-is-empty';
 export { checkValueIsFilled } from './check-value-is-filled';
 export { copyBuffer } from './copy-buffer';
