@@ -1,6 +1,6 @@
-import { Any } from '@angular-ru/common/typings';
+import { Any, EmptyValue } from '@angular-ru/common/typings';
 
-export function checkValueIsEmpty(value: Any): boolean {
-    const val: string = typeof value === 'string' ? value.trim() : value;
-    return [undefined, null, NaN, '', 'null', Infinity].includes(val);
+export function checkValueIsEmpty<T>(value: T | EmptyValue): value is EmptyValue {
+    const val: Any = typeof value === 'string' ? value.trim() : value;
+    return [undefined, null, NaN, '', 'null', Infinity].includes(val as Any);
 }
