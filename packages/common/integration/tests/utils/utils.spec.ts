@@ -7,7 +7,9 @@ import {
     serializeXmlToString,
     detectChanges,
     isIE,
-    parseXmlFromString
+    parseXmlFromString,
+    checkSomeValueIsEmpty,
+    checkEveryValueIsEmpty
 } from '@angular-ru/common/utils';
 import { ChangeDetectorRef } from '@angular/core';
 
@@ -85,4 +87,22 @@ describe('[TEST]: Common utils', () => {
         const xml = parseXmlFromString('<hello>123</hello>');
         expect(serializeXmlToString(xml)).toEqual('<hello>123</hello>');
     });
+
+    it('checkEveryValueIsEmpty should return false for a set of filled values', () =>
+        expect(checkEveryValueIsEmpty(42, 'hello world', {})).toEqual(false));
+
+    it('checkEveryValueIsEmpty should return false for a set of values containing filled values', () =>
+        expect(checkEveryValueIsEmpty(42, 'hello world', null)).toEqual(false));
+
+    it('checkEveryValueIsEmpty should return false for a set of empty values', () =>
+        expect(checkEveryValueIsEmpty('', undefined, null)).toEqual(true));
+
+    it('checkSomeValueIsEmpty should return false for a set of filled values', () =>
+        expect(checkSomeValueIsEmpty(42, 'hello world', {})).toEqual(false));
+
+    it('checkSomeValueIsEmpty should return true for a set of values containing empty values', () =>
+        expect(checkSomeValueIsEmpty(42, 'hello world', null)).toEqual(true));
+
+    it('checkSomeValueIsEmpty should return true for a set of empty values', () =>
+        expect(checkSomeValueIsEmpty('', undefined, null)).toEqual(true));
 });
