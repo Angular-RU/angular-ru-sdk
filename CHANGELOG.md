@@ -1,3 +1,18 @@
+#### 15.148.1 (2021-03-12)
+
+##### Bug Fixes
+
+-   **@angular-ru/common:**
+    -   support undefined/null in array utils
+        ([6f473311](https://github.com/Angular-RU/angular-ru-sdk/commit/6f47331183267f3943c45efd49251a48355d016e))
+    -   support undefined/null in isEmptyList argument
+        ([daa38662](https://github.com/Angular-RU/angular-ru-sdk/commit/daa3866274b9549a47937d81ae289786421ad9c3))
+
+##### Refactors
+
+-   update .gitignore ([#469](https://github.com/Angular-RU/angular-ru-sdk/pull/469))
+    ([bf5e36aa](https://github.com/Angular-RU/angular-ru-sdk/commit/bf5e36aa5718bc0be8b7bab64521b6e719eb5e0b))
+
 #### 15.148.0 (2021-03-11)
 
 ##### New Features
