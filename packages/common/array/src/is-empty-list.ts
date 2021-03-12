@@ -1,3 +1,3 @@
-export function isEmptyList<T>(arr: T[]): boolean {
+export function isEmptyList<T>(arr?: T[] | null): boolean {
     return !(arr || []).length;
 }
