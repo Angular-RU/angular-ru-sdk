@@ -1,3 +1,3 @@
-export function isMultipleList<T>(arr: T[]): boolean {
+export function isMultipleList<T>(arr?: T[] | null): boolean {
     return (arr || []).length > 1;
 }
