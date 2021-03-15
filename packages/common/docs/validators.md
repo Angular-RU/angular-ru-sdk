@@ -44,10 +44,14 @@ export class AppComponent {
 }
 ```
 
--   `dateMaxIntervalValidator, dateMinIntervalValidator`
+-   `dateMaxIntervalValidator, dateMinIntervalValidator, orderedIntervalValidator`
 
 ```ts
-import { dateMaxIntervalValidator, dateMinIntervalValidator } from '@angular-ru/common/validators';
+import {
+    dateMaxIntervalValidator,
+    dateMinIntervalValidator,
+    orderedIntervalValidator
+} from '@angular-ru/common/validators';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component } from '@angular/core';
 
@@ -64,7 +68,8 @@ export class AppComponent {
             [
                 // new Date(0).setDate(40) generates 40-days time interval (in Timestamp)
                 dateMinIntervalValidator(new Date(0).setDate(40), { dateToKey: 'dateTo', dateFromKey: 'dateFrom' }),
-                dateMaxIntervalValidator(new Date(0).setDate(70), { dateToKey: 'dateTo', dateFromKey: 'dateFrom' })
+                dateMaxIntervalValidator(new Date(0).setDate(70), { dateToKey: 'dateTo', dateFromKey: 'dateFrom' }),
+                orderedIntervalValidator({ dateToKey: 'dateTo', dateFromKey: 'dateFrom' })
             ]
         );
     }
