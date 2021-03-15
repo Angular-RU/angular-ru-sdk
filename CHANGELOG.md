@@ -1,3 +1,10 @@
+#### 15.151.2 (2021-03-15)
+
+##### Build System / Dependencies
+
+-   use symlink only common package ([#474](https://github.com/Angular-RU/angular-ru-sdk/pull/474))
+    ([69ad94b2](https://github.com/Angular-RU/angular-ru-sdk/commit/69ad94b216493e7fa84c8f7537f88324da9a01be))
+
 #### 15.151.1 (2021-03-15)
 
 ##### Bug Fixes
