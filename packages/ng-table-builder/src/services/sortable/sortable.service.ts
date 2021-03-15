@@ -38,8 +38,8 @@ export class SortableService {
         });
     }
 
-    public setDefinition(definition: PlainObjectOf<string>): void {
-        this.definition = definition as PlainObjectOf<SortOrderType>;
+    public setDefinition(definition: PlainObjectOf<SortOrderType>): void {
+        this.definition = definition;
     }
 
     public setSkipSort(skipInternalSort: boolean): void {

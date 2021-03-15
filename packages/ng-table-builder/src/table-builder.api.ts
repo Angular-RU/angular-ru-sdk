@@ -21,7 +21,7 @@ import {
     ViewChild,
     ViewChildren
 } from '@angular/core';
-import { Any, DeepPartial, Fn, PlainObject, PlainObjectOf, PrimaryKey } from '@angular-ru/common/typings';
+import { Any, DeepPartial, Fn, PlainObjectOf, PrimaryKey, SortOrderType } from '@angular-ru/common/typings';
 import { detectChanges } from '@angular-ru/common/utils';
 
 import { NgxColumnComponent } from './components/ngx-column/ngx-column.component';
@@ -66,7 +66,7 @@ export abstract class AbstractTableBuilderApiImpl
     @Input() public striped: boolean = true;
     @Input() public name: string | null = null;
     @Input('skip-sort') public skipSort: boolean | string = false;
-    @Input('sort-types') public sortTypes: PlainObject | null = null;
+    @Input('sort-types') public sortTypes: PlainObjectOf<SortOrderType> | null = null;
     @Input('exclude-keys') public excludeKeys: (string | RegExp)[] = [];
     @Input('auto-width') public autoWidth: boolean | string = false;
     @Input('auto-height') public autoHeightDetect: boolean = true;
