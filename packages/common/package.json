@@ -20,8 +20,8 @@
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "scripts": {
-        "build:lib": "ng build library && cp README.md dist/library",
-        "build:link": "sh after-setup.sh",
+        "build:lib": "ng build library && cp README.md dist/library && yarn symlink",
+        "symlink": "sh symlink.sh",
         "start": "ng serve --open",
         "test": "yarn jest --config ./jest.config.js",
         "postversion": "npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\""
