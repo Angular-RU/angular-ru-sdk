@@ -1,3 +1,11 @@
+#### 15.151.1 (2021-03-15)
+
+##### Bug Fixes
+
+-   **@angular-ru/http:** correct resolve artifacts in tsconfig.json
+    ([#473](https://github.com/Angular-RU/angular-ru-sdk/pull/473))
+    ([07673463](https://github.com/Angular-RU/angular-ru-sdk/commit/07673463d0e4289bb407596947d153142cef4cd4))
+
 #### 15.151.0 (2021-03-15)
 
 ##### New Features
