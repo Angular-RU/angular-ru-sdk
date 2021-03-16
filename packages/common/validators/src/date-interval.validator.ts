@@ -1,6 +1,6 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { PlainObject, Timestamp } from '@angular-ru/common/typings';
-import { isNotNil } from '@angular-ru/common/utils';
+import { checkSomeValueIsEmpty, isNotNil } from '@angular-ru/common/utils';
 
 import { assertFormGroup } from './utils/assert-form-group';
 import { getDateInterval } from './utils/get-date-interval';
@@ -35,14 +35,14 @@ export function dateMinIntervalValidator(
 export function orderedIntervalValidator({ dateFromKey, dateToKey }: DateIntervalValidatorDescriptor): ValidatorFn {
     return (formGroup: AbstractControl): ValidationErrors | null => {
         assertFormGroup(formGroup, DATE_INTERVAL_VALIDATOR);
-        const type: string = DateIntervalValidatorType.ORDERED_INTERVAL;
+        const type: DateIntervalValidatorType = DateIntervalValidatorType.ORDERED_INTERVAL;
         const formGroupValue: PlainObject = formGroup.getRawValue();
         const from: Timestamp | null = formGroupValue[dateFromKey];
         const to: Timestamp | null = formGroupValue[dateToKey];
-        if (!from || !to) {
+        if (checkSomeValueIsEmpty(from, to)) {
             return null;
         }
-        return from > to ? { [type]: true } : null;
+        return from! > to! ? { [type]: true } : null;
     };
 }
 

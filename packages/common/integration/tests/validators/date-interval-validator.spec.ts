@@ -1,4 +1,4 @@
-import { FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidatorFn } from '@angular/forms';
 import { toUtc } from '@angular-ru/common/date';
 import {
     dateMaxIntervalValidator,
@@ -97,5 +97,11 @@ describe('compare "from" and "to"', () => {
     it('should return error if "from > to"', () => {
         form.controls.dateFrom.setValue(toUtc({ month: new Date().getMonth() + 1 }));
         expect(form.errors).toEqual({ orderedInterval: true });
+    });
+
+    it('should return error if control is not part of FormGroup', () => {
+        const control: AbstractControl = new FormControl();
+        const validator: ValidatorFn = orderedIntervalValidator({ dateToKey: 'dateTo', dateFromKey: 'dateFrom' });
+        expect(() => validator(control).toThrow(new Error('DateIntervalValidator must be used on form group')));
     });
 });
