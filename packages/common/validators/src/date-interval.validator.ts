@@ -35,14 +35,14 @@ export function dateMinIntervalValidator(
 export function orderedIntervalValidator({ dateFromKey, dateToKey }: DateIntervalValidatorDescriptor): ValidatorFn {
     return (formGroup: AbstractControl): ValidationErrors | null => {
         assertFormGroup(formGroup, DATE_INTERVAL_VALIDATOR);
-        const type: DateIntervalValidatorType = DateIntervalValidatorType.ORDERED_INTERVAL;
+        const validatorType: DateIntervalValidatorType = DateIntervalValidatorType.ORDERED_INTERVAL;
         const formGroupValue: PlainObject = formGroup.getRawValue();
         const from: Timestamp | null = formGroupValue[dateFromKey];
         const to: Timestamp | null = formGroupValue[dateToKey];
         if (checkSomeValueIsEmpty(from, to)) {
             return null;
         }
-        return from! > to! ? { [type]: true } : null;
+        return from! > to! ? { [validatorType]: true } : null;
     };
 }
 
