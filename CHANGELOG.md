@@ -1,3 +1,10 @@
+#### 15.156.0 (2021-03-16)
+
+##### New Features
+
+-   **@angular-ru/common:** add createIdsMapOf
+    ([3ff0bfb0](https://github.com/Angular-RU/angular-ru-sdk/commit/3ff0bfb0dac8530a0e1318e34ba11745ec5cf838))
+
 #### 15.155.0 (2021-03-16)
 
 ##### New Features
