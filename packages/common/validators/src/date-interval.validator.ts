@@ -1,6 +1,6 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { PlainObject, Timestamp } from '@angular-ru/common/typings';
-import { isNotNil } from '@angular-ru/common/utils';
+import { checkSomeValueIsEmpty, isNotNil } from '@angular-ru/common/utils';
 
 import { assertFormGroup } from './utils/assert-form-group';
 import { getDateInterval } from './utils/get-date-interval';
@@ -12,8 +12,11 @@ export interface DateIntervalValidatorDescriptor {
 
 const enum DateIntervalValidatorType {
     LIMIT_MAX_INTERVAL = 'maxDateIntervalLimit',
-    LIMIT_MIN_INTERVAL = 'minDateIntervalLimit'
+    LIMIT_MIN_INTERVAL = 'minDateIntervalLimit',
+    ORDERED_INTERVAL = 'orderedInterval'
 }
+
+const DATE_INTERVAL_VALIDATOR: string = 'DateIntervalValidator';
 
 export function dateMaxIntervalValidator(
     intervalLimit: Timestamp,
@@ -29,6 +32,20 @@ export function dateMinIntervalValidator(
     return dateIntervalValidator(intervalLimit, descriptor, DateIntervalValidatorType.LIMIT_MIN_INTERVAL);
 }
 
+export function orderedIntervalValidator({ dateFromKey, dateToKey }: DateIntervalValidatorDescriptor): ValidatorFn {
+    return (formGroup: AbstractControl): ValidationErrors | null => {
+        assertFormGroup(formGroup, DATE_INTERVAL_VALIDATOR);
+        const validatorType: DateIntervalValidatorType = DateIntervalValidatorType.ORDERED_INTERVAL;
+        const formGroupValue: PlainObject = formGroup.getRawValue();
+        const from: Timestamp | null = formGroupValue[dateFromKey];
+        const to: Timestamp | null = formGroupValue[dateToKey];
+        if (checkSomeValueIsEmpty(from, to)) {
+            return null;
+        }
+        return from! > to! ? { [validatorType]: true } : null;
+    };
+}
+
 function dateIntervalValidator(
     intervalLimit: Timestamp,
     { dateFromKey, dateToKey }: DateIntervalValidatorDescriptor,
@@ -37,7 +54,7 @@ function dateIntervalValidator(
     const intervalLimitTimestamp: number = new Date(intervalLimit).getTime();
 
     return (formGroup: AbstractControl): ValidationErrors | null => {
-        assertFormGroup(formGroup, 'DateIntervalValidator');
+        assertFormGroup(formGroup, DATE_INTERVAL_VALIDATOR);
         const formGroupValue: PlainObject = formGroup.getRawValue();
         const interval: number | null = getDateInterval(formGroupValue[dateFromKey], formGroupValue[dateToKey]);
         const limitExceeded: boolean =
