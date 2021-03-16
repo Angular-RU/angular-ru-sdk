@@ -9,4 +9,6 @@ export {
     KeysDictionary
 } from './typings/entity-types';
 export { EntityUpdate } from './typings/entity-update';
+export { IdsMapOf } from './typings/ids-map-of';
 export { createEntityCollections } from './utils/create-entity-collections';
+export { createIdsMapOf } from './utils/create-ids-map-of';
