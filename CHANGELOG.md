@@ -1,3 +1,33 @@
+#### 15.153.0 (2021-03-16)
+
+##### Continuous Integration
+
+-   auto create symlink in post install [ci skip]
+    ([13a2179f](https://github.com/Angular-RU/angular-ru-sdk/commit/13a2179fac03ce176df61350b2b4c8f320d39a1f))
+-   add auto assign [ci skip]
+    ([be01ad00](https://github.com/Angular-RU/angular-ru-sdk/commit/be01ad00f93c5e2fe59fa1909fd4d1125a0bda98))
+
+##### Documentation Changes
+
+-   updated release notes and package versions [ci skip]
+    ([c8ece239](https://github.com/Angular-RU/angular-ru-sdk/commit/c8ece239098a2b52e3f3194b4b5b052618b86a30))
+
+##### New Features
+
+-   update dependency @types/node to v14.14.35 ([#476](https://github.com/Angular-RU/angular-ru-sdk/pull/476))
+    ([6169562b](https://github.com/Angular-RU/angular-ru-sdk/commit/6169562b0012a7d9d75a786846093c672a3ceeba))
+-   added documentation for ordered-interval-validator
+    ([353a2f75](https://github.com/Angular-RU/angular-ru-sdk/commit/353a2f75a485f5eb056e0c240d4f2eb0f21a8a3d))
+-   added validator for ordered interval
+    ([1c124d42](https://github.com/Angular-RU/angular-ru-sdk/commit/1c124d42e984e402482a156d3240dcaef386f134))
+
+##### Refactors
+
+-   changed after review
+    ([256223f4](https://github.com/Angular-RU/angular-ru-sdk/commit/256223f46d5a96bf12abce56fe570e735bf8ac92))
+-   changes after review
+    ([b647e466](https://github.com/Angular-RU/angular-ru-sdk/commit/b647e46692cb2822469b1104ec4c96a57eab5e19))
+
 #### 15.152.0 (2021-03-15)
 
 ##### New Features
