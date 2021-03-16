@@ -22,7 +22,7 @@
         "clean": "rm -rf .cache ./packages/**/dist ./packages/**/lib ./packages/**/.cache",
         "deploy": "lerna run deploy",
         "format": "yarn package:sort && yarn pretty:format --write",
-        "postinstall": "ngcc --async && husky install",
+        "postinstall": "ngcc --async && husky install && lerna run symlink",
         "lint": "eslint \"**/*.ts\" --ignore-pattern typescript.bad.ts",
         "package:lint": "yarn package:sort --check",
         "package:sort": "yarn sort-package-json \"package.json\" \"packages/*/package.json\"",
