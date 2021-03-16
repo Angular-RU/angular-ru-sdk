@@ -1,3 +1,20 @@
+#### 15.154.0 (2021-03-16)
+
+##### Documentation Changes
+
+-   updated release notes and package versions [ci skip]
+    ([5596a454](https://github.com/Angular-RU/angular-ru-sdk/commit/5596a4549661a1e228b68bf9c5ea0eba334998e2))
+
+##### New Features
+
+-   **@angular-ru/ng-table-builder:** add type for SortTypes input
+    ([e1652ad4](https://github.com/Angular-RU/angular-ru-sdk/commit/e1652ad4db8f18384c1937f747b1daeb8893e666))
+
+##### Other Changes
+
+-   **@angular-ru/ng-table-builder:** add type for SortTypes input
+    ([0dc0138d](https://github.com/Angular-RU/angular-ru-sdk/commit/0dc0138dd775ea52ff714484cc09cecc85b488bd))
+
 #### 15.153.0 (2021-03-16)
 
 ##### Continuous Integration
