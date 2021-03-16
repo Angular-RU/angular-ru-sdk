@@ -2,7 +2,7 @@ import { AbstractControl, FormControl, FormGroup, ValidatorFn } from '@angular/f
 import { toUtc } from '@angular-ru/common/date';
 import { orderedIntervalValidator } from '@angular-ru/common/validators';
 
-describe('ordered interval validator', () => {
+describe('[TEST]: Ordered interval validator', () => {
     let form: FormGroup;
     beforeEach(() => {
         form = new FormGroup(

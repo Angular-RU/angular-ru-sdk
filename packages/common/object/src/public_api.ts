@@ -15,6 +15,7 @@ export { isIterable } from './is-iterable';
 export { isObject } from './is-object';
 export { isPlainObject } from './is-plain-object';
 export { isSimpleObject } from './is-simple-object';
+export { propertyOf } from './property-of';
 export { replaceWithNull } from './replace-with-null';
 export { sortByAsc } from './sort-by-asc';
 export { sortByDesc } from './sort-by-desc';
