@@ -446,3 +446,17 @@ it('should be correct deep equals with week type', (): void => {
     ).toEqual(false);
 });
 ```
+
+-   `propertyOf`
+
+```ts
+import { propertyOf } from '@angular-ru/common/object';
+
+class EntityA {
+    public aaa: string = 'aaa';
+}
+
+const propertyAaa: string = propertyOf<EntityA>('aaa');
+
+expect(propertyAaa).toBe('aaa');
+```
