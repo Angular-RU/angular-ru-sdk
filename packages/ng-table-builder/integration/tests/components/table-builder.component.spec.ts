@@ -1,8 +1,8 @@
 import { Component, Injectable, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { PlainObject } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
-import { TableBuilderComponent, TableBuilderModule, TableRow } from '@angular-ru/ng-table-builder';
+import { TableBuilderComponent, TableBuilderModule, TableRow, TableSortTypes } from '@angular-ru/ng-table-builder';
+import { SortOrderType } from '@angular-ru/common/typings';
 
 @Component({
     selector: 'app-ngx-table-builder-mock',
@@ -17,7 +17,7 @@ class NgxTableBuilderMockComponent {
         { id: 3, name: 'Petr', lastName: 'Sidorov' }
     ];
 
-    public sortTypes: PlainObject | null = null;
+    public sortTypes: TableSortTypes = null;
 }
 
 @Injectable()
@@ -61,7 +61,7 @@ describe('[TEST] Table builder', (): void => {
             { id: 1, name: 'Max', lastName: 'Ivanov' }
         ]);
 
-        component.sortTypes = { name: 'asc' };
+        component.sortTypes = { name: SortOrderType.ASC };
         componentFixture.detectChanges();
         expect(tableBuilderComponent.source).toEqual([
             { id: 2, name: 'Ivan', lastName: 'Petrov' },
