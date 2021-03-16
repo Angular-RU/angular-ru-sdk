@@ -20,7 +20,7 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { fadeInLinearAnimation } from '@angular-ru/common/animations';
-import { Any, DeepPartial, PlainObjectOf } from '@angular-ru/common/typings';
+import { Any, DeepPartial, PlainObjectOf, SortOrderType } from '@angular-ru/common/typings';
 import { detectChanges, isNil, isNotNil } from '@angular-ru/common/utils';
 import { EMPTY, fromEvent, Observable, Subject } from 'rxjs';
 import { catchError, takeUntil } from 'rxjs/operators';
@@ -427,7 +427,7 @@ export class TableBuilderComponent
     }
 
     private setSortTypes(): void {
-        this.sortable.setDefinition({ ...this.sortTypes });
+        this.sortable.setDefinition({ ...(this.sortTypes as PlainObjectOf<SortOrderType>) });
         if (this.sourceExists) {
             this.sortAndFilter().then((): void => this.reCheckDefinitions());
         }

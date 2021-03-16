@@ -45,3 +45,4 @@ export {
 export { NgxTableViewChangesService } from './services/table-view-changes/ngx-table-view-changes.service';
 export { TableBuilderComponent } from './table-builder.component';
 export { TableBuilderModule } from './table-builder.module';
+export { TableSortTypes } from './types/table-sort-types.type';

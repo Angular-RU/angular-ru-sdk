@@ -16,4 +16,5 @@ export { PlainObject, PlainObjectOf } from './object-types';
 export { PrimaryKey } from './primary-key';
 export { Resolver } from './resolver';
 export { SortOrderType } from './sort-order-type';
+export { StringValuesOfEnum } from './string-values-of-enum';
 export { Timestamp } from './timestamp';

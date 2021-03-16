@@ -21,7 +21,7 @@ import {
     ViewChild,
     ViewChildren
 } from '@angular/core';
-import { Any, DeepPartial, Fn, PlainObjectOf, PrimaryKey, SortOrderType } from '@angular-ru/common/typings';
+import { Any, DeepPartial, Fn, PlainObjectOf, PrimaryKey } from '@angular-ru/common/typings';
 import { detectChanges } from '@angular-ru/common/utils';
 
 import { NgxColumnComponent } from './components/ngx-column/ngx-column.component';
@@ -53,6 +53,7 @@ import { NgxTableViewChangesService } from './services/table-view-changes/ngx-ta
 import { TemplateParserService } from './services/template-parser/template-parser.service';
 import { UtilsService } from './services/utils/utils.service';
 import { SCROLLBAR_SIZE } from './symbols';
+import { TableSortTypes } from './types/table-sort-types.type';
 
 const { ROW_HEIGHT, FILTER_DELAY_TIME, TIME_IDLE }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
 
@@ -66,7 +67,7 @@ export abstract class AbstractTableBuilderApiImpl
     @Input() public striped: boolean = true;
     @Input() public name: string | null = null;
     @Input('skip-sort') public skipSort: boolean | string = false;
-    @Input('sort-types') public sortTypes: PlainObjectOf<SortOrderType> | null = null;
+    @Input('sort-types') public sortTypes: TableSortTypes = null;
     @Input('exclude-keys') public excludeKeys: (string | RegExp)[] = [];
     @Input('auto-width') public autoWidth: boolean | string = false;
     @Input('auto-height') public autoHeightDetect: boolean = true;
