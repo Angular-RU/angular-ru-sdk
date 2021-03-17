@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/sdk",
-    "version": "15.156.0",
+    "version": "15.157.0",
     "private": true,
     "description": "Angular-RU SDK",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk#readme",
@@ -73,6 +73,7 @@
         "@angular/platform-browser-dynamic": "11.2.2",
         "@angular/router": "11.2.2",
         "@ngx-translate/core": "13.0.0",
+        "@ngx-translate/http-loader": "6.0.0",
         "angular-cli-ghpages": "1.0.0-rc.1",
         "class-transformer": "0.4.0",
         "devtools-detect": "3.0.1",

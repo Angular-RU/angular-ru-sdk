@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Any } from '@angular-ru/common/typings';
 import { ExcelService } from '@angular-ru/ng-excel-builder';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-root',
@@ -17,28 +18,40 @@ export class AppComponent {
         }
     ];
 
-    constructor(protected excel: ExcelService) {}
+    constructor(protected excel: ExcelService, private readonly translate: TranslateService) {
+        this.translate.setDefaultLang('ru');
+    }
 
     public exportExcel(): void {
         this.excel.exportExcel({
-            filename: 'TITLE',
+            filename: 'My excel file',
             worksheets: [
                 {
-                    titleKey: 'MODEL_KEY_NAME',
-                    worksheetName: 'worksheet name',
-                    table: this.data
+                    table: this.data,
+                    titleKey: 'PATH_TO_KEYS',
+                    worksheetName: 'worksheet name'
                 }
             ],
             translateColumns: {
-                // Example by RU
-                MODEL_KEY_NAME: {
-                    id: 'id',
-                    // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
-                    name: 'Имя',
-                    // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
-                    description: 'Описание'
+                PATH_TO_KEYS: {
+                    id: 'ID',
+                    name: 'Name',
+                    description: 'Description'
                 }
             }
+        });
+    }
+
+    public exportExcelWithI18n(): void {
+        this.excel.exportExcel({
+            filename: 'APP_KEYS.TITLE',
+            worksheets: [
+                {
+                    table: this.data,
+                    titleKey: 'APP_KEYS.MODELS',
+                    worksheetName: 'APP_KEYS.WORKSHEET_NAME'
+                }
+            ]
         });
     }
 }

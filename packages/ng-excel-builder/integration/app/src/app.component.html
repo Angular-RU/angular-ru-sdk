@@ -1,1 +1,29 @@
-<button (click)="exportExcel()">Export excel</button>
+<mat-drawer-container class="dashboard">
+    <mat-drawer mode="side" class="dashboard__menu" opened>
+        <mat-toolbar class="title">
+            <img class="logo" src="assets/img/angular.svg" alt="angular" />
+            <a class="logo-title" routerLink="/">@angular-ru/ng-excel-builder</a>
+        </mat-toolbar>
+
+        <mat-list class="menu">
+            <mat-list-item class="menu__item">
+                <a routerLink="/">- <strong>Guide overview</strong></a>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+        </mat-list>
+    </mat-drawer>
+
+    <mat-drawer-content class="dashboard__content">
+        <div class="dashboard__content-examples">
+            <div>
+                <h3>Export excel</h3>
+                <button mat-button mat-stroked-button (click)="exportExcel()">Export excel</button>
+            </div>
+
+            <div>
+                <h3>Export with i18n (lang: ru)</h3>
+                <button mat-button mat-stroked-button (click)="exportExcelWithI18n()">Export excel</button>
+            </div>
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>
