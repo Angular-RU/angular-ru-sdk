@@ -36,7 +36,8 @@ export class DataHttpClient<K = unknown> extends AbstractHttpClient<K> {
 
         this.interceptor.onBeforeRequest?.(options);
         const meta: MetaDataRequest = this.createMetaDataRequest(options);
-        const observable: Observable<R> = this.http.request(options.method, meta.url, meta.requestOptions);
+        let observable: Observable<R> = this.http.request(options.method, meta.url, meta.requestOptions);
+        observable = this.interceptor.onInterceptRequest?.(observable) ?? observable;
         const queueRequest: Observable<R> = this.limitConcurrency.add<R>(
             observable,
             options.clientOptions.limitConcurrency

@@ -41,6 +41,11 @@ describe('[TEST]: HTTP Intercept Client', () => {
             this.events.push(`{onBeforeRequest} ${options.method.toUpperCase()} request: /${options.path}`);
         }
 
+        public onInterceptRequest<T = unknown>(request: T): T {
+            this.events.push(`{onInterceptRequest} request class: ${(request as Any)?.constructor.name}`);
+            return request;
+        }
+
         public onInterceptHttpParams(_options: DataBeforeRequestOptions, httpParams: HttpParams): HttpParams {
             this.events.push(`{onInterceptHttpParams} httpParams: ${httpParams.toString()}`);
             return httpParams;
@@ -117,6 +122,7 @@ describe('[TEST]: HTTP Intercept Client', () => {
             '{onInterceptBodyPayload} body: null',
             '{onInterceptHttpHeaders} headers keys[]: Authorization,KeepAlive',
             '{onInterceptHttpParams} httpParams: value=1',
+            '{onInterceptRequest} request class: Observable',
             '{onTapAfterRequest} response(http://localhost/api-get): [{"hello":"world"}]',
             '{onFinalizeAfterRequest} get - http://localhost/api-get'
         ]);
@@ -143,6 +149,7 @@ describe('[TEST]: HTTP Intercept Client', () => {
             '{onInterceptBodyPayload} body: {"b":2,"c":3}',
             '{onInterceptHttpHeaders} headers keys[]: ',
             '{onInterceptHttpParams} httpParams: ',
+            '{onInterceptRequest} request class: Observable',
             '{onEmitFailure} error(http://localhost/backend/api-post): Http failure response for http://localhost/backend/api-post: 400 Bad Request',
             '{onErrorAfterRequest} error(http://localhost/backend/api-post): Http failure response for http://localhost/backend/api-post: 400 Bad Request',
             '{onFinalizeAfterRequest} post - http://localhost/backend/api-post'

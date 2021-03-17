@@ -13,6 +13,7 @@ export interface DataHttpInterceptor<K extends PlainObject = Any> {
     onInterceptHttpParams?(options: DataBeforeRequestOptions<K>, httpParams: HttpParams): HttpParams;
     onInterceptBodyPayload?<T>(options: DataBeforeRequestOptions<K>, body: T): T;
     onInterceptHttpHeaders?(options: DataBeforeRequestOptions<K>, headers: HttpHeaders): HttpHeaders;
+    onInterceptRequest?(request: Observable<K>): Observable<K>;
     onTapAfterRequest?(response: unknown, meta: MetaDataRequest): void;
     onEmitSuccess?(response: unknown, options: DataBeforeRequestOptions<K>, meta: MetaDataRequest): void;
     onEmitFailure?(error: HttpErrorResponse, options: DataBeforeRequestOptions<K>, meta: MetaDataRequest): void;
