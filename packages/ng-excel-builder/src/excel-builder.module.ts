@@ -1,12 +1,23 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
-import { TranslateModule } from '@ngx-translate/core';
 
 import { ExcelService } from './excel.service';
 import { ExcelBuilderService } from './excel-builder.service';
+import { ExcelBuilderDefaultTextColumnInterceptor } from './excel-builder-default-text-column-interceptor.service';
+import { EXCEL_BUILDER_INTERCEPTOR_TOKEN } from './excel-interceptor-text.token';
 
 @NgModule({
-    imports: [TranslateModule],
-    providers: [ExcelBuilderService, ExcelService, WebWorkerThreadService]
+    providers: [WebWorkerThreadService]
 })
-export class ExcelBuilderModule {}
+export class ExcelBuilderModule {
+    public static forRoot(): ModuleWithProviders<ExcelBuilderModule> {
+        return {
+            ngModule: ExcelBuilderModule,
+            providers: [
+                ExcelService,
+                ExcelBuilderService,
+                { provide: EXCEL_BUILDER_INTERCEPTOR_TOKEN, useClass: ExcelBuilderDefaultTextColumnInterceptor }
+            ]
+        };
+    }
+}

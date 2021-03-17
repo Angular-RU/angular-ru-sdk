@@ -19,7 +19,7 @@
                         "outputPath": "dist/integration",
                         "tsConfig": "integration/app/tsconfig.app.json",
                         "assets": ["integration/app/assets"],
-                        "styles": ["integration/app/styles.css"]
+                        "styles": ["../../.styles/integration-app.style.scss", "integration/app/styles.css"]
                     },
                     "configurations": {
                         "production": {

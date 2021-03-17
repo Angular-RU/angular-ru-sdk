@@ -4,7 +4,7 @@ import { toFormatDateTime } from '@angular-ru/common/date';
 import { Any, PlainObject } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 
-import { ExcelWorkbook } from './symbols';
+import { ExcelWorkbook } from './excel-builder.interfaces';
 
 @Injectable()
 export class ExcelBuilderService {
