@@ -1,4 +1,3 @@
-export { complexRequiredValidator } from './complex-required.validator';
 export {
     DateIntervalValidatorDescriptor,
     dateMaxIntervalValidator,
@@ -7,3 +6,4 @@ export {
 } from './date-interval.validator';
 export { emptyValidator, EmptyValidatorFn } from './empty.validator';
 export { maxDateValidator, minDateValidator } from './limit-date.validator';
+export { requiredSomeValidator } from './required-some.validator';
