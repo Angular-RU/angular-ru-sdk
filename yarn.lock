@@ -2662,10 +2662,10 @@
   resolved "https://registry.npmjs.org/@types/jasmine/-/jasmine-3.6.3.tgz#824df555b8a5114f91619e78d8f59624d6f23050"
   integrity sha512-5QKAG8WfC9XrOgYLXPrxv1G2IIUE6zDyzTWamhNWJO0LqPRUbZ0q0zGHDhDJ7MpFloUuyME/jpBIdPjq3/P3jA==
 
-"@types/jasmine@3.6.6":
-  version "3.6.6"
-  resolved "https://registry.npmjs.org/@types/jasmine/-/jasmine-3.6.6.tgz#4c0415f6198b2c643d895789f8c6d20436c1eddc"
-  integrity sha512-kgl+oYOLCBt41iba8cetp+QPOqDAaTJnHtVPCE7JzYmda4juglRBLX35opVcANc7TLA/Lp0DEnajbUNnyxGC+Q==
+"@types/jasmine@3.6.7":
+  version "3.6.7"
+  resolved "https://registry.npmjs.org/@types/jasmine/-/jasmine-3.6.7.tgz#e762d3ead78538efb7900ab932d7daf334acb0b4"
+  integrity sha512-8dtfiykrpe4Ysn6ONj0tOjmpDIh1vWxPk80eutSeWmyaJvAZXZ84219fS4gLrvz05eidhp7BP17WVQBaXHSyXQ==
 
 "@types/jasminewd2@2.0.8":
   version "2.0.8"
@@ -13471,10 +13471,10 @@ trim-repeated@^1.0.0:
   dependencies:
     escape-string-regexp "^1.0.2"
 
-ts-jest@26.5.3:
-  version "26.5.3"
-  resolved "https://registry.npmjs.org/ts-jest/-/ts-jest-26.5.3.tgz#a6ee00ba547be3b09877550df40a1465d0295554"
-  integrity sha512-nBiiFGNvtujdLryU7MiMQh1iPmnZ/QvOskBbD2kURiI1MwqvxlxNnaAB/z9TbslMqCsSbu5BXvSSQPc5tvHGeA==
+ts-jest@26.5.4:
+  version "26.5.4"
+  resolved "https://registry.npmjs.org/ts-jest/-/ts-jest-26.5.4.tgz#207f4c114812a9c6d5746dd4d1cdf899eafc9686"
+  integrity sha512-I5Qsddo+VTm94SukBJ4cPimOoFZsYTeElR2xy6H2TOVs+NsvgYglW8KuQgKoApOKuaU/Ix/vrF9ebFZlb5D2Pg==
   dependencies:
     bs-logger "0.x"
     buffer-from "1.x"
