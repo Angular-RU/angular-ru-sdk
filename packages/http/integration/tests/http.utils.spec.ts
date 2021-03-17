@@ -8,7 +8,7 @@ import {
     isLocalhost,
     parseQueryParams,
     replaceDoubleSlash,
-    urlParse
+    buildUrl
 } from '@angular-ru/http/utils';
 import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { PlainObject } from '@angular-ru/common/typings';
@@ -33,14 +33,50 @@ describe('[TEST]: http utils', () => {
     });
 
     it('getUrlSegments', () => {
-        expect(getUrlSegments({})).toEqual({ hostUrl: 'http://localhost/', baseUrl: '' });
-        expect(getUrlSegments({ hostUrl: 'http://hello_world', baseUrl: 'api' })).toEqual({
-            hostUrl: 'http://hello_world/',
-            baseUrl: '/api/'
+        expect(getUrlSegments({})).toEqual({
+            hostUrl: 'http://localhost/',
+            baseUrl: '',
+            restUrl: '',
+            pathUrl: ''
         });
-        expect(getUrlSegments({ hostUrl: 'http://hello_world/', baseUrl: '/api/' })).toEqual({
+
+        expect(
+            getUrlSegments({
+                hostUrl: 'http://hello_world',
+                baseUrl: 'api'
+            })
+        ).toEqual({
             hostUrl: 'http://hello_world/',
-            baseUrl: '/api/'
+            baseUrl: '/api/',
+            restUrl: '',
+            pathUrl: ''
+        });
+
+        expect(
+            getUrlSegments({
+                hostUrl: 'http://hello_world/',
+                baseUrl: 'api',
+                restUrl: 'auth'
+            })
+        ).toEqual({
+            hostUrl: 'http://hello_world/',
+            baseUrl: '/api/',
+            restUrl: '/auth/',
+            pathUrl: ''
+        });
+
+        expect(
+            getUrlSegments({
+                hostUrl: 'http://hello_world/',
+                baseUrl: 'api',
+                restUrl: 'user',
+                pathUrl: 'update'
+            })
+        ).toEqual({
+            hostUrl: 'http://hello_world/',
+            baseUrl: '/api/',
+            restUrl: '/user/',
+            pathUrl: '/update/'
         });
     });
 
@@ -55,13 +91,13 @@ describe('[TEST]: http utils', () => {
         expect(replaceDoubleSlash('////a///b//c/d/')).toEqual('/a/b/c/d/');
     });
 
-    it('urlParse', () => {
-        expect(urlParse('////a///b//c/d/', getUrlSegments())).toEqual('http://localhost/a/b/c/d/');
-        expect(urlParse('////a///b//c/d/', getUrlSegments({ baseUrl: 'api-backend' }))).toEqual(
+    it('buildUrl', () => {
+        expect(buildUrl('////a///b//c/d/', getUrlSegments())).toEqual('http://localhost/a/b/c/d/');
+        expect(buildUrl('////a///b//c/d/', getUrlSegments({ baseUrl: 'api-backend' }))).toEqual(
             'http://localhost/api-backend/a/b/c/d/'
         );
 
-        expect(urlParse('////a///b//c/d?quick', getUrlSegments({ hostUrl: 'https://127.0.0.0:8030' }))).toEqual(
+        expect(buildUrl('////a///b//c/d?quick', getUrlSegments({ hostUrl: 'https://127.0.0.0:8030' }))).toEqual(
             'https://127.0.0.0:8030/a/b/c/d'
         );
     });

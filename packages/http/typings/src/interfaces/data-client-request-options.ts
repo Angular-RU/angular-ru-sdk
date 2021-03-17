@@ -26,6 +26,9 @@ export interface DataClientRequestOptions<T extends PlainObject = Any> {
      */
     baseUrl: string | null;
 
+    restUrl: string | null;
+    pathUrl: string | null;
+
     /**
      * @description
      * custom http headers

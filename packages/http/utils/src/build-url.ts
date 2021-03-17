@@ -4,14 +4,14 @@ import { getPathWithoutQueryParams } from './get-path-without-params';
 import { isAbsolutePath } from './is-absolute-path';
 import { replaceDoubleSlash } from './replace-double-slash';
 
-export function urlParse(path: string, { hostUrl, baseUrl }: DataUrlPathSegment): string {
+export function buildUrl(path: string, { hostUrl, baseUrl, restUrl, pathUrl }: DataUrlPathSegment): string {
     let fullUrl: string;
 
     if (isAbsolutePath(path)) {
         fullUrl = path;
     } else {
-        const url: string = `${baseUrl}/${getPathWithoutQueryParams(path)}`;
-        fullUrl = isAbsolutePath(baseUrl) ? url : `${hostUrl}/${url}`;
+        const clearPath: string = getPathWithoutQueryParams(path || pathUrl);
+        fullUrl = `${hostUrl}/${baseUrl}/${restUrl}/${clearPath}`;
     }
 
     return replaceDoubleSlash(fullUrl);

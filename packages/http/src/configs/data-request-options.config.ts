@@ -3,6 +3,8 @@ import { DataClientRequestOptions } from '@angular-ru/http/typings';
 export const DATA_REQUEST_OPTIONS_CONFIG: DataClientRequestOptions = {
     baseUrl: null,
     hostUrl: null,
+    restUrl: null,
+    pathUrl: null,
     body: null,
     headers: {},
     queryParams: {},

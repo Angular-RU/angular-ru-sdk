@@ -1,3 +1,4 @@
+export { buildUrl } from './build-url';
 export { ensurePathByPathVariables } from './ensure-path-by-path-variables';
 export { getHttpHeader } from './get-http-header';
 export { getHttpParams } from './get-http-params';
@@ -7,4 +8,3 @@ export { isAbsolutePath } from './is-absolute-path';
 export { isLocalhost } from './is-localhost';
 export { parseQueryParams } from './parse-query-params';
 export { replaceDoubleSlash } from './replace-double-slash';
-export { urlParse } from './url-parse';
