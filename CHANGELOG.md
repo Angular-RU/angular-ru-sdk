@@ -1,3 +1,15 @@
+#### 15.158.0 (2021-03-17)
+
+##### Continuous Integration
+
+-   correct CODEOWNERS [ci skip]
+    ([eebc6440](https://github.com/Angular-RU/angular-ru-sdk/commit/eebc6440ce970579f3f84589e51ddf51c0e45ffc))
+
+##### New Features
+
+-   update dependencies ([#482](https://github.com/Angular-RU/angular-ru-sdk/pull/482))
+    ([00c468df](https://github.com/Angular-RU/angular-ru-sdk/commit/00c468dfa617f058cd45103427df8f7572555b39))
+
 #### 15.157.0 (2021-03-17)
 
 ##### New Features
