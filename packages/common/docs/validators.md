@@ -75,3 +75,27 @@ export class AppComponent {
     }
 }
 ```
+
+-   `isAnyRequiredValidator`
+
+```ts
+import { isAnyRequiredValidator } from '@angular-ru/common/validators';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component } from '@angular/core';
+
+@Component()
+export class AppComponent {
+    public form: FormGroup;
+
+    constructor(private readonly fb: FormBuilder) {
+        this.form = new FormGroup(
+            {
+                controlA: new FormControl(13),
+                controlB: new FormControl('hi')
+                controlC: new FormControl({})
+            },
+            [ isAnyRequiredValidator(['controlA', 'controlB', 'controlC']) ]
+        );
+    }
+}
+```

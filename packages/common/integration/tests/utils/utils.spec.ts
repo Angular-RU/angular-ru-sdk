@@ -9,7 +9,8 @@ import {
     isIE,
     parseXmlFromString,
     checkSomeValueIsEmpty,
-    checkEveryValueIsEmpty
+    checkEveryValueIsEmpty,
+    isAny
 } from '@angular-ru/common/utils';
 import { ChangeDetectorRef } from '@angular/core';
 
@@ -105,4 +106,23 @@ describe('[TEST]: Common utils', () => {
 
     it('checkSomeValueIsEmpty should return true for a set of empty values', () =>
         expect(checkSomeValueIsEmpty('', undefined, null)).toEqual(true));
+
+    it('isAny should return false if all values is null', () => expect(isAny([null, null, null])).toEqual(false));
+
+    it('isAny should return false if all values is undefined', () =>
+        expect(isAny([undefined, undefined, undefined])).toEqual(false));
+
+    it('isAny should return false if values either null or undefined', () =>
+        expect(isAny([undefined, undefined, null])).toEqual(false));
+
+    it('isAny should return true if there is only one value with type number', () =>
+        expect(isAny([42, undefined, null])).toEqual(true));
+
+    it('isAny should return true if there is only one value with type string', () =>
+        expect(isAny([undefined, 'hi', null])).toEqual(true));
+
+    it('isAny should return true if there is only one value with type object', () =>
+        expect(isAny([undefined, null, {}])).toEqual(true));
+
+    it('isAny should return true if there is more than one value', () => expect(isAny([42, {}, 'hi'])).toEqual(true));
 });
