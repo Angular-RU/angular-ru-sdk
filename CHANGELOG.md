@@ -1,3 +1,10 @@
+#### 15.157.0 (2021-03-17)
+
+##### New Features
+
+-   **@angular-ru/ng-table-builder:** use forRoot method as required, remove TranslateModule from dependencies
+    ([684e3b54](https://github.com/Angular-RU/angular-ru-sdk/commit/684e3b5475ba7c93b0d1ea81727c5d03046fba8a))
+
 #### 15.156.0 (2021-03-16)
 
 ##### New Features
