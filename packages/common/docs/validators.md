@@ -76,10 +76,10 @@ export class AppComponent {
 }
 ```
 
--   `isAnyRequiredValidator`
+-   `complexRequiredValidator`
 
 ```ts
-import { isAnyRequiredValidator } from '@angular-ru/common/validators';
+import { complexRequiredValidator } from '@angular-ru/common/validators';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component } from '@angular/core';
 
@@ -94,7 +94,7 @@ export class AppComponent {
                 controlB: new FormControl('hi')
                 controlC: new FormControl({})
             },
-            [ isAnyRequiredValidator(['controlA', 'controlB', 'controlC']) ]
+            [ complexRequiredValidator(['controlA', 'controlB', 'controlC']) ]
         );
     }
 }

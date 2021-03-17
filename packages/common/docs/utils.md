@@ -155,16 +155,3 @@ isTrue(true); // true
 isFalse(true); // false
 isFalse(false); // true
 ```
-
--   `isAny`
-
-```ts
-import { isAny } from '@angular-ru/common/utils';
-
-expect(isAny([null, null, null])).toEqual(false));
-expect(isAny([undefined, undefined, undefined])).toEqual(false));
-expect(isAny([13, undefined, null])).toEqual(true));
-expect(isAny([undefined, 'hi', null])).toEqual(true));
-expect(isAny([undefined, null, {}])).toEqual(true));
-expect(isAny([13, {}, 'hi'])).toEqual(true));
-```

@@ -1,5 +1,5 @@
+import { complexRequiredValidator } from '@angular-ru/common/validators';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn } from '@angular/forms';
-import { isAnyRequiredValidator } from '../../../../common/validators/src/any-is-required.validator';
 
 describe('[TEST]: Ordered interval validator', () => {
     const controlA: string = 'aaa';
@@ -13,18 +13,18 @@ describe('[TEST]: Ordered interval validator', () => {
                 bbb: new FormControl(),
                 ccc: new FormControl()
             },
-            [isAnyRequiredValidator([controlA, controlB, controlC])]
+            [complexRequiredValidator([controlA, controlB, controlC])]
         );
     });
 
     it('should return error if control is not part of FormGroup', () => {
         const control: AbstractControl = new FormControl();
-        const validator: ValidatorFn = isAnyRequiredValidator([controlA, controlB, controlC]);
+        const validator: ValidatorFn = complexRequiredValidator([controlA, controlB, controlC]);
         expect(() => validator(control).toThrow(new Error('AnyIsRequiredValidator must be used on form group')));
     });
 
     it('should return error if all controls with no values', () => {
-        expect(form.errors).toEqual({ isAnyRequiredValidator: true });
+        expect(form.errors).toEqual({ complexRequiredValidator: true });
     });
 
     it('should be valid if there is only one value with type number', () => {

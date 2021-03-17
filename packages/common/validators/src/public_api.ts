@@ -1,3 +1,4 @@
+export { complexRequiredValidator } from './complex-required.validator';
 export {
     DateIntervalValidatorDescriptor,
     dateMaxIntervalValidator,
