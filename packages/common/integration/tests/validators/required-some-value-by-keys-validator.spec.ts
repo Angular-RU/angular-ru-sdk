@@ -22,6 +22,20 @@ describe('[TEST]: requiredSomeValueByKeysValidator', () => {
         );
     });
 
+    it('should return error if all controls with no values: undefined, null, NaN', () => {
+        form.controls['aaa'].setValue(undefined);
+        form.controls['bbb'].setValue(null);
+        form.controls['ccc'].setValue(NaN);
+        expect(form.errors).toEqual({ requiredSomeValueByKeysValidator: true });
+    });
+
+    it('should return error if all controls with no values: "", "null", Infinity', () => {
+        form.controls['aaa'].setValue('');
+        form.controls['bbb'].setValue(null);
+        form.controls['ccc'].setValue(Infinity);
+        expect(form.errors).toEqual({ requiredSomeValueByKeysValidator: true });
+    });
+
     it('should return error if all controls with no values', () => {
         expect(form.errors).toEqual({ requiredSomeValueByKeysValidator: true });
     });

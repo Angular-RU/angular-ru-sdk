@@ -2,7 +2,7 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { isEmptyList } from '@angular-ru/common/array';
 import { getValueByPath } from '@angular-ru/common/object';
 import { Any } from '@angular-ru/common/typings';
-import { isNotNil } from '@angular-ru/common/utils';
+import { checkValueIsFilled } from '@angular-ru/common/utils';
 
 import { assertFormGroup } from './utils/assert-form-group';
 
@@ -18,7 +18,7 @@ export function requiredSomeValueByKeysValidator<T>(keyList: (keyof T | string)[
         let result: ValidationErrors | null = { [VALIDATOR_TYPE]: true };
         for (const key of keyList) {
             const value: Any = getValueByPath<T>(formGroupValue, key as string);
-            if (isNotNil(value)) {
+            if (checkValueIsFilled(value)) {
                 result = null;
                 break;
             }
