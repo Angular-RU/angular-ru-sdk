@@ -11,7 +11,7 @@ export function BaseUrl(baseUrl: string = ''): (clientClass: ClassType) => void 
         const localRef: Partial<DataClientRequestOptions> = clientClass.prototype?.['local'];
 
         if (localRef) {
-            localRef.baseUrl = replaceDoubleSlash(`${baseUrl}`);
+            localRef.baseUrl = replaceDoubleSlash(baseUrl);
         }
     };
 }
