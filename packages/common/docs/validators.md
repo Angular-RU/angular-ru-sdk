@@ -76,10 +76,10 @@ export class AppComponent {
 }
 ```
 
--   `requiredSomeValidator`
+-   `requiredSomeValueByKeysValidator`
 
 ```ts
-import { requiredSomeValidator } from '@angular-ru/common/validators';
+import { requiredSomeValueByKeysValidator } from '@angular-ru/common/validators';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component } from '@angular/core';
 
@@ -90,11 +90,12 @@ export class AppComponent {
     constructor(private readonly fb: FormBuilder) {
         this.form = new FormGroup(
             {
-                controlA: new FormControl(),
-                controlB: new FormControl()
-                controlC: new FormControl()
+                a: new FormControl(),
+                b: new FormGroup({
+                    c: new FormControl()
+                })
             },
-            [ requiredSomeValidator(['controlA', 'controlB', 'controlC']) ]
+            [requiredSomeValueByKeysValidator(['a', 'b.c'])]
         );
     }
 }
