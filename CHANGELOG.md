@@ -1,3 +1,10 @@
+#### 15.162.0 (2021-03-18)
+
+##### New Features
+
+-   **@angular-ru/http:** add url sergments
+    ([27f04e1d](https://github.com/Angular-RU/angular-ru-sdk/commit/27f04e1d3fb1b4dc846b50859197a194125c3326))
+
 #### 15.161.0 (2021-03-18)
 
 ##### Continuous Integration
