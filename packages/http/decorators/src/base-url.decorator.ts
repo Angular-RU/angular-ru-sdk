@@ -2,11 +2,11 @@ import { ClassType } from '@angular-ru/common/typings';
 import { DataClientRequestOptions } from '@angular-ru/http/typings';
 import { replaceDoubleSlash } from '@angular-ru/http/utils';
 
-import { validateRestClient } from './internal/validate-rest-client';
+import { validateHttpParentDecorator } from './internal/validate-http-parent-decorator';
 
 export function BaseUrl(baseUrl: string = ''): (clientClass: ClassType) => void {
     return (clientClass: ClassType): void => {
-        validateRestClient('@BaseUrl', clientClass);
+        validateHttpParentDecorator('@BaseUrl', clientClass);
 
         const localRef: Partial<DataClientRequestOptions> = clientClass.prototype?.['local'];
 

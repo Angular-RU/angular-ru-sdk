@@ -7,14 +7,15 @@ export function makeUrlSegments(
     restUrl: string = '',
     pathUrl: string = ''
 ): DataUrlPathSegment {
-    const host: string = hostUrl ?? `${window.location.protocol}//${window.location.host}`;
-    const base: string = baseUrl?.trim() || '';
-    const rest: string = restUrl.trim();
-    const path: string = pathUrl.trim();
+    const clearHostUrl: string =
+        replaceLeadingAndTrailingSlashes(hostUrl) ?? `${window.location.protocol}//${window.location.host}`;
+    const clearBaseUrl: string = replaceLeadingAndTrailingSlashes(baseUrl);
+    const clearRestUrl: string = replaceLeadingAndTrailingSlashes(restUrl);
+    const clearPathUrl: string = replaceLeadingAndTrailingSlashes(pathUrl);
     return {
-        hostUrl: replaceLeadingAndTrailingSlashes(host),
-        baseUrl: replaceLeadingAndTrailingSlashes(base),
-        restUrl: replaceLeadingAndTrailingSlashes(rest),
-        pathUrl: replaceLeadingAndTrailingSlashes(path)
+        hostUrl: clearHostUrl,
+        baseUrl: clearBaseUrl,
+        restUrl: clearRestUrl,
+        pathUrl: clearPathUrl
     };
 }
