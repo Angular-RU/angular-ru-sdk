@@ -1,3 +1,31 @@
+#### 15.159.1 (2021-03-18)
+
+##### Bug Fixes
+
+-   **@angular-ru/stream:** correct decode jwt token
+    ([538ad0d1](https://github.com/Angular-RU/angular-ru-sdk/commit/538ad0d16e5644d2409ba0c8707787a0a71b0c9c))
+-   remove comment [ci skip]
+    ([df3d67aa](https://github.com/Angular-RU/angular-ru-sdk/commit/df3d67aaa2e3ec57dfa58a656bea0a0d505a4de2))
+
+#### 15.159.0 (2021-03-17)
+
+##### New Features
+
+-   update dependency @types/jest to v26.0.21 ([#484](https://github.com/Angular-RU/angular-ru-sdk/pull/484))
+    ([0da88461](https://github.com/Angular-RU/angular-ru-sdk/commit/0da884613edf01eea841f0855b77ccaa70884fe5))
+
+#### 15.158.0 (2021-03-17)
+
+##### Continuous Integration
+
+-   correct CODEOWNERS [ci skip]
+    ([eebc6440](https://github.com/Angular-RU/angular-ru-sdk/commit/eebc6440ce970579f3f84589e51ddf51c0e45ffc))
+
+##### New Features
+
+-   update dependencies ([#482](https://github.com/Angular-RU/angular-ru-sdk/pull/482))
+    ([00c468df](https://github.com/Angular-RU/angular-ru-sdk/commit/00c468dfa617f058cd45103427df8f7572555b39))
+
 #### 15.157.0 (2021-03-17)
 
 ##### New Features
