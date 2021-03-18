@@ -1,3 +1,31 @@
+#### 15.160.0 (2021-03-18)
+
+##### Continuous Integration
+
+-   correct CODEOWNERS [ci skip]
+    ([eebc6440](https://github.com/Angular-RU/angular-ru-sdk/commit/eebc6440ce970579f3f84589e51ddf51c0e45ffc))
+
+##### Documentation Changes
+
+-   updated release notes and package versions [ci skip]
+    ([cb4dfdbf](https://github.com/Angular-RU/angular-ru-sdk/commit/cb4dfdbfff92897d863c363253fb21f848f216ba))
+-   updated release notes and package versions [ci skip]
+    ([aa1b5fd2](https://github.com/Angular-RU/angular-ru-sdk/commit/aa1b5fd215ee08a167667288dba9c6fd3fa66f96))
+
+##### New Features
+
+-   added validator 'isAnyRequiredValidator' and util 'isAny'
+    ([d11a6353](https://github.com/Angular-RU/angular-ru-sdk/commit/d11a63538a0db98a7f1f6c4946fd8565448655f5))
+
+##### Refactors
+
+-   changes after review
+    ([56fa3b46](https://github.com/Angular-RU/angular-ru-sdk/commit/56fa3b466cca83b75614cff3941a13a4f9c124a4))
+-   changes after review
+    ([0bc9d5cb](https://github.com/Angular-RU/angular-ru-sdk/commit/0bc9d5cbc07dbcfaf49c7b323738f183d4140cd6))
+-   changed name of validator on 'complexRequiredValidator'
+    ([d932269f](https://github.com/Angular-RU/angular-ru-sdk/commit/d932269f3723919521c9c1f8b3a76af356c642ae))
+
 #### 15.159.1 (2021-03-18)
 
 ##### Bug Fixes
