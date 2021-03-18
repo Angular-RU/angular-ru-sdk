@@ -103,7 +103,7 @@ describe('[TEST]: HTTP decorators for client', () => {
             expect(req.request.method).toEqual('GET');
         });
 
-        req = httpMock.expectOne(`${MOCK_API}/users/`);
+        req = httpMock.expectOne(`${MOCK_API}/users`);
         req.flush([
             { id: 1, name: 'a' },
             { id: 2, name: 'b' }
@@ -116,7 +116,7 @@ describe('[TEST]: HTTP decorators for client', () => {
             expect(req.request.method).toEqual('GET');
         });
 
-        req = httpMock.expectOne(`${MOCK_API}/users/`);
+        req = httpMock.expectOne(`${MOCK_API}/users`);
         req.flush([
             { id: 1, name: 'a' },
             { id: 2, name: 'b' }
@@ -200,7 +200,7 @@ describe('[TEST]: HTTP decorators for client', () => {
             expect(req.request.method).toEqual('GET');
         });
 
-        req = httpMock.expectOne(`${MOCK_API}/users/?index=4&size=5`);
+        req = httpMock.expectOne(`${MOCK_API}/users?index=4&size=5`);
         req.flush(null);
 
         tick(100);

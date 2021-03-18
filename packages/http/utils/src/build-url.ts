@@ -1,17 +1,18 @@
+import { checkValueIsFilled } from '@angular-ru/common/utils';
 import { DataUrlPathSegment } from '@angular-ru/http/typings';
 
 import { getPathWithoutQueryParams } from './get-path-without-params';
 import { isAbsolutePath } from './is-absolute-path';
 import { replaceDoubleSlash } from './replace-double-slash';
 
-export function buildUrl(path: string, { hostUrl, baseUrl, restUrl, pathUrl }: DataUrlPathSegment): string {
+export function buildUrl({ hostUrl, baseUrl, restUrl, pathUrl }: DataUrlPathSegment): string {
     let fullUrl: string;
 
-    if (isAbsolutePath(path)) {
-        fullUrl = path;
+    if (isAbsolutePath(pathUrl)) {
+        fullUrl = pathUrl;
     } else {
-        const clearPath: string = getPathWithoutQueryParams(path || pathUrl);
-        fullUrl = `${hostUrl}/${baseUrl}/${restUrl}/${clearPath}`;
+        const clearPathUrl: string = getPathWithoutQueryParams(pathUrl);
+        fullUrl = [hostUrl, baseUrl, restUrl, clearPathUrl].filter(checkValueIsFilled).join('/');
     }
 
     return replaceDoubleSlash(fullUrl);

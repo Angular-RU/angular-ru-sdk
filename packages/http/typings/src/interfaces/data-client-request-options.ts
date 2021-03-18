@@ -25,9 +25,7 @@ export interface DataClientRequestOptions<T extends PlainObject = Any> {
      * example: `${host}/${baseUrl}`
      */
     baseUrl: string | null;
-
     restUrl: string | null;
-    pathUrl: string | null;
 
     /**
      * @description
