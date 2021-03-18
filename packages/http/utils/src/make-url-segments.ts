@@ -8,7 +8,7 @@ export function makeUrlSegments(
     pathUrl: string = ''
 ): DataUrlPathSegment {
     const clearHostUrl: string =
-        replaceLeadingAndTrailingSlashes(hostUrl) ?? `${window.location.protocol}//${window.location.host}`;
+        replaceLeadingAndTrailingSlashes(hostUrl) || `${window.location.protocol}//${window.location.host}`;
     const clearBaseUrl: string = replaceLeadingAndTrailingSlashes(baseUrl);
     const clearRestUrl: string = replaceLeadingAndTrailingSlashes(restUrl);
     const clearPathUrl: string = replaceLeadingAndTrailingSlashes(pathUrl);
