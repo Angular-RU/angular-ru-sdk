@@ -9,13 +9,10 @@ export function makeUrlSegments(
 ): DataUrlPathSegment {
     const clearHostUrl: string =
         replaceLeadingAndTrailingSlashes(hostUrl) || `${window.location.protocol}//${window.location.host}`;
-    const clearBaseUrl: string = replaceLeadingAndTrailingSlashes(baseUrl);
-    const clearRestUrl: string = replaceLeadingAndTrailingSlashes(restUrl);
-    const clearPathUrl: string = replaceLeadingAndTrailingSlashes(pathUrl);
     return {
         hostUrl: clearHostUrl,
-        baseUrl: clearBaseUrl,
-        restUrl: clearRestUrl,
-        pathUrl: clearPathUrl
+        baseUrl: replaceLeadingAndTrailingSlashes(baseUrl),
+        restUrl: replaceLeadingAndTrailingSlashes(restUrl),
+        pathUrl: replaceLeadingAndTrailingSlashes(pathUrl)
     };
 }
