@@ -50,7 +50,7 @@ export class DataHttpClient<K = unknown> extends AbstractHttpClient<K> {
 
     private createMetaDataRequest(options: DataBeforeRequestOptions): MetaDataRequest {
         const { emitSuccess, emitFailure }: DataClientRequestOptions = options.clientOptions;
-        const segments: DataUrlPathSegment = makeUrlSegments(options.clientOptions, options.path);
+        const segments: DataUrlPathSegment = makeUrlSegments(options.clientOptions, this.controllerUrl, options.path);
         const requestOptions: DataHttpRequestOptions = this.createDataHttpRequestOptions(options);
         const url: string = buildUrl(segments);
         return { method: options.method, url, emitSuccess, emitFailure, requestOptions, segments };

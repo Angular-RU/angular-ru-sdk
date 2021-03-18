@@ -9,7 +9,7 @@ import {
     parseQueryParams,
     replaceDoubleSlash,
     buildUrl,
-    removeLeadingAndTrailingSlashes
+    replaceLeadingAndTrailingSlashes
 } from '@angular-ru/http/utils';
 import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { PlainObject } from '@angular-ru/common/typings';
@@ -54,11 +54,13 @@ describe('[TEST]: http utils', () => {
         });
 
         expect(
-            makeUrlSegments({
-                hostUrl: 'http://hello_world',
-                baseUrl: 'api',
-                restUrl: 'auth'
-            })
+            makeUrlSegments(
+                {
+                    hostUrl: 'http://hello_world',
+                    baseUrl: 'api'
+                },
+                'auth'
+            )
         ).toEqual({
             hostUrl: 'http://hello_world',
             baseUrl: 'api',
@@ -70,9 +72,9 @@ describe('[TEST]: http utils', () => {
             makeUrlSegments(
                 {
                     hostUrl: 'http://hello_world',
-                    baseUrl: 'api',
-                    restUrl: 'user'
+                    baseUrl: 'api'
                 },
+                'user',
                 'update'
             )
         ).toEqual({
@@ -100,7 +102,7 @@ describe('[TEST]: http utils', () => {
             'http://localhost/api-backend/a/b/c/d'
         );
 
-        expect(buildUrl(makeUrlSegments({ hostUrl: 'https://127.0.0.0:8030' }, '////a///b//c/d?quick'))).toEqual(
+        expect(buildUrl(makeUrlSegments({ hostUrl: 'https://127.0.0.0:8030' }, '', '////a///b//c/d?quick'))).toEqual(
             'https://127.0.0.0:8030/a/b/c/d'
         );
     });
@@ -135,18 +137,18 @@ describe('[TEST]: http utils', () => {
     });
 
     it('removeLeadingAndTrailingSlashes', () => {
-        expect(removeLeadingAndTrailingSlashes('')).toEqual('');
+        expect(replaceLeadingAndTrailingSlashes('')).toEqual('');
     });
 
     it('removeLeadingAndTrailingSlashes', () => {
-        expect(removeLeadingAndTrailingSlashes('/')).toEqual('');
+        expect(replaceLeadingAndTrailingSlashes('/')).toEqual('');
     });
 
     it('removeLeadingAndTrailingSlashes', () => {
-        expect(removeLeadingAndTrailingSlashes('//')).toEqual('');
+        expect(replaceLeadingAndTrailingSlashes('//')).toEqual('');
     });
 
     it('removeLeadingAndTrailingSlashes', () => {
-        expect(removeLeadingAndTrailingSlashes('//ad/example///')).toEqual('ad/example');
+        expect(replaceLeadingAndTrailingSlashes('//ad/example///')).toEqual('ad/example');
     });
 });

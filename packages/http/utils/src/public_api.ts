@@ -7,5 +7,5 @@ export { isAbsolutePath } from './is-absolute-path';
 export { isLocalhost } from './is-localhost';
 export { makeUrlSegments } from './make-url-segments';
 export { parseQueryParams } from './parse-query-params';
-export { removeLeadingAndTrailingSlashes } from './remove-leading-and-trailing-slashes';
 export { replaceDoubleSlash } from './replace-double-slash';
+export { replaceLeadingAndTrailingSlashes } from './replace-leading-and-trailing-slashes';
