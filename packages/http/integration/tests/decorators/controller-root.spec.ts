@@ -51,7 +51,7 @@ describe('[TEST]: HTTP decorators for client', () => {
             expect(req.request.method).toEqual('GET');
         });
 
-        req = httpMock.expectOne('https://github.com/users-api-balancer/users/');
+        req = httpMock.expectOne('https://github.com/users-api-balancer/users');
         req.flush([
             { id: 1, name: 'a' },
             { id: 2, name: 'b' }
