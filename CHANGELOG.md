@@ -1,3 +1,12 @@
+#### 15.159.1 (2021-03-18)
+
+##### Bug Fixes
+
+-   **@angular-ru/stream:** correct decode jwt token
+    ([538ad0d1](https://github.com/Angular-RU/angular-ru-sdk/commit/538ad0d16e5644d2409ba0c8707787a0a71b0c9c))
+-   remove comment [ci skip]
+    ([df3d67aa](https://github.com/Angular-RU/angular-ru-sdk/commit/df3d67aaa2e3ec57dfa58a656bea0a0d505a4de2))
+
 #### 15.159.0 (2021-03-17)
 
 ##### New Features
