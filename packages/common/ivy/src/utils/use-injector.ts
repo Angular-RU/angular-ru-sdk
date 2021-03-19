@@ -70,7 +70,12 @@ function insertFactoryWrapper<T>(constructor: Any, factory: (...args: Any[]) => 
 
 function insertPatcher<T>(constructor: Any, effectFunction: (injector: Injector, instance: T) => void): void {
     const previousPatcher: PatchFunction<T> | undefined = getPatcherOfClass(constructor);
-    const patchSuper: PatchFunction<T> | undefined = getPatcherOfClass(Object.getPrototypeOf(constructor));
+
+    /**
+     * Note: don't use hasOwnProperty,
+     * because we need find reference on PATCHER_KEY in prototypes chain
+     */
+    const patchSuper: PatchFunction<T> | undefined = constructor[PATCHER_KEY];
 
     Object.defineProperty(constructor, PATCHER_KEY, {
         configurable: true,

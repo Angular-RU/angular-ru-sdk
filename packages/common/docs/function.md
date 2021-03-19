@@ -35,3 +35,23 @@ function hello(name: string, value: number, a?: string[]): string {
 
 console.log($args(hello)); // ['name', 'value', 'a']
 ```
+
+-   `hasConstructor(ref)`
+
+```ts
+class A {}
+function B() {}
+const C: Fn = () => {};
+class D extends A {}
+
+expect(hasConstructor(A)).toEqual(true);
+expect(hasConstructor(B)).toEqual(true);
+expect(hasConstructor(D)).toEqual(true);
+expect(hasConstructor(String)).toEqual(true);
+
+expect(hasConstructor(C)).toEqual(false);
+expect(hasConstructor({} as Any)).toEqual(false);
+expect(hasConstructor(1 as Any)).toEqual(false);
+expect(hasConstructor(null)).toEqual(false);
+expect(hasConstructor()).toEqual(false);
+```
