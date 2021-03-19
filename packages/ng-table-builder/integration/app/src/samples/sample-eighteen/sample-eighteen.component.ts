@@ -1,7 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PlainObject } from '@angular-ru/common/typings';
-import { TableRow } from '@angular-ru/ng-table-builder';
 
 import { MocksGenerator } from '../../../../tests/helpers/utils/mocks-generator';
 import { CodeDialogComponent } from '../../shared/dialog/code-dialog.component';
@@ -19,7 +18,7 @@ import { CodeDialogComponent } from '../../shared/dialog/code-dialog.component';
     encapsulation: ViewEncapsulation.None
 })
 export class SampleEighteenComponent implements OnInit {
-    public data: TableRow[] = [];
+    public data: PlainObject[] = [];
     public rowCssClasses: PlainObject = { 1: ['highlight'], 3: ['highlight'] };
 
     constructor(public readonly dialog: MatDialog, private readonly cd: ChangeDetectorRef) {}
@@ -27,7 +26,7 @@ export class SampleEighteenComponent implements OnInit {
     public ngOnInit(): void {
         const rows: number = 50;
         const cols: number = 5;
-        MocksGenerator.generator(rows, cols).then((data: TableRow[]): void => {
+        MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => {
             this.data = data;
             this.cd.detectChanges();
         });

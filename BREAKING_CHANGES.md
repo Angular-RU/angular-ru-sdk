@@ -1,3 +1,15 @@
+### 19.03.2021 @angular-ru/ng-table-builder
+
+-   `TableBuilderComponent<T>` required generic type,
+-   `[exclude-keys]` only support `ExcludePattern<T>[]` instead `(string | RegExp)[]`
+-   `TableRow` removed as redundant type
+
+### 19.03.2021 @angular-ru/common
+
+-   `getValueByPath(...)` now also return null value,
+-   `new DeepPathPipe().transform(...)` now return `K | string | null | undefined` value
+-   `new DefaultValue().transform(...)` now return `PlainObject | T | string | null` value
+
 ### 17.03.2021 @angular-ru/ng-excel-builder
 
 -   `ExcelBuilderModule` should be called with `forRoot` method in `AppModule`

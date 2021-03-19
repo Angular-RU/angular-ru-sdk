@@ -5,7 +5,7 @@ import { PlainObjectOf, SortOrderType } from '@angular-ru/common/typings';
 import { ColumnsSchema } from '../../interfaces/table-builder.external';
 import { ResizeEvent } from '../../interfaces/table-builder.internal';
 import { FilterableService } from '../../services/filterable/filterable.service';
-import { OVERLOAD_WIDTH_TABLE_HEAD_CELL } from '../../symbols';
+import { OVERLOAD_WIDTH_TABLE_HEAD_CELL } from '../../table-builder.properties';
 
 @Component({
     selector: 'table-thead',
@@ -14,7 +14,7 @@ import { OVERLOAD_WIDTH_TABLE_HEAD_CELL } from '../../symbols';
     encapsulation: ViewEncapsulation.None,
     animations: [fadeInLinearAnimation]
 })
-export class TableTheadComponent {
+export class TableTheadComponent<T> {
     @Input('header-top') public headerTop: number | null = null;
     @Input('column-width') public columnWidth: number = 0;
     @Input('head-height') public headHeight: string | number | null = null;
@@ -31,7 +31,7 @@ export class TableTheadComponent {
     public orderType: typeof SortOrderType = SortOrderType;
     public limit: number = OVERLOAD_WIDTH_TABLE_HEAD_CELL;
 
-    constructor(protected readonly filterable: FilterableService) {}
+    constructor(protected readonly filterable: FilterableService<T>) {}
 
     public openFilter(key: string | null | undefined, event: MouseEvent): void {
         if (key) {

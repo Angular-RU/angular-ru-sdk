@@ -1,6 +1,5 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Any } from '@angular-ru/common/typings';
-import { TableRow } from '@angular-ru/ng-table-builder';
+import { Any, PlainObject } from '@angular-ru/common/typings';
 
 declare const hljs: Any;
 
@@ -10,8 +9,8 @@ declare const hljs: Any;
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SampleFourthComponent implements OnInit, AfterViewInit {
-    public data: TableRow[] = [];
-    public elements: TableRow[] = [];
+    public data: PlainObject[] = [];
+    public elements: PlainObject[] = [];
 
     // eslint-disable-next-line max-lines-per-function
     public ngOnInit(): void {

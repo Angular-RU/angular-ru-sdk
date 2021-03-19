@@ -5,8 +5,8 @@ import { ColumnsSchema } from '../../interfaces/table-builder.external';
 import { TemplateParserService } from '../template-parser/template-parser.service';
 
 @Injectable()
-export class DraggableService {
-    constructor(private readonly parser: TemplateParserService) {}
+export class DraggableService<T> {
+    constructor(private readonly parser: TemplateParserService<T>) {}
 
     private get columns(): ColumnsSchema[] {
         return this.parser.schema?.columns ?? [];

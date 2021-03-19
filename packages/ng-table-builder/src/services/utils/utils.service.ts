@@ -2,15 +2,14 @@ import { Injectable, NgZone, Optional } from '@angular/core';
 import { isObject } from '@angular-ru/common/object';
 import { Any, Fn } from '@angular-ru/common/typings';
 
-import { TableRow } from '../../interfaces/table-builder.external';
 import { UtilsInterface } from './utils.interface';
 
 @Injectable()
-export class UtilsService implements UtilsInterface {
+export class UtilsService<T> implements UtilsInterface {
     constructor(@Optional() private readonly zone?: NgZone) {}
 
-    public mergeDeep<T>(target: T, source: T): T {
-        const output: T = { ...target };
+    public mergeDeep<S>(target: S, source: S): S {
+        const output: S = { ...target };
         if (isObject(target) && isObject(source)) {
             Object.keys(source).forEach((key: string): void => {
                 if (isObject((source as Any)[key])) {
@@ -30,9 +29,9 @@ export class UtilsService implements UtilsInterface {
     }
 
     // eslint-disable-next-line complexity
-    public flattenKeysByRow(row: TableRow, parentKey: string | null = null, keys: string[] = []): string[] {
+    public flattenKeysByRow(row: T, parentKey: string | null = null, keys: string[] = []): string[] {
         for (const key in row) {
-            if (!row.hasOwnProperty(key)) {
+            if (!(row as Any)?.hasOwnProperty(key)) {
                 continue;
             }
 
@@ -41,7 +40,7 @@ export class UtilsService implements UtilsInterface {
 
             if (isObjectValue) {
                 const implicitKey: string = parentKey ? `${parentKey}.${key}` : key;
-                this.flattenKeysByRow(row[key], implicitKey, keys);
+                this.flattenKeysByRow((row as Any)[key], implicitKey, keys);
             } else {
                 keys.push(parentKey ? `${parentKey}.${key}` : key);
             }

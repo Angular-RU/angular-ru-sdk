@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { PlainObject } from '@angular-ru/common/typings';
 import { detectChanges } from '@angular-ru/common/utils';
-import { TableRow } from '@angular-ru/ng-table-builder';
 
 import { MocksGenerator } from '../../../../tests/helpers/utils/mocks-generator';
 import { DialogTemplateComponent } from '../../shared/dialog-template/dialog-template.component';
@@ -12,7 +12,7 @@ import { DialogTemplateComponent } from '../../shared/dialog-template/dialog-tem
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SampleFirstSecondComponent implements OnInit, OnDestroy {
-    public data: TableRow[] = [];
+    public data: PlainObject[] = [];
     private idInterval: number | null = null;
 
     constructor(
@@ -38,20 +38,20 @@ export class SampleFirstSecondComponent implements OnInit, OnDestroy {
         this.updateTable();
     }
 
-    public delete(row: TableRow): void {
-        this.data = this.data.filter((item: TableRow): boolean => item !== row);
+    public delete(row: PlainObject): void {
+        this.data = this.data.filter((item: PlainObject): boolean => item !== row);
         detectChanges(this.cd);
     }
 
-    public edit(row: TableRow): void {
+    public edit(row: PlainObject): void {
         this.ngZone.run((): void => {
             this.dialog
                 .open(DialogTemplateComponent, { data: row, width: '1024px' })
                 .afterClosed()
-                .subscribe((data: TableRow): void => {
+                .subscribe((data: PlainObject): void => {
                     if (data) {
                         this.data = this.data.map(
-                            (val: TableRow): TableRow => (val.id === data.id ? { ...data } : val)
+                            (val: PlainObject): PlainObject => (val.id === data.id ? { ...data } : val)
                         );
                         detectChanges(this.cd);
                     }
@@ -64,10 +64,10 @@ export class SampleFirstSecondComponent implements OnInit, OnDestroy {
         const cols: number = 10;
 
         const startIndex: number = this.data.length
-            ? Math.max(...this.data.map((item: TableRow): number => item.id))
+            ? Math.max(...this.data.map((item: PlainObject): number => item.id))
             : 0;
 
-        MocksGenerator.generator(rows, cols, startIndex).then((row: TableRow[]): void => {
+        MocksGenerator.generator(rows, cols, startIndex).then((row: PlainObject[]): void => {
             this.data = this.data.concat(row);
             this.cd.detectChanges();
         });

@@ -27,7 +27,7 @@ import { catchError, takeUntil } from 'rxjs/operators';
 
 import { NgxColumnComponent } from './components/ngx-column/ngx-column.component';
 import { TABLE_GLOBAL_OPTIONS } from './config/table-global-options';
-import { CalculateRange, ColumnsSchema, TableRow } from './interfaces/table-builder.external';
+import { CalculateRange, ColumnsSchema } from './interfaces/table-builder.external';
 import { RecalculatedStatus, TableSimpleChanges, TemplateKeys } from './interfaces/table-builder.internal';
 import { ContextMenuService } from './services/context-menu/context-menu.service';
 import { DraggableService } from './services/draggable/draggable.service';
@@ -60,8 +60,8 @@ const { TIME_IDLE, TIME_RELOAD, FRAME_TIME, MACRO_TIME }: typeof TABLE_GLOBAL_OP
     encapsulation: ViewEncapsulation.None,
     animations: [fadeInLinearAnimation]
 })
-export class TableBuilderComponent
-    extends AbstractTableBuilderApiImpl
+export class TableBuilderComponent<T>
+    extends AbstractTableBuilderApiImpl<T>
     implements OnChanges, OnInit, AfterContentInit, AfterViewInit, AfterViewChecked, OnDestroy {
     public dirty: boolean = true;
     public rendering: boolean = false;
@@ -75,16 +75,16 @@ export class TableBuilderComponent
     public footerRef!: ElementRef<HTMLDivElement>;
     public sourceIsNull: boolean = false;
     public afterViewInitDone: boolean = false;
-    public readonly selection: SelectionService;
-    public readonly templateParser: TemplateParserService;
+    public readonly selection: SelectionService<T>;
+    public readonly templateParser: TemplateParserService<T>;
     public readonly ngZone: NgZone;
-    public readonly utils: UtilsService;
+    public readonly utils: UtilsService<T>;
     public readonly resize: ResizableService;
-    public readonly sortable: SortableService;
-    public readonly contextMenu: ContextMenuService;
-    public readonly filterable: FilterableService;
+    public readonly sortable: SortableService<T>;
+    public readonly contextMenu: ContextMenuService<T>;
+    public readonly filterable: FilterableService<T>;
     protected readonly app: ApplicationRef;
-    protected readonly draggable: DraggableService;
+    protected readonly draggable: DraggableService<T>;
     protected readonly viewChanges: NgxTableViewChangesService;
     private forcedRefresh: boolean = false;
     private readonly destroy$: Subject<boolean> = new Subject<boolean>();
@@ -96,16 +96,16 @@ export class TableBuilderComponent
 
     constructor(public readonly cd: ChangeDetectorRef, injector: Injector) {
         super();
-        this.selection = injector.get<SelectionService>(SelectionService);
-        this.templateParser = injector.get<TemplateParserService>(TemplateParserService);
+        this.selection = injector.get<SelectionService<T>>(SelectionService);
+        this.templateParser = injector.get<TemplateParserService<T>>(TemplateParserService);
         this.ngZone = injector.get<NgZone>(NgZone);
-        this.utils = injector.get<UtilsService>(UtilsService);
+        this.utils = injector.get<UtilsService<T>>(UtilsService);
         this.resize = injector.get<ResizableService>(ResizableService);
-        this.sortable = injector.get<SortableService>(SortableService);
-        this.contextMenu = injector.get<ContextMenuService>(ContextMenuService);
+        this.sortable = injector.get<SortableService<T>>(SortableService);
+        this.contextMenu = injector.get<ContextMenuService<T>>(ContextMenuService);
         this.app = injector.get<ApplicationRef>(ApplicationRef);
-        this.filterable = injector.get<FilterableService>(FilterableService);
-        this.draggable = injector.get<DraggableService>(DraggableService);
+        this.filterable = injector.get<FilterableService<T>>(FilterableService);
+        this.draggable = injector.get<DraggableService<T>>(DraggableService);
         this.viewChanges = injector.get<NgxTableViewChangesService>(NgxTableViewChangesService);
     }
 
@@ -333,7 +333,7 @@ export class TableBuilderComponent
         this.viewPortInfo.bufferOffset = bufferOffset;
     }
 
-    public setSource(source: TableRow[]): void {
+    public setSource(source: T[]): void {
         this.originalSource = source;
         this.source = source;
         this.selection.originRows = source;
@@ -638,7 +638,7 @@ export class TableBuilderComponent
         const customColumn: Partial<ColumnsSchema> = this.getCustomColumnSchemaByIndex(index);
 
         if (!this.templateParser.compiledTemplates[key]) {
-            const column: NgxColumnComponent = new NgxColumnComponent().withKey(key);
+            const column: NgxColumnComponent<T> = new NgxColumnComponent<T>().withKey(key);
             this.templateParser.compileColumnMetadata(column);
         }
 

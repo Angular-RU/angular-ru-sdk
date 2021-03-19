@@ -1,7 +1,6 @@
-import { Any } from '@angular-ru/common/typings';
+import { Any, PlainObject } from '@angular-ru/common/typings';
 import { NgZone } from '@angular/core';
 
-import { TableRow } from '../../../src/interfaces/table-builder.external';
 import { RowId } from '../../../src/interfaces/table-builder.internal';
 import { SelectionMap } from '../../../src/services/selection/selection';
 import { SelectionService } from '../../../src/services/selection/selection.service';
@@ -22,7 +21,7 @@ describe('[TEST]: Selection service', () => {
         }
     };
 
-    const data: TableRow[] = [
+    const data: PlainObject[] = [
         { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
         { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
         { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' }
@@ -44,7 +43,7 @@ describe('[TEST]: Selection service', () => {
         }
     });
 
-    let selection: SelectionService;
+    let selection: SelectionService<PlainObject>;
 
     beforeEach(() => {
         selection = new SelectionService(mockNgZone as NgZone);
@@ -175,7 +174,7 @@ describe('[TEST]: Selection service', () => {
     });
 
     it('should be correct toggle', () => {
-        const selectionMap: SelectionMap = new SelectionMap();
+        const selectionMap: SelectionMap<PlainObject> = new SelectionMap();
         const id: RowId = 5;
 
         expect(selectionMap.hasValue()).toEqual(false);

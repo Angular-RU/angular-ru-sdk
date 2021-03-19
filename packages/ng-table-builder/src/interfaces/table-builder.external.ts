@@ -3,19 +3,13 @@ import { Any, DeepPartial, PlainObject } from '@angular-ru/common/typings';
 
 import { TableBrowserEvent } from './table-builder.internal';
 
-export type TableRow<T = Any> =
-    | Any
-    | {
-          [key: string]: T;
-      };
-
 // eslint-disable-next-line
 export enum ImplicitContext {
     ROW = 'ROW',
     CELL = 'CELL'
 }
 
-export type TableClickEventEmitter = EventEmitter<TableEvent> | null;
+export type TableClickEventEmitter<T, K> = EventEmitter<TableEvent<T, K>> | null;
 
 export interface TableCellOptions<T = Any> {
     class: string | string[] | PlainObject | null;
@@ -64,9 +58,9 @@ export interface TableUpdateSchema {
     version: number;
 }
 
-export interface TableEvent<T = Any> {
-    value: T;
-    row: TableRow;
+export interface TableEvent<T, K> {
+    row: T;
+    value: K | null | undefined;
     event: TableBrowserEvent;
     preventDefault: () => void;
 }
@@ -94,13 +88,13 @@ export interface VirtualIndex {
     offsetTop: number;
 }
 
-export interface VirtualContext {
-    $implicit: TableRow;
+export interface VirtualContext<T> {
+    $implicit: T;
     virtualIndex: VirtualIndex;
     index: number;
 }
 
-export type InternalVirtualRef = [TableRow, EmbeddedViewRef<VirtualContext>];
+export type InternalVirtualRef<T> = [T, EmbeddedViewRef<VirtualContext<T>>];
 
 export interface CalculateRange {
     start: number;
@@ -109,9 +103,11 @@ export interface CalculateRange {
     force: boolean;
 }
 
-export type ProduceDisableFn = ((item: TableRow) => boolean) | null;
+export type ProduceDisableFn<T> = ((item: T | PlainObject | null | undefined) => boolean) | null;
 
 export interface OrderedField {
     field: string;
     order: 'ASC' | 'DESC';
 }
+
+export type ExcludePattern<T> = keyof T | RegExp;

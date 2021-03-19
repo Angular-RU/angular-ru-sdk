@@ -3,7 +3,7 @@ import { PlainObject } from '@angular-ru/common/typings';
 import { UtilsService } from '../../../src/services/utils/utils.service';
 
 describe('UtilsService', () => {
-    let utils: UtilsService;
+    let utils: UtilsService<PlainObject>;
     beforeEach(() => (utils = new UtilsService()));
 
     it('should be created', () => {

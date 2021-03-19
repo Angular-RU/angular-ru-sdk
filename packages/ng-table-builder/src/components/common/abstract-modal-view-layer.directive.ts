@@ -15,7 +15,7 @@ import { MousePosition } from '../../interfaces/table-builder.internal';
 import { ContextMenuService } from '../../services/context-menu/context-menu.service';
 import { FilterableService } from '../../services/filterable/filterable.service';
 import { UtilsService } from '../../services/utils/utils.service';
-import { MINIMAL_TIMEOUT, SCROLLBAR_SIZE } from '../../symbols';
+import { MINIMAL_TIMEOUT, SCROLLBAR_SIZE } from '../../table-builder.properties';
 
 export interface PositionState {
     key: string | null;
@@ -24,7 +24,7 @@ export interface PositionState {
 }
 
 @Directive()
-export abstract class AbstractModalViewLayer<T extends PositionState> implements OnDestroy {
+export abstract class AbstractModalViewLayer<T, K extends PositionState> implements OnDestroy {
     public width: number | null = null;
     public height: number | null = null;
     public isViewed: boolean = false;
@@ -34,18 +34,18 @@ export abstract class AbstractModalViewLayer<T extends PositionState> implements
     public minHeight: number | null = null;
     protected subscription: Subscription | null = null;
     protected readonly app: ApplicationRef;
-    protected readonly utils: UtilsService;
-    protected readonly filterable: FilterableService;
+    protected readonly utils: UtilsService<T>;
+    protected readonly filterable: FilterableService<T>;
     protected readonly ngZone: NgZone;
-    protected readonly contextMenu: ContextMenuService;
+    protected readonly contextMenu: ContextMenuService<T>;
     @ViewChild('menu', { static: false }) protected menu!: ElementRef<HTMLDivElement>;
 
     protected constructor(protected readonly cd: ChangeDetectorRef, injector: Injector) {
         this.app = injector.get<ApplicationRef>(ApplicationRef);
-        this.utils = injector.get<UtilsService>(UtilsService);
-        this.filterable = injector.get<FilterableService>(FilterableService);
+        this.utils = injector.get<UtilsService<T>>(UtilsService);
+        this.filterable = injector.get<FilterableService<T>>(FilterableService);
         this.ngZone = injector.get<NgZone>(NgZone);
-        this.contextMenu = injector.get<ContextMenuService>(ContextMenuService);
+        this.contextMenu = injector.get<ContextMenuService<T>>(ContextMenuService);
     }
 
     public get left(): number {
@@ -71,7 +71,7 @@ export abstract class AbstractModalViewLayer<T extends PositionState> implements
         }
     }
 
-    public abstract get state(): Partial<T>;
+    public abstract get state(): Partial<K>;
 
     public get calculatedHeight(): number {
         let height: number | null;

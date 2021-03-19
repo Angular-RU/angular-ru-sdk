@@ -1,18 +1,16 @@
 import { Injectable } from '@angular/core';
 import { getValueByPath } from '@angular-ru/common/object';
-import { Any } from '@angular-ru/common/typings';
 import { Subject } from 'rxjs';
 
-import { TableRow } from '../../interfaces/table-builder.external';
 import { ContextMenuState } from './context-menu.interface';
 
 @Injectable()
-export class ContextMenuService {
-    public state: ContextMenuState = ({} as Any) as ContextMenuState;
+export class ContextMenuService<T, K = unknown> {
+    public state: ContextMenuState<T, K> = new ContextMenuState<T, K>();
     public readonly events: Subject<void> = new Subject();
 
-    public openContextMenu(event: MouseEvent, key: string | null = null, row: TableRow | null = null): boolean {
-        this.state = new ContextMenuState({
+    public openContextMenu(event: MouseEvent, key: string | null = null, row: T | null = null): boolean {
+        this.state = new ContextMenuState<T, K>({
             key,
             item: row,
             opened: true,
@@ -28,7 +26,7 @@ export class ContextMenuService {
     }
 
     public close(): void {
-        this.state = new ContextMenuState();
+        this.state = new ContextMenuState<T, K>();
         this.events.next();
     }
 }

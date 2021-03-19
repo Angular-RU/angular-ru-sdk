@@ -12,7 +12,7 @@ import { getValidPredicate } from '../../operators/get-valid-predicate';
 import { SchemaBuilder } from './schema-builder.class';
 
 @Injectable()
-export class TemplateParserService {
+export class TemplateParserService<T> {
     public schema: SchemaBuilder | null = null;
     public templateKeys: Set<string> | null = null;
     public fullTemplateKeys: Set<string> | null = null;
@@ -44,9 +44,9 @@ export class TemplateParserService {
      */
     public keyMap: PlainObjectOf<boolean> = {};
 
-    private static templateContext(
+    private static templateContext<U>(
         key: string,
-        cell: AbstractTemplateCellCommon,
+        cell: AbstractTemplateCellCommon<U>,
         options: ColumnOptions
     ): TableCellOptions {
         return {
@@ -91,13 +91,13 @@ export class TemplateParserService {
     }
 
     // eslint-disable-next-line max-lines-per-function
-    public parse(templates: QueryList<NgxColumnComponent>): void {
+    public parse(templates: QueryList<NgxColumnComponent<T>>): void {
         if (!templates) {
             return;
         }
 
-        templates.forEach((column: NgxColumnComponent): void => {
-            const { key, customKey, importantTemplate }: NgxColumnComponent = column;
+        templates.forEach((column: NgxColumnComponent<T>): void => {
+            const { key, customKey, importantTemplate }: NgxColumnComponent<T> = column;
             const needTemplateCheck: boolean = this.allowedKeyMap[key!] || customKey !== false;
 
             if (needTemplateCheck) {
@@ -122,10 +122,10 @@ export class TemplateParserService {
     }
 
     // eslint-disable-next-line complexity,max-lines-per-function
-    public compileColumnMetadata(column: NgxColumnComponent): void {
-        const { key, th, td, emptyHead, headTitle }: NgxColumnComponent = column;
-        const thTemplate: AbstractTemplateCellCommon = th || new TemplateHeadThDirective();
-        const tdTemplate: AbstractTemplateCellCommon = td || new TemplateBodyTdDirective();
+    public compileColumnMetadata(column: NgxColumnComponent<T>): void {
+        const { key, th, td, emptyHead, headTitle }: NgxColumnComponent<T> = column;
+        const thTemplate: AbstractTemplateCellCommon<T> = th || new TemplateHeadThDirective<T>();
+        const tdTemplate: AbstractTemplateCellCommon<T> = td || new TemplateBodyTdDirective<T>();
         const isEmptyHead: boolean = getValidHtmlBooleanAttribute(emptyHead);
         const thOptions: TableCellOptions = TemplateParserService.templateContext(
             key!,

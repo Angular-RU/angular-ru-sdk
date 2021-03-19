@@ -1,10 +1,9 @@
 import { Any, PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
 
-import { TableRow } from '../../interfaces/table-builder.external';
 import { FilterableMessage, FilterGlobalOpts, TableFilterType } from './filterable.interface';
 
 // eslint-disable-next-line sonarjs/cognitive-complexity,max-lines-per-function
-export function filterAllWorker({ source, global, types, columns }: FilterableMessage): TableRow[] {
+export function filterAllWorker<T>({ source, global, types, columns }: FilterableMessage<T>): T[] {
     const enum Terminate {
         CONTINUE = -1,
         BREAK = 0,
@@ -12,19 +11,19 @@ export function filterAllWorker({ source, global, types, columns }: FilterableMe
     }
 
     const { value, type }: FilterGlobalOpts = global!;
-    let result: TableRow[] = source;
+    let result: T[] = source;
 
     if (value) {
-        result = source.filter((item: TableRow): boolean =>
+        result = source.filter((item: T): boolean =>
             type === types.DOES_NOT_CONTAIN ? !includes(JSON.stringify(item), value) : globalFilter(item)
         );
     }
 
     if (!columns!.isEmpty) {
-        result = result.filter((item: TableRow): boolean => multipleFilter(item));
+        result = result.filter((item: T): boolean => multipleFilter(item));
     }
 
-    function globalFilter(item: TableRow): boolean {
+    function globalFilter(item: T): boolean {
         let satisfiesItem: boolean = false;
         const flattenedItem: PlainObject = flatten(item);
 
@@ -48,7 +47,7 @@ export function filterAllWorker({ source, global, types, columns }: FilterableMe
         return satisfiesItem;
     }
 
-    function multipleFilter(item: TableRow): boolean {
+    function multipleFilter(item: T): boolean {
         let matches: boolean = true;
 
         for (const fieldKey of Object.keys(columns!.values)) {
@@ -103,12 +102,12 @@ export function filterAllWorker({ source, global, types, columns }: FilterableMe
         return escapedValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     }
 
-    function flatten<T = string>(object: PlainObject, excludeKeys: string[] = []): PlainObjectOf<T> {
-        const depthGraph: PlainObjectOf<T> = {};
+    function flatten<K = string>(object: PlainObject, excludeKeys: string[] = []): PlainObjectOf<K> {
+        const depthGraph: PlainObjectOf<K> = {};
 
         for (const key in object) {
             if (object.hasOwnProperty(key) && !excludeKeys.includes(key)) {
-                mutate<T>(object, depthGraph, key);
+                mutate<K>(object, depthGraph, key);
             }
         }
 
@@ -127,7 +126,7 @@ export function filterAllWorker({ source, global, types, columns }: FilterableMe
             : object;
     }
 
-    function mutate<T>(object: PlainObject, depthGraph: PlainObjectOf<T>, key: string): void {
+    function mutate<K>(object: PlainObject, depthGraph: PlainObjectOf<K>, key: string): void {
         const isObject: boolean = typeof object[key] === 'object' && object[key] !== null;
         if (isObject) {
             const flatObject: PlainObject = flatten(object[key]);

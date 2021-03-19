@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { TableRow } from '@angular-ru/ng-table-builder';
+import { PlainObject } from '@angular-ru/common/typings';
 
 import { MocksGenerator } from '../../../../tests/helpers/utils/mocks-generator';
 import { CodeDialogComponent } from '../../shared/dialog/code-dialog.component';
@@ -16,7 +16,7 @@ export class SampleFirstComponent implements OnInit, OnDestroy {
     public rowHeight: string | null = null;
     public dataSize: string = '100x20';
     public loading: boolean = false;
-    public simple: TableRow[] = [];
+    public simple: PlainObject[] = [];
     public regenerate: boolean = false;
     private idInterval: number | null = null;
 
@@ -73,7 +73,7 @@ export class SampleFirstComponent implements OnInit, OnDestroy {
                 {
                     const rows: number = 10;
                     const cols: number = 5;
-                    MocksGenerator.generator(rows, cols).then((data: TableRow[]): void => this.setData(data));
+                    MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => this.setData(data));
                 }
                 break;
 
@@ -81,7 +81,7 @@ export class SampleFirstComponent implements OnInit, OnDestroy {
                 {
                     const rows: number = 100;
                     const cols: number = 20;
-                    MocksGenerator.generator(rows, cols).then((data: TableRow[]): void => this.setData(data));
+                    MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => this.setData(data));
                 }
                 break;
 
@@ -89,7 +89,7 @@ export class SampleFirstComponent implements OnInit, OnDestroy {
                 {
                     const rows: number = 1000;
                     const cols: number = 30;
-                    MocksGenerator.generator(rows, cols).then((data: TableRow[]): void => this.setData(data));
+                    MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => this.setData(data));
                 }
                 break;
 
@@ -97,7 +97,7 @@ export class SampleFirstComponent implements OnInit, OnDestroy {
                 {
                     const rows: number = 10000;
                     const cols: number = 50;
-                    MocksGenerator.generator(rows, cols).then((data: TableRow[]): void => this.setData(data));
+                    MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => this.setData(data));
                 }
                 break;
 
@@ -105,14 +105,14 @@ export class SampleFirstComponent implements OnInit, OnDestroy {
                 {
                     const rows: number = 100000;
                     const cols: number = 100;
-                    MocksGenerator.generator(rows, cols).then((data: TableRow[]): void => this.setData(data));
+                    MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => this.setData(data));
                 }
                 break;
         }
         this.cd.detectChanges();
     }
 
-    private setData(data: TableRow[]): void {
+    private setData(data: PlainObject[]): void {
         this.simple = data;
         const timeout: number = 500;
         window.setTimeout((): void => {

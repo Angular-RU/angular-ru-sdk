@@ -8,7 +8,7 @@ import { FilterStateEvent } from '../../../../../../src/services/filterable/filt
     templateUrl: './context-menu-sample.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ContextMenuSampleComponent {
-    @Input() public table!: TableBuilderComponent;
+export class ContextMenuSampleComponent<T> {
+    @Input() public table!: TableBuilderComponent<T>;
     @Input() public state!: Partial<FilterStateEvent>;
 }
