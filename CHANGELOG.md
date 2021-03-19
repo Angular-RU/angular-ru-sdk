@@ -1,3 +1,11 @@
+#### 15.163.0 (2021-03-19)
+
+##### New Features
+
+-   **@angular-ru/common:** now return null type from utils
+    ([#488](https://github.com/Angular-RU/angular-ru-sdk/pull/488))
+    ([ddc31b78](https://github.com/Angular-RU/angular-ru-sdk/commit/ddc31b788372fb7d9977e388b25fad372756565b))
+
 #### 15.162.0 (2021-03-18)
 
 ##### New Features
