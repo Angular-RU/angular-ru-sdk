@@ -1,5 +1,5 @@
-import { isFunctionLike, $args } from '@angular-ru/common/function';
-import { KeyboardKeys } from '@angular-ru/common/typings';
+import { $args, isFunctionLike, hasConstructor } from '@angular-ru/common/function';
+import { Any, Fn, KeyboardKeys } from '@angular-ru/common/typings';
 
 describe('[TEST]: Function', () => {
     it('is function', () => {
@@ -30,5 +30,23 @@ describe('[TEST]: Function', () => {
         }
 
         expect($args(hello)).toEqual(['name', 'value', 'a']);
+    });
+
+    it('hasConstructor', () => {
+        class A {}
+        function B() {}
+        const C: Fn = () => {};
+        class D extends A {}
+
+        expect(hasConstructor(A)).toEqual(true);
+        expect(hasConstructor(B)).toEqual(true);
+        expect(hasConstructor(D)).toEqual(true);
+        expect(hasConstructor(String)).toEqual(true);
+
+        expect(hasConstructor(C)).toEqual(false);
+        expect(hasConstructor({} as Any)).toEqual(false);
+        expect(hasConstructor(1 as Any)).toEqual(false);
+        expect(hasConstructor(null)).toEqual(false);
+        expect(hasConstructor()).toEqual(false);
     });
 });
