@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { PlainObject } from '@angular-ru/common/typings';
 import { detectChanges } from '@angular-ru/common/utils';
 
 import { MocksGenerator } from '../../../../tests/helpers/utils/mocks-generator';
 import { DialogTemplateComponent } from '../../shared/dialog-template/dialog-template.component';
-import { PlainObject } from '@angular-ru/common/typings';
 
 @Component({
     selector: 'sample-first-second',
