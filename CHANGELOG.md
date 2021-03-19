@@ -1,3 +1,10 @@
+#### 15.165.0 (2021-03-19)
+
+##### New Features
+
+-   **@angular-ru/common:** add hasConstructor
+    ([087697a3](https://github.com/Angular-RU/angular-ru-sdk/commit/087697a319826e1518a49b9f845ddce4927242fa))
+
 #### 15.164.0 (2021-03-19)
 
 ##### New Features
