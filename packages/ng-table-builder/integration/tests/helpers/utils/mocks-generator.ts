@@ -1,25 +1,23 @@
 /* eslint-disable no-magic-numbers,@typescript-eslint/no-magic-numbers */
-import { Any } from '@angular-ru/common/typings';
+import { Any, PlainObject } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
-
-import { TableRow } from '../../../../src/interfaces/table-builder.external';
 
 export class MocksGenerator {
     // eslint-disable-next-line max-lines-per-function
-    public static generator(rowsNumber: number, colsNumber: number, startIndex: number = 0): Promise<TableRow[]> {
-        return new WebWorkerThreadService().run<TableRow[], Any>(
+    public static generator(rowsNumber: number, colsNumber: number, startIndex: number = 0): Promise<PlainObject[]> {
+        return new WebWorkerThreadService().run<PlainObject[], Any>(
             // eslint-disable-next-line max-lines-per-function
-            (data: Any): TableRow[] => {
+            (data: Any): PlainObject[] => {
                 class FakeGenerator {
                     // eslint-disable-next-line max-lines-per-function
-                    public static generateTable(rows: number, cols: number, start: number): TableRow[] {
+                    public static generateTable(rows: number, cols: number, start: number): PlainObject[] {
                         // eslint-disable-next-line max-lines-per-function
                         return new Array(rows).fill(0).map(
                             // eslint-disable-next-line max-lines-per-function
-                            (_: unknown, index: number): TableRow => {
+                            (_: unknown, index: number): PlainObject => {
                                 const idx: number = start + index + 1;
 
-                                const baseRow: TableRow = {
+                                const baseRow: PlainObject = {
                                     id: idx,
                                     reverseId: Math.round(Math.random() + rows * 512 + cols + start * 10) * 1024,
                                     name: 'Random - ' + ((Math.random() + 1) * 100).toFixed(0) + '__' + idx,

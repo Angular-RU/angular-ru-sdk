@@ -1,7 +1,7 @@
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Any } from '@angular-ru/common/typings';
-import { OrderedField, TableRow } from '@angular-ru/ng-table-builder';
+import { Any, PlainObject } from '@angular-ru/common/typings';
+import { OrderedField } from '@angular-ru/ng-table-builder';
 
 import { MocksGenerator } from '../../../../tests/helpers/utils/mocks-generator';
 import { CodeDialogComponent } from '../../shared/dialog/code-dialog.component';
@@ -15,14 +15,14 @@ declare const hljs: Any;
 })
 export class SampleSixComponent implements OnInit, AfterViewInit {
     public sortByIdDirection: boolean = true;
-    public data: TableRow[] = [];
+    public data: PlainObject[] = [];
     public skipSort: boolean = false;
     constructor(public readonly dialog: MatDialog, private readonly cd: ChangeDetectorRef) {}
 
     public ngOnInit(): void {
         const rows: number = 10000;
         const cols: number = 50;
-        MocksGenerator.generator(rows, cols).then((data: TableRow[]): void => {
+        MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => {
             this.data = data;
             this.cd.detectChanges();
         });

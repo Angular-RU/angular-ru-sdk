@@ -6,8 +6,7 @@ import {
     OnInit,
     ViewEncapsulation
 } from '@angular/core';
-import { Any } from '@angular-ru/common/typings';
-import { TableRow } from '@angular-ru/ng-table-builder';
+import { Any, PlainObject } from '@angular-ru/common/typings';
 
 import { MocksGenerator } from '../../../../tests/helpers/utils/mocks-generator';
 
@@ -20,9 +19,9 @@ declare const hljs: Any;
     encapsulation: ViewEncapsulation.None
 })
 export class SampleTwelveComponent implements OnInit, AfterViewInit {
-    public data: TableRow[] = [];
+    public data: PlainObject[] = [];
 
-    public licences: TableRow[] = [
+    public licences: PlainObject[] = [
         {
             id: 1,
             name: 'single',
@@ -50,7 +49,7 @@ export class SampleTwelveComponent implements OnInit, AfterViewInit {
     public ngOnInit(): void {
         const rowNumber: number = 50;
         const colsNumber: number = 15;
-        MocksGenerator.generator(rowNumber, colsNumber).then((data: TableRow[]): void => {
+        MocksGenerator.generator(rowNumber, colsNumber).then((data: PlainObject[]): void => {
             this.data = data;
             this.cd.detectChanges();
         });

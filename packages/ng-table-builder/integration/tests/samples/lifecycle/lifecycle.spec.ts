@@ -1,4 +1,4 @@
-import { Any, Fn } from '@angular-ru/common/typings';
+import { Any, Fn, PlainObject } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { NgxColumnComponent, NgxTableViewChangesService, TableBuilderComponent } from '@angular-ru/ng-table-builder';
 import { ApplicationRef, ChangeDetectorRef, ElementRef, NgZone, QueryList, SimpleChanges } from '@angular/core';
@@ -15,10 +15,10 @@ import { UtilsService } from '../../../../src/services/utils/utils.service';
 import { TableSelectedItemsPipe } from '../../../../src/pipes/table-selected-items.pipe';
 
 describe('[TEST]: Lifecycle table', () => {
-    let table: TableBuilderComponent;
-    let sortable: SortableService;
-    let utils: UtilsService;
-    let draggable: DraggableService;
+    let table: TableBuilderComponent<PlainObject>;
+    let sortable: SortableService<PlainObject>;
+    let utils: UtilsService<PlainObject>;
+    let draggable: DraggableService<PlainObject>;
     let resizeService: ResizableService;
     let changes: SimpleChanges;
 
@@ -61,7 +61,7 @@ describe('[TEST]: Lifecycle table', () => {
         const view: NgxTableViewChangesService = new NgxTableViewChangesService();
         utils = new UtilsService(zone);
 
-        const parser: TemplateParserService = new TemplateParserService();
+        const parser: TemplateParserService<PlainObject> = new TemplateParserService();
         draggable = new DraggableService(parser);
 
         resizeService = new ResizableService();
@@ -213,7 +213,7 @@ describe('[TEST]: Lifecycle table', () => {
     }));
 
     it('should be correct template changes', fakeAsync(() => {
-        const templates: QueryList<NgxColumnComponent> = new QueryList();
+        const templates: QueryList<NgxColumnComponent<PlainObject>> = new QueryList();
         table.columnTemplates = templates;
         table.source = [];
 
@@ -253,7 +253,7 @@ describe('[TEST]: Lifecycle table', () => {
     }));
 
     it('should be correct template changes with check renderCount', fakeAsync(() => {
-        const templates: QueryList<NgxColumnComponent> = new QueryList();
+        const templates: QueryList<NgxColumnComponent<PlainObject>> = new QueryList();
         table.columnTemplates = templates;
         table.source = JSON.parse(JSON.stringify(data));
 
@@ -301,7 +301,7 @@ describe('[TEST]: Lifecycle table', () => {
     }));
 
     it('should be correct template changes query list', fakeAsync(() => {
-        const templates: QueryList<NgxColumnComponent> = new QueryList();
+        const templates: QueryList<NgxColumnComponent<PlainObject>> = new QueryList();
         table.columnTemplates = templates;
         table.source = [];
 

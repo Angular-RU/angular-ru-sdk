@@ -6,8 +6,8 @@ import {
     OnInit,
     ViewEncapsulation
 } from '@angular/core';
-import { Any } from '@angular-ru/common/typings';
-import { TableRow, TableUpdateSchema } from '@angular-ru/ng-table-builder';
+import { Any, PlainObject } from '@angular-ru/common/typings';
+import { TableUpdateSchema } from '@angular-ru/ng-table-builder';
 
 import { MocksGenerator } from '../../../../tests/helpers/utils/mocks-generator';
 
@@ -42,9 +42,9 @@ declare const hljs: Any;
     ]
 })
 export class SampleElevenComponent implements OnInit, AfterViewInit {
-    public data: TableRow[] = [];
+    public data: PlainObject[] = [];
 
-    public licences: TableRow[] = [
+    public licences: PlainObject[] = [
         {
             id: 1,
             name: 'single',
@@ -72,7 +72,7 @@ export class SampleElevenComponent implements OnInit, AfterViewInit {
     public ngOnInit(): void {
         const rows: number = 50;
         const cols: number = 15;
-        MocksGenerator.generator(rows, cols).then((data: TableRow[]): void => {
+        MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => {
             this.data = data;
             this.cd.detectChanges();
         });
@@ -88,11 +88,11 @@ export class SampleElevenComponent implements OnInit, AfterViewInit {
         });
     }
 
-    public exportExcel(data: TableRow[]): void {
+    public exportExcel(data: PlainObject[]): void {
         window.alert('export excel - ' + JSON.stringify(data));
     }
 
-    public showLine(key: string | null, item: TableRow | null): void {
+    public showLine(key: string | null, item: PlainObject | null): void {
         window.alert('key - ' + key + ' item - ' + JSON.stringify(item));
     }
 

@@ -1,13 +1,13 @@
 import { Directive, EmbeddedViewRef, Input, NgZone, OnDestroy, TemplateRef, ViewContainerRef } from '@angular/core';
 import { detectChanges } from '@angular-ru/common/utils';
 
-import { InternalVirtualRef, TableRow, VirtualContext, VirtualIndex } from '../interfaces/table-builder.external';
+import { InternalVirtualRef, VirtualContext, VirtualIndex } from '../interfaces/table-builder.external';
 
 @Directive({ selector: '[virtualFor][virtualForOf]' })
-export class VirtualForDirective implements OnDestroy {
+export class VirtualForDirective<T> implements OnDestroy {
     @Input() public virtualForDiffIndexes?: number[];
-    private cache: Map<number, InternalVirtualRef> = new Map();
-    private _source: TableRow[] = [];
+    private cache: Map<number, InternalVirtualRef<T>> = new Map();
+    private _source: T[] = [];
     private _indexes: VirtualIndex[] = [];
     private removeFrameId: number | null = null;
     private initFrameId: number | null = null;
@@ -15,12 +15,12 @@ export class VirtualForDirective implements OnDestroy {
 
     constructor(
         private readonly view: ViewContainerRef,
-        private readonly template: TemplateRef<VirtualContext>,
+        private readonly template: TemplateRef<VirtualContext<T>>,
         private readonly ngZone: NgZone
     ) {}
 
     @Input()
-    public set virtualForOriginSource(origin: TableRow[] | null | undefined) {
+    public set virtualForOriginSource(origin: T[] | null | undefined) {
         if (this._source !== origin) {
             this._source = origin ?? [];
             this.dirty = true;
@@ -42,7 +42,7 @@ export class VirtualForDirective implements OnDestroy {
         });
     }
 
-    private get sourceRef(): TableRow[] {
+    private get sourceRef(): T[] {
         return this._source || [];
     }
 
@@ -56,23 +56,26 @@ export class VirtualForDirective implements OnDestroy {
         (indexes || []).forEach((index: VirtualIndex): void => this.createEmbeddedViewByIndex(index));
     }
 
-    private createEmbeddedView(row: TableRow, index: VirtualIndex): void {
-        const viewRef: EmbeddedViewRef<VirtualContext> = this.view.createEmbeddedView<VirtualContext>(this.template, {
-            $implicit: row,
-            virtualIndex: index,
-            index: index.position
-        });
+    private createEmbeddedView(row: T, index: VirtualIndex): void {
+        const viewRef: EmbeddedViewRef<VirtualContext<T>> = this.view.createEmbeddedView<VirtualContext<T>>(
+            this.template,
+            {
+                $implicit: row,
+                virtualIndex: index,
+                index: index.position
+            }
+        );
 
         detectChanges(viewRef);
         this.cache.set(index.position, [row, viewRef]);
     }
 
     private createEmbeddedViewByIndex(index: VirtualIndex): void {
-        const row: TableRow = this.sourceRef[index.position];
-        const virtualRef: InternalVirtualRef | undefined = this.cache.get(index.position);
+        const row: T = this.sourceRef[index.position];
+        const virtualRef: InternalVirtualRef<T> | undefined = this.cache.get(index.position);
 
         if (virtualRef) {
-            const [oldRow, viewRef]: InternalVirtualRef = virtualRef;
+            const [oldRow, viewRef]: InternalVirtualRef<T> = virtualRef;
             if (row !== oldRow) {
                 const stackId: number = this.view.indexOf(viewRef);
                 this.view.remove(stackId);
@@ -95,9 +98,9 @@ export class VirtualForDirective implements OnDestroy {
     }
 
     private removeEmbeddedViewByIndex(index: number): void {
-        const ref: InternalVirtualRef | undefined = this.cache.get(index);
+        const ref: InternalVirtualRef<T> | undefined = this.cache.get(index);
         if (ref) {
-            const [, viewRefItem]: InternalVirtualRef = ref;
+            const [, viewRefItem]: InternalVirtualRef<T> = ref;
             const stackId: number = this.view.indexOf(viewRefItem);
             this.cache.delete(index);
 

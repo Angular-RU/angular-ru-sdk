@@ -1,7 +1,7 @@
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Any } from '@angular-ru/common/typings';
-import { NgxTableViewChangesService, TableRow, TableUpdateSchema } from '@angular-ru/ng-table-builder';
+import { Any, PlainObject } from '@angular-ru/common/typings';
+import { NgxTableViewChangesService, TableUpdateSchema } from '@angular-ru/ng-table-builder';
 import { Subscription } from 'rxjs';
 
 import { MocksGenerator } from '../../../../tests/helpers/utils/mocks-generator';
@@ -14,7 +14,7 @@ declare const hljs: Any;
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SampleSixteenComponent implements OnInit, AfterViewInit, OnDestroy {
-    public data: TableRow[] = [];
+    public data: PlainObject[] = [];
     public schema: TableUpdateSchema | null = null;
     public readonly testName: string = 'test';
     private sub: Subscription | null = null;
@@ -30,7 +30,7 @@ export class SampleSixteenComponent implements OnInit, AfterViewInit, OnDestroy 
         const rowNumber: number = 3;
         const colsNumber: number = 10;
 
-        MocksGenerator.generator(rowNumber, colsNumber).then((data: TableRow[]): void => {
+        MocksGenerator.generator(rowNumber, colsNumber).then((data: PlainObject[]): void => {
             this.data = data;
             this.cd.detectChanges();
         });

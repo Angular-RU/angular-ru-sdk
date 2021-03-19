@@ -34,9 +34,9 @@ import { NgxOptionsComponent } from './components/ngx-options/ngx-options.compon
 import { TABLE_GLOBAL_OPTIONS } from './config/table-global-options';
 import {
     ColumnsSchema,
+    ExcludePattern,
     OrderedField,
     ProduceDisableFn,
-    TableRow,
     TableUpdateSchema,
     ViewPortInfo
 } from './interfaces/table-builder.external';
@@ -52,23 +52,23 @@ import { SortableService } from './services/sortable/sortable.service';
 import { NgxTableViewChangesService } from './services/table-view-changes/ngx-table-view-changes.service';
 import { TemplateParserService } from './services/template-parser/template-parser.service';
 import { UtilsService } from './services/utils/utils.service';
-import { SCROLLBAR_SIZE } from './symbols';
+import { SCROLLBAR_SIZE } from './table-builder.properties';
 import { TableSortTypes } from './types/table-sort-types.type';
 
 const { ROW_HEIGHT, FILTER_DELAY_TIME, TIME_IDLE }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
 
 @Directive()
-export abstract class AbstractTableBuilderApiImpl
+export abstract class AbstractTableBuilderApiImpl<T>
     implements OnChanges, OnInit, AfterViewInit, AfterContentInit, AfterViewChecked, OnDestroy {
     @Input() public height: string | number | null = null;
     @Input() public width: string | number | null = null;
-    @Input() public source: TableRow[] | null = null;
+    @Input() public source: T[] | null = null;
     @Input() public keys: string[] = [];
     @Input() public striped: boolean = true;
     @Input() public name: string | null = null;
     @Input('skip-sort') public skipSort: boolean | string = false;
     @Input('sort-types') public sortTypes: TableSortTypes = null;
-    @Input('exclude-keys') public excludeKeys: (string | RegExp)[] = [];
+    @Input('exclude-keys') public excludeKeys: ExcludePattern<T>[] = [];
     @Input('auto-width') public autoWidth: boolean | string = false;
     @Input('auto-height') public autoHeightDetect: boolean = true;
     @Input('native-scrollbar') public nativeScrollbar: boolean = false;
@@ -76,20 +76,20 @@ export abstract class AbstractTableBuilderApiImpl
     @Input('vertical-border') public verticalBorder: boolean = true;
     @Input('enable-selection') public enableSelection: boolean | string = false;
     @Input('enable-filtering') public enableFiltering: boolean | string = false;
-    @Input('produce-disable-fn') public produceDisableFn: ProduceDisableFn = null;
+    @Input('produce-disable-fn') public produceDisableFn: ProduceDisableFn<T> = null;
     @Input('row-css-classes') public rowCssClasses: PlainObjectOf<string[]> = {};
     @Input('schema-columns') public schemaColumns: TableUpdateSchema | null = null;
     @Input('schema-version') public schemaVersion: number = 1;
     @Output() public afterRendered: EventEmitter<boolean> = new EventEmitter();
     @Output() public schemaChanges: EventEmitter<TableUpdateSchema> = new EventEmitter();
-    @Output() public onChanges: EventEmitter<TableRow[] | null> = new EventEmitter();
+    @Output() public onChanges: EventEmitter<T[] | null> = new EventEmitter();
     @Output() public sortChanges: EventEmitter<OrderedField[]> = new EventEmitter();
     @ContentChild(NgxOptionsComponent, { static: false })
     public columnOptions: NgxOptionsComponent | null = null;
     @ContentChildren(NgxColumnComponent)
-    public columnTemplates: QueryList<NgxColumnComponent> | null = null;
+    public columnTemplates: QueryList<NgxColumnComponent<T>> | null = null;
     @ContentChild(NgxContextMenuComponent, { static: false })
-    public contextMenuTemplate: NgxContextMenuComponent | null = null;
+    public contextMenuTemplate: NgxContextMenuComponent<T> | null = null;
     @ContentChild(NgxEmptyComponent, { read: ElementRef })
     public ngxEmptyContent: ElementRef | null = null;
     @ContentChild(NgxHeaderComponent, { static: false })
@@ -97,7 +97,7 @@ export abstract class AbstractTableBuilderApiImpl
     @ContentChild(NgxFooterComponent, { static: false })
     public footerTemplate: NgxFooterComponent | null = null;
     @ContentChild(NgxFilterComponent, { static: false })
-    public filterTemplate: NgxFilterComponent | null = null;
+    public filterTemplate: NgxFilterComponent<T> | null = null;
     @ViewChild('tableViewport', { static: true })
     public scrollContainer!: ElementRef<HTMLElement>;
     @ViewChildren('column', { read: false })
@@ -131,21 +131,21 @@ export abstract class AbstractTableBuilderApiImpl
     public isDragging: PlainObjectOf<boolean> = {};
     public accessDragging: boolean = false;
     public filteringRun: boolean = false;
-    public abstract readonly templateParser: TemplateParserService;
-    public abstract readonly selection: SelectionService;
-    public abstract readonly utils: UtilsService;
+    public abstract readonly templateParser: TemplateParserService<T>;
+    public abstract readonly selection: SelectionService<T>;
+    public abstract readonly utils: UtilsService<T>;
     public abstract readonly cd: ChangeDetectorRef;
     public abstract readonly resize: ResizableService;
-    public abstract readonly sortable: SortableService;
-    public abstract readonly contextMenu: ContextMenuService;
-    public abstract readonly filterable: FilterableService;
+    public abstract readonly sortable: SortableService<T>;
+    public abstract readonly contextMenu: ContextMenuService<T>;
+    public abstract readonly filterable: FilterableService<T>;
     public abstract readonly ngZone: NgZone;
-    protected originalSource: TableRow[] | null = null;
+    protected originalSource: T[] | null = null;
     protected renderedCountKeys: number | null = null;
     protected isDragMoving: boolean = false;
     protected abstract readonly app: ApplicationRef;
     protected abstract readonly viewChanges: NgxTableViewChangesService;
-    protected abstract readonly draggable: DraggableService;
+    protected abstract readonly draggable: DraggableService<T>;
     private filterIdTask: number | null = null;
     private idleDetectChangesId: number | null = null;
     private columnFrameId: number | null = null;
@@ -195,21 +195,19 @@ export abstract class AbstractTableBuilderApiImpl
      * avoid: {{ table.selectedItems.length  }}
      * recommendation: {{ table.selectionModel.size  }}
      */
-    public get selectedItems(): TableRow[] {
-        return this.sourceRef.filter(
-            (item: TableRow[]): TableRow => this.selectionModel.entries[(item as Any)[this.primaryKey]]
-        );
+    public get selectedItems(): T[] {
+        return this.sourceRef.filter((item: T): boolean => this.selectionModel.entries[(item as Any)[this.primaryKey]]);
     }
 
-    public get firstItem(): TableRow {
-        return this.sourceRef[0] || {};
+    public get firstItem(): T {
+        return this.sourceRef[0] || ({} as T);
     }
 
-    public get lastItem(): TableRow {
-        return this.sourceRef[this.sourceRef.length - 1] || {};
+    public get lastItem(): T {
+        return this.sourceRef[this.sourceRef.length - 1] || ({} as T);
     }
 
-    public get selectionModel(): SelectionMap {
+    public get selectionModel(): SelectionMap<T> {
         return this.selection.selectionModel;
     }
 
@@ -233,7 +231,7 @@ export abstract class AbstractTableBuilderApiImpl
         return this.sourceRef.length;
     }
 
-    public get sourceRef(): TableRow[] {
+    public get sourceRef(): T[] {
         return this.source && this.source.length ? this.source : [];
     }
 
@@ -363,7 +361,7 @@ export abstract class AbstractTableBuilderApiImpl
         });
     }
 
-    public abstract setSource(source: TableRow[]): void;
+    public abstract setSource(source: T[]): void;
 
     public abstract markDirtyCheck(): void;
 
@@ -444,7 +442,7 @@ export abstract class AbstractTableBuilderApiImpl
 
     private async recalculationSource(): Promise<void> {
         if (this.filterValueExist) {
-            const filter: FilterWorkerEvent = await this.filterable.filter(this.originalSource ?? []);
+            const filter: FilterWorkerEvent<T> = await this.filterable.filter(this.originalSource ?? []);
             this.source = await this.sortable.sort(filter.source);
             filter.fireSelection();
         } else if (this.notEmpty) {
@@ -477,7 +475,7 @@ export abstract class AbstractTableBuilderApiImpl
         return this.excludeKeys.length
             ? keys.filter(
                   (key: string): boolean =>
-                      !this.excludeKeys.some((excludeKey: string | RegExp): boolean =>
+                      !this.excludeKeys.some((excludeKey: ExcludePattern<T>): boolean =>
                           excludeKey instanceof RegExp ? !!key.match(excludeKey) : key === excludeKey
                       )
               )

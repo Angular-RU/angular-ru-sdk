@@ -26,7 +26,7 @@ const FILTER_MIN_TOP_Y: number = 50;
     encapsulation: ViewEncapsulation.None,
     animations: [fadeInLinearAnimation]
 })
-export class NgxFilterComponent extends AbstractModalViewLayer<FilterStateEvent> implements OnInit {
+export class NgxFilterComponent<T> extends AbstractModalViewLayer<T, FilterStateEvent> implements OnInit {
     @Input() public width: number = FILTER_WIDTH;
     @Input() public height: number | null = null;
     @Input('max-height') public maxHeight: number | null = null;

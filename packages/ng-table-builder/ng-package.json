@@ -3,6 +3,7 @@
     "lib": {
         "entryFile": "./src/public_api.ts",
         "umdModuleIds": {
+            "@angular-ru/common/array": "angular-ru-common-array",
             "@angular-ru/common/typings": "angular-ru-common-typings",
             "@angular-ru/common/utils": "angular-ru-common-utils",
             "@angular-ru/common/object": "angular-ru-common-object",

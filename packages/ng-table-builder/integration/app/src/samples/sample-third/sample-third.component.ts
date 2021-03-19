@@ -1,7 +1,6 @@
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Any } from '@angular-ru/common/typings';
-import { TableRow } from '@angular-ru/ng-table-builder';
+import { Any, PlainObject } from '@angular-ru/common/typings';
 
 import { MocksGenerator } from '../../../../tests/helpers/utils/mocks-generator';
 import { CodeDialogComponent } from '../../shared/dialog/code-dialog.component';
@@ -14,21 +13,22 @@ declare const hljs: Any;
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SampleThirdComponent implements OnInit, AfterViewInit {
-    public data: TableRow[] = [];
+    public data: PlainObject[] = [];
+
     constructor(public readonly dialog: MatDialog, private readonly cd: ChangeDetectorRef) {}
 
     public ngOnInit(): void {
         const rowNumber: number = 1000;
         const colsNumber: number = 59;
-        MocksGenerator.generator(rowNumber, colsNumber).then((data: TableRow[]): void => {
+        MocksGenerator.generator(rowNumber, colsNumber).then((data: PlainObject[]): void => {
             this.data = data;
             this.cd.detectChanges();
         });
     }
 
-    public disableFn(item: TableRow): boolean {
+    public disableFn(item: PlainObject | undefined | null): boolean {
         const everyFifth: number = 5;
-        return item.id % everyFifth === 0;
+        return item?.id % everyFifth === 0;
     }
 
     public ngAfterViewInit(): void {

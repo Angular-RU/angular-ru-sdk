@@ -1,6 +1,5 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component } from '@angular/core';
-import { Any } from '@angular-ru/common/typings';
-import { TableRow } from '@angular-ru/ng-table-builder';
+import { Any, PlainObject } from '@angular-ru/common/typings';
 
 declare const hljs: Any;
 
@@ -10,7 +9,7 @@ declare const hljs: Any;
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GuideComponent implements AfterViewInit {
-    public rowData: TableRow[] = [
+    public rowData: PlainObject[] = [
         { make: 'Toyota', model: 'Celica', price: 35000 },
         { make: 'Ford', model: 'Mondeo', price: 32000 },
         { make: 'Porsche', model: 'Boxter', price: 72000 }

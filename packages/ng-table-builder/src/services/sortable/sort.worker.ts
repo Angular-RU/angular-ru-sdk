@@ -1,10 +1,9 @@
 import { Any, PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
 
-import { TableRow } from '../../interfaces/table-builder.external';
 import { SortableMessage } from './sortable.interfaces';
 
 // eslint-disable-next-line max-lines-per-function
-export function sortWorker(message: SortableMessage): TableRow[] {
+export function sortWorker<T>(message: SortableMessage<T>): T[] {
     // eslint-disable-next-line
     enum OrderType {
         DESC = 'desc',
@@ -25,7 +24,7 @@ export function sortWorker(message: SortableMessage): TableRow[] {
     }
 
     class Sortable {
-        public static sortByKeys(data: TableRow[], keys: PlainObjectOf<OrderType>): Any[] {
+        public static sortByKeys(data: T[], keys: PlainObjectOf<OrderType>): Any[] {
             const countKeys: number = Object.keys(keys).length;
 
             if (!countKeys) {

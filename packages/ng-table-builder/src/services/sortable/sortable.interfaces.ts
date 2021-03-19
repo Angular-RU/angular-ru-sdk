@@ -1,8 +1,6 @@
 import { PlainObjectOf, SortOrderType } from '@angular-ru/common/typings';
 
-import { TableRow } from '../../interfaces/table-builder.external';
-
-export interface SortableMessage {
+export interface SortableMessage<T> {
     definition: PlainObjectOf<SortOrderType>;
-    source: TableRow[];
+    source: T[];
 }

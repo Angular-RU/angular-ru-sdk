@@ -1,6 +1,5 @@
 import { Fn, PlainObjectOf } from '@angular-ru/common/typings';
 
-import { TableRow } from '../../interfaces/table-builder.external';
 import { MousePosition } from '../../interfaces/table-builder.internal';
 
 export interface FilterGlobalOpts {
@@ -24,8 +23,8 @@ export enum TableFilterType {
     DOES_NOT_EQUAL = 'DOES_NOT_EQUAL'
 }
 
-export interface FilterableMessage {
-    source: TableRow[];
+export interface FilterableMessage<T> {
+    source: T[];
     types: typeof TableFilterType;
     global: FilterGlobalOpts | null;
     columns: FilterColumnsOpts | null;
@@ -42,8 +41,8 @@ export class FilterStateEvent {
     public position: MousePosition = { left: null, top: null };
 }
 
-export interface FilterWorkerEvent {
-    source: TableRow[];
+export interface FilterWorkerEvent<T> {
+    source: T[];
     fireSelection: Fn;
 }
 
