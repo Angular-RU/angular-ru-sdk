@@ -85,6 +85,7 @@ describe('[TEST] Ivy utils - check deep inheritance', () => {
     it('deep inheritance', async function (): Promise<void> {
         const component: MockComponent = componentFixture.componentInstance;
 
+        expect(component.ngZone.constructor).toBe(NgZone);
         expect(component.anotherService1).toEqual({ testField: 'test' });
         expect(component.anotherService2).toEqual({ testField: 'test' });
         expect(component.anotherService3).toEqual({ testField: 'test' });
