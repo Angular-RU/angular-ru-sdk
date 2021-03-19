@@ -1,3 +1,11 @@
+#### 15.164.0 (2021-03-19)
+
+##### New Features
+
+-   **@angular-ru/ng-table-builder:** TableBuilderComponent<T> required generic type, refactor some options
+    ([#489](https://github.com/Angular-RU/angular-ru-sdk/pull/489))
+    ([4648b66e](https://github.com/Angular-RU/angular-ru-sdk/commit/4648b66e826e2775d05fe1f13bbac53756616f4f))
+
 #### 15.163.0 (2021-03-19)
 
 ##### New Features
