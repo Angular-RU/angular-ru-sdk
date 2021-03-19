@@ -6,7 +6,6 @@ import { FeatureTestService, TestService } from './test-default';
 
 export function InjectTestService(): PropertyDecorator {
     return <T extends typeof Object.prototype>(prototypeRef: T, propertyKey: string | symbol): void => {
-        // console.log('prototypeRef', prototypeRef, 'prototypeRef.constructor', prototypeRef.constructor);
         useInjector(prototypeRef.constructor, (injector: Injector, instance: Any): void => {
             instance[propertyKey] = injector.get(TestService);
         });
