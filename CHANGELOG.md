@@ -1,3 +1,10 @@
+#### 15.166.1 (2021-03-22)
+
+##### Refactors
+
+-   added tests for validators
+    ([0bc4bae5](https://github.com/Angular-RU/angular-ru-sdk/commit/0bc4bae5dbd9fc845e6cc9ef661582b11960faa6))
+
 #### 15.166.0 (2021-03-22)
 
 ##### Build System / Dependencies
