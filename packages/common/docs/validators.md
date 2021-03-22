@@ -100,3 +100,27 @@ export class AppComponent {
     }
 }
 ```
+
+-   maxLengthIncludePreviousValueValidator
+
+```ts
+import { maxLengthIncludePreviousValueValidator } from '@angular-ru/common/validators';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Component } from '@angular/core';
+
+@Component()
+export class AppComponent {
+    private readonly exampleLengthLimit: number = 4000;
+    private readonly examplePreviousValue: string = 'previous value';
+
+    public form: FormGroup;
+
+    constructor(private readonly fb: FormBuilder) {
+        this.form = new FormGroup({
+            control: new FormControl(null, [
+                maxLengthIncludePreviousValueValidator(this.exampleLengthLimit, this.examplePreviousValue)
+            ])
+        });
+    }
+}
+```
