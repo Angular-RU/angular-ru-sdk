@@ -1,3 +1,15 @@
+#### 15.166.0 (2021-03-22)
+
+##### Build System / Dependencies
+
+-   **@angular-ru/ng-table-builder:** remove redundant path [ci skip]
+    ([32c1bf02](https://github.com/Angular-RU/angular-ru-sdk/commit/32c1bf02222457c208ae635aaa24d16b90c45406))
+
+##### New Features
+
+-   update dependency husky to v5.2.0 ([#491](https://github.com/Angular-RU/angular-ru-sdk/pull/491))
+    ([1a8beec7](https://github.com/Angular-RU/angular-ru-sdk/commit/1a8beec7753d853545ba7c472f275a2b96b4cfed))
+
 #### 15.165.0 (2021-03-19)
 
 ##### New Features
