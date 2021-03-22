@@ -167,7 +167,7 @@ export class TableBuilderComponent<T>
         if (this.nonIdenticalStructure) {
             this.preRenderTable();
         } else if (TableSimpleChanges.SOURCE_KEY in changes && this.isRendered) {
-            this.preSortAndFilterTable(changes);
+            this.preSortAndFilterTable();
         }
 
         if (TableSimpleChanges.SORT_TYPES in changes) {
@@ -334,9 +334,7 @@ export class TableBuilderComponent<T>
     }
 
     public setSource(source: T[]): void {
-        this.originalSource = source;
-        this.source = source;
-        this.selection.originRows = source;
+        this.originalSource = this.source = this.selection.rows = this.selection.originalRows = source;
     }
 
     protected calculateViewPortByRange({ start, end, bufferOffset, force }: CalculateRange): void {
@@ -520,8 +518,8 @@ export class TableBuilderComponent<T>
         return Math.ceil(this.scrollOffsetTop / this.clientRowHeight);
     }
 
-    private preSortAndFilterTable(changes: SimpleChanges = {}): void {
-        this.originalSource = changes[TableSimpleChanges.SOURCE_KEY].currentValue;
+    private preSortAndFilterTable(): void {
+        this.originalSource = this.source;
         this.sortAndFilter().then((): void => {
             this.reCheckDefinitions();
             this.checkSelectionValue();
@@ -534,7 +532,7 @@ export class TableBuilderComponent<T>
         this.customModelColumnsKeys = this.generateCustomModelColumnsKeys();
         this.modelColumnKeys = this.generateModelColumnKeys();
         this.originalSource = this.source;
-        this.selection.originRows = this.originalSource;
+        this.selection.originalRows = this.originalSource;
         const unDirty: boolean = !this.dirty;
 
         this.checkSelectionValue();

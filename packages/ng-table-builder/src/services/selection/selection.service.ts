@@ -17,7 +17,8 @@ export class SelectionService<T> implements OnDestroy {
     public selectionTaskIdle: number | null = null;
     public onChanges: Subject<void> = new Subject<void>();
     public selectionModeIsEnabled: boolean = false;
-    public originRows: T[] | null = null;
+    public originalRows: T[] | null = null;
+    public rows: T[] | null = null;
     private readonly handler: PlainObjectOf<Fn> = {};
 
     constructor(private readonly ngZone: NgZone) {}
@@ -37,7 +38,8 @@ export class SelectionService<T> implements OnDestroy {
     }
 
     public ngOnDestroy(): void {
-        this.originRows = null;
+        this.originalRows = null;
+        this.rows = null;
         this.unListenShiftKey();
     }
 
@@ -80,7 +82,7 @@ export class SelectionService<T> implements OnDestroy {
     }
 
     public selectRow(row: T, event: MouseEvent): void {
-        const rows: T[] = this.originRows ?? [];
+        const rows: T[] = this.rows ?? [];
         const { shiftKey, ctrlKey }: MouseEvent = event;
         const index: number = rows.findIndex(
             (item: T): boolean =>
@@ -135,7 +137,7 @@ export class SelectionService<T> implements OnDestroy {
         }
 
         this.selectionModel.isAll = isNil(allSize)
-            ? this.originRows?.length === this.selectionModel.size
+            ? this.originalRows?.length === this.selectionModel.size
             : allSize === this.selectionModel.size;
 
         this.selectionModel.generateImmutableEntries();
@@ -143,7 +145,7 @@ export class SelectionService<T> implements OnDestroy {
     }
 
     private multipleSelectByShiftKeydown(index: number): void {
-        const rows: T[] = this.originRows ?? [];
+        const rows: T[] = this.rows ?? [];
         this.selectionModel.clear();
         this.range.put(index);
         const selectedRange: boolean = this.range.selectedRange();

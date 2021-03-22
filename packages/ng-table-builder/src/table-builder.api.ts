@@ -251,16 +251,12 @@ export abstract class AbstractTableBuilderApiImpl<T>
         return this.enableSelection !== false;
     }
 
-    private get filterValueExist(): boolean {
+    private get shouldBeFiltered(): boolean {
         return this.filterable.filterValueExist && this.isEnableFiltering;
     }
 
-    private get notEmpty(): boolean {
-        return !this.sortable.empty && !!this.source;
-    }
-
-    private get notChanges(): boolean {
-        return this.sortable.empty && !this.filterable.filterValueExist;
+    private get shouldBeSorted(): boolean {
+        return this.sortable.notEmpty;
     }
 
     public recheckViewportChecked(): void {
@@ -320,7 +316,8 @@ export abstract class AbstractTableBuilderApiImpl<T>
     }
 
     public async sortAndFilter(): Promise<void> {
-        await this.recalculationSource();
+        await this.sortAndFilterOriginalSource();
+        this.selection.rows = this.source;
         this.onChanges.emit(this.sourceRef);
     }
 
@@ -403,14 +400,14 @@ export abstract class AbstractTableBuilderApiImpl<T>
     }
 
     /**
-     * @see TableBuilderApiImpl#customModelColumnsKeys for further information
+     * @see AbstractTableBuilderApiImpl#customModelColumnsKeys for further information
      */
     protected generateCustomModelColumnsKeys(): string[] {
         return this.excluding(this.keys);
     }
 
     /**
-     * @see TableBuilderApiImpl#modelColumnKeys for further information
+     * @see AbstractTableBuilderApiImpl#modelColumnKeys for further information
      */
     protected generateModelColumnKeys(): string[] {
         return this.excluding(this.getModelKeys());
@@ -440,17 +437,15 @@ export abstract class AbstractTableBuilderApiImpl<T>
 
     protected abstract updateViewportInfo(start: number, end: number): void;
 
-    private async recalculationSource(): Promise<void> {
-        if (this.filterValueExist) {
-            const filter: FilterWorkerEvent<T> = await this.filterable.filter(this.originalSource ?? []);
-            this.source = await this.sortable.sort(filter.source);
+    private async sortAndFilterOriginalSource(): Promise<void> {
+        this.source = this.originalSource ?? [];
+        if (this.shouldBeFiltered) {
+            const filter: FilterWorkerEvent<T> = await this.filterable.filter(this.source);
+            this.source = filter.source;
             filter.fireSelection();
-        } else if (this.notEmpty) {
-            this.source = await this.sortable.sort(this.originalSource ?? []);
         }
-
-        if (this.notChanges) {
-            this.source = this.originalSource;
+        if (this.shouldBeSorted) {
+            this.source = await this.sortable.sort(this.source);
         }
     }
 
