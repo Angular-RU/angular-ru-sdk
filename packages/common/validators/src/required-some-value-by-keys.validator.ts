@@ -6,7 +6,7 @@ import { checkValueIsFilled } from '@angular-ru/common/utils';
 
 import { assertFormGroup } from './utils/assert-form-group';
 
-const VALIDATOR_TYPE: string = 'requiredSomeValueByKeysValidator';
+const VALIDATOR_TYPE: string = 'requiredSomeValueByKeys';
 
 export function requiredSomeValueByKeysValidator<T>(keyList: (keyof T | string)[] = []): ValidatorFn {
     return (formGroup: AbstractControl): ValidationErrors | null => {
