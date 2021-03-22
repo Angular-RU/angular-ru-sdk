@@ -26,18 +26,18 @@ describe('[TEST]: requiredSomeValueByKeysValidator', () => {
         form.controls['aaa'].setValue(undefined);
         form.controls['bbb'].setValue(null);
         form.controls['ccc'].setValue(NaN);
-        expect(form.errors).toEqual({ requiredSomeValueByKeysValidator: true });
+        expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
     });
 
     it('should return error if all controls with no values: "", "null", Infinity', () => {
         form.controls['aaa'].setValue('');
         form.controls['bbb'].setValue(null);
         form.controls['ccc'].setValue(Infinity);
-        expect(form.errors).toEqual({ requiredSomeValueByKeysValidator: true });
+        expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
     });
 
     it('should return error if all controls with no values', () => {
-        expect(form.errors).toEqual({ requiredSomeValueByKeysValidator: true });
+        expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
     });
 
     it('should be valid if there is only one value with type number', () => {
@@ -87,13 +87,12 @@ describe('[TEST]: requiredSomeValueByKeysValidator, nesting: 2', () => {
     });
 
     it('should return error if nested control has no value', () => {
-        expect(form.errors).toEqual({ requiredSomeValueByKeysValidator: true });
+        expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
     });
 
     it('should be valid if nested control has a value', () => {
         const control: AbstractControl = form.get('ddd.eee') ?? new FormControl();
         control.setValue(1);
-        form.updateValueAndValidity();
         expect(form.valid).toEqual(true);
     });
 });
@@ -114,13 +113,12 @@ describe('[TEST]: requiredSomeValueByKeysValidator, nesting: 3', () => {
     });
 
     it('should return error if nested control has no value', () => {
-        expect(form.errors).toEqual({ requiredSomeValueByKeysValidator: true });
+        expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
     });
 
     it('should be valid if nested control has a value', () => {
         const control: AbstractControl = form.get('aaa.bbb.ccc') ?? new FormControl();
         control.setValue(1);
-        form.updateValueAndValidity();
         expect(form.valid).toEqual(true);
     });
 });
@@ -142,20 +140,18 @@ describe('[TEST]: requiredSomeValueByKeysValidator, single and nesting', () => {
     });
 
     it('should return error if nested control has no value', () => {
-        expect(form.errors).toEqual({ requiredSomeValueByKeysValidator: true });
+        expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
     });
 
     it('should be valid if nested control has a value', () => {
         const control: AbstractControl = form.get('aaa.bbb.ccc') ?? new FormControl();
         control.setValue(1);
-        form.updateValueAndValidity();
         expect(form.valid).toEqual(true);
     });
 
     it('should be valid if not nested control has no value', () => {
         const control: AbstractControl = form.get('ddd') ?? new FormControl();
         control.setValue(1);
-        form.updateValueAndValidity();
         expect(form.valid).toEqual(true);
     });
 
@@ -164,7 +160,6 @@ describe('[TEST]: requiredSomeValueByKeysValidator, single and nesting', () => {
         const control: AbstractControl = form.get('ddd') ?? new FormControl();
         nested.setValue(2);
         control.setValue(1);
-        form.updateValueAndValidity();
         expect(form.valid).toEqual(true);
     });
 
