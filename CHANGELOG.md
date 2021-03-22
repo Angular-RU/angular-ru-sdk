@@ -1,3 +1,11 @@
+#### 15.166.3 (2021-03-22)
+
+##### Bug Fixes
+
+-   **@angular-ru/common:** support deep inheritance (ivy)
+    ([#490](https://github.com/Angular-RU/angular-ru-sdk/pull/490))
+    ([dea4189b](https://github.com/Angular-RU/angular-ru-sdk/commit/dea4189b4daffa33f17e344fe06816941d9868e1))
+
 #### 15.166.2 (2021-03-22)
 
 ##### Bug Fixes
