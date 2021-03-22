@@ -1,3 +1,10 @@
+#### 15.166.2 (2021-03-22)
+
+##### Bug Fixes
+
+-   **ng-table-builder:** update rows in selection after sort or filter
+    ([2f56d790](https://github.com/Angular-RU/angular-ru-sdk/commit/2f56d79093f4aeb39c74718bbc3b2c60b7d48f51))
+
 #### 15.166.1 (2021-03-22)
 
 ##### Refactors
