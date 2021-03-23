@@ -18,6 +18,8 @@ export { HttpReplacerPipe } from './http-replacer/http-replacer.pipe';
 export { HttpReplacerPipeModule } from './http-replacer/http-replacer-pipe.module';
 export { IsArrayPipe } from './is-array/is-array.pipe';
 export { IsArrayPipeModule } from './is-array/is-array-pipe.module';
+export { IsNilPipe } from './is-nil/is-nil.pipe';
+export { IsNilPipeModule } from './is-nil/is-nil-pipe.module';
 export { IsNotNullPipe } from './is-not-null/is-not-null.pipe';
 export { IsNotNullPipeModule } from './is-not-null/is-not-null-pipe.module';
 export { IsObjectPipe } from './is-object/is-object.pipe';

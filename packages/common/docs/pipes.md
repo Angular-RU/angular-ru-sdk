@@ -99,6 +99,27 @@ export class AppComponent {
 }
 ```
 
+-   `IsNilPipe, IsNilPipeModule`
+
+```ts
+import { IsNilPipeModule } from '@angular-ru/common/pipes';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ..
+    imports: [IsNilPipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `{{ data | isNil }}` // true
+})
+export class AppComponent {
+    public data = null;
+}
+```
+
 -   `IsObjectPipe, IsObjectPipeModule`
 
 ```ts
