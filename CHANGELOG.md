@@ -1,3 +1,10 @@
+#### 15.169.0 (2021-03-23)
+
+##### New Features
+
+-   **@angular-ru/common:** add isNil pipe
+    ([fc8eab2b](https://github.com/Angular-RU/angular-ru-sdk/commit/fc8eab2b72effbde840ac32078e61b287618e29c))
+
 #### 15.168.0 (2021-03-23)
 
 ##### New Features
