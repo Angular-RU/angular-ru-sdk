@@ -37,3 +37,9 @@ it(`toMilliseconds`, () => {
     expect(toMilliseconds(new Date(0))).toEqual(0);
 });
 ```
+
+-   `getToday` - current date from `00:00`
+
+```ts
+getToday(); // type Date -> [12.01.2020 00:00]
+```

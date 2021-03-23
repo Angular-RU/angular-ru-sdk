@@ -1,4 +1,5 @@
 export { dateStringToDate } from './date-string-to-date';
+export { getToday } from './get-today';
 export { isDateValid } from './is-date-valid';
 export { isToday } from './is-today';
 export { SerialDateConfig, SerialDateFormatOptions } from './serial-date.interfaces';
