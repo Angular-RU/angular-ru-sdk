@@ -1,3 +1,10 @@
+#### 15.168.0 (2021-03-23)
+
+##### New Features
+
+-   **@angular-ru/common:** add getToday
+    ([01378d6d](https://github.com/Angular-RU/angular-ru-sdk/commit/01378d6dd8dfe8a50fda797f32ec8402b58a9f26))
+
 #### 15.167.0 (2021-03-22)
 
 ##### New Features
