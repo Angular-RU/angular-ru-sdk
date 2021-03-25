@@ -1,3 +1,1 @@
-export interface IdsMapOf<T extends { id: number }> {
-    [id: number]: T;
-}
+export type IdsMapOf<T extends { id: number }> = Record<number, T>;
