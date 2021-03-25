@@ -91,3 +91,60 @@ let number: Couple<number> = [1];
 let numbers: Couple<number> = [1, 2, 3];
 //                            ~~~~~~~~~
 ```
+
+-   `KeyOfList<T>`
+
+```ts
+class B {
+    c: string = '';
+}
+
+class A {
+    a: string = '';
+    b: B = new B();
+}
+
+const keys: KeyOfList<A> = ['a', 'b']; // output keys
+```
+
+-   `DeepKeyOfList<T>`
+
+```ts
+class B {
+    c: string = '';
+    etc: { f: string } = { f: '' };
+}
+
+class A {
+    a: string = '';
+    b: B = new B();
+}
+
+const keys: DeepKeyOfList<A> = ['a', 'b.c', 'b.etc.f']; // output keys
+```
+
+-   `Leaves<T>`
+
+`Leaves<T>[] === DeepKeyOfList<T>`
+
+-   `Paths<T>`
+
+```ts
+class B {
+    c: string = '';
+    etc: { f: string } = { f: '' };
+}
+
+class A {
+    a: string = '';
+    b: B = new B();
+}
+
+const paths: Paths<A>[] = ['a', 'b', 'b.c', 'b.etc', 'b.etc.f']; // output keys
+```
+
+also, you can:
+
+```ts
+const etc: Paths<A['b']['etc']> = 'f';
+```
