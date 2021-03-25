@@ -1,3 +1,10 @@
+#### 15.169.1 (2021-03-25)
+
+##### Bug Fixes
+
+-   **@angular-ru/common:** IdsMapOf<T> should be equals Record<number, T>
+    ([bc65b8c9](https://github.com/Angular-RU/angular-ru-sdk/commit/bc65b8c94c21275208f32ee08fafa984d276df56))
+
 #### 15.169.0 (2021-03-23)
 
 ##### New Features
