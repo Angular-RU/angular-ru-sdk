@@ -1,3 +1,10 @@
+#### 15.170.0 (2021-03-25)
+
+##### New Features
+
+-   **@angular-ru/common:** add KeyOfList<T>, DeepKeyOfList<T>, Paths<T> types
+    ([c8580f2d](https://github.com/Angular-RU/angular-ru-sdk/commit/c8580f2d3fffb77f9254bd2f17d16026bf015c85))
+
 #### 15.169.1 (2021-03-25)
 
 ##### Bug Fixes
