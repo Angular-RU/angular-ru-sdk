@@ -1,3 +1,26 @@
+#### 15.172.0 (2021-03-26)
+
+##### Chores
+
+-   update yarn.lock
+    ([f8959175](https://github.com/Angular-RU/angular-ru-sdk/commit/f89591759166ecaee77e49ef8c752a25dcc7ae03))
+-   update yarn.lock
+    ([9a5b29e6](https://github.com/Angular-RU/angular-ru-sdk/commit/9a5b29e63893adc9d5d39971ed1c71ba1b856a03))
+
+##### Documentation Changes
+
+-   update README.md
+    ([4610032d](https://github.com/Angular-RU/angular-ru-sdk/commit/4610032d612f85a429e6dc58dfec9ac432335df2))
+
+##### New Features
+
+-   **@angular-ru/build-tools:** remove instanbul as deprecated
+    ([aa665382](https://github.com/Angular-RU/angular-ru-sdk/commit/aa665382186af989d1631de4102606c39274187d))
+-   **@angular-ru/eslint-config:** add resolution
+    ([5f4f3a6f](https://github.com/Angular-RU/angular-ru-sdk/commit/5f4f3a6fefc9009f9cda091b11dd9898d26acea7))
+-   **@angular-ru/prettier:** add resolution
+    ([1d15eb29](https://github.com/Angular-RU/angular-ru-sdk/commit/1d15eb2925d6e87907acd4b9cb86f5cefd1ffb38))
+
 #### 15.171.0 (2021-03-26)
 
 ##### New Features
