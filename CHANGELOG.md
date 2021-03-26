@@ -1,3 +1,10 @@
+#### 15.171.0 (2021-03-26)
+
+##### New Features
+
+-   update dependencies ([#499](https://github.com/Angular-RU/angular-ru-sdk/pull/499))
+    ([17b53136](https://github.com/Angular-RU/angular-ru-sdk/commit/17b531368eef19ce157b05c8f32c8e4824fad41d))
+
 #### 15.170.0 (2021-03-25)
 
 ##### New Features
