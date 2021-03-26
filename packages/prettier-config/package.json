@@ -24,6 +24,9 @@
         "prettier.config.js",
         "README.md"
     ],
+    "resolutions": {
+        "prettier": "2.2.1"
+    },
     "dependencies": {
         "prettier": "2.2.1"
     },
