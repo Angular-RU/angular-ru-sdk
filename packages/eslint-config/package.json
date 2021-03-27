@@ -26,7 +26,7 @@
         "test": "sh test.sh"
     },
     "resolutions": {
-        "eslint": "7.22.0"
+        "eslint": "7.23.0"
     },
     "dependencies": {
         "@angular-eslint/eslint-plugin": "2.0.2",
@@ -35,7 +35,7 @@
         "@types/eslint": "7.2.7",
         "@typescript-eslint/eslint-plugin": "4.19.0",
         "@typescript-eslint/parser": "4.19.0",
-        "eslint": "7.22.0",
+        "eslint": "7.23.0",
         "eslint-config-import": "0.13.0",
         "eslint-import-resolver-typescript": "2.4.0",
         "eslint-plugin-import": "2.22.1",
