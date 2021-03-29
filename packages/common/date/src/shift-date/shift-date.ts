@@ -1,7 +1,9 @@
-import { Interval } from './interval.interface';
+import { DateShiftDescriptor } from './date-shift-descriptor.interface';
 
 // eslint-disable-next-line complexity
-export function shiftDate(interval: Interval, date: Date = new Date()): Date {
+export function shiftDate(interval: DateShiftDescriptor, inputDate: Date = new Date()): Date {
+    const date: Date = new Date(inputDate);
+
     const years: number = date.getFullYear() + (interval.years || 0);
     const months: number = date.getMonth() + (interval.months || 0);
     const days: number = date.getDate() + (interval.days || 0);

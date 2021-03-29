@@ -4,7 +4,7 @@ export { getToday } from './get-today';
 export { isDateValid } from './is-date-valid';
 export { isToday } from './is-today';
 export { SerialDateConfig, SerialDateFormatOptions } from './serial-date.interfaces';
-export { Interval } from './shift-date/interval.interface';
+export { DateShiftDescriptor } from './shift-date/date-shift-descriptor.interface';
 export { shiftDate } from './shift-date/shift-date';
 export { startOfDay } from './start-of-day';
 export { toFormat } from './to-format';
