@@ -1,3 +1,10 @@
+#### 15.174.0 (2021-03-29)
+
+##### New Features
+
+-   **@angular-ru/tooltip:** add ngx-tooltip-text.interceptor.ts
+    ([61108e4f](https://github.com/Angular-RU/angular-ru-sdk/commit/61108e4ffa2b65cba10de0f299876c4c0d868d9b))
+
 #### 15.173.0 (2021-03-27)
 
 ##### Build System / Dependencies
