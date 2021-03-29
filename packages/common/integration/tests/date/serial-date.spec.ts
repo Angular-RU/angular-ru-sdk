@@ -10,7 +10,7 @@ import {
 
 const isoFormat: string = 'yyyy-MM-dd HH:mm:ss';
 
-xdescribe('[TEST]: Date', (): void => {
+describe('[TEST]: Date', (): void => {
     it('should be correct date pipe', (): void => {
         const dateTime: number = 1544532097434;
         expect(
