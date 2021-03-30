@@ -1,3 +1,5 @@
+export { BracePipe } from './brace/brace.pipe';
+export { BracePipeModule } from './brace/brace-pipe.module';
 export { DateToNativePipe } from './date-to-native/date-to-native.pipe';
 export { DateToNativePipeModule } from './date-to-native/date-to-native-pipe.module';
 export { DeepPathPipe } from './deep-path/deep-path.pipe';
