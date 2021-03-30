@@ -1,3 +1,10 @@
+#### 15.176.1 (2021-03-30)
+
+##### Bug Fixes
+
+-   fixed a bug in the context menu for Chrome v.67
+    ([fa75128b](https://github.com/Angular-RU/angular-ru-sdk/commit/fa75128b53ba3adc293f8e1505551615897258fd))
+
 #### 15.176.0 (2021-03-30)
 
 ##### New Features
