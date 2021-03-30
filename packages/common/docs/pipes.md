@@ -561,3 +561,27 @@ export class AppComponent {
     public transformer: JoinMapTransformer<{ a: number }> = (item: { a: number }): string => item.a.toString(2);
 }
 ```
+
+`BracePipe, BracePipeModule`
+
+```ts
+import { BracePipeModule } from '@angular-ru/common/pipes';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ..
+    imports: [BracePipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `
+        <span>Edit selected records {{ count | brace }}</span>
+        <!--Edit selected records (42)-->
+    `
+})
+export class AppComponent {
+    public count: number = 42;
+}
+```
