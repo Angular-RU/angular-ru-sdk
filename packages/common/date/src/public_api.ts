@@ -10,6 +10,7 @@ export { startOfDay } from './start-of-day';
 export { toFormat } from './to-format';
 export { toFormatDateTime } from './to-format-date-time';
 export { toISOString } from './to-iso-string';
+export { toISOStringWithoutTimezone } from './to-iso-string-without-timezone';
 export { toMilliseconds } from './to-millisecond';
 export { toPrettyFormat } from './to-pretty-format';
 export { toTimestamp } from './to-timestamp';

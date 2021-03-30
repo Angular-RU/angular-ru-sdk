@@ -1,21 +1,39 @@
-import { endOfDay } from '@angular-ru/common/date';
+import { toISOStringWithoutTimezone } from '../../../../common/date/src/to-iso-string-without-timezone';
+import { endOfDay } from '../../../../common/date/src/end-of-day';
 
 describe('[TEST]: EndOfDay', (): void => {
+    const timezoneOffSet: number = new Date().getTimezoneOffset();
+    console.log(timezoneOffSet);
     describe('set date to end of day', (): void => {
-        it('should correctly parse "2021-03-29T00:00:00.000Z"', (): void => {
+        it('should correctly convert "2021-03-29T00:00:00.000Z"', (): void => {
             const someDate: Date = new Date('2021-03-29T00:00:00.000Z');
             const expectDate: Date = endOfDay(someDate);
-            expect(expectDate.valueOf()).toBe(1617051599999);
+            const withoutTimezone: string = toISOStringWithoutTimezone(expectDate);
+            if (timezoneOffSet <= 0) {
+                expect(withoutTimezone).toBe('2021-03-29T23:59:59.999');
+            } else {
+                expect(withoutTimezone).toBe('2021-03-28T23:59:59.999');
+            }
         });
-        it('should correctly parse "2021-03-29T10:10:10.100Z"', (): void => {
-            const someDate: Date = new Date('2021-03-29T10:10:10.100Z');
+        it('should correctly convert "2021-03-29T23:00:00.000Z"', (): void => {
+            const someDate: Date = new Date('2021-03-29T23:00:00.000Z');
             const expectDate: Date = endOfDay(someDate);
-            expect(expectDate.valueOf()).toBe(1617051599999);
+            const withoutTimezone: string = toISOStringWithoutTimezone(expectDate);
+            if (timezoneOffSet <= -60) {
+                expect(withoutTimezone).toBe('2021-03-30T23:59:59.999');
+            } else {
+                expect(withoutTimezone).toBe('2021-03-29T23:59:59.999');
+            }
         });
-        it('should correctly parse "2021-03-29T23:59:59.999Z"', (): void => {
+        it('should correctly convert "2021-03-29T23:59:59.999Z"', (): void => {
             const someDate: Date = new Date('2021-03-29T23:59:59.999Z');
             const expectDate: Date = endOfDay(someDate);
-            expect(expectDate.valueOf()).toBe(1617137999999);
+            const withoutTimezone: string = toISOStringWithoutTimezone(expectDate);
+            if (timezoneOffSet < 0) {
+                expect(withoutTimezone).toBe('2021-03-30T23:59:59.999');
+            } else {
+                expect(withoutTimezone).toBe('2021-03-29T23:59:59.999');
+            }
         });
     });
 });
