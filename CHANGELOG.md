@@ -1,3 +1,12 @@
+#### 15.175.0 (2021-03-30)
+
+##### New Features
+
+-   update dependency husky to v6 ([#503](https://github.com/Angular-RU/angular-ru-sdk/pull/503))
+    ([f59974c7](https://github.com/Angular-RU/angular-ru-sdk/commit/f59974c71d8349bf18d7dbd3f5b77bffb2ec9f41))
+-   update ESLint to v4.20.0 ([#504](https://github.com/Angular-RU/angular-ru-sdk/pull/504))
+    ([8008f3c4](https://github.com/Angular-RU/angular-ru-sdk/commit/8008f3c417a9d2124d0f981b25014dfd8104b8ed))
+
 #### 15.174.0 (2021-03-29)
 
 ##### New Features
