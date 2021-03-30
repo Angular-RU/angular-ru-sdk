@@ -1,3 +1,18 @@
+#### 15.177.0 (2021-03-30)
+
+##### New Features
+
+-   **@angular-ru/tooltip:** add half number function
+    ([458d942d](https://github.com/Angular-RU/angular-ru-sdk/commit/458d942dc0d5edd56b84dce35617e3aab813d767))
+
+##### Other Changes
+
+-   **@angular-ru/tooltip:**
+    -   add half number function
+        ([4c06f53c](https://github.com/Angular-RU/angular-ru-sdk/commit/4c06f53c91c32b3c4a45e5e75bf31d2060651741))
+    -   add half number function
+        ([c91b7ef3](https://github.com/Angular-RU/angular-ru-sdk/commit/c91b7ef38b846961b4262d061c600f5c0bc0a1f5))
+
 #### 15.176.1 (2021-03-30)
 
 ##### Bug Fixes
