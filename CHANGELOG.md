@@ -1,3 +1,10 @@
+#### 15.176.0 (2021-03-30)
+
+##### New Features
+
+-   **@angular-ru/common/pipes:** add brace pipe
+    ([4c358e18](https://github.com/Angular-RU/angular-ru-sdk/commit/4c358e18aefb3a1ccaa68e79f6e1b73276d137c6))
+
 #### 15.175.0 (2021-03-30)
 
 ##### New Features
