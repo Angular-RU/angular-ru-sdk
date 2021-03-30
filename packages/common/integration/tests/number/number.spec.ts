@@ -30,6 +30,9 @@ describe('[TEST]: Number', () => {
         expect(half(-2)).toEqual(-1);
         expect(half(1)).toEqual(0.5);
         expect(half(-3)).toEqual(-1.5);
+        expect(half(-0.5)).toEqual(-0.25);
+        expect(half(4.1)).toEqual(2.05);
+        expect(half(3)).toEqual(2.1);
         expect(half(Infinity)).toEqual(Infinity);
         expect(half(-Infinity)).toEqual(-Infinity);
         expect(half(NaN)).toEqual(NaN);
