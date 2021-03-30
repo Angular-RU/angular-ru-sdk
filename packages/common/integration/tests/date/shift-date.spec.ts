@@ -1,4 +1,4 @@
-import { shiftDate } from '../../../../common/date/src/shift-date/shift-date';
+import { shiftDate } from '@angular-ru/common/date';
 
 describe('[TEST]: ShiftDate', (): void => {
     const someDate: Date = new Date('2021-03-20T00:00:00.000Z');

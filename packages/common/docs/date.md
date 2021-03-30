@@ -66,3 +66,16 @@ it('should correctly shift date', (): void => {
     expect(expectDate.getMilliseconds()).toBe(8);
 });
 ```
+
+```ts
+import { toISOStringWithoutTimezone } from '@angular-ru/common/date';
+
+const timezoneOffSet: number = new Date().getTimezoneOffset();
+it('should correctly parse "2020-01-01T00:00:00.000Z"', (): void => {
+    const someDate: Date = new Date('2020-01-01T00:00:00.000Z');
+    const expectDate: string = toISOStringWithoutTimezone(someDate);
+    if (timezoneOffSet === -180) {
+        expect(expectDate).toBe('2020-01-01T03:00:00.000');
+    }
+});
+```

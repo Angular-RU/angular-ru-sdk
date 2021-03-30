@@ -1,4 +1,4 @@
-import { toISOStringWithoutTimezone } from '../../../../common/date/src/to-iso-string-without-timezone';
+import { toISOStringWithoutTimezone } from '@angular-ru/common/date';
 
 describe('[TEST]: toISOStringWithoutTimezone', (): void => {
     const timezoneOffSet: number = new Date().getTimezoneOffset();
