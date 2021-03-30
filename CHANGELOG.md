@@ -1,3 +1,33 @@
+#### 15.176.1 (2021-03-30)
+
+##### Bug Fixes
+
+-   fixed a bug in the context menu for Chrome v.67
+    ([fa75128b](https://github.com/Angular-RU/angular-ru-sdk/commit/fa75128b53ba3adc293f8e1505551615897258fd))
+
+#### 15.176.0 (2021-03-30)
+
+##### New Features
+
+-   **@angular-ru/common/pipes:** add brace pipe
+    ([4c358e18](https://github.com/Angular-RU/angular-ru-sdk/commit/4c358e18aefb3a1ccaa68e79f6e1b73276d137c6))
+
+#### 15.175.0 (2021-03-30)
+
+##### New Features
+
+-   update dependency husky to v6 ([#503](https://github.com/Angular-RU/angular-ru-sdk/pull/503))
+    ([f59974c7](https://github.com/Angular-RU/angular-ru-sdk/commit/f59974c71d8349bf18d7dbd3f5b77bffb2ec9f41))
+-   update ESLint to v4.20.0 ([#504](https://github.com/Angular-RU/angular-ru-sdk/pull/504))
+    ([8008f3c4](https://github.com/Angular-RU/angular-ru-sdk/commit/8008f3c417a9d2124d0f981b25014dfd8104b8ed))
+
+#### 15.174.0 (2021-03-29)
+
+##### New Features
+
+-   **@angular-ru/tooltip:** add ngx-tooltip-text.interceptor.ts
+    ([61108e4f](https://github.com/Angular-RU/angular-ru-sdk/commit/61108e4ffa2b65cba10de0f299876c4c0d868d9b))
+
 #### 15.173.0 (2021-03-27)
 
 ##### Build System / Dependencies
