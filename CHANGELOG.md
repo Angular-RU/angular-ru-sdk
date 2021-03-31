@@ -1,3 +1,37 @@
+#### 15.179.0 (2021-03-31)
+
+##### Documentation Changes
+
+-   updated release notes and package versions [ci skip]
+    ([11599eb9](https://github.com/Angular-RU/angular-ru-sdk/commit/11599eb91dfbd20fda11c53d564479fb63591713))
+-   updated release notes and package versions [ci skip]
+    ([d2eb57cd](https://github.com/Angular-RU/angular-ru-sdk/commit/d2eb57cd3e9ed9006dbbbcd2d178c6a212b886d5))
+-   updated release notes and package versions [ci skip]
+    ([f926681f](https://github.com/Angular-RU/angular-ru-sdk/commit/f926681fdf4fbbf0062822c8762f7cf8f4acc4d5))
+
+##### New Features
+
+-   added tests for date converters
+    ([90316553](https://github.com/Angular-RU/angular-ru-sdk/commit/9031655333e84fe0e667f8267ef70442eeb394f0))
+-   changed documentation of date converters
+    ([636fd1fd](https://github.com/Angular-RU/angular-ru-sdk/commit/636fd1fdc44452f8b40d21a50682e32b5a1f50cb))
+-   added date converters
+    ([c78d5a9b](https://github.com/Angular-RU/angular-ru-sdk/commit/c78d5a9b40a333b9c530ebd0944d71623c75da0d))
+
+##### Bug Fixes
+
+-   added documentation for date parser 'toISOStringWithoutTimezone'
+    ([ca5e0e33](https://github.com/Angular-RU/angular-ru-sdk/commit/ca5e0e33c2c2f2faf72ee670456ccd4e4a5bbd6b))
+-   uncommitted tests
+    ([b937c4ef](https://github.com/Angular-RU/angular-ru-sdk/commit/b937c4ef06fe38249e1b0d7dcbb54e655ea1fe2a))
+-   changed tests for date converters
+    ([ca53b746](https://github.com/Angular-RU/angular-ru-sdk/commit/ca53b746f8a4bb30b717acbc24d1893d4e82272f))
+
+##### Refactors
+
+-   **common/date:** changes after review
+    ([fd436e95](https://github.com/Angular-RU/angular-ru-sdk/commit/fd436e9569a1bb81411177ed4041001d26a7c203))
+
 #### 15.178.0 (2021-03-31)
 
 ##### New Features
