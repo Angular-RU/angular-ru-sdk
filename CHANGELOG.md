@@ -1,3 +1,10 @@
+#### 15.178.0 (2021-03-31)
+
+##### New Features
+
+-   update dependency @types/eslint to v7.2.8 ([#509](https://github.com/Angular-RU/angular-ru-sdk/pull/509))
+    ([4d3826ae](https://github.com/Angular-RU/angular-ru-sdk/commit/4d3826ae5e5510cf2732c63e33c8f3ab964f46d8))
+
 #### 15.177.0 (2021-03-30)
 
 ##### New Features
