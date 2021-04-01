@@ -13,35 +13,32 @@ import { InputBoolean } from '@angular-ru/common/typings';
 class ChildComponent {
     @AttributeBoolean() @Input() public prop1: InputBoolean; // === true
     @Input() public prop2: InputBoolean; // === '', while ('' == false)
-    @AttributeBoolean() @Input() public prop3: InputBoolean; // === true
+    @AttributeBoolean() @Input() public prop3: InputBoolean; // === false
     @AttributeBoolean() @Input() public prop4: InputBoolean; // === true
-    @AttributeBoolean() @Input() public prop5: InputBoolean; // === false
+    @AttributeBoolean() @Input() public prop5: InputBoolean; // === true
+    @AttributeBoolean() @Input() public prop6: InputBoolean; // === false
 
-    private _prop6: string;
-    @AttributeBoolean()
-    @Input()
-    public set prop6(value: InputBoolean) {
-        this._prop6 = `prop6: ${value}`;
-    }
-
-    public get prop6(): InputBoolean {
-        // === 'prop6: true - from getter'
-        return this._prop6 ? `${this._prop6} - from getter` : undefined;
-    }
-
-    // order doesn't matter in all cases
-    @Input()
-    @AttributeBoolean()
-    public set hookProp(value: InputBoolean) {
-        this.handleProp(value);
-    }
-
-    public prop7Calls: boolean[] = []; // === [true]
+    private _prop7: string;
     @AttributeBoolean()
     @Input()
     public set prop7(value: InputBoolean) {
+        this._prop6 = `prop7: ${value}`;
+    }
+
+    public get prop7(): InputBoolean {
+        // === 'prop7: true - from getter'
+        return this._prop7 ? `${this._prop7} - from getter` : undefined;
+    }
+
+    // order doesn't matter in all cases
+    public prop8Calls: boolean[] = []; // === [true]
+    @AttributeBoolean()
+    @Input()
+    public set prop8(value: InputBoolean) {
         this.hookCalls.push(value as boolean);
     }
+
+    @AttributeBoolean() @Input() public prop9: InputBoolean; // === false
 }
 
 @Component({
@@ -49,15 +46,18 @@ class ChildComponent {
     template: ` <child-component
         prop1
         prop2
-        [prop3]="someTruthy"
-        [prop4]="emptyString"
-        [prop5]="someAnotherFalsy"
-        prop6
+        [prop3]="falseString"
+        [prop4]="someAnotherTruthy"
+        [prop5]="emptyString"
+        [prop6]="someAnotherFalsy"
         prop7
+        prop8
+        prop9="false"
     ></child-component>`
 })
 class HostComponent {
-    public someTruthy: Any = {};
+    public falseString: string = 'false';
+    public someAnotherTruthy: Any = {};
     public emptyString: string = '';
     public someAnotherFalsy: Any = null;
 }

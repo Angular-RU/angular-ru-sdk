@@ -41,6 +41,7 @@ describe('[TEST]: Attribute boolean', () => {
             <child-component #noProp></child-component>
             <child-component #emptyStringProp prop=""></child-component>
             <child-component #filledStringProp prop="val"></child-component>
+            <child-component #falseStringProp prop="false"></child-component>
             <child-component #dynamicProp [prop]="propValue"></child-component>
             <child-component #setterProp propWithSetter></child-component>
             <child-component #hookProp hookProp></child-component>
@@ -52,6 +53,7 @@ describe('[TEST]: Attribute boolean', () => {
         @ViewChild('noProp') public noPropRef!: ChildComponent;
         @ViewChild('emptyStringProp') public emptyStringPropRef!: ChildComponent;
         @ViewChild('filledStringProp') public filledStringPropRef!: ChildComponent;
+        @ViewChild('falseStringProp') public falseStringPropRef!: ChildComponent;
         @ViewChild('dynamicProp') public dynamicPropRef!: ChildComponent;
         @ViewChild('setterProp') public setterPropRef!: ChildComponent;
         @ViewChild('hookProp') public hookPropRef!: ChildComponent;
@@ -76,44 +78,22 @@ describe('[TEST]: Attribute boolean', () => {
         expect(host.noPropRef.prop).toBe(false);
         expect(host.emptyStringPropRef.prop).toBe(true);
         expect(host.filledStringPropRef.prop).toBe(true);
+        expect(host.falseStringPropRef.prop).toBe(false);
         expect(host.setterPropRef._propWithSetter).toBe('propWithSetter: true');
         expect(host.setterPropRef.propWithSetter).toBe('propWithSetter: true - from getter');
         expect(host.setterPropRef.prop).toBe(false);
         expect(host.hookPropRef.hookCalls).toEqual([true]);
 
-        host.propValue = false;
-        hostFixture.detectChanges();
-        expect(host.dynamicPropRef.prop).toBe(false);
+        const inputs = [false, true, '', ' ', 'val', 'false', {}, 0, undefined, null];
+        const expectingValues = [false, true, true, true, true, false, true, false, false, false];
+        const receivedValues: InputBoolean[] = inputs.map((input) => {
+            host.propValue = input;
+            hostFixture.detectChanges();
+            return host.dynamicPropRef.prop;
+        });
 
-        host.propValue = true;
-        hostFixture.detectChanges();
-        expect(host.dynamicPropRef.prop).toBe(true);
-
-        host.propValue = '';
-        hostFixture.detectChanges();
-        expect(host.dynamicPropRef.prop).toBe(true);
-
-        host.propValue = ' ';
-        hostFixture.detectChanges();
-        expect(host.dynamicPropRef.prop).toBe(true);
-
-        host.propValue = 'val';
-        hostFixture.detectChanges();
-        expect(host.dynamicPropRef.prop).toBe(true);
-
-        host.propValue = 0;
-        hostFixture.detectChanges();
-        expect(host.dynamicPropRef.prop).toBe(false);
-
-        host.propValue = undefined;
-        hostFixture.detectChanges();
-        expect(host.dynamicPropRef.prop).toBe(false);
-
-        host.propValue = null;
-        hostFixture.detectChanges();
-        expect(host.dynamicPropRef.prop).toBe(false);
-
-        expect(host.dynamicSetterPropRef.hookCalls).toEqual([false, true, true, true, true, false, false, false]);
+        expect(expectingValues).toEqual(receivedValues);
+        expect(expectingValues).toEqual(host.dynamicSetterPropRef.hookCalls);
         expect(host.dynamicSetterPropRef._propWithSetter).toBe('propWithSetter: false');
         expect(host.dynamicSetterPropRef.propWithSetter).toBe('propWithSetter: false - from getter');
     });
