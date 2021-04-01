@@ -11,6 +11,7 @@ export { Descriptor } from './descriptor';
 export { EmptyValue } from './empty-value';
 export { Fn } from './fn';
 export { Immutable, Mutable, PrimitiveType } from './immutability';
+export { InputBoolean } from './input-boolean';
 export { Join } from './join';
 export { KeyOfList } from './key-of-list';
 export { KeyValueComparator } from './key-value-comparator';
