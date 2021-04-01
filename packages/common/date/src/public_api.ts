@@ -1,3 +1,4 @@
+export { DateRange } from './date-range.interface';
 export { dateStringToDate } from './date-string-to-date';
 export { endOfDay } from './end-of-day';
 export { getToday } from './get-today';
