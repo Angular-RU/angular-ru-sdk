@@ -1,3 +1,35 @@
+#### 15.181.0 (2021-04-01)
+
+##### Continuous Integration
+
+-   update lerna.json
+    ([34c2f2c2](https://github.com/Angular-RU/angular-ru-sdk/commit/34c2f2c27621b24f85164b0032e98c2eef5ecbea))
+
+##### Documentation Changes
+
+-   updated release notes and package versions [ci skip]
+    ([cf5288f4](https://github.com/Angular-RU/angular-ru-sdk/commit/cf5288f41da8614ebef47a72d824c3982334c1f5))
+
+##### New Features
+
+-   **@angular-ru/common:**
+    -   add DateRange interface ([#511](https://github.com/Angular-RU/angular-ru-sdk/pull/511))
+        ([ba0a6edb](https://github.com/Angular-RU/angular-ru-sdk/commit/ba0a6edbdca23c56c173f3444edc686dd48f96ef))
+    -   add decorator AttributeBoolean
+        ([c9903ef8](https://github.com/Angular-RU/angular-ru-sdk/commit/c9903ef8f57b8ee4b854b2c2b4be961317ce6055))
+
+##### Other Changes
+
+-   **@angular-ru/common:**
+    -   add decorator AttributeBoolean
+        ([722c763d](https://github.com/Angular-RU/angular-ru-sdk/commit/722c763d6bb2c19e97f0cfeed58c730f1ee341a6))
+    -   add decorator AttributeBoolean
+        ([f0e1f8e0](https://github.com/Angular-RU/angular-ru-sdk/commit/f0e1f8e0464cd8c01c4becca7d2138278191702c))
+-   update lerna.json
+    ([53abc4c1](https://github.com/Angular-RU/angular-ru-sdk/commit/53abc4c1b822f06a25b89593faef654949e0386c))
+-   skip non selected files for commit"
+    ([29123ed4](https://github.com/Angular-RU/angular-ru-sdk/commit/29123ed4ff85164dc24a25792b4693ca9d5c35bf))
+
 #### 15.179.0 (2021-03-31)
 
 ##### Documentation Changes
