@@ -23,7 +23,7 @@
             "npmClient": "npm",
             "force-publish": "*",
             "conventionalCommits": true,
-            "message": "docs: updated release notes and package versions [ci skip]",
+            "message": "!fixup updated release notes and package versions [ci skip]",
             "registry": "https://registry.npmjs.org",
             "ignoreChanges": [
                 "node_modules",
