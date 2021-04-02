@@ -1,10 +1,20 @@
+import { Any, PlainObject } from '@angular-ru/common/typings';
+
 import { IdsMapOf } from '../typings/ids-map-of';
 
-export function createIdsMapOf<T extends { id: number }>(entities: T[]): IdsMapOf<T> {
-    const map: IdsMapOf<T> = {};
+export function createIdsMapOf<T extends PlainObject, K extends keyof T = 'id'>(
+    entities: T[],
+    primaryKey: keyof T = 'id' as Any
+): IdsMapOf<T, K> {
+    const map: IdsMapOf<T, K> = {} as IdsMapOf<T, K>;
 
     for (const entity of entities) {
-        map[entity.id] = entity;
+        if (entity.hasOwnProperty(primaryKey)) {
+            const keyId: T[K] = entity[primaryKey] as T[K];
+            map[keyId] = entity;
+        } else {
+            throw new Error(`The current entity doesn't have primaryKey - ${primaryKey}.`);
+        }
     }
 
     return map;
