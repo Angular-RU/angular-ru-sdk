@@ -117,7 +117,7 @@ export class AppComponent {}
 -   `SplitStringDirective, SplitStringModule`
 
 ```ts
-import { SplitStringModule } from '@angular-ru/common/directives';
+import { SplitStringModule, SplitStringOptions } from '@angular-ru/common/directives';
 import { Component, NgModule } from '@angular/core';
 
 @NgModule({
