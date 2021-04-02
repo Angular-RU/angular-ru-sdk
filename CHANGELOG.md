@@ -1,3 +1,10 @@
+#### 15.184.0 (2021-04-02)
+
+##### New Features
+
+-   **@angular-ru/common:** add SplitString directive ([#512](https://github.com/Angular-RU/angular-ru-sdk/pull/512))
+    ([1ed1a1d0](https://github.com/Angular-RU/angular-ru-sdk/commit/1ed1a1d057b3dc115be605f8a56ef0a408c0e55a))
+
 #### 15.183.0 (2021-04-02)
 
 ##### New Features
