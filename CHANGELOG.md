@@ -1,3 +1,10 @@
+#### 15.183.0 (2021-04-02)
+
+##### New Features
+
+-   **@angular-ru/common:** support custom primaryKey in idsMapOf
+    ([0f6a8e2f](https://github.com/Angular-RU/angular-ru-sdk/commit/0f6a8e2f77bfc25816c92e096f658b81df338c32))
+
 #### 15.182.0 (2021-04-02)
 
 ##### New Features
