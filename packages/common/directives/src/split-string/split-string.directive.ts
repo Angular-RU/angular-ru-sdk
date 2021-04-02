@@ -1,0 +1,33 @@
+import { Directive, Input } from '@angular/core';
+import { ControlValueInterceptor } from '@angular-ru/common/forms';
+import { trim } from '@angular-ru/common/string';
+import { checkValueIsFilled } from '@angular-ru/common/utils';
+
+import { SplitStringOptions } from './split-string-options.interface';
+
+@Directive({
+    selector: '[splitString]',
+    providers: [ControlValueInterceptor]
+})
+export class SplitStringDirective {
+    @Input() public splitOptions?: Partial<SplitStringOptions>;
+    private defaultSplitOptions: SplitStringOptions = {
+        separator: /[,;\n]/g,
+        joinWith: ', '
+    };
+
+    constructor(interceptor: ControlValueInterceptor) {
+        interceptor.attach({
+            toModelValue: (viewValue: string): string[] => this.splitAndTrimViewValue(viewValue),
+            toViewValue: (modelValue: string[] | string): string =>
+                Array.isArray(modelValue)
+                    ? modelValue.join(this.splitOptions?.joinWith ?? this.defaultSplitOptions.joinWith)
+                    : modelValue
+        });
+    }
+
+    private splitAndTrimViewValue(viewValue: string): string[] {
+        const separator: string | RegExp = this.splitOptions?.separator ?? this.defaultSplitOptions.separator;
+        return viewValue.split(separator).map(trim).filter(checkValueIsFilled) as string[];
+    }
+}
