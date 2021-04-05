@@ -39,7 +39,6 @@ import { SelectionService } from './services/selection/selection.service';
 import { SortableService } from './services/sortable/sortable.service';
 import { NgxTableViewChangesService } from './services/table-view-changes/ngx-table-view-changes.service';
 import { TemplateParserService } from './services/template-parser/template-parser.service';
-import { UtilsService } from './services/utils/utils.service';
 
 const { TIME_IDLE, TIME_RELOAD, FRAME_TIME, MACRO_TIME }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
 
@@ -78,7 +77,6 @@ export class TableBuilderComponent<T>
     public readonly selection: SelectionService<T>;
     public readonly templateParser: TemplateParserService<T>;
     public readonly ngZone: NgZone;
-    public readonly utils: UtilsService<T>;
     public readonly resize: ResizableService;
     public readonly sortable: SortableService<T>;
     public readonly contextMenu: ContextMenuService<T>;
@@ -99,7 +97,6 @@ export class TableBuilderComponent<T>
         this.selection = injector.get<SelectionService<T>>(SelectionService);
         this.templateParser = injector.get<TemplateParserService<T>>(TemplateParserService);
         this.ngZone = injector.get<NgZone>(NgZone);
-        this.utils = injector.get<UtilsService<T>>(UtilsService);
         this.resize = injector.get<ResizableService>(ResizableService);
         this.sortable = injector.get<SortableService<T>>(SortableService);
         this.contextMenu = injector.get<ContextMenuService<T>>(ContextMenuService);
@@ -265,9 +262,12 @@ export class TableBuilderComponent<T>
 
     public render(): void {
         this.contentCheck = false;
-        this.utils
-            .macrotaskInZone((): void => this.renderTable(), TIME_IDLE)
-            .then((): void => this.idleDetectChanges());
+        this.ngZone.run((): void => {
+            window.setTimeout((): void => {
+                this.renderTable();
+                this.idleDetectChanges();
+            }, TIME_IDLE);
+        });
     }
 
     public renderTable(): void {
@@ -293,12 +293,13 @@ export class TableBuilderComponent<T>
         if (key) {
             this.recheckViewportChecked();
             this.templateParser.toggleColumnVisibility(key);
-            this.utils
-                .requestAnimationFrame((): void => {
+            this.ngZone.runOutsideAngular((): void => {
+                window.requestAnimationFrame((): void => {
                     this.changeSchema();
                     this.recheckViewportChecked();
-                })
-                .then((): void => detectChanges(this.cd));
+                    detectChanges(this.cd);
+                });
+            });
         }
     }
 

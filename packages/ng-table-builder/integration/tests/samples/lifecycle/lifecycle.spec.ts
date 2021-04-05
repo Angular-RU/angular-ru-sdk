@@ -11,13 +11,11 @@ import { ResizableService } from '../../../../src/services/resizer/resizable.ser
 import { SelectionService } from '../../../../src/services/selection/selection.service';
 import { SortableService } from '../../../../src/services/sortable/sortable.service';
 import { TemplateParserService } from '../../../../src/services/template-parser/template-parser.service';
-import { UtilsService } from '../../../../src/services/utils/utils.service';
 import { TableSelectedItemsPipe } from '../../../../src/pipes/table-selected-items.pipe';
 
 describe('[TEST]: Lifecycle table', () => {
     let table: TableBuilderComponent<PlainObject>;
     let sortable: SortableService<PlainObject>;
-    let utils: UtilsService<PlainObject>;
     let draggable: DraggableService<PlainObject>;
     let resizeService: ResizableService;
     let changes: SimpleChanges;
@@ -59,7 +57,6 @@ describe('[TEST]: Lifecycle table', () => {
         const zone: NgZone = mockNgZone as NgZone;
         const app: ApplicationRef = appRef as ApplicationRef;
         const view: NgxTableViewChangesService = new NgxTableViewChangesService();
-        utils = new UtilsService(zone);
 
         const parser: TemplateParserService<PlainObject> = new TemplateParserService();
         draggable = new DraggableService(parser);
@@ -76,8 +73,6 @@ describe('[TEST]: Lifecycle table', () => {
                         return parser;
                     case NgZone:
                         return zone;
-                    case UtilsService:
-                        return utils;
                     case ResizableService:
                         return resizeService;
                     case SortableService:
@@ -94,8 +89,6 @@ describe('[TEST]: Lifecycle table', () => {
                                         return app;
                                     case WebWorkerThreadService:
                                         return worker;
-                                    case UtilsService:
-                                        return utils;
                                     case NgZone:
                                         return zone;
                                 }

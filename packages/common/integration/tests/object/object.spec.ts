@@ -15,6 +15,7 @@ import {
     sortByDesc
 } from '@angular-ru/common/object';
 import { Any, PlainObject } from '@angular-ru/common/typings';
+import { pathsOfObject } from '../../../object/src/paths-of-object';
 
 describe('[TEST]: Object', () => {
     interface A {
@@ -371,5 +372,30 @@ describe('[TEST]: Object', () => {
         expect(isIterable(0)).toBe(false);
         expect(isIterable(true)).toBe(false);
         expect(isIterable(() => {})).toBe(false);
+    });
+
+    it('should correct return paths of object', () => {
+        const row: PlainObject = {
+            a: 1,
+            b: {
+                c: 2,
+                d: {
+                    e: 3
+                },
+                g: [1, 2, 3]
+            }
+        };
+
+        expect(pathsOfObject(row)).toEqual(['a', 'b.c', 'b.d.e', 'b.g']);
+
+        class Person {
+            constructor(public name: string, public city: string) {}
+        }
+
+        // @ts-ignore
+        Person.prototype['age'] = 25;
+        const willem: Person = new Person('Willem', 'Groningen');
+
+        expect(pathsOfObject(willem)).toEqual(['name', 'city']);
     });
 });

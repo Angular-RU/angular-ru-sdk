@@ -13,6 +13,7 @@ import {
     downloadFile
 } from '@angular-ru/common/utils';
 import { ChangeDetectorRef } from '@angular/core';
+import { checkValueIsFilled } from '../../../dist/library/utils';
 import { FileToDownloadInfo } from '../../../dist/library/utils/download-file';
 
 describe('[TEST]: Common utils', () => {
@@ -43,6 +44,18 @@ describe('[TEST]: Common utils', () => {
         expect(checkValueIsEmpty(NaN)).toEqual(true);
         expect(checkValueIsEmpty(undefined)).toEqual(true);
         expect(checkValueIsEmpty(null)).toEqual(true);
+    });
+
+    it('is filled value', () => {
+        expect(checkValueIsFilled(null)).toEqual(false);
+        expect(checkValueIsFilled(NaN)).toEqual(false);
+        expect(checkValueIsFilled(Infinity)).toEqual(false);
+        expect(checkValueIsFilled(undefined)).toEqual(false);
+        expect(checkValueIsFilled('    ')).toEqual(false);
+        expect(checkValueIsFilled(false)).toEqual(true);
+        expect(checkValueIsFilled(true)).toEqual(true);
+        expect(checkValueIsFilled(0)).toEqual(true);
+        expect(checkValueIsFilled('x')).toEqual(true);
     });
 
     it('detect changes invoked three times', () => {
