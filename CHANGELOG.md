@@ -1,3 +1,10 @@
+#### 15.186.0 (2021-04-08)
+
+##### New Features
+
+-   added util for filtering array 'unique'
+    ([59510ea5](https://github.com/Angular-RU/angular-ru-sdk/commit/59510ea5c87575483467926ac399172110cc0b60))
+
 #### 15.185.0 (2021-04-08)
 
 ##### New Features
