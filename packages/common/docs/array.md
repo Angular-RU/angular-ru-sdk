@@ -113,6 +113,12 @@ expect(
 ]);
 ```
 
+-   `unique`
+
+```ts
+expect([a, a, 'a', 13, 13, '13'].filter(unique)).toEqual([a, 'a', 13, '13']);
+```
+
 -   `partition`
 
 ```ts

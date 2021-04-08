@@ -7,5 +7,6 @@ export { isSingleList } from './is-single-list';
 export { partition } from './partition';
 export { secondItem } from './second-item';
 export { thirdItem } from './third-item';
+export { unique } from './unique';
 export { uniqueArrayOf } from './unique-array-of';
 export { updateArray } from './update-array';
