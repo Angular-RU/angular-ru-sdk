@@ -2,7 +2,6 @@ import { endOfDay, toISOStringWithoutTimezone } from '@angular-ru/common/date';
 
 describe('[TEST]: EndOfDay', (): void => {
     const timezoneOffSet: number = new Date().getTimezoneOffset();
-    console.log(timezoneOffSet);
     describe('set date to end of day', (): void => {
         it('should correctly convert "2021-03-29T00:00:00.000Z"', (): void => {
             const someDate: Date = new Date('2021-03-29T00:00:00.000Z');

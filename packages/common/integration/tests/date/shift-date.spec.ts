@@ -2,7 +2,6 @@ import { shiftDate } from '@angular-ru/common/date';
 
 describe('[TEST]: ShiftDate', (): void => {
     const someDate: Date = new Date('2021-03-20T00:00:00.000Z');
-    console.log(someDate.toISOString());
     it('should correctly shift date', (): void => {
         const expectDate: Date = shiftDate(
             {
