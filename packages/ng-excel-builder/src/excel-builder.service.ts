@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { toFormatDateTime } from '@angular-ru/common/date';
 import { Any, PlainObject } from '@angular-ru/common/typings';
+import { downloadFile } from '@angular-ru/common/utils';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 
 import { ExcelWorkbook } from './excel-builder.interfaces';
@@ -9,15 +10,6 @@ import { ExcelWorkbook } from './excel-builder.interfaces';
 @Injectable()
 export class ExcelBuilderService {
     constructor(public webWorker: WebWorkerThreadService) {}
-
-    public static downloadFile(fileBlob: Blob, fileName: string): void {
-        const anchor: HTMLAnchorElement = document.createElement('a');
-        const url: string = window.URL.createObjectURL(fileBlob);
-        anchor.href = url;
-        anchor.download = `${fileName}.${toFormatDateTime()}.xls`;
-        anchor.click();
-        window.URL.revokeObjectURL(url);
-    }
 
     // eslint-disable-next-line max-lines-per-function
     public exportExcelByWorkbook(workbook: ExcelWorkbook): void {
@@ -250,8 +242,8 @@ export class ExcelBuilderService {
                 return new Blob([UTF8, template], { type: 'application/vnd.ms-excel;charset=UTF-8' });
             }, workbook)
             .then((blob: Blob): void => {
-                const fileName: string = workbook.filename;
-                ExcelBuilderService.downloadFile(blob, fileName);
+                const name: string = `${workbook.filename}.${toFormatDateTime()}`;
+                downloadFile({ blob, name, extension: 'xls' });
             });
     }
 }

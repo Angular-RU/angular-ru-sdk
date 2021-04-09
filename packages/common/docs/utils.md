@@ -2,6 +2,10 @@
 
 -   `detectChanges(cds: ChangeDetectorRef | ChangeDetectorRef[])` - run detect changes if view reference not destroyed.
 
+-   `downloadFile(file: FileToDownloadInfo)` - download file setting
+    source([Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob) or
+    [File](https://developer.mozilla.org/en-US/docs/Web/API/File)), name and extension (such as 'xls', 'txt' etc.).
+
 -   `$any(val)`
 
 ```ts
