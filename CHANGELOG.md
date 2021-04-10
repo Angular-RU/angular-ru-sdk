@@ -1,3 +1,10 @@
+#### 15.188.0 (2021-04-10)
+
+##### New Features
+
+-   update dependency @types/karma to v6.3.0 ([#520](https://github.com/Angular-RU/angular-ru-sdk/pull/520))
+    ([f12826fe](https://github.com/Angular-RU/angular-ru-sdk/commit/f12826fe4d42ba606d8968c318205e1554427da0))
+
 #### 15.187.0 (2021-04-10)
 
 ##### Build System / Dependencies
