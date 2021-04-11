@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, ContentChild, Input, ViewEncapsulat
 
 import { TemplateBodyTdDirective } from '../../directives/rows/template-body-td.directive';
 import { TemplateHeadThDirective } from '../../directives/rows/template-head-th.directive';
-import { ColumnOptions } from '../common/column-options';
+import { ColumnOptionsDirective } from '../common/column-options.directive';
 
 @Component({
     selector: 'ngx-column',
@@ -10,7 +10,7 @@ import { ColumnOptions } from '../common/column-options';
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })
-export class NgxColumnComponent<T> extends ColumnOptions {
+export class NgxColumnComponent<T> extends ColumnOptionsDirective {
     @Input() public key: string | null = null;
     @Input() public stub: string | null = '-';
     @Input('sticky') public stickyLeft: boolean | string = false;

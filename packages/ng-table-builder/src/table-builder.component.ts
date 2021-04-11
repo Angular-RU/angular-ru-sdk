@@ -25,6 +25,7 @@ import { detectChanges, isNil, isNotNil } from '@angular-ru/common/utils';
 import { EMPTY, fromEvent, Observable, Subject } from 'rxjs';
 import { catchError, takeUntil } from 'rxjs/operators';
 
+import { AbstractTableBuilderApiDirective } from './abstract-table-builder-api.directive';
 import { NgxColumnComponent } from './components/ngx-column/ngx-column.component';
 import { TABLE_GLOBAL_OPTIONS } from './config/table-global-options';
 import { CalculateRange, ColumnsSchema } from './interfaces/table-builder.external';
@@ -39,7 +40,6 @@ import { SortableService } from './services/sortable/sortable.service';
 import { NgxTableViewChangesService } from './services/table-view-changes/ngx-table-view-changes.service';
 import { TemplateParserService } from './services/template-parser/template-parser.service';
 import { UtilsService } from './services/utils/utils.service';
-import { AbstractTableBuilderApiImpl } from './table-builder.api';
 
 const { TIME_IDLE, TIME_RELOAD, FRAME_TIME, MACRO_TIME }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
 
@@ -61,7 +61,7 @@ const { TIME_IDLE, TIME_RELOAD, FRAME_TIME, MACRO_TIME }: typeof TABLE_GLOBAL_OP
     animations: [fadeInLinearAnimation]
 })
 export class TableBuilderComponent<T>
-    extends AbstractTableBuilderApiImpl<T>
+    extends AbstractTableBuilderApiDirective<T>
     implements OnChanges, OnInit, AfterContentInit, AfterViewInit, AfterViewChecked, OnDestroy {
     public dirty: boolean = true;
     public rendering: boolean = false;

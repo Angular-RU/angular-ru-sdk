@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { Any } from '@angular-ru/common/typings';
 import { ExcelService } from '@angular-ru/ng-excel-builder';
 import { TranslateService } from '@ngx-translate/core';
@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {

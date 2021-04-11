@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 
-import { ColumnOptions } from '../common/column-options';
+import { ColumnOptionsDirective } from '../common/column-options.directive';
 
 @Component({
     selector: 'ngx-options',
@@ -8,4 +8,4 @@ import { ColumnOptions } from '../common/column-options';
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })
-export class NgxOptionsComponent extends ColumnOptions {}
+export class NgxOptionsComponent extends ColumnOptionsDirective {}

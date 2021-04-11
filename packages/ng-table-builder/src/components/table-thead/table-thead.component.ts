@@ -26,8 +26,8 @@ export class TableTheadComponent<T> {
         | ReadonlyMap<unknown, unknown> = {};
     @Input('client-row-height') public clientRowHeight: number | null = null;
     @Input('column-schema') public columnSchema: ColumnsSchema | null = null;
-    @Output() public resize: EventEmitter<ResizeEvent> = new EventEmitter();
-    @Output() public sortByKey: EventEmitter<string> = new EventEmitter();
+    @Output() public readonly resizing: EventEmitter<ResizeEvent> = new EventEmitter();
+    @Output() public readonly sortByKey: EventEmitter<string> = new EventEmitter();
     public orderType: typeof SortOrderType = SortOrderType;
     public limit: number = OVERLOAD_WIDTH_TABLE_HEAD_CELL;
 

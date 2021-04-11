@@ -58,7 +58,7 @@ import { TableSortTypes } from './types/table-sort-types.type';
 const { ROW_HEIGHT, FILTER_DELAY_TIME, TIME_IDLE }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
 
 @Directive()
-export abstract class AbstractTableBuilderApiImpl<T>
+export abstract class AbstractTableBuilderApiDirective<T>
     implements OnChanges, OnInit, AfterViewInit, AfterContentInit, AfterViewChecked, OnDestroy {
     @Input() public height: string | number | null = null;
     @Input() public width: string | number | null = null;
@@ -80,10 +80,12 @@ export abstract class AbstractTableBuilderApiImpl<T>
     @Input('row-css-classes') public rowCssClasses: PlainObjectOf<string[]> = {};
     @Input('schema-columns') public schemaColumns: TableUpdateSchema | null = null;
     @Input('schema-version') public schemaVersion: number = 1;
-    @Output() public afterRendered: EventEmitter<boolean> = new EventEmitter();
-    @Output() public schemaChanges: EventEmitter<TableUpdateSchema> = new EventEmitter();
-    @Output() public onChanges: EventEmitter<T[] | null> = new EventEmitter();
-    @Output() public sortChanges: EventEmitter<OrderedField[]> = new EventEmitter();
+    @Output() public readonly afterRendered: EventEmitter<boolean> = new EventEmitter();
+    @Output() public readonly schemaChanges: EventEmitter<TableUpdateSchema> = new EventEmitter();
+    // TODO: should be rename (breaking changes)
+    // eslint-disable-next-line @angular-eslint/no-output-on-prefix
+    @Output() public readonly onChanges: EventEmitter<T[] | null> = new EventEmitter();
+    @Output() public readonly sortChanges: EventEmitter<OrderedField[]> = new EventEmitter();
     @ContentChild(NgxOptionsComponent, { static: false })
     public columnOptions: NgxOptionsComponent | null = null;
     @ContentChildren(NgxColumnComponent)
@@ -400,14 +402,14 @@ export abstract class AbstractTableBuilderApiImpl<T>
     }
 
     /**
-     * @see AbstractTableBuilderApiImpl#customModelColumnsKeys for further information
+     * @see AbstractTableBuilderApiDirective#customModelColumnsKeys for further information
      */
     protected generateCustomModelColumnsKeys(): string[] {
         return this.excluding(this.keys);
     }
 
     /**
-     * @see AbstractTableBuilderApiImpl#modelColumnKeys for further information
+     * @see AbstractTableBuilderApiDirective#modelColumnKeys for further information
      */
     protected generateModelColumnKeys(): string[] {
         return this.excluding(this.getModelKeys());

@@ -17,6 +17,7 @@ export class TestDirective {
     constructor(public ngZone: NgZone) {}
 }
 
+// eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
 @Component({
     selector: 'test-component',
     template: `
@@ -57,6 +58,7 @@ export class FeatureTestService {
     constructor(public ngZone: NgZone) {}
 }
 
+// eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
 @Component({
     selector: 'feature-test-component',
     template: ''

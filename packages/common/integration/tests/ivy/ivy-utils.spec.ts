@@ -12,7 +12,7 @@ import {
     TestDirective,
     TestService
 } from './helpers/test-default';
-import { ExtendingTestComponent, TestStairsC } from './helpers/test-extending';
+import { ExtendingTestComponent, TestStairsComponent } from './helpers/test-extending';
 import { TestTokenComponent, TestTokenService } from './helpers/test-token';
 
 describe('[TEST]: Ivy utils', (): void => {
@@ -92,8 +92,8 @@ describe('[TEST]: Ivy utils', (): void => {
     });
 
     it('should work useInjector with component 3-level extending chain', async function (): Promise<void> {
-        const testStairsComponentFixture: ComponentFixture<TestStairsC> = TestBed.createComponent(TestStairsC);
-        const component: TestStairsC = testStairsComponentFixture.componentInstance;
+        const testStairsComponentFixture: ComponentFixture<TestStairsComponent> = TestBed.createComponent(TestStairsComponent);
+        const component: TestStairsComponent = testStairsComponentFixture.componentInstance;
 
         expect(component.featureTestService.constructor).toBe(FeatureTestService);
         expect(component.featureTestService.testService.testField).toBe('test');

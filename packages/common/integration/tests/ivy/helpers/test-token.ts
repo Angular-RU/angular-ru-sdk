@@ -17,6 +17,7 @@ export class TestTokenService {
     constructor(public ngZone: NgZone) {}
 }
 
+// eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
 @Component({
     selector: 'test-token',
     template: '',
