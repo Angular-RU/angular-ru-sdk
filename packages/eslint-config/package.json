@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/eslint-config",
-    "version": "15.185.0",
+    "version": "15.187.0",
     "description": "Angular-RU package",
     "keywords": [
         "angular-ru",
@@ -26,16 +26,16 @@
         "test": "sh test.sh"
     },
     "resolutions": {
-        "eslint": "7.23.0"
+        "eslint": "7.24.0"
     },
     "dependencies": {
-        "@angular-eslint/eslint-plugin": "2.0.2",
-        "@angular-eslint/eslint-plugin-template": "2.0.2",
-        "@angular-eslint/template-parser": "2.0.2",
-        "@types/eslint": "7.2.8",
+        "@angular-eslint/eslint-plugin": "2.1.0",
+        "@angular-eslint/eslint-plugin-template": "2.1.0",
+        "@angular-eslint/template-parser": "2.1.0",
+        "@types/eslint": "7.2.9",
         "@typescript-eslint/eslint-plugin": "4.21.0",
         "@typescript-eslint/parser": "4.21.0",
-        "eslint": "7.23.0",
+        "eslint": "7.24.0",
         "eslint-config-import": "0.13.0",
         "eslint-import-resolver-typescript": "2.4.0",
         "eslint-plugin-import": "2.22.1",
