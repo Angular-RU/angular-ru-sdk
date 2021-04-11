@@ -92,7 +92,9 @@ describe('[TEST]: Ivy utils', (): void => {
     });
 
     it('should work useInjector with component 3-level extending chain', async function (): Promise<void> {
-        const testStairsComponentFixture: ComponentFixture<TestStairsComponent> = TestBed.createComponent(TestStairsComponent);
+        const testStairsComponentFixture: ComponentFixture<TestStairsComponent> = TestBed.createComponent(
+            TestStairsComponent
+        );
         const component: TestStairsComponent = testStairsComponentFixture.componentInstance;
 
         expect(component.featureTestService.constructor).toBe(FeatureTestService);
