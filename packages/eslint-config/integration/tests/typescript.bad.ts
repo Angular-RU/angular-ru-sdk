@@ -345,4 +345,10 @@ export class FooEtc {
 export class EtcModule {}
 
 const etc: MyEtc = new MyEtc();
+
 console.error(etc.ngOnInit());
+
+const bool: boolean = true;
+
+// Prefer named exports
+export default bool;

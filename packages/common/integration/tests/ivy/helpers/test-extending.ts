@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { ApplicationRef, Component, Directive, Injectable, NgZone } from '@angular/core';
 
 import { InjectFeatureTestService, InjectNgZone, InjectTestService } from './test-decorators';

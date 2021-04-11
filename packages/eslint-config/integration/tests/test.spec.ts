@@ -84,6 +84,7 @@ describe('[TEST]: Eslint', (): void => {
         expect(bad.includes('Declaring ngDoCheck and ngOnChanges method in a class is not recommended')).toEqual(true);
         expect(bad.includes('Avoid using `forwardRef`')).toEqual(true);
         expect(bad.includes('The output property should not be named or renamed as a native event')).toEqual(true);
+        expect(bad.includes('Prefer named exports')).toEqual(true);
     });
 
     it('check success files', (): void => {

@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { ChangeDetectionStrategy, Component, EventEmitter, Injectable, Input, OnInit, Output } from '@angular/core';
 import { Any } from '@angular-ru/common/typings';
 import { BaseUrl, RequestBody, RestClient } from '@angular-ru/http/decorators';

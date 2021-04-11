@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { ApplicationRef, Component, Injectable, NgZone } from '@angular/core';
 
 import { COMPONENT_TOKEN, MODULE_TOKEN, SERVICE_TOKEN } from './injection-tokens';

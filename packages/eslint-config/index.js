@@ -101,7 +101,7 @@ module.exports = {
                         before: true
                     }
                 ],
-                'max-classes-per-file': 'off',
+                'max-classes-per-file': ['error', 1],
                 'max-depth': ['error', 4],
                 'max-len': [
                     'error',
@@ -149,7 +149,9 @@ module.exports = {
                 'no-nested-ternary': 'error',
                 'no-new-wrappers': 'error',
                 'no-prototype-builtins': 'off',
+                'import/exports-last': 'off',
                 'no-redeclare': 'error',
+                'no-restricted-exports': ['error'],
                 'no-restricted-syntax': [
                     'error',
                     {
