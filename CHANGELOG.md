@@ -1,3 +1,15 @@
+#### 15.190.0 (2021-04-12)
+
+##### Continuous Integration
+
+-   update dependency jasmine-spec-reporter to v7 ([#521](https://github.com/Angular-RU/angular-ru-sdk/pull/521))
+    ([3bde4ea6](https://github.com/Angular-RU/angular-ru-sdk/commit/3bde4ea667295cc363fb20dab29a4f5f8c8de571))
+
+##### New Features
+
+-   **@angular-ru/eslint-config:** enable strict rules ([#524](https://github.com/Angular-RU/angular-ru-sdk/pull/524))
+    ([75ef152f](https://github.com/Angular-RU/angular-ru-sdk/commit/75ef152f6f443cc63e68f9f532b1cd98691c5237))
+
 #### 15.189.0 (2021-04-11)
 
 ##### New Features
