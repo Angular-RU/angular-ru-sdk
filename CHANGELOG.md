@@ -1,3 +1,10 @@
+#### 15.191.0 (2021-04-12)
+
+##### New Features
+
+-   **@angular-ru/common:** add KeysOfType type function
+    ([ccd6403a](https://github.com/Angular-RU/angular-ru-sdk/commit/ccd6403a9433799bfbf63dfc5c2db0e7d5eb40da))
+
 #### 15.190.0 (2021-04-12)
 
 ##### Continuous Integration
