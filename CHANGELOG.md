@@ -1,3 +1,18 @@
+#### 15.193.0 (2021-04-12)
+
+##### New Features
+
+-   **@angular-ru/common/utils:** add downloadFile utility
+    ([#517](https://github.com/Angular-RU/angular-ru-sdk/pull/517))
+    ([f7155ffe](https://github.com/Angular-RU/angular-ru-sdk/commit/f7155ffe961dc3691290aff8155fba240b46ee91))
+
+#### 15.192.0 (2021-04-12)
+
+##### New Features
+
+-   **@angular-ru/common:** add FilterUniquePipe ([#526](https://github.com/Angular-RU/angular-ru-sdk/pull/526))
+    ([1e0a4b24](https://github.com/Angular-RU/angular-ru-sdk/commit/1e0a4b24fcac9c3158ca41e33b3e4530b8f56fa0))
+
 #### 15.191.0 (2021-04-12)
 
 ##### New Features

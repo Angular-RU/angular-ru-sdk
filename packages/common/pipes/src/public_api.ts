@@ -13,6 +13,8 @@ export { EntrySingleSetPipe } from './entry-single-set/entry-single-set.pipe';
 export { EntrySingleSetPipeModule } from './entry-single-set/entry-single-set-pipe.module';
 export { FileSizePipe } from './file-size/file-size.pipe';
 export { FileSizePipeModule } from './file-size/file-size-pipe.module';
+export { FilterUniquePipe } from './filter-unique/filter-unique.pipe';
+export { FilterUniquePipeModule } from './filter-unique/filter-unique-pipe.module';
 export { FormatDatePipeOptions } from './format-date/format-date.interfaces';
 export { FormatDatePipe } from './format-date/format-date.pipe';
 export { FormatDatePipeModule } from './format-date/format-date-pipe.module';
