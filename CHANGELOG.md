@@ -1,3 +1,11 @@
+#### 15.193.0 (2021-04-12)
+
+##### New Features
+
+-   **@angular-ru/common/utils:** add downloadFile utility
+    ([#517](https://github.com/Angular-RU/angular-ru-sdk/pull/517))
+    ([f7155ffe](https://github.com/Angular-RU/angular-ru-sdk/commit/f7155ffe961dc3691290aff8155fba240b46ee91))
+
 #### 15.192.0 (2021-04-12)
 
 ##### New Features
