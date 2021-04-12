@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/build-tools",
-    "version": "15.175.0",
+    "version": "15.188.0",
     "description": "Angular-RU package",
     "keywords": [
         "angular-ru",
@@ -20,7 +20,7 @@
     "dependencies": {
         "@types/jasmine": "3.6.9",
         "@types/jasminewd2": "2.0.8",
-        "@types/karma": "6.1.0",
+        "@types/karma": "6.3.0",
         "@types/node": "14.14.37",
         "cross-env": "7.0.3",
         "generate-changelog": "1.8.0",
