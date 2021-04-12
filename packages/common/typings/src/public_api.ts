@@ -16,6 +16,7 @@ export { Join } from './join';
 export { KeyOfList } from './key-of-list';
 export { KeyValueComparator } from './key-value-comparator';
 export { KeyboardKeys } from './keyboard.enum';
+export { KeysOfType } from './keys-of-type';
 export { Leaves } from './leaves';
 export { PlainObject, PlainObjectOf } from './object-types';
 export { Paths } from './paths';
