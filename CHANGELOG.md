@@ -1,3 +1,10 @@
+#### 15.192.0 (2021-04-12)
+
+##### New Features
+
+-   **@angular-ru/common:** add FilterUniquePipe ([#526](https://github.com/Angular-RU/angular-ru-sdk/pull/526))
+    ([1e0a4b24](https://github.com/Angular-RU/angular-ru-sdk/commit/1e0a4b24fcac9c3158ca41e33b3e4530b8f56fa0))
+
 #### 15.191.0 (2021-04-12)
 
 ##### New Features
