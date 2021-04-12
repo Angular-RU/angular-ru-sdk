@@ -12,7 +12,7 @@ import { fadeInLinearAnimation } from '@angular-ru/common/animations';
 
 import { NgxFilterDirective } from '../../directives/ngx-filter.directive';
 import { FilterStateEvent } from '../../services/filterable/filterable.interface';
-import { AbstractModalViewLayer } from '../common/abstract-modal-view-layer.directive';
+import { AbstractModalViewLayerDirective } from '../common/abstract-modal-view-layer.directive';
 
 const FILTER_WIDTH: number = 300;
 const FILTER_MIN_LEFT_X: number = 10;
@@ -26,7 +26,7 @@ const FILTER_MIN_TOP_Y: number = 50;
     encapsulation: ViewEncapsulation.None,
     animations: [fadeInLinearAnimation]
 })
-export class NgxFilterComponent<T> extends AbstractModalViewLayer<T, FilterStateEvent> implements OnInit {
+export class NgxFilterComponent<T> extends AbstractModalViewLayerDirective<T, FilterStateEvent> implements OnInit {
     @Input() public width: number = FILTER_WIDTH;
     @Input() public height: number | null = null;
     @Input('max-height') public maxHeight: number | null = null;

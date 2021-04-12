@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 interface LicenseSample {
     id: number;
@@ -23,7 +23,8 @@ interface LicenseSample {
                 <ng-template ngx-td let-price>{{ price | currency }}</ng-template>
             </ngx-column>
         </ngx-table-builder>
-    `
+    `,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TemplateMockComponent {
     public licenses: LicenseSample[] = [

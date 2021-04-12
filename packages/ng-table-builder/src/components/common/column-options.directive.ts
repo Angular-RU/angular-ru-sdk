@@ -7,7 +7,7 @@ import { TableFilterType } from '../../services/filterable/filterable.interface'
  * <ngx-options .../>
  */
 @Directive()
-export class ColumnOptions {
+export class ColumnOptionsDirective {
     /**
      * preserve track global value for overflowTooltip if selected
      */

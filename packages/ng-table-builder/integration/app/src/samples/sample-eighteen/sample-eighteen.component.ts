@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PlainObject } from '@angular-ru/common/typings';
 
@@ -15,6 +15,7 @@ import { CodeDialogComponent } from '../../shared/dialog/code-dialog.component';
             }
         `
     ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })
 export class SampleEighteenComponent implements OnInit {

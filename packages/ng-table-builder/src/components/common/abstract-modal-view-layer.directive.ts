@@ -24,7 +24,7 @@ export interface PositionState {
 }
 
 @Directive()
-export abstract class AbstractModalViewLayer<T, K extends PositionState> implements OnDestroy {
+export abstract class AbstractModalViewLayerDirective<T, K extends PositionState> implements OnDestroy {
     public width: number | null = null;
     public height: number | null = null;
     public isViewed: boolean = false;

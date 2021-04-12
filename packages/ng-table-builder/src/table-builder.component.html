@@ -118,7 +118,7 @@
                             [filterable-definition]="filterable.definition"
                             [client-row-height]="clientRowHeight"
                             [head-height]="headLineHeight"
-                            (resize)="resizeColumn($event, column)"
+                            (resizing)="resizeColumn($event, column)"
                             (sortByKey)="sortByKey($event)"
                             (mouseenter)="enableDragging(schema.key)"
                         >

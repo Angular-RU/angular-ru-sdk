@@ -23,7 +23,7 @@ interface HttpDebugInterface {
     errorData: unknown;
 }
 
-// noinspection AngularMissingOrInvalidDeclarationInModule
+// eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
 @Component({ selector: 'lib-hello-test', template: '' })
 export class MyTestComponent implements OnInit {
     @Logger() public logger!: LoggerService;

@@ -9,7 +9,7 @@ import {
     TestPipe,
     TestService
 } from './test-default';
-import { ExtendingTestComponent, TestStairsC } from './test-extending';
+import { ExtendingTestComponent, TestStairsComponent } from './test-extending';
 import { TestTokenComponent } from './test-token';
 
 @NgModule({
@@ -19,7 +19,7 @@ import { TestTokenComponent } from './test-token';
         FeatureTestComponent,
         ExtendingTestComponent,
         TestPipe,
-        TestStairsC,
+        TestStairsComponent,
         TestTokenComponent
     ],
     providers: [

@@ -148,3 +148,17 @@ also, you can:
 ```ts
 const etc: Paths<A['b']['etc']> = 'f';
 ```
+
+-   `KeysOfType<T, Type>`
+
+```ts
+interface SomeInterface {
+    someNumber: number;
+    someString: string;
+    someStringArray: string[];
+    someAnotherNumber: number;
+}
+
+type SomeStringNumberKeys = KeysOfType<SomeInterface, string | number>;
+// SomeStringNumberKeys === 'someNumber' | 'someString' | 'someAnotherNumber'
+```

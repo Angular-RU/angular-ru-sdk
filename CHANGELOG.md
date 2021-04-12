@@ -1,3 +1,36 @@
+#### 15.192.0 (2021-04-12)
+
+##### New Features
+
+-   **@angular-ru/common:** add FilterUniquePipe ([#526](https://github.com/Angular-RU/angular-ru-sdk/pull/526))
+    ([1e0a4b24](https://github.com/Angular-RU/angular-ru-sdk/commit/1e0a4b24fcac9c3158ca41e33b3e4530b8f56fa0))
+
+#### 15.191.0 (2021-04-12)
+
+##### New Features
+
+-   **@angular-ru/common:** add KeysOfType type function
+    ([ccd6403a](https://github.com/Angular-RU/angular-ru-sdk/commit/ccd6403a9433799bfbf63dfc5c2db0e7d5eb40da))
+
+#### 15.190.0 (2021-04-12)
+
+##### Continuous Integration
+
+-   update dependency jasmine-spec-reporter to v7 ([#521](https://github.com/Angular-RU/angular-ru-sdk/pull/521))
+    ([3bde4ea6](https://github.com/Angular-RU/angular-ru-sdk/commit/3bde4ea667295cc363fb20dab29a4f5f8c8de571))
+
+##### New Features
+
+-   **@angular-ru/eslint-config:** enable strict rules ([#524](https://github.com/Angular-RU/angular-ru-sdk/pull/524))
+    ([75ef152f](https://github.com/Angular-RU/angular-ru-sdk/commit/75ef152f6f443cc63e68f9f532b1cd98691c5237))
+
+#### 15.189.0 (2021-04-11)
+
+##### New Features
+
+-   update ESLint to v2.1.0 ([#522](https://github.com/Angular-RU/angular-ru-sdk/pull/522))
+    ([2af9492f](https://github.com/Angular-RU/angular-ru-sdk/commit/2af9492f280f815a8632fbb7da87413d5b48eb22))
+
 #### 15.188.0 (2021-04-10)
 
 ##### New Features

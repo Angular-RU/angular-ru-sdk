@@ -2,7 +2,7 @@
 import { B1 } from './module/b1';
 import { A1 } from './module/a1';
 import { C1 } from './module/c1';
-import { Component, EventEmitter, Injectable, OnInit, Pipe } from '@angular/core';
+import { Component, EventEmitter, Injectable, OnInit, Pipe, Directive, NgModule, forwardRef, OnChanges, DoCheck, Input, Output } from "@angular/core";
 import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ExampleDeep } from './module/deep/deep/deep/deep/deep/deep/deeeeeeeeeeeeeeeeeeep/deeeeeeeeeeeeeeeeeeep/deeeeeeeeeeeeeeeeeeep/example-deep';
@@ -299,3 +299,56 @@ const promise: Promise<unknown> = Promise.resolve('value');
 if (promise) {
     // Do something
 }
+
+// expect error
+@Component({
+    selector: 'my-etc',
+    template: '<my-etc [isEnabled]="false"></my-etc>'
+})
+// error: Declaring ngDoCheck and ngOnChanges method in a class is not recommended
+export class MyEtc implements OnInit, OnChanges, DoCheck {
+    @Input() public isEnabled: boolean = false;
+    @Output() public resize: EventEmitter<void> = new EventEmitter();
+
+    public ngDoCheck(): void {
+        this.isEnabled = false;
+    }
+
+    public ngOnChanges(): void {
+        this.isEnabled = true;
+    }
+
+    // error: Lifecycle methods should not be empty
+    public ngOnInit(): void {}
+}
+
+// expect error
+@Directive({
+    selector: 'fooEtc'
+})
+export class FooEtc {
+    @Output() public close: EventEmitter<void> = new EventEmitter();
+}
+
+@NgModule({
+    imports: [],
+    bootstrap: [MyEtc],
+    declarations: [MyEtc, FooEtc],
+    providers: [
+        {
+            provide: MyEtc,
+            // error: Avoid using `forwardRef`
+            useClass: forwardRef((): typeof FooEtc => FooEtc), // Unexpected trailing comma
+        }
+    ]
+})
+export class EtcModule {}
+
+const etc: MyEtc = new MyEtc();
+
+console.error(etc.ngOnInit());
+
+const bool: boolean = true;
+
+// Prefer named exports
+export default bool;

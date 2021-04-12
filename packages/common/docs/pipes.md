@@ -585,3 +585,32 @@ export class AppComponent {
     public count: number = 42;
 }
 ```
+
+`FilterUnique, FilterUniqueModule`
+
+```ts
+import { FilterUniqueModule } from '@angular-ru/common/pipes';
+import { PlainObject } from '@angular-ru/common-typings';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ..
+    imports: [FilterUniqueModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `
+        <pre>{{ objects | filterUnique: 'name' | json }}</pre>
+        <!-- [{ name: 'a'}, { name: 'b'}] -->
+
+        <pre>{{ numbers | filterUnique | json }}</pre>
+        <!-- [1, 2, 3, 4, 5] -->
+    `
+})
+export class AppComponent {
+    public objects: PlainObject = [{ name: 'a' }, { name: 'a' }, { name: 'b' }];
+    public numbers: number[] = [1, 2, 3, 4, 5, 5, 4];
+}
+```

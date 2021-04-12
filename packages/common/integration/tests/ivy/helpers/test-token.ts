@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { ApplicationRef, Component, Injectable, NgZone } from '@angular/core';
 
 import { COMPONENT_TOKEN, MODULE_TOKEN, SERVICE_TOKEN } from './injection-tokens';
@@ -17,6 +18,7 @@ export class TestTokenService {
     constructor(public ngZone: NgZone) {}
 }
 
+// eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
 @Component({
     selector: 'test-token',
     template: '',

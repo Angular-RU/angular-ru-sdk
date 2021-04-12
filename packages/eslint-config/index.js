@@ -101,7 +101,7 @@ module.exports = {
                         before: true
                     }
                 ],
-                'max-classes-per-file': 'off',
+                'max-classes-per-file': ['error', 1],
                 'max-depth': ['error', 4],
                 'max-len': [
                     'error',
@@ -149,7 +149,9 @@ module.exports = {
                 'no-nested-ternary': 'error',
                 'no-new-wrappers': 'error',
                 'no-prototype-builtins': 'off',
+                'import/exports-last': 'off',
                 'no-redeclare': 'error',
+                'no-restricted-exports': ['error'],
                 'no-restricted-syntax': [
                     'error',
                     {
@@ -414,18 +416,6 @@ module.exports = {
                 '@typescript-eslint/unified-signatures': 'error',
 
                 /**
-                 * @angular-eslint
-                 */
-                '@angular-eslint/component-max-inline-declarations': 'error',
-                '@angular-eslint/contextual-lifecycle': 'error',
-                '@angular-eslint/no-host-metadata-property': 'error',
-                '@angular-eslint/no-inputs-metadata-property': 'error',
-                '@angular-eslint/no-outputs-metadata-property': 'error',
-                '@angular-eslint/use-component-selector': 'error',
-                '@angular-eslint/use-lifecycle-interface': 'error',
-                '@angular-eslint/use-pipe-transform-interface': 'error',
-
-                /**
                  * sonarjs
                  */
                 'sonarjs/cognitive-complexity': 'error',
@@ -449,12 +439,58 @@ module.exports = {
                 'sonarjs/no-unused-collection': 'error',
                 'sonarjs/no-use-of-empty-return-value': 'error',
                 'sonarjs/no-useless-catch': 'error',
-                'sonarjs/prefer-immediate-return': 'error'
+                'sonarjs/prefer-immediate-return': 'error',
+
+                /**
+                 * @angular-eslint
+                 */
+                '@angular-eslint/component-max-inline-declarations': 'error',
+                '@angular-eslint/contextual-lifecycle': 'error',
+                '@angular-eslint/no-host-metadata-property': 'error',
+                '@angular-eslint/no-inputs-metadata-property': 'error',
+                '@angular-eslint/no-outputs-metadata-property': 'error',
+                '@angular-eslint/use-component-selector': 'error',
+                '@angular-eslint/use-lifecycle-interface': 'error',
+                '@angular-eslint/use-pipe-transform-interface': 'error',
+
+                /**
+                 * @angular-eslint@v2.1+ (added after)
+                 */
+                '@angular-eslint/component-class-suffix': 'error',
+                '@angular-eslint/component-selector': 'error',
+                '@angular-eslint/directive-class-suffix': 'error',
+                '@angular-eslint/contextual-decorator': 'error',
+                '@angular-eslint/directive-selector': 'error',
+                '@angular-eslint/no-attribute-decorator': 'error',
+                '@angular-eslint/no-conflicting-lifecycle': 'error',
+                '@angular-eslint/no-empty-lifecycle-method': 'error',
+                '@angular-eslint/no-forward-ref': 'error',
+                '@angular-eslint/no-input-prefix': 'error',
+                '@angular-eslint/no-lifecycle-call': 'error',
+                '@angular-eslint/no-output-native': 'error',
+                '@angular-eslint/no-output-on-prefix': 'error',
+                '@angular-eslint/no-queries-metadata-property': 'error',
+                '@angular-eslint/prefer-on-push-component-change-detection': 'error',
+                '@angular-eslint/prefer-output-readonly': 'error',
+                '@angular-eslint/pipe-prefix': 'error',
+                '@angular-eslint/relative-url-prefix': 'error',
+
+                /**
+                 * @angular-eslint off
+                 */
+                '@angular-eslint/use-injectable-provided-in': 'off',
+                '@angular-eslint/use-component-view-encapsulation': 'off',
+
+                /**
+                 * @angular-eslint breaking changes when enable
+                 */
+                '@angular-eslint/no-input-rename': 'off',
+                '@angular-eslint/no-output-rename': 'off',
+                '@angular-eslint/sort-ngmodule-metadata-arrays': 'off'
 
                 /**
                  * not implemented yet
                  */
-                // '@angular-eslint/no-unused-css': 'error',
                 // 'sonarjs/bool-param-default': 'error',
                 // 'sonarjs/comma-or-logical-or-case': 'error',
                 // 'sonarjs/max-union-size': 'error',

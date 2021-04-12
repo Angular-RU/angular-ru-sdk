@@ -37,7 +37,9 @@ export class NgxContextMenuItemComponent<T = Any> implements OnInit, OnDestroy {
     @Input() public divider: string | boolean = false;
     @Input('disable-sub-menu') public disableSubMenu: boolean = false;
     @Input('sub-menu-width') public subMenuWidth: number = MENU_WIDTH;
-    @Output() public onClick: EventEmitter<ContextItemEvent> = new EventEmitter();
+    // TODO: should be rename (breaking changes)
+    // eslint-disable-next-line @angular-eslint/no-output-on-prefix
+    @Output() public readonly onClick: EventEmitter<ContextItemEvent> = new EventEmitter();
     @ViewChild('item', { static: false }) public itemRef: ElementRef<HTMLDivElement> | null = null;
     public offsetX: number | null = null;
     public offsetY: number | null = null;
