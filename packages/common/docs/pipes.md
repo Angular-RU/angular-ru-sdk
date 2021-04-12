@@ -436,6 +436,27 @@ export class AppComponent {
 }
 ```
 
+-   `NameByPathPipe, NameByPathPipeModule`
+
+```ts
+import { NameByPathPipeModule } from '@angular-ru/common/pipes';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ...
+    imports: [NameByPathPipeModule]
+})
+export class AppModule {}
+
+@Component({
+    // ...
+    template: `{{ entity | nameByPath: 'value.name' }}` // A
+})
+export class AppComponent {
+    public entity = { value: { name: 'A' } };
+}
+```
+
 -   `ObjectSizePipe, ObjectSizePipeModule`
 
 ```ts

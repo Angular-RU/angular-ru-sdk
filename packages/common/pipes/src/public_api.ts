@@ -38,6 +38,8 @@ export { MergeCssClassesPipe } from './merge-css-classes/merge-css-classes.pipe'
 export { MergeCssClassesPipeModule } from './merge-css-classes/merge-css-classes-pipe.module';
 export { MutableTypePipe } from './mutable/mutable-type.pipe';
 export { MutableTypePipeModule } from './mutable/mutable-type-pipe.module';
+export { NameByPathPipe } from './name-by-path/name-by-path.pipe';
+export { NameByPathPipeModule } from './name-by-path/name-by-path-pipe.module';
 export { NumberFormatOptions } from './number-format/number-format.interfaces';
 export { NumberFormatPipe } from './number-format/number-format.pipe';
 export { NumberFormatPipeModule } from './number-format/number-format-pipe.module';
