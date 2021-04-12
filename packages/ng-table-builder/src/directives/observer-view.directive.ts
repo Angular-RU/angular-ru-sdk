@@ -2,7 +2,7 @@ import { AfterViewInit, Directive, ElementRef, EventEmitter, NgZone, OnDestroy, 
 
 @Directive({ selector: '[observerView]' })
 export class ObserverViewDirective implements AfterViewInit, OnDestroy {
-    @Output() public observeVisible: EventEmitter<boolean> = new EventEmitter(true);
+    @Output() public readonly observeVisible: EventEmitter<boolean> = new EventEmitter(true);
     private observer: IntersectionObserver | null = null;
     private previousRation: number = 0.0;
     private frameId: number | null = null;

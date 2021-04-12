@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { PlainObject } from '@angular-ru/common/typings';
 
 // noinspection AngularMissingOrInvalidDeclarationInModule
 @Component({
     selector: 'app',
-    template: ` <ngx-table-builder [source]="data"></ngx-table-builder> `
+    template: ` <ngx-table-builder [source]="data"></ngx-table-builder> `,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SimpleMockComponent {
     public data: PlainObject[] = [

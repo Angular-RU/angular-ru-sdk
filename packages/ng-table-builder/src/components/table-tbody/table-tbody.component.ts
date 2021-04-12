@@ -56,7 +56,7 @@ export class TableTbodyComponent<T> {
     @Input('client-row-height') public clientRowHeight: number | null = null;
     @Input('row-css-classes') public rowCssClasses: PlainObjectOf<string[]> = {};
     @Input('column-schema') public columnSchema: ColumnsSchema | null = null;
-    @Output() public changed: EventEmitter<void> = new EventEmitter(true);
+    @Output() public readonly changed: EventEmitter<void> = new EventEmitter(true);
     private readonly ngZone: NgZone;
 
     constructor(public cd: ChangeDetectorRef, injector: Injector) {

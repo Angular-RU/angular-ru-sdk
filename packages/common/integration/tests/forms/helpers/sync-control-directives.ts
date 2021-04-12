@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 import { ControlValueInterceptor, ControlValueInterceptorDescriptor } from '@angular-ru/common/forms';
 import { isNotNil } from '@angular-ru/common/utils';

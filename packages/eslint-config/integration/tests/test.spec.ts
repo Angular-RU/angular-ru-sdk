@@ -60,22 +60,31 @@ describe('[TEST]: Eslint', (): void => {
         expect(
             bad.includes("Remove this conditional structure or edit its code blocks so that they're not all the same")
         ).toEqual(true);
-        expect(bad.includes('215:1   error  Missing return type on function')).toEqual(true);
-        expect(bad.includes('274:11  error  Missing return type on function')).toEqual(true);
-        expect(bad.includes('276:36  error  Missing return type on function')).toEqual(true);
-        expect(bad.includes('276:36  error  Missing return type on function')).toEqual(true);
-        expect(bad.includes('280:31  error  Missing return type on function')).toEqual(true);
+        expect(bad.includes('215:1    error  Missing return type on function')).toEqual(true);
+        expect(bad.includes('274:11   error  Missing return type on function')).toEqual(true);
+        expect(bad.includes('276:36   error  Missing return type on function')).toEqual(true);
+        expect(bad.includes('276:36   error  Missing return type on function')).toEqual(true);
+        expect(bad.includes('280:31   error  Missing return type on function')).toEqual(true);
         expect(bad.includes("Function 'someComplexFunction' has too many lines (32)")).toEqual(true);
         expect(bad.includes("Function 'someComplexFunction' has a complexity of 9")).toEqual(true);
         expect(
             bad.includes("Remove this conditional structure or edit its code blocks so that they're not all the same")
         ).toEqual(true);
         expect(bad.includes('Use the opposite operator (<=) instead')).toEqual(true);
-        expect(bad.includes("285:5   error  Assignment to function parameter 'variable'")).toEqual(true);
+        expect(bad.includes("285:5    error  Assignment to function parameter 'variable'")).toEqual(true);
         expect(
             bad.includes('Enum Member name `worldName` must match one of the following formats: PascalCase, UPPER_CASE')
         ).toEqual(true);
+        expect(bad.includes('Strings must use singlequote')).toEqual(true);
+        expect(bad.includes('Unexpected trailing comma')).toEqual(true);
         expect(bad.includes('Expected non-Promise value in a boolean conditional')).toEqual(true);
+        expect(bad.includes('The name of the class MyEtc should end with the suffix Component')).toEqual(true);
+        expect(bad.includes('The name of the class FooEtc should end with the suffix Directive')).toEqual(true);
+        expect(bad.includes('Lifecycle methods should not be empty')).toEqual(true);
+        expect(bad.includes('Declaring ngDoCheck and ngOnChanges method in a class is not recommended')).toEqual(true);
+        expect(bad.includes('Avoid using `forwardRef`')).toEqual(true);
+        expect(bad.includes('The output property should not be named or renamed as a native event')).toEqual(true);
+        expect(bad.includes('Prefer named exports')).toEqual(true);
     });
 
     it('check success files', (): void => {

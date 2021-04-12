@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Injectable, Input, OnInit, Output } from '@angular/core';
+/* eslint-disable max-classes-per-file */
+import { ChangeDetectionStrategy, Component, EventEmitter, Injectable, Input, OnInit, Output } from '@angular/core';
 import { Any } from '@angular-ru/common/typings';
 import { BaseUrl, RequestBody, RestClient } from '@angular-ru/http/decorators';
 import { Observable, of } from 'rxjs';
@@ -104,7 +105,8 @@ class HttpClient {
 // noinspection AngularMissingOrInvalidDeclarationInModule
 @Component({
     selector: 'good-component',
-    template: `<p>Good component works!</p>`
+    template: `<p>Good component works!</p>`,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -113,8 +115,8 @@ class GoodComponent implements OnInit {
     @Input('var-a') public a: Any;
     @Input() public _a: Any;
     @Input() public b: Any;
-    @Output() public e!: EventEmitter<Any>;
-    @Output('_e') public _e!: EventEmitter<Any>;
+    @Output() public readonly e!: EventEmitter<Any>;
+    @Output('_e') public readonly _e!: EventEmitter<Any>;
 
     constructor(private readonly api: HttpClient) {}
 

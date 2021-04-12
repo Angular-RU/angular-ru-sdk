@@ -1,4 +1,4 @@
-/* eslint-disable no-magic-numbers,@typescript-eslint/no-magic-numbers */
+/* eslint-disable no-magic-numbers,@typescript-eslint/no-magic-numbers,max-classes-per-file */
 import { Any, PlainObject } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 
