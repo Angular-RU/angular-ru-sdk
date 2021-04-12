@@ -9,9 +9,11 @@ import {
     isIE,
     parseXmlFromString,
     checkSomeValueIsEmpty,
-    checkEveryValueIsEmpty
+    checkEveryValueIsEmpty,
+    downloadFile
 } from '@angular-ru/common/utils';
 import { ChangeDetectorRef } from '@angular/core';
+import { FileToDownloadInfo } from '../../../dist/library/utils/download-file';
 
 describe('[TEST]: Common utils', () => {
     it('$any/$cast', () => {
@@ -105,4 +107,75 @@ describe('[TEST]: Common utils', () => {
 
     it('checkSomeValueIsEmpty should return true for a set of empty values', () =>
         expect(checkSomeValueIsEmpty('', undefined, null)).toEqual(true));
+});
+
+describe('[TEST]: Common utils downloadFile', () => {
+    let link: HTMLAnchorElement;
+
+    const file: FileToDownloadInfo = {
+        blob: new Blob(['text-file']),
+        name: 'text',
+        extension: 'txt'
+    };
+
+    beforeEach(() => {
+        link = <HTMLAnchorElement>(<unknown>{
+            click: jest.fn()
+        });
+        window.URL.createObjectURL = jest.fn((blob: Blob) => `${blob}`);
+        window.URL.revokeObjectURL = jest.fn();
+    });
+
+    it('should throw error if both file name and extension not provided', () => {
+        const invalidFile: FileToDownloadInfo = {
+            blob: new Blob(),
+            name: null,
+            extension: null
+        };
+        expect(() => downloadFile(invalidFile)).toThrow('File name or file extension must be provided');
+    });
+
+    it('should create objectUrl from input blob', () => {
+        jest.spyOn(document, 'createElement').mockImplementation(() => link);
+        downloadFile(file);
+        expect(window.URL.createObjectURL).toHaveBeenCalledTimes(1);
+    });
+
+    it('should correct build file name', () => {
+        jest.spyOn(document, 'createElement').mockImplementation(() => link);
+        downloadFile(file);
+        expect(link.download).toEqual('text.txt');
+    });
+
+    it('should correct build file name without extension', () => {
+        const file: FileToDownloadInfo = {
+            blob: new Blob(['text-file']),
+            name: 'text'
+        };
+        jest.spyOn(document, 'createElement').mockImplementation(() => link);
+        downloadFile(file);
+        expect(link.download).toEqual('text');
+    });
+
+    it('should correct build file name without input name', () => {
+        const file: FileToDownloadInfo = {
+            blob: new Blob(['text-file']),
+            extension: 'txt'
+        };
+        jest.spyOn(document, 'createElement').mockImplementation(() => link);
+        downloadFile(file);
+        expect(link.download).toEqual('txt');
+    });
+
+    it('should create download link', () => {
+        jest.spyOn(document, 'createElement').mockImplementation(() => link);
+        downloadFile(file);
+        expect(link.href).toBeDefined();
+    });
+
+    it('should download the valid file', () => {
+        jest.spyOn(document, 'createElement').mockImplementation(() => link);
+        downloadFile(file);
+        expect(link.click).toHaveBeenCalledTimes(1);
+    });
 });
