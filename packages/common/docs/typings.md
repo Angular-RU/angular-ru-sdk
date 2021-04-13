@@ -166,5 +166,5 @@ type SomeStringNumberKeys = KeysOfType<SomeInterface, string | number>;
 -   `NgCssClasses`
 
 ```ts
-const myClasses = { 'block__element--modificator': true };
+const myClasses: NgCssClasses = { 'block__element--modificator': true };
 ```
