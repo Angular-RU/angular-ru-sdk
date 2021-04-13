@@ -162,3 +162,9 @@ interface SomeInterface {
 type SomeStringNumberKeys = KeysOfType<SomeInterface, string | number>;
 // SomeStringNumberKeys === 'someNumber' | 'someString' | 'someAnotherNumber'
 ```
+
+-   `NgCssClasses`
+
+```ts
+const myClasses = { 'element__block--modificator': true };
+```
