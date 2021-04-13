@@ -436,6 +436,27 @@ export class AppComponent {
 }
 ```
 
+-   `DisplayItemPipe, DisplayItemPipeModule`
+
+```ts
+import { DisplayItemPipeModule } from '@angular-ru/common/pipes';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ...
+    imports: [DisplayItemPipeModule]
+})
+export class AppModule {}
+
+@Component({
+    // ...
+    template: `{{ entity | displayItem: 'value.name' }}` // A
+})
+export class AppComponent {
+    public entity = { value: { name: 'A' } };
+}
+```
+
 -   `ObjectSizePipe, ObjectSizePipeModule`
 
 ```ts

@@ -9,6 +9,8 @@ export { DefaultValuePipeModule } from './default-value/default-value-pipe.modul
 export { DetectBrowserPipe } from './detect-browser/detect-browser.pipe';
 export { DetectBrowserPipeOptions } from './detect-browser/detect-browser-pipe.interface';
 export { DetectBrowserPipeModule } from './detect-browser/detect-browser-pipe.module';
+export { DisplayItemPipe } from './display-item/display-item.pipe';
+export { DisplayItemPipeModule } from './display-item/display-item-pipe.module';
 export { EntrySingleSetPipe } from './entry-single-set/entry-single-set.pipe';
 export { EntrySingleSetPipeModule } from './entry-single-set/entry-single-set-pipe.module';
 export { FileSizePipe } from './file-size/file-size.pipe';
