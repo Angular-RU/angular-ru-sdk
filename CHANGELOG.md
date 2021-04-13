@@ -1,3 +1,10 @@
+#### 15.194.0 (2021-04-13)
+
+##### New Features
+
+-   update ESLint to v4.22.0 ([#527](https://github.com/Angular-RU/angular-ru-sdk/pull/527))
+    ([a39d03a8](https://github.com/Angular-RU/angular-ru-sdk/commit/a39d03a8c578dca32b497c277396630b1281845d))
+
 #### 15.193.0 (2021-04-12)
 
 ##### New Features
