@@ -5,33 +5,25 @@ import { checkValueIsEmpty } from '@angular-ru/common/utils';
 
 @Pipe({ name: 'displayItem' })
 export class DisplayItemPipe implements PipeTransform {
+    private static invalidDisplayKey<T>(displayKey?: keyof T): boolean {
+        return checkValueIsEmpty(displayKey) || typeof displayKey !== 'string';
+    }
+
     public transform<T>(item: T, displayKey?: keyof T): string {
-        if (isObject(item)) {
-            return this.parseObject<T>(item, displayKey);
-        } else {
-            return this.parseNotObject<T>(item);
-        }
+        return isObject(item) && !Array.isArray(item)
+            ? this.parseObject<T>(item, displayKey)
+            : this.parseNotObject<T>(item);
     }
 
     private parseObject<T>(item: T, displayKey?: keyof T): string {
-        if (Array.isArray(item)) {
-            return '';
-        }
-        if (checkValueIsEmpty(displayKey) || typeof displayKey !== 'string') {
+        if (DisplayItemPipe.invalidDisplayKey(displayKey)) {
             throw new Error('attribute "displayKey" can not be empty if input item has "object" type');
         }
-        const value: string | Any[] = getValueByPath<T, string>(item, displayKey, '') ?? '';
-        if (Array.isArray(value)) {
-            return '';
-        } else {
-            return value;
-        }
+        const value: string | Any[] = getValueByPath<T, string>(item, displayKey as string) ?? '';
+        return Array.isArray(value) ? '' : value;
     }
 
     private parseNotObject<T>(item: T): string {
-        if (typeof item === 'string') {
-            return item;
-        }
-        return '';
+        return typeof item === 'string' ? item : '';
     }
 }
