@@ -1,3 +1,25 @@
+#### 15.196.0 (2021-04-13)
+
+##### Continuous Integration
+
+-   updated release notes and package versions [ci skip]
+    ([a7d72b45](https://github.com/Angular-RU/angular-ru-sdk/commit/a7d72b457140cd0e6872926e4a9a856bb3193e15))
+-   updated release notes and package versions [ci skip]
+    ([dcfce5ac](https://github.com/Angular-RU/angular-ru-sdk/commit/dcfce5ac2493d32e8f35f95282283276c9fa2bf8))
+
+##### New Features
+
+-   added pipe 'nameByPath', util 'getNameByPath'
+    ([8a9100f2](https://github.com/Angular-RU/angular-ru-sdk/commit/8a9100f29577a3435da65552237c0f1801e84f0f))
+
+##### Refactors
+
+-   **@angular-ru/common:**
+    -   changes after review
+        ([2f212031](https://github.com/Angular-RU/angular-ru-sdk/commit/2f212031c39ebac94b5613a32b026560a905c34d))
+    -   changes after review
+        ([057a417e](https://github.com/Angular-RU/angular-ru-sdk/commit/057a417edf4e40c7e2f053312f547a36c3da4292))
+
 #### 15.195.0 (2021-04-13)
 
 ##### New Features
