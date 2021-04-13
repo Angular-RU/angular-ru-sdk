@@ -1,3 +1,10 @@
+#### 15.195.0 (2021-04-13)
+
+##### New Features
+
+-   **@angular-ru/common:** add NgCssClasses ([#529](https://github.com/Angular-RU/angular-ru-sdk/pull/529))
+    ([5dc62970](https://github.com/Angular-RU/angular-ru-sdk/commit/5dc6297022d972aba3adb2917443efc62a605a98))
+
 #### 15.194.0 (2021-04-13)
 
 ##### New Features
