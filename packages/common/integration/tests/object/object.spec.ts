@@ -5,7 +5,6 @@ import {
     deepFreeze,
     firstKey,
     getValueByPath,
-    getNameByPath,
     isGetter,
     isIterable,
     isObject,
@@ -334,22 +333,6 @@ describe('[TEST]: Object', () => {
         expect(getValueByPath(obj, 'f.0.a')).toEqual(2);
         expect(getValueByPath(obj, 'abc')).toEqual(undefined);
         expect(getValueByPath(obj, 'f.0.a.Z', [])).toEqual([]);
-    });
-
-    it('getNameByPath', () => {
-        expect(getNameByPath(undefined)).toEqual('');
-        expect(getNameByPath(null)).toEqual('');
-        expect(getNameByPath(NaN)).toEqual('');
-        expect(getNameByPath('')).toEqual('');
-        expect(getNameByPath('a')).toEqual('a');
-        expect(getNameByPath([])).toEqual('');
-        expect(getNameByPath({ name: 'a' }, 'name')).toEqual('a');
-        expect(getNameByPath({ value: { name: 'a' } }, 'name')).toEqual('');
-        expect(getNameByPath({ value: { name: 'a' } }, 'value.name')).toEqual('a');
-        expect(getNameByPath({ value: { name: [] } }, 'value.name')).toEqual('');
-        expect(function () {
-            getNameByPath({ name: 'a' });
-        }).toThrow(new Error('attribute "displayKey" can not be empty if input item has "object" type'));
     });
 
     it('checkIsShallowEmpty', () => {

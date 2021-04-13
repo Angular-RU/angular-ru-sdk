@@ -3,7 +3,6 @@ export { clean } from './clean';
 export { deepClone } from './deep-clone';
 export { deepFreeze } from './deep-freeze';
 export { firstKey } from './first-key';
-export { getNameByPath } from './get-name-by-path';
 export { getValueByPath } from './get-value-by-path';
 export {
     ComparableKeys,

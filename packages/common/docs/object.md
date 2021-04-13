@@ -305,16 +305,6 @@ expect(getValueByPath(obj, 'abc')).toEqual(undefined);
 expect(getValueByPath(obj, 'f.0.a.Z', [])).toEqual([]);
 ```
 
--   `getNameByPath`
-
-```ts
-import { getNameByPath } from '@angular-ru/common/object';
-
-expect(getNameByPath('a')).toEqual('a');
-expect(getNameByPath({ name: 'a' }, 'name')).toEqual('a');
-expect(getNameByPath({ value: { name: 'a' } }, 'value.name')).toEqual('a');
-```
-
 -   `checkIsShallowEmpty`
 
 ```ts

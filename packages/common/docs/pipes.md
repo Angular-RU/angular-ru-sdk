@@ -436,21 +436,21 @@ export class AppComponent {
 }
 ```
 
--   `NameByPathPipe, NameByPathPipeModule`
+-   `DisplayItemPipe, DisplayItemPipeModule`
 
 ```ts
-import { NameByPathPipeModule } from '@angular-ru/common/pipes';
+import { DisplayItemPipeModule } from '@angular-ru/common/pipes';
 import { Component, NgModule } from '@angular/core';
 
 @NgModule({
     // ...
-    imports: [NameByPathPipeModule]
+    imports: [DisplayItemPipeModule]
 })
 export class AppModule {}
 
 @Component({
     // ...
-    template: `{{ entity | nameByPath: 'value.name' }}` // A
+    template: `{{ entity | displayItem: 'value.name' }}` // A
 })
 export class AppComponent {
     public entity = { value: { name: 'A' } };

@@ -9,6 +9,8 @@ export { DefaultValuePipeModule } from './default-value/default-value-pipe.modul
 export { DetectBrowserPipe } from './detect-browser/detect-browser.pipe';
 export { DetectBrowserPipeOptions } from './detect-browser/detect-browser-pipe.interface';
 export { DetectBrowserPipeModule } from './detect-browser/detect-browser-pipe.module';
+export { DisplayItemPipe } from './display-item/display-item.pipe';
+export { DisplayItemPipeModule } from './display-item/display-item-pipe.module';
 export { EntrySingleSetPipe } from './entry-single-set/entry-single-set.pipe';
 export { EntrySingleSetPipeModule } from './entry-single-set/entry-single-set-pipe.module';
 export { FileSizePipe } from './file-size/file-size.pipe';
@@ -40,8 +42,6 @@ export { MergeCssClassesPipe } from './merge-css-classes/merge-css-classes.pipe'
 export { MergeCssClassesPipeModule } from './merge-css-classes/merge-css-classes-pipe.module';
 export { MutableTypePipe } from './mutable/mutable-type.pipe';
 export { MutableTypePipeModule } from './mutable/mutable-type-pipe.module';
-export { NameByPathPipe } from './name-by-path/name-by-path.pipe';
-export { NameByPathPipeModule } from './name-by-path/name-by-path-pipe.module';
 export { NumberFormatOptions } from './number-format/number-format.interfaces';
 export { NumberFormatPipe } from './number-format/number-format.pipe';
 export { NumberFormatPipeModule } from './number-format/number-format-pipe.module';
