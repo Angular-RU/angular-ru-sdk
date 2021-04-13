@@ -1,3 +1,17 @@
+#### 15.195.0 (2021-04-13)
+
+##### New Features
+
+-   **@angular-ru/common:** add NgCssClasses ([#529](https://github.com/Angular-RU/angular-ru-sdk/pull/529))
+    ([5dc62970](https://github.com/Angular-RU/angular-ru-sdk/commit/5dc6297022d972aba3adb2917443efc62a605a98))
+
+#### 15.194.0 (2021-04-13)
+
+##### New Features
+
+-   update ESLint to v4.22.0 ([#527](https://github.com/Angular-RU/angular-ru-sdk/pull/527))
+    ([a39d03a8](https://github.com/Angular-RU/angular-ru-sdk/commit/a39d03a8c578dca32b497c277396630b1281845d))
+
 #### 15.193.0 (2021-04-12)
 
 ##### New Features

@@ -18,6 +18,7 @@ export { KeyValueComparator } from './key-value-comparator';
 export { KeyboardKeys } from './keyboard.enum';
 export { KeysOfType } from './keys-of-type';
 export { Leaves } from './leaves';
+export { NgCssClasses } from './ng-css-classes';
 export { PlainObject, PlainObjectOf } from './object-types';
 export { Paths } from './paths';
 export { Prev } from './prev';
