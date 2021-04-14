@@ -1,3 +1,10 @@
+#### 15.197.0 (2021-04-14)
+
+##### New Features
+
+-   update dependency @types/eslint to v7.2.10 ([#531](https://github.com/Angular-RU/angular-ru-sdk/pull/531))
+    ([78b7bf1f](https://github.com/Angular-RU/angular-ru-sdk/commit/78b7bf1fe351fbc1e3cdce96bb0074b18fd36d47))
+
 #### 15.196.1 (2021-04-14)
 
 ##### Continuous Integration
