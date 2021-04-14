@@ -1,8 +1,8 @@
-import { Any } from '@angular-ru/common/typings';
-
-export function exclude<T = Any>(valueOrValues: T | T[]): (current: T) => boolean {
-    const excludeValues: T[] = Array.isArray(valueOrValues) ? valueOrValues : [valueOrValues];
-    return function (value: T): boolean {
+export function exclude<ArrayEntryType, ExcludingType extends ArrayEntryType>(
+    valueOrValues: ExcludingType | ExcludingType[]
+): (current: ArrayEntryType) => boolean {
+    const excludeValues: ArrayEntryType[] = Array.isArray(valueOrValues) ? valueOrValues : [valueOrValues];
+    return function (value: ArrayEntryType): boolean {
         return !excludeValues.includes(value);
     };
 }
