@@ -32,7 +32,7 @@
         "@angular-eslint/eslint-plugin": "2.1.0",
         "@angular-eslint/eslint-plugin-template": "2.1.0",
         "@angular-eslint/template-parser": "2.1.0",
-        "@types/eslint": "7.2.9",
+        "@types/eslint": "7.2.10",
         "@typescript-eslint/eslint-plugin": "4.22.0",
         "@typescript-eslint/parser": "4.22.0",
         "eslint": "7.24.0",
