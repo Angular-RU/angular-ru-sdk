@@ -1,3 +1,15 @@
+#### 15.196.1 (2021-04-14)
+
+##### Continuous Integration
+
+-   add stale.yml
+    ([fc0c8416](https://github.com/Angular-RU/angular-ru-sdk/commit/fc0c8416d3eaef3c01ded7db2b116c45c280edb4))
+
+##### Bug Fixes
+
+-   **@angular-ru/common:** fix exclude typings ([#530](https://github.com/Angular-RU/angular-ru-sdk/pull/530))
+    ([8085b09f](https://github.com/Angular-RU/angular-ru-sdk/commit/8085b09fa586c747bad4e7ab1b7c02a88e392f73))
+
 #### 15.196.0 (2021-04-13)
 
 ##### Continuous Integration
