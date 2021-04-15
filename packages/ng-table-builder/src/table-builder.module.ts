@@ -33,7 +33,6 @@ import { TemplateHeadThDirective } from './directives/rows/template-head-th.dire
 import { VirtualForDirective } from './directives/virtual-for.directive';
 import { DisableRowPipe } from './pipes/disable-row.pipe';
 import { TableSelectedItemsPipe } from './pipes/table-selected-items.pipe';
-import { UtilsService } from './services/utils/utils.service';
 import { TableBuilderComponent } from './table-builder.component';
 
 @NgModule({
@@ -72,7 +71,7 @@ import { TableBuilderComponent } from './table-builder.component';
         TableSelectedItemsPipe,
         VirtualForDirective
     ],
-    providers: [UtilsService, WebWorkerThreadService],
+    providers: [WebWorkerThreadService],
     exports: [
         TableBuilderComponent,
         TemplateHeadThDirective,

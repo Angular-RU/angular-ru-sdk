@@ -14,7 +14,6 @@ import { Subscription } from 'rxjs';
 import { MousePosition } from '../../interfaces/table-builder.internal';
 import { ContextMenuService } from '../../services/context-menu/context-menu.service';
 import { FilterableService } from '../../services/filterable/filterable.service';
-import { UtilsService } from '../../services/utils/utils.service';
 import { MINIMAL_TIMEOUT, SCROLLBAR_SIZE } from '../../table-builder.properties';
 
 export interface PositionState {
@@ -34,7 +33,6 @@ export abstract class AbstractModalViewLayerDirective<T, K extends PositionState
     public minHeight: number | null = null;
     protected subscription: Subscription | null = null;
     protected readonly app: ApplicationRef;
-    protected readonly utils: UtilsService<T>;
     protected readonly filterable: FilterableService<T>;
     protected readonly ngZone: NgZone;
     protected readonly contextMenu: ContextMenuService<T>;
@@ -42,7 +40,6 @@ export abstract class AbstractModalViewLayerDirective<T, K extends PositionState
 
     protected constructor(protected readonly cd: ChangeDetectorRef, injector: Injector) {
         this.app = injector.get<ApplicationRef>(ApplicationRef);
-        this.utils = injector.get<UtilsService<T>>(UtilsService);
         this.filterable = injector.get<FilterableService<T>>(FilterableService);
         this.ngZone = injector.get<NgZone>(NgZone);
         this.contextMenu = injector.get<ContextMenuService<T>>(ContextMenuService);

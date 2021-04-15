@@ -21,6 +21,7 @@ import {
     ViewChild,
     ViewChildren
 } from '@angular/core';
+import { pathsOfObject } from '@angular-ru/common/object';
 import { Any, DeepPartial, Fn, PlainObjectOf, PrimaryKey } from '@angular-ru/common/typings';
 import { detectChanges } from '@angular-ru/common/utils';
 
@@ -51,7 +52,6 @@ import { SelectionService } from './services/selection/selection.service';
 import { SortableService } from './services/sortable/sortable.service';
 import { NgxTableViewChangesService } from './services/table-view-changes/ngx-table-view-changes.service';
 import { TemplateParserService } from './services/template-parser/template-parser.service';
-import { UtilsService } from './services/utils/utils.service';
 import { SCROLLBAR_SIZE } from './table-builder.properties';
 import { TableSortTypes } from './types/table-sort-types.type';
 
@@ -135,7 +135,6 @@ export abstract class AbstractTableBuilderApiDirective<T>
     public filteringRun: boolean = false;
     public abstract readonly templateParser: TemplateParserService<T>;
     public abstract readonly selection: SelectionService<T>;
-    public abstract readonly utils: UtilsService<T>;
     public abstract readonly cd: ChangeDetectorRef;
     public abstract readonly resize: ResizableService;
     public abstract readonly sortable: SortableService<T>;
@@ -416,7 +415,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
     }
 
     protected getModelKeys(): string[] {
-        return this.utils.flattenKeysByRow(this.firstItem);
+        return pathsOfObject(this.firstItem);
     }
 
     protected calculateColumnWidthSummary(): void {
