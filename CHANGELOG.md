@@ -1,3 +1,11 @@
+#### 15.198.1 (2021-04-15)
+
+##### Refactors
+
+-   **@angular-ru/ng-table-builder:** disassemble UtilsService
+    ([#514](https://github.com/Angular-RU/angular-ru-sdk/pull/514))
+    ([168ca703](https://github.com/Angular-RU/angular-ru-sdk/commit/168ca703342312daa2a083286b62c630719962e1))
+
 #### 15.198.0 (2021-04-15)
 
 ##### New Features
