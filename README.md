@@ -39,9 +39,10 @@ in the Angular.
 
 #### Misc
 
-| **Package**                                                                  | **Version**                                                              | **README**                                                                            | **Downloads (weekly)**                                                                                          |
-| ---------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| [@angular-ru/build-tools](https://npmjs.com/package/@angular-ru/build-tools) | ![](https://img.shields.io/npm/v/%40angular-ru%2Fbuild-tools/latest.svg) | [![](https://img.shields.io/badge/README--green.svg)](packages/build-tools/README.md) | [![](https://img.shields.io/npm/dw/@angular-ru/build-tools)](https://npmjs.com/package/@angular-ru/build-tools) |
+| **Package**                                                                      | **Version**                                                                | **README**                                                                              | **Downloads (weekly)**                                                                                              |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| [@angular-ru/build-tools](https://npmjs.com/package/@angular-ru/build-tools)     | ![](https://img.shields.io/npm/v/%40angular-ru%2Fbuild-tools/latest.svg)   | [![](https://img.shields.io/badge/README--green.svg)](packages/build-tools/README.md)   | [![](https://img.shields.io/npm/dw/@angular-ru/build-tools)](https://npmjs.com/package/@angular-ru/build-tools)     |
+| [@angular-ru/eslint-plugin](https://npmjs.com/package/@angular-ru/eslint-plugin) | ![](https://img.shields.io/npm/v/%40angular-ru%2Feslint-plugin/latest.svg) | [![](https://img.shields.io/badge/README--green.svg)](packages/eslint-plugin/README.md) | [![](https://img.shields.io/npm/dw/@angular-ru/eslint-plugin)](https://npmjs.com/package/@angular-ru/eslint-plugin) |
 
 ---
 
