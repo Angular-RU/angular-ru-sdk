@@ -19,11 +19,11 @@
     "scripts": {
         "build:app": "lerna run build:app",
         "build:lib": "lerna run build:lib",
-        "clean": "rm -rf .cache ./packages/**/dist ./packages/**/lib ./packages/**/.cache",
+        "clean": "rm -rf .cache ./packages/**/dist ./packages/**/lib ./packages/**/out ./packages/**/.cache",
         "deploy": "lerna run deploy",
         "format": "yarn package:sort && yarn pretty:format --write",
         "postinstall": "ngcc --async && husky install && lerna run symlink",
-        "lint": "eslint \"**/*.ts\" --ignore-pattern typescript.bad.ts",
+        "lint": "eslint \"**/*.ts\" --ignore-pattern **/file-suities/**",
         "package:lint": "yarn package:sort --check",
         "package:sort": "yarn sort-package-json \"package.json\" \"packages/*/package.json\"",
         "pre:commit": "git add . && git update-index --again && yarn lint-staged && git add .",
@@ -42,7 +42,7 @@
     "lint-staged": {
         "*.ts": [
             "yarn prettier --write",
-            "yarn eslint --fix --ignore-pattern \"typescript.bad.ts\""
+            "yarn eslint --fix --ignore-pattern **/file-suities/**"
         ],
         "*.{html,css,scss,md,js,json}": [
             "yarn prettier --write"

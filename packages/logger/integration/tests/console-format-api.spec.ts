@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { LoggerModule } from '../../src/logger.module';
 import { LoggerService } from '../../src/logger.service';
 import { ConsoleFake } from './helpers/console-fake';
-import { CUSTOM_COLORS, CUSTOM_LABELS } from './helpers/custom-colors.enum';
+import { CUSTOM_COLORS, CUSTOM_LABELS } from './helpers/custom-colors';
 import { FormatOutput, LoggerLevel } from '../../src/interfaces/logger.external';
 
 describe('[TEST]: Check global style', () => {

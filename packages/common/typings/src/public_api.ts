@@ -15,7 +15,7 @@ export { InputBoolean } from './input-boolean';
 export { Join } from './join';
 export { KeyOfList } from './key-of-list';
 export { KeyValueComparator } from './key-value-comparator';
-export { KeyboardKeys } from './keyboard.enum';
+export { KeyboardKeys } from './keyboard';
 export { KeysOfType } from './keys-of-type';
 export { Leaves } from './leaves';
 export { NgCssClasses } from './ng-css-classes';

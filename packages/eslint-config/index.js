@@ -55,9 +55,16 @@ module.exports = {
                 'eslint-plugin-import',
                 '@typescript-eslint',
                 '@angular-eslint/eslint-plugin',
-                'sonarjs'
+                'sonarjs',
+                '@angular-ru/eslint-plugin'
             ],
             rules: {
+                /**
+                 * Angular-RU rules
+                 */
+                '@angular-ru/no-model-suffix': 'error',
+                '@angular-ru/no-enum-suffix': 'error',
+
                 /**
                  * ESLint Core
                  */
@@ -527,7 +534,7 @@ module.exports = {
                 // 'sonarjs/prefer-default-last': 'error',
                 // 'sonarjs/prefer-promise-shorthand': 'error',
                 // 'sonarjs/prefer-type-guard': 'error',
-                // 'sonarjs/use-type-alias': 'error'
+                // 'sonarjs/use-type-alias': 'error',
             }
         },
         {

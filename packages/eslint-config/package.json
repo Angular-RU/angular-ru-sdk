@@ -32,6 +32,7 @@
         "@angular-eslint/eslint-plugin": "2.1.0",
         "@angular-eslint/eslint-plugin-template": "2.1.0",
         "@angular-eslint/template-parser": "2.1.0",
+        "@angular-ru/eslint-plugin": "15.0.0",
         "@types/eslint": "7.2.10",
         "@typescript-eslint/eslint-plugin": "4.22.0",
         "@typescript-eslint/parser": "4.22.0",
@@ -47,6 +48,8 @@
         "eslint-plugin-sonarjs": "0.6.0"
     },
     "peerDependencies": {
+        "@angular-ru/common": ">=15.0.0",
+        "@angular-ru/eslint-plugin": ">=15.0.0",
         "@angular/compiler": ">=8.0.0 <12.0.0",
         "@angular/core": ">=8.0.0 <12.0.0",
         "eslint": ">=6.8.0 <8.0.0",
