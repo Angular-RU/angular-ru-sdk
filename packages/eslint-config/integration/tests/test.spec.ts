@@ -79,7 +79,7 @@ describe('[TEST]: Eslint', (): void => {
         expect(bad.includes('Unexpected trailing comma')).toEqual(true);
         expect(bad.includes('Expected non-Promise value in a boolean conditional')).toEqual(true);
         expect(bad.includes('The name of the class MyEtc should end with the suffix Component')).toEqual(true);
-        expect(bad.includes('The name of the class FooEtc should end with the suffix Directive')).toEqual(true);
+        expect(bad.includes('The name of the class FooEtc should end with suffix(es) "Directive"')).toEqual(true);
         expect(bad.includes('Lifecycle methods should not be empty')).toEqual(true);
         expect(bad.includes('Declaring ngDoCheck and ngOnChanges method in a class is not recommended')).toEqual(true);
         expect(bad.includes('Avoid using `forwardRef`')).toEqual(true);
