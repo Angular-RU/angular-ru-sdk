@@ -155,26 +155,26 @@
     ora "5.3.0"
     rxjs "6.6.3"
 
-"@angular-eslint/eslint-plugin-template@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/@angular-eslint/eslint-plugin-template/-/eslint-plugin-template-3.0.0.tgz#bf7611dbbec507ce54d3a06976c5e1be9bb2f818"
-  integrity sha512-W5vrsSp4aVEB8++F3bIa6aov+IoTIb9T/8I0lPketUlk7Kb5z39cmu2hQgSDEgYOArdL+OiFA9cvbtC9xcANmw==
+"@angular-eslint/eslint-plugin-template@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.npmjs.org/@angular-eslint/eslint-plugin-template/-/eslint-plugin-template-4.0.0.tgz#f24047f23a0f70a3a6c572274f57f91d841f2822"
+  integrity sha512-JeczA5NJHRbTbt0COGo8lnCNi/UG9tofWt47NwbYcupIdtyx5CFZ+qBO7UgRoI2eA50DNOYdgLITZYPso3XFsg==
   dependencies:
     "@typescript-eslint/experimental-utils" "4.16.1"
     aria-query "^4.2.2"
     axobject-query "^2.2.0"
 
-"@angular-eslint/eslint-plugin@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/@angular-eslint/eslint-plugin/-/eslint-plugin-3.0.0.tgz#71a0d316543bebefb966bf3ff9e9a3621baab3fb"
-  integrity sha512-1No8hRoewkJ6TG/zLi9bCZIvC7v2gyXX55nf0oAZQLHRdSkRWPEmeJJLtjCwZKjBicFXiClQ71bgtzY5V2ZHdg==
+"@angular-eslint/eslint-plugin@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.npmjs.org/@angular-eslint/eslint-plugin/-/eslint-plugin-4.0.0.tgz#583aa69f68afd6f55f41a1539672bf2a182c5a50"
+  integrity sha512-n2G+xS/Zli7nsCo/IkVmbnBjSNDxoxw0p1jUJPyJN6UVhiVca65Jm3/HUlYs+YkCc0vTS30BKSOpgC5grd6dDg==
   dependencies:
     "@typescript-eslint/experimental-utils" "4.16.1"
 
-"@angular-eslint/template-parser@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/@angular-eslint/template-parser/-/template-parser-3.0.0.tgz#a056c68b9e24b61e40c4623c72556d88a6d00ea8"
-  integrity sha512-7G4t01CyBEKSgDu0ptvwu1GDuyg8r0zUrEoaXreWlrLGZ3eT9b9th0P/kVZ8MTeU37vr2TIEH4/j72+0cTxHkQ==
+"@angular-eslint/template-parser@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.npmjs.org/@angular-eslint/template-parser/-/template-parser-4.0.0.tgz#73afbdee2f5bc6c3827362e63c75ef67943f454d"
+  integrity sha512-kJOwedhjcuujU7h1cbluW+OgnzNrDLttjrgdypGg7920GTXGaoGFcZ05sX2GaVkGH3B8MkiOtiyrYi0mc2oLyQ==
   dependencies:
     eslint-scope "^5.1.0"
 
