@@ -58,3 +58,5 @@ export { ToNumberPipe } from './to-number/to-number.pipe';
 export { ToNumberPipeModule } from './to-number/to-number-pipe.module';
 export { ToStringPipe } from './to-string/to-string.pipe';
 export { ToStringPipeModule } from './to-string/to-string-pipe.module';
+export { TypeAsPipe } from './type-as/type-as.pipe';
+export { TypeAsPipeModule } from './type-as/type-as-pipe.module';
