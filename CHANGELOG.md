@@ -1,3 +1,10 @@
+#### 15.203.0 (2021-04-20)
+
+##### New Features
+
+-   **@angular-ru/common:** add TypeAs pipe ([#539](https://github.com/Angular-RU/angular-ru-sdk/pull/539))
+    ([36fcdc55](https://github.com/Angular-RU/angular-ru-sdk/commit/36fcdc55799bc0cb7c83d47b1a12f5f797a37e98))
+
 #### 15.202.0 (2021-04-18)
 
 ##### New Features
