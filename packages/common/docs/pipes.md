@@ -607,16 +607,16 @@ export class AppComponent {
 }
 ```
 
-`FilterUnique, FilterUniqueModule`
+`FilterUniquePipe, FilterUniquePipeModule`
 
 ```ts
-import { FilterUniqueModule } from '@angular-ru/common/pipes';
+import { FilterUniquePipeModule } from '@angular-ru/common/pipes';
 import { PlainObject } from '@angular-ru/common-typings';
 import { Component, NgModule } from '@angular/core';
 
 @NgModule({
     // ..
-    imports: [FilterUniqueModule]
+    imports: [FilterUniquePipeModule]
 })
 export class AppModule {}
 
@@ -633,5 +633,35 @@ export class AppModule {}
 export class AppComponent {
     public objects: PlainObject = [{ name: 'a' }, { name: 'a' }, { name: 'b' }];
     public numbers: number[] = [1, 2, 3, 4, 5, 5, 4];
+}
+```
+
+`TypeAsPipe, TypeAsPipeModule`
+
+```ts
+import { TypeAs } from '@angular-ru/common/pipes';
+
+@NgModule({
+    // ..
+    imports: [TypeAsPipeModule]
+})
+export class AppModule {}
+
+type SomeType = { a: number };
+
+@Component({
+    //...
+    template: `
+        <p *ngIf="notTyped | typeAs: typeSample as typed">
+            {{ typed.a }}
+            <!-- OK -->
+            {{ typed.b }}
+            <!-- Error: Property 'b' does not exist on type 'SomeType' -->
+        </p>
+    `
+})
+export class AppComponent {
+    public notTyped: any = { a: 1 };
+    public typeSample!: SomeType;
 }
 ```
