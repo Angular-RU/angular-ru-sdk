@@ -1,14 +1,11 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { PlainObject, Timestamp } from '@angular-ru/common/typings';
+import { DateIntervalDescriptor, PlainObject, Timestamp } from '@angular-ru/common/typings';
 import { checkSomeValueIsEmpty, isNotNil } from '@angular-ru/common/utils';
 
 import { assertFormGroup } from './utils/assert-form-group';
 import { getDateInterval } from './utils/get-date-interval';
 
-export interface DateIntervalValidatorDescriptor {
-    dateFromKey: string;
-    dateToKey: string;
-}
+export type DateIntervalValidatorDescriptor = DateIntervalDescriptor;
 
 const enum DateIntervalValidatorType {
     LIMIT_MAX_INTERVAL = 'maxDateIntervalLimit',

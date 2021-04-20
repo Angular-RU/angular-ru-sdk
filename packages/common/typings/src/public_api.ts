@@ -4,6 +4,7 @@ export { NonEmptyArray } from './array-types';
 export { ClassType } from './class-type';
 export { CompareFn } from './compare-fn';
 export { Couple } from './couple';
+export { DateIntervalDescriptor } from './date-interval-descriptor';
 export { DecoratorMethod } from './decorator-method';
 export { DeepKeyOfList } from './deep-key-of-list';
 export { DeepPartial } from './deep-partial';
