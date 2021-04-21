@@ -5,17 +5,18 @@ import { Any, PlainObject } from '@angular-ru/common/typings';
 import { downloadFile } from '@angular-ru/common/utils';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 
-import { ExcelWorkbook } from './excel-builder.interfaces';
+import { ExcelWorkbook } from './interfaces/excel-workbook';
+import { ExcelWorksheet } from './interfaces/excel-worksheet';
 
 @Injectable()
 export class ExcelBuilderService {
     constructor(public webWorker: WebWorkerThreadService) {}
 
     // eslint-disable-next-line max-lines-per-function
-    public exportExcelByWorkbook(workbook: ExcelWorkbook): void {
+    public exportExcelByWorkbook<T>(workbook: ExcelWorkbook<T>): void {
         this.webWorker
             // eslint-disable-next-line sonarjs/cognitive-complexity,max-lines-per-function
-            .run((input: Any): Blob => {
+            .run((input: ExcelWorkbook<T>): Blob => {
                 const PT_WIDTH: number = 5;
                 const PT_SIZE: number = 7;
                 const COL_WIDTH: number = 140;
@@ -30,7 +31,7 @@ export class ExcelBuilderService {
 
                 const worksheetsTemplates: string = generateWorksheet(
                     input.worksheets,
-                    flatten(input.translateColumns),
+                    flatten(input.translatedKeys),
                     PT_WIDTH,
                     PT_SIZE,
                     COL_WIDTH,
@@ -40,23 +41,23 @@ export class ExcelBuilderService {
 
                 // eslint-disable-next-line max-lines-per-function
                 function generateWorksheet(
-                    worksheets: Any,
-                    translatedColumns: Any,
-                    ptWidth: Any,
-                    ptSize: Any,
-                    colWidth: Any,
-                    rowHeight: Any,
-                    styleType: Any
+                    worksheets: ExcelWorksheet<T>[],
+                    flattenTranslatedKeys: PlainObject,
+                    ptWidth: number,
+                    ptSize: number,
+                    colWidth: number,
+                    rowHeight: number,
+                    styleType: PlainObject
                 ): string {
                     let worksheetTemplates: string = '';
 
                     // eslint-disable-next-line max-lines-per-function
-                    worksheets.forEach((worksheet: Any): void => {
+                    worksheets.forEach((worksheet: ExcelWorksheet<T>): void => {
                         const worksheetName: string = worksheet.worksheetName;
                         const headerTitles: string[] = getHeaderTitles(
                             worksheet,
-                            worksheet.table[0],
-                            translatedColumns
+                            worksheet.entries[0],
+                            flattenTranslatedKeys
                         );
                         worksheetTemplates += `
                           <Worksheet ss:Name="${worksheetName}"><Table ss:DefaultColumnWidth="${colWidth}" ss:DefaultRowHeight="${ROW_HEIGHT}">${generateColumns(
@@ -66,7 +67,7 @@ export class ExcelBuilderService {
                         )}
                               ${generateRow(
                                   worksheet,
-                                  worksheet.table,
+                                  worksheet.entries,
                                   headerTitles,
                                   rowHeight,
                                   ptWidth,
@@ -79,9 +80,9 @@ export class ExcelBuilderService {
                     return worksheetTemplates;
                 }
 
-                function generateColumns(headerTitles: Any, ptSize: Any, colWidth: Any) {
-                    return headerTitles.reduce((columnTemplate: Any, title: Any): string => {
-                        let templates: Any = columnTemplate;
+                function generateColumns(headerTitles: string[], ptSize: number, colWidth: number) {
+                    return headerTitles.reduce((columnTemplate: string, title: string): string => {
+                        let templates: string = columnTemplate;
                         const size: number = title.length * ptSize;
                         const width: number = size > colWidth ? size : colWidth;
                         templates += `<Column ss:Width="${width}" />`;
@@ -91,20 +92,20 @@ export class ExcelBuilderService {
 
                 // eslint-disable-next-line max-lines-per-function
                 function generateRow(
-                    worksheets: Any,
-                    data: Any,
-                    titles: Any,
-                    rowHeight: Any,
-                    ptWidth: Any,
-                    colWidth: Any,
-                    styleType: Any
+                    worksheet: ExcelWorksheet<T>,
+                    entries: T[],
+                    titles: string[],
+                    rowHeight: number,
+                    ptWidth: number,
+                    colWidth: number,
+                    styleType: PlainObject
                 ) {
                     let rowsTemplates: string = '';
-                    data.forEach((cell: Any, index: Any): void => {
+                    entries.forEach((cell: Any, index: Any): void => {
                         const header: string =
                             index === 0 ? `\t<Row>${generateHeadCell(titles, styleType)}\t</Row>` : '';
                         rowsTemplates += `${header}<Row ss:Height="${rowHeight}"> ${generateCell(
-                            worksheets,
+                            worksheet,
                             cell,
                             ptWidth,
                             colWidth,
@@ -115,34 +116,47 @@ export class ExcelBuilderService {
                     return rowsTemplates;
                 }
 
-                function generateCell(worksheet: Any, cell: Any, ptWidth: Any, colWidth: Any, styleType: Any) {
+                function generateCell(
+                    worksheet: ExcelWorksheet<T>,
+                    cell: Any,
+                    ptWidth: number,
+                    colWidth: number,
+                    styleType: Any
+                ) {
                     const flatCell: PlainObject = flatten(cell, worksheet.excludeKeys);
-                    return generateBodyCell(flatCell, ptWidth, colWidth, styleType);
+                    return generateBodyCell(worksheet, flatCell, ptWidth, colWidth, styleType);
                 }
 
-                function generateBodyCell(flatCell: Any, ptWidth: Any, colWidth: Any, styleType: Any) {
+                function generateBodyCell(
+                    worksheet: ExcelWorksheet<T>,
+                    flatCell: Any,
+                    ptWidth: Any,
+                    colWidth: Any,
+                    styleType: Any
+                ) {
                     let bodyCellTemplate: string = '';
-                    for (const key in flatCell) {
-                        if (flatCell.hasOwnProperty(key)) {
-                            const value: string = flatCell[key];
-                            const symbolCount: number = String(value).length;
-                            const localStyleId: string =
-                                symbolCount * ptWidth >= colWidth ? styleType['BIG_DATA'] : styleType['BODY'];
-                            bodyCellTemplate += renderCell(flatCell[key], localStyleId);
-                        }
-                    }
+                    const keys: string[] = worksheet.keys?.length ? worksheet.keys : Object.keys(flatCell);
+
+                    keys.forEach((key: string): void => {
+                        const value: string = flatCell[key];
+                        const symbolCount: number = String(value).length;
+                        const localStyleId: string =
+                            symbolCount * ptWidth >= colWidth ? styleType['BIG_DATA'] : styleType['BODY'];
+                        bodyCellTemplate += renderCell(flatCell[key], localStyleId);
+                    });
+
                     return bodyCellTemplate;
                 }
 
-                function generateHeadCell(titles: Any, styleType: Any) {
-                    return titles.reduce((headCellTemplate: Any, title: Any): string => {
+                function generateHeadCell(titles: string[], styleType: PlainObject) {
+                    return titles.reduce((headCellTemplate: string, title: string): string => {
                         let templates: Any = headCellTemplate;
                         templates += renderCell(title, styleType.HEAD);
                         return templates;
                     }, '');
                 }
 
-                function renderCell(value: Any, styleId: Any, defaultType: string = 'String') {
+                function renderCell(value: Any, styleId: string, defaultType: string = 'String') {
                     const type: Any = typeof value === 'number' ? 'Number' : defaultType;
                     let cellValue: Any = transform(value, '-');
                     if (typeof cellValue === 'string') {
@@ -161,14 +175,15 @@ export class ExcelBuilderService {
                     return [undefined, null, NaN, '', 'null', Infinity].includes(val);
                 }
 
-                function getHeaderTitles(worksheet: Any, cell: Any, dictionary: Any) {
+                function getHeaderTitles(worksheet: ExcelWorksheet<T>, cell: Any, dictionary: Any) {
                     const flatCell: PlainObject = flatten(cell, worksheet.excludeKeys);
-                    const columnKeys: string[] = Object.keys(flatCell);
-                    return columnKeys.map((key: string): string => {
+                    const keys: string[] = worksheet.keys?.length ? worksheet.keys : Object.keys(flatCell);
+
+                    return keys.map((key: string): string => {
                         const translatedKey: string =
                             // eslint-disable-next-line no-negated-condition
-                            dictionary[`${worksheet.titleKey}.${key}`] !== undefined
-                                ? dictionary[`${worksheet.titleKey}.${key}`]
+                            dictionary[`${worksheet?.prefixKeyForTranslate}.${key}`] !== undefined
+                                ? dictionary[`${worksheet?.prefixKeyForTranslate}.${key}`]
                                 : key;
                         return isTranslated(translatedKey, key) ? translatedKey : key;
                     });
@@ -188,11 +203,11 @@ export class ExcelBuilderService {
                     }
                 }
 
-                function flatten(object: Any, excludeKeys: Any[] = []) {
+                function flatten(objectRef: Any, excludeKeys: string[] = []) {
                     const depthGraph: PlainObject = {};
-                    for (const key in object) {
-                        if (object.hasOwnProperty(key) && !excludeKeys.includes(key)) {
-                            mutate(object, depthGraph, key);
+                    for (const key in objectRef) {
+                        if (objectRef.hasOwnProperty(key) && !excludeKeys.includes(key)) {
+                            mutate(objectRef, depthGraph, key);
                         }
                     }
                     return depthGraph;
@@ -219,7 +234,7 @@ export class ExcelBuilderService {
                            xmlns:o="urn:schemas-microsoft-com:office:office"
                            xmlns:x="urn:schemas-microsoft-com:office:excel"
                            xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
-                           xmlns:html="http://www.w3.org/TR/REC-html40">
+                           xmlns:html="https://www.w3.org/TR/html40/">
                            <Styles>
                             <Style ss:ID="${StyleType.HEAD}">
                                <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="0" />
@@ -241,9 +256,8 @@ export class ExcelBuilderService {
                 const UTF8: string = '\ufeff';
                 return new Blob([UTF8, template], { type: 'application/vnd.ms-excel;charset=UTF-8' });
             }, workbook)
-            .then((blob: Blob): void => {
-                const name: string = `${workbook.filename}.${toFormatDateTime()}`;
-                downloadFile({ blob, name, extension: 'xls' });
-            });
+            .then((blob: Blob): void =>
+                downloadFile({ blob, name: `${workbook.filename}.${toFormatDateTime()}`, extension: 'xls' })
+            );
     }
 }

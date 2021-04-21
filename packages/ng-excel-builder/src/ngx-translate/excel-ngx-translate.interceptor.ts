@@ -4,7 +4,7 @@ import { isNil } from '@angular-ru/common/utils';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 
-import { ExcelBuilderTextColumnInterceptor } from '../excel-builder.interfaces';
+import { ExcelBuilderTextColumnInterceptor } from '../interfaces/excel-builder-text-column-interceptor';
 
 @Injectable()
 export class ExcelNgxTranslateInterceptor implements ExcelBuilderTextColumnInterceptor {
