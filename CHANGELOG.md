@@ -1,3 +1,11 @@
+#### 15.205.0 (2021-04-21)
+
+##### New Features
+
+-   **@angular-ru/ng-excel-builder:** add keys param to options
+    ([#541](https://github.com/Angular-RU/angular-ru-sdk/pull/541))
+    ([2de1c191](https://github.com/Angular-RU/angular-ru-sdk/commit/2de1c1911ffc272a9507acacf379c1b617f5f7b8))
+
 #### 15.204.0 (2021-04-20)
 
 ##### New Features
