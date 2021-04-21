@@ -1,3 +1,10 @@
+#### 15.204.0 (2021-04-20)
+
+##### New Features
+
+-   **@angular-ru/common:** add DateIntervalDescriptor ([#540](https://github.com/Angular-RU/angular-ru-sdk/pull/540))
+    ([1c1f0e19](https://github.com/Angular-RU/angular-ru-sdk/commit/1c1f0e190faacde63f107952be073640ccead171))
+
 #### 15.203.0 (2021-04-20)
 
 ##### New Features
