@@ -1,3 +1,32 @@
+#### 15.206.0 (2021-04-22)
+
+##### Continuous Integration
+
+-   updated release notes and package versions [ci skip]
+    ([a8a2ac80](https://github.com/Angular-RU/angular-ru-sdk/commit/a8a2ac80cf5b5f5f3cfb0812d2ca448da709f66c))
+
+##### New Features
+
+-   added common utils
+    ([c0623f8e](https://github.com/Angular-RU/angular-ru-sdk/commit/c0623f8e270a02305d420e2345bd1522b6bc3cb6))
+-   **@angular-ru/ng-excel-builder:** add keys param to options
+    ([#541](https://github.com/Angular-RU/angular-ru-sdk/pull/541))
+    ([2de1c191](https://github.com/Angular-RU/angular-ru-sdk/commit/2de1c1911ffc272a9507acacf379c1b617f5f7b8))
+
+##### Other Changes
+
+-   //github.com/Angular-RU/angular-ru-sdk into feat/common-utils
+    ([73b3ba6b](https://github.com/Angular-RU/angular-ru-sdk/commit/73b3ba6becc3c5b39b36d62d8e58f00ce0a12d5a))
+
+##### Refactors
+
+-   changes after review
+    ([9627f7d4](https://github.com/Angular-RU/angular-ru-sdk/commit/9627f7d4298d7bff54e27569ef5c59978c653c71))
+-   changes after review
+    ([7a54f0e8](https://github.com/Angular-RU/angular-ru-sdk/commit/7a54f0e839e3864695cdf4e8c4f432685b4e7c28))
+-   changes after review
+    ([41fe43c8](https://github.com/Angular-RU/angular-ru-sdk/commit/41fe43c850003e583b4346521b9ff10da1712454))
+
 #### 15.205.0 (2021-04-21)
 
 ##### New Features
