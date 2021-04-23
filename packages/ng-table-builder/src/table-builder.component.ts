@@ -334,8 +334,8 @@ export class TableBuilderComponent<T>
         this.viewPortInfo.bufferOffset = bufferOffset;
     }
 
-    public setSource(source: T[]): void {
-        this.originalSource = this.source = this.selection.rows = this.selection.originalRows = source;
+    public setSource(source: T[] | null): void {
+        this.originalSource = this.source = this.selection.rows = source;
     }
 
     protected calculateViewPortByRange({ start, end, bufferOffset, force }: CalculateRange): void {
@@ -520,7 +520,7 @@ export class TableBuilderComponent<T>
     }
 
     private preSortAndFilterTable(): void {
-        this.originalSource = this.source;
+        this.setSource(this.source);
         this.sortAndFilter().then((): void => {
             this.reCheckDefinitions();
             this.checkSelectionValue();
@@ -532,8 +532,7 @@ export class TableBuilderComponent<T>
         this.renderedCountKeys = this.getCountKeys();
         this.customModelColumnsKeys = this.generateCustomModelColumnsKeys();
         this.modelColumnKeys = this.generateModelColumnKeys();
-        this.originalSource = this.source;
-        this.selection.originalRows = this.originalSource;
+        this.setSource(this.source);
         const unDirty: boolean = !this.dirty;
 
         this.checkSelectionValue();
