@@ -359,7 +359,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
         });
     }
 
-    public abstract setSource(source: T[]): void;
+    public abstract setSource(source: T[] | null): void;
 
     public abstract markDirtyCheck(): void;
 

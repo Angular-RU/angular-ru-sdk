@@ -1,4 +1,4 @@
-import { Injectable, isDevMode, NgZone, OnDestroy } from '@angular/core';
+import { Injectable, NgZone, OnDestroy } from '@angular/core';
 import { Any, Fn, PlainObjectOf, PrimaryKey } from '@angular-ru/common/typings';
 import { checkValueIsEmpty, isNil } from '@angular-ru/common/utils';
 import { Subject } from 'rxjs';
@@ -17,7 +17,6 @@ export class SelectionService<T> implements OnDestroy {
     public selectionTaskIdle: number | null = null;
     public onChanges: Subject<void> = new Subject<void>();
     public selectionModeIsEnabled: boolean = false;
-    public originalRows: T[] | null = null;
     public rows: T[] | null = null;
     private readonly handler: PlainObjectOf<Fn> = {};
 
@@ -38,7 +37,6 @@ export class SelectionService<T> implements OnDestroy {
     }
 
     public ngOnDestroy(): void {
-        this.originalRows = null;
         this.rows = null;
         this.unListenShiftKey();
     }
@@ -103,7 +101,7 @@ export class SelectionService<T> implements OnDestroy {
     public getIdByRow(row: T): RowId {
         const id: RowId = ((row as Any) || {})[this.primaryKey];
 
-        if (checkValueIsEmpty(id) && isDevMode()) {
+        if (checkValueIsEmpty(id)) {
             throw new Error(
                 `Can't select item, make sure you pass the correct primary key, or you forgot enable selection
                 <ngx-table-builder enable-selection primary-key="fieldId" />
@@ -137,7 +135,7 @@ export class SelectionService<T> implements OnDestroy {
         }
 
         this.selectionModel.isAll = isNil(allSize)
-            ? this.originalRows?.length === this.selectionModel.size
+            ? this.rows?.length === this.selectionModel.size
             : allSize === this.selectionModel.size;
 
         this.selectionModel.generateImmutableEntries();
@@ -153,7 +151,9 @@ export class SelectionService<T> implements OnDestroy {
         if (selectedRange) {
             const { start, end }: SelectionRange = this.range.sortKeys();
             for (let i: number = start!; i <= end!; ++i) {
-                this.selectionModel.select(this.getIdByRow(rows[i]), rows[i], false);
+                const row: T = rows[i];
+                const rowId: RowId = this.getIdByRow(row);
+                this.selectionModel.select(rowId, row, false);
             }
         }
     }
