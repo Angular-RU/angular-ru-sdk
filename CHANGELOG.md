@@ -1,3 +1,11 @@
+#### 15.206.1 (2021-04-23)
+
+##### Bug Fixes
+
+-   **@angular-ru/ng-table-builder:** fix selection items with shift key
+    ([#544](https://github.com/Angular-RU/angular-ru-sdk/pull/544))
+    ([6b377a80](https://github.com/Angular-RU/angular-ru-sdk/commit/6b377a801605064ca2118dc1f316712748b84cbb))
+
 #### 15.206.0 (2021-04-22)
 
 ##### Continuous Integration
