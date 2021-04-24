@@ -26,7 +26,7 @@
         "test": "sh test.sh"
     },
     "resolutions": {
-        "eslint": "7.24.0"
+        "eslint": "7.25.0"
     },
     "dependencies": {
         "@angular-eslint/eslint-plugin": "4.0.0",
