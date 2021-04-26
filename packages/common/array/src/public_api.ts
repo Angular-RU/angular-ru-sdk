@@ -1,5 +1,6 @@
 export { exclude } from './exclude';
 export { firstItem } from './first-item';
+export { include } from './include';
 export { isEmptyList } from './is-empty-list';
 export { isFilledList } from './is-filled-list';
 export { isMultipleList } from './is-multiple-list';
