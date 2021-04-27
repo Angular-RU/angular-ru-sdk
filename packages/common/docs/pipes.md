@@ -666,36 +666,6 @@ export class AppComponent {
 }
 ```
 
--   `TypeAsPipe, TypeAsPipeModule`
-
-```ts
-import { TypeAs } from '@angular-ru/common/pipes';
-
-@NgModule({
-    // ..
-    imports: [TypeAsPipeModule]
-})
-export class AppModule {}
-
-type SomeType = { a: number };
-
-@Component({
-    //...
-    template: `
-        <p *ngIf="notTyped | typeAs: typeSample as typed">
-            {{ typed.a }}
-            <!-- OK -->
-            {{ typed.b }}
-            <!-- Error: Property 'b' does not exist on type 'SomeType' -->
-        </p>
-    `
-})
-export class AppComponent {
-    public notTyped: any = { a: 1 };
-    public typeSample!: SomeType;
-}
-```
-
 -   `HasItems, HasManyItems, HasNoItems, HasOneItem, HasAtMostOneItem`
 -   `HasItemsModule, HasManyItemsModule, HasNoItemsModule, HasOneItemModule, HasAtMostOneItemModule`
 
