@@ -132,6 +132,15 @@ expect(checkEveryValueIsFalse(false, false, false)).toEqual(true);
 expect(checkEveryValueIsFalse(false, false, 'a')).toEqual(false);
 ```
 
+-   `checkEveryValueIsFilled`
+
+```ts
+import { checkEveryValueIsFilled } from '@angular-ru/common/utils';
+
+expect(checkEveryValueIsFilled(1, 'a', true, [])).toEqual(true);
+expect(checkEveryValueIsFilled(null, 1, true, [])).toEqual(false);
+```
+
 -   `isIE`
 
 ```ts
