@@ -20,6 +20,16 @@ export { FilterUniquePipeModule } from './filter-unique/filter-unique-pipe.modul
 export { FormatDatePipeOptions } from './format-date/format-date.interfaces';
 export { FormatDatePipe } from './format-date/format-date.pipe';
 export { FormatDatePipeModule } from './format-date/format-date-pipe.module';
+export { HasAtMostOneItemPipe } from './has-at-most-one-item/has-at-most-one-item.pipe';
+export { HasAtMostOneItemPipeModule } from './has-at-most-one-item/has-at-most-one-item-pipe.module';
+export { HasItemsPipe } from './has-items/has-items.pipe';
+export { HasItemsPipeModule } from './has-items/has-items-pipe.module';
+export { HasManyItemsPipe } from './has-many-items/has-many-items.pipe';
+export { HasManyItemsPipeModule } from './has-many-items/has-many-items-pipe.module';
+export { HasNoItemsPipe } from './has-no-items/has-no-items.pipe';
+export { HasNoItemsPipeModule } from './has-no-items/has-no-items-pipe.module';
+export { HasOneItemPipe } from './has-one-item/has-one-item.pipe';
+export { HasOneItemPipeModule } from './has-one-item/has-one-item-pipe.module';
 export { HttpReplacerPipe } from './http-replacer/http-replacer.pipe';
 export { HttpReplacerPipeModule } from './http-replacer/http-replacer-pipe.module';
 export { IsArrayPipe } from './is-array/is-array.pipe';
