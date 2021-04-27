@@ -666,6 +666,31 @@ export class AppComponent {
 }
 ```
 
+-   `AtPipe, AtPipeModule`
+
+```ts
+import { AtPipeModule } from '@angular-ru/common/pipes';
+
+@NgModule({
+    // ..
+    imports: [AtPipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `
+        <p>{{ someArray | at: 0 }}</p>
+        <!-- "first" -->
+        <p>{{ someArray | at: -1 }}</p>
+        <!-- "last" -->
+    `
+})
+export class AppComponent {
+    public someArray = ['first', 'second', 'third', 'last'];
+}
+```
+
 -   `HasItems, HasManyItems, HasNoItems, HasOneItem, HasAtMostOneItem`
 -   `HasItemsModule, HasManyItemsModule, HasNoItemsModule, HasOneItemModule, HasAtMostOneItemModule`
 
@@ -687,27 +712,11 @@ export class AppModule {}
 @Component({
     //...
     template: `
-        <pre *ngIf="someArray | hasItems">{{ hasItems[0] }}</pre>
-        <!-- type: number -->
-        <pre *ngIf="someArray | hasManyItems">{{ hasItems[0] }}</pre>
-        <!-- (unreachable) -->
-        <pre *ngIf="someArray | hasNoItems">{{ hasItems[0] }}</pre>
-        <!-- (unreachable) -->
-        <pre *ngIf="someArray | hasOneItem">{{ hasItems[0] }}</pre>
-        <!-- type: number -->
-        <pre *ngIf="someArray | hasAtMostOneItem">{{ hasItems[0] }}</pre>
-        <!-- type: number -->
-
-        <pre *ngIf="someArray | hasItems">{{ hasItems[5] }}</pre>
-        <!-- type: undefined -->
-        <pre *ngIf="someArray | hasManyItems">{{ hasItems[5] }}</pre>
-        <!-- (unreachable) -->
-        <pre *ngIf="someArray | hasNoItems">{{ hasItems[5] }}</pre>
-        <!-- (unreachable) -->
-        <pre *ngIf="someArray | hasOneItem">{{ hasItems[5] }}</pre>
-        <!-- type: undefined -->
-        <pre *ngIf="someArray | hasAtMostOneItem">{{ hasItems[5] }}</pre>
-        <!-- type: undefined -->
+        <pre *ngIf="someArray | hasItems"><!-- true --></pre>
+        <pre *ngIf="someArray | hasManyItems"><!-- false --></pre>
+        <pre *ngIf="someArray | hasNoItems"><!-- false --></pre>
+        <pre *ngIf="someArray | hasOneItem"><!-- true --></pre>
+        <pre *ngIf="someArray | hasAtMostOneItem"><!-- true --></pre>
     `
 })
 export class AppComponent {

@@ -1,3 +1,5 @@
+export { AtPipe } from './at/at.pipe';
+export { AtPipeModule } from './at/at-pipe.module';
 export { BracePipe } from './brace/brace.pipe';
 export { BracePipeModule } from './brace/brace-pipe.module';
 export { DateToNativePipe } from './date-to-native/date-to-native.pipe';

@@ -1,3 +1,4 @@
+// TODO remove function in next major
 /**
  * @deprecated Use <code>hasOneItem</code> instead
  */
