@@ -2,6 +2,7 @@ export { $any } from './$any';
 export { $cast } from './$cast';
 export { checkEveryValueIsEmpty } from './check-every-value-is-empty';
 export { checkEveryValueIsFalse } from './check-every-value-is-false';
+export { checkEveryValueIsFilled } from './check-every-value-is-filled';
 export { checkEveryValueIsTrue } from './check-every-value-is-true';
 export { checkSomeValueIsEmpty } from './check-some-value-is-empty';
 export { checkSomeValueIsFalse } from './check-some-value-is-false';
