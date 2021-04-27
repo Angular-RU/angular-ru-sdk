@@ -1,3 +1,12 @@
+#### 15.209.0 (2021-04-26)
+
+##### New Features
+
+-   update dependencies ([#547](https://github.com/Angular-RU/angular-ru-sdk/pull/547))
+    ([2a29d851](https://github.com/Angular-RU/angular-ru-sdk/commit/2a29d85128cfe34802c2ff92a06b6d696a34c2fb))
+-   added util 'include' ([#548](https://github.com/Angular-RU/angular-ru-sdk/pull/548))
+    ([e7e4c1c3](https://github.com/Angular-RU/angular-ru-sdk/commit/e7e4c1c32a61bed03f3b1e16dc45bf2a6c63f3a9))
+
 #### 15.208.0 (2021-04-24)
 
 ##### Build System / Dependencies

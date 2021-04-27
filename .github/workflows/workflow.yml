@@ -59,13 +59,13 @@ jobs:
 
             - name: Deploy integration apps
               env:
-                  GH_TOKEN: ${{ secrets.GH_DEPLOY }}
+                  GH_TOKEN: ${{ secrets.GH_TOKEN }}
               if: contains('refs/heads/master', github.ref)
               run: yarn deploy --parallel
 
             - name: Deploy npm packages
               env:
-                  GH_TOKEN: ${{ secrets.GH_DEPLOY }}
+                  GH_TOKEN: ${{ secrets.GH_TOKEN }}
                   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
               if: contains('refs/heads/master', github.ref)
               run: |
@@ -74,4 +74,4 @@ jobs:
                   git config --global user.email "angular-ru@yandex.ru"
                   git config remote.origin.url https://x-access-token:$GH_TOKEN@github.com/$GITHUB_REPOSITORY
                   echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
-                  GH_TOKEN=${{ secrets.GH_DEPLOY }} yarn lerna publish
+                  GH_TOKEN=${{ secrets.GH_TOKEN }} yarn lerna publish
