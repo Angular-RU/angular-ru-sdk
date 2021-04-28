@@ -155,26 +155,26 @@
     ora "5.3.0"
     rxjs "6.6.3"
 
-"@angular-eslint/eslint-plugin-template@4.1.0":
-  version "4.1.0"
-  resolved "https://registry.npmjs.org/@angular-eslint/eslint-plugin-template/-/eslint-plugin-template-4.1.0.tgz#b7bfe5d67aeda34ee9f79ea2e4418c17af64b180"
-  integrity sha512-/gnlww3NvsVdj0ItD8Z4FSBRx2NsTZJZ1wljuuactukBBnTwFggkO4uhpuNRNujabkE8Kr4EebhLH622yMWOKQ==
+"@angular-eslint/eslint-plugin-template@4.2.0":
+  version "4.2.0"
+  resolved "https://registry.npmjs.org/@angular-eslint/eslint-plugin-template/-/eslint-plugin-template-4.2.0.tgz#2716583530bf2b20069076994816630e299ab67c"
+  integrity sha512-LC8qqqqVmA/OJAsUt6fQCXLmWP5BL30XFvVsPtrORdxMFt0HI1gvkuz5EVak7PeAXEmerdVarNZr5zmCXIWf3g==
   dependencies:
     "@typescript-eslint/experimental-utils" "4.16.1"
     aria-query "^4.2.2"
     axobject-query "^2.2.0"
 
-"@angular-eslint/eslint-plugin@4.1.0":
-  version "4.1.0"
-  resolved "https://registry.npmjs.org/@angular-eslint/eslint-plugin/-/eslint-plugin-4.1.0.tgz#03c3396224d123e802b0f58dc389fa052a02a52b"
-  integrity sha512-SsB62RPeZkrWp7Dm1HLn7NK1wDUlSlFGi25A+Bj7yupGt3jJ98Dv8jNL8ZfEx1Y1XC3YoHv+psHq9lJSNUOYdg==
+"@angular-eslint/eslint-plugin@4.2.0":
+  version "4.2.0"
+  resolved "https://registry.npmjs.org/@angular-eslint/eslint-plugin/-/eslint-plugin-4.2.0.tgz#134203c3ac340ae4ae76703434f636dc0a110d7d"
+  integrity sha512-G8D8Pso6GcHW8vFkUSvgoKPIOtGTqO+eb5aytGtpogMgzxBRyr0juU/9Uz5dAhO6TOERIj1gPpJQ61R/n/Aaew==
   dependencies:
     "@typescript-eslint/experimental-utils" "4.16.1"
 
-"@angular-eslint/template-parser@4.1.0":
-  version "4.1.0"
-  resolved "https://registry.npmjs.org/@angular-eslint/template-parser/-/template-parser-4.1.0.tgz#99ce870d0ee5129840171e9ebf4f4bbef5960ed9"
-  integrity sha512-zmN6elQ4efVugkuK8HQWGDn3sY3Cu8oYlEyn7+5ExImU5G9DBKlNZbGD3aZhB7HvOLFLJEhltTPYs5HlfPmHsw==
+"@angular-eslint/template-parser@4.2.0":
+  version "4.2.0"
+  resolved "https://registry.npmjs.org/@angular-eslint/template-parser/-/template-parser-4.2.0.tgz#02f98c72692880b81cd6b4cc137306b346c0b193"
+  integrity sha512-77lJ9MDNWmW4ik9l3g149iO9SGRx3qLGZvfSTwmbPxpCgNripWerla9Ia1X+gLkitI8CLpcpiZybxH3EWxj/qQ==
   dependencies:
     eslint-scope "^5.1.0"
 
