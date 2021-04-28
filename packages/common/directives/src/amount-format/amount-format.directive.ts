@@ -31,6 +31,8 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
     private cursorPointer: number = 0;
 
     constructor(
+        private readonly ngZone: NgZone,
+        private readonly renderer: Renderer2,
         private readonly el: ElementRef<HTMLInputElement>,
         @Inject(AMOUNT_FORMAT_OPTIONS) globalOptions: AmountOptions,
         @Optional() private readonly ngControl?: NgControl,
