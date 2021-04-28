@@ -2,12 +2,15 @@ import {
     capitalize,
     generateQuickGuid,
     getByteSize,
+    getLastSymbol,
     isString,
+    removeLastSymbol,
     splitOnUniqueValues,
     stringify,
     toStringVal,
     trim
 } from '@angular-ru/common/string';
+import { getFirstSymbol } from '../../../string/src/get-first-symbol';
 
 describe('[TEST]: String', () => {
     it('toString', () => {
@@ -86,5 +89,21 @@ describe('[TEST]: String', () => {
         expect(trim('test ')).toEqual('test');
         expect(trim('      test  ')).toEqual('test');
         expect(trim('   test  test  ')).toEqual('test  test');
+    });
+
+    it('getLastSymbol', () => {
+        expect(getLastSymbol('test ')).toEqual(' ');
+        expect(getLastSymbol('test')).toEqual('t');
+    });
+
+    it('getFirstSymbol', () => {
+        expect(getFirstSymbol('*test ')).toEqual('*');
+        expect(getFirstSymbol('e123')).toEqual('e');
+    });
+
+    it('removeLastSymbol', () => {
+        expect(removeLastSymbol('test ')).toEqual('test');
+        expect(removeLastSymbol('123')).toEqual('12');
+        expect(removeLastSymbol('')).toEqual('');
     });
 });

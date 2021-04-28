@@ -1,14 +1,15 @@
-import { NgControl } from '@angular/forms';
-import { ElementRef } from '@angular/core';
-import { AmountFormatDirective } from '@angular-ru/common/directives';
+import { FormBuilder, FormGroup, FormsModule, NgControl, ReactiveFormsModule } from '@angular/forms';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { AmountFormatDirective, AmountFormatModule, AmountFormatSegments } from '@angular-ru/common/directives';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { Immutable } from '../../../dist/library/typings';
 
 describe('[TEST]: Amount separator', () => {
     it('should be correct formatted amount (disable decimals)', () => {
         let ngModelValue: string | number | undefined = '';
-
-        const element: Partial<ElementRef<Partial<HTMLInputElement>>> = {
-            nativeElement: { value: '' }
-        };
+        const element: Partial<ElementRef<Partial<HTMLInputElement>>> = { nativeElement: { value: '' } };
 
         const control: Partial<NgControl> = {
             reset(value?: string | number): void {
@@ -76,6 +77,7 @@ describe('[TEST]: Amount separator', () => {
             }
         };
 
+        // @ts-ignore
         const directive = new AmountFormatDirective(element as ElementRef, control as NgControl);
 
         directive.maximumFractionDigits = 0;
@@ -109,5 +111,274 @@ describe('[TEST]: Amount separator', () => {
         directive.format();
         expect(element.nativeElement!.value).toEqual('');
         expect(ngModelValue).toEqual('');
+    });
+
+    describe('expect with component', () => {
+        let fixture: ComponentFixture<HelloWorldComponent> | null = null;
+
+        @Component({
+            selector: 'hello-world',
+            template: `
+                <form [formGroup]="form">
+                    <input amountFormat #directive="amountFormat" formControlName="amount" />
+                </form>
+            `
+        })
+        class HelloWorldComponent {
+            @ViewChild('directive', { static: true })
+            public directive!: AmountFormatDirective;
+
+            public form: FormGroup = this.fb.group({
+                amount: this.fb.control('INVALID_VALUE')
+            });
+
+            constructor(private readonly fb: FormBuilder) {}
+        }
+
+        beforeEach(() =>
+            TestBed.configureTestingModule({
+                declarations: [HelloWorldComponent],
+                imports: [AmountFormatModule, CommonModule, FormsModule, ReactiveFormsModule]
+            })
+        );
+
+        beforeEach(() => {
+            fixture = TestBed.createComponent(HelloWorldComponent);
+            fixture.autoDetectChanges();
+        });
+
+        it('should be not dirty after first change detection', () => {
+            expect(getDirectiveInfo()?.element.type).toEqual('text');
+            expect(getDirectiveInfo()?.element.value).toEqual('');
+            expect(getDirectiveInfo()?.dirty).toEqual(false);
+        });
+
+        it('should be empty default value', () => {
+            expect(getInputViewValue()).toEqual('');
+            expect(getInputModelValue()).toEqual(null);
+        });
+
+        it('should be reset wrong value', () => {
+            setInputViewValue('a');
+            expect(getInputViewValue()).toEqual('');
+            expect(getInputModelValue()).toEqual(null);
+        });
+
+        it('should skip invalid values', () => {
+            setInputViewValue('10abc');
+            expect(getInputViewValue()).toEqual('10');
+            expect(getInputModelValue()).toEqual(10);
+
+            setInputViewValue('10.20.30');
+            expect(getInputViewValue()).toEqual('10.2');
+            expect(getInputModelValue()).toEqual(10.2);
+
+            setInputViewValue('10,24');
+            expect(getInputViewValue()).toEqual('10.24');
+            expect(getInputModelValue()).toEqual(10.24);
+        });
+
+        it('when given a value with negation', () => {
+            setInputViewValue('-');
+            expect(getInputViewValue()).toEqual('-');
+            expect(getInputModelValue()).toEqual(null);
+
+            setInputViewValue('-1');
+            expect(getInputViewValue()).toEqual('-1');
+            expect(getInputModelValue()).toEqual(-1);
+
+            setInputViewValue('-12345678');
+            expect(getInputViewValue()).toEqual('-12 345 678');
+            expect(getInputModelValue()).toEqual(-12345678);
+
+            setInputViewValue('-904241,25');
+            expect(getInputViewValue()).toEqual('-904 241.25');
+            expect(getInputModelValue()).toEqual(-904241.25);
+        });
+
+        it('should be correct detect cursor position', () => {
+            setInputViewValue('1');
+            expect(getInputViewValue()).toEqual('1');
+            expect(getInputModelValue()).toEqual(1);
+            expect(getCurrentCaretSegments()).toEqual({
+                cursorPosition: 1,
+                spaces: { before: 0, after: 0, newAdded: 0 }
+            });
+
+            setInputViewValue('123456');
+            expect(getInputViewValue()).toEqual('123 456');
+            expect(getInputModelValue()).toEqual(123456);
+            expect(getCurrentCaretSegments()).toEqual({
+                cursorPosition: 7,
+                spaces: { before: 0, after: 1, newAdded: 1 }
+            });
+
+            setInputViewValue('12345678910');
+            expect(getInputViewValue()).toEqual('12 345 678 910');
+            expect(getInputModelValue()).toEqual(12345678910);
+            expect(getCurrentCaretSegments()).toEqual({
+                cursorPosition: 14,
+                spaces: { before: 0, after: 3, newAdded: 3 }
+            });
+
+            setInputViewValue('0', 'push');
+            expect(getInputViewValue()).toEqual('123 456 789 100');
+            expect(getInputModelValue()).toEqual(123456789100);
+            expect(getCurrentCaretSegments()).toEqual({
+                cursorPosition: 15,
+                spaces: { before: 3, after: 3, newAdded: 0 }
+            });
+
+            setInputViewValue('7', 'push');
+            expect(getInputViewValue()).toEqual('1 234 567 891 007');
+            expect(getInputModelValue()).toEqual(1234567891007);
+            expect(getCurrentCaretSegments()).toEqual({
+                cursorPosition: 17,
+                spaces: { before: 3, after: 4, newAdded: 1 }
+            });
+
+            setInputSelectionPosition(5);
+            setInputViewValue('0', 'push');
+            expect(getInputViewValue()).toEqual('12 340 567 891 007');
+            expect(getInputModelValue()).toEqual(12340567891007);
+            expect(getCurrentCaretSegments()).toEqual({
+                cursorPosition: 6,
+                spaces: { before: 4, after: 4, newAdded: 0 }
+            });
+
+            setInputSelectionPosition(0);
+            setInputViewValue('0', 'push');
+            expect(getInputViewValue()).toEqual('12 340 567 891 007');
+            expect(getInputModelValue()).toEqual(12340567891007);
+            expect(getCurrentCaretSegments()).toEqual({
+                cursorPosition: 1,
+                spaces: { before: 4, after: 4, newAdded: 0 }
+            });
+
+            setInputSelectionPosition(0);
+            setInputViewValue('8', 'push');
+            expect(getInputViewValue()).toEqual('812 340 567 891 007');
+            expect(getInputModelValue()).toEqual(812340567891007);
+            expect(getCurrentCaretSegments()).toEqual({
+                cursorPosition: 1,
+                spaces: { before: 4, after: 4, newAdded: 0 }
+            });
+
+            setInputSelectionPosition(0);
+            setInputViewValue(',', 'push');
+            expect(getInputViewValue()).toEqual('0.812');
+            expect(getInputModelValue()).toEqual(0.812);
+            expect(getCurrentCaretSegments()).toEqual({
+                cursorPosition: 5,
+                spaces: { before: 4, after: 0, newAdded: 4 }
+            });
+
+            setInputSelectionPosition(0);
+            setInputViewValue('.', 'push');
+            expect(getInputViewValue()).toEqual('0');
+            expect(getInputModelValue()).toEqual(0);
+            expect(getCurrentCaretSegments()).toEqual({
+                cursorPosition: 1,
+                spaces: { before: 0, after: 0, newAdded: 0 }
+            });
+
+            setInputSelectionPosition(1);
+            setInputViewValue(',', 'push');
+            expect(getInputViewValue()).toEqual('0.');
+            expect(getInputModelValue()).toEqual(0);
+            expect(getCurrentCaretSegments()).toEqual({
+                cursorPosition: 1,
+                spaces: { before: 0, after: 0, newAdded: 0 }
+            });
+
+            setInputViewValue('812340567891007');
+            expect(getInputViewValue()).toEqual('812 340 567 891 007');
+            expect(getInputModelValue()).toEqual(812340567891007);
+
+            setInputSelectionPosition(8);
+            setInputViewValue(',', 'push');
+            expect(getInputViewValue()).toEqual('812 340.568');
+            expect(getInputModelValue()).toEqual(812340.568);
+        });
+
+        it('when setting an invalid value', () => {
+            setInputViewValue('.');
+            expect(getInputViewValue()).toEqual('');
+            expect(getInputModelValue()).toEqual(null);
+
+            setInputViewValue(',');
+            expect(getInputViewValue()).toEqual('');
+            expect(getInputModelValue()).toEqual(null);
+
+            setInputViewValue('!');
+            expect(getInputViewValue()).toEqual('');
+            expect(getInputModelValue()).toEqual(null);
+        });
+
+        it('when less than zero', () => {
+            setInputViewValue('0.');
+            expect(getInputViewValue()).toEqual('0.');
+            expect(getInputModelValue()).toEqual(0);
+
+            setInputViewValue('0.1');
+            expect(getInputViewValue()).toEqual('0.1');
+            expect(getInputModelValue()).toEqual(0.1);
+
+            setInputViewValue('0.135');
+            expect(getInputViewValue()).toEqual('0.135');
+            expect(getInputModelValue()).toEqual(0.135);
+
+            setInputViewValue('0.1357');
+            expect(getInputViewValue()).toEqual('0.136');
+            expect(getInputModelValue()).toEqual(0.136);
+        });
+
+        function getInputViewValue(): string | undefined {
+            return getInputRef()?.nativeElement.value;
+        }
+
+        function getInputModelValue(): number | string | undefined {
+            return fixture?.componentInstance.form.value?.amount;
+        }
+
+        function getInputRef(): ElementRef<HTMLInputElement> | undefined {
+            return fixture?.debugElement.query(By.css('input'));
+        }
+
+        function setInputViewValue(value: string, type: 'push' | 'reset' = 'reset'): void {
+            const input = getInputRef();
+
+            if (input) {
+                if (type === 'reset') {
+                    input.nativeElement.value = value;
+                } else {
+                    const current: string = input.nativeElement.value;
+                    const position: number = input.nativeElement.selectionEnd ?? input.nativeElement.value.length;
+                    input.nativeElement.value = `${current.slice(0, position)}${value}${current.slice(position)}`;
+                    const newPosition = position + 1;
+                    input.nativeElement.setSelectionRange(newPosition, newPosition);
+                }
+
+                input.nativeElement.dispatchEvent(new Event('input'));
+                input.nativeElement.dispatchEvent(new Event('blur'));
+            }
+
+            fixture?.detectChanges();
+        }
+
+        function setInputSelectionPosition(cursorPosition: number): void {
+            const input = getInputRef()?.nativeElement as HTMLInputElement;
+            input.setSelectionRange(cursorPosition, cursorPosition);
+            input.selectionStart = cursorPosition;
+            input.selectionEnd = cursorPosition;
+        }
+
+        function getDirectiveInfo(): AmountFormatDirective | undefined {
+            return fixture?.componentInstance.directive;
+        }
+
+        function getCurrentCaretSegments(): Immutable<AmountFormatSegments> | undefined {
+            return getDirectiveInfo()?.getCurrentCaretSegments();
+        }
     });
 });

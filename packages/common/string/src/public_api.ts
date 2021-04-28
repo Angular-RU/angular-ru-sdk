@@ -1,7 +1,9 @@
 export { capitalize } from './capitalize';
 export { generateQuickGuid } from './generate-quick-guid';
 export { getByteSize } from './get-byte-size';
+export { getLastSymbol } from './get-last-symbol';
 export { isString } from './is-string';
+export { removeLastSymbol } from './remove-last-symbol';
 export { splitOnUniqueValues } from './split-on-unique-values';
 export { stringify } from './stringify';
 export { toStringVal } from './to-string-val';

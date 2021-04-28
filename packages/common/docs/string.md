@@ -57,3 +57,25 @@ expect(trim('test ')).toEqual('test');
 expect(trim('      test  ')).toEqual('test');
 expect(trim('   test  test  ')).toEqual('test  test');
 ```
+
+-   `getFirstSymbol`
+
+```ts
+expect(getFirstSymbol(' test ')).toEqual(' ');
+expect(getFirstSymbol('e123')).toEqual('e');
+```
+
+-   `getLastSymbol`
+
+```ts
+expect(getLastSymbol('test ')).toEqual(' ');
+expect(getLastSymbol('test')).toEqual('t');
+```
+
+-   `removeLastSymbol`
+
+```ts
+expect(removeLastSymbol('test ')).toEqual('test');
+expect(removeLastSymbol('123')).toEqual('12');
+expect(removeLastSymbol('')).toEqual('');
+```
