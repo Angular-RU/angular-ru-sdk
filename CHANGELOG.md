@@ -1,3 +1,11 @@
+#### 15.212.0 (2021-04-28)
+
+##### New Features
+
+-   **@angular-ru/common:** add has-items and at array utils
+    ([#553](https://github.com/Angular-RU/angular-ru-sdk/pull/553))
+    ([102551aa](https://github.com/Angular-RU/angular-ru-sdk/commit/102551aa8440b72e0d0e419ba037b7c16ab89553))
+
 #### 15.211.0 (2021-04-28)
 
 ##### New Features
