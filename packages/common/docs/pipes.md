@@ -515,7 +515,7 @@ export class AppComponent {
 }
 ```
 
-`JoinPipe, JoinPipeModule`
+-   `JoinPipe, JoinPipeModule`
 
 ```ts
 import { JoinPipeModule } from '@angular-ru/common/pipes';
@@ -583,7 +583,7 @@ export class AppComponent {
 }
 ```
 
-`BracePipe, BracePipeModule`
+-   `BracePipe, BracePipeModule`
 
 ```ts
 import { BracePipeModule } from '@angular-ru/common/pipes';
@@ -607,7 +607,7 @@ export class AppComponent {
 }
 ```
 
-`FilterUniquePipe, FilterUniquePipeModule`
+-   `FilterUniquePipe, FilterUniquePipeModule`
 
 ```ts
 import { FilterUniquePipeModule } from '@angular-ru/common/pipes';
@@ -636,7 +636,7 @@ export class AppComponent {
 }
 ```
 
-`TypeAsPipe, TypeAsPipeModule`
+-   `TypeAsPipe, TypeAsPipeModule`
 
 ```ts
 import { TypeAs } from '@angular-ru/common/pipes';
@@ -663,5 +663,63 @@ type SomeType = { a: number };
 export class AppComponent {
     public notTyped: any = { a: 1 };
     public typeSample!: SomeType;
+}
+```
+
+-   `AtPipe, AtPipeModule`
+
+```ts
+import { AtPipeModule } from '@angular-ru/common/pipes';
+
+@NgModule({
+    // ..
+    imports: [AtPipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `
+        <p>{{ someArray | at: 0 }}</p>
+        <!-- "first" -->
+        <p>{{ someArray | at: -1 }}</p>
+        <!-- "last" -->
+    `
+})
+export class AppComponent {
+    public someArray = ['first', 'second', 'third', 'last'];
+}
+```
+
+-   `HasItems, HasManyItems, HasNoItems, HasOneItem, HasAtMostOneItem`
+-   `HasItemsModule, HasManyItemsModule, HasNoItemsModule, HasOneItemModule, HasAtMostOneItemModule`
+
+```ts
+import {
+    HasItemsModule,
+    HasManyItemsModule,
+    HasNoItemsModule,
+    HasOneItemModule,
+    HasAtMostOneItemModule
+} from '@angular-ru/common/pipes';
+
+@NgModule({
+    // ..
+    imports: [HasItemsModule, HasManyItemsModule, HasNoItemsModule, HasOneItemModule, HasAtMostOneItemModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `
+        <pre *ngIf="someArray | hasItems"><!-- true --></pre>
+        <pre *ngIf="someArray | hasManyItems"><!-- false --></pre>
+        <pre *ngIf="someArray | hasNoItems"><!-- false --></pre>
+        <pre *ngIf="someArray | hasOneItem"><!-- true --></pre>
+        <pre *ngIf="someArray | hasAtMostOneItem"><!-- true --></pre>
+    `
+})
+export class AppComponent {
+    public someArray: number[] = [1];
 }
 ```
