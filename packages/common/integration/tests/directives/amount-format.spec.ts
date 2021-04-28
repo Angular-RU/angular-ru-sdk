@@ -1,6 +1,10 @@
 import { FormBuilder, FormGroup, FormsModule, NgControl, ReactiveFormsModule } from '@angular/forms';
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { AmountFormatDirective, AmountFormatModule, AmountFormatSegments } from '@angular-ru/common/directives';
+import {
+    AmountFormatDirective,
+    AmountFormatDirectiveModule,
+    AmountFormatSegments
+} from '@angular-ru/common/directives';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Immutable } from '@angular-ru/common/typings';
 import { By } from '@angular/platform-browser';
@@ -79,7 +83,7 @@ describe('[TEST]: Amount format directive', () => {
         });
 
         it('should be correct formatted amount (decimals = 0)', () => {
-            directive.amountFormat = { lang: 'ru-RU', formatOptions: { maximumFractionDigits: 0 } };
+            directive.amountFormatOptions = { lang: 'ru-RU', formatOptions: { maximumFractionDigits: 0 } };
 
             element.nativeElement!.value = '-100.100';
             directive.format();
@@ -120,7 +124,7 @@ describe('[TEST]: Amount format directive', () => {
             selector: 'hello-world',
             template: `
                 <form [formGroup]="form">
-                    <input amountFormat formControlName="amount" />
+                    <input amountFormatOptions formControlName="amount" />
                 </form>
             `
         })
@@ -138,7 +142,7 @@ describe('[TEST]: Amount format directive', () => {
         beforeEach(() =>
             TestBed.configureTestingModule({
                 declarations: [HelloWorldComponent],
-                imports: [AmountFormatModule, CommonModule, FormsModule, ReactiveFormsModule]
+                imports: [AmountFormatDirectiveModule, CommonModule, FormsModule, ReactiveFormsModule]
             })
         );
 

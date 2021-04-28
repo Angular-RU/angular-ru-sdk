@@ -1,3 +1,35 @@
+### 28.04.2021 @angular-ru/common
+
+-   before
+
+```ts
+@NgModule({
+    imports: [AmountFormatModule]
+})
+export class AppModule {}
+```
+
+```html
+<input formControlName="disputedAmount" amount-format [max-digits]="0" [min-digits]="0" />
+```
+
+-   after
+
+```ts
+@NgModule({
+    imports: [AmountFormatDirectiveModule]
+})
+export class AppModule {}
+```
+
+```html
+<input
+    amountFormat
+    formControlName="disputedAmount"
+    [amountFormatOptions]="{ lang: 'ru-RU', formatOptions: { maximumFractionDigits: 0 }}"
+/>
+```
+
 ### 19.03.2021 @angular-ru/ng-table-builder
 
 -   `TableBuilderComponent<T>` required generic type,

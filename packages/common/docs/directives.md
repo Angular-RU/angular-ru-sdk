@@ -33,7 +33,7 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `<input amount-format placeholder="10000000" />` // 1 000 000
+    template: `<input amountFormat value="10000000" />` // 1 000 000
 })
 export class AppComponent {}
 ```

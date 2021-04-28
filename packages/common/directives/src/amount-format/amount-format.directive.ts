@@ -40,12 +40,12 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
         @Optional() private readonly cd?: ChangeDetectorRef
     ) {}
 
-    public get amountFormat(): Partial<Immutable<AmountOptions>> {
+    public get amountFormatOptions(): Partial<Immutable<AmountOptions>> {
         return this.options;
     }
 
     @Input()
-    public set amountFormat(options: Partial<Immutable<AmountOptions>>) {
+    public set amountFormatOptions(options: Partial<Immutable<AmountOptions>>) {
         this.options = { ...this.options, ...(options || {}) };
     }
 
