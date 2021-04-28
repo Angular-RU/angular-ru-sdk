@@ -79,3 +79,28 @@ expect(removeLastSymbol('test ')).toEqual('test');
 expect(removeLastSymbol('123')).toEqual('12');
 expect(removeLastSymbol('')).toEqual('');
 ```
+
+-   `replaceEveryCommaOnDot`
+
+```ts
+expect(replaceEveryCommaOnDot('1,2,3')).toEqual('1.2.3');
+expect(replaceEveryCommaOnDot('1,2...3,5')).toEqual('1.2...3.5');
+```
+
+-   `getCountSpacesOnString`
+
+```ts
+expect(getCountSpacesOnString('')).toEqual(0);
+expect(getCountSpacesOnString('1 2 3')).toEqual(3);
+expect(getCountSpacesOnString(null)).toEqual(0);
+expect(getCountSpacesOnString()).toEqual(0);
+```
+
+-   `removeNonNumericSymbols`
+
+```ts
+expect(removeNonNumericSymbols('Tsgqw__-123,525.asdasd!~s . adqasllZ*a')).toEqual('-123,525..');
+expect(removeNonNumericSymbols('1 2 3')).toEqual('123');
+expect(removeNonNumericSymbols(null)).toEqual('');
+expect(removeNonNumericSymbols()).toEqual('');
+```

@@ -5,12 +5,15 @@ import {
     getLastSymbol,
     isString,
     removeLastSymbol,
+    removeNonNumericSymbols,
     splitOnUniqueValues,
     stringify,
     toStringVal,
-    trim
+    getFirstSymbol,
+    trim,
+    replaceEveryCommaOnDot,
+    getCountSpacesOnString
 } from '@angular-ru/common/string';
-import { getFirstSymbol } from '../../../string/src/get-first-symbol';
 
 describe('[TEST]: String', () => {
     it('toString', () => {
@@ -105,5 +108,26 @@ describe('[TEST]: String', () => {
         expect(removeLastSymbol('test ')).toEqual('test');
         expect(removeLastSymbol('123')).toEqual('12');
         expect(removeLastSymbol('')).toEqual('');
+    });
+
+    it('replaceEveryCommaOnDot', () => {
+        expect(replaceEveryCommaOnDot('1,2,3')).toEqual('1.2.3');
+        expect(replaceEveryCommaOnDot('1,2...3,5')).toEqual('1.2...3.5');
+        expect(replaceEveryCommaOnDot(null)).toEqual('');
+        expect(replaceEveryCommaOnDot()).toEqual('');
+    });
+
+    it('getCountSpacesOnString', () => {
+        expect(getCountSpacesOnString('')).toEqual(0);
+        expect(getCountSpacesOnString('1 2 3')).toEqual(2);
+        expect(getCountSpacesOnString(null)).toEqual(0);
+        expect(getCountSpacesOnString()).toEqual(0);
+    });
+
+    it('removeNonNumericSymbols', () => {
+        expect(removeNonNumericSymbols('Tsgqw__-123,525.asdasd!~s . adqasllZ*a')).toEqual('-123,525..');
+        expect(removeNonNumericSymbols('1 2 3')).toEqual('123');
+        expect(removeNonNumericSymbols(null)).toEqual('');
+        expect(removeNonNumericSymbols()).toEqual('');
     });
 });

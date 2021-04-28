@@ -11,29 +11,43 @@ import {
     Renderer2
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
+import {
+    getCountSpacesOnString,
+    getLastSymbol,
+    removeLastSymbol,
+    removeNonNumericSymbols,
+    replaceEveryCommaOnDot
+} from '@angular-ru/common/string';
 import { Any, Fn, Immutable } from '@angular-ru/common/typings';
-import { detectChanges, isNil } from '@angular-ru/common/utils';
+import { detectChanges } from '@angular-ru/common/utils';
 
 import { AmountFormatSegments } from './amount-format-segments';
+import { AmountOptions } from './amount-options';
 
-@Directive({ selector: '[amountFormat]', exportAs: 'amountFormat' })
+@Directive({ selector: '[amountFormat]' })
 export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
-    @Input('max-digits') public maximumFractionDigits: number | null = null;
-    @Input('min-digits') public minimumFractionDigits: number | null = null;
     private segments: AmountFormatSegments = { cursorPosition: 0, spaces: { before: 0, after: 0, newAdded: 0 } };
+    private options: Partial<Immutable<AmountOptions>> = { lang: 'ru-RU', formatOptions: {} };
+    private inputUnlisten: Fn | null | undefined = null;
+    private blurUnlisten: Fn | null | undefined = null;
     private markedAsDirty: boolean = true;
-    private inputUnlisten: Fn | null = null;
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    private blurUnlisten: Fn | null = null;
 
     constructor(
-        private readonly ngZone: NgZone,
-        private readonly renderer: Renderer2,
         private readonly el: ElementRef<HTMLInputElement>,
-        @Optional() private readonly cd?: ChangeDetectorRef,
-        @Optional() private readonly ngControl?: NgControl
+        @Optional() private readonly ngControl?: NgControl,
+        @Optional() private readonly ngZone?: NgZone,
+        @Optional() private readonly renderer?: Renderer2,
+        @Optional() private readonly cd?: ChangeDetectorRef
     ) {}
+
+    public get amountFormat(): Partial<Immutable<AmountOptions>> {
+        return this.options;
+    }
+
+    @Input()
+    public set amountFormat(options: Partial<Immutable<AmountOptions>>) {
+        this.options = { ...this.options, ...(options || {}) };
+    }
 
     public get dirty(): boolean {
         return this.markedAsDirty;
@@ -43,19 +57,12 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
         return this.el.nativeElement;
     }
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    private get options(): Intl.NumberFormatOptions {
-        const options: Intl.NumberFormatOptions = {};
-        if (!isNil(this.maximumFractionDigits)) {
-            options.maximumFractionDigits = this.maximumFractionDigits;
-        }
+    private static isLastSymbolIsDot(val: string): boolean {
+        return getLastSymbol(val) === '.';
+    }
 
-        if (!isNil(this.minimumFractionDigits)) {
-            options.minimumFractionDigits = this.minimumFractionDigits;
-        }
-
-        return options;
+    private static isInvalidNumberFormat(val: string): boolean {
+        return val !== '-' && isNaN(val as Any);
     }
 
     public ngOnInit(): void {
@@ -72,94 +79,91 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
     }
 
     public listen(): void {
-        this.ngZone.runOutsideAngular((): void => {
-            this.inputUnlisten = this.renderer.listen(this.element, 'input', (event: KeyboardEvent): void =>
-                this.keypress(event)
-            );
-
-            this.blurUnlisten = this.renderer.listen(this.element, 'blur', (event: KeyboardEvent): void =>
-                this.blur(event)
-            );
+        this.ngZone?.runOutsideAngular((): void => {
+            this.inputUnlisten = this.renderer?.listen(this.element, 'input', (): void => this.format());
+            this.blurUnlisten = this.renderer?.listen(this.element, 'blur', (): void => this.blurFormat());
         });
     }
 
     public unlisten(): void {
         this.inputUnlisten?.();
+        this.blurUnlisten?.();
     }
 
     public getCurrentCaretSegments(): Immutable<AmountFormatSegments> {
         return this.segments as Immutable<AmountFormatSegments>;
     }
 
-    public blur(event: KeyboardEvent): void {
-        // eslint-disable-next-line no-console
-        console.log('blur', event);
+    public blurFormat(): void {
+        if (AmountFormatDirective.isLastSymbolIsDot(this.element.value)) {
+            this.element.value = removeLastSymbol(this.element.value) ?? '';
+        }
     }
 
-    // eslint-disable-next-line max-lines-per-function,complexity
-    public keypress(event: KeyboardEvent): void {
-        // eslint-disable-next-line @typescript-eslint/typedef
-        const ref = event.target as HTMLInputElement;
+    public format(): void {
+        this.element.value = replaceEveryCommaOnDot(this.element.value);
 
-        this.segments.spaces.before = ref.value.match(/\s/g)?.length ?? 0;
-        ref.value = ref.value.replace(/,/g, '.');
+        this.checkSpacesBeforeFormatting(this.element);
+        const value: string = removeNonNumericSymbols(this.element.value);
 
-        // eslint-disable-next-line @typescript-eslint/typedef
-        let value = ref.value.replace(/[^\d,.-]/g, '');
-
-        // console.log('preval', value);
-        // console.log(value, isNaN(value as any));
-
-        if (value !== '-' && isNaN(value as Any)) {
-            value = value.slice(0, -1);
-        } else if (value.slice(-1) === '.') {
-            //  this.ngControl?.reset(value + `0`);
-            // eslint-disable-next-line @typescript-eslint/typedef
-            const val = value + `0`;
-
-            this.ngControl!.reset(Number(val));
-            this.element.value = Number(value).toLocaleString('ru-RU') + '.';
-
-            // console.log('fuck', this.ngControl?.value);
+        if (AmountFormatDirective.isInvalidNumberFormat(value)) {
+            this.element.value = removeLastSymbol(value) ?? '';
+        } else if (AmountFormatDirective.isLastSymbolIsDot(value)) {
+            this.preparedModelWhenIncompleteDotValue(value);
             return;
         }
 
+        this.setDefaultCursorPosition(this.element);
+        this.patchViewModel(value);
+        this.checkSpacesAfterFormatting(this.element);
+    }
+
+    private patchViewModel(value: string): void {
+        const numberValue: number = parseFloat(value);
+
+        if (isNaN(numberValue)) {
+            this.ngControl?.reset(null);
+            this.element.value = value === '-' ? value : removeNonNumericSymbols(this.element.value);
+            this.preventExpressionChangedAfter();
+        } else {
+            const formattedValue: string = this.toLocaleString(numberValue);
+            const modelValue: number = parseFloat(formattedValue.replace(/\s/g, ''));
+
+            this.ngControl?.reset(modelValue);
+            this.element.value = formattedValue;
+        }
+    }
+
+    private checkSpacesBeforeFormatting(ref: HTMLInputElement): void {
+        this.segments.spaces.before = getCountSpacesOnString(ref.value);
+    }
+
+    private setDefaultCursorPosition(ref: HTMLInputElement): void {
         this.segments.cursorPosition = ref.selectionStart ?? 0;
+    }
 
-        ref.value = value;
+    private toLocaleString(value: number): string {
+        return value
+            .toLocaleString(this.options.lang, this.options.formatOptions)
+            .replace(/,/g, '.')
+            .replace(/\s/g, ' ');
+    }
 
-        this.format(value);
+    /**
+     * when the user entered a value incompletely
+     * @param value - `15.` or `0.`, ...
+     */
+    private preparedModelWhenIncompleteDotValue(value: string): void {
+        this.ngControl?.reset(Number(`${value}0`));
+        this.element.value = `${this.toLocaleString(Number(value))}.`;
+    }
 
-        this.segments.spaces.after = ref.value.match(/\s/g)?.length ?? 0;
+    private checkSpacesAfterFormatting(ref: HTMLInputElement): void {
+        this.segments.spaces.after = getCountSpacesOnString(ref.value);
         this.segments.spaces.newAdded = Math.abs(this.segments.spaces.after - this.segments.spaces.before);
         this.segments.cursorPosition = this.segments.cursorPosition + this.segments.spaces.newAdded;
         ref.setSelectionRange(this.segments.cursorPosition, this.segments.cursorPosition);
-
         this.segments.cursorPosition = ref.selectionEnd!;
-    }
-
-    public format(value?: string): void {
-        //  console.log('pre format', value);
-        const numberValue: number = parseFloat(value ?? this.element.value);
-        //   console.log('numberValue', numberValue);
-
-        // eslint-disable-next-line no-negated-condition
-        if (!isNaN(numberValue)) {
-            const formattedValue: string = numberValue.toLocaleString('ru-RU').replace(/,/g, '.');
-
-            const modelValue: number = parseFloat(formattedValue.replace(/\s/g, '').replace(/,/g, '.'));
-
-            this.ngControl?.reset(modelValue);
-            this.element.value = formattedValue.replace(/\s/g, ' ');
-        } else {
-            this.ngControl?.reset(null);
-
-            if (value === '-') {
-                this.element.value = '-';
-            }
-
-            this.preventExpressionChangedAfter();
-        }
     }
 
     private preventExpressionChangedAfter(): void {

@@ -2,14 +2,24 @@ import { FormBuilder, FormGroup, FormsModule, NgControl, ReactiveFormsModule } f
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { AmountFormatDirective, AmountFormatModule, AmountFormatSegments } from '@angular-ru/common/directives';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Immutable } from '@angular-ru/common/typings';
 import { By } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { Immutable } from '../../../dist/library/typings';
 
 describe('[TEST]: Amount separator', () => {
+    let element: Partial<ElementRef<Partial<HTMLInputElement>>>;
+
+    beforeEach(() => {
+        element = {
+            nativeElement: {
+                value: '',
+                setSelectionRange() {}
+            }
+        };
+    });
+
     it('should be correct formatted amount (disable decimals)', () => {
         let ngModelValue: string | number | undefined = '';
-        const element: Partial<ElementRef<Partial<HTMLInputElement>>> = { nativeElement: { value: '' } };
 
         const control: Partial<NgControl> = {
             reset(value?: string | number): void {
@@ -21,7 +31,7 @@ describe('[TEST]: Amount separator', () => {
 
         directive.format();
         expect(element.nativeElement!.value).toEqual('');
-        expect(ngModelValue).toEqual('');
+        expect(ngModelValue).toEqual(null);
 
         element.nativeElement!.value = '15000';
         directive.format();
@@ -61,15 +71,11 @@ describe('[TEST]: Amount separator', () => {
         element.nativeElement!.value = 'ASD';
         directive.format();
         expect(element.nativeElement!.value).toEqual('');
-        expect(ngModelValue).toEqual('');
+        expect(ngModelValue).toEqual(null);
     });
 
     it('should be correct formatted amount (decimals = 0)', () => {
         let ngModelValue: string | number | undefined = '';
-
-        const element: Partial<ElementRef<Partial<HTMLInputElement>>> = {
-            nativeElement: { value: '' }
-        };
 
         const control: Partial<NgControl> = {
             reset(value?: string | number): void {
@@ -77,10 +83,8 @@ describe('[TEST]: Amount separator', () => {
             }
         };
 
-        // @ts-ignore
         const directive = new AmountFormatDirective(element as ElementRef, control as NgControl);
-
-        directive.maximumFractionDigits = 0;
+        directive.amountFormat = { lang: 'ru-RU', formatOptions: { maximumFractionDigits: 0 } };
 
         element.nativeElement!.value = '-100.100';
         directive.format();
@@ -110,7 +114,7 @@ describe('[TEST]: Amount separator', () => {
         element.nativeElement!.value = 'ASD';
         directive.format();
         expect(element.nativeElement!.value).toEqual('');
-        expect(ngModelValue).toEqual('');
+        expect(ngModelValue).toEqual(null);
     });
 
     describe('expect with component', () => {
@@ -120,12 +124,12 @@ describe('[TEST]: Amount separator', () => {
             selector: 'hello-world',
             template: `
                 <form [formGroup]="form">
-                    <input amountFormat #directive="amountFormat" formControlName="amount" />
+                    <input amountFormat formControlName="amount" />
                 </form>
             `
         })
         class HelloWorldComponent {
-            @ViewChild('directive', { static: true })
+            @ViewChild(AmountFormatDirective)
             public directive!: AmountFormatDirective;
 
             public form: FormGroup = this.fb.group({
@@ -284,7 +288,7 @@ describe('[TEST]: Amount separator', () => {
 
             setInputSelectionPosition(1);
             setInputViewValue(',', 'push');
-            expect(getInputViewValue()).toEqual('0.');
+            expect(getInputViewValue()).toEqual('0');
             expect(getInputModelValue()).toEqual(0);
             expect(getCurrentCaretSegments()).toEqual({
                 cursorPosition: 1,
@@ -317,7 +321,7 @@ describe('[TEST]: Amount separator', () => {
 
         it('when less than zero', () => {
             setInputViewValue('0.');
-            expect(getInputViewValue()).toEqual('0.');
+            expect(getInputViewValue()).toEqual('0');
             expect(getInputModelValue()).toEqual(0);
 
             setInputViewValue('0.1');
