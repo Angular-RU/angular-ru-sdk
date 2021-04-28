@@ -315,7 +315,7 @@ describe('[TEST]: Amount format directive', () => {
             expect(getInputModelValue()).toEqual(null);
         });
 
-        it('when less than zero', () => {
+        it('when less than one', () => {
             setInputViewValue('0.');
             expect(getInputViewValue()).toEqual('0');
             expect(getInputModelValue()).toEqual(0);
