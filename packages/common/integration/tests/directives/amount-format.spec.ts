@@ -6,115 +6,111 @@ import { Immutable } from '@angular-ru/common/typings';
 import { By } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 
-describe('[TEST]: Amount separator', () => {
-    let element: Partial<ElementRef<Partial<HTMLInputElement>>>;
+describe('[TEST]: Amount format directive', () => {
+    describe('expect without component', () => {
+        let directive: AmountFormatDirective;
+        let ngModelValue: string | number | undefined;
+        let element: Partial<ElementRef<Partial<HTMLInputElement>>>;
+        let control: Partial<NgControl>;
 
-    beforeEach(() => {
-        element = {
-            nativeElement: {
-                value: '',
-                setSelectionRange() {}
-            }
-        };
-    });
+        beforeEach(() => {
+            ngModelValue = '';
 
-    it('should be correct formatted amount (disable decimals)', () => {
-        let ngModelValue: string | number | undefined = '';
+            element = {
+                nativeElement: {
+                    value: '',
+                    setSelectionRange() {}
+                }
+            };
 
-        const control: Partial<NgControl> = {
-            reset(value?: string | number): void {
-                ngModelValue = value;
-            }
-        };
+            control = {
+                reset(value?: string | number): void {
+                    ngModelValue = value;
+                }
+            };
 
-        const directive = new AmountFormatDirective(element as ElementRef, control as NgControl);
+            directive = new AmountFormatDirective(element as ElementRef, control as NgControl);
+        });
 
-        directive.format();
-        expect(element.nativeElement!.value).toEqual('');
-        expect(ngModelValue).toEqual(null);
+        it('should be correct formatted amount (disable decimals)', () => {
+            directive.format();
+            expect(element.nativeElement!.value).toEqual('');
+            expect(ngModelValue).toEqual(null);
 
-        element.nativeElement!.value = '15000';
-        directive.format();
-        expect(element.nativeElement!.value).toEqual('15 000');
-        expect(ngModelValue).toEqual(15000);
+            element.nativeElement!.value = '15000';
+            directive.format();
+            expect(element.nativeElement!.value).toEqual('15 000');
+            expect(ngModelValue).toEqual(15000);
 
-        element.nativeElement!.value = '-100,000';
-        directive.format();
-        expect(element.nativeElement!.value).toEqual('-100');
-        expect(ngModelValue).toEqual(-100);
+            element.nativeElement!.value = '-100,000';
+            directive.format();
+            expect(element.nativeElement!.value).toEqual('-100');
+            expect(ngModelValue).toEqual(-100);
 
-        element.nativeElement!.value = '-100.100';
-        directive.format();
-        expect(element.nativeElement!.value).toEqual('-100.1');
-        expect(ngModelValue).toEqual(-100.1);
+            element.nativeElement!.value = '-100.100';
+            directive.format();
+            expect(element.nativeElement!.value).toEqual('-100.1');
+            expect(ngModelValue).toEqual(-100.1);
 
-        element.nativeElement!.value = '199900,02000';
-        directive.format();
-        expect(element.nativeElement!.value).toEqual('199 900.02');
-        expect(ngModelValue).toEqual(199900.02);
+            element.nativeElement!.value = '199900,02000';
+            directive.format();
+            expect(element.nativeElement!.value).toEqual('199 900.02');
+            expect(ngModelValue).toEqual(199900.02);
 
-        element.nativeElement!.value = '9123.50';
-        directive.format();
-        expect(element.nativeElement!.value).toEqual('9 123.5');
-        expect(ngModelValue).toEqual(9123.5);
+            element.nativeElement!.value = '9123.50';
+            directive.format();
+            expect(element.nativeElement!.value).toEqual('9 123.5');
+            expect(ngModelValue).toEqual(9123.5);
 
-        element.nativeElement!.value = '100,200,300';
-        directive.format();
-        expect(element.nativeElement!.value).toEqual('100.2');
-        expect(ngModelValue).toEqual(100.2);
+            element.nativeElement!.value = '100,200,300';
+            directive.format();
+            expect(element.nativeElement!.value).toEqual('100.2');
+            expect(ngModelValue).toEqual(100.2);
 
-        element.nativeElement!.value = '-10000000000.0009';
-        directive.format();
-        expect(element.nativeElement!.value).toEqual('-10 000 000 000.001');
-        expect(ngModelValue).toEqual(-10000000000.001);
+            element.nativeElement!.value = '-10000000000.0009';
+            directive.format();
+            expect(element.nativeElement!.value).toEqual('-10 000 000 000.001');
+            expect(ngModelValue).toEqual(-10000000000.001);
 
-        element.nativeElement!.value = 'ASD';
-        directive.format();
-        expect(element.nativeElement!.value).toEqual('');
-        expect(ngModelValue).toEqual(null);
-    });
+            element.nativeElement!.value = 'ASD';
+            directive.format();
+            expect(element.nativeElement!.value).toEqual('');
+            expect(ngModelValue).toEqual(null);
+        });
 
-    it('should be correct formatted amount (decimals = 0)', () => {
-        let ngModelValue: string | number | undefined = '';
+        it('should be correct formatted amount (decimals = 0)', () => {
+            directive.amountFormat = { lang: 'ru-RU', formatOptions: { maximumFractionDigits: 0 } };
 
-        const control: Partial<NgControl> = {
-            reset(value?: string | number): void {
-                ngModelValue = value;
-            }
-        };
+            element.nativeElement!.value = '-100.100';
+            directive.format();
+            expect(element.nativeElement!.value).toEqual('-100');
+            expect(ngModelValue).toEqual(-100);
 
-        const directive = new AmountFormatDirective(element as ElementRef, control as NgControl);
-        directive.amountFormat = { lang: 'ru-RU', formatOptions: { maximumFractionDigits: 0 } };
+            element.nativeElement!.value = '199900,02000';
+            directive.format();
+            expect(element.nativeElement!.value).toEqual('199 900');
+            expect(ngModelValue).toEqual(199900);
 
-        element.nativeElement!.value = '-100.100';
-        directive.format();
-        expect(element.nativeElement!.value).toEqual('-100');
-        expect(ngModelValue).toEqual(-100);
+            element.nativeElement!.value = '9123.50';
+            directive.format();
+            expect(element.nativeElement!.value).toEqual('9 124');
+            expect(ngModelValue).toEqual(9124);
 
-        element.nativeElement!.value = '199900,02000';
-        directive.format();
-        expect(element.nativeElement!.value).toEqual('199 900');
-        expect(ngModelValue).toEqual(199900);
+            element.nativeElement!.value = '100,200,300';
+            directive.format();
+            expect(element.nativeElement!.value).toEqual('100');
+            expect(ngModelValue).toEqual(100);
 
-        element.nativeElement!.value = '9123.50';
-        directive.format();
-        expect(element.nativeElement!.value).toEqual('9 124');
-        expect(ngModelValue).toEqual(9124);
+            element.nativeElement!.value = '-10000000000.0009';
+            directive.format();
+            expect(element.nativeElement!.value).toEqual('-10 000 000 000');
+            expect(ngModelValue).toEqual(-10000000000);
 
-        element.nativeElement!.value = '100,200,300';
-        directive.format();
-        expect(element.nativeElement!.value).toEqual('100');
-        expect(ngModelValue).toEqual(100);
-
-        element.nativeElement!.value = '-10000000000.0009';
-        directive.format();
-        expect(element.nativeElement!.value).toEqual('-10 000 000 000');
-        expect(ngModelValue).toEqual(-10000000000);
-
-        element.nativeElement!.value = 'ASD';
-        directive.format();
-        expect(element.nativeElement!.value).toEqual('');
-        expect(ngModelValue).toEqual(null);
+            element.nativeElement!.value = 'ASD';
+            directive.format();
+            expect(element.nativeElement!.value).toEqual('');
+            expect(ngModelValue).toEqual(null);
+        });
     });
 
     describe('expect with component', () => {
