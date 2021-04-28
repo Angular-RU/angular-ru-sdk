@@ -1,3 +1,17 @@
+#### 15.210.0 (2021-04-27)
+
+##### Continuous Integration
+
+-   updated release notes and package versions [ci skip]
+    ([2910a950](https://github.com/Angular-RU/angular-ru-sdk/commit/2910a95026fdd3f536324fe08527de8836c3e17c))
+
+##### New Features
+
+-   added common util 'checkEveryValueIsFilled'
+    ([2bea8a4c](https://github.com/Angular-RU/angular-ru-sdk/commit/2bea8a4c3ea100ebfeaaf9b6d0acc6fceba38dde))
+-   added util 'include'
+    ([59916497](https://github.com/Angular-RU/angular-ru-sdk/commit/59916497e3a1861aee4bd067b2614a2f3803276e))
+
 #### 15.209.0 (2021-04-26)
 
 ##### New Features
