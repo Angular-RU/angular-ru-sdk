@@ -124,7 +124,7 @@ describe('[TEST]: Amount format directive', () => {
             selector: 'hello-world',
             template: `
                 <form [formGroup]="form">
-                    <input amountFormatOptions formControlName="amount" />
+                    <input amountFormat formControlName="amount" />
                 </form>
             `
         })
