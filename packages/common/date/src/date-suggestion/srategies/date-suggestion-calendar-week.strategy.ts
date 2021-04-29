@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
-import { endOfDay, shiftDate, startOfDay } from '@angular-ru/common/date';
 import { DateIntervalDescriptor } from '@angular-ru/common/typings';
 
+import { endOfDay } from '../../end-of-day';
+import { shiftDate } from '../../shift-date/shift-date';
+import { startOfDay } from '../../start-of-day';
 import { DateSuggestionStrategy } from '../domain/interfaces/date-suggestion-strategy';
 
 const WEEK_LENGTH: number = 7;

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
-import { endOfDay, startOfDay } from '@angular-ru/common/date';
 import { DateIntervalDescriptor } from '@angular-ru/common/typings';
 
+import { endOfDay } from '../../end-of-day';
+import { startOfDay } from '../../start-of-day';
 import { DateSuggestionStrategy } from '../domain/interfaces/date-suggestion-strategy';
 
 @Injectable()

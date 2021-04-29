@@ -5,8 +5,10 @@ import { SuggestionStrategyDescriptor } from './domain/interfaces/suggestion-str
 import { SuggestionStrategyMap } from './domain/types/suggestion-strategy-map';
 import { SUGGESTION_STRATEGY_MAP } from './tokens/suggestion-strategy-map';
 
+type StrategyKey = string | symbol | number;
+
 @Injectable()
-export class DateSuggestionComposer<StrategyKeys extends string | symbol | number = string | symbol | number> {
+export class DateSuggestionComposer<StrategyKeys extends StrategyKey = StrategyKey> {
     constructor(
         @Inject(SUGGESTION_STRATEGY_MAP) private readonly suggestionStrategyMap: SuggestionStrategyMap<StrategyKeys>,
         private readonly injector: Injector

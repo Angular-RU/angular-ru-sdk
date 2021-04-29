@@ -1,4 +1,4 @@
-#### `@angular-ru/common/date-suggestion`
+#### `@angular-ru/common/date`
 
 #### DateSuggestionModule
 
@@ -17,11 +17,7 @@ Default implementation has 8 built-in strategies:
 -   `LAST_99_DAYS_OF_INTERVAL` — set 99 days to the last day from the current interval.
 
 ```ts
-import {
-    DateSuggestionModule,
-    DateSuggestionComposer,
-    DefaultDateIntervalSuggestion
-} from '@angular-ru/common/date-suggestion';
+import { DateSuggestionModule, DateSuggestionComposer, DefaultDateIntervalSuggestion } from '@angular-ru/common/date';
 
 @NgModule({
     // ...
@@ -69,9 +65,11 @@ import {
     SuggestionStrategyMap,
     DateSuggestionModule,
     DateSuggestionComposer,
-    DefaultDateIntervalSuggestion
-} from '@angular-ru/common/date-suggestion';
-import { endOfDay, shiftDate, startOfDay } from '@angular-ru/common/date';
+    DefaultDateIntervalSuggestion,
+    endOfDay,
+    shiftDate,
+    startOfDay
+} from '@angular-ru/common/date';
 import { DateIntervalDescriptor } from '@angular-ru/common/typings';
 
 // Create your own strategies implementing DateSuggestionStrategy

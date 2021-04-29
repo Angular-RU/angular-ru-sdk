@@ -1,21 +1,22 @@
 import { TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup } from '@angular/forms';
+import { DateAdapter, NativeDateModule } from '@angular/material/core';
+import { endOfDay, shiftDate, startOfDay } from '@angular-ru/common/date';
 import {
     DateSuggestionComposer,
     DateSuggestionModule,
+    DEFAULT_SUGGESTION_STRATEGY_MAP,
     DefaultDateIntervalSuggestion
-} from '@angular-ru/common/date-suggestion';
-import { endOfDay, shiftDate, startOfDay } from '@angular-ru/common/date';
-import { DateAdapter, NativeDateModule } from '@angular/material/core';
+} from '@angular-ru/common/date';
 import { DateIntervalDescriptor } from '@angular-ru/common/typings';
 
 describe('[TEST]: Trim Input', () => {
     let composer: DateSuggestionComposer<DefaultDateIntervalSuggestion>;
-    let descriptor: DateIntervalDescriptor = { dateFromKey: 'dateFrom', dateToKey: 'dateTo' };
+    const descriptor: DateIntervalDescriptor = { dateFromKey: 'dateFrom', dateToKey: 'dateTo' };
     let form: FormGroup;
 
-    let mockToday: Date = new Date('28 Apr 2021 12:00:00');
-    let mockFirstWeekdays = [
+    const mockToday: Date = new Date('28 Apr 2021 12:00:00');
+    const mockFirstWeekdays = [
         { firstDayOfWeekNumber: 0, firstDayOfWeek: new Date('25 Apr 2021 12:00:00') },
         { firstDayOfWeekNumber: 1, firstDayOfWeek: new Date('26 Apr 2021 12:00:00') },
         { firstDayOfWeekNumber: 2, firstDayOfWeek: new Date('27 Apr 2021 12:00:00') },
@@ -27,7 +28,7 @@ describe('[TEST]: Trim Input', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [DateSuggestionModule, NativeDateModule]
+            imports: [DateSuggestionModule.forRoot(), NativeDateModule]
         }).compileComponents();
 
         composer = TestBed.inject(DateSuggestionComposer);
@@ -35,6 +36,10 @@ describe('[TEST]: Trim Input', () => {
             [descriptor.dateFromKey]: new FormControl(startOfDay(shiftDate({ days: -1 }))),
             [descriptor.dateToKey]: new FormControl(endOfDay())
         });
+    });
+
+    it('should return list of default strategies', function () {
+        expect(composer.getSuggestions()).toEqual(Object.keys(DEFAULT_SUGGESTION_STRATEGY_MAP));
     });
 
     it('should set date interval based on LastFewDaysStrategy', function () {

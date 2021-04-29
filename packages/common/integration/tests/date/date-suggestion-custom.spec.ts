@@ -1,20 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup } from '@angular/forms';
-import {
-    DateSuggestionComposer,
-    DateSuggestionModule,
-    DefaultDateIntervalSuggestion
-} from '@angular-ru/common/date-suggestion';
-import { endOfDay, shiftDate, startOfDay } from '@angular-ru/common/date';
 import { NativeDateModule } from '@angular/material/core';
+import { endOfDay, shiftDate, startOfDay } from '@angular-ru/common/date';
+import { DateSuggestionComposer, DateSuggestionModule, DefaultDateIntervalSuggestion } from '@angular-ru/common/date';
 import { DateIntervalDescriptor } from '@angular-ru/common/typings';
-import { EXTENDED_STRATEGY_MAP } from './helpers/extended-strategy-map';
+
 import { ExtendedDateIntervalSuggestion, SuggestionAddition } from './helpers/extended-date-interval-suggestion';
+import { EXTENDED_STRATEGY_MAP } from './helpers/extended-strategy-map';
 
 describe('[TEST]: Trim Input', () => {
     let composer: DateSuggestionComposer<ExtendedDateIntervalSuggestion>;
-    let descriptor: DateIntervalDescriptor = { dateFromKey: 'dateFrom', dateToKey: 'dateTo' };
     let form: FormGroup;
+    const descriptor: DateIntervalDescriptor = { dateFromKey: 'dateFrom', dateToKey: 'dateTo' };
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -26,6 +23,10 @@ describe('[TEST]: Trim Input', () => {
             [descriptor.dateFromKey]: new FormControl(startOfDay(shiftDate({ days: -1 }))),
             [descriptor.dateToKey]: new FormControl(endOfDay())
         });
+    });
+
+    it('should return list of default strategies', function () {
+        expect(composer.getSuggestions()).toEqual(Object.keys(EXTENDED_STRATEGY_MAP));
     });
 
     it('should set date interval based on default LastFewDaysStrategy', function () {

@@ -1,4 +1,4 @@
-import { DAYS_COUNT, DEFAULT_SUGGESTION_STRATEGY_MAP, SuggestionStrategyMap } from '@angular-ru/common/date-suggestion';
+import { DAYS_COUNT, DEFAULT_SUGGESTION_STRATEGY_MAP, SuggestionStrategyMap } from '@angular-ru/common/date';
 
 import { DaysAroundStartDateStrategy } from './days-around-start-date.strategy';
 import { ExtendedDateIntervalSuggestion, SuggestionAddition } from './extended-date-interval-suggestion';

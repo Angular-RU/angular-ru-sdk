@@ -5,16 +5,20 @@ import { SuggestionStrategyMap } from './domain/types/suggestion-strategy-map';
 import { DEFAULT_SUGGESTION_STRATEGY_MAP } from './properties/default-suggestion-strategy-map';
 import { SUGGESTION_STRATEGY_MAP } from './tokens/suggestion-strategy-map';
 
-@NgModule({
-    providers: [DateSuggestionComposer, { provide: SUGGESTION_STRATEGY_MAP, useValue: DEFAULT_SUGGESTION_STRATEGY_MAP }]
-})
+@NgModule()
 export class DateSuggestionModule {
     public static forRoot(
-        customSuggestionStrategyMap: SuggestionStrategyMap
+        customSuggestionStrategyMap?: SuggestionStrategyMap
     ): ModuleWithProviders<DateSuggestionModule> {
         return {
             ngModule: DateSuggestionModule,
-            providers: [{ provide: SUGGESTION_STRATEGY_MAP, useValue: customSuggestionStrategyMap }]
+            providers: [
+                DateSuggestionComposer,
+                {
+                    provide: SUGGESTION_STRATEGY_MAP,
+                    useValue: customSuggestionStrategyMap ?? DEFAULT_SUGGESTION_STRATEGY_MAP
+                }
+            ]
         };
     }
 }
