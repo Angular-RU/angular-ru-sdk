@@ -1,3 +1,11 @@
+#### 15.216.0 (2021-04-30)
+
+##### New Features
+
+-   **@angular-ru/common:** add date interval suggestion module
+    ([#556](https://github.com/Angular-RU/angular-ru-sdk/pull/556))
+    ([a8399bf6](https://github.com/Angular-RU/angular-ru-sdk/commit/a8399bf611bbe4cc4df92c781b98558493f1ac98))
+
 #### 15.215.0 (2021-04-30)
 
 ##### New Features
