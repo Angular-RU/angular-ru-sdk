@@ -1,3 +1,17 @@
+#### 15.217.0 (2021-05-04)
+
+##### New Features
+
+-   **@angular-ru/common:** add transformToBoolean function
+    ([#563](https://github.com/Angular-RU/angular-ru-sdk/pull/563))
+    ([64da2a7c](https://github.com/Angular-RU/angular-ru-sdk/commit/64da2a7c8996d4f56f8e9dc3c15ed1ec69a9e967))
+
+##### Bug Fixes
+
+-   **@angular-ru/common:** fix test on max interval validator
+    ([#564](https://github.com/Angular-RU/angular-ru-sdk/pull/564))
+    ([631a7a68](https://github.com/Angular-RU/angular-ru-sdk/commit/631a7a684107b7c5a352b785ffa6d40b05668b74))
+
 #### 15.216.0 (2021-04-30)
 
 ##### New Features
