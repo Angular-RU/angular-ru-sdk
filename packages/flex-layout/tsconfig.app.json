@@ -1,14 +1,14 @@
 {
-    "extends": "../../tsconfig.json",
+    "extends": "./tsconfig.json",
     "compilerOptions": {
         "outDir": "../out-tsc/app",
         "types": [],
         "paths": {
-            "@angular-ru/ng-excel-builder": ["./dist/library"],
+            "@angular-ru/flex-layout": ["dist/library"],
             "@angular-ru/common/*": ["../common/dist/library/*"]
         }
     },
-    "files": ["main.ts", "polyfills.ts"],
+    "files": ["integration/app/main.ts", "integration/app/polyfills.ts"],
     "include": ["src/**/*.d.ts"],
     "exclude": ["**/*.spec.ts"]
 }

@@ -1,5 +1,5 @@
 {
-    "extends": "../../tsconfig.json",
+    "extends": "./tsconfig.json",
     "compilerOptions": {
         "outDir": "../out-tsc/app",
         "types": [],
@@ -8,5 +8,5 @@
             "@angular-ru/tooltip": ["./dist/library"]
         }
     },
-    "include": ["main.ts", "polyfills.ts", "src/**/*.ts"]
+    "include": ["integration/app/main.ts", "integration/app/polyfills.ts"]
 }

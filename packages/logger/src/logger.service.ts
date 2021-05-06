@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
+import { BoundClass } from '@angular-ru/common/decorators';
 import { PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
 
-import { autoBind } from './decorators/autobind.decorator';
 import { LogFn, LOGGER_OPTIONS, LoggerLevel, Pipeline, TimerInfo } from './interfaces/logger.external';
 import { LoggerOptionsImpl } from './logger.options';
 import { ConsoleService } from './services/console.service';
@@ -11,7 +11,7 @@ import { GroupFactory } from './services/group-factory.service';
 import { JsonFactory } from './services/json-factory.service';
 import { TimerFactory } from './services/timer-factory.service';
 
-@autoBind
+@BoundClass
 @Injectable()
 export class LoggerService {
     private readonly DEFAULT_DEPTH: number = 2;
