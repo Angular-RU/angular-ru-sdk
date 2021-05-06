@@ -1,6 +1,7 @@
 import { Injectable, NgZone, OnDestroy } from '@angular/core';
 import { Any } from '@angular-ru/common/typings';
 import { Observable, ReplaySubject, Subject, Subscription, throwError } from 'rxjs';
+import { WebSocketMessage } from 'rxjs/internal/observable/dom/WebSocketSubject';
 import { catchError, filter, map, take, takeUntil } from 'rxjs/operators';
 import { webSocket, WebSocketSubject, WebSocketSubjectConfig } from 'rxjs/webSocket';
 
@@ -36,21 +37,11 @@ export abstract class AbstractWebsocketClient<K> implements WebsocketHandler<K>,
 
     private get webSocketSubjectConfig(): WebSocketSubjectConfig<Any> {
         return {
-            url: this.connectionPath,
-            openObserver: {
-                next: (event: Event): void => {
-                    this.connected = true;
-                    this.connected$.next(event);
-                    this.onConnected(event);
-                }
-            },
-            closeObserver: {
-                next: (event: Event): void => {
-                    this.connected = false;
-                    this.disconnected$.next(event);
-                    this.onDisconnected(event);
-                }
-            }
+            openObserver: { next: (event: Event): void => this.onOpenObserver(event) },
+            closeObserver: { next: (event: Event): void => this.onCloseObserver(event) },
+            serializer: (message: Any): WebSocketMessage => this.serialize(message),
+            deserializer: (event: MessageEvent): Any => this.deserialize(event),
+            url: this.connectionPath
         };
     }
 
@@ -96,26 +87,42 @@ export abstract class AbstractWebsocketClient<K> implements WebsocketHandler<K>,
         this.disconnect();
     }
 
-    private _connect(): void {
-        this.socket$ = webSocket(this.webSocketSubjectConfig);
-        this.subscription = this.socket$
-            .pipe(
-                catchError(
-                    (err: Error): Observable<never> => {
-                        this.reconnection(this.subscription);
-                        return throwError(err);
-                    }
-                ),
-                takeUntil(this.destroy$)
-            )
-            .subscribe((message: WebsocketMessage<K, Any>): void => {
-                window.requestAnimationFrame((): void => this.messages$.next(message));
-            });
+    protected serialize(message: Any): WebSocketMessage {
+        return JSON.stringify(message);
     }
 
-    private reconnection(subscription: Subscription): void {
-        if (!subscription.closed) {
-            subscription.unsubscribe();
+    protected deserialize(messageEvent: MessageEvent): WebsocketMessage<K, Any> {
+        return JSON.parse(messageEvent.data);
+    }
+
+    private onOpenObserver(event: Event): void {
+        this.connected = true;
+        this.connected$.next(event);
+        this.onConnected(event);
+    }
+
+    private onCloseObserver(event: Event): void {
+        this.connected = false;
+        this.disconnected$.next(event);
+        this.onDisconnected(event);
+    }
+
+    private _connect(): void {
+        this.socket$ = webSocket(this.webSocketSubjectConfig);
+        this.subscription = this.socket$.pipe(takeUntil(this.destroy$)).subscribe(
+            (message: WebsocketMessage<K, Any>): void => {
+                window.requestAnimationFrame((): void => this.messages$.next(message));
+            },
+            (): void => this.reconnect()
+        );
+    }
+
+    private reconnect(): void {
+        if (!this.socket$.isStopped) {
+            this.socket$.complete();
+        }
+        if (!this.subscription.closed) {
+            this.subscription.unsubscribe();
         }
 
         this.ngZone.runOutsideAngular((): void => {
