@@ -1,6 +1,6 @@
 ## Angular-RU SDK
 
-[![](https://github.com/angular-ru/angular-ru-sdk/workflows/Angular-RU%20SDK%20CI/badge.svg)](https://github.com/Angular-RU/angular-ru-sdk/actions?query=workflow%3A%22Angular-RU+SDK+CI%22)
+§[![](https://github.com/angular-ru/angular-ru-sdk/workflows/Angular-RU%20SDK%20CI/badge.svg)](https://github.com/Angular-RU/angular-ru-sdk/actions?query=workflow%3A%22Angular-RU+SDK+CI%22+branch%3Amaster)
 
 The Angular-RU Software Development Kit (SDK) is a set of tool chain that implement common interaction patterns whilst
 being unopinionated about their presentation for Angular. It represents an abstraction of the core functionalities found
