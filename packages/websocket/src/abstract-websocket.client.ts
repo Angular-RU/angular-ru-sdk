@@ -35,26 +35,13 @@ export abstract class AbstractWebsocketClient<K> implements WebsocketHandler<K>,
         return `${this.baseUrl}${this.handlerPath}`;
     }
 
-    // eslint-disable-next-line max-lines-per-function
     private get webSocketSubjectConfig(): WebSocketSubjectConfig<Any> {
         return {
+            openObserver: { next: (event: Event): void => this.onOpenObserver(event) },
+            closeObserver: { next: (event: Event): void => this.onCloseObserver(event) },
             serializer: (message: Any): WebSocketMessage => this.serialize(message),
             deserializer: (event: MessageEvent): Any => this.deserialize(event),
-            url: this.connectionPath,
-            openObserver: {
-                next: (event: Event): void => {
-                    this.connected = true;
-                    this.connected$.next(event);
-                    this.onConnected(event);
-                }
-            },
-            closeObserver: {
-                next: (event: Event): void => {
-                    this.connected = false;
-                    this.disconnected$.next(event);
-                    this.onDisconnected(event);
-                }
-            }
+            url: this.connectionPath
         };
     }
 
@@ -106,6 +93,18 @@ export abstract class AbstractWebsocketClient<K> implements WebsocketHandler<K>,
 
     protected deserialize(messageEvent: MessageEvent): WebsocketMessage<K, Any> {
         return JSON.parse(messageEvent.data);
+    }
+
+    private onOpenObserver(event: Event): void {
+        this.connected = true;
+        this.connected$.next(event);
+        this.onConnected(event);
+    }
+
+    private onCloseObserver(event: Event): void {
+        this.connected = false;
+        this.disconnected$.next(event);
+        this.onDisconnected(event);
     }
 
     private _connect(): void {
