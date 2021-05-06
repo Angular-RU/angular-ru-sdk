@@ -1,3 +1,15 @@
+#### 15.221.0 (2021-05-06)
+
+##### Continuous Integration
+
+-   don't use `git add .` before commit files ([#568](https://github.com/Angular-RU/angular-ru-sdk/pull/568))
+    ([7c43e4ce](https://github.com/Angular-RU/angular-ru-sdk/commit/7c43e4ce25036ea1027e01e387c23e20bc2d04b0))
+
+##### New Features
+
+-   **@angular-ru/common:** add new string utils ([#569](https://github.com/Angular-RU/angular-ru-sdk/pull/569))
+    ([e6abb4b6](https://github.com/Angular-RU/angular-ru-sdk/commit/e6abb4b6eadaef4f4aceb0e3189a7e1c5e5aef2c))
+
 #### 15.220.0 (2021-05-06)
 
 ##### New Features
