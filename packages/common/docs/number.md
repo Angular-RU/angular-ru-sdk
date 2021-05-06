@@ -47,3 +47,39 @@ expect(half(null)).toEqual(NaN);
 expect(half(undefined)).toEqual(NaN);
 expect(half('')).toEqual(NaN);
 ```
+
+-   `getFractionSeparator`
+
+```ts
+expect(getFractionSeparator('de-DE')).toEqual(',');
+expect(getFractionSeparator('ja-JP')).toEqual('.');
+expect(getFractionSeparator('en-IN')).toEqual('.');
+expect(getFractionSeparator('ru')).toEqual(',');
+expect(getFractionSeparator('us')).toEqual('.');
+```
+
+-   `truncated`
+
+```ts
+expect(truncated(35.874993, 0)).toEqual(35);
+expect(truncated(35.874993, 1)).toEqual(35.8);
+expect(truncated(35.874993, 2)).toEqual(35.87);
+expect(truncated(35.874993, 3)).toEqual(35.874);
+expect(truncated(35.874993, 4)).toEqual(35.8749);
+```
+
+-   `gaussRound`
+
+```ts
+expect(gaussRound(2.5)).toEqual(2);
+expect(gaussRound(3.5)).toEqual(4);
+expect(gaussRound(2.57, 1)).toEqual(2.6);
+expect(gaussRound(1000.879923123, 3)).toEqual(1000.88);
+expect(gaussRound(1000.8709923123, 3)).toEqual(1000.871);
+expect(gaussRound(1000, 3)).toEqual(1000);
+expect(gaussRound(1000.1, 3)).toEqual(1000.1);
+expect(gaussRound(1000.12, 3)).toEqual(1000.12);
+expect(gaussRound(1000.56, 3)).toEqual(1000.56);
+expect(gaussRound(-10000000000.0009, 3)).toEqual(-10000000000.001);
+expect(gaussRound(NaN, 3)).toEqual(NaN);
+```

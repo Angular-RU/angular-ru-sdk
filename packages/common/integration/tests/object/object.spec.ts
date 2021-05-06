@@ -227,12 +227,20 @@ describe('[TEST]: Object', () => {
             expect(copy.b.c).toEqual(4);
         });
 
+        it('not equals', () => {
+            const c = { d: 3 };
+            const a = { a: 1, b: 2, c };
+
+            expect(deepClone(a).c !== c).toBeTruthy();
+            expect(deepClone(a).c).toEqual({ d: 3 });
+        });
+
         it('copy null/NaN/undefined/0/Infinity', () => {
             expect(deepClone(0)).toEqual(0);
             expect(deepClone(NaN)).toEqual(null);
             expect(deepClone(Infinity)).toEqual(null);
             expect(deepClone(null)).toEqual(null);
-            expect(deepClone(undefined)).toEqual(null);
+            expect(deepClone(undefined)).toEqual(undefined);
         });
 
         it('should be correct clone object', () => {

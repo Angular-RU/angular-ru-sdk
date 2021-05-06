@@ -3,50 +3,55 @@ import {
     ChangeDetectorRef,
     Directive,
     ElementRef,
+    Inject,
     Input,
     NgZone,
     OnDestroy,
     OnInit,
-    Optional,
-    Renderer2
+    Optional
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import {
-    getCountSpacesOnString,
-    getLastSymbol,
-    removeLastSymbol,
-    removeNonNumericSymbols,
-    replaceEveryCommaOnDot
-} from '@angular-ru/common/string';
-import { Any, Fn, Immutable } from '@angular-ru/common/typings';
+import { gaussRound, getFractionSeparator, toNumber } from '@angular-ru/common/number';
+import { deepClone } from '@angular-ru/common/object';
+import { getLastSymbol, removeLastSymbol, removeNonNumericSymbols } from '@angular-ru/common/string';
 import { detectChanges } from '@angular-ru/common/utils';
+import { fromEvent, Subscription } from 'rxjs';
 
-import { AmountFormatSegments } from './amount-format-segments';
+import { AMOUNT_FORMAT_OPTIONS, DEFAULT_AMOUNT_OPTIONS } from './amount-format.properties';
 import { AmountOptions } from './amount-options';
 
 @Directive({ selector: '[amountFormat]' })
 export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
-    private segments: AmountFormatSegments = { cursorPosition: 0, spaces: { before: 0, after: 0, newAdded: 0 } };
-    private options: Partial<Immutable<AmountOptions>> = { lang: 'ru-RU', formatOptions: {} };
-    private inputUnlisten: Fn | null | undefined = null;
-    private blurUnlisten: Fn | null | undefined = null;
+    private readonly subscriptions: Subscription = new Subscription();
+    private previousLang: string | null | undefined = null;
+    private readonly maximumFractionDigits: number = 3;
+    private isInsideAngularZone: boolean = true;
+    private options: Partial<AmountOptions> = {};
     private markedAsDirty: boolean = true;
+    private cursorPointer: number = 0;
 
     constructor(
         private readonly el: ElementRef<HTMLInputElement>,
+        @Inject(AMOUNT_FORMAT_OPTIONS) globalOptions: AmountOptions,
         @Optional() private readonly ngControl?: NgControl,
         @Optional() private readonly ngZone?: NgZone,
-        @Optional() private readonly renderer?: Renderer2,
         @Optional() private readonly cd?: ChangeDetectorRef
-    ) {}
+    ) {
+        this.setFirstLocalOptionsByGlobal(globalOptions);
+    }
 
-    public get amountFormatOptions(): Partial<Immutable<AmountOptions>> {
+    public get isInAngularZone(): boolean {
+        return this.isInsideAngularZone;
+    }
+
+    public get amountFormatOptions(): Partial<AmountOptions> {
         return this.options;
     }
 
     @Input()
-    public set amountFormatOptions(options: Partial<Immutable<AmountOptions>>) {
-        this.options = { ...this.options, ...(options || {}) };
+    public set amountFormatOptions(options: Partial<AmountOptions>) {
+        this.options = { ...this.options, ...(options ?? {}) };
+        this.recalculateWhenChangesOptions();
     }
 
     public get dirty(): boolean {
@@ -57,20 +62,21 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
         return this.el.nativeElement;
     }
 
-    private static isLastSymbolIsDot(val: string): boolean {
-        return getLastSymbol(val) === '.';
+    public setLang(lang: string): void {
+        this.options.lang = lang;
+        this.recalculateWhenChangesOptions();
     }
 
-    private static isInvalidNumberFormat(val: string): boolean {
-        return val !== '-' && isNaN(val as Any);
+    public getCursorPosition(): number {
+        return this.cursorPointer;
     }
 
     public ngOnInit(): void {
+        this.setup();
         this.listen();
     }
 
     public ngAfterViewInit(): void {
-        this.setup();
         this.format();
     }
 
@@ -80,90 +86,195 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
 
     public listen(): void {
         this.ngZone?.runOutsideAngular((): void => {
-            this.inputUnlisten = this.renderer?.listen(this.element, 'input', (): void => this.format());
-            this.blurUnlisten = this.renderer?.listen(this.element, 'blur', (): void => this.blurFormat());
+            this.subscriptions.add(
+                fromEvent(this.element, 'input').subscribe((): void => {
+                    this.isInsideAngularZone = NgZone.isInAngularZone();
+                    this.format();
+                })
+            );
+
+            this.subscriptions.add(
+                fromEvent(this.element, 'blur').subscribe((): void => {
+                    this.isInsideAngularZone = NgZone.isInAngularZone();
+                    this.blurFormat();
+                })
+            );
         });
     }
 
     public unlisten(): void {
-        this.inputUnlisten?.();
-        this.blurUnlisten?.();
-    }
-
-    public getCurrentCaretSegments(): Immutable<AmountFormatSegments> {
-        return this.segments as Immutable<AmountFormatSegments>;
+        this.subscriptions.unsubscribe();
     }
 
     public blurFormat(): void {
-        if (AmountFormatDirective.isLastSymbolIsDot(this.element.value)) {
+        if (this.getLastSymbolAsFraction()) {
             this.element.value = removeLastSymbol(this.element.value) ?? '';
         }
     }
 
     public format(): void {
-        this.element.value = replaceEveryCommaOnDot(this.element.value);
+        const fraction: string = this.getFractionSeparator();
+        this.setCursorPointer(this.element.selectionStart);
+        const shouldBeSafeSelectionPosition: boolean = this.shouldBeSafeSelectionPosition();
+        this.replaceAllInvalidSymbolsBeforeTranslation();
 
-        this.checkSpacesBeforeFormatting(this.element);
-        const value: string = removeNonNumericSymbols(this.element.value);
-
-        if (AmountFormatDirective.isInvalidNumberFormat(value)) {
-            this.element.value = removeLastSymbol(value) ?? '';
-        } else if (AmountFormatDirective.isLastSymbolIsDot(value)) {
-            this.preparedModelWhenIncompleteDotValue(value);
+        if (this.viewModelIsMinus()) {
+            this.resetModelValueWhenViewIsMinus();
             return;
         }
 
-        this.setDefaultCursorPosition(this.element);
-        this.patchViewModel(value);
-        this.checkSpacesAfterFormatting(this.element);
+        const numberValue: number = this.getNumberValueWithGaussRounded();
+        this.setModelValueByGaussRounded(numberValue);
+
+        const stringValue: string = this.prepareConvertedToLocaleValue(numberValue, fraction);
+
+        this.element.value = isNaN(this.ngControl?.value) ? '' : stringValue;
+        this.setSelectionRangeBy(shouldBeSafeSelectionPosition, stringValue);
+        this.preventExpressionChangedAfter();
     }
 
-    private patchViewModel(value: string): void {
-        const numberValue: number = parseFloat(value);
+    private replaceAllInvalidSymbolsBeforeTranslation(): void {
+        const fraction: string = this.getFractionSeparator();
+        this.element.value = this.removeNonNumericSymbols();
+        this.element.value = this.replaceInvalidFractionPosition(fraction);
+        this.element.value = this.removeDuplicateMinusOrFractionSymbol(fraction);
+    }
 
-        if (isNaN(numberValue)) {
-            this.ngControl?.reset(null);
-            this.element.value = value === '-' ? value : removeNonNumericSymbols(this.element.value);
-            this.preventExpressionChangedAfter();
-        } else {
-            const formattedValue: string = this.toLocaleString(numberValue);
-            const modelValue: number = parseFloat(formattedValue.replace(/\s/g, ''));
+    private getMaximumFractionDigits(): number {
+        return this.options.formatOptions?.maximumFractionDigits ?? this.maximumFractionDigits;
+    }
 
-            this.ngControl?.reset(modelValue);
-            this.element.value = formattedValue;
+    private getLastSymbolsAsZeroDot(fraction: string): string | undefined {
+        const maximumFractionDigits: number = this.getMaximumFractionDigits();
+
+        let lastSymbolsAsZeroDot: string | undefined =
+            maximumFractionDigits === 0
+                ? ''
+                : this.element.value.match(new RegExp(`(\\${fraction})(.+)?`))?.[0]?.replace(/,|./, '');
+
+        const isOverflowGaussRound: boolean =
+            !!lastSymbolsAsZeroDot && lastSymbolsAsZeroDot.length > this.maximumFractionDigits;
+
+        if (isOverflowGaussRound) {
+            const parsedDot: number = gaussRound(
+                toNumber(`0${fraction}${lastSymbolsAsZeroDot}`, this.options.lang),
+                maximumFractionDigits
+            );
+            lastSymbolsAsZeroDot = isNaN(parsedDot) ? '' : parsedDot.toString().replace(/0\./, '');
         }
+
+        return lastSymbolsAsZeroDot;
     }
 
-    private checkSpacesBeforeFormatting(ref: HTMLInputElement): void {
-        this.segments.spaces.before = getCountSpacesOnString(ref.value);
+    private prepareConvertedToLocaleValue(numberValueWithGaussRounded: number, fraction: string): string {
+        const lastSymbolAsFraction: boolean = this.getLastSymbolAsFraction();
+        let convertedToLocaleValue: string = this.getConvertedToLocaleString(numberValueWithGaussRounded);
+
+        if (lastSymbolAsFraction) {
+            convertedToLocaleValue = `${convertedToLocaleValue}${fraction}`;
+        } else {
+            const lastSymbolsAsZeroDot: string | undefined = this.getLastSymbolsAsZeroDot(fraction);
+            if (lastSymbolsAsZeroDot) {
+                const splitValues: string[] = convertedToLocaleValue.split(fraction);
+                const beforePoint: string | undefined = splitValues?.[0];
+
+                if (beforePoint) {
+                    convertedToLocaleValue = `${beforePoint}${fraction}${lastSymbolsAsZeroDot}`;
+                } else {
+                    convertedToLocaleValue = `0${fraction}${lastSymbolsAsZeroDot}`;
+                }
+            }
+        }
+
+        return convertedToLocaleValue.replace(/\s/g, ' ');
     }
 
-    private setDefaultCursorPosition(ref: HTMLInputElement): void {
-        this.segments.cursorPosition = ref.selectionStart ?? 0;
+    private setModelValueByGaussRounded(numberValueWithGaussRounded: number): void {
+        this.ngControl?.reset(isNaN(numberValueWithGaussRounded) ? '' : numberValueWithGaussRounded);
     }
 
-    private toLocaleString(value: number): string {
-        return value
-            .toLocaleString(this.options.lang, this.options.formatOptions)
-            .replace(/,/g, '.')
-            .replace(/\s/g, ' ');
+    private getConvertedToLocaleString(numberValueWithGaussRounded: number): string {
+        return (isNaN(numberValueWithGaussRounded) ? '' : numberValueWithGaussRounded).toLocaleString(
+            this.options.lang,
+            this.options.formatOptions
+        );
     }
 
-    /**
-     * when the user entered a value incompletely
-     * @param value - `15.` or `0.`, ...
-     */
-    private preparedModelWhenIncompleteDotValue(value: string): void {
-        this.ngControl?.reset(Number(`${value}0`));
-        this.element.value = `${this.toLocaleString(Number(value))}.`;
+    private getNumberValueWithGaussRounded(): number {
+        const maximumFractionDigits: number = this.getMaximumFractionDigits();
+        return gaussRound(toNumber(this.element.value, this.options.lang), maximumFractionDigits);
     }
 
-    private checkSpacesAfterFormatting(ref: HTMLInputElement): void {
-        this.segments.spaces.after = getCountSpacesOnString(ref.value);
-        this.segments.spaces.newAdded = Math.abs(this.segments.spaces.after - this.segments.spaces.before);
-        this.segments.cursorPosition = this.segments.cursorPosition + this.segments.spaces.newAdded;
-        ref.setSelectionRange(this.segments.cursorPosition, this.segments.cursorPosition);
-        this.segments.cursorPosition = ref.selectionEnd!;
+    private getLastSymbolAsFraction(): boolean {
+        return getLastSymbol(this.element.value) === this.getFractionSeparator();
+    }
+
+    private replaceInvalidFractionPosition(fraction: string): string {
+        return this.element.value.replace(new RegExp(`\\${fraction}+$`, 'g'), fraction);
+    }
+
+    private removeDuplicateMinusOrFractionSymbol(fraction: string): string {
+        let value: string = this.element.value;
+        let count: number = 0;
+
+        value = value.replace(new RegExp(`\\${fraction}`, 'g'), (): string => {
+            count++;
+            return count > 1 ? '' : fraction;
+        });
+
+        if (value.indexOf('-') !== 0) {
+            value = value.replace(/-/g, '');
+        }
+
+        return value;
+    }
+
+    private viewModelIsMinus(): boolean {
+        return this.element.value === '-';
+    }
+
+    private resetModelValueWhenViewIsMinus(): void {
+        this.ngControl?.reset('');
+        this.element.value = '-';
+    }
+
+    private getFractionSeparator(): string {
+        return getFractionSeparator(this.options.lang ?? DEFAULT_AMOUNT_OPTIONS.lang);
+    }
+
+    private removeNonNumericSymbols(): string {
+        return this.element.value === '-' ? this.element.value : removeNonNumericSymbols(this.element.value);
+    }
+
+    private setCursorPointer(position: number | null): void {
+        this.cursorPointer = position ?? 0;
+    }
+
+    private shouldBeSafeSelectionPosition(): boolean {
+        return this.cursorPointer !== this.element.value.length;
+    }
+
+    private setSelectionRangeBy(safePosition: boolean, value: string): void {
+        try {
+            if (safePosition) {
+                this.element.setSelectionRange(this.cursorPointer, this.cursorPointer);
+            } else {
+                this.cursorPointer = value.length;
+                this.element.setSelectionRange(this.cursorPointer, this.cursorPointer);
+            }
+        } catch {}
+    }
+
+    private setFirstLocalOptionsByGlobal(options: AmountOptions): void {
+        this.options = deepClone(options);
+        this.previousLang = this.options.lang;
+    }
+
+    private recalculateWhenChangesOptions(): void {
+        const value: number = toNumber(this.element.value, this.previousLang ?? this.options.lang);
+        this.element.value = value.toLocaleString(this.options.lang, this.options.formatOptions);
+        this.previousLang = this.options.lang;
+        this.format();
     }
 
     private preventExpressionChangedAfter(): void {
