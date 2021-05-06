@@ -1,3 +1,21 @@
+### 6.05.2021 @angular-ru/common/number
+
+We no longer support the weird fallback option, however, now there is an optional parameter to specify the localization:
+
+```ts
+// before changes declaration
+toNumber(value: number | string, fallback?: number): number;
+
+// after changes declaration
+toNumber(value: number | string, locale?): number; // locale is 'ru-RU' by default
+```
+
+```ts
+expect(toNumber('30 000,65')).toEqual(30000.65);
+expect(toNumber('30,000.65', 'en-IN')).toEqual(30000.65);
+expect(toNumber('30.000,65', 'de')).toEqual(30000.65);
+```
+
 ### 19.03.2021 @angular-ru/ng-table-builder
 
 -   `TableBuilderComponent<T>` required generic type,
