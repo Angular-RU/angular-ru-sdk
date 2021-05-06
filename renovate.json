@@ -1,5 +1,4 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": ["@angular-ru"],
-    "baseBranches": ["master"]
+    "extends": ["@angular-ru"]
 }
