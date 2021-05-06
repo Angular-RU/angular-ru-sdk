@@ -1,3 +1,11 @@
+#### 15.222.1 (2021-05-06)
+
+##### Bug Fixes
+
+-   **@angular-ru/websocket:** close socket connection on error & serializers
+    ([#567](https://github.com/Angular-RU/angular-ru-sdk/pull/567))
+    ([d7575f8b](https://github.com/Angular-RU/angular-ru-sdk/commit/d7575f8bfb6a13fff73b804931b2fa75283bd47b))
+
 #### 15.222.0 (2021-05-06)
 
 ##### Documentation Changes
