@@ -1,3 +1,15 @@
+#### 15.222.0 (2021-05-06)
+
+##### Documentation Changes
+
+-   update README.md ([#571](https://github.com/Angular-RU/angular-ru-sdk/pull/571))
+    ([e23a24a7](https://github.com/Angular-RU/angular-ru-sdk/commit/e23a24a7c0f9096fdaf9cb0ecaced6a53104ce23))
+
+##### New Features
+
+-   **@angular-ru/renovate-config:** update group lists ([#572](https://github.com/Angular-RU/angular-ru-sdk/pull/572))
+    ([2721013c](https://github.com/Angular-RU/angular-ru-sdk/commit/2721013cfc32170baf3c06c3b93a66338847b6c9))
+
 #### 15.221.0 (2021-05-06)
 
 ##### Continuous Integration
