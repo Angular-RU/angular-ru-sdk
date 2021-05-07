@@ -1,3 +1,15 @@
+#### 15.229.0 (2021-05-07)
+
+##### Continuous Integration
+
+-   update Angular ([#577](https://github.com/Angular-RU/angular-ru-sdk/pull/577))
+    ([e8f5abe2](https://github.com/Angular-RU/angular-ru-sdk/commit/e8f5abe203350d00c9f64b22f11c9eca3eb58a66))
+
+##### New Features
+
+-   update dependency @types/jasminewd2 to v2.0.9 ([#578](https://github.com/Angular-RU/angular-ru-sdk/pull/578))
+    ([3420bbd5](https://github.com/Angular-RU/angular-ru-sdk/commit/3420bbd50533fe88465256b3b94e22f67bf5d1fb))
+
 #### 15.228.0 (2021-05-07)
 
 ##### New Features
