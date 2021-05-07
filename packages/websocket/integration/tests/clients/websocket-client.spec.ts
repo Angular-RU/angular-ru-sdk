@@ -1,12 +1,20 @@
 import { Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { Any } from '@angular-ru/common/typings';
-import { AbstractWebsocketClient, WebsocketConfig, WebsocketMessage } from '@angular-ru/websocket';
+import { AbstractWebsocketClient, WebsocketConfig, WebsocketMessage, PLAIN_TEXT, BINARY } from '@angular-ru/websocket';
 
 @Injectable()
-class WebsocketClient extends AbstractWebsocketClient<Any> {
+class WebsocketSimpleParseClient extends AbstractWebsocketClient<Any> {
     public get baseUrl(): string {
         return 'ws://';
+    }
+
+    protected serialize(message: Any): string {
+        return JSON.stringify(message);
+    }
+
+    protected deserialize(messageEvent: MessageEvent): WebsocketMessage<Any, Any> {
+        return JSON.parse(messageEvent.data);
     }
 }
 
@@ -14,10 +22,6 @@ class WebsocketClient extends AbstractWebsocketClient<Any> {
 class WebsocketSerializeClient extends AbstractWebsocketClient<Any> {
     public get baseUrl(): string {
         return 'ws://';
-    }
-
-    protected deserialize(messageEvent: MessageEvent): WebsocketMessage<Any, Any> {
-        return { type: 'message', data: messageEvent.data };
     }
 }
 
@@ -34,7 +38,7 @@ describe('[TEST] Websocket client', (): void => {
 
         TestBed.configureTestingModule({
             providers: [
-                WebsocketClient,
+                WebsocketSimpleParseClient,
                 WebsocketSerializeClient,
                 { provide: WebsocketConfig, useValue: { reconnectionDelay: 1000 } }
             ]
@@ -42,7 +46,7 @@ describe('[TEST] Websocket client', (): void => {
     });
 
     it('should connect and reconnect on error', () => {
-        const client: WebsocketClient = TestBed.inject(WebsocketClient);
+        const client: WebsocketSimpleParseClient = TestBed.inject(WebsocketSimpleParseClient);
         const observer: jest.Mock = jest.fn();
         client.on<string>('message').subscribe(observer);
 
@@ -94,35 +98,58 @@ describe('[TEST] Websocket client', (): void => {
         expect(spyClose).toHaveBeenCalledTimes(1);
     });
 
-    it('should not fail with custom deserializer', () => {
+    it('should distribute message types', () => {
         const client: WebsocketSerializeClient = TestBed.inject(WebsocketSerializeClient);
-        const observer: jest.Mock = jest.fn();
-        client.on<string>('message').subscribe(observer);
+        const messageObserver: jest.Mock = jest.fn();
+        const plainTextObserver: jest.Mock = jest.fn();
+        const binaryObserver: jest.Mock = jest.fn();
+        client.on<string>('message').subscribe(messageObserver);
+        client.on<string>(PLAIN_TEXT).subscribe(plainTextObserver);
+        client.on<string>(BINARY).subscribe(binaryObserver);
 
         const spyReconnect: jest.SpyInstance = jest.spyOn(client as Any, 'reconnect');
         client.connect('null');
 
         const nativeSocket: WebSocket = (client as Any).socket$._socket;
         const spyClose: jest.SpyInstance = jest.spyOn(nativeSocket, 'close');
+        const spySend: jest.SpyInstance = jest.spyOn(nativeSocket, 'send').mockImplementation((): void => {});
         expect(nativeSocket).toBeInstanceOf(WebSocket);
         nativeSocket.dispatchEvent(new MessageEvent('open'));
         expect(nativeSocket.url).toBe('ws://null/');
+        Object.defineProperty(nativeSocket, 'readyState', { value: 1 });
 
-        // sending legal message
+        // sending json message
         const jsonData: string = JSON.stringify({
             type: 'message',
             data: 'some_data'
         });
 
         nativeSocket.dispatchEvent(new MessageEvent('message', { data: jsonData }));
-        expect(observer.mock.calls).toEqual([[jsonData]]);
+        expect(messageObserver.mock.calls).toEqual([['some_data']]);
         expect(spyReconnect).toHaveBeenCalledTimes(0);
         expect(spyClose).toHaveBeenCalledTimes(0);
 
-        // sending breaking message
+        // sending plain message
         nativeSocket.dispatchEvent(new MessageEvent('message', { data: 'some_data' }));
-        expect(observer.mock.calls).toEqual([[jsonData], ['some_data']]);
+        expect(plainTextObserver.mock.calls).toEqual([['some_data']]);
         expect(spyReconnect).toHaveBeenCalledTimes(0);
         expect(spyClose).toHaveBeenCalledTimes(0);
+
+        // sending binary message
+        const binaryData = new ArrayBuffer(1);
+        nativeSocket.dispatchEvent(new MessageEvent('message', { data: binaryData }));
+        expect(binaryObserver.mock.calls[0][0]).toEqual(binaryData);
+        expect(spyReconnect).toHaveBeenCalledTimes(0);
+        expect(spyClose).toHaveBeenCalledTimes(0);
+
+        const message = { type: 'outgoing', data: 'message' };
+        client.sendMessage(message.type, message.data);
+        expect(spySend.mock.calls).toEqual([[JSON.stringify(message)]]);
+
+        client.sendMessage(PLAIN_TEXT, 'message');
+        expect(spySend.mock.calls).toEqual([[JSON.stringify(message)], ['message']]);
+
+        client.sendMessage(BINARY, binaryData);
+        expect(spySend.mock.calls[2][0]).toEqual(binaryData);
     });
 });

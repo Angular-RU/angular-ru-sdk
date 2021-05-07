@@ -20,3 +20,4 @@ export { isNotNil } from './is-not-nil';
 export { isTrue } from './is-true';
 export { parseXmlFromString } from './parse-xml-from-string';
 export { serializeXmlToString } from './serialize-xml-to-string';
+export { tryParseJson } from './try-parse-json';
