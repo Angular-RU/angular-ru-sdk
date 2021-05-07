@@ -31,8 +31,6 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
     private cursorPointer: number = 0;
 
     constructor(
-        private readonly ngZone: NgZone,
-        private readonly renderer: Renderer2,
         private readonly el: ElementRef<HTMLInputElement>,
         @Inject(AMOUNT_FORMAT_OPTIONS) globalOptions: AmountOptions,
         @Optional() private readonly ngControl?: NgControl,
@@ -245,7 +243,7 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
     }
 
     private removeNonNumericSymbols(): string {
-        return this.element.value === '-' ? this.element.value : removeNonNumericSymbols(this.element.value);
+        return this.viewModelIsMinus() ? this.element.value : removeNonNumericSymbols(this.element.value);
     }
 
     private setCursorPointer(position: number | null): void {
@@ -264,7 +262,11 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
                 this.cursorPointer = value.length;
                 this.element.setSelectionRange(this.cursorPointer, this.cursorPointer);
             }
-        } catch {}
+        } catch {
+            // Caretaker note:
+            // this situation can happen if <input type=number />
+            // at some point, the directive may not have time to work and set the value `type=text`
+        }
     }
 
     private setFirstLocalOptionsByGlobal(options: AmountOptions): void {
