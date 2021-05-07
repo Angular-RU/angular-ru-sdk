@@ -30,7 +30,6 @@ export class AppModule {}
 />
 ```
 
-
 ### 7.05.2021 @angular-ru/common
 
 ```ts
