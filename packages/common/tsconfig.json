@@ -14,10 +14,7 @@
     "compilerOptions": {
         "rootDir": ".",
         "baseUrl": "./",
-        "module": "esnext",
         "outDir": "./dist/out-tsc",
-        "target": "es2015",
-        "types": ["node"],
         "typeRoots": ["../../node_modules/@types"],
         "paths": {
             "@angular-ru/common/*": ["./dist/library/*"]

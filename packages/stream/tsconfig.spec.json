@@ -1,5 +1,5 @@
 {
-    "extends": "../../tsconfig.json",
+    "extends": "./tsconfig.json",
     "compilerOptions": {
         "outDir": "./out-tsc/spec",
         "types": ["jasmine", "node"],
@@ -9,6 +9,6 @@
             "@angular-ru/stream/*": ["./*/src/public_api.ts"]
         }
     },
-    "files": ["test.ts", "../app/polyfills.ts"],
+    "files": ["setup-karma.ts", "integration/app/polyfills.ts"],
     "include": ["**/*.spec.ts", "**/*.d.ts"]
 }

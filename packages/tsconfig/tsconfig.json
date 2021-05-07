@@ -44,6 +44,8 @@
         "allowUmdGlobalAccess": true,
         "noFallthroughCasesInSwitch": true,
         "useDefineForClassFields": false,
-        "lib": ["esnext", "dom"]
+        "lib": ["esnext", "dom"],
+        "module": "esnext",
+        "target": "es2015"
     }
 }

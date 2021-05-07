@@ -22,6 +22,7 @@
     - [(@)angular-ru/common/class-transformer](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/class-transformer.md)
     - [(@)angular-ru/common/validators](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/validators.md)
     - [(@)angular-ru/common/directives](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/directives.md)
+    - [(@)angular-ru/common/decorators](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/directives.md)
     - [(@)angular-ru/common/pipes](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/pipes.md)
     - [(@)angular-ru/common/rxjs](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/rxjs.md)
     - [(@)angular-ru/common/animations](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/common/docs/animations.md)

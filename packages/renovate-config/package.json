@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/renovate-config",
-    "version": "15.222.0",
+    "version": "15.223.0",
     "description": "Shared Renovate config for Angular projects",
     "keywords": [
         "angular-ru",

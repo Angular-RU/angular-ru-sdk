@@ -1,14 +1,15 @@
 {
-    "extends": "../../tsconfig.json",
+    "extends": "./tsconfig.json",
     "compilerOptions": {
         "outDir": "../out-tsc/app",
+        "target": "es5",
         "types": [],
         "paths": {
             "@angular-ru/common/*": ["../common/dist/library/*"],
             "@angular-ru/logger": ["dist/library"]
         }
     },
-    "files": ["main.ts", "polyfills.ts"],
+    "files": ["integration/app/main.ts", "integration/app/polyfills.ts"],
     "include": ["src/**/*.d.ts"],
     "exclude": ["**/*.spec.ts"]
 }

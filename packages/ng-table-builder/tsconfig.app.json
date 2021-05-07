@@ -1,0 +1,13 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "outDir": "../out-tsc/app",
+        "target": "es5",
+        "types": [],
+        "paths": {
+            "@angular-ru/ng-table-builder": ["./src/public_api.ts"],
+            "@angular-ru/common/*": ["../common/dist/library/*"]
+        }
+    },
+    "include": ["integration/app/main.ts", "integration/app/polyfills.ts", "src/**/*.ts"]
+}
