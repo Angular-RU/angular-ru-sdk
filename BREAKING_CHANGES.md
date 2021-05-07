@@ -1,4 +1,4 @@
-### 6.05.2021 @angular-ru/common/number
+### 7.05.2021 @angular-ru/common
 
 We no longer support the weird fallback option, however, now there is an optional parameter to specify the localization:
 
