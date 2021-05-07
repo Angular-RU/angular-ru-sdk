@@ -16,7 +16,7 @@
                         "index": "integration/app/index.html",
                         "main": "integration/app/main.ts",
                         "polyfills": "integration/app/polyfills.ts",
-                        "tsConfig": "integration/app/tsconfig.app.json",
+                        "tsConfig": "tsconfig.app.json",
                         "assets": ["integration/app/favicon.ico", "integration/app/assets"],
                         "styles": ["integration/app/styles.css"],
                         "scripts": [],
@@ -66,9 +66,9 @@
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
-                        "main": "integration/tests/test.ts",
+                        "main": "setup-karma.ts",
                         "polyfills": "integration/app/polyfills.ts",
-                        "tsConfig": "integration/tests/tsconfig.spec.json",
+                        "tsConfig": "tsconfig.spec.json",
                         "karmaConfig": "karma.conf.js",
                         "assets": ["integration/app/favicon.ico", "integration/app/assets"],
                         "styles": ["integration/app/styles.css"],

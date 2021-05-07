@@ -62,3 +62,33 @@ class HostComponent {
     public someAnotherFalsy: Any = null;
 }
 ```
+
+-   `BoundClass`
+
+```ts
+@Injectable()
+class B {
+    public b: string = '2';
+}
+
+@BoundClass
+@Injectable()
+class A {
+    public a: string = '1';
+
+    constructor(public readonly b: B) {}
+
+    public getA() {
+        return this;
+    }
+}
+
+TestBed.configureTestingModule({ providers: [A, B] });
+
+const a = TestBed.inject(A);
+const { getA } = a;
+
+expect(a).toEqual({ a: '1', b: { b: '2' } });
+expect(getA()).toEqual({ a: '1', b: { b: '2' } });
+expect(getA() === a).toBeTruthy();
+```
