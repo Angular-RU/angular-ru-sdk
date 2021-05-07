@@ -18,16 +18,40 @@ expect(isNumber(undefined)).toEqual(false);
 ```ts
 import { toNumber } from '@angular-ru/common/number';
 
-expect(toNumber(0)).toEqual(0);
 expect(toNumber(NaN)).toEqual(NaN);
 expect(toNumber(Infinity)).toEqual(Infinity);
 expect(toNumber('')).toEqual(NaN);
-expect(toNumber(null)).toEqual(NaN);
-expect(toNumber(undefined)).toEqual(NaN);
-expect(toNumber('', 0)).toEqual(0);
-expect(toNumber(undefined, 0)).toEqual(0);
-expect(toNumber('1 000 000', 0)).toEqual(1000000);
-expect(toNumber('1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16', 0)).toEqual(1.2345678910111212e22);
+expect(toNumber(null as any)).toEqual(NaN);
+expect(toNumber(undefined as any)).toEqual(NaN);
+expect(toNumber('')).toEqual(NaN);
+expect(toNumber(undefined as any)).toEqual(NaN);
+
+expect(toNumber(0)).toEqual(0);
+expect(toNumber('0.1')).toEqual(0.1);
+expect(toNumber('1123123,123')).toEqual(1123123.123);
+expect(toNumber('0,1')).toEqual(0.1);
+expect(toNumber('1 000 000')).toEqual(1000000);
+expect(toNumber('1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16')).toEqual(1.2345678910111212e22);
+
+expect(toNumber('123.456,79', 'de')).toEqual(123456.79);
+expect(toNumber('123,457', 'ru')).toEqual(123.457);
+expect(toNumber('1,23,000', 'en-IN')).toEqual(123000);
+expect(toNumber('30,000.65', 'en-IN')).toEqual(30000.65);
+expect(toNumber('30.000,65', 'de')).toEqual(30000.65);
+expect(toNumber('30 000,65', 'ru')).toEqual(30000.65);
+expect(toNumber('30 000 000', 'ru')).toEqual(30000000);
+expect(toNumber('30 000 000', 'ru')).toEqual(30000000);
+expect(toNumber('30 000 000,01', 'ru')).toEqual(30000000.01);
+expect(toNumber('30 000 000.01', 'ru')).toEqual(30000000.01);
+expect(toNumber('30 000 000.01', 'fr')).toEqual(30000000.01);
+expect(toNumber('30.000.000,01', 'de')).toEqual(30000000.01);
+expect(toNumber('30,000,000.01', 'en')).toEqual(30000000.01);
+expect(toNumber('30,000,000.01', 'us')).toEqual(30000000.01);
+expect(toNumber('2.13472231235', 'de')).toEqual(213472231235);
+expect(toNumber('2.134.722.312.350', 'de')).toEqual(2134722312350);
+expect(toNumber('-10000000000.0009', 'us')).toEqual(-10000000000.0009);
+expect(toNumber('-10000000000.0009', 'de')).toEqual(-100000000000009);
+expect(toNumber('-10000000000.0009', 'fr')).toEqual(-10000000000.0009);
 ```
 
 -   `half`
