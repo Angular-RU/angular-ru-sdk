@@ -1,3 +1,15 @@
+#### 15.225.0 (2021-05-07)
+
+##### Build System / Dependencies
+
+-   you global browser list ([#574](https://github.com/Angular-RU/angular-ru-sdk/pull/574))
+    ([ad589f22](https://github.com/Angular-RU/angular-ru-sdk/commit/ad589f22e250fff48b1e8bb48d4712601d33f864))
+
+##### New Features
+
+-   **@angular-ru/common:** add new number utils ([#570](https://github.com/Angular-RU/angular-ru-sdk/pull/570))
+    ([2898397d](https://github.com/Angular-RU/angular-ru-sdk/commit/2898397d08ed2d770f84d43ffba5107ee5cb9c1f))
+
 #### 15.224.0 (2021-05-07)
 
 ##### New Features
