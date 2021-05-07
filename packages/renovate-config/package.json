@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/renovate-config",
-    "version": "15.140.0",
+    "version": "15.223.0",
     "description": "Shared Renovate config for Angular projects",
     "keywords": [
         "angular-ru",
@@ -24,20 +24,25 @@
     },
     "renovate-config": {
         "default": {
-            "automerge": true,
+            "automerge": false,
+            "pinVersions": true,
             "rangeStrategy": "bump",
             "timezone": "Europe/Moscow",
+            "masterIssueApproval": true,
             "separateMajorMinor": true,
-            "separateMinorPatch": false,
+            "separateMinorPatch": true,
             "semanticCommits": true,
-            "semanticCommitType": "build",
+            "semanticPrefix": "build",
+            "lockFileMaintenance": {
+                "enabled": true
+            },
+            "baseBranches": [
+                "master"
+            ],
             "packageFiles": [
                 "package.json",
                 "packages/**/package.json"
             ],
-            "major": {
-                "automerge": false
-            },
             "packageRules": [
                 {
                     "depTypeList": [
@@ -67,22 +72,51 @@
                 },
                 {
                     "packagePatterns": [
-                        "^@angular/*",
-                        "^@angular-builders/*",
-                        "^@angular-devkit/*",
-                        "^@angular-ru/*",
-                        "^@angular-builders/*",
-                        "^@angular-devkit/*",
-                        "^@angular-ru/*",
-                        "^@angular/cli$",
-                        "^@angular/cdk$",
-                        "^@angular/cdk-experimental$",
-                        "^@angular/fire$",
-                        "^@angular/flex-layout$",
-                        "^@angular/material",
-                        "ng-packagr"
+                        "^@angular/.*",
+                        "^@angular-devkit/.*",
+                        "^@schematics/.*"
                     ],
                     "groupName": "Angular"
+                },
+                {
+                    "packagePatterns": [
+                        "rxjs"
+                    ],
+                    "groupName": "RxJS"
+                },
+                {
+                    "packagePatterns": [
+                        "^@angular/fire$"
+                    ],
+                    "groupName": "Angular Firebase"
+                },
+                {
+                    "packagePatterns": [
+                        "^@angular-ru/*"
+                    ],
+                    "groupName": "Angular RU"
+                },
+                {
+                    "packagePatterns": [
+                        "^@angular/cdk$",
+                        "^@angular/cli$",
+                        "^@angular/cdk-experimental$",
+                        "^@angular/flex-layout$",
+                        "^@angular/material"
+                    ],
+                    "groupName": "Angular Material"
+                },
+                {
+                    "packagePatterns": [
+                        "^@angular-builders/*"
+                    ],
+                    "groupName": "Angular Builders"
+                },
+                {
+                    "packagePatterns": [
+                        "ng-packagr"
+                    ],
+                    "groupName": "ng-packagr"
                 },
                 {
                     "packagePatterns": [
@@ -100,9 +134,9 @@
                 {
                     "packagePatterns": [
                         "@types/eslint",
+                        "^@angular-eslint/*",
                         "^@typescript-eslint/*",
-                        "^eslint*",
-                        "^@angular-eslint/*"
+                        "^eslint*"
                     ],
                     "groupName": "ESLint"
                 },
@@ -121,20 +155,7 @@
                         "tslib",
                         "^@types*"
                     ],
-                    "groupName": "TypeScript",
-                    "separateMinorPatch": true
-                },
-                {
-                    "packageNames": [
-                        "typescript",
-                        "tslib"
-                    ],
-                    "updateTypes": [
-                        "minor",
-                        "major"
-                    ],
-                    "groupName": "TypeScript",
-                    "masterIssueApproval": true
+                    "groupName": "TypeScript"
                 }
             ]
         }

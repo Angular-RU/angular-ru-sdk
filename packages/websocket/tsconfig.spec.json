@@ -1,10 +1,10 @@
 {
-    "extends": "../../tsconfig.json",
+    "extends": "./tsconfig.json",
     "compilerOptions": {
         "outDir": "../../out-tsc/spec",
         "types": ["jest", "node"],
         "paths": {
-            "@angular-ru/ng-table-builder": ["src/public_api.ts"],
+            "@angular-ru/websocket": ["src/public_api.ts"],
             "@angular-ru/common/*": ["../common/dist/library/*"]
         }
     },

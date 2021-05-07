@@ -1,3 +1,35 @@
+#### 15.222.1 (2021-05-06)
+
+##### Bug Fixes
+
+-   **@angular-ru/websocket:** close socket connection on error & serializers
+    ([#567](https://github.com/Angular-RU/angular-ru-sdk/pull/567))
+    ([d7575f8b](https://github.com/Angular-RU/angular-ru-sdk/commit/d7575f8bfb6a13fff73b804931b2fa75283bd47b))
+
+#### 15.222.0 (2021-05-06)
+
+##### Documentation Changes
+
+-   update README.md ([#571](https://github.com/Angular-RU/angular-ru-sdk/pull/571))
+    ([e23a24a7](https://github.com/Angular-RU/angular-ru-sdk/commit/e23a24a7c0f9096fdaf9cb0ecaced6a53104ce23))
+
+##### New Features
+
+-   **@angular-ru/renovate-config:** update group lists ([#572](https://github.com/Angular-RU/angular-ru-sdk/pull/572))
+    ([2721013c](https://github.com/Angular-RU/angular-ru-sdk/commit/2721013cfc32170baf3c06c3b93a66338847b6c9))
+
+#### 15.221.0 (2021-05-06)
+
+##### Continuous Integration
+
+-   don't use `git add .` before commit files ([#568](https://github.com/Angular-RU/angular-ru-sdk/pull/568))
+    ([7c43e4ce](https://github.com/Angular-RU/angular-ru-sdk/commit/7c43e4ce25036ea1027e01e387c23e20bc2d04b0))
+
+##### New Features
+
+-   **@angular-ru/common:** add new string utils ([#569](https://github.com/Angular-RU/angular-ru-sdk/pull/569))
+    ([e6abb4b6](https://github.com/Angular-RU/angular-ru-sdk/commit/e6abb4b6eadaef4f4aceb0e3189a7e1c5e5aef2c))
+
 #### 15.220.0 (2021-05-06)
 
 ##### New Features

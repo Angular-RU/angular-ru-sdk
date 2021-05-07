@@ -5,7 +5,7 @@ module.exports = createTsJestConfig({
     jestConfig: {
         rootDir: '.',
         cacheDirectory: '../../.cache',
-        displayName: '@angular-ru/ng-table-builder',
+        displayName: '@angular-ru/websocket',
         modulePathIgnorePatterns: ['<rootDir>/dist/'],
         collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
         testMatch: ['<rootDir>/integration/tests/**/*.spec.ts'],
