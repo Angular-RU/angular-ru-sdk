@@ -51,6 +51,12 @@
             "yarn sort-package-json"
         ]
     },
+    "browserslist": [
+        "Chrome >= 61",
+        "Firefox >= 61",
+        "not IE 11",
+        "> 1%"
+    ],
     "prettier": "./packages/prettier-config/prettier.config.js",
     "eslintConfig": {
         "extends": "./packages/eslint-config/index.js"
