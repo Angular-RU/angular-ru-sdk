@@ -12,10 +12,10 @@ import {
     isSimpleObject,
     replaceWithNull,
     sortByAsc,
-    sortByDesc
+    sortByDesc,
+    pathsOfObject
 } from '@angular-ru/common/object';
 import { Any, PlainObject } from '@angular-ru/common/typings';
-import { pathsOfObject } from '../../../object/src/paths-of-object';
 
 describe('[TEST]: Object', () => {
     interface A {
