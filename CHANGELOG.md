@@ -1,3 +1,10 @@
+#### 15.228.0 (2021-05-07)
+
+##### New Features
+
+-   update dependency @types/jasmine to v3.7.0 ([#580](https://github.com/Angular-RU/angular-ru-sdk/pull/580))
+    ([c3c9548b](https://github.com/Angular-RU/angular-ru-sdk/commit/c3c9548bcf0732f40706059d598b5769fd063051))
+
 #### 15.227.0 (2021-05-07)
 
 ##### Build System / Dependencies
