@@ -1,3 +1,10 @@
+#### 15.226.0 (2021-05-07)
+
+##### New Features
+
+-   **@angular-ru/common:** change deepClone signature ([#576](https://github.com/Angular-RU/angular-ru-sdk/pull/576))
+    ([62b7617b](https://github.com/Angular-RU/angular-ru-sdk/commit/62b7617bd13bbb40a2aa6169623c27bb53e4b705))
+
 #### 15.225.0 (2021-05-07)
 
 ##### Build System / Dependencies
