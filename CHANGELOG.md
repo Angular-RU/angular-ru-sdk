@@ -1,3 +1,15 @@
+#### 15.227.0 (2021-05-07)
+
+##### Build System / Dependencies
+
+-   lock file maintenance ([#581](https://github.com/Angular-RU/angular-ru-sdk/pull/581))
+    ([de81b53f](https://github.com/Angular-RU/angular-ru-sdk/commit/de81b53f5f36db9298209adf0f99655350acddb7))
+
+##### New Features
+
+-   **@angular-ru/websocket:** implement serializer ([#582](https://github.com/Angular-RU/angular-ru-sdk/pull/582))
+    ([61464ac7](https://github.com/Angular-RU/angular-ru-sdk/commit/61464ac7ef1e695f5dedb6a9ba35488d8c63b673))
+
 #### 15.226.0 (2021-05-07)
 
 ##### New Features
