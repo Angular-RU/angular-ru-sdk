@@ -204,3 +204,24 @@ isTrue(true); // true
 isFalse(true); // false
 isFalse(false); // true
 ```
+
+-   `tryParseJson`
+
+```ts
+import { tryParseJson } from '@angular-ru/common/utils';
+
+// valid
+expect(tryParseJson('{}')).toEqual({});
+expect(tryParseJson('{ a: 1 }')).toEqual({ a: 1 });
+expect(tryParseJson('"text"')).toEqual('text');
+expect(tryParseJson('null')).toEqual(null);
+expect(tryParseJson('true')).toEqual(true);
+expect(tryParseJson('[ 1, { a: 1, b: "b" }, true, null, "b" ]')).toEqual([1, { a: 1, b: 'b' }, true, null, 'b']);
+
+// invalid
+expect(tryParseJson('qwer')).toEqual(undefined);
+expect(tryParseJson('{ a: 1 }')).toEqual(undefined);
+
+const plain: string = '{ checked: true }';
+expect(tryParseJson(plain)?.checked ?? false).toBe(false);
+```

@@ -1,5 +1,6 @@
 import { Injectable, NgZone, OnDestroy } from '@angular/core';
-import { Any } from '@angular-ru/common/typings';
+import { Any, PlainObject } from '@angular-ru/common/typings';
+import { tryParseJson } from '@angular-ru/common/utils';
 import { Observable, ReplaySubject, Subject, Subscription, throwError } from 'rxjs';
 import { WebSocketMessage } from 'rxjs/internal/observable/dom/WebSocketSubject';
 import { catchError, filter, map, take, takeUntil } from 'rxjs/operators';
@@ -8,8 +9,12 @@ import { webSocket, WebSocketSubject, WebSocketSubjectConfig } from 'rxjs/webSoc
 import { WebsocketConfig } from './websocket.config';
 import { WebsocketHandler, WebsocketMessage } from './websocket.interfaces';
 
+export const PLAIN_TEXT: PlainObject = {};
+export const BINARY: PlainObject = {};
+
 @Injectable()
-export abstract class AbstractWebsocketClient<K> implements WebsocketHandler<K>, OnDestroy {
+export abstract class AbstractWebsocketClient<K extends string | PlainObject>
+    implements WebsocketHandler<K>, OnDestroy {
     public connected$: ReplaySubject<Event> = new ReplaySubject();
     public disconnected$: ReplaySubject<Event> = new ReplaySubject();
     public destroy$: Subject<boolean> = new Subject<boolean>();
@@ -41,8 +46,13 @@ export abstract class AbstractWebsocketClient<K> implements WebsocketHandler<K>,
             closeObserver: { next: (event: Event): void => this.onCloseObserver(event) },
             serializer: (message: Any): WebSocketMessage => this.serialize(message),
             deserializer: (event: MessageEvent): Any => this.deserialize(event),
-            url: this.connectionPath
+            url: this.connectionPath,
+            binaryType: this.wsConfig.binaryType
         };
+    }
+
+    private static isArrayBuffer(value: Any): value is ArrayBuffer | Blob {
+        return value instanceof ArrayBuffer || value instanceof Blob;
     }
 
     public onConnected(_event?: Event): void {
@@ -87,12 +97,22 @@ export abstract class AbstractWebsocketClient<K> implements WebsocketHandler<K>,
         this.disconnect();
     }
 
-    protected serialize(message: Any): WebSocketMessage {
-        return JSON.stringify(message);
+    protected serialize(message: WebsocketMessage<K, Any>): WebSocketMessage {
+        switch (message.type) {
+            case BINARY:
+            case PLAIN_TEXT:
+                return message.data;
+            default:
+                return JSON.stringify(message);
+        }
     }
 
-    protected deserialize(messageEvent: MessageEvent): WebsocketMessage<K, Any> {
-        return JSON.parse(messageEvent.data);
+    protected deserialize({ data }: MessageEvent): WebsocketMessage<Any, Any> {
+        if (AbstractWebsocketClient.isArrayBuffer(data)) {
+            return { type: BINARY, data };
+        } else {
+            return tryParseJson<WebsocketMessage<Any, Any>>(data) ?? { type: PLAIN_TEXT, data };
+        }
     }
 
     private onOpenObserver(event: Event): void {
