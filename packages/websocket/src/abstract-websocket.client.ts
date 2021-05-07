@@ -107,8 +107,7 @@ export abstract class AbstractWebsocketClient<K extends string | PlainObject>
         }
     }
 
-    protected deserialize(messageEvent: MessageEvent): WebsocketMessage<Any, Any> {
-        const { data }: MessageEvent = messageEvent;
+    protected deserialize({ data }: MessageEvent): WebsocketMessage<Any, Any> {
         if (AbstractWebsocketClient.isArrayBuffer(data)) {
             return { type: BINARY, data };
         } else {
