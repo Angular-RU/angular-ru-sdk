@@ -16,7 +16,6 @@
         "baseUrl": "./",
         "outDir": "./dist/out-tsc",
         "typeRoots": ["../../node_modules/@types"],
-        "lib": ["es2018", "dom"],
         "paths": {
             "@angular-ru/common/*": ["./dist/library/*"]
         }
