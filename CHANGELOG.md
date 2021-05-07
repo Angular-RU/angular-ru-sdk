@@ -1,3 +1,11 @@
+#### 15.224.0 (2021-05-07)
+
+##### New Features
+
+-   set target compilation by default to es2015 instead es5
+    ([#573](https://github.com/Angular-RU/angular-ru-sdk/pull/573))
+    ([2f8a47c0](https://github.com/Angular-RU/angular-ru-sdk/commit/2f8a47c0998a94f86414830ab81466c212ab70ee))
+
 #### 15.222.1 (2021-05-06)
 
 ##### Bug Fixes
