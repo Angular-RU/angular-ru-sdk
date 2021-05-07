@@ -2,6 +2,7 @@
     "extends": "./tsconfig.json",
     "compilerOptions": {
         "outDir": "../out-tsc/app",
+        "target": "es5",
         "types": [],
         "paths": {
             "@angular-ru/flex-layout": ["dist/library"],
