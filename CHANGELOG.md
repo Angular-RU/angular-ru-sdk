@@ -1,3 +1,10 @@
+#### 15.229.1 (2021-05-08)
+
+##### Build System / Dependencies
+
+-   **@angular-ru/common:** refactoring tsconfig.json ([#583](https://github.com/Angular-RU/angular-ru-sdk/pull/583))
+    ([2f3b7bb4](https://github.com/Angular-RU/angular-ru-sdk/commit/2f3b7bb4ff8a91cfa0046a01948dff1526bb5d2c))
+
 #### 15.229.0 (2021-05-07)
 
 ##### Continuous Integration
