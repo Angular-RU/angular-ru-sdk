@@ -303,7 +303,7 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `{{ data | numberFormat }}` // 1 500 300,5
+    template: `{{ data | numberFormat }}` // 1 500 300,5
 })
 export class AppComponent {
     public data = 1500300.5;

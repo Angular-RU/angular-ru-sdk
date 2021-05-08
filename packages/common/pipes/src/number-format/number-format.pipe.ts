@@ -16,6 +16,8 @@ export class NumberFormatPipe implements PipeTransform {
             result = isNil(options?.decimalPlaces)
                 ? Number(value).toLocaleString(locale)
                 : Number(value).toLocaleString(locale, { minimumFractionDigits: options!.decimalPlaces! });
+
+            result = result.replace(/\s/g, ' ');
         }
 
         return (result as Any) as T;
