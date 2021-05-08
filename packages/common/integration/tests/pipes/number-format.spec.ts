@@ -10,8 +10,8 @@ describe('number format pipe', () => {
     });
 
     it('format number', () => {
-        expect(pipe.transform(1500300.5)).toEqual('1 500 300,5');
-        expect(pipe.transform(1500300.5, { decimalPlaces: 2 })).toEqual('1 500 300,50');
-        expect(pipe.transform(1500300, { decimalPlaces: 2 })).toEqual('1 500 300,00');
+        expect(pipe.transform(1500300.5)).toEqual('1 500 300,5');
+        expect(pipe.transform(1500300.5, { decimalPlaces: 2 })).toEqual('1 500 300,50');
+        expect(pipe.transform(1500300, { decimalPlaces: 2 })).toEqual('1 500 300,00');
     });
 });

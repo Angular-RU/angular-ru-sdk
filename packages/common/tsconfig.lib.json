@@ -1,13 +1,9 @@
 {
-    "extends": "./tsconfig.json",
+    "extends": "./tsconfig.base.json",
     "compilerOptions": {
-        "outDir": "../../out-tsc/lib",
-        "declaration": true,
-        "sourceMap": true,
-        "inlineSources": true,
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "importHelpers": true,
-        "types": []
+        "types": [],
+        "paths": {
+            "@angular-ru/common/*": ["*/src/public_api.ts"]
+        }
     }
 }
