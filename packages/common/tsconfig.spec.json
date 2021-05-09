@@ -1,10 +1,7 @@
 {
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
-        "types": ["jest", "node"],
-        "paths": {
-            "@angular-ru/common/*": ["*/src/public_api.ts"]
-        }
+        "types": ["jest", "node"]
     },
     "include": ["**/*.spec.ts", "**/*.d.ts"]
 }
