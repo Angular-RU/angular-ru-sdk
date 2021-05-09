@@ -18,7 +18,7 @@ describe('[TEST]: requiredSomeValueByKeysValidator', () => {
         const control: AbstractControl = new FormControl();
         const validator: ValidatorFn = requiredSomeValueByKeysValidator(['aaa', 'bbb', 'ccc']);
         expect(() =>
-            validator(control).toThrow(new Error('requiredSomeValueByKeysValidator must be used on form group'))
+            validator(control)?.toThrow(new Error('requiredSomeValueByKeysValidator must be used on form group'))
         );
     });
 
