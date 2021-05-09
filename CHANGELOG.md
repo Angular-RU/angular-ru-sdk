@@ -1,3 +1,10 @@
+#### 15.230.0 (2021-05-09)
+
+##### New Features
+
+-   **@angular-ru/common:** refactoring NumberFormatPipe ([#585](https://github.com/Angular-RU/angular-ru-sdk/pull/585))
+    ([24d8b0f5](https://github.com/Angular-RU/angular-ru-sdk/commit/24d8b0f54f197ab8f05a05a1776fde5de801dfd5))
+
 #### 15.229.1 (2021-05-08)
 
 ##### Build System / Dependencies
