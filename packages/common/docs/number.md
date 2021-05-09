@@ -107,3 +107,18 @@ expect(gaussRound(1000.56, 3)).toEqual(1000.56);
 expect(gaussRound(-10000000000.0009, 3)).toEqual(-10000000000.001);
 expect(gaussRound(NaN, 3)).toEqual(NaN);
 ```
+
+-   `numberFormat`
+
+```ts
+expect(numberFormat(1500300.5)).toEqual('1 500 300,5');
+expect(numberFormat(1500300.5, { formatOptions: { minimumFractionDigits: 2 } })).toEqual('1 500 300,50');
+expect(numberFormat(1500300, { formatOptions: { style: 'currency', currency: 'EUR' } })).toEqual('1 500 300,00 €');
+expect(
+    numberFormat(1500300, {
+        locales: 'us',
+        formatOptions: { style: 'currency', currency: 'rub', useGrouping: false }
+    })
+).toEqual('RUB 1500300.00');
+expect(numberFormat(1500300, { formatOptions: { maximumFractionDigits: 0 } })).toEqual('1 500 300');
+```

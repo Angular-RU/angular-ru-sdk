@@ -1,9 +1,6 @@
 {
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
-        "types": [],
-        "paths": {
-            "@angular-ru/common/*": ["*/src/public_api.ts"]
-        }
+        "types": []
     }
 }

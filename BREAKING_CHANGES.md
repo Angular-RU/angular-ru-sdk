@@ -1,3 +1,13 @@
+### 9.05.2021 @angular-ru/common
+
+```ts
+// before changes declaration
+NumberFormatPipe.transform<T = string>(value?: string | number, options?: NumberFormatOptions): T;
+
+// after changes declaration
+NumberFormatPipe.transform(value: string | number | undefined | null, options?: NumberFormatOptions): string;
+```
+
 ### 7.05.2021 @angular-ru/common
 
 ```ts
