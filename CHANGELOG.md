@@ -1,3 +1,10 @@
+#### 15.231.1 (2021-05-10)
+
+##### Other Changes
+
+-   build after upgrade to TypeScript 4.2.4 ([#579](https://github.com/Angular-RU/angular-ru-sdk/pull/579))
+    ([3c875fc4](https://github.com/Angular-RU/angular-ru-sdk/commit/3c875fc4be14e93a32b83b66f342373bcd2b10c0))
+
 #### 15.231.0 (2021-05-10)
 
 ##### New Features
