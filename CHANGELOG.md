@@ -1,3 +1,12 @@
+#### 15.233.0 (2021-05-10)
+
+##### New Features
+
+-   **@angular-ru/prettier-config:** fix $schema ([#597](https://github.com/Angular-RU/angular-ru-sdk/pull/597))
+    ([ea35c5d0](https://github.com/Angular-RU/angular-ru-sdk/commit/ea35c5d09f4e208b825740acc5f4643d76024a25))
+-   **@angular-ru/renovate-config:** fix regexp ([#596](https://github.com/Angular-RU/angular-ru-sdk/pull/596))
+    ([e4a45ca7](https://github.com/Angular-RU/angular-ru-sdk/commit/e4a45ca74293bccede2927b700a33dd082ab76cd))
+
 #### 15.232.1 (2021-05-10)
 
 ##### Build System / Dependencies
