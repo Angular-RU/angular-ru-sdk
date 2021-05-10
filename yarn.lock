@@ -12525,10 +12525,10 @@ rx@^4.1.0:
   resolved "https://registry.npmjs.org/rx/-/rx-4.1.0.tgz#a5f13ff79ef3b740fe30aa803fb09f98805d4782"
   integrity sha1-pfE/957zt0D+MKqAP7CfmIBdR4I=
 
-rxjs-marbles@6.0.1:
-  version "6.0.1"
-  resolved "https://registry.npmjs.org/rxjs-marbles/-/rxjs-marbles-6.0.1.tgz#aef219bd51e1e65caf811c267a05f729e04a1c8e"
-  integrity sha512-k9bqj3oRHDRIwnoetpifxXfWRM10Udd1RxgdYLltrE8FmRmKzaHLzxv8oabUlWhQj4/2sfHNR/y7UuhPIcODwA==
+rxjs-marbles@7.0.0:
+  version "7.0.0"
+  resolved "https://registry.npmjs.org/rxjs-marbles/-/rxjs-marbles-7.0.0.tgz#fc8c6d2db7ec54fce270ca9628d6ca7e8e7939b3"
+  integrity sha512-9wH5+5ZjMIu0KPcTS5l4Nut38IIXbtgleSTGLf1+DTSt5FtPtO1oaLt+uZO8u6DVFgxGcKZzomtqaCrEgcTaZg==
   dependencies:
     fast-equals "^2.0.0"
     rxjs-report-usage "^1.0.4"
@@ -12560,7 +12560,14 @@ rxjs@6.6.3:
   dependencies:
     tslib "^1.9.0"
 
-rxjs@6.6.7, rxjs@^6.5.0, rxjs@^6.6.0, rxjs@^6.6.7:
+rxjs@7.0.0:
+  version "7.0.0"
+  resolved "https://registry.npmjs.org/rxjs/-/rxjs-7.0.0.tgz#c55d67c52aee8804d32ab60965e335bd41e2dc2d"
+  integrity sha512-I1V/ArAtGJg4kmCfms8fULm0SwYgEsAf2d5WPCBGzTYm2qTjO3Tx4EDFaGjbOox8CeEsC69jQK22mnmfyA26sw==
+  dependencies:
+    tslib "~2.1.0"
+
+rxjs@^6.5.0, rxjs@^6.6.0, rxjs@^6.6.7:
   version "6.6.7"
   resolved "https://registry.npmjs.org/rxjs/-/rxjs-6.6.7.tgz#90ac018acabf491bf65044235d5863c4dab804c9"
   integrity sha512-hTdwr+7yYNIT5n4AMYp85KA6yw2Va0FLa3Rguvbpa4W3I5xynaBZo41cM3XM+4Q6fRMj3sBYIR1VAmZMXYJvRQ==
@@ -14053,7 +14060,7 @@ tsickle@0.39.1:
   resolved "https://registry.npmjs.org/tsickle/-/tsickle-0.39.1.tgz#7ccf672cde5b430f5dd0b281ee49e170ef390ff9"
   integrity sha512-CCc9cZhZbKoNizVM+K3Uqgit/go8GacjpqTv1cpwG/n2P0gB9GMoWZbxrUULDE9Wz26Lh86CGf6QyIPUVV1lnQ==
 
-tslib@2.1.0:
+tslib@2.1.0, tslib@~2.1.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.1.0.tgz#da60860f1c2ecaa5703ab7d39bc05b6bf988b97a"
   integrity sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==
