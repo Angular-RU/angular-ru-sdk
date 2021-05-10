@@ -6,7 +6,11 @@
         "declaration": true,
         "module": "commonjs",
         "types": ["node", "jest"],
-        "typeRoots": ["../../node_modules/@types", "./"]
+        "preserveConstEnums": true,
+        "typeRoots": ["../../node_modules/@types", "./"],
+        "paths": {
+            "@mock/*": ["integration/tests/helpers/*"]
+        }
     },
     "include": ["./src"],
     "exclude": ["integration"],
