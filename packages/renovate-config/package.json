@@ -150,6 +150,22 @@
                     "groupName": "Jest"
                 },
                 {
+                    "packagePatterns": [
+                        "@types/karma",
+                        "@types/karma*",
+                        "^karma*"
+                    ],
+                    "groupName": "Karma"
+                },
+                {
+                    "packagePatterns": [
+                        "@types/jasmine",
+                        "@types/jasmine*",
+                        "^jasmine*"
+                    ],
+                    "groupName": "Jasmine"
+                },
+                {
                     "packageNames": [
                         "typescript",
                         "tslib",
