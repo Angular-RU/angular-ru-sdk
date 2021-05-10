@@ -1,3 +1,10 @@
+#### 15.231.2 (2021-05-10)
+
+##### Build System / Dependencies
+
+-   update dependency prettier to v2.3.0 ([#591](https://github.com/Angular-RU/angular-ru-sdk/pull/591))
+    ([609170a2](https://github.com/Angular-RU/angular-ru-sdk/commit/609170a23714459589343178075df657afc289c1))
+
 #### 15.231.1 (2021-05-10)
 
 ##### Other Changes
