@@ -1,3 +1,31 @@
+#### 15.232.1 (2021-05-10)
+
+##### Build System / Dependencies
+
+-   update dependency eslint to v7.26.0 ([#590](https://github.com/Angular-RU/angular-ru-sdk/pull/590))
+    ([27cade13](https://github.com/Angular-RU/angular-ru-sdk/commit/27cade135fc0df42d115941819101d5cbe9d6d0d))
+
+#### 15.232.0 (2021-05-10)
+
+##### New Features
+
+-   update Jasmine ([#589](https://github.com/Angular-RU/angular-ru-sdk/pull/589))
+    ([7e59ae92](https://github.com/Angular-RU/angular-ru-sdk/commit/7e59ae9228fe439434b04b657eef0b837f790af0))
+
+#### 15.231.2 (2021-05-10)
+
+##### Build System / Dependencies
+
+-   update dependency prettier to v2.3.0 ([#591](https://github.com/Angular-RU/angular-ru-sdk/pull/591))
+    ([609170a2](https://github.com/Angular-RU/angular-ru-sdk/commit/609170a23714459589343178075df657afc289c1))
+
+#### 15.231.1 (2021-05-10)
+
+##### Other Changes
+
+-   build after upgrade to TypeScript 4.2.4 ([#579](https://github.com/Angular-RU/angular-ru-sdk/pull/579))
+    ([3c875fc4](https://github.com/Angular-RU/angular-ru-sdk/commit/3c875fc4be14e93a32b83b66f342373bcd2b10c0))
+
 #### 15.231.0 (2021-05-10)
 
 ##### New Features
