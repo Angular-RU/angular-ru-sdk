@@ -1,3 +1,17 @@
+#### 15.231.0 (2021-05-10)
+
+##### New Features
+
+-   **@angular-ru/renovate-config:** add jasmine / karma sections
+    ([#588](https://github.com/Angular-RU/angular-ru-sdk/pull/588))
+    ([e2ecac0c](https://github.com/Angular-RU/angular-ru-sdk/commit/e2ecac0c5a356de36c3929720770f0e6d302a733))
+
+##### Bug Fixes
+
+-   **@angular-ru/ng-table-builder:** remove spread from mock generator
+    ([#586](https://github.com/Angular-RU/angular-ru-sdk/pull/586))
+    ([82da7d7b](https://github.com/Angular-RU/angular-ru-sdk/commit/82da7d7b8f4de13af1db8ccddb6002734089461d))
+
 #### 15.230.0 (2021-05-09)
 
 ##### New Features
