@@ -1,6 +1,6 @@
 import { Any, Descriptor } from '@angular-ru/common/typings';
 
-import { RequestType } from '../../enums/request-type.enum';
+import { RequestType } from '../../enums/request-type';
 import { EmitOptions } from '../emit-options';
 
 export interface EnsureDecoratorOptions {
