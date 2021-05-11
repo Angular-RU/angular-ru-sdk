@@ -14,10 +14,11 @@ import {
     checkSomeValueIsTrue,
     checkSomeValueIsFalse,
     checkEveryValueIsTrue,
-    checkEveryValueIsFalse
+    checkEveryValueIsFalse,
+    checkValueIsFilled,
+    tryParseJson
 } from '@angular-ru/common/utils';
 import { ChangeDetectorRef } from '@angular/core';
-import { checkValueIsFilled } from '../../../dist/library/utils';
 import { FileToDownloadInfo } from '../../../dist/library/utils/download-file';
 
 describe('[TEST]: Common utils', () => {
@@ -278,5 +279,25 @@ describe('[TEST]: Common utils downloadFile', () => {
         jest.spyOn(document, 'createElement').mockImplementation(() => link);
         downloadFile(file);
         expect(link.click).toHaveBeenCalledTimes(1);
+    });
+
+    it('should try parse JSON', () => {
+        expect(tryParseJson('{}')).toEqual({});
+        expect(tryParseJson('{ "a": 1 }')).toEqual({ a: 1 });
+        expect(tryParseJson('"text"')).toEqual('text');
+        expect(tryParseJson('null')).toEqual(null);
+        expect(tryParseJson('true')).toEqual(true);
+        expect(tryParseJson('[ 1, { "a": 1, "b": "b" }, true, null, "b" ]')).toEqual([
+            1,
+            { a: 1, b: 'b' },
+            true,
+            null,
+            'b'
+        ]);
+        expect(tryParseJson('qwerty')).toEqual(undefined);
+        expect(tryParseJson('{ a: 1 }')).toEqual(undefined);
+
+        const plain: string = '{ checked: true }';
+        expect(tryParseJson(plain)?.checked ?? false).toBe(false);
     });
 });

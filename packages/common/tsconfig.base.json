@@ -1,0 +1,23 @@
+{
+    "extends": "../tsconfig/tsconfig.json",
+    "angularCompilerOptions": {
+        "enableIvy": true,
+        "strictTemplates": true,
+        "fullTemplateTypeCheck": true,
+        "annotateForClosureCompiler": true,
+        "strictInjectionParameters": true,
+        "skipTemplateCodegen": false,
+        "preserveWhitespaces": true,
+        "skipMetadataEmit": false,
+        "disableTypeScriptVersionCheck": true
+    },
+    "compilerOptions": {
+        "rootDir": ".",
+        "baseUrl": ".",
+        "outDir": "./dist/out-tsc",
+        "typeRoots": ["../../node_modules/@types"],
+        "paths": {
+            "@angular-ru/common/*": ["*/src/public_api.ts"]
+        }
+    }
+}

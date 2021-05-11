@@ -1,3 +1,99 @@
+#### 15.233.0 (2021-05-10)
+
+##### New Features
+
+-   **@angular-ru/prettier-config:** fix $schema ([#597](https://github.com/Angular-RU/angular-ru-sdk/pull/597))
+    ([ea35c5d0](https://github.com/Angular-RU/angular-ru-sdk/commit/ea35c5d09f4e208b825740acc5f4643d76024a25))
+-   **@angular-ru/renovate-config:** fix regexp ([#596](https://github.com/Angular-RU/angular-ru-sdk/pull/596))
+    ([e4a45ca7](https://github.com/Angular-RU/angular-ru-sdk/commit/e4a45ca74293bccede2927b700a33dd082ab76cd))
+
+#### 15.232.1 (2021-05-10)
+
+##### Build System / Dependencies
+
+-   update dependency eslint to v7.26.0 ([#590](https://github.com/Angular-RU/angular-ru-sdk/pull/590))
+    ([27cade13](https://github.com/Angular-RU/angular-ru-sdk/commit/27cade135fc0df42d115941819101d5cbe9d6d0d))
+
+#### 15.232.0 (2021-05-10)
+
+##### New Features
+
+-   update Jasmine ([#589](https://github.com/Angular-RU/angular-ru-sdk/pull/589))
+    ([7e59ae92](https://github.com/Angular-RU/angular-ru-sdk/commit/7e59ae9228fe439434b04b657eef0b837f790af0))
+
+#### 15.231.2 (2021-05-10)
+
+##### Build System / Dependencies
+
+-   update dependency prettier to v2.3.0 ([#591](https://github.com/Angular-RU/angular-ru-sdk/pull/591))
+    ([609170a2](https://github.com/Angular-RU/angular-ru-sdk/commit/609170a23714459589343178075df657afc289c1))
+
+#### 15.231.1 (2021-05-10)
+
+##### Other Changes
+
+-   build after upgrade to TypeScript 4.2.4 ([#579](https://github.com/Angular-RU/angular-ru-sdk/pull/579))
+    ([3c875fc4](https://github.com/Angular-RU/angular-ru-sdk/commit/3c875fc4be14e93a32b83b66f342373bcd2b10c0))
+
+#### 15.231.0 (2021-05-10)
+
+##### New Features
+
+-   **@angular-ru/renovate-config:** add jasmine / karma sections
+    ([#588](https://github.com/Angular-RU/angular-ru-sdk/pull/588))
+    ([e2ecac0c](https://github.com/Angular-RU/angular-ru-sdk/commit/e2ecac0c5a356de36c3929720770f0e6d302a733))
+
+##### Bug Fixes
+
+-   **@angular-ru/ng-table-builder:** remove spread from mock generator
+    ([#586](https://github.com/Angular-RU/angular-ru-sdk/pull/586))
+    ([82da7d7b](https://github.com/Angular-RU/angular-ru-sdk/commit/82da7d7b8f4de13af1db8ccddb6002734089461d))
+
+#### 15.230.0 (2021-05-09)
+
+##### New Features
+
+-   **@angular-ru/common:** refactoring NumberFormatPipe ([#585](https://github.com/Angular-RU/angular-ru-sdk/pull/585))
+    ([24d8b0f5](https://github.com/Angular-RU/angular-ru-sdk/commit/24d8b0f54f197ab8f05a05a1776fde5de801dfd5))
+
+#### 15.229.1 (2021-05-08)
+
+##### Build System / Dependencies
+
+-   **@angular-ru/common:** refactoring tsconfig.json ([#583](https://github.com/Angular-RU/angular-ru-sdk/pull/583))
+    ([2f3b7bb4](https://github.com/Angular-RU/angular-ru-sdk/commit/2f3b7bb4ff8a91cfa0046a01948dff1526bb5d2c))
+
+#### 15.229.0 (2021-05-07)
+
+##### Continuous Integration
+
+-   update Angular ([#577](https://github.com/Angular-RU/angular-ru-sdk/pull/577))
+    ([e8f5abe2](https://github.com/Angular-RU/angular-ru-sdk/commit/e8f5abe203350d00c9f64b22f11c9eca3eb58a66))
+
+##### New Features
+
+-   update dependency @types/jasminewd2 to v2.0.9 ([#578](https://github.com/Angular-RU/angular-ru-sdk/pull/578))
+    ([3420bbd5](https://github.com/Angular-RU/angular-ru-sdk/commit/3420bbd50533fe88465256b3b94e22f67bf5d1fb))
+
+#### 15.228.0 (2021-05-07)
+
+##### New Features
+
+-   update dependency @types/jasmine to v3.7.0 ([#580](https://github.com/Angular-RU/angular-ru-sdk/pull/580))
+    ([c3c9548b](https://github.com/Angular-RU/angular-ru-sdk/commit/c3c9548bcf0732f40706059d598b5769fd063051))
+
+#### 15.227.0 (2021-05-07)
+
+##### Build System / Dependencies
+
+-   lock file maintenance ([#581](https://github.com/Angular-RU/angular-ru-sdk/pull/581))
+    ([de81b53f](https://github.com/Angular-RU/angular-ru-sdk/commit/de81b53f5f36db9298209adf0f99655350acddb7))
+
+##### New Features
+
+-   **@angular-ru/websocket:** implement serializer ([#582](https://github.com/Angular-RU/angular-ru-sdk/pull/582))
+    ([61464ac7](https://github.com/Angular-RU/angular-ru-sdk/commit/61464ac7ef1e695f5dedb6a9ba35488d8c63b673))
+
 #### 15.226.0 (2021-05-07)
 
 ##### New Features

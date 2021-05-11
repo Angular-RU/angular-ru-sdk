@@ -7,7 +7,6 @@
         "module": "commonjs",
         "types": ["node"],
         "paths": {
-            "@mock/*": ["integration/tests/helpers/*"],
             "@angular-ru/common/*": ["../common/dist/library/*"]
         }
     },

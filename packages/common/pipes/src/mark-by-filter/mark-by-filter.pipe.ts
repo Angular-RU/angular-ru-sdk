@@ -10,11 +10,11 @@ import { MarkedValue, Value } from './mark-by-filter.interfaces';
 export class MarkByFilterPipe implements PipeTransform {
     constructor(private readonly sanitizer: DomSanitizer) {}
 
-    public transform(value: Value, filter: Value, color: string = '#ffdd2d'): MarkedValue {
+    public transform(value: Value, filter?: Value, color: string = '#ffdd2d'): MarkedValue {
         return filter ? this.search(value, filter, color) : value;
     }
 
-    private search(value: Value, filter: Value, color: string): SafeHtml {
+    private search(value: Value, filter?: Value, color?: string): SafeHtml {
         const existFilter: boolean = !!value && !!filter;
         let newString: string | null | undefined = value;
 
@@ -25,7 +25,7 @@ export class MarkByFilterPipe implements PipeTransform {
         return this.sanitizer.bypassSecurityTrustHtml(newString as Any);
     }
 
-    private highLightingString(value: string, filter: string, color: string): string {
+    private highLightingString(value: string, filter: string, color?: string): string {
         let newString: string;
         let filterValue: string = filter;
 

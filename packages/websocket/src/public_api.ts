@@ -1,4 +1,4 @@
-export { AbstractWebsocketClient } from './abstract-websocket.client';
+export { AbstractWebsocketClient, BINARY, PLAIN_TEXT } from './abstract-websocket.client';
 export { WebsocketConfig } from './websocket.config';
 export { WebsocketHandler, WebsocketMessage } from './websocket.interfaces';
 export { WebsocketModule } from './websocket.module';
