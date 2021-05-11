@@ -83,7 +83,10 @@ module.exports = {
                  */
                 'arrow-body-style': 'error',
                 'arrow-parens': ['error', 'always'],
-                'brace-style': ['error', '1tbs'],
+                'brace-style': [
+                    // Note: after prettier 2.3+ we have collisions with current rules
+                    'off'
+                ],
                 camelcase: 'off',
                 'comma-dangle': ['error', 'never'],
                 'comma-spacing': [

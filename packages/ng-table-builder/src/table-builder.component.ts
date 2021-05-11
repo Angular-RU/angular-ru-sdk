@@ -61,7 +61,8 @@ const { TIME_IDLE, TIME_RELOAD, FRAME_TIME, MACRO_TIME }: typeof TABLE_GLOBAL_OP
 })
 export class TableBuilderComponent<T>
     extends AbstractTableBuilderApiDirective<T>
-    implements OnChanges, OnInit, AfterContentInit, AfterViewInit, AfterViewChecked, OnDestroy {
+    implements OnChanges, OnInit, AfterContentInit, AfterViewInit, AfterViewChecked, OnDestroy
+{
     public dirty: boolean = true;
     public rendering: boolean = false;
     public isRendered: boolean = false;
@@ -472,12 +473,10 @@ export class TableBuilderComponent<T>
         this.ngZone.runOutsideAngular((): void => {
             fromEvent(this.scrollContainer.nativeElement, 'scroll', { passive: true })
                 .pipe(
-                    catchError(
-                        (): Observable<never> => {
-                            this.calculateViewport(true);
-                            return EMPTY;
-                        }
-                    ),
+                    catchError((): Observable<never> => {
+                        this.calculateViewport(true);
+                        return EMPTY;
+                    }),
                     takeUntil(this.destroy$)
                 )
                 .subscribe((): void => this.scrollHandler());

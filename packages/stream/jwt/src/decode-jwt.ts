@@ -11,5 +11,5 @@ export function decodeJwt<T>(token: string | null): T {
         result = JSON.parse(decodedStringValue);
     }
 
-    return (result as Any) as T;
+    return result as Any as T;
 }

@@ -15,7 +15,8 @@ export const BINARY: PlainObject = {};
 
 @Injectable()
 export abstract class AbstractWebsocketClient<K extends string | PlainObject>
-    implements WebsocketHandler<K>, OnDestroy {
+    implements WebsocketHandler<K>, OnDestroy
+{
     public connected$: ReplaySubject<Event> = new ReplaySubject();
     public disconnected$: ReplaySubject<Event> = new ReplaySubject();
     public destroy$: Subject<boolean> = new Subject<boolean>();

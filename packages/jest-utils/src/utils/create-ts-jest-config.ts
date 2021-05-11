@@ -44,9 +44,10 @@ export function createTsJestConfig(options: JestConfigOptions): Config.InitialOp
 
     const compilerOptions: CompilerOptions = exposeTsCompilerOptionsByTsConfig(resolvedTsConfigPath);
     const prefix: string = `<rootDir>/${compilerOptions?.baseUrl ?? ''}/`.replace(/\.\//g, '/').replace(/\/\/+/g, '/');
-    const rootModuleNameMapper:
-        | { [key: string]: string | string[] }
-        | undefined = tsJestUtils.pathsToModuleNameMapper(compilerOptions?.paths ?? {}, { prefix });
+    const rootModuleNameMapper: { [key: string]: string | string[] } | undefined = tsJestUtils.pathsToModuleNameMapper(
+        compilerOptions?.paths ?? {},
+        { prefix }
+    );
 
     const moduleNameMapper: JestModuleMapper = options.jestConfig?.moduleNameMapper ?? rootModuleNameMapper;
 

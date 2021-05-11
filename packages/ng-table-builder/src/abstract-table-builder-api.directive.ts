@@ -59,7 +59,8 @@ const { ROW_HEIGHT, FILTER_DELAY_TIME, TIME_IDLE }: typeof TABLE_GLOBAL_OPTIONS 
 
 @Directive()
 export abstract class AbstractTableBuilderApiDirective<T>
-    implements OnChanges, OnInit, AfterViewInit, AfterContentInit, AfterViewChecked, OnDestroy {
+    implements OnChanges, OnInit, AfterViewInit, AfterContentInit, AfterViewChecked, OnDestroy
+{
     @Input() public height: string | number | null = null;
     @Input() public width: string | number | null = null;
     @Input() public source: T[] | null = null;

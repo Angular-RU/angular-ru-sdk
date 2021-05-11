@@ -14,8 +14,8 @@ import { TableFilterType } from './table-filter-type';
 
 @Injectable()
 export class FilterableService<T> implements Filterable {
-    public types: ReadonlyMap<unknown, unknown> = (TableFilterType as Any) as ReadonlyMap<unknown, unknown>;
-    public definition: ReadonlyMap<unknown, unknown> = ({} as Any) as ReadonlyMap<unknown, unknown>;
+    public types: ReadonlyMap<unknown, unknown> = TableFilterType as Any as ReadonlyMap<unknown, unknown>;
+    public definition: ReadonlyMap<unknown, unknown> = {} as Any as ReadonlyMap<unknown, unknown>;
     public filterTypeDefinition: ReadonlyMap<unknown, TableFilterType> = {} as Any;
     public readonly filterOpenEvents: Subject<void> = new Subject();
     public readonly events: Subject<FilterEvent> = new ReplaySubject();

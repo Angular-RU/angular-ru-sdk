@@ -35,20 +35,18 @@ export class ExcelService {
     }
 
     private interceptWorksheets<T>(workbook: Partial<ExcelWorkbook<T>>): ExcelWorksheet<T>[] {
-        return (workbook.worksheets ?? []).map(
-            (worksheet: ExcelWorksheet<T>): ExcelWorksheet<T> => {
-                const worksheetName: string =
-                    this.interceptor?.instant?.(worksheet.worksheetName) ??
-                    worksheet.worksheetName ??
-                    'UNKNOWN WORKSHEET NAME';
+        return (workbook.worksheets ?? []).map((worksheet: ExcelWorksheet<T>): ExcelWorksheet<T> => {
+            const worksheetName: string =
+                this.interceptor?.instant?.(worksheet.worksheetName) ??
+                worksheet.worksheetName ??
+                'UNKNOWN WORKSHEET NAME';
 
-                const keys: EntriesKeys<T> = worksheet.keys?.filter(
-                    (key: Leaves<T, KeyDeepSize>): boolean => !(worksheet.excludeKeys?.includes(key) ?? false)
-                ) as EntriesKeys<T>;
+            const keys: EntriesKeys<T> = worksheet.keys?.filter(
+                (key: Leaves<T, KeyDeepSize>): boolean => !(worksheet.excludeKeys?.includes(key) ?? false)
+            ) as EntriesKeys<T>;
 
-                return { ...worksheet, keys, worksheetName };
-            }
-        );
+            return { ...worksheet, keys, worksheetName };
+        });
     }
 
     private getTranslatedColumn(): Observable<PlainObject | null> {

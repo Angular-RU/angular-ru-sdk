@@ -38,9 +38,7 @@ describe('[TEST]: Array', () => {
         });
 
         it('should update one item', () => {
-            expect(
-                updateArray<Value>(origin, [{ id: 1, value: 11 }])
-            ).toEqual([
+            expect(updateArray<Value>(origin, [{ id: 1, value: 11 }])).toEqual([
                 { id: 1, value: 11 },
                 { id: 2, value: 1 },
                 { id: 3, value: 1 },
@@ -67,9 +65,7 @@ describe('[TEST]: Array', () => {
         });
 
         it('should update one item', () => {
-            expect(
-                updateArray<Value>(origin, [{ value: 5 } as Any])
-            ).toEqual(origin);
+            expect(updateArray<Value>(origin, [{ value: 5 } as Any])).toEqual(origin);
         });
     });
 
