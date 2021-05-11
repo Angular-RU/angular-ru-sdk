@@ -1,7 +1,7 @@
 import { Provider } from '@angular/core';
 
-import { NgxTooltipTextInterceptor } from './ngx-tooltip-text.interceptor';
-import { TooltipOptions } from './tooltip.interfaces';
+import { TooltipOptions } from './interfaces/tooltip-options';
+import { NgxTooltipTextInterceptor } from './services/ngx-tooltip-text.interceptor';
 import { TOOLTIP_TEXT_INTERCEPTOR_TOKEN } from './tooltip.tokens';
 
 export const TOOLTIP_DEFAULT_OPTIONS: TooltipOptions = {

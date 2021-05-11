@@ -12,6 +12,6 @@ export { MaxLengthDirective } from './max-length/max-length.directive';
 export { MaxLengthModule } from './max-length/max-length.module';
 export { SplitStringDirective } from './split-string/split-string.directive';
 export { SplitStringModule } from './split-string/split-string.module';
-export { SplitStringOptions } from './split-string/split-string-options.interface';
+export { SplitStringOptions } from './split-string/split-string-options';
 export { TrimInputDirective } from './trim-input/trim-input.directive';
 export { TrimInputModule } from './trim-input/trim-input.module';

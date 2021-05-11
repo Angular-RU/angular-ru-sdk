@@ -44,7 +44,7 @@ import {
 import { ResizeEvent } from './interfaces/table-builder.internal';
 import { ContextMenuService } from './services/context-menu/context-menu.service';
 import { DraggableService } from './services/draggable/draggable.service';
-import { FilterWorkerEvent } from './services/filterable/filterable.interface';
+import { FilterWorkerEvent } from './services/filterable/filter-worker-event';
 import { FilterableService } from './services/filterable/filterable.service';
 import { ResizableService } from './services/resizer/resizable.service';
 import { SelectionMap } from './services/selection/selection';
@@ -53,7 +53,7 @@ import { SortableService } from './services/sortable/sortable.service';
 import { NgxTableViewChangesService } from './services/table-view-changes/ngx-table-view-changes.service';
 import { TemplateParserService } from './services/template-parser/template-parser.service';
 import { SCROLLBAR_SIZE } from './table-builder.properties';
-import { TableSortTypes } from './types/table-sort-types.type';
+import { TableSortTypes } from './types/table-sort-types';
 
 const { ROW_HEIGHT, FILTER_DELAY_TIME, TIME_IDLE }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
 

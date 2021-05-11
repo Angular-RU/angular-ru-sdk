@@ -17,8 +17,9 @@ import { detectChanges } from '@angular-ru/common/utils';
 import { Subscription } from 'rxjs';
 
 import { TABLE_GLOBAL_OPTIONS } from '../../config/table-global-options';
-import { FilterEvent, TableFilterType } from '../../services/filterable/filterable.interface';
+import { FilterEvent } from '../../services/filterable/filter-event';
 import { FilterableService } from '../../services/filterable/filterable.service';
+import { TableFilterType } from '../../services/filterable/table-filter-type';
 
 const { TIME_RELOAD }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
 

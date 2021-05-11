@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, ContentChild, Input, ViewEncapsulation } from '@angular/core';
 
+import { ColumnOptionsDirective } from '../../directives/column-options.directive';
 import { TemplateBodyTdDirective } from '../../directives/rows/template-body-td.directive';
 import { TemplateHeadThDirective } from '../../directives/rows/template-head-th.directive';
-import { ColumnOptionsDirective } from '../common/column-options.directive';
 
 @Component({
     selector: 'ngx-column',

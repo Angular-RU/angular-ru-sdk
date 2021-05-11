@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 
-import { TableContentDirective } from '../common/table-content.directive';
+import { TableContentDirective } from '../../directives/table-content.directive';
 
 @Component({
     selector: 'ngx-header',

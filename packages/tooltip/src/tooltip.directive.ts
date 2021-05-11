@@ -14,17 +14,15 @@ import { Any } from '@angular-ru/common/typings';
 import { checkValueIsEmpty } from '@angular-ru/common/utils';
 import { fromEvent, Subscription } from 'rxjs';
 
-import {
-    TooltipContextValue,
-    TooltipOffset,
-    TooltipOptions,
-    TooltipPlacement,
-    TooltipSize,
-    TooltipTextInterceptor,
-    TooltipValue
-} from './tooltip.interfaces';
+import { TooltipContextValue } from './interfaces/tooltip-context-value';
+import { TooltipOffset } from './interfaces/tooltip-offset';
+import { TooltipOptions } from './interfaces/tooltip-options';
+import { TooltipPlacement } from './interfaces/tooltip-placement';
+import { TooltipSize } from './interfaces/tooltip-size';
+import { TooltipTextInterceptor } from './interfaces/tooltip-text-interceptor';
+import { TooltipValue } from './interfaces/tooltip-value';
+import { TooltipDomLeakService } from './services/tooltip-dom-leak.service';
 import { TOOLTIP_OPTIONS_TOKEN, TOOLTIP_TEXT_INTERCEPTOR_TOKEN } from './tooltip.tokens';
-import { TooltipDomLeakService } from './tooltip-dom-leak.service';
 
 @Directive({
     selector: '[tooltip]'

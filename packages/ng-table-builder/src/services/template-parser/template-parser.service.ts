@@ -1,8 +1,8 @@
 import { Injectable, QueryList } from '@angular/core';
 import { Any, PlainObjectOf } from '@angular-ru/common/typings';
 
-import { ColumnOptionsDirective } from '../../components/common/column-options.directive';
 import { NgxColumnComponent } from '../../components/ngx-column/ngx-column.component';
+import { ColumnOptionsDirective } from '../../directives/column-options.directive';
 import { AbstractTemplateCellCommonDirective } from '../../directives/rows/abstract-template-cell-common.directive';
 import { TemplateBodyTdDirective } from '../../directives/rows/template-body-td.directive';
 import { TemplateHeadThDirective } from '../../directives/rows/template-head-th.directive';

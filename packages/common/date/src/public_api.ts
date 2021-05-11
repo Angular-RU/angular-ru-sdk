@@ -1,4 +1,4 @@
-export { DateRange } from './date-range.interface';
+export { DateRange } from './date-range';
 export { dateStringToDate } from './date-string-to-date';
 export { DateSuggestionComposer } from './date-suggestion/date-suggestion.composer';
 export { DateSuggestionModule } from './date-suggestion/date-suggestion.module';
@@ -18,8 +18,9 @@ export { endOfDay } from './end-of-day';
 export { getToday } from './get-today';
 export { isDateValid } from './is-date-valid';
 export { isToday } from './is-today';
-export { SerialDateConfig, SerialDateFormatOptions } from './serial-date.interfaces';
-export { DateShiftDescriptor } from './shift-date/date-shift-descriptor.interface';
+export { SerialDateConfig } from './serial-date-config';
+export { SerialDateFormatOptions } from './serial-date-format-options';
+export { DateShiftDescriptor } from './shift-date/date-shift-descriptor';
 export { shiftDate } from './shift-date/shift-date';
 export { startOfDay } from './start-of-day';
 export { toFormat } from './to-format';

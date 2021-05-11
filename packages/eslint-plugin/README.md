@@ -20,13 +20,25 @@ $ npm install @angular-ru/eslint-plugin -D
 
 Add to your `.eslintrc.json`:
 
-```json
+```js
 {
     "plugins": ["@angular-ru/eslint-plugin"],
     "rules": {
+        // by default in @angular-ru/eslint-plugin
         "@angular-ru/no-suffix-file": [
             "error",
-            { "fileEndsWithList": [".model.ts", ".enum.ts", ".interface.ts", ".interfaces.ts"] }
+            {
+                "fileEndsWithList": [
+                    ".model.ts",
+                    ".models.ts",
+                    ".enum.ts",
+                    ".enums.ts",
+                    ".type.ts",
+                    ".types.ts",
+                    ".interface.ts",
+                    ".interfaces.ts"
+                ]
+            }
         ]
     }
 }

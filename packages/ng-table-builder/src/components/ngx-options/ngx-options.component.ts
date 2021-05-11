@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 
-import { ColumnOptionsDirective } from '../common/column-options.directive';
+import { ColumnOptionsDirective } from '../../directives/column-options.directive';
 
 @Component({
     selector: 'ngx-options',

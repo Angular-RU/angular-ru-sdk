@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
+import { TooltipOptions } from './interfaces/tooltip-options';
+import { TooltipDefaultTextInterceptor } from './services/tooltip-default-text.interceptor';
+import { TooltipDomLeakService } from './services/tooltip-dom-leak.service';
 import { TooltipDirective } from './tooltip.directive';
-import { TooltipOptions } from './tooltip.interfaces';
 import { TOOLTIP_DEFAULT_OPTIONS } from './tooltip.properties';
 import { TOOLTIP_OPTIONS_TOKEN, TOOLTIP_TEXT_INTERCEPTOR_TOKEN } from './tooltip.tokens';
-import { TooltipDefaultTextInterceptor } from './tooltip-default-text.interceptor';
-import { TooltipDomLeakService } from './tooltip-dom-leak.service';
 
 @NgModule({
     imports: [CommonModule],

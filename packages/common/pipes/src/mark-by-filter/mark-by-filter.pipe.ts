@@ -4,7 +4,9 @@ import { ensureRegexp, isRegexpStr } from '@angular-ru/common/regexp';
 import { toStringVal } from '@angular-ru/common/string';
 import { Any } from '@angular-ru/common/typings';
 
-import { MarkedValue, Value } from './mark-by-filter.interfaces';
+import { MarkedValue } from './marked-value';
+
+type Value = string | null | undefined;
 
 @Pipe({ name: 'markByFilter' })
 export class MarkByFilterPipe implements PipeTransform {
