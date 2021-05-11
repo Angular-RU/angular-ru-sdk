@@ -1,3 +1,11 @@
+#### 15.235.0 (2021-05-11)
+
+##### New Features
+
+-   **@angular-ru/eslint-plugin:** add custom eslint rules for projects
+    ([#535](https://github.com/Angular-RU/angular-ru-sdk/pull/535))
+    ([213f9e2d](https://github.com/Angular-RU/angular-ru-sdk/commit/213f9e2d6954828241bcd46cfc409ff538b19c74))
+
 #### 15.234.0 (2021-05-11)
 
 ##### Build System / Dependencies
