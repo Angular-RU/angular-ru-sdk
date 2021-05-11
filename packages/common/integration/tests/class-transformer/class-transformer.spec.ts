@@ -1,11 +1,11 @@
 import 'reflect-metadata';
 
-import { Exclude, Expose, plainToClass, Transform, Type } from 'class-transformer';
 import {
     ONLY_TO_CLASS,
     transformAsPrepareFieldsFromClass,
     transformParseFloat,
     transformParseInt,
+    transformToBoolean,
     transformToClass,
     transformToFormatDateTime,
     transformToNumber,
@@ -14,6 +14,7 @@ import {
     transformToTrim,
     transformToUnix
 } from '@angular-ru/common/class-transformer';
+import { Exclude, Expose, plainToClass, Transform, Type } from 'class-transformer';
 
 describe('[TEST]: Integration with class-transformer', () => {
     @Exclude()
@@ -32,6 +33,7 @@ describe('[TEST]: Integration with class-transformer', () => {
         @Expose() @Transform(transformParseFloat, ONLY_TO_CLASS) public floatVal?: number;
         @Expose() @Transform(transformParseInt, ONLY_TO_CLASS) public intVal?: number;
         @Expose() @Transform(transformToNumber, ONLY_TO_CLASS) public numVal?: string;
+        @Expose() @Transform(transformToBoolean, ONLY_TO_CLASS) public checked?: boolean;
 
         @Expose()
         @Type(transformToClass(IsoDto))
@@ -54,7 +56,8 @@ describe('[TEST]: Integration with class-transformer', () => {
                     a: ' 2 ',
                     b: ' 3 ',
                     c: false
-                }
+                },
+                checked: undefined
             } as DemoDto)
         ).toEqual({
             startDate: expect.any(String),
@@ -65,7 +68,8 @@ describe('[TEST]: Integration with class-transformer', () => {
             floatVal: 123.25,
             intVal: 11,
             numVal: 1234,
-            iso: { a: 2, b: 3 }
+            iso: { a: 2, b: 3 },
+            checked: false
         });
     });
 

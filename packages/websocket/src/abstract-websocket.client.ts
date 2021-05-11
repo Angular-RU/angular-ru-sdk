@@ -1,14 +1,20 @@
 import { Injectable, NgZone, OnDestroy } from '@angular/core';
-import { Any } from '@angular-ru/common/typings';
+import { Any, PlainObject } from '@angular-ru/common/typings';
+import { tryParseJson } from '@angular-ru/common/utils';
 import { Observable, ReplaySubject, Subject, Subscription, throwError } from 'rxjs';
+import { WebSocketMessage } from 'rxjs/internal/observable/dom/WebSocketSubject';
 import { catchError, filter, map, take, takeUntil } from 'rxjs/operators';
 import { webSocket, WebSocketSubject, WebSocketSubjectConfig } from 'rxjs/webSocket';
 
 import { WebsocketConfig } from './websocket.config';
 import { WebsocketHandler, WebsocketMessage } from './websocket.interfaces';
 
+export const PLAIN_TEXT: PlainObject = {};
+export const BINARY: PlainObject = {};
+
 @Injectable()
-export abstract class AbstractWebsocketClient<K> implements WebsocketHandler<K>, OnDestroy {
+export abstract class AbstractWebsocketClient<K extends string | PlainObject>
+    implements WebsocketHandler<K>, OnDestroy {
     public connected$: ReplaySubject<Event> = new ReplaySubject();
     public disconnected$: ReplaySubject<Event> = new ReplaySubject();
     public destroy$: Subject<boolean> = new Subject<boolean>();
@@ -36,22 +42,17 @@ export abstract class AbstractWebsocketClient<K> implements WebsocketHandler<K>,
 
     private get webSocketSubjectConfig(): WebSocketSubjectConfig<Any> {
         return {
+            openObserver: { next: (event: Event): void => this.onOpenObserver(event) },
+            closeObserver: { next: (event: Event): void => this.onCloseObserver(event) },
+            serializer: (message: Any): WebSocketMessage => this.serialize(message),
+            deserializer: (event: MessageEvent): Any => this.deserialize(event),
             url: this.connectionPath,
-            openObserver: {
-                next: (event: Event): void => {
-                    this.connected = true;
-                    this.connected$.next(event);
-                    this.onConnected(event);
-                }
-            },
-            closeObserver: {
-                next: (event: Event): void => {
-                    this.connected = false;
-                    this.disconnected$.next(event);
-                    this.onDisconnected(event);
-                }
-            }
+            binaryType: this.wsConfig.binaryType
         };
+    }
+
+    private static isArrayBuffer(value: Any): value is ArrayBuffer | Blob {
+        return value instanceof ArrayBuffer || value instanceof Blob;
     }
 
     public onConnected(_event?: Event): void {
@@ -96,26 +97,52 @@ export abstract class AbstractWebsocketClient<K> implements WebsocketHandler<K>,
         this.disconnect();
     }
 
-    private _connect(): void {
-        this.socket$ = webSocket(this.webSocketSubjectConfig);
-        this.subscription = this.socket$
-            .pipe(
-                catchError(
-                    (err: Error): Observable<never> => {
-                        this.reconnection(this.subscription);
-                        return throwError(err);
-                    }
-                ),
-                takeUntil(this.destroy$)
-            )
-            .subscribe((message: WebsocketMessage<K, Any>): void => {
-                window.requestAnimationFrame((): void => this.messages$.next(message));
-            });
+    protected serialize(message: WebsocketMessage<K, Any>): WebSocketMessage {
+        switch (message.type) {
+            case BINARY:
+            case PLAIN_TEXT:
+                return message.data;
+            default:
+                return JSON.stringify(message);
+        }
     }
 
-    private reconnection(subscription: Subscription): void {
-        if (!subscription.closed) {
-            subscription.unsubscribe();
+    protected deserialize({ data }: MessageEvent): WebsocketMessage<Any, Any> {
+        if (AbstractWebsocketClient.isArrayBuffer(data)) {
+            return { type: BINARY, data };
+        } else {
+            return tryParseJson<WebsocketMessage<Any, Any>>(data) ?? { type: PLAIN_TEXT, data };
+        }
+    }
+
+    private onOpenObserver(event: Event): void {
+        this.connected = true;
+        this.connected$.next(event);
+        this.onConnected(event);
+    }
+
+    private onCloseObserver(event: Event): void {
+        this.connected = false;
+        this.disconnected$.next(event);
+        this.onDisconnected(event);
+    }
+
+    private _connect(): void {
+        this.socket$ = webSocket(this.webSocketSubjectConfig);
+        this.subscription = this.socket$.pipe(takeUntil(this.destroy$)).subscribe(
+            (message: WebsocketMessage<K, Any>): void => {
+                window.requestAnimationFrame((): void => this.messages$.next(message));
+            },
+            (): void => this.reconnect()
+        );
+    }
+
+    private reconnect(): void {
+        if (!this.socket$.isStopped) {
+            this.socket$.complete();
+        }
+        if (!this.subscription.closed) {
+            this.subscription.unsubscribe();
         }
 
         this.ngZone.runOutsideAngular((): void => {

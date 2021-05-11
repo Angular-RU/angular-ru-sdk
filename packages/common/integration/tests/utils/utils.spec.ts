@@ -10,10 +10,15 @@ import {
     parseXmlFromString,
     checkSomeValueIsEmpty,
     checkEveryValueIsEmpty,
-    downloadFile
+    downloadFile,
+    checkSomeValueIsTrue,
+    checkSomeValueIsFalse,
+    checkEveryValueIsTrue,
+    checkEveryValueIsFalse,
+    checkValueIsFilled,
+    tryParseJson
 } from '@angular-ru/common/utils';
 import { ChangeDetectorRef } from '@angular/core';
-import { checkValueIsFilled } from '../../../dist/library/utils';
 import { FileToDownloadInfo } from '../../../dist/library/utils/download-file';
 
 describe('[TEST]: Common utils', () => {
@@ -122,6 +127,90 @@ describe('[TEST]: Common utils', () => {
         expect(checkSomeValueIsEmpty('', undefined, null)).toEqual(true));
 });
 
+describe('[TEST]: checkSomeValueIsTrue', () => {
+    it('should return true if any item has value: "true"', () => {
+        expect(checkSomeValueIsTrue(true)).toEqual(true);
+        expect(checkSomeValueIsTrue(true, true)).toEqual(true);
+        expect(checkSomeValueIsTrue([], true)).toEqual(true);
+        expect(checkSomeValueIsTrue('', undefined, null, true)).toEqual(true);
+        expect(checkSomeValueIsTrue('a', 13, {}, true)).toEqual(true);
+    });
+
+    it('should return false if no item has value: "true"', () => {
+        expect(checkSomeValueIsTrue()).toEqual(false);
+        expect(checkSomeValueIsTrue(false)).toEqual(false);
+        expect(checkSomeValueIsTrue(false, false)).toEqual(false);
+        expect(checkSomeValueIsTrue([])).toEqual(false);
+        expect(checkSomeValueIsTrue([true])).toEqual(false);
+        expect(checkSomeValueIsTrue('', undefined, null)).toEqual(false);
+        expect(checkSomeValueIsTrue('a', 13, {})).toEqual(false);
+    });
+});
+
+describe('[TEST]: checkSomeValueIsFalse', () => {
+    it('should return true if any item has value: "false"', () => {
+        expect(checkSomeValueIsFalse(false)).toEqual(true);
+        expect(checkSomeValueIsFalse(false, false)).toEqual(true);
+        expect(checkSomeValueIsFalse([], false)).toEqual(true);
+        expect(checkSomeValueIsFalse('', undefined, null, false)).toEqual(true);
+        expect(checkSomeValueIsFalse('a', 13, {}, false)).toEqual(true);
+    });
+
+    it('should return false if no item has value: "false"', () => {
+        expect(checkSomeValueIsFalse()).toEqual(false);
+        expect(checkSomeValueIsFalse(true)).toEqual(false);
+        expect(checkSomeValueIsFalse(true, true)).toEqual(false);
+        expect(checkSomeValueIsFalse([])).toEqual(false);
+        expect(checkSomeValueIsFalse([false])).toEqual(false);
+        expect(checkSomeValueIsFalse('', undefined, null)).toEqual(false);
+        expect(checkSomeValueIsFalse('a', 13, {})).toEqual(false);
+    });
+});
+
+describe('[TEST]: checkEveryValueIsTrue', () => {
+    it('should return true if every item has value: "true"', () => {
+        expect(checkEveryValueIsTrue(true)).toEqual(true);
+        expect(checkEveryValueIsTrue(true, true)).toEqual(true);
+        expect(checkEveryValueIsTrue(true, true, true)).toEqual(true);
+    });
+
+    it('should return false if not every item has value: "true"', () => {
+        expect(checkEveryValueIsTrue()).toEqual(false);
+        expect(checkEveryValueIsTrue(false)).toEqual(false);
+        expect(checkEveryValueIsTrue(false, false)).toEqual(false);
+        expect(checkEveryValueIsTrue(false, true)).toEqual(false);
+        expect(checkEveryValueIsTrue([])).toEqual(false);
+        expect(checkEveryValueIsTrue([true])).toEqual(false);
+        expect(checkEveryValueIsTrue('', undefined, null, true)).toEqual(false);
+        expect(checkEveryValueIsTrue('a', 13, {}, true)).toEqual(false);
+        expect(checkEveryValueIsTrue(true, true, {})).toEqual(false);
+        expect(checkEveryValueIsTrue(true, true, 'a')).toEqual(false);
+        expect(checkEveryValueIsTrue(true, true, 13)).toEqual(false);
+    });
+});
+
+describe('[TEST]: checkEveryValueIsFalse', () => {
+    it('should return true if every item has value: "false"', () => {
+        expect(checkEveryValueIsFalse(false)).toEqual(true);
+        expect(checkEveryValueIsFalse(false, false)).toEqual(true);
+        expect(checkEveryValueIsFalse(false, false, false)).toEqual(true);
+    });
+
+    it('should return false if not every item has value: "false"', () => {
+        expect(checkEveryValueIsFalse()).toEqual(false);
+        expect(checkEveryValueIsFalse(true)).toEqual(false);
+        expect(checkEveryValueIsFalse(true, true)).toEqual(false);
+        expect(checkEveryValueIsFalse(false, true)).toEqual(false);
+        expect(checkEveryValueIsFalse([])).toEqual(false);
+        expect(checkEveryValueIsFalse([false])).toEqual(false);
+        expect(checkEveryValueIsFalse('', undefined, null, false)).toEqual(false);
+        expect(checkEveryValueIsFalse('a', 13, {}, false)).toEqual(false);
+        expect(checkEveryValueIsFalse(false, false, {})).toEqual(false);
+        expect(checkEveryValueIsFalse(false, false, 'a')).toEqual(false);
+        expect(checkEveryValueIsFalse(false, false, 13)).toEqual(false);
+    });
+});
+
 describe('[TEST]: Common utils downloadFile', () => {
     let link: HTMLAnchorElement;
 
@@ -190,5 +279,25 @@ describe('[TEST]: Common utils downloadFile', () => {
         jest.spyOn(document, 'createElement').mockImplementation(() => link);
         downloadFile(file);
         expect(link.click).toHaveBeenCalledTimes(1);
+    });
+
+    it('should try parse JSON', () => {
+        expect(tryParseJson('{}')).toEqual({});
+        expect(tryParseJson('{ "a": 1 }')).toEqual({ a: 1 });
+        expect(tryParseJson('"text"')).toEqual('text');
+        expect(tryParseJson('null')).toEqual(null);
+        expect(tryParseJson('true')).toEqual(true);
+        expect(tryParseJson('[ 1, { "a": 1, "b": "b" }, true, null, "b" ]')).toEqual([
+            1,
+            { a: 1, b: 'b' },
+            true,
+            null,
+            'b'
+        ]);
+        expect(tryParseJson('qwerty')).toEqual(undefined);
+        expect(tryParseJson('{ a: 1 }')).toEqual(undefined);
+
+        const plain: string = '{ checked: true }';
+        expect(tryParseJson(plain)?.checked ?? false).toBe(false);
     });
 });

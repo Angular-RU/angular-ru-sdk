@@ -5,6 +5,9 @@
         "MODELS": {
             "id": "id",
             "name": "Имя",
+            "info": {
+                "value": "Значение"
+            },
             "description": "Описание"
         }
     }

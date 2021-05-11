@@ -1,0 +1,14 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "outDir": "../out-tsc/app",
+        "target": "es5",
+        "types": [],
+        "paths": {
+            "@angular-ru/common/*": ["../common/dist/library/*"],
+            "@angular-ru/http": ["./dist/library"],
+            "@angular-ru/http/*": ["./dist/library/*"]
+        }
+    },
+    "include": ["integration/app/main.ts", "integration/app/polyfills.ts", "integration/app/src/**/*.ts"]
+}

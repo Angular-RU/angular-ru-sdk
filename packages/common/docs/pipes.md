@@ -303,7 +303,7 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `{{ data | numberFormat }}` // 1 500 300,5
+    template: `{{ data | numberFormat }}` // 1 500 300,5
 })
 export class AppComponent {
     public data = 1500300.5;
@@ -515,7 +515,7 @@ export class AppComponent {
 }
 ```
 
-`JoinPipe, JoinPipeModule`
+-   `JoinPipe, JoinPipeModule`
 
 ```ts
 import { JoinPipeModule } from '@angular-ru/common/pipes';
@@ -583,7 +583,7 @@ export class AppComponent {
 }
 ```
 
-`BracePipe, BracePipeModule`
+-   `BracePipe, BracePipeModule`
 
 ```ts
 import { BracePipeModule } from '@angular-ru/common/pipes';
@@ -607,16 +607,16 @@ export class AppComponent {
 }
 ```
 
-`FilterUnique, FilterUniqueModule`
+-   `FilterUniquePipe, FilterUniquePipeModule`
 
 ```ts
-import { FilterUniqueModule } from '@angular-ru/common/pipes';
+import { FilterUniquePipeModule } from '@angular-ru/common/pipes';
 import { PlainObject } from '@angular-ru/common-typings';
 import { Component, NgModule } from '@angular/core';
 
 @NgModule({
     // ..
-    imports: [FilterUniqueModule]
+    imports: [FilterUniquePipeModule]
 })
 export class AppModule {}
 
@@ -633,5 +633,93 @@ export class AppModule {}
 export class AppComponent {
     public objects: PlainObject = [{ name: 'a' }, { name: 'a' }, { name: 'b' }];
     public numbers: number[] = [1, 2, 3, 4, 5, 5, 4];
+}
+```
+
+-   `TypeAsPipe, TypeAsPipeModule`
+
+```ts
+import { TypeAs } from '@angular-ru/common/pipes';
+
+@NgModule({
+    // ..
+    imports: [TypeAsPipeModule]
+})
+export class AppModule {}
+
+type SomeType = { a: number };
+
+@Component({
+    //...
+    template: `
+        <p *ngIf="notTyped | typeAs: typeSample as typed">
+            {{ typed.a }}
+            <!-- OK -->
+            {{ typed.b }}
+            <!-- Error: Property 'b' does not exist on type 'SomeType' -->
+        </p>
+    `
+})
+export class AppComponent {
+    public notTyped: any = { a: 1 };
+    public typeSample!: SomeType;
+}
+```
+
+-   `AtPipe, AtPipeModule`
+
+```ts
+import { AtPipeModule } from '@angular-ru/common/pipes';
+
+@NgModule({
+    // ..
+    imports: [AtPipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `
+        <p>{{ someArray | at: 0 }}</p>
+        <!-- "first" -->
+        <p>{{ someArray | at: -1 }}</p>
+        <!-- "last" -->
+    `
+})
+export class AppComponent {
+    public someArray = ['first', 'second', 'third', 'last'];
+}
+```
+
+-   `HasItems, HasManyItems, HasNoItems, HasOneItem, HasAtMostOneItem`
+-   `HasItemsModule, HasManyItemsModule, HasNoItemsModule, HasOneItemModule, HasAtMostOneItemModule`
+
+```ts
+import {
+    HasItemsModule,
+    HasManyItemsModule,
+    HasNoItemsModule,
+    HasOneItemModule,
+    HasAtMostOneItemModule
+} from '@angular-ru/common/pipes';
+
+@NgModule({
+    // ..
+    imports: [HasItemsModule, HasManyItemsModule, HasNoItemsModule, HasOneItemModule, HasAtMostOneItemModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `
+        <pre *ngIf="someArray | hasItems"><!-- true --></pre>
+        <pre *ngIf="someArray | hasManyItems"><!-- false --></pre>
+        <pre *ngIf="someArray | hasNoItems"><!-- false --></pre>
+        <pre *ngIf="someArray | hasOneItem"><!-- true --></pre>
+        <pre *ngIf="someArray | hasAtMostOneItem"><!-- true --></pre>
+    `
+})
+export class AppComponent {
+    public someArray: number[] = [1];
 }
 ```

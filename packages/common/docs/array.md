@@ -46,7 +46,7 @@ console.log(secondItem([1, 2, 3])); // 2
 console.log(thirdItem([1, 2, 3])); // 3
 ```
 
--   `isSingleList`
+-   ~~isSingleList~~ (Use `hasOneItem` instead)
 
 ```ts
 console.log(isSingleList([1])); // true
@@ -54,7 +54,7 @@ console.log(isSingleList([])); // false
 console.log(isSingleList([1, 2, 3])); // false
 ```
 
--   `isMultipleList`
+-   ~~isMultipleList~~ (Use `hasManyItems` instead)
 
 ```ts
 console.log(isMultipleList([1])); // false
@@ -63,7 +63,7 @@ console.log(isMultipleList([1, 2])); // true
 console.log(isMultipleList([1, 2, 3])); // true
 ```
 
--   `isEmptyList`
+-   ~~isEmptyList~~ (Use `hasNoItems` instead)
 
 ```ts
 console.log(isEmptyList([])); // true
@@ -71,7 +71,7 @@ console.log(isEmptyList([1])); // false
 console.log(isEmptyList([1, 2, 3])); // false
 ```
 
--   `isFilledList`
+-   ~~isFilledList~~ (Use `hasItems` instead)
 
 ```ts
 console.log(isFilledList([])); // false
@@ -146,4 +146,64 @@ expect([unique, { v: 2 }, { v: 3 }, { v: 4 }].filter(exclude([unique, { v: 2 }])
     { v: 3 },
     { v: 4 }
 ]);
+```
+
+-   `include`
+
+```ts
+expect([1, 2, 3].filter(include(3))).toEqual([3]);
+expect([1, 2, 3].filter(include([2, 3, 4]))).toEqual([2, 3]);
+expect([{ v: 1 }, { v: 2 }, { v: 3 }].filter(include({ v: 1 }))).toEqual([]);
+const unique: PlainObject = { v: 1 };
+expect([unique, { v: 2 }, { v: 3 }].filter(include([unique]))).toEqual([unique]);
+```
+
+-   `hasItems`
+
+```ts
+hasNoItem([1]); // true
+hasNoItem([1, 2, 3]); // true
+hasNoItem([]); // false
+hasNoItem(null); // false
+hasNoItem(undefined); // false
+```
+
+-   `hasNoItems`
+
+```ts
+hasNoItem([1]); // false
+hasNoItem([1, 2, 3]); // false
+hasNoItem([]); // true
+hasNoItem(null); // true
+hasNoItem(undefined); // true
+```
+
+-   `hasOneItem`
+
+```ts
+hasOneItem([1]); // true
+hasOneItem([1, 2, 3]); // false
+hasOneItem([]); // false
+hasOneItem(null); // false
+hasOneItem(undefined); // false
+```
+
+-   `hasManyItems`
+
+```ts
+hasManyItems([1]); // false
+hasManyItems([1, 2, 3]); // true
+hasManyItems([]); // false
+hasManyItems(null); // false
+hasManyItems(undefined); // false
+```
+
+-   `hasAtMostOneItem`
+
+```ts
+hasAtMostOneItem([1]); // true
+hasAtMostOneItem([1, 2, 3]); // false
+hasAtMostOneItem([]); // true
+hasAtMostOneItem(null); // true
+hasAtMostOneItem(undefined); // true
 ```

@@ -1,3 +1,356 @@
+#### 15.234.0 (2021-05-11)
+
+##### Build System / Dependencies
+
+-   **@angular-ru/eslint:** separate tsconfig files ([#594](https://github.com/Angular-RU/angular-ru-sdk/pull/594))
+    ([16a87856](https://github.com/Angular-RU/angular-ru-sdk/commit/16a87856f6a822796427600cd0497e54ef99eb1d))
+
+##### Continuous Integration
+
+-   add @schirbak as codeowner ([#598](https://github.com/Angular-RU/angular-ru-sdk/pull/598))
+    ([b49ab865](https://github.com/Angular-RU/angular-ru-sdk/commit/b49ab865c2a64ea824c442adb05550c3531b0149))
+
+##### New Features
+
+-   **@angular-ru/ng-table-builder:** add scrolling buffer
+    ([#595](https://github.com/Angular-RU/angular-ru-sdk/pull/595))
+    ([8d6a4b5c](https://github.com/Angular-RU/angular-ru-sdk/commit/8d6a4b5c972c535e302a39d24fd60a9362ed6050))
+
+#### 15.233.0 (2021-05-10)
+
+##### New Features
+
+-   **@angular-ru/prettier-config:** fix $schema ([#597](https://github.com/Angular-RU/angular-ru-sdk/pull/597))
+    ([ea35c5d0](https://github.com/Angular-RU/angular-ru-sdk/commit/ea35c5d09f4e208b825740acc5f4643d76024a25))
+-   **@angular-ru/renovate-config:** fix regexp ([#596](https://github.com/Angular-RU/angular-ru-sdk/pull/596))
+    ([e4a45ca7](https://github.com/Angular-RU/angular-ru-sdk/commit/e4a45ca74293bccede2927b700a33dd082ab76cd))
+
+#### 15.232.1 (2021-05-10)
+
+##### Build System / Dependencies
+
+-   update dependency eslint to v7.26.0 ([#590](https://github.com/Angular-RU/angular-ru-sdk/pull/590))
+    ([27cade13](https://github.com/Angular-RU/angular-ru-sdk/commit/27cade135fc0df42d115941819101d5cbe9d6d0d))
+
+#### 15.232.0 (2021-05-10)
+
+##### New Features
+
+-   update Jasmine ([#589](https://github.com/Angular-RU/angular-ru-sdk/pull/589))
+    ([7e59ae92](https://github.com/Angular-RU/angular-ru-sdk/commit/7e59ae9228fe439434b04b657eef0b837f790af0))
+
+#### 15.231.2 (2021-05-10)
+
+##### Build System / Dependencies
+
+-   update dependency prettier to v2.3.0 ([#591](https://github.com/Angular-RU/angular-ru-sdk/pull/591))
+    ([609170a2](https://github.com/Angular-RU/angular-ru-sdk/commit/609170a23714459589343178075df657afc289c1))
+
+#### 15.231.1 (2021-05-10)
+
+##### Other Changes
+
+-   build after upgrade to TypeScript 4.2.4 ([#579](https://github.com/Angular-RU/angular-ru-sdk/pull/579))
+    ([3c875fc4](https://github.com/Angular-RU/angular-ru-sdk/commit/3c875fc4be14e93a32b83b66f342373bcd2b10c0))
+
+#### 15.231.0 (2021-05-10)
+
+##### New Features
+
+-   **@angular-ru/renovate-config:** add jasmine / karma sections
+    ([#588](https://github.com/Angular-RU/angular-ru-sdk/pull/588))
+    ([e2ecac0c](https://github.com/Angular-RU/angular-ru-sdk/commit/e2ecac0c5a356de36c3929720770f0e6d302a733))
+
+##### Bug Fixes
+
+-   **@angular-ru/ng-table-builder:** remove spread from mock generator
+    ([#586](https://github.com/Angular-RU/angular-ru-sdk/pull/586))
+    ([82da7d7b](https://github.com/Angular-RU/angular-ru-sdk/commit/82da7d7b8f4de13af1db8ccddb6002734089461d))
+
+#### 15.230.0 (2021-05-09)
+
+##### New Features
+
+-   **@angular-ru/common:** refactoring NumberFormatPipe ([#585](https://github.com/Angular-RU/angular-ru-sdk/pull/585))
+    ([24d8b0f5](https://github.com/Angular-RU/angular-ru-sdk/commit/24d8b0f54f197ab8f05a05a1776fde5de801dfd5))
+
+#### 15.229.1 (2021-05-08)
+
+##### Build System / Dependencies
+
+-   **@angular-ru/common:** refactoring tsconfig.json ([#583](https://github.com/Angular-RU/angular-ru-sdk/pull/583))
+    ([2f3b7bb4](https://github.com/Angular-RU/angular-ru-sdk/commit/2f3b7bb4ff8a91cfa0046a01948dff1526bb5d2c))
+
+#### 15.229.0 (2021-05-07)
+
+##### Continuous Integration
+
+-   update Angular ([#577](https://github.com/Angular-RU/angular-ru-sdk/pull/577))
+    ([e8f5abe2](https://github.com/Angular-RU/angular-ru-sdk/commit/e8f5abe203350d00c9f64b22f11c9eca3eb58a66))
+
+##### New Features
+
+-   update dependency @types/jasminewd2 to v2.0.9 ([#578](https://github.com/Angular-RU/angular-ru-sdk/pull/578))
+    ([3420bbd5](https://github.com/Angular-RU/angular-ru-sdk/commit/3420bbd50533fe88465256b3b94e22f67bf5d1fb))
+
+#### 15.228.0 (2021-05-07)
+
+##### New Features
+
+-   update dependency @types/jasmine to v3.7.0 ([#580](https://github.com/Angular-RU/angular-ru-sdk/pull/580))
+    ([c3c9548b](https://github.com/Angular-RU/angular-ru-sdk/commit/c3c9548bcf0732f40706059d598b5769fd063051))
+
+#### 15.227.0 (2021-05-07)
+
+##### Build System / Dependencies
+
+-   lock file maintenance ([#581](https://github.com/Angular-RU/angular-ru-sdk/pull/581))
+    ([de81b53f](https://github.com/Angular-RU/angular-ru-sdk/commit/de81b53f5f36db9298209adf0f99655350acddb7))
+
+##### New Features
+
+-   **@angular-ru/websocket:** implement serializer ([#582](https://github.com/Angular-RU/angular-ru-sdk/pull/582))
+    ([61464ac7](https://github.com/Angular-RU/angular-ru-sdk/commit/61464ac7ef1e695f5dedb6a9ba35488d8c63b673))
+
+#### 15.226.0 (2021-05-07)
+
+##### New Features
+
+-   **@angular-ru/common:** change deepClone signature ([#576](https://github.com/Angular-RU/angular-ru-sdk/pull/576))
+    ([62b7617b](https://github.com/Angular-RU/angular-ru-sdk/commit/62b7617bd13bbb40a2aa6169623c27bb53e4b705))
+
+#### 15.225.0 (2021-05-07)
+
+##### Build System / Dependencies
+
+-   you global browser list ([#574](https://github.com/Angular-RU/angular-ru-sdk/pull/574))
+    ([ad589f22](https://github.com/Angular-RU/angular-ru-sdk/commit/ad589f22e250fff48b1e8bb48d4712601d33f864))
+
+##### New Features
+
+-   **@angular-ru/common:** add new number utils ([#570](https://github.com/Angular-RU/angular-ru-sdk/pull/570))
+    ([2898397d](https://github.com/Angular-RU/angular-ru-sdk/commit/2898397d08ed2d770f84d43ffba5107ee5cb9c1f))
+
+#### 15.224.0 (2021-05-07)
+
+##### New Features
+
+-   set target compilation by default to es2015 instead es5
+    ([#573](https://github.com/Angular-RU/angular-ru-sdk/pull/573))
+    ([2f8a47c0](https://github.com/Angular-RU/angular-ru-sdk/commit/2f8a47c0998a94f86414830ab81466c212ab70ee))
+
+#### 15.222.1 (2021-05-06)
+
+##### Bug Fixes
+
+-   **@angular-ru/websocket:** close socket connection on error & serializers
+    ([#567](https://github.com/Angular-RU/angular-ru-sdk/pull/567))
+    ([d7575f8b](https://github.com/Angular-RU/angular-ru-sdk/commit/d7575f8bfb6a13fff73b804931b2fa75283bd47b))
+
+#### 15.222.0 (2021-05-06)
+
+##### Documentation Changes
+
+-   update README.md ([#571](https://github.com/Angular-RU/angular-ru-sdk/pull/571))
+    ([e23a24a7](https://github.com/Angular-RU/angular-ru-sdk/commit/e23a24a7c0f9096fdaf9cb0ecaced6a53104ce23))
+
+##### New Features
+
+-   **@angular-ru/renovate-config:** update group lists ([#572](https://github.com/Angular-RU/angular-ru-sdk/pull/572))
+    ([2721013c](https://github.com/Angular-RU/angular-ru-sdk/commit/2721013cfc32170baf3c06c3b93a66338847b6c9))
+
+#### 15.221.0 (2021-05-06)
+
+##### Continuous Integration
+
+-   don't use `git add .` before commit files ([#568](https://github.com/Angular-RU/angular-ru-sdk/pull/568))
+    ([7c43e4ce](https://github.com/Angular-RU/angular-ru-sdk/commit/7c43e4ce25036ea1027e01e387c23e20bc2d04b0))
+
+##### New Features
+
+-   **@angular-ru/common:** add new string utils ([#569](https://github.com/Angular-RU/angular-ru-sdk/pull/569))
+    ([e6abb4b6](https://github.com/Angular-RU/angular-ru-sdk/commit/e6abb4b6eadaef4f4aceb0e3189a7e1c5e5aef2c))
+
+#### 15.220.0 (2021-05-06)
+
+##### New Features
+
+-   update dependency ts-jest to v26.5.6 ([#566](https://github.com/Angular-RU/angular-ru-sdk/pull/566))
+    ([82e07b4f](https://github.com/Angular-RU/angular-ru-sdk/commit/82e07b4fad37d58213f58014c02bd099bafe06b4))
+
+#### 15.219.0 (2021-05-05)
+
+##### New Features
+
+-   update dependencies ([#565](https://github.com/Angular-RU/angular-ru-sdk/pull/565))
+    ([cdce87dd](https://github.com/Angular-RU/angular-ru-sdk/commit/cdce87dd54de9bd9c745e6088554aa29998dc588))
+
+#### 15.218.0 (2021-05-05)
+
+##### New Features
+
+-   update ESLint to v4.22.1 ([#562](https://github.com/Angular-RU/angular-ru-sdk/pull/562))
+    ([72b83b9f](https://github.com/Angular-RU/angular-ru-sdk/commit/72b83b9f38de1f73080e80d8b249e04718df7187))
+
+#### 15.217.0 (2021-05-04)
+
+##### New Features
+
+-   **@angular-ru/common:** add transformToBoolean function
+    ([#563](https://github.com/Angular-RU/angular-ru-sdk/pull/563))
+    ([64da2a7c](https://github.com/Angular-RU/angular-ru-sdk/commit/64da2a7c8996d4f56f8e9dc3c15ed1ec69a9e967))
+
+##### Bug Fixes
+
+-   **@angular-ru/common:** fix test on max interval validator
+    ([#564](https://github.com/Angular-RU/angular-ru-sdk/pull/564))
+    ([631a7a68](https://github.com/Angular-RU/angular-ru-sdk/commit/631a7a684107b7c5a352b785ffa6d40b05668b74))
+
+#### 15.216.0 (2021-04-30)
+
+##### New Features
+
+-   **@angular-ru/common:** add date interval suggestion module
+    ([#556](https://github.com/Angular-RU/angular-ru-sdk/pull/556))
+    ([a8399bf6](https://github.com/Angular-RU/angular-ru-sdk/commit/a8399bf611bbe4cc4df92c781b98558493f1ac98))
+
+#### 15.215.0 (2021-04-30)
+
+##### New Features
+
+-   update dependencies ([#560](https://github.com/Angular-RU/angular-ru-sdk/pull/560))
+    ([8269d79d](https://github.com/Angular-RU/angular-ru-sdk/commit/8269d79da1e21c8d02113e5efee2532e06870161))
+
+#### 15.214.0 (2021-04-30)
+
+##### New Features
+
+-   update dependency eslint-plugin-jsdoc to v32.3.4 ([#558](https://github.com/Angular-RU/angular-ru-sdk/pull/558))
+    ([a6476096](https://github.com/Angular-RU/angular-ru-sdk/commit/a6476096cbcc0db53cc1999e999fbfbde137820a))
+
+#### 15.213.0 (2021-04-28)
+
+##### New Features
+
+-   update ESLint to v4.2.0 ([#555](https://github.com/Angular-RU/angular-ru-sdk/pull/555))
+    ([cac37142](https://github.com/Angular-RU/angular-ru-sdk/commit/cac3714252ea193c39e6f998043562985d0d20f1))
+
+#### 15.212.0 (2021-04-28)
+
+##### New Features
+
+-   **@angular-ru/common:** add has-items and at array utils
+    ([#553](https://github.com/Angular-RU/angular-ru-sdk/pull/553))
+    ([102551aa](https://github.com/Angular-RU/angular-ru-sdk/commit/102551aa8440b72e0d0e419ba037b7c16ab89553))
+
+#### 15.211.0 (2021-04-28)
+
+##### New Features
+
+-   update ESLint ([#550](https://github.com/Angular-RU/angular-ru-sdk/pull/550))
+    ([c633c7f6](https://github.com/Angular-RU/angular-ru-sdk/commit/c633c7f64d0f8bef526d53fee10d4734aa72a5cd))
+
+#### 15.210.0 (2021-04-27)
+
+##### Continuous Integration
+
+-   updated release notes and package versions [ci skip]
+    ([2910a950](https://github.com/Angular-RU/angular-ru-sdk/commit/2910a95026fdd3f536324fe08527de8836c3e17c))
+
+##### New Features
+
+-   added common util 'checkEveryValueIsFilled'
+    ([2bea8a4c](https://github.com/Angular-RU/angular-ru-sdk/commit/2bea8a4c3ea100ebfeaaf9b6d0acc6fceba38dde))
+-   added util 'include'
+    ([59916497](https://github.com/Angular-RU/angular-ru-sdk/commit/59916497e3a1861aee4bd067b2614a2f3803276e))
+
+#### 15.209.0 (2021-04-26)
+
+##### New Features
+
+-   update dependencies ([#547](https://github.com/Angular-RU/angular-ru-sdk/pull/547))
+    ([2a29d851](https://github.com/Angular-RU/angular-ru-sdk/commit/2a29d85128cfe34802c2ff92a06b6d696a34c2fb))
+-   added util 'include' ([#548](https://github.com/Angular-RU/angular-ru-sdk/pull/548))
+    ([e7e4c1c3](https://github.com/Angular-RU/angular-ru-sdk/commit/e7e4c1c32a61bed03f3b1e16dc45bf2a6c63f3a9))
+
+#### 15.208.0 (2021-04-24)
+
+##### Build System / Dependencies
+
+-   **deps:** update dependency eslint to v7.25.0 ([#545](https://github.com/Angular-RU/angular-ru-sdk/pull/545))
+    ([a848fd3f](https://github.com/Angular-RU/angular-ru-sdk/commit/a848fd3f8dad27e4f3026d4fdd42da9016947337))
+
+##### New Features
+
+-   update dependency eslint to v7.25.0 ([#546](https://github.com/Angular-RU/angular-ru-sdk/pull/546))
+    ([21650eac](https://github.com/Angular-RU/angular-ru-sdk/commit/21650eac514f5874858e3ff11d3873f70dbd3d16))
+
+#### 15.207.0 (2021-04-23)
+
+##### New Features
+
+-   update ESLint ([#536](https://github.com/Angular-RU/angular-ru-sdk/pull/536))
+    ([2e822088](https://github.com/Angular-RU/angular-ru-sdk/commit/2e82208838815643727ea99c7786647476792a26))
+
+#### 15.206.1 (2021-04-23)
+
+##### Bug Fixes
+
+-   **@angular-ru/ng-table-builder:** fix selection items with shift key
+    ([#544](https://github.com/Angular-RU/angular-ru-sdk/pull/544))
+    ([6b377a80](https://github.com/Angular-RU/angular-ru-sdk/commit/6b377a801605064ca2118dc1f316712748b84cbb))
+
+#### 15.206.0 (2021-04-22)
+
+##### Continuous Integration
+
+-   updated release notes and package versions [ci skip]
+    ([a8a2ac80](https://github.com/Angular-RU/angular-ru-sdk/commit/a8a2ac80cf5b5f5f3cfb0812d2ca448da709f66c))
+
+##### New Features
+
+-   added common utils
+    ([c0623f8e](https://github.com/Angular-RU/angular-ru-sdk/commit/c0623f8e270a02305d420e2345bd1522b6bc3cb6))
+-   **@angular-ru/ng-excel-builder:** add keys param to options
+    ([#541](https://github.com/Angular-RU/angular-ru-sdk/pull/541))
+    ([2de1c191](https://github.com/Angular-RU/angular-ru-sdk/commit/2de1c1911ffc272a9507acacf379c1b617f5f7b8))
+
+##### Other Changes
+
+-   //github.com/Angular-RU/angular-ru-sdk into feat/common-utils
+    ([73b3ba6b](https://github.com/Angular-RU/angular-ru-sdk/commit/73b3ba6becc3c5b39b36d62d8e58f00ce0a12d5a))
+
+##### Refactors
+
+-   changes after review
+    ([9627f7d4](https://github.com/Angular-RU/angular-ru-sdk/commit/9627f7d4298d7bff54e27569ef5c59978c653c71))
+-   changes after review
+    ([7a54f0e8](https://github.com/Angular-RU/angular-ru-sdk/commit/7a54f0e839e3864695cdf4e8c4f432685b4e7c28))
+-   changes after review
+    ([41fe43c8](https://github.com/Angular-RU/angular-ru-sdk/commit/41fe43c850003e583b4346521b9ff10da1712454))
+
+#### 15.205.0 (2021-04-21)
+
+##### New Features
+
+-   **@angular-ru/ng-excel-builder:** add keys param to options
+    ([#541](https://github.com/Angular-RU/angular-ru-sdk/pull/541))
+    ([2de1c191](https://github.com/Angular-RU/angular-ru-sdk/commit/2de1c1911ffc272a9507acacf379c1b617f5f7b8))
+
+#### 15.204.0 (2021-04-20)
+
+##### New Features
+
+-   **@angular-ru/common:** add DateIntervalDescriptor ([#540](https://github.com/Angular-RU/angular-ru-sdk/pull/540))
+    ([1c1f0e19](https://github.com/Angular-RU/angular-ru-sdk/commit/1c1f0e190faacde63f107952be073640ccead171))
+
+#### 15.203.0 (2021-04-20)
+
+##### New Features
+
+-   **@angular-ru/common:** add TypeAs pipe ([#539](https://github.com/Angular-RU/angular-ru-sdk/pull/539))
+    ([36fcdc55](https://github.com/Angular-RU/angular-ru-sdk/commit/36fcdc55799bc0cb7c83d47b1a12f5f797a37e98))
+
 #### 15.202.0 (2021-04-18)
 
 ##### New Features

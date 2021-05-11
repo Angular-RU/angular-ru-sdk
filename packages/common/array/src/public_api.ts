@@ -1,5 +1,11 @@
 export { exclude } from './exclude';
 export { firstItem } from './first-item';
+export { hasAtMostOneItem } from './has-at-most-one-item';
+export { hasItems } from './has-items';
+export { hasManyItems } from './has-many-items';
+export { hasNoItems } from './has-no-items';
+export { hasOneItem } from './has-one-item';
+export { include } from './include';
 export { isEmptyList } from './is-empty-list';
 export { isFilledList } from './is-filled-list';
 export { isMultipleList } from './is-multiple-list';

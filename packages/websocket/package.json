@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/websocket",
-    "version": "15.138.1",
+    "version": "15.231.1",
     "description": "Angular-RU package",
     "keywords": [
         "angular-ru",
@@ -21,7 +21,8 @@
     "scripts": {
         "build:lib": "ng build library && cp README.md dist/library",
         "start": "ng serve",
-        "postversion": "npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\""
+        "postversion": "npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\"",
+        "test": "yarn jest --config ./jest.config.js"
     },
     "peerDependencies": {
         "@angular-ru/common": ">=13.19.0",

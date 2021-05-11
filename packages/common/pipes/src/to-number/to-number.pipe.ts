@@ -3,7 +3,5 @@ import { toNumber } from '@angular-ru/common/number';
 
 @Pipe({ name: 'toNumber' })
 export class ToNumberPipe implements PipeTransform {
-    public transform(value: string | number, fallback?: number): number {
-        return toNumber(value, fallback);
-    }
+    public transform: typeof toNumber = toNumber;
 }

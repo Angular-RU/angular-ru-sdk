@@ -1,3 +1,5 @@
+export { AtPipe } from './at/at.pipe';
+export { AtPipeModule } from './at/at-pipe.module';
 export { BracePipe } from './brace/brace.pipe';
 export { BracePipeModule } from './brace/brace-pipe.module';
 export { DateToNativePipe } from './date-to-native/date-to-native.pipe';
@@ -20,6 +22,16 @@ export { FilterUniquePipeModule } from './filter-unique/filter-unique-pipe.modul
 export { FormatDatePipeOptions } from './format-date/format-date.interfaces';
 export { FormatDatePipe } from './format-date/format-date.pipe';
 export { FormatDatePipeModule } from './format-date/format-date-pipe.module';
+export { HasAtMostOneItemPipe } from './has-at-most-one-item/has-at-most-one-item.pipe';
+export { HasAtMostOneItemPipeModule } from './has-at-most-one-item/has-at-most-one-item-pipe.module';
+export { HasItemsPipe } from './has-items/has-items.pipe';
+export { HasItemsPipeModule } from './has-items/has-items-pipe.module';
+export { HasManyItemsPipe } from './has-many-items/has-many-items.pipe';
+export { HasManyItemsPipeModule } from './has-many-items/has-many-items-pipe.module';
+export { HasNoItemsPipe } from './has-no-items/has-no-items.pipe';
+export { HasNoItemsPipeModule } from './has-no-items/has-no-items-pipe.module';
+export { HasOneItemPipe } from './has-one-item/has-one-item.pipe';
+export { HasOneItemPipeModule } from './has-one-item/has-one-item-pipe.module';
 export { HttpReplacerPipe } from './http-replacer/http-replacer.pipe';
 export { HttpReplacerPipeModule } from './http-replacer/http-replacer-pipe.module';
 export { IsArrayPipe } from './is-array/is-array.pipe';
@@ -42,7 +54,6 @@ export { MergeCssClassesPipe } from './merge-css-classes/merge-css-classes.pipe'
 export { MergeCssClassesPipeModule } from './merge-css-classes/merge-css-classes-pipe.module';
 export { MutableTypePipe } from './mutable/mutable-type.pipe';
 export { MutableTypePipeModule } from './mutable/mutable-type-pipe.module';
-export { NumberFormatOptions } from './number-format/number-format.interfaces';
 export { NumberFormatPipe } from './number-format/number-format.pipe';
 export { NumberFormatPipeModule } from './number-format/number-format-pipe.module';
 export { ObjectSizePipe } from './object-size/object-size.pipe';
@@ -58,3 +69,5 @@ export { ToNumberPipe } from './to-number/to-number.pipe';
 export { ToNumberPipeModule } from './to-number/to-number-pipe.module';
 export { ToStringPipe } from './to-string/to-string.pipe';
 export { ToStringPipeModule } from './to-string/to-string-pipe.module';
+export { TypeAsPipe } from './type-as/type-as.pipe';
+export { TypeAsPipeModule } from './type-as/type-as-pipe.module';

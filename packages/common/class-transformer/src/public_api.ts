@@ -2,6 +2,7 @@ export { transformAsPrepareFieldsFromClass } from './transform-as-prepare-fields
 export { ONLY_TO_CLASS, ONLY_TO_PLAIN } from './transform-options';
 export { transformParseFloat } from './transform-parse-float';
 export { transformParseInt } from './transform-parse-int';
+export { transformToBoolean } from './transform-to-boolean';
 export { transformToClass } from './transform-to-class';
 export { transformToFormatDateTime } from './transform-to-format-date-time';
 export { transformToNumber } from './transform-to-number';

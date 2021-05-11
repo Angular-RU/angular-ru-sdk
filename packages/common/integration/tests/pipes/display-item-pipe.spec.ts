@@ -1,15 +1,10 @@
 import { DisplayItemPipe, DisplayItemPipeModule } from '@angular-ru/common/pipes';
-import { TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 
-describe('display item pipe', () => {
-    let pipe: DisplayItemPipe;
+describe('[TEST]: display item pipe', () => {
+    beforeEach(() => TestBed.configureTestingModule({ imports: [DisplayItemPipeModule] }));
 
-    beforeEach(() => {
-        TestBed.configureTestingModule({ imports: [DisplayItemPipeModule] }).compileComponents();
-        pipe = TestBed.inject(DisplayItemPipe);
-    });
-
-    it('should return string as item name', () => {
+    it('should return string as item name', inject([DisplayItemPipe], (pipe: DisplayItemPipe) => {
         expect(pipe.transform(undefined)).toEqual('');
         expect(pipe.transform(null)).toEqual('');
         expect(pipe.transform(NaN)).toEqual('');
@@ -22,5 +17,5 @@ describe('display item pipe', () => {
         expect(() => {
             pipe.transform({ name: 'a' });
         }).toThrow(new Error('attribute "displayKey" can not be empty if input item has "object" type'));
-    });
+    }));
 });

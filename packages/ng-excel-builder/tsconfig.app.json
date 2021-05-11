@@ -1,0 +1,15 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "outDir": "../out-tsc/app",
+        "target": "es5",
+        "types": [],
+        "paths": {
+            "@angular-ru/ng-excel-builder": ["./dist/library"],
+            "@angular-ru/common/*": ["../common/dist/library/*"]
+        }
+    },
+    "files": ["integration/app/main.ts", "integration/app/polyfills.ts"],
+    "include": ["src/**/*.d.ts"],
+    "exclude": ["**/*.spec.ts"]
+}

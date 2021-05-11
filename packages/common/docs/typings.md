@@ -168,3 +168,16 @@ type SomeStringNumberKeys = KeysOfType<SomeInterface, string | number>;
 ```ts
 const myClasses: NgCssClasses = { 'block__element--modificator': true };
 ```
+
+-   `DateIntervalDescriptor`
+
+```ts
+const descriptor: DateIntervalDescriptor = { dateFromKey: 'dateFrom', dateToKey: 'dateTo' };
+const updatedDate = makeSomeOperations(dateFormGroup, descriptor);
+
+function makeSomeOperations(form: FormGroup, descriptor: DateIntervalDescriptor) {
+    const fromControl: FormControl = form.get(descriptor.dateFromKey) as FormControl;
+    const toControl: FormControl = form.get(descriptor.dateFromKey) as FormControl;
+    // ...
+}
+```

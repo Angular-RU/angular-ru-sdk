@@ -15,7 +15,7 @@ describe('date interval validator', () => {
         expect(form.errors).toEqual({ maxDateIntervalLimit: true });
 
         // changing to valid value
-        form.controls.dateFrom.setValue(toUtc({ month: new Date().getMonth() - 2 }));
+        form.controls.dateFrom.setValue(toUtc({ month: new Date().getMonth() - 1 }));
         expect(form.valid).toBe(true);
     });
 

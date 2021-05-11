@@ -1,7 +1,7 @@
 const createTsJestConfig = require('../jest-utils/lib/index').createTsJestConfig;
 
 module.exports = createTsJestConfig({
-    tsConfig: './integration/tests/tsconfig.spec.json',
+    tsConfig: './tsconfig.spec.json',
     jestConfig: {
         rootDir: '.',
         cacheDirectory: '../../.cache',
@@ -9,6 +9,6 @@ module.exports = createTsJestConfig({
         modulePathIgnorePatterns: ['<rootDir>/dist/'],
         collectCoverageFrom: ['<rootDir>/lib/**/*.ts'],
         testMatch: ['<rootDir>/integration/tests/**/*.spec.ts'],
-        setupFilesAfterEnv: ['<rootDir>/integration/tests/setup-jest.ts']
+        setupFilesAfterEnv: ['<rootDir>/setup-jest.ts']
     }
 });
