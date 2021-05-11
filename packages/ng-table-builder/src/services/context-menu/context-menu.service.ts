@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { getValueByPath } from '@angular-ru/common/object';
 import { Subject } from 'rxjs';
 
-import { ContextMenuState } from './context-menu.interface';
+import { ContextMenuState } from './context-menu-state';
 
 @Injectable()
 export class ContextMenuService<T, K = unknown> {

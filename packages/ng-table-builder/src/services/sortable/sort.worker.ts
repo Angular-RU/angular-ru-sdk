@@ -1,6 +1,6 @@
 import { Any, PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
 
-import { SortableMessage } from './sortable.interfaces';
+import { SortableMessage } from './sortable-message';
 
 // eslint-disable-next-line max-lines-per-function
 export function sortWorker<T>(message: SortableMessage<T>): T[] {

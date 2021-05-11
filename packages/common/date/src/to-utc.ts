@@ -1,4 +1,4 @@
-import { SerialDateConfig } from './serial-date.interfaces';
+import { SerialDateConfig } from './serial-date-config';
 
 export function toUtc(config: Partial<SerialDateConfig> = {}): string {
     const { fullYear, month, date, hours, minutes, seconds, timeZoneHours }: SerialDateConfig = {

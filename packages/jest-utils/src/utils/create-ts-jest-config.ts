@@ -23,8 +23,8 @@ import {
     DEFAULT_VERBOSE,
     DEFAULT_WATCH
 } from '../constants/configurations';
-import { JestConfigOptions } from '../interfaces/jest-config.interface';
-import { JestModuleMapper } from '../interfaces/jest-module-mapper.interface';
+import { JestConfigOptions } from '../interfaces/jest-config-options';
+import { JestModuleMapper } from '../interfaces/jest-module-mapper';
 
 // eslint-disable-next-line sonarjs/cognitive-complexity,complexity,max-lines-per-function
 export function createTsJestConfig(options: JestConfigOptions): Config.InitialOptions {

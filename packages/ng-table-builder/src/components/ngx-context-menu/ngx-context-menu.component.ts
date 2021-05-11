@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { detectChanges } from '@angular-ru/common/utils';
 
-import { ContextMenuState } from '../../services/context-menu/context-menu.interface';
+import { ContextMenuState } from '../../services/context-menu/context-menu-state';
 import { MINIMAL_TIMEOUT } from '../../table-builder.properties';
 import { AbstractModalViewLayerDirective } from '../common/abstract-modal-view-layer.directive';
 

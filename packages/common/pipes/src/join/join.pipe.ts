@@ -3,7 +3,7 @@ import { isFunctionLike } from '@angular-ru/common/function';
 import { EmptyValue } from '@angular-ru/common/typings';
 import { checkValueIsEmpty } from '@angular-ru/common/utils';
 
-import { JoinPipeOptions } from './join-pipe.interface';
+import { JoinPipeOptions } from './join-pipe-options';
 
 @Pipe({ name: 'join' })
 export class JoinPipe implements PipeTransform {

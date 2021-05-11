@@ -11,7 +11,7 @@ import {
 import { fadeInLinearAnimation } from '@angular-ru/common/animations';
 
 import { NgxFilterDirective } from '../../directives/ngx-filter.directive';
-import { FilterStateEvent } from '../../services/filterable/filterable.interface';
+import { FilterStateEvent } from '../../services/filterable/filter-state-event';
 import { AbstractModalViewLayerDirective } from '../common/abstract-modal-view-layer.directive';
 
 const FILTER_WIDTH: number = 300;

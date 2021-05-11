@@ -6,8 +6,9 @@ import { WebSocketMessage } from 'rxjs/internal/observable/dom/WebSocketSubject'
 import { catchError, filter, map, take, takeUntil } from 'rxjs/operators';
 import { webSocket, WebSocketSubject, WebSocketSubjectConfig } from 'rxjs/webSocket';
 
-import { WebsocketConfig } from './websocket.config';
-import { WebsocketHandler, WebsocketMessage } from './websocket.interfaces';
+import { WebsocketHandler } from '../interfaces/websocket-handler';
+import { WebsocketMessage } from '../interfaces/websocket-message';
+import { WebsocketConfig } from './websocket-config';
 
 export const PLAIN_TEXT: PlainObject = {};
 export const BINARY: PlainObject = {};

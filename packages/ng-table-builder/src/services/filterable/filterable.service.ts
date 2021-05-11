@@ -5,17 +5,15 @@ import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { ReplaySubject, Subject } from 'rxjs';
 
 import { filterAllWorker } from './filter.worker';
-import {
-    FilterableInterface,
-    FilterableMessage,
-    FilterEvent,
-    FilterStateEvent,
-    FilterWorkerEvent,
-    TableFilterType
-} from './filterable.interface';
+import { FilterEvent } from './filter-event';
+import { FilterStateEvent } from './filter-state-event';
+import { FilterWorkerEvent } from './filter-worker-event';
+import { Filterable } from './filterable';
+import { FilterableMessage } from './filterable-message';
+import { TableFilterType } from './table-filter-type';
 
 @Injectable()
-export class FilterableService<T> implements FilterableInterface {
+export class FilterableService<T> implements Filterable {
     public types: ReadonlyMap<unknown, unknown> = (TableFilterType as Any) as ReadonlyMap<unknown, unknown>;
     public definition: ReadonlyMap<unknown, unknown> = ({} as Any) as ReadonlyMap<unknown, unknown>;
     public filterTypeDefinition: ReadonlyMap<unknown, TableFilterType> = {} as Any;

@@ -1,6 +1,8 @@
 import { Any, PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
 
-import { FilterableMessage, FilterGlobalOpts, TableFilterType } from './filterable.interface';
+import { FilterGlobalOpts } from './filter-global-opts';
+import { FilterableMessage } from './filterable-message';
+import { TableFilterType } from './table-filter-type';
 
 // eslint-disable-next-line sonarjs/cognitive-complexity,max-lines-per-function
 export function filterAllWorker<T>({ source, global, types, columns }: FilterableMessage<T>): T[] {

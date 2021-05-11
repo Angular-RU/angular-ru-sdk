@@ -13,7 +13,7 @@ export { NgxSourceNullComponent } from './components/ngx-source-null/ngx-source-
 export { NgxFilterDirective } from './directives/ngx-filter.directive';
 export { TemplateBodyTdDirective } from './directives/rows/template-body-td.directive';
 export { TemplateHeadThDirective } from './directives/rows/template-head-th.directive';
-export { SelectFromTableResult } from './interfaces/select-from-table-result.interface';
+export { SelectFromTableResult } from './interfaces/select-from-table-result';
 export {
     CalculateRange,
     ColumnsSchema,
@@ -34,17 +34,15 @@ export {
 } from './interfaces/table-builder.external';
 export { selectFromTableBy } from './operators/select-from-table-by';
 export { TableSelectedItemsPipe } from './pipes/table-selected-items.pipe';
-export {
-    FilterableInterface,
-    FilterableMessage,
-    FilterColumnsOpts,
-    FilterEvent,
-    FilterGlobalOpts,
-    FilterStateEvent,
-    FilterWorkerEvent,
-    TableFilterType
-} from './services/filterable/filterable.interface';
+export { FilterColumnsOpts } from './services/filterable/filter-columns-opts';
+export { FilterEvent } from './services/filterable/filter-event';
+export { FilterGlobalOpts } from './services/filterable/filter-global-opts';
+export { FilterStateEvent } from './services/filterable/filter-state-event';
+export { FilterWorkerEvent } from './services/filterable/filter-worker-event';
+export { Filterable } from './services/filterable/filterable';
+export { FilterableMessage } from './services/filterable/filterable-message';
+export { TableFilterType } from './services/filterable/table-filter-type';
 export { NgxTableViewChangesService } from './services/table-view-changes/ngx-table-view-changes.service';
 export { TableBuilderComponent } from './table-builder.component';
 export { TableBuilderModule } from './table-builder.module';
-export { TableSortTypes } from './types/table-sort-types.type';
+export { TableSortTypes } from './types/table-sort-types';

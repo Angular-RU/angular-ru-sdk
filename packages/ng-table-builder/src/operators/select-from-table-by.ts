@@ -1,7 +1,7 @@
 import { firstItem } from '@angular-ru/common/array';
 import { PlainObjectOf } from '@angular-ru/common/typings';
 
-import { SelectFromTableResult } from '../interfaces/select-from-table-result.interface';
+import { SelectFromTableResult } from '../interfaces/select-from-table-result';
 import { TableBuilderComponent } from '../table-builder.component';
 
 export function selectFromTableBy<T>(
