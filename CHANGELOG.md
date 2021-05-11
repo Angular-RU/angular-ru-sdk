@@ -1,3 +1,21 @@
+#### 15.234.0 (2021-05-11)
+
+##### Build System / Dependencies
+
+-   **@angular-ru/eslint:** separate tsconfig files ([#594](https://github.com/Angular-RU/angular-ru-sdk/pull/594))
+    ([16a87856](https://github.com/Angular-RU/angular-ru-sdk/commit/16a87856f6a822796427600cd0497e54ef99eb1d))
+
+##### Continuous Integration
+
+-   add @schirbak as codeowner ([#598](https://github.com/Angular-RU/angular-ru-sdk/pull/598))
+    ([b49ab865](https://github.com/Angular-RU/angular-ru-sdk/commit/b49ab865c2a64ea824c442adb05550c3531b0149))
+
+##### New Features
+
+-   **@angular-ru/ng-table-builder:** add scrolling buffer
+    ([#595](https://github.com/Angular-RU/angular-ru-sdk/pull/595))
+    ([8d6a4b5c](https://github.com/Angular-RU/angular-ru-sdk/commit/8d6a4b5c972c535e302a39d24fd60a9362ed6050))
+
 #### 15.233.0 (2021-05-10)
 
 ##### New Features
