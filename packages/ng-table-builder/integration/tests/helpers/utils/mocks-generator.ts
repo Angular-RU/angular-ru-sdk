@@ -29,12 +29,11 @@ export class MocksGenerator {
                                 const random = (min: number, max: number) => min + Math.random() * (max - min);
 
                                 if (cols > 6) {
-                                    baseRow[
-                                        'About Big Text And More Powerful Label Fugiat Tempor Sunt Nostrud'
-                                    ] = Array(Math.ceil(random(0, 1000)))
-                                        .fill(null)
-                                        .map((): string => (~~(Math.random() * 36)).toString(36))
-                                        .join('');
+                                    baseRow['About Big Text And More Powerful Label Fugiat Tempor Sunt Nostrud'] =
+                                        Array(Math.ceil(random(0, 1000)))
+                                            .fill(null)
+                                            .map((): string => (~~(Math.random() * 36)).toString(36))
+                                            .join('');
 
                                     for (let i: number = 6; i <= cols - 1; i++) {
                                         baseRow['column-' + i] = `$row-${idx} $col-${i}`;

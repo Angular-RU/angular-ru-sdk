@@ -40,7 +40,7 @@ export class LoggerFactory {
             ? this.defineLevelGroups(level, operation, logger)
             : operation;
 
-        return (pipeOperation as unknown) as T;
+        return pipeOperation as unknown as T;
     }
 
     private defineLevelGroups(level: LoggerLevel, operation: Operation, logger: LoggerService): Operation {

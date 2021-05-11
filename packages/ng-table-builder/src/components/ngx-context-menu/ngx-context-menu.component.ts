@@ -25,7 +25,8 @@ const MAX_HEIGHT: number = 400;
 })
 export class NgxContextMenuComponent<T>
     extends AbstractModalViewLayerDirective<T, ContextMenuState<T>>
-    implements OnInit {
+    implements OnInit
+{
     @Input() public width: number | null = SIZE;
     @Input() public height: number | null = SIZE;
     @Input('max-height') public maxHeight: number = MAX_HEIGHT;
