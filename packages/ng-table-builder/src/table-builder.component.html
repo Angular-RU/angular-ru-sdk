@@ -76,6 +76,8 @@
                     #column
                     cdkDrag
                     observerView
+                    [observerRoot]="tableViewport"
+                    observerRootMargin="0px 750px"
                     [cdkDragBoundary]="area"
                     class="table-grid__column"
                     *ngIf="schema.isVisible"
