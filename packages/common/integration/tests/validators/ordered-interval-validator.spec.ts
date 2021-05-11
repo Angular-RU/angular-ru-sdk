@@ -47,6 +47,6 @@ describe('ordered interval validator', () => {
     it('should return error if control is not part of FormGroup', () => {
         const control: AbstractControl = new FormControl();
         const validator: ValidatorFn = orderedIntervalValidator({ dateToKey: 'dateTo', dateFromKey: 'dateFrom' });
-        expect(() => validator(control).toThrow(new Error('DateIntervalValidator must be used on form group')));
+        expect(() => validator(control)?.toThrow(new Error('DateIntervalValidator must be used on form group')));
     });
 });

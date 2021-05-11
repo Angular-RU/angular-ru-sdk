@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/renovate-config",
-    "version": "15.224.0",
+    "version": "15.233.0",
     "description": "Shared Renovate config for Angular projects",
     "keywords": [
         "angular-ru",
@@ -33,6 +33,12 @@
             "separateMinorPatch": true,
             "semanticCommits": true,
             "semanticPrefix": "build",
+            "prHourlyLimit": 2,
+            "labels": [
+                "target: minor",
+                "comp: build & ci",
+                "action: review"
+            ],
             "lockFileMaintenance": {
                 "enabled": true
             },
@@ -51,26 +57,6 @@
                     "enabled": false
                 },
                 {
-                    "depTypeList": [
-                        "dependencies"
-                    ],
-                    "groupName": "dependencies",
-                    "groupSlug": "dependencies",
-                    "commitMessagePrefix": "feat:",
-                    "commitMessageAction": "update",
-                    "commitBody": "only dependencies"
-                },
-                {
-                    "depTypeList": [
-                        "devDependencies"
-                    ],
-                    "groupName": "devDependencies",
-                    "groupSlug": "devDependencies",
-                    "commitMessagePrefix": "ci:",
-                    "commitMessageAction": "update",
-                    "commitBody": "only dev dependencies"
-                },
-                {
                     "packagePatterns": [
                         "^@angular/.*",
                         "^@angular-devkit/.*",
@@ -80,7 +66,7 @@
                 },
                 {
                     "packagePatterns": [
-                        "rxjs"
+                        "^rxjs.*"
                     ],
                     "groupName": "RxJS"
                 },
@@ -92,7 +78,13 @@
                 },
                 {
                     "packagePatterns": [
-                        "^@angular-ru/*"
+                        "^prettier$"
+                    ],
+                    "groupName": "Prettier"
+                },
+                {
+                    "packagePatterns": [
+                        "^@angular-ru/.*"
                     ],
                     "groupName": "Angular RU"
                 },
@@ -102,58 +94,72 @@
                         "^@angular/cli$",
                         "^@angular/cdk-experimental$",
                         "^@angular/flex-layout$",
-                        "^@angular/material"
+                        "^@angular/material$"
                     ],
                     "groupName": "Angular Material"
                 },
                 {
                     "packagePatterns": [
-                        "^@angular-builders/*"
+                        "^@angular-builders/.*"
                     ],
                     "groupName": "Angular Builders"
                 },
                 {
                     "packagePatterns": [
-                        "ng-packagr"
+                        "^ng-packagr$"
                     ],
                     "groupName": "ng-packagr"
                 },
                 {
                     "packagePatterns": [
-                        "class-transformer"
+                        "^class-transformer$"
                     ],
                     "groupName": "class-transformer"
                 },
                 {
                     "packagePatterns": [
-                        "^@ngxs/*",
-                        "^@ngxs-labs/*"
+                        "^@ngxs/.*",
+                        "^@ngxs-labs/.*"
                     ],
                     "groupName": "NGXS"
                 },
                 {
                     "packagePatterns": [
-                        "@types/eslint",
-                        "^@angular-eslint/*",
-                        "^@typescript-eslint/*",
-                        "^eslint*"
+                        "^@types/eslint$",
+                        "^@angular-eslint/.*",
+                        "^@typescript-eslint/.*",
+                        "^eslint.*"
                     ],
                     "groupName": "ESLint"
                 },
                 {
                     "packagePatterns": [
-                        "@types/jest",
-                        "^jest*",
-                        "ts-jest",
-                        "jest-preset-angular"
+                        "^@types/jest$",
+                        "^jest.*",
+                        "^ts-jest$",
+                        "^jest-preset-angular$"
                     ],
                     "groupName": "Jest"
                 },
                 {
+                    "packagePatterns": [
+                        "@types/karma.*",
+                        "^karma.*"
+                    ],
+                    "groupName": "Karma"
+                },
+                {
+                    "packagePatterns": [
+                        "@types/jasmine",
+                        "@types/jasmine*",
+                        "^jasmine.*"
+                    ],
+                    "groupName": "Jasmine"
+                },
+                {
                     "packageNames": [
-                        "typescript",
-                        "tslib",
-                        "^@types*"
+                        "^typescript$",
+                        "^tslib$"
                     ],
                     "groupName": "TypeScript"
                 }

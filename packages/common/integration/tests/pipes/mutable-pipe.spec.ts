@@ -27,7 +27,7 @@ describe('mutable', () => {
         });
 
         it('should be correct extract', () => {
-            const b: PlainObject | undefined = pipePath.transform(
+            const b: string | PlainObject | null | undefined = pipePath.transform(
                 {
                     a: {
                         b: {
@@ -42,7 +42,7 @@ describe('mutable', () => {
                 c: 1
             });
 
-            const c: number | undefined = pipePath.transform(
+            const c: string | number | null | undefined = pipePath.transform(
                 {
                     a: {
                         b: {
@@ -57,7 +57,7 @@ describe('mutable', () => {
         });
 
         it('should be correct return object when set empty path', () => {
-            const result: PlainObject | undefined = pipePath.transform({ a: { b: 1 } }, '');
+            const result: string | PlainObject | null | undefined = pipePath.transform({ a: { b: 1 } }, '');
             expect(result).toEqual({ a: { b: 1 } });
         });
 

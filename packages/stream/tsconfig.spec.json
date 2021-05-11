@@ -3,6 +3,7 @@
     "compilerOptions": {
         "outDir": "./out-tsc/spec",
         "types": ["jasmine", "node"],
+        "preserveConstEnums": true,
         "paths": {
             "@angular-ru/common/*": ["../common/dist/library/*"],
             "@angular-ru/stream": ["./src/public_api.ts"],

@@ -3,6 +3,7 @@
     "compilerOptions": {
         "outDir": "../../out-tsc/spec",
         "types": ["jest", "node"],
+        "preserveConstEnums": true,
         "paths": {
             "@angular-ru/websocket": ["src/public_api.ts"],
             "@angular-ru/common/*": ["../common/dist/library/*"]

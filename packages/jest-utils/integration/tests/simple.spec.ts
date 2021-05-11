@@ -39,8 +39,7 @@ describe('[TEST]: Hello world', () => {
                 }
             },
             moduleNameMapper: {
-                '^@mock/(.*)$': '<rootDir>/integration/tests/helpers/$1',
-                '^@angular\\-ru/common/(.*)$': '<rootDir>/../common/dist/library/$1'
+                '^@mock/(.*)$': '<rootDir>/integration/tests/helpers/$1'
             },
             bail: 1,
             verbose: true,

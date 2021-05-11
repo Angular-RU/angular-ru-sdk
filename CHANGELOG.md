@@ -1,3 +1,54 @@
+#### 15.233.0 (2021-05-10)
+
+##### New Features
+
+-   **@angular-ru/prettier-config:** fix $schema ([#597](https://github.com/Angular-RU/angular-ru-sdk/pull/597))
+    ([ea35c5d0](https://github.com/Angular-RU/angular-ru-sdk/commit/ea35c5d09f4e208b825740acc5f4643d76024a25))
+-   **@angular-ru/renovate-config:** fix regexp ([#596](https://github.com/Angular-RU/angular-ru-sdk/pull/596))
+    ([e4a45ca7](https://github.com/Angular-RU/angular-ru-sdk/commit/e4a45ca74293bccede2927b700a33dd082ab76cd))
+
+#### 15.232.1 (2021-05-10)
+
+##### Build System / Dependencies
+
+-   update dependency eslint to v7.26.0 ([#590](https://github.com/Angular-RU/angular-ru-sdk/pull/590))
+    ([27cade13](https://github.com/Angular-RU/angular-ru-sdk/commit/27cade135fc0df42d115941819101d5cbe9d6d0d))
+
+#### 15.232.0 (2021-05-10)
+
+##### New Features
+
+-   update Jasmine ([#589](https://github.com/Angular-RU/angular-ru-sdk/pull/589))
+    ([7e59ae92](https://github.com/Angular-RU/angular-ru-sdk/commit/7e59ae9228fe439434b04b657eef0b837f790af0))
+
+#### 15.231.2 (2021-05-10)
+
+##### Build System / Dependencies
+
+-   update dependency prettier to v2.3.0 ([#591](https://github.com/Angular-RU/angular-ru-sdk/pull/591))
+    ([609170a2](https://github.com/Angular-RU/angular-ru-sdk/commit/609170a23714459589343178075df657afc289c1))
+
+#### 15.231.1 (2021-05-10)
+
+##### Other Changes
+
+-   build after upgrade to TypeScript 4.2.4 ([#579](https://github.com/Angular-RU/angular-ru-sdk/pull/579))
+    ([3c875fc4](https://github.com/Angular-RU/angular-ru-sdk/commit/3c875fc4be14e93a32b83b66f342373bcd2b10c0))
+
+#### 15.231.0 (2021-05-10)
+
+##### New Features
+
+-   **@angular-ru/renovate-config:** add jasmine / karma sections
+    ([#588](https://github.com/Angular-RU/angular-ru-sdk/pull/588))
+    ([e2ecac0c](https://github.com/Angular-RU/angular-ru-sdk/commit/e2ecac0c5a356de36c3929720770f0e6d302a733))
+
+##### Bug Fixes
+
+-   **@angular-ru/ng-table-builder:** remove spread from mock generator
+    ([#586](https://github.com/Angular-RU/angular-ru-sdk/pull/586))
+    ([82da7d7b](https://github.com/Angular-RU/angular-ru-sdk/commit/82da7d7b8f4de13af1db8ccddb6002734089461d))
+
 #### 15.230.0 (2021-05-09)
 
 ##### New Features
