@@ -81,6 +81,8 @@ module.exports = {
                 /**
                  * ESLint Core
                  */
+                'no-invalid-this': 'off',
+                '@typescript-eslint/no-invalid-this': ['error'],
                 'arrow-body-style': 'error',
                 'arrow-parens': ['error', 'always'],
                 'brace-style': [
@@ -165,7 +167,6 @@ module.exports = {
                 'no-empty-functions': 'off',
                 'no-eval': 'error',
                 'no-fallthrough': 'error',
-                'no-invalid-this': 'off',
                 'no-magic-numbers': 'off',
                 'no-multiple-empty-lines': 'error',
                 'no-negated-condition': 'error',
@@ -180,6 +181,10 @@ module.exports = {
                     {
                         selector: 'TSEnumDeclaration:not([const=true])',
                         message: "Don't declare non-const enums"
+                    },
+                    {
+                        selector: 'MethodDefinition[static = true] ThisExpression',
+                        message: "Don't use this in static methods"
                     }
                 ],
                 'no-return-assign': ['error', 'always'],
@@ -304,10 +309,13 @@ module.exports = {
                             'public-static-field',
                             'protected-static-field',
                             'private-static-field',
+                            'public-decorated-field',
                             'public-instance-field',
                             'public-abstract-field',
+                            'protected-decorated-field',
                             'protected-instance-field',
                             'protected-abstract-field',
+                            'private-decorated-field',
                             'private-instance-field',
                             'private-abstract-field',
                             'public-constructor',
