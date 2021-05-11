@@ -65,9 +65,8 @@ describe('[TEST]: Ivy utils', (): void => {
     });
 
     it('should work useInjector with nested and multiple usages', async function (): Promise<void> {
-        const featureTestComponentFixture: ComponentFixture<FeatureTestComponent> = TestBed.createComponent(
-            FeatureTestComponent
-        );
+        const featureTestComponentFixture: ComponentFixture<FeatureTestComponent> =
+            TestBed.createComponent(FeatureTestComponent);
         const component: FeatureTestComponent = featureTestComponentFixture.componentInstance;
 
         expect(component.ngZone.constructor).toBe(NgZone);
@@ -79,9 +78,8 @@ describe('[TEST]: Ivy utils', (): void => {
     });
 
     it('should work useInjector with component extending directive', async function (): Promise<void> {
-        const extendingTestComponentFixture: ComponentFixture<ExtendingTestComponent> = TestBed.createComponent(
-            ExtendingTestComponent
-        );
+        const extendingTestComponentFixture: ComponentFixture<ExtendingTestComponent> =
+            TestBed.createComponent(ExtendingTestComponent);
         const component: ExtendingTestComponent = extendingTestComponentFixture.componentInstance;
 
         expect(component.appRef.constructor).toBe(ApplicationRef);
@@ -92,9 +90,8 @@ describe('[TEST]: Ivy utils', (): void => {
     });
 
     it('should work useInjector with component 3-level extending chain', async function (): Promise<void> {
-        const testStairsComponentFixture: ComponentFixture<TestStairsComponent> = TestBed.createComponent(
-            TestStairsComponent
-        );
+        const testStairsComponentFixture: ComponentFixture<TestStairsComponent> =
+            TestBed.createComponent(TestStairsComponent);
         const component: TestStairsComponent = testStairsComponentFixture.componentInstance;
 
         expect(component.featureTestService.constructor).toBe(FeatureTestService);
@@ -109,9 +106,8 @@ describe('[TEST]: Ivy utils', (): void => {
     });
 
     it('should work with injection tokens', async function (): Promise<void> {
-        const testTokenComponentFixture: ComponentFixture<TestTokenComponent> = TestBed.createComponent(
-            TestTokenComponent
-        );
+        const testTokenComponentFixture: ComponentFixture<TestTokenComponent> =
+            TestBed.createComponent(TestTokenComponent);
         const component: TestTokenComponent = testTokenComponentFixture.componentInstance;
         expect(component.appRef.constructor).toBe(ApplicationRef);
         expect(component.componentToken).toBe('COMPONENT_TOKEN');

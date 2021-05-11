@@ -25,7 +25,7 @@ export function ensureDescriptorByType<T>({
     // eslint-disable-next-line max-lines-per-function
     descriptor.value = function (...args: Any[]): Observable<T> {
         let newPath: string = path.toString();
-        const httpClient: DataHttpClient = (this as Any) as DataHttpClient;
+        const httpClient: DataHttpClient = this as Any as DataHttpClient;
         const result: Observable<T> | Any = originalMethod.apply(httpClient, args);
         let template: RestTemplate<T> | null = result?.restTemplateRef ?? null;
 

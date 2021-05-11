@@ -6,10 +6,10 @@ export function getValueByPath<T = unknown, K = T>(
     fallback: K | null | undefined = undefined
 ): K | null | undefined {
     if (!(path && path.length)) {
-        return (obj as Any) as K;
+        return obj as Any as K;
     }
 
-    let result: K = (obj as Any) as K;
+    let result: K = obj as Any as K;
 
     const parts: string[] = path.split('.');
     let index: number = 0;
