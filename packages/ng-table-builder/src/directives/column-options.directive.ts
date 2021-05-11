@@ -1,5 +1,6 @@
 import { Directive, Input } from '@angular/core';
-import { TableFilterType } from '@angular-ru/ng-table-builder';
+
+import { TableFilterType } from '../services/filterable/table-filter-type';
 
 /**
  * Global options
