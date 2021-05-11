@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 
-import { SerialDateFormatOptions } from './serial-date.interfaces';
+import { SerialDateFormatOptions } from './serial-date-format-options';
 
 export function toFormatDateTime(time?: number, options: SerialDateFormatOptions = {}): string {
     const timeValue: number = time ?? new Date().getTime();

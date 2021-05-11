@@ -11,10 +11,10 @@ import {
 import { detectChanges, getBodyRect } from '@angular-ru/common/utils';
 import { Subscription } from 'rxjs';
 
-import { MousePosition } from '../../interfaces/table-builder.internal';
-import { ContextMenuService } from '../../services/context-menu/context-menu.service';
-import { FilterableService } from '../../services/filterable/filterable.service';
-import { MINIMAL_TIMEOUT, SCROLLBAR_SIZE } from '../../table-builder.properties';
+import { MousePosition } from '../interfaces/table-builder.internal';
+import { ContextMenuService } from '../services/context-menu/context-menu.service';
+import { FilterableService } from '../services/filterable/filterable.service';
+import { MINIMAL_TIMEOUT, SCROLLBAR_SIZE } from '../table-builder.properties';
 
 export interface PositionState {
     key: string | null;

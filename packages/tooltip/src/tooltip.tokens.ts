@@ -1,6 +1,7 @@
 import { InjectionToken } from '@angular/core';
 
-import { TooltipOptions, TooltipTextInterceptor } from './tooltip.interfaces';
+import { TooltipOptions } from './interfaces/tooltip-options';
+import { TooltipTextInterceptor } from './interfaces/tooltip-text-interceptor';
 
 export const TOOLTIP_TEXT_INTERCEPTOR_TOKEN: InjectionToken<TooltipTextInterceptor> = new InjectionToken(
     'TOOLTIP_TEXT_INTERCEPTOR_TOKEN'

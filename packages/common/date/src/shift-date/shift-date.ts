@@ -1,4 +1,4 @@
-import { DateShiftDescriptor } from './date-shift-descriptor.interface';
+import { DateShiftDescriptor } from './date-shift-descriptor';
 
 // eslint-disable-next-line complexity
 export function shiftDate(interval: DateShiftDescriptor, inputDate: Date = new Date()): Date {

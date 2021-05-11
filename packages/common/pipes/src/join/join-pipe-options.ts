@@ -1,4 +1,4 @@
-export type JoinMapTransformer<T> = (item: T, index: number, array: T[]) => string;
+import { JoinMapTransformer } from './join-map-transformer';
 
 export interface JoinPipeOptions<T> {
     separator?: string;

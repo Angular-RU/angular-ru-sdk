@@ -18,8 +18,8 @@ import { detectChanges, getBodyRect } from '@angular-ru/common/utils';
 import { Subscription } from 'rxjs';
 
 import { ContextItemEvent } from '../../../interfaces/table-builder.external';
-import { ContextMenuState } from '../../../services/context-menu/context-menu.interface';
 import { ContextMenuService } from '../../../services/context-menu/context-menu.service';
+import { ContextMenuState } from '../../../services/context-menu/context-menu-state';
 import { MIN_PADDING_CONTEXT_ITEM, SCROLLBAR_SIZE } from '../../../table-builder.properties';
 
 const MENU_WIDTH: number = 300;

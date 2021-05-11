@@ -62,7 +62,21 @@ module.exports = {
                 /**
                  * Angular-RU rules
                  */
-                '@angular-ru/no-suffix-file': ['error', { fileEndsWithList: ['.model.ts', '.enum.ts'] }],
+                '@angular-ru/no-suffix-file': [
+                    'error',
+                    {
+                        fileEndsWithList: [
+                            '.model.ts',
+                            '.models.ts',
+                            '.enum.ts',
+                            '.enums.ts',
+                            '.type.ts',
+                            '.types.ts',
+                            '.interface.ts',
+                            '.interfaces.ts'
+                        ]
+                    }
+                ],
 
                 /**
                  * ESLint Core

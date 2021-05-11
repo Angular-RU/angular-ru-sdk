@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { secondItem, thirdItem } from '@angular-ru/common/array';
 
-import { DetectBrowserPipeOptions } from './detect-browser-pipe.interface';
+import { DetectBrowserPipeOptions } from './detect-browser-pipe';
 
 @Pipe({ name: 'detectBrowser' })
 export class DetectBrowserPipe implements PipeTransform {

@@ -1,7 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
-import { WebsocketConfig } from './websocket.config';
-import { WEBSOCKET_CONFIGS } from './websocket.tokens';
+import { WebsocketConfig } from './services/websocket-config';
+import { WEBSOCKET_CONFIGS } from './tokens/websocket-configs';
 
 @NgModule()
 export class WebsocketModule {

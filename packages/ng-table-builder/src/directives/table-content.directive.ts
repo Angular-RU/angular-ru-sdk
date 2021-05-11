@@ -1,6 +1,6 @@
 import { Directive, Input } from '@angular/core';
 
-import { TABLE_GLOBAL_OPTIONS } from '../../config/table-global-options';
+import { TABLE_GLOBAL_OPTIONS } from '../config/table-global-options';
 
 @Directive()
 export class TableContentDirective {

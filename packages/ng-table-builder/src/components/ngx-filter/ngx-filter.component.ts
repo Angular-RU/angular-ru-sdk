@@ -10,9 +10,9 @@ import {
 } from '@angular/core';
 import { fadeInLinearAnimation } from '@angular-ru/common/animations';
 
+import { AbstractModalViewLayerDirective } from '../../directives/abstract-modal-view-layer.directive';
 import { NgxFilterDirective } from '../../directives/ngx-filter.directive';
-import { FilterStateEvent } from '../../services/filterable/filterable.interface';
-import { AbstractModalViewLayerDirective } from '../common/abstract-modal-view-layer.directive';
+import { FilterStateEvent } from '../../services/filterable/filter-state-event';
 
 const FILTER_WIDTH: number = 300;
 const FILTER_MIN_LEFT_X: number = 10;

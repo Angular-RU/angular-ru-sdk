@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
-import { TooltipTextInterceptor } from './tooltip.interfaces';
+import { TooltipTextInterceptor } from '../interfaces/tooltip-text-interceptor';
 
 @Injectable()
 export class NgxTooltipTextInterceptor implements TooltipTextInterceptor {

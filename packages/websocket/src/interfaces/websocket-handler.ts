@@ -17,8 +17,3 @@ export interface WebsocketHandler<K> {
 
     sendMessage<T>(type: K, data: T): void;
 }
-
-export interface WebsocketMessage<K, V> {
-    type: K;
-    data: V;
-}

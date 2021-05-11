@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
 import { ControlValueAccessorPatcher } from './control-value-accessor-patcher';
-import { ControlValueInterceptorDescriptor } from './control-value-interceptor-descriptor.interface';
+import { ControlValueInterceptorDescriptor } from './control-value-interceptor-descriptor';
 
 @Injectable()
 export class ControlValueInterceptor<ModelValue = unknown, ViewValue = ModelValue> implements OnDestroy {
