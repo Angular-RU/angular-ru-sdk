@@ -1,0 +1,16 @@
+{
+    "extends": "../tsconfig/tsconfig.json",
+    "compilerOptions": {
+        "baseUrl": "./",
+        "outDir": "./lib",
+        "module": "commonjs",
+        "types": ["node"],
+        "typeRoots": ["../../node_modules/@types", "./"],
+        "paths": {
+            "@angular-ru/common/*": ["../common/dist/library/*"]
+        }
+    },
+    "include": ["./src"],
+    "exclude": ["integration"],
+    "files": ["./src/index.ts"]
+}

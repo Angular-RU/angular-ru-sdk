@@ -27,8 +27,9 @@
         "prepare:dir": "mkdir -p ./out",
         "prepare:bad-report": "yarn -s eslint -c index.js \"**/file-suites/*.bad.ts\" > ./out/eslint.bad-file.report.txt ; exit 0",
         "prepare:good-report": "yarn -s eslint -c index.js \"**/file-suites/*.good.ts\" > ./out/eslint.good-file.report.txt ; exit 0",
-        "pretest": "yarn prepare:dir && yarn prepare:bad-report && yarn prepare:good-report",
-        "test": "yarn -s jest --config ./jest.config.js"
+        "prepare:file-pattern": "yarn -s eslint -c index.js \"**/file-suites/file-pattern/**/*.ts\" > ./out/eslint.file-pattern.report.txt ; exit 0",
+        "prebuilld:test": "yarn prepare:dir && yarn prepare:bad-report && yarn prepare:good-report && yarn prepare:file-pattern",
+        "test": "yarn prebuilld:test && yarn -s jest --config ./jest.config.js"
     },
     "resolutions": {
         "eslint": "7.26.0"
@@ -37,6 +38,7 @@
         "@angular-eslint/eslint-plugin": "4.2.0",
         "@angular-eslint/eslint-plugin-template": "4.2.0",
         "@angular-eslint/template-parser": "4.2.0",
+        "@angular-ru/eslint-plugin": "15.0.0",
         "@types/eslint": "7.2.10",
         "@typescript-eslint/eslint-plugin": "4.22.1",
         "@typescript-eslint/parser": "4.22.1",
@@ -52,6 +54,8 @@
         "eslint-plugin-sonarjs": "0.7.0"
     },
     "peerDependencies": {
+        "@angular-ru/common": ">=15.0.0",
+        "@angular-ru/eslint-plugin": ">=15.0.0",
         "@angular/compiler": ">=8.0.0 <12.0.0",
         "@angular/core": ">=8.0.0 <12.0.0",
         "eslint": ">=6.8.0 <8.0.0",
