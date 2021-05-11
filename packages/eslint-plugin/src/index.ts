@@ -1,10 +1,8 @@
-import { EslintRule } from './interfaces/eslint-rule';
-import { noEnumSuffixRule } from './rules/no-enum-suffix-rule';
-import { noModelSuffixRule } from './rules/no-model-suffix-rule';
+import { EslintRules } from './interfaces/eslint-rules';
+import { noSuffixFile } from './rules/no-siffix-file/no-suffix-file';
 
-const RULES: EslintRule = {
-    'no-model-suffix': noModelSuffixRule(),
-    'no-enum-suffix': noEnumSuffixRule()
+const RULES: EslintRules = {
+    'no-suffix-file': noSuffixFile()
 };
 
 export { RULES as rules };

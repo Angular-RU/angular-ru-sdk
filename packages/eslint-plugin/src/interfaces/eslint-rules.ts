@@ -1,5 +1,5 @@
 import { Rule } from 'eslint';
 
-export interface EslintRule {
+export interface EslintRules {
     [name: string]: Rule.RuleModule;
 }

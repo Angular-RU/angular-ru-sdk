@@ -2,12 +2,9 @@
     "extends": "../tsconfig/tsconfig.json",
     "compilerOptions": {
         "baseUrl": "./",
-        "target": "es5",
         "outDir": "./lib",
-        "declaration": true,
         "module": "commonjs",
         "types": ["node"],
-        "lib": ["es2018", "dom"],
         "typeRoots": ["../../node_modules/@types", "./"],
         "paths": {
             "@angular-ru/common/*": ["../common/dist/library/*"]

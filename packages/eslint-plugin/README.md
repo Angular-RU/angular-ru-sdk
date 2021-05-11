@@ -24,8 +24,10 @@ Add to your `.eslintrc.json`:
 {
     "plugins": ["@angular-ru/eslint-plugin"],
     "rules": {
-        "@angular-ru/no-model-suffix": "error",
-        "@angular-ru/no-enum-suffix": "error"
+        "@angular-ru/no-suffix-file": [
+            "error",
+            { "fileEndsWithList": [".model.ts", ".enum.ts", ".interface.ts", ".interfaces.ts"] }
+        ]
     }
 }
 ```
