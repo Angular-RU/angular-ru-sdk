@@ -42,7 +42,6 @@
 
     <div
         observerView
-        #observerRoot
         cdkDropList
         #tableViewport
         class="table-grid"
@@ -77,7 +76,7 @@
                     #column
                     cdkDrag
                     observerView
-                    [observerRoot]="observerRoot"
+                    [observerRoot]="tableViewport"
                     observerRootMargin="0px 750px"
                     [cdkDragBoundary]="area"
                     class="table-grid__column"
