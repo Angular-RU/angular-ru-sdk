@@ -1,3 +1,11 @@
+#### 15.236.0 (2021-05-11)
+
+##### New Features
+
+-   **@angular-ru/eslint-config:** prohibited interface(s).ts
+    ([#599](https://github.com/Angular-RU/angular-ru-sdk/pull/599))
+    ([51ff4751](https://github.com/Angular-RU/angular-ru-sdk/commit/51ff47516230c95780a2f3e6d3098cef4a5c9687))
+
 #### 15.235.0 (2021-05-11)
 
 ##### New Features
