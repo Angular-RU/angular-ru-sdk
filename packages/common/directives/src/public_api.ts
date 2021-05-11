@@ -1,5 +1,7 @@
 export { AmountFormatDirective } from './amount-format/amount-format.directive';
-export { AmountFormatModule } from './amount-format/amount-format.module';
+export { AMOUNT_FORMAT_OPTIONS, DEFAULT_AMOUNT_OPTIONS } from './amount-format/amount-format.properties';
+export { AmountFormatDirectiveModule } from './amount-format/amount-format-directive.module';
+export { AmountOptions } from './amount-format/amount-options';
 export { ConvertCaseDirective } from './convert-case/convert-case.directive';
 export { ConvertCaseModule } from './convert-case/convert-case.module';
 export { DisableControlDirective } from './disable-control/disable-control.directive';

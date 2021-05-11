@@ -1,3 +1,35 @@
+### 11.05.2021 @angular-ru/common
+
+-   before
+
+```ts
+@NgModule({
+    imports: [AmountFormatModule]
+})
+export class AppModule {}
+```
+
+```html
+<input formControlName="disputedAmount" amount-format [max-digits]="0" [min-digits]="0" />
+```
+
+-   after
+
+```ts
+@NgModule({
+    imports: [AmountFormatDirectiveModule]
+})
+export class AppModule {}
+```
+
+```html
+<input
+    amountFormat
+    formControlName="disputedAmount"
+    [amountFormatOptions]="{ lang: 'ru-RU', formatOptions: { maximumFractionDigits: 0 }}"
+/>
+```
+
 ### 9.05.2021 @angular-ru/common
 
 ```ts
