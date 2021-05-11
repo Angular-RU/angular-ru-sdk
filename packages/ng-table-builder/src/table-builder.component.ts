@@ -32,8 +32,8 @@ import { CalculateRange, ColumnsSchema } from './interfaces/table-builder.extern
 import { RecalculatedStatus, TableSimpleChanges, TemplateKeys } from './interfaces/table-builder.internal';
 import { ContextMenuService } from './services/context-menu/context-menu.service';
 import { DraggableService } from './services/draggable/draggable.service';
-import { TableFilterType } from './services/filterable/filterable.interface';
 import { FilterableService } from './services/filterable/filterable.service';
+import { TableFilterType } from './services/filterable/table-filter-type';
 import { ResizableService } from './services/resizer/resizable.service';
 import { SelectionService } from './services/selection/selection.service';
 import { SortableService } from './services/sortable/sortable.service';

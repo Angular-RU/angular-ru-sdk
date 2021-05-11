@@ -1,6 +1,6 @@
 import { Any } from '@angular-ru/common/typings';
 
-import { EncodingType } from './encoding-type.enum';
+import { EncodingType } from './encoding-type';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 declare const CompressionStream: Any;

@@ -3,7 +3,7 @@ import { ControlValueInterceptor } from '@angular-ru/common/forms';
 import { trim } from '@angular-ru/common/string';
 import { checkValueIsFilled } from '@angular-ru/common/utils';
 
-import { SplitStringOptions } from './split-string-options.interface';
+import { SplitStringOptions } from './split-string-options';
 
 @Directive({
     selector: '[splitString]',

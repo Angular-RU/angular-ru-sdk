@@ -1,7 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { SafeType, SafeTypeOptions, SafeValueType } from './safe.interfaces';
+import { SafeType } from './safe-type';
+import { SafeTypeOptions } from './safe-type-options';
+import { SafeValueType } from './safe-value-type';
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {

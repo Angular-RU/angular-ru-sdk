@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/sdk",
-    "version": "15.231.1",
+    "version": "15.235.0",
     "private": true,
     "description": "Angular-RU SDK",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk#readme",
@@ -23,7 +23,7 @@
         "deploy": "lerna run deploy",
         "format": "yarn package:sort && yarn pretty:format --write",
         "postinstall": "ngcc --async && husky install && lerna run symlink",
-        "lint": "eslint \"**/*.ts\" --ignore-pattern typescript.bad.ts",
+        "lint": "yarn eslint \"**/*.ts\" --ignore-pattern **/file-suites/**",
         "package:lint": "yarn package:sort --check",
         "package:sort": "yarn sort-package-json \"package.json\" \"packages/*/package.json\"",
         "pretty:format": "yarn prettier \"**/*.{ts,html,css,scss,md,js,json}\"",
@@ -41,7 +41,7 @@
     "lint-staged": {
         "*.ts": [
             "yarn prettier --write",
-            "yarn eslint --fix --ignore-pattern \"typescript.bad.ts\""
+            "yarn eslint --fix --ignore-pattern **/file-suites/**"
         ],
         "*.{html,css,scss,md,js,json}": [
             "yarn prettier --write"

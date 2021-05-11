@@ -5,7 +5,7 @@ import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { TABLE_GLOBAL_OPTIONS } from '../../config/table-global-options';
 import { OrderedField } from '../../interfaces/table-builder.external';
 import { sortWorker } from './sort.worker';
-import { SortableMessage } from './sortable.interfaces';
+import { SortableMessage } from './sortable-message';
 
 @Injectable()
 export class SortableService<T> {

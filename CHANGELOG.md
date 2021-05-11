@@ -1,3 +1,59 @@
+#### 15.235.0 (2021-05-11)
+
+##### New Features
+
+-   **@angular-ru/eslint-plugin:** add custom eslint rules for projects
+    ([#535](https://github.com/Angular-RU/angular-ru-sdk/pull/535))
+    ([213f9e2d](https://github.com/Angular-RU/angular-ru-sdk/commit/213f9e2d6954828241bcd46cfc409ff538b19c74))
+
+#### 15.234.0 (2021-05-11)
+
+##### Build System / Dependencies
+
+-   **@angular-ru/eslint:** separate tsconfig files ([#594](https://github.com/Angular-RU/angular-ru-sdk/pull/594))
+    ([16a87856](https://github.com/Angular-RU/angular-ru-sdk/commit/16a87856f6a822796427600cd0497e54ef99eb1d))
+
+##### Continuous Integration
+
+-   add @schirbak as codeowner ([#598](https://github.com/Angular-RU/angular-ru-sdk/pull/598))
+    ([b49ab865](https://github.com/Angular-RU/angular-ru-sdk/commit/b49ab865c2a64ea824c442adb05550c3531b0149))
+
+##### New Features
+
+-   **@angular-ru/ng-table-builder:** add scrolling buffer
+    ([#595](https://github.com/Angular-RU/angular-ru-sdk/pull/595))
+    ([8d6a4b5c](https://github.com/Angular-RU/angular-ru-sdk/commit/8d6a4b5c972c535e302a39d24fd60a9362ed6050))
+
+#### 15.233.0 (2021-05-10)
+
+##### New Features
+
+-   **@angular-ru/prettier-config:** fix $schema ([#597](https://github.com/Angular-RU/angular-ru-sdk/pull/597))
+    ([ea35c5d0](https://github.com/Angular-RU/angular-ru-sdk/commit/ea35c5d09f4e208b825740acc5f4643d76024a25))
+-   **@angular-ru/renovate-config:** fix regexp ([#596](https://github.com/Angular-RU/angular-ru-sdk/pull/596))
+    ([e4a45ca7](https://github.com/Angular-RU/angular-ru-sdk/commit/e4a45ca74293bccede2927b700a33dd082ab76cd))
+
+#### 15.232.1 (2021-05-10)
+
+##### Build System / Dependencies
+
+-   update dependency eslint to v7.26.0 ([#590](https://github.com/Angular-RU/angular-ru-sdk/pull/590))
+    ([27cade13](https://github.com/Angular-RU/angular-ru-sdk/commit/27cade135fc0df42d115941819101d5cbe9d6d0d))
+
+#### 15.232.0 (2021-05-10)
+
+##### New Features
+
+-   update Jasmine ([#589](https://github.com/Angular-RU/angular-ru-sdk/pull/589))
+    ([7e59ae92](https://github.com/Angular-RU/angular-ru-sdk/commit/7e59ae9228fe439434b04b657eef0b837f790af0))
+
+#### 15.231.2 (2021-05-10)
+
+##### Build System / Dependencies
+
+-   update dependency prettier to v2.3.0 ([#591](https://github.com/Angular-RU/angular-ru-sdk/pull/591))
+    ([609170a2](https://github.com/Angular-RU/angular-ru-sdk/commit/609170a23714459589343178075df657afc289c1))
+
 #### 15.231.1 (2021-05-10)
 
 ##### Other Changes

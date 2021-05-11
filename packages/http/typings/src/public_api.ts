@@ -1,6 +1,6 @@
-export { HttpMethod } from './enums/http-method.enum';
-export { HttpStatusCode } from './enums/http-status-code.enum';
-export { RequestType } from './enums/request-type.enum';
+export { HttpMethod } from './enums/http-method';
+export { HttpStatusCode } from './enums/http-status-code';
+export { RequestType } from './enums/request-type';
 export { DataBeforeRequestOptions } from './interfaces/data-before-request-options';
 export { DataClientRequestOptions, DataHeadersParams } from './interfaces/data-client-request-options';
 export { DataHttpFailureEvent, DataHttpSuccessEvent } from './interfaces/data-http-client-events';

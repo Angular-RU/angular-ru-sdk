@@ -1,16 +1,18 @@
 #!/bin/bash
 
-echo "[INFO]: creating symlink..."
+PACKAGE_NAME="common"
 
+echo "[INFO]: creating symlink..."
 mkdir -p ../../node_modules/@angular-ru/
 cd ../../node_modules/@angular-ru/ || echo 'not exist ./node_modules/@angular-ru'
 
-if [ -d "../../packages/common/dist/library" ]
+if [ -d "../../packages/$PACKAGE_NAME/dist/library" ]
 then
-    echo "[INFO]: Directory ../../packages/common/dist/library exists."
-    rm -rf common
-    ln -s -f ../../packages/common/dist/library common
+    echo "[INFO]: Directory ../../packages/$PACKAGE_NAME/dist/library exists."
+    rm -rf "$PACKAGE_NAME"
+    ln -s -f "../../packages/$PACKAGE_NAME/dist/library" "$PACKAGE_NAME"
     echo '[INFO]: created symlink'
 else
-    echo "[ERROR]: Directory ../../packages/common/dist/library does not exists, skip create symlink, please run 'yarn lerna run build:lib --scope=@angular-ru/common' before"
+    echo "[ERROR]: Directory ../../packages/$PACKAGE_NAME/dist/library does not exists"
+    echo "skip create symlink, please run 'yarn lerna run build:lib --scope=@angular-ru/$PACKAGE_NAME' before"
 fi

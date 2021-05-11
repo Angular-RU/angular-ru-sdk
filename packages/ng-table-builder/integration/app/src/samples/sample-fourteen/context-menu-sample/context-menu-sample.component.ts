@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { TableBuilderComponent } from '@angular-ru/ng-table-builder';
 
-import { FilterStateEvent } from '../../../../../../src/services/filterable/filterable.interface';
+import { FilterStateEvent } from '../../../../../../src/services/filterable/filter-state-event';
 
 @Component({
     selector: 'context-menu-sample',
