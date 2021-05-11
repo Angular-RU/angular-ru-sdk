@@ -1,12 +1,13 @@
 const fs = require('fs');
 
-describe('[TEST]: Eslint', (): void => {
-    function ensureDistFile(type: string): string {
-        return fs.readFileSync(`./dist/eslint.${type}.report.txt`).toString();
+describe('[TEST]: Angular-RU eslint recommendations', (): void => {
+    function getInfoByReportFile(type: 'bad-file' | 'good-file' | 'file-pattern'): string {
+        return fs.readFileSync(`./out/eslint.${type}.report.txt`).toString();
     }
 
     it('check failed files', (): void => {
-        const bad: string = ensureDistFile('bad');
+        const bad: string = getInfoByReportFile('bad-file');
+        expect(bad.includes('73 problems (73 errors, 0 warnings)')).toEqual(true);
         expect(bad.includes(`Run autofix to sort these imports!`)).toEqual(true);
         expect(bad.includes(`Expected hello to have a type annotation`)).toEqual(true);
         expect(bad.includes('Missing accessibility modifier on class property hello')).toEqual(true);
@@ -88,7 +89,7 @@ describe('[TEST]: Eslint', (): void => {
     });
 
     it('check success files', (): void => {
-        const good: string = ensureDistFile('good');
+        const good: string = getInfoByReportFile('good-file');
         expect(good.length).toEqual(0);
     });
 });

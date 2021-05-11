@@ -1,7 +1,10 @@
-import { AfterViewInit, Directive, ElementRef, EventEmitter, NgZone, OnDestroy, Output } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, EventEmitter, Input, NgZone, OnDestroy, Output } from '@angular/core';
 
+// TODO: move this directive to common
 @Directive({ selector: '[observerView]' })
 export class ObserverViewDirective implements AfterViewInit, OnDestroy {
+    @Input() public readonly observerRoot?: HTMLElement;
+    @Input() public readonly observerRootMargin?: string;
     @Output() public readonly observeVisible: EventEmitter<boolean> = new EventEmitter(true);
     private observer: IntersectionObserver | null = null;
     private previousRation: number = 0.0;
@@ -18,7 +21,11 @@ export class ObserverViewDirective implements AfterViewInit, OnDestroy {
                         this.previousRation = entry.intersectionRatio;
                     });
                 },
-                { root: null, rootMargin: '0px 0px 0px 0px', threshold: [0] }
+                {
+                    root: this.observerRoot ?? null,
+                    rootMargin: this.observerRootMargin ?? '0px 0px 0px 0px',
+                    threshold: [0]
+                }
             );
 
             this.observer.observe(this.element.nativeElement);

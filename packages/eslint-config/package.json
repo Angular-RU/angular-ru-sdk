@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/eslint-config",
-    "version": "15.232.1",
+    "version": "15.234.0",
     "description": "Angular-RU package",
     "keywords": [
         "angular-ru",
@@ -23,7 +23,12 @@
         "README.md"
     ],
     "scripts": {
-        "test": "sh test.sh"
+        "clean": "rm -rf ./out",
+        "prepare:dir": "mkdir -p ./out",
+        "prepare:bad-report": "yarn -s eslint -c index.js \"**/file-suites/*.bad.ts\" > ./out/eslint.bad-file.report.txt ; exit 0",
+        "prepare:good-report": "yarn -s eslint -c index.js \"**/file-suites/*.good.ts\" > ./out/eslint.good-file.report.txt ; exit 0",
+        "pretest": "yarn prepare:dir && yarn prepare:bad-report && yarn prepare:good-report",
+        "test": "yarn -s jest --config ./jest.config.js"
     },
     "resolutions": {
         "eslint": "7.26.0"
