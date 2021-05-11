@@ -44,21 +44,21 @@ describe('[TEST]: Amount format directive', () => {
                 it('ngModel value is empty by ru-RU', () => {
                     directive.format();
                     expect(element.nativeElement!.value).toEqual('');
-                    expect(ngModelValue).toEqual('');
+                    expect(ngModelValue).toEqual(null);
                 });
 
                 it('set incorrect number value (ASD) to input by ru-RU', () => {
                     element.nativeElement!.value = 'ASD';
                     directive.format();
                     expect(element.nativeElement!.value).toEqual('');
-                    expect(ngModelValue).toEqual('');
+                    expect(ngModelValue).toEqual(null);
                 });
 
                 it('set incorrect number value (-500,000.000) to input by ru-RU', () => {
                     element.nativeElement!.value = '-500,000.000';
                     directive.format();
                     expect(element.nativeElement!.value).toEqual('');
-                    expect(ngModelValue).toEqual('');
+                    expect(ngModelValue).toEqual(null);
                 });
             });
 
@@ -180,14 +180,14 @@ describe('[TEST]: Amount format directive', () => {
                 it('ngModel value is empty by en-EU', () => {
                     directive.format();
                     expect(element.nativeElement!.value).toEqual('');
-                    expect(ngModelValue).toEqual('');
+                    expect(ngModelValue).toEqual(null);
                 });
 
                 it('set incorrect number value (ASD) to input by en-EU', () => {
                     element.nativeElement!.value = 'ASD';
                     directive.format();
                     expect(element.nativeElement!.value).toEqual('');
-                    expect(ngModelValue).toEqual('');
+                    expect(ngModelValue).toEqual(null);
                 });
 
                 it('set incorrect number value (-500 000,000) to input by en-EU', () => {
@@ -321,14 +321,14 @@ describe('[TEST]: Amount format directive', () => {
                 it('ngModel value is empty by de-DE', () => {
                     directive.format();
                     expect(element.nativeElement!.value).toEqual('');
-                    expect(ngModelValue).toEqual('');
+                    expect(ngModelValue).toEqual(null);
                 });
 
                 it('set incorrect number value (ASD) to input by de-DE', () => {
                     element.nativeElement!.value = 'ASD';
                     directive.format();
                     expect(element.nativeElement!.value).toEqual('');
-                    expect(ngModelValue).toEqual('');
+                    expect(ngModelValue).toEqual(null);
                 });
 
                 it('set incorrect number value (-500 000,000) to input by de-DE', () => {
@@ -462,14 +462,14 @@ describe('[TEST]: Amount format directive', () => {
                 it('ngModel value is empty by ja-JP', () => {
                     directive.format();
                     expect(element.nativeElement!.value).toEqual('');
-                    expect(ngModelValue).toEqual('');
+                    expect(ngModelValue).toEqual(null);
                 });
 
                 it('set incorrect number value (ASD) to input by ja-JP', () => {
                     element.nativeElement!.value = 'ASD';
                     directive.format();
                     expect(element.nativeElement!.value).toEqual('');
-                    expect(ngModelValue).toEqual('');
+                    expect(ngModelValue).toEqual(null);
                 });
 
                 it('set incorrect number value (-500 000,000) to input by ja-JP', () => {
@@ -600,28 +600,28 @@ describe('[TEST]: Amount format directive', () => {
                 // RU
                 directive.format();
                 expect(element.nativeElement!.value).toEqual('');
-                expect(ngModelValue).toEqual('');
+                expect(ngModelValue).toEqual(null);
 
                 // EN
                 directive.amountFormatOptions = { lang: 'en-EU' };
                 expect(element.nativeElement!.value).toEqual('');
-                expect(ngModelValue).toEqual('');
+                expect(ngModelValue).toEqual(null);
 
                 // DE
                 directive.amountFormatOptions = { lang: 'de-DE' };
                 expect(element.nativeElement!.value).toEqual('');
-                expect(ngModelValue).toEqual('');
+                expect(ngModelValue).toEqual(null);
 
                 // JP
                 directive.amountFormatOptions = { lang: 'ja-JP' };
                 expect(element.nativeElement!.value).toEqual('');
-                expect(ngModelValue).toEqual('');
+                expect(ngModelValue).toEqual(null);
 
                 // RU
                 element.nativeElement!.value = '';
                 directive.amountFormatOptions = { lang: 'ru-RU' };
                 expect(element.nativeElement!.value).toEqual('');
-                expect(ngModelValue).toEqual('');
+                expect(ngModelValue).toEqual(null);
             });
 
             it('support recalculate format by integer, float', () => {
@@ -776,13 +776,13 @@ describe('[TEST]: Amount format directive', () => {
 
             it('should be empty default value', () => {
                 expect(getInputViewValue()).toEqual('');
-                expect(getInputModelValue()).toEqual('');
+                expect(getInputModelValue()).toEqual(null);
             });
 
             it('should be reset wrong value', () => {
                 setInputViewValue('a');
                 expect(getInputViewValue()).toEqual('');
-                expect(getInputModelValue()).toEqual('');
+                expect(getInputModelValue()).toEqual(null);
             });
 
             it('should skip invalid values `10abc`', () => {
@@ -794,7 +794,7 @@ describe('[TEST]: Amount format directive', () => {
             it('should skip invalid values `10.20.30`', () => {
                 setInputViewValue('10.20.30');
                 expect(getInputViewValue()).toEqual('');
-                expect(getInputModelValue()).toEqual('');
+                expect(getInputModelValue()).toEqual(null);
             });
 
             it('validation correct value by Ru', () => {
@@ -806,7 +806,7 @@ describe('[TEST]: Amount format directive', () => {
             it('when given a value with negation', () => {
                 setInputViewValue('-');
                 expect(getInputViewValue()).toEqual('-');
-                expect(getInputModelValue()).toEqual('');
+                expect(getInputModelValue()).toEqual(null);
 
                 setInputViewValue('-1');
                 expect(getInputViewValue()).toEqual('-1');
@@ -902,15 +902,15 @@ describe('[TEST]: Amount format directive', () => {
             it('when setting an invalid value', () => {
                 setInputViewValue('.');
                 expect(getInputViewValue()).toEqual('');
-                expect(getInputModelValue()).toEqual('');
+                expect(getInputModelValue()).toEqual(null);
 
                 setInputViewValue(',');
                 expect(getInputViewValue()).toEqual('');
-                expect(getInputModelValue()).toEqual('');
+                expect(getInputModelValue()).toEqual(null);
 
                 setInputViewValue('!');
                 expect(getInputViewValue()).toEqual('');
-                expect(getInputModelValue()).toEqual('');
+                expect(getInputModelValue()).toEqual(null);
             });
 
             it('when less than one', () => {
@@ -945,13 +945,13 @@ describe('[TEST]: Amount format directive', () => {
 
             it('should be empty default value', () => {
                 expect(getInputViewValue()).toEqual('');
-                expect(getInputModelValue()).toEqual('');
+                expect(getInputModelValue()).toEqual(null);
             });
 
             it('should be reset wrong value', () => {
                 setInputViewValue('a');
                 expect(getInputViewValue()).toEqual('');
-                expect(getInputModelValue()).toEqual('');
+                expect(getInputModelValue()).toEqual(null);
             });
 
             it('should skip invalid values `10abc`', () => {
@@ -975,7 +975,7 @@ describe('[TEST]: Amount format directive', () => {
             it('when given a value with negation', () => {
                 setInputViewValue('-');
                 expect(getInputViewValue()).toEqual('-');
-                expect(getInputModelValue()).toEqual('');
+                expect(getInputModelValue()).toEqual(null);
 
                 setInputViewValue('-1');
                 expect(getInputViewValue()).toEqual('-1');
@@ -1071,15 +1071,15 @@ describe('[TEST]: Amount format directive', () => {
             it('when setting an invalid value', () => {
                 setInputViewValue('.');
                 expect(getInputViewValue()).toEqual('');
-                expect(getInputModelValue()).toEqual('');
+                expect(getInputModelValue()).toEqual(null);
 
                 setInputViewValue(',');
                 expect(getInputViewValue()).toEqual('');
-                expect(getInputModelValue()).toEqual('');
+                expect(getInputModelValue()).toEqual(null);
 
                 setInputViewValue('!');
                 expect(getInputViewValue()).toEqual('');
-                expect(getInputModelValue()).toEqual('');
+                expect(getInputModelValue()).toEqual(null);
             });
 
             it('when less than one', () => {

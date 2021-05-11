@@ -72,8 +72,8 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
     }
 
     public ngOnInit(): void {
-        this.setup();
-        this.listen();
+        this.setupElementType();
+        this.subscribeToElementEvents();
     }
 
     public ngAfterViewInit(): void {
@@ -81,10 +81,10 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
     }
 
     public ngOnDestroy(): void {
-        this.unlisten();
+        this.unsubscribeFromElementEvents();
     }
 
-    public listen(): void {
+    public subscribeToElementEvents(): void {
         this.ngZone?.runOutsideAngular((): void => {
             this.subscriptions.add(
                 fromEvent(this.element, 'input').subscribe((): void => {
@@ -96,41 +96,52 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
             this.subscriptions.add(
                 fromEvent(this.element, 'blur').subscribe((): void => {
                     this.isInsideAngularZone = NgZone.isInAngularZone();
-                    this.blurFormat();
+                    this.formatOnBlur();
                 })
             );
         });
     }
 
-    public unlisten(): void {
+    public unsubscribeFromElementEvents(): void {
         this.subscriptions.unsubscribe();
     }
 
-    public blurFormat(): void {
-        if (this.getLastSymbolAsFraction()) {
+    public formatOnBlur(): void {
+        if (this.lastSymbolIsFraction()) {
             this.element.value = removeLastSymbol(this.element.value) ?? '';
         }
     }
 
     public format(): void {
         const fraction: string = this.getFractionSeparator();
-        this.setCursorPointer(this.element.selectionStart);
-        const shouldBeSafeSelectionPosition: boolean = this.shouldBeSafeSelectionPosition();
+        this.cursorPointer = this.element.selectionStart ?? 0;
+        const isInSafeSelectionPosition: boolean = this.cursorPointer !== this.element.value.length;
         this.replaceAllInvalidSymbolsBeforeTranslation();
 
-        if (this.viewModelIsMinus()) {
-            this.resetModelValueWhenViewIsMinus();
+        if (this.viewModelIsOnlyMinus()) {
+            this.resetModelValue();
+            // Note: should be set custom view model value
+            // because when we trigger ngControl?.reset
+            // it's also reset view model
+            this.element.value = '-';
             return;
         }
 
         const numberValue: number = this.getNumberValueWithGaussRounded();
-        this.setModelValueByGaussRounded(numberValue);
+        this.setModelValueBy(numberValue);
 
         const stringValue: string = this.prepareConvertedToLocaleValue(numberValue, fraction);
 
+        // Note: we should reset view model value
+        // when user set invalid number value as `15,,,,,0` or `15.00.00.00.00`
         this.element.value = isNaN(this.ngControl?.value) ? '' : stringValue;
-        this.setSelectionRangeBy(shouldBeSafeSelectionPosition, stringValue);
+
+        this.setSelectionRangeBy(isInSafeSelectionPosition, stringValue);
         this.preventExpressionChangedAfter();
+    }
+
+    private resetModelValue<T>(value: T | null = null): void {
+        this.ngControl?.reset(value);
     }
 
     private replaceAllInvalidSymbolsBeforeTranslation(): void {
@@ -167,7 +178,7 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
     }
 
     private prepareConvertedToLocaleValue(numberValueWithGaussRounded: number, fraction: string): string {
-        const lastSymbolAsFraction: boolean = this.getLastSymbolAsFraction();
+        const lastSymbolAsFraction: boolean = this.lastSymbolIsFraction();
         let convertedToLocaleValue: string = this.getConvertedToLocaleString(numberValueWithGaussRounded);
 
         if (lastSymbolAsFraction) {
@@ -189,15 +200,16 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
         return convertedToLocaleValue.replace(/\s/g, ' ');
     }
 
-    private setModelValueByGaussRounded(numberValueWithGaussRounded: number): void {
-        this.ngControl?.reset(isNaN(numberValueWithGaussRounded) ? '' : numberValueWithGaussRounded);
+    private setModelValueBy(numberValue: number): void {
+        if (isNaN(numberValue)) {
+            this.resetModelValue();
+        } else {
+            this.resetModelValue(numberValue);
+        }
     }
 
-    private getConvertedToLocaleString(numberValueWithGaussRounded: number): string {
-        return (isNaN(numberValueWithGaussRounded) ? '' : numberValueWithGaussRounded).toLocaleString(
-            this.options.lang,
-            this.options.formatOptions
-        );
+    private getConvertedToLocaleString(numberValue: number): string {
+        return (isNaN(numberValue) ? '' : numberValue).toLocaleString(this.options.lang, this.options.formatOptions);
     }
 
     private getNumberValueWithGaussRounded(): number {
@@ -205,7 +217,7 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
         return gaussRound(toNumber(this.element.value, this.options.lang), maximumFractionDigits);
     }
 
-    private getLastSymbolAsFraction(): boolean {
+    private lastSymbolIsFraction(): boolean {
         return getLastSymbol(this.element.value) === this.getFractionSeparator();
     }
 
@@ -229,13 +241,8 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
         return value;
     }
 
-    private viewModelIsMinus(): boolean {
+    private viewModelIsOnlyMinus(): boolean {
         return this.element.value === '-';
-    }
-
-    private resetModelValueWhenViewIsMinus(): void {
-        this.ngControl?.reset('');
-        this.element.value = '-';
     }
 
     private getFractionSeparator(): string {
@@ -243,15 +250,7 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
     }
 
     private removeNonNumericSymbols(): string {
-        return this.viewModelIsMinus() ? this.element.value : removeNonNumericSymbols(this.element.value);
-    }
-
-    private setCursorPointer(position: number | null): void {
-        this.cursorPointer = position ?? 0;
-    }
-
-    private shouldBeSafeSelectionPosition(): boolean {
-        return this.cursorPointer !== this.element.value.length;
+        return this.viewModelIsOnlyMinus() ? this.element.value : removeNonNumericSymbols(this.element.value);
     }
 
     private setSelectionRangeBy(safePosition: boolean, value: string): void {
@@ -288,7 +287,7 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
         }
     }
 
-    private setup(): void {
+    private setupElementType(): void {
         this.el.nativeElement.setAttribute('type', 'text');
     }
 }
