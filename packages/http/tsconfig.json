@@ -1,28 +1,14 @@
 {
-    "extends": "../../tsconfig",
-    "angularCompilerOptions": {
-        "enableIvy": true,
-        "strictTemplates": true,
-        "fullTemplateTypeCheck": true,
-        "annotateForClosureCompiler": true,
-        "strictInjectionParameters": true,
-        "skipTemplateCodegen": false,
-        "preserveWhitespaces": true,
-        "skipMetadataEmit": false,
-        "disableTypeScriptVersionCheck": true
-    },
-    "compilerOptions": {
-        "rootDir": ".",
-        "baseUrl": "./",
-        "module": "esnext",
-        "outDir": "./dist/out-tsc",
-        "target": "es5",
-        "typeRoots": ["../../node_modules/@types", "./"],
-        "lib": ["es2018", "dom"],
-        "paths": {
-            "@angular-ru/common/*": ["../common/dist/library/*"],
-            "@angular-ru/http": ["./dist/library/*"],
-            "@angular-ru/http/*": ["./dist/library/*"]
+    "extends": "./tsconfig.base.json",
+    "references": [
+        {
+            "path": "./tsconfig.app.json"
+        },
+        {
+            "path": "./tsconfig.lib.json"
+        },
+        {
+            "path": "./tsconfig.spec.json"
         }
-    }
+    ]
 }

@@ -6,10 +6,10 @@ export function decodeJwt<T>(token: string | null): T {
 
     if (typeof token === 'string') {
         const base64Url: string = secondItem(token.split('.')) || '';
-        const base64: string = base64Url.replace('-', '+').replace('_', '/');
+        const base64: string = base64Url.replace(/-/g, '+').replace(/_/g, '/');
         const decodedStringValue: string = decodeURIComponent(escape(window.atob(base64))) || 'null';
         result = JSON.parse(decodedStringValue);
     }
 
-    return (result as Any) as T;
+    return result as Any as T;
 }

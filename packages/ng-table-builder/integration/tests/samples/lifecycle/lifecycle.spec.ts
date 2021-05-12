@@ -1,4 +1,4 @@
-import { Any, Fn } from '@angular-ru/common/typings';
+import { Any, Fn, PlainObject } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { NgxColumnComponent, NgxTableViewChangesService, TableBuilderComponent } from '@angular-ru/ng-table-builder';
 import { ApplicationRef, ChangeDetectorRef, ElementRef, NgZone, QueryList, SimpleChanges } from '@angular/core';
@@ -11,14 +11,12 @@ import { ResizableService } from '../../../../src/services/resizer/resizable.ser
 import { SelectionService } from '../../../../src/services/selection/selection.service';
 import { SortableService } from '../../../../src/services/sortable/sortable.service';
 import { TemplateParserService } from '../../../../src/services/template-parser/template-parser.service';
-import { UtilsService } from '../../../../src/services/utils/utils.service';
 import { TableSelectedItemsPipe } from '../../../../src/pipes/table-selected-items.pipe';
 
 describe('[TEST]: Lifecycle table', () => {
-    let table: TableBuilderComponent;
-    let sortable: SortableService;
-    let utils: UtilsService;
-    let draggable: DraggableService;
+    let table: TableBuilderComponent<PlainObject>;
+    let sortable: SortableService<PlainObject>;
+    let draggable: DraggableService<PlainObject>;
     let resizeService: ResizableService;
     let changes: SimpleChanges;
 
@@ -59,9 +57,8 @@ describe('[TEST]: Lifecycle table', () => {
         const zone: NgZone = mockNgZone as NgZone;
         const app: ApplicationRef = appRef as ApplicationRef;
         const view: NgxTableViewChangesService = new NgxTableViewChangesService();
-        utils = new UtilsService(zone);
 
-        const parser: TemplateParserService = new TemplateParserService();
+        const parser: TemplateParserService<PlainObject> = new TemplateParserService();
         draggable = new DraggableService(parser);
 
         resizeService = new ResizableService();
@@ -76,8 +73,6 @@ describe('[TEST]: Lifecycle table', () => {
                         return parser;
                     case NgZone:
                         return zone;
-                    case UtilsService:
-                        return utils;
                     case ResizableService:
                         return resizeService;
                     case SortableService:
@@ -94,8 +89,6 @@ describe('[TEST]: Lifecycle table', () => {
                                         return app;
                                     case WebWorkerThreadService:
                                         return worker;
-                                    case UtilsService:
-                                        return utils;
                                     case NgZone:
                                         return zone;
                                 }
@@ -213,7 +206,7 @@ describe('[TEST]: Lifecycle table', () => {
     }));
 
     it('should be correct template changes', fakeAsync(() => {
-        const templates: QueryList<NgxColumnComponent> = new QueryList();
+        const templates: QueryList<NgxColumnComponent<PlainObject>> = new QueryList();
         table.columnTemplates = templates;
         table.source = [];
 
@@ -253,7 +246,7 @@ describe('[TEST]: Lifecycle table', () => {
     }));
 
     it('should be correct template changes with check renderCount', fakeAsync(() => {
-        const templates: QueryList<NgxColumnComponent> = new QueryList();
+        const templates: QueryList<NgxColumnComponent<PlainObject>> = new QueryList();
         table.columnTemplates = templates;
         table.source = JSON.parse(JSON.stringify(data));
 
@@ -301,7 +294,7 @@ describe('[TEST]: Lifecycle table', () => {
     }));
 
     it('should be correct template changes query list', fakeAsync(() => {
-        const templates: QueryList<NgxColumnComponent> = new QueryList();
+        const templates: QueryList<NgxColumnComponent<PlainObject>> = new QueryList();
         table.columnTemplates = templates;
         table.source = [];
 

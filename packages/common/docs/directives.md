@@ -33,7 +33,7 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `<input amount-format placeholder="10000000" />` // 1 000 000
+    template: `<input amountFormat value="10000000" />` // 1 000 000
 })
 export class AppComponent {}
 ```
@@ -112,4 +112,45 @@ export class AppModule {}
     template: `<input trimInput placeholder="  Hello  " />` // 'Hello'
 })
 export class AppComponent {}
+```
+
+-   `SplitStringDirective, SplitStringModule`
+
+```ts
+import { SplitStringModule, SplitStringOptions } from '@angular-ru/common/directives';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ..
+    imports: [SplitStringModule]
+})
+export class AppModule {}
+
+@Component({
+    selector: 'test',
+    template: `
+        <form [formGroup]="form">
+            <input type="text" formControlName="input1" splitString" />
+            <input type="text" formControlName="input2" splitString [splitOptions]="splitStringOptions" />
+        </form>
+    `
+})
+class TestComponent {
+    public splitStringOptions?: Partial<SplitStringOptions> = { separator: /[,;\n+]/g, joinWith: ' + ' };
+    public form = this.fb.group({
+        input1: ['one', 'two'],
+        input2: ['three', 'four']
+    });
+    /**
+     * Native input1 value will be joined by default by comma ('one, two')
+     * and will be automatically splitted
+     * by default separator while user is typing.
+     * Default separator is /[,;\n]/g (comma, semicolon, line break)
+     *
+     * Native input2 value will be joined with ' + ' ('three + four')
+     * and will be splitted by specified separator /[,;\n+]/g
+     */
+
+    constructor(private readonly fb: FormBuilder) {}
+}
 ```

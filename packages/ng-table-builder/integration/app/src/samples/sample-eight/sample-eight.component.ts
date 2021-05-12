@@ -7,9 +7,8 @@ import {
     OnDestroy,
     OnInit
 } from '@angular/core';
-import { Any } from '@angular-ru/common/typings';
+import { Any, PlainObject } from '@angular-ru/common/typings';
 import { detectChanges } from '@angular-ru/common/utils';
-import { TableRow } from '@angular-ru/ng-table-builder';
 
 declare const hljs: Any;
 
@@ -75,7 +74,7 @@ function replaceAt(array: Any[], index: number, value: Any): Any[] {
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
-    public data: TableRow[] = [];
+    public data: PlainObject[] = [];
     public regenerate: boolean = false;
     private idInterval: number | null = null;
     private timeout: number | null = null;
@@ -100,13 +99,13 @@ export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
         window.clearInterval(this.idInterval!);
     }
 
-    public updateRow(row: TableRow, key: string, value: Any): void {
-        const newRow: TableRow = { ...row, [key]: value };
+    public updateRow(row: PlainObject, key: string, value: Any): void {
+        const newRow: PlainObject = { ...row, [key]: value };
         this.data = replaceAt(this.data, this.data.indexOf(row), newRow);
         detectChanges(this.cd);
     }
 
-    public asyncRow(row: TableRow, key: string, value: Any): void {
+    public asyncRow(row: PlainObject, key: string, value: Any): void {
         const time: number = 500;
         window.clearTimeout(this.timeout!);
         this.timeout = window.setTimeout((): void => this.updateRow(row, key, value), time);
@@ -123,7 +122,7 @@ export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
         const length: number = 1000;
         this.data = new Array(length).fill(0).map(
             // eslint-disable-next-line max-lines-per-function
-            (_: TableRow, index: number): Any => ({
+            (_: PlainObject, index: number): Any => ({
                 id: index,
                 symbol: COLORS[Math.round(Math.random() * (COLORS.length - 1))],
                 item:
@@ -145,7 +144,7 @@ export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
                 name:
                     NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
                     ' ' +
-                    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
+                    NAMES[Math.round(Math.random() * (NAMES.length - 1))]?.charAt(0) +
                     '.',
                 // eslint-disable-next-line @typescript-eslint/no-magic-numbers
                 weight: Math.round(Math.random() * 100).toString(),

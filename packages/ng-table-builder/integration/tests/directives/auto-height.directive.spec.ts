@@ -1,11 +1,11 @@
-import { Any, Fn } from '@angular-ru/common/typings';
+import { Any, Fn, PlainObject } from '@angular-ru/common/typings';
 import { ElementRef, NgZone } from '@angular/core';
 import { fakeAsync, tick } from '@angular/core/testing';
 
 import { AutoHeightDirective } from '../../../src/directives/auto-height.directive';
 
 describe('[TEST]: auto height', () => {
-    let directive: AutoHeightDirective;
+    let directive: AutoHeightDirective<PlainObject>;
     // @ts-ignore
     let recalculateDispatcher: Fn | null = null;
     let addedEvent: boolean = false;

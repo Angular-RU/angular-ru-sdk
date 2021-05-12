@@ -1,0 +1,33 @@
+{
+    "name": "@angular-ru/eslint-plugin",
+    "version": "15.236.0",
+    "description": "Angular-RU package",
+    "keywords": [
+        "angular-ru",
+        "angular",
+        "eslint-plugin",
+        "sdk"
+    ],
+    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/eslint-plugin-file-pattern#readme",
+    "bugs": {
+        "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
+    },
+    "license": "MIT",
+    "author": "angular-ru@yandex.ru",
+    "main": "lib/index.js",
+    "files": [
+        "lib",
+        "README.md"
+    ],
+    "scripts": {
+        "build:lib": "tsc -p ./tsconfig.json  && yarn symlink",
+        "symlink": "sh symlink.sh"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}

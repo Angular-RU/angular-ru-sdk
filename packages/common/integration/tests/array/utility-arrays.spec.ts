@@ -5,6 +5,11 @@ import {
     isFilledList,
     isMultipleList,
     isSingleList,
+    hasManyItems,
+    hasAtMostOneItem,
+    hasItems,
+    hasNoItems,
+    hasOneItem,
     partition,
     secondItem,
     thirdItem
@@ -43,6 +48,51 @@ describe('[TEST]: Array utility', () => {
         expect(isFilledList([])).toEqual(false);
         expect(isFilledList([1])).toEqual(true);
         expect(isFilledList([1, 2])).toEqual(true);
+    });
+
+    it('has items', () => {
+        expect(hasItems([1])).toEqual(true);
+        expect(hasItems([1, 2, 3])).toEqual(true);
+        expect(hasItems([])).toEqual(false);
+        expect(hasItems(null)).toEqual(false);
+        expect(hasItems(undefined)).toEqual(false);
+        expect(hasItems()).toEqual(false);
+    });
+
+    it('has no items', () => {
+        expect(hasNoItems([1])).toEqual(false);
+        expect(hasNoItems([1, 2, 3])).toEqual(false);
+        expect(hasNoItems([])).toEqual(true);
+        expect(hasNoItems(null)).toEqual(true);
+        expect(hasNoItems(undefined)).toEqual(true);
+        expect(hasNoItems()).toEqual(true);
+    });
+
+    it('has one item', () => {
+        expect(hasOneItem([1])).toEqual(true);
+        expect(hasOneItem([1, 2, 3])).toEqual(false);
+        expect(hasOneItem([])).toEqual(false);
+        expect(hasOneItem(null)).toEqual(false);
+        expect(hasOneItem(undefined)).toEqual(false);
+        expect(hasOneItem()).toEqual(false);
+    });
+
+    it('has many items', () => {
+        expect(hasManyItems([1])).toEqual(false);
+        expect(hasManyItems([1, 2, 3])).toEqual(true);
+        expect(hasManyItems([])).toEqual(false);
+        expect(hasManyItems(null)).toEqual(false);
+        expect(hasManyItems(undefined)).toEqual(false);
+        expect(hasManyItems()).toEqual(false);
+    });
+
+    it('has at most one item', () => {
+        expect(hasAtMostOneItem([1])).toEqual(true);
+        expect(hasAtMostOneItem([1, 2, 3])).toEqual(false);
+        expect(hasAtMostOneItem([])).toEqual(true);
+        expect(hasAtMostOneItem(null)).toEqual(true);
+        expect(hasAtMostOneItem(undefined)).toEqual(true);
+        expect(hasAtMostOneItem()).toEqual(true);
     });
 
     it('is first item', () => {

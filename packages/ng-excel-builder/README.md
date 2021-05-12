@@ -1,6 +1,6 @@
 # Excel Builder
 
-> Small library for generate xls files via Webworker
+> Small library for generate xls files via web worker
 
 ```ts
 import { NgModule } from '@angular/core';
@@ -117,11 +117,11 @@ export class AppComponent {
             worksheets: [
                 {
                     table: this.data,
-                    titleKey: 'PATH_TO_KEYS',
+                    prefixKeyForTranslate: 'PATH_TO_KEYS',
                     worksheetName: 'worksheet name'
                 }
             ],
-            translateColumns: {
+            translatedKeys: {
                 PATH_TO_KEYS: {
                     id: 'ID',
                     name: 'Name',
@@ -137,7 +137,7 @@ export class AppComponent {
             worksheets: [
                 {
                     table: this.data,
-                    titleKey: 'APP_KEYS.MODELS',
+                    prefixKeyForTranslate: 'APP_KEYS.MODELS',
                     worksheetName: 'APP_KEYS.WORKSHEET_NAME'
                 }
             ]
@@ -149,12 +149,12 @@ export class AppComponent {
 -   `filename` - the generated file will be named like this.
 -   `worksheets` - array of objects with your data.
 
-    -   `titleKey` will be used in translate function.
+    -   `prefixKeyForTranslate` will be used in translate function.
     -   `worksheetName` - name of the sheet.
-    -   `table` is an array of objects, which contains data for a sheet.
+    -   `entries` is an array of objects, which contains data for a sheet.
 
--   `translateColumns` - it's a dictionary for you column headers, you can leave it empty and then the column keys will
-    be generated as is.
+-   `translatedKeys` - it's a dictionary for you column headers, you can leave it empty and then the column keys will be
+    generated as is.
 
 ### Custom translate service
 

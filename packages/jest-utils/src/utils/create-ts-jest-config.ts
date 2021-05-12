@@ -23,8 +23,8 @@ import {
     DEFAULT_VERBOSE,
     DEFAULT_WATCH
 } from '../constants/configurations';
-import { JestConfigOptions } from '../interfaces/jest-config.interface';
-import { JestModuleMapper } from '../interfaces/jest-module-mapper.interface';
+import { JestConfigOptions } from '../interfaces/jest-config-options';
+import { JestModuleMapper } from '../interfaces/jest-module-mapper';
 
 // eslint-disable-next-line sonarjs/cognitive-complexity,complexity,max-lines-per-function
 export function createTsJestConfig(options: JestConfigOptions): Config.InitialOptions {
@@ -44,9 +44,10 @@ export function createTsJestConfig(options: JestConfigOptions): Config.InitialOp
 
     const compilerOptions: CompilerOptions = exposeTsCompilerOptionsByTsConfig(resolvedTsConfigPath);
     const prefix: string = `<rootDir>/${compilerOptions?.baseUrl ?? ''}/`.replace(/\.\//g, '/').replace(/\/\/+/g, '/');
-    const rootModuleNameMapper:
-        | { [key: string]: string | string[] }
-        | undefined = tsJestUtils.pathsToModuleNameMapper(compilerOptions?.paths ?? {}, { prefix });
+    const rootModuleNameMapper: { [key: string]: string | string[] } | undefined = tsJestUtils.pathsToModuleNameMapper(
+        compilerOptions?.paths ?? {},
+        { prefix }
+    );
 
     const moduleNameMapper: JestModuleMapper = options.jestConfig?.moduleNameMapper ?? rootModuleNameMapper;
 

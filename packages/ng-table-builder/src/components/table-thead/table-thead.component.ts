@@ -5,7 +5,7 @@ import { PlainObjectOf, SortOrderType } from '@angular-ru/common/typings';
 import { ColumnsSchema } from '../../interfaces/table-builder.external';
 import { ResizeEvent } from '../../interfaces/table-builder.internal';
 import { FilterableService } from '../../services/filterable/filterable.service';
-import { OVERLOAD_WIDTH_TABLE_HEAD_CELL } from '../../symbols';
+import { OVERLOAD_WIDTH_TABLE_HEAD_CELL } from '../../table-builder.properties';
 
 @Component({
     selector: 'table-thead',
@@ -14,24 +14,23 @@ import { OVERLOAD_WIDTH_TABLE_HEAD_CELL } from '../../symbols';
     encapsulation: ViewEncapsulation.None,
     animations: [fadeInLinearAnimation]
 })
-export class TableTheadComponent {
+export class TableTheadComponent<T> {
     @Input('header-top') public headerTop: number | null = null;
     @Input('column-width') public columnWidth: number = 0;
     @Input('head-height') public headHeight: string | number | null = null;
     @Input('sortable-definition') public sortableDefinition: PlainObjectOf<SortOrderType> = {};
     @Input('sortable-position') public positionMap: PlainObjectOf<number> = {};
     @Input('sortable-count') public sortableCount: number = 0;
-    @Input('filterable-definition') public filterableDefinition:
-        | PlainObjectOf<string>
-        | ReadonlyMap<unknown, unknown> = {};
+    @Input('filterable-definition') public filterableDefinition: PlainObjectOf<string> | ReadonlyMap<unknown, unknown> =
+        {};
     @Input('client-row-height') public clientRowHeight: number | null = null;
     @Input('column-schema') public columnSchema: ColumnsSchema | null = null;
-    @Output() public resize: EventEmitter<ResizeEvent> = new EventEmitter();
-    @Output() public sortByKey: EventEmitter<string> = new EventEmitter();
+    @Output() public readonly resizing: EventEmitter<ResizeEvent> = new EventEmitter();
+    @Output() public readonly sortByKey: EventEmitter<string> = new EventEmitter();
     public orderType: typeof SortOrderType = SortOrderType;
     public limit: number = OVERLOAD_WIDTH_TABLE_HEAD_CELL;
 
-    constructor(protected readonly filterable: FilterableService) {}
+    constructor(protected readonly filterable: FilterableService<T>) {}
 
     public openFilter(key: string | null | undefined, event: MouseEvent): void {
         if (key) {

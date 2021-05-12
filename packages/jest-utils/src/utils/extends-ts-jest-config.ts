@@ -2,7 +2,7 @@ import { checkIsNodeEnvironment } from '@angular-ru/common/node.js';
 import { Any } from '@angular-ru/common/typings';
 import type { Config } from '@jest/types';
 
-import { JestCombinerOptions } from '../interfaces/jest-combiner-options.interface';
+import { JestCombinerOptions } from '../interfaces/jest-combiner-options';
 
 checkIsNodeEnvironment();
 

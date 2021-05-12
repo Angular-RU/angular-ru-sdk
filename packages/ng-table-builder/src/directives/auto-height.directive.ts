@@ -15,19 +15,18 @@ import { fromEvent, Subject } from 'rxjs';
 import { delay, takeUntil } from 'rxjs/operators';
 
 import { TABLE_GLOBAL_OPTIONS } from '../config/table-global-options';
-import { TableRow } from '../interfaces/table-builder.external';
 import { BoxView, DynamicHeightOptions } from '../interfaces/table-builder.internal';
-import { BORDER_TOB_WITH_BOTTOM, HEAD_TOP, SCROLLBAR_SIZE } from '../symbols';
+import { BORDER_TOB_WITH_BOTTOM, HEAD_TOP, SCROLLBAR_SIZE } from '../table-builder.properties';
 
 const MIN_RESIZE_DELAY: number = 500;
 const RECALCULATE_HEIGHT: number = 100;
 
 @Directive({ selector: '[autoHeight]' })
-export class AutoHeightDirective implements OnInit, OnChanges, OnDestroy {
+export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
     @Input() public autoHeight: Partial<DynamicHeightOptions> = {};
     @Input() public tableViewport: Partial<HTMLDivElement> = {};
-    @Input() public sourceRef: TableRow[] = [];
-    @Output() public recalculatedHeight: EventEmitter<void> = new EventEmitter(true);
+    @Input() public sourceRef: T[] = [];
+    @Output() public readonly recalculatedHeight: EventEmitter<void> = new EventEmitter(true);
     private destroy$: Subject<boolean> = new Subject<boolean>();
     private readonly minHeight: number = 0;
     private useOnlyAutoViewPort: boolean = false;

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 
-import { TableContent } from '../common/table-content';
+import { TableContentDirective } from '../../directives/table-content.directive';
 
 @Component({
     selector: 'ngx-header',
@@ -8,4 +8,4 @@ import { TableContent } from '../common/table-content';
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })
-export class NgxHeaderComponent extends TableContent {}
+export class NgxHeaderComponent extends TableContentDirective {}

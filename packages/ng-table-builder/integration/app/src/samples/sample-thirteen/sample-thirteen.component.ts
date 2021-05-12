@@ -1,6 +1,6 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
-import { Any } from '@angular-ru/common/typings';
-import { TableEvent, TableRow } from '@angular-ru/ng-table-builder';
+import { Any, PlainObject } from '@angular-ru/common/typings';
+import { TableEvent } from '@angular-ru/ng-table-builder';
 import { ToastrService } from 'ngx-toastr';
 
 declare const hljs: Any;
@@ -13,7 +13,7 @@ declare const hljs: Any;
     encapsulation: ViewEncapsulation.None
 })
 export class SampleThirteenComponent implements AfterViewInit {
-    public data: TableRow[] = [
+    public data: PlainObject[] = [
         {
             id: 1,
             name: 'single',
@@ -48,12 +48,12 @@ export class SampleThirteenComponent implements AfterViewInit {
         });
     }
 
-    public rowOnClick(event: TableEvent): void {
+    public rowOnClick(event: TableEvent<PlainObject, string>): void {
         const space: number = 4;
         this.toast.success(JSON.stringify(event, null, space), 'OnClick', { timeOut: 2000, onActivateTick: true });
     }
 
-    public rowDblClick(event: TableEvent): void {
+    public rowDblClick(event: TableEvent<PlainObject, string>): void {
         const space: number = 4;
         this.toast.success(JSON.stringify(event, null, space), 'DblClick', { timeOut: 2000, onActivateTick: true });
     }

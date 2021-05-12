@@ -3,6 +3,7 @@
     "lib": {
         "entryFile": "./src/public_api.ts",
         "umdModuleIds": {
+            "@ngx-translate/core": "ngx-translate-core",
             "@angular-ru/common/typings": "angular-ru-common-typings",
             "@angular-ru/common/utils": "angular-ru-common-utils",
             "@angular-ru/common/string": "angular-ru-common-string"

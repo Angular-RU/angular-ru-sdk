@@ -1,8 +1,14 @@
-const { defaults: tsjPreset } = require('ts-jest/presets');
-const path = require('path');
+const createTsJestConfig = require('../jest-utils/lib/index').createTsJestConfig;
 
-module.exports = {
-    preset: 'ts-jest',
-    rootDir: path.resolve(),
-    transform: tsjPreset.transform
-};
+module.exports = createTsJestConfig({
+    tsConfig: './tsconfig.spec.json',
+    jestConfig: {
+        rootDir: '.',
+        cacheDirectory: '../../.cache',
+        displayName: '@angular-ru/eslint-config',
+        modulePathIgnorePatterns: ['<rootDir>/dist/'],
+        setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
+        testMatch: ['<rootDir>/integration/tests/**/*.spec.ts'],
+        collectCoverageFrom: ['<rootDir>/**/*.ts', '!<rootDir>/integration/**', '!<rootDir>/dist/**']
+    }
+});

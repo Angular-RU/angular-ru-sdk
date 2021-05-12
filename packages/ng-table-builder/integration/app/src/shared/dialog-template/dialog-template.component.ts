@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
@@ -7,10 +7,12 @@ type AnyType = any;
 
 @Component({
     selector: 'dialog-template',
-    templateUrl: './dialog-template.template.html'
+    templateUrl: './dialog-template.template.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DialogTemplateComponent implements OnInit {
     public form: FormGroup | null = null;
+
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: AnyType,
         public dialogRef: MatDialogRef<unknown>,

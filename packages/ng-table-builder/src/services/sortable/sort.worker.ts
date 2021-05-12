@@ -1,10 +1,10 @@
 import { Any, PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
 
-import { TableRow } from '../../interfaces/table-builder.external';
-import { SortableMessage } from './sortable.interfaces';
+import { SortableMessage } from './sortable-message';
 
+// TODO: should be refactor for decomposition web workers
 // eslint-disable-next-line max-lines-per-function
-export function sortWorker(message: SortableMessage): TableRow[] {
+export function sortWorker<T>(message: SortableMessage<T>): T[] {
     // eslint-disable-next-line
     enum OrderType {
         DESC = 'desc',
@@ -25,7 +25,7 @@ export function sortWorker(message: SortableMessage): TableRow[] {
     }
 
     class Sortable {
-        public static sortByKeys(data: TableRow[], keys: PlainObjectOf<OrderType>): Any[] {
+        public static sortByKeys(data: T[], keys: PlainObjectOf<OrderType>): Any[] {
             const countKeys: number = Object.keys(keys).length;
 
             if (!countKeys) {
@@ -44,7 +44,7 @@ export function sortWorker(message: SortableMessage): TableRow[] {
             while (sorted === 0 && ix < countKeys) {
                 const key: string | null = Sortable.observeKey(matches, ix);
                 if (key) {
-                    const depth: number = matches[key];
+                    const depth: number | undefined = matches[key];
                     sorted = Sortable.deepSort(key, a, b, depth);
                     ix++;
                 }
@@ -73,7 +73,7 @@ export function sortWorker(message: SortableMessage): TableRow[] {
         }
 
         // eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
-        private static deepSort(key: string, leftHand: Any, rightHand: Any, depth: number): number {
+        private static deepSort(key: string, leftHand: Any, rightHand: Any, depth: number | undefined): number {
             const a: Any = getValueByPath(leftHand, key);
             const b: Any = getValueByPath(rightHand, key);
             return this.shallowSort(a, b, depth);

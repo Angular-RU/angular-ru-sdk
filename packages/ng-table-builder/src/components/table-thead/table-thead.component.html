@@ -80,7 +80,7 @@
         <div
             class="table-grid__column--resize"
             *ngIf="columnSchema?.isModel && columnSchema?.resizable"
-            (mousedown)="resize.emit({ event: $event, key: columnSchema?.key! })"
+            (mousedown)="resizing.emit({ event: $event, key: columnSchema?.key! })"
         >
             <div class="table-grid__column--resize--line"></div>
         </div>

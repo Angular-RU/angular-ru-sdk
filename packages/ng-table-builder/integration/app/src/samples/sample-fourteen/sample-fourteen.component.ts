@@ -8,8 +8,8 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Any } from '@angular-ru/common/typings';
-import { TableBuilderComponent, TableRow } from '@angular-ru/ng-table-builder';
+import { Any, PlainObject } from '@angular-ru/common/typings';
+import { TableBuilderComponent } from '@angular-ru/ng-table-builder';
 
 import { MocksGenerator } from '../../../../tests/helpers/utils/mocks-generator';
 import { CodeDialogComponent } from '../../shared/dialog/code-dialog.component';
@@ -42,15 +42,15 @@ declare const hljs: Any;
 })
 export class SampleFourteenComponent implements OnInit, AfterViewInit {
     @ViewChild('table', { static: false })
-    public table!: TableBuilderComponent;
+    public table!: TableBuilderComponent<PlainObject>;
 
-    public data: TableRow[] = [];
+    public data: PlainObject[] = [];
     constructor(public readonly dialog: MatDialog, private readonly cd: ChangeDetectorRef) {}
 
     public ngOnInit(): void {
         const rows: number = 10000;
         const cols: number = 59;
-        MocksGenerator.generator(rows, cols).then((data: TableRow[]): void => {
+        MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => {
             this.data = data;
             this.cd.detectChanges();
         });

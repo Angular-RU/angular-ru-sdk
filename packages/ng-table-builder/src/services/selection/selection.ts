@@ -1,12 +1,12 @@
 import { PlainObjectOf } from '@angular-ru/common/typings';
 
-import { ProduceDisableFn, TableRow } from '../../interfaces/table-builder.external';
+import { ProduceDisableFn } from '../../interfaces/table-builder.external';
 import { RowId } from '../../interfaces/table-builder.internal';
 
-export class SelectionMap {
+export class SelectionMap<T> {
     public isAll: boolean = false;
     public entries: PlainObjectOf<boolean> = {};
-    public produceDisableFn: ProduceDisableFn = null;
+    public produceDisableFn: ProduceDisableFn<T> = null;
     private readonly map: Map<RowId, boolean> = new Map<RowId, boolean>();
 
     public get size(): number {
@@ -36,7 +36,7 @@ export class SelectionMap {
         return key ? this.map.get(key) ?? false : false;
     }
 
-    public select(key: RowId, row: TableRow, emit: boolean): boolean {
+    public select(key: RowId, row: T, emit: boolean): boolean {
         if (this.produceDisableFn && this.produceDisableFn(row)) {
             return false;
         }
@@ -50,7 +50,7 @@ export class SelectionMap {
         return true;
     }
 
-    public toggle(key: string | number, row: TableRow, emit: boolean): void {
+    public toggle(key: string | number, row: T, emit: boolean): void {
         if (this.has(key)) {
             this.delete(key, emit);
         } else {

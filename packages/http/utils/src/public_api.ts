@@ -1,10 +1,11 @@
+export { buildUrl } from './build-url';
 export { ensurePathByPathVariables } from './ensure-path-by-path-variables';
 export { getHttpHeader } from './get-http-header';
 export { getHttpParams } from './get-http-params';
 export { getPathWithoutQueryParams } from './get-path-without-params';
-export { getUrlSegments } from './get-url-segments';
 export { isAbsolutePath } from './is-absolute-path';
 export { isLocalhost } from './is-localhost';
+export { makeUrlSegments } from './make-url-segments';
 export { parseQueryParams } from './parse-query-params';
 export { replaceDoubleSlash } from './replace-double-slash';
-export { urlParse } from './url-parse';
+export { replaceLeadingAndTrailingSlashes } from './replace-leading-and-trailing-slashes';

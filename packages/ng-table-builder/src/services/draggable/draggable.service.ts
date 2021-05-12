@@ -5,14 +5,14 @@ import { ColumnsSchema } from '../../interfaces/table-builder.external';
 import { TemplateParserService } from '../template-parser/template-parser.service';
 
 @Injectable()
-export class DraggableService {
-    constructor(private readonly parser: TemplateParserService) {}
+export class DraggableService<T> {
+    constructor(private readonly parser: TemplateParserService<T>) {}
 
     private get columns(): ColumnsSchema[] {
         return this.parser.schema?.columns ?? [];
     }
 
-    public drop(previousKey: string, currentKey: string): void {
+    public drop(previousKey: string | undefined, currentKey: string | undefined): void {
         const previousIndex: number = this.columns.findIndex(
             (column: ColumnsSchema): boolean => column.key === previousKey
         );
@@ -23,8 +23,13 @@ export class DraggableService {
 
         if (this.canDropped(previousIndex, currentIndex)) {
             if (currentIndex === this.columns.length - 1) {
-                this.columns[currentIndex].width = this.columns[previousIndex].width;
-                this.columns[previousIndex].width = null;
+                const currentColumn: ColumnsSchema | undefined = this.columns[currentIndex];
+                const previousColumn: ColumnsSchema | undefined = this.columns[previousIndex];
+
+                if (currentColumn && previousColumn) {
+                    currentColumn.width = previousColumn.width;
+                    previousColumn.width = null;
+                }
             }
 
             moveItemInArray(this.columns, previousIndex, currentIndex);
@@ -32,12 +37,18 @@ export class DraggableService {
     }
 
     public canDropped(previousIndex: number, currentIndex: number): boolean {
-        const previous: ColumnsSchema = this.columns[previousIndex];
-        const current: ColumnsSchema = this.columns[currentIndex];
-        const previousIsDraggable: boolean = previous.draggable;
-        const currentIsDraggable: boolean = current.draggable;
-        const isSticky: boolean =
-            previous.stickyLeft || current.stickyLeft || previous.stickyRight || current.stickyRight;
+        const previous: ColumnsSchema | undefined = this.columns[previousIndex];
+        const current: ColumnsSchema | undefined = this.columns[currentIndex];
+
+        const previousIsDraggable: boolean = !!previous?.draggable;
+        const currentIsDraggable: boolean = !!current?.draggable;
+        const isSticky: boolean = !!(
+            previous?.stickyLeft ||
+            current?.stickyLeft ||
+            previous?.stickyRight ||
+            current?.stickyRight
+        );
+
         return previousIsDraggable && currentIsDraggable && !isSticky;
     }
 }

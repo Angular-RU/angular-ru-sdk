@@ -76,6 +76,8 @@
                     #column
                     cdkDrag
                     observerView
+                    [observerRoot]="tableViewport"
+                    observerRootMargin="0px 750px"
                     [cdkDragBoundary]="area"
                     class="table-grid__column"
                     *ngIf="schema.isVisible"
@@ -118,7 +120,7 @@
                             [filterable-definition]="filterable.definition"
                             [client-row-height]="clientRowHeight"
                             [head-height]="headLineHeight"
-                            (resize)="resizeColumn($event, column)"
+                            (resizing)="resizeColumn($event, column)"
                             (sortByKey)="sortByKey($event)"
                             (mouseenter)="enableDragging(schema.key)"
                         >

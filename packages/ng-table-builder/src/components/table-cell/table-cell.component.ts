@@ -10,7 +10,7 @@ import {
 import { fromEvent, Subscription } from 'rxjs';
 
 import { TABLE_GLOBAL_OPTIONS } from '../../config/table-global-options';
-import { ColumnsSchema, ImplicitContext, TableRow, ViewPortInfo } from '../../interfaces/table-builder.external';
+import { ColumnsSchema, ImplicitContext, ViewPortInfo } from '../../interfaces/table-builder.external';
 import { trim } from '../../operators/trim';
 
 const TIME_IDLE: number = 1500;
@@ -21,8 +21,8 @@ const TIME_IDLE: number = 1500;
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })
-export class TableCellComponent implements OnDestroy {
-    @Input() public item: TableRow | null = null;
+export class TableCellComponent<T> implements OnDestroy {
+    @Input() public item: T | null = null;
     @Input() public index: number | null = null;
     @Input() public parent: HTMLDivElement | null = null;
     @Input() public isRendered: boolean = false;
@@ -72,6 +72,10 @@ export class TableCellComponent implements OnDestroy {
         }
 
         window.clearInterval(this.timeoutShowedFrameId!);
+    }
+
+    public $castKey(key: string | null | undefined): keyof T {
+        return key as keyof T;
     }
 
     private isEllipsisActive(element: HTMLElement): boolean {

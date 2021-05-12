@@ -33,15 +33,13 @@ export class GuideComponent {
     public markFavorite(favorite: Favorite): void {
         this.zone.runOutsideAngular((): void => {
             setTimeout((): void => {
-                this.favorites = this.favorites.map(
-                    (item: Favorite): Favorite => {
-                        if (favorite.id === item.id) {
-                            return { ...favorite, isMarked: !favorite.isMarked };
-                        }
-
-                        return item;
+                this.favorites = this.favorites.map((item: Favorite): Favorite => {
+                    if (favorite.id === item.id) {
+                        return { ...favorite, isMarked: !favorite.isMarked };
                     }
-                );
+
+                    return item;
+                });
                 this.cd.detectChanges();
                 // eslint-disable-next-line @typescript-eslint/no-magic-numbers
             }, 100);

@@ -1,23 +1,23 @@
-import { Injectable, isDevMode, NgZone, OnDestroy } from '@angular/core';
-import { Fn, PlainObjectOf, PrimaryKey } from '@angular-ru/common/typings';
+import { Injectable, NgZone, OnDestroy } from '@angular/core';
+import { Any, Fn, PlainObjectOf, PrimaryKey } from '@angular-ru/common/typings';
 import { checkValueIsEmpty, isNil } from '@angular-ru/common/utils';
 import { Subject } from 'rxjs';
 
-import { ProduceDisableFn, TableRow } from '../../interfaces/table-builder.external';
+import { ProduceDisableFn } from '../../interfaces/table-builder.external';
 import { KeyType, RowId, SelectionStatus } from '../../interfaces/table-builder.internal';
 import { SelectionMap } from './selection';
 import { SelectionRange } from './selection-range';
 
 @Injectable()
-export class SelectionService implements OnDestroy {
-    public selectionModel: SelectionMap = new SelectionMap();
+export class SelectionService<T> implements OnDestroy {
+    public selectionModel: SelectionMap<T> = new SelectionMap();
     public range: SelectionRange = new SelectionRange();
     public selectionStart: SelectionStatus = { status: false };
     public primaryKey: string = PrimaryKey.ID;
     public selectionTaskIdle: number | null = null;
     public onChanges: Subject<void> = new Subject<void>();
     public selectionModeIsEnabled: boolean = false;
-    public originRows: TableRow[] | null = null;
+    public rows: T[] | null = null;
     private readonly handler: PlainObjectOf<Fn> = {};
 
     constructor(private readonly ngZone: NgZone) {}
@@ -32,12 +32,12 @@ export class SelectionService implements OnDestroy {
         this.removeListenerByType(KeyType.KEYUP);
     }
 
-    public setProducerDisableFn(producer: ProduceDisableFn): void {
+    public setProducerDisableFn(producer: ProduceDisableFn<T>): void {
         this.selectionModel.produceDisableFn = producer;
     }
 
     public ngOnDestroy(): void {
-        this.originRows = null;
+        this.rows = null;
         this.unListenShiftKey();
     }
 
@@ -48,14 +48,14 @@ export class SelectionService implements OnDestroy {
         this.onChanges.next();
     }
 
-    public toggleAll(rows: TableRow[] | null): void {
+    public toggleAll(rows: T[] | null): void {
         let selectedSize: number | null = null;
         window.clearInterval(this.selectionTaskIdle!);
 
         if (this.selectionModel.isAll) {
             this.selectionModel.clear();
         } else {
-            rows?.forEach((row: TableRow): void => {
+            rows?.forEach((row: T): void => {
                 const selected: boolean = this.selectionModel.select(this.getIdByRow(row), row, false);
                 if (selected) {
                     selectedSize = (selectedSize ?? 0) + 1;
@@ -72,18 +72,19 @@ export class SelectionService implements OnDestroy {
         this.onChanges.next();
     }
 
-    public toggle(row: TableRow): void {
+    public toggle(row: T): void {
         this.ngZone.runOutsideAngular((): void => window.clearInterval(this.selectionTaskIdle!));
         this.selectionModel.toggle(this.getIdByRow(row), row, true);
         this.onChanges.next();
         this.checkIsAllSelected();
     }
 
-    public selectRow(row: TableRow, event: MouseEvent): void {
-        const rows: TableRow[] = this.originRows ?? [];
+    public selectRow(row: T, event: MouseEvent): void {
+        const rows: T[] = this.rows ?? [];
         const { shiftKey, ctrlKey }: MouseEvent = event;
         const index: number = rows.findIndex(
-            (item: TableRow): boolean => (item || {})[this.primaryKey] === (row || {})[this.primaryKey]
+            (item: T): boolean =>
+                ((item as Any) || ({} as T))[this.primaryKey] === ((row as Any) || {})[this.primaryKey]
         );
 
         if (shiftKey) {
@@ -97,10 +98,10 @@ export class SelectionService implements OnDestroy {
         this.checkIsAllSelected();
     }
 
-    public getIdByRow(row: TableRow): RowId {
-        const id: RowId = (row || {})[this.primaryKey];
+    public getIdByRow(row: T): RowId {
+        const id: RowId = ((row as Any) || {})[this.primaryKey];
 
-        if (checkValueIsEmpty(id) && isDevMode()) {
+        if (checkValueIsEmpty(id)) {
             throw new Error(
                 `Can't select item, make sure you pass the correct primary key, or you forgot enable selection
                 <ngx-table-builder enable-selection primary-key="fieldId" />
@@ -120,12 +121,17 @@ export class SelectionService implements OnDestroy {
             this.handler[type] = ({ shiftKey }: KeyboardEvent): void => {
                 this.selectionStart = { status: shiftKey };
             };
-            window.addEventListener(type, this.handler[type], true);
+
+            if (this.handler[type]) {
+                window.addEventListener(type, this.handler[type]!, true);
+            }
         });
     }
 
     private removeListenerByType(type: string): void {
-        window.removeEventListener(type, this.handler[type], true);
+        if (this.handler[type]) {
+            window.removeEventListener(type, this.handler[type]!, true);
+        }
     }
 
     private checkIsAllSelected(allSize: number | null = null): void {
@@ -134,7 +140,7 @@ export class SelectionService implements OnDestroy {
         }
 
         this.selectionModel.isAll = isNil(allSize)
-            ? this.originRows?.length === this.selectionModel.size
+            ? this.rows?.length === this.selectionModel.size
             : allSize === this.selectionModel.size;
 
         this.selectionModel.generateImmutableEntries();
@@ -142,7 +148,7 @@ export class SelectionService implements OnDestroy {
     }
 
     private multipleSelectByShiftKeydown(index: number): void {
-        const rows: TableRow[] = this.originRows ?? [];
+        const rows: T[] = this.rows ?? [];
         this.selectionModel.clear();
         this.range.put(index);
         const selectedRange: boolean = this.range.selectedRange();
@@ -150,18 +156,20 @@ export class SelectionService implements OnDestroy {
         if (selectedRange) {
             const { start, end }: SelectionRange = this.range.sortKeys();
             for (let i: number = start!; i <= end!; ++i) {
-                this.selectionModel.select(this.getIdByRow(rows[i]), rows[i], false);
+                const row: T = rows[i] as T;
+                const rowId: RowId = this.getIdByRow(row);
+                this.selectionModel.select(rowId, row, false);
             }
         }
     }
 
-    private multipleSelectByCtrlKeydown(row: TableRow, index: number): void {
+    private multipleSelectByCtrlKeydown(row: T, index: number): void {
         this.range.clear();
         this.range.start = index;
         this.selectionModel.toggle(this.getIdByRow(row), row, true);
     }
 
-    private singleSelect(row: TableRow, index: number): void {
+    private singleSelect(row: T, index: number): void {
         this.selectionModel.clear();
         this.selectionModel.select(this.getIdByRow(row), row, true);
         this.range.clear();

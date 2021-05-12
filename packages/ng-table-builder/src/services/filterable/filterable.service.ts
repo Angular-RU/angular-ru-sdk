@@ -4,21 +4,18 @@ import { Any } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { ReplaySubject, Subject } from 'rxjs';
 
-import { TableRow } from '../../interfaces/table-builder.external';
 import { filterAllWorker } from './filter.worker';
-import {
-    FilterableInterface,
-    FilterableMessage,
-    FilterEvent,
-    FilterStateEvent,
-    FilterWorkerEvent,
-    TableFilterType
-} from './filterable.interface';
+import { FilterEvent } from './filter-event';
+import { FilterStateEvent } from './filter-state-event';
+import { FilterWorkerEvent } from './filter-worker-event';
+import { Filterable } from './filterable';
+import { FilterableMessage } from './filterable-message';
+import { TableFilterType } from './table-filter-type';
 
 @Injectable()
-export class FilterableService implements FilterableInterface {
-    public types: ReadonlyMap<unknown, unknown> = (TableFilterType as Any) as ReadonlyMap<unknown, unknown>;
-    public definition: ReadonlyMap<unknown, unknown> = ({} as Any) as ReadonlyMap<unknown, unknown>;
+export class FilterableService<T> implements Filterable {
+    public types: ReadonlyMap<unknown, unknown> = TableFilterType as Any as ReadonlyMap<unknown, unknown>;
+    public definition: ReadonlyMap<unknown, unknown> = {} as Any as ReadonlyMap<unknown, unknown>;
     public filterTypeDefinition: ReadonlyMap<unknown, TableFilterType> = {} as Any;
     public readonly filterOpenEvents: Subject<void> = new Subject();
     public readonly events: Subject<FilterEvent> = new ReplaySubject();
@@ -93,14 +90,14 @@ export class FilterableService implements FilterableInterface {
     }
 
     // eslint-disable-next-line max-lines-per-function
-    public filter(source: TableRow[]): Promise<FilterWorkerEvent> {
+    public filter(source: T[]): Promise<FilterWorkerEvent<T>> {
         const type: string | TableFilterType | null = this.filterType;
         const value: string | null = this.globalFilterValue ? String(this.globalFilterValue).trim() : null;
 
         return new Promise(
             // eslint-disable-next-line max-lines-per-function
-            (resolve: (value: FilterWorkerEvent) => void): void => {
-                const message: FilterableMessage = {
+            (resolve: (value: FilterWorkerEvent<T>) => void): void => {
+                const message: FilterableMessage<T> = {
                     source,
                     types: TableFilterType,
                     global: { value, type },
@@ -111,16 +108,14 @@ export class FilterableService implements FilterableInterface {
                     }
                 };
 
-                this.thread
-                    .run<TableRow[], FilterableMessage>(filterAllWorker, message)
-                    .then((sorted: TableRow[]): void => {
-                        resolve({
-                            source: sorted,
-                            fireSelection: (): void => {
-                                this.events.next({ value, type });
-                            }
-                        });
+                this.thread.run<T[], FilterableMessage<T>>(filterAllWorker, message).then((sorted: T[]): void => {
+                    resolve({
+                        source: sorted,
+                        fireSelection: (): void => {
+                            this.events.next({ value, type });
+                        }
                     });
+                });
             }
         );
     }

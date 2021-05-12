@@ -25,21 +25,20 @@ import { detectChanges, isNil, isNotNil } from '@angular-ru/common/utils';
 import { EMPTY, fromEvent, Observable, Subject } from 'rxjs';
 import { catchError, takeUntil } from 'rxjs/operators';
 
+import { AbstractTableBuilderApiDirective } from './abstract-table-builder-api.directive';
 import { NgxColumnComponent } from './components/ngx-column/ngx-column.component';
 import { TABLE_GLOBAL_OPTIONS } from './config/table-global-options';
-import { CalculateRange, ColumnsSchema, TableRow } from './interfaces/table-builder.external';
+import { CalculateRange, ColumnsSchema } from './interfaces/table-builder.external';
 import { RecalculatedStatus, TableSimpleChanges, TemplateKeys } from './interfaces/table-builder.internal';
 import { ContextMenuService } from './services/context-menu/context-menu.service';
 import { DraggableService } from './services/draggable/draggable.service';
-import { TableFilterType } from './services/filterable/filterable.interface';
 import { FilterableService } from './services/filterable/filterable.service';
+import { TableFilterType } from './services/filterable/table-filter-type';
 import { ResizableService } from './services/resizer/resizable.service';
 import { SelectionService } from './services/selection/selection.service';
 import { SortableService } from './services/sortable/sortable.service';
 import { NgxTableViewChangesService } from './services/table-view-changes/ngx-table-view-changes.service';
 import { TemplateParserService } from './services/template-parser/template-parser.service';
-import { UtilsService } from './services/utils/utils.service';
-import { AbstractTableBuilderApiImpl } from './table-builder.api';
 
 const { TIME_IDLE, TIME_RELOAD, FRAME_TIME, MACRO_TIME }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
 
@@ -60,9 +59,10 @@ const { TIME_IDLE, TIME_RELOAD, FRAME_TIME, MACRO_TIME }: typeof TABLE_GLOBAL_OP
     encapsulation: ViewEncapsulation.None,
     animations: [fadeInLinearAnimation]
 })
-export class TableBuilderComponent
-    extends AbstractTableBuilderApiImpl
-    implements OnChanges, OnInit, AfterContentInit, AfterViewInit, AfterViewChecked, OnDestroy {
+export class TableBuilderComponent<T>
+    extends AbstractTableBuilderApiDirective<T>
+    implements OnChanges, OnInit, AfterContentInit, AfterViewInit, AfterViewChecked, OnDestroy
+{
     public dirty: boolean = true;
     public rendering: boolean = false;
     public isRendered: boolean = false;
@@ -75,16 +75,15 @@ export class TableBuilderComponent
     public footerRef!: ElementRef<HTMLDivElement>;
     public sourceIsNull: boolean = false;
     public afterViewInitDone: boolean = false;
-    public readonly selection: SelectionService;
-    public readonly templateParser: TemplateParserService;
+    public readonly selection: SelectionService<T>;
+    public readonly templateParser: TemplateParserService<T>;
     public readonly ngZone: NgZone;
-    public readonly utils: UtilsService;
     public readonly resize: ResizableService;
-    public readonly sortable: SortableService;
-    public readonly contextMenu: ContextMenuService;
-    public readonly filterable: FilterableService;
+    public readonly sortable: SortableService<T>;
+    public readonly contextMenu: ContextMenuService<T>;
+    public readonly filterable: FilterableService<T>;
     protected readonly app: ApplicationRef;
-    protected readonly draggable: DraggableService;
+    protected readonly draggable: DraggableService<T>;
     protected readonly viewChanges: NgxTableViewChangesService;
     private forcedRefresh: boolean = false;
     private readonly destroy$: Subject<boolean> = new Subject<boolean>();
@@ -96,16 +95,15 @@ export class TableBuilderComponent
 
     constructor(public readonly cd: ChangeDetectorRef, injector: Injector) {
         super();
-        this.selection = injector.get<SelectionService>(SelectionService);
-        this.templateParser = injector.get<TemplateParserService>(TemplateParserService);
+        this.selection = injector.get<SelectionService<T>>(SelectionService);
+        this.templateParser = injector.get<TemplateParserService<T>>(TemplateParserService);
         this.ngZone = injector.get<NgZone>(NgZone);
-        this.utils = injector.get<UtilsService>(UtilsService);
         this.resize = injector.get<ResizableService>(ResizableService);
-        this.sortable = injector.get<SortableService>(SortableService);
-        this.contextMenu = injector.get<ContextMenuService>(ContextMenuService);
+        this.sortable = injector.get<SortableService<T>>(SortableService);
+        this.contextMenu = injector.get<ContextMenuService<T>>(ContextMenuService);
         this.app = injector.get<ApplicationRef>(ApplicationRef);
-        this.filterable = injector.get<FilterableService>(FilterableService);
-        this.draggable = injector.get<DraggableService>(DraggableService);
+        this.filterable = injector.get<FilterableService<T>>(FilterableService);
+        this.draggable = injector.get<DraggableService<T>>(DraggableService);
         this.viewChanges = injector.get<NgxTableViewChangesService>(NgxTableViewChangesService);
     }
 
@@ -167,7 +165,7 @@ export class TableBuilderComponent
         if (this.nonIdenticalStructure) {
             this.preRenderTable();
         } else if (TableSimpleChanges.SOURCE_KEY in changes && this.isRendered) {
-            this.preSortAndFilterTable(changes);
+            this.preSortAndFilterTable();
         }
 
         if (TableSimpleChanges.SORT_TYPES in changes) {
@@ -265,9 +263,12 @@ export class TableBuilderComponent
 
     public render(): void {
         this.contentCheck = false;
-        this.utils
-            .macrotaskInZone((): void => this.renderTable(), TIME_IDLE)
-            .then((): void => this.idleDetectChanges());
+        this.ngZone.run((): void => {
+            window.setTimeout((): void => {
+                this.renderTable();
+                this.idleDetectChanges();
+            }, TIME_IDLE);
+        });
     }
 
     public renderTable(): void {
@@ -293,12 +294,13 @@ export class TableBuilderComponent
         if (key) {
             this.recheckViewportChecked();
             this.templateParser.toggleColumnVisibility(key);
-            this.utils
-                .requestAnimationFrame((): void => {
+            this.ngZone.runOutsideAngular((): void => {
+                window.requestAnimationFrame((): void => {
                     this.changeSchema();
                     this.recheckViewportChecked();
-                })
-                .then((): void => detectChanges(this.cd));
+                    detectChanges(this.cd);
+                });
+            });
         }
     }
 
@@ -333,10 +335,8 @@ export class TableBuilderComponent
         this.viewPortInfo.bufferOffset = bufferOffset;
     }
 
-    public setSource(source: TableRow[]): void {
-        this.originalSource = source;
-        this.source = source;
-        this.selection.originRows = source;
+    public setSource(source: T[] | null): void {
+        this.originalSource = this.source = this.selection.rows = source;
     }
 
     protected calculateViewPortByRange({ start, end, bufferOffset, force }: CalculateRange): void {
@@ -413,8 +413,8 @@ export class TableBuilderComponent
 
     private checkCorrectInitialSchema(changes: SimpleChanges = {}): void {
         if (TableSimpleChanges.SCHEMA_COLUMNS in changes) {
-            const schemaChange: SimpleChange = changes[TableSimpleChanges.SCHEMA_COLUMNS];
-            if (isNotNil(schemaChange.currentValue)) {
+            const schemaChange: SimpleChange | undefined = changes[TableSimpleChanges.SCHEMA_COLUMNS];
+            if (isNotNil(schemaChange?.currentValue)) {
                 if (isNil(this.name)) {
                     console.error(`Table name is required! Example: <ngx-table-builder name="my-table-name" />`);
                 }
@@ -473,12 +473,10 @@ export class TableBuilderComponent
         this.ngZone.runOutsideAngular((): void => {
             fromEvent(this.scrollContainer.nativeElement, 'scroll', { passive: true })
                 .pipe(
-                    catchError(
-                        (): Observable<never> => {
-                            this.calculateViewport(true);
-                            return EMPTY;
-                        }
-                    ),
+                    catchError((): Observable<never> => {
+                        this.calculateViewport(true);
+                        return EMPTY;
+                    }),
                     takeUntil(this.destroy$)
                 )
                 .subscribe((): void => this.scrollHandler());
@@ -520,8 +518,8 @@ export class TableBuilderComponent
         return Math.ceil(this.scrollOffsetTop / this.clientRowHeight);
     }
 
-    private preSortAndFilterTable(changes: SimpleChanges = {}): void {
-        this.originalSource = changes[TableSimpleChanges.SOURCE_KEY].currentValue;
+    private preSortAndFilterTable(): void {
+        this.setSource(this.source);
         this.sortAndFilter().then((): void => {
             this.reCheckDefinitions();
             this.checkSelectionValue();
@@ -533,8 +531,7 @@ export class TableBuilderComponent
         this.renderedCountKeys = this.getCountKeys();
         this.customModelColumnsKeys = this.generateCustomModelColumnsKeys();
         this.modelColumnKeys = this.generateModelColumnKeys();
-        this.originalSource = this.source;
-        this.selection.originRows = this.originalSource;
+        this.setSource(this.source);
         const unDirty: boolean = !this.dirty;
 
         this.checkSelectionValue();
@@ -619,9 +616,11 @@ export class TableBuilderComponent
 
     private syncDrawColumns(columnList: string[]): void {
         for (let index: number = 0; index < columnList.length; index++) {
-            const key: string = columnList[index];
-            const schema: ColumnsSchema = this.mergeColumnSchema(key, index);
-            this.processedColumnList(schema, columnList[index]);
+            const key: string = columnList[index] as string;
+            const schema: ColumnsSchema | undefined = this.getCompiledColumnSchema(key, index);
+            if (schema) {
+                this.processedColumnList(schema, columnList[index]);
+            }
         }
     }
 
@@ -634,17 +633,17 @@ export class TableBuilderComponent
      * @param key - column schema from rendered templates map
      * @param index - column position
      */
-    private mergeColumnSchema(key: string, index: number): ColumnsSchema {
+    private getCompiledColumnSchema(key: string, index: number): ColumnsSchema | undefined {
         const customColumn: Partial<ColumnsSchema> = this.getCustomColumnSchemaByIndex(index);
 
         if (!this.templateParser.compiledTemplates[key]) {
-            const column: NgxColumnComponent = new NgxColumnComponent().withKey(key);
+            const column: NgxColumnComponent<T> = new NgxColumnComponent<T>().withKey(key);
             this.templateParser.compileColumnMetadata(column);
         }
 
-        const defaultColumn: ColumnsSchema = this.templateParser.compiledTemplates[key];
+        const defaultColumn: ColumnsSchema | undefined = this.templateParser.compiledTemplates[key];
 
-        if (customColumn.key === defaultColumn.key) {
+        if (customColumn.key === defaultColumn?.key) {
             this.templateParser.compiledTemplates[key] = { ...defaultColumn, ...customColumn } as ColumnsSchema;
         }
 
@@ -656,9 +655,12 @@ export class TableBuilderComponent
      * @param schema - column schema
      * @param key - column name
      */
-    private processedColumnList(schema: ColumnsSchema, key: string): void {
+    private processedColumnList(schema: ColumnsSchema, key: string | undefined): void {
         if (this.templateParser.schema || schema) {
-            this.templateParser.schema?.columns.push(this.templateParser.compiledTemplates[key]);
+            const compiledSchema: ColumnsSchema | undefined = this.templateParser.compiledTemplates[key as string];
+            if (compiledSchema) {
+                this.templateParser.schema?.columns.push(compiledSchema);
+            }
         }
     }
 

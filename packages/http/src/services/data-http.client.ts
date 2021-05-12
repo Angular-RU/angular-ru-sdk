@@ -8,7 +8,7 @@ import {
     DataUrlPathSegment,
     MetaDataRequest
 } from '@angular-ru/http/typings';
-import { getUrlSegments, urlParse } from '@angular-ru/http/utils';
+import { buildUrl, makeUrlSegments } from '@angular-ru/http/utils';
 import { Observable, throwError } from 'rxjs';
 import { catchError, finalize, take, tap } from 'rxjs/operators';
 
@@ -51,10 +51,10 @@ export class DataHttpClient<K = unknown> extends AbstractHttpClient<K> {
 
     private createMetaDataRequest(options: DataBeforeRequestOptions): MetaDataRequest {
         const { emitSuccess, emitFailure }: DataClientRequestOptions = options.clientOptions;
-        const segments: DataUrlPathSegment = getUrlSegments(options.clientOptions);
+        const segments: DataUrlPathSegment = makeUrlSegments(options.clientOptions, this.controllerUrl, options.path);
         const requestOptions: DataHttpRequestOptions = this.createDataHttpRequestOptions(options);
-        const url: string = urlParse(options.path, segments);
-        return { method: options.method, url, emitSuccess, emitFailure, requestOptions };
+        const url: string = buildUrl(segments);
+        return { method: options.method, url, emitSuccess, emitFailure, requestOptions, segments };
     }
 
     private wrapHttpRequestWithMeta<T, R = T>(

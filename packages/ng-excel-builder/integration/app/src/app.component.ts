@@ -1,19 +1,29 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { Any } from '@angular-ru/common/typings';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { ExcelService } from '@angular-ru/ng-excel-builder';
 import { TranslateService } from '@ngx-translate/core';
+
+interface A {
+    id: string;
+    name: string;
+    info: { value: number; other: number };
+    description: string;
+    excluded: string;
+}
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-    public data: Any[] = [
+    public data: A[] = [
         {
             id: 'id',
             name: 'Maria',
+            info: { value: 1, other: 2 },
+            excluded: 'excluded',
             description: 'Fugiat tempor sunt nostrud ad fugiat. Laboris velit duis incididunt culpa'
         }
     ];
@@ -25,20 +35,7 @@ export class AppComponent {
     public exportExcel(): void {
         this.excel.exportExcel({
             filename: 'My excel file',
-            worksheets: [
-                {
-                    table: this.data,
-                    titleKey: 'PATH_TO_KEYS',
-                    worksheetName: 'worksheet name'
-                }
-            ],
-            translateColumns: {
-                PATH_TO_KEYS: {
-                    id: 'ID',
-                    name: 'Name',
-                    description: 'Description'
-                }
-            }
+            worksheets: [{ entries: this.data, worksheetName: 'worksheet name', excludeKeys: ['excluded'] }]
         });
     }
 
@@ -47,9 +44,11 @@ export class AppComponent {
             filename: 'APP_KEYS.TITLE',
             worksheets: [
                 {
-                    table: this.data,
-                    titleKey: 'APP_KEYS.MODELS',
-                    worksheetName: 'APP_KEYS.WORKSHEET_NAME'
+                    entries: this.data,
+                    prefixKeyForTranslate: 'APP_KEYS.MODELS',
+                    worksheetName: 'APP_KEYS.WORKSHEET_NAME',
+                    keys: ['info.value', 'description', 'name'],
+                    excludeKeys: ['description']
                 }
             ]
         });

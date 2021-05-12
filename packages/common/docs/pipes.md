@@ -99,6 +99,27 @@ export class AppComponent {
 }
 ```
 
+-   `IsNilPipe, IsNilPipeModule`
+
+```ts
+import { IsNilPipeModule } from '@angular-ru/common/pipes';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ..
+    imports: [IsNilPipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `{{ data | isNil }}` // true
+})
+export class AppComponent {
+    public data = null;
+}
+```
+
 -   `IsObjectPipe, IsObjectPipeModule`
 
 ```ts
@@ -282,7 +303,7 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `{{ data | numberFormat }}` // 1 500 300,5
+    template: `{{ data | numberFormat }}` // 1 500 300,5
 })
 export class AppComponent {
     public data = 1500300.5;
@@ -415,6 +436,27 @@ export class AppComponent {
 }
 ```
 
+-   `DisplayItemPipe, DisplayItemPipeModule`
+
+```ts
+import { DisplayItemPipeModule } from '@angular-ru/common/pipes';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ...
+    imports: [DisplayItemPipeModule]
+})
+export class AppModule {}
+
+@Component({
+    // ...
+    template: `{{ entity | displayItem: 'value.name' }}` // A
+})
+export class AppComponent {
+    public entity = { value: { name: 'A' } };
+}
+```
+
 -   `ObjectSizePipe, ObjectSizePipeModule`
 
 ```ts
@@ -473,7 +515,7 @@ export class AppComponent {
 }
 ```
 
-`JoinPipe, JoinPipeModule`
+-   `JoinPipe, JoinPipeModule`
 
 ```ts
 import { JoinPipeModule } from '@angular-ru/common/pipes';
@@ -538,5 +580,146 @@ export class AppModule {}
 })
 export class AppComponent {
     public transformer: JoinMapTransformer<{ a: number }> = (item: { a: number }): string => item.a.toString(2);
+}
+```
+
+-   `BracePipe, BracePipeModule`
+
+```ts
+import { BracePipeModule } from '@angular-ru/common/pipes';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ..
+    imports: [BracePipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `
+        <span>Edit selected records {{ count | brace }}</span>
+        <!--Edit selected records (42)-->
+    `
+})
+export class AppComponent {
+    public count: number = 42;
+}
+```
+
+-   `FilterUniquePipe, FilterUniquePipeModule`
+
+```ts
+import { FilterUniquePipeModule } from '@angular-ru/common/pipes';
+import { PlainObject } from '@angular-ru/common-typings';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ..
+    imports: [FilterUniquePipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `
+        <pre>{{ objects | filterUnique: 'name' | json }}</pre>
+        <!-- [{ name: 'a'}, { name: 'b'}] -->
+
+        <pre>{{ numbers | filterUnique | json }}</pre>
+        <!-- [1, 2, 3, 4, 5] -->
+    `
+})
+export class AppComponent {
+    public objects: PlainObject = [{ name: 'a' }, { name: 'a' }, { name: 'b' }];
+    public numbers: number[] = [1, 2, 3, 4, 5, 5, 4];
+}
+```
+
+-   `TypeAsPipe, TypeAsPipeModule`
+
+```ts
+import { TypeAs } from '@angular-ru/common/pipes';
+
+@NgModule({
+    // ..
+    imports: [TypeAsPipeModule]
+})
+export class AppModule {}
+
+type SomeType = { a: number };
+
+@Component({
+    //...
+    template: `
+        <p *ngIf="notTyped | typeAs: typeSample as typed">
+            {{ typed.a }}
+            <!-- OK -->
+            {{ typed.b }}
+            <!-- Error: Property 'b' does not exist on type 'SomeType' -->
+        </p>
+    `
+})
+export class AppComponent {
+    public notTyped: any = { a: 1 };
+    public typeSample!: SomeType;
+}
+```
+
+-   `AtPipe, AtPipeModule`
+
+```ts
+import { AtPipeModule } from '@angular-ru/common/pipes';
+
+@NgModule({
+    // ..
+    imports: [AtPipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `
+        <p>{{ someArray | at: 0 }}</p>
+        <!-- "first" -->
+        <p>{{ someArray | at: -1 }}</p>
+        <!-- "last" -->
+    `
+})
+export class AppComponent {
+    public someArray = ['first', 'second', 'third', 'last'];
+}
+```
+
+-   `HasItems, HasManyItems, HasNoItems, HasOneItem, HasAtMostOneItem`
+-   `HasItemsModule, HasManyItemsModule, HasNoItemsModule, HasOneItemModule, HasAtMostOneItemModule`
+
+```ts
+import {
+    HasItemsModule,
+    HasManyItemsModule,
+    HasNoItemsModule,
+    HasOneItemModule,
+    HasAtMostOneItemModule
+} from '@angular-ru/common/pipes';
+
+@NgModule({
+    // ..
+    imports: [HasItemsModule, HasManyItemsModule, HasNoItemsModule, HasOneItemModule, HasAtMostOneItemModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `
+        <pre *ngIf="someArray | hasItems"><!-- true --></pre>
+        <pre *ngIf="someArray | hasManyItems"><!-- false --></pre>
+        <pre *ngIf="someArray | hasNoItems"><!-- false --></pre>
+        <pre *ngIf="someArray | hasOneItem"><!-- true --></pre>
+        <pre *ngIf="someArray | hasAtMostOneItem"><!-- true --></pre>
+    `
+})
+export class AppComponent {
+    public someArray: number[] = [1];
 }
 ```

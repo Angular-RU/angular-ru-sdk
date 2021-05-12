@@ -1,6 +1,5 @@
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Any } from '@angular-ru/common/typings';
-import { TableRow } from '@angular-ru/ng-table-builder';
+import { Any, PlainObject } from '@angular-ru/common/typings';
 
 import { MocksGenerator } from '../../../../tests/helpers/utils/mocks-generator';
 
@@ -12,14 +11,14 @@ declare const hljs: Any;
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SampleSevenComponent implements OnInit, AfterViewInit {
-    public data: TableRow[] = [];
+    public data: PlainObject[] = [];
 
     constructor(private readonly cd: ChangeDetectorRef) {}
 
     public ngOnInit(): void {
         const rowsNumber: number = 10000;
         const cols: number = 30;
-        MocksGenerator.generator(rowsNumber, cols).then((data: TableRow[]): void => {
+        MocksGenerator.generator(rowsNumber, cols).then((data: PlainObject[]): void => {
             this.data = data;
             this.cd.detectChanges();
         });
@@ -31,7 +30,7 @@ export class SampleSevenComponent implements OnInit, AfterViewInit {
         });
     }
 
-    public alert(row: TableRow): void {
+    public alert(row: PlainObject): void {
         const space: number = 4;
         window.alert(JSON.stringify(row, null, space));
     }

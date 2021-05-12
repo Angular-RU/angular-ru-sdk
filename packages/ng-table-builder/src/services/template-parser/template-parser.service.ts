@@ -1,9 +1,9 @@
 import { Injectable, QueryList } from '@angular/core';
 import { Any, PlainObjectOf } from '@angular-ru/common/typings';
 
-import { ColumnOptions } from '../../components/common/column-options';
 import { NgxColumnComponent } from '../../components/ngx-column/ngx-column.component';
-import { AbstractTemplateCellCommon } from '../../directives/rows/abstract-template-cell-common.directive';
+import { ColumnOptionsDirective } from '../../directives/column-options.directive';
+import { AbstractTemplateCellCommonDirective } from '../../directives/rows/abstract-template-cell-common.directive';
 import { TemplateBodyTdDirective } from '../../directives/rows/template-body-td.directive';
 import { TemplateHeadThDirective } from '../../directives/rows/template-head-th.directive';
 import { ColumnsSchema, ImplicitContext, TableCellOptions } from '../../interfaces/table-builder.external';
@@ -12,12 +12,12 @@ import { getValidPredicate } from '../../operators/get-valid-predicate';
 import { SchemaBuilder } from './schema-builder.class';
 
 @Injectable()
-export class TemplateParserService {
+export class TemplateParserService<T> {
     public schema: SchemaBuilder | null = null;
     public templateKeys: Set<string> | null = null;
     public fullTemplateKeys: Set<string> | null = null;
     public overrideTemplateKeys: Set<string> | null = null;
-    public columnOptions: ColumnOptions | null = null;
+    public columnOptions: ColumnOptionsDirective | null = null;
     public compiledTemplates: PlainObjectOf<ColumnsSchema> = {};
 
     /**
@@ -44,10 +44,10 @@ export class TemplateParserService {
      */
     public keyMap: PlainObjectOf<boolean> = {};
 
-    private static templateContext(
+    private static templateContext<U>(
         key: string,
-        cell: AbstractTemplateCellCommon,
-        options: ColumnOptions
+        cell: AbstractTemplateCellCommonDirective<U>,
+        options: ColumnOptionsDirective
     ): TableCellOptions {
         return {
             textBold: cell.bold,
@@ -80,24 +80,24 @@ export class TemplateParserService {
         }
     }
 
-    public initialSchema(columnOptions: ColumnOptions): void {
+    public initialSchema(columnOptions: ColumnOptionsDirective): void {
         this.schema = this.schema || new SchemaBuilder();
         this.schema.columns = [];
         this.compiledTemplates = {};
         this.templateKeys = new Set<string>();
         this.overrideTemplateKeys = new Set<string>();
         this.fullTemplateKeys = new Set<string>();
-        this.columnOptions = columnOptions || new ColumnOptions();
+        this.columnOptions = columnOptions || new ColumnOptionsDirective();
     }
 
     // eslint-disable-next-line max-lines-per-function
-    public parse(templates: QueryList<NgxColumnComponent>): void {
+    public parse(templates: QueryList<NgxColumnComponent<T>>): void {
         if (!templates) {
             return;
         }
 
-        templates.forEach((column: NgxColumnComponent): void => {
-            const { key, customKey, importantTemplate }: NgxColumnComponent = column;
+        templates.forEach((column: NgxColumnComponent<T>): void => {
+            const { key, customKey, importantTemplate }: NgxColumnComponent<T> = column;
             const needTemplateCheck: boolean = this.allowedKeyMap[key!] || customKey !== false;
 
             if (needTemplateCheck) {
@@ -122,10 +122,10 @@ export class TemplateParserService {
     }
 
     // eslint-disable-next-line complexity,max-lines-per-function
-    public compileColumnMetadata(column: NgxColumnComponent): void {
-        const { key, th, td, emptyHead, headTitle }: NgxColumnComponent = column;
-        const thTemplate: AbstractTemplateCellCommon = th || new TemplateHeadThDirective();
-        const tdTemplate: AbstractTemplateCellCommon = td || new TemplateBodyTdDirective();
+    public compileColumnMetadata(column: NgxColumnComponent<T>): void {
+        const { key, th, td, emptyHead, headTitle }: NgxColumnComponent<T> = column;
+        const thTemplate: AbstractTemplateCellCommonDirective<T> = th || new TemplateHeadThDirective<T>();
+        const tdTemplate: AbstractTemplateCellCommonDirective<T> = td || new TemplateBodyTdDirective<T>();
         const isEmptyHead: boolean = getValidHtmlBooleanAttribute(emptyHead);
         const thOptions: TableCellOptions = TemplateParserService.templateContext(
             key!,
@@ -136,7 +136,7 @@ export class TemplateParserService {
         const stickyRight: boolean = getValidHtmlBooleanAttribute(column.stickyRight);
         const isCustomKey: boolean = getValidHtmlBooleanAttribute(column.customKey);
         const canBeAddDraggable: boolean = !(stickyLeft || stickyRight);
-        const isModel: boolean = this.keyMap[key!];
+        const isModel: boolean = !!this.keyMap[key as string];
 
         this.compiledTemplates[key!] = {
             key,

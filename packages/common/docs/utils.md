@@ -2,6 +2,10 @@
 
 -   `detectChanges(cds: ChangeDetectorRef | ChangeDetectorRef[])` - run detect changes if view reference not destroyed.
 
+-   `downloadFile(file: FileToDownloadInfo)` - download file setting
+    source([Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob) or
+    [File](https://developer.mozilla.org/en-US/docs/Web/API/File)), name and extension (such as 'xls', 'txt' etc.).
+
 -   `$any(val)`
 
 ```ts
@@ -72,6 +76,16 @@ expect(checkValueIsFilled(undefined)).toEqual(false);
 expect(checkValueIsFilled(null)).toEqual(false);
 ```
 
+-   `checkSomeValueIsEmpty`
+
+```ts
+import { checkSomeValueIsEmpty } from '@angular-ru/common/utils';
+
+expect(checkSomeValueIsEmpty(42, 'hello world', {})).toEqual(false);
+expect(checkSomeValueIsEmpty(42, 'hello world', null)).toEqual(true);
+expect(checkSomeValueIsEmpty('', undefined, null)).toEqual(true);
+```
+
 -   `checkEveryValueIsEmpty`
 
 ```ts
@@ -82,14 +96,49 @@ expect(checkEveryValueIsEmpty(42, 'hello world', null)).toEqual(false);
 expect(checkEveryValueIsEmpty('', undefined, null)).toEqual(true);
 ```
 
--   `checkSomeValueIsEmpty`
+-   `checkSomeValueIsTrue`
 
 ```ts
-import { checkSomeValueIsEmpty } from '@angular-ru/common/utils';
+import { checkSomeValueIsTrue } from '@angular-ru/common/utils';
 
-expect(checkSomeValueIsEmpty(42, 'hello world', {})).toEqual(false);
-expect(checkSomeValueIsEmpty(42, 'hello world', null)).toEqual(true);
-expect(checkSomeValueIsEmpty('', undefined, null)).toEqual(true);
+expect(checkSomeValueIsTrue('a', 13, {}, true)).toEqual(true);
+expect(checkSomeValueIsTrue('a', 13, {})).toEqual(false);
+```
+
+-   `checkSomeValueIsFalse`
+
+```ts
+import { checkSomeValueIsFalse } from '@angular-ru/common/utils';
+
+expect(checkSomeValueIsFalse('a', 13, {}, false)).toEqual(true);
+expect(checkSomeValueIsFalse('a', 13, {})).toEqual(false);
+```
+
+-   `checkEveryValueIsTrue`
+
+```ts
+import { checkEveryValueIsTrue } from '@angular-ru/common/utils';
+
+expect(checkEveryValueIsTrue(true, true, true)).toEqual(true);
+expect(checkEveryValueIsTrue(true, true, 'a')).toEqual(false);
+```
+
+-   `checkEveryValueIsFalse`
+
+```ts
+import { checkEveryValueIsFalse } from '@angular-ru/common/utils';
+
+expect(checkEveryValueIsFalse(false, false, false)).toEqual(true);
+expect(checkEveryValueIsFalse(false, false, 'a')).toEqual(false);
+```
+
+-   `checkEveryValueIsFilled`
+
+```ts
+import { checkEveryValueIsFilled } from '@angular-ru/common/utils';
+
+expect(checkEveryValueIsFilled(1, 'a', true, [])).toEqual(true);
+expect(checkEveryValueIsFilled(null, 1, true, [])).toEqual(false);
 ```
 
 -   `isIE`
@@ -154,4 +203,25 @@ isTrue('123'); // false
 isTrue(true); // true
 isFalse(true); // false
 isFalse(false); // true
+```
+
+-   `tryParseJson`
+
+```ts
+import { tryParseJson } from '@angular-ru/common/utils';
+
+// valid
+expect(tryParseJson('{}')).toEqual({});
+expect(tryParseJson('{ a: 1 }')).toEqual({ a: 1 });
+expect(tryParseJson('"text"')).toEqual('text');
+expect(tryParseJson('null')).toEqual(null);
+expect(tryParseJson('true')).toEqual(true);
+expect(tryParseJson('[ 1, { a: 1, b: "b" }, true, null, "b" ]')).toEqual([1, { a: 1, b: 'b' }, true, null, 'b']);
+
+// invalid
+expect(tryParseJson('qwer')).toEqual(undefined);
+expect(tryParseJson('{ a: 1 }')).toEqual(undefined);
+
+const plain: string = '{ checked: true }';
+expect(tryParseJson(plain)?.checked ?? false).toBe(false);
 ```

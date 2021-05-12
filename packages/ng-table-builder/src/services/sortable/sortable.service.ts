@@ -3,12 +3,12 @@ import { PlainObjectOf, SortOrderType } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 
 import { TABLE_GLOBAL_OPTIONS } from '../../config/table-global-options';
-import { OrderedField, TableRow } from '../../interfaces/table-builder.external';
+import { OrderedField } from '../../interfaces/table-builder.external';
 import { sortWorker } from './sort.worker';
-import { SortableMessage } from './sortable.interfaces';
+import { SortableMessage } from './sortable-message';
 
 @Injectable()
-export class SortableService {
+export class SortableService<T> {
     public definition: PlainObjectOf<SortOrderType> = {};
     public positionMap: PlainObjectOf<number> = {};
     public sortableCount: number = 0;
@@ -25,16 +25,16 @@ export class SortableService {
         return !this.empty;
     }
 
-    public sort(data: TableRow[]): Promise<TableRow[]> {
-        return new Promise((resolve: (value: TableRow[]) => void): void => {
+    public sort(data: T[]): Promise<T[]> {
+        return new Promise((resolve: (value: T[]) => void): void => {
             if (this.skipInternalSort) {
                 resolve(data);
                 return;
             }
 
             this.thread
-                .run<TableRow[], SortableMessage>(sortWorker, { definition: this.definition, source: data })
-                .then((sorted: TableRow[]): void => this.idleResolve(resolve, sorted));
+                .run<T[], SortableMessage<T>>(sortWorker, { definition: this.definition, source: data })
+                .then((sorted: T[]): void => this.idleResolve(resolve, sorted));
         });
     }
 
@@ -70,7 +70,7 @@ export class SortableService {
         }
     }
 
-    private idleResolve(resolve: (value: TableRow[]) => void, sorted: TableRow[]): void {
+    private idleResolve(resolve: (value: T[]) => void, sorted: T[]): void {
         this.zone.runOutsideAngular((): void => {
             window.setTimeout((): void => resolve(sorted), TABLE_GLOBAL_OPTIONS.TIME_IDLE);
         });
@@ -78,7 +78,7 @@ export class SortableService {
 
     private updateDefinitionByKeyImmutably(key: string): PlainObjectOf<SortOrderType> {
         const definition: PlainObjectOf<SortOrderType> = { ...this.definition };
-        const existKey: SortOrderType = definition[key];
+        const existKey: SortOrderType | undefined = definition[key];
 
         if (existKey) {
             if (existKey === SortOrderType.ASC) {

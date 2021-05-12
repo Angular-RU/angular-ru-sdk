@@ -91,3 +91,93 @@ let number: Couple<number> = [1];
 let numbers: Couple<number> = [1, 2, 3];
 //                            ~~~~~~~~~
 ```
+
+-   `KeyOfList<T>`
+
+```ts
+class B {
+    c: string = '';
+}
+
+class A {
+    a: string = '';
+    b: B = new B();
+}
+
+const keys: KeyOfList<A> = ['a', 'b']; // output keys
+```
+
+-   `DeepKeyOfList<T>`
+
+```ts
+class B {
+    c: string = '';
+    etc: { f: string } = { f: '' };
+}
+
+class A {
+    a: string = '';
+    b: B = new B();
+}
+
+const keys: DeepKeyOfList<A> = ['a', 'b.c', 'b.etc.f']; // output keys
+```
+
+-   `Leaves<T>`
+
+`Leaves<T>[] === DeepKeyOfList<T>`
+
+-   `Paths<T>`
+
+```ts
+class B {
+    c: string = '';
+    etc: { f: string } = { f: '' };
+}
+
+class A {
+    a: string = '';
+    b: B = new B();
+}
+
+const paths: Paths<A>[] = ['a', 'b', 'b.c', 'b.etc', 'b.etc.f']; // output keys
+```
+
+also, you can:
+
+```ts
+const etc: Paths<A['b']['etc']> = 'f';
+```
+
+-   `KeysOfType<T, Type>`
+
+```ts
+interface SomeInterface {
+    someNumber: number;
+    someString: string;
+    someStringArray: string[];
+    someAnotherNumber: number;
+}
+
+type SomeStringNumberKeys = KeysOfType<SomeInterface, string | number>;
+// SomeStringNumberKeys === 'someNumber' | 'someString' | 'someAnotherNumber'
+```
+
+-   `NgCssClasses`
+
+```ts
+const myClasses: NgCssClasses = { 'block__element--modificator': true };
+```
+
+-   `DateIntervalDescriptor`
+
+```ts
+const descriptor: DateIntervalDescriptor = { dateFromKey: 'dateFrom', dateToKey: 'dateTo' };
+const updatedDate = makeSomeOperations(dateFormGroup, descriptor);
+
+function makeSomeOperations(form: FormGroup, descriptor: DateIntervalDescriptor) {
+    const fromControl: FormControl = form.get(descriptor.dateFromKey) as FormControl;
+    const toControl: FormControl = form.get(descriptor.dateFromKey) as FormControl;
+    // ...
+}
+```

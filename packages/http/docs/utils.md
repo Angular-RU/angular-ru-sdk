@@ -40,6 +40,14 @@ expect(replaceDoubleSlash('https://a///b//c/d/')).toEqual('https://a/b/c/d/');
 expect(replaceDoubleSlash('////a///b//c/d/')).toEqual('/a/b/c/d/');
 ```
 
+-   `replaceLeadingAndTrailingSlashes`
+
+```ts
+expect(replaceLeadingAndTrailingSlashes('/')).toEqual('');
+expect(replaceLeadingAndTrailingSlashes('//')).toEqual('');
+expect(replaceLeadingAndTrailingSlashes('//a///b//c/d/')).toEqual('a/b/c/d');
+```
+
 -   `urlParse`
 
 ```ts

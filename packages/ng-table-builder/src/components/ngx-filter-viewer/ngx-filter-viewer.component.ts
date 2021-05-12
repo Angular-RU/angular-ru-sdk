@@ -12,13 +12,14 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { Any } from '@angular-ru/common/typings';
+import { Any, PlainObject } from '@angular-ru/common/typings';
 import { detectChanges } from '@angular-ru/common/utils';
 import { Subscription } from 'rxjs';
 
 import { TABLE_GLOBAL_OPTIONS } from '../../config/table-global-options';
-import { FilterEvent, TableFilterType } from '../../services/filterable/filterable.interface';
+import { FilterEvent } from '../../services/filterable/filter-event';
 import { FilterableService } from '../../services/filterable/filterable.service';
+import { TableFilterType } from '../../services/filterable/table-filter-type';
 
 const { TIME_RELOAD }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
 
@@ -28,8 +29,8 @@ const { TIME_RELOAD }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })
-export class NgxFilterViewerComponent implements OnChanges, OnInit, OnDestroy {
-    @Input() public text?: string | null = null;
+export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy {
+    @Input() public text?: PlainObject | string | undefined | null = null;
     @Input() public key?: string | null = null;
     @Input() public index?: number | null = 0;
     public html?: string | SafeHtml | null = null;
@@ -37,12 +38,12 @@ export class NgxFilterViewerComponent implements OnChanges, OnInit, OnDestroy {
     private subscription: Subscription | null = null;
     private taskId: number | null = null;
     private readonly ngZone: NgZone;
-    private readonly filterable: FilterableService;
+    private readonly filterable: FilterableService<T>;
 
     constructor(private readonly cd: ChangeDetectorRef, private readonly sanitizer: DomSanitizer, injector: Injector) {
         this.cd.reattach();
         this.ngZone = injector.get<NgZone>(NgZone);
-        this.filterable = injector.get<FilterableService>(FilterableService);
+        this.filterable = injector.get<FilterableService<T>>(FilterableService);
     }
 
     private static wrapSelectedHtml(finder: string): string {

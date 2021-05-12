@@ -10,14 +10,13 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { getValueByPath } from '@angular-ru/common/object';
-import { PlainObjectOf } from '@angular-ru/common/typings';
+import { Any, PlainObjectOf } from '@angular-ru/common/typings';
 
 import {
     ColumnsSchema,
     ProduceDisableFn,
     TableClickEventEmitter,
     TableEvent,
-    TableRow,
     ViewPortInfo,
     VirtualIndex
 } from '../../interfaces/table-builder.external';
@@ -35,10 +34,10 @@ const SELECTION_DELAY: number = 100;
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })
-export class TableTbodyComponent {
-    public selection: SelectionService;
-    public contextMenu: ContextMenuService;
-    @Input() public source: TableRow[] | null = null;
+export class TableTbodyComponent<T> {
+    public selection: SelectionService<T>;
+    public contextMenu: ContextMenuService<T>;
+    @Input() public source: T[] | null = null;
     @Input() public striped: boolean = false;
     @Input() public isRendered: boolean = false;
     @Input('offset-top') public offsetTop?: number | null = null;
@@ -52,17 +51,17 @@ export class TableTbodyComponent {
     @Input('table-viewport') public tableViewport: HTMLElement | null = null;
     @Input('column-virtual-height') public columnVirtualHeight: number | null = null;
     @Input('selection-entries') public selectionEntries: PlainObjectOf<boolean> = {};
-    @Input('context-menu') public contextMenuTemplate: NgxContextMenuComponent | null = null;
-    @Input('produce-disable-fn') public produceDisableFn: ProduceDisableFn = null;
+    @Input('context-menu') public contextMenuTemplate: NgxContextMenuComponent<T> | null = null;
+    @Input('produce-disable-fn') public produceDisableFn: ProduceDisableFn<T> = null;
     @Input('client-row-height') public clientRowHeight: number | null = null;
     @Input('row-css-classes') public rowCssClasses: PlainObjectOf<string[]> = {};
     @Input('column-schema') public columnSchema: ColumnsSchema | null = null;
-    @Output() public changed: EventEmitter<void> = new EventEmitter(true);
+    @Output() public readonly changed: EventEmitter<void> = new EventEmitter(true);
     private readonly ngZone: NgZone;
 
     constructor(public cd: ChangeDetectorRef, injector: Injector) {
-        this.selection = injector.get<SelectionService>(SelectionService);
-        this.contextMenu = injector.get<ContextMenuService>(ContextMenuService);
+        this.selection = injector.get<SelectionService<T>>(SelectionService);
+        this.contextMenu = injector.get<ContextMenuService<T>>(ContextMenuService);
         this.ngZone = injector.get<NgZone>(NgZone);
     }
 
@@ -70,7 +69,7 @@ export class TableTbodyComponent {
         return !this.selection.selectionStart.status;
     }
 
-    public openContextMenu(event: MouseEvent, key: string | null | undefined, row: TableRow): void {
+    public openContextMenu(event: MouseEvent, key: string | null | undefined, row: T): void {
         if (this.contextMenuTemplate) {
             this.ngZone.run((): void => {
                 const selectOnlyUnSelectedRow: boolean = this.enableSelection && !this.checkSelectedItem(row);
@@ -86,13 +85,13 @@ export class TableTbodyComponent {
     }
 
     // eslint-disable-next-line max-params,max-params-no-constructor/max-params-no-constructor
-    public handleDblClick(row: TableRow, key: string, event: MouseEvent, emitter?: TableClickEventEmitter): void {
+    public handleDblClick<K>(row: T, key: string, event: MouseEvent, emitter?: TableClickEventEmitter<T, K>): void {
         window.clearInterval(this.selection.selectionTaskIdle!);
         this.handleEventEmitter(row, key, event, emitter);
     }
 
     // eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
-    public handleOnClick(row: TableRow, key: string, event: MouseEvent, emitter?: TableClickEventEmitter): void {
+    public handleOnClick<K>(row: T, key: string, event: MouseEvent, emitter?: TableClickEventEmitter<T, K>): void {
         this.ngZone.run((): void => {
             if (this.enableSelection) {
                 this.selection.selectionTaskIdle = window.setTimeout((): void => {
@@ -105,7 +104,7 @@ export class TableTbodyComponent {
         this.handleEventEmitter(row, key, event, emitter);
     }
 
-    public generateTableCellInfo(item: TableRow, key: string, $event: TableBrowserEvent): TableEvent {
+    public generateTableCellInfo<K>(item: T, key: string, $event: TableBrowserEvent): TableEvent<T, K> {
         return {
             row: item,
             event: $event,
@@ -117,7 +116,12 @@ export class TableTbodyComponent {
     }
 
     // eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
-    private handleEventEmitter(row: TableRow, key: string, event: MouseEvent, emitter?: TableClickEventEmitter): void {
+    private handleEventEmitter<K>(
+        row: T,
+        key: string,
+        event: MouseEvent,
+        emitter?: TableClickEventEmitter<T, K>
+    ): void {
         if (emitter) {
             this.ngZone.runOutsideAngular((): void => {
                 window.setTimeout((): void => {
@@ -127,7 +131,7 @@ export class TableTbodyComponent {
         }
     }
 
-    private checkSelectedItem(row: TableRow): boolean {
-        return this.selection.selectionModel.get(row[this.primaryKey!]);
+    private checkSelectedItem(row: T): boolean {
+        return this.selection.selectionModel.get((row as Any)[this.primaryKey!]);
     }
 }

@@ -1,10 +1,10 @@
 import { Directive, EventEmitter, Input, Optional, Output, TemplateRef } from '@angular/core';
-import { PlainObject } from '@angular-ru/common/typings';
+import { Any, PlainObject } from '@angular-ru/common/typings';
 
 import { TableEvent } from '../../interfaces/table-builder.external';
 
 @Directive()
-export abstract class AbstractTemplateCellCommon {
+export abstract class AbstractTemplateCellCommonDirective<T> {
     public type: string | null = null;
     @Input() public row: string | boolean = false;
     @Input() public bold: boolean = false;
@@ -13,8 +13,10 @@ export abstract class AbstractTemplateCellCommon {
     @Input() public height: number | null = null;
     @Input('ng-style') public cssStyles: PlainObject | null = null;
     @Input('ng-class') public cssClasses: string | string[] | PlainObject | null = null;
-    @Output() public onClick: EventEmitter<TableEvent> = new EventEmitter();
-    @Output() public dblClick: EventEmitter<TableEvent> = new EventEmitter();
+    // TODO: should be rename (breaking changes)
+    // eslint-disable-next-line @angular-eslint/no-output-on-prefix
+    @Output() public readonly onClick: EventEmitter<TableEvent<T | Any, Any>> = new EventEmitter();
+    @Output() public readonly dblClick: EventEmitter<TableEvent<T | Any, Any>> = new EventEmitter();
 
     protected constructor(@Optional() public template?: TemplateRef<unknown>) {}
 }

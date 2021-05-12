@@ -8,8 +8,7 @@ import {
     OnInit
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Any } from '@angular-ru/common/typings';
-import { TableRow } from '@angular-ru/ng-table-builder';
+import { Any, PlainObject } from '@angular-ru/common/typings';
 
 import { MocksGenerator } from '../../../../tests/helpers/utils/mocks-generator';
 import { CodeDialogComponent } from '../../shared/dialog/code-dialog.component';
@@ -22,8 +21,8 @@ declare const hljs: Any;
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SampleNightComponent implements OnInit, AfterViewInit {
-    public dataFirst: TableRow[] = [];
-    public dataSecond: TableRow[] = [];
+    public dataFirst: PlainObject[] = [];
+    public dataSecond: PlainObject[] = [];
     public nativeScrollbar: boolean = false;
     public readonly dialog: MatDialog;
     private readonly ngZone: NgZone;
@@ -41,7 +40,7 @@ export class SampleNightComponent implements OnInit, AfterViewInit {
         const cols2: number = 30;
 
         Promise.all([MocksGenerator.generator(rows1, cols1), MocksGenerator.generator(rows2, cols2)]).then(
-            ([first, second]: [TableRow[], TableRow[]]): void => {
+            ([first, second]: [PlainObject[], PlainObject[]]): void => {
                 this.dataFirst = first;
                 this.dataSecond = second;
                 this.cd.detectChanges();

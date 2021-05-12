@@ -13,13 +13,14 @@ import {
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
+import { Any } from '@angular-ru/common/typings';
 import { detectChanges, getBodyRect } from '@angular-ru/common/utils';
 import { Subscription } from 'rxjs';
 
 import { ContextItemEvent } from '../../../interfaces/table-builder.external';
-import { ContextMenuState } from '../../../services/context-menu/context-menu.interface';
 import { ContextMenuService } from '../../../services/context-menu/context-menu.service';
-import { MIN_PADDING_CONTEXT_ITEM, SCROLLBAR_SIZE } from '../../../symbols';
+import { ContextMenuState } from '../../../services/context-menu/context-menu-state';
+import { MIN_PADDING_CONTEXT_ITEM, SCROLLBAR_SIZE } from '../../../table-builder.properties';
 
 const MENU_WIDTH: number = 300;
 
@@ -29,28 +30,30 @@ const MENU_WIDTH: number = 300;
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })
-export class NgxContextMenuItemComponent implements OnInit, OnDestroy {
+export class NgxContextMenuItemComponent<T = Any> implements OnInit, OnDestroy {
     @Input() public visible: string | boolean = true;
     @Input() public contextTitle: string | boolean | null = null;
-    @Input() public disable: string | boolean = false;
-    @Input() public divider: string | boolean = false;
+    @Input() public disable: string | boolean | undefined = false;
+    @Input() public divider: string | boolean | undefined = false;
     @Input('disable-sub-menu') public disableSubMenu: boolean = false;
     @Input('sub-menu-width') public subMenuWidth: number = MENU_WIDTH;
-    @Output() public onClick: EventEmitter<ContextItemEvent> = new EventEmitter();
+    // TODO: should be rename (breaking changes)
+    // eslint-disable-next-line @angular-eslint/no-output-on-prefix
+    @Output() public readonly onClick: EventEmitter<ContextItemEvent> = new EventEmitter();
     @ViewChild('item', { static: false }) public itemRef: ElementRef<HTMLDivElement> | null = null;
     public offsetX: number | null = null;
     public offsetY: number | null = null;
     private subscription: Subscription | null = null;
     private taskId: number | null = null;
-    private readonly contextMenu: ContextMenuService;
+    private readonly contextMenu: ContextMenuService<T>;
     private readonly ngZone: NgZone;
 
     constructor(private readonly cd: ChangeDetectorRef, injector: Injector) {
-        this.contextMenu = injector.get<ContextMenuService>(ContextMenuService);
+        this.contextMenu = injector.get<ContextMenuService<T>>(ContextMenuService);
         this.ngZone = injector.get<NgZone>(NgZone);
     }
 
-    public get state(): ContextMenuState {
+    public get state(): ContextMenuState<T> {
         return this.contextMenu.state;
     }
 

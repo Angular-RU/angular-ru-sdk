@@ -12,7 +12,8 @@ import {
     isSimpleObject,
     replaceWithNull,
     sortByAsc,
-    sortByDesc
+    sortByDesc,
+    pathsOfObject
 } from '@angular-ru/common/object';
 import { Any, PlainObject } from '@angular-ru/common/typings';
 
@@ -226,12 +227,20 @@ describe('[TEST]: Object', () => {
             expect(copy.b.c).toEqual(4);
         });
 
+        it('not equals', () => {
+            const c = { d: 3 };
+            const a = { a: 1, b: 2, c };
+
+            expect(deepClone(a).c !== c).toBeTruthy();
+            expect(deepClone(a).c).toEqual({ d: 3 });
+        });
+
         it('copy null/NaN/undefined/0/Infinity', () => {
             expect(deepClone(0)).toEqual(0);
             expect(deepClone(NaN)).toEqual(null);
             expect(deepClone(Infinity)).toEqual(null);
             expect(deepClone(null)).toEqual(null);
-            expect(deepClone(undefined)).toEqual(null);
+            expect(deepClone(undefined)).toEqual(undefined);
         });
 
         it('should be correct clone object', () => {
@@ -328,6 +337,11 @@ describe('[TEST]: Object', () => {
     it('getValueByPath', () => {
         const obj: PlainObject = { a: 1, f: [{ a: 2 }, { a: 3 }], g: { a: 4 } };
 
+        expect(getValueByPath(null, '')).toEqual(null);
+        expect(getValueByPath({ a: 2 }, '')).toEqual({ a: 2 });
+        expect(getValueByPath(null, 'ge')).toEqual(undefined);
+        expect(getValueByPath(undefined, 'ge')).toEqual(undefined);
+        expect(getValueByPath(obj, 'ge')).toEqual(undefined);
         expect(getValueByPath(obj, 'g.a')).toEqual(4);
         expect(getValueByPath(obj, 'f.0')).toEqual({ a: 2 });
         expect(getValueByPath(obj, 'f.0.a')).toEqual(2);
@@ -371,5 +385,30 @@ describe('[TEST]: Object', () => {
         expect(isIterable(0)).toBe(false);
         expect(isIterable(true)).toBe(false);
         expect(isIterable(() => {})).toBe(false);
+    });
+
+    it('should correct return paths of object', () => {
+        const row: PlainObject = {
+            a: 1,
+            b: {
+                c: 2,
+                d: {
+                    e: 3
+                },
+                g: [1, 2, 3]
+            }
+        };
+
+        expect(pathsOfObject(row)).toEqual(['a', 'b.c', 'b.d.e', 'b.g']);
+
+        class Person {
+            constructor(public name: string, public city: string) {}
+        }
+
+        // @ts-ignore
+        Person.prototype['age'] = 25;
+        const willem: Person = new Person('Willem', 'Groningen');
+
+        expect(pathsOfObject(willem)).toEqual(['name', 'city']);
     });
 });

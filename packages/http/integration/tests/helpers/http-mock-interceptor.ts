@@ -14,12 +14,10 @@ const HTTP_MOCK_DEFAULT_TIMEOUT: number = 500;
 export class HttpMockInterceptor implements HttpInterceptor {
     public intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<Any> {
         return next.handle(req).pipe(
-            switchMap(
-                async (value: unknown): Promise<unknown> => {
-                    await this.emulateTimeoutIfLongRequest(req);
-                    return value;
-                }
-            )
+            switchMap(async (value: unknown): Promise<unknown> => {
+                await this.emulateTimeoutIfLongRequest(req);
+                return value;
+            })
         );
     }
 

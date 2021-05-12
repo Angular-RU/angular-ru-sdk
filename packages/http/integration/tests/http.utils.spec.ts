@@ -3,12 +3,13 @@ import {
     getHttpHeader,
     getHttpParams,
     getPathWithoutQueryParams,
-    getUrlSegments,
+    makeUrlSegments,
     isAbsolutePath,
     isLocalhost,
     parseQueryParams,
     replaceDoubleSlash,
-    urlParse
+    buildUrl,
+    replaceLeadingAndTrailingSlashes
 } from '@angular-ru/http/utils';
 import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { PlainObject } from '@angular-ru/common/typings';
@@ -33,14 +34,54 @@ describe('[TEST]: http utils', () => {
     });
 
     it('getUrlSegments', () => {
-        expect(getUrlSegments({})).toEqual({ hostUrl: 'http://localhost/', baseUrl: '' });
-        expect(getUrlSegments({ hostUrl: 'http://hello_world', baseUrl: 'api' })).toEqual({
-            hostUrl: 'http://hello_world/',
-            baseUrl: '/api/'
+        expect(makeUrlSegments({})).toEqual({
+            hostUrl: 'http://localhost',
+            baseUrl: '',
+            restUrl: '',
+            pathUrl: ''
         });
-        expect(getUrlSegments({ hostUrl: 'http://hello_world/', baseUrl: '/api/' })).toEqual({
-            hostUrl: 'http://hello_world/',
-            baseUrl: '/api/'
+
+        expect(
+            makeUrlSegments({
+                hostUrl: 'http://hello_world',
+                baseUrl: 'api'
+            })
+        ).toEqual({
+            hostUrl: 'http://hello_world',
+            baseUrl: 'api',
+            restUrl: '',
+            pathUrl: ''
+        });
+
+        expect(
+            makeUrlSegments(
+                {
+                    hostUrl: 'http://hello_world',
+                    baseUrl: 'api'
+                },
+                'auth'
+            )
+        ).toEqual({
+            hostUrl: 'http://hello_world',
+            baseUrl: 'api',
+            restUrl: 'auth',
+            pathUrl: ''
+        });
+
+        expect(
+            makeUrlSegments(
+                {
+                    hostUrl: 'http://hello_world',
+                    baseUrl: 'api'
+                },
+                'user',
+                'update'
+            )
+        ).toEqual({
+            hostUrl: 'http://hello_world',
+            baseUrl: 'api',
+            restUrl: 'user',
+            pathUrl: 'update'
         });
     });
 
@@ -55,13 +96,13 @@ describe('[TEST]: http utils', () => {
         expect(replaceDoubleSlash('////a///b//c/d/')).toEqual('/a/b/c/d/');
     });
 
-    it('urlParse', () => {
-        expect(urlParse('////a///b//c/d/', getUrlSegments())).toEqual('http://localhost/a/b/c/d/');
-        expect(urlParse('////a///b//c/d/', getUrlSegments({ baseUrl: 'api-backend' }))).toEqual(
-            'http://localhost/api-backend/a/b/c/d/'
+    it('buildUrl', () => {
+        expect(buildUrl(makeUrlSegments({}, '////a///b//c/d/'))).toEqual('http://localhost/a/b/c/d');
+        expect(buildUrl(makeUrlSegments({ baseUrl: 'api-backend' }, '////a///b//c/d'))).toEqual(
+            'http://localhost/api-backend/a/b/c/d'
         );
 
-        expect(urlParse('////a///b//c/d?quick', getUrlSegments({ hostUrl: 'https://127.0.0.0:8030' }))).toEqual(
+        expect(buildUrl(makeUrlSegments({ hostUrl: 'https://127.0.0.0:8030' }, '', '////a///b//c/d?quick'))).toEqual(
             'https://127.0.0.0:8030/a/b/c/d'
         );
     });
@@ -93,5 +134,21 @@ describe('[TEST]: http utils', () => {
 
         expect(ensurePathByPathVariables(`/a/{newId}/b/{id}/d`, map)).toEqual('/a/6/b/5/d');
         expect(ensurePathByPathVariables(`/a/{invalidName}`, map)).toEqual('/a/{invalidName}');
+    });
+
+    it('removeLeadingAndTrailingSlashes', () => {
+        expect(replaceLeadingAndTrailingSlashes('')).toEqual('');
+    });
+
+    it('removeLeadingAndTrailingSlashes', () => {
+        expect(replaceLeadingAndTrailingSlashes('/')).toEqual('');
+    });
+
+    it('removeLeadingAndTrailingSlashes', () => {
+        expect(replaceLeadingAndTrailingSlashes('//')).toEqual('');
+    });
+
+    it('removeLeadingAndTrailingSlashes', () => {
+        expect(replaceLeadingAndTrailingSlashes('//ad/example///')).toEqual('ad/example');
     });
 });
