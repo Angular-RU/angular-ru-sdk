@@ -28,7 +28,8 @@
         "prepare:bad-report": "yarn -s eslint -c index.js \"**/file-suites/*.bad.ts\" > ./out/eslint.bad-file.report.txt ; exit 0",
         "prepare:good-report": "yarn -s eslint -c index.js \"**/file-suites/*.good.ts\" > ./out/eslint.good-file.report.txt ; exit 0",
         "prepare:file-pattern": "yarn -s eslint -c index.js \"**/file-suites/file-pattern/**/*.ts\" > ./out/eslint.file-pattern.report.txt ; exit 0",
-        "prebuilld:test": "yarn prepare:dir && yarn prepare:bad-report && yarn prepare:good-report && yarn prepare:file-pattern",
+        "prepare:circular": "yarn -s eslint -c index.js \"**/file-suites/circular/**/*.ts\" > ./out/eslint.circular.report.txt ; exit 0",
+        "prebuilld:test": "yarn prepare:dir && yarn prepare:bad-report && yarn prepare:good-report && yarn prepare:file-pattern && yarn prepare:circular",
         "test": "yarn prebuilld:test && yarn -s jest --config ./jest.config.js"
     },
     "resolutions": {

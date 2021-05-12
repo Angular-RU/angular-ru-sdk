@@ -172,7 +172,6 @@ module.exports = {
                 'no-nested-ternary': 'error',
                 'no-new-wrappers': 'error',
                 'no-prototype-builtins': 'off',
-                'import/exports-last': 'off',
                 'no-redeclare': 'error',
                 'no-restricted-exports': ['error'],
                 'no-restricted-syntax': [
@@ -264,9 +263,11 @@ module.exports = {
                 /**
                  * import
                  */
+                'import/exports-last': 'off',
                 'import/first': 'error',
                 'import/no-default-export': 'error',
                 'import/no-duplicates': 'error',
+                'import/no-cycle': 'error',
 
                 /**
                  * @typescript-eslint

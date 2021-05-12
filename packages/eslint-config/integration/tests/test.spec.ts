@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 describe('[TEST]: Angular-RU eslint recommendations', (): void => {
-    function getInfoByReportFile(type: 'bad-file' | 'good-file' | 'file-pattern'): string {
+    function getInfoByReportFile(type: 'bad-file' | 'good-file' | 'file-pattern' | 'circular'): string {
         return fs.readFileSync(`./out/eslint.${type}.report.txt`).toString();
     }
 
@@ -107,5 +107,11 @@ describe('[TEST]: Angular-RU eslint recommendations', (): void => {
         expect(
             filePattern.includes("Files doesn't must end with by .interfaces.ts  @angular-ru/no-suffix-file")
         ).toBeTruthy();*/
+    });
+
+    it('check circular dependencies', () => {
+        const filePattern: string = getInfoByReportFile('circular');
+        expect(filePattern.includes('2 problems (2 errors, 0 warnings)')).toBeTruthy();
+        expect(filePattern.includes('Dependency cycle detected')).toBeTruthy();
     });
 });
