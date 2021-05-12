@@ -710,7 +710,7 @@ describe('[TEST]: Amount format directive', () => {
             return fixture?.debugElement.query(By.css('input'));
         }
 
-        function setInputViewValue(value: string, type: 'push' | 'reset' = 'reset'): void {
+        function setInputViewValue(value: string, type: 'push' | 'reset' = 'reset', emitBlur: boolean = true): void {
             const input = getInputRef();
 
             if (input) {
@@ -725,7 +725,10 @@ describe('[TEST]: Amount format directive', () => {
                 }
 
                 input.nativeElement.dispatchEvent(new Event('input'));
-                input.nativeElement.dispatchEvent(new Event('blur'));
+
+                if (emitBlur) {
+                    input.nativeElement.dispatchEvent(new Event('blur'));
+                }
             }
 
             fixture?.detectChanges();
@@ -768,6 +771,23 @@ describe('[TEST]: Amount format directive', () => {
         });
 
         describe('ru-RU', () => {
+            describe('without emit blur by ru-RU', () => {
+                it('what happens if we are specify separators', () => {
+                    setInputViewValue('100000', 'reset', false);
+                    expect(getInputViewValue()).toEqual('100 000');
+                    expect(getInputModelValue()).toEqual(100000);
+
+                    setInputViewValue(',', 'push', false);
+                    expect(getInputViewValue()).toEqual('100 000,');
+                    expect(getInputModelValue()).toEqual(100000);
+
+                    getInputRef()?.nativeElement.dispatchEvent(new Event('blur'));
+
+                    expect(getInputViewValue()).toEqual('100 000');
+                    expect(getInputModelValue()).toEqual(100000);
+                });
+            });
+
             it('should be not dirty after first change detection', () => {
                 expect(getDirectiveInfo()?.element.type).toEqual('text');
                 expect(getDirectiveInfo()?.element.value).toEqual('');
@@ -804,8 +824,12 @@ describe('[TEST]: Amount format directive', () => {
             });
 
             it('when given a value with negation', () => {
-                setInputViewValue('-');
+                setInputViewValue('-', 'reset', false);
                 expect(getInputViewValue()).toEqual('-');
+                expect(getInputModelValue()).toEqual(null);
+
+                setInputViewValue('-', 'reset', true);
+                expect(getInputViewValue()).toEqual('');
                 expect(getInputModelValue()).toEqual(null);
 
                 setInputViewValue('-1');
@@ -937,6 +961,23 @@ describe('[TEST]: Amount format directive', () => {
                 getDirectiveInfo()?.setLang('en-EU');
             });
 
+            describe('without emit blur', () => {
+                it('what happens if we are specify separators by en-EU', () => {
+                    setInputViewValue('100000', 'reset', false);
+                    expect(getInputViewValue()).toEqual('100,000');
+                    expect(getInputModelValue()).toEqual(100000);
+
+                    setInputViewValue('.', 'push', false);
+                    expect(getInputViewValue()).toEqual('100,000.');
+                    expect(getInputModelValue()).toEqual(100000);
+
+                    getInputRef()?.nativeElement.dispatchEvent(new Event('blur'));
+
+                    expect(getInputViewValue()).toEqual('100,000');
+                    expect(getInputModelValue()).toEqual(100000);
+                });
+            });
+
             it('should be not dirty after first change detection', () => {
                 expect(getDirectiveInfo()?.element.type).toEqual('text');
                 expect(getDirectiveInfo()?.element.value).toEqual('');
@@ -973,8 +1014,12 @@ describe('[TEST]: Amount format directive', () => {
             });
 
             it('when given a value with negation', () => {
-                setInputViewValue('-');
+                setInputViewValue('-', 'reset', false);
                 expect(getInputViewValue()).toEqual('-');
+                expect(getInputModelValue()).toEqual(null);
+
+                setInputViewValue('-', 'reset', true);
+                expect(getInputViewValue()).toEqual('');
                 expect(getInputModelValue()).toEqual(null);
 
                 setInputViewValue('-1');
