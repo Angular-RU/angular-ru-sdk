@@ -337,6 +337,11 @@ describe('[TEST]: Object', () => {
     it('getValueByPath', () => {
         const obj: PlainObject = { a: 1, f: [{ a: 2 }, { a: 3 }], g: { a: 4 } };
 
+        expect(getValueByPath(null, '')).toEqual(null);
+        expect(getValueByPath({ a: 2 }, '')).toEqual({ a: 2 });
+        expect(getValueByPath(null, 'ge')).toEqual(undefined);
+        expect(getValueByPath(undefined, 'ge')).toEqual(undefined);
+        expect(getValueByPath(obj, 'ge')).toEqual(undefined);
         expect(getValueByPath(obj, 'g.a')).toEqual(4);
         expect(getValueByPath(obj, 'f.0')).toEqual({ a: 2 });
         expect(getValueByPath(obj, 'f.0.a')).toEqual(2);
