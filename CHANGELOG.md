@@ -1,3 +1,31 @@
+#### 15.241.3 (2021-05-12)
+
+##### Bug Fixes
+
+-   **@angular-ru/common:** after format we have incorrect fraction
+    ([#611](https://github.com/Angular-RU/angular-ru-sdk/pull/611))
+    ([43308854](https://github.com/Angular-RU/angular-ru-sdk/commit/433088549afd461848dd3dec8c0499f91f1a5809))
+
+#### 15.241.2 (2021-05-12)
+
+##### Build System / Dependencies
+
+-   update dependency @commitlint/config-angular to v12.1.3
+    ([#608](https://github.com/Angular-RU/angular-ru-sdk/pull/608))
+    ([f7342264](https://github.com/Angular-RU/angular-ru-sdk/commit/f734226405ee72624221e6d7034df6bd8c912f20))
+
+#### 15.241.1 (2021-05-12)
+
+##### Build System / Dependencies
+
+-   update dependency @types/jasmine to v3.7.2 ([#610](https://github.com/Angular-RU/angular-ru-sdk/pull/610))
+    ([7f0c6390](https://github.com/Angular-RU/angular-ru-sdk/commit/7f0c6390b8af8749db3a0ed1543f076999b072b4))
+-   update dependency @commitlint/config-conventional to v12.1.3
+    ([#609](https://github.com/Angular-RU/angular-ru-sdk/pull/609))
+    ([85f638d1](https://github.com/Angular-RU/angular-ru-sdk/commit/85f638d1df81acffafdb63fa1944cc1cf9904350))
+-   update dependency @commitlint/cli to v12.1.3 ([#607](https://github.com/Angular-RU/angular-ru-sdk/pull/607))
+    ([9c1915cd](https://github.com/Angular-RU/angular-ru-sdk/commit/9c1915cd26580608cb2ee5691163e7f467860e01))
+
 #### 15.241.0 (2021-05-12)
 
 ##### New Features

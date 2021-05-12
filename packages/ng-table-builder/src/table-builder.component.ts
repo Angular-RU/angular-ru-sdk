@@ -63,16 +63,14 @@ export class TableBuilderComponent<T>
     extends AbstractTableBuilderApiDirective<T>
     implements OnChanges, OnInit, AfterContentInit, AfterViewInit, AfterViewChecked, OnDestroy
 {
+    @ViewChild('header', { static: false }) public headerRef!: ElementRef<HTMLDivElement>;
+    @ViewChild('footer', { static: false }) public footerRef!: ElementRef<HTMLDivElement>;
     public dirty: boolean = true;
     public rendering: boolean = false;
     public isRendered: boolean = false;
     public contentInit: boolean = false;
     public contentCheck: boolean = false;
     public recalculated: RecalculatedStatus = { recalculateHeight: false };
-    @ViewChild('header', { static: false })
-    public headerRef!: ElementRef<HTMLDivElement>;
-    @ViewChild('footer', { static: false })
-    public footerRef!: ElementRef<HTMLDivElement>;
     public sourceIsNull: boolean = false;
     public afterViewInitDone: boolean = false;
     public readonly selection: SelectionService<T>;

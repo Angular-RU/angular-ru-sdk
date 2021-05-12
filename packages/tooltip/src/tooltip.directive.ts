@@ -24,15 +24,13 @@ import { TooltipValue } from './interfaces/tooltip-value';
 import { TooltipDomLeakService } from './services/tooltip-dom-leak.service';
 import { TOOLTIP_OPTIONS_TOKEN, TOOLTIP_TEXT_INTERCEPTOR_TOKEN } from './tooltip.tokens';
 
-@Directive({
-    selector: '[tooltip]'
-})
+@Directive({ selector: '[tooltip]' })
 export class TooltipDirective implements OnDestroy {
-    public uid: string = generateQuickGuid();
     @Input('tooltip-disabled') public tooltipDisabled!: boolean;
     @Input('tooltip-placement') public placement: TooltipPlacement = 'top';
     @Input('tooltip-css-style') public localCssStyle: string | null = null;
     @Input('tooltip-size') public size: TooltipSize = 'small';
+    public uid: string = generateQuickGuid();
     private readonly delta: number = 2;
     private readonly layoutMinDuration: number = 100;
     private tooltipDomElement: HTMLElement | null = null;

@@ -5,7 +5,6 @@ import { TableEvent } from '../../interfaces/table-builder.external';
 
 @Directive()
 export abstract class AbstractTemplateCellCommonDirective<T> {
-    public type: string | null = null;
     @Input() public row: string | boolean = false;
     @Input() public bold: boolean = false;
     @Input() public nowrap: boolean = true;
@@ -17,6 +16,7 @@ export abstract class AbstractTemplateCellCommonDirective<T> {
     // eslint-disable-next-line @angular-eslint/no-output-on-prefix
     @Output() public readonly onClick: EventEmitter<TableEvent<T | Any, Any>> = new EventEmitter();
     @Output() public readonly dblClick: EventEmitter<TableEvent<T | Any, Any>> = new EventEmitter();
+    public type: string | null = null;
 
     protected constructor(@Optional() public template?: TemplateRef<unknown>) {}
 }

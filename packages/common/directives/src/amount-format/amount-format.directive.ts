@@ -107,7 +107,7 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
     }
 
     public formatOnBlur(): void {
-        if (this.lastSymbolIsFraction()) {
+        if (this.isIncorrectPreviewAfterBlur()) {
             this.element.value = removeLastSymbol(this.element.value) ?? '';
         }
     }
@@ -127,8 +127,10 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
             return;
         }
 
+        const originValueBeforeReset: string = this.element.value;
         const numberValue: number = this.getNumberValueWithGaussRounded();
         this.setModelValueBy(numberValue);
+        this.element.value = originValueBeforeReset;
 
         const stringValue: string = this.prepareConvertedToLocaleValue(numberValue, fraction);
 
@@ -140,6 +142,13 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
         this.preventExpressionChangedAfter();
     }
 
+    private isIncorrectPreviewAfterBlur(): boolean {
+        return this.lastSymbolIsFraction() || this.viewModelIsOnlyMinus();
+    }
+
+    /**
+     * note: after reset model value then control override view model
+     */
     private resetModelValue<T>(value: T | null = null): void {
         this.ngControl?.reset(value);
     }
