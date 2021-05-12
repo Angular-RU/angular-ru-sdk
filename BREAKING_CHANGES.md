@@ -17,7 +17,7 @@ export class AppModule {}
 
 ```ts
 @NgModule({
-    imports: [AmountFormatDirectiveModule]
+    imports: [AmountFormatModule]
 })
 export class AppModule {}
 ```

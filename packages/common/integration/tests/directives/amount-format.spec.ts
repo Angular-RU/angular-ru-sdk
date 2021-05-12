@@ -2,7 +2,7 @@ import { FormBuilder, FormGroup, FormsModule, NgControl, ReactiveFormsModule } f
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import {
     AmountFormatDirective,
-    AmountFormatDirectiveModule,
+    AmountFormatModule,
     AmountOptions,
     DEFAULT_AMOUNT_OPTIONS
 } from '@angular-ru/common/directives';
@@ -749,7 +749,7 @@ describe('[TEST]: Amount format directive', () => {
         beforeEach(() =>
             TestBed.configureTestingModule({
                 declarations: [HelloWorldComponent],
-                imports: [AmountFormatDirectiveModule.forRoot(), CommonModule, FormsModule, ReactiveFormsModule]
+                imports: [AmountFormatModule.forRoot(), CommonModule, FormsModule, ReactiveFormsModule]
             })
         );
 
