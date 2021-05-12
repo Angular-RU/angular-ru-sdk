@@ -1,3 +1,11 @@
+#### 15.241.0 (2021-05-12)
+
+##### New Features
+
+-   **@angular-ru/tsconfig:** enable useDefineForClassFields
+    ([#606](https://github.com/Angular-RU/angular-ru-sdk/pull/606))
+    ([7ef166e4](https://github.com/Angular-RU/angular-ru-sdk/commit/7ef166e43ad95472b11e51615a27aa1a4f6af36c))
+
 #### 15.240.0 (2021-05-12)
 
 ##### New Features
