@@ -1,3 +1,11 @@
+#### 15.242.0 (2021-05-12)
+
+##### New Features
+
+-   **@angular-ru/eslint-config:** add decorated fields order
+    ([#600](https://github.com/Angular-RU/angular-ru-sdk/pull/600))
+    ([f9cc5aee](https://github.com/Angular-RU/angular-ru-sdk/commit/f9cc5aeed5251e88ed2bd754b88141ddbe520888))
+
 #### 15.241.3 (2021-05-12)
 
 ##### Bug Fixes
