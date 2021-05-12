@@ -1,3 +1,11 @@
+#### 15.241.3 (2021-05-12)
+
+##### Bug Fixes
+
+-   **@angular-ru/common:** after format we have incorrect fraction
+    ([#611](https://github.com/Angular-RU/angular-ru-sdk/pull/611))
+    ([43308854](https://github.com/Angular-RU/angular-ru-sdk/commit/433088549afd461848dd3dec8c0499f91f1a5809))
+
 #### 15.241.2 (2021-05-12)
 
 ##### Build System / Dependencies
