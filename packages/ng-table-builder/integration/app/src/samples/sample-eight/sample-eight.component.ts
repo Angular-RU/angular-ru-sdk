@@ -144,7 +144,7 @@ export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
                 name:
                     NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
                     ' ' +
-                    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
+                    NAMES[Math.round(Math.random() * (NAMES.length - 1))]?.charAt(0) +
                     '.',
                 // eslint-disable-next-line @typescript-eslint/no-magic-numbers
                 weight: Math.round(Math.random() * 100).toString(),

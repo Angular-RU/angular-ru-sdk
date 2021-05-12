@@ -71,17 +71,17 @@ export class VirtualForDirective<T> implements OnDestroy {
     }
 
     private createEmbeddedViewByIndex(index: VirtualIndex): void {
-        const row: T = this.sourceRef[index.position];
-        const virtualRef: InternalVirtualRef<T> | undefined = this.cache.get(index.position);
+        const row: T | undefined = this.sourceRef[index.position];
+        const cachedVirtualRef: InternalVirtualRef<T> | undefined = this.cache.get(index.position);
 
-        if (virtualRef) {
-            const [oldRow, viewRef]: InternalVirtualRef<T> = virtualRef;
-            if (row !== oldRow) {
+        if (cachedVirtualRef) {
+            const [oldRow, viewRef]: InternalVirtualRef<T> = cachedVirtualRef;
+            if (row && row !== oldRow) {
                 const stackId: number = this.view.indexOf(viewRef);
                 this.view.remove(stackId);
                 this.createEmbeddedView(row, index);
             }
-        } else {
+        } else if (row) {
             this.createEmbeddedView(row, index);
         }
     }

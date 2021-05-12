@@ -27,7 +27,7 @@ export class LoggerOptionsImpl implements LoggerOptions {
         [LoggerLevel.ERROR]: LABELS.ERROR
     };
 
-    public format(label: string, style: string): FormatOutput {
+    public format(label: string | undefined, style: string): FormatOutput {
         return { label: `[${label}]:`, style };
     }
 }

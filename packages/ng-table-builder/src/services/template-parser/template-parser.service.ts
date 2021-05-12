@@ -136,7 +136,7 @@ export class TemplateParserService<T> {
         const stickyRight: boolean = getValidHtmlBooleanAttribute(column.stickyRight);
         const isCustomKey: boolean = getValidHtmlBooleanAttribute(column.customKey);
         const canBeAddDraggable: boolean = !(stickyLeft || stickyRight);
-        const isModel: boolean = this.keyMap[key!];
+        const isModel: boolean = !!this.keyMap[key as string];
 
         this.compiledTemplates[key!] = {
             key,

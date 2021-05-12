@@ -1,16 +1,5 @@
 {
     "extends": "../tsconfig/tsconfig",
-    "angularCompilerOptions": {
-        "enableIvy": true,
-        "strictTemplates": true,
-        "fullTemplateTypeCheck": true,
-        "annotateForClosureCompiler": true,
-        "strictInjectionParameters": true,
-        "skipTemplateCodegen": false,
-        "preserveWhitespaces": true,
-        "skipMetadataEmit": false,
-        "disableTypeScriptVersionCheck": true
-    },
     "compilerOptions": {
         "rootDir": ".",
         "baseUrl": "./",

@@ -28,7 +28,7 @@ export class CssFactory {
     }
 
     public getStyleLabel(level: LoggerLevel): string {
-        const color: string = this.options.labelColors[level];
+        const color: string | undefined = this.options.labelColors[level];
         return `color: ${color}; font-weight: bold`;
     }
 
