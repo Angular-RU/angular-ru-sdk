@@ -1,3 +1,12 @@
+#### 15.240.0 (2021-05-12)
+
+##### New Features
+
+-   **@angular-ru/tsconfig:** strict angular templates ([#604](https://github.com/Angular-RU/angular-ru-sdk/pull/604))
+    ([b31dc4d9](https://github.com/Angular-RU/angular-ru-sdk/commit/b31dc4d9f99620df5d59211d9f44b16d26736bee))
+-   **@angular-ru/ng-table-builder:** add undefined type ([#603](https://github.com/Angular-RU/angular-ru-sdk/pull/603))
+    ([efcd950a](https://github.com/Angular-RU/angular-ru-sdk/commit/efcd950a08800cc8e68882e63dd808af11985865))
+
 #### 15.239.0 (2021-05-12)
 
 ##### New Features
