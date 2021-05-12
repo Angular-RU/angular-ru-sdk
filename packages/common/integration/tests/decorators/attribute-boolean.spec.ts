@@ -13,7 +13,7 @@ describe('[TEST]: Attribute boolean', () => {
         template: ''
     })
     class ChildComponent {
-        @Input() @AttributeBoolean() public prop: InputBoolean;
+        @Input() @AttributeBoolean() public declare prop: InputBoolean;
 
         public _propWithSetter?: string;
         @AttributeBoolean()
@@ -49,15 +49,15 @@ describe('[TEST]: Attribute boolean', () => {
         `
     })
     class HostComponent {
-        @ViewChild('simpleProp') public simplePropRef!: ChildComponent;
-        @ViewChild('noProp') public noPropRef!: ChildComponent;
-        @ViewChild('emptyStringProp') public emptyStringPropRef!: ChildComponent;
-        @ViewChild('filledStringProp') public filledStringPropRef!: ChildComponent;
-        @ViewChild('falseStringProp') public falseStringPropRef!: ChildComponent;
-        @ViewChild('dynamicProp') public dynamicPropRef!: ChildComponent;
-        @ViewChild('setterProp') public setterPropRef!: ChildComponent;
-        @ViewChild('hookProp') public hookPropRef!: ChildComponent;
-        @ViewChild('dynamicSetterProp') public dynamicSetterPropRef!: ChildComponent;
+        @ViewChild('simpleProp') public declare simplePropRef: ChildComponent;
+        @ViewChild('noProp') public declare noPropRef: ChildComponent;
+        @ViewChild('emptyStringProp') public declare emptyStringPropRef: ChildComponent;
+        @ViewChild('filledStringProp') public declare filledStringPropRef: ChildComponent;
+        @ViewChild('falseStringProp') public declare falseStringPropRef: ChildComponent;
+        @ViewChild('dynamicProp') public declare dynamicPropRef: ChildComponent;
+        @ViewChild('setterProp') public declare setterPropRef: ChildComponent;
+        @ViewChild('hookProp') public declare hookPropRef: ChildComponent;
+        @ViewChild('dynamicSetterProp') public declare dynamicSetterPropRef: ChildComponent;
         public propValue: Any = false;
     }
 
