@@ -10,10 +10,10 @@ import { AmountOptions } from './amount-options';
     exports: [AmountFormatDirective],
     declarations: [AmountFormatDirective]
 })
-export class AmountFormatDirectiveModule {
-    public static forRoot(options: Partial<AmountOptions> = {}): ModuleWithProviders<AmountFormatDirectiveModule> {
+export class AmountFormatModule {
+    public static forRoot(options: Partial<AmountOptions> = {}): ModuleWithProviders<AmountFormatModule> {
         return {
-            ngModule: AmountFormatDirectiveModule,
+            ngModule: AmountFormatModule,
             providers: [{ provide: AMOUNT_FORMAT_OPTIONS, useValue: { ...DEFAULT_AMOUNT_OPTIONS, ...options } }]
         };
     }
