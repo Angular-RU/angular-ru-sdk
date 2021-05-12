@@ -12,7 +12,7 @@ export function updateArray<T>(
     const skipIndexes: Set<number> = new Set();
 
     for (let i: number = 0; i < sourceArray.length; i++) {
-        const currentItem: T = sourceArray[i];
+        const currentItem: T = sourceArray[i] as T;
         let updated: boolean = false;
         for (let j: number = 0; j < newUpdatedArray.length; j++) {
             if (skipIndexes.has(j)) {
@@ -20,7 +20,7 @@ export function updateArray<T>(
             }
 
             let isCompared: boolean = false;
-            const newItem: T = newUpdatedArray[j];
+            const newItem: T = newUpdatedArray[j] as T;
 
             if (isFunctionLike<CompareFn<T>>(compareFnOrKey)) {
                 isCompared = compareFnOrKey(currentItem, newItem);

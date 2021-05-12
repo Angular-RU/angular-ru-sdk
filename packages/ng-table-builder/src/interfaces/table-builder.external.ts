@@ -26,7 +26,7 @@ export interface TableCellOptions<T = Any> {
 }
 
 export interface TableHeadCellOptions {
-    headTitle: string | null;
+    headTitle: string | null | undefined;
     emptyHead: boolean;
 }
 

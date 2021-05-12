@@ -198,7 +198,9 @@ export abstract class AbstractTableBuilderApiDirective<T>
      * recommendation: {{ table.selectionModel.size  }}
      */
     public get selectedItems(): T[] {
-        return this.sourceRef.filter((item: T): boolean => this.selectionModel.entries[(item as Any)[this.primaryKey]]);
+        return this.sourceRef.filter(
+            (item: T): boolean => !!this.selectionModel.entries[(item as Any)[this.primaryKey]]
+        );
     }
 
     public get firstItem(): T {
@@ -329,8 +331,8 @@ export abstract class AbstractTableBuilderApiDirective<T>
     }
 
     public drop({ previousIndex, currentIndex }: CdkDragSortEvent): void {
-        const previousKey: string = this.visibleColumns[previousIndex];
-        const currentKey: string = this.visibleColumns[currentIndex];
+        const previousKey: string | undefined = this.visibleColumns[previousIndex];
+        const currentKey: string | undefined = this.visibleColumns[currentIndex];
         this.isDragMoving = false;
         this.draggable.drop(previousKey, currentKey);
         this.changeSchema();

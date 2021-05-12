@@ -4,6 +4,7 @@ import { FilterGlobalOpts } from './filter-global-opts';
 import { FilterableMessage } from './filterable-message';
 import { TableFilterType } from './table-filter-type';
 
+// TODO: should be refactor because duplicate code as sortWorker
 // eslint-disable-next-line sonarjs/cognitive-complexity,max-lines-per-function
 export function filterAllWorker<T>({ source, global, types, columns }: FilterableMessage<T>): T[] {
     const enum Terminate {
@@ -54,8 +55,8 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
 
         for (const fieldKey of Object.keys(columns!.values)) {
             const fieldValue: string = String(getValueByPath(item, fieldKey) || '').trim();
-            const findKeyValue: string = String(columns!.values[fieldKey]);
-            const fieldType: TableFilterType = columns!.types[fieldKey];
+            const findKeyValue: string = String(columns?.values[fieldKey]);
+            const fieldType: TableFilterType | undefined = columns?.types[fieldKey];
             const [terminate, satisfies]: Satisfies = getSatisfies(fieldValue, findKeyValue, fieldType);
             matches = matches && satisfies;
 
@@ -70,7 +71,11 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
     type Satisfies = [Terminate, boolean];
 
     // eslint-disable-next-line complexity,max-lines-per-function
-    function getSatisfies(field: string, substring: string, fieldType: TableFilterType | string): Satisfies {
+    function getSatisfies(
+        field: string,
+        substring: string,
+        fieldType: TableFilterType | string | undefined
+    ): Satisfies {
         let satisfies: boolean = false;
         let terminate: Terminate = Terminate.NEXT;
 

@@ -1,5 +1,6 @@
 import { Any } from '@angular-ru/common/typings';
 
+// eslint-disable-next-line complexity
 export function getValueByPath<T = unknown, K = T>(
     obj: T,
     path: string | null | undefined,
@@ -15,7 +16,8 @@ export function getValueByPath<T = unknown, K = T>(
     let index: number = 0;
 
     for (; result && index < parts.length; ++index) {
-        result = (result as Any)?.[parts?.[index]];
+        const localIndex: string = parts?.[index] as string;
+        result = (result as Any)?.[localIndex];
     }
 
     return result ?? fallback;

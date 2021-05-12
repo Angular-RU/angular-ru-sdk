@@ -9,7 +9,16 @@
         "skipTemplateCodegen": false,
         "preserveWhitespaces": true,
         "skipMetadataEmit": false,
-        "disableTypeScriptVersionCheck": true
+        "disableTypeScriptVersionCheck": true,
+        "strictInputTypes": true,
+        "strictInputAccessModifiers": true,
+        "strictNullInputTypes": true,
+        "strictSafeNavigationTypes": true,
+        "strictDomLocalRefTypes": true,
+        "strictOutputEventTypes": true,
+        "strictDomEventTypes": true,
+        "strictContextGenerics": true,
+        "strictLiteralTypes": true
     },
     "compilerOptions": {
         "newLine": "lf",
@@ -37,15 +46,21 @@
         "preserveConstEnums": false,
         "noUnusedParameters": true,
         "noUnusedLocals": true,
+        "noUncheckedIndexedAccess": true,
         "skipLibCheck": false,
         "noImplicitReturns": true,
         "noImplicitAny": true,
         "noImplicitThis": true,
         "allowUmdGlobalAccess": true,
+        "noPropertyAccessFromIndexSignature": false,
         "noFallthroughCasesInSwitch": true,
         "useDefineForClassFields": false,
         "lib": ["esnext", "dom"],
         "module": "esnext",
-        "target": "es2015"
-    }
+        "target": "es2015",
+        "incremental": true,
+        "forceConsistentCasingInFileNames": true,
+        "tsBuildInfoFile": ".cache/tsconfig.buildinfo"
+    },
+    "exclude": ["node_modules", "dist/**", "__tests__/**", "coverage/**", ".cache/**"]
 }

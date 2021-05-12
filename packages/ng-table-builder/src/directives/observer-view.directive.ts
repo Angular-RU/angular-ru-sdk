@@ -3,8 +3,8 @@ import { AfterViewInit, Directive, ElementRef, EventEmitter, Input, NgZone, OnDe
 // TODO: move this directive to common
 @Directive({ selector: '[observerView]' })
 export class ObserverViewDirective implements AfterViewInit, OnDestroy {
-    @Input() public readonly observerRoot?: HTMLElement;
-    @Input() public readonly observerRootMargin?: string;
+    @Input() public observerRoot?: HTMLElement;
+    @Input() public observerRootMargin?: string;
     @Output() public readonly observeVisible: EventEmitter<boolean> = new EventEmitter(true);
     private observer: IntersectionObserver | null = null;
     private previousRation: number = 0.0;

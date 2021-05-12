@@ -411,8 +411,8 @@ export class TableBuilderComponent<T>
 
     private checkCorrectInitialSchema(changes: SimpleChanges = {}): void {
         if (TableSimpleChanges.SCHEMA_COLUMNS in changes) {
-            const schemaChange: SimpleChange = changes[TableSimpleChanges.SCHEMA_COLUMNS];
-            if (isNotNil(schemaChange.currentValue)) {
+            const schemaChange: SimpleChange | undefined = changes[TableSimpleChanges.SCHEMA_COLUMNS];
+            if (isNotNil(schemaChange?.currentValue)) {
                 if (isNil(this.name)) {
                     console.error(`Table name is required! Example: <ngx-table-builder name="my-table-name" />`);
                 }
@@ -614,9 +614,11 @@ export class TableBuilderComponent<T>
 
     private syncDrawColumns(columnList: string[]): void {
         for (let index: number = 0; index < columnList.length; index++) {
-            const key: string = columnList[index];
-            const schema: ColumnsSchema = this.mergeColumnSchema(key, index);
-            this.processedColumnList(schema, columnList[index]);
+            const key: string = columnList[index] as string;
+            const schema: ColumnsSchema | undefined = this.getCompiledColumnSchema(key, index);
+            if (schema) {
+                this.processedColumnList(schema, columnList[index]);
+            }
         }
     }
 
@@ -629,7 +631,7 @@ export class TableBuilderComponent<T>
      * @param key - column schema from rendered templates map
      * @param index - column position
      */
-    private mergeColumnSchema(key: string, index: number): ColumnsSchema {
+    private getCompiledColumnSchema(key: string, index: number): ColumnsSchema | undefined {
         const customColumn: Partial<ColumnsSchema> = this.getCustomColumnSchemaByIndex(index);
 
         if (!this.templateParser.compiledTemplates[key]) {
@@ -637,9 +639,9 @@ export class TableBuilderComponent<T>
             this.templateParser.compileColumnMetadata(column);
         }
 
-        const defaultColumn: ColumnsSchema = this.templateParser.compiledTemplates[key];
+        const defaultColumn: ColumnsSchema | undefined = this.templateParser.compiledTemplates[key];
 
-        if (customColumn.key === defaultColumn.key) {
+        if (customColumn.key === defaultColumn?.key) {
             this.templateParser.compiledTemplates[key] = { ...defaultColumn, ...customColumn } as ColumnsSchema;
         }
 
@@ -651,9 +653,12 @@ export class TableBuilderComponent<T>
      * @param schema - column schema
      * @param key - column name
      */
-    private processedColumnList(schema: ColumnsSchema, key: string): void {
+    private processedColumnList(schema: ColumnsSchema, key: string | undefined): void {
         if (this.templateParser.schema || schema) {
-            this.templateParser.schema?.columns.push(this.templateParser.compiledTemplates[key]);
+            const compiledSchema: ColumnsSchema | undefined = this.templateParser.compiledTemplates[key as string];
+            if (compiledSchema) {
+                this.templateParser.schema?.columns.push(compiledSchema);
+            }
         }
     }
 

@@ -82,7 +82,7 @@ export class GroupFactory {
         return pipeLineResult!;
     }
 
-    private getLabel(level: string, style: string): FormatOutput {
+    private getLabel(level: string | undefined, style: string): FormatOutput {
         return this.options.format(level, style);
     }
 }

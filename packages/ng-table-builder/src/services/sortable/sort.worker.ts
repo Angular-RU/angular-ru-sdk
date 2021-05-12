@@ -2,6 +2,7 @@ import { Any, PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
 
 import { SortableMessage } from './sortable-message';
 
+// TODO: should be refactor for decomposition web workers
 // eslint-disable-next-line max-lines-per-function
 export function sortWorker<T>(message: SortableMessage<T>): T[] {
     // eslint-disable-next-line
@@ -43,7 +44,7 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
             while (sorted === 0 && ix < countKeys) {
                 const key: string | null = Sortable.observeKey(matches, ix);
                 if (key) {
-                    const depth: number = matches[key];
+                    const depth: number | undefined = matches[key];
                     sorted = Sortable.deepSort(key, a, b, depth);
                     ix++;
                 }
@@ -72,7 +73,7 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
         }
 
         // eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
-        private static deepSort(key: string, leftHand: Any, rightHand: Any, depth: number): number {
+        private static deepSort(key: string, leftHand: Any, rightHand: Any, depth: number | undefined): number {
             const a: Any = getValueByPath(leftHand, key);
             const b: Any = getValueByPath(rightHand, key);
             return Sortable.shallowSort(a, b, depth);

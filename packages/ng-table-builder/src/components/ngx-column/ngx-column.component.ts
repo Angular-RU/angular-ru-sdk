@@ -13,14 +13,14 @@ import { TemplateHeadThDirective } from '../../directives/rows/template-head-th.
 export class NgxColumnComponent<T> extends ColumnOptionsDirective {
     @Input() public key: string | null = null;
     @Input() public stub: string | null = '-';
-    @Input('sticky') public stickyLeft: boolean | string = false;
-    @Input('empty-head') public emptyHead: string | boolean | null = null;
-    @Input('head-title') public headTitle: string | null = null;
+    @Input('sticky') public stickyLeft: boolean | string | undefined = false;
+    @Input('empty-head') public emptyHead: string | boolean | null | undefined = null;
+    @Input('head-title') public headTitle: string | null | undefined = null;
     @Input('custom-key') public customKey: string | boolean = false;
     @Input('sticky-end') public stickyRight: string | boolean = false;
     @Input('vertical-line') public verticalLine: string | boolean = false;
     @Input('important-template') public importantTemplate: string | boolean = false;
-    @Input('overflow-tooltip') public overflowTooltip: boolean | null = null;
+    @Input('overflow-tooltip') public overflowTooltip: boolean | null | undefined = null;
     @ContentChild(TemplateHeadThDirective, { static: false }) public th!: TemplateHeadThDirective<T>;
     @ContentChild(TemplateBodyTdDirective, { static: false }) public td!: TemplateBodyTdDirective<T>;
 
