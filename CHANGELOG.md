@@ -1,3 +1,11 @@
+#### 15.239.0 (2021-05-12)
+
+##### New Features
+
+-   **@angular-ru/tsconfig:** add noUncheckedIndexedAccess
+    ([#602](https://github.com/Angular-RU/angular-ru-sdk/pull/602))
+    ([e776743c](https://github.com/Angular-RU/angular-ru-sdk/commit/e776743c036da10c562a4947e826d152b86e4881))
+
 #### 15.238.0 (2021-05-12)
 
 ##### New Features
