@@ -54,7 +54,7 @@
         "allowUmdGlobalAccess": true,
         "noPropertyAccessFromIndexSignature": false,
         "noFallthroughCasesInSwitch": true,
-        "useDefineForClassFields": false,
+        "useDefineForClassFields": true,
         "lib": ["esnext", "dom"],
         "module": "esnext",
         "target": "es2015",
