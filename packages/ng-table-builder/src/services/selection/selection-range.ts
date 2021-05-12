@@ -1,8 +1,8 @@
 import { Any } from '@angular-ru/common/typings';
 
 export class SelectionRange {
-    public start: number | null = null;
-    public end: number | null = null;
+    public start: number | null | undefined = null;
+    public end: number | null | undefined = null;
 
     public put(index: number): void {
         if (this.start === null) {
@@ -18,8 +18,8 @@ export class SelectionRange {
     }
 
     public sortKeys(): SelectionRange {
-        const [start, end]: (number | null)[] = [this.start, this.end].sort(
-            (a: number | null, b: number | null): Any => (a ?? 0) - (b ?? 0)
+        const [start, end]: (number | null | undefined)[] = [this.start, this.end].sort(
+            (a: number | null | undefined, b: number | null | undefined): Any => (a ?? 0) - (b ?? 0)
         );
         this.start = start;
         this.end = end;

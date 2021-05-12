@@ -9,6 +9,6 @@ export class TableSelectedItemsPipe<T> implements PipeTransform {
 
     public transform(selectedEntries?: PlainObjectOf<boolean>): T[] {
         const entries: PlainObjectOf<boolean> = selectedEntries ?? this.table.selectionEntries;
-        return this.table.sourceRef.filter((item: T): boolean => entries[(item as Any)[this.table.primaryKey]]);
+        return this.table.sourceRef.filter((item: T): boolean => !!entries[(item as Any)[this.table.primaryKey]]);
     }
 }

@@ -121,12 +121,17 @@ export class SelectionService<T> implements OnDestroy {
             this.handler[type] = ({ shiftKey }: KeyboardEvent): void => {
                 this.selectionStart = { status: shiftKey };
             };
-            window.addEventListener(type, this.handler[type], true);
+
+            if (this.handler[type]) {
+                window.addEventListener(type, this.handler[type]!, true);
+            }
         });
     }
 
     private removeListenerByType(type: string): void {
-        window.removeEventListener(type, this.handler[type], true);
+        if (this.handler[type]) {
+            window.removeEventListener(type, this.handler[type]!, true);
+        }
     }
 
     private checkIsAllSelected(allSize: number | null = null): void {
@@ -151,7 +156,7 @@ export class SelectionService<T> implements OnDestroy {
         if (selectedRange) {
             const { start, end }: SelectionRange = this.range.sortKeys();
             for (let i: number = start!; i <= end!; ++i) {
-                const row: T = rows[i];
+                const row: T = rows[i] as T;
                 const rowId: RowId = this.getIdByRow(row);
                 this.selectionModel.select(rowId, row, false);
             }

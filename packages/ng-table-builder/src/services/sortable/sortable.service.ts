@@ -78,7 +78,7 @@ export class SortableService<T> {
 
     private updateDefinitionByKeyImmutably(key: string): PlainObjectOf<SortOrderType> {
         const definition: PlainObjectOf<SortOrderType> = { ...this.definition };
-        const existKey: SortOrderType = definition[key];
+        const existKey: SortOrderType | undefined = definition[key];
 
         if (existKey) {
             if (existKey === SortOrderType.ASC) {
