@@ -710,7 +710,7 @@ describe('[TEST]: Amount format directive', () => {
             return fixture?.debugElement.query(By.css('input'));
         }
 
-        function setInputViewValue(value: string, type: 'push' | 'reset' = 'reset'): void {
+        function setInputViewValue(value: string, type: 'push' | 'reset' = 'reset', emitBlur: boolean = true): void {
             const input = getInputRef();
 
             if (input) {
@@ -725,7 +725,10 @@ describe('[TEST]: Amount format directive', () => {
                 }
 
                 input.nativeElement.dispatchEvent(new Event('input'));
-                input.nativeElement.dispatchEvent(new Event('blur'));
+
+                if (emitBlur) {
+                    input.nativeElement.dispatchEvent(new Event('blur'));
+                }
             }
 
             fixture?.detectChanges();
@@ -764,6 +767,23 @@ describe('[TEST]: Amount format directive', () => {
                 expect(getInputViewValue()).toEqual('10 000');
                 expect(getInputModelValue()).toEqual(10000);
                 expect(getDirectiveInfo()?.isInAngularZone).toEqual(false);
+            });
+        });
+
+        describe('without emit blur', () => {
+            it('what happens if we are specify separators', () => {
+                setInputViewValue('100', 'reset', false);
+                expect(getInputViewValue()).toEqual('100');
+                expect(getInputModelValue()).toEqual(100);
+
+                setInputViewValue(',', 'push', false);
+                expect(getInputViewValue()).toEqual('100,');
+                expect(getInputModelValue()).toEqual(100);
+
+                getInputRef()?.nativeElement.dispatchEvent(new Event('blur'));
+
+                expect(getInputViewValue()).toEqual('100');
+                expect(getInputModelValue()).toEqual(100);
             });
         });
 
