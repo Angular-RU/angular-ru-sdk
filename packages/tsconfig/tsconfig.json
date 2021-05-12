@@ -10,7 +10,15 @@
         "preserveWhitespaces": true,
         "skipMetadataEmit": false,
         "disableTypeScriptVersionCheck": true,
-        "strictInputAccessModifiers": true
+        "strictInputTypes": true,
+        "strictInputAccessModifiers": true,
+        "strictNullInputTypes": true,
+        "strictSafeNavigationTypes": true,
+        "strictDomLocalRefTypes": true,
+        "strictOutputEventTypes": true,
+        "strictDomEventTypes": true,
+        "strictContextGenerics": true,
+        "strictLiteralTypes": true
     },
     "compilerOptions": {
         "newLine": "lf",
