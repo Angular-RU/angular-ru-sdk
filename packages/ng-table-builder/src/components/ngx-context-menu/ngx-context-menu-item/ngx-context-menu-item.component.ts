@@ -33,8 +33,8 @@ const MENU_WIDTH: number = 300;
 export class NgxContextMenuItemComponent<T = Any> implements OnInit, OnDestroy {
     @Input() public visible: string | boolean = true;
     @Input() public contextTitle: string | boolean | null = null;
-    @Input() public disable: string | boolean = false;
-    @Input() public divider: string | boolean = false;
+    @Input() public disable: string | boolean | undefined = false;
+    @Input() public divider: string | boolean | undefined = false;
     @Input('disable-sub-menu') public disableSubMenu: boolean = false;
     @Input('sub-menu-width') public subMenuWidth: number = MENU_WIDTH;
     // TODO: should be rename (breaking changes)
