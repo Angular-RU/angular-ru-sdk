@@ -1,3 +1,13 @@
+#### 15.238.0 (2021-05-12)
+
+##### New Features
+
+-   **@angular-ru/common:**
+    -   remove deprecated modules ([#601](https://github.com/Angular-RU/angular-ru-sdk/pull/601))
+        ([f3bbdee4](https://github.com/Angular-RU/angular-ru-sdk/commit/f3bbdee42f6909b166edc86d44e76858e2273040))
+    -   refactor amountFormat ([#554](https://github.com/Angular-RU/angular-ru-sdk/pull/554))
+        ([c446fd57](https://github.com/Angular-RU/angular-ru-sdk/commit/c446fd576eb6a1c14dfef6e6366bd131c79a3719))
+
 #### 15.237.0 (2021-05-11)
 
 ##### New Features
