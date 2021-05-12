@@ -1,3 +1,11 @@
+#### 15.241.2 (2021-05-12)
+
+##### Build System / Dependencies
+
+-   update dependency @commitlint/config-angular to v12.1.3
+    ([#608](https://github.com/Angular-RU/angular-ru-sdk/pull/608))
+    ([f7342264](https://github.com/Angular-RU/angular-ru-sdk/commit/f734226405ee72624221e6d7034df6bd8c912f20))
+
 #### 15.241.1 (2021-05-12)
 
 ##### Build System / Dependencies
