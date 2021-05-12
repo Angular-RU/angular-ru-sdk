@@ -31,12 +31,12 @@ export abstract class AbstractModalViewLayerDirective<T, K extends PositionState
     public isShowed: boolean = false;
     public maxHeight: number | null = null;
     public minHeight: number | null = null;
+    @ViewChild('menu', { static: false }) protected menu!: ElementRef<HTMLDivElement>;
     protected subscription: Subscription | null = null;
     protected readonly app: ApplicationRef;
     protected readonly filterable: FilterableService<T>;
     protected readonly ngZone: NgZone;
     protected readonly contextMenu: ContextMenuService<T>;
-    @ViewChild('menu', { static: false }) protected menu!: ElementRef<HTMLDivElement>;
 
     protected constructor(protected readonly cd: ChangeDetectorRef, injector: Injector) {
         this.app = injector.get<ApplicationRef>(ApplicationRef);
