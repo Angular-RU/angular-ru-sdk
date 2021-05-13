@@ -2,7 +2,10 @@
     "extends": "./tsconfig.json",
     "compilerOptions": {
         "outDir": "../out-tsc/app",
-        "types": []
+        "types": [],
+        "paths": {
+            "@angular-ru/common/*": ["dist/library/common/dist/library/*"]
+        }
     },
     "include": ["integration/app/main.ts", "integration/app/polyfills.ts"]
 }

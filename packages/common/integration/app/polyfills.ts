@@ -1,6 +1,3 @@
 import 'intersection-observer';
+import '@angular-ru/common/zone.js/unpatch-zone';
 import 'zone.js/dist/zone';
-
-import { unpatchZoneJsEvents } from '@angular-ru/common/zone.js';
-
-unpatchZoneJsEvents();
