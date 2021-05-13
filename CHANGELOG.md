@@ -1,3 +1,29 @@
+#### 15.246.1 (2021-05-13)
+
+##### Build System / Dependencies
+
+-   update dependency @angular/cli to v11.2.13 ([#622](https://github.com/Angular-RU/angular-ru-sdk/pull/622))
+    ([da6f897d](https://github.com/Angular-RU/angular-ru-sdk/commit/da6f897d3cbd3af5f8141e30bb047d7da965d7b5))
+-   update dependency @commitlint/cli to v12.1.4 ([#623](https://github.com/Angular-RU/angular-ru-sdk/pull/623))
+    ([2843484d](https://github.com/Angular-RU/angular-ru-sdk/commit/2843484d209afce101c57787756a374de957f87c))
+-   update dependency @types/jasmine to v3.7.4 ([#626](https://github.com/Angular-RU/angular-ru-sdk/pull/626))
+    ([17315bbc](https://github.com/Angular-RU/angular-ru-sdk/commit/17315bbceaafe23b8476b9dae26d3326aef80f98))
+-   update dependency @commitlint/config-conventional to v12.1.4
+    ([#625](https://github.com/Angular-RU/angular-ru-sdk/pull/625))
+    ([1c1409fe](https://github.com/Angular-RU/angular-ru-sdk/commit/1c1409fe771eccce9084ea3c0e54fb957cd70554))
+
+##### Continuous Integration
+
+-   add autoupdate.yml ([#631](https://github.com/Angular-RU/angular-ru-sdk/pull/631))
+    ([a6b66bb2](https://github.com/Angular-RU/angular-ru-sdk/commit/a6b66bb2c669af0ac34d5656984906d14fa73825))
+-   add lock.yml ([#630](https://github.com/Angular-RU/angular-ru-sdk/pull/630))
+    ([b9fb1f91](https://github.com/Angular-RU/angular-ru-sdk/commit/b9fb1f91850905abcd0571f3c0b4220cddffd526))
+
+##### New Features
+
+-   add labeler.yml ([#629](https://github.com/Angular-RU/angular-ru-sdk/pull/629))
+    ([c520e9c6](https://github.com/Angular-RU/angular-ru-sdk/commit/c520e9c6e8662065716358c5b306a0ba771b507b))
+
 #### 15.246.0 (2021-05-13)
 
 ##### New Features
