@@ -35,9 +35,9 @@
         "eslint": "7.26.0"
     },
     "dependencies": {
-        "@angular-eslint/eslint-plugin": "4.2.0",
-        "@angular-eslint/eslint-plugin-template": "4.2.0",
-        "@angular-eslint/template-parser": "4.2.0",
+        "@angular-eslint/eslint-plugin": "4.2.1",
+        "@angular-eslint/eslint-plugin-template": "4.2.1",
+        "@angular-eslint/template-parser": "4.2.1",
         "@angular-ru/eslint-plugin": "^15.236.0",
         "@types/eslint": "7.2.10",
         "@typescript-eslint/eslint-plugin": "4.22.1",
