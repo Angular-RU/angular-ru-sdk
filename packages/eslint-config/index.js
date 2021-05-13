@@ -60,27 +60,10 @@ module.exports = {
             ],
             rules: {
                 /**
-                 * Angular-RU rules
-                 */
-                '@angular-ru/no-suffix-file': [
-                    'error',
-                    {
-                        fileEndsWithList: [
-                            '.model.ts',
-                            '.models.ts',
-                            '.enum.ts',
-                            '.enums.ts',
-                            '.type.ts',
-                            '.types.ts',
-                            '.interface.ts',
-                            '.interfaces.ts'
-                        ]
-                    }
-                ],
-
-                /**
                  * ESLint Core
                  */
+                'no-invalid-this': 'off',
+                '@typescript-eslint/no-invalid-this': ['error'],
                 'arrow-body-style': 'error',
                 'arrow-parens': ['error', 'always'],
                 'brace-style': [
@@ -89,19 +72,8 @@ module.exports = {
                 ],
                 camelcase: 'off',
                 'comma-dangle': ['error', 'never'],
-                'comma-spacing': [
-                    'error',
-                    {
-                        before: false,
-                        after: true
-                    }
-                ],
-                complexity: [
-                    'error',
-                    {
-                        max: 6
-                    }
-                ],
+                'comma-spacing': ['error', { before: false, after: true }],
+                complexity: ['error', { max: 6 }],
                 'constructor-super': 'error',
                 curly: 'error',
                 'dot-notation': 'off',
@@ -118,12 +90,7 @@ module.exports = {
                     }
                 ],
                 indent: 'off',
-                'keyword-spacing': [
-                    'error',
-                    {
-                        before: true
-                    }
-                ],
+                'keyword-spacing': ['error', { before: true }],
                 'max-classes-per-file': ['error', 1],
                 'max-depth': ['error', 4],
                 'max-len': [
@@ -151,12 +118,7 @@ module.exports = {
                 'no-bitwise': 'off',
                 'no-caller': 'error',
                 'no-cond-assign': 'error',
-                'no-console': [
-                    'error',
-                    {
-                        allow: ['warn', 'error']
-                    }
-                ],
+                'no-console': ['error', { allow: ['warn', 'error'] }],
                 'no-param-reassign': ['error'],
                 'no-constant-condition': 'error',
                 'no-debugger': 'error',
@@ -165,7 +127,6 @@ module.exports = {
                 'no-empty-functions': 'off',
                 'no-eval': 'error',
                 'no-fallthrough': 'error',
-                'no-invalid-this': 'off',
                 'no-magic-numbers': 'off',
                 'no-multiple-empty-lines': 'error',
                 'no-negated-condition': 'error',
@@ -180,6 +141,10 @@ module.exports = {
                     {
                         selector: 'TSEnumDeclaration:not([const=true])',
                         message: "Don't declare non-const enums"
+                    },
+                    {
+                        selector: 'MethodDefinition[static = true] ThisExpression',
+                        message: "Don't use this in static methods"
                     }
                 ],
                 'no-return-assign': ['error', 'always'],
@@ -224,16 +189,11 @@ module.exports = {
                     }
                 ],
                 'space-infix-ops': 'error',
-                'spaced-comment': [
-                    'error',
-                    'always',
-                    {
-                        exceptions: ['*']
-                    }
-                ],
+                'spaced-comment': ['error', 'always', { exceptions: ['*'] }],
                 'unicode-bom': 'error',
                 'use-isnan': 'error',
                 'valid-typeof': 'off',
+                'no-dupe-class-members': 'off',
 
                 /**
                  * prettier
@@ -271,6 +231,7 @@ module.exports = {
                 /**
                  * @typescript-eslint
                  */
+                '@typescript-eslint/no-dupe-class-members': ['error'],
                 '@typescript-eslint/adjacent-overload-signatures': 'error',
                 '@typescript-eslint/array-type': 'error',
                 '@typescript-eslint/ban-ts-ignore': 'off',
@@ -287,14 +248,7 @@ module.exports = {
                         allowConciseArrowFunctionExpressionsStartingWithVoid: true
                     }
                 ],
-                '@typescript-eslint/explicit-member-accessibility': [
-                    'error',
-                    {
-                        overrides: {
-                            constructors: 'off'
-                        }
-                    }
-                ],
+                '@typescript-eslint/explicit-member-accessibility': ['error', { overrides: { constructors: 'off' } }],
                 '@typescript-eslint/explicit-module-boundary-types': 'error',
                 '@typescript-eslint/member-ordering': [
                     'error',
@@ -304,10 +258,13 @@ module.exports = {
                             'public-static-field',
                             'protected-static-field',
                             'private-static-field',
+                            'public-decorated-field',
                             'public-instance-field',
                             'public-abstract-field',
+                            'protected-decorated-field',
                             'protected-instance-field',
                             'protected-abstract-field',
+                            'private-decorated-field',
                             'private-instance-field',
                             'private-abstract-field',
                             'public-constructor',
@@ -463,6 +420,46 @@ module.exports = {
                 'sonarjs/no-use-of-empty-return-value': 'error',
                 'sonarjs/no-useless-catch': 'error',
                 'sonarjs/prefer-immediate-return': 'error',
+                /**
+                 * not implemented yet
+                 */
+                // 'sonarjs/bool-param-default': 'error',
+                // 'sonarjs/comma-or-logical-or-case': 'error',
+                // 'sonarjs/max-union-size': 'error',
+                // 'sonarjs/no-accessor-field-mismatch': 'error',
+                // 'sonarjs/no-alphabetical-sort': 'error',
+                // 'sonarjs/no-array-delete': 'error',
+                // 'sonarjs/no-commented-code': 'error',
+                // 'sonarjs/no-dead-store': 'error',
+                // 'sonarjs/no-duplicate-in-composite': 'error',
+                // 'sonarjs/no-empty-collection': 'error',
+                // 'sonarjs/no-gratuitous-expressions': 'error',
+                // 'sonarjs/no-hardcoded-credentials': 'error',
+                // 'sonarjs/no-ignored-return': 'error',
+                // 'sonarjs/no-in-misuse': 'error',
+                // 'sonarjs/no-invalid-await': 'error',
+                // 'sonarjs/no-invariant-returns': 'error',
+                // 'sonarjs/no-misleading-array-reverse': 'error',
+                // 'sonarjs/no-nested-switch': 'error',
+                // 'sonarjs/no-nested-template-literals': 'error',
+                // 'sonarjs/no-parameter-reassignment': 'error',
+                // 'sonarjs/no-primitive-wrappers': 'error',
+                // 'sonarjs/no-redundant-optional': 'error',
+                // 'sonarjs/no-redundant-parentheses': 'error',
+                // 'sonarjs/no-return-type-any': 'error',
+                // 'sonarjs/no-try-promise': 'error',
+                // 'sonarjs/no-undefined-argument': 'error',
+                // 'sonarjs/no-unenclosed-multiline-block': 'error',
+                // 'sonarjs/no-unthrown-error': 'error',
+                // 'sonarjs/no-useless-increment': 'error',
+                // 'sonarjs/no-useless-intersection': 'error',
+                // 'sonarjs/no-variable-usage-before-declaration': 'error',
+                // 'sonarjs/non-existent-operator': 'error',
+                // 'sonarjs/parameters-max-number': 'error',
+                // 'sonarjs/prefer-default-last': 'error',
+                // 'sonarjs/prefer-promise-shorthand': 'error',
+                // 'sonarjs/prefer-type-guard': 'error',
+                // 'sonarjs/use-type-alias': 'error',
 
                 /**
                  * @angular-eslint
@@ -509,48 +506,26 @@ module.exports = {
                  */
                 '@angular-eslint/no-input-rename': 'off',
                 '@angular-eslint/no-output-rename': 'off',
-                '@angular-eslint/sort-ngmodule-metadata-arrays': 'off'
+                '@angular-eslint/sort-ngmodule-metadata-arrays': 'off',
 
                 /**
-                 * not implemented yet
+                 * Angular-RU rules
                  */
-                // 'sonarjs/bool-param-default': 'error',
-                // 'sonarjs/comma-or-logical-or-case': 'error',
-                // 'sonarjs/max-union-size': 'error',
-                // 'sonarjs/no-accessor-field-mismatch': 'error',
-                // 'sonarjs/no-alphabetical-sort': 'error',
-                // 'sonarjs/no-array-delete': 'error',
-                // 'sonarjs/no-commented-code': 'error',
-                // 'sonarjs/no-dead-store': 'error',
-                // 'sonarjs/no-duplicate-in-composite': 'error',
-                // 'sonarjs/no-empty-collection': 'error',
-                // 'sonarjs/no-gratuitous-expressions': 'error',
-                // 'sonarjs/no-hardcoded-credentials': 'error',
-                // 'sonarjs/no-ignored-return': 'error',
-                // 'sonarjs/no-in-misuse': 'error',
-                // 'sonarjs/no-invalid-await': 'error',
-                // 'sonarjs/no-invariant-returns': 'error',
-                // 'sonarjs/no-misleading-array-reverse': 'error',
-                // 'sonarjs/no-nested-switch': 'error',
-                // 'sonarjs/no-nested-template-literals': 'error',
-                // 'sonarjs/no-parameter-reassignment': 'error',
-                // 'sonarjs/no-primitive-wrappers': 'error',
-                // 'sonarjs/no-redundant-optional': 'error',
-                // 'sonarjs/no-redundant-parentheses': 'error',
-                // 'sonarjs/no-return-type-any': 'error',
-                // 'sonarjs/no-try-promise': 'error',
-                // 'sonarjs/no-undefined-argument': 'error',
-                // 'sonarjs/no-unenclosed-multiline-block': 'error',
-                // 'sonarjs/no-unthrown-error': 'error',
-                // 'sonarjs/no-useless-increment': 'error',
-                // 'sonarjs/no-useless-intersection': 'error',
-                // 'sonarjs/no-variable-usage-before-declaration': 'error',
-                // 'sonarjs/non-existent-operator': 'error',
-                // 'sonarjs/parameters-max-number': 'error',
-                // 'sonarjs/prefer-default-last': 'error',
-                // 'sonarjs/prefer-promise-shorthand': 'error',
-                // 'sonarjs/prefer-type-guard': 'error',
-                // 'sonarjs/use-type-alias': 'error',
+                '@angular-ru/no-suffix-file': [
+                    'error',
+                    {
+                        fileEndsWithList: [
+                            '.model.ts',
+                            '.models.ts',
+                            '.enum.ts',
+                            '.enums.ts',
+                            '.type.ts',
+                            '.types.ts',
+                            '.interface.ts',
+                            '.interfaces.ts'
+                        ]
+                    }
+                ]
             }
         },
         {

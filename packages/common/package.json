@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/common",
-    "version": "15.239.0",
+    "version": "15.245.0",
     "description": "Angular-RU package",
     "keywords": [
         "angular-ru",
@@ -20,6 +20,8 @@
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "scripts": {
+        "build:app": "ng build integration --prod",
+        "deploy": "cp README.md dist/integration && ng deploy --no-build",
         "build:lib": "ng build library && cp README.md dist/library && yarn symlink",
         "symlink": "sh symlink.sh",
         "start": "ng serve --open",

@@ -76,7 +76,7 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
         private static deepSort(key: string, leftHand: Any, rightHand: Any, depth: number | undefined): number {
             const a: Any = getValueByPath(leftHand, key);
             const b: Any = getValueByPath(rightHand, key);
-            return this.shallowSort(a, b, depth);
+            return Sortable.shallowSort(a, b, depth);
         }
 
         private static shallowSort(a: Any, b: Any, depth?: number): number {

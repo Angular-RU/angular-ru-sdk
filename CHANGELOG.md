@@ -1,3 +1,86 @@
+#### 15.246.0 (2021-05-13)
+
+##### New Features
+
+-   add labeler.yml ([#621](https://github.com/Angular-RU/angular-ru-sdk/pull/621))
+    ([ba5f9453](https://github.com/Angular-RU/angular-ru-sdk/commit/ba5f9453a620475a7f900224b666c2d6b2023b11))
+
+#### 15.245.0 (2021-05-13)
+
+##### New Features
+
+-   **@angular-ru/common:** add unpatch events third party package
+    ([#620](https://github.com/Angular-RU/angular-ru-sdk/pull/620))
+    ([c2d787d7](https://github.com/Angular-RU/angular-ru-sdk/commit/c2d787d7907c77e75d1aad14e4bed175a9442f6e))
+
+#### 15.244.2 (2021-05-13)
+
+##### Build System / Dependencies
+
+-   update dependency lint-staged to v11 ([#619](https://github.com/Angular-RU/angular-ru-sdk/pull/619))
+    ([14b81b33](https://github.com/Angular-RU/angular-ru-sdk/commit/14b81b336793efb3623c40c5de4c124e78d1b88a))
+-   update dependency @types/node to v15.0.3 ([#618](https://github.com/Angular-RU/angular-ru-sdk/pull/618))
+    ([941dce75](https://github.com/Angular-RU/angular-ru-sdk/commit/941dce7589c64a384af1826c11d84f12307a9d19))
+
+#### 15.244.1 (2021-05-13)
+
+##### Build System / Dependencies
+
+-   update eslint ([#615](https://github.com/Angular-RU/angular-ru-sdk/pull/615))
+    ([e02e962d](https://github.com/Angular-RU/angular-ru-sdk/commit/e02e962dd0f728fdabbed1b40be1b13302051c56))
+
+#### 15.244.0 (2021-05-13)
+
+##### New Features
+
+-   **@angular-ru/renovate-config:** disable separateMinorPatch
+    ([#616](https://github.com/Angular-RU/angular-ru-sdk/pull/616))
+    ([23df7f54](https://github.com/Angular-RU/angular-ru-sdk/commit/23df7f54321cfeb10e6b12897c089f1a27f65542))
+
+#### 15.243.0 (2021-05-13)
+
+##### New Features
+
+-   **@angular-ru/eslint-config:** add no-dupe-class-members
+    ([#613](https://github.com/Angular-RU/angular-ru-sdk/pull/613))
+    ([3673c9ab](https://github.com/Angular-RU/angular-ru-sdk/commit/3673c9abf15680557b05e2a050b4a19e2548507e))
+
+#### 15.242.0 (2021-05-12)
+
+##### New Features
+
+-   **@angular-ru/eslint-config:** add decorated fields order
+    ([#600](https://github.com/Angular-RU/angular-ru-sdk/pull/600))
+    ([f9cc5aee](https://github.com/Angular-RU/angular-ru-sdk/commit/f9cc5aeed5251e88ed2bd754b88141ddbe520888))
+
+#### 15.241.3 (2021-05-12)
+
+##### Bug Fixes
+
+-   **@angular-ru/common:** after format we have incorrect fraction
+    ([#611](https://github.com/Angular-RU/angular-ru-sdk/pull/611))
+    ([43308854](https://github.com/Angular-RU/angular-ru-sdk/commit/433088549afd461848dd3dec8c0499f91f1a5809))
+
+#### 15.241.2 (2021-05-12)
+
+##### Build System / Dependencies
+
+-   update dependency @commitlint/config-angular to v12.1.3
+    ([#608](https://github.com/Angular-RU/angular-ru-sdk/pull/608))
+    ([f7342264](https://github.com/Angular-RU/angular-ru-sdk/commit/f734226405ee72624221e6d7034df6bd8c912f20))
+
+#### 15.241.1 (2021-05-12)
+
+##### Build System / Dependencies
+
+-   update dependency @types/jasmine to v3.7.2 ([#610](https://github.com/Angular-RU/angular-ru-sdk/pull/610))
+    ([7f0c6390](https://github.com/Angular-RU/angular-ru-sdk/commit/7f0c6390b8af8749db3a0ed1543f076999b072b4))
+-   update dependency @commitlint/config-conventional to v12.1.3
+    ([#609](https://github.com/Angular-RU/angular-ru-sdk/pull/609))
+    ([85f638d1](https://github.com/Angular-RU/angular-ru-sdk/commit/85f638d1df81acffafdb63fa1944cc1cf9904350))
+-   update dependency @commitlint/cli to v12.1.3 ([#607](https://github.com/Angular-RU/angular-ru-sdk/pull/607))
+    ([9c1915cd](https://github.com/Angular-RU/angular-ru-sdk/commit/9c1915cd26580608cb2ee5691163e7f467860e01))
+
 #### 15.241.0 (2021-05-12)
 
 ##### New Features
