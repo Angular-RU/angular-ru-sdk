@@ -1,3 +1,12 @@
+#### 15.244.2 (2021-05-13)
+
+##### Build System / Dependencies
+
+-   update dependency lint-staged to v11 ([#619](https://github.com/Angular-RU/angular-ru-sdk/pull/619))
+    ([14b81b33](https://github.com/Angular-RU/angular-ru-sdk/commit/14b81b336793efb3623c40c5de4c124e78d1b88a))
+-   update dependency @types/node to v15.0.3 ([#618](https://github.com/Angular-RU/angular-ru-sdk/pull/618))
+    ([941dce75](https://github.com/Angular-RU/angular-ru-sdk/commit/941dce7589c64a384af1826c11d84f12307a9d19))
+
 #### 15.244.1 (2021-05-13)
 
 ##### Build System / Dependencies
