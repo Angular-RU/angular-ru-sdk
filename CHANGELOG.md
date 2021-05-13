@@ -1,3 +1,58 @@
+#### 15.246.0 (2021-05-13)
+
+##### New Features
+
+-   add labeler.yml ([#621](https://github.com/Angular-RU/angular-ru-sdk/pull/621))
+    ([ba5f9453](https://github.com/Angular-RU/angular-ru-sdk/commit/ba5f9453a620475a7f900224b666c2d6b2023b11))
+
+#### 15.245.0 (2021-05-13)
+
+##### New Features
+
+-   **@angular-ru/common:** add unpatch events third party package
+    ([#620](https://github.com/Angular-RU/angular-ru-sdk/pull/620))
+    ([c2d787d7](https://github.com/Angular-RU/angular-ru-sdk/commit/c2d787d7907c77e75d1aad14e4bed175a9442f6e))
+
+#### 15.244.2 (2021-05-13)
+
+##### Build System / Dependencies
+
+-   update dependency lint-staged to v11 ([#619](https://github.com/Angular-RU/angular-ru-sdk/pull/619))
+    ([14b81b33](https://github.com/Angular-RU/angular-ru-sdk/commit/14b81b336793efb3623c40c5de4c124e78d1b88a))
+-   update dependency @types/node to v15.0.3 ([#618](https://github.com/Angular-RU/angular-ru-sdk/pull/618))
+    ([941dce75](https://github.com/Angular-RU/angular-ru-sdk/commit/941dce7589c64a384af1826c11d84f12307a9d19))
+
+#### 15.244.1 (2021-05-13)
+
+##### Build System / Dependencies
+
+-   update eslint ([#615](https://github.com/Angular-RU/angular-ru-sdk/pull/615))
+    ([e02e962d](https://github.com/Angular-RU/angular-ru-sdk/commit/e02e962dd0f728fdabbed1b40be1b13302051c56))
+
+#### 15.244.0 (2021-05-13)
+
+##### New Features
+
+-   **@angular-ru/renovate-config:** disable separateMinorPatch
+    ([#616](https://github.com/Angular-RU/angular-ru-sdk/pull/616))
+    ([23df7f54](https://github.com/Angular-RU/angular-ru-sdk/commit/23df7f54321cfeb10e6b12897c089f1a27f65542))
+
+#### 15.243.0 (2021-05-13)
+
+##### New Features
+
+-   **@angular-ru/eslint-config:** add no-dupe-class-members
+    ([#613](https://github.com/Angular-RU/angular-ru-sdk/pull/613))
+    ([3673c9ab](https://github.com/Angular-RU/angular-ru-sdk/commit/3673c9abf15680557b05e2a050b4a19e2548507e))
+
+#### 15.242.0 (2021-05-12)
+
+##### New Features
+
+-   **@angular-ru/eslint-config:** add decorated fields order
+    ([#600](https://github.com/Angular-RU/angular-ru-sdk/pull/600))
+    ([f9cc5aee](https://github.com/Angular-RU/angular-ru-sdk/commit/f9cc5aeed5251e88ed2bd754b88141ddbe520888))
+
 #### 15.241.3 (2021-05-12)
 
 ##### Bug Fixes
