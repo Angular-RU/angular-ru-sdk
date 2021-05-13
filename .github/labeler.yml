@@ -1,0 +1,12 @@
+"comp: @angular-ru/build-tools":
+    - packages/build-tools/*
+    - packages/build-tools/**/*
+
+"comp: @angular-ru/common":
+    - packages/common/*
+    - packages/common/**/*
+
+"comp: @angular-ru/commitlint-config":
+    - packages/commitlint-config/*
+    - packages/commitlint-config/**/*
+

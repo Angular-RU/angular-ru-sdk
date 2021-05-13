@@ -35,7 +35,6 @@
             "semanticPrefix": "build",
             "prHourlyLimit": 2,
             "labels": [
-                "target: minor",
                 "comp: build & ci",
                 "action: review"
             ],
