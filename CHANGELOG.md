@@ -1,3 +1,11 @@
+#### 15.243.0 (2021-05-13)
+
+##### New Features
+
+-   **@angular-ru/eslint-config:** add no-dupe-class-members
+    ([#613](https://github.com/Angular-RU/angular-ru-sdk/pull/613))
+    ([3673c9ab](https://github.com/Angular-RU/angular-ru-sdk/commit/3673c9abf15680557b05e2a050b4a19e2548507e))
+
 #### 15.242.0 (2021-05-12)
 
 ##### New Features
