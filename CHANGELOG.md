@@ -1,3 +1,11 @@
+#### 15.245.0 (2021-05-13)
+
+##### New Features
+
+-   **@angular-ru/common:** add unpatch events third party package
+    ([#620](https://github.com/Angular-RU/angular-ru-sdk/pull/620))
+    ([c2d787d7](https://github.com/Angular-RU/angular-ru-sdk/commit/c2d787d7907c77e75d1aad14e4bed175a9442f6e))
+
 #### 15.244.2 (2021-05-13)
 
 ##### Build System / Dependencies
