@@ -1,3 +1,10 @@
+#### 15.246.0 (2021-05-13)
+
+##### New Features
+
+-   add labeler.yml ([#621](https://github.com/Angular-RU/angular-ru-sdk/pull/621))
+    ([ba5f9453](https://github.com/Angular-RU/angular-ru-sdk/commit/ba5f9453a620475a7f900224b666c2d6b2023b11))
+
 #### 15.245.0 (2021-05-13)
 
 ##### New Features
