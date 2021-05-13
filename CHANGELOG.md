@@ -1,3 +1,11 @@
+#### 15.244.0 (2021-05-13)
+
+##### New Features
+
+-   **@angular-ru/renovate-config:** disable separateMinorPatch
+    ([#616](https://github.com/Angular-RU/angular-ru-sdk/pull/616))
+    ([23df7f54](https://github.com/Angular-RU/angular-ru-sdk/commit/23df7f54321cfeb10e6b12897c089f1a27f65542))
+
 #### 15.243.0 (2021-05-13)
 
 ##### New Features
