@@ -30,7 +30,7 @@
             "timezone": "Europe/Moscow",
             "masterIssueApproval": true,
             "separateMajorMinor": true,
-            "separateMinorPatch": true,
+            "separateMinorPatch": false,
             "semanticCommits": true,
             "semanticPrefix": "build",
             "prHourlyLimit": 2,
