@@ -8,6 +8,16 @@ import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { ExcelWorkbook } from './interfaces/excel-workbook';
 import { ExcelWorksheet } from './interfaces/excel-worksheet';
 
+interface RulesDescriptor {
+    includeKeys?: string[];
+    excludeKeys?: string[];
+}
+interface StyleSizes {
+    fontWidth: number;
+    fontSize: number;
+    columnWidth: number;
+    rowHeight: number;
+}
 @Injectable()
 export class ExcelBuilderService {
     constructor(public webWorker: WebWorkerThreadService) {}
@@ -17,11 +27,6 @@ export class ExcelBuilderService {
         this.webWorker
             // eslint-disable-next-line sonarjs/cognitive-complexity,max-lines-per-function
             .run((input: ExcelWorkbook<T>): Blob => {
-                const PT_WIDTH: number = 5;
-                const PT_SIZE: number = 7;
-                const COL_WIDTH: number = 140;
-                const ROW_HEIGHT: number = 40;
-
                 // eslint-disable-next-line @typescript-eslint/naming-convention
                 const StyleType: PlainObject = {
                     HEAD: 'HeadCellStyle',
@@ -29,129 +34,105 @@ export class ExcelBuilderService {
                     BIG_DATA: 'CellBigDataStyle'
                 };
 
-                const worksheetsTemplates: string = generateWorksheet(
+                const xmlWorksheetsTemplate: string = generateWorksheets(
                     input.worksheets,
-                    flatten(input.translatedKeys),
-                    PT_WIDTH,
-                    PT_SIZE,
-                    COL_WIDTH,
-                    ROW_HEIGHT,
+                    flattenAndCleanObjectKeys(input.translatedKeys),
+                    { fontWidth: 5, fontSize: 7, columnWidth: 140, rowHeight: 40 },
                     StyleType
                 );
 
                 // eslint-disable-next-line max-lines-per-function
-                function generateWorksheet(
+                function generateWorksheets(
                     worksheets: ExcelWorksheet<T>[],
                     flattenTranslatedKeys: PlainObject,
-                    ptWidth: number,
-                    ptSize: number,
-                    colWidth: number,
-                    rowHeight: number,
+                    sizes: StyleSizes,
                     styleType: PlainObject
                 ): string {
-                    let worksheetTemplates: string = '';
-
                     // eslint-disable-next-line max-lines-per-function
-                    worksheets.forEach((worksheet: ExcelWorksheet<T>): void => {
+                    const xmlWorksheets: string[] = worksheets.map((worksheet: ExcelWorksheet<T>): string => {
                         const worksheetName: string = worksheet.worksheetName;
-                        const entries: T[] = worksheet.entries || [];
 
-                        const headerTitles: string[] = getHeaderTitles(worksheet, entries[0], flattenTranslatedKeys);
-                        worksheetTemplates += `
-                          <Worksheet ss:Name="${worksheetName}"><Table ss:DefaultColumnWidth="${colWidth}" ss:DefaultRowHeight="${ROW_HEIGHT}">${generateColumns(
-                            headerTitles,
-                            ptSize,
-                            colWidth
-                        )}
-                              ${generateRow(worksheet, entries, headerTitles, rowHeight, ptWidth, colWidth, styleType)}
-                            </Table> </Worksheet>
-                          `;
+                        const entries: PlainObject[] = worksheet.entries.map(
+                            (entry: PlainObject): PlainObject =>
+                                flattenAndCleanObjectKeys(entry, {
+                                    includeKeys: worksheet.keys,
+                                    excludeKeys: worksheet.excludeKeys
+                                })
+                        );
+
+                        const headerTitles: string[] = getTranslatedTitlesByEntry(
+                            entries[0],
+                            flattenTranslatedKeys,
+                            worksheet.prefixKeyForTranslate
+                        );
+
+                        const xmlColumnsDescriptor: string = generateColumnsDescriptor(headerTitles, sizes);
+                        const xmlHeaderRow: string = generateHeaderRow(headerTitles, styleType);
+                        const xmlBodyRows: string = generateBodyRows(entries, sizes, styleType);
+
+                        return `
+                          <Worksheet ss:Name="${worksheetName}">
+                            <Table ss:DefaultColumnWidth="${sizes.columnWidth}" ss:DefaultRowHeight="${sizes.rowHeight}">
+                                ${xmlColumnsDescriptor}
+                                ${xmlHeaderRow}
+                                ${xmlBodyRows}
+                            </Table>
+                          </Worksheet>
+                        `;
                     });
-                    return worksheetTemplates;
+                    return xmlWorksheets.join('');
                 }
 
-                function generateColumns(headerTitles: string[], ptSize: number, colWidth: number) {
-                    return headerTitles.reduce((columnTemplate: string, title: string): string => {
-                        let templates: string = columnTemplate;
-                        const size: number = title.length * ptSize;
-                        const width: number = size > colWidth ? size : colWidth;
-                        templates += `<Column ss:Width="${width}" />`;
-                        return templates;
-                    }, '');
-                }
-
-                // eslint-disable-next-line max-lines-per-function
-                function generateRow(
-                    worksheet: ExcelWorksheet<T>,
-                    entries: T[],
-                    titles: string[],
-                    rowHeight: number,
-                    ptWidth: number,
-                    colWidth: number,
-                    styleType: PlainObject
-                ) {
-                    let rowsTemplates: string = '';
-                    entries.forEach((cell: Any, index: Any): void => {
-                        const header: string =
-                            index === 0 ? `\t<Row>${generateHeadCell(titles, styleType)}\t</Row>` : '';
-                        rowsTemplates += `${header}<Row ss:Height="${rowHeight}"> ${generateCell(
-                            worksheet,
-                            cell,
-                            ptWidth,
-                            colWidth,
-                            styleType
-                        )}  </Row>
-                                         `;
+                function generateColumnsDescriptor(titles: string[], { fontSize, columnWidth }: StyleSizes): string {
+                    const xmlDescriptors: string[] = titles.map((title: string): string => {
+                        const textWidth: number = title.length * fontSize;
+                        const width: number = Math.max(textWidth, columnWidth);
+                        return `<Column ss:Width="${width}" />`;
                     });
-                    return rowsTemplates;
+
+                    return xmlDescriptors.join('');
                 }
 
-                function generateCell(
-                    worksheet: ExcelWorksheet<T>,
-                    cell: Any,
-                    ptWidth: number,
-                    colWidth: number,
-                    styleType: Any
-                ) {
-                    const flatCell: PlainObject = flatten(cell, worksheet.excludeKeys);
-                    return generateBodyCell(worksheet, flatCell, ptWidth, colWidth, styleType);
+                function getTranslatedTitlesByEntry(entry: Any, dictionary: Any, translatePrefix?: string): string[] {
+                    return Object.keys(entry).map((key: string): string => {
+                        const translatePath: string = translatePrefix ? `${translatePrefix}.${key}` : key;
+                        return dictionary[translatePath] ?? key;
+                    });
                 }
 
-                function generateBodyCell(
-                    worksheet: ExcelWorksheet<T>,
-                    flatCell: Any,
-                    ptWidth: Any,
-                    colWidth: Any,
-                    styleType: Any
-                ) {
-                    let bodyCellTemplate: string = '';
-                    const keys: string[] =
-                        typeof worksheet.keys?.length === 'number' ? worksheet.keys : Object.keys(flatCell);
+                function generateHeaderRow(titles: string[], styleType: PlainObject): string {
+                    const xmlCells: string = titles.map((title: string) => renderCell(title, styleType.HEAD)).join('');
+                    return `<Row>${xmlCells}</Row>`;
+                }
 
-                    keys.forEach((key: string): void => {
+                function generateBodyRows(entries: PlainObject[], sizes: StyleSizes, styleType: PlainObject): string {
+                    const xmlRows: string[] = entries.map((cell: PlainObject): string => {
+                        const xmlCells: string = generateCells(cell, sizes, styleType);
+                        return `<Row ss:Height="${sizes.rowHeight}">${xmlCells}</Row>`;
+                    });
+
+                    return xmlRows.join();
+                }
+
+                function generateCells(flatCell: Any, { fontWidth, columnWidth }: StyleSizes, styleType: Any) {
+                    const keys: string[] = Object.keys(flatCell);
+
+                    const xmlCells: string[] = keys.map((key: string): string => {
                         const value: string = flatCell[key];
                         const symbolCount: number = String(value).length;
                         const localStyleId: string =
-                            symbolCount * ptWidth >= colWidth ? styleType['BIG_DATA'] : styleType['BODY'];
-                        bodyCellTemplate += renderCell(flatCell[key], localStyleId);
+                            symbolCount * fontWidth >= columnWidth ? styleType['BIG_DATA'] : styleType['BODY'];
+                        return renderCell(value, localStyleId);
                     });
 
-                    return bodyCellTemplate;
-                }
-
-                function generateHeadCell(titles: string[], styleType: PlainObject) {
-                    return titles.reduce((headCellTemplate: string, title: string): string => {
-                        let templates: Any = headCellTemplate;
-                        templates += renderCell(title, styleType.HEAD);
-                        return templates;
-                    }, '');
+                    return xmlCells.join('');
                 }
 
                 function renderCell(value: Any, styleId: string, defaultType: string = 'String') {
                     // note: don't use isString here
                     // noinspection SuspiciousTypeOfGuard
                     const type: Any = typeof value === 'number' ? 'Number' : defaultType;
-                    let cellValue: Any = transform(value, '-');
+                    let cellValue: Any = fallbackIfEmpty(value, '-');
 
                     // note: don't use isString here
                     // noinspection SuspiciousTypeOfGuard
@@ -162,7 +143,7 @@ export class ExcelBuilderService {
                     return `<Cell ss:StyleID="${styleId}"><Data ss:Type="${type}">${cellValue}</Data></Cell>`;
                 }
 
-                function transform(value: Any, fallback: Any) {
+                function fallbackIfEmpty(value: Any, fallback: Any) {
                     return checkValueIsEmpty(value) ? fallback : value;
                 }
 
@@ -173,59 +154,57 @@ export class ExcelBuilderService {
                     return [undefined, null, NaN, '', 'null', Infinity].includes(val);
                 }
 
-                function getHeaderTitles(worksheet: ExcelWorksheet<T>, cell: Any, dictionary: Any) {
-                    const flatCell: PlainObject = flatten(cell, worksheet.excludeKeys);
-                    const keys: string[] =
-                        typeof worksheet.keys?.length === 'number' ? worksheet.keys : Object.keys(flatCell);
+                function flattenAndCleanObjectKeys(
+                    objectRef: Any,
+                    rules?: RulesDescriptor,
+                    keyPrefix: string = ''
+                ): PlainObject {
+                    const depthGraph: PlainObject = {};
+                    const keys: string[] = Object.keys(objectRef);
+                    keys.forEach((key: string): void => {
+                        const path: string = keyPrefix ? `${keyPrefix}.${key}` : key;
 
-                    return keys.map((key: string): string => {
-                        const translatedKey: string =
-                            // eslint-disable-next-line no-negated-condition
-                            dictionary[`${worksheet?.prefixKeyForTranslate}.${key}`] !== undefined
-                                ? dictionary[`${worksheet?.prefixKeyForTranslate}.${key}`]
-                                : key;
-                        return isTranslated(translatedKey, key) ? translatedKey : key;
-                    });
-                }
-
-                function mutate(object: Any, depthGraph: Any, key: Any) {
-                    const isObject: boolean = typeof object[key] === 'object' && object[key] !== null;
-                    if (isObject) {
-                        const flatObject: Any = flatten(object[key]);
-                        for (const path in flatObject) {
-                            // noinspection JSUnfilteredForInLoop
-                            if (flatObject.hasOwnProperty(path) as boolean) {
-                                // noinspection JSUnfilteredForInLoop
-                                depthGraph[`${key}.${path}`] = flatObject[path];
+                        if (!rules || keyPassesRules(path, rules)) {
+                            if (isObject(objectRef[key])) {
+                                const childKeys: PlainObject = flattenAndCleanObjectKeys(objectRef[key], rules, path);
+                                Object.assign(depthGraph, childKeys);
+                            } else {
+                                depthGraph[path] = objectRef[key];
                             }
                         }
-                    } else {
-                        depthGraph[key] = object[key];
-                    }
-                }
-
-                function flatten(objectRef: Any, excludeKeys: string[] = []) {
-                    const depthGraph: PlainObject = {};
-                    for (const key in objectRef) {
-                        // noinspection JSUnfilteredForInLoop
-                        if ((objectRef?.hasOwnProperty(key) as boolean) && !excludeKeys.includes(key)) {
-                            // noinspection JSUnfilteredForInLoop
-                            mutate(objectRef, depthGraph, key);
-                        }
-                    }
+                    });
                     return depthGraph;
                 }
 
-                function isTranslated(keyLeftPad: Any, keyRightPad: Any) {
-                    return getPostfix(keyLeftPad) !== getPostfix(keyRightPad);
+                function isObject(value: Any): value is PlainObject {
+                    return typeof value === 'object' && value !== null;
                 }
 
-                function getPostfix(key: Any) {
-                    return key.split('.').pop();
+                function keyPassesRules(key: string, { includeKeys, excludeKeys }: RulesDescriptor): boolean {
+                    return passesWhitelist(key, includeKeys) && passesBlacklist(key, excludeKeys);
                 }
 
-                // eslint-disable-next-line @typescript-eslint/typedef
-                function commonStyles(font = '<Font ss:Bold="0" ss:FontName="Arial" />') {
+                function passesWhitelist(key: string, whitelist?: string[]): boolean {
+                    if (whitelist) {
+                        return whitelist.some((path: string): boolean => isPartOfPath(key, path));
+                    } else {
+                        return true;
+                    }
+                }
+
+                function passesBlacklist(key: string, blacklist?: string[]): boolean {
+                    if (blacklist) {
+                        return !blacklist.includes(key);
+                    } else {
+                        return true;
+                    }
+                }
+
+                function isPartOfPath(subPath: string, path: string): boolean {
+                    return new RegExp(`^${subPath}(\\..+)?$`).test(path);
+                }
+
+                function commonStyles(font: string = '<Font ss:Bold="0" ss:FontName="Arial" />') {
                     return `${font}
                         <Borders>
                             <Border ss:Position="Top" ss:Color="#000000" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -258,7 +237,7 @@ export class ExcelBuilderService {
                               ${commonStyles()}
                             </Style>
                           </Styles>
-                           ${worksheetsTemplates}
+                           ${xmlWorksheetsTemplate}
                           </Workbook>
                       `;
 
