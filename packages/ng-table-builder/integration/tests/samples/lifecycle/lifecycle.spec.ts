@@ -1,5 +1,6 @@
 import { ApplicationRef, ChangeDetectorRef, ElementRef, NgZone, QueryList, SimpleChanges } from '@angular/core';
 import { fakeAsync, tick } from '@angular/core/testing';
+import { deepClone } from '@angular-ru/common/object';
 import { Any, Fn, PlainObject } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { NgxColumnComponent, NgxTableViewChangesService, TableBuilderComponent } from '@angular-ru/ng-table-builder';
@@ -120,7 +121,7 @@ describe('[TEST]: Lifecycle table', () => {
     });
 
     it('should be basic api', async () => {
-        table.setSource(JSON.parse(JSON.stringify(data)));
+        table.setSource(deepClone(data));
 
         expect(new TableSelectedItemsPipe(table).transform({ 1: true, 2: true })).toEqual([
             { position: 1, name: 'Hydrogen', symbol: 'H', weight: 1.0079 },
@@ -132,7 +133,6 @@ describe('[TEST]: Lifecycle table', () => {
         table.filterable.filterValue = 'Hydrogen';
         table.filterable.filterType = 'START_WITH';
         await table.sortAndFilter();
-
         expect(table.source).toEqual([{ name: 'Hydrogen', position: 1, symbol: 'H', weight: 1.0079 }]);
 
         // expect selection pipe works even with filtered values
@@ -144,17 +144,18 @@ describe('[TEST]: Lifecycle table', () => {
 
         expect(table.lastItem).toEqual({ position: 1, name: 'Hydrogen', symbol: 'H', weight: 1.0079 });
 
-        // disable filter
+        // reset filter
         table.enableFiltering = true;
         table.filterable.filterValue = null;
         table.filterable.filterType = null;
         await table.sortAndFilter();
+        expect(table.source).toEqual(data);
 
         expect(table.lastItem).toEqual({ position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' });
     });
 
     it('should be unchecked state before ngOnChange', () => {
-        table.source = JSON.parse(JSON.stringify(data));
+        table.source = deepClone(data);
 
         expect(table.isRendered).toEqual(false);
         expect(table.modelColumnKeys).toEqual([]);
@@ -167,7 +168,7 @@ describe('[TEST]: Lifecycle table', () => {
     });
 
     it('should be correct generate modelColumnKeys after ngOnChange', () => {
-        table.source = JSON.parse(JSON.stringify(data));
+        table.source = deepClone(data);
         table.enableSelection = true;
         table.ngOnChanges(changes);
         table.ngOnInit();
@@ -201,7 +202,7 @@ describe('[TEST]: Lifecycle table', () => {
     });
 
     it('should be correct state after ngAfterContentInit', fakeAsync(() => {
-        table.source = JSON.parse(JSON.stringify(data));
+        table.source = deepClone(data);
         table.ngOnChanges(changes);
         table.ngOnInit();
         table.ngAfterContentInit();
@@ -247,7 +248,7 @@ describe('[TEST]: Lifecycle table', () => {
         expect(table.contentCheck).toEqual(false);
         expect(table.sourceExists).toEqual(false);
 
-        table.source = JSON.parse(JSON.stringify(data));
+        table.source = deepClone(data);
         templates.reset([new NgxColumnComponent()]);
         templates.notifyOnChanges();
 
@@ -271,7 +272,7 @@ describe('[TEST]: Lifecycle table', () => {
     it('should be correct template changes with check renderCount', fakeAsync(() => {
         const templates: QueryList<NgxColumnComponent<PlainObject>> = new QueryList();
         table.columnTemplates = templates;
-        table.source = JSON.parse(JSON.stringify(data));
+        table.source = deepClone(data);
 
         table.ngOnChanges(changes);
         table.ngOnInit();
@@ -291,7 +292,7 @@ describe('[TEST]: Lifecycle table', () => {
         expect(table.contentCheck).toEqual(false);
         expect(table.sourceExists).toEqual(true);
 
-        table.source = JSON.parse(JSON.stringify(data));
+        table.source = deepClone(data);
         templates.reset([new NgxColumnComponent()]);
 
         templates.notifyOnChanges();
@@ -330,7 +331,7 @@ describe('[TEST]: Lifecycle table', () => {
         templates.reset([new NgxColumnComponent()]);
         templates.notifyOnChanges();
 
-        table.source = JSON.parse(JSON.stringify(data));
+        table.source = deepClone(data);
         table.ngOnChanges(changes);
 
         tick(1000);
@@ -372,7 +373,7 @@ describe('[TEST]: Lifecycle table', () => {
     });
 
     it('should be correct sync rendering', fakeAsync(() => {
-        table.source = JSON.parse(JSON.stringify(data));
+        table.source = deepClone(data);
 
         table.ngOnChanges(changes);
         table.renderTable();
