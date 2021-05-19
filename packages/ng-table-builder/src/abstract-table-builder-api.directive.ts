@@ -239,6 +239,10 @@ export abstract class AbstractTableBuilderApiDirective<T>
         return this.source && this.source.length ? this.source : [];
     }
 
+    public get originalSourceRef(): T[] {
+        return this.originalSource ?? this.source ?? [];
+    }
+
     public get isEnableFiltering(): boolean {
         return this.enableFiltering !== false;
     }
