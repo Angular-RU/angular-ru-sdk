@@ -235,8 +235,18 @@ export abstract class AbstractTableBuilderApiDirective<T>
         return this.sourceRef.length;
     }
 
+    /**
+     * @description Returns a list of displayed table entries, including filters and sorting.
+     */
     public get sourceRef(): T[] {
-        return this.source && this.source.length ? this.source : [];
+        return this.source ?? [];
+    }
+
+    /**
+     * @description Returns the entire list of table entries, excluding filters and sorting.
+     */
+    public get originalSourceRef(): T[] {
+        return this.originalSource ?? this.source ?? [];
     }
 
     public get isEnableFiltering(): boolean {
