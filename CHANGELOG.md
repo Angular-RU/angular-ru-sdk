@@ -1,3 +1,16 @@
+#### 15.246.2 (2021-05-20)
+
+##### Build System / Dependencies
+
+-   lock file maintenance ([#635](https://github.com/Angular-RU/angular-ru-sdk/pull/635))
+    ([18d012f3](https://github.com/Angular-RU/angular-ru-sdk/commit/18d012f37233bec929651a00b2738030c1d7465d))
+
+##### Bug Fixes
+
+-   **@angular-ru/ng-table-builder:** fix selectedItems pipe
+    ([#636](https://github.com/Angular-RU/angular-ru-sdk/pull/636))
+    ([37ae0f5e](https://github.com/Angular-RU/angular-ru-sdk/commit/37ae0f5e57e2769e10af9c85c6834686ffb73604))
+
 #### 15.246.1 (2021-05-13)
 
 ##### Build System / Dependencies
