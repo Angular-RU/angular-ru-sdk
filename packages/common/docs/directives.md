@@ -154,3 +154,26 @@ class TestComponent {
     constructor(private readonly fb: FormBuilder) {}
 }
 ```
+
+-   `FilterCharactersDirective, FilterCharactersModule`
+
+```ts
+import { FilterCharactersModule } from '@angular-ru/common/directives';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ..
+    imports: [FilterCharactersModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `
+        <div [formGroup]="form">
+            <input matInput type="text" [formControlName]="controlName" filterCharacters="['a', 'b', 'c', '\\s']" />
+        </div>
+    `
+})
+export class AppComponent {}
+```

@@ -225,3 +225,16 @@ expect(tryParseJson('{ a: 1 }')).toEqual(undefined);
 const plain: string = '{ checked: true }';
 expect(tryParseJson(plain)?.checked ?? false).toBe(false);
 ```
+
+-   `filterCharacters`
+
+```ts
+import { filterCharacters } from '@angular-ru/common/utils';
+
+expect(filterCharacters('a b c', ['a', 'b', 'c'])).toEqual('abc');
+expect(filterCharacters('a b c', ['a', 'b', 'c', '\\s'])).toEqual('a b c');
+expect(filterCharacters('a b c', ['a', 'b', '\\s'])).toEqual('a b ');
+expect(filterCharacters('A b c', ['a', 'b', 'c'])).toEqual('bc');
+expect(filterCharacters('abc 13', ['1', '3'])).toEqual('13');
+expect(filterCharacters('abc_13 будет удалено', ['a', 'b', 'c', '_', '1', '3', '\\s'])).toEqual('abc_13  ');
+```
