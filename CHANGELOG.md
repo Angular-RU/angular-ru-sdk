@@ -1,3 +1,10 @@
+#### 15.247.0 (2021-05-25)
+
+##### New Features
+
+-   **@angular-ru/ng-excel-builder:** changed format
+    ([b9fc945c](https://github.com/Angular-RU/angular-ru-sdk/commit/b9fc945c8a1439168ddc06aeb55dbff24f8ccae9))
+
 #### 15.246.2 (2021-05-20)
 
 ##### Build System / Dependencies
