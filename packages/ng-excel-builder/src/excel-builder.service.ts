@@ -223,7 +223,13 @@ export class ExcelBuilderService {
 
                 // eslint-disable-next-line @typescript-eslint/typedef
                 function commonStyles(font = '<Font ss:Bold="0" ss:FontName="Arial" />') {
-                    return `${font} <Borders><Border ss:Position="Bottom" ss:Color="#000000" ss:LineStyle="Continuous" ss:Weight="1"/><Border ss:Position="Right" ss:Color="#000000" ss:LineStyle="Continuous" ss:Weight="1"/></Borders>`; // NOSONAR
+                    return `${font}
+                        <Borders>
+                            <Border ss:Position="Top" ss:Color="#000000" ss:LineStyle="Continuous" ss:Weight="1"/>
+                            <Border ss:Position="Bottom" ss:Color="#000000" ss:LineStyle="Continuous" ss:Weight="1"/>
+                            <Border ss:Position="Right" ss:Color="#000000" ss:LineStyle="Continuous" ss:Weight="1"/>
+                            <Border ss:Position="Left" ss:Color="#000000" ss:LineStyle="Continuous" ss:Weight="1"/>
+                        </Borders>`;
                 }
 
                 const template: string = `
@@ -241,7 +247,7 @@ export class ExcelBuilderService {
                                ${commonStyles('<Font ss:Bold="1" ss:FontName="Arial" />')}
                             </Style>
                             <Style ss:ID="${StyleType.BIG_DATA}">
-                               <Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1" />
+                               <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1" />
                                ${commonStyles()}
                             </Style>
                             <Style ss:ID="${StyleType.BODY}">
