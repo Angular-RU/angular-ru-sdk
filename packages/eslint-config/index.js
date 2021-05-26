@@ -541,6 +541,19 @@ module.exports = {
         {
             files: ['*.component.ts'],
             extends: ['plugin:@angular-eslint/template/process-inline-templates']
+        },
+        {
+            files: ['**/i18n/**/*.json'],
+            extends: ['plugin:i18n-json/recommended'],
+            rules: {
+                'i18n-json/valid-message-syntax': 0,
+                'i18n-json/sorted-keys': [
+                    2,
+                    {
+                        indentSpaces: 4
+                    }
+                ]
+            }
         }
     ]
 };
