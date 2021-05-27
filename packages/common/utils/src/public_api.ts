@@ -12,7 +12,6 @@ export { checkValueIsFilled } from './check-value-is-filled';
 export { copyBuffer } from './copy-buffer';
 export { detectChanges } from './detect-changes';
 export { downloadFile } from './download-file';
-export { filterCharacters } from './filter-characters';
 export { getBodyRect } from './get-body-rect';
 export { isFalse } from './is-false';
 export { isIE } from './is-ie';

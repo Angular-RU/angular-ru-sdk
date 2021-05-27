@@ -1,10 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ChangeDetectionStrategy, Component, DebugElement } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { FilterCharactersModule } from '@angular-ru/common/directives';
-import { NgxMaskModule } from 'ngx-mask';
 import { MatInputModule } from '@angular/material/input';
-import { BrowserModule, By } from '@angular/platform-browser';
+import { By } from '@angular/platform-browser';
 
 describe('[TEST]: FilterCharacters Input', () => {
     let fixture: ComponentFixture<TestComponent> | null = null;
@@ -15,27 +14,21 @@ describe('[TEST]: FilterCharacters Input', () => {
         selector: 'test',
         template: `
             <div [formGroup]="form">
-                <input matInput type="text" formControlName="value" filterCharacters="['a', 'b', 'c']" />
+                <input matInput type="text" formControlName="value" [filterCharacters]="characters" />
             </div>
         `,
         changeDetection: ChangeDetectionStrategy.OnPush
     })
     class TestComponent {
         public form = this.fb.group({ value: 'aaaKKK' });
+        public characters = ['a', 'b', 'c'];
 
         constructor(private readonly fb: FormBuilder) {}
     }
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [
-                BrowserModule,
-                ReactiveFormsModule,
-                FormsModule,
-                MatInputModule,
-                FilterCharactersModule,
-                NgxMaskModule.forRoot()
-            ],
+            imports: [ReactiveFormsModule, MatInputModule, FilterCharactersModule],
             declarations: [TestComponent]
         }).compileComponents();
     });

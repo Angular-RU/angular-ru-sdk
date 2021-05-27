@@ -1,4 +1,5 @@
 export { capitalize } from './capitalize';
+export { filterCharacters } from './filter-characters';
 export { generateQuickGuid } from './generate-quick-guid';
 export { getByteSize } from './get-byte-size';
 export { getCountSpacesOnString } from './get-count-spaces-on-string';

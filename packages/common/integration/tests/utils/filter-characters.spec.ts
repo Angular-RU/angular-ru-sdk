@@ -1,4 +1,4 @@
-import { filterCharacters } from '@angular-ru/common/utils';
+import { filterCharacters } from '@angular-ru/common/string';
 
 describe('[TEST]: Filter Characters', () => {
     it('should return text as it is if there is no filter characters', () => {

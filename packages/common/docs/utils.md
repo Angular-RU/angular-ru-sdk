@@ -229,7 +229,7 @@ expect(tryParseJson(plain)?.checked ?? false).toBe(false);
 -   `filterCharacters`
 
 ```ts
-import { filterCharacters } from '@angular-ru/common/utils';
+import { filterCharacters } from '@angular-ru/common/string';
 
 expect(filterCharacters('a b c', ['a', 'b', 'c'])).toEqual('abc');
 expect(filterCharacters('a b c', ['a', 'b', 'c', '\\s'])).toEqual('a b c');

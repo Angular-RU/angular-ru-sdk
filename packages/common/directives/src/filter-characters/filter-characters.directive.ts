@@ -1,16 +1,14 @@
 import { Directive, ElementRef, HostListener, Input, OnInit } from '@angular/core';
+import { ControlValueInterceptor } from '@angular-ru/common/forms';
+import { filterCharacters } from '@angular-ru/common/string';
 import { Any } from '@angular-ru/common/typings';
-import { filterCharacters } from '@angular-ru/common/utils';
-
-import { ControlValueInterceptor } from '../../../forms/src/control-value-interceptor';
 
 @Directive({
     selector: '[filterCharacters]',
     providers: [ControlValueInterceptor]
 })
 export class FilterCharactersDirective implements OnInit {
-    @Input('filterCharacters')
-    public characters: string[] = [];
+    @Input() public filterCharacters: string[] = [];
     public preparedValue: string = '';
 
     constructor(
@@ -19,7 +17,7 @@ export class FilterCharactersDirective implements OnInit {
     ) {}
 
     public ngOnInit(): void {
-        this.interceptor.attach({ toModelValue: this.filterCharacters() });
+        this.interceptor.attach({ toModelValue: this.filter() });
     }
 
     @HostListener('input', ['$event'])
@@ -27,10 +25,10 @@ export class FilterCharactersDirective implements OnInit {
         this.elementRef.nativeElement.value = this.preparedValue;
     }
 
-    private filterCharacters(): Any {
+    private filter(): Any {
         const directive: FilterCharactersDirective = this as FilterCharactersDirective;
         return (value: string): string => {
-            directive.preparedValue = filterCharacters(value, directive.characters);
+            directive.preparedValue = filterCharacters(value, directive.filterCharacters);
             return directive.preparedValue;
         };
     }
