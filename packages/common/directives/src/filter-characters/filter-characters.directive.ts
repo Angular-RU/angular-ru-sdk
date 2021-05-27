@@ -1,6 +1,6 @@
 import { Directive, ElementRef, HostListener, Input, OnInit } from '@angular/core';
 import { ControlValueInterceptor } from '@angular-ru/common/forms';
-import { filterCharacters } from '@angular-ru/common/string';
+import { filter } from '@angular-ru/common/string';
 import { Any } from '@angular-ru/common/typings';
 
 @Directive({
@@ -28,7 +28,7 @@ export class FilterCharactersDirective implements OnInit {
     private filter(): Any {
         const directive: FilterCharactersDirective = this as FilterCharactersDirective;
         return (value: string): string => {
-            directive.preparedValue = filterCharacters(value, directive.filterCharacters);
+            directive.preparedValue = filter(value, directive.filterCharacters);
             return directive.preparedValue;
         };
     }

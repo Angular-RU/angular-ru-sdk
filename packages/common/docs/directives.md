@@ -171,7 +171,7 @@ export class AppModule {}
     //...
     template: `
         <div [formGroup]="form">
-            <input matInput type="text" [formControlName]="controlName" filterCharacters="['a', 'b', 'c', '\\s']" />
+            <input matInput type="text" [formControlName]="value" [filterCharacters]="['a', 'b', 'c']" />
         </div>
     `
 })

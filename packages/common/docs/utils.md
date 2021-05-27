@@ -229,12 +229,20 @@ expect(tryParseJson(plain)?.checked ?? false).toBe(false);
 -   `filterCharacters`
 
 ```ts
-import { filterCharacters } from '@angular-ru/common/string';
+import { filter } from '@angular-ru/common/string';
 
-expect(filterCharacters('a b c', ['a', 'b', 'c'])).toEqual('abc');
-expect(filterCharacters('a b c', ['a', 'b', 'c', '\\s'])).toEqual('a b c');
-expect(filterCharacters('a b c', ['a', 'b', '\\s'])).toEqual('a b ');
-expect(filterCharacters('A b c', ['a', 'b', 'c'])).toEqual('bc');
-expect(filterCharacters('abc 13', ['1', '3'])).toEqual('13');
-expect(filterCharacters('abc_13 будет удалено', ['a', 'b', 'c', '_', '1', '3', '\\s'])).toEqual('abc_13  ');
+// filter with characters
+expect(filter('abc')).toEqual('abc');
+expect(filter('abc', ['a', 'b'])).toEqual('ab');
+expect(filter(' a b c', ['a', 'b', 'c'])).toEqual(' a b c');
+expect(filter('aaa', ['aaa'])).toEqual('');
+
+// filter with predicate function
+expect(filter('abc', (): boolean => false)).toEqual('');
+expect(filter('abc', (): boolean => true)).toEqual('abc');
+expect(filter('abc', (item: string): boolean => item === 'a' || item === 'b')).toEqual('ab');
+expect(filter('a b c', (item: string): boolean => item === 'a' || item === 'b' || item === 'c')).toEqual('abc');
+expect(
+    filter('a b c', (item: string): boolean => item === 'a' || item === 'b' || item === 'c' || item === ' ')
+).toEqual('a b c');
 ```
