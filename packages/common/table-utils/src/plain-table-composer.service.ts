@@ -3,15 +3,8 @@ import { Injectable } from '@angular/core';
 import { Any, PlainObject } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 
-interface RulesDescriptor {
-    includeKeys?: string[];
-    excludeKeys?: string[];
-}
-
-interface InputDescriptor<T extends PlainObject> {
-    entries: T[];
-    rules?: RulesDescriptor;
-}
+import { InputDescriptor } from './interfaces/input-descriptor';
+import { RulesDescriptor } from './interfaces/rules-descriptor';
 
 @Injectable()
 export class PlainTableComposerService {
