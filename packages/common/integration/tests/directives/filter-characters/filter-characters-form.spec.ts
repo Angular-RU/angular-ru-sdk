@@ -15,7 +15,7 @@ describe('[TEST]: FilterCharacters Input', () => {
         selector: 'test',
         template: `
             <div [formGroup]="form">
-                <input matInput type="text" [formControl]="form.get('value')" filterCharacters="['a', 'b', 'c']" />
+                <input matInput type="text" formControlName="value" filterCharacters="['a', 'b', 'c']" />
             </div>
         `,
         changeDetection: ChangeDetectionStrategy.OnPush
@@ -52,7 +52,7 @@ describe('[TEST]: FilterCharacters Input', () => {
     });
 
     it('correct sync modelView with model', () => {
-        expect(component?.form.value).toEqual({ value: 'aaa' });
+        expect(component?.form.value).toEqual({ value: 'aaaKKK' });
 
         debugElement!.nativeElement.value = 'bbbOOO';
         debugElement!.triggerEventHandler('input', {

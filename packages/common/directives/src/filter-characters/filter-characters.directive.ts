@@ -1,49 +1,37 @@
-import { Directive, Input, OnDestroy, OnInit } from '@angular/core';
-import { AbstractControl } from '@angular/forms';
+import { Directive, ElementRef, HostListener, Input, OnInit } from '@angular/core';
+import { Any } from '@angular-ru/common/typings';
 import { filterCharacters } from '@angular-ru/common/utils';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
-@Directive({ selector: '[filterCharacters]' })
-export class FilterCharactersDirective implements OnInit, OnDestroy {
+import { ControlValueInterceptor } from '../../../forms/src/control-value-interceptor';
+
+@Directive({
+    selector: '[filterCharacters]',
+    providers: [ControlValueInterceptor]
+})
+export class FilterCharactersDirective implements OnInit {
     @Input('filterCharacters')
     public characters: string[] = [];
+    public preparedValue: string = '';
 
-    private control: AbstractControl | undefined;
-    private controlChanged$: Subject<boolean> = new Subject();
-
-    @Input()
-    public set formControl(control: AbstractControl | undefined) {
-        this.control = control;
-        this.controlChangeHandler();
-    }
+    constructor(
+        private readonly interceptor: ControlValueInterceptor,
+        private readonly elementRef: ElementRef<HTMLInputElement>
+    ) {}
 
     public ngOnInit(): void {
-        this.filterCharacters();
+        this.interceptor.attach({ toModelValue: this.filterCharacters() });
     }
 
-    public ngOnDestroy(): void {
-        this.controlChanged$.next(true);
-        this.controlChanged$.complete();
+    @HostListener('input', ['$event'])
+    public onInput(): void {
+        this.elementRef.nativeElement.value = this.preparedValue;
     }
 
-    private filterCharacters(): void {
-        if (typeof this.control?.value !== 'string' || !this.control) {
-            return;
-        }
-
-        const newValue: string = filterCharacters(this.control?.value, this.characters);
-        this.control?.setValue(newValue, { emitEvent: false });
-    }
-
-    private controlChangeHandler(): void {
-        this.controlChanged$.next(true);
-        if (!this.control) {
-            return;
-        }
-        this.filterCharacters();
-        this.control?.valueChanges.pipe(takeUntil(this.controlChanged$)).subscribe((): void => {
-            this.filterCharacters();
-        });
+    private filterCharacters(): Any {
+        const directive: FilterCharactersDirective = this as FilterCharactersDirective;
+        return (value: string): string => {
+            directive.preparedValue = filterCharacters(value, directive.characters);
+            return directive.preparedValue;
+        };
     }
 }

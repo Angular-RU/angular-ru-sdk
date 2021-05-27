@@ -14,14 +14,14 @@ describe('[TEST]: FilterCharacters Dynamic', () => {
         selector: 'test',
         template: `
             <div [formGroup]="form">
-                <input matInput type="text" [formControl]="formControl" filterCharacters="['a', 'b', 'c']" />
+                <input matInput type="text" [formControl]="control" filterCharacters="['a', 'b', 'c']" />
             </div>
         `,
         changeDetection: ChangeDetectionStrategy.OnPush
     })
     class DynamicTestComponent {
         public form = this.fb.group({ a: 'kkk', b: null });
-        public formControl: AbstractControl | null = this.form.get('b');
+        public control: AbstractControl | null = this.form.get('b');
 
         constructor(public readonly cd: ChangeDetectorRef, private readonly fb: FormBuilder) {}
     }
@@ -59,22 +59,22 @@ describe('[TEST]: FilterCharacters Dynamic', () => {
 
     it('correct sync modelView with model and dynamic control name', () => {
         expect(component.form.value).toEqual({ a: 'kkk', b: null });
-        expect(component.formControl).toEqual(component.form.get('b'));
+        expect(component.control).toEqual(component.form.get('b'));
         expect(debugElement!.nativeElement.value).toEqual('');
 
-        component.formControl = component.form.get('a');
+        component.control = component.form.get('a');
         localDetectChanges();
         setValueAndDispatch('aaaqqq');
         expect(component.form.value).toEqual({ a: 'aaa', b: null });
         expect(debugElement!.nativeElement.value).toEqual('aaa');
 
-        component.formControl = component.form.get('b');
+        component.control = component.form.get('b');
         localDetectChanges();
         setValueAndDispatch('bbbddd');
         expect(component.form.value).toEqual({ a: 'aaa', b: 'bbb' });
         expect(debugElement!.nativeElement.value).toEqual('bbb');
 
-        component.formControl = component.form.get('a');
+        component.control = component.form.get('a');
         localDetectChanges();
         setValueAndDispatch('eeeccc');
         expect(component.form.value).toEqual({ a: 'ccc', b: 'bbb' });
