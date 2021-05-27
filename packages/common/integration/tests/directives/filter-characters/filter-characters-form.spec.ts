@@ -15,13 +15,13 @@ describe('[TEST]: FilterCharacters Input', () => {
         selector: 'test',
         template: `
             <div [formGroup]="form">
-                <input matInput type="text" formControlName="value" filterCharacters="['a', 'b', 'c', '\\s']" />
+                <input matInput type="text" [formControl]="form.get('value')" filterCharacters="['a', 'b', 'c']" />
             </div>
         `,
         changeDetection: ChangeDetectionStrategy.OnPush
     })
     class TestComponent {
-        public form = this.fb.group({ value: 'abcД' });
+        public form = this.fb.group({ value: 'aaaKKK' });
 
         constructor(private readonly fb: FormBuilder) {}
     }
@@ -52,9 +52,9 @@ describe('[TEST]: FilterCharacters Input', () => {
     });
 
     it('correct sync modelView with model', () => {
-        expect(component?.form.value).toEqual({ value: 'abc' });
+        expect(component?.form.value).toEqual({ value: 'aaa' });
 
-        debugElement!.nativeElement.value = 'ab c Д';
+        debugElement!.nativeElement.value = 'bbbOOO';
         debugElement!.triggerEventHandler('input', {
             target: debugElement!.nativeElement
         });
@@ -65,8 +65,8 @@ describe('[TEST]: FilterCharacters Input', () => {
             expect(component!.form.pristine).toEqual(false);
             expect(component!.form.dirty).toEqual(true);
 
-            expect(component?.form.value).toEqual({ value: 'ab c ' });
-            expect(debugElement!.nativeElement.value).toEqual('ab c ');
+            expect(component?.form.value).toEqual({ value: 'bbb' });
+            expect(debugElement!.nativeElement.value).toEqual('bbb');
         });
     });
 });

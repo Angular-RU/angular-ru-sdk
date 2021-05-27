@@ -15,7 +15,12 @@ describe('[TEST]: FilterCharacters Input', () => {
         selector: 'test',
         template: `
             <div [formGroup]="form">
-                <input matInput type="text" formControlName="value" filterCharacters="['a', 'b', 'c', '\\s']" />
+                <input
+                    matInput
+                    type="text"
+                    [formControl]="form.get('value')"
+                    filterCharacters="['a', 'b', 'c', '\\s']"
+                />
             </div>
         `,
         changeDetection: ChangeDetectionStrategy.OnPush

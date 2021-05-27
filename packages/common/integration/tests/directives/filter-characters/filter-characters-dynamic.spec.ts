@@ -1,27 +1,27 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DebugElement } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterCharactersModule } from '@angular-ru/common/directives';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserModule, By } from '@angular/platform-browser';
 
 describe('[TEST]: FilterCharacters Dynamic', () => {
     let fixture: ComponentFixture<DynamicTestComponent> | null = null;
-    let component: DynamicTestComponent | null = null;
+    let component: DynamicTestComponent = null!;
     let debugElement: DebugElement | null = null;
 
     @Component({
         selector: 'test',
         template: `
             <div [formGroup]="form">
-                <input matInput type="text" [formControlName]="controlName" filterCharacters="['a', 'b', 'c', '\\s']" />
+                <input matInput type="text" [formControl]="formControl" filterCharacters="['a', 'b', 'c']" />
             </div>
         `,
         changeDetection: ChangeDetectionStrategy.OnPush
     })
     class DynamicTestComponent {
-        public form = this.fb.group({ a: 'abcД', b: null });
-        public controlName: string = 'b';
+        public form = this.fb.group({ a: 'kkk', b: null });
+        public formControl: AbstractControl | null = this.form.get('b');
 
         constructor(public readonly cd: ChangeDetectorRef, private readonly fb: FormBuilder) {}
     }
@@ -58,28 +58,26 @@ describe('[TEST]: FilterCharacters Dynamic', () => {
     }
 
     it('correct sync modelView with model and dynamic control name', () => {
-        expect(component!.controlName).toEqual('b');
-        expect(component?.form.value).toEqual({ a: 'abcД', b: null });
+        expect(component.form.value).toEqual({ a: 'kkk', b: null });
+        expect(component.formControl).toEqual(component.form.get('b'));
         expect(debugElement!.nativeElement.value).toEqual('');
 
-        component!.controlName = 'a';
+        component.formControl = component.form.get('a');
         localDetectChanges();
-        setValueAndDispatch('abcД');
-        expect(component!.controlName).toEqual('a');
-        expect(component?.form.value).toEqual({ a: 'abc', b: null });
+        setValueAndDispatch('aaaqqq');
+        expect(component.form.value).toEqual({ a: 'aaa', b: null });
+        expect(debugElement!.nativeElement.value).toEqual('aaa');
 
-        component!.controlName = 'b';
+        component.formControl = component.form.get('b');
         localDetectChanges();
-        setValueAndDispatch('eb c Д');
-        expect(component!.controlName).toEqual('b');
-        expect(component?.form.value).toEqual({ a: 'abc', b: 'b c ' });
-        expect(debugElement!.nativeElement.value).toEqual('b c ');
+        setValueAndDispatch('bbbddd');
+        expect(component.form.value).toEqual({ a: 'aaa', b: 'bbb' });
+        expect(debugElement!.nativeElement.value).toEqual('bbb');
 
-        component!.controlName = 'a';
+        component.formControl = component.form.get('a');
         localDetectChanges();
-        setValueAndDispatch('ab c Д');
-        expect(component!.controlName).toEqual('a');
-        expect(component?.form.value).toEqual({ a: 'ab c ', b: 'b c ' });
-        expect(debugElement!.nativeElement.value).toEqual('b c ');
+        setValueAndDispatch('eeeccc');
+        expect(component.form.value).toEqual({ a: 'ccc', b: 'bbb' });
+        expect(debugElement!.nativeElement.value).toEqual('ccc');
     });
 });

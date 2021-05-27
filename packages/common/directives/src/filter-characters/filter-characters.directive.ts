@@ -1,64 +1,49 @@
-import { Directive, ElementRef, Input, OnInit, Optional } from '@angular/core';
-import { AbstractControl, NgControl } from '@angular/forms';
-import { Any } from '@angular-ru/common/typings';
+import { Directive, Input, OnDestroy, OnInit } from '@angular/core';
+import { AbstractControl } from '@angular/forms';
 import { filterCharacters } from '@angular-ru/common/utils';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Directive({ selector: '[filterCharacters]' })
-export class FilterCharactersDirective implements OnInit {
+export class FilterCharactersDirective implements OnInit, OnDestroy {
     @Input('filterCharacters')
     public characters: string[] = [];
 
-    private name: string | number | null | undefined;
-    private previousName: string | number | null | undefined;
-    private previousValue: Any;
-
-    constructor(public readonly el: ElementRef, @Optional() private readonly ngControl?: NgControl) {}
+    private control: AbstractControl | undefined;
+    private controlChanged$: Subject<boolean> = new Subject();
 
     @Input()
-    public set formControlName(name: string | undefined) {
-        this.previousValue = this.ngControl?.control?.parent?.get(this.name as Any)?.value;
-        this.previousName = this.name;
-        this.name = name;
+    public set formControl(control: AbstractControl | undefined) {
+        this.control = control;
+        this.controlChangeHandler();
     }
 
     public ngOnInit(): void {
         this.filterCharacters();
-        this.ngControl?.control?.valueChanges.subscribe((): void => {
-            this.filterCharacters();
-        });
+    }
+
+    public ngOnDestroy(): void {
+        this.controlChanged$.next(true);
+        this.controlChanged$.complete();
     }
 
     private filterCharacters(): void {
-        if (typeof this.el.nativeElement.value !== 'string') {
+        if (typeof this.control?.value !== 'string' || !this.control) {
             return;
         }
 
-        this.el.nativeElement.value = filterCharacters(this.el.nativeElement.value, this.characters);
-        const control: AbstractControl | null | undefined = this.getControl();
-
-        if (control) {
-            this.updateControlValue(control);
-        }
+        const newValue: string = filterCharacters(this.control?.value, this.characters);
+        this.control?.setValue(newValue, { emitEvent: false });
     }
 
-    private getControl(): AbstractControl | null | undefined {
-        return this.ngControl?.control?.parent
-            ? this.ngControl?.control?.parent?.get(this.name as Any)
-            : this.ngControl?.control?.get(this.name as Any);
-    }
-
-    private updateControlValue(control: AbstractControl): void {
-        const value: Any = this.ngControl?.value ?? control?.value;
-        if (typeof value !== 'string') {
+    private controlChangeHandler(): void {
+        this.controlChanged$.next(true);
+        if (!this.control) {
             return;
         }
-        const modelValue: string = filterCharacters(value, this.characters);
-
-        if (this.ngControl?.control === control) {
-            this.ngControl?.control?.setValue(modelValue, { emitEvent: false });
-        } else {
-            control?.setValue(modelValue, { emitEvent: false });
-            control?.parent?.get(this.previousName as Any)?.setValue(this.previousValue, { emitEvent: false });
-        }
+        this.filterCharacters();
+        this.control?.valueChanges.pipe(takeUntil(this.controlChanged$)).subscribe((): void => {
+            this.filterCharacters();
+        });
     }
 }
