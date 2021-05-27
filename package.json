@@ -24,7 +24,6 @@
         "format": "yarn package:sort && yarn pretty:format --write",
         "postinstall": "ngcc --async && husky install && lerna run symlink",
         "lint": "yarn eslint \"**/*.ts\" --ignore-pattern **/file-suites/**",
-        "lint:i18n": "yarn eslint --format node_modules/eslint-plugin-i18n-json/formatter.js **/i18n/**/*.json",
         "package:lint": "yarn package:sort --check",
         "package:sort": "yarn sort-package-json \"package.json\" \"packages/*/package.json\"",
         "pretty:format": "yarn prettier \"**/*.{ts,html,css,scss,md,js,json}\"",
