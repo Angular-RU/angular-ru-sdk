@@ -11,7 +11,7 @@ export function filter(value: string, predicate: string[] | FilterPredicateFn = 
     const list: string[] = Array.from(value);
     const filterFn: FilterPredicateFn = isFunctionLike(predicate)
         ? predicate
-        : (char: string): boolean => predicate.includes(char) || char === ' ' || char === '\\s';
+        : (char: string): boolean => predicate.includes(char);
 
     return list.filter(filterFn).join('');
 }

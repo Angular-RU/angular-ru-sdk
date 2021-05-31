@@ -21,7 +21,7 @@ describe('[TEST]: FilterCharacters Input', () => {
     })
     class TestComponent {
         public form = this.fb.group({ value: 'abcД' });
-        public characters = ['a', 'b', 'c', '\\s'];
+        public characters = ['a', 'b', 'c', ' '];
 
         constructor(private readonly fb: FormBuilder) {}
     }

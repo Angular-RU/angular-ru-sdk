@@ -81,4 +81,16 @@ describe('[TEST]: FilterCharacters Dynamic', () => {
         expect(component.form.value).toEqual({ a: 'ccc', b: 'bbb' });
         expect(debugElement!.nativeElement.value).toEqual('ccc');
     });
+
+    it('correct sync modelView with filter characters', () => {
+        expect(component.form.value).toEqual({ a: 'kkk', b: null });
+        expect(component.control).toEqual(component.form.get('b'));
+        expect(debugElement!.nativeElement.value).toEqual('');
+
+        component.characters = ['d', 'e', 'f', ' '];
+        localDetectChanges();
+        setValueAndDispatch('d e f abc');
+        expect(component.form.value).toEqual({ a: 'kkk', b: 'd e f ' });
+        expect(debugElement!.nativeElement.value).toEqual('d e f ');
+    });
 });

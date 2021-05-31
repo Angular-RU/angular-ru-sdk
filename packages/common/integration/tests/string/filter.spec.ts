@@ -24,17 +24,22 @@ describe('[TEST]: Filter', () => {
             expect(filter('a4_!OOO', ['a', '4', '_', '!'])).toEqual('a4_!');
         });
 
-        it('should not remove spaces', () => {
-            expect(filter(' a b  c  ', ['a', 'b', 'c'])).toEqual(' a b  c  ');
+        it('should remove spaces', () => {
+            expect(filter(' a b  c  ', ['a', 'b', 'c'])).toEqual('abc');
+            expect(filter(' a b  c  ', ['a', 'b', 'c', '\\s'])).toEqual('abc');
+        });
+
+        it('should keep spaces', () => {
+            expect(filter(' a b  c  ', ['a', 'b', 'c', ' '])).toEqual(' a b  c  ');
         });
 
         it('should use only characters for filtering', () => {
             expect(filter('aaa', ['aaa'])).toEqual('');
-            expect(filter('aaa aab abc', ['aa', 'aaa'])).toEqual('  ');
+            expect(filter('aaa aab abc', ['aa', 'aaa'])).toEqual('');
         });
 
         it('should remove cyrillic characters', () => {
-            expect(filter('будет удалено abc', ['a', 'b', 'c'])).toEqual('  abc');
+            expect(filter('будет удалено abc', ['a', 'b', 'c'])).toEqual('abc');
         });
 
         it('should be case sensitive', () => {

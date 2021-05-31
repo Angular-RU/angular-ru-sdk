@@ -234,7 +234,8 @@ import { filter } from '@angular-ru/common/string';
 // filter with characters
 expect(filter('abc')).toEqual('abc');
 expect(filter('abc', ['a', 'b'])).toEqual('ab');
-expect(filter(' a b c', ['a', 'b', 'c'])).toEqual(' a b c');
+expect(filter('a b c', ['a', 'b', 'c'])).toEqual('abc');
+expect(filter('a b c', ['a', 'b', 'c', ' '])).toEqual('a b c');
 expect(filter('aaa', ['aaa'])).toEqual('');
 
 // filter with predicate function
