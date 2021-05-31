@@ -12,7 +12,7 @@ describe('[TEST]: number format pipe', () => {
         );
         expect(
             pipe.transform(1500300, {
-                locales: 'us',
+                locales: 'en-US',
                 formatOptions: { style: 'currency', currency: 'rub', useGrouping: false }
             })
         ).toEqual('RUB 1500300.00');
