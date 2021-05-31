@@ -52,10 +52,10 @@ describe('[TEST]: Number', () => {
             expect(toNumber('30 000 000.01', 'fr')).toEqual(30000000.01);
             expect(toNumber('30.000.000,01', 'de')).toEqual(30000000.01);
             expect(toNumber('30,000,000.01', 'en')).toEqual(30000000.01);
-            expect(toNumber('30,000,000.01', 'us')).toEqual(30000000.01);
+            expect(toNumber('30,000,000.01', 'en-US')).toEqual(30000000.01);
             expect(toNumber('2.13472231235', 'de')).toEqual(213472231235);
             expect(toNumber('2.134.722.312.350', 'de')).toEqual(2134722312350);
-            expect(toNumber('-10000000000.0009', 'us')).toEqual(-10000000000.0009);
+            expect(toNumber('-10000000000.0009', 'en-US')).toEqual(-10000000000.0009);
             expect(toNumber('-10000000000.0009', 'de')).toEqual(-100000000000009);
             expect(toNumber('-10000000000.0009', 'fr')).toEqual(-10000000000.0009);
         });
@@ -107,7 +107,7 @@ describe('[TEST]: Number', () => {
         expect(getFractionSeparator('ja-JP')).toEqual('.');
         expect(getFractionSeparator('en-IN')).toEqual('.');
         expect(getFractionSeparator('ru')).toEqual(',');
-        expect(getFractionSeparator('us')).toEqual('.');
+        expect(getFractionSeparator('en-US')).toEqual('.');
     });
 
     it('numberFormat', () => {
@@ -118,7 +118,7 @@ describe('[TEST]: Number', () => {
         );
         expect(
             numberFormat(1500300, {
-                locales: 'us',
+                locales: 'en-US',
                 formatOptions: { style: 'currency', currency: 'rub', useGrouping: false }
             })
         ).toEqual('RUB 1500300.00');
