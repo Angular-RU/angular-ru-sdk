@@ -69,4 +69,12 @@ describe('[TEST]: Filter', () => {
             ).toEqual('a b c');
         });
     });
+
+    describe('predicate as a RegExp', () => {
+        it('should use RegExp for filtering text', () => {
+            expect(filter('aaabbbccc', /a/)).toEqual('a');
+            expect(filter('aaabbbccc', /a/g)).toEqual('aaa');
+            expect(filter('aaabbbccc', /[a,b]+/)).toEqual('aaabbb');
+        });
+    });
 });

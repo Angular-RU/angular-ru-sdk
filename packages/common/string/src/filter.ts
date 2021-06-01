@@ -3,15 +3,34 @@ import { isFunctionLike } from '@angular-ru/common/function';
 
 type FilterPredicateFn = (char: string) => boolean;
 
-export function filter(value: string, predicate: string[] | FilterPredicateFn = []): string {
-    if (Array.isArray(predicate) && hasNoItems(predicate)) {
-        return value;
+export function filter(value: string, predicate: string[] | FilterPredicateFn | RegExp = []): string {
+    if (Array.isArray(predicate)) {
+        return filterWithCharacters(value, predicate as string[]);
     }
+    if (isFunctionLike(predicate)) {
+        return filterWithFunction(value, predicate as FilterPredicateFn);
+    }
+    if (predicate instanceof RegExp) {
+        return filterWithRegExp(value, predicate as RegExp);
+    }
+    return value;
+}
 
-    const list: string[] = Array.from(value);
-    const filterFn: FilterPredicateFn = isFunctionLike(predicate)
-        ? predicate
-        : (char: string): boolean => predicate.includes(char);
+function filterWithCharacters(value: string, predicate: string[] = []): string {
+    if (hasNoItems(predicate)) {
+        return value;
+    } else {
+        return Array.from(value)
+            .filter((char: string): boolean => predicate.includes(char))
+            .join('');
+    }
+}
 
-    return list.filter(filterFn).join('');
+function filterWithFunction(value: string, predicate: FilterPredicateFn): string {
+    return Array.from(value).filter(predicate).join('');
+}
+
+function filterWithRegExp(value: string, predicate: RegExp): string {
+    const match: RegExpMatchArray | null = value.match(predicate) ?? [];
+    return match.join('');
 }
