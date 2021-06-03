@@ -12,7 +12,8 @@ import {
     transformToPrettyFormat,
     transformToStringVal,
     transformToTrim,
-    transformToUnix
+    transformToUnix,
+    transformDateToFormat
 } from '@angular-ru/common/class-transformer';
 import { Exclude, Expose, plainToClass, Transform, Type } from 'class-transformer';
 
@@ -39,6 +40,17 @@ describe('[TEST]: Integration with class-transformer', () => {
         @Type(transformToClass(IsoDto))
         @Transform(transformAsPrepareFieldsFromClass(IsoDto), ONLY_TO_CLASS)
         public iso?: IsoDto;
+
+        @Expose()
+        @Transform(transformDateToFormat({ format: 'dd.MM.yyyy', timezone: 'GMT+03:00' }), ONLY_TO_CLASS)
+        public dateCustomFormatWithTimezone?: number;
+        @Expose()
+        @Transform(transformDateToFormat({ format: 'dd.MM.yyyy HH:mm', timezone: 'GMT+06:00' }), ONLY_TO_CLASS)
+        public datetimeCustomFormatWithTimezone?: number;
+        @Expose()
+        @Transform(transformDateToFormat({ format: 'dd.MM.yyyy' }), ONLY_TO_CLASS)
+        public dateCustomFormatWithoutTimezone?: number;
+        @Expose() @Transform(transformDateToFormat(), ONLY_TO_CLASS) public dateCustomFormatEmptyOptions?: number;
     }
 
     it('should be correct use @Transform', () => {
@@ -57,7 +69,11 @@ describe('[TEST]: Integration with class-transformer', () => {
                     b: ' 3 ',
                     c: false
                 },
-                checked: undefined
+                checked: undefined,
+                dateCustomFormatWithTimezone: 1622657925000,
+                datetimeCustomFormatWithTimezone: 1622657925000,
+                dateCustomFormatWithoutTimezone: 1622657925000,
+                dateCustomFormatEmptyOptions: 1622657925000
             } as DemoDto)
         ).toEqual({
             startDate: expect.any(String),
@@ -69,7 +85,11 @@ describe('[TEST]: Integration with class-transformer', () => {
             intVal: 11,
             numVal: 1234,
             iso: { a: 2, b: 3 },
-            checked: false
+            checked: false,
+            dateCustomFormatWithTimezone: '02.06.2021',
+            datetimeCustomFormatWithTimezone: '03.06.2021 00:18',
+            dateCustomFormatWithoutTimezone: expect.any(String),
+            dateCustomFormatEmptyOptions: expect.any(String)
         });
     });
 

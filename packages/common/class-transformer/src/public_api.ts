@@ -1,4 +1,5 @@
 export { transformAsPrepareFieldsFromClass } from './transform-as-prepare-fields-from-class';
+export { transformDateToFormat } from './transform-date-to-format';
 export { ONLY_TO_CLASS, ONLY_TO_PLAIN } from './transform-options';
 export { transformParseFloat } from './transform-parse-float';
 export { transformParseInt } from './transform-parse-int';
