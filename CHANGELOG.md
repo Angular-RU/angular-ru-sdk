@@ -1,3 +1,15 @@
+#### 15.248.0 (2021-06-02)
+
+##### New Features
+
+-   **@angular-ru/common:** add Includes pipe ([#641](https://github.com/Angular-RU/angular-ru-sdk/pull/641))
+    ([f81fae01](https://github.com/Angular-RU/angular-ru-sdk/commit/f81fae01de257b1d8b39f8e75569dd68d1612605))
+
+##### Bug Fixes
+
+-   **common:** changed tests that brakes on Windows
+    ([d48ea963](https://github.com/Angular-RU/angular-ru-sdk/commit/d48ea963944593908e9a6f9bcb2a0fb13f5248d3))
+
 #### 15.247.0 (2021-05-25)
 
 ##### New Features
