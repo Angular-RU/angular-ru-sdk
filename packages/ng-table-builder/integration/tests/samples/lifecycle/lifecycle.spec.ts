@@ -1,9 +1,11 @@
+import { ApplicationRef, ChangeDetectorRef, ElementRef, NgZone, QueryList, SimpleChanges } from '@angular/core';
+import { fakeAsync, tick } from '@angular/core/testing';
+import { deepClone } from '@angular-ru/common/object';
 import { Any, Fn, PlainObject } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { NgxColumnComponent, NgxTableViewChangesService, TableBuilderComponent } from '@angular-ru/ng-table-builder';
-import { ApplicationRef, ChangeDetectorRef, ElementRef, NgZone, QueryList, SimpleChanges } from '@angular/core';
 
-import { fakeAsync, tick } from '@angular/core/testing';
+import { TableSelectedItemsPipe } from '../../../../src/pipes/table-selected-items.pipe';
 import { ContextMenuService } from '../../../../src/services/context-menu/context-menu.service';
 import { DraggableService } from '../../../../src/services/draggable/draggable.service';
 import { FilterableService } from '../../../../src/services/filterable/filterable.service';
@@ -11,7 +13,6 @@ import { ResizableService } from '../../../../src/services/resizer/resizable.ser
 import { SelectionService } from '../../../../src/services/selection/selection.service';
 import { SortableService } from '../../../../src/services/sortable/sortable.service';
 import { TemplateParserService } from '../../../../src/services/template-parser/template-parser.service';
-import { TableSelectedItemsPipe } from '../../../../src/pipes/table-selected-items.pipe';
 
 describe('[TEST]: Lifecycle table', () => {
     let table: TableBuilderComponent<PlainObject>;
@@ -29,6 +30,11 @@ describe('[TEST]: Lifecycle table', () => {
     const mockNgZone: Partial<NgZone> = {
         run: (callback: Fn): Any => callback(),
         runOutsideAngular: (callback: Fn): Any => callback()
+    };
+    const webWorker: Partial<WebWorkerThreadService> = {
+        run<T, K>(workerFunction: (input: K) => T, data?: K): Promise<T> {
+            return Promise.resolve(workerFunction(data!));
+        }
     };
 
     interface PeriodicElement {
@@ -53,7 +59,7 @@ describe('[TEST]: Lifecycle table', () => {
     ];
 
     beforeEach(() => {
-        const worker: WebWorkerThreadService = new WebWorkerThreadService();
+        const worker: WebWorkerThreadService = webWorker as WebWorkerThreadService;
         const zone: NgZone = mockNgZone as NgZone;
         const app: ApplicationRef = appRef as ApplicationRef;
         const view: NgxTableViewChangesService = new NgxTableViewChangesService();
@@ -114,24 +120,42 @@ describe('[TEST]: Lifecycle table', () => {
         table.columnList = new QueryList<ElementRef<HTMLDivElement>>();
     });
 
-    it('should be basic api', () => {
-        table.source = JSON.parse(JSON.stringify(data));
+    it('should be basic api', async () => {
+        table.setSource(deepClone(data));
 
-        expect(new TableSelectedItemsPipe(table).transform({})).toEqual([]);
-        expect(new TableSelectedItemsPipe(table).transform({ 1: true })).toEqual([
-            {
-                name: 'Hydrogen',
-                position: 1,
-                symbol: 'H',
-                weight: 1.0079
-            }
+        expect(new TableSelectedItemsPipe(table).transform({ 1: true, 2: true })).toEqual([
+            { position: 1, name: 'Hydrogen', symbol: 'H', weight: 1.0079 },
+            { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' }
         ]);
+
+        // enable and check filter
+        table.enableFiltering = true;
+        table.filterable.filterValue = 'Hydrogen';
+        table.filterable.filterType = 'START_WITH';
+        await table.sortAndFilter();
+        expect(table.source).toEqual([{ name: 'Hydrogen', position: 1, symbol: 'H', weight: 1.0079 }]);
+
+        // expect selection pipe works even with filtered values
+        expect(new TableSelectedItemsPipe(table).transform({})).toEqual([]);
+        expect(new TableSelectedItemsPipe(table).transform({ 1: true, 2: true })).toEqual([
+            { position: 1, name: 'Hydrogen', symbol: 'H', weight: 1.0079 },
+            { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' }
+        ]);
+
+        expect(table.lastItem).toEqual({ position: 1, name: 'Hydrogen', symbol: 'H', weight: 1.0079 });
+
+        // reset filter
+        table.enableFiltering = true;
+        table.filterable.filterValue = null;
+        table.filterable.filterType = null;
+        await table.sortAndFilter();
+        expect(table.source).toEqual(data);
 
         expect(table.lastItem).toEqual({ position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' });
     });
 
     it('should be unchecked state before ngOnChange', () => {
-        table.source = JSON.parse(JSON.stringify(data));
+        table.source = deepClone(data);
 
         expect(table.isRendered).toEqual(false);
         expect(table.modelColumnKeys).toEqual([]);
@@ -144,7 +168,7 @@ describe('[TEST]: Lifecycle table', () => {
     });
 
     it('should be correct generate modelColumnKeys after ngOnChange', () => {
-        table.source = JSON.parse(JSON.stringify(data));
+        table.source = deepClone(data);
         table.enableSelection = true;
         table.ngOnChanges(changes);
         table.ngOnInit();
@@ -178,7 +202,7 @@ describe('[TEST]: Lifecycle table', () => {
     });
 
     it('should be correct state after ngAfterContentInit', fakeAsync(() => {
-        table.source = JSON.parse(JSON.stringify(data));
+        table.source = deepClone(data);
         table.ngOnChanges(changes);
         table.ngOnInit();
         table.ngAfterContentInit();
@@ -224,7 +248,7 @@ describe('[TEST]: Lifecycle table', () => {
         expect(table.contentCheck).toEqual(false);
         expect(table.sourceExists).toEqual(false);
 
-        table.source = JSON.parse(JSON.stringify(data));
+        table.source = deepClone(data);
         templates.reset([new NgxColumnComponent()]);
         templates.notifyOnChanges();
 
@@ -248,7 +272,7 @@ describe('[TEST]: Lifecycle table', () => {
     it('should be correct template changes with check renderCount', fakeAsync(() => {
         const templates: QueryList<NgxColumnComponent<PlainObject>> = new QueryList();
         table.columnTemplates = templates;
-        table.source = JSON.parse(JSON.stringify(data));
+        table.source = deepClone(data);
 
         table.ngOnChanges(changes);
         table.ngOnInit();
@@ -268,7 +292,7 @@ describe('[TEST]: Lifecycle table', () => {
         expect(table.contentCheck).toEqual(false);
         expect(table.sourceExists).toEqual(true);
 
-        table.source = JSON.parse(JSON.stringify(data));
+        table.source = deepClone(data);
         templates.reset([new NgxColumnComponent()]);
 
         templates.notifyOnChanges();
@@ -307,7 +331,7 @@ describe('[TEST]: Lifecycle table', () => {
         templates.reset([new NgxColumnComponent()]);
         templates.notifyOnChanges();
 
-        table.source = JSON.parse(JSON.stringify(data));
+        table.source = deepClone(data);
         table.ngOnChanges(changes);
 
         tick(1000);
@@ -349,7 +373,7 @@ describe('[TEST]: Lifecycle table', () => {
     });
 
     it('should be correct sync rendering', fakeAsync(() => {
-        table.source = JSON.parse(JSON.stringify(data));
+        table.source = deepClone(data);
 
         table.ngOnChanges(changes);
         table.renderTable();

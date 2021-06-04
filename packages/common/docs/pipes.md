@@ -723,3 +723,29 @@ export class AppComponent {
     public someArray: number[] = [1];
 }
 ```
+
+-   `IncludesPipe, IncludesPipeModule`
+
+```ts
+import { IncludesPipeModule } from '@angular-ru/common/pipes';
+
+@NgModule({
+    // ..
+    imports: [IncludesPipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `
+        <p *ngIf="someArray | includes: 'first'">first</p>
+        <p *ngIf="someArray | includes: 'fourth'">
+            <!-- this will not appear -->
+            fourth
+        </p>
+    `
+})
+export class AppComponent {
+    public someArray = ['first', 'second', 'third', 'last'];
+}
+```

@@ -34,6 +34,8 @@ export { HasOneItemPipe } from './has-one-item/has-one-item.pipe';
 export { HasOneItemPipeModule } from './has-one-item/has-one-item-pipe.module';
 export { HttpReplacerPipe } from './http-replacer/http-replacer.pipe';
 export { HttpReplacerPipeModule } from './http-replacer/http-replacer-pipe.module';
+export { IncludesPipe } from './includes/includes.pipe';
+export { IncludesPipeModule } from './includes/includes-pipe.module';
 export { IsArrayPipe } from './is-array/is-array.pipe';
 export { IsArrayPipeModule } from './is-array/is-array-pipe.module';
 export { IsNilPipe } from './is-nil/is-nil.pipe';

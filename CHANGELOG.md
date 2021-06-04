@@ -1,3 +1,42 @@
+#### 15.249.0 (2021-06-03)
+
+##### New Features
+
+-   add transform-date-to-format ([#646](https://github.com/Angular-RU/angular-ru-sdk/pull/646))
+    ([f3135bd5](https://github.com/Angular-RU/angular-ru-sdk/commit/f3135bd5141eb581c6415763d2b137ede2f07b3d))
+
+#### 15.248.0 (2021-06-02)
+
+##### New Features
+
+-   **@angular-ru/common:** add Includes pipe ([#641](https://github.com/Angular-RU/angular-ru-sdk/pull/641))
+    ([f81fae01](https://github.com/Angular-RU/angular-ru-sdk/commit/f81fae01de257b1d8b39f8e75569dd68d1612605))
+
+##### Bug Fixes
+
+-   **common:** changed tests that brakes on Windows
+    ([d48ea963](https://github.com/Angular-RU/angular-ru-sdk/commit/d48ea963944593908e9a6f9bcb2a0fb13f5248d3))
+
+#### 15.247.0 (2021-05-25)
+
+##### New Features
+
+-   **@angular-ru/ng-excel-builder:** changed format
+    ([b9fc945c](https://github.com/Angular-RU/angular-ru-sdk/commit/b9fc945c8a1439168ddc06aeb55dbff24f8ccae9))
+
+#### 15.246.2 (2021-05-20)
+
+##### Build System / Dependencies
+
+-   lock file maintenance ([#635](https://github.com/Angular-RU/angular-ru-sdk/pull/635))
+    ([18d012f3](https://github.com/Angular-RU/angular-ru-sdk/commit/18d012f37233bec929651a00b2738030c1d7465d))
+
+##### Bug Fixes
+
+-   **@angular-ru/ng-table-builder:** fix selectedItems pipe
+    ([#636](https://github.com/Angular-RU/angular-ru-sdk/pull/636))
+    ([37ae0f5e](https://github.com/Angular-RU/angular-ru-sdk/commit/37ae0f5e57e2769e10af9c85c6834686ffb73604))
+
 #### 15.246.1 (2021-05-13)
 
 ##### Build System / Dependencies
