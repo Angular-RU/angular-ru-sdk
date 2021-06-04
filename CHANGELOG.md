@@ -1,3 +1,10 @@
+#### 15.249.0 (2021-06-03)
+
+##### New Features
+
+-   add transform-date-to-format ([#646](https://github.com/Angular-RU/angular-ru-sdk/pull/646))
+    ([f3135bd5](https://github.com/Angular-RU/angular-ru-sdk/commit/f3135bd5141eb581c6415763d2b137ede2f07b3d))
+
 #### 15.248.0 (2021-06-02)
 
 ##### New Features
