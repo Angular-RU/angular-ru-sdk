@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { generateQuickGuid } from '@angular-ru/common/string';
 import { Any } from '@angular-ru/common/typings';
-import { checkValueIsEmpty } from '@angular-ru/common/utils';
+import { checkValueIsEmpty, isNotNil } from '@angular-ru/common/utils';
 import { fromEvent, Subscription } from 'rxjs';
 
 import { TooltipContextValue } from './interfaces/tooltip-context-value';
@@ -285,7 +285,7 @@ export class TooltipDirective implements OnDestroy {
             content.append(...view.rootNodes);
         } else if (checkValueIsEmpty(this.internalTooltipValue)) {
             return null;
-        } else if (this.internalTooltipValue) {
+        } else if (isNotNil(this.internalTooltipValue)) {
             const value: string = this.internalTooltipValue?.toString();
             content.innerHTML = this.interceptor.instant?.(value) ?? value;
         }
