@@ -1,3 +1,10 @@
+#### 15.249.1 (2021-06-04)
+
+##### Refactors
+
+-   **@angular-core/jwt:** change decode-jwt signature ([#647](https://github.com/Angular-RU/angular-ru-sdk/pull/647))
+    ([05949296](https://github.com/Angular-RU/angular-ru-sdk/commit/05949296dfc506f10a59c559a636048f3ebc3726))
+
 #### 15.249.0 (2021-06-03)
 
 ##### New Features
