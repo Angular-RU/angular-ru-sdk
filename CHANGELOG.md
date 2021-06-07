@@ -1,3 +1,25 @@
+#### 15.250.1 (2021-06-07)
+
+##### Build System / Dependencies
+
+-   **deps:** bump ws from 6.2.1 to 6.2.2 ([#649](https://github.com/Angular-RU/angular-ru-sdk/pull/649))
+    ([4aaca5a6](https://github.com/Angular-RU/angular-ru-sdk/commit/4aaca5a6a0ea3c3cf3ee614fe5ae5c3b71c97c1f))
+
+##### Continuous Integration
+
+-   updated release notes and package versions [ci skip]
+    ([2d1d54d8](https://github.com/Angular-RU/angular-ru-sdk/commit/2d1d54d8a5ab917b41f10b467e432afc89f40a1e))
+
+##### New Features
+
+-   refactor before integrate strict-boolean-expressions ([#650](https://github.com/Angular-RU/angular-ru-sdk/pull/650))
+    ([9b3ed529](https://github.com/Angular-RU/angular-ru-sdk/commit/9b3ed5294c0da0113c040f9e3b2c40ad138824d1))
+
+##### Bug Fixes
+
+-   **ng-table-builder:** fixed bug with rows rendering
+    ([a6720c03](https://github.com/Angular-RU/angular-ru-sdk/commit/a6720c031e8bd754d459a4a1b1d32dc0c69e4379))
+
 #### 15.250.0 (2021-06-07)
 
 ##### Build System / Dependencies
