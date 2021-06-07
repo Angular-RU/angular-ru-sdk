@@ -749,3 +749,25 @@ export class AppComponent {
     public someArray = ['first', 'second', 'third', 'last'];
 }
 ```
+
+-   `CoerceBooleanPipe, CoerceBooleanPipeModule`
+
+```ts
+import { CoerceBooleanPipeModule } from '@angular-ru/common/pipes';
+
+@NgModule({
+    // ..
+    imports: [CoerceBooleanPipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `
+        <mat-select [multiple]="multiple | coerceBoolean">first</p>
+    `
+})
+export class AppComponent {
+    @Input() public multiple?: string | number | boolean;
+}
+```
