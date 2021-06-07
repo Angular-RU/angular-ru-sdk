@@ -154,3 +154,34 @@ class TestComponent {
     constructor(private readonly fb: FormBuilder) {}
 }
 ```
+
+-   `FilterDirective, FilterModule`
+
+```ts
+import { FilterModule } from '@angular-ru/common/directives';
+import { Component, NgModule } from '@angular/core';
+
+@NgModule({
+    // ..
+    imports: [FilterModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `
+        <div [formGroup]="form">
+            <input matInput type="text" formControlName="value" [filter]="predicate" />
+        </div>
+    `
+})
+export class AppComponent {
+    public predicate: string[] | FilterPredicateFn | RegExp;
+
+    constructor() {
+        this.predicate = ['a', 'b', 'c'];
+        this.predicate = /[a,b]+/;
+        this.predicate = (item: string): boolean => item === 'a' || item === 'b';
+    }
+}
+```
