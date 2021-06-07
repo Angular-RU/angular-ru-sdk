@@ -2,11 +2,11 @@ import { AbstractControl, FormBuilder, ReactiveFormsModule } from '@angular/form
 import { By } from '@angular/platform-browser';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FilterCharactersModule } from '@angular-ru/common/directives';
+import { FilterModule } from '@angular-ru/common/directives';
 import { FilterPredicateFn } from '@angular-ru/common/string';
 import { MatInputModule } from '@angular/material/input';
 
-describe('[TEST]: FilterCharacters Dynamic', () => {
+describe('[TEST]: Filter Dynamic', () => {
     let fixture: ComponentFixture<DynamicTestComponent> | null = null;
     let component: DynamicTestComponent = null!;
     let debugElement: DebugElement | null = null;
@@ -15,7 +15,7 @@ describe('[TEST]: FilterCharacters Dynamic', () => {
         selector: 'test',
         template: `
             <div [formGroup]="form">
-                <input matInput type="text" [formControl]="control" [filterCharacters]="predicate" />
+                <input matInput type="text" [formControl]="control" [filter]="predicate" />
             </div>
         `,
         changeDetection: ChangeDetectionStrategy.OnPush
@@ -30,7 +30,7 @@ describe('[TEST]: FilterCharacters Dynamic', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [ReactiveFormsModule, MatInputModule, FilterCharactersModule],
+            imports: [ReactiveFormsModule, MatInputModule, FilterModule],
             declarations: [DynamicTestComponent]
         }).compileComponents();
     });

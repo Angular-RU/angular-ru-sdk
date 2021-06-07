@@ -3,16 +3,16 @@ import { ControlValueInterceptor, ControlValueInterceptorDescriptor } from '@ang
 import { filter, FilterPredicateFn } from '@angular-ru/common/string';
 
 @Directive({
-    selector: '[filterCharacters]',
+    selector: '[filter]',
     providers: [ControlValueInterceptor]
 })
-export class FilterCharactersDirective implements OnInit, OnDestroy {
-    @Input() public filterCharacters: string[] | FilterPredicateFn | RegExp = [];
+export class FilterDirective implements OnInit, OnDestroy {
+    @Input() public filter: string[] | FilterPredicateFn | RegExp = [];
     public preparedValue: string = '';
 
     private controlValueOperator: ControlValueInterceptorDescriptor = {
         toModelValue: (value: string): string => {
-            this.preparedValue = filter(value, this.filterCharacters);
+            this.preparedValue = filter(value, this.filter);
             return this.preparedValue;
         }
     };

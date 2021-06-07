@@ -1,11 +1,11 @@
 import { By } from '@angular/platform-browser';
 import { ChangeDetectionStrategy, Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FilterCharactersModule } from '@angular-ru/common/directives';
+import { FilterModule } from '@angular-ru/common/directives';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 
-describe('[TEST]: FilterCharacters Input', () => {
+describe('[TEST]: Filter Input', () => {
     let fixture: ComponentFixture<TestComponent> | null = null;
     let component: TestComponent | null = null;
     let debugElement: DebugElement | null = null;
@@ -14,7 +14,7 @@ describe('[TEST]: FilterCharacters Input', () => {
         selector: 'test',
         template: `
             <div [formGroup]="form">
-                <input matInput type="text" formControlName="value" [filterCharacters]="characters" />
+                <input matInput type="text" formControlName="value" [filter]="characters" />
             </div>
         `,
         changeDetection: ChangeDetectionStrategy.OnPush
@@ -28,7 +28,7 @@ describe('[TEST]: FilterCharacters Input', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [ReactiveFormsModule, MatInputModule, FilterCharactersModule],
+            imports: [ReactiveFormsModule, MatInputModule, FilterModule],
             declarations: [TestComponent]
         }).compileComponents();
     });

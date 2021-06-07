@@ -155,15 +155,15 @@ class TestComponent {
 }
 ```
 
--   `FilterCharactersDirective, FilterCharactersModule`
+-   `FilterDirective, FilterModule`
 
 ```ts
-import { FilterCharactersModule } from '@angular-ru/common/directives';
+import { FilterModule } from '@angular-ru/common/directives';
 import { Component, NgModule } from '@angular/core';
 
 @NgModule({
     // ..
-    imports: [FilterCharactersModule]
+    imports: [FilterModule]
 })
 export class AppModule {}
 
@@ -171,7 +171,7 @@ export class AppModule {}
     //...
     template: `
         <div [formGroup]="form">
-            <input matInput type="text" formControlName="value" [filterCharacters]="predicate" />
+            <input matInput type="text" formControlName="value" [filter]="predicate" />
         </div>
     `
 })
