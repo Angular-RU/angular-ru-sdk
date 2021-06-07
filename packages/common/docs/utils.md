@@ -225,3 +225,28 @@ expect(tryParseJson('{ a: 1 }')).toEqual(undefined);
 const plain: string = '{ checked: true }';
 expect(tryParseJson(plain)?.checked ?? false).toBe(false);
 ```
+
+-   `filter`
+
+```ts
+import { filter } from '@angular-ru/common/string';
+
+// filter with characters
+expect(filter('abc')).toEqual('abc');
+expect(filter('abc', ['a', 'b'])).toEqual('ab');
+expect(filter('a b c', ['a', 'b', 'c'])).toEqual('abc');
+expect(filter('a b c', ['a', 'b', 'c', ' '])).toEqual('a b c');
+expect(filter('aaa', ['aaa'])).toEqual('');
+
+// filter with custom function
+expect(filter('abc', (): boolean => false)).toEqual('');
+expect(filter('abc', (): boolean => true)).toEqual('abc');
+expect(filter('abc', (item: string): boolean => item === 'a' || item === 'b')).toEqual('ab');
+expect(filter('a b c', (item: string): boolean => item === 'a' || item === 'b' || item === 'c')).toEqual('abc');
+expect(
+    filter('a b c', (item: string): boolean => item === 'a' || item === 'b' || item === 'c' || item === ' ')
+).toEqual('a b c');
+
+// filter with RegExp
+expect(filter('aaabbbccc', /[a,b]+/)).toEqual('aaabbb');
+```
