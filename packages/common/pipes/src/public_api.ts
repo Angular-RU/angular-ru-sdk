@@ -2,6 +2,8 @@ export { AtPipe } from './at/at.pipe';
 export { AtPipeModule } from './at/at-pipe.module';
 export { BracePipe } from './brace/brace.pipe';
 export { BracePipeModule } from './brace/brace-pipe.module';
+export { CoerceBooleanPipe } from './coerce-boolean/coerce-boolean.pipe';
+export { CoerceBooleanPipeModule } from './coerce-boolean/coerce-boolean-pipe.module';
 export { DateToNativePipe } from './date-to-native/date-to-native.pipe';
 export { DateToNativePipeModule } from './date-to-native/date-to-native-pipe.module';
 export { DeepPathPipe } from './deep-path/deep-path.pipe';
