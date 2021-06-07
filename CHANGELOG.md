@@ -1,3 +1,15 @@
+#### 15.250.0 (2021-06-07)
+
+##### Build System / Dependencies
+
+-   **deps:** bump ws from 6.2.1 to 6.2.2 ([#649](https://github.com/Angular-RU/angular-ru-sdk/pull/649))
+    ([4aaca5a6](https://github.com/Angular-RU/angular-ru-sdk/commit/4aaca5a6a0ea3c3cf3ee614fe5ae5c3b71c97c1f))
+
+##### New Features
+
+-   refactor before integrate strict-boolean-expressions ([#650](https://github.com/Angular-RU/angular-ru-sdk/pull/650))
+    ([9b3ed529](https://github.com/Angular-RU/angular-ru-sdk/commit/9b3ed5294c0da0113c040f9e3b2c40ad138824d1))
+
 #### 15.249.1 (2021-06-04)
 
 ##### Refactors
