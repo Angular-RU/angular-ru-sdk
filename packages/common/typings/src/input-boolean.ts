@@ -1,1 +1,1 @@
-export type InputBoolean = string | boolean | '' | 'false' | null | undefined;
+export type InputBoolean = string | boolean | number | '' | 'false' | null | undefined;
