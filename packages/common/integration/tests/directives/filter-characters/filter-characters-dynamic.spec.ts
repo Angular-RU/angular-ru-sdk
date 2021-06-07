@@ -1,9 +1,10 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DebugElement } from '@angular/core';
 import { AbstractControl, FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { FilterCharactersModule } from '@angular-ru/common/directives';
-import { MatInputModule } from '@angular/material/input';
 import { By } from '@angular/platform-browser';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FilterCharactersModule } from '@angular-ru/common/directives';
+import { FilterPredicateFn } from '@angular-ru/common/string';
+import { MatInputModule } from '@angular/material/input';
 
 describe('[TEST]: FilterCharacters Dynamic', () => {
     let fixture: ComponentFixture<DynamicTestComponent> | null = null;
@@ -14,7 +15,7 @@ describe('[TEST]: FilterCharacters Dynamic', () => {
         selector: 'test',
         template: `
             <div [formGroup]="form">
-                <input matInput type="text" [formControl]="control" [filterCharacters]="characters" />
+                <input matInput type="text" [formControl]="control" [filterCharacters]="predicate" />
             </div>
         `,
         changeDetection: ChangeDetectionStrategy.OnPush
@@ -22,7 +23,7 @@ describe('[TEST]: FilterCharacters Dynamic', () => {
     class DynamicTestComponent {
         public form = this.fb.group({ a: 'kkk', b: null });
         public control: AbstractControl | null = this.form.get('b');
-        public characters = ['a', 'b', 'c'];
+        public predicate: string[] | FilterPredicateFn | RegExp = ['a', 'b', 'c'];
 
         constructor(public readonly cd: ChangeDetectorRef, private readonly fb: FormBuilder) {}
     }
@@ -58,7 +59,7 @@ describe('[TEST]: FilterCharacters Dynamic', () => {
         fixture!.componentInstance.cd.detectChanges();
     }
 
-    it('correct sync modelView with model and dynamic control name', () => {
+    it('should correct sync modelView with model and dynamic control name', () => {
         expect(component.form.value).toEqual({ a: 'kkk', b: null });
         expect(component.control).toEqual(component.form.get('b'));
         expect(debugElement!.nativeElement.value).toEqual('');
@@ -82,12 +83,12 @@ describe('[TEST]: FilterCharacters Dynamic', () => {
         expect(debugElement!.nativeElement.value).toEqual('ccc');
     });
 
-    it('correct sync modelView with filter characters', () => {
+    it('should correct sync modelView with filter characters', () => {
         expect(component.form.value).toEqual({ a: 'kkk', b: null });
         expect(component.control).toEqual(component.form.get('b'));
         expect(debugElement!.nativeElement.value).toEqual('');
 
-        component.characters = ['d', 'e', 'f', ' '];
+        component.predicate = ['d', 'e', 'f', ' '];
         localDetectChanges();
         setValueAndDispatch('d e f abc');
         expect(component.form.value).toEqual({ a: 'kkk', b: 'd e f ' });

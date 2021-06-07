@@ -1,7 +1,7 @@
 import { hasNoItems } from '@angular-ru/common/array';
 import { isFunctionLike } from '@angular-ru/common/function';
 
-type FilterPredicateFn = (char: string) => boolean;
+export type FilterPredicateFn = (char: string) => boolean;
 
 export function filter(value: string, predicate: string[] | FilterPredicateFn | RegExp = []): string {
     if (Array.isArray(predicate)) {

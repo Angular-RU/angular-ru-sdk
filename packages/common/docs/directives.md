@@ -171,9 +171,17 @@ export class AppModule {}
     //...
     template: `
         <div [formGroup]="form">
-            <input matInput type="text" formControlName="value" [filterCharacters]="['a', 'b', 'c']" />
+            <input matInput type="text" formControlName="value" [filterCharacters]="predicate" />
         </div>
     `
 })
-export class AppComponent {}
+export class AppComponent {
+    public predicate: string[] | FilterPredicateFn | RegExp;
+
+    constructor() {
+        this.predicate = ['a', 'b', 'c'];
+        this.predicate = /[a,b]+/;
+        this.predicate = (item: string): boolean => item === 'a' || item === 'b';
+    }
+}
 ```

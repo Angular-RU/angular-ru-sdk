@@ -1,9 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ChangeDetectionStrategy, Component, DebugElement } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { FilterCharactersModule } from '@angular-ru/common/directives';
-import { MatInputModule } from '@angular/material/input';
 import { By } from '@angular/platform-browser';
+import { ChangeDetectionStrategy, Component, DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FilterCharactersModule } from '@angular-ru/common/directives';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 describe('[TEST]: FilterCharacters Input', () => {
     let fixture: ComponentFixture<TestComponent> | null = null;

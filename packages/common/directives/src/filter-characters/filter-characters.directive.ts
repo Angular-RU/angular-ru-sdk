@@ -1,13 +1,13 @@
 import { Directive, ElementRef, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
 import { ControlValueInterceptor, ControlValueInterceptorDescriptor } from '@angular-ru/common/forms';
-import { filter } from '@angular-ru/common/string';
+import { filter, FilterPredicateFn } from '@angular-ru/common/string';
 
 @Directive({
     selector: '[filterCharacters]',
     providers: [ControlValueInterceptor]
 })
 export class FilterCharactersDirective implements OnInit, OnDestroy {
-    @Input() public filterCharacters: string[] = [];
+    @Input() public filterCharacters: string[] | FilterPredicateFn | RegExp = [];
     public preparedValue: string = '';
 
     private controlValueOperator: ControlValueInterceptorDescriptor = {

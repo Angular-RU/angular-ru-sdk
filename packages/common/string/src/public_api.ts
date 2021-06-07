@@ -1,5 +1,5 @@
 export { capitalize } from './capitalize';
-export { filter } from './filter';
+export { filter, FilterPredicateFn } from './filter';
 export { generateQuickGuid } from './generate-quick-guid';
 export { getByteSize } from './get-byte-size';
 export { getCountSpacesOnString } from './get-count-spaces-on-string';
