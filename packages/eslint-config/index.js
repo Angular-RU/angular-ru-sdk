@@ -63,7 +63,6 @@ module.exports = {
                  * ESLint Core
                  */
                 'no-invalid-this': 'off',
-                '@typescript-eslint/no-invalid-this': ['error'],
                 'arrow-body-style': 'error',
                 'arrow-parens': ['error', 'always'],
                 'brace-style': [
@@ -128,6 +127,7 @@ module.exports = {
                 'no-eval': 'error',
                 'no-fallthrough': 'error',
                 'no-magic-numbers': 'off',
+                'no-unmodified-loop-condition': 'error',
                 'no-multiple-empty-lines': 'error',
                 'no-negated-condition': 'error',
                 'no-nested-ternary': 'error',
@@ -231,6 +231,8 @@ module.exports = {
                 /**
                  * @typescript-eslint
                  */
+                '@typescript-eslint/strict-boolean-expressions': 'off',
+                '@typescript-eslint/no-invalid-this': ['error'],
                 '@typescript-eslint/no-dupe-class-members': ['error'],
                 '@typescript-eslint/adjacent-overload-signatures': 'error',
                 '@typescript-eslint/array-type': 'error',
