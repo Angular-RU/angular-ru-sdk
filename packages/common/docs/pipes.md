@@ -750,21 +750,21 @@ export class AppComponent {
 }
 ```
 
--   `ToBooleanPipe, ToBooleanPipeModule`
+-   `CoerceBooleanPipe, CoerceBooleanPipeModule`
 
 ```ts
-import { ToBooleanPipeModule } from '@angular-ru/common/pipes';
+import { CoerceBooleanPipeModule } from '@angular-ru/common/pipes';
 
 @NgModule({
     // ..
-    imports: [ToBooleanPipeModule]
+    imports: [CoerceBooleanPipeModule]
 })
 export class AppModule {}
 
 @Component({
     //...
     template: `
-        <mat-select [multiple]="multiple | toBoolean">first</p>
+        <mat-select [multiple]="multiple | coerceBoolean">first</p>
     `
 })
 export class AppComponent {
