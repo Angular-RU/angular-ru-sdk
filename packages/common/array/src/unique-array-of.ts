@@ -1,6 +1,7 @@
 import { isFunctionLike } from '@angular-ru/common/function';
 import { getValueByPath } from '@angular-ru/common/object';
 import { Any } from '@angular-ru/common/typings';
+import { isNotNil } from '@angular-ru/common/utils';
 
 type TrackBy<T> = (item: T) => Any;
 
@@ -16,7 +17,7 @@ export function uniqueArrayOf<T>(list: T[], trackBy: string | TrackBy<T>): T[] {
             trackKey = getValueByPath(item, trackBy);
         }
 
-        const isValidKey: boolean = trackKey && !uniqueMap.has(trackKey);
+        const isValidKey: boolean = isNotNil(trackKey) && !uniqueMap.has(trackKey);
 
         if (isValidKey) {
             uniqueMap.set(trackKey, item);
