@@ -69,6 +69,8 @@ export { TakeFirstItemPipe } from './take-first-item/take-first-item.pipe';
 export { TakeFirstItemPipeModule } from './take-first-item/take-first-item-pipe.module';
 export { TakeSecondItemPipe } from './take-second-item/take-second-item.pipe';
 export { TakeSecondItemPipeModule } from './take-second-item/take-second-item-pipe.module';
+export { ToBooleanPipe } from './to-boolean/to-boolean.pipe';
+export { ToBooleanPipeModule } from './to-boolean/to-boolean-pipe.module';
 export { ToNumberPipe } from './to-number/to-number.pipe';
 export { ToNumberPipeModule } from './to-number/to-number-pipe.module';
 export { ToStringPipe } from './to-string/to-string.pipe';

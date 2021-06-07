@@ -749,3 +749,25 @@ export class AppComponent {
     public someArray = ['first', 'second', 'third', 'last'];
 }
 ```
+
+-   `ToBooleanPipe, ToBooleanPipeModule`
+
+```ts
+import { ToBooleanPipeModule } from '@angular-ru/common/pipes';
+
+@NgModule({
+    // ..
+    imports: [ToBooleanPipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `
+        <mat-select [multiple]="multiple | toBoolean">first</p>
+    `
+})
+export class AppComponent {
+    @Input() public multiple?: string | number | boolean;
+}
+```
