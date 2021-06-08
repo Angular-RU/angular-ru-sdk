@@ -152,6 +152,12 @@ export class TableBuilderComponent<T>
     }
 
     public ngOnChanges(changes: SimpleChanges = {}): void {
+        window.setTimeout((): void => {
+            this.changesHandler(changes);
+        }, TABLE_GLOBAL_OPTIONS.CHANGE_DELAY);
+    }
+
+    public changesHandler(changes: SimpleChanges): void {
         this.checkCorrectInitialSchema(changes);
 
         this.sourceIsNull = this.checkSourceIsNull();
