@@ -23,7 +23,7 @@ import {
 } from '@angular/core';
 import { pathsOfObject } from '@angular-ru/common/object';
 import { Any, DeepPartial, Fn, PlainObjectOf, PrimaryKey } from '@angular-ru/common/typings';
-import { detectChanges } from '@angular-ru/common/utils';
+import { detectChanges, isNotNil, isTrue } from '@angular-ru/common/utils';
 
 import { NgxColumnComponent } from './components/ngx-column/ngx-column.component';
 import { NgxContextMenuComponent } from './components/ngx-context-menu/ngx-context-menu.component';
@@ -169,7 +169,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
      * returned unique displayed columns [ 'id', 'value', 'position' ]
      */
     public get displayedColumns(): string[] {
-        return Object.keys(this.templateParser.compiledTemplates) || [];
+        return Object.keys(this.templateParser.compiledTemplates);
     }
 
     public get visibleColumns(): string[] {
@@ -198,8 +198,8 @@ export abstract class AbstractTableBuilderApiDirective<T>
      * recommendation: {{ table.selectionModel.size  }}
      */
     public get selectedItems(): T[] {
-        return this.sourceRef.filter(
-            (item: T): boolean => !!this.selectionModel.entries[(item as Any)[this.primaryKey]]
+        return this.sourceRef.filter((item: T): boolean =>
+            isNotNil(this.selectionModel.entries[(item as Any)[this.primaryKey]])
         );
     }
 
@@ -216,7 +216,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
     }
 
     public get clientRowHeight(): number {
-        return this._rowHeight || ROW_HEIGHT;
+        return this._rowHeight ?? ROW_HEIGHT;
     }
 
     public get columnVirtualHeight(): number {
@@ -228,7 +228,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
     }
 
     public get headLineHeight(): number {
-        return this._headHeight ? this._headHeight : this.clientRowHeight;
+        return isNotNil(this._headHeight) ? this._headHeight : this.clientRowHeight;
     }
 
     public get size(): number {
@@ -279,7 +279,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
     }
 
     public enableDragging(key: string | null): void {
-        if (key && this.templateParser.compiledTemplates[key]?.draggable) {
+        if (isNotNil(key) && isTrue(this.templateParser.compiledTemplates[key]?.draggable)) {
             this.accessDragging = true;
             detectChanges(this.cd);
         }

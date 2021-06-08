@@ -135,7 +135,8 @@ export class ExcelBuilderService {
                     styleType: Any
                 ) {
                     let bodyCellTemplate: string = '';
-                    const keys: string[] = worksheet.keys?.length ? worksheet.keys : Object.keys(flatCell);
+                    const keys: string[] =
+                        typeof worksheet.keys?.length === 'number' ? worksheet.keys : Object.keys(flatCell);
 
                     keys.forEach((key: string): void => {
                         const value: string = flatCell[key];
@@ -177,7 +178,8 @@ export class ExcelBuilderService {
 
                 function getHeaderTitles(worksheet: ExcelWorksheet<T>, cell: Any, dictionary: Any) {
                     const flatCell: PlainObject = flatten(cell, worksheet.excludeKeys);
-                    const keys: string[] = worksheet.keys?.length ? worksheet.keys : Object.keys(flatCell);
+                    const keys: string[] =
+                        typeof worksheet.keys?.length === 'number' ? worksheet.keys : Object.keys(flatCell);
 
                     return keys.map((key: string): string => {
                         const translatedKey: string =
@@ -194,7 +196,9 @@ export class ExcelBuilderService {
                     if (isObject) {
                         const flatObject: Any = flatten(object[key]);
                         for (const path in flatObject) {
-                            if (flatObject.hasOwnProperty(path)) {
+                            // noinspection JSUnfilteredForInLoop
+                            if (flatObject.hasOwnProperty(path) as boolean) {
+                                // noinspection JSUnfilteredForInLoop
                                 depthGraph[`${key}.${path}`] = flatObject[path];
                             }
                         }
@@ -206,7 +210,9 @@ export class ExcelBuilderService {
                 function flatten(objectRef: Any, excludeKeys: string[] = []) {
                     const depthGraph: PlainObject = {};
                     for (const key in objectRef) {
-                        if (objectRef.hasOwnProperty(key) && !excludeKeys.includes(key)) {
+                        // noinspection JSUnfilteredForInLoop
+                        if ((objectRef?.hasOwnProperty(key) as boolean) && !excludeKeys.includes(key)) {
+                            // noinspection JSUnfilteredForInLoop
                             mutate(objectRef, depthGraph, key);
                         }
                     }

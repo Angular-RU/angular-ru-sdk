@@ -10,7 +10,7 @@ export class FormatDatePipe implements PipeTransform {
         let result: string | number | Date | undefined = value;
 
         if (typeof result === 'string') {
-            result = firstItem(result.split('+')) || '';
+            result = firstItem(result.split('+')) ?? '';
         }
 
         return (

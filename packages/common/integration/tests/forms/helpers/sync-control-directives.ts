@@ -1,5 +1,8 @@
 /* eslint-disable max-classes-per-file */
+// noinspection AngularMissingOrInvalidDeclarationInModule
+
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+import { coerceBoolean } from '@angular-ru/common/coercion';
 import { ControlValueInterceptor, ControlValueInterceptorDescriptor } from '@angular-ru/common/forms';
 import { isNotNil } from '@angular-ru/common/utils';
 
@@ -28,7 +31,7 @@ export class TrimDirective {
 export class AutoSplitDirective {
     private descriptor?: ControlValueInterceptorDescriptor;
     @Input('autoSplit') public set enable(enable: string | boolean) {
-        if (enable || typeof enable === 'string') {
+        if (coerceBoolean(enable)) {
             this.descriptor = {
                 toModelValue: (inline: string): string[] => (isNotNil(',') ? inline.split(',') : [inline]),
                 toViewValue: (value: string[] | string): string => (Array.isArray(value) ? value.join(', ') : value)

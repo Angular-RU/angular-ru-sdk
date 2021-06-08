@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
+import { isNotNil } from '@angular-ru/common/utils';
 
 import { LOGGER_OPTIONS, LoggerLevel } from '../interfaces/logger.external';
 import { LoggerOptionsImpl } from '../logger.options';
@@ -24,7 +25,7 @@ export class CssFactory {
     }
 
     private get localStyle(): string {
-        return this.lineStyle ? `${this.lineStyle};` : '';
+        return (this.lineStyle?.length ?? 0) > 0 ? `${this.lineStyle};` : '';
     }
 
     public getStyleLabel(level: LoggerLevel): string {
@@ -38,8 +39,9 @@ export class CssFactory {
 
         classList.forEach((className: string): void => {
             const style: string | undefined = this.options.cssClassMap[className];
-            if (style) {
-                styles.push(style);
+
+            if (isNotNil(style)) {
+                styles.push(style as string);
             }
         });
 

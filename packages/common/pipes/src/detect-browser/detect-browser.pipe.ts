@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { secondItem, thirdItem } from '@angular-ru/common/array';
+import { isNotNil, isTrue } from '@angular-ru/common/utils';
 
 import { DetectBrowserPipeOptions } from './detect-browser-pipe';
 
@@ -26,7 +27,7 @@ export class DetectBrowserPipe implements PipeTransform {
 
     private static ensureOtherBrowser(matchers: RegExpMatchArray | null, ua: string): string {
         const matcher: RegExpMatchArray | null = ua.match(/version\/(\d+)/i);
-        const otherMatchers: (string | null)[] = thirdItem(matchers)
+        const otherMatchers: (string | null)[] = isNotNil(thirdItem(matchers))
             ? [secondItem(matchers), thirdItem(matchers)]
             : [navigator.appName, navigator.appVersion, '-?'];
 
@@ -50,6 +51,8 @@ export class DetectBrowserPipe implements PipeTransform {
             browser = DetectBrowserPipe.ensureOtherBrowser(matchers, ua);
         }
 
-        return options?.kebabCase ? browser?.toLowerCase().replace(/\d+/, '').trim().replace(/\s/, '-') : browser;
+        return isTrue(options?.kebabCase)
+            ? browser?.toLowerCase().replace(/\d+/, '').trim().replace(/\s/, '-')
+            : browser;
     }
 }

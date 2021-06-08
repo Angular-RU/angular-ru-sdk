@@ -43,7 +43,8 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
 
             while (sorted === 0 && ix < countKeys) {
                 const key: string | null = Sortable.observeKey(matches, ix);
-                if (key) {
+
+                if (typeof key === 'string') {
                     const depth: number | undefined = matches[key];
                     sorted = Sortable.deepSort(key, a, b, depth);
                     ix++;

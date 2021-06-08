@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PlainObject } from '@angular-ru/common/typings';
-import { detectChanges } from '@angular-ru/common/utils';
+import { detectChanges, isNotNil } from '@angular-ru/common/utils';
 
 import { MocksGenerator } from '../../../../tests/helpers/utils/mocks-generator';
 import { DialogTemplateComponent } from '../../shared/dialog-template/dialog-template.component';
@@ -48,8 +48,8 @@ export class SampleFirstSecondComponent implements OnInit, OnDestroy {
             this.dialog
                 .open(DialogTemplateComponent, { data: row, width: '1024px' })
                 .afterClosed()
-                .subscribe((data: PlainObject): void => {
-                    if (data) {
+                .subscribe((data?: PlainObject): void => {
+                    if (isNotNil(data)) {
                         this.data = this.data.map(
                             (val: PlainObject): PlainObject => (val.id === data.id ? { ...data } : val)
                         );
