@@ -1,24 +1,26 @@
+import { ChangeDetectorRef } from '@angular/core';
 import {
     $any,
     $cast,
+    checkEveryValueIsEmpty,
+    checkEveryValueIsFalse,
+    checkEveryValueIsTrue,
+    checkSomeValueIsEmpty,
+    checkSomeValueIsFalse,
+    checkSomeValueIsTrue,
+    checkValueIsEmpty,
+    checkValueIsFilled,
+    detectChanges,
+    downloadFile,
+    fallbackIfEmpty,
+    isIE,
     isNil,
     isNotNil,
-    checkValueIsEmpty,
-    serializeXmlToString,
-    detectChanges,
-    isIE,
     parseXmlFromString,
-    checkSomeValueIsEmpty,
-    checkEveryValueIsEmpty,
-    downloadFile,
-    checkSomeValueIsTrue,
-    checkSomeValueIsFalse,
-    checkEveryValueIsTrue,
-    checkEveryValueIsFalse,
-    checkValueIsFilled,
+    serializeXmlToString,
     tryParseJson
 } from '@angular-ru/common/utils';
-import { ChangeDetectorRef } from '@angular/core';
+
 import { FileToDownloadInfo } from '../../../dist/library/utils/download-file';
 
 describe('[TEST]: Common utils', () => {
@@ -208,6 +210,27 @@ describe('[TEST]: checkEveryValueIsFalse', () => {
         expect(checkEveryValueIsFalse(false, false, {})).toEqual(false);
         expect(checkEveryValueIsFalse(false, false, 'a')).toEqual(false);
         expect(checkEveryValueIsFalse(false, false, 13)).toEqual(false);
+    });
+});
+
+describe('[TEST]: fallbackIfEmpty', () => {
+    it('should return value if it is filled', () => {
+        expect(fallbackIfEmpty(false, 'fallback')).toEqual(false);
+        expect(fallbackIfEmpty(true, 'fallback')).toEqual(true);
+        expect(fallbackIfEmpty([], 'fallback')).toEqual([]);
+        expect(fallbackIfEmpty(0, 'fallback')).toEqual(0);
+        expect(fallbackIfEmpty(1, 'fallback')).toEqual(1);
+        expect(fallbackIfEmpty('string', 'fallback')).toEqual('string');
+        expect(fallbackIfEmpty({}, 'fallback')).toEqual({});
+    });
+
+    it('should return fallback if value is empty', () => {
+        expect(fallbackIfEmpty('null', {})).toEqual({});
+        expect(fallbackIfEmpty(Infinity, {})).toEqual({});
+        expect(fallbackIfEmpty(NaN, 'fallback')).toEqual('fallback');
+        expect(fallbackIfEmpty(null, 'fallback')).toEqual('fallback');
+        expect(fallbackIfEmpty('  ', 'fallback')).toEqual('fallback');
+        expect(fallbackIfEmpty('', 'fallback')).toEqual('fallback');
     });
 });
 
