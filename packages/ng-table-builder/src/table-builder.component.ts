@@ -21,7 +21,7 @@ import {
 } from '@angular/core';
 import { fadeInLinearAnimation } from '@angular-ru/common/animations';
 import { Any, DeepPartial, PlainObjectOf, SortOrderType } from '@angular-ru/common/typings';
-import { detectChanges, isNil, isNotNil } from '@angular-ru/common/utils';
+import { checkValueIsFilled, detectChanges, isFalse, isNil, isNotNil } from '@angular-ru/common/utils';
 import { EMPTY, fromEvent, Observable, Subject } from 'rxjs';
 import { catchError, takeUntil } from 'rxjs/operators';
 
@@ -218,7 +218,7 @@ export class TableBuilderComponent<T>
         this.isDragMoving = true;
         const preview: HTMLElement = event.source._dragRef['_preview'];
         const top: number = root.getBoundingClientRect().top;
-        const transform: string = event.source._dragRef['_preview'].style.transform || '';
+        const transform: string = event.source._dragRef['_preview'].style.transform ?? '';
         const [x, , z]: [number, number, number] = transform
             .replace(/translate3d|\(|\)|px/g, '')
             .split(',')
@@ -295,7 +295,7 @@ export class TableBuilderComponent<T>
     }
 
     public toggleColumnVisibility(key?: string | null): void {
-        if (key) {
+        if (isNotNil(key)) {
             this.recheckViewportChecked();
             this.templateParser.toggleColumnVisibility(key);
             this.ngZone.runOutsideAngular((): void => {
@@ -379,7 +379,7 @@ export class TableBuilderComponent<T>
     protected calculateBuffer(isDownMoved: boolean, start: number, end: number): number {
         const lastVisibleIndex: number = this.getOffsetVisibleEndIndex();
         return isDownMoved
-            ? (this.viewPortInfo.endIndex || end) - lastVisibleIndex
+            ? (this.viewPortInfo.endIndex ?? end) - lastVisibleIndex
             : start - this.viewPortInfo.startIndex!;
     }
 
@@ -445,8 +445,8 @@ export class TableBuilderComponent<T>
 
     private createDiffIndexes(): void {
         this.viewPortInfo.diffIndexes = this.viewPortInfo.oldIndexes
-            ? this.viewPortInfo.oldIndexes.filter(
-                  (index: number): boolean => !this.viewPortInfo.indexes?.includes(index)
+            ? this.viewPortInfo.oldIndexes.filter((index: number): boolean =>
+                  isFalse(this.viewPortInfo.indexes?.includes(index) ?? false)
               )
             : [];
 
@@ -561,13 +561,13 @@ export class TableBuilderComponent<T>
     private checkFilterValues(): void {
         if (this.isEnableFiltering) {
             this.filterable.filterType =
-                this.filterable.filterType ||
-                (this.columnOptions && this.columnOptions.filterType) ||
+                this.filterable.filterType ??
+                (this.columnOptions && this.columnOptions.filterType) ??
                 TableFilterType.CONTAINS;
 
             this.modelColumnKeys.forEach((key: string): void => {
                 (this.filterable.filterTypeDefinition as Any)[key] =
-                    (this.filterable.filterTypeDefinition as Any)[key] || this.filterable.filterType;
+                    (this.filterable.filterTypeDefinition as Any)[key] ?? this.filterable.filterType;
             });
         }
     }
@@ -655,12 +655,15 @@ export class TableBuilderComponent<T>
     }
 
     /**
+     * TODO: the schema is not used anything
      * @description: column meta information processing
      * @param schema - column schema
      * @param key - column name
      */
     private processedColumnList(schema: ColumnsSchema, key: string | undefined): void {
-        if (this.templateParser.schema || schema) {
+        const hasSchema: boolean = checkValueIsFilled((this.templateParser.schema ?? schema) as Any);
+
+        if (hasSchema) {
             const compiledSchema: ColumnsSchema | undefined = this.templateParser.compiledTemplates[key as string];
             if (compiledSchema) {
                 this.templateParser.schema?.columns.push(compiledSchema);

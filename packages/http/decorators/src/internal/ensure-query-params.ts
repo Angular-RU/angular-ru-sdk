@@ -1,5 +1,6 @@
 import { MethodArgsRegistry } from '@angular-ru/common/runtime';
 import { Any, Fn, PlainObject } from '@angular-ru/common/typings';
+import { isNotNil } from '@angular-ru/common/utils';
 
 import { ensureMethodArgsRegistry } from './ensure-method-args-registry';
 import { META_REQUEST_PARAM } from './meta-keys.config';
@@ -16,7 +17,8 @@ export function ensureQueryParams(
 
         args.forEach((value: Any, index: number): void => {
             const key: string | null = registry.getNameByIndex(index);
-            if (key) {
+
+            if (isNotNil(key)) {
                 newParams[key] = value;
             }
         });

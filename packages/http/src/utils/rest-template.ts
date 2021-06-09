@@ -1,4 +1,5 @@
 import { Any, PlainObject } from '@angular-ru/common/typings';
+import { isNil, isTrue } from '@angular-ru/common/utils';
 import { DataBeforeRequestOptions, DataClientRequestOptions, EmitOptions, RequestType } from '@angular-ru/http/typings';
 import { Observable, OperatorFunction } from 'rxjs';
 
@@ -29,7 +30,7 @@ export class RestTemplate<T> {
     }
 
     public setEmitOptions(options: EmitOptions): RestTemplate<T> {
-        if (options.override) {
+        if (isTrue(options.override)) {
             this.options.emitSuccess = options.emitSuccess;
             this.options.emitFailure = options.emitFailure;
         } else {
@@ -82,9 +83,9 @@ export class RestTemplate<T> {
     protected asObservable(): Observable<T> {
         this.markAsRequest = true;
 
-        if (!this._client) {
+        if (isNil(this._client)) {
             throw new Error('Not found http client');
-        } else if (!(this._client as Any)?.[this.methodType]) {
+        } else if (isNil((this._client as Any)?.[this.methodType])) {
             throw new Error(`Method ${this.methodType} not supported`);
         }
 

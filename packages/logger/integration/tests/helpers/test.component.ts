@@ -1,5 +1,8 @@
+// noinspection AngularMissingOrInvalidDeclarationInModule
+
 import { Component, OnInit } from '@angular/core';
 import { Fn } from '@angular-ru/common/typings';
+import { isNotNil } from '@angular-ru/common/utils';
 
 import { DebugLog } from '../../../src/decorators/debug.decorator';
 import { ErrorLog } from '../../../src/decorators/error.decorator';
@@ -24,7 +27,10 @@ interface HttpDebugInterface {
 }
 
 // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
-@Component({ selector: 'lib-hello-test', template: '' })
+@Component({
+    selector: 'lib-hello-test',
+    template: ''
+})
 export class MyTestComponent implements OnInit {
     @Logger() public logger!: LoggerService;
     @TraceLog() public trace!: LogFn;
@@ -40,7 +46,7 @@ export class MyTestComponent implements OnInit {
     public name: string = 'MockLoggerComponent';
 
     public static getUrlInfo({ method, url, queryParams }: Partial<HttpDebugInterface>): string {
-        const params: string = queryParams ? `?${queryParams}` : '';
+        const params: string = isNotNil(queryParams) ? `?${queryParams}` : '';
         return `[${method}] - ${url}${params}`;
     }
 

@@ -352,3 +352,9 @@ const bool: boolean = true;
 
 // Prefer named exports
 export default bool;
+
+// expect error
+const val: boolean | number | undefined | unknown = undefined as unknown;
+if (val) {
+    console.error('hello');
+}

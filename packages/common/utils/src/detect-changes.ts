@@ -1,15 +1,18 @@
 import { ChangeDetectorRef, ViewRef } from '@angular/core';
 
+import { isNil } from './is-nil';
+import { isNotNil } from './is-not-nil';
+
 type DetectorOrDetectors = ChangeDetectorRef | null | (ChangeDetectorRef | null)[];
 
 export function detectChanges(detectorOrDetectors?: DetectorOrDetectors): void {
-    if (!detectorOrDetectors) {
+    if (isNil(detectorOrDetectors)) {
         return;
     }
 
     if (Array.isArray(detectorOrDetectors)) {
         detectorOrDetectors.forEach((detector: ChangeDetectorRef | null): void => internalDetectChanges(detector));
-    } else if (detectorOrDetectors) {
+    } else if (isNotNil(detectorOrDetectors)) {
         internalDetectChanges(detectorOrDetectors);
     }
 }
