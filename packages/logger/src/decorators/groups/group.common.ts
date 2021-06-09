@@ -1,4 +1,5 @@
 import { Type } from '@angular/core';
+import { isString } from '@angular-ru/common/string';
 import { Any, Fn } from '@angular-ru/common/typings';
 
 import { GroupLevel, GroupMethod, LoggerLevel } from '../../interfaces/logger.external';
@@ -18,7 +19,7 @@ export function groupDecoratorFactory(
     const logger: LoggerService = LoggerInjector.getInjector().get<LoggerService>(LoggerService);
     const groupFactory: GroupFactory = LoggerInjector.getInjector().get<GroupFactory>(GroupFactory);
     const groupMethod: GroupMethod = groupFactory[groupType].bind(groupFactory) as GroupMethod;
-    const label: string = typeof title === 'string' ? title : title(...args);
+    const label: string = isString(title) ? title : title(...args);
 
     groupMethod(label, null, logger, level);
     const result: unknown = method.apply(target, args);

@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { isNil, isTrue } from '@angular-ru/common/utils';
 import {
     DataBeforeRequestOptions,
     DataClientRequestOptions,
@@ -30,7 +31,7 @@ export class DataHttpClient<K = unknown> extends AbstractHttpClient<K> {
     }
 
     protected request<T, R = T>(options: DataBeforeRequestOptions): Observable<R> {
-        if (!this.local) {
+        if (isNil(this.local)) {
             throw new Error(`You must use the @RestClient('controller') decorator for work correctly`);
         }
 
@@ -73,7 +74,7 @@ export class DataHttpClient<K = unknown> extends AbstractHttpClient<K> {
     }
 
     private onSuccess<R>(response: R, meta: MetaDataRequest, options: DataBeforeRequestOptions): void {
-        if (options.clientOptions.emitSuccess) {
+        if (isTrue(options.clientOptions.emitSuccess)) {
             this.interceptor.success$?.next({ options, meta });
             this.interceptor.onEmitSuccess?.(response, options, meta);
         }
@@ -82,7 +83,7 @@ export class DataHttpClient<K = unknown> extends AbstractHttpClient<K> {
     }
 
     private onError(error: HttpErrorResponse, meta: MetaDataRequest, options: DataBeforeRequestOptions): void {
-        if (options.clientOptions.emitFailure) {
+        if (isTrue(options.clientOptions.emitFailure)) {
             this.interceptor.errors$?.next({ error, options, meta });
             this.interceptor.onEmitFailure?.(error, options, meta);
         }

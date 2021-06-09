@@ -13,12 +13,13 @@ export function pathsOfObject<T extends PlainObject>(
 
         const element: Any = value[key];
         const isObjectValue: boolean = typeof element === 'object' && element !== null && !Array.isArray(element);
+        // note: don't use isString for preserve circular dependencies
+        const implicitKey: string = typeof parentKey === 'string' ? `${parentKey}.${key}` : key;
 
         if (isObjectValue) {
-            const implicitKey: string = parentKey ? `${parentKey}.${key}` : key;
             pathsOfObject(value[key], implicitKey, keys);
         } else {
-            keys.push(parentKey ? `${parentKey}.${key}` : key);
+            keys.push(implicitKey);
         }
     }
 

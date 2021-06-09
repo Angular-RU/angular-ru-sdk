@@ -1,5 +1,6 @@
 /* eslint-disable no-console,@typescript-eslint/no-magic-numbers */
 import { exposeTsCompilerOptionsByTsConfig } from '@angular-ru/common/node.js';
+import { isTrue } from '@angular-ru/common/utils';
 import type { Config } from '@jest/types';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -51,7 +52,7 @@ export function createTsJestConfig(options: JestConfigOptions): Config.InitialOp
 
     const moduleNameMapper: JestModuleMapper = options.jestConfig?.moduleNameMapper ?? rootModuleNameMapper;
 
-    if (options.debug) {
+    if (isTrue(options.debug)) {
         console.log('[DEBUG]: rootDir: ', resolvedRootDir);
         console.log('[DEBUG]: tsConfig: ', resolvedTsConfigPath);
         console.log('[DEBUG]: prefix: ', prefix);

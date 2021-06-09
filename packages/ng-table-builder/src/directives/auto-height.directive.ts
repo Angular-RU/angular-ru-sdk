@@ -11,6 +11,7 @@ import {
     SimpleChanges
 } from '@angular/core';
 import { Any } from '@angular-ru/common/typings';
+import { isNotNil, isTrue } from '@angular-ru/common/utils';
 import { fromEvent, Subject } from 'rxjs';
 import { delay, takeUntil } from 'rxjs/operators';
 
@@ -30,7 +31,7 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
     private destroy$: Subject<boolean> = new Subject<boolean>();
     private readonly minHeight: number = 0;
     private useOnlyAutoViewPort: boolean = false;
-    private isDirtyCheck: boolean | null = null;
+    private isDirtyCheck: boolean = false;
     private taskId: number | null = null;
 
     constructor(private readonly element: ElementRef, public readonly ngZone: NgZone) {}
@@ -40,7 +41,7 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
     }
 
     private get canCalculated(): boolean {
-        return !!this.autoHeight.inViewport && this.autoHeight.sourceLength! > 0 && this.sourceRef.length > 0;
+        return isTrue(this.autoHeight.inViewport) && this.autoHeight.sourceLength! > 0 && this.sourceRef.length > 0;
     }
 
     // eslint-disable-next-line complexity
@@ -49,7 +50,7 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
 
         if (this.height) {
             height = `${this.height}px`;
-        } else if (this.autoHeight.detect) {
+        } else if (isTrue(this.autoHeight.detect)) {
             const paddingTop: string = AutoHeightDirective.getStyle(this.rootCurrentElement, 'padding-top');
             const paddingBottom: string = AutoHeightDirective.getStyle(this.rootCurrentElement, 'padding-bottom');
 
@@ -64,7 +65,7 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
             }
         }
 
-        return height ? `display: block; height: ${height ?? 0}` : '';
+        return isNotNil(height) ? `display: block; height: ${height ?? 0}` : '';
     }
 
     private get isNotEmptyParentHeight(): boolean {
@@ -73,7 +74,7 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
     }
 
     private get parentOffsetHeight(): number {
-        return (this.rootCurrentElement.clientHeight || this.minHeight) - this.scrollbarHeight - BORDER_TOB_WITH_BOTTOM;
+        return (this.rootCurrentElement.clientHeight ?? this.minHeight) - this.scrollbarHeight - BORDER_TOB_WITH_BOTTOM;
     }
 
     private get currentElement(): HTMLDivElement {
@@ -85,7 +86,7 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
     }
 
     private get columnHeight(): number {
-        return this.autoHeight.columnHeight || 0;
+        return this.autoHeight.columnHeight ?? 0;
     }
 
     private get autoViewHeight(): number {
@@ -101,24 +102,24 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
     }
 
     private get headerHeight(): number {
-        return this.autoHeight.headerHeight || 0;
+        return this.autoHeight.headerHeight ?? 0;
     }
 
     private get footerHeight(): number {
-        return this.autoHeight.footerHeight || 0;
+        return this.autoHeight.footerHeight ?? 0;
     }
 
     private static getStyle(element: Element | Any, strCssRule: string): string {
         let strValue: string = '';
         let strRule: string = strCssRule;
 
-        if (document.defaultView && document.defaultView.getComputedStyle) {
+        if (document.defaultView && isNotNil(document.defaultView.getComputedStyle)) {
             try {
                 strValue = document.defaultView.getComputedStyle(element, '').getPropertyValue(strRule);
             } catch (e) {
                 strValue = '0px';
             }
-        } else if (element.currentStyle) {
+        } else if (isNotNil(element.currentStyle)) {
             strRule = strRule.replace(/\-(\w)/g, (_: string, p1: string): string => p1.toUpperCase());
             strValue = element.currentStyle[strRule];
         }
@@ -153,7 +154,7 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
                     this.markForCheck();
                 }
 
-                if (this.isDirtyCheck && this.autoHeight.inViewport) {
+                if (this.isDirtyCheck && isTrue(this.autoHeight.inViewport)) {
                     this.calculateHeight();
                     this.recalculatedHeight.emit();
                 }
@@ -177,7 +178,7 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
     private getDefaultHeight(parentHeight?: number): string {
         let height: number = this.columnHeight + this.scrollbarHeight + this.headerHeight + this.footerHeight;
 
-        if (parentHeight) {
+        if (isNotNil(parentHeight)) {
             height = height > parentHeight ? parentHeight : height;
         }
 

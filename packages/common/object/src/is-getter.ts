@@ -1,4 +1,5 @@
 import { Any } from '@angular-ru/common/typings';
+import { isTrue } from '@angular-ru/common/utils';
 
 import { isSimpleObject } from './is-simple-object';
 
@@ -8,7 +9,7 @@ export function isGetter(obj: Any, prop: string): boolean {
 
     if (isSimpleObject(currentObj)) {
         while (currentObj !== null) {
-            if (currentObj?.hasOwnProperty(prop)) {
+            if (isTrue(currentObj?.hasOwnProperty(prop))) {
                 result = !!Object.getOwnPropertyDescriptor(currentObj, prop)?.['get'];
                 break;
             } else {

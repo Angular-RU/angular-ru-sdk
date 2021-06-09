@@ -7,7 +7,8 @@ describe('[TEST]: Angular-RU eslint recommendations', (): void => {
 
     it('check failed files', (): void => {
         const bad: string = getInfoByReportFile('bad-file');
-        expect(bad.includes('73 problems (73 errors, 0 warnings)')).toBeTruthy();
+        expect(bad.includes('75 problems (75 errors, 0 warnings)')).toBeTruthy();
+        expect(bad.includes('11 errors and 0 warnings potentially fixable with the `--fix` option')).toBeTruthy();
         expect(bad.includes(`Run autofix to sort these imports!`)).toBeTruthy();
         expect(bad.includes(`Expected hello to have a type annotation`)).toBeTruthy();
         expect(bad.includes('Missing accessibility modifier on class property hello')).toBeTruthy();
@@ -84,6 +85,9 @@ describe('[TEST]: Angular-RU eslint recommendations', (): void => {
         expect(bad.includes('Avoid using `forwardRef`')).toBeTruthy();
         expect(bad.includes('The output property should not be named or renamed as a native event')).toBeTruthy();
         expect(bad.includes('Prefer named exports')).toBeTruthy();
+        expect(
+            bad.includes('Unexpected any value in conditional. An explicit comparison or type cast is required')
+        ).toBeTruthy();
     });
 
     it('check success files', (): void => {
@@ -91,22 +95,21 @@ describe('[TEST]: Angular-RU eslint recommendations', (): void => {
         expect(good.length).toEqual(0);
     });
 
-    // TODO: update in next PR
     it('check file pattern in directories', () => {
         const filePattern: string = getInfoByReportFile('file-pattern');
-        // expect(filePattern.includes('4 problems (4 errors, 0 warnings)')).toBeTruthy();
+        expect(filePattern.includes('4 problems (4 errors, 0 warnings)')).toBeTruthy();
         expect(
             filePattern.includes("Files doesn't must end with by .enum.ts  @angular-ru/no-suffix-file")
         ).toBeTruthy();
         expect(
             filePattern.includes("Files doesn't must end with by .model.ts  @angular-ru/no-suffix-file")
         ).toBeTruthy();
-        /*expect(
+        expect(
             filePattern.includes("Files doesn't must end with by .interface.ts  @angular-ru/no-suffix-file")
         ).toBeTruthy();
         expect(
             filePattern.includes("Files doesn't must end with by .interfaces.ts  @angular-ru/no-suffix-file")
-        ).toBeTruthy();*/
+        ).toBeTruthy();
     });
 
     it('check circular dependencies', () => {

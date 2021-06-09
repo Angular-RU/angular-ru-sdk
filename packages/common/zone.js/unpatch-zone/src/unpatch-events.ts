@@ -1,11 +1,12 @@
 import { Any } from '@angular-ru/common/typings';
+import { isNotNil } from '@angular-ru/common/utils';
 
 // eslint-disable-next-line max-lines-per-function
 export function unpatchEvents(): void {
     if (typeof window !== 'undefined') {
         const windowInstance: Window & Any = window as Any;
 
-        if (windowInstance['Zone']) {
+        if (isNotNil(windowInstance['Zone'])) {
             throw new Error('You must import `@angular-ru/common/zone.js/unpatch-events` before importing rxjs');
         }
 
