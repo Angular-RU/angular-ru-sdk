@@ -1,10 +1,20 @@
 <div>
     <h3>amountFormat directive</h3>
 
-    <form [formGroup]="form">
+    <form [formGroup]="amountForm">
         <mat-form-field>
             <mat-label>Amount sum</mat-label>
             <input matInput placeholder="Sum" formControlName="sum" amountFormat />
         </mat-form-field>
+    </form>
+
+    <h3>filter directive</h3>
+
+    <form [formGroup]="filterForm">
+        <mat-form-field>
+            <mat-label>Latin filter</mat-label>
+            <input matInput formControlName="value" [filter]="filterRegExp" />
+        </mat-form-field>
+        <span>{{ filterRegExp }}</span>
     </form>
 </div>
