@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { isTrue } from '@angular-ru/common/utils';
 import { LoggerModule } from '@angular-ru/logger';
 
 import { environment } from '../environments/environment';
@@ -10,7 +11,7 @@ import { AppComponent } from './app.component';
     declarations: [AppComponent],
     imports: [
         LoggerModule.forRoot(
-            environment.useConfig
+            isTrue(environment.useConfig)
                 ? {
                       useLevelGroup: true,
                       cssClassMap: {

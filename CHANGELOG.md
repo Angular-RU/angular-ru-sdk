@@ -1,3 +1,10 @@
+#### 15.252.0 (2021-06-07)
+
+##### New Features
+
+-   **@angular-ru/common:** add CoerceBoolean pipe ([#652](https://github.com/Angular-RU/angular-ru-sdk/pull/652))
+    ([187b52f7](https://github.com/Angular-RU/angular-ru-sdk/commit/187b52f72663450d85c0cb00ab7e83519851027e))
+
 #### 15.251.0 (2021-06-07)
 
 ##### Build System / Dependencies

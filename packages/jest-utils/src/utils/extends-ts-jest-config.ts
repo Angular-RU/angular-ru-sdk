@@ -1,5 +1,6 @@
 import { checkIsNodeEnvironment } from '@angular-ru/common/node.js';
 import { Any } from '@angular-ru/common/typings';
+import { isTrue } from '@angular-ru/common/utils';
 import type { Config } from '@jest/types';
 
 import { JestCombinerOptions } from '../interfaces/jest-combiner-options';
@@ -11,7 +12,7 @@ const path: Any = require('path');
 export function extendsTsJestConfig({ jestPresetPath, jestConfig }: JestCombinerOptions): Config.InitialOptions {
     let config: Config.InitialOptions = {};
 
-    const resolvedJestPresetPath: string = path.isAbsolute(jestPresetPath)
+    const resolvedJestPresetPath: string = isTrue(path.isAbsolute(jestPresetPath))
         ? jestPresetPath
         : path.resolve('.', jestPresetPath);
 

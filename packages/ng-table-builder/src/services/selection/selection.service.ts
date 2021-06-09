@@ -84,7 +84,7 @@ export class SelectionService<T> implements OnDestroy {
         const { shiftKey, ctrlKey }: MouseEvent = event;
         const index: number = rows.findIndex(
             (item: T): boolean =>
-                ((item as Any) || ({} as T))[this.primaryKey] === ((row as Any) || {})[this.primaryKey]
+                ((item as Any) ?? ({} as T))[this.primaryKey] === ((row as Any) ?? {})[this.primaryKey]
         );
 
         if (shiftKey) {
@@ -99,7 +99,7 @@ export class SelectionService<T> implements OnDestroy {
     }
 
     public getIdByRow(row: T): RowId {
-        const id: RowId = ((row as Any) || {})[this.primaryKey];
+        const id: RowId = ((row as Any) ?? {})[this.primaryKey];
 
         if (checkValueIsEmpty(id)) {
             throw new Error(

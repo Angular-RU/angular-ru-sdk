@@ -1,5 +1,5 @@
 import { Any, PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
-import { checkValueIsEmpty } from '@angular-ru/common/utils';
+import { checkValueIsEmpty, isTrue } from '@angular-ru/common/utils';
 
 import {
     ComparableKeys,
@@ -53,7 +53,7 @@ export function mutate<T>(object: PlainObject, depthGraph: PlainObjectOf<T>, key
 export function deepObjectReduce<T>({ accumulator, key, targetValue, options }: ObjectReduceOptions<T>): T {
     let value: T | string = targetValue;
 
-    if (options.weekType) {
+    if (isTrue(options.weekType)) {
         const isComplexType: boolean = typeof targetValue === 'object' && targetValue !== null!;
         value = isComplexType ? targetValue : String(checkValueIsEmpty(targetValue) ? null : targetValue);
     }
@@ -89,6 +89,7 @@ export function equals<T, K>(a: T, b: K, options: ObjectExtraOptions = {}): bool
 
 export function shallowTrimProperties<T>(obj: PlainObjectOf<Any>): T {
     return Object.entries(obj).reduce((result: T, [key, value]: [string, Any]): T => {
+        // note: don't use isString for preserve circular dependencies
         (result as Any)[key] = typeof value === 'string' ? value.trim() : value;
         return result;
     }, {} as T);
@@ -100,5 +101,5 @@ export function strictEquals<T, K>(a: T, b: K): boolean {
 }
 
 export function getComparableValue<T>(options: ObjectExtraOptions, value: T): ComparableKeys<T> {
-    return options.deep ? comparable(value, options) : value;
+    return isTrue(options.deep) ? comparable(value, options) : value;
 }

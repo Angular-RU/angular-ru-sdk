@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Any, PlainObject } from '@angular-ru/common/typings';
-import { detectChanges } from '@angular-ru/common/utils';
+import { detectChanges, isNotNil } from '@angular-ru/common/utils';
 import { Subscription } from 'rxjs';
 
 import { TABLE_GLOBAL_OPTIONS } from '../../config/table-global-options';
@@ -58,7 +58,10 @@ export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy
 
     public ngOnInit(): void {
         this.subscription = this.filterable.events.subscribe((event: FilterEvent): void => {
-            if ((this.filterable.definition as Any)[this.key!] || this.filterable.globalFilterValue) {
+            const hasFilter: boolean =
+                isNotNil((this.filterable.definition as Any)[this.key!]) || isNotNil(this.filterable.globalFilterValue);
+
+            if (hasFilter) {
                 this.changeSelection(event);
             } else {
                 this.defaultHtmlValue({ forceUpdate: true });
@@ -74,7 +77,10 @@ export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy
         this.ngZone.runOutsideAngular((): void => {
             window.clearInterval(this.taskId!);
             this.taskId = window.setTimeout((): void => {
-                if (event.value || (this.filterable.definition as Any)[this.key!]) {
+                const hasFilter: boolean =
+                    isNotNil(event.value) || isNotNil((this.filterable.definition as Any)[this.key!]);
+
+                if (hasFilter) {
                     this.selected(event);
                 } else {
                     this.defaultHtmlValue({ forceUpdate: false });
@@ -87,8 +93,8 @@ export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy
 
     // eslint-disable-next-line max-lines-per-function,complexity
     private selected(event: FilterEvent): void {
-        const value: string | null = (this.filterable.definition as Any)[this.key!] || event.value;
-        const type: string | TableFilterType | null = (this.filterable.definition as Any)[this.key!]
+        const value: string | null = (this.filterable.definition as Any)[this.key!] ?? event.value;
+        const type: string | TableFilterType | null = isNotNil((this.filterable.definition as Any)[this.key!])
             ? (this.filterable.filterTypeDefinition as Any)[this.key!]
             : event.type;
 

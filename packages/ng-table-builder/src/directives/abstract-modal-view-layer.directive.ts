@@ -8,7 +8,7 @@ import {
     OnDestroy,
     ViewChild
 } from '@angular/core';
-import { detectChanges, getBodyRect } from '@angular-ru/common/utils';
+import { detectChanges, getBodyRect, isNotNil, isTrue } from '@angular-ru/common/utils';
 import { Subscription } from 'rxjs';
 
 import { MousePosition } from '../interfaces/table-builder.internal';
@@ -74,7 +74,7 @@ export abstract class AbstractModalViewLayerDirective<T, K extends PositionState
         let height: number | null;
 
         try {
-            if (this.height) {
+            if (isNotNil(this.height)) {
                 height =
                     this.menu.nativeElement.scrollHeight > this.height
                         ? this.menu.nativeElement.offsetHeight
@@ -90,15 +90,13 @@ export abstract class AbstractModalViewLayerDirective<T, K extends PositionState
     }
 
     public ngOnDestroy(): void {
-        if (!this.subscription?.closed) {
-            this.subscription?.unsubscribe();
-        }
+        this.subscription?.unsubscribe();
     }
 
     public abstract close(event: MouseEvent): void;
 
     protected update(): void {
-        this.isViewed = !!this.state.opened;
+        this.isViewed = isTrue(this.state.opened);
         this.isRendered = true;
         detectChanges(this.cd);
 
