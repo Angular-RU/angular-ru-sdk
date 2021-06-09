@@ -1,3 +1,35 @@
+#### 15.255.1 (2021-06-09)
+
+##### Continuous Integration
+
+-   branch was auto-updated
+    ([11c9d518](https://github.com/Angular-RU/angular-ru-sdk/commit/11c9d5181e7bc9c2b7c50da6a6cd58cc9458b706))
+-   updated release notes and package versions [ci skip]
+    ([12f76936](https://github.com/Angular-RU/angular-ru-sdk/commit/12f7693659f685ed34043cd4dfb1f193efd9ea61))
+-   branch was auto-updated
+    ([a51b9e8f](https://github.com/Angular-RU/angular-ru-sdk/commit/a51b9e8f5f5da29934f376b7f75cc0260b2b8c7c))
+-   updated release notes and package versions [ci skip]
+    ([370584a5](https://github.com/Angular-RU/angular-ru-sdk/commit/370584a556b901849dcc42dec2385715ac4d8310))
+-   updated release notes and package versions [ci skip]
+    ([c44bdefb](https://github.com/Angular-RU/angular-ru-sdk/commit/c44bdefb32b6778409adf568d0ad04352695eb01))
+
+##### New Features
+
+-   **@angular-ru/common:** add isFalsy, isTruthy ([#656](https://github.com/Angular-RU/angular-ru-sdk/pull/656))
+    ([f34557e5](https://github.com/Angular-RU/angular-ru-sdk/commit/f34557e5a6b0b9650c676cdbfb44ab4108b66e58))
+-   **common:** added guide for filter directive
+    ([67976bf9](https://github.com/Angular-RU/angular-ru-sdk/commit/67976bf9d36547342feb2d9beb1f60e911e986e0))
+
+##### Bug Fixes
+
+-   **ng-table-builder:** added change handler
+    ([bf5e6cd4](https://github.com/Angular-RU/angular-ru-sdk/commit/bf5e6cd48c09bb4b7b6de8081a29e0ac5e7aeb1f))
+
+##### Refactors
+
+-   **ng-table-builder:** added timeout for prerendering
+    ([7953cf49](https://github.com/Angular-RU/angular-ru-sdk/commit/7953cf4964196e1dd51d07bd1e9c74cbd0124e24))
+
 #### 15.255.0 (2021-06-09)
 
 ##### New Features
