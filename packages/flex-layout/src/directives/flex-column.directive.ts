@@ -1,4 +1,5 @@
 import { AfterViewInit, Directive, ElementRef, Input } from '@angular/core';
+import { isNotNil } from '@angular-ru/common/utils';
 
 import { AbstractFlexLayoutDirective } from './abstract-flex-layout.directive';
 
@@ -11,7 +12,7 @@ export class FlexColumnDirective extends AbstractFlexLayoutDirective implements 
     }
 
     public ngAfterViewInit(): void {
-        if (this.flexDirection) {
+        if (isNotNil(this.flexDirection)) {
             this.el.nativeElement.style.flexDirection = this.flexDirection;
         }
 

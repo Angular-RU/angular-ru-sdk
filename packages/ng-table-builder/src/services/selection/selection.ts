@@ -1,4 +1,5 @@
 import { PlainObjectOf } from '@angular-ru/common/typings';
+import { isNotNil } from '@angular-ru/common/utils';
 
 import { ProduceDisableFn } from '../../interfaces/table-builder.external';
 import { RowId } from '../../interfaces/table-builder.internal';
@@ -33,7 +34,7 @@ export class SelectionMap<T> {
     }
 
     public get(key?: RowId): boolean {
-        return key ? this.map.get(key) ?? false : false;
+        return isNotNil(key) ? this.map.get(key) ?? false : false;
     }
 
     public select(key: RowId, row: T, emit: boolean): boolean {
