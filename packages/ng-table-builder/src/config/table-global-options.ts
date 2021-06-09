@@ -8,6 +8,7 @@ interface TableGlobalOptions {
     TIME_IDLE: number;
     MIN_BUFFER: number;
     BUFFER_OFFSET: number;
+    CHANGE_DELAY: number;
 }
 
 export const TABLE_GLOBAL_OPTIONS: TableGlobalOptions = {
@@ -19,5 +20,6 @@ export const TABLE_GLOBAL_OPTIONS: TableGlobalOptions = {
     ROW_HEIGHT: 45,
     TIME_IDLE: 200,
     MIN_BUFFER: 10,
-    BUFFER_OFFSET: 5
+    BUFFER_OFFSET: 5,
+    CHANGE_DELAY: 200
 };
