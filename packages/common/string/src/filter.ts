@@ -31,6 +31,5 @@ function filterWithFunction(value: string, predicate: FilterPredicateFn): string
 }
 
 function filterWithRegExp(value: string, predicate: RegExp): string {
-    const match: RegExpMatchArray | null = value.match(predicate) ?? [];
-    return match.join('');
+    return (value.match(predicate) ?? []).join('');
 }
