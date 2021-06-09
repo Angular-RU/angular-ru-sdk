@@ -1,4 +1,5 @@
 import { ClassType } from '@angular-ru/common/typings';
+import { isNotNil } from '@angular-ru/common/utils';
 import { DataClientRequestOptions } from '@angular-ru/http/typings';
 import { replaceDoubleSlash } from '@angular-ru/http/utils';
 
@@ -10,7 +11,7 @@ export function BaseUrl(baseUrl: string = ''): (clientClass: ClassType) => void 
 
         const localRef: Partial<DataClientRequestOptions> = clientClass.prototype?.['local'];
 
-        if (localRef) {
+        if (isNotNil(localRef)) {
             localRef.baseUrl = replaceDoubleSlash(baseUrl);
         }
     };

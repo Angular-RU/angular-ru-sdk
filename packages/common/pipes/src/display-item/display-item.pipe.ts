@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { getValueByPath, isObject } from '@angular-ru/common/object';
+import { isString } from '@angular-ru/common/string';
 import { Any, Paths } from '@angular-ru/common/typings';
 import { checkValueIsEmpty } from '@angular-ru/common/utils';
 
@@ -27,6 +28,6 @@ export class DisplayItemPipe implements PipeTransform {
     }
 
     private parseNotObject<T>(item: T): string {
-        return typeof item === 'string' ? item : '';
+        return isString(item) ? item : '';
     }
 }

@@ -1,6 +1,7 @@
 export { Any } from './any';
 export { Arguments } from './arguments';
 export { NonEmptyArray } from './array-types';
+export { ClassDescriptor } from './class-descriptor';
 export { ClassType } from './class-type';
 export { CompareFn } from './compare-fn';
 export { Couple } from './couple';

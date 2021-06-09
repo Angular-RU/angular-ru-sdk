@@ -1,3 +1,11 @@
+#### 15.253.0 (2021-06-09)
+
+##### New Features
+
+-   **@angular-ru/eslint-config:** add strict-boolean-expressions
+    ([#653](https://github.com/Angular-RU/angular-ru-sdk/pull/653))
+    ([4ae83bce](https://github.com/Angular-RU/angular-ru-sdk/commit/4ae83bce59860b82b218cc23d8854cb42efffd6d))
+
 #### 15.252.0 (2021-06-07)
 
 ##### New Features
