@@ -265,3 +265,26 @@ expect(
 // filter with RegExp
 expect(filter('aaabbbccc', /[a,b]+/)).toEqual('aaabbb');
 ```
+
+-   `fallbackIfEmpty`
+
+```ts
+import { fallbackIfEmpty } from '@angular-ru/common/utils';
+
+// see checkValueIsEmpty
+
+expect(fallbackIfEmpty(false, 'fallback')).toEqual(false);
+expect(fallbackIfEmpty(true, 'fallback')).toEqual(true);
+expect(fallbackIfEmpty([], 'fallback')).toEqual([]);
+expect(fallbackIfEmpty(0, 'fallback')).toEqual(0);
+expect(fallbackIfEmpty(1, 'fallback')).toEqual(1);
+expect(fallbackIfEmpty('string', 'fallback')).toEqual('string');
+expect(fallbackIfEmpty({}, 'fallback')).toEqual({});
+
+expect(fallbackIfEmpty('null', {})).toEqual({});
+expect(fallbackIfEmpty(Infinity, {})).toEqual({});
+expect(fallbackIfEmpty(NaN, 'fallback')).toEqual('fallback');
+expect(fallbackIfEmpty(null, 'fallback')).toEqual('fallback');
+expect(fallbackIfEmpty('  ', 'fallback')).toEqual('fallback');
+expect(fallbackIfEmpty('', 'fallback')).toEqual('fallback');
+```
