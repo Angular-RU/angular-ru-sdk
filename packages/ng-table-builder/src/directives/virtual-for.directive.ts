@@ -1,5 +1,5 @@
 import { Directive, EmbeddedViewRef, Input, NgZone, OnDestroy, TemplateRef, ViewContainerRef } from '@angular/core';
-import { detectChanges } from '@angular-ru/common/utils';
+import { detectChanges, isNil } from '@angular-ru/common/utils';
 
 import { InternalVirtualRef, VirtualContext, VirtualIndex } from '../interfaces/table-builder.external';
 
@@ -31,7 +31,7 @@ export class VirtualForDirective<T> implements OnDestroy {
     public set virtualForOf(indexes: VirtualIndex[] | null | undefined) {
         this.ngZone.runOutsideAngular((): void => {
             this.initFrameId = window.requestAnimationFrame((): void => {
-                if (!this._source || this._indexes === indexes) {
+                if (isNil(this._source) || this._indexes === indexes) {
                     return;
                 }
 
@@ -43,7 +43,7 @@ export class VirtualForDirective<T> implements OnDestroy {
     }
 
     private get sourceRef(): T[] {
-        return this._source || [];
+        return this._source ?? [];
     }
 
     public ngOnDestroy(): void {
@@ -53,7 +53,7 @@ export class VirtualForDirective<T> implements OnDestroy {
     }
 
     private createNewNodes(indexes: VirtualIndex[]): void {
-        (indexes || []).forEach((index: VirtualIndex): void => this.createEmbeddedViewByIndex(index));
+        (indexes ?? []).forEach((index: VirtualIndex): void => this.createEmbeddedViewByIndex(index));
     }
 
     private createEmbeddedView(row: T, index: VirtualIndex): void {

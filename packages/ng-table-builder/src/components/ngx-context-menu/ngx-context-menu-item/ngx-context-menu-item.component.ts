@@ -13,6 +13,7 @@ import {
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
+import { coerceBoolean } from '@angular-ru/common/coercion';
 import { Any } from '@angular-ru/common/typings';
 import { detectChanges, getBodyRect } from '@angular-ru/common/utils';
 import { Subscription } from 'rxjs';
@@ -71,10 +72,7 @@ export class NgxContextMenuItemComponent<T = Any> implements OnInit, OnDestroy {
 
     public ngOnDestroy(): void {
         this.itemRef = null;
-        if (this.subscription && !this.subscription.closed) {
-            // eslint-disable-next-line no-unused-expressions
-            this.subscription && this.subscription.unsubscribe();
-        }
+        this.subscription?.unsubscribe();
     }
 
     public calculateSubMenuPosition(ref: HTMLDivElement): void {
@@ -99,17 +97,19 @@ export class NgxContextMenuItemComponent<T = Any> implements OnInit, OnDestroy {
     }
 
     public emitClick(event: MouseEvent): void {
-        if (!this.disable) {
-            this.deferCloseMenu();
-
-            this.onClick.emit({
-                preventDefault: (): void => {
-                    window.clearTimeout(this.taskId!);
-                }
-            });
-
-            event.stopPropagation();
+        if (coerceBoolean(this.disable)) {
+            return;
         }
+
+        this.deferCloseMenu();
+
+        this.onClick.emit({
+            preventDefault: (): void => {
+                window.clearTimeout(this.taskId!);
+            }
+        });
+
+        event.stopPropagation();
     }
 
     private deferCloseMenu(): void {

@@ -3,6 +3,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ensureRegexp, isRegexpStr } from '@angular-ru/common/regexp';
 import { toStringVal } from '@angular-ru/common/string';
 import { Any } from '@angular-ru/common/typings';
+import { isNotNil } from '@angular-ru/common/utils';
 
 import { MarkedValue } from './marked-value';
 
@@ -13,11 +14,11 @@ export class MarkByFilterPipe implements PipeTransform {
     constructor(private readonly sanitizer: DomSanitizer) {}
 
     public transform(value: Value, filter?: Value, color: string = '#ffdd2d'): MarkedValue {
-        return filter ? this.search(value, filter, color) : value;
+        return isNotNil(filter) ? this.search(value, filter, color) : value;
     }
 
     private search(value: Value, filter?: Value, color?: string): SafeHtml {
-        const existFilter: boolean = !!value && !!filter;
+        const existFilter: boolean = isNotNil(value) && isNotNil(filter);
         let newString: string | null | undefined = value;
 
         if (existFilter) {
