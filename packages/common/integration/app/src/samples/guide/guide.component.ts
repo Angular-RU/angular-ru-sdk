@@ -7,7 +7,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GuideComponent {
-    public form: FormGroup = this.fb.group({ sum: null });
+    public amountForm: FormGroup = this.fb.group({ sum: null });
+    public filterForm: FormGroup = this.fb.group({ value: 'abc' });
+    public filterRegExp: RegExp = /[a-z]+/;
 
     constructor(private readonly fb: FormBuilder) {}
 }
