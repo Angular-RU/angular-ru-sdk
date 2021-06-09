@@ -1,3 +1,15 @@
+#### 15.254.0 (2021-06-09)
+
+##### Continuous Integration
+
+-   updated release notes and package versions [ci skip]
+    ([c44bdefb](https://github.com/Angular-RU/angular-ru-sdk/commit/c44bdefb32b6778409adf568d0ad04352695eb01))
+
+##### New Features
+
+-   **common:** added guide for filter directive
+    ([67976bf9](https://github.com/Angular-RU/angular-ru-sdk/commit/67976bf9d36547342feb2d9beb1f60e911e986e0))
+
 #### 15.253.0 (2021-06-09)
 
 ##### New Features
