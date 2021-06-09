@@ -14,7 +14,7 @@ import { NgControl } from '@angular/forms';
 import { gaussRound, getFractionSeparator, toNumber } from '@angular-ru/common/number';
 import { deepClone } from '@angular-ru/common/object';
 import { getLastSymbol, removeLastSymbol, removeNonNumericSymbols } from '@angular-ru/common/string';
-import { detectChanges } from '@angular-ru/common/utils';
+import { checkValueIsFilled, detectChanges } from '@angular-ru/common/utils';
 import { fromEvent, Subscription } from 'rxjs';
 
 import { AMOUNT_FORMAT_OPTIONS, DEFAULT_AMOUNT_OPTIONS } from './amount-format.properties';
@@ -167,13 +167,12 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
     private getLastSymbolsAsZeroDot(fraction: string): string | undefined {
         const maximumFractionDigits: number = this.getMaximumFractionDigits();
 
-        let lastSymbolsAsZeroDot: string | undefined =
+        let lastSymbolsAsZeroDot: string =
             maximumFractionDigits === 0
                 ? ''
-                : this.element.value.match(new RegExp(`(\\${fraction})(.+)?`))?.[0]?.replace(/,|./, '');
+                : this.element.value.match(new RegExp(`(\\${fraction})(.+)?`))?.[0]?.replace(/,|./, '') ?? '';
 
-        const isOverflowGaussRound: boolean =
-            !!lastSymbolsAsZeroDot && lastSymbolsAsZeroDot.length > this.maximumFractionDigits;
+        const isOverflowGaussRound: boolean = lastSymbolsAsZeroDot.length > this.maximumFractionDigits;
 
         if (isOverflowGaussRound) {
             const parsedDot: number = gaussRound(
@@ -194,11 +193,12 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
             convertedToLocaleValue = `${convertedToLocaleValue}${fraction}`;
         } else {
             const lastSymbolsAsZeroDot: string | undefined = this.getLastSymbolsAsZeroDot(fraction);
-            if (lastSymbolsAsZeroDot) {
+
+            if (checkValueIsFilled(lastSymbolsAsZeroDot)) {
                 const splitValues: string[] = convertedToLocaleValue.split(fraction);
                 const beforePoint: string | undefined = splitValues?.[0];
 
-                if (beforePoint) {
+                if (checkValueIsFilled(beforePoint)) {
                     convertedToLocaleValue = `${beforePoint}${fraction}${lastSymbolsAsZeroDot}`;
                 } else {
                     convertedToLocaleValue = `0${fraction}${lastSymbolsAsZeroDot}`;

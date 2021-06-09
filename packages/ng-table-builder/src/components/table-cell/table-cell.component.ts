@@ -7,6 +7,7 @@ import {
     OnDestroy,
     ViewEncapsulation
 } from '@angular/core';
+import { isNotNil, isTrue } from '@angular-ru/common/utils';
 import { fromEvent, Subscription } from 'rxjs';
 
 import { TABLE_GLOBAL_OPTIONS } from '../../config/table-global-options';
@@ -50,7 +51,7 @@ export class TableCellComponent<T> implements OnDestroy {
     }
 
     private get disableTooltip(): boolean {
-        return this.viewportInfo?.isScrolling || !this.columnSchema?.overflowTooltip;
+        return isTrue(this.viewportInfo?.isScrolling) ?? isTrue(this.columnSchema?.overflowTooltip);
     }
 
     public ngOnDestroy(): void {
@@ -91,7 +92,7 @@ export class TableCellComponent<T> implements OnDestroy {
         window.clearInterval(this.timeoutShowedFrameId!);
         this.ngZone.runOutsideAngular((): void => {
             this.timeoutShowedFrameId = window.setTimeout((): void => {
-                const canEnableTooltip: boolean = this.viewportInfo?.isScrolling
+                const canEnableTooltip: boolean = isTrue(this.viewportInfo?.isScrolling)
                     ? false
                     : this.isEllipsisActive(element);
 
@@ -129,7 +130,7 @@ export class TableCellComponent<T> implements OnDestroy {
 
         this.ngZone.runOutsideAngular((): void => {
             this.timeoutOverflowId = window.setTimeout((): void => {
-                if (this.viewportInfo?.isScrolling) {
+                if (isTrue(this.viewportInfo?.isScrolling)) {
                     this.removeElement();
                 } else {
                     this.overflowContentElem.classList.add('visible');
@@ -139,11 +140,11 @@ export class TableCellComponent<T> implements OnDestroy {
     }
 
     private removeElement(): void {
-        if (this.overflowContentElem) {
+        if (isNotNil(this.overflowContentElem)) {
             this.overflowContentElem.classList.remove('visible');
             this.ngZone.runOutsideAngular((): void => {
                 window.setTimeout((): void => {
-                    if (this.overflowContentElem) {
+                    if (isNotNil(this.overflowContentElem)) {
                         this.overflowContentElem.parentNode?.removeChild(this.overflowContentElem);
                     }
 

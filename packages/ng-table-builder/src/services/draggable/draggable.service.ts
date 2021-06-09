@@ -1,5 +1,6 @@
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { Injectable } from '@angular/core';
+import { isTrue } from '@angular-ru/common/utils';
 
 import { ColumnsSchema } from '../../interfaces/table-builder.external';
 import { TemplateParserService } from '../template-parser/template-parser.service';
@@ -40,14 +41,14 @@ export class DraggableService<T> {
         const previous: ColumnsSchema | undefined = this.columns[previousIndex];
         const current: ColumnsSchema | undefined = this.columns[currentIndex];
 
-        const previousIsDraggable: boolean = !!previous?.draggable;
-        const currentIsDraggable: boolean = !!current?.draggable;
-        const isSticky: boolean = !!(
-            previous?.stickyLeft ||
-            current?.stickyLeft ||
-            previous?.stickyRight ||
-            current?.stickyRight
-        );
+        const previousIsDraggable: boolean = isTrue(previous?.draggable);
+        const currentIsDraggable: boolean = isTrue(current?.draggable);
+
+        const isSticky: boolean =
+            isTrue(previous?.stickyLeft) ||
+            isTrue(current?.stickyLeft) ||
+            isTrue(previous?.stickyRight) ||
+            isTrue(current?.stickyRight);
 
         return previousIsDraggable && currentIsDraggable && !isSticky;
     }

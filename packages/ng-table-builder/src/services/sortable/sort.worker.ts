@@ -20,6 +20,8 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
     }
 
     function checkValueIsEmpty(value: Any): boolean {
+        // note: don't use isString here
+        // noinspection SuspiciousTypeOfGuard
         const val: string = typeof value === 'string' ? value.trim() : value;
         return [undefined, null, NaN, '', 'null', Infinity].includes(val);
     }
@@ -43,7 +45,9 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
 
             while (sorted === 0 && ix < countKeys) {
                 const key: string | null = Sortable.observeKey(matches, ix);
-                if (key) {
+
+                // note: don't use isString here
+                if (typeof key === 'string') {
                     const depth: number | undefined = matches[key];
                     sorted = Sortable.deepSort(key, a, b, depth);
                     ix++;

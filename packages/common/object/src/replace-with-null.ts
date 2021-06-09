@@ -1,4 +1,5 @@
 import { Any } from '@angular-ru/common/typings';
+import { checkValueIsEmpty } from '@angular-ru/common/utils';
 
 export function replaceWithNull<T>(value: T): T {
     return JSON.parse(
@@ -6,9 +7,8 @@ export function replaceWithNull<T>(value: T): T {
             if (typeof elem === 'object') {
                 return elem;
             }
-            const val: string = typeof elem === 'string' ? elem.trim() : elem;
-            const isEmpty: boolean = [undefined, null, NaN, '', 'null', Infinity].includes(val);
-            return isEmpty ? null : elem;
+
+            return checkValueIsEmpty(elem) ? null : elem;
         })
     );
 }

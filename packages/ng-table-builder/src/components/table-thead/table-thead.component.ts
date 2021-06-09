@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { fadeInLinearAnimation } from '@angular-ru/common/animations';
 import { PlainObjectOf, SortOrderType } from '@angular-ru/common/typings';
+import { isNotNil } from '@angular-ru/common/utils';
 
 import { ColumnsSchema } from '../../interfaces/table-builder.external';
 import { ResizeEvent } from '../../interfaces/table-builder.internal';
@@ -33,7 +34,7 @@ export class TableTheadComponent<T> {
     constructor(protected readonly filterable: FilterableService<T>) {}
 
     public openFilter(key: string | null | undefined, event: MouseEvent): void {
-        if (key) {
+        if (isNotNil(key)) {
             this.filterable.openFilter(key, event);
         }
     }

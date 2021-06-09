@@ -8,7 +8,9 @@ import {
     ɵNG_PROV_DEF as NG_PROV_DEF,
     ɵɵdirectiveInject as directiveInject
 } from '@angular/core';
+import { isString } from '@angular-ru/common/string';
 import { Any } from '@angular-ru/common/typings';
+import { isNil, isTrue } from '@angular-ru/common/utils';
 
 export const NG_FACTORY_DEF: string = 'ɵfac' as const;
 export const PATCHER_KEY: string = 'NG_RU_PATCHER' as const;
@@ -19,7 +21,8 @@ export function useInjector<T>(
     constructor: typeof Object.constructor,
     effectFunction: (injector: Injector, instance: T) => void
 ): void {
-    const deferWrapping: boolean = !getOwnDefinitionOfClass(constructor);
+    const deferWrapping: boolean = isNil(getOwnDefinitionOfClass(constructor));
+
     if (deferWrapping) {
         Promise.resolve()
             .then((): void => wrapFactory(constructor, effectFunction))
@@ -33,8 +36,9 @@ function wrapFactory<T>(
     constructor: typeof Object.constructor,
     effectFunction: (injector: Injector, instance: T) => void
 ): void {
-    const definition: Any = getOwnDefinitionOfClass(constructor);
-    if (!definition) {
+    const definition: Any | undefined = getOwnDefinitionOfClass(constructor);
+
+    if (isNil(definition)) {
         throw new Error('Class with useInjector in decorator must be Injectable');
     }
 
@@ -99,11 +103,12 @@ function getOwnDefinitionOfClass(constructor: Any): Any | undefined {
         NG_PROV_DEF, // for service
         NG_INJ_DEF //   for module
     ].find((property: string): boolean => constructor.hasOwnProperty(property));
-    return definedProperty ? constructor[definedProperty] : undefined;
+
+    return (isString(definedProperty) as boolean) ? constructor[definedProperty as string] : undefined;
 }
 
 function getNgFactoryOfClass<T>(constructor: Any): ((...args: Any[]) => T) | undefined {
-    if (constructor.hasOwnProperty(NG_FACTORY_DEF)) {
+    if (isTrue(constructor?.hasOwnProperty(NG_FACTORY_DEF))) {
         return constructor[NG_FACTORY_DEF];
     } else {
         return undefined;
@@ -111,7 +116,7 @@ function getNgFactoryOfClass<T>(constructor: Any): ((...args: Any[]) => T) | und
 }
 
 function getPatcherOfClass<T>(constructor: Any): PatchFunction<T> | undefined {
-    if (constructor.hasOwnProperty(PATCHER_KEY)) {
+    if (isTrue(constructor?.hasOwnProperty(PATCHER_KEY))) {
         return constructor[PATCHER_KEY];
     } else {
         return undefined;

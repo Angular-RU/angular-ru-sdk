@@ -1,3 +1,4 @@
+import { coerceBoolean } from '@angular-ru/common/coercion';
 import { Any } from '@angular-ru/common/typings';
 
 declare const document: Any;
@@ -16,7 +17,8 @@ export function copyBuffer(str: string): void {
     el.select();
     document.execCommand('copy');
     document.body.removeChild(el);
-    if (selected) {
+
+    if (coerceBoolean(selected as Any)) {
         document?.getSelection()?.removeAllRanges();
         document?.getSelection()?.addRange(selected);
     }

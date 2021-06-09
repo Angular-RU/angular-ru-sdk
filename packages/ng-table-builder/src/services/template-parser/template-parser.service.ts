@@ -1,5 +1,6 @@
 import { Injectable, QueryList } from '@angular/core';
 import { Any, PlainObjectOf } from '@angular-ru/common/typings';
+import { checkValueIsFilled, isNil, isTrue } from '@angular-ru/common/utils';
 
 import { NgxColumnComponent } from '../../components/ngx-column/ngx-column.component';
 import { ColumnOptionsDirective } from '../../directives/column-options.directive';
@@ -87,25 +88,25 @@ export class TemplateParserService<T> {
         this.templateKeys = new Set<string>();
         this.overrideTemplateKeys = new Set<string>();
         this.fullTemplateKeys = new Set<string>();
-        this.columnOptions = columnOptions || new ColumnOptionsDirective();
+        this.columnOptions = columnOptions ?? new ColumnOptionsDirective();
     }
 
     // eslint-disable-next-line max-lines-per-function
-    public parse(templates: QueryList<NgxColumnComponent<T>>): void {
-        if (!templates) {
+    public parse(templates?: QueryList<NgxColumnComponent<T>>): void {
+        if (isNil(templates)) {
             return;
         }
 
         templates.forEach((column: NgxColumnComponent<T>): void => {
             const { key, customKey, importantTemplate }: NgxColumnComponent<T> = column;
-            const needTemplateCheck: boolean = this.allowedKeyMap[key!] || customKey !== false;
+            const needTemplateCheck: boolean = this.allowedKeyMap[key!] ?? customKey !== false;
 
             if (needTemplateCheck) {
                 if (importantTemplate !== false) {
                     this.templateKeys?.delete(key!);
                     this.compileColumnMetadata(column);
                     this.overrideTemplateKeys?.add(key!);
-                } else if (!this.templateKeys?.has(key!) && !this.overrideTemplateKeys?.has(key!)) {
+                } else if (!isTrue(this.templateKeys?.has(key!)) && !isTrue(this.overrideTemplateKeys?.has(key!))) {
                     this.compileColumnMetadata(column);
                     this.templateKeys?.add(key!);
                 }
@@ -124,8 +125,8 @@ export class TemplateParserService<T> {
     // eslint-disable-next-line complexity,max-lines-per-function
     public compileColumnMetadata(column: NgxColumnComponent<T>): void {
         const { key, th, td, emptyHead, headTitle }: NgxColumnComponent<T> = column;
-        const thTemplate: AbstractTemplateCellCommonDirective<T> = th || new TemplateHeadThDirective<T>();
-        const tdTemplate: AbstractTemplateCellCommonDirective<T> = td || new TemplateBodyTdDirective<T>();
+        const thTemplate: AbstractTemplateCellCommonDirective<T> = th ?? new TemplateHeadThDirective<T>();
+        const tdTemplate: AbstractTemplateCellCommonDirective<T> = td ?? new TemplateBodyTdDirective<T>();
         const isEmptyHead: boolean = getValidHtmlBooleanAttribute(emptyHead);
         const thOptions: TableCellOptions = TemplateParserService.templateContext(
             key!,
@@ -136,21 +137,21 @@ export class TemplateParserService<T> {
         const stickyRight: boolean = getValidHtmlBooleanAttribute(column.stickyRight);
         const isCustomKey: boolean = getValidHtmlBooleanAttribute(column.customKey);
         const canBeAddDraggable: boolean = !(stickyLeft || stickyRight);
-        const isModel: boolean = !!this.keyMap[key as string];
+        const isModel: boolean = checkValueIsFilled(this.keyMap[key as string]);
 
         this.compiledTemplates[key!] = {
             key,
             isModel,
             isVisible: true,
-            excluded: !this.allowedKeyMap[key!],
+            excluded: !checkValueIsFilled(this.allowedKeyMap[key!]),
             verticalLine: getValidHtmlBooleanAttribute(column.verticalLine),
             td: TemplateParserService.templateContext(key!, tdTemplate, this.columnOptions!),
             stickyLeft: getValidHtmlBooleanAttribute(column.stickyLeft),
             stickyRight: getValidHtmlBooleanAttribute(column.stickyRight),
             customColumn: isCustomKey,
             width: getValidPredicate(column.width, this.columnOptions?.width),
-            cssClass: getValidPredicate(column.cssClass, this.columnOptions?.cssClass) || [],
-            cssStyle: getValidPredicate(column.cssStyle, this.columnOptions?.cssStyle) || [],
+            cssClass: getValidPredicate(column.cssClass, this.columnOptions?.cssClass) ?? [],
+            cssStyle: getValidPredicate(column.cssStyle, this.columnOptions?.cssStyle) ?? [],
             resizable: getValidHtmlBooleanAttribute(
                 getValidPredicate(column.isDraggable, this.columnOptions?.isDraggable)
             ),
