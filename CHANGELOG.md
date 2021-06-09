@@ -1,3 +1,10 @@
+#### 15.255.0 (2021-06-09)
+
+##### New Features
+
+-   **@angular-ru/common:** add isFalsy, isTruthy ([#656](https://github.com/Angular-RU/angular-ru-sdk/pull/656))
+    ([f34557e5](https://github.com/Angular-RU/angular-ru-sdk/commit/f34557e5a6b0b9650c676cdbfb44ab4108b66e58))
+
 #### 15.254.0 (2021-06-09)
 
 ##### Continuous Integration
