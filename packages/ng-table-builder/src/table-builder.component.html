@@ -40,129 +40,122 @@
         [innerHTML]="ngxEmptyContent?.nativeElement?.innerHTML | safe: 'html'"
     ></div>
 
-    <!--
-        an empty div was specially added
-        otherwise the value "offsetHeight" of element "#tableViewport" is considered incorrectly
-        the bug is reproduced on Windows 10, not reproduced on macOS
-    -->
-    <div>
+    <div
+        observerView
+        cdkDropList
+        #tableViewport
+        class="table-grid"
+        cdkDropListOrientation="horizontal"
+        (cdkDropListDropped)="drop($event)"
+        [cdkDropListDisabled]="!accessDragging"
+        (observeVisible)="calculateViewport(true)"
+        [class.table-grid__native-scrollbar]="nativeScrollbar"
+        [class.table-grid__scroll-offset]="viewPortInfo?.scrollTop! > 0"
+        [style.width.px]="
+            columnListWidth !== 0 && root.offsetWidth !== 0 && columnListWidth < root.offsetWidth - scrollbarWidth
+                ? columnListWidth + scrollbarWidth
+                : null
+        "
+    >
+        <div class="table-grid__header-sticky" *ngIf="headerTemplate" #header>
+            <ng-content select="ngx-header"></ng-content>
+        </div>
+
         <div
-            observerView
-            cdkDropList
-            #tableViewport
-            class="table-grid"
-            cdkDropListOrientation="horizontal"
-            (cdkDropListDropped)="drop($event)"
-            [cdkDropListDisabled]="!accessDragging"
-            (observeVisible)="calculateViewport(true)"
-            [class.table-grid__native-scrollbar]="nativeScrollbar"
-            [class.table-grid__scroll-offset]="viewPortInfo?.scrollTop! > 0"
+            #area
+            [style.height.px]="columnHeight"
+            class="table-grid__column-area-content"
             [style.width.px]="
-                columnListWidth !== 0 && root.offsetWidth !== 0 && columnListWidth < root.offsetWidth - scrollbarWidth
-                    ? columnListWidth + scrollbarWidth
+                tableViewportChecked && tableViewport.scrollWidth > tableViewport.clientWidth
+                    ? tableViewport.scrollWidth
                     : null
             "
         >
-            <div class="table-grid__header-sticky" *ngIf="headerTemplate" #header>
-                <ng-content select="ngx-header"></ng-content>
-            </div>
+            <ng-container *ngFor="let schema of columnSchema; let index = index">
+                <div
+                    #column
+                    cdkDrag
+                    observerView
+                    [observerRoot]="tableViewport"
+                    observerRootMargin="0px 750px"
+                    [cdkDragBoundary]="area"
+                    class="table-grid__column"
+                    *ngIf="schema.isVisible"
+                    [attr.column-id]="schema.key"
+                    [style.width.px]="schema?.width"
+                    [ngClass]="schema?.cssClass || []"
+                    [ngStyle]="schema?.cssStyle || []"
+                    [cdkDragDisabled]="!accessDragging"
+                    [style.max-width.px]="schema?.width"
+                    [style.min-width.px]="schema?.width"
+                    (cdkDragMoved)="cdkDragMoved($event, root)"
+                    [class.table-grid__column--sticky-left]="schema?.stickyLeft"
+                    [class.table-grid__column--default-width]="!schema?.width"
+                    [class.table-grid__column--is-visible]="$any(column)['visible']!"
+                    [class.table-grid__column--is-invisible]="!$any(column)['visible']!"
+                    [class.table-grid__column--filter-enable]="filterTemplate"
+                    [class.table-grid__column--sticky-right]="schema?.stickyRight"
+                    [class.table-grid__column--custom-column]="schema?.customColumn"
+                    [class.table-grid__column--is-dragging]="isDragging[schema.key!]"
+                    [class.table-grid__column--with-footer-content]="footerTemplate"
+                    [class.table-grid__column--selected-all]="selection.selectionModel.isAll"
+                    [class.table-grid__column--is-draggable]="schema?.isModel && schema?.draggable"
+                    [class.table-grid__column--auto-width-reset-default-with]="isEnableAutoWidthColumn"
+                    [class.table-grid__column--vertical-line]="
+                        verticalBorder !== false || schema?.verticalLine !== false
+                    "
+                    (observeVisible)="markVisibleColumn(column, $event)"
+                    [@fadeInLinear]
+                >
+                    <div *ngIf="$any(column)['visible']!" [@fadeInLinear]>
+                        <table-thead
+                            cdkDragHandle
+                            [column-schema]="schema"
+                            (mouseleave)="disableDragging()"
+                            [column-width]="column.offsetWidth"
+                            [header-top]="headerRef?.nativeElement?.offsetHeight! || 0"
+                            [sortable-definition]="sortable.definition"
+                            [sortable-position]="sortable.positionMap"
+                            [sortable-count]="sortable.sortableCount"
+                            [filterable-definition]="filterable.definition"
+                            [client-row-height]="clientRowHeight"
+                            [head-height]="headLineHeight"
+                            (resizing)="resizeColumn($event, column)"
+                            (sortByKey)="sortByKey($event)"
+                            (mouseenter)="enableDragging(schema.key)"
+                        >
+                        </table-thead>
 
-            <div
-                #area
-                [style.height.px]="columnHeight"
-                class="table-grid__column-area-content"
-                [style.width.px]="
-                    tableViewportChecked && tableViewport.scrollWidth > tableViewport.clientWidth
-                        ? tableViewport.scrollWidth
-                        : null
-                "
-            >
-                <ng-container *ngFor="let schema of columnSchema; let index = index">
-                    <div
-                        #column
-                        cdkDrag
-                        observerView
-                        [observerRoot]="tableViewport"
-                        observerRootMargin="0px 750px"
-                        [cdkDragBoundary]="area"
-                        class="table-grid__column"
-                        *ngIf="schema.isVisible"
-                        [attr.column-id]="schema.key"
-                        [style.width.px]="schema?.width"
-                        [ngClass]="schema?.cssClass || []"
-                        [ngStyle]="schema?.cssStyle || []"
-                        [cdkDragDisabled]="!accessDragging"
-                        [style.max-width.px]="schema?.width"
-                        [style.min-width.px]="schema?.width"
-                        (cdkDragMoved)="cdkDragMoved($event, root)"
-                        [class.table-grid__column--sticky-left]="schema?.stickyLeft"
-                        [class.table-grid__column--default-width]="!schema?.width"
-                        [class.table-grid__column--is-visible]="$any(column)['visible']!"
-                        [class.table-grid__column--is-invisible]="!$any(column)['visible']!"
-                        [class.table-grid__column--filter-enable]="filterTemplate"
-                        [class.table-grid__column--sticky-right]="schema?.stickyRight"
-                        [class.table-grid__column--custom-column]="schema?.customColumn"
-                        [class.table-grid__column--is-dragging]="isDragging[schema.key!]"
-                        [class.table-grid__column--with-footer-content]="footerTemplate"
-                        [class.table-grid__column--selected-all]="selection.selectionModel.isAll"
-                        [class.table-grid__column--is-draggable]="schema?.isModel && schema?.draggable"
-                        [class.table-grid__column--auto-width-reset-default-with]="isEnableAutoWidthColumn"
-                        [class.table-grid__column--vertical-line]="
-                            verticalBorder !== false || schema?.verticalLine !== false
-                        "
-                        (observeVisible)="markVisibleColumn(column, $event)"
-                        [@fadeInLinear]
-                    >
-                        <div *ngIf="$any(column)['visible']!" [@fadeInLinear]>
-                            <table-thead
-                                cdkDragHandle
-                                [column-schema]="schema"
-                                (mouseleave)="disableDragging()"
-                                [column-width]="column.offsetWidth"
-                                [header-top]="headerRef?.nativeElement?.offsetHeight! || 0"
-                                [sortable-definition]="sortable.definition"
-                                [sortable-position]="sortable.positionMap"
-                                [sortable-count]="sortable.sortableCount"
-                                [filterable-definition]="filterable.definition"
-                                [client-row-height]="clientRowHeight"
-                                [head-height]="headLineHeight"
-                                (resizing)="resizeColumn($event, column)"
-                                (sortByKey)="sortByKey($event)"
-                                (mouseenter)="enableDragging(schema.key)"
-                            >
-                            </table-thead>
-
-                            <table-tbody
-                                [striped]="striped"
-                                [source]="source"
-                                [primary-key]="primaryKey"
-                                [isRendered]="isRendered"
-                                [recalculated]="recalculated"
-                                [column-schema]="schema"
-                                [row-css-classes]="rowCssClasses"
-                                [head-height]="headLineHeight"
-                                [viewport-info]="viewPortInfo"
-                                [table-viewport]="tableViewport"
-                                [offset-top]="viewPortInfo.scrollTop"
-                                [context-menu]="contextMenuTemplate"
-                                [enable-selection]="isEnableSelection"
-                                [enable-filtering]="isEnableFiltering"
-                                [client-row-height]="clientRowHeight"
-                                [selection-entries]="selectionEntries"
-                                [produce-disable-fn]="produceDisableFn"
-                                [virtual-indexes]="viewPortInfo.virtualIndexes!"
-                                [column-virtual-height]="columnVirtualHeight"
-                                (changed)="idleDetectChanges()"
-                            >
-                            </table-tbody>
-                        </div>
+                        <table-tbody
+                            [striped]="striped"
+                            [source]="source"
+                            [primary-key]="primaryKey"
+                            [isRendered]="isRendered"
+                            [recalculated]="recalculated"
+                            [column-schema]="schema"
+                            [row-css-classes]="rowCssClasses"
+                            [head-height]="headLineHeight"
+                            [viewport-info]="viewPortInfo"
+                            [table-viewport]="tableViewport"
+                            [offset-top]="viewPortInfo.scrollTop"
+                            [context-menu]="contextMenuTemplate"
+                            [enable-selection]="isEnableSelection"
+                            [enable-filtering]="isEnableFiltering"
+                            [client-row-height]="clientRowHeight"
+                            [selection-entries]="selectionEntries"
+                            [produce-disable-fn]="produceDisableFn"
+                            [virtual-indexes]="viewPortInfo.virtualIndexes!"
+                            [column-virtual-height]="columnVirtualHeight"
+                            (changed)="idleDetectChanges()"
+                        >
+                        </table-tbody>
                     </div>
-                </ng-container>
-            </div>
+                </div>
+            </ng-container>
+        </div>
 
-            <div class="table-grid__footer-sticky" *ngIf="footerTemplate && isRendered" #footer>
-                <ng-content select="ngx-footer"></ng-content>
-            </div>
+        <div class="table-grid__footer-sticky" *ngIf="footerTemplate && isRendered" #footer>
+            <ng-content select="ngx-footer"></ng-content>
         </div>
     </div>
 </div>
