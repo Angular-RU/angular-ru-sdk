@@ -8,6 +8,7 @@ import {
     ɵNG_PROV_DEF as NG_PROV_DEF,
     ɵɵdirectiveInject as directiveInject
 } from '@angular/core';
+import { isString } from '@angular-ru/common/string';
 import { Any } from '@angular-ru/common/typings';
 import { isNil, isTrue } from '@angular-ru/common/utils';
 
@@ -103,7 +104,7 @@ function getOwnDefinitionOfClass(constructor: Any): Any | undefined {
         NG_INJ_DEF //   for module
     ].find((property: string): boolean => constructor.hasOwnProperty(property));
 
-    return typeof definedProperty === 'string' ? constructor[definedProperty] : undefined;
+    return (isString(definedProperty) as boolean) ? constructor[definedProperty as string] : undefined;
 }
 
 function getNgFactoryOfClass<T>(constructor: Any): ((...args: Any[]) => T) | undefined {

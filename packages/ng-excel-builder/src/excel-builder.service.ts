@@ -158,8 +158,13 @@ export class ExcelBuilderService {
                 }
 
                 function renderCell(value: Any, styleId: string, defaultType: string = 'String') {
+                    // note: don't use isString here
+                    // noinspection SuspiciousTypeOfGuard
                     const type: Any = typeof value === 'number' ? 'Number' : defaultType;
                     let cellValue: Any = transform(value, '-');
+
+                    // note: don't use isString here
+                    // noinspection SuspiciousTypeOfGuard
                     if (typeof cellValue === 'string') {
                         cellValue = cellValue.trim();
                         cellValue = cellValue.replace(/[<>]/g, '');
@@ -172,6 +177,8 @@ export class ExcelBuilderService {
                 }
 
                 function checkValueIsEmpty(value: Any) {
+                    // TODO: need reuse utils in difference workers
+                    // noinspection SuspiciousTypeOfGuard
                     const val: Any = typeof value === 'string' ? value.trim() : value;
                     return [undefined, null, NaN, '', 'null', Infinity].includes(val);
                 }

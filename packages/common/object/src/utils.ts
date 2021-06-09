@@ -89,6 +89,7 @@ export function equals<T, K>(a: T, b: K, options: ObjectExtraOptions = {}): bool
 
 export function shallowTrimProperties<T>(obj: PlainObjectOf<Any>): T {
     return Object.entries(obj).reduce((result: T, [key, value]: [string, Any]): T => {
+        // note: don't use isString for preserve circular dependencies
         (result as Any)[key] = typeof value === 'string' ? value.trim() : value;
         return result;
     }, {} as T);

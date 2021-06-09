@@ -16,6 +16,7 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
     const { value, type }: FilterGlobalOpts = global!;
     let result: T[] = source;
 
+    // note: don't use isString here
     if (typeof value === 'string') {
         result = source.filter((item: T): boolean =>
             type === types.DOES_NOT_CONTAIN ? !includes(JSON.stringify(item), value) : globalFilter(item)

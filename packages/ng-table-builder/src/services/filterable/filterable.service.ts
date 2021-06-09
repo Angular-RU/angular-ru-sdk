@@ -1,5 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
 import { checkIsShallowEmpty } from '@angular-ru/common/object';
+import { isString } from '@angular-ru/common/string';
 import { Any } from '@angular-ru/common/typings';
 import { isNotNil } from '@angular-ru/common/utils';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
@@ -33,7 +34,7 @@ export class FilterableService<T> implements Filterable {
     }
 
     public get globalFilterValue(): string | null {
-        return typeof this.filterValue === 'string' ? String(this.filterValue).trim() : null;
+        return (isString(this.filterValue) as boolean) ? String(this.filterValue).trim() : null;
     }
 
     public get filterValueExist(): boolean {
@@ -93,8 +94,9 @@ export class FilterableService<T> implements Filterable {
     // eslint-disable-next-line max-lines-per-function
     public filter(source: T[]): Promise<FilterWorkerEvent<T>> {
         const type: string | TableFilterType | null = this.filterType;
-        const value: string | null =
-            typeof this.globalFilterValue === 'string' ? String(this.globalFilterValue).trim() : null;
+        const value: string | null = (isString(this.globalFilterValue) as boolean)
+            ? String(this.globalFilterValue).trim()
+            : null;
 
         return new Promise(
             // eslint-disable-next-line max-lines-per-function
