@@ -194,7 +194,7 @@ it('xml to string', () => {
 });
 ```
 
--   `isTruthy, isFalsy`
+-   `isTrue, isFalse`
 
 ```ts
 import { isTrue, isFalse } from '@angular-ru/common/utils';
@@ -203,6 +203,21 @@ isTrue('123'); // false
 isTrue(true); // true
 isFalse(true); // false
 isFalse(false); // true
+```
+
+-   `isTruthy, isFalsy`
+
+```ts
+import { isTruthy, isFalsy } from '@angular-ru/common/utils';
+
+isTruthy({}); // true
+isTruthy([]); // true
+isTruthy('123'); // true
+isTruthy(true); // true
+isFalsy(true); // false
+isFalsy(false); // true
+isFalsy(null); // true
+isFalsy(undefined); // true
 ```
 
 -   `tryParseJson`
