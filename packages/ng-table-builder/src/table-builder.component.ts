@@ -40,8 +40,7 @@ import { SortableService } from './services/sortable/sortable.service';
 import { NgxTableViewChangesService } from './services/table-view-changes/ngx-table-view-changes.service';
 import { TemplateParserService } from './services/template-parser/template-parser.service';
 
-const { TIME_IDLE, TIME_RELOAD, FRAME_TIME, MACRO_TIME, CHANGE_DELAY }: typeof TABLE_GLOBAL_OPTIONS =
-    TABLE_GLOBAL_OPTIONS;
+const { TIME_IDLE, TIME_RELOAD, FRAME_TIME, MACRO_TIME }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
 
 @Component({
     selector: 'ngx-table-builder',
@@ -518,14 +517,10 @@ export class TableBuilderComponent<T>
     }
 
     private preSortAndFilterTable(): void {
-        this.ngZone.run((): void => {
-            window.setTimeout((): void => {
-                this.setSource(this.source);
-                this.sortAndFilter().then((): void => {
-                    this.reCheckDefinitions();
-                    this.checkSelectionValue();
-                });
-            }, CHANGE_DELAY);
+        this.setSource(this.source);
+        this.sortAndFilter().then((): void => {
+            this.reCheckDefinitions();
+            this.checkSelectionValue();
         });
     }
 

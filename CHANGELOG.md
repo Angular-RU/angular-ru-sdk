@@ -1,3 +1,10 @@
+#### 15.256.0 (2021-06-09)
+
+##### New Features
+
+-   **@angular-ru/common:** add fallbackIfEmpty function ([#657](https://github.com/Angular-RU/angular-ru-sdk/pull/657))
+    ([c9ed309e](https://github.com/Angular-RU/angular-ru-sdk/commit/c9ed309e805ebe3898cad1756a2b0a353d0ec838))
+
 #### 15.255.1 (2021-06-09)
 
 ##### Continuous Integration
