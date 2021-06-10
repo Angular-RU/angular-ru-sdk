@@ -5,5 +5,4 @@
 **/dist/**
 **/lib/**
 lerna.json
-typescript.bad.ts
-typescript.good.ts
+**/file-suites/**

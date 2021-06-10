@@ -24,9 +24,9 @@
     ],
     "scripts": {
         "prepare:bad-i18n": "yarn -s eslint -c index.js \"**/file-suites/**/bad.json\" > ./out/eslint.bad-i18n.report.txt || exit 0",
-        "prepare:bad-ts": "yarn -s eslint -c index.js \"**/file-suites/*.bad.ts\" > ./out/eslint.bad-file.report.txt || exit 0",
+        "prepare:bad-ts": "yarn -s eslint -c index.js \"**/file-suites/*bad{.component.html,.ts}\" > ./out/eslint.bad-file.report.txt || exit 0",
         "prepare:good-i18n": "yarn -s eslint -c index.js \"**/file-suites/**/good.json\" > ./out/eslint.good-i18n.report.txt",
-        "prepare:good-ts": "yarn -s eslint -c index.js \"**/file-suites/*.good.ts\" > ./out/eslint.good-file.report.txt",
+        "prepare:good-ts": "yarn -s eslint -c index.js \"**/file-suites/*good{.component.html,.ts}\" > ./out/eslint.good-file.report.txt",
         "prepare:report-file-pattern": "yarn -s eslint -c index.js \"**/file-suites/file-pattern/**/*.ts\" > ./out/eslint.file-pattern.report.txt || exit 0",
         "prepare:report-i18n": "yarn prepare:good-i18n && yarn prepare:bad-i18n",
         "prepare:report-ts": "yarn prepare:good-ts && yarn prepare:bad-ts",

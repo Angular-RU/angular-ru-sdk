@@ -535,7 +535,8 @@ module.exports = {
             extends: ['plugin:@angular-eslint/template/recommended'],
             rules: {
                 '@angular-eslint/template/no-negated-async': 'error',
-                'max-len': ['error', { code: 140 }]
+                'max-len': ['error', { code: 140 }],
+                'prettier/prettier': 'error'
             }
         },
         {
