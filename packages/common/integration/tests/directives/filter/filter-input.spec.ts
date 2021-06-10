@@ -2,7 +2,7 @@ import { By } from '@angular/platform-browser';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FilterModule } from '@angular-ru/common/directives';
-import { FilterPredicateFn } from '@angular-ru/common/string';
+import { FilterPredicate } from '@angular-ru/common/string';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 
@@ -22,7 +22,7 @@ describe('[TEST]: Filter Input', () => {
     })
     class TestComponent {
         public form = this.fb.group({ value: 'abcД' });
-        public predicate: string[] | FilterPredicateFn | RegExp = ['a', 'b', 'c', ' '];
+        public predicate: FilterPredicate = ['a', 'b', 'c', ' '];
 
         constructor(public readonly cd: ChangeDetectorRef, private readonly fb: FormBuilder) {}
     }

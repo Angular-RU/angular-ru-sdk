@@ -2,8 +2,9 @@ import { hasNoItems } from '@angular-ru/common/array';
 import { isFunctionLike } from '@angular-ru/common/function';
 
 export type FilterPredicateFn = (char: string) => boolean;
+export type FilterPredicate = string[] | FilterPredicateFn | RegExp;
 
-export function filter(value: string, predicate: string[] | FilterPredicateFn | RegExp = []): string {
+export function filter(value: string, predicate: FilterPredicate = []): string {
     if (Array.isArray(predicate)) {
         return filterWithCharacters(value, predicate as string[]);
     }

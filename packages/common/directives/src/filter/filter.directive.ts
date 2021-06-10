@@ -1,54 +1,38 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 import { ControlValueInterceptor } from '@angular-ru/common/forms';
-import { filter, FilterPredicateFn } from '@angular-ru/common/string';
+import { filter, FilterPredicate } from '@angular-ru/common/string';
 
 @Directive({
     selector: '[filter]',
     providers: [ControlValueInterceptor]
 })
 export class FilterDirective {
-    @Input() public filter: string[] | FilterPredicateFn | RegExp = [];
+    @Input() public filter: FilterPredicate = [];
 
-    private throttle: boolean = false;
-    private newValue: string = '';
-    private newEvent: InputEvent = null!;
+    private manualEvent: InputEvent | null = null;
 
     constructor(private readonly elementRef: ElementRef<HTMLInputElement>) {}
 
     @HostListener('input', ['$event'])
-    public onInput(event: InputEvent): boolean {
-        this.stopPropagation(event);
-
-        if (this.throttle) {
-            this.throttle = false;
-        } else {
-            this.prepareNewValue();
-            this.prepareNewEvent(event);
-            this.throttle = true;
-            this.emitNewEvent();
-        }
-        return false;
-    }
-
-    private stopPropagation(event: InputEvent): void {
-        if (event instanceof InputEvent) {
-            event.preventDefault();
-            event.stopPropagation();
-            event.stopImmediatePropagation();
+    public onInput(baseEvent: InputEvent): void {
+        if (this.isNotPreviousEvent(baseEvent)) {
+            const prepared: string = this.prepareValue();
+            this.manualEvent = new InputEvent('input', { ...baseEvent, data: prepared });
+            this.emitManualEvent(this.manualEvent);
         }
     }
 
-    private prepareNewValue(): void {
+    private prepareValue(): string {
         const value: string = this.elementRef.nativeElement.value ?? '';
-        this.newValue = filter(value, this.filter);
+        return filter(value, this.filter);
     }
 
-    private prepareNewEvent(event: InputEvent): void {
-        this.newEvent = new InputEvent('input', { ...event, data: this.newValue });
+    private emitManualEvent(manualEvent: InputEvent): void {
+        this.elementRef.nativeElement.value = manualEvent?.data ?? '';
+        this.elementRef.nativeElement.dispatchEvent(manualEvent);
     }
 
-    private emitNewEvent(): void {
-        this.elementRef.nativeElement.value = this.newEvent.data ?? '';
-        this.elementRef.nativeElement.dispatchEvent(this.newEvent);
+    private isNotPreviousEvent(event: InputEvent): boolean {
+        return this.manualEvent !== event;
     }
 }
