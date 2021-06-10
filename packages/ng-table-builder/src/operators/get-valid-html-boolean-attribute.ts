@@ -1,3 +1,5 @@
+import { isString } from '@angular-ru/common/string';
+
 export function getValidHtmlBooleanAttribute(attribute: boolean | string | null | undefined): boolean {
-    return typeof attribute === 'string' ? true : !!attribute;
+    return (isString(attribute) as boolean) ? true : Boolean(attribute);
 }

@@ -1,13 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { isIterable } from '@angular-ru/common/object';
-import { PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
+import { isString } from '@angular-ru/common/string';
+import { ClassDescriptor, PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
 import { isNil } from '@angular-ru/common/utils';
 
-type ClassDescriptor = string | string[] | Set<string> | PlainObject | undefined | null;
-
-@Pipe({
-    name: 'mergeCssClasses'
-})
+@Pipe({ name: 'mergeCssClasses' })
 export class MergeCssClassesPipe implements PipeTransform {
     public transform(...descriptors: ClassDescriptor[]): PlainObject {
         return Object.assign({}, ...descriptors.map(this.convertToPlainObject.bind(this)));
@@ -16,13 +13,12 @@ export class MergeCssClassesPipe implements PipeTransform {
     private convertToPlainObject(descriptor: ClassDescriptor): PlainObject {
         if (isNil(descriptor)) {
             return {};
-        }
-        if (typeof descriptor === 'string') {
+        } else if (isString(descriptor)) {
             return this.makePlainObjectOfTrues(descriptor.split(/\s+/));
-        }
-        if (isIterable(descriptor)) {
+        } else if (isIterable(descriptor)) {
             return this.makePlainObjectOfTrues(Array.from(descriptor));
         }
+
         return descriptor;
     }
 

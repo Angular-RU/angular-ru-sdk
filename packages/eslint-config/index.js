@@ -231,7 +231,7 @@ module.exports = {
                 /**
                  * @typescript-eslint
                  */
-                '@typescript-eslint/strict-boolean-expressions': 'off',
+                '@typescript-eslint/strict-boolean-expressions': 'error',
                 '@typescript-eslint/no-invalid-this': ['error'],
                 '@typescript-eslint/no-dupe-class-members': ['error'],
                 '@typescript-eslint/adjacent-overload-signatures': 'error',

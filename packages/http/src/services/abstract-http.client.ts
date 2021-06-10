@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { replaceWithNull } from '@angular-ru/common/object';
 import { Any } from '@angular-ru/common/typings';
+import { isTrue } from '@angular-ru/common/utils';
 import {
     DataBeforeRequestOptions,
     DataClientRequestOptions,
@@ -83,6 +84,6 @@ export abstract class AbstractHttpClient<K = unknown> {
         }
 
         const body: T = this.interceptor.onInterceptBodyPayload?.(options, payload) ?? payload;
-        return options.clientOptions.nullInsteadEmpty ? replaceWithNull(body) : body;
+        return isTrue(options.clientOptions.nullInsteadEmpty) ? replaceWithNull(body) : body;
     }
 }

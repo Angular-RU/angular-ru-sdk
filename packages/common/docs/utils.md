@@ -194,7 +194,7 @@ it('xml to string', () => {
 });
 ```
 
--   `isTruthy, isFalsy`
+-   `isTrue, isFalse`
 
 ```ts
 import { isTrue, isFalse } from '@angular-ru/common/utils';
@@ -203,6 +203,21 @@ isTrue('123'); // false
 isTrue(true); // true
 isFalse(true); // false
 isFalse(false); // true
+```
+
+-   `isTruthy, isFalsy`
+
+```ts
+import { isTruthy, isFalsy } from '@angular-ru/common/utils';
+
+isTruthy({}); // true
+isTruthy([]); // true
+isTruthy('123'); // true
+isTruthy(true); // true
+isFalsy(true); // false
+isFalsy(false); // true
+isFalsy(null); // true
+isFalsy(undefined); // true
 ```
 
 -   `tryParseJson`
@@ -224,4 +239,52 @@ expect(tryParseJson('{ a: 1 }')).toEqual(undefined);
 
 const plain: string = '{ checked: true }';
 expect(tryParseJson(plain)?.checked ?? false).toBe(false);
+```
+
+-   `filter`
+
+```ts
+import { filter } from '@angular-ru/common/string';
+
+// filter with characters
+expect(filter('abc')).toEqual('abc');
+expect(filter('abc', ['a', 'b'])).toEqual('ab');
+expect(filter('a b c', ['a', 'b', 'c'])).toEqual('abc');
+expect(filter('a b c', ['a', 'b', 'c', ' '])).toEqual('a b c');
+expect(filter('aaa', ['aaa'])).toEqual('');
+
+// filter with custom function
+expect(filter('abc', (): boolean => false)).toEqual('');
+expect(filter('abc', (): boolean => true)).toEqual('abc');
+expect(filter('abc', (item: string): boolean => item === 'a' || item === 'b')).toEqual('ab');
+expect(filter('a b c', (item: string): boolean => item === 'a' || item === 'b' || item === 'c')).toEqual('abc');
+expect(
+    filter('a b c', (item: string): boolean => item === 'a' || item === 'b' || item === 'c' || item === ' ')
+).toEqual('a b c');
+
+// filter with RegExp
+expect(filter('aaabbbccc', /[a,b]+/)).toEqual('aaabbb');
+```
+
+-   `fallbackIfEmpty`
+
+```ts
+import { fallbackIfEmpty } from '@angular-ru/common/utils';
+
+// see checkValueIsEmpty
+
+expect(fallbackIfEmpty(false, 'fallback')).toEqual(false);
+expect(fallbackIfEmpty(true, 'fallback')).toEqual(true);
+expect(fallbackIfEmpty([], 'fallback')).toEqual([]);
+expect(fallbackIfEmpty(0, 'fallback')).toEqual(0);
+expect(fallbackIfEmpty(1, 'fallback')).toEqual(1);
+expect(fallbackIfEmpty('string', 'fallback')).toEqual('string');
+expect(fallbackIfEmpty({}, 'fallback')).toEqual({});
+
+expect(fallbackIfEmpty('null', {})).toEqual({});
+expect(fallbackIfEmpty(Infinity, {})).toEqual({});
+expect(fallbackIfEmpty(NaN, 'fallback')).toEqual('fallback');
+expect(fallbackIfEmpty(null, 'fallback')).toEqual('fallback');
+expect(fallbackIfEmpty('  ', 'fallback')).toEqual('fallback');
+expect(fallbackIfEmpty('', 'fallback')).toEqual('fallback');
 ```
