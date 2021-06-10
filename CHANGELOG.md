@@ -1,3 +1,10 @@
+#### 15.256.1 (2021-06-10)
+
+##### Bug Fixes
+
+-   **ng-table-buider:** removed last changes
+    ([731b2229](https://github.com/Angular-RU/angular-ru-sdk/commit/731b2229010bd37940e1a7ddcc69e98ad852b8b3))
+
 #### 15.256.0 (2021-06-09)
 
 ##### New Features
