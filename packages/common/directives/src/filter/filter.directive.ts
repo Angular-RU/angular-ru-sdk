@@ -15,24 +15,19 @@ export class FilterDirective {
 
     @HostListener('input', ['$event'])
     public onInput(baseEvent: InputEvent): void {
-        if (this.isNotPreviousEvent(baseEvent)) {
-            const prepared: string = this.prepareValue();
-            this.manualEvent = new InputEvent('input', { ...baseEvent, data: prepared });
-            this.emitManualEvent(this.manualEvent);
+        if (this.manualEvent === baseEvent) {
+            return;
         }
-    }
 
-    private prepareValue(): string {
-        const value: string = this.elementRef.nativeElement.value ?? '';
-        return filter(value, this.filter);
-    }
+        const baseValue: string = this.elementRef.nativeElement.value;
+        const preparedValue: string = filter(baseValue, this.filter);
 
-    private emitManualEvent(manualEvent: InputEvent): void {
-        this.elementRef.nativeElement.value = manualEvent?.data ?? '';
-        this.elementRef.nativeElement.dispatchEvent(manualEvent);
-    }
+        if (preparedValue === baseValue) {
+            return;
+        }
 
-    private isNotPreviousEvent(event: InputEvent): boolean {
-        return this.manualEvent !== event;
+        this.manualEvent = new InputEvent('input', { ...baseEvent, data: preparedValue });
+        this.elementRef.nativeElement.value = this.manualEvent?.data ?? '';
+        this.elementRef.nativeElement.dispatchEvent(this.manualEvent);
     }
 }
