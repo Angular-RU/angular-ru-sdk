@@ -158,7 +158,7 @@ class TestComponent {
 -   `FilterDirective, FilterModule`
 
 ```ts
-import { FilterModule } from '@angular-ru/common/directives';
+import { FilterModule, FilterPredicate } from '@angular-ru/common/directives';
 import { Component, NgModule } from '@angular/core';
 
 @NgModule({
@@ -176,7 +176,7 @@ export class AppModule {}
     `
 })
 export class AppComponent {
-    public predicate: string[] | FilterPredicateFn | RegExp;
+    public predicate: FilterPredicate;
 
     constructor() {
         this.predicate = ['a', 'b', 'c'];
