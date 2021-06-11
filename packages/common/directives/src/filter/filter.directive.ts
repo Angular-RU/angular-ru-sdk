@@ -1,37 +1,33 @@
-import { Directive, ElementRef, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
-import { ControlValueInterceptor, ControlValueInterceptorDescriptor } from '@angular-ru/common/forms';
-import { filter, FilterPredicateFn } from '@angular-ru/common/string';
+import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+import { ControlValueInterceptor } from '@angular-ru/common/forms';
+import { filter, FilterPredicate } from '@angular-ru/common/string';
 
 @Directive({
     selector: '[filter]',
     providers: [ControlValueInterceptor]
 })
-export class FilterDirective implements OnInit, OnDestroy {
-    @Input() public filter: string[] | FilterPredicateFn | RegExp = [];
-    public preparedValue: string = '';
+export class FilterDirective {
+    @Input() public filter: FilterPredicate = [];
 
-    private controlValueOperator: ControlValueInterceptorDescriptor = {
-        toModelValue: (value: string): string => {
-            this.preparedValue = filter(value, this.filter);
-            return this.preparedValue;
-        }
-    };
+    private manualEvent: InputEvent | null = null;
 
-    constructor(
-        private readonly interceptor: ControlValueInterceptor,
-        private readonly elementRef: ElementRef<HTMLInputElement>
-    ) {}
-
-    public ngOnInit(): void {
-        this.interceptor.attach(this.controlValueOperator);
-    }
-
-    public ngOnDestroy(): void {
-        this.interceptor.detach(this.controlValueOperator);
-    }
+    constructor(private readonly elementRef: ElementRef<HTMLInputElement>) {}
 
     @HostListener('input', ['$event'])
-    public onInput(): void {
-        this.elementRef.nativeElement.value = this.preparedValue;
+    public onInput(baseEvent: InputEvent): void {
+        if (this.manualEvent === baseEvent) {
+            return;
+        }
+
+        const baseValue: string = this.elementRef.nativeElement.value;
+        const preparedValue: string = filter(baseValue, this.filter);
+
+        if (preparedValue === baseValue) {
+            return;
+        }
+
+        this.manualEvent = new InputEvent('input', { ...baseEvent, data: preparedValue });
+        this.elementRef.nativeElement.value = this.manualEvent?.data ?? '';
+        this.elementRef.nativeElement.dispatchEvent(this.manualEvent);
     }
 }

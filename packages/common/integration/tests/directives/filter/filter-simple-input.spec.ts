@@ -3,28 +3,24 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DebugElement } f
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FilterModule } from '@angular-ru/common/directives';
 import { FilterPredicate } from '@angular-ru/common/string';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 
-describe('[TEST]: Filter Input', () => {
+describe('[TEST]: Filter Simple Input', () => {
     let fixture: ComponentFixture<TestComponent> | null = null;
     let component: TestComponent = null!;
     let debugElement: DebugElement | null = null;
 
     @Component({
         selector: 'test',
-        template: `
-            <div [formGroup]="form">
-                <input matInput type="text" formControlName="value" [filter]="predicate" />
-            </div>
-        `,
+        template: ` <input [value]="filterValue" [filter]="predicate" /> `,
         changeDetection: ChangeDetectionStrategy.OnPush
     })
     class TestComponent {
-        public form = this.fb.group({ value: 'abcД' });
+        public filterValue = 'abcД';
         public predicate: FilterPredicate = ['a', 'b', 'c', ' '];
 
-        constructor(public readonly cd: ChangeDetectorRef, private readonly fb: FormBuilder) {}
+        constructor(public readonly cd: ChangeDetectorRef) {}
     }
 
     beforeEach(async () => {
@@ -60,7 +56,7 @@ describe('[TEST]: Filter Input', () => {
     }
 
     it('should correct sync modelView with model', () => {
-        expect(component?.form.value).toEqual({ value: 'abcД' });
+        expect(component.filterValue).toEqual('abcД');
 
         debugElement!.nativeElement.value = 'ab c Д';
         debugElement!.triggerEventHandler('input', {
@@ -69,11 +65,6 @@ describe('[TEST]: Filter Input', () => {
 
         fixture?.whenStable().then(() => {
             fixture?.detectChanges();
-
-            expect(component!.form.pristine).toEqual(false);
-            expect(component!.form.dirty).toEqual(true);
-
-            expect(component?.form.value).toEqual({ value: 'ab c ' });
             expect(debugElement!.nativeElement.value).toEqual('ab c ');
         });
     });
@@ -81,21 +72,18 @@ describe('[TEST]: Filter Input', () => {
     it('should filter input with characters', () => {
         component.predicate = ['a', 'b'];
         setValueAndDispatch('aaabbbccc');
-        expect(component.form.value).toEqual({ value: 'aaabbb' });
         expect(debugElement!.nativeElement.value).toEqual('aaabbb');
     });
 
     it('should filter input with RegExp', () => {
         component.predicate = /[a,b]+/;
         setValueAndDispatch('aaabbbccc');
-        expect(component.form.value).toEqual({ value: 'aaabbb' });
         expect(debugElement!.nativeElement.value).toEqual('aaabbb');
     });
 
     it('should filter input with custom function', () => {
         component.predicate = (item: string): boolean => item === 'a' || item === 'b';
         setValueAndDispatch('aaabbbccc');
-        expect(component.form.value).toEqual({ value: 'aaabbb' });
         expect(debugElement!.nativeElement.value).toEqual('aaabbb');
     });
 });
