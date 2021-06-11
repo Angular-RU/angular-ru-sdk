@@ -31,7 +31,7 @@
         "prepare:report-i18n": "yarn prepare:good-i18n && yarn prepare:bad-i18n",
         "prepare:report-ts": "yarn prepare:good-ts && yarn prepare:bad-ts",
         "prepare:report": "yarn prepare:report-ts && yarn prepare:report-i18n && yarn prepare:report-file-pattern",
-        "prepare:folder": "if not exist .\\out then mkdir .\\out",
+        "prepare:folder": "rm -rf .\\out && mkdir .\\out",
         "test": "yarn prepare:folder && yarn prepare:report && yarn -s jest --config ./jest.config.js"
     },
     "resolutions": {
