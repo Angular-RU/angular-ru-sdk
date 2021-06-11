@@ -1,3 +1,37 @@
+#### 15.257.0 (2021-06-11)
+
+##### Continuous Integration
+
+-   branch was auto-updated
+    ([62defabe](https://github.com/Angular-RU/angular-ru-sdk/commit/62defabe65103db02d88eef93e5aff11bdeb8b97))
+-   updated release notes and package versions [ci skip]
+    ([38645d7d](https://github.com/Angular-RU/angular-ru-sdk/commit/38645d7d9ffacc90d830af164e47d25df98ce4d3))
+
+##### New Features
+
+-   **common:** changes in directive filter
+    ([85d33929](https://github.com/Angular-RU/angular-ru-sdk/commit/85d33929362e2eec39051b76685f8aa05f130eb7))
+
+##### Bug Fixes
+
+-   **ng-table-buider:** removed last changes
+    ([731b2229](https://github.com/Angular-RU/angular-ru-sdk/commit/731b2229010bd37940e1a7ddcc69e98ad852b8b3))
+
+##### Other Changes
+
+-   //github.com/Angular-RU/angular-ru-sdk into feat/filter
+    ([af41cd7a](https://github.com/Angular-RU/angular-ru-sdk/commit/af41cd7ace504aecf4d0d03bff3a8d3e0b0f0060))
+
+##### Refactors
+
+-   **common:**
+    -   changes after review
+        ([50c45059](https://github.com/Angular-RU/angular-ru-sdk/commit/50c4505915fa7841fe08897212fb909d2627c2ac))
+    -   changes after review
+        ([dc6e80c1](https://github.com/Angular-RU/angular-ru-sdk/commit/dc6e80c100fff085407bd1642784050e911b786a))
+    -   changes with refactoring
+        ([5e8d3677](https://github.com/Angular-RU/angular-ru-sdk/commit/5e8d36779781e122d1c922177babb453ad0447c5))
+
 #### 15.256.1 (2021-06-10)
 
 ##### Bug Fixes
