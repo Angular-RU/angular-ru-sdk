@@ -33,6 +33,7 @@ describe('[TEST]: Date', (): void => {
         expect(toISOString('')).toEqual('');
         expect(toISOString(undefined as Any)).toEqual('');
         expect(toISOString(null as Any)).toEqual('');
+        expect(toISOString('abcde')).toEqual('');
     });
 
     it('Should correct return date', (): void => {
