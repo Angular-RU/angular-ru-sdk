@@ -1,16 +1,12 @@
 .table-grid-icon {
     &--sortable,
-    &--draggable {
+    &--draggable,
+    &--filterable {
         width: 16px;
         height: 16px;
     }
 
     &--draggable {
         cursor: move;
-    }
-
-    &--filterable {
-        width: 16px;
-        height: 16px;
     }
 }

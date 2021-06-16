@@ -35,8 +35,12 @@ export class TableTheadComponent<T> {
 
     public sortIfEnabled(): void {
         const key: string | null | undefined = this.columnSchema?.key;
-        if (isNotNil(key) && (isTrue(this.columnSchema?.sortable) || isNotNil(this.sortableDefinition[key]))) {
-            this.sortByKey.emit(key);
+        if (isNotNil(key)) {
+            const sortIsEnabled: boolean = isTrue(this.columnSchema?.sortable);
+            const sortIsActive: boolean = isNotNil(this.sortableDefinition[key]);
+            if (sortIsEnabled || sortIsActive) {
+                this.sortByKey.emit(key);
+            }
         }
     }
 
@@ -44,6 +48,9 @@ export class TableTheadComponent<T> {
         if (isNotNil(key)) {
             this.filterable.openFilter(key, event);
         }
+        /**
+         * Note: need to be called so that the cell (parent element) does not catch the event and start sorting
+         */
         event.stopPropagation();
         event.preventDefault();
     }
