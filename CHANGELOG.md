@@ -1,3 +1,15 @@
+#### 15.259.0 (2021-06-16)
+
+##### Continuous Integration
+
+-   update autoupdate.yml ([#663](https://github.com/Angular-RU/angular-ru-sdk/pull/663))
+    ([62ba2ed3](https://github.com/Angular-RU/angular-ru-sdk/commit/62ba2ed34d06b03e5c4d352e9ef2e1b876a2ec34))
+
+##### New Features
+
+-   **common:** added regexp constants ([#665](https://github.com/Angular-RU/angular-ru-sdk/pull/665))
+    ([1c70e195](https://github.com/Angular-RU/angular-ru-sdk/commit/1c70e1959a7860d98a53a2127ce73148fb2ec8de))
+
 #### 15.258.1 (2021-06-15)
 
 ##### Bug Fixes
