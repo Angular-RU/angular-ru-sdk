@@ -1,3 +1,10 @@
+#### 15.258.1 (2021-06-15)
+
+##### Bug Fixes
+
+-   **@angular-ru/common:** prevent invalid date time ([#662](https://github.com/Angular-RU/angular-ru-sdk/pull/662))
+    ([afa04492](https://github.com/Angular-RU/angular-ru-sdk/commit/afa04492430731fcd0128cbfb8c962d70a753876))
+
 #### 15.258.0 (2021-06-11)
 
 ##### Build System / Dependencies
