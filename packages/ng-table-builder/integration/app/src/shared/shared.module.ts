@@ -19,8 +19,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { TableBuilderModule } from '@angular-ru/ng-table-builder';
 
+import { TableBuilderModule } from '../../../../src/table-builder.module';
 import { CodeDialogComponent } from './dialog/code-dialog.component';
 import { DialogTemplateComponent } from './dialog-template/dialog-template.component';
 

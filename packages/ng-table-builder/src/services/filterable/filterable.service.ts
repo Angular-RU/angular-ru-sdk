@@ -82,8 +82,6 @@ export class FilterableService<T> implements Filterable {
     public openFilter(key: string, event: MouseEvent): void {
         this.state = { opened: true, key, position: { left: event.clientX, top: event.clientY } };
         this.filterOpenEvents.next();
-        event.stopPropagation();
-        event.preventDefault();
     }
 
     public closeFilter(): void {

@@ -1,6 +1,5 @@
 .table-grid:not(.table-grid__native-scrollbar) {
     color: rgba(0, 0, 0, 0);
-    background: white;
 
     $tableScrollWidth: 10px;
     $minPadding: 2px;
@@ -23,7 +22,7 @@
     }
 
     &:hover {
-        color: rgba(0, 0, 0, 0.2);
+        color: var(--ngx-table-scrollbar-thumb-color);
     }
 }
 

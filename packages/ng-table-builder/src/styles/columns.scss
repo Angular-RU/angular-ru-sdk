@@ -22,7 +22,7 @@
         &--sticky-left,
         &--sticky-right {
             position: sticky;
-            background: $backgroundColor;
+            background: var(--ngx-table-background-color);
             z-index: 100;
         }
 
@@ -35,17 +35,19 @@
         }
 
         &--selected-all {
-            background: $selectionColor;
+            background: var(--ngx-table-cell-selected-background);
         }
 
         &--default-width:not(&--auto-width-reset-default-with) {
-            min-width: $cellWidth;
+            min-width: var(--ngx-table-cell-default-width);
         }
 
-        &--is-draggable {
+        &--is-draggable,
+        &--is-sortable,
+        &--is {
             table-thead,
             .table-grid__header-cell--content {
-                cursor: move;
+                cursor: pointer;
             }
         }
 
@@ -60,14 +62,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-
-            &--line {
-                height: 70%;
-                width: 2px;
-                vertical-align: middle;
-                background: $borderColor;
-                display: flex;
-            }
         }
 
         &:last-child .table-grid__column--resize {
@@ -75,11 +69,11 @@
         }
 
         &--vertical-line {
-            border-right: 1px solid $borderColor;
+            border-right: 1px solid var(--ngx-table-cell-border-color);
         }
 
         &--vertical-line:last-child {
-            border-left: 1px solid $borderColor;
+            border-left: 1px solid var(--ngx-table-cell-border-color);
             border-right: none;
         }
 
@@ -90,32 +84,18 @@
         &--sortable,
         &--draggable,
         &--filterable {
-            @extend .vertical-align;
-
-            width: 24px;
-            height: 20px;
+            width: 20px;
+            height: 18px;
             opacity: 0.2;
             font-size: 12px;
             cursor: pointer;
             position: relative;
 
-            .table-grid-icon--sortable {
-                transition: transform 0.4s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-                &-number {
-                    position: absolute;
-                    font-size: 8px;
-                    font-weight: normal;
-                    right: 0;
-                }
-            }
-
-            .table-grid-icon--sortable,
-            .table-grid-icon--sortable-asc {
-                transform: rotate(180deg);
-            }
-
-            &-active {
+            &--active {
                 opacity: 1;
             }
 
@@ -124,12 +104,41 @@
             }
         }
 
-        &--filter-enable &--filterable {
-            display: table-cell;
+        &--sortable {
+            display: none;
+
+            &--active {
+                display: flex;
+            }
+
+            .table-grid-icon--sortable {
+                transition: transform 0.4s;
+
+                &__asc,
+                &__desc {
+                    display: block;
+                }
+
+                &__asc {
+                    transform: rotate(180deg);
+                }
+
+                &__desc {
+                    transform: rotate(0deg);
+                }
+
+                &-number {
+                    position: absolute;
+                    font-size: 8px;
+                    font-weight: normal;
+                    right: 0;
+                    top: 0;
+                }
+            }
         }
 
-        &--filterable {
-            display: none;
+        &--filter-enable {
+            display: table-cell;
         }
 
         &--draggable {
@@ -145,12 +154,6 @@
         &--filterable {
             transform: rotate(0deg);
         }
-
-        &--sortable {
-            .table-grid-icon--sortable-desc {
-                transform: rotate(0deg);
-            }
-        }
     }
 }
 
@@ -160,8 +163,4 @@
     + .table-grid__header-cell-head--settings
     .table-grid__column--sortable:not(.table-grid__column--sortable-active) {
     opacity: 0.5;
-}
-
-.table-grid__column--vertical-line .table-grid__column--resize--line {
-    display: none;
 }
