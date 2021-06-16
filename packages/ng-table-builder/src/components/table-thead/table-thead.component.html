@@ -79,6 +79,8 @@
             *ngIf="columnSchema?.isModel && columnSchema?.resizable"
             (mousedown)="resizing.emit({ event: $event, key: columnSchema?.key! })"
             (click)="$event.stopPropagation()"
-        ></div>
+        >
+            <div class="table-grid__column--resize--line"></div>
+        </div>
     </div>
 </div>

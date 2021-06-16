@@ -62,6 +62,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
+
+            &--line {
+                height: 75%;
+                width: 2px;
+                vertical-align: middle;
+                background: var(--ngx-table-cell-border-color);
+                display: flex;
+            }
         }
 
         &:last-child .table-grid__column--resize {
@@ -163,4 +171,8 @@
     + .table-grid__header-cell-head--settings
     .table-grid__column--sortable:not(.table-grid__column--sortable-active) {
     opacity: 0.5;
+}
+
+.table-grid__column--vertical-line .table-grid__column--resize--line {
+    display: none;
 }
