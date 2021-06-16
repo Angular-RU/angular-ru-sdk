@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-describe('[TEST]: Angular-RU eslint recommendations', (): void => {
+describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
     function getInfoByReportFile(type: 'bad-file' | 'good-file' | 'file-pattern'): string {
         return fs.readFileSync(`./out/eslint.${type}.report.txt`).toString();
     }

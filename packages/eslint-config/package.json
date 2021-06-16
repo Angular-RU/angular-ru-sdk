@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/eslint-config",
-    "version": "15.253.0",
+    "version": "15.258.0",
     "description": "Angular-RU package",
     "keywords": [
         "angular-ru",
@@ -23,13 +23,16 @@
         "README.md"
     ],
     "scripts": {
-        "clean": "rm -rf ./out",
-        "prepare:dir": "mkdir -p ./out",
-        "prepare:bad-report": "yarn -s eslint -c index.js \"**/file-suites/*.bad.ts\" > ./out/eslint.bad-file.report.txt ; exit 0",
-        "prepare:good-report": "yarn -s eslint -c index.js \"**/file-suites/*.good.ts\" > ./out/eslint.good-file.report.txt ; exit 0",
-        "prepare:file-pattern": "yarn -s eslint -c index.js \"**/file-suites/file-pattern/**/*.ts\" > ./out/eslint.file-pattern.report.txt ; exit 0",
-        "prebuilld:test": "yarn prepare:dir && yarn prepare:bad-report && yarn prepare:good-report && yarn prepare:file-pattern",
-        "test": "yarn prebuilld:test && yarn -s jest --config ./jest.config.js"
+        "prepare:bad-i18n": "yarn -s eslint -c index.js \"**/file-suites/**/bad.json\" > ./out/eslint.bad-i18n.report.txt || exit 0",
+        "prepare:bad-ts": "yarn -s eslint -c index.js \"**/file-suites/*.bad.ts\" > ./out/eslint.bad-file.report.txt || exit 0",
+        "prepare:good-i18n": "yarn -s eslint -c index.js \"**/file-suites/**/good.json\" > ./out/eslint.good-i18n.report.txt",
+        "prepare:good-ts": "yarn -s eslint -c index.js \"**/file-suites/*.good.ts\" > ./out/eslint.good-file.report.txt",
+        "prepare:report-file-pattern": "yarn -s eslint -c index.js \"**/file-suites/file-pattern/**/*.ts\" > ./out/eslint.file-pattern.report.txt || exit 0",
+        "prepare:report-i18n": "yarn prepare:good-i18n && yarn prepare:bad-i18n",
+        "prepare:report-ts": "yarn prepare:good-ts && yarn prepare:bad-ts",
+        "prepare:report": "yarn prepare:report-ts && yarn prepare:report-i18n && yarn prepare:report-file-pattern",
+        "prepare:folder": "rm -rf ./out && mkdir ./out",
+        "test": "yarn prepare:folder && yarn prepare:report && yarn -s jest --config ./jest.config.js"
     },
     "resolutions": {
         "eslint": "7.26.0"
@@ -45,6 +48,7 @@
         "eslint": "7.26.0",
         "eslint-config-import": "0.13.0",
         "eslint-import-resolver-typescript": "2.4.0",
+        "eslint-plugin-i18n-json": "3.1.0",
         "eslint-plugin-import": "2.22.1",
         "eslint-plugin-jsdoc": "33.3.0",
         "eslint-plugin-max-params-no-constructor": "0.0.4",

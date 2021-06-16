@@ -1,3 +1,245 @@
+#### 15.258.1 (2021-06-15)
+
+##### Bug Fixes
+
+-   **@angular-ru/common:** prevent invalid date time ([#662](https://github.com/Angular-RU/angular-ru-sdk/pull/662))
+    ([afa04492](https://github.com/Angular-RU/angular-ru-sdk/commit/afa04492430731fcd0128cbfb8c962d70a753876))
+
+#### 15.258.0 (2021-06-11)
+
+##### Build System / Dependencies
+
+-   **deps:** bump ws from 6.2.1 to 6.2.2 ([#649](https://github.com/Angular-RU/angular-ru-sdk/pull/649))
+    ([4aaca5a6](https://github.com/Angular-RU/angular-ru-sdk/commit/4aaca5a6a0ea3c3cf3ee614fe5ae5c3b71c97c1f))
+
+##### Continuous Integration
+
+-   branch was auto-updated
+    ([55683130](https://github.com/Angular-RU/angular-ru-sdk/commit/556831309a604e50361bf8e9d1ddb38ccc8be525))
+-   updated release notes and package versions [ci skip]
+    ([2ae40e57](https://github.com/Angular-RU/angular-ru-sdk/commit/2ae40e5712612817db13b3de84b36a1138eff41b))
+-   branch was auto-updated
+    ([74ac78af](https://github.com/Angular-RU/angular-ru-sdk/commit/74ac78af1d7f3f4fbea0b1e9eefffafa1a2b1cf5))
+-   branch was auto-updated
+    ([62defabe](https://github.com/Angular-RU/angular-ru-sdk/commit/62defabe65103db02d88eef93e5aff11bdeb8b97))
+-   updated release notes and package versions [ci skip]
+    ([38645d7d](https://github.com/Angular-RU/angular-ru-sdk/commit/38645d7d9ffacc90d830af164e47d25df98ce4d3))
+-   branch was auto-updated
+    ([c6f520b9](https://github.com/Angular-RU/angular-ru-sdk/commit/c6f520b95a35a55e3753541a506576f24879217a))
+-   updated release notes and package versions [ci skip]
+    ([3b84ad67](https://github.com/Angular-RU/angular-ru-sdk/commit/3b84ad679eeb5b58552f8d0a74410cd4967864d0))
+-   branch was auto-updated
+    ([0d2d275d](https://github.com/Angular-RU/angular-ru-sdk/commit/0d2d275d91eb211eddd127fee7050e726b9f4769))
+-   updated release notes and package versions [ci skip]
+    ([82e6db60](https://github.com/Angular-RU/angular-ru-sdk/commit/82e6db60c47bf9cb341dccc640ec8cf29bda433e))
+-   branch was auto-updated
+    ([5703d1b6](https://github.com/Angular-RU/angular-ru-sdk/commit/5703d1b6e39b677b7a45dd1fd63825f90160d26c))
+-   branch was auto-updated
+    ([11c9d518](https://github.com/Angular-RU/angular-ru-sdk/commit/11c9d5181e7bc9c2b7c50da6a6cd58cc9458b706))
+-   updated release notes and package versions [ci skip]
+    ([12f76936](https://github.com/Angular-RU/angular-ru-sdk/commit/12f7693659f685ed34043cd4dfb1f193efd9ea61))
+-   branch was auto-updated
+    ([6b0abd0c](https://github.com/Angular-RU/angular-ru-sdk/commit/6b0abd0c1f906bce4017fffb0d0d9f44a01d4610))
+-   branch was auto-updated
+    ([a51b9e8f](https://github.com/Angular-RU/angular-ru-sdk/commit/a51b9e8f5f5da29934f376b7f75cc0260b2b8c7c))
+-   updated release notes and package versions [ci skip]
+    ([370584a5](https://github.com/Angular-RU/angular-ru-sdk/commit/370584a556b901849dcc42dec2385715ac4d8310))
+-   branch was auto-updated
+    ([cdcc7844](https://github.com/Angular-RU/angular-ru-sdk/commit/cdcc7844b9030568db83ca62b658df484d5f8d45))
+-   updated release notes and package versions [ci skip]
+    ([c44bdefb](https://github.com/Angular-RU/angular-ru-sdk/commit/c44bdefb32b6778409adf568d0ad04352695eb01))
+-   branch was auto-updated
+    ([b89203a1](https://github.com/Angular-RU/angular-ru-sdk/commit/b89203a1f4c77f36934da489b3c0e65c3e86cdb7))
+-   updated release notes and package versions [ci skip]
+    ([16420570](https://github.com/Angular-RU/angular-ru-sdk/commit/164205700223d0803db131a5916693522e46eefd))
+-   branch was auto-updated
+    ([948ff3cb](https://github.com/Angular-RU/angular-ru-sdk/commit/948ff3cb3655a6dae6af74682ab806b5a910313f))
+-   branch was auto-updated
+    ([f57c386f](https://github.com/Angular-RU/angular-ru-sdk/commit/f57c386fb94663ee52c1247edd62719b142e9578))
+-   branch was auto-updated
+    ([fef08ecc](https://github.com/Angular-RU/angular-ru-sdk/commit/fef08ecca7fa09bc2057d530ecd19c497b6c70d0))
+-   updated release notes and package versions [ci skip]
+    ([567ebf61](https://github.com/Angular-RU/angular-ru-sdk/commit/567ebf6108bd87d39c3ec272b9a3b7548f857ab7))
+-   branch was auto-updated
+    ([c862db9f](https://github.com/Angular-RU/angular-ru-sdk/commit/c862db9f8f995db0b0c01785d1c7a4c5eee185d2))
+-   branch was auto-updated
+    ([4f2c1ce3](https://github.com/Angular-RU/angular-ru-sdk/commit/4f2c1ce335d62ebffbdc8f16d28062f1ab6a0ef9))
+-   updated release notes and package versions [ci skip]
+    ([4e0d9f9f](https://github.com/Angular-RU/angular-ru-sdk/commit/4e0d9f9feec7211a435702d74ef36a4354e8fc5b))
+-   branch was auto-updated
+    ([9a2621da](https://github.com/Angular-RU/angular-ru-sdk/commit/9a2621dae79e608f7998e8acfa9c3940d8743290))
+-   branch was auto-updated
+    ([ce8b20dd](https://github.com/Angular-RU/angular-ru-sdk/commit/ce8b20dd3e962a24bf73508aa80815554bbe4636))
+-   branch was auto-updated
+    ([929f36c8](https://github.com/Angular-RU/angular-ru-sdk/commit/929f36c8aed6bd5ae1d9fe753afe8a2c9085976f))
+-   branch was auto-updated
+    ([6094968b](https://github.com/Angular-RU/angular-ru-sdk/commit/6094968b80f4c0d846947744a2d7ea4d6857ca6b))
+-   updated release notes and package versions [ci skip]
+    ([2d1d54d8](https://github.com/Angular-RU/angular-ru-sdk/commit/2d1d54d8a5ab917b41f10b467e432afc89f40a1e))
+-   branch was auto-updated
+    ([f620c590](https://github.com/Angular-RU/angular-ru-sdk/commit/f620c590a8d9c34a15770a4efb44109d12c77b8a))
+-   branch was auto-updated
+    ([10486182](https://github.com/Angular-RU/angular-ru-sdk/commit/10486182f6a39e24809396c2efafc70dff0efb2b))
+-   updated release notes and package versions [ci skip]
+    ([bbf2d133](https://github.com/Angular-RU/angular-ru-sdk/commit/bbf2d1331df6acf9647763120324a27307b0e3b5))
+-   branch was auto-updated
+    ([2764cf07](https://github.com/Angular-RU/angular-ru-sdk/commit/2764cf078e65333a4f0daa7ba4631f43787164f6))
+-   branch was auto-updated
+    ([836eec11](https://github.com/Angular-RU/angular-ru-sdk/commit/836eec1109d83cf0f9d4c8aff2a2ce2895ba646a))
+-   updated release notes and package versions [ci skip]
+    ([f643bd92](https://github.com/Angular-RU/angular-ru-sdk/commit/f643bd921940e1f2b96003b261713deafacc003b))
+-   branch was auto-updated
+    ([7ef12e3e](https://github.com/Angular-RU/angular-ru-sdk/commit/7ef12e3e83b38c2dc8f1fbad2d8ecdd7cc9b1a18))
+-   branch was auto-updated
+    ([0b31f3df](https://github.com/Angular-RU/angular-ru-sdk/commit/0b31f3df0ea5b09aee8e0c9ab2e5d74cd2f3e4e8))
+-   branch was auto-updated
+    ([a22d845d](https://github.com/Angular-RU/angular-ru-sdk/commit/a22d845d86c92252a418aae2bd4be99ad1d34e47))
+-   branch was auto-updated
+    ([6204fea3](https://github.com/Angular-RU/angular-ru-sdk/commit/6204fea35c2efc731b0515dba773ef82c4c38d17))
+-   updated release notes and package versions [ci skip]
+    ([6120d377](https://github.com/Angular-RU/angular-ru-sdk/commit/6120d377f1f56419881b9714d1852c10e64389d6))
+-   branch was auto-updated
+    ([55a05245](https://github.com/Angular-RU/angular-ru-sdk/commit/55a0524542ca2a29ef42176bb22adbfd574dda8d))
+-   updated release notes and package versions [ci skip]
+    ([d211d0af](https://github.com/Angular-RU/angular-ru-sdk/commit/d211d0afc3c10163a45c02e06231429d7e407206))
+
+##### Documentation Changes
+
+-   add ROADMAP.md ([#648](https://github.com/Angular-RU/angular-ru-sdk/pull/648))
+    ([7b58236c](https://github.com/Angular-RU/angular-ru-sdk/commit/7b58236cec9c36dfaa08e0251666164ff93e70a1))
+
+##### New Features
+
+-   **eslint-config:** added test for eslint-i18n-json
+    ([55e5ebfe](https://github.com/Angular-RU/angular-ru-sdk/commit/55e5ebfedbdf6b7af167c9f34baafa41ce11b2ec))
+-   **common:**
+    -   changes in directive filter
+        ([85d33929](https://github.com/Angular-RU/angular-ru-sdk/commit/85d33929362e2eec39051b76685f8aa05f130eb7))
+    -   added guide for filter directive
+        ([67976bf9](https://github.com/Angular-RU/angular-ru-sdk/commit/67976bf9d36547342feb2d9beb1f60e911e986e0))
+    -   added regexp for charactersDirective
+        ([aa11c40a](https://github.com/Angular-RU/angular-ru-sdk/commit/aa11c40a344005fa4cb023e7f84c05ceacd33294))
+    -   add test for filtering with regexp
+        ([e1ea741b](https://github.com/Angular-RU/angular-ru-sdk/commit/e1ea741b1b3ac64135ff910336eb18f44ebe8ee0))
+-   **@angular-ru/common:**
+    -   add fallbackIfEmpty function ([#657](https://github.com/Angular-RU/angular-ru-sdk/pull/657))
+        ([c9ed309e](https://github.com/Angular-RU/angular-ru-sdk/commit/c9ed309e805ebe3898cad1756a2b0a353d0ec838))
+    -   add isFalsy, isTruthy ([#656](https://github.com/Angular-RU/angular-ru-sdk/pull/656))
+        ([f34557e5](https://github.com/Angular-RU/angular-ru-sdk/commit/f34557e5a6b0b9650c676cdbfb44ab4108b66e58))
+    -   add CoerceBoolean pipe ([#652](https://github.com/Angular-RU/angular-ru-sdk/pull/652))
+        ([187b52f7](https://github.com/Angular-RU/angular-ru-sdk/commit/187b52f72663450d85c0cb00ab7e83519851027e))
+    -   add Includes pipe ([#641](https://github.com/Angular-RU/angular-ru-sdk/pull/641))
+        ([f81fae01](https://github.com/Angular-RU/angular-ru-sdk/commit/f81fae01de257b1d8b39f8e75569dd68d1612605))
+-   **@angular-ru/eslint-config:** add strict-boolean-expressions
+    ([#653](https://github.com/Angular-RU/angular-ru-sdk/pull/653))
+    ([4ae83bce](https://github.com/Angular-RU/angular-ru-sdk/commit/4ae83bce59860b82b218cc23d8854cb42efffd6d))
+-   refactor before integrate strict-boolean-expressions ([#650](https://github.com/Angular-RU/angular-ru-sdk/pull/650))
+    ([9b3ed529](https://github.com/Angular-RU/angular-ru-sdk/commit/9b3ed5294c0da0113c040f9e3b2c40ad138824d1))
+-   add transform-date-to-format ([#646](https://github.com/Angular-RU/angular-ru-sdk/pull/646))
+    ([f3135bd5](https://github.com/Angular-RU/angular-ru-sdk/commit/f3135bd5141eb581c6415763d2b137ede2f07b3d))
+-   added eslint-plugin-i18n-json
+    ([88dbb343](https://github.com/Angular-RU/angular-ru-sdk/commit/88dbb343676ecf2cf2e31fe52f6f85824ef60c22))
+-   added filter-characters directive
+    ([79b40787](https://github.com/Angular-RU/angular-ru-sdk/commit/79b407873cacd4067bc6129b3a11776e0b3d29e6))
+-   **@angular-ru/ng-excel-builder:** changed format
+    ([b9fc945c](https://github.com/Angular-RU/angular-ru-sdk/commit/b9fc945c8a1439168ddc06aeb55dbff24f8ccae9))
+
+##### Bug Fixes
+
+-   **eslint-config:**
+    -   changed tests
+        ([a55025f3](https://github.com/Angular-RU/angular-ru-sdk/commit/a55025f3cdc1af6c35f3645b4536ca74326092fa))
+    -   changed script
+        ([e0a0ddb9](https://github.com/Angular-RU/angular-ru-sdk/commit/e0a0ddb95a4ae1f8691cc35950e4f9e5e4e0e2cf))
+    -   changed script
+        ([84ca3bbe](https://github.com/Angular-RU/angular-ru-sdk/commit/84ca3bbe1667e73da2c855b324a36554e0ad29c0))
+    -   changed script
+        ([065cbc66](https://github.com/Angular-RU/angular-ru-sdk/commit/065cbc6610891b65f26cba85a2c0449a95201a94))
+-   **ng-table-buider:** removed last changes
+    ([731b2229](https://github.com/Angular-RU/angular-ru-sdk/commit/731b2229010bd37940e1a7ddcc69e98ad852b8b3))
+-   **ng-table-builder:**
+    -   added change handler
+        ([bf5e6cd4](https://github.com/Angular-RU/angular-ru-sdk/commit/bf5e6cd48c09bb4b7b6de8081a29e0ac5e7aeb1f))
+    -   fixed bug with rows rendering
+        ([a6720c03](https://github.com/Angular-RU/angular-ru-sdk/commit/a6720c031e8bd754d459a4a1b1d32dc0c69e4379))
+-   **common:** changed tests that brakes on Windows
+    ([d48ea963](https://github.com/Angular-RU/angular-ru-sdk/commit/d48ea963944593908e9a6f9bcb2a0fb13f5248d3))
+
+##### Other Changes
+
+-   //github.com/Angular-RU/angular-ru-sdk into feat/eslint-plugin-i18n-json
+    ([56d70d8d](https://github.com/Angular-RU/angular-ru-sdk/commit/56d70d8db8d072e1811d8d1b0370bcf9aadfdde7))
+-   //github.com/Angular-RU/angular-ru-sdk into feat/filter
+    ([af41cd7a](https://github.com/Angular-RU/angular-ru-sdk/commit/af41cd7ace504aecf4d0d03bff3a8d3e0b0f0060))
+-   //github.com/Angular-RU/angular-ru-sdk into feat/filter-characters
+    ([499a51e8](https://github.com/Angular-RU/angular-ru-sdk/commit/499a51e885ea5b8c2f638001a87f42c71a117b5d))
+-   //github.com/Angular-RU/angular-ru-sdk into feat/filter-characters
+    ([60813c35](https://github.com/Angular-RU/angular-ru-sdk/commit/60813c35e4898d39df6c5f79769ff02029b4a367))
+-   //github.com/Angular-RU/angular-ru-sdk into feat/filter-characters
+    ([70bf687b](https://github.com/Angular-RU/angular-ru-sdk/commit/70bf687b7ce7e000006fba931d17224ba6026115))
+
+##### Refactors
+
+-   **common:**
+    -   changes after review
+        ([50c45059](https://github.com/Angular-RU/angular-ru-sdk/commit/50c4505915fa7841fe08897212fb909d2627c2ac))
+    -   changes after review
+        ([dc6e80c1](https://github.com/Angular-RU/angular-ru-sdk/commit/dc6e80c100fff085407bd1642784050e911b786a))
+    -   changes with refactoring
+        ([5e8d3677](https://github.com/Angular-RU/angular-ru-sdk/commit/5e8d36779781e122d1c922177babb453ad0447c5))
+    -   changed name on filterDirective
+        ([8de89c55](https://github.com/Angular-RU/angular-ru-sdk/commit/8de89c551e4d13377c81fe2d18bcd1ca23d26928))
+    -   changes after review
+        ([23481c88](https://github.com/Angular-RU/angular-ru-sdk/commit/23481c8826deead28d8637eaefe09e80dda9f085))
+    -   changes after review
+        ([1ecf1cad](https://github.com/Angular-RU/angular-ru-sdk/commit/1ecf1cad255d8ff071882dfe1faa2b4e4171bff4))
+    -   changes after review
+        ([eaa9139f](https://github.com/Angular-RU/angular-ru-sdk/commit/eaa9139f26d4dc65ed0f78a22a3d112fcd322c96))
+    -   changes after review
+        ([0e58ff48](https://github.com/Angular-RU/angular-ru-sdk/commit/0e58ff48d6335645149cd352af44124210222fdf))
+-   **ng-table-builder:** added timeout for prerendering
+    ([7953cf49](https://github.com/Angular-RU/angular-ru-sdk/commit/7953cf4964196e1dd51d07bd1e9c74cbd0124e24))
+-   **@angular-core/jwt:** change decode-jwt signature ([#647](https://github.com/Angular-RU/angular-ru-sdk/pull/647))
+    ([05949296](https://github.com/Angular-RU/angular-ru-sdk/commit/05949296dfc506f10a59c559a636048f3ebc3726))
+-   **eslint-config:** changes after review
+    ([30c31561](https://github.com/Angular-RU/angular-ru-sdk/commit/30c31561c4052eb3ad042b9d666c6d3767176211))
+-   changes after review
+    ([ff27fdf1](https://github.com/Angular-RU/angular-ru-sdk/commit/ff27fdf16da137ab08e6b7c583ca88da78325555))
+
+#### 15.257.0 (2021-06-11)
+
+##### Continuous Integration
+
+-   branch was auto-updated
+    ([62defabe](https://github.com/Angular-RU/angular-ru-sdk/commit/62defabe65103db02d88eef93e5aff11bdeb8b97))
+-   updated release notes and package versions [ci skip]
+    ([38645d7d](https://github.com/Angular-RU/angular-ru-sdk/commit/38645d7d9ffacc90d830af164e47d25df98ce4d3))
+
+##### New Features
+
+-   **common:** changes in directive filter
+    ([85d33929](https://github.com/Angular-RU/angular-ru-sdk/commit/85d33929362e2eec39051b76685f8aa05f130eb7))
+
+##### Bug Fixes
+
+-   **ng-table-buider:** removed last changes
+    ([731b2229](https://github.com/Angular-RU/angular-ru-sdk/commit/731b2229010bd37940e1a7ddcc69e98ad852b8b3))
+
+##### Other Changes
+
+-   //github.com/Angular-RU/angular-ru-sdk into feat/filter
+    ([af41cd7a](https://github.com/Angular-RU/angular-ru-sdk/commit/af41cd7ace504aecf4d0d03bff3a8d3e0b0f0060))
+
+##### Refactors
+
+-   **common:**
+    -   changes after review
+        ([50c45059](https://github.com/Angular-RU/angular-ru-sdk/commit/50c4505915fa7841fe08897212fb909d2627c2ac))
+    -   changes after review
+        ([dc6e80c1](https://github.com/Angular-RU/angular-ru-sdk/commit/dc6e80c100fff085407bd1642784050e911b786a))
+    -   changes with refactoring
+        ([5e8d3677](https://github.com/Angular-RU/angular-ru-sdk/commit/5e8d36779781e122d1c922177babb453ad0447c5))
+
 #### 15.256.1 (2021-06-10)
 
 ##### Bug Fixes
