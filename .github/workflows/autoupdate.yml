@@ -16,7 +16,7 @@ jobs:
               env:
                   GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
                   DRY_RUN: "false"
-                  MERGE_MSG: "ci: branch was auto-updated"
+                  MERGE_MSG: "branch was auto-updated"
                   RETRY_COUNT: "5"
                   RETRY_SLEEP: "300"
-                  MERGE_CONFLICT_ACTION: "fail"
+                  MERGE_CONFLICT_ACTION: "ignore"
