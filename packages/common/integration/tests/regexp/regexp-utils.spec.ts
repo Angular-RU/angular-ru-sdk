@@ -1,6 +1,6 @@
 import { ensureRegexp, isRegexpStr, matchedByRegExp } from '@angular-ru/common/regexp';
 
-describe('[TEST]: Regexp', () => {
+describe('[TEST]: Regexp utils', () => {
     it('ensureRegexp', () => {
         expect(ensureRegexp('/hello/')).toEqual('hello');
         expect(ensureRegexp('/hello/')).toEqual('hello');
