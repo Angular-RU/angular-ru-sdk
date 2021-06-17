@@ -1,6 +1,22 @@
-$borderColor: #e0e0e0;
-$backgroundColor: #fff;
-$selectionColor: rgb(255, 243, 173);
-$backgroundOddLineColor: #f7f7fc;
-$cellWidth: 200px;
-$cellHeight: 45px;
+:root {
+    --ngx-table-cell-padding: 5px 20px;
+    --ngx-table-cell-height: 20px;
+    --ngx-table-cell-color: black;
+    --ngx-table-cell-even-background: white;
+    --ngx-table-cell-odd-background: #f7f7fc;
+    --ngx-table-cell-selected-background: rgb(255, 243, 173);
+    --ngx-table-header-cell-background: white;
+    --ngx-table-header-cell-active-background: #f7f7fc;
+    --ngx-table-header-cell-color: black;
+    --ngx-table-header-cell-active-color: black;
+    --ngx-table-cell-border-color: #e0e0e0;
+    --ngx-table-border-color: #e0e0e0;
+    --ngx-table-background-color: white;
+    --ngx-table-scrollbar-thumb-color: rgba(0, 0, 0, 0.2);
+    --ngx-table-header-footer-background-color: white;
+    --ngx-table-header-footer-border-color: #e0e0e0;
+    --ngx-table-tooltip-shadow-color: #e0e0e0;
+    --ngx-table-tooltip-background-color: white;
+    --ngx-table-tooltip-color: black;
+    --ngx-table-cell-default-width: 200px;
+}

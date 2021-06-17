@@ -10,7 +10,8 @@
     height: 100%;
     max-width: 100%;
     box-sizing: border-box;
-    background: $backgroundColor;
+    background: var(--ngx-table-background-color);
+    border: 1px solid var(--ngx-table-border-color);
 
     &__column-area-content {
         display: flex;
@@ -18,7 +19,7 @@
 
     &__header-sticky,
     &__footer-sticky {
-        background: #fff;
+        background: var(--ngx-table-header-footer-background-color);
         position: sticky;
         z-index: 1000;
         width: 100%;
@@ -34,14 +35,14 @@
         left: 0;
 
         .table-grid__table-content-place {
-            border-top: 1px solid $borderColor;
+            border-top: 1px solid var(--ngx-table-header-footer-border-color);
             border-bottom: none;
         }
     }
 
     &__table-content-place {
         color: #000;
-        border-bottom: 1px solid $borderColor;
+        border-bottom: 1px solid var(--ngx-table-header-footer-border-color);
 
         &--content-cell {
             box-sizing: border-box;
