@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/commitlint-config",
-    "version": "15.246.1",
+    "version": "15.259.2",
     "private": false,
     "description": "Shared commit lint config for Angular projects",
     "repository": "git+https://github.com/Angular-RU/angular-ru-sdk.git",

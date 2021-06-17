@@ -1,3 +1,13 @@
+#### 15.259.2 (2021-06-17)
+
+##### Build System / Dependencies
+
+-   update dependency @commitlint/config-angular to v12.1.4
+    ([#669](https://github.com/Angular-RU/angular-ru-sdk/pull/669))
+    ([4a3efc69](https://github.com/Angular-RU/angular-ru-sdk/commit/4a3efc69eec75f1e7adf5ac06eb0b96d6ed263b4))
+-   update dependency tslib to v2.3.0 ([#668](https://github.com/Angular-RU/angular-ru-sdk/pull/668))
+    ([763cafda](https://github.com/Angular-RU/angular-ru-sdk/commit/763cafda02d860f7126dd271a42ba21e1a4d495b))
+
 #### 15.259.1 (2021-06-17)
 
 ##### Build System / Dependencies
