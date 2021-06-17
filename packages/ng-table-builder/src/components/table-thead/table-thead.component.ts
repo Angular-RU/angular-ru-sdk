@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { fadeInLinearAnimation } from '@angular-ru/common/animations';
 import { PlainObjectOf, SortOrderType } from '@angular-ru/common/typings';
-import { isNotNil } from '@angular-ru/common/utils';
+import { isNotNil, isTrue } from '@angular-ru/common/utils';
 
 import { ColumnsSchema } from '../../interfaces/table-builder.external';
 import { ResizeEvent } from '../../interfaces/table-builder.internal';
@@ -33,9 +33,25 @@ export class TableTheadComponent<T> {
 
     constructor(protected readonly filterable: FilterableService<T>) {}
 
+    public sortIfEnabled(): void {
+        const key: string | null | undefined = this.columnSchema?.key;
+        if (isNotNil(key)) {
+            const sortIsEnabled: boolean = isTrue(this.columnSchema?.sortable);
+            const sortIsActive: boolean = isNotNil(this.sortableDefinition[key]);
+            if (sortIsEnabled || sortIsActive) {
+                this.sortByKey.emit(key);
+            }
+        }
+    }
+
     public openFilter(key: string | null | undefined, event: MouseEvent): void {
         if (isNotNil(key)) {
             this.filterable.openFilter(key, event);
         }
+        /**
+         * Note: need to be called so that the cell (parent element) does not catch the event and start sorting
+         */
+        event.stopPropagation();
+        event.preventDefault();
     }
 }
