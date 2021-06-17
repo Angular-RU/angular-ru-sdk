@@ -1,5 +1,4 @@
 import { ChangeDetectorRef, ViewRef } from '@angular/core';
-import { isNil, isNotNil } from '@angular-ru/common/utils';
 
 import { isNil } from './is-nil';
 import { isNotNil } from './is-not-nil';
