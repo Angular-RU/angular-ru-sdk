@@ -1,3 +1,11 @@
+#### 15.259.3 (2021-06-17)
+
+##### Refactors
+
+-   **@angular-ru/ng-table-builder:** extract css-variables
+    ([#664](https://github.com/Angular-RU/angular-ru-sdk/pull/664))
+    ([59a6c834](https://github.com/Angular-RU/angular-ru-sdk/commit/59a6c834a9a8fe468dbfa3e4a68de2604a272a92))
+
 #### 15.259.2 (2021-06-17)
 
 ##### Build System / Dependencies
