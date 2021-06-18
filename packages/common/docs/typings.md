@@ -190,3 +190,43 @@ function makeSomeOperations(form: FormGroup, descriptor: DateIntervalDescriptor)
     // ...
 }
 ```
+
+-   `Tuple`
+
+```ts
+type NumberCouple = Tuple<number, 2>; // [number, number]
+type Number4 = Tuple<number, 4>; // [number, number, number, number]
+type BracedString = Tuple<string>; // [string]
+type NumberCouple = Tuple<string, 0>; // []
+```
+
+-   `InfiniteTuple`
+
+```ts
+type CoupleAndMaybeSomeNumbers = InfiniteTuple<number, 2>; // [number, number, ...number]
+type AtLeast4Numbers = InfiniteTuple<number, 4>; // [number, number, number, number, ...number]
+type AtLeastOneLine = InfiniteTuple<string>; // [string, ...string]
+type SomeLines = InfiniteTuple<string, 0>; // string[]
+```
+
+-   `LastOfTuple`
+
+```ts
+type Number = LastOfTuple<[number]>; // number
+type NumberCouple = LastOfTuple<string[]>; // string
+type NumberCouple = LastOfTuple<[string, boolean]>; // boolean
+type NumberCouple = LastOfTuple<[string, ...number[]]>; // string | number
+type NumberCouple = LastOfTuple<[]>; // undefined
+```
+
+-   `TupleItem`
+
+```ts
+type Number = TupleItem<[number], 0>; // number
+type NumberCouple = TupleItem<string[], 1>; // string | undefined
+type NumberCouple = TupleItem<[string, boolean], 1>; // boolean
+type NumberCouple = TupleItem<[string, ...number[]], 0>; // string
+type NumberCouple = TupleItem<[string, ...number[]], 3>; // number | undefined
+type NumberCouple = TupleItem<[], 0>; // undefined
+type NumberCouple = TupleItem<[], 3>; // undefined
+```

@@ -1,5 +1,5 @@
-import { Nullable } from '@angular-ru/common/typings';
+import { LastOfTuple, Nullable } from '@angular-ru/common/typings';
 
-export function takeLastItem<T>(array?: Nullable<T[]>): Nullable<T> {
-    return array?.[array?.length - 1];
+export function takeLastItem<ArrayType extends Nullable<unknown[]>>(array: ArrayType): LastOfTuple<ArrayType> {
+    return (Array.isArray(array) ? array[array.length - 1] : undefined) as LastOfTuple<ArrayType>;
 }
