@@ -21,6 +21,15 @@ describe('[TEST]: Array', () => {
             expect(updateArray<Value>(origin, [])).toEqual(origin);
         });
 
+        it('nullable values', () => {
+            expect(updateArray()).toEqual([]);
+            expect(updateArray(null, null)).toEqual([]);
+            expect(updateArray([1], undefined)).toEqual([1]);
+            expect(updateArray([1], null)).toEqual([1]);
+            expect(updateArray(undefined, [2])).toEqual([]);
+            expect(updateArray(null, [2])).toEqual([]);
+        });
+
         it('should update two items', () => {
             expect(
                 updateArray<Value>(origin, [
