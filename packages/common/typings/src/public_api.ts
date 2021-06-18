@@ -21,6 +21,7 @@ export { KeyboardKeys } from './keyboard';
 export { KeysOfType } from './keys-of-type';
 export { Leaves } from './leaves';
 export { NgCssClasses } from './ng-css-classes';
+export { Nullable } from './nullable';
 export { PlainObject, PlainObjectOf } from './object-types';
 export { Paths } from './paths';
 export { Prev } from './prev';
