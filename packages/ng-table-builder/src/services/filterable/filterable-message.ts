@@ -5,6 +5,6 @@ import { TableFilterType } from './table-filter-type';
 export interface FilterableMessage<T> {
     source: T[];
     types: typeof TableFilterType;
-    global: FilterGlobalOpts | null;
-    columns: FilterColumnsOpts | null;
+    global: FilterGlobalOpts;
+    columns: FilterColumnsOpts;
 }
