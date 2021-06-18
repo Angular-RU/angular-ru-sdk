@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Any, PlainObject } from '@angular-ru/common/typings';
-import { TableBuilderComponent } from '@angular-ru/ng-table-builder';
+import { TableBuilderComponent, TableFilterType } from '@angular-ru/ng-table-builder';
 
 import { MocksGenerator } from '../../../../tests/helpers/utils/mocks-generator';
 import { CodeDialogComponent } from '../../shared/dialog/code-dialog.component';
@@ -48,7 +48,7 @@ export class SampleFourteenComponent implements OnInit, AfterViewInit {
     constructor(public readonly dialog: MatDialog, private readonly cd: ChangeDetectorRef) {}
 
     public ngOnInit(): void {
-        const rows: number = 10000;
+        const rows: number = 100;
         const cols: number = 59;
         MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => {
             this.data = data;
@@ -64,6 +64,11 @@ export class SampleFourteenComponent implements OnInit, AfterViewInit {
 
     public clearFilter(): void {
         this.table.filterable.reset();
+    }
+
+    public filterFromFifth(): void {
+        this.table.filterable.setDefinition([{ key: 'id', type: TableFilterType.MORE_OR_EQUAL, value: 5 }]);
+        this.table.filter();
     }
 
     // eslint-disable-next-line max-lines-per-function
