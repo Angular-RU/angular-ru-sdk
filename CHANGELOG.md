@@ -1,3 +1,12 @@
+#### 15.263.1 (2021-06-18)
+
+##### Build System / Dependencies
+
+-   update dependency prettier to v2.3.1 ([#678](https://github.com/Angular-RU/angular-ru-sdk/pull/678))
+    ([7d402c50](https://github.com/Angular-RU/angular-ru-sdk/commit/7d402c50b4ee6c3bc8b654689dfd2f4c7e689862))
+-   update eslint ([#679](https://github.com/Angular-RU/angular-ru-sdk/pull/679))
+    ([e8c4966c](https://github.com/Angular-RU/angular-ru-sdk/commit/e8c4966c210b704df306a485596ab69f15aa8b1a))
+
 #### 15.263.0 (2021-06-18)
 
 ##### Build System / Dependencies
