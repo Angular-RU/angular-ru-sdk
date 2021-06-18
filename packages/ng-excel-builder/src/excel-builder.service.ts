@@ -54,26 +54,16 @@ export class ExcelBuilderService {
                     // eslint-disable-next-line max-lines-per-function
                     worksheets.forEach((worksheet: ExcelWorksheet<T>): void => {
                         const worksheetName: string = worksheet.worksheetName;
-                        const headerTitles: string[] = getHeaderTitles(
-                            worksheet,
-                            worksheet.entries[0],
-                            flattenTranslatedKeys
-                        );
+                        const entries: T[] = worksheet.entries || [];
+
+                        const headerTitles: string[] = getHeaderTitles(worksheet, entries[0], flattenTranslatedKeys);
                         worksheetTemplates += `
                           <Worksheet ss:Name="${worksheetName}"><Table ss:DefaultColumnWidth="${colWidth}" ss:DefaultRowHeight="${ROW_HEIGHT}">${generateColumns(
                             headerTitles,
                             ptSize,
                             colWidth
                         )}
-                              ${generateRow(
-                                  worksheet,
-                                  worksheet.entries,
-                                  headerTitles,
-                                  rowHeight,
-                                  ptWidth,
-                                  colWidth,
-                                  styleType
-                              )}
+                              ${generateRow(worksheet, entries, headerTitles, rowHeight, ptWidth, colWidth, styleType)}
                             </Table> </Worksheet>
                           `;
                     });
