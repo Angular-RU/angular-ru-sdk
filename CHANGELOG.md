@@ -1,3 +1,18 @@
+#### 15.260.0 (2021-06-18)
+
+##### New Features
+
+-   **@angular-ru/ng-excel-builder:** support nullable entries
+    ([#671](https://github.com/Angular-RU/angular-ru-sdk/pull/671))
+    ([71a3efc5](https://github.com/Angular-RU/angular-ru-sdk/commit/71a3efc5d1889f148e49fe57ee2624713bb07576))
+-   **@angular-ru/eslint-config:** add strict-boolean-expressions
+    ([51f9b797](https://github.com/Angular-RU/angular-ru-sdk/commit/51f9b797487e41b80a1904202ee0af09ab41303d))
+
+##### Reverts
+
+-   detect-changes.ts
+    ([6836614a](https://github.com/Angular-RU/angular-ru-sdk/commit/6836614ad317c7b82dd7e73c4143fd467ac3aca3))
+
 #### 15.259.3 (2021-06-17)
 
 ##### Refactors
