@@ -12,7 +12,11 @@ import {
     hasOneItem,
     partition,
     secondItem,
-    thirdItem
+    thirdItem,
+    takeFirstItem,
+    takeSecondItem,
+    takeThirdItem,
+    takeLastItem
 } from '@angular-ru/common/array';
 import { isNumber } from '@angular-ru/common/number';
 import { PlainObject } from '@angular-ru/common/typings';
@@ -101,6 +105,12 @@ describe('[TEST]: Array utility', () => {
         expect(firstItem([])).toEqual(null);
         expect(firstItem([1])).toEqual(1);
         expect(firstItem([1, 2])).toEqual(1);
+
+        expect(takeFirstItem()).toEqual(undefined);
+        expect(takeFirstItem(null)).toEqual(undefined);
+        expect(takeFirstItem([])).toEqual(undefined);
+        expect(takeFirstItem([1])).toEqual(1);
+        expect(takeFirstItem([1, 2])).toEqual(1);
     });
 
     it('is second item', () => {
@@ -109,6 +119,12 @@ describe('[TEST]: Array utility', () => {
         expect(secondItem([])).toEqual(null);
         expect(secondItem([1])).toEqual(null);
         expect(secondItem([1, 2])).toEqual(2);
+
+        expect(takeSecondItem()).toEqual(undefined);
+        expect(takeSecondItem(null)).toEqual(undefined);
+        expect(takeSecondItem([])).toEqual(undefined);
+        expect(takeSecondItem([1])).toEqual(undefined);
+        expect(takeSecondItem([1, 2])).toEqual(2);
     });
 
     it('is third item', () => {
@@ -118,6 +134,20 @@ describe('[TEST]: Array utility', () => {
         expect(thirdItem([1])).toEqual(null);
         expect(thirdItem([1, 2])).toEqual(null);
         expect(thirdItem([1, 2, 3])).toEqual(3);
+
+        expect(takeThirdItem()).toEqual(undefined);
+        expect(takeThirdItem(null)).toEqual(undefined);
+        expect(takeThirdItem([])).toEqual(undefined);
+        expect(takeThirdItem([1])).toEqual(undefined);
+        expect(takeThirdItem([1, 2, 3])).toEqual(3);
+    });
+
+    it('is last item', () => {
+        expect(takeLastItem()).toEqual(undefined);
+        expect(takeLastItem(null)).toEqual(undefined);
+        expect(takeLastItem([])).toEqual(undefined);
+        expect(takeLastItem([1])).toEqual(1);
+        expect(takeLastItem([1, 2, 3, 4])).toEqual(4);
     });
 
     it('should divide array by condition', () => {
