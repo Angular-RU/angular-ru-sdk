@@ -1,3 +1,11 @@
+#### 15.261.0 (2021-06-18)
+
+##### New Features
+
+-   **@angular-ru/common:** support nullable values when update array
+    ([#673](https://github.com/Angular-RU/angular-ru-sdk/pull/673))
+    ([23877f50](https://github.com/Angular-RU/angular-ru-sdk/commit/23877f50436d8464863520097bf174ce817d2fa3))
+
 #### 15.260.0 (2021-06-18)
 
 ##### New Features
