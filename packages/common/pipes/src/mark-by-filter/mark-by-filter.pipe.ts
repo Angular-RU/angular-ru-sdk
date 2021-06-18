@@ -2,22 +2,20 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ensureRegexp, isRegexpStr } from '@angular-ru/common/regexp';
 import { toStringVal } from '@angular-ru/common/string';
-import { Any } from '@angular-ru/common/typings';
+import { Any, Nullable } from '@angular-ru/common/typings';
 import { isNotNil } from '@angular-ru/common/utils';
 
 import { MarkedValue } from './marked-value';
-
-type Value = string | null | undefined;
 
 @Pipe({ name: 'markByFilter' })
 export class MarkByFilterPipe implements PipeTransform {
     constructor(private readonly sanitizer: DomSanitizer) {}
 
-    public transform(value: Value, filter?: Value, color: string = '#ffdd2d'): MarkedValue {
+    public transform(value: Nullable<string>, filter?: Nullable<string>, color: string = '#ffdd2d'): MarkedValue {
         return isNotNil(filter) ? this.search(value, filter, color) : value;
     }
 
-    private search(value: Value, filter?: Value, color?: string): SafeHtml {
+    private search(value: Nullable<string>, filter?: Nullable<string>, color?: string): SafeHtml {
         const existFilter: boolean = isNotNil(value) && isNotNil(filter);
         let newString: string | null | undefined = value;
 
