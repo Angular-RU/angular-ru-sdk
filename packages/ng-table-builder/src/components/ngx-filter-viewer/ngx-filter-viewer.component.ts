@@ -20,6 +20,7 @@ import { TABLE_GLOBAL_OPTIONS } from '../../config/table-global-options';
 import { FilterEvent } from '../../services/filterable/filter-event';
 import { FilterableService } from '../../services/filterable/filterable.service';
 import { TableFilterType } from '../../services/filterable/table-filter-type';
+import { IGNORE_FILTER_TYPES } from './ngx-filter-viewer.properties';
 
 const { TIME_RELOAD }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
 
@@ -93,12 +94,12 @@ export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy
 
     // eslint-disable-next-line max-lines-per-function,complexity
     private selected(event: FilterEvent): void {
-        const value: string | null = (this.filterable.definition as Any)[this.key!] ?? event.value;
+        const value: string | null = String((this.filterable.definition as Any)[this.key!] ?? event.value);
         const type: string | TableFilterType | null = isNotNil((this.filterable.definition as Any)[this.key!])
             ? (this.filterable.filterTypeDefinition as Any)[this.key!]
             : event.type;
 
-        if (type === TableFilterType.DOES_NOT_EQUAL || type === TableFilterType.DOES_NOT_CONTAIN) {
+        if (IGNORE_FILTER_TYPES.includes(type as TableFilterType)) {
             return;
         }
 
