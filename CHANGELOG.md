@@ -1,3 +1,10 @@
+#### 15.262.1 (2021-06-18)
+
+##### Build System / Dependencies
+
+-   update dependency @types/node to v15.12.3 ([#674](https://github.com/Angular-RU/angular-ru-sdk/pull/674))
+    ([95362a94](https://github.com/Angular-RU/angular-ru-sdk/commit/95362a946d057614c2e11f5c9604cb26696ccc75))
+
 #### 15.262.0 (2021-06-18)
 
 ##### Build System / Dependencies
