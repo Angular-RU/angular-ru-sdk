@@ -1,18 +1,19 @@
 import { isFunctionLike } from '@angular-ru/common/function';
-import { Any, CompareFn, PrimaryKey } from '@angular-ru/common/typings';
+import { Any, CompareFn, Nullable, PrimaryKey } from '@angular-ru/common/typings';
 
-// eslint-disable-next-line max-lines-per-function,complexity
+// eslint-disable-next-line max-lines-per-function,complexity,sonarjs/cognitive-complexity
 export function updateArray<T>(
-    sourceArray: T[] | never[],
-    updatedArray: T[] | never[],
+    sourceArray?: Nullable<T[] | never[]>,
+    updatedArray?: Nullable<T[] | never[]>,
     compareFnOrKey: string | CompareFn<T> = PrimaryKey.ID
 ): T[] {
+    const preparedSourceArray: T[] = sourceArray ?? [];
     const newSourceArray: T[] = [];
-    const newUpdatedArray: T[] = updatedArray.slice();
+    const newUpdatedArray: T[] = updatedArray?.slice() ?? [];
     const skipIndexes: Set<number> = new Set();
 
-    for (let i: number = 0; i < sourceArray.length; i++) {
-        const currentItem: T = sourceArray[i] as T;
+    for (let i: number = 0; i < preparedSourceArray.length; i++) {
+        const currentItem: T = preparedSourceArray[i] as T;
         let updated: boolean = false;
         for (let j: number = 0; j < newUpdatedArray.length; j++) {
             if (skipIndexes.has(j)) {
