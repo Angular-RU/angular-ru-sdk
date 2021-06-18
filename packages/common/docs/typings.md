@@ -213,7 +213,7 @@ type SomeLines = InfiniteTuple<string, 0>; // string[]
 
 ```ts
 type Number = LastOfTuple<[number]>; // number
-type NumberCouple = LastOfTuple<string[]>; // string
+type NumberCouple = LastOfTuple<string[]>; // string | undefined
 type NumberCouple = LastOfTuple<[string, boolean]>; // boolean
 type NumberCouple = LastOfTuple<[string, ...number[]]>; // string | number
 type NumberCouple = LastOfTuple<[]>; // undefined
