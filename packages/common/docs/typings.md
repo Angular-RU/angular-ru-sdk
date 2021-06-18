@@ -1,5 +1,14 @@
 #### `@angular-ru/common/typings`
 
+-   `Nullable`
+
+```ts
+@Component({})
+class MyComponent {
+    @Input() public list: Nullable<string[]>; // equals ~ @Input() public list: string[] | null | undefined;
+}
+```
+
 -   `Any` - alias for `any` type
 
 ```ts
