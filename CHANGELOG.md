@@ -1,3 +1,35 @@
+#### 15.262.1 (2021-06-18)
+
+##### Build System / Dependencies
+
+-   update dependency @types/node to v15.12.3 ([#674](https://github.com/Angular-RU/angular-ru-sdk/pull/674))
+    ([95362a94](https://github.com/Angular-RU/angular-ru-sdk/commit/95362a946d057614c2e11f5c9604cb26696ccc75))
+
+#### 15.262.0 (2021-06-18)
+
+##### Build System / Dependencies
+
+-   update dependency karma to v6.3.4 ([#676](https://github.com/Angular-RU/angular-ru-sdk/pull/676))
+    ([66ed7397](https://github.com/Angular-RU/angular-ru-sdk/commit/66ed7397692e3ecc2a36e77ae645084ba27b44ce))
+-   update dependency angular-cli-ghpages to v1.0.0-rc.2 ([#675](https://github.com/Angular-RU/angular-ru-sdk/pull/675))
+    ([a3b33f69](https://github.com/Angular-RU/angular-ru-sdk/commit/a3b33f69bb3fc105e00abd0a925b3c0266533f8a))
+-   update dependency tsickle to v0.43.0 ([#670](https://github.com/Angular-RU/angular-ru-sdk/pull/670))
+    ([ff3b95f9](https://github.com/Angular-RU/angular-ru-sdk/commit/ff3b95f922e86b4400208e579954b7a88727b953))
+
+##### New Features
+
+-   **@angular-ru/common:** support nullable for array utils
+    ([#682](https://github.com/Angular-RU/angular-ru-sdk/pull/682))
+    ([922600a6](https://github.com/Angular-RU/angular-ru-sdk/commit/922600a6d73faf9c2d54abb0c9143efefaa32419))
+
+#### 15.261.0 (2021-06-18)
+
+##### New Features
+
+-   **@angular-ru/common:** support nullable values when update array
+    ([#673](https://github.com/Angular-RU/angular-ru-sdk/pull/673))
+    ([23877f50](https://github.com/Angular-RU/angular-ru-sdk/commit/23877f50436d8464863520097bf174ce817d2fa3))
+
 #### 15.260.0 (2021-06-18)
 
 ##### New Features
