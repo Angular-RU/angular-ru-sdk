@@ -35,21 +35,21 @@
         "test": "yarn prepare:folder && yarn prepare:report && yarn -s jest --config ./jest.config.js"
     },
     "resolutions": {
-        "eslint": "7.26.0"
+        "eslint": "7.28.0"
     },
     "dependencies": {
         "@angular-eslint/eslint-plugin": "4.3.0",
         "@angular-eslint/eslint-plugin-template": "4.3.0",
         "@angular-eslint/template-parser": "4.3.0",
         "@angular-ru/eslint-plugin": "^15.236.0",
-        "@types/eslint": "7.2.10",
-        "@typescript-eslint/eslint-plugin": "4.23.0",
-        "@typescript-eslint/parser": "4.23.0",
-        "eslint": "7.26.0",
+        "@types/eslint": "7.2.13",
+        "@typescript-eslint/eslint-plugin": "4.27.0",
+        "@typescript-eslint/parser": "4.27.0",
+        "eslint": "7.28.0",
         "eslint-config-import": "0.13.0",
         "eslint-import-resolver-typescript": "2.4.0",
         "eslint-plugin-i18n-json": "3.1.0",
-        "eslint-plugin-import": "2.22.1",
+        "eslint-plugin-import": "2.23.4",
         "eslint-plugin-jsdoc": "33.3.0",
         "eslint-plugin-max-params-no-constructor": "0.0.4",
         "eslint-plugin-no-cyrillic-string": "1.0.5",
