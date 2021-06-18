@@ -1,3 +1,40 @@
+#### 15.259.3 (2021-06-17)
+
+##### Refactors
+
+-   **@angular-ru/ng-table-builder:** extract css-variables
+    ([#664](https://github.com/Angular-RU/angular-ru-sdk/pull/664))
+    ([59a6c834](https://github.com/Angular-RU/angular-ru-sdk/commit/59a6c834a9a8fe468dbfa3e4a68de2604a272a92))
+
+#### 15.259.2 (2021-06-17)
+
+##### Build System / Dependencies
+
+-   update dependency @commitlint/config-angular to v12.1.4
+    ([#669](https://github.com/Angular-RU/angular-ru-sdk/pull/669))
+    ([4a3efc69](https://github.com/Angular-RU/angular-ru-sdk/commit/4a3efc69eec75f1e7adf5ac06eb0b96d6ed263b4))
+-   update dependency tslib to v2.3.0 ([#668](https://github.com/Angular-RU/angular-ru-sdk/pull/668))
+    ([763cafda](https://github.com/Angular-RU/angular-ru-sdk/commit/763cafda02d860f7126dd271a42ba21e1a4d495b))
+
+#### 15.259.1 (2021-06-17)
+
+##### Build System / Dependencies
+
+-   update dependency @types/node to v15.12.2 ([#666](https://github.com/Angular-RU/angular-ru-sdk/pull/666))
+    ([443c7d5f](https://github.com/Angular-RU/angular-ru-sdk/commit/443c7d5f3133ac400dee0fa3a95ae2df1dc82e12))
+
+#### 15.259.0 (2021-06-16)
+
+##### Continuous Integration
+
+-   update autoupdate.yml ([#663](https://github.com/Angular-RU/angular-ru-sdk/pull/663))
+    ([62ba2ed3](https://github.com/Angular-RU/angular-ru-sdk/commit/62ba2ed34d06b03e5c4d352e9ef2e1b876a2ec34))
+
+##### New Features
+
+-   **common:** added regexp constants ([#665](https://github.com/Angular-RU/angular-ru-sdk/pull/665))
+    ([1c70e195](https://github.com/Angular-RU/angular-ru-sdk/commit/1c70e1959a7860d98a53a2127ce73148fb2ec8de))
+
 #### 15.258.1 (2021-06-15)
 
 ##### Bug Fixes
