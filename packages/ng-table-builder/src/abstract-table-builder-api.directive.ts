@@ -318,9 +318,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
 
                 this.sortAndFilter().then((): void => {
                     this.reCheckDefinitions();
-                    if (after) {
-                        after();
-                    }
+                    after?.();
 
                     this.filteringRun = false;
                     detectChanges(this.cd);

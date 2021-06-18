@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/sdk",
-    "version": "15.262.0",
+    "version": "15.263.0",
     "private": true,
     "description": "Angular-RU SDK",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk#readme",
@@ -100,7 +100,7 @@
         "rxjs-marbles": "6.0.1",
         "tsickle": "0.43.0",
         "tslib": "2.3.0",
-        "typescript": "4.2.4",
+        "typescript": "4.3.4",
         "zone.js": "0.11.4"
     }
 }

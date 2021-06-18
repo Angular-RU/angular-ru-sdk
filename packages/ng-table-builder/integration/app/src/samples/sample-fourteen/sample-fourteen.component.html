@@ -1,6 +1,7 @@
 <mat-toolbar class="simple-toolbar">
     <span>Example filters ({{ table?.size }})</span>
     <div class="show-simple">
+        <button mat-raised-button (click)="filterFromFifth()">filter from fifth</button>
         <button mat-raised-button (click)="clearFilter()">clear filter</button>
         <button mat-raised-button (click)="showSample()">show code sample</button>
     </div>

@@ -7,6 +7,7 @@ import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { ReplaySubject, Subject } from 'rxjs';
 
 import { filterAllWorker } from './filter.worker';
+import { FilterDescriptor } from './filter-descriptor';
 import { FilterEvent } from './filter-event';
 import { FilterStateEvent } from './filter-state-event';
 import { FilterWorkerEvent } from './filter-worker-event';
@@ -46,6 +47,14 @@ export class FilterableService<T> implements Filterable {
         return (this.globalFilterValue?.length ?? 0) > 0 || keyFilterValues.length > 0;
     }
 
+    public setDefinition(descriptors: FilterDescriptor[]): void {
+        this.clearDefinitions();
+        descriptors.forEach(({ key, value, type }: FilterDescriptor): void => {
+            this.filterTypeDefinition = { ...this.filterTypeDefinition, [key]: type };
+            this.definition = { ...this.definition, [key]: value };
+        });
+    }
+
     public updateFilterTypeBy(type: TableFilterType, key?: string | null): void {
         if (isNotNil(key)) {
             this.filterTypeDefinition = { ...this.filterTypeDefinition, [key]: type };
@@ -59,10 +68,9 @@ export class FilterableService<T> implements Filterable {
     }
 
     public reset(): void {
-        this.definition = {} as Any;
+        this.clearDefinitions();
         this.filterValue = null;
         this.state = new FilterStateEvent();
-        this.filterTypeDefinition = {} as Any;
         this.filtering = false;
         this.previousFiltering = false;
         this.events.next({ value: null, type: null });
@@ -120,5 +128,10 @@ export class FilterableService<T> implements Filterable {
                 });
             }
         );
+    }
+
+    private clearDefinitions(): void {
+        this.filterTypeDefinition = {} as Any;
+        this.definition = {} as Any;
     }
 }
