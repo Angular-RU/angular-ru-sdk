@@ -213,20 +213,20 @@ type SomeLines = InfiniteTuple<string, 0>; // string[]
 
 ```ts
 type Number = LastOfTuple<[number]>; // number
-type NumberCouple = LastOfTuple<string[]>; // string | undefined
-type NumberCouple = LastOfTuple<[string, boolean]>; // boolean
-type NumberCouple = LastOfTuple<[string, ...number[]]>; // string | number
-type NumberCouple = LastOfTuple<[]>; // undefined
+type MaybeString = LastOfTuple<string[]>; // string | undefined
+type Boolean = LastOfTuple<[string, boolean]>; // boolean
+type StringOrNumber = LastOfTuple<[string, ...number[]]>; // string | number
+type Nothing = LastOfTuple<[]>; // undefined
 ```
 
 -   `TupleItem`
 
 ```ts
 type Number = TupleItem<[number], 0>; // number
-type NumberCouple = TupleItem<string[], 1>; // string | undefined
-type NumberCouple = TupleItem<[string, boolean], 1>; // boolean
-type NumberCouple = TupleItem<[string, ...number[]], 0>; // string
-type NumberCouple = TupleItem<[string, ...number[]], 3>; // number | undefined
-type NumberCouple = TupleItem<[], 0>; // undefined
-type NumberCouple = TupleItem<[], 3>; // undefined
+type MaybeString = TupleItem<string[], 1>; // string | undefined
+type Boolean = TupleItem<[string, boolean], 1>; // boolean
+type String = TupleItem<[string, ...number[]], 0>; // string
+type MaybeNumber = TupleItem<[string, ...number[]], 3>; // number | undefined
+type Nothing = TupleItem<[], 0>; // undefined
+type NothingToo = TupleItem<[], 3>; // undefined
 ```
