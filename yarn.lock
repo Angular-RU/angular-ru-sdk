@@ -2720,10 +2720,15 @@
   dependencies:
     "@types/istanbul-lib-report" "*"
 
-"@types/jasmine@*", "@types/jasmine@3.7.4":
+"@types/jasmine@*":
   version "3.7.4"
   resolved "https://registry.npmjs.org/@types/jasmine/-/jasmine-3.7.4.tgz#99a49aa9a5f8dc86fc249ed13ed59552c6ce862d"
   integrity sha512-L3FKeEwMm8e8hqGvt7cSesVmGtavpRyHV1FNDq+Pm5pS4x5eFmE70ZERXCSBWAiLQqXBcZRUrwV59FZLQl/GxQ==
+
+"@types/jasmine@3.7.7":
+  version "3.7.7"
+  resolved "https://registry.npmjs.org/@types/jasmine/-/jasmine-3.7.7.tgz#56718af036be3c9f86eca560a22e39440b2b0784"
+  integrity sha512-yZzGe1d1T0y+imXDZ79F030nn8qbmiwpWKCZKvKN0KbTzwXAVYShUxkIxu1ba+vhIdabTGVGCfbtZC0oOam8TQ==
 
 "@types/jasminewd2@2.0.9":
   version "2.0.9"
@@ -8313,10 +8318,10 @@ jasmine-core@3.7.1, jasmine-core@^3.6.0:
   resolved "https://registry.npmjs.org/jasmine-core/-/jasmine-core-3.7.1.tgz#0401327f6249eac993d47bbfa18d4e8efacfb561"
   integrity sha512-DH3oYDS/AUvvr22+xUBW62m1Xoy7tUlY1tsxKEJvl5JeJ7q8zd1K5bUwiOxdH+erj6l2vAMM3hV25Xs9/WrmuQ==
 
-jasmine-marbles@0.8.1:
-  version "0.8.1"
-  resolved "https://registry.npmjs.org/jasmine-marbles/-/jasmine-marbles-0.8.1.tgz#a377196abc0eea33429a235cdc3bc3d1e3fad06f"
-  integrity sha512-2TDpIrFjIakkvZCLnlXRTI55DJXh5snAXN5zsIbWj4oTTCKjH/MEaVgBpl0waaXKuShs1F+dyw9XF4xFZefQOA==
+jasmine-marbles@0.9.0:
+  version "0.9.0"
+  resolved "https://registry.npmjs.org/jasmine-marbles/-/jasmine-marbles-0.9.0.tgz#753f60706470ef8714c35b07937a2368be31dab9"
+  integrity sha512-VrkJyGwIUmTzJnWxWQyVigOIJ6dn4nHRewNaCMiLn0E/fBpombRdtlL3xZ/fnJZp0SAU4nJsVThLWTb3MaiVAw==
   dependencies:
     lodash "^4.17.20"
 
