@@ -22,7 +22,8 @@ export class MocksGenerator {
                                     reverseId: Math.round(Math.random() + rows * 512 + cols + start * 10) * 1024,
                                     name: 'Random - ' + ((Math.random() + 1) * 100).toFixed(0) + '__' + idx,
                                     description: 'Random - ' + ((Math.random() + 1) * 100).toFixed(0) + '__' + idx,
-                                    guid: '5cdae5b2ba0a57f709b72142' + '__' + idx
+                                    guid: '5cdae5b2ba0a57f709b72142' + '__' + idx,
+                                    someBoolean: Math.random() > 0.5
                                 };
 
                                 // eslint-disable-next-line @typescript-eslint/typedef,@typescript-eslint/explicit-function-return-type
