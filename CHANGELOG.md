@@ -1,3 +1,12 @@
+#### 15.263.2 (2021-06-19)
+
+##### Build System / Dependencies
+
+-   update dependency ngx-toastr to v14 ([#689](https://github.com/Angular-RU/angular-ru-sdk/pull/689))
+    ([500a9cdc](https://github.com/Angular-RU/angular-ru-sdk/commit/500a9cdc247bccf2aaaa9011839dde388dc77ea8))
+-   update dependency ts-node to v10 ([#690](https://github.com/Angular-RU/angular-ru-sdk/pull/690))
+    ([2e3ee6d8](https://github.com/Angular-RU/angular-ru-sdk/commit/2e3ee6d84c001d94292cf4bdb168f2ae7164d64d))
+
 #### 15.263.1 (2021-06-18)
 
 ##### Build System / Dependencies
