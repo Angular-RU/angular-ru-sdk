@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/sdk",
-    "version": "15.262.1",
+    "version": "15.263.1",
     "private": true,
     "description": "Angular-RU SDK",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk#readme",
@@ -94,7 +94,7 @@
         "karma-jasmine-html-reporter": "1.6.0",
         "lerna": "4.0.0",
         "ngx-mask": "11.1.5",
-        "ngx-toastr": "13.2.1",
+        "ngx-toastr": "14.0.0",
         "pretty": "2.0.0",
         "rxjs": "6.6.7",
         "rxjs-marbles": "6.0.1",

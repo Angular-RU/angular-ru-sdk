@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/prettier-config",
-    "version": "15.237.0",
+    "version": "15.263.1",
     "description": "Shared Prettier config for Angular projects",
     "keywords": [
         "angular-ru",
@@ -25,10 +25,10 @@
         "README.md"
     ],
     "resolutions": {
-        "prettier": "2.3.0"
+        "prettier": "2.3.1"
     },
     "dependencies": {
-        "prettier": "2.3.0"
+        "prettier": "2.3.1"
     },
     "peerDependencies": {
         "prettier": ">=2.0.0 <3.0.0"
