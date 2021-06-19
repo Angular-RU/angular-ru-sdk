@@ -1,3 +1,27 @@
+#### 15.263.1 (2021-06-18)
+
+##### Build System / Dependencies
+
+-   update dependency prettier to v2.3.1 ([#678](https://github.com/Angular-RU/angular-ru-sdk/pull/678))
+    ([7d402c50](https://github.com/Angular-RU/angular-ru-sdk/commit/7d402c50b4ee6c3bc8b654689dfd2f4c7e689862))
+-   update eslint ([#679](https://github.com/Angular-RU/angular-ru-sdk/pull/679))
+    ([e8c4966c](https://github.com/Angular-RU/angular-ru-sdk/commit/e8c4966c210b704df306a485596ab69f15aa8b1a))
+
+#### 15.263.0 (2021-06-18)
+
+##### Build System / Dependencies
+
+-   update dependency npe to v1.1.4 ([#677](https://github.com/Angular-RU/angular-ru-sdk/pull/677))
+    ([6598c736](https://github.com/Angular-RU/angular-ru-sdk/commit/6598c736cd342025faaa7b787129bc91bac2129d))
+-   update dependency typescript to v4.3.4 ([#681](https://github.com/Angular-RU/angular-ru-sdk/pull/681))
+    ([2aaa2824](https://github.com/Angular-RU/angular-ru-sdk/commit/2aaa28242899d3f9593c8581c1ef9da221d6d19e))
+
+##### New Features
+
+-   **@angular-ru/ng-table-builder:** add numeric filters
+    ([#683](https://github.com/Angular-RU/angular-ru-sdk/pull/683))
+    ([4a644f19](https://github.com/Angular-RU/angular-ru-sdk/commit/4a644f19b2c4fa1ab2b6c0aad3535928283a3368))
+
 #### 15.262.1 (2021-06-18)
 
 ##### Build System / Dependencies
