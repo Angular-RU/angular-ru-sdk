@@ -1,3 +1,10 @@
+#### 15.264.0 (2021-06-20)
+
+##### New Features
+
+-   **@angular-ru/common:** item functions type ([#684](https://github.com/Angular-RU/angular-ru-sdk/pull/684))
+    ([000b2fdb](https://github.com/Angular-RU/angular-ru-sdk/commit/000b2fdbf856202f55f19b33f40ff5466f92b407))
+
 #### 15.263.4 (2021-06-19)
 
 ##### Build System / Dependencies
