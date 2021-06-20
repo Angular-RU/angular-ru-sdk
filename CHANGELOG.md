@@ -1,3 +1,12 @@
+#### 15.263.4 (2021-06-19)
+
+##### Build System / Dependencies
+
+-   update dependency ngx-mask to v12 ([#688](https://github.com/Angular-RU/angular-ru-sdk/pull/688))
+    ([1b9ef7c9](https://github.com/Angular-RU/angular-ru-sdk/commit/1b9ef7c963e3c3f8e1246eb7d83c8d58069432d2))
+-   update dependency eslint to v7.29.0 ([#687](https://github.com/Angular-RU/angular-ru-sdk/pull/687))
+    ([a1b6ea01](https://github.com/Angular-RU/angular-ru-sdk/commit/a1b6ea017378761c86b9c705469683773d842208))
+
 #### 15.263.3 (2021-06-19)
 
 ##### Build System / Dependencies
