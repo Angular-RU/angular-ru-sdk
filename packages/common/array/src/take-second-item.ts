@@ -1,5 +1,5 @@
-import { Nullable } from '@angular-ru/common/typings';
+import { Nullable, TupleItem } from '@angular-ru/common/typings';
 
-export function takeSecondItem<T>(array?: Nullable<T[]>): Nullable<T> {
-    return array?.[1];
+export function takeSecondItem<ArrayType extends Nullable<unknown[]>>(array: ArrayType): TupleItem<ArrayType, 1> {
+    return (Array.isArray(array) ? array[1] : undefined) as TupleItem<ArrayType, 1>;
 }
