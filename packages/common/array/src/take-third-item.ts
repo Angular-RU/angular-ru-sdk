@@ -1,6 +1,10 @@
-import { Nullable } from '@angular-ru/common/typings';
+import { Nullable, TupleItem } from '@angular-ru/common/typings';
 
-export function takeThirdItem<T>(array?: Nullable<T[]>): Nullable<T> {
-    const thirdItemIndex: number = 2;
-    return array?.[thirdItemIndex];
+type ThirdItemIndex = 2;
+const thirdItemIndex: ThirdItemIndex = 2;
+
+export function takeThirdItem<ArrayType extends Nullable<unknown[]>>(
+    array: ArrayType
+): TupleItem<ArrayType, ThirdItemIndex> {
+    return (Array.isArray(array) ? array[thirdItemIndex] : undefined) as TupleItem<ArrayType, ThirdItemIndex>;
 }
