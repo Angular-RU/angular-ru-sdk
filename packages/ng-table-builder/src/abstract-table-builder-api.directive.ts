@@ -22,7 +22,7 @@ import {
     ViewChildren
 } from '@angular/core';
 import { pathsOfObject } from '@angular-ru/common/object';
-import { Any, DeepPartial, Fn, PlainObjectOf, PrimaryKey } from '@angular-ru/common/typings';
+import { Any, DeepPartial, Fn, Nullable, PlainObjectOf, PrimaryKey } from '@angular-ru/common/typings';
 import { detectChanges, isNotNil, isTrue } from '@angular-ru/common/utils';
 
 import { NgxColumnComponent } from './components/ngx-column/ngx-column.component';
@@ -61,12 +61,12 @@ const { ROW_HEIGHT, FILTER_DELAY_TIME, TIME_IDLE }: typeof TABLE_GLOBAL_OPTIONS 
 export abstract class AbstractTableBuilderApiDirective<T>
     implements OnChanges, OnInit, AfterViewInit, AfterContentInit, AfterViewChecked, OnDestroy
 {
-    @Input() public height: string | number | null = null;
-    @Input() public width: string | number | null = null;
-    @Input() public source: T[] | null = null;
+    @Input() public height: Nullable<string | number> = null;
+    @Input() public width: Nullable<string | number> = null;
+    @Input() public source: Nullable<T[]> = null;
     @Input() public keys: string[] = [];
     @Input() public striped: boolean = true;
-    @Input() public name: string | null = null;
+    @Input() public name: Nullable<string> = null;
     @Input('skip-sort') public skipSort: boolean | string = false;
     @Input('sort-types') public sortTypes: TableSortTypes = null;
     @Input('exclude-keys') public excludeKeys: ExcludePattern<T>[] = [];
@@ -79,7 +79,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
     @Input('enable-filtering') public enableFiltering: boolean | string = false;
     @Input('produce-disable-fn') public produceDisableFn: ProduceDisableFn<T> = null;
     @Input('row-css-classes') public rowCssClasses: PlainObjectOf<string[]> = {};
-    @Input('schema-columns') public schemaColumns: TableUpdateSchema | null = null;
+    @Input('schema-columns') public schemaColumns: Nullable<TableUpdateSchema> = null;
     @Input('schema-version') public schemaVersion: number = 1;
     @Output() public readonly afterRendered: EventEmitter<boolean> = new EventEmitter();
     @Output() public readonly schemaChanges: EventEmitter<TableUpdateSchema> = new EventEmitter();
@@ -88,19 +88,19 @@ export abstract class AbstractTableBuilderApiDirective<T>
     @Output() public readonly onChanges: EventEmitter<T[] | null> = new EventEmitter();
     @Output() public readonly sortChanges: EventEmitter<OrderedField[]> = new EventEmitter();
     @ContentChild(NgxOptionsComponent, { static: false })
-    public columnOptions: NgxOptionsComponent | null = null;
+    public columnOptions: Nullable<NgxOptionsComponent> = null;
     @ContentChildren(NgxColumnComponent)
-    public columnTemplates: QueryList<NgxColumnComponent<T>> | null = null;
+    public columnTemplates: Nullable<QueryList<NgxColumnComponent<T>>> = null;
     @ContentChild(NgxContextMenuComponent, { static: false })
-    public contextMenuTemplate: NgxContextMenuComponent<T> | null = null;
+    public contextMenuTemplate: Nullable<NgxContextMenuComponent<T>> = null;
     @ContentChild(NgxEmptyComponent, { read: ElementRef })
-    public ngxEmptyContent: ElementRef | null = null;
+    public ngxEmptyContent: Nullable<ElementRef> = null;
     @ContentChild(NgxHeaderComponent, { static: false })
-    public headerTemplate: NgxHeaderComponent | null = null;
+    public headerTemplate: Nullable<NgxHeaderComponent> = null;
     @ContentChild(NgxFooterComponent, { static: false })
-    public footerTemplate: NgxFooterComponent | null = null;
+    public footerTemplate: Nullable<NgxFooterComponent> = null;
     @ContentChild(NgxFilterComponent, { static: false })
-    public filterTemplate: NgxFilterComponent<T> | null = null;
+    public filterTemplate: Nullable<NgxFilterComponent<T>> = null;
     @ViewChild('tableViewport', { static: true })
     public scrollContainer!: ElementRef<HTMLElement>;
     @ViewChildren('column', { read: false })
@@ -142,7 +142,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
     public abstract readonly contextMenu: ContextMenuService<T>;
     public abstract readonly filterable: FilterableService<T>;
     public abstract readonly ngZone: NgZone;
-    protected originalSource: T[] | null = null;
+    protected originalSource: Nullable<T[]> = null;
     protected renderedCountKeys: number | null = null;
     protected isDragMoving: boolean = false;
     protected abstract readonly app: ApplicationRef;
@@ -160,7 +160,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
     }
 
     @Input('row-height')
-    public set rowHeight(val: string | number | null) {
+    public set rowHeight(val: Nullable<string | number>) {
         this._rowHeight = parseInt((val ?? ROW_HEIGHT) as string);
     }
 
@@ -278,7 +278,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
         this.idleDetectChanges();
     }
 
-    public enableDragging(key: string | null): void {
+    public enableDragging(key: Nullable<string>): void {
         if (isNotNil(key) && isTrue(this.templateParser.compiledTemplates[key]?.draggable)) {
             this.accessDragging = true;
             detectChanges(this.cd);
