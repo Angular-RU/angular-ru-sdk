@@ -1,3 +1,5 @@
-export function getValidPredicate<T>(leftPredicate?: T | null, rightPredicate?: T): T {
+import { Nullable } from '@angular-ru/common/typings';
+
+export function getValidPredicate<T>(leftPredicate?: Nullable<T>, rightPredicate?: T): T {
     return leftPredicate === null ? rightPredicate! : leftPredicate!;
 }

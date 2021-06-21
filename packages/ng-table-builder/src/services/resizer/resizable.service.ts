@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Any, Fn } from '@angular-ru/common/typings';
+import { Any, Fn, Nullable } from '@angular-ru/common/typings';
 import { isNotNil } from '@angular-ru/common/utils';
 import { fromEvent, ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -10,9 +10,9 @@ const { COLUMN_RESIZE_MIN_WIDTH }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OP
 
 @Injectable()
 export class ResizableService {
-    public startX: number | null = null;
-    public startWidth: number | null = null;
-    private destroyed$: ReplaySubject<boolean> | null = null;
+    public startX: Nullable<number> = null;
+    public startWidth: Nullable<number> = null;
+    private destroyed$: Nullable<ReplaySubject<boolean>> = null;
 
     private static clearSelection(): void {
         if (isNotNil(window.getSelection)) {

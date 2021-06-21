@@ -1,4 +1,5 @@
 import { Directive, EmbeddedViewRef, Input, NgZone, OnDestroy, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Nullable } from '@angular-ru/common/typings';
 import { detectChanges, isNil } from '@angular-ru/common/utils';
 
 import { InternalVirtualRef, VirtualContext, VirtualIndex } from '../interfaces/table-builder.external';
@@ -9,8 +10,8 @@ export class VirtualForDirective<T> implements OnDestroy {
     private cache: Map<number, InternalVirtualRef<T>> = new Map();
     private _source: T[] = [];
     private _indexes: VirtualIndex[] = [];
-    private removeFrameId: number | null = null;
-    private initFrameId: number | null = null;
+    private removeFrameId: Nullable<number> = null;
+    private initFrameId: Nullable<number> = null;
     private dirty: boolean = false;
 
     constructor(
@@ -20,7 +21,7 @@ export class VirtualForDirective<T> implements OnDestroy {
     ) {}
 
     @Input()
-    public set virtualForOriginSource(origin: T[] | null | undefined) {
+    public set virtualForOriginSource(origin: Nullable<T[]>) {
         if (this._source !== origin) {
             this._source = origin ?? [];
             this.dirty = true;
@@ -28,7 +29,7 @@ export class VirtualForDirective<T> implements OnDestroy {
     }
 
     @Input()
-    public set virtualForOf(indexes: VirtualIndex[] | null | undefined) {
+    public set virtualForOf(indexes: Nullable<VirtualIndex[]>) {
         this.ngZone.runOutsideAngular((): void => {
             this.initFrameId = window.requestAnimationFrame((): void => {
                 if (isNil(this._source) || this._indexes === indexes) {
@@ -71,8 +72,8 @@ export class VirtualForDirective<T> implements OnDestroy {
     }
 
     private createEmbeddedViewByIndex(index: VirtualIndex): void {
-        const row: T | undefined = this.sourceRef[index.position];
-        const cachedVirtualRef: InternalVirtualRef<T> | undefined = this.cache.get(index.position);
+        const row: Nullable<T> = this.sourceRef[index.position];
+        const cachedVirtualRef: Nullable<InternalVirtualRef<T>> = this.cache.get(index.position);
 
         if (cachedVirtualRef) {
             const [oldRow, viewRef]: InternalVirtualRef<T> = cachedVirtualRef;
@@ -98,7 +99,7 @@ export class VirtualForDirective<T> implements OnDestroy {
     }
 
     private removeEmbeddedViewByIndex(index: number): void {
-        const ref: InternalVirtualRef<T> | undefined = this.cache.get(index);
+        const ref: Nullable<InternalVirtualRef<T>> = this.cache.get(index);
         if (ref) {
             const [, viewRefItem]: InternalVirtualRef<T> = ref;
             const stackId: number = this.view.indexOf(viewRefItem);

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from '@angular/core';
+import { Nullable } from '@angular-ru/common/typings';
 
 @Component({
     selector: 'ngx-menu-content',
@@ -7,9 +8,9 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulati
     encapsulation: ViewEncapsulation.None
 })
 export class NgxMenuContentComponent {
-    @Input() public icon: string | null = null;
-    @Input('no-margin') public noMargin: string | boolean | null = null;
-    @Input('align-center') public alignCenter: string | boolean | null = null;
+    @Input() public icon: Nullable<string> = null;
+    @Input('no-margin') public noMargin: Nullable<string | boolean> = null;
+    @Input('align-center') public alignCenter: Nullable<string | boolean> = null;
 
     @HostBinding('class')
     public get class(): string {

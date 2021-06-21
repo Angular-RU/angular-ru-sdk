@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { PlainObject } from '@angular-ru/common/typings';
+import { Nullable, PlainObject } from '@angular-ru/common/typings';
 import { detectChanges, isNotNil } from '@angular-ru/common/utils';
 
 import { MocksGenerator } from '../../../../tests/helpers/utils/mocks-generator';
@@ -13,7 +13,7 @@ import { DialogTemplateComponent } from '../../shared/dialog-template/dialog-tem
 })
 export class SampleFirstSecondComponent implements OnInit, OnDestroy {
     public data: PlainObject[] = [];
-    private idInterval: number | null = null;
+    private idInterval: Nullable<number> = null;
 
     constructor(
         private readonly cd: ChangeDetectorRef,

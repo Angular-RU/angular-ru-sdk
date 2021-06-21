@@ -1,3 +1,3 @@
-import { PlainObjectOf, SortOrderType, StringValuesOfEnum } from '@angular-ru/common/typings';
+import { Nullable, PlainObjectOf, SortOrderType, StringValuesOfEnum } from '@angular-ru/common/typings';
 
-export type TableSortTypes = PlainObjectOf<SortOrderType | StringValuesOfEnum<SortOrderType>> | null | undefined;
+export type TableSortTypes = Nullable<PlainObjectOf<SortOrderType | StringValuesOfEnum<SortOrderType>>>;
