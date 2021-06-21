@@ -1,9 +1,11 @@
+import { Nullable } from '@angular-ru/common/typings';
+
 import { checkEveryValueIsEmpty } from './check-every-value-is-empty';
 
 export interface FileToDownloadInfo {
     blob: Blob | File;
-    name?: string | null;
-    extension?: string | null;
+    name?: Nullable<string>;
+    extension?: Nullable<string>;
 }
 
 export function downloadFile(file: FileToDownloadInfo): void {

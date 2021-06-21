@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Any, Fn } from '@angular-ru/common/typings';
+import { Any, Fn, Nullable } from '@angular-ru/common/typings';
 
 import { WebWorkerThread } from './worker-thread';
 
@@ -22,7 +22,7 @@ export class WebWorkerThreadService implements WebWorkerThread {
     }
 
     public run<T, K>(workerFunction: (input: K) => T, data?: K): Promise<T> {
-        const url: string | undefined = this.getOrCreateWorkerUrl(workerFunction);
+        const url: Nullable<string> = this.getOrCreateWorkerUrl(workerFunction);
         return this.runUrl(url!, data);
     }
 
@@ -42,7 +42,7 @@ export class WebWorkerThreadService implements WebWorkerThread {
         return this.removePromise(promise);
     }
 
-    public getWorker(promise: Promise<Any>): Worker | undefined {
+    public getWorker(promise: Promise<Any>): Nullable<Worker> {
         return this.promiseToWorkerMap.get(promise);
     }
 
@@ -54,7 +54,7 @@ export class WebWorkerThreadService implements WebWorkerThread {
         });
     }
 
-    private getOrCreateWorkerUrl(fn: Fn): string | undefined {
+    private getOrCreateWorkerUrl(fn: Fn): Nullable<string> {
         if (!this.workerFunctionToUrlMap.has(fn)) {
             const url: string = WebWorkerThreadService.createWorkerUrl(fn);
             this.workerFunctionToUrlMap.set(fn, url);
@@ -71,7 +71,7 @@ export class WebWorkerThreadService implements WebWorkerThread {
     }
 
     private removePromise<T>(promise: Promise<T>): Promise<T> {
-        const worker: Worker | undefined = this.promiseToWorkerMap.get(promise);
+        const worker: Nullable<Worker> = this.promiseToWorkerMap.get(promise);
 
         if (worker) {
             worker.terminate();

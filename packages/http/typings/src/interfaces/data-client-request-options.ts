@@ -1,4 +1,4 @@
-import { Any, PlainObject } from '@angular-ru/common/typings';
+import { Any, Nullable, PlainObject } from '@angular-ru/common/typings';
 
 export interface DataHeadersParams {
     [key: string]: string | string[];
@@ -17,14 +17,14 @@ export interface DataClientRequestOptions<T extends PlainObject = Any> {
      * @description
      * default host url mapping
      */
-    hostUrl: string | null;
+    hostUrl: Nullable<string>;
 
     /**
      * @description
      * default base url mapping relates to host
      * example: `${host}/${baseUrl}`
      */
-    baseUrl: string | null;
+    baseUrl: Nullable<string>;
 
     /**
      * @description
@@ -36,7 +36,7 @@ export interface DataClientRequestOptions<T extends PlainObject = Any> {
      * @description
      * query params for request
      */
-    queryParams: PlainObject;
+    queryParams: Nullable<PlainObject>;
 
     /**
      * @description

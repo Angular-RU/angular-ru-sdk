@@ -17,7 +17,7 @@ export class MarkByFilterPipe implements PipeTransform {
 
     private search(value: Nullable<string>, filter?: Nullable<string>, color?: string): SafeHtml {
         const existFilter: boolean = isNotNil(value) && isNotNil(filter);
-        let newString: string | null | undefined = value;
+        let newString: Nullable<string> = value;
 
         if (existFilter) {
             newString = this.highLightingString(toStringVal(value), toStringVal(filter), color);

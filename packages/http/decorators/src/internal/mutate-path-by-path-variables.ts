@@ -1,5 +1,5 @@
 import { MethodArgsRegistry } from '@angular-ru/common/runtime';
-import { Any, Fn } from '@angular-ru/common/typings';
+import { Any, Fn, Nullable } from '@angular-ru/common/typings';
 import { isNotNil } from '@angular-ru/common/utils';
 import { ensurePathByPathVariables } from '@angular-ru/http/utils';
 
@@ -14,7 +14,7 @@ export function mutatePathByPathVariables(path: string, originalMethod: Fn, args
         const variableMap: Map<string, Any> = new Map();
 
         args.forEach((value: Any, index: number): void => {
-            const key: string | null = registry.getNameByIndex(index);
+            const key: Nullable<string> = registry.getNameByIndex(index);
 
             if (isNotNil(key)) {
                 variableMap.set(key, value);

@@ -1,1 +1,3 @@
-export type TooltipContextValue<T = unknown> = T | null | undefined;
+import { Nullable } from '@angular-ru/common/typings';
+
+export type TooltipContextValue<T = unknown> = Nullable<T>;

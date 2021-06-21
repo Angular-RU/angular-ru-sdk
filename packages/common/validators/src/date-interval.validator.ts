@@ -1,5 +1,5 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { DateIntervalDescriptor, PlainObject, Timestamp } from '@angular-ru/common/typings';
+import { DateIntervalDescriptor, Nullable, PlainObject, Timestamp } from '@angular-ru/common/typings';
 import { checkSomeValueIsEmpty, isNotNil } from '@angular-ru/common/utils';
 
 import { assertFormGroup } from './utils/assert-form-group';
@@ -53,7 +53,7 @@ function dateIntervalValidator(
     return (formGroup: AbstractControl): ValidationErrors | null => {
         assertFormGroup(formGroup, DATE_INTERVAL_VALIDATOR);
         const formGroupValue: PlainObject = formGroup.getRawValue();
-        const interval: number | null = getDateInterval(formGroupValue[dateFromKey], formGroupValue[dateToKey]);
+        const interval: Nullable<number> = getDateInterval(formGroupValue[dateFromKey], formGroupValue[dateToKey]);
         const limitExceeded: boolean =
             isNotNil(interval) &&
             (type === DateIntervalValidatorType.LIMIT_MAX_INTERVAL

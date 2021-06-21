@@ -1,9 +1,10 @@
 import { ChangeDetectorRef, ViewRef } from '@angular/core';
+import { Nullable } from '@angular-ru/common/typings';
 
 import { isNil } from './is-nil';
 import { isNotNil } from './is-not-nil';
 
-type DetectorOrDetectors = ChangeDetectorRef | null | (ChangeDetectorRef | null)[];
+type DetectorOrDetectors = Nullable<ChangeDetectorRef> | Nullable<ChangeDetectorRef>[];
 
 export function detectChanges(detectorOrDetectors?: DetectorOrDetectors): void {
     if (isNil(detectorOrDetectors)) {
@@ -11,14 +12,14 @@ export function detectChanges(detectorOrDetectors?: DetectorOrDetectors): void {
     }
 
     if (Array.isArray(detectorOrDetectors)) {
-        detectorOrDetectors.forEach((detector: ChangeDetectorRef | null): void => internalDetectChanges(detector));
+        detectorOrDetectors.forEach((detector: Nullable<ChangeDetectorRef>): void => internalDetectChanges(detector));
     } else if (isNotNil(detectorOrDetectors)) {
         internalDetectChanges(detectorOrDetectors);
     }
 }
 
-function internalDetectChanges(cd?: ChangeDetectorRef | null): void {
-    if (cd && !(cd as ViewRef).destroyed) {
+function internalDetectChanges(cd?: Nullable<ChangeDetectorRef>): void {
+    if (isNotNil(cd) && !(cd as ViewRef).destroyed) {
         cd.detectChanges();
     }
 }

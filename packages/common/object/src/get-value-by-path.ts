@@ -1,12 +1,11 @@
-import { Any } from '@angular-ru/common/typings';
+import { Any, Nullable } from '@angular-ru/common/typings';
 import { isNotNil } from '@angular-ru/common/utils';
-
 // eslint-disable-next-line complexity
 export function getValueByPath<T = unknown, K = T>(
     obj: T,
-    path: string | null | undefined,
-    fallback: K | null | undefined = undefined
-): K | null | undefined {
+    path: Nullable<string>,
+    fallback: Nullable<K> = undefined
+): Nullable<K> {
     if ((path?.length ?? 0) < 1) {
         return obj as Any as K;
     }

@@ -1,4 +1,6 @@
 import { Inject, Injectable, InjectFlags, Injector } from '@angular/core';
+import { Nullable } from '@angular-ru/common/typings';
+import { isNil } from '@angular-ru/common/utils';
 
 import { DateSuggestionStrategy } from './domain/interfaces/date-suggestion-strategy';
 import { SuggestionStrategyDescriptor } from './domain/interfaces/suggestion-strategy-descriptor';
@@ -19,7 +21,7 @@ export class DateSuggestionComposer<StrategyKeys extends StrategyKey = StrategyK
 
     public getStrategy(type: StrategyKeys): DateSuggestionStrategy {
         const descriptor: SuggestionStrategyDescriptor = this.suggestionStrategyMap[type];
-        const strategy: DateSuggestionStrategy | null = Injector.create({
+        const strategy: Nullable<DateSuggestionStrategy> = Injector.create({
             providers: [
                 { provide: descriptor.strategy, useClass: descriptor.strategy },
                 ...(descriptor.providers ?? [])
@@ -27,7 +29,7 @@ export class DateSuggestionComposer<StrategyKeys extends StrategyKey = StrategyK
             parent: this.injector
         }).get(descriptor.strategy, null, InjectFlags.Optional);
 
-        if (!strategy) {
+        if (isNil(strategy)) {
             throw new Error('This type of date suggestion is not supported');
         }
 
