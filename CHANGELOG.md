@@ -1,3 +1,44 @@
+#### 15.264.0 (2021-06-20)
+
+##### New Features
+
+-   **@angular-ru/common:** item functions type ([#684](https://github.com/Angular-RU/angular-ru-sdk/pull/684))
+    ([000b2fdb](https://github.com/Angular-RU/angular-ru-sdk/commit/000b2fdbf856202f55f19b33f40ff5466f92b407))
+
+#### 15.263.4 (2021-06-19)
+
+##### Build System / Dependencies
+
+-   update dependency ngx-mask to v12 ([#688](https://github.com/Angular-RU/angular-ru-sdk/pull/688))
+    ([1b9ef7c9](https://github.com/Angular-RU/angular-ru-sdk/commit/1b9ef7c963e3c3f8e1246eb7d83c8d58069432d2))
+-   update dependency eslint to v7.29.0 ([#687](https://github.com/Angular-RU/angular-ru-sdk/pull/687))
+    ([a1b6ea01](https://github.com/Angular-RU/angular-ru-sdk/commit/a1b6ea017378761c86b9c705469683773d842208))
+
+#### 15.263.3 (2021-06-19)
+
+##### Build System / Dependencies
+
+-   update dependency @types/node to v15.12.4 ([#686](https://github.com/Angular-RU/angular-ru-sdk/pull/686))
+    ([0d890b54](https://github.com/Angular-RU/angular-ru-sdk/commit/0d890b54f8f49d846b9d2d2d610b8319171964c8))
+
+#### 15.263.2 (2021-06-19)
+
+##### Build System / Dependencies
+
+-   update dependency ngx-toastr to v14 ([#689](https://github.com/Angular-RU/angular-ru-sdk/pull/689))
+    ([500a9cdc](https://github.com/Angular-RU/angular-ru-sdk/commit/500a9cdc247bccf2aaaa9011839dde388dc77ea8))
+-   update dependency ts-node to v10 ([#690](https://github.com/Angular-RU/angular-ru-sdk/pull/690))
+    ([2e3ee6d8](https://github.com/Angular-RU/angular-ru-sdk/commit/2e3ee6d84c001d94292cf4bdb168f2ae7164d64d))
+
+#### 15.263.1 (2021-06-18)
+
+##### Build System / Dependencies
+
+-   update dependency prettier to v2.3.1 ([#678](https://github.com/Angular-RU/angular-ru-sdk/pull/678))
+    ([7d402c50](https://github.com/Angular-RU/angular-ru-sdk/commit/7d402c50b4ee6c3bc8b654689dfd2f4c7e689862))
+-   update eslint ([#679](https://github.com/Angular-RU/angular-ru-sdk/pull/679))
+    ([e8c4966c](https://github.com/Angular-RU/angular-ru-sdk/commit/e8c4966c210b704df306a485596ab69f15aa8b1a))
+
 #### 15.263.0 (2021-06-18)
 
 ##### Build System / Dependencies
