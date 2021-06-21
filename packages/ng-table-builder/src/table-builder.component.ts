@@ -85,11 +85,11 @@ export class TableBuilderComponent<T>
     protected readonly viewChanges: NgxTableViewChangesService;
     private forcedRefresh: boolean = false;
     private readonly destroy$: Subject<boolean> = new Subject<boolean>();
-    private timeoutCheckedTaskId: number | null = null;
-    private timeoutScrolledId: number | null = null;
-    private timeoutViewCheckedId: number | null = null;
-    private frameCalculateViewportId: number | null = null;
-    private selectionUpdateTaskId: number | null = null;
+    private timeoutCheckedTaskId: Nullable<number> = null;
+    private timeoutScrolledId: Nullable<number> = null;
+    private timeoutViewCheckedId: Nullable<number> = null;
+    private frameCalculateViewportId: Nullable<number> = null;
+    private selectionUpdateTaskId: Nullable<number> = null;
 
     constructor(public readonly cd: ChangeDetectorRef, injector: Injector) {
         super();
@@ -288,7 +288,7 @@ export class TableBuilderComponent<T>
         }
     }
 
-    public toggleColumnVisibility(key?: string | null): void {
+    public toggleColumnVisibility(key?: Nullable<string>): void {
         if (isNotNil(key)) {
             this.recheckViewportChecked();
             this.templateParser.toggleColumnVisibility(key);
@@ -411,7 +411,7 @@ export class TableBuilderComponent<T>
 
     private checkCorrectInitialSchema(changes: SimpleChanges = {}): void {
         if (TableSimpleChanges.SCHEMA_COLUMNS in changes) {
-            const schemaChange: SimpleChange | undefined = changes[TableSimpleChanges.SCHEMA_COLUMNS];
+            const schemaChange: Nullable<SimpleChange> = changes[TableSimpleChanges.SCHEMA_COLUMNS];
             if (isNotNil(schemaChange?.currentValue)) {
                 if (isNil(this.name)) {
                     console.error(`Table name is required! Example: <ngx-table-builder name="my-table-name" />`);
@@ -613,7 +613,7 @@ export class TableBuilderComponent<T>
     private syncDrawColumns(columnList: string[]): void {
         for (let index: number = 0; index < columnList.length; index++) {
             const key: string = columnList[index] as string;
-            const schema: ColumnsSchema | undefined = this.getCompiledColumnSchema(key, index);
+            const schema: Nullable<ColumnsSchema> = this.getCompiledColumnSchema(key, index);
             if (schema) {
                 this.processedColumnList(schema, columnList[index]);
             }
@@ -629,7 +629,7 @@ export class TableBuilderComponent<T>
      * @param key - column schema from rendered templates map
      * @param index - column position
      */
-    private getCompiledColumnSchema(key: string, index: number): ColumnsSchema | undefined {
+    private getCompiledColumnSchema(key: string, index: number): Nullable<ColumnsSchema> {
         const customColumn: Partial<ColumnsSchema> = this.getCustomColumnSchemaByIndex(index);
 
         if (!this.templateParser.compiledTemplates[key]) {
@@ -637,7 +637,7 @@ export class TableBuilderComponent<T>
             this.templateParser.compileColumnMetadata(column);
         }
 
-        const defaultColumn: ColumnsSchema | undefined = this.templateParser.compiledTemplates[key];
+        const defaultColumn: Nullable<ColumnsSchema> = this.templateParser.compiledTemplates[key];
 
         if (customColumn.key === defaultColumn?.key) {
             this.templateParser.compiledTemplates[key] = { ...defaultColumn, ...customColumn } as ColumnsSchema;
@@ -652,11 +652,11 @@ export class TableBuilderComponent<T>
      * @param schema - column schema
      * @param key - column name
      */
-    private processedColumnList(schema: ColumnsSchema, key: string | undefined): void {
+    private processedColumnList(schema: ColumnsSchema, key: Nullable<string>): void {
         const hasSchema: boolean = checkValueIsFilled((this.templateParser.schema ?? schema) as Any);
 
         if (hasSchema) {
-            const compiledSchema: ColumnsSchema | undefined = this.templateParser.compiledTemplates[key as string];
+            const compiledSchema: Nullable<ColumnsSchema> = this.templateParser.compiledTemplates[key as string];
             if (compiledSchema) {
                 this.templateParser.schema?.columns.push(compiledSchema);
             }

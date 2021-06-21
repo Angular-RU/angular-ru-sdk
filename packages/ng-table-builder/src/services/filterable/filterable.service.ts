@@ -1,7 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import { checkIsShallowEmpty } from '@angular-ru/common/object';
 import { isString } from '@angular-ru/common/string';
-import { Any } from '@angular-ru/common/typings';
+import { Any, Nullable } from '@angular-ru/common/typings';
 import { isNotNil } from '@angular-ru/common/utils';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { ReplaySubject, Subject } from 'rxjs';
@@ -24,8 +24,8 @@ export class FilterableService<T> implements Filterable {
     public readonly events: Subject<FilterEvent> = new ReplaySubject();
     public readonly resetEvents: Subject<void> = new Subject<void>();
     public state: FilterStateEvent = new FilterStateEvent();
-    public filterValue: string | null = null;
-    public filterType: string | TableFilterType | null = null;
+    public filterValue: Nullable<string> = null;
+    public filterType: Nullable<string | TableFilterType> = null;
     public filtering: boolean = false;
     private previousFiltering: boolean = false;
     private readonly thread: WebWorkerThreadService;
@@ -34,7 +34,7 @@ export class FilterableService<T> implements Filterable {
         this.thread = injector.get<WebWorkerThreadService>(WebWorkerThreadService);
     }
 
-    public get globalFilterValue(): string | null {
+    public get globalFilterValue(): Nullable<string> {
         return (isString(this.filterValue) as boolean) ? String(this.filterValue).trim() : null;
     }
 
@@ -55,13 +55,13 @@ export class FilterableService<T> implements Filterable {
         });
     }
 
-    public updateFilterTypeBy(type: TableFilterType, key?: string | null): void {
+    public updateFilterTypeBy(type: TableFilterType, key?: Nullable<string>): void {
         if (isNotNil(key)) {
             this.filterTypeDefinition = { ...this.filterTypeDefinition, [key]: type };
         }
     }
 
-    public updateFilterValueBy(value: Any, key?: string | null): void {
+    public updateFilterValueBy(value: Any, key?: Nullable<string>): void {
         if (isNotNil(key)) {
             this.definition = { ...this.definition, [key]: value };
         }
@@ -99,8 +99,8 @@ export class FilterableService<T> implements Filterable {
 
     // eslint-disable-next-line max-lines-per-function
     public filter(source: T[]): Promise<FilterWorkerEvent<T>> {
-        const type: string | TableFilterType | null = this.filterType;
-        const value: string | null = (isString(this.globalFilterValue) as boolean)
+        const type: Nullable<string | TableFilterType> = this.filterType;
+        const value: Nullable<string> = (isString(this.globalFilterValue) as boolean)
             ? String(this.globalFilterValue).trim()
             : null;
 

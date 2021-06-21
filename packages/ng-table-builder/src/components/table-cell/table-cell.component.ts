@@ -76,7 +76,7 @@ export class TableCellComponent<T> implements OnDestroy {
         window.clearInterval(this.timeoutShowedFrameId!);
     }
 
-    public $castKey(key: string | null | undefined): keyof T {
+    public $castKey(key: Nullable<string>): keyof T {
         return key as keyof T;
     }
 

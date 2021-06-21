@@ -1,4 +1,5 @@
 import { AfterViewInit, Directive, ElementRef, EventEmitter, Input, NgZone, OnDestroy, Output } from '@angular/core';
+import { Nullable } from '@angular-ru/common/typings';
 
 // TODO: move this directive to common
 @Directive({ selector: '[observerView]' })
@@ -6,9 +7,9 @@ export class ObserverViewDirective implements AfterViewInit, OnDestroy {
     @Input() public observerRoot?: HTMLElement;
     @Input() public observerRootMargin?: string;
     @Output() public readonly observeVisible: EventEmitter<boolean> = new EventEmitter(true);
-    private observer: IntersectionObserver | null = null;
+    private observer: Nullable<IntersectionObserver> = null;
     private previousRation: number = 0.0;
-    private frameId: number | null = null;
+    private frameId: Nullable<number> = null;
 
     constructor(private element: ElementRef, private readonly ngZone: NgZone) {}
 

@@ -1,5 +1,5 @@
 import { Injectable, QueryList } from '@angular/core';
-import { Any, PlainObjectOf } from '@angular-ru/common/typings';
+import { Any, Nullable, PlainObjectOf } from '@angular-ru/common/typings';
 import { checkValueIsFilled, isNil, isTrue } from '@angular-ru/common/utils';
 
 import { NgxColumnComponent } from '../../components/ngx-column/ngx-column.component';
@@ -14,11 +14,11 @@ import { SchemaBuilder } from './schema-builder.class';
 
 @Injectable()
 export class TemplateParserService<T> {
-    public schema: SchemaBuilder | null = null;
-    public templateKeys: Set<string> | null = null;
-    public fullTemplateKeys: Set<string> | null = null;
-    public overrideTemplateKeys: Set<string> | null = null;
-    public columnOptions: ColumnOptionsDirective | null = null;
+    public schema: Nullable<SchemaBuilder> = null;
+    public templateKeys: Nullable<Set<string>> = null;
+    public fullTemplateKeys: Nullable<Set<string>> = null;
+    public overrideTemplateKeys: Nullable<Set<string>> = null;
+    public columnOptions: Nullable<ColumnOptionsDirective> = null;
     public compiledTemplates: PlainObjectOf<ColumnsSchema> = {};
 
     /**

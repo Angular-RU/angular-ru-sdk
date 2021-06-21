@@ -70,7 +70,7 @@ export class TableTbodyComponent<T> {
         return !this.selection.selectionStart.status;
     }
 
-    public openContextMenu(event: MouseEvent, key: string | null | undefined, row: T): void {
+    public openContextMenu(event: MouseEvent, key: Nullable<string>, row: T): void {
         if (isNotNil(this.contextMenuTemplate)) {
             this.ngZone.run((): void => {
                 const selectOnlyUnSelectedRow: boolean = this.enableSelection && !this.checkSelectedItem(row);
