@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { fadeInLinearAnimation } from '@angular-ru/common/animations';
-import { PlainObjectOf, SortOrderType } from '@angular-ru/common/typings';
+import { Nullable, PlainObjectOf, SortOrderType } from '@angular-ru/common/typings';
 import { isNotNil, isTrue } from '@angular-ru/common/utils';
 
 import { ColumnsSchema } from '../../interfaces/table-builder.external';
@@ -16,16 +16,16 @@ import { OVERLOAD_WIDTH_TABLE_HEAD_CELL } from '../../table-builder.properties';
     animations: [fadeInLinearAnimation]
 })
 export class TableTheadComponent<T> {
-    @Input('header-top') public headerTop: number | null = null;
+    @Input('header-top') public headerTop: Nullable<number> = null;
     @Input('column-width') public columnWidth: number = 0;
-    @Input('head-height') public headHeight: string | number | null = null;
+    @Input('head-height') public headHeight: Nullable<string | number> = null;
     @Input('sortable-definition') public sortableDefinition: PlainObjectOf<SortOrderType> = {};
     @Input('sortable-position') public positionMap: PlainObjectOf<number> = {};
     @Input('sortable-count') public sortableCount: number = 0;
     @Input('filterable-definition') public filterableDefinition: PlainObjectOf<string> | ReadonlyMap<unknown, unknown> =
         {};
-    @Input('client-row-height') public clientRowHeight: number | null = null;
-    @Input('column-schema') public columnSchema: ColumnsSchema | null = null;
+    @Input('client-row-height') public clientRowHeight: Nullable<number> = null;
+    @Input('column-schema') public columnSchema: Nullable<ColumnsSchema> = null;
     @Output() public readonly resizing: EventEmitter<ResizeEvent> = new EventEmitter();
     @Output() public readonly sortByKey: EventEmitter<string> = new EventEmitter();
     public orderType: typeof SortOrderType = SortOrderType;
@@ -34,7 +34,7 @@ export class TableTheadComponent<T> {
     constructor(protected readonly filterable: FilterableService<T>) {}
 
     public sortIfEnabled(): void {
-        const key: string | null | undefined = this.columnSchema?.key;
+        const key: Nullable<string> = this.columnSchema?.key;
         if (isNotNil(key)) {
             const sortIsEnabled: boolean = isTrue(this.columnSchema?.sortable);
             const sortIsActive: boolean = isNotNil(this.sortableDefinition[key]);
@@ -44,7 +44,7 @@ export class TableTheadComponent<T> {
         }
     }
 
-    public openFilter(key: string | null | undefined, event: MouseEvent): void {
+    public openFilter(key: Nullable<string>, event: MouseEvent): void {
         if (isNotNil(key)) {
             this.filterable.openFilter(key, event);
         }

@@ -1,6 +1,6 @@
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Any, PlainObject } from '@angular-ru/common/typings';
+import { Any, Nullable, PlainObject } from '@angular-ru/common/typings';
 import { NgxTableViewChangesService, TableUpdateSchema } from '@angular-ru/ng-table-builder';
 import { Subscription } from 'rxjs';
 
@@ -15,9 +15,9 @@ declare const hljs: Any;
 })
 export class SampleSixteenComponent implements OnInit, AfterViewInit, OnDestroy {
     public data: PlainObject[] = [];
-    public schema: TableUpdateSchema | null = null;
+    public schema: Nullable<TableUpdateSchema> = null;
     public readonly testName: string = 'test';
-    private sub: Subscription | null = null;
+    private sub: Nullable<Subscription> = null;
 
     constructor(
         public readonly dialog: MatDialog,

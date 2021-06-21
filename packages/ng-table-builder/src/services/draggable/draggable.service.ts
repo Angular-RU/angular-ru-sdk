@@ -1,5 +1,6 @@
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { Injectable } from '@angular/core';
+import { Nullable } from '@angular-ru/common/typings';
 import { isTrue } from '@angular-ru/common/utils';
 
 import { ColumnsSchema } from '../../interfaces/table-builder.external';
@@ -13,7 +14,7 @@ export class DraggableService<T> {
         return this.parser.schema?.columns ?? [];
     }
 
-    public drop(previousKey: string | undefined, currentKey: string | undefined): void {
+    public drop(previousKey: Nullable<string>, currentKey: Nullable<string>): void {
         const previousIndex: number = this.columns.findIndex(
             (column: ColumnsSchema): boolean => column.key === previousKey
         );
@@ -24,8 +25,8 @@ export class DraggableService<T> {
 
         if (this.canDropped(previousIndex, currentIndex)) {
             if (currentIndex === this.columns.length - 1) {
-                const currentColumn: ColumnsSchema | undefined = this.columns[currentIndex];
-                const previousColumn: ColumnsSchema | undefined = this.columns[previousIndex];
+                const currentColumn: Nullable<ColumnsSchema> = this.columns[currentIndex];
+                const previousColumn: Nullable<ColumnsSchema> = this.columns[previousIndex];
 
                 if (currentColumn && previousColumn) {
                     currentColumn.width = previousColumn.width;
@@ -38,8 +39,8 @@ export class DraggableService<T> {
     }
 
     public canDropped(previousIndex: number, currentIndex: number): boolean {
-        const previous: ColumnsSchema | undefined = this.columns[previousIndex];
-        const current: ColumnsSchema | undefined = this.columns[currentIndex];
+        const previous: Nullable<ColumnsSchema> = this.columns[previousIndex];
+        const current: Nullable<ColumnsSchema> = this.columns[currentIndex];
 
         const previousIsDraggable: boolean = isTrue(previous?.draggable);
         const currentIsDraggable: boolean = isTrue(current?.draggable);
