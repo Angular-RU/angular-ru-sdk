@@ -1,4 +1,4 @@
-import { Any, PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
+import { Any, Nullable, PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
 
 import { FilterGlobalOpts } from './filter-global-opts';
 import { FilterableMessage } from './filterable-message';
@@ -33,9 +33,9 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
 
     function filterColumnsSeparately(item: T): boolean {
         for (const fieldKey of Object.keys(columns.values)) {
-            const fieldValue: PlainObject | PlainValue | undefined = getValueByPath(item, fieldKey);
-            const fieldOperand: string | undefined = columns.values[fieldKey];
-            const fieldFilterType: TableFilterType | undefined = columns.types[fieldKey];
+            const fieldValue: Nullable<PlainObject | PlainValue> = getValueByPath(item, fieldKey);
+            const fieldOperand: Nullable<string> = columns.values[fieldKey];
+            const fieldFilterType: Nullable<TableFilterType> = columns.types[fieldKey];
 
             if (isPlainValue(fieldValue) && isFilled(fieldOperand) && isNotNil(fieldFilterType)) {
                 const satisfies: boolean = isSatisfying([fieldValue], fieldOperand, fieldFilterType);
@@ -132,11 +132,11 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
         return depthGraph;
     }
 
-    function getValueByPath(object: PlainObject, path: string): PlainObject | PlainValue | undefined {
+    function getValueByPath(object: PlainObject, path: string): Nullable<PlainObject | PlainValue> {
         return path
             .split('.')
             .reduce(
-                (tempValue: PlainObject | PlainValue | undefined, key: string): PlainObject | PlainValue | undefined =>
+                (tempValue: Nullable<PlainObject | PlainValue>, key: string): Nullable<PlainObject | PlainValue> =>
                     (tempValue as Any)?.[key],
                 object
             );
@@ -156,15 +156,15 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
         }
     }
 
-    function isPlainValue(value?: PlainObject | PlainValue | null): value is PlainValue {
+    function isPlainValue(value?: Nullable<PlainObject | PlainValue>): value is PlainValue {
         return ['number', 'string', 'boolean'].includes(typeof value);
     }
 
-    function isFilled(value?: string | null): value is string {
+    function isFilled(value?: Nullable<string>): value is string {
         return isNotNil(value) && value.toString().length > 0;
     }
 
-    function isNotNil<V>(value: V | null | undefined): value is V {
+    function isNotNil<V>(value: Nullable<V>): value is V {
         return value !== null && value !== undefined;
     }
 

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { getValueByPath } from '@angular-ru/common/object';
+import { Nullable } from '@angular-ru/common/typings';
 import { Subject } from 'rxjs';
 
 import { ContextMenuState } from './context-menu-state';
@@ -9,13 +10,13 @@ export class ContextMenuService<T, K = unknown> {
     public state: ContextMenuState<T, K> = new ContextMenuState<T, K>();
     public readonly events: Subject<void> = new Subject();
 
-    public openContextMenu(event: MouseEvent, key: string | null = null, row: T | null = null): boolean {
+    public openContextMenu(event: MouseEvent, key: Nullable<string> = null, row: Nullable<T> = null): boolean {
         this.state = new ContextMenuState<T, K>({
             key,
             item: row,
             opened: true,
-            value: getValueByPath(row, key) || null,
-            textContent: ((event.target || {}) as Node).textContent,
+            value: getValueByPath(row, key) ?? null,
+            textContent: ((event.target ?? {}) as Node).textContent,
             position: { left: event.clientX, top: event.clientY }
         });
 

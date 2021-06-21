@@ -9,6 +9,7 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { fadeInLinearAnimation } from '@angular-ru/common/animations';
+import { Nullable } from '@angular-ru/common/typings';
 
 import { AbstractModalViewLayerDirective } from '../../directives/abstract-modal-view-layer.directive';
 import { NgxFilterDirective } from '../../directives/ngx-filter.directive';
@@ -28,8 +29,8 @@ const FILTER_MIN_TOP_Y: number = 50;
 })
 export class NgxFilterComponent<T> extends AbstractModalViewLayerDirective<T, FilterStateEvent> implements OnInit {
     @Input() public width: number = FILTER_WIDTH;
-    @Input() public height: number | null = null;
-    @Input('max-height') public maxHeight: number | null = null;
+    @Input() public height: Nullable<number> = null;
+    @Input('max-height') public maxHeight: Nullable<number> = null;
     @ContentChild(NgxFilterDirective, { static: false }) public filter!: NgxFilterDirective;
     public readonly leftX: number = FILTER_MIN_LEFT_X;
     public readonly topY: number = FILTER_MIN_TOP_Y;

@@ -1,5 +1,5 @@
 import { EmbeddedViewRef, EventEmitter, TemplateRef } from '@angular/core';
-import { Any, DeepPartial, PlainObject } from '@angular-ru/common/typings';
+import { Any, DeepPartial, Nullable, PlainObject } from '@angular-ru/common/typings';
 
 import { TableBrowserEvent } from './table-builder.internal';
 
@@ -9,32 +9,32 @@ export enum ImplicitContext {
     CELL = 'CELL'
 }
 
-export type TableClickEventEmitter<T, K> = EventEmitter<TableEvent<T, K>> | null;
+export type TableClickEventEmitter<T, K> = Nullable<EventEmitter<TableEvent<T, K>>>;
 
 export interface TableCellOptions<T = Any> {
-    class: string | string[] | PlainObject | null;
+    class: Nullable<string | string[] | PlainObject>;
     textBold: boolean;
     nowrap: boolean;
     useDeepPath: boolean;
-    style: PlainObject | null;
-    width: number | null;
-    height: number | null;
-    template?: TemplateRef<T> | null;
+    style: Nullable<PlainObject>;
+    width: Nullable<number>;
+    height: Nullable<number>;
+    template?: Nullable<TemplateRef<T>>;
     context: ImplicitContext;
     onClick: EventEmitter<Any>;
     dblClick: EventEmitter<Any>;
 }
 
 export interface TableHeadCellOptions {
-    headTitle: string | null | undefined;
+    headTitle: Nullable<string>;
     emptyHead: boolean;
 }
 
 export interface ColumnsSchema<T = Any> {
-    key: string | null;
+    key: Nullable<string>;
     td: TableCellOptions<T>;
     th: TableCellOptions<T> & TableHeadCellOptions;
-    width?: string | number | null;
+    width?: Nullable<string | number>;
     cssStyle: string[];
     cssClass: string[];
     stickyLeft: boolean;
@@ -49,18 +49,18 @@ export interface ColumnsSchema<T = Any> {
     excluded: boolean;
     isVisible: boolean;
     overflowTooltip: boolean;
-    stub?: string | null;
+    stub?: Nullable<string>;
 }
 
 export interface TableUpdateSchema {
     columns: DeepPartial<ColumnsSchema>[];
-    name: string | null;
+    name: Nullable<string>;
     version: number;
 }
 
 export interface TableEvent<T, K> {
     row: T;
-    value: K | null | undefined;
+    value: Nullable<K>;
     event: TableBrowserEvent;
     preventDefault: () => void;
 }
@@ -103,7 +103,7 @@ export interface CalculateRange {
     force: boolean;
 }
 
-export type ProduceDisableFn<T> = ((item: T | PlainObject | null | undefined) => boolean) | null | undefined;
+export type ProduceDisableFn<T> = Nullable<(item: T | Nullable<PlainObject>) => boolean>;
 
 export interface OrderedField {
     field: string;

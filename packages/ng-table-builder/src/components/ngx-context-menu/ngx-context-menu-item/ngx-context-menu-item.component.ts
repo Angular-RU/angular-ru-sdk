@@ -14,7 +14,7 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { coerceBoolean } from '@angular-ru/common/coercion';
-import { Any } from '@angular-ru/common/typings';
+import { Any, Nullable } from '@angular-ru/common/typings';
 import { detectChanges, getBodyRect } from '@angular-ru/common/utils';
 import { Subscription } from 'rxjs';
 
@@ -33,19 +33,19 @@ const MENU_WIDTH: number = 300;
 })
 export class NgxContextMenuItemComponent<T = Any> implements OnInit, OnDestroy {
     @Input() public visible: string | boolean = true;
-    @Input() public contextTitle: string | boolean | null = null;
-    @Input() public disable: string | boolean | undefined = false;
-    @Input() public divider: string | boolean | undefined = false;
+    @Input() public contextTitle: Nullable<string | boolean> = null;
+    @Input() public disable: Nullable<string | boolean> = false;
+    @Input() public divider: Nullable<string | boolean> = false;
     @Input('disable-sub-menu') public disableSubMenu: boolean = false;
     @Input('sub-menu-width') public subMenuWidth: number = MENU_WIDTH;
     // TODO: should be rename (breaking changes)
     // eslint-disable-next-line @angular-eslint/no-output-on-prefix
     @Output() public readonly onClick: EventEmitter<ContextItemEvent> = new EventEmitter();
-    @ViewChild('item', { static: false }) public itemRef: ElementRef<HTMLDivElement> | null = null;
-    public offsetX: number | null = null;
-    public offsetY: number | null = null;
-    private subscription: Subscription | null = null;
-    private taskId: number | null = null;
+    @ViewChild('item', { static: false }) public itemRef: Nullable<ElementRef<HTMLDivElement>> = null;
+    public offsetX: Nullable<number> = null;
+    public offsetY: Nullable<number> = null;
+    private subscription: Nullable<Subscription> = null;
+    private taskId: Nullable<number> = null;
     private readonly contextMenu: ContextMenuService<T>;
     private readonly ngZone: NgZone;
 

@@ -14,7 +14,7 @@ export class SelectionService<T> implements OnDestroy {
     public range: SelectionRange = new SelectionRange();
     public selectionStart: SelectionStatus = { status: false };
     public primaryKey: string = PrimaryKey.ID;
-    public selectionTaskIdle: number | null = null;
+    public selectionTaskIdle: Nullable<number> = null;
     public onChanges: Subject<void> = new Subject<void>();
     public selectionModeIsEnabled: boolean = false;
     public rows: Nullable<T[]> = null;
@@ -48,8 +48,8 @@ export class SelectionService<T> implements OnDestroy {
         this.onChanges.next();
     }
 
-    public toggleAll(rows: T[] | null): void {
-        let selectedSize: number | null = null;
+    public toggleAll(rows: Nullable<T[]>): void {
+        let selectedSize: Nullable<number> = null;
         window.clearInterval(this.selectionTaskIdle!);
 
         if (this.selectionModel.isAll) {
@@ -134,7 +134,7 @@ export class SelectionService<T> implements OnDestroy {
         }
     }
 
-    private checkIsAllSelected(allSize: number | null = null): void {
+    private checkIsAllSelected(allSize: Nullable<number> = null): void {
         if (!this.selectionModeIsEnabled) {
             throw new Error('Please enable selection mode: <ngx-table-builder enable-selection />');
         }

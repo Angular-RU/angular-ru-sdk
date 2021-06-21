@@ -10,7 +10,7 @@ import {
     Output,
     SimpleChanges
 } from '@angular/core';
-import { Any } from '@angular-ru/common/typings';
+import { Any, Nullable } from '@angular-ru/common/typings';
 import { isNotNil, isTrue } from '@angular-ru/common/utils';
 import { fromEvent, Subject } from 'rxjs';
 import { delay, takeUntil } from 'rxjs/operators';
@@ -32,7 +32,7 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
     private readonly minHeight: number = 0;
     private useOnlyAutoViewPort: boolean = false;
     private isDirtyCheck: boolean = false;
-    private taskId: number | null = null;
+    private taskId: Nullable<number> = null;
 
     constructor(private readonly element: ElementRef, public readonly ngZone: NgZone) {}
 
@@ -46,7 +46,7 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
 
     // eslint-disable-next-line complexity
     private get style(): string {
-        let height: string | null = null;
+        let height: Nullable<string> = null;
 
         if (this.height) {
             height = `${this.height}px`;

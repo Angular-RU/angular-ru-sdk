@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { PlainObject } from '@angular-ru/common/typings';
+import { Nullable, PlainObject } from '@angular-ru/common/typings';
 
 import { MocksGenerator } from '../../../../tests/helpers/utils/mocks-generator';
 import { CodeDialogComponent } from '../../shared/dialog/code-dialog.component';
@@ -12,13 +12,13 @@ import { CodeDialogComponent } from '../../shared/dialog/code-dialog.component';
 })
 export class SampleFirstComponent implements OnInit, OnDestroy {
     public width: string = '100%';
-    public height: number | null = null;
-    public rowHeight: string | null = null;
+    public height: Nullable<number> = null;
+    public rowHeight: Nullable<string> = null;
     public dataSize: string = '100x20';
     public loading: boolean = false;
     public simple: PlainObject[] = [];
     public regenerate: boolean = false;
-    private idInterval: number | null = null;
+    private idInterval: Nullable<number> = null;
 
     constructor(
         private readonly cd: ChangeDetectorRef,

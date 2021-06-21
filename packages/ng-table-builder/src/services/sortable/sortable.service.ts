@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable, NgZone } from '@angular/core';
-import { PlainObjectOf, SortOrderType } from '@angular-ru/common/typings';
+import { Nullable, PlainObjectOf, SortOrderType } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 
 import { TABLE_GLOBAL_OPTIONS } from '../../config/table-global-options';
@@ -13,7 +13,7 @@ export class SortableService<T> {
     public positionMap: PlainObjectOf<number> = {};
     public sortableCount: number = 0;
     private skipInternalSort: boolean = false;
-    private sortChanges: EventEmitter<OrderedField[]> | null = null;
+    private sortChanges: Nullable<EventEmitter<OrderedField[]>> = null;
 
     constructor(private readonly thread: WebWorkerThreadService, private readonly zone: NgZone) {}
 
@@ -78,7 +78,7 @@ export class SortableService<T> {
 
     private updateDefinitionByKeyImmutably(key: string): PlainObjectOf<SortOrderType> {
         const definition: PlainObjectOf<SortOrderType> = { ...this.definition };
-        const existKey: SortOrderType | undefined = definition[key];
+        const existKey: Nullable<SortOrderType> = definition[key];
 
         if (existKey) {
             if (existKey === SortOrderType.ASC) {
