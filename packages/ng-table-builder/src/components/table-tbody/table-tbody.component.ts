@@ -10,7 +10,8 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { getValueByPath } from '@angular-ru/common/object';
-import { Any, PlainObjectOf } from '@angular-ru/common/typings';
+import { Any, Nullable, PlainObjectOf } from '@angular-ru/common/typings';
+import { isNotNil } from '@angular-ru/common/utils';
 
 import {
     ColumnsSchema,
@@ -35,25 +36,25 @@ const SELECTION_DELAY: number = 100;
     encapsulation: ViewEncapsulation.None
 })
 export class TableTbodyComponent<T> {
-    @Input() public source: T[] | null = null;
+    @Input() public source: Nullable<T[]> = null;
     @Input() public striped: boolean = false;
     @Input() public isRendered: boolean = false;
-    @Input('offset-top') public offsetTop?: number | null = null;
-    @Input('primary-key') public primaryKey?: string | null = null;
-    @Input() public recalculated: RecalculatedStatus | null = null;
-    @Input('head-height') public headLineHeight: number | null = null;
-    @Input('viewport-info') public viewportInfo: ViewPortInfo | null = null;
+    @Input('offset-top') public offsetTop?: Nullable<number> = null;
+    @Input('primary-key') public primaryKey?: Nullable<string> = null;
+    @Input() public recalculated: Nullable<RecalculatedStatus> = null;
+    @Input('head-height') public headLineHeight: Nullable<number> = null;
+    @Input('viewport-info') public viewportInfo: Nullable<ViewPortInfo> = null;
     @Input('virtual-indexes') public virtualIndexes: VirtualIndex[] = [];
     @Input('enable-selection') public enableSelection: boolean = false;
     @Input('enable-filtering') public enableFiltering: boolean = false;
-    @Input('table-viewport') public tableViewport: HTMLElement | null = null;
-    @Input('column-virtual-height') public columnVirtualHeight: number | null = null;
+    @Input('table-viewport') public tableViewport: Nullable<HTMLElement> = null;
+    @Input('column-virtual-height') public columnVirtualHeight: Nullable<number> = null;
     @Input('selection-entries') public selectionEntries: PlainObjectOf<boolean> = {};
-    @Input('context-menu') public contextMenuTemplate: NgxContextMenuComponent<T> | null = null;
+    @Input('context-menu') public contextMenuTemplate: Nullable<NgxContextMenuComponent<T>> = null;
     @Input('produce-disable-fn') public produceDisableFn: ProduceDisableFn<T> = null;
-    @Input('client-row-height') public clientRowHeight: number | null = null;
+    @Input('client-row-height') public clientRowHeight: Nullable<number> = null;
     @Input('row-css-classes') public rowCssClasses: PlainObjectOf<string[]> = {};
-    @Input('column-schema') public columnSchema: ColumnsSchema | null = null;
+    @Input('column-schema') public columnSchema: Nullable<ColumnsSchema> = null;
     @Output() public readonly changed: EventEmitter<void> = new EventEmitter(true);
     public selection: SelectionService<T>;
     public contextMenu: ContextMenuService<T>;
@@ -70,7 +71,7 @@ export class TableTbodyComponent<T> {
     }
 
     public openContextMenu(event: MouseEvent, key: string | null | undefined, row: T): void {
-        if (this.contextMenuTemplate) {
+        if (isNotNil(this.contextMenuTemplate)) {
             this.ngZone.run((): void => {
                 const selectOnlyUnSelectedRow: boolean = this.enableSelection && !this.checkSelectedItem(row);
 

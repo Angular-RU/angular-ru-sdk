@@ -103,7 +103,7 @@ export interface CalculateRange {
     force: boolean;
 }
 
-export type ProduceDisableFn<T> = ((item: T | PlainObject | null | undefined) => boolean) | null;
+export type ProduceDisableFn<T> = ((item: T | PlainObject | null | undefined) => boolean) | null | undefined;
 
 export interface OrderedField {
     field: string;
