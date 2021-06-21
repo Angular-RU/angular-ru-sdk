@@ -20,7 +20,7 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { fadeInLinearAnimation } from '@angular-ru/common/animations';
-import { Any, DeepPartial, PlainObjectOf, SortOrderType } from '@angular-ru/common/typings';
+import { Any, DeepPartial, Nullable, PlainObjectOf, SortOrderType } from '@angular-ru/common/typings';
 import { checkValueIsFilled, detectChanges, isFalse, isNil, isNotNil } from '@angular-ru/common/utils';
 import { EMPTY, fromEvent, Observable, Subject } from 'rxjs';
 import { catchError, takeUntil } from 'rxjs/operators';
@@ -146,7 +146,7 @@ export class TableBuilderComponent<T>
 
     @HostListener('contextmenu', ['$event'])
     public openContextMenu($event: MouseEvent): void {
-        if (this.contextMenuTemplate) {
+        if (isNotNil(this.contextMenuTemplate)) {
             this.contextMenu.openContextMenu($event);
         }
     }
@@ -238,7 +238,7 @@ export class TableBuilderComponent<T>
     }
 
     public markTemplateContentCheck(): void {
-        this.contentInit = !!this.source || !(this.columnTemplates && this.columnTemplates.length);
+        this.contentInit = isNotNil(this.source) || !(this.columnTemplates && this.columnTemplates.length);
     }
 
     public markDirtyCheck(): void {
@@ -333,7 +333,7 @@ export class TableBuilderComponent<T>
         this.viewPortInfo.bufferOffset = bufferOffset;
     }
 
-    public setSource(source: T[] | null): void {
+    public setSource(source: Nullable<T[]>): void {
         this.originalSource = this.source = this.selection.rows = source;
     }
 
@@ -383,7 +383,7 @@ export class TableBuilderComponent<T>
     }
 
     protected ignoreCalculate(): boolean {
-        return !this.source || !this.viewportHeight;
+        return isNil(this.source) || !this.viewportHeight;
     }
 
     protected isDownMoved(): boolean {
@@ -555,9 +555,7 @@ export class TableBuilderComponent<T>
     private checkFilterValues(): void {
         if (this.isEnableFiltering) {
             this.filterable.filterType =
-                this.filterable.filterType ??
-                (this.columnOptions && this.columnOptions.filterType) ??
-                TableFilterType.CONTAINS;
+                this.filterable.filterType ?? this.columnOptions?.filterType ?? TableFilterType.CONTAINS;
 
             this.modelColumnKeys.forEach((key: string): void => {
                 (this.filterable.filterTypeDefinition as Any)[key] =
@@ -600,14 +598,14 @@ export class TableBuilderComponent<T>
     }
 
     private listenTemplateChanges(): void {
-        if (this.columnTemplates) {
+        if (isNotNil(this.columnTemplates)) {
             this.columnTemplates.changes.pipe(takeUntil(this.destroy$)).subscribe((): void => {
                 this.markForCheck();
                 this.markTemplateContentCheck();
             });
         }
 
-        if (this.contextMenuTemplate) {
+        if (isNotNil(this.contextMenuTemplate)) {
             this.contextMenu.events.pipe(takeUntil(this.destroy$)).subscribe((): void => detectChanges(this.cd));
         }
     }
@@ -623,7 +621,7 @@ export class TableBuilderComponent<T>
     }
 
     private getCustomColumnSchemaByIndex(index: number): Partial<ColumnsSchema> {
-        return (this.schemaColumns?.columns && this.schemaColumns?.columns?.[index]) ?? ({} as Any);
+        return this.schemaColumns?.columns?.[index] ?? ({} as Any);
     }
 
     /**
@@ -679,7 +677,7 @@ export class TableBuilderComponent<T>
                 detectChanges(this.cd);
                 this.recalculateHeight();
                 this.afterRendered.emit(this.isRendered);
-                this.onChanges.emit(this.source || null);
+                this.onChanges.emit(this.source ?? null);
             }, TIME_RELOAD);
         });
     }
@@ -711,7 +709,7 @@ export class TableBuilderComponent<T>
 
     // eslint-disable-next-line max-lines-per-function
     private validationSchemaColumnsAndResetIfInvalid(): boolean {
-        let isValid: boolean = !!this.schemaColumns && !!this.schemaColumns.columns?.length;
+        let isValid: boolean = isNotNil(this.schemaColumns) && (this.schemaColumns?.columns?.length ?? 0) > 0;
 
         if (isValid) {
             const nameIsValid: boolean = this.schemaColumns?.name === this.name;

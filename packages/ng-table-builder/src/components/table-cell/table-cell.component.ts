@@ -7,6 +7,7 @@ import {
     OnDestroy,
     ViewEncapsulation
 } from '@angular/core';
+import { Nullable } from '@angular-ru/common/typings';
 import { isNotNil, isTrue } from '@angular-ru/common/utils';
 import { fromEvent, Subscription } from 'rxjs';
 
@@ -23,22 +24,22 @@ const TIME_IDLE: number = 1500;
     encapsulation: ViewEncapsulation.None
 })
 export class TableCellComponent<T> implements OnDestroy {
-    @Input() public item: T | null = null;
-    @Input() public index: number | null = null;
-    @Input() public parent: HTMLDivElement | null = null;
+    @Input() public item: Nullable<T> = null;
+    @Input() public index: Nullable<number> = null;
+    @Input() public parent: Nullable<HTMLDivElement> = null;
     @Input() public isRendered: boolean = false;
     @Input('is-filterable') public isFilterable: boolean = false;
-    @Input('column-schema') public columnSchema: ColumnsSchema | null = null;
+    @Input('column-schema') public columnSchema: Nullable<ColumnsSchema> = null;
     @Input('enable-filtering') public enableFiltering: boolean = false;
-    @Input('viewport-info') public viewportInfo: ViewPortInfo | null = null;
+    @Input('viewport-info') public viewportInfo: Nullable<ViewPortInfo> = null;
     public contextType: typeof ImplicitContext = ImplicitContext;
     private readonly closeButtonSelector: string = 'table-close__button';
     private readonly overflowSelector: string = 'table-grid__cell-overflow-content';
     private readonly timeIdle: number = TIME_IDLE;
-    private nodeSubscription: Subscription | null = null;
-    private closeElemSub: Subscription | null = null;
-    private timeoutShowedFrameId: number | null = null;
-    private timeoutOverflowId: number | null = null;
+    private nodeSubscription: Nullable<Subscription> = null;
+    private closeElemSub: Nullable<Subscription> = null;
+    private timeoutShowedFrameId: Nullable<number> = null;
+    private timeoutOverflowId: Nullable<number> = null;
 
     constructor(public readonly cd: ChangeDetectorRef, private readonly ngZone: NgZone) {}
 
@@ -148,10 +149,8 @@ export class TableCellComponent<T> implements OnDestroy {
                         this.overflowContentElem.parentNode?.removeChild(this.overflowContentElem);
                     }
 
-                    // eslint-disable-next-line no-unused-expressions
-                    this.nodeSubscription && this.nodeSubscription.unsubscribe();
-                    // eslint-disable-next-line no-unused-expressions
-                    this.closeElemSub && this.closeElemSub.unsubscribe();
+                    this.nodeSubscription?.unsubscribe();
+                    this.closeElemSub?.unsubscribe();
                 }, TABLE_GLOBAL_OPTIONS.TIME_IDLE);
             });
         }

@@ -1,5 +1,5 @@
 import { Injectable, NgZone, OnDestroy } from '@angular/core';
-import { Any, Fn, PlainObjectOf, PrimaryKey } from '@angular-ru/common/typings';
+import { Any, Fn, Nullable, PlainObjectOf, PrimaryKey } from '@angular-ru/common/typings';
 import { checkValueIsEmpty, isNil } from '@angular-ru/common/utils';
 import { Subject } from 'rxjs';
 
@@ -17,7 +17,7 @@ export class SelectionService<T> implements OnDestroy {
     public selectionTaskIdle: number | null = null;
     public onChanges: Subject<void> = new Subject<void>();
     public selectionModeIsEnabled: boolean = false;
-    public rows: T[] | null = null;
+    public rows: Nullable<T[]> = null;
     private readonly handler: PlainObjectOf<Fn> = {};
 
     constructor(private readonly ngZone: NgZone) {}
