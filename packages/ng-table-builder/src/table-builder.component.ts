@@ -238,7 +238,7 @@ export class TableBuilderComponent<T>
     }
 
     public markTemplateContentCheck(): void {
-        this.contentInit = isNotNil(this.source) || this.columnTemplates?.length === 0;
+        this.contentInit = isNotNil(this.source) || !(this.columnTemplates && this.columnTemplates.length);
     }
 
     public markDirtyCheck(): void {
