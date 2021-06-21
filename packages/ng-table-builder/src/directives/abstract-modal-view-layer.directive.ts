@@ -8,6 +8,7 @@ import {
     OnDestroy,
     ViewChild
 } from '@angular/core';
+import { Nullable } from '@angular-ru/common/typings';
 import { detectChanges, getBodyRect, isNotNil, isTrue } from '@angular-ru/common/utils';
 import { Subscription } from 'rxjs';
 
@@ -17,22 +18,22 @@ import { FilterableService } from '../services/filterable/filterable.service';
 import { MINIMAL_TIMEOUT, SCROLLBAR_SIZE } from '../table-builder.properties';
 
 export interface PositionState {
-    key: string | null;
-    opened: boolean | null;
+    key: Nullable<string>;
+    opened: Nullable<boolean>;
     position: MousePosition;
 }
 
 @Directive()
 export abstract class AbstractModalViewLayerDirective<T, K extends PositionState> implements OnDestroy {
-    public width: number | null = null;
-    public height: number | null = null;
+    public width: Nullable<number> = null;
+    public height: Nullable<number> = null;
     public isViewed: boolean = false;
     public isRendered: boolean = false;
     public isShowed: boolean = false;
-    public maxHeight: number | null = null;
-    public minHeight: number | null = null;
+    public maxHeight: Nullable<number> = null;
+    public minHeight: Nullable<number> = null;
     @ViewChild('menu', { static: false }) protected menu!: ElementRef<HTMLDivElement>;
-    protected subscription: Subscription | null = null;
+    protected subscription: Nullable<Subscription> = null;
     protected readonly app: ApplicationRef;
     protected readonly filterable: FilterableService<T>;
     protected readonly ngZone: NgZone;
@@ -46,11 +47,11 @@ export abstract class AbstractModalViewLayerDirective<T, K extends PositionState
     }
 
     public get left(): number {
-        return (this.state.position && this.state.position.left) || 0;
+        return this.state.position?.left ?? 0;
     }
 
     public get top(): number {
-        return (this.state.position && this.state.position.top) || 0;
+        return this.state.position?.top ?? 0;
     }
 
     public get overflowX(): number {
@@ -71,7 +72,7 @@ export abstract class AbstractModalViewLayerDirective<T, K extends PositionState
     public abstract get state(): Partial<K>;
 
     public get calculatedHeight(): number {
-        let height: number | null;
+        let height: Nullable<number>;
 
         try {
             if (isNotNil(this.height)) {

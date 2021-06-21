@@ -7,7 +7,7 @@ import {
     OnDestroy,
     OnInit
 } from '@angular/core';
-import { Any, PlainObject } from '@angular-ru/common/typings';
+import { Any, Nullable, PlainObject } from '@angular-ru/common/typings';
 import { detectChanges } from '@angular-ru/common/utils';
 
 declare const hljs: Any;
@@ -76,8 +76,8 @@ function replaceAt(array: Any[], index: number, value: Any): Any[] {
 export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
     public data: PlainObject[] = [];
     public regenerate: boolean = false;
-    private idInterval: number | null = null;
-    private timeout: number | null = null;
+    private idInterval: Nullable<number> = null;
+    private timeout: Nullable<number> = null;
 
     constructor(private readonly cd: ChangeDetectorRef, private readonly ngZone: NgZone) {}
 

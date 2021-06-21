@@ -1,3 +1,5 @@
+import { Nullable } from '@angular-ru/common/typings';
+
 export const enum TableSimpleChanges {
     SOURCE_KEY = 'source',
     SCHEMA_COLUMNS = 'schemaColumns',
@@ -13,7 +15,7 @@ export interface DynamicHeightOptions {
     columnHeight: number;
     sourceLength: number;
     statusRendered: boolean;
-    height: string | number | null;
+    height: Nullable<string | number>;
 }
 
 export interface RecalculatedStatus {
@@ -45,8 +47,8 @@ export interface TemplateKeys {
 }
 
 export interface MousePosition {
-    left: number | null;
-    top: number | null;
+    left: Nullable<number>;
+    top: Nullable<number>;
 }
 
 export interface BoxView {

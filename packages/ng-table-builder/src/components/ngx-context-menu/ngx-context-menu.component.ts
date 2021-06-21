@@ -7,6 +7,7 @@ import {
     OnInit,
     ViewEncapsulation
 } from '@angular/core';
+import { Nullable } from '@angular-ru/common/typings';
 import { detectChanges } from '@angular-ru/common/utils';
 
 import { AbstractModalViewLayerDirective } from '../../directives/abstract-modal-view-layer.directive';
@@ -27,8 +28,8 @@ export class NgxContextMenuComponent<T>
     extends AbstractModalViewLayerDirective<T, ContextMenuState<T>>
     implements OnInit
 {
-    @Input() public width: number | null = SIZE;
-    @Input() public height: number | null = SIZE;
+    @Input() public width: Nullable<number> = SIZE;
+    @Input() public height: Nullable<number> = SIZE;
     @Input('max-height') public maxHeight: number = MAX_HEIGHT;
 
     constructor(protected readonly cd: ChangeDetectorRef, injector: Injector) {

@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Nullable } from '@angular-ru/common/typings';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AnyType = any;
@@ -11,7 +12,7 @@ type AnyType = any;
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DialogTemplateComponent implements OnInit {
-    public form: FormGroup | null = null;
+    public form: Nullable<FormGroup> = null;
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: AnyType,

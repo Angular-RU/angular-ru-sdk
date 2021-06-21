@@ -1,4 +1,4 @@
-import { Any, PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
+import { Any, Nullable, PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
 
 import { SortableMessage } from './sortable-message';
 
@@ -11,11 +11,11 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
         SKIP = 'skip'
     }
 
-    function getValueByPath(object: PlainObject, path: string): PlainObject | undefined {
+    function getValueByPath(object: PlainObject, path: string): Nullable<PlainObject> {
         return path
             ? path
                   .split('.')
-                  .reduce((value: PlainObject | undefined, key: string): Any => value && (value as Any)[key], object)
+                  .reduce((value: Nullable<PlainObject>, key: string): Any => value && (value as Any)[key], object)
             : object;
     }
 
@@ -44,11 +44,11 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
             let ix: number = 0;
 
             while (sorted === 0 && ix < countKeys) {
-                const key: string | null = Sortable.observeKey(matches, ix);
+                const key: Nullable<string> = Sortable.observeKey(matches, ix);
 
                 // note: don't use isString here
                 if (typeof key === 'string') {
-                    const depth: number | undefined = matches[key];
+                    const depth: Nullable<number> = matches[key];
                     sorted = Sortable.deepSort(key, a, b, depth);
                     ix++;
                 }
@@ -77,16 +77,16 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
         }
 
         // eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
-        private static deepSort(key: string, leftHand: Any, rightHand: Any, depth: number | undefined): number {
+        private static deepSort(key: string, leftHand: Any, rightHand: Any, depth: Nullable<number>): number {
             const a: Any = getValueByPath(leftHand, key);
             const b: Any = getValueByPath(rightHand, key);
             return Sortable.shallowSort(a, b, depth);
         }
 
-        private static shallowSort(a: Any, b: Any, depth?: number): number {
+        private static shallowSort(a: Any, b: Any, depth?: Nullable<number>): number {
             let newB: Any = b;
             // eslint-disable-next-line no-negated-condition
-            const currentDepth: number | undefined = depth !== null ? depth : 1;
+            const currentDepth: Nullable<number> = depth !== null ? depth : 1;
             newB = checkValueIsEmpty(newB) ? '' : newB;
 
             if (a === newB) {
@@ -96,7 +96,7 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
             return a > newB ? currentDepth! : -1 * currentDepth!;
         }
 
-        private static observeKey(keys: PlainObjectOf<number>, count: number): string | null {
+        private static observeKey(keys: PlainObjectOf<number>, count: number): Nullable<string> {
             let key: string;
             let size: number = 0;
 

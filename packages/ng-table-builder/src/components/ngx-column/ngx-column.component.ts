@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, ContentChild, Input, ViewEncapsulation } from '@angular/core';
+import { Nullable } from '@angular-ru/common/typings';
 
 import { ColumnOptionsDirective } from '../../directives/column-options.directive';
 import { TemplateBodyTdDirective } from '../../directives/rows/template-body-td.directive';
@@ -11,16 +12,16 @@ import { TemplateHeadThDirective } from '../../directives/rows/template-head-th.
     encapsulation: ViewEncapsulation.None
 })
 export class NgxColumnComponent<T> extends ColumnOptionsDirective {
-    @Input() public key: string | null = null;
-    @Input() public stub: string | null = '-';
-    @Input('sticky') public stickyLeft: boolean | string | undefined = false;
-    @Input('empty-head') public emptyHead: string | boolean | null | undefined = null;
-    @Input('head-title') public headTitle: string | null | undefined = null;
+    @Input() public key: Nullable<string> = null;
+    @Input() public stub: Nullable<string> = '-';
+    @Input('sticky') public stickyLeft: Nullable<boolean | string> = false;
+    @Input('empty-head') public emptyHead: Nullable<string | boolean> = null;
+    @Input('head-title') public headTitle: Nullable<string> = null;
     @Input('custom-key') public customKey: string | boolean = false;
     @Input('sticky-end') public stickyRight: string | boolean = false;
     @Input('vertical-line') public verticalLine: string | boolean = false;
     @Input('important-template') public importantTemplate: string | boolean = false;
-    @Input('overflow-tooltip') public overflowTooltip: boolean | null | undefined = null;
+    @Input('overflow-tooltip') public overflowTooltip: Nullable<boolean> = null;
     @ContentChild(TemplateHeadThDirective, { static: false }) public th!: TemplateHeadThDirective<T>;
     @ContentChild(TemplateBodyTdDirective, { static: false }) public td!: TemplateBodyTdDirective<T>;
 

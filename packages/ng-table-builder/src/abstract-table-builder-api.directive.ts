@@ -85,7 +85,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
     @Output() public readonly schemaChanges: EventEmitter<TableUpdateSchema> = new EventEmitter();
     // TODO: should be rename (breaking changes)
     // eslint-disable-next-line @angular-eslint/no-output-on-prefix
-    @Output() public readonly onChanges: EventEmitter<T[] | null> = new EventEmitter();
+    @Output() public readonly onChanges: EventEmitter<Nullable<T[]>> = new EventEmitter();
     @Output() public readonly sortChanges: EventEmitter<OrderedField[]> = new EventEmitter();
     @ContentChild(NgxOptionsComponent, { static: false })
     public columnOptions: Nullable<NgxOptionsComponent> = null;
@@ -143,16 +143,16 @@ export abstract class AbstractTableBuilderApiDirective<T>
     public abstract readonly filterable: FilterableService<T>;
     public abstract readonly ngZone: NgZone;
     protected originalSource: Nullable<T[]> = null;
-    protected renderedCountKeys: number | null = null;
+    protected renderedCountKeys: Nullable<number> = null;
     protected isDragMoving: boolean = false;
     protected abstract readonly app: ApplicationRef;
     protected abstract readonly viewChanges: NgxTableViewChangesService;
     protected abstract readonly draggable: DraggableService<T>;
-    private filterIdTask: number | null = null;
-    private idleDetectChangesId: number | null = null;
-    private columnFrameId: number | null = null;
-    private _headHeight: number | null = null;
-    private _rowHeight: number | null = null;
+    private filterIdTask: Nullable<number> = null;
+    private idleDetectChangesId: Nullable<number> = null;
+    private columnFrameId: Nullable<number> = null;
+    private _headHeight: Nullable<number> = null;
+    private _rowHeight: Nullable<number> = null;
 
     @Input('head-height')
     public set headHeight(val: string | number) {
@@ -339,16 +339,16 @@ export abstract class AbstractTableBuilderApiDirective<T>
     }
 
     public drop({ previousIndex, currentIndex }: CdkDragSortEvent): void {
-        const previousKey: string | undefined = this.visibleColumns[previousIndex];
-        const currentKey: string | undefined = this.visibleColumns[currentIndex];
+        const previousKey: Nullable<string> = this.visibleColumns[previousIndex];
+        const currentKey: Nullable<string> = this.visibleColumns[currentIndex];
         this.isDragMoving = false;
         this.draggable.drop(previousKey, currentKey);
         this.changeSchema();
     }
 
-    public changeSchema(defaultColumns: DeepPartial<ColumnsSchema>[] | null = null): void {
-        const renderedColumns: DeepPartial<ColumnsSchema>[] | undefined = this.templateParser.schema?.exportColumns();
-        const columns: DeepPartial<ColumnsSchema>[] | undefined = defaultColumns || renderedColumns;
+    public changeSchema(defaultColumns: Nullable<DeepPartial<ColumnsSchema>[]> = null): void {
+        const renderedColumns: Nullable<DeepPartial<ColumnsSchema>[]> = this.templateParser.schema?.exportColumns();
+        const columns: Nullable<DeepPartial<ColumnsSchema>[]> = defaultColumns || renderedColumns;
 
         if (columns) {
             const updateSchema: TableUpdateSchema = {
@@ -370,7 +370,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
         });
     }
 
-    public abstract setSource(source: T[] | null): void;
+    public abstract setSource(source: Nullable<T[]>): void;
 
     public abstract markDirtyCheck(): void;
 

@@ -12,7 +12,7 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { Any, PlainObject } from '@angular-ru/common/typings';
+import { Any, Nullable, PlainObject } from '@angular-ru/common/typings';
 import { detectChanges, isNotNil } from '@angular-ru/common/utils';
 import { Subscription } from 'rxjs';
 
@@ -31,13 +31,13 @@ const { TIME_RELOAD }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
     encapsulation: ViewEncapsulation.None
 })
 export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy {
-    @Input() public text?: PlainObject | string | undefined | null = null;
-    @Input() public key?: string | null = null;
-    @Input() public index?: number | null = 0;
-    public html?: string | SafeHtml | null = null;
+    @Input() public text?: Nullable<PlainObject | string> = null;
+    @Input() public key?: Nullable<string> = null;
+    @Input() public index?: Nullable<number> = 0;
+    public html?: Nullable<string | SafeHtml> = null;
     public founded: boolean = false;
-    private subscription: Subscription | null = null;
-    private taskId: number | null = null;
+    private subscription: Nullable<Subscription> = null;
+    private taskId: Nullable<number> = null;
     private readonly ngZone: NgZone;
     private readonly filterable: FilterableService<T>;
 
@@ -94,8 +94,8 @@ export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy
 
     // eslint-disable-next-line max-lines-per-function,complexity
     private selected(event: FilterEvent): void {
-        const value: string | null = String((this.filterable.definition as Any)[this.key!] ?? event.value);
-        const type: string | TableFilterType | null = isNotNil((this.filterable.definition as Any)[this.key!])
+        const value: Nullable<string> = String((this.filterable.definition as Any)[this.key!] ?? event.value);
+        const type: Nullable<string | TableFilterType> = isNotNil((this.filterable.definition as Any)[this.key!])
             ? (this.filterable.filterTypeDefinition as Any)[this.key!]
             : event.type;
 
@@ -104,7 +104,7 @@ export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy
         }
 
         let regexp: RegExp;
-        const escapedValue: string | undefined = value?.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const escapedValue: Nullable<string> = value?.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
         if (type === TableFilterType.START_WITH) {
             regexp = new RegExp(`^${escapedValue}`, 'i');

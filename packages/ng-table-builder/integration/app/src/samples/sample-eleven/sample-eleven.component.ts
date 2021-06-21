@@ -6,7 +6,7 @@ import {
     OnInit,
     ViewEncapsulation
 } from '@angular/core';
-import { Any, PlainObject } from '@angular-ru/common/typings';
+import { Any, Nullable, PlainObject } from '@angular-ru/common/typings';
 import { TableUpdateSchema } from '@angular-ru/ng-table-builder';
 
 import { MocksGenerator } from '../../../../tests/helpers/utils/mocks-generator';
@@ -92,7 +92,7 @@ export class SampleElevenComponent implements OnInit, AfterViewInit {
         window.alert('export excel - ' + JSON.stringify(data));
     }
 
-    public showLine(key: string | null, item: PlainObject | null): void {
+    public showLine(key: Nullable<string>, item: Nullable<PlainObject>): void {
         window.alert('key - ' + key + ' item - ' + JSON.stringify(item));
     }
 

@@ -1,6 +1,6 @@
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Any, PlainObject } from '@angular-ru/common/typings';
+import { Any, Nullable, PlainObject } from '@angular-ru/common/typings';
 
 import { MocksGenerator } from '../../../../tests/helpers/utils/mocks-generator';
 import { CodeDialogComponent } from '../../shared/dialog/code-dialog.component';
@@ -26,7 +26,7 @@ export class SampleThirdComponent implements OnInit, AfterViewInit {
         });
     }
 
-    public disableFn(item: PlainObject | undefined | null): boolean {
+    public disableFn(item: Nullable<PlainObject>): boolean {
         const everyFifth: number = 5;
         return item?.id % everyFifth === 0;
     }

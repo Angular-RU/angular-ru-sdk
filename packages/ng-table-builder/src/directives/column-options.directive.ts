@@ -1,4 +1,5 @@
 import { Directive, Input } from '@angular/core';
+import { Nullable } from '@angular-ru/common/typings';
 
 import { TableFilterType } from '../services/filterable/table-filter-type';
 
@@ -11,15 +12,15 @@ export class ColumnOptionsDirective {
     /**
      * preserve track global value for overflowTooltip if selected
      */
-    @Input('overflow-tooltip') public overflowTooltip: string | boolean | null | undefined = null;
-    @Input('filter-type') public filterType: string | TableFilterType | null | undefined = null;
-    @Input() public nowrap: string | boolean | null | undefined = null;
-    @Input() public width: string | number | null | undefined = null;
-    @Input('is-resizable') public isResizable: string | boolean | null | undefined = null;
-    @Input('is-sortable') public isSortable: string | boolean | null | undefined = null;
-    @Input('is-filterable') public isFilterable: string | boolean | null | undefined = null;
-    @Input('is-draggable') public isDraggable: string | boolean | null | undefined = null;
+    @Input('overflow-tooltip') public overflowTooltip: Nullable<string | boolean> = null;
+    @Input('filter-type') public filterType: Nullable<string | TableFilterType> = null;
+    @Input() public nowrap: Nullable<string | boolean> = null;
+    @Input() public width: Nullable<string | number> = null;
+    @Input('is-resizable') public isResizable: Nullable<string | boolean> = null;
+    @Input('is-sortable') public isSortable: Nullable<string | boolean> = null;
+    @Input('is-filterable') public isFilterable: Nullable<string | boolean> = null;
+    @Input('is-draggable') public isDraggable: Nullable<string | boolean> = null;
     @Input('css-class') public cssClass: string[] = [];
     @Input('css-style') public cssStyle: string[] = [];
-    @Input() public stub: string | null | undefined = null;
+    @Input() public stub: Nullable<string> = null;
 }
