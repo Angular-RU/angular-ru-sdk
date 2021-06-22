@@ -4,12 +4,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FilterModule } from '@angular-ru/common/directives';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { Nullable } from '@angular-ru/common/typings';
 
 describe('[TEST]: Filter Input', () => {
-    let fixture: ComponentFixture<TestComponent> | null = null;
-    let component: TestComponent | null = null;
-    let debugElement1: DebugElement | null = null;
-    let debugElement2: DebugElement | null = null;
+    let fixture: Nullable<ComponentFixture<TestComponent>> = null;
+    let component: Nullable<TestComponent> = null;
+    let debugElement1: Nullable<DebugElement> = null;
+    let debugElement2: Nullable<DebugElement> = null;
 
     @Component({
         selector: 'test',

@@ -6,9 +6,10 @@ import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@an
 import { Observable } from 'rxjs';
 import { BaseUrl, Get, RestClient, HostUrl } from '@angular-ru/http/decorators';
 import { Any } from '@angular-ru/common/typings';
+import { Nullable } from '@angular-ru/common/typings';
 
 describe('[TEST]: HTTP decorators for client', () => {
-    let client: ApiUsersClient | null = null;
+    let client: Nullable<ApiUsersClient> = null;
     let httpMock: HttpTestingController;
     let req: TestRequest;
 

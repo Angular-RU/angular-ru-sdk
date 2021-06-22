@@ -1,9 +1,9 @@
-import { Any, PlainObject } from '@angular-ru/common/typings';
+import { Any, Nullable, PlainObject } from '@angular-ru/common/typings';
 
 // eslint-disable-next-line complexity
 export function pathsOfObject<T extends PlainObject>(
     value: T,
-    parentKey: string | null = null,
+    parentKey: Nullable<string> = null,
     keys: string[] = []
 ): string[] {
     for (const key in value) {

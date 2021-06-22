@@ -9,11 +9,12 @@ import {
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { Nullable } from '@angular-ru/common/typings';
 
 describe('[TEST]: Amount format directive', () => {
     describe('expect without component', () => {
         let directive: AmountFormatDirective;
-        let ngModelValue: string | number | undefined;
+        let ngModelValue: Nullable<string | number>;
         let element: Partial<ElementRef<Partial<HTMLInputElement>>>;
         let control: Partial<NgControl>;
 
@@ -677,7 +678,7 @@ describe('[TEST]: Amount format directive', () => {
     });
 
     describe('expect with component', () => {
-        let fixture: ComponentFixture<HelloWorldComponent> | null = null;
+        let fixture: Nullable<ComponentFixture<HelloWorldComponent>> = null;
 
         @Component({
             selector: 'hello-world',
@@ -698,15 +699,15 @@ describe('[TEST]: Amount format directive', () => {
             constructor(private readonly fb: FormBuilder) {}
         }
 
-        function getInputViewValue(): string | undefined {
+        function getInputViewValue(): Nullable<string> {
             return getInputRef()?.nativeElement.value;
         }
 
-        function getInputModelValue(): number | string | undefined {
+        function getInputModelValue(): Nullable<number | string> {
             return fixture?.componentInstance.form.value?.amount;
         }
 
-        function getInputRef(): ElementRef<HTMLInputElement> | undefined {
+        function getInputRef(): Nullable<ElementRef<HTMLInputElement>> {
             return fixture?.debugElement.query(By.css('input'));
         }
 
@@ -741,11 +742,11 @@ describe('[TEST]: Amount format directive', () => {
             input.selectionEnd = cursorPosition;
         }
 
-        function getDirectiveInfo(): AmountFormatDirective | undefined {
+        function getDirectiveInfo(): Nullable<AmountFormatDirective> {
             return fixture?.componentInstance.directive;
         }
 
-        function getCursorPosition(): number | undefined {
+        function getCursorPosition(): Nullable<number> {
             return getDirectiveInfo()?.getCursorPosition();
         }
 

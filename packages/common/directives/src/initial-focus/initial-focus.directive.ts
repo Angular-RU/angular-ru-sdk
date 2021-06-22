@@ -1,4 +1,5 @@
 import { AfterViewInit, Directive, ElementRef, Input, NgZone, OnDestroy } from '@angular/core';
+import { Nullable } from '@angular-ru/common/typings';
 
 const MIN_DELAY: number = 500;
 
@@ -6,7 +7,7 @@ const MIN_DELAY: number = 500;
 export class InitialFocusDirective implements AfterViewInit, OnDestroy {
     @Input() public focusDelay: number = MIN_DELAY;
     private readonly className: string = 'initial-focused';
-    private timeoutId: number | null = null;
+    private timeoutId: Nullable<number> = null;
 
     constructor(private readonly element: ElementRef<HTMLInputElement>, private readonly ngZone: NgZone) {}
 

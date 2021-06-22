@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
+import { Nullable } from '@angular-ru/common/typings';
 import { isNotNil } from '@angular-ru/common/utils';
 
 import { LOGGER_OPTIONS, LoggerLevel } from '../interfaces/logger.external';
@@ -6,7 +7,7 @@ import { LoggerOptionsImpl } from '../logger.options';
 
 @Injectable()
 export class CssFactory {
-    private lineStyle: string | null = null;
+    private lineStyle: Nullable<string> = null;
 
     constructor(@Inject(LOGGER_OPTIONS) private readonly options: LoggerOptionsImpl) {}
 
@@ -29,7 +30,7 @@ export class CssFactory {
     }
 
     public getStyleLabel(level: LoggerLevel): string {
-        const color: string | undefined = this.options.labelColors[level];
+        const color: Nullable<string> = this.options.labelColors[level];
         return `color: ${color}; font-weight: bold`;
     }
 
@@ -38,7 +39,7 @@ export class CssFactory {
         const styles: string[] = [];
 
         classList.forEach((className: string): void => {
-            const style: string | undefined = this.options.cssClassMap[className];
+            const style: Nullable<string> = this.options.cssClassMap[className];
 
             if (isNotNil(style)) {
                 styles.push(style as string);

@@ -1,7 +1,7 @@
 // noinspection AngularMissingOrInvalidDeclarationInModule
 
 import { Component, OnInit } from '@angular/core';
-import { Fn } from '@angular-ru/common/typings';
+import { Fn, Nullable } from '@angular-ru/common/typings';
 import { isNotNil } from '@angular-ru/common/utils';
 
 import { DebugLog } from '../../../src/decorators/debug.decorator';
@@ -41,7 +41,7 @@ export class MyTestComponent implements OnInit {
     @Log() public log!: LogFn;
 
     public count: number = 0;
-    public hook: string | null = null;
+    public hook: Nullable<string> = null;
     public doneHeavy: boolean = false;
     public name: string = 'MockLoggerComponent';
 
@@ -108,7 +108,7 @@ export class MyTestComponent implements OnInit {
     }
 
     public longQueryBySecondMs(seconds: number, done: Fn): void {
-        const info: TimerInfo | null = this.logger.startTime('longQueryBySecondMs');
+        const info: Nullable<TimerInfo> = this.logger.startTime('longQueryBySecondMs');
         this.extracted(seconds, done);
         this.logger.endTime(info);
     }

@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { Any } from '@angular-ru/common/typings';
+import { Any, Nullable } from '@angular-ru/common/typings';
 
 import { FormatOutput, GroupMethod, LOGGER_OPTIONS, LoggerLevel, Pipeline } from '../interfaces/logger.external';
 import { LoggerOptionsImpl } from '../logger.options';
@@ -32,7 +32,7 @@ export class GroupFactory {
     }
 
     // eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
-    public group<T>(title: string, pipeline: Pipeline<T> | undefined, logger: LoggerService, level: LoggerLevel): T {
+    public group<T>(title: string, pipeline: Nullable<Pipeline<T>>, logger: LoggerService, level: LoggerLevel): T {
         const group: GroupMethod = this.console.instance.group.bind(this.console.instance);
         return this.createGroupLogger<T>(group, title, pipeline, logger, level);
     }
@@ -40,7 +40,7 @@ export class GroupFactory {
     // eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
     public groupCollapsed<T = unknown>(
         title: string,
-        pipeline: Pipeline<T> | undefined,
+        pipeline: Nullable<Pipeline<T>>,
         logger: LoggerService,
         level: LoggerLevel
     ): T {
@@ -52,7 +52,7 @@ export class GroupFactory {
     private createGroupLogger<T = unknown>(
         groupType: GroupMethod,
         title: string,
-        pipeline: Pipeline | undefined,
+        pipeline: Nullable<Pipeline>,
         logger: LoggerService,
         level: LoggerLevel
     ): T {
@@ -82,7 +82,7 @@ export class GroupFactory {
         return pipeLineResult!;
     }
 
-    private getLabel(level: string | undefined, style: string): FormatOutput {
+    private getLabel(level: Nullable<string>, style: string): FormatOutput {
         return this.options.format(level, style);
     }
 }

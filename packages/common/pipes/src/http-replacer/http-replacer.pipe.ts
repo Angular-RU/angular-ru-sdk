@@ -1,10 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { isString } from '@angular-ru/common/string';
+import { Nullable } from '@angular-ru/common/typings';
 
 @Pipe({ name: 'httpReplacer' })
 export class HttpReplacerPipe implements PipeTransform {
-    public transform(value: string | undefined): string {
-        let result: string | undefined = value;
+    public transform(value: Nullable<string>): string {
+        let result: Nullable<string> = value;
 
         if (isString(result) as boolean) {
             result = result

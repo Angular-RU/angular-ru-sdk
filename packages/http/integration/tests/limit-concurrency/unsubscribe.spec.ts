@@ -6,6 +6,7 @@ import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@an
 import { Observable, Subject } from 'rxjs';
 import { Get, RestClient } from '@angular-ru/http/decorators';
 import { delay, takeUntil } from 'rxjs/operators';
+import { Nullable } from '@angular-ru/common/typings';
 
 describe('[TEST]: Canceling requests and unsubscribing', () => {
     const mockApi: string = 'http://localhost';
@@ -15,7 +16,7 @@ describe('[TEST]: Canceling requests and unsubscribing', () => {
     const countRequests: number = 10;
     const limitConcurrency: number = 5;
 
-    let fixture: ComponentFixture<TestComponent> | null = null;
+    let fixture: Nullable<ComponentFixture<TestComponent>> = null;
     let component: TestComponent;
     let httpMock: HttpTestingController;
     let active: TestRequest[] = [];

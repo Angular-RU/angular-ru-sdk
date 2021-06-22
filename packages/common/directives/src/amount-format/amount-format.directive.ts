@@ -14,6 +14,7 @@ import { NgControl } from '@angular/forms';
 import { gaussRound, getFractionSeparator, toNumber } from '@angular-ru/common/number';
 import { deepClone } from '@angular-ru/common/object';
 import { getLastSymbol, removeLastSymbol, removeNonNumericSymbols } from '@angular-ru/common/string';
+import { Nullable } from '@angular-ru/common/typings';
 import { checkValueIsFilled, detectChanges } from '@angular-ru/common/utils';
 import { fromEvent, Subscription } from 'rxjs';
 
@@ -23,7 +24,7 @@ import { AmountOptions } from './amount-options';
 @Directive({ selector: '[amountFormat]' })
 export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
     private readonly subscriptions: Subscription = new Subscription();
-    private previousLang: string | null | undefined = null;
+    private previousLang: Nullable<string> = null;
     private readonly maximumFractionDigits: number = 3;
     private isInsideAngularZone: boolean = true;
     private options: Partial<AmountOptions> = {};
@@ -149,7 +150,7 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
     /**
      * note: after reset model value then control override view model
      */
-    private resetModelValue<T>(value: T | null = null): void {
+    private resetModelValue<T>(value: Nullable<T> = null): void {
         this.ngControl?.reset(value);
     }
 
@@ -164,7 +165,7 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
         return this.options.formatOptions?.maximumFractionDigits ?? this.maximumFractionDigits;
     }
 
-    private getLastSymbolsAsZeroDot(fraction: string): string | undefined {
+    private getLastSymbolsAsZeroDot(fraction: string): Nullable<string> {
         const maximumFractionDigits: number = this.getMaximumFractionDigits();
 
         let lastSymbolsAsZeroDot: string =
@@ -192,11 +193,11 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
         if (lastSymbolAsFraction) {
             convertedToLocaleValue = `${convertedToLocaleValue}${fraction}`;
         } else {
-            const lastSymbolsAsZeroDot: string | undefined = this.getLastSymbolsAsZeroDot(fraction);
+            const lastSymbolsAsZeroDot: Nullable<string> = this.getLastSymbolsAsZeroDot(fraction);
 
             if (checkValueIsFilled(lastSymbolsAsZeroDot)) {
                 const splitValues: string[] = convertedToLocaleValue.split(fraction);
-                const beforePoint: string | undefined = splitValues?.[0];
+                const beforePoint: Nullable<string> = splitValues?.[0];
 
                 if (checkValueIsFilled(beforePoint)) {
                     convertedToLocaleValue = `${beforePoint}${fraction}${lastSymbolsAsZeroDot}`;

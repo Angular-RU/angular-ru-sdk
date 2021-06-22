@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { BoundClass } from '@angular-ru/common/decorators';
-import { PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
+import { Nullable, PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
 
 import { LogFn, LOGGER_OPTIONS, LoggerLevel, Pipeline, TimerInfo } from './interfaces/logger.external';
 import { LoggerOptionsImpl } from './logger.options';
@@ -129,12 +129,12 @@ export class LoggerService {
         return this;
     }
 
-    public startTime(title: string, level: LoggerLevel = LoggerLevel.DEBUG): TimerInfo | null {
+    public startTime(title: string, level: LoggerLevel = LoggerLevel.DEBUG): Nullable<TimerInfo> {
         return this.timerFactory.startTime(title, level);
     }
 
     public endTime(
-        info: TimerInfo | null,
+        info: Nullable<TimerInfo>,
         level: LoggerLevel = LoggerLevel.DEBUG,
         isMillisecond: boolean = true
     ): void {

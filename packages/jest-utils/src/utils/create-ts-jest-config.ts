@@ -1,5 +1,6 @@
 /* eslint-disable no-console,@typescript-eslint/no-magic-numbers */
 import { exposeTsCompilerOptionsByTsConfig } from '@angular-ru/common/node.js';
+import { Nullable } from '@angular-ru/common/typings';
 import { isTrue } from '@angular-ru/common/utils';
 import type { Config } from '@jest/types';
 import * as fs from 'fs';
@@ -45,7 +46,7 @@ export function createTsJestConfig(options: JestConfigOptions): Config.InitialOp
 
     const compilerOptions: CompilerOptions = exposeTsCompilerOptionsByTsConfig(resolvedTsConfigPath);
     const prefix: string = `<rootDir>/${compilerOptions?.baseUrl ?? ''}/`.replace(/\.\//g, '/').replace(/\/\/+/g, '/');
-    const rootModuleNameMapper: { [key: string]: string | string[] } | undefined = tsJestUtils.pathsToModuleNameMapper(
+    const rootModuleNameMapper: Nullable<{ [key: string]: string | string[] }> = tsJestUtils.pathsToModuleNameMapper(
         compilerOptions?.paths ?? {},
         { prefix }
     );

@@ -1,6 +1,7 @@
 import { Component, Injectable, InjectFlags } from '@angular/core';
 import { directiveInject, inject } from '@angular-ru/common/ivy';
 import { TestBed } from '@angular/core/testing';
+import { Nullable } from '@angular-ru/common/typings';
 
 describe('[TEST]: injection utils', () => {
     describe('directiveInject', () => {
@@ -60,7 +61,7 @@ describe('[TEST]: injection utils', () => {
 
             @Injectable()
             class Service {
-                public b: B | null = null;
+                public b: Nullable<B> = null;
 
                 constructor() {
                     this.b = inject(B, InjectFlags.Optional);
@@ -83,7 +84,7 @@ describe('[TEST]: injection utils', () => {
                 providers: [Service]
             })
             class CtxComponent {
-                public service: Service | null;
+                public service: Nullable<Service>;
 
                 constructor() {
                     this.service = directiveInject(Service, InjectFlags.Optional);

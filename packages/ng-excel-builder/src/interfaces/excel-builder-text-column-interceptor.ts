@@ -1,8 +1,8 @@
-import { PlainObject } from '@angular-ru/common/typings';
+import { Nullable, PlainObject } from '@angular-ru/common/typings';
 import { Observable } from 'rxjs';
 
 export interface ExcelBuilderTextColumnInterceptor {
-    instant?(key?: string | null): string | undefined | null;
+    instant?(key?: Nullable<string>): Nullable<string>;
 
-    getTranslatedColumn?(): Observable<PlainObject | null>;
+    getTranslatedColumn?(): Observable<Nullable<PlainObject>>;
 }

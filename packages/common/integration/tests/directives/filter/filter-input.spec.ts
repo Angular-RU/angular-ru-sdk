@@ -5,11 +5,12 @@ import { FilterModule } from '@angular-ru/common/directives';
 import { FilterPredicate } from '@angular-ru/common/string';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { Nullable } from '@angular-ru/common/typings';
 
 describe('[TEST]: Filter Input', () => {
-    let fixture: ComponentFixture<TestComponent> | null = null;
-    let component: TestComponent = null!;
-    let debugElement: DebugElement | null = null;
+    let fixture: Nullable<ComponentFixture<TestComponent>> = null;
+    let component: Nullable<TestComponent> = null;
+    let debugElement: Nullable<DebugElement> = null;
 
     @Component({
         selector: 'test',

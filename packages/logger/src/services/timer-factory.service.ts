@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Any } from '@angular-ru/common/typings';
+import { Any, Nullable } from '@angular-ru/common/typings';
 
 import { LoggerLevel, TimerInfo } from '../interfaces/logger.external';
 import { DEFAULT_METHODS } from '../logger.config';
@@ -13,8 +13,8 @@ export class TimerFactory {
 
     constructor(private readonly console: ConsoleService) {}
 
-    public startTime(title: string, level: LoggerLevel): TimerInfo | null {
-        let result: TimerInfo | null = null;
+    public startTime(title: string, level: LoggerLevel): Nullable<TimerInfo> {
+        let result: Nullable<TimerInfo> = null;
         // eslint-disable-next-line sonarjs/no-inverted-boolean-check
         const canExecute: boolean = !(this.console.minLevel > level);
         if (canExecute) {

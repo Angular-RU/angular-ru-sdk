@@ -5,10 +5,10 @@ import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
 import { Any } from '@angular-ru/common/typings';
 import { RestClient } from '@angular-ru/http/decorators';
-
+import { Nullable } from '@angular-ru/common/typings';
 describe('[TEST]: HTTP decorators for client', () => {
     const MOCK_API: string = 'http://localhost';
-    let client: ApiGithubClient | null = null;
+    let client: Nullable<ApiGithubClient> = null;
     let httpMock: HttpTestingController;
     let req: TestRequest;
 

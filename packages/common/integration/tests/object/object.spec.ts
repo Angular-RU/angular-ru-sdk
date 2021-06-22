@@ -15,7 +15,7 @@ import {
     sortByDesc,
     pathsOfObject
 } from '@angular-ru/common/object';
-import { Any, PlainObject } from '@angular-ru/common/typings';
+import { Any, Nullable, PlainObject } from '@angular-ru/common/typings';
 
 describe('[TEST]: Object', () => {
     interface A {
@@ -265,7 +265,7 @@ describe('[TEST]: Object', () => {
     describe('freeze', () => {
         it('deep freeze', () => {
             const origin: Origin = deepFreeze({ a: 1, b: { c: 2 } });
-            let message: string | null = null;
+            let message: Nullable<string> = null;
 
             try {
                 origin.b.c = 5;
