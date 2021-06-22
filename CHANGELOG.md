@@ -1,3 +1,11 @@
+#### 15.266.0 (2021-06-21)
+
+##### New Features
+
+-   **@angular-ru/ng-table-builder:** support Nullable type
+    ([#693](https://github.com/Angular-RU/angular-ru-sdk/pull/693))
+    ([1ee6d4cc](https://github.com/Angular-RU/angular-ru-sdk/commit/1ee6d4ccee9e6b19df0d9f9b41af592168ef4c24))
+
 #### 15.265.0 (2021-06-21)
 
 ##### New Features

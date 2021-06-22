@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { isString } from '@angular-ru/common/string';
+import { Nullable } from '@angular-ru/common/typings';
 import { TranslateService } from '@ngx-translate/core';
 
 import { TooltipTextInterceptor } from '../interfaces/tooltip-text-interceptor';
@@ -8,7 +9,7 @@ import { TooltipTextInterceptor } from '../interfaces/tooltip-text-interceptor';
 export class NgxTooltipTextInterceptor implements TooltipTextInterceptor {
     constructor(private readonly translate: TranslateService) {}
 
-    public instant(value?: string | null): string | undefined | null {
+    public instant(value?: Nullable<string>): Nullable<string> {
         return (isString(value) as boolean) ? this.translate.instant(value as string) : value;
     }
 }

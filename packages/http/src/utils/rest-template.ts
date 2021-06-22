@@ -1,4 +1,4 @@
-import { Any, PlainObject } from '@angular-ru/common/typings';
+import { Any, Nullable, PlainObject } from '@angular-ru/common/typings';
 import { isNil, isTrue } from '@angular-ru/common/utils';
 import { DataBeforeRequestOptions, DataClientRequestOptions, EmitOptions, RequestType } from '@angular-ru/http/typings';
 import { Observable, OperatorFunction } from 'rxjs';
@@ -10,7 +10,7 @@ export class RestTemplate<T> {
     public methodType!: RequestType;
     protected operators: OperatorFunction<T, Any>[] = [];
     private markAsRequest: boolean = false;
-    private _client: DataHttpClient | null = null;
+    private _client: Nullable<DataHttpClient> = null;
 
     constructor(public options: Partial<DataClientRequestOptions> = {}) {}
 
@@ -46,7 +46,7 @@ export class RestTemplate<T> {
         return this;
     }
 
-    public setParams(queryParams: PlainObject | undefined): RestTemplate<T> {
+    public setParams(queryParams: Nullable<PlainObject>): RestTemplate<T> {
         this.options.queryParams = queryParams;
         return this;
     }

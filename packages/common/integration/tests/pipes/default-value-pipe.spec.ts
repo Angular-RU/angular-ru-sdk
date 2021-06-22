@@ -1,5 +1,6 @@
 import { DefaultValuePipe, DefaultValuePipeModule } from '@angular-ru/common/pipes';
 import { TestBed } from '@angular/core/testing';
+import { Nullable } from '@angular-ru/common/typings';
 
 describe('default value', () => {
     let pipe: DefaultValuePipe;
@@ -10,7 +11,7 @@ describe('default value', () => {
     });
 
     it('fallback for empty', () => {
-        const value: string | null = null;
+        const value: Nullable<string> = null;
         const result = pipe.transform(value);
         expect(result).toEqual('-');
     });

@@ -1,17 +1,17 @@
 import { Directive, ElementRef, HostListener, Input, OnInit, Optional } from '@angular/core';
 import { AbstractControl, NgControl } from '@angular/forms';
-import { Any } from '@angular-ru/common/typings';
+import { Any, Nullable } from '@angular-ru/common/typings';
 
 @Directive({ selector: '[trimInput]' })
 export class TrimInputDirective implements OnInit {
-    private name: string | number | null | undefined;
-    private previousName: string | number | null | undefined;
+    private name: Nullable<string | number>;
+    private previousName: Nullable<string | number>;
     private previousValue: Any;
 
     constructor(public readonly el: ElementRef, @Optional() private readonly ngControl?: NgControl) {}
 
     @Input()
-    public set formControlName(name: string | number | null | undefined) {
+    public set formControlName(name: Nullable<string | number>) {
         this.previousValue = this.ngControl?.control?.parent?.get(this.name as Any)?.value;
         this.previousName = this.name;
         this.name = name;
@@ -34,7 +34,7 @@ export class TrimInputDirective implements OnInit {
     private trimValue(): void {
         this.el.nativeElement.value = this.el.nativeElement.value?.toString().trim();
 
-        const control: AbstractControl | null | undefined = this.ngControl?.control?.parent
+        const control: Nullable<AbstractControl> = this.ngControl?.control?.parent
             ? this.ngControl?.control?.parent?.get(this.name as Any)
             : this.ngControl?.control?.get(this.name as Any);
 

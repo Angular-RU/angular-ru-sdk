@@ -7,13 +7,14 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
 import { Fn, PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
 import { HttpMockInterceptor } from '../helpers/http-mock-interceptor';
+import { Nullable } from '@angular-ru/common/typings';
 
 describe('[TEST]: HTTP Client', () => {
     const MOCK_API: string = 'http://localhost';
     const queryParams: PlainObject = { params: 'value' };
     const body: PlainObjectOf<string> = { payload: 'value' };
 
-    let client: ApiUsersClient | null = null;
+    let client: Nullable<ApiUsersClient> = null;
     let httpMock: HttpTestingController;
     let req: TestRequest;
 

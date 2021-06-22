@@ -1,3 +1,5 @@
+import { Nullable } from '@angular-ru/common/typings';
+
 export interface TooltipTextInterceptor {
-    instant?(value?: string | null): string | undefined | null;
+    instant?(value?: Nullable<string>): Nullable<string>;
 }

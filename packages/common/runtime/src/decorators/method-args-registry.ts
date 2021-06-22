@@ -1,3 +1,5 @@
+import { Nullable } from '@angular-ru/common/typings';
+
 import { InvalidArgsNamesException } from '../exceptions/invalid-args-names.exception';
 
 export interface MethodArgsRegistryMeta {
@@ -12,11 +14,11 @@ export class MethodArgsRegistry {
         return this.argumentsIndexMap.size;
     }
 
-    public getNameByIndex(index: number): string | null {
+    public getNameByIndex(index: number): Nullable<string> {
         return this.argumentsIndexMap.get(index)?.key ?? null;
     }
 
-    public getIndexByKey(key: string): number | null {
+    public getIndexByKey(key: string): Nullable<number> {
         return this.argumentsIndexMap.get(key)?.index ?? null;
     }
 

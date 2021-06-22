@@ -1,3 +1,4 @@
 import { SafeHtml } from '@angular/platform-browser';
+import { Nullable } from '@angular-ru/common/typings';
 
-export type MarkedValue = SafeHtml | string | null | undefined;
+export type MarkedValue = Nullable<SafeHtml | string>;

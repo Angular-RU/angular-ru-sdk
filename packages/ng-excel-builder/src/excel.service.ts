@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { Leaves, PlainObject } from '@angular-ru/common/typings';
+import { Leaves, Nullable, PlainObject } from '@angular-ru/common/typings';
 import { Observable, of } from 'rxjs';
 
 import { ExcelBuilderService } from './excel-builder.service';
@@ -21,7 +21,7 @@ export class ExcelService {
     public exportExcel<T>(workbook: Partial<ExcelWorkbook<T>>): void {
         this.getTranslatedColumn()
             .toPromise()
-            .then((translatedKeys: PlainObject | null): void => {
+            .then((translatedKeys: Nullable<PlainObject>): void => {
                 this.builder.exportExcelByWorkbook({
                     filename: this.interceptFilename<T>(workbook),
                     worksheets: this.interceptWorksheets<T>(workbook),
@@ -49,7 +49,7 @@ export class ExcelService {
         });
     }
 
-    private getTranslatedColumn(): Observable<PlainObject | null> {
+    private getTranslatedColumn(): Observable<Nullable<PlainObject>> {
         return this.interceptor?.getTranslatedColumn?.() ?? of(null);
     }
 }

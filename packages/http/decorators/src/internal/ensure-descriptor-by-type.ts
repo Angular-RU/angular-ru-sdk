@@ -1,5 +1,5 @@
 import { MethodArgsRegistry } from '@angular-ru/common/runtime';
-import { Any, Descriptor, PlainObject } from '@angular-ru/common/typings';
+import { Any, Descriptor, Nullable, PlainObject } from '@angular-ru/common/typings';
 import { isNil, isNotNil } from '@angular-ru/common/utils';
 import { DataHttpClient, RestTemplate } from '@angular-ru/http';
 import { EnsureDecoratorOptions } from '@angular-ru/http/typings';
@@ -27,21 +27,21 @@ export function ensureDescriptorByType<T>({
         let newPath: string = path.toString();
         const httpClient: DataHttpClient = this as Any as DataHttpClient;
         const result: Observable<T> | Any = originalMethod.apply(httpClient, args);
-        let template: RestTemplate<T> | null = result?.restTemplateRef ?? null;
+        let template: Nullable<RestTemplate<T>> = result?.restTemplateRef ?? null;
 
         if (isNotNil(template)) {
             newPath = mutatePathByPathVariables(newPath, originalMethod, args);
             const bodyRegistry: MethodArgsRegistry = ensureMethodArgsRegistry(originalMethod, META_REQUEST_BODY);
-            const indexBody: number | null = bodyRegistry.getIndexByKey(KEY_REQUEST_BODY);
-            const body: Any = isNil(indexBody) ? template.options.body : template.options.body ?? args?.[indexBody];
-            const params: PlainObject | undefined = ensureQueryParams(
-                template.options.queryParams,
+            const indexBody: Nullable<number> = bodyRegistry.getIndexByKey(KEY_REQUEST_BODY);
+            const body: Any = isNil(indexBody) ? template?.options.body : template?.options.body ?? args?.[indexBody];
+            const params: Nullable<PlainObject> = ensureQueryParams(
+                template?.options.queryParams,
                 originalMethod,
                 args
             );
 
             template = template
-                .setPath(newPath)
+                ?.setPath(newPath)
                 .setMethodType(type)
                 .setBody(body)
                 .setParams(params)

@@ -14,10 +14,10 @@ import { Any } from '@angular-ru/common/typings';
 import { HttpMockInterceptor } from '../helpers/http-mock-interceptor';
 import { DataBeforeRequestOptions, DataHttpInterceptor } from '@angular-ru/http/typings';
 import { MetaDataRequest } from '../../../typings/src/interfaces/meta-data-request';
-
+import { Nullable } from '@angular-ru/common/typings';
 describe('[TEST]: HTTP Intercept Client', () => {
     const MOCK_API: string = 'http://localhost';
-    let client: ApiEventsClient | null = null;
+    let client: Nullable<ApiEventsClient> = null;
     let httpMock: HttpTestingController;
     let req: TestRequest;
 
