@@ -1,19 +1,19 @@
 import { coerceBoolean } from '@angular-ru/common/coercion';
-import { Any, InputBoolean, PlainObject } from '@angular-ru/common/typings';
+import { Any, InputBoolean, Nullable, PlainObject } from '@angular-ru/common/typings';
+import { isNotNil } from '@angular-ru/common/utils';
 
 export function AttributeBoolean(): PropertyDecorator {
     return function (prototype: PlainObject, key: string | symbol): PropertyDescriptor & ThisType<Any> {
-        const { get: getter, set: setter }: PropertyDescriptor | undefined =
-            Object.getOwnPropertyDescriptor(prototype, key) ?? {};
+        const descriptor: Nullable<PropertyDescriptor> = Object.getOwnPropertyDescriptor(prototype, key);
 
         const uniqueRefKey: symbol = Symbol(`It's boolean attribute`);
         return {
             set(value: InputBoolean): void {
                 this[uniqueRefKey] = coerceBoolean(value);
-                setter?.call(this, this[uniqueRefKey]);
+                descriptor?.set?.call(this, this[uniqueRefKey]);
             },
             get(): boolean {
-                return getter ? getter.call(this) : this[uniqueRefKey] ?? false;
+                return isNotNil(descriptor?.get) ? descriptor?.get.call(this) : this[uniqueRefKey] ?? false;
             }
         };
     };

@@ -11,10 +11,10 @@ import {
 import { TestBed } from '@angular/core/testing';
 import { CommonModule } from '@angular/common';
 import { DataBeforeRequestOptions, DataHttpInterceptor } from '@angular-ru/http/typings';
-
+import { Nullable } from '@angular-ru/common/typings';
 describe('[TEST]: HTTP Client', () => {
     const MOCK_API: string = 'http://localhost';
-    let client: ApiEmitsClient | null = null;
+    let client: Nullable<ApiEmitsClient> = null;
     let httpMock: HttpTestingController;
     let req: TestRequest;
 

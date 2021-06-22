@@ -1,12 +1,13 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Nullable } from '@angular-ru/common/typings';
 import { isNil } from '@angular-ru/common/utils';
 
 @Pipe({ name: 'at' })
 export class AtPipe implements PipeTransform {
     public transform<EntryType, ArrayType extends EntryType[]>(
-        array: ArrayType | null | undefined,
+        array: Nullable<ArrayType>,
         index: number
-    ): EntryType | undefined {
+    ): Nullable<EntryType> {
         if (isNil(array)) {
             return undefined;
         }

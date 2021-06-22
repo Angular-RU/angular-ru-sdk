@@ -1,6 +1,7 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 import { ControlValueInterceptor } from '@angular-ru/common/forms';
 import { filter, FilterPredicate } from '@angular-ru/common/string';
+import { Nullable } from '@angular-ru/common/typings';
 
 @Directive({
     selector: '[filter]',
@@ -8,8 +9,7 @@ import { filter, FilterPredicate } from '@angular-ru/common/string';
 })
 export class FilterDirective {
     @Input() public filter: FilterPredicate = [];
-
-    private manualEvent: InputEvent | null = null;
+    private manualEvent: Nullable<InputEvent> = null;
 
     constructor(private readonly elementRef: ElementRef<HTMLInputElement>) {}
 

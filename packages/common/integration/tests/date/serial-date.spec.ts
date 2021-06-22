@@ -7,7 +7,7 @@ import {
     toTimestamp,
     toUnix
 } from '@angular-ru/common/date';
-import { Any } from '@angular-ru/common/typings';
+import { Any, Nullable } from '@angular-ru/common/typings';
 
 const isoFormat: string = 'yyyy-MM-dd HH:mm:ss';
 
@@ -67,12 +67,12 @@ describe('[TEST]: Date', (): void => {
     });
 
     it('should correct change data with short day', (): void => {
-        const date: string | null = toTimestamp('5.07.2019 00:00', isoFormat);
+        const date: Nullable<string> = toTimestamp('5.07.2019 00:00', isoFormat);
         expect(date).toEqual('2019-07-05 00:00:00');
     });
 
     it('should correct be correct invalidate date ', (): void => {
-        let date: string | null = toTimestamp('5.7.2019', isoFormat);
+        let date: Nullable<string> = toTimestamp('5.7.2019', isoFormat);
         expect(date).toEqual('2019-07-05 00:00:00');
 
         date = toTimestamp('1.2.2019', isoFormat);
@@ -95,7 +95,7 @@ describe('[TEST]: Date', (): void => {
     });
 
     it('should correct pass correct data', (): void => {
-        const date: string | null = toTimestamp('25.07.2019 00:00', isoFormat);
+        const date: Nullable<string> = toTimestamp('25.07.2019 00:00', isoFormat);
         expect(date).toEqual('2019-07-25 00:00:00');
     });
 

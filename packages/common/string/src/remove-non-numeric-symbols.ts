@@ -1,3 +1,5 @@
-export function removeNonNumericSymbols(val?: string | null): string {
+import { Nullable } from '@angular-ru/common/typings';
+
+export function removeNonNumericSymbols(val?: Nullable<string>): string {
     return val?.replace(/[^\d,.-]/g, '').replace(/^\.|^,/, '') ?? '';
 }

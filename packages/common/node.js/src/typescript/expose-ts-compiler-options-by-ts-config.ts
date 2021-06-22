@@ -1,4 +1,4 @@
-import { Any } from '@angular-ru/common/typings';
+import { Any, Nullable } from '@angular-ru/common/typings';
 import { isNotNil } from '@angular-ru/common/utils';
 import { CompilerOptions } from 'typescript';
 
@@ -15,7 +15,7 @@ export function exposeTsCompilerOptionsByTsConfig(tsConfigPath: string): Compile
     const resolvedPath: string = resolveTsConfigPath(tsConfigPath);
 
     const tsconfig: Any = require(resolvedPath);
-    const compilerOptions: CompilerOptions | undefined = tsconfig.compilerOptions;
+    const compilerOptions: Nullable<CompilerOptions> = tsconfig.compilerOptions;
     const shouldBeDiscoverPathsInParentTsConfig: boolean = !compilerOptions?.paths && isNotNil(tsconfig.extends);
 
     if (shouldBeDiscoverPathsInParentTsConfig) {

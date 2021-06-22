@@ -1,3 +1,4 @@
+import { Nullable } from './nullable';
 import { PlainObject } from './object-types';
 
-export type ClassDescriptor = string | string[] | Set<string> | PlainObject | undefined | null;
+export type ClassDescriptor = Nullable<string | string[] | Set<string> | PlainObject>;

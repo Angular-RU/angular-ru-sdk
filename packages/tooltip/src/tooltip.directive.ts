@@ -10,7 +10,7 @@ import {
     TemplateRef
 } from '@angular/core';
 import { generateQuickGuid } from '@angular-ru/common/string';
-import { Any } from '@angular-ru/common/typings';
+import { Any, Nullable } from '@angular-ru/common/typings';
 import { checkValueIsEmpty, isNotNil } from '@angular-ru/common/utils';
 import { fromEvent, Subscription } from 'rxjs';
 
@@ -28,19 +28,19 @@ import { TOOLTIP_OPTIONS_TOKEN, TOOLTIP_TEXT_INTERCEPTOR_TOKEN } from './tooltip
 export class TooltipDirective implements OnDestroy {
     @Input('tooltip-disabled') public tooltipDisabled!: boolean;
     @Input('tooltip-placement') public placement: TooltipPlacement = 'top';
-    @Input('tooltip-css-style') public localCssStyle: string | null = null;
+    @Input('tooltip-css-style') public localCssStyle: Nullable<string> = null;
     @Input('tooltip-size') public size: TooltipSize = 'small';
     public uid: string = generateQuickGuid();
     private readonly delta: number = 2;
     private readonly layoutMinDuration: number = 100;
-    private tooltipDomElement: HTMLElement | null = null;
-    private timeoutId: number | null = null;
-    private frameId: number | null = null;
-    private createLayoutId: number | null = null;
-    private hideId: number | null = null;
-    private mouseLeaveTooltipId: number | null = null;
-    private tooltipMouseenter: Subscription | null = null;
-    private tooltipMouseleave: Subscription | null = null;
+    private tooltipDomElement: Nullable<HTMLElement> = null;
+    private timeoutId: Nullable<number> = null;
+    private frameId: Nullable<number> = null;
+    private createLayoutId: Nullable<number> = null;
+    private hideId: Nullable<number> = null;
+    private mouseLeaveTooltipId: Nullable<number> = null;
+    private tooltipMouseenter: Nullable<Subscription> = null;
+    private tooltipMouseleave: Nullable<Subscription> = null;
     private handlerOptions: AddEventListenerOptions = { passive: true };
     private internalTooltipValue: TooltipValue = null;
     private internalContext: TooltipContextValue = null;
@@ -144,7 +144,7 @@ export class TooltipDirective implements OnDestroy {
 
     public setPosition(): void {
         const hostPos: DOMRect = this.el.nativeElement.getBoundingClientRect();
-        const tooltipPos: DOMRect | undefined = this.tooltipDomElement?.getBoundingClientRect();
+        const tooltipPos: Nullable<DOMRect> = this.tooltipDomElement?.getBoundingClientRect();
         const scrollPos: number = TooltipDirective.getScrollPos();
 
         if (this.placement === 'top') {
@@ -182,7 +182,7 @@ export class TooltipDirective implements OnDestroy {
 
     private refreshTooltipContent(): void {
         if (this.tooltipDomElement) {
-            const contentDomElement: HTMLElement | null = this.createTooltipContent();
+            const contentDomElement: Nullable<HTMLElement> = this.createTooltipContent();
             if (contentDomElement) {
                 const childElements: HTMLCollection = this.tooltipDomElement.children;
                 for (const child of Array.from(childElements)) {
@@ -274,7 +274,7 @@ export class TooltipDirective implements OnDestroy {
         }
     }
 
-    private createTooltipContent(): HTMLDivElement | null {
+    private createTooltipContent(): Nullable<HTMLDivElement> {
         const content: HTMLDivElement = document.createElement('div');
 
         if (this.internalTooltipValue instanceof TemplateRef) {
@@ -295,8 +295,8 @@ export class TooltipDirective implements OnDestroy {
         return content;
     }
 
-    private createTooltipElement(): HTMLElement | null {
-        const contentDomElement: HTMLElement | null = this.createTooltipContent();
+    private createTooltipElement(): Nullable<HTMLElement> {
+        const contentDomElement: Nullable<HTMLElement> = this.createTooltipContent();
 
         if (contentDomElement) {
             const tooltipDomElement: HTMLElement = this.renderer.createElement('div');
@@ -317,7 +317,7 @@ export class TooltipDirective implements OnDestroy {
 
     private removeOldNodes(): void {
         if (this.tooltipDomElement) {
-            const element: HTMLElement | null = document.getElementById(this.uid);
+            const element: Nullable<HTMLElement> = document.getElementById(this.uid);
             element?.remove();
             this.tooltipDomElement = null;
         }
