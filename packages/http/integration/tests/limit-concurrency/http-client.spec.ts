@@ -4,7 +4,7 @@ import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { Injectable } from '@angular/core';
 import { RestClient } from '@angular-ru/http/decorators';
 import { DataHttpClient, DataHttpClientModule } from '@angular-ru/http';
-
+import { Nullable } from '@angular-ru/common/typings';
 describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
     const mockApi: string = 'http://localhost';
     const restClient: string = 'hello';
@@ -16,7 +16,7 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
 
     let responseOrder: string[] = [];
     let expectOrder: string[] = [];
-    let client: MyClient | null = null;
+    let client: Nullable<MyClient> = null;
     let httpMock: HttpTestingController;
 
     type RequestParams = {

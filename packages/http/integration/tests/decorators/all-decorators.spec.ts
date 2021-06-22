@@ -16,10 +16,11 @@ import {
     RequestParam,
     RestClient
 } from '@angular-ru/http/decorators';
+import { Nullable } from '@angular-ru/common/typings';
 
 describe('[TEST]: HTTP decorators for client', () => {
     const MOCK_API: string = 'http://localhost';
-    let client: ApiUsersClient | null = null;
+    let client: Nullable<ApiUsersClient> = null;
     let httpMock: HttpTestingController;
     let req: TestRequest;
 

@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { PlainObject } from '@angular-ru/common/typings';
+import { Nullable, PlainObject } from '@angular-ru/common/typings';
 
 import { LoggerService } from '../logger.service';
 
@@ -61,7 +61,7 @@ export type GroupMethod<T = unknown> = (groupTitle?: string, ...optionalParams: 
 
 export type GroupFactoryMethod = (
     title: string,
-    pipeline: Pipeline | undefined,
+    pipeline: Nullable<Pipeline>,
     logger: LoggerService,
     level: LoggerLevel
 ) => void;

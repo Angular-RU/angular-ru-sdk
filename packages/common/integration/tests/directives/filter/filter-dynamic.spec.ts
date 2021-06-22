@@ -5,11 +5,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FilterModule } from '@angular-ru/common/directives';
 import { FilterPredicate } from '@angular-ru/common/string';
 import { MatInputModule } from '@angular/material/input';
+import { Nullable } from '@angular-ru/common/typings';
 
 describe('[TEST]: Filter Dynamic', () => {
-    let fixture: ComponentFixture<DynamicTestComponent> | null = null;
-    let component: DynamicTestComponent = null!;
-    let debugElement: DebugElement | null = null;
+    let fixture: Nullable<ComponentFixture<DynamicTestComponent>> = null;
+    let component: Nullable<DynamicTestComponent> = null;
+    let debugElement: Nullable<DebugElement> = null;
 
     @Component({
         selector: 'test',
@@ -22,7 +23,7 @@ describe('[TEST]: Filter Dynamic', () => {
     })
     class DynamicTestComponent {
         public form = this.fb.group({ a: 'kkk', b: null });
-        public control: AbstractControl | null = this.form.get('b');
+        public control: Nullable<AbstractControl> = this.form.get('b');
         public predicate: FilterPredicate = ['a', 'b', 'c'];
 
         constructor(public readonly cd: ChangeDetectorRef, private readonly fb: FormBuilder) {}

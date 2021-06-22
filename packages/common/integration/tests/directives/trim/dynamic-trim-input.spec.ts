@@ -5,11 +5,12 @@ import { TrimInputModule } from '@angular-ru/common/directives';
 import { NgxMaskModule } from 'ngx-mask';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserModule, By } from '@angular/platform-browser';
+import { Nullable } from '@angular-ru/common/typings';
 
 describe('[TEST]: Trim Input', () => {
-    let fixture: ComponentFixture<DynamicTestComponent> | null = null;
-    let component: DynamicTestComponent | null = null;
-    let debugElement: DebugElement | null = null;
+    let fixture: Nullable<ComponentFixture<DynamicTestComponent>> = null;
+    let component: Nullable<DynamicTestComponent> = null;
+    let debugElement: Nullable<DebugElement> = null;
 
     @Component({
         selector: 'test',

@@ -1,6 +1,6 @@
 import { DeepPathPipe, MutableTypePipeModule, MutableTypePipe } from '@angular-ru/common/pipes';
 import { TestBed } from '@angular/core/testing';
-import { Immutable, PlainObject } from '@angular-ru/common/typings';
+import { Immutable, Nullable, PlainObject } from '@angular-ru/common/typings';
 
 describe('mutable', () => {
     let pipe: MutableTypePipe;
@@ -27,7 +27,7 @@ describe('mutable', () => {
         });
 
         it('should be correct extract', () => {
-            const b: string | PlainObject | null | undefined = pipePath.transform(
+            const b: Nullable<string | PlainObject> = pipePath.transform(
                 {
                     a: {
                         b: {
@@ -42,7 +42,7 @@ describe('mutable', () => {
                 c: 1
             });
 
-            const c: string | number | null | undefined = pipePath.transform(
+            const c: Nullable<string | number> = pipePath.transform(
                 {
                     a: {
                         b: {
@@ -57,7 +57,7 @@ describe('mutable', () => {
         });
 
         it('should be correct return object when set empty path', () => {
-            const result: string | PlainObject | null | undefined = pipePath.transform({ a: { b: 1 } }, '');
+            const result: Nullable<string | PlainObject> = pipePath.transform({ a: { b: 1 } }, '');
             expect(result).toEqual({ a: { b: 1 } });
         });
 

@@ -1,4 +1,4 @@
-import { Any, Fn } from '@angular-ru/common/typings';
+import { Any, Fn, Nullable } from '@angular-ru/common/typings';
 
 /**
  * @internal
@@ -72,7 +72,7 @@ export function BoundClass(target: Any) {
             return;
         }
 
-        const descriptor: PropertyDescriptor | undefined = Object.getOwnPropertyDescriptor(target.prototype, key);
+        const descriptor: Nullable<PropertyDescriptor> = Object.getOwnPropertyDescriptor(target.prototype, key);
 
         // Only methods need binding
         if (typeof descriptor?.value === 'function') {

@@ -1,4 +1,6 @@
-export function splitOnUniqueValues(value: string | null | undefined, separator: RegExp = /[,;]|(\s+)/g): string[] {
+import { Nullable } from '@angular-ru/common/typings';
+
+export function splitOnUniqueValues(value: Nullable<string>, separator: RegExp = /[,;]|(\s+)/g): string[] {
     const uniqueValues: Set<string> = new Set();
     const parsedValues: string[] = value?.split(separator) ?? [];
 

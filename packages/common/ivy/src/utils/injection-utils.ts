@@ -7,13 +7,13 @@ import {
     ɵɵinject as ivyInject,
     Type
 } from '@angular/core';
-import { Fn } from '@angular-ru/common/typings';
+import { Fn, Nullable } from '@angular-ru/common/typings';
 
 function wrapperForInject<T>(
     wrap: Fn,
     token: Type<T> | AbstractType<T> | InjectionToken<T>,
     flags?: InjectFlags
-): T | null {
+): Nullable<T> {
     if (InjectFlags.Optional) {
         try {
             return wrap(token, flags!);
@@ -29,11 +29,14 @@ function wrapperForInject<T>(
  * @description `directiveInject`
  */
 export function directiveInject<T>(token: Type<T> | AbstractType<T> | InjectionToken<T>): T;
-export function directiveInject<T>(token: Type<T> | AbstractType<T> | InjectionToken<T>, flags: InjectFlags): T | null;
+export function directiveInject<T>(
+    token: Type<T> | AbstractType<T> | InjectionToken<T>,
+    flags: InjectFlags
+): Nullable<T>;
 export function directiveInject<T>(
     token: Type<T> | AbstractType<T> | InjectionToken<T>,
     flags?: InjectFlags
-): T | null {
+): Nullable<T> {
     return wrapperForInject(ivyDirectiveInject, token, flags);
 }
 
@@ -41,7 +44,7 @@ export function directiveInject<T>(
  * @description `inject`
  */
 export function inject<T>(token: Type<T> | AbstractType<T> | InjectionToken<T>): T;
-export function inject<T>(token: Type<T> | AbstractType<T> | InjectionToken<T>, flags: InjectFlags): T | null;
-export function inject<T>(token: Type<T> | AbstractType<T> | InjectionToken<T>, flags?: InjectFlags): T | null {
+export function inject<T>(token: Type<T> | AbstractType<T> | InjectionToken<T>, flags: InjectFlags): Nullable<T>;
+export function inject<T>(token: Type<T> | AbstractType<T> | InjectionToken<T>, flags?: InjectFlags): Nullable<T> {
     return wrapperForInject(ivyInject, token, flags);
 }

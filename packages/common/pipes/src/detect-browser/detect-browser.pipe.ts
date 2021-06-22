@@ -1,18 +1,19 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { secondItem, thirdItem } from '@angular-ru/common/array';
+import { Nullable } from '@angular-ru/common/typings';
 import { isNotNil, isTrue } from '@angular-ru/common/utils';
 
 import { DetectBrowserPipeOptions } from './detect-browser-pipe';
 
 @Pipe({ name: 'detectBrowser' })
 export class DetectBrowserPipe implements PipeTransform {
-    private static getBrowserMatchers(userAgent?: string): RegExpMatchArray | null {
+    private static getBrowserMatchers(userAgent?: string): Nullable<RegExpMatchArray> {
         const ua: string = userAgent ?? navigator.userAgent;
         return ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) ?? [];
     }
 
     private static ensureInternetExplorer(ua: string): string {
-        const matcher: RegExpMatchArray | null = /\brv[ :]+(\d+)/g.exec(ua) || [];
+        const matcher: Nullable<RegExpMatchArray> = /\brv[ :]+(\d+)/g.exec(ua) || [];
         return `IE ${secondItem(matcher)}` ?? '';
     }
 
@@ -25,9 +26,9 @@ export class DetectBrowserPipe implements PipeTransform {
             .replace('Edg ', 'Edge ');
     }
 
-    private static ensureOtherBrowser(matchers: RegExpMatchArray | null, ua: string): string {
-        const matcher: RegExpMatchArray | null = ua.match(/version\/(\d+)/i);
-        const otherMatchers: (string | null)[] = isNotNil(thirdItem(matchers))
+    private static ensureOtherBrowser(matchers: Nullable<RegExpMatchArray>, ua: string): string {
+        const matcher: Nullable<RegExpMatchArray> = ua.match(/version\/(\d+)/i);
+        const otherMatchers: Nullable<string>[] = isNotNil(thirdItem(matchers))
             ? [secondItem(matchers), thirdItem(matchers)]
             : [navigator.appName, navigator.appVersion, '-?'];
 
@@ -38,10 +39,10 @@ export class DetectBrowserPipe implements PipeTransform {
         return otherMatchers?.join(' ') ?? '';
     }
 
-    public transform(userAgent?: string | undefined | null, options?: DetectBrowserPipeOptions): string {
+    public transform(userAgent?: Nullable<string>, options?: DetectBrowserPipeOptions): string {
         let browser: string;
         const ua: string = userAgent ?? navigator.userAgent;
-        const matchers: RegExpMatchArray | null = DetectBrowserPipe.getBrowserMatchers(ua);
+        const matchers: Nullable<RegExpMatchArray> = DetectBrowserPipe.getBrowserMatchers(ua);
 
         if (/trident/i.test(secondItem(matchers) as string)) {
             browser = DetectBrowserPipe.ensureInternetExplorer(ua);

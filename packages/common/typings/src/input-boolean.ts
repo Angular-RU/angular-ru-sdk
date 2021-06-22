@@ -1,1 +1,3 @@
-export type InputBoolean = string | boolean | number | '' | 'false' | null | undefined;
+import { Nullable } from './nullable';
+
+export type InputBoolean = Nullable<string | boolean | number | '' | 'false'>;

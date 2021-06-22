@@ -1,5 +1,5 @@
 import { Type } from '@angular/core';
-import { Any, DecoratorMethod, Fn } from '@angular-ru/common/typings';
+import { Any, DecoratorMethod, Fn, Nullable } from '@angular-ru/common/typings';
 
 import { LoggerLevel, TimerInfo, TimerLevels } from '../interfaces/logger.external';
 import { LoggerInjector } from '../logger.injector';
@@ -15,7 +15,7 @@ export function TimerLog(
         let result: PropertyDescriptor;
         const method: Fn = descriptor.value;
         descriptor.value = function (...args: Any[]): PropertyDescriptor {
-            const info: TimerInfo | null = LoggerInjector.getInjector()
+            const info: Nullable<TimerInfo> = LoggerInjector.getInjector()
                 .get<LoggerService>(LoggerService)
                 .startTime(title, level);
 

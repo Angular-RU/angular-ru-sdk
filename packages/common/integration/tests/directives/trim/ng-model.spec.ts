@@ -6,11 +6,12 @@ import { NgxMaskModule } from 'ngx-mask';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserModule, By } from '@angular/platform-browser';
 import { Any } from '@angular-ru/common/typings';
+import { Nullable } from '@angular-ru/common/typings';
 
 describe('[TEST]: Trim Input', () => {
-    let fixture: ComponentFixture<NgModelTestComponent> | null = null;
-    let component: NgModelTestComponent | null = null;
-    let debugElement: DebugElement | null = null;
+    let fixture: Nullable<ComponentFixture<NgModelTestComponent>> = null;
+    let component: Nullable<NgModelTestComponent> = null;
+    let debugElement: Nullable<DebugElement> = null;
 
     @Component({
         selector: 'test',

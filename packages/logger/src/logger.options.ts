@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
+import { Nullable, PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
 
 import { FormatOutput, LoggerLevel, LoggerOptions } from './interfaces/logger.external';
 import { COLORS, LABELS } from './logger.config';
@@ -27,7 +27,7 @@ export class LoggerOptionsImpl implements LoggerOptions {
         [LoggerLevel.ERROR]: LABELS.ERROR
     };
 
-    public format(label: string | undefined, style: string): FormatOutput {
+    public format(label: Nullable<string>, style: string): FormatOutput {
         return { label: `[${label}]:`, style };
     }
 }
