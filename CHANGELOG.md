@@ -1,3 +1,10 @@
+#### 15.267.0 (2021-06-22)
+
+##### New Features
+
+-   support Nullable type ([#694](https://github.com/Angular-RU/angular-ru-sdk/pull/694))
+    ([d3754adc](https://github.com/Angular-RU/angular-ru-sdk/commit/d3754adc96979032bc5179b6dbdae6f656e5df84))
+
 #### 15.266.0 (2021-06-21)
 
 ##### New Features
