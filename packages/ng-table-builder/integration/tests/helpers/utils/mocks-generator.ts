@@ -23,7 +23,8 @@ export class MocksGenerator {
                                     name: 'Random - ' + ((Math.random() + 1) * 100).toFixed(0) + '__' + idx,
                                     description: 'Random - ' + ((Math.random() + 1) * 100).toFixed(0) + '__' + idx,
                                     guid: '5cdae5b2ba0a57f709b72142' + '__' + idx,
-                                    someBoolean: Math.random() > 0.5
+                                    someBoolean: Math.random() > 0.5,
+                                    someNull: Math.random() > 0.5 ? null : 'not null'
                                 };
 
                                 // eslint-disable-next-line @typescript-eslint/typedef,@typescript-eslint/explicit-function-return-type
