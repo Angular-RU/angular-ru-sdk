@@ -151,7 +151,7 @@ describe('[TEST]: Lifecycle table', () => {
         await table.sortAndFilter();
         expect(table.source).toEqual(data);
 
-        expect(table.lastItem).toEqual({ position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' });
+        expect(table.lastItem).toEqual({ position: 10, name: null, weight: 20.1797, symbol: 'Ne' });
     });
 
     it('should be unchecked state before ngOnChange', () => {
