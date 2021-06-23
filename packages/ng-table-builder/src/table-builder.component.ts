@@ -40,7 +40,8 @@ import { SortableService } from './services/sortable/sortable.service';
 import { NgxTableViewChangesService } from './services/table-view-changes/ngx-table-view-changes.service';
 import { TemplateParserService } from './services/template-parser/template-parser.service';
 
-const { TIME_IDLE, TIME_RELOAD, FRAME_TIME, MACRO_TIME }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
+const { TIME_IDLE, TIME_RELOAD, FRAME_TIME, MACRO_TIME, CHANGE_DELAY }: typeof TABLE_GLOBAL_OPTIONS =
+    TABLE_GLOBAL_OPTIONS;
 
 @Component({
     selector: 'ngx-table-builder',
@@ -90,6 +91,7 @@ export class TableBuilderComponent<T>
     private timeoutViewCheckedId: Nullable<number> = null;
     private frameCalculateViewportId: Nullable<number> = null;
     private selectionUpdateTaskId: Nullable<number> = null;
+    private changesTimerId: number = 0;
 
     constructor(public readonly cd: ChangeDetectorRef, injector: Injector) {
         super();
@@ -169,6 +171,9 @@ export class TableBuilderComponent<T>
         if (TableSimpleChanges.SORT_TYPES in changes) {
             this.setSortTypes();
         }
+
+        clearTimeout(this.changesTimerId);
+        this.changesTimerId = window.setTimeout((): void => this.updateViewport(), CHANGE_DELAY);
     }
 
     public markForCheck(): void {
@@ -486,10 +491,12 @@ export class TableBuilderComponent<T>
             return;
         }
 
-        this.ngZone.runOutsideAngular((): void => {
-            this.cancelScrolling();
-            this.frameCalculateViewportId = window.requestAnimationFrame((): void => this.calculateViewport());
-        });
+        this.ngZone.runOutsideAngular((): void => this.updateViewport());
+    }
+
+    private updateViewport(): void {
+        this.cancelScrolling();
+        this.frameCalculateViewportId = window.requestAnimationFrame((): void => this.calculateViewport());
     }
 
     private cancelScrolling(): void {
