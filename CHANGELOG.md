@@ -1,3 +1,10 @@
+#### 15.267.3 (2021-06-23)
+
+##### Bug Fixes
+
+-   **ng-table-builder:** added update view on changes ([#697](https://github.com/Angular-RU/angular-ru-sdk/pull/697))
+    ([62ec37c9](https://github.com/Angular-RU/angular-ru-sdk/commit/62ec37c951ff945ef5321de2a56c3aafb5ff66d1))
+
 #### 15.267.2 (2021-06-23)
 
 ##### Bug Fixes
