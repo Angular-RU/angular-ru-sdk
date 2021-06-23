@@ -2,19 +2,26 @@
 import { Injectable } from '@angular/core';
 import { toFormatDateTime } from '@angular-ru/common/date';
 import { PlainTableComposerService } from '@angular-ru/common/table-utils';
-import { Any, EmptyValue, PlainObject } from '@angular-ru/common/typings';
-import { downloadFile } from '@angular-ru/common/utils';
+import { Any, EmptyValue, Nullable, PlainObject } from '@angular-ru/common/typings';
+import { downloadFile, isNotNil } from '@angular-ru/common/utils';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 
 import { ExcelWorkbook, PreparedExcelWorkbook } from './interfaces/excel-workbook';
-import { PreparedExcelWorksheet } from './interfaces/excel-worksheet';
+import { ColumnParameters, ColumnWidth, PreparedExcelWorksheet } from './interfaces/excel-worksheet';
 
 interface StyleSizes {
     fontWidth: number;
     fontSize: number;
-    columnWidth: number;
+    minColumnWidth: number;
     rowHeight: number;
 }
+
+const enum StyleType {
+    HEAD = 'HeadCellStyle',
+    BODY = 'BodyCellStyle',
+    BIG_DATA = 'CellBigDataStyle'
+}
+
 @Injectable()
 export class ExcelBuilderService {
     constructor(public plainTableComposer: PlainTableComposerService, public webWorker: WebWorkerThreadService) {}
@@ -24,14 +31,8 @@ export class ExcelBuilderService {
         const preparedWorkbook: PreparedExcelWorkbook<T> = await this.prepareWorkbook(workbook);
 
         this.webWorker
-            // eslint-disable-next-line max-lines-per-function
+            // eslint-disable-next-line max-lines-per-function,sonarjs/cognitive-complexity
             .run((input: PreparedExcelWorkbook<T>): Blob => {
-                const enum StyleType {
-                    HEAD = 'HeadCellStyle',
-                    BODY = 'BodyCellStyle',
-                    BIG_DATA = 'CellBigDataStyle'
-                }
-
                 function isEmptyValue(value: Any): value is EmptyValue {
                     const val: Any = typeof value === 'string' ? value.trim() : value;
                     return [undefined, null, NaN, '', 'null', Infinity].includes(val);
@@ -96,62 +97,90 @@ export class ExcelBuilderService {
                         return `<Cell ss:StyleID="${styleId}"><Data ss:Type="${type}">${cellValue}</Data></Cell>`;
                     }
 
+                    private static isFilled(value: Nullable<string>): value is string {
+                        return typeof value === 'string' && value.length > 0;
+                    }
+
                     public buildWorkbook(worksheets: PreparedExcelWorksheet<T>[]): string {
                         const xmlWorksheets: string = this.generateWorksheets(worksheets);
                         return ExcelBuilder.generateWorkbook(xmlWorksheets);
                     }
 
                     private generateWorksheets(worksheets: PreparedExcelWorksheet<T>[]): string {
-                        const xmlSheets: string[] = worksheets.map((worksheet: PreparedExcelWorksheet<T>): string => {
-                            const worksheetName: string = worksheet.worksheetName;
-                            const translatePrefix: string | undefined = worksheet.prefixKeyForTranslate;
-                            const entries: PlainObject[] = worksheet.flatEntries;
-                            const titles: string[] = this.getTranslatedTitlesByEntry(entries[0], translatePrefix);
-
-                            return this.generateWorksheet(worksheetName, entries, titles);
-                        });
+                        const xmlSheets: string[] = worksheets.map((worksheet: PreparedExcelWorksheet<T>): string =>
+                            this.generateWorksheet(worksheet)
+                        );
                         return xmlSheets.join('');
                     }
 
-                    private generateWorksheet(worksheetName: string, entries: PlainObject[], titles: string[]): string {
-                        const { columnWidth, rowHeight }: StyleSizes = this.sizes;
-                        const xmlColumns: string = this.generateColumnsDescriptor(titles);
-                        const xmlHeaderRow: string = this.generateHeaderRow(titles);
-                        const xmlBodyRows: string = this.generateBodyRows(entries);
+                    private generateWorksheet(worksheet: PreparedExcelWorksheet<T>): string {
+                        const { minColumnWidth, rowHeight }: StyleSizes = this.sizes;
+                        const xmlColumns: string = this.generateColumnsDescriptor(worksheet);
+                        const xmlBodyRows: string = this.generateBodyRows(worksheet.flatEntries);
 
                         return `
-                        <Worksheet ss:Name="${worksheetName}">
-                            <Table ss:DefaultColumnWidth="${columnWidth}" ss:DefaultRowHeight="${rowHeight}">
+                        <Worksheet ss:Name="${worksheet.worksheetName}">
+                            <Table ss:DefaultColumnWidth="${minColumnWidth}" ss:DefaultRowHeight="${rowHeight}">
                                 ${xmlColumns}
-                                ${xmlHeaderRow}
                                 ${xmlBodyRows}
                             </Table>
                         </Worksheet>`;
                     }
 
-                    private generateColumnsDescriptor(titles: string[]): string {
-                        const { fontSize, columnWidth }: StyleSizes = this.sizes;
-                        const xmlDescriptors: string[] = titles.map((title: string): string => {
-                            const textWidth: number = title.length * fontSize;
-                            const width: number = Math.max(textWidth, columnWidth);
-                            return `<Column ss:Width="${width}" />`;
-                        });
+                    private generateColumnsDescriptor(worksheet: PreparedExcelWorksheet<T>): string {
+                        const { flatEntries, columnParameters, prefixKeyForTranslate }: PreparedExcelWorksheet<T> =
+                            worksheet;
+                        const keys: string[] = Object.keys(flatEntries?.[0] ?? []);
 
-                        return xmlDescriptors.join('');
+                        let columnsDescriptor: string = '';
+                        let columnCells: string = '';
+
+                        keys.forEach((key: string): void => {
+                            const title: string = this.getTranslatedTitle(key, prefixKeyForTranslate);
+                            const parameters: Nullable<ColumnParameters> = columnParameters?.[key];
+                            const width: number = this.getWidthOfColumn(title, key, flatEntries, parameters);
+                            columnsDescriptor += `<Column ss:Width="${width}" />`;
+                            columnCells += ExcelBuilder.renderCell(title, StyleType.HEAD);
+                        });
+                        return `
+                            ${columnsDescriptor}
+                            <Row>${columnCells}</Row>`;
                     }
 
-                    private getTranslatedTitlesByEntry(entry: Any, translatePrefix?: string): string[] {
-                        return Object.keys(entry).map((key: string): string => {
-                            const translatePath: string = translatePrefix ? `${translatePrefix}.${key}` : key;
-                            return this.flattenTranslatedKeys[translatePath] ?? key;
-                        });
+                    // eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
+                    private getWidthOfColumn(
+                        title: string,
+                        key: string,
+                        entries: PlainObject[],
+                        parameters: Nullable<ColumnParameters>
+                    ): number {
+                        const { fontSize, minColumnWidth }: StyleSizes = this.sizes;
+                        let textWidth: number;
+
+                        if (parameters?.width === ColumnWidth.MAX_WIDTH) {
+                            textWidth = this.calcMaxWidthByEntries(entries, key);
+                        } else if (typeof parameters?.width === 'number') {
+                            textWidth = parameters.width;
+                        } else {
+                            textWidth = title.length * fontSize;
+                        }
+
+                        return Math.max(textWidth, minColumnWidth);
                     }
 
-                    private generateHeaderRow(titles: string[]): string {
-                        const xmlCells: string = titles
-                            .map((title: string): string => ExcelBuilder.renderCell(title, StyleType.HEAD))
-                            .join('');
-                        return `<Row>${xmlCells}</Row>`;
+                    private calcMaxWidthByEntries(entries: PlainObject[], key: string): number {
+                        const maxLength: number = entries.reduce((length: number, entry: PlainObject): number => {
+                            const currentLength: number = (entry[key]?.toString() ?? '').length;
+                            return Math.max(currentLength, length);
+                        }, 0);
+                        return maxLength * this.sizes.fontWidth;
+                    }
+
+                    private getTranslatedTitle(key: string, translatePrefix?: string): string {
+                        const translatePath: string = ExcelBuilder.isFilled(translatePrefix)
+                            ? `${translatePrefix}.${key}`
+                            : key;
+                        return this.flattenTranslatedKeys[translatePath] ?? key;
                     }
 
                     private generateBodyRows(entries: PlainObject[]): string {
@@ -165,13 +194,13 @@ export class ExcelBuilderService {
                     }
 
                     private generateCells(flatCell: PlainObject): string {
-                        const { fontWidth, columnWidth }: StyleSizes = this.sizes;
+                        const { fontWidth, minColumnWidth }: StyleSizes = this.sizes;
                         const keys: string[] = Object.keys(flatCell);
 
                         const xmlCells: string[] = keys.map((key: string): string => {
                             const value: string = flatCell[key];
                             const symbolCount: number = String(value).length;
-                            const overflow: boolean = symbolCount * fontWidth >= columnWidth;
+                            const overflow: boolean = symbolCount * fontWidth >= minColumnWidth;
                             const localStyleId: StyleType = overflow ? StyleType.BIG_DATA : StyleType.BODY;
                             return ExcelBuilder.renderCell(value, localStyleId);
                         });
@@ -181,7 +210,7 @@ export class ExcelBuilderService {
                 }
 
                 const xmlBookTemplate: string = new ExcelBuilder(
-                    { fontWidth: 5, fontSize: 7, columnWidth: 140, rowHeight: 40 },
+                    { fontWidth: 5, fontSize: 7, minColumnWidth: 140, rowHeight: 40 },
                     input.preparedTranslatedKeys
                 ).buildWorkbook(input.worksheets);
 
@@ -196,10 +225,13 @@ export class ExcelBuilderService {
     private async prepareWorkbook<T>(workbook: ExcelWorkbook<T>): Promise<PreparedExcelWorkbook<T>> {
         const preparedWorksheets: PreparedExcelWorksheet<T>[] = [];
         for (const worksheet of workbook.worksheets) {
-            const flatEntries: PlainObject[] = await this.plainTableComposer.compose(worksheet.entries, {
-                includeKeys: worksheet.keys,
-                excludeKeys: worksheet.excludeKeys
-            });
+            let flatEntries: PlainObject[] = [];
+            if (isNotNil(worksheet.entries)) {
+                flatEntries = await this.plainTableComposer.compose(worksheet.entries, {
+                    includeKeys: worksheet.keys,
+                    excludeKeys: worksheet.excludeKeys
+                });
+            }
             preparedWorksheets.push({ ...worksheet, flatEntries });
         }
 
