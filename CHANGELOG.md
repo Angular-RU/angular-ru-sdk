@@ -1,3 +1,11 @@
+#### 15.267.2 (2021-06-23)
+
+##### Bug Fixes
+
+-   **@angular-ru/ng-table-builder:** fix null values filter errors
+    ([#696](https://github.com/Angular-RU/angular-ru-sdk/pull/696))
+    ([35508ab4](https://github.com/Angular-RU/angular-ru-sdk/commit/35508ab4e112835f3f1ba94f564dd523575eb4cb))
+
 #### 15.267.1 (2021-06-23)
 
 ##### Bug Fixes
