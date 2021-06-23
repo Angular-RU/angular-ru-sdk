@@ -21,5 +21,5 @@ export const TABLE_GLOBAL_OPTIONS: TableGlobalOptions = {
     TIME_IDLE: 200,
     MIN_BUFFER: 10,
     BUFFER_OFFSET: 5,
-    CHANGE_DELAY: 200
+    CHANGE_DELAY: 400
 };
