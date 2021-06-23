@@ -10,7 +10,7 @@ type NumericFilterTypes =
     | TableFilterType.LESS_THAN
     | TableFilterType.MORE_THAN;
 
-type PlainValue = string | number | boolean;
+type PlainValue = string | number | boolean | null | undefined;
 
 // TODO: should be refactor because duplicate code as sortWorker
 // eslint-disable-next-line sonarjs/cognitive-complexity,max-lines-per-function
@@ -78,7 +78,7 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
     }
 
     function toLowercase(value: PlainValue): string {
-        return value.toString().trim().toLocaleLowerCase();
+        return (value ?? '').toString().trim().toLocaleLowerCase();
     }
 
     function startsWith(prefix: string): (value: string) => boolean {
