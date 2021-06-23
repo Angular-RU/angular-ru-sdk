@@ -156,8 +156,8 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
         }
     }
 
-    function isPlainValue(value?: Nullable<PlainObject | PlainValue>): value is PlainValue {
-        return ['number', 'string', 'boolean'].includes(typeof value);
+    function isPlainValue(value?: Nullable<PlainObject> | PlainValue): value is PlainValue {
+        return value === null || value === undefined || ['number', 'string', 'boolean'].includes(typeof value);
     }
 
     function isFilled(value?: Nullable<string>): value is string {

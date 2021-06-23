@@ -27,7 +27,8 @@ class NgxTableBuilderMockComponent {
     public data: PlainObject[] = [
         { id: 1, name: 'Max', lastName: 'Ivanov' },
         { id: 2, name: 'Ivan', lastName: 'Petrov' },
-        { id: 3, name: 'Petr', lastName: 'Sidorov' }
+        { id: 3, name: 'Petr', lastName: 'Sidorov' },
+        { id: 4, name: null, lastName: null }
     ];
 
     public sortTypes: TableSortTypes = null;
@@ -89,6 +90,7 @@ describe('[TEST] Table builder', (): void => {
 
         await componentFixture.whenStable();
         expect(tableBuilderComponent.source).toEqual([
+            { id: 4, name: null, lastName: null },
             { id: 3, name: 'Petr', lastName: 'Sidorov' },
             { id: 2, name: 'Ivan', lastName: 'Petrov' },
             { id: 1, name: 'Max', lastName: 'Ivanov' }
@@ -98,6 +100,7 @@ describe('[TEST] Table builder', (): void => {
         componentFixture.detectChanges();
         await componentFixture.whenStable();
         expect(tableBuilderComponent.source).toEqual([
+            { id: 4, name: null, lastName: null },
             { id: 2, name: 'Ivan', lastName: 'Petrov' },
             { id: 1, name: 'Max', lastName: 'Ivanov' },
             { id: 3, name: 'Petr', lastName: 'Sidorov' }
@@ -114,7 +117,8 @@ describe('[TEST] Table builder', (): void => {
         expect(tableBuilderComponent.source).toEqual([
             { id: 1, name: 'Max', lastName: 'Ivanov' },
             { id: 2, name: 'Ivan', lastName: 'Petrov' },
-            { id: 3, name: 'Petr', lastName: 'Sidorov' }
+            { id: 3, name: 'Petr', lastName: 'Sidorov' },
+            { id: 4, name: null, lastName: null }
         ]);
 
         tableBuilderComponent.selection.selectRow(tableBuilderComponent.source![0], mockClientEvent);
@@ -129,7 +133,8 @@ describe('[TEST] Table builder', (): void => {
         expect(tableBuilderComponent.source).toEqual([
             { id: 3, name: 'Petr', lastName: 'Sidorov' },
             { id: 1, name: 'Max', lastName: 'Ivanov' },
-            { id: 2, name: 'Ivan', lastName: 'Petrov' }
+            { id: 2, name: 'Ivan', lastName: 'Petrov' },
+            { id: 4, name: null, lastName: null }
         ]);
 
         tableBuilderComponent.selection.selectRow(tableBuilderComponent.source![0], mockClientEvent);
@@ -177,7 +182,10 @@ describe('[TEST] Table builder', (): void => {
         ]);
         await tableBuilderComponent.sortAndFilter();
 
-        expect(tableBuilderComponent.source).toEqual([{ id: 2, name: 'Ivan', lastName: 'Petrov' }]);
+        expect(tableBuilderComponent.source).toEqual([
+            { id: 2, name: 'Ivan', lastName: 'Petrov' },
+            { id: 4, lastName: null, name: null }
+        ]);
 
         tableBuilderComponent.filterable.setDefinition([
             { value: 'ivanov', type: TableFilterType.EQUALS, key: 'lastName' }
@@ -193,20 +201,28 @@ describe('[TEST] Table builder', (): void => {
 
         expect(tableBuilderComponent.source).toEqual([
             { id: 1, name: 'Max', lastName: 'Ivanov' },
-            { id: 3, name: 'Petr', lastName: 'Sidorov' }
+            { id: 3, name: 'Petr', lastName: 'Sidorov' },
+            { id: 4, lastName: null, name: null }
         ]);
 
-        tableBuilderComponent.filterable.setDefinition([{ value: 2, type: TableFilterType.MORE_THAN, key: 'id' }]);
+        tableBuilderComponent.filterable.setDefinition([
+            { value: 2, type: TableFilterType.MORE_THAN, key: 'id' },
+            { id: 4, lastName: null, name: null }
+        ]);
         await tableBuilderComponent.sortAndFilter();
 
-        expect(tableBuilderComponent.source).toEqual([{ id: 3, name: 'Petr', lastName: 'Sidorov' }]);
+        expect(tableBuilderComponent.source).toEqual([
+            { id: 3, name: 'Petr', lastName: 'Sidorov' },
+            { id: 4, lastName: null, name: null }
+        ]);
 
         tableBuilderComponent.filterable.setDefinition([{ value: 2, type: TableFilterType.MORE_OR_EQUAL, key: 'id' }]);
         await tableBuilderComponent.sortAndFilter();
 
         expect(tableBuilderComponent.source).toEqual([
             { id: 2, name: 'Ivan', lastName: 'Petrov' },
-            { id: 3, name: 'Petr', lastName: 'Sidorov' }
+            { id: 3, name: 'Petr', lastName: 'Sidorov' },
+            { id: 4, lastName: null, name: null }
         ]);
 
         tableBuilderComponent.filterable.setDefinition([{ value: 2, type: TableFilterType.LESS_THAN, key: 'id' }]);
