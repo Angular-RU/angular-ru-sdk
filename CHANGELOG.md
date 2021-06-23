@@ -1,3 +1,11 @@
+#### 15.267.1 (2021-06-23)
+
+##### Bug Fixes
+
+-   **@angular-ru/ng-table-builder:** fix scrollbar styles
+    ([#695](https://github.com/Angular-RU/angular-ru-sdk/pull/695))
+    ([d8e7fbab](https://github.com/Angular-RU/angular-ru-sdk/commit/d8e7fbab656b413299870c96d0785b121a04b696))
+
 #### 15.267.0 (2021-06-22)
 
 ##### New Features
