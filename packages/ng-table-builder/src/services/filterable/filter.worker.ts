@@ -10,7 +10,7 @@ type NumericFilterTypes =
     | TableFilterType.LESS_THAN
     | TableFilterType.MORE_THAN;
 
-type PlainValue = string | number | boolean | null | undefined;
+type PlainValue = Nullable<string | number | boolean>;
 
 // TODO: should be refactor because duplicate code as sortWorker
 // eslint-disable-next-line sonarjs/cognitive-complexity,max-lines-per-function
@@ -157,11 +157,15 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
     }
 
     function isPlainValue(value?: Nullable<PlainObject> | PlainValue): value is PlainValue {
-        return value === null || value === undefined || ['number', 'string', 'boolean'].includes(typeof value);
+        return isNil(value) || ['number', 'string', 'boolean'].includes(typeof value);
     }
 
     function isFilled(value?: Nullable<string>): value is string {
         return isNotNil(value) && value.toString().length > 0;
+    }
+
+    function isNil(value: Nullable<unknown>): value is null | undefined {
+        return !isNotNil(value);
     }
 
     function isNotNil<V>(value: Nullable<V>): value is V {
