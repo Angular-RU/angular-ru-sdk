@@ -205,10 +205,7 @@ describe('[TEST] Table builder', (): void => {
             { id: 4, lastName: null, name: null }
         ]);
 
-        tableBuilderComponent.filterable.setDefinition([
-            { value: 2, type: TableFilterType.MORE_THAN, key: 'id' },
-            { id: 4, lastName: null, name: null }
-        ]);
+        tableBuilderComponent.filterable.setDefinition([{ value: 2, type: TableFilterType.MORE_THAN, key: 'id' }]);
         await tableBuilderComponent.sortAndFilter();
 
         expect(tableBuilderComponent.source).toEqual([
