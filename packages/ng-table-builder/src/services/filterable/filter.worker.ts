@@ -78,7 +78,7 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
     }
 
     function toLowercase(value: PlainValue): string {
-        return (value ?? '').toString().trim().toLocaleLowerCase();
+        return value?.toString().trim().toLocaleLowerCase() ?? '';
     }
 
     function startsWith(prefix: string): (value: string) => boolean {
