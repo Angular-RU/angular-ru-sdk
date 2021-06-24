@@ -3,6 +3,7 @@ export { ExcelBuilderModule } from './excel-builder.module';
 export { ExcelBuilderService } from './excel-builder.service';
 export { ExcelBuilderDefaultTextColumnInterceptor } from './excel-builder-default-text-column-interceptor.service';
 export { EXCEL_BUILDER_INTERCEPTOR_TOKEN } from './excel-interceptor-text.token';
+export { EntriesKeys } from './interfaces/entries-keys';
 export { ExcelBuilderTextColumnInterceptor } from './interfaces/excel-builder-text-column-interceptor';
 export { ExcelWorkbook } from './interfaces/excel-workbook';
 export { ExcelWorksheet } from './interfaces/excel-worksheet';
