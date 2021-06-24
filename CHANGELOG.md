@@ -1,3 +1,10 @@
+#### 15.268.0 (2021-06-24)
+
+##### New Features
+
+-   **ng-excel-builder:** add EntriesKeys to public api ([#699](https://github.com/Angular-RU/angular-ru-sdk/pull/699))
+    ([d460665c](https://github.com/Angular-RU/angular-ru-sdk/commit/d460665ce12a673f4b0974e57424e6147caf69c4))
+
 #### 15.267.4 (2021-06-24)
 
 ##### Continuous Integration
