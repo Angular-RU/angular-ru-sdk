@@ -1,3 +1,10 @@
+#### 15.267.4 (2021-06-24)
+
+##### Continuous Integration
+
+-   commitlint head-max-length 100 ([#698](https://github.com/Angular-RU/angular-ru-sdk/pull/698))
+    ([c052bab2](https://github.com/Angular-RU/angular-ru-sdk/commit/c052bab245a70f2d0202b6faacce677f3df00edf))
+
 #### 15.267.3 (2021-06-23)
 
 ##### Bug Fixes
