@@ -6,8 +6,11 @@ import { Any, EmptyValue, Nullable, PlainObject } from '@angular-ru/common/typin
 import { downloadFile, isNotNil } from '@angular-ru/common/utils';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 
-import { ExcelWorkbook, PreparedExcelWorkbook } from './interfaces/excel-workbook';
-import { ColumnParameters, ColumnWidth, PreparedExcelWorksheet } from './interfaces/excel-worksheet';
+import { ColumnParameters } from './interfaces/column-parameters';
+import { ColumnWidth } from './interfaces/column-width';
+import { ExcelWorkbook } from './interfaces/excel-workbook';
+import { PreparedExcelWorkbook } from './interfaces/prepared-excel-workbook';
+import { PreparedExcelWorksheet } from './interfaces/prepared-excel-worksheet';
 
 interface StyleSizes {
     fontWidth: number;
@@ -138,7 +141,7 @@ export class ExcelBuilderService {
                         keys.forEach((key: string): void => {
                             const title: string = this.getTranslatedTitle(key, prefixKeyForTranslate);
                             const parameters: Nullable<ColumnParameters> = columnParameters?.[key];
-                            const width: number = this.getWidthOfColumn(title, key, flatEntries, parameters);
+                            const width: number = this.getWidthOfColumn(key, flatEntries, parameters);
                             columnsDescriptor += `<Column ss:Width="${width}" />`;
                             columnCells += ExcelBuilder.renderCell(title, StyleType.HEAD);
                         });
@@ -147,14 +150,12 @@ export class ExcelBuilderService {
                             <Row>${columnCells}</Row>`;
                     }
 
-                    // eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
                     private getWidthOfColumn(
-                        title: string,
                         key: string,
                         entries: PlainObject[],
                         parameters: Nullable<ColumnParameters>
                     ): number {
-                        const { fontSize, minColumnWidth }: StyleSizes = this.sizes;
+                        const { minColumnWidth }: StyleSizes = this.sizes;
                         let textWidth: number;
 
                         if (parameters?.width === ColumnWidth.MAX_WIDTH) {
@@ -162,7 +163,7 @@ export class ExcelBuilderService {
                         } else if (typeof parameters?.width === 'number') {
                             textWidth = parameters.width;
                         } else {
-                            textWidth = title.length * fontSize;
+                            textWidth = minColumnWidth;
                         }
 
                         return Math.max(textWidth, minColumnWidth);
@@ -210,7 +211,7 @@ export class ExcelBuilderService {
                 }
 
                 const xmlBookTemplate: string = new ExcelBuilder(
-                    { fontWidth: 5, fontSize: 7, minColumnWidth: 140, rowHeight: 40 },
+                    { fontWidth: 5, fontSize: 7, minColumnWidth: 150, rowHeight: 40 },
                     input.preparedTranslatedKeys
                 ).buildWorkbook(input.worksheets);
 
