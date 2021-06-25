@@ -10,6 +10,8 @@ export { checkSomeValueIsTrue } from './check-some-value-is-true';
 export { checkValueIsEmpty } from './check-value-is-empty';
 export { checkValueIsFilled } from './check-value-is-filled';
 export { copyBuffer } from './copy-buffer';
+export { DeclinationAssociativeMap, DeclinationDictionary } from './declination-of-number/declination-dictionary';
+export { declinationOfNumber } from './declination-of-number/declination-of-number';
 export { detectChanges } from './detect-changes';
 export { downloadFile } from './download-file';
 export { fallbackIfEmpty } from './fallback-if-empty';
