@@ -187,7 +187,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
     }
 
     public get columnSchema(): ColumnsSchema[] {
-        return this.templateParser.schema.columns ?? [];
+        return this.templateParser.schema?.columns ?? [];
     }
 
     /**
