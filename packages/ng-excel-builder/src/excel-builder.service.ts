@@ -6,11 +6,11 @@ import { Any, EmptyValue, Nullable, PlainObject } from '@angular-ru/common/typin
 import { downloadFile, isNotNil } from '@angular-ru/common/utils';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 
-import { ColumnParameters } from './interfaces/column-parameters';
-import { ColumnWidth } from './interfaces/column-width';
-import { ExcelWorkbook } from './interfaces/excel-workbook';
-import { PreparedExcelWorkbook } from './interfaces/prepared-excel-workbook';
-import { PreparedExcelWorksheet } from './interfaces/prepared-excel-worksheet';
+import { ColumnParameters } from './domain/column-parameters';
+import { ColumnWidth } from './domain/column-width';
+import { ExcelWorkbook } from './domain/excel-workbook';
+import { PreparedExcelWorkbook } from './domain/prepared-excel-workbook';
+import { PreparedExcelWorksheet } from './domain/prepared-excel-worksheet';
 
 interface StyleSizes {
     fontWidth: number;
@@ -28,6 +28,10 @@ const enum StyleType {
 @Injectable()
 export class ExcelBuilderService {
     constructor(public plainTableComposer: PlainTableComposerService, public webWorker: WebWorkerThreadService) {}
+
+    private static downloadWorkbook(blob: Blob, workbookName: string): void {
+        downloadFile({ blob, name: `${workbookName}.${toFormatDateTime()}`, extension: 'xls' });
+    }
 
     // eslint-disable-next-line max-lines-per-function
     public async exportExcelByWorkbook<T>(workbook: ExcelWorkbook<T>): Promise<void> {
@@ -156,17 +160,14 @@ export class ExcelBuilderService {
                         parameters: Nullable<ColumnParameters>
                     ): number {
                         const { minColumnWidth }: StyleSizes = this.sizes;
-                        let textWidth: number;
 
                         if (parameters?.width === ColumnWidth.MAX_WIDTH) {
-                            textWidth = this.calcMaxWidthByEntries(entries, key);
+                            return this.calcMaxWidthByEntries(entries, key);
                         } else if (typeof parameters?.width === 'number') {
-                            textWidth = parameters.width;
+                            return parameters.width;
                         } else {
-                            textWidth = minColumnWidth;
+                            return minColumnWidth;
                         }
-
-                        return Math.max(textWidth, minColumnWidth);
                     }
 
                     private calcMaxWidthByEntries(entries: PlainObject[], key: string): number {
@@ -191,7 +192,7 @@ export class ExcelBuilderService {
                             return `<Row ss:Height="${rowHeight}">${xmlCells}</Row>`;
                         });
 
-                        return xmlRows.join();
+                        return xmlRows.join('');
                     }
 
                     private generateCells(flatCell: PlainObject): string {
@@ -211,16 +212,14 @@ export class ExcelBuilderService {
                 }
 
                 const xmlBookTemplate: string = new ExcelBuilder(
-                    { fontWidth: 5, fontSize: 7, minColumnWidth: 150, rowHeight: 40 },
+                    { fontWidth: 6, fontSize: 7, minColumnWidth: 150, rowHeight: 40 },
                     input.preparedTranslatedKeys
                 ).buildWorkbook(input.worksheets);
 
                 const UTF8: string = '\ufeff';
                 return new Blob([UTF8, xmlBookTemplate], { type: 'application/vnd.ms-excel;charset=UTF-8' });
             }, preparedWorkbook)
-            .then((blob: Blob): void =>
-                downloadFile({ blob, name: `${workbook.filename}.${toFormatDateTime()}`, extension: 'xls' })
-            );
+            .then((blob: Blob): void => ExcelBuilderService.downloadWorkbook(blob, workbook.filename));
     }
 
     private async prepareWorkbook<T>(workbook: ExcelWorkbook<T>): Promise<PreparedExcelWorkbook<T>> {

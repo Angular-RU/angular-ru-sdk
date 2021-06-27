@@ -1,0 +1,101 @@
+<?xml version="1.0"?><?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office"
+          xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:html="https://www.w3.org/TR/html40/">
+    <Styles>
+        <Style ss:ID="HeadCellStyle">
+            <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="0"/>
+            <Font ss:Bold="1" ss:FontName="Arial"/>
+            <Borders>
+                <Border ss:Position="Top" ss:Color="#000000" ss:LineStyle="Continuous" ss:Weight="1"/>
+                <Border ss:Position="Bottom" ss:Color="#000000" ss:LineStyle="Continuous" ss:Weight="1"/>
+                <Border ss:Position="Right" ss:Color="#000000" ss:LineStyle="Continuous" ss:Weight="1"/>
+                <Border ss:Position="Left" ss:Color="#000000" ss:LineStyle="Continuous" ss:Weight="1"/>
+            </Borders>
+        </Style>
+        <Style ss:ID="CellBigDataStyle">
+            <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+            <Font ss:Bold="0" ss:FontName="Arial"/>
+            <Borders>
+                <Border ss:Position="Top" ss:Color="#000000" ss:LineStyle="Continuous" ss:Weight="1"/>
+                <Border ss:Position="Bottom" ss:Color="#000000" ss:LineStyle="Continuous" ss:Weight="1"/>
+                <Border ss:Position="Right" ss:Color="#000000" ss:LineStyle="Continuous" ss:Weight="1"/>
+                <Border ss:Position="Left" ss:Color="#000000" ss:LineStyle="Continuous" ss:Weight="1"/>
+            </Borders>
+        </Style>
+        <Style ss:ID="BodyCellStyle">
+            <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="0"/>
+            <Font ss:Bold="0" ss:FontName="Arial"/>
+            <Borders>
+                <Border ss:Position="Top" ss:Color="#000000" ss:LineStyle="Continuous" ss:Weight="1"/>
+                <Border ss:Position="Bottom" ss:Color="#000000" ss:LineStyle="Continuous" ss:Weight="1"/>
+                <Border ss:Position="Right" ss:Color="#000000" ss:LineStyle="Continuous" ss:Weight="1"/>
+                <Border ss:Position="Left" ss:Color="#000000" ss:LineStyle="Continuous" ss:Weight="1"/>
+            </Borders>
+        </Style>
+    </Styles>
+    <Worksheet ss:Name="UNKNOWN WORKSHEET NAME">
+        <Table ss:DefaultColumnWidth="150" ss:DefaultRowHeight="40">
+            <Column ss:Width="150"/>
+            <Column ss:Width="54"/>
+            <Column ss:Width="150"/>
+            <Column ss:Width="150"/>
+            <Row>
+                <Cell ss:StyleID="HeadCellStyle">
+                    <Data ss:Type="String">UID</Data>
+                </Cell>
+                <Cell ss:StyleID="HeadCellStyle">
+                    <Data ss:Type="String">Name</Data>
+                </Cell>
+                <Cell ss:StyleID="HeadCellStyle">
+                    <Data ss:Type="String">Color</Data>
+                </Cell>
+                <Cell ss:StyleID="HeadCellStyle">
+                    <Data ss:Type="String">Shape</Data>
+                </Cell>
+            </Row>
+            <Row ss:Height="40">
+                <Cell ss:StyleID="BodyCellStyle">
+                    <Data ss:Type="String">qwe-123</Data>
+                </Cell>
+                <Cell ss:StyleID="BodyCellStyle">
+                    <Data ss:Type="String">albattani</Data>
+                </Cell>
+                <Cell ss:StyleID="BodyCellStyle">
+                    <Data ss:Type="String">black</Data>
+                </Cell>
+                <Cell ss:StyleID="BodyCellStyle">
+                    <Data ss:Type="String">square</Data>
+                </Cell>
+            </Row>
+            <Row ss:Height="40">
+                <Cell ss:StyleID="BodyCellStyle">
+                    <Data ss:Type="String">wer-456</Data>
+                </Cell>
+                <Cell ss:StyleID="BodyCellStyle">
+                    <Data ss:Type="String">allen</Data>
+                </Cell>
+                <Cell ss:StyleID="BodyCellStyle">
+                    <Data ss:Type="String">red</Data>
+                </Cell>
+                <Cell ss:StyleID="BodyCellStyle">
+                    <Data ss:Type="String">arrow</Data>
+                </Cell>
+            </Row>
+            <Row ss:Height="40">
+                <Cell ss:StyleID="BodyCellStyle">
+                    <Data ss:Type="String">asd-434</Data>
+                </Cell>
+                <Cell ss:StyleID="BodyCellStyle">
+                    <Data ss:Type="String">antonelli</Data>
+                </Cell>
+                <Cell ss:StyleID="BodyCellStyle">
+                    <Data ss:Type="String">-</Data>
+                </Cell>
+                <Cell ss:StyleID="BodyCellStyle">
+                    <Data ss:Type="String">-</Data>
+                </Cell>
+            </Row>
+        </Table>
+    </Worksheet>
+</Workbook>
