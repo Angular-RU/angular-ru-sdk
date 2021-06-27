@@ -80,7 +80,7 @@ export class FilterableService<T> implements Filterable {
     public changeFilteringStatus(): void {
         this.filtering = this.filterValueExist;
 
-        if (this.filtering !== this.previousFiltering) {
+        if (this.previousFiltering && !this.filtering) {
             this.events.next({ value: null, type: null });
         }
 
