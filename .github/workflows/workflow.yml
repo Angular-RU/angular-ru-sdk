@@ -78,4 +78,4 @@ jobs:
             # auto git commit
             - uses: stefanzweifel/git-auto-commit-action@v4
               with:
-                  commit_message: apply changes
+                  commit_message: "ci: apply changes"
