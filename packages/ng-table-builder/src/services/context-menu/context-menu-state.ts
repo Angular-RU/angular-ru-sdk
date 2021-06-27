@@ -1,4 +1,5 @@
 import { Any, Nullable } from '@angular-ru/common/typings';
+import { isNotNil } from '@angular-ru/common/utils';
 
 import { MousePosition } from '../../interfaces/table-builder.internal';
 
@@ -11,7 +12,7 @@ export class ContextMenuState<T = Any, K = Any> {
     public textContent: Nullable<string> = null;
 
     constructor(state: Nullable<ContextMenuState<T, K>> = null) {
-        if (state) {
+        if (isNotNil(state)) {
             this.opened = state.opened;
             this.position = state.position;
             this.key = state.key;

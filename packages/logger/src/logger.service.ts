@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { BoundClass } from '@angular-ru/common/decorators';
 import { Nullable, PlainObject, PlainObjectOf } from '@angular-ru/common/typings';
+import { isNotNil } from '@angular-ru/common/utils';
 
 import { LogFn, LOGGER_OPTIONS, LoggerLevel, Pipeline, TimerInfo } from './interfaces/logger.external';
 import { LoggerOptionsImpl } from './logger.options';
@@ -138,7 +139,7 @@ export class LoggerService {
         level: LoggerLevel = LoggerLevel.DEBUG,
         isMillisecond: boolean = true
     ): void {
-        if (info) {
+        if (isNotNil(info)) {
             this.timerFactory.endTime(info, level, isMillisecond, this);
         }
     }

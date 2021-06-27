@@ -54,6 +54,7 @@ export class ExcelBuilderService {
                     // eslint-disable-next-line max-lines-per-function
                     worksheets.forEach((worksheet: ExcelWorksheet<T>): void => {
                         const worksheetName: string = worksheet.worksheetName;
+                        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
                         const entries: T[] = worksheet.entries || [];
 
                         const headerTitles: string[] = getHeaderTitles(worksheet, entries[0], flattenTranslatedKeys);

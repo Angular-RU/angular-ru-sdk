@@ -5,5 +5,6 @@ import { Nullable } from '@angular-ru/common/typings';
  * @deprecated Use <code>hasNoItems</code> instead
  */
 export function isEmptyList<T>(arr?: Nullable<T[]>): boolean {
-    return !(arr || []).length;
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    return !(arr ?? []).length;
 }

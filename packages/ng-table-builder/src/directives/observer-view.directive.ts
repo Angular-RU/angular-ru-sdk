@@ -1,5 +1,6 @@
 import { AfterViewInit, Directive, ElementRef, EventEmitter, Input, NgZone, OnDestroy, Output } from '@angular/core';
 import { Nullable } from '@angular-ru/common/typings';
+import { isNotNil } from '@angular-ru/common/utils';
 
 // TODO: move this directive to common
 @Directive({ selector: '[observerView]' })
@@ -36,7 +37,7 @@ export class ObserverViewDirective implements AfterViewInit, OnDestroy {
     public ngOnDestroy(): void {
         this.element = { nativeElement: null };
         cancelAnimationFrame(this.frameId!);
-        if (this.observer) {
+        if (isNotNil(this.observer)) {
             this.observer.disconnect();
         }
     }

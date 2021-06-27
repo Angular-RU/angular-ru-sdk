@@ -1,6 +1,6 @@
 import { Directive, EmbeddedViewRef, Input, NgZone, OnDestroy, TemplateRef, ViewContainerRef } from '@angular/core';
 import { Nullable } from '@angular-ru/common/typings';
-import { detectChanges, isNil } from '@angular-ru/common/utils';
+import { detectChanges, isNil, isNotNil } from '@angular-ru/common/utils';
 
 import { InternalVirtualRef, VirtualContext, VirtualIndex } from '../interfaces/table-builder.external';
 
@@ -75,14 +75,14 @@ export class VirtualForDirective<T> implements OnDestroy {
         const row: Nullable<T> = this.sourceRef[index.position];
         const cachedVirtualRef: Nullable<InternalVirtualRef<T>> = this.cache.get(index.position);
 
-        if (cachedVirtualRef) {
+        if (isNotNil(cachedVirtualRef)) {
             const [oldRow, viewRef]: InternalVirtualRef<T> = cachedVirtualRef;
-            if (row && row !== oldRow) {
+            if (isNotNil(row) && row !== oldRow) {
                 const stackId: number = this.view.indexOf(viewRef);
                 this.view.remove(stackId);
                 this.createEmbeddedView(row, index);
             }
-        } else if (row) {
+        } else if (isNotNil(row)) {
             this.createEmbeddedView(row, index);
         }
     }
@@ -100,7 +100,7 @@ export class VirtualForDirective<T> implements OnDestroy {
 
     private removeEmbeddedViewByIndex(index: number): void {
         const ref: Nullable<InternalVirtualRef<T>> = this.cache.get(index);
-        if (ref) {
+        if (isNotNil(ref)) {
             const [, viewRefItem]: InternalVirtualRef<T> = ref;
             const stackId: number = this.view.indexOf(viewRefItem);
             this.cache.delete(index);

@@ -1,11 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Nullable } from '@angular-ru/common/typings';
+import { isNotNil } from '@angular-ru/common/utils';
 
 import { ProduceDisableFn } from '../interfaces/table-builder.external';
 
 @Pipe({ name: 'disableRow' })
 export class DisableRowPipe implements PipeTransform {
-    public transform<T>(item: Nullable<T>, producer: ProduceDisableFn<T>): boolean {
-        return producer ? producer(item) : false;
+    public transform<T>(item: Nullable<T>, producer?: ProduceDisableFn<T>): boolean {
+        return isNotNil(producer) ? producer(item) : false;
     }
 }

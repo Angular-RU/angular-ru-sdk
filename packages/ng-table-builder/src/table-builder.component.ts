@@ -21,7 +21,7 @@ import {
 } from '@angular/core';
 import { fadeInLinearAnimation } from '@angular-ru/common/animations';
 import { Any, DeepPartial, Nullable, PlainObjectOf, SortOrderType } from '@angular-ru/common/typings';
-import { checkValueIsFilled, detectChanges, isFalse, isNil, isNotNil } from '@angular-ru/common/utils';
+import { checkValueIsFilled, detectChanges, isFalse, isFalsy, isNil, isNotNil } from '@angular-ru/common/utils';
 import { EMPTY, fromEvent, Observable, Subject } from 'rxjs';
 import { catchError, takeUntil } from 'rxjs/operators';
 
@@ -243,7 +243,7 @@ export class TableBuilderComponent<T>
     }
 
     public markTemplateContentCheck(): void {
-        this.contentInit = isNotNil(this.source) || !(this.columnTemplates && this.columnTemplates.length);
+        this.contentInit = isNotNil(this.source) || isFalsy(this.columnTemplates?.length);
     }
 
     public markDirtyCheck(): void {
@@ -621,7 +621,7 @@ export class TableBuilderComponent<T>
         for (let index: number = 0; index < columnList.length; index++) {
             const key: string = columnList[index] as string;
             const schema: Nullable<ColumnsSchema> = this.getCompiledColumnSchema(key, index);
-            if (schema) {
+            if (isNotNil(schema)) {
                 this.processedColumnList(schema, columnList[index]);
             }
         }
@@ -664,7 +664,8 @@ export class TableBuilderComponent<T>
 
         if (hasSchema) {
             const compiledSchema: Nullable<ColumnsSchema> = this.templateParser.compiledTemplates[key as string];
-            if (compiledSchema) {
+
+            if (isNotNil(compiledSchema)) {
                 this.templateParser.schema?.columns.push(compiledSchema);
             }
         }
