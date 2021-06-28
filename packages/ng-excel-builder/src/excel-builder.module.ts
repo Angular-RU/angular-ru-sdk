@@ -1,4 +1,5 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { PlainTableComposerModule } from '@angular-ru/common/table-utils';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 
 import { ExcelService } from './excel.service';
@@ -7,6 +8,7 @@ import { ExcelBuilderDefaultTextColumnInterceptor } from './excel-builder-defaul
 import { EXCEL_BUILDER_INTERCEPTOR_TOKEN } from './excel-interceptor-text.token';
 
 @NgModule({
+    imports: [PlainTableComposerModule.forRoot()],
     providers: [WebWorkerThreadService]
 })
 export class ExcelBuilderModule {
