@@ -1,3 +1,10 @@
+#### 15.270.0 (2021-06-28)
+
+##### New Features
+
+-   **@angular-ru/common:** add declinationOfNumber ([#701](https://github.com/Angular-RU/angular-ru-sdk/pull/701))
+    ([697cf9c3](https://github.com/Angular-RU/angular-ru-sdk/commit/697cf9c3cc40930e906373199062d1f8a3c31f3d))
+
 #### 15.269.0 (2021-06-28)
 
 ##### New Features
