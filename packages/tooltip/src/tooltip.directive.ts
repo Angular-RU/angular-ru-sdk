@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { generateQuickGuid } from '@angular-ru/common/string';
 import { Any, Nullable } from '@angular-ru/common/typings';
-import { checkValueIsEmpty, isNotNil } from '@angular-ru/common/utils';
+import { checkValueIsEmpty, isFalsy, isNotNil } from '@angular-ru/common/utils';
 import { fromEvent, Subscription } from 'rxjs';
 
 import { TooltipContextValue } from './interfaces/tooltip-context-value';
@@ -109,7 +109,7 @@ export class TooltipDirective implements OnDestroy {
 
     public showTooltip(): void {
         this.destroyAllTimeouts();
-        if (this.tooltipDomElement) {
+        if (isNotNil(this.tooltipDomElement)) {
             this.addTooltipShowClass();
             return;
         }
@@ -133,7 +133,7 @@ export class TooltipDirective implements OnDestroy {
     public addTooltipElementToBody(): void {
         this.tooltipDomElement = this.createTooltipElement();
 
-        if (this.tooltipDomElement) {
+        if (isNotNil(this.tooltipDomElement)) {
             this.renderer.appendChild(document.body, this.tooltipDomElement);
             this.renderer.setAttribute(this.tooltipDomElement, 'id', this.uid);
             this.renderer.addClass(this.tooltipDomElement, 'ng-tooltip');
@@ -167,7 +167,7 @@ export class TooltipDirective implements OnDestroy {
             this.frameId = window.setTimeout((): void => {
                 this.addTooltipElementToBody();
 
-                if (this.tooltipDomElement) {
+                if (isNotNil(this.tooltipDomElement)) {
                     this.tooltipListenOnHoverEvent();
 
                     this.createLayoutId = window.setTimeout((): void => {
@@ -181,9 +181,9 @@ export class TooltipDirective implements OnDestroy {
     }
 
     private refreshTooltipContent(): void {
-        if (this.tooltipDomElement) {
+        if (isNotNil(this.tooltipDomElement)) {
             const contentDomElement: Nullable<HTMLElement> = this.createTooltipContent();
-            if (contentDomElement) {
+            if (isNotNil(contentDomElement)) {
                 const childElements: HTMLCollection = this.tooltipDomElement.children;
                 for (const child of Array.from(childElements)) {
                     this.renderer.removeChild(this.tooltipDomElement, child);
@@ -195,13 +195,13 @@ export class TooltipDirective implements OnDestroy {
     }
 
     private markElementAddInDom(): void {
-        if (this.tooltipDomElement) {
+        if (isNotNil(this.tooltipDomElement)) {
             this.domLeak.actualContainsInDomUidCollections.add(this.uid);
         }
     }
 
     private markElementRemoveFromDom(): void {
-        if (!this.tooltipDomElement) {
+        if (isFalsy(this.tooltipDomElement)) {
             this.domLeak.actualContainsInDomUidCollections.delete(this.uid);
         }
     }
@@ -241,13 +241,13 @@ export class TooltipDirective implements OnDestroy {
     }
 
     private addTooltipShowClass(): void {
-        if (this.tooltipDomElement) {
+        if (isNotNil(this.tooltipDomElement)) {
             this.renderer.addClass(this.tooltipDomElement, 'ng-tooltip-show');
         }
     }
 
     private removeTooltipShowClass(): void {
-        if (this.tooltipDomElement) {
+        if (isNotNil(this.tooltipDomElement)) {
             this.renderer.removeClass(this.tooltipDomElement, 'ng-tooltip-show');
         }
     }
@@ -255,7 +255,7 @@ export class TooltipDirective implements OnDestroy {
     private tooltipListenOnHoverEvent(): void {
         window.clearTimeout(this.mouseLeaveTooltipId!);
 
-        if (this.tooltipDomElement) {
+        if (isNotNil(this.tooltipDomElement)) {
             this.tooltipMouseenter?.unsubscribe();
             this.tooltipMouseleave?.unsubscribe();
 
@@ -298,7 +298,7 @@ export class TooltipDirective implements OnDestroy {
     private createTooltipElement(): Nullable<HTMLElement> {
         const contentDomElement: Nullable<HTMLElement> = this.createTooltipContent();
 
-        if (contentDomElement) {
+        if (isNotNil(contentDomElement)) {
             const tooltipDomElement: HTMLElement = this.renderer.createElement('div');
             this.renderer.appendChild(tooltipDomElement, contentDomElement);
             return tooltipDomElement;
@@ -316,7 +316,7 @@ export class TooltipDirective implements OnDestroy {
     }
 
     private removeOldNodes(): void {
-        if (this.tooltipDomElement) {
+        if (isNotNil(this.tooltipDomElement)) {
             const element: Nullable<HTMLElement> = document.getElementById(this.uid);
             element?.remove();
             this.tooltipDomElement = null;

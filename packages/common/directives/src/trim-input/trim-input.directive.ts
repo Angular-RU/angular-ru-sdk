@@ -1,6 +1,7 @@
 import { Directive, ElementRef, HostListener, Input, OnInit, Optional } from '@angular/core';
 import { AbstractControl, NgControl } from '@angular/forms';
 import { Any, Nullable } from '@angular-ru/common/typings';
+import { isNotNil } from '@angular-ru/common/utils';
 
 @Directive({ selector: '[trimInput]' })
 export class TrimInputDirective implements OnInit {
@@ -38,7 +39,7 @@ export class TrimInputDirective implements OnInit {
             ? this.ngControl?.control?.parent?.get(this.name as Any)
             : this.ngControl?.control?.get(this.name as Any);
 
-        if (control) {
+        if (isNotNil(control)) {
             const modelValue: string = (this.ngControl?.value ?? control?.value)?.toString().trim();
 
             if (this.ngControl?.control === control) {

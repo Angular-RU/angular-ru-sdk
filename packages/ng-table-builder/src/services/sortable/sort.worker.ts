@@ -15,6 +15,7 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
         return path
             ? path
                   .split('.')
+                  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
                   .reduce((value: Nullable<PlainObject>, key: string): Any => value && (value as Any)[key], object)
             : object;
     }

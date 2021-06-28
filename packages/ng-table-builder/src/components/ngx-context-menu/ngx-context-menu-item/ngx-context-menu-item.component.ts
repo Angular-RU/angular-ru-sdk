@@ -59,11 +59,11 @@ export class NgxContextMenuItemComponent<T = Any> implements OnInit, OnDestroy {
     }
 
     public get clientRect(): Partial<ClientRect | DOMRect> {
-        return (this.itemElement.getBoundingClientRect && this.itemElement.getBoundingClientRect()) || {};
+        return this.itemElement.getBoundingClientRect?.() ?? {};
     }
 
     private get itemElement(): Partial<HTMLDivElement> {
-        return (this.itemRef && this.itemRef.nativeElement) || {};
+        return this.itemRef?.nativeElement ?? {};
     }
 
     public ngOnInit(): void {

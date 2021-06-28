@@ -1,5 +1,5 @@
 import { Any, Nullable } from '@angular-ru/common/typings';
-import { isNotNil } from '@angular-ru/common/utils';
+import { isNil, isNotNil } from '@angular-ru/common/utils';
 import { CompilerOptions } from 'typescript';
 
 import { checkIsNodeEnvironment } from '../node/check-is-node-environment';
@@ -16,7 +16,7 @@ export function exposeTsCompilerOptionsByTsConfig(tsConfigPath: string): Compile
 
     const tsconfig: Any = require(resolvedPath);
     const compilerOptions: Nullable<CompilerOptions> = tsconfig.compilerOptions;
-    const shouldBeDiscoverPathsInParentTsConfig: boolean = !compilerOptions?.paths && isNotNil(tsconfig.extends);
+    const shouldBeDiscoverPathsInParentTsConfig: boolean = isNil(compilerOptions?.paths) && isNotNil(tsconfig.extends);
 
     if (shouldBeDiscoverPathsInParentTsConfig) {
         const parentTsConfigPath: string = path.resolve(path.dirname(resolvedPath), tsconfig.extends);

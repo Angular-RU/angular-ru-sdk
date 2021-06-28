@@ -1,6 +1,6 @@
 import { Injectable, QueryList } from '@angular/core';
 import { Any, Nullable, PlainObjectOf } from '@angular-ru/common/typings';
-import { checkValueIsFilled, isNil, isTrue } from '@angular-ru/common/utils';
+import { checkValueIsFilled, isNil, isNotNil, isTrue } from '@angular-ru/common/utils';
 
 import { NgxColumnComponent } from '../../components/ngx-column/ngx-column.component';
 import { ColumnOptionsDirective } from '../../directives/column-options.directive';
@@ -66,7 +66,7 @@ export class TemplateParserService<T> {
     }
 
     public toggleColumnVisibility(key: string): void {
-        if (this.schema) {
+        if (isNotNil(this.schema)) {
             this.schema.columns = this.schema.columns.map(
                 (column: ColumnsSchema): ColumnsSchema =>
                     key === column.key
@@ -82,7 +82,7 @@ export class TemplateParserService<T> {
     }
 
     public initialSchema(columnOptions: ColumnOptionsDirective): void {
-        this.schema = this.schema || new SchemaBuilder();
+        this.schema = this.schema ?? new SchemaBuilder();
         this.schema.columns = [];
         this.compiledTemplates = {};
         this.templateKeys = new Set<string>();
