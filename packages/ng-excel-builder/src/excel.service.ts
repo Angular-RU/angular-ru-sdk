@@ -1,14 +1,14 @@
 import { Inject, Injectable } from '@angular/core';
-import { Leaves, Nullable, PlainObject } from '@angular-ru/common/typings';
+import { exclude } from '@angular-ru/common/array';
+import { Nullable, PlainObject } from '@angular-ru/common/typings';
 import { Observable, of } from 'rxjs';
 
+import { EntriesKeys } from './domain/entries-keys';
+import { ExcelBuilderTextColumnInterceptor } from './domain/excel-builder-text-column-interceptor';
+import { ExcelWorkbook } from './domain/excel-workbook';
+import { ExcelWorksheet } from './domain/excel-worksheet';
 import { ExcelBuilderService } from './excel-builder.service';
 import { EXCEL_BUILDER_INTERCEPTOR_TOKEN } from './excel-interceptor-text.token';
-import { EntriesKeys } from './interfaces/entries-keys';
-import { ExcelBuilderTextColumnInterceptor } from './interfaces/excel-builder-text-column-interceptor';
-import { KeyDeepSize } from './interfaces/excel-key-deep-size';
-import { ExcelWorkbook } from './interfaces/excel-workbook';
-import { ExcelWorksheet } from './interfaces/excel-worksheet';
 
 @Injectable()
 export class ExcelService {
@@ -41,15 +41,13 @@ export class ExcelService {
                 worksheet.worksheetName ??
                 'UNKNOWN WORKSHEET NAME';
 
-            const keys: EntriesKeys<T> = worksheet.keys?.filter(
-                (key: Leaves<T, KeyDeepSize>): boolean => !(worksheet.excludeKeys?.includes(key) ?? false)
-            ) as EntriesKeys<T>;
+            const keys: EntriesKeys<T> = worksheet.keys?.filter(exclude(worksheet.excludeKeys ?? [])) as EntriesKeys<T>;
 
             return { ...worksheet, keys, worksheetName };
         });
     }
 
     private getTranslatedColumn(): Observable<Nullable<PlainObject>> {
-        return this.interceptor?.getTranslatedColumn?.() ?? of(null);
+        return this.interceptor?.getTranslationMap?.() ?? of(null);
     }
 }
