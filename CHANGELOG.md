@@ -1,3 +1,16 @@
+#### 15.268.1 (2021-06-27)
+
+##### Documentation Changes
+
+-   fixup README.md
+    ([abe30b7b](https://github.com/Angular-RU/angular-ru-sdk/commit/abe30b7bed5de934d6748bfa8d622e388968a6fd))
+
+##### Bug Fixes
+
+-   **@angular-ru/ng-table-builder:** emit clear filter event only on disable
+    ([#703](https://github.com/Angular-RU/angular-ru-sdk/pull/703))
+    ([f0d3691b](https://github.com/Angular-RU/angular-ru-sdk/commit/f0d3691b015447c460c2ccc45936e7d3a54bd82a))
+
 #### 15.268.0 (2021-06-24)
 
 ##### New Features
