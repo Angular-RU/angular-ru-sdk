@@ -771,3 +771,23 @@ export class AppComponent {
     @Input() public multiple?: string | number | boolean;
 }
 ```
+
+-   `DeclinationOfNumberPipe, DeclinationOfNumberPipeModule`
+
+```ts
+import { DeclinationOfNumberPipeModule } from '@angular-ru/common/pipes';
+
+@NgModule({
+    // ..
+    imports: [DeclinationOfNumberPipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `{{ numberVal | declinationOfNumber: ['арбуз', 'арбуза', 'арбузов'] }}`
+})
+export class AppComponent {
+    @Input() public numberVal: number;
+}
+```

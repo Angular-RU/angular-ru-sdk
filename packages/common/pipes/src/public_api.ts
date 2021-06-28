@@ -6,6 +6,8 @@ export { CoerceBooleanPipe } from './coerce-boolean/coerce-boolean.pipe';
 export { CoerceBooleanPipeModule } from './coerce-boolean/coerce-boolean-pipe.module';
 export { DateToNativePipe } from './date-to-native/date-to-native.pipe';
 export { DateToNativePipeModule } from './date-to-native/date-to-native-pipe.module';
+export { DeclinationOfNumberPipe } from './declination-of-number/declination-of-number.pipe';
+export { DeclinationOfNumberPipeModule } from './declination-of-number/declination-of-number-pipe.module';
 export { DeepPathPipe } from './deep-path/deep-path.pipe';
 export { DeepPathPipeModule } from './deep-path/deep-path-pipe.module';
 export { DefaultValuePipe } from './default-value/default-value.pipe';
