@@ -1,3 +1,11 @@
+#### 15.271.0 (2021-06-28)
+
+##### New Features
+
+-   **@angular-ru/common:** remove deprecated utils from \*/zone.js
+    ([#706](https://github.com/Angular-RU/angular-ru-sdk/pull/706))
+    ([1f17827c](https://github.com/Angular-RU/angular-ru-sdk/commit/1f17827cd2691d38e4336ff66ccee003af17c833))
+
 #### 15.270.2 (2021-06-28)
 
 ##### Other Changes
