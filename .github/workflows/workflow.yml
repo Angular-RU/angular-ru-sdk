@@ -28,6 +28,15 @@ jobs:
               with:
                   node-version: ${{ matrix.node-version }}
 
+            - name: Prepare git
+              env:
+                  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+              run: |
+                  git config --global push.default simple
+                  git config --global user.name "angular-ru"
+                  git config --global user.email "angular-ru@yandex.ru"
+                  git config remote.origin.url https://x-access-token:$GH_TOKEN@github.com/$GITHUB_REPOSITORY
+
             - name: Restore lerna
               uses: actions/cache@v2
               with:
@@ -47,9 +56,8 @@ jobs:
 
             - name: Run lint step
               run: |
-                  yarn pretty:lint
-                  yarn package:lint
-                  yarn lint
+                  yarn format
+                  yarn lint --fix
 
             - name: Run test step
               run: yarn test --parallel
@@ -69,9 +77,17 @@ jobs:
                   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
               if: contains('refs/heads/master', github.ref)
               run: |
-                  git config --global push.default simple
-                  git config --global user.name "angular-ru"
-                  git config --global user.email "angular-ru@yandex.ru"
-                  git config remote.origin.url https://x-access-token:$GH_TOKEN@github.com/$GITHUB_REPOSITORY
                   echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
                   GH_TOKEN=${{ secrets.GH_TOKEN }} yarn lerna publish
+
+            - name: Get last commit message
+              id: last-commit-message
+              run: |
+                  echo "::set-output name=msg::$(git log -1 --pretty=%s)"
+
+            - uses: stefanzweifel/git-auto-commit-action@v4
+              with:
+                  commit_message: ${{ steps.last-commit-message.outputs.msg }}
+                  commit_options: '--amend --no-edit'
+                  push_options: '--force'
+                  skip_fetch: true

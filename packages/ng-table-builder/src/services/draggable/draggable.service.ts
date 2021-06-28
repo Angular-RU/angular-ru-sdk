@@ -1,7 +1,7 @@
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { Injectable } from '@angular/core';
 import { Nullable } from '@angular-ru/common/typings';
-import { isTrue } from '@angular-ru/common/utils';
+import { isNotNil, isTrue } from '@angular-ru/common/utils';
 
 import { ColumnsSchema } from '../../interfaces/table-builder.external';
 import { TemplateParserService } from '../template-parser/template-parser.service';
@@ -28,7 +28,7 @@ export class DraggableService<T> {
                 const currentColumn: Nullable<ColumnsSchema> = this.columns[currentIndex];
                 const previousColumn: Nullable<ColumnsSchema> = this.columns[previousIndex];
 
-                if (currentColumn && previousColumn) {
+                if (isNotNil(currentColumn) && isNotNil(previousColumn)) {
                     currentColumn.width = previousColumn.width;
                     previousColumn.width = null;
                 }
