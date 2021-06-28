@@ -1,3 +1,10 @@
+#### 15.270.2 (2021-06-28)
+
+##### Other Changes
+
+-   **@angular-ru/common:** add DeclinationOfNumberPipe ([#705](https://github.com/Angular-RU/angular-ru-sdk/pull/705))
+    ([3a3ba48d](https://github.com/Angular-RU/angular-ru-sdk/commit/3a3ba48d2ed975d8c27e34260e5617f3c1a7eaf7))
+
 #### 15.270.1 (2021-06-28)
 
 ##### Continuous Integration
