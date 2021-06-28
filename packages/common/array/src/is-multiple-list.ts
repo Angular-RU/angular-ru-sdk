@@ -5,5 +5,5 @@ import { Nullable } from '@angular-ru/common/typings';
  * @deprecated Use <code>hasManyItems</code> instead
  */
 export function isMultipleList<T>(arr?: Nullable<T[]>): boolean {
-    return (arr || []).length > 1;
+    return (arr ?? []).length > 1;
 }

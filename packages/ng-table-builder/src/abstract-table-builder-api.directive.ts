@@ -187,7 +187,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
     }
 
     public get columnSchema(): ColumnsSchema[] {
-        return (this.templateParser.schema && this.templateParser.schema.columns) || [];
+        return this.templateParser.schema?.columns ?? [];
     }
 
     /**
@@ -348,9 +348,9 @@ export abstract class AbstractTableBuilderApiDirective<T>
 
     public changeSchema(defaultColumns: Nullable<DeepPartial<ColumnsSchema>[]> = null): void {
         const renderedColumns: Nullable<DeepPartial<ColumnsSchema>[]> = this.templateParser.schema?.exportColumns();
-        const columns: Nullable<DeepPartial<ColumnsSchema>[]> = defaultColumns || renderedColumns;
+        const columns: Nullable<DeepPartial<ColumnsSchema>[]> = defaultColumns ?? renderedColumns;
 
-        if (columns) {
+        if (isNotNil(columns)) {
             const updateSchema: TableUpdateSchema = {
                 columns,
                 name: this.name!,

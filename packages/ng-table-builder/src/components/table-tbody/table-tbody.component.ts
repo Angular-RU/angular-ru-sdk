@@ -123,7 +123,7 @@ export class TableTbodyComponent<T> {
         event: MouseEvent,
         emitter?: TableClickEventEmitter<T, K>
     ): void {
-        if (emitter) {
+        if (isNotNil(emitter)) {
             this.ngZone.runOutsideAngular((): void => {
                 window.setTimeout((): void => {
                     emitter.emit(this.generateTableCellInfo(row, key, event));
