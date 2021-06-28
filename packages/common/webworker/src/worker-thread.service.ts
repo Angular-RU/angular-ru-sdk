@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Any, Fn, Nullable } from '@angular-ru/common/typings';
+import { isNotNil } from '@angular-ru/common/utils';
 
 import { WebWorkerThread } from './worker-thread';
 
@@ -73,7 +74,7 @@ export class WebWorkerThreadService implements WebWorkerThread {
     private removePromise<T>(promise: Promise<T>): Promise<T> {
         const worker: Nullable<Worker> = this.promiseToWorkerMap.get(promise);
 
-        if (worker) {
+        if (isNotNil(worker)) {
             worker.terminate();
         }
 

@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable, NgZone } from '@angular/core';
 import { Nullable, PlainObjectOf, SortOrderType } from '@angular-ru/common/typings';
+import { isNotNil, isTruthy } from '@angular-ru/common/utils';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 
 import { TABLE_GLOBAL_OPTIONS } from '../../config/table-global-options';
@@ -59,7 +60,7 @@ export class SortableService<T> {
         const orderedFields: OrderedField[] = [];
         this.positionMap = {};
 
-        if (this.sortChanges) {
+        if (isNotNil(this.sortChanges)) {
             Object.entries(this.definition).forEach(([key, ordered]: [string, SortOrderType], index: number): void => {
                 this.positionMap[key] = index + 1;
                 orderedFields.push({ field: key, order: ordered.toLocaleUpperCase() as OrderedField['order'] });
@@ -80,7 +81,7 @@ export class SortableService<T> {
         const definition: PlainObjectOf<SortOrderType> = { ...this.definition };
         const existKey: Nullable<SortOrderType> = definition[key];
 
-        if (existKey) {
+        if (isTruthy(existKey)) {
             if (existKey === SortOrderType.ASC) {
                 definition[key] = SortOrderType.DESC;
             } else {

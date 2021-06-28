@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { isString } from '@angular-ru/common/string';
 import { Any, Nullable } from '@angular-ru/common/typings';
-import { isNil, isTrue } from '@angular-ru/common/utils';
+import { isNil, isNotNil, isTrue } from '@angular-ru/common/utils';
 
 export const NG_FACTORY_DEF: string = 'ɵfac' as const;
 export const PATCHER_KEY: string = 'NG_RU_PATCHER' as const;
@@ -42,11 +42,13 @@ function wrapFactory<T>(
         throw new Error('Class with useInjector in decorator must be Injectable');
     }
 
-    const ngFactoryNotWrapped: boolean = !getPatcherOfClass(constructor);
-    if (ngFactoryNotWrapped) {
+    const ngFactoryNotWrapped: Nullable<PatchFunction<unknown>> = getPatcherOfClass(constructor);
+
+    if (isNil(ngFactoryNotWrapped)) {
         definition.factory = generateFactoryWrapper(constructor, definition);
         insertFactoryWrapper(constructor, definition.factory);
     }
+
     insertPatcher(constructor, effectFunction);
 }
 
@@ -56,7 +58,7 @@ function generateFactoryWrapper<T>(constructor: Any, definition: Any): (...args:
     return function (...args: Any[]): T {
         const instance: Any = ngFactory(...args);
         const patch: Nullable<PatchFunction<T>> = getPatcherOfClass(constructor);
-        if (patch) {
+        if (isNotNil(patch)) {
             const injector: Injector = directiveInject(INJECTOR);
             patch(injector, instance);
         }
@@ -85,9 +87,9 @@ function insertPatcher<T>(constructor: Any, effectFunction: (injector: Injector,
         configurable: true,
         writable: true,
         value(injector: Injector, instance: T): void {
-            if (previousPatcher) {
+            if (isNotNil(previousPatcher)) {
                 previousPatcher(injector, instance);
-            } else if (patchSuper) {
+            } else if (isNotNil(patchSuper)) {
                 patchSuper(injector, instance);
             }
             effectFunction(injector, instance);

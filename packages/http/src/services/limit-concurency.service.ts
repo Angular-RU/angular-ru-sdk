@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Nullable } from '@angular-ru/common/typings';
+import { isNotNil } from '@angular-ru/common/utils';
 import { Observable, Subject } from 'rxjs';
 import { finalize, switchMap } from 'rxjs/operators';
 @Injectable()
@@ -32,7 +33,7 @@ export class LimitConcurrencyService {
 
     private executeFromQueue(): void {
         const requestInLine: Nullable<Subject<boolean>> = this.requestQueue.shift();
-        if (requestInLine) {
+        if (isNotNil(requestInLine)) {
             this.activeRequestCount++;
             requestInLine.next(true);
             requestInLine.complete();
