@@ -4,7 +4,7 @@ import { isNil, isNotNil } from '@angular-ru/common/utils';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 
-import { ExcelBuilderTextColumnInterceptor } from '../interfaces/excel-builder-text-column-interceptor';
+import { ExcelBuilderTextColumnInterceptor } from '../domain/excel-builder-text-column-interceptor';
 
 @Injectable()
 export class ExcelNgxTranslateInterceptor implements ExcelBuilderTextColumnInterceptor {
@@ -14,7 +14,7 @@ export class ExcelNgxTranslateInterceptor implements ExcelBuilderTextColumnInter
         return isNotNil(key) ? this.translate.instant(key) : key;
     }
 
-    public getTranslatedColumn(): Observable<Nullable<PlainObject>> {
+    public getTranslationMap(): Observable<Nullable<PlainObject>> {
         const lang: Nullable<string> = this.translate.currentLang ?? this.translate.defaultLang;
 
         if (isNil(lang)) {
