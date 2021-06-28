@@ -1,3 +1,11 @@
+#### 15.269.0 (2021-06-28)
+
+##### New Features
+
+-   **@angular-ru/ng-excel-builder:** add column width feature & refactor
+    ([#700](https://github.com/Angular-RU/angular-ru-sdk/pull/700))
+    ([f0c8d00d](https://github.com/Angular-RU/angular-ru-sdk/commit/f0c8d00d844f78a21b2ff668732ec9ba12cd8421))
+
 #### 15.268.1 (2021-06-27)
 
 ##### Documentation Changes
