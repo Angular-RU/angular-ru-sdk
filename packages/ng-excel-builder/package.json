@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/ng-excel-builder",
-    "version": "15.268.0",
+    "version": "15.269.0",
     "description": "Angular-RU package",
     "keywords": [
         "angular-ru",
@@ -24,6 +24,7 @@
         "build:lib": "ng build library && cp README.md dist/library",
         "deploy": "cp README.md dist/integration && ng deploy --no-build",
         "start": "ng serve",
+        "test": "yarn jest --config ./jest.config.js",
         "postversion": "npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\""
     },
     "peerDependencies": {

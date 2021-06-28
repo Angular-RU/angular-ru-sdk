@@ -1,0 +1,13 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "outDir": "../../out-tsc/spec",
+        "types": ["jest", "node"],
+        "preserveConstEnums": true,
+        "paths": {
+            "@angular-ru/ng-excel-builder": ["src/public_api.ts"],
+            "@angular-ru/common/*": ["../common/dist/library/*"]
+        }
+    },
+    "include": ["**/*.spec.ts", "**/*.d.ts"]
+}
