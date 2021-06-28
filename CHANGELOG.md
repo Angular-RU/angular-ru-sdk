@@ -1,3 +1,10 @@
+#### 15.270.1 (2021-06-28)
+
+##### Continuous Integration
+
+-   add autocommit ([#702](https://github.com/Angular-RU/angular-ru-sdk/pull/702))
+    ([a66f1626](https://github.com/Angular-RU/angular-ru-sdk/commit/a66f16266e9d7555596856f8b30a3ed3c6b72f4c))
+
 #### 15.270.0 (2021-06-28)
 
 ##### New Features
