@@ -10,6 +10,9 @@ export function unpatchEvents(): void {
             throw new Error('You must import `@angular-ru/common/zone.js/unpatch-events` before importing rxjs');
         }
 
+        windowInstance.__Zone_disable_requestAnimationFrame = true; // disable patch requestAnimationFrame
+        windowInstance.__Zone_disable_on_property = true; // disable patch onProperty such as onclick
+
         windowInstance['__zone_symbol__UNPATCHED_EVENTS'] = [
             'scroll',
             'mouseenter',
