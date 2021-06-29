@@ -40,6 +40,12 @@ export interface DataClientRequestOptions<T extends PlainObject = Any> {
 
     /**
      * @description
+     * path variables in url
+     */
+    pathVariables: Nullable<PlainObject>;
+
+    /**
+     * @description
      * query params for request
      */
     responseType: DataResponseType;

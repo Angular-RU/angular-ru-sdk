@@ -30,7 +30,13 @@ export function ensureDescriptorByType<T>({
         let template: Nullable<RestTemplate<T>> = result?.restTemplateRef ?? null;
 
         if (isNotNil(template)) {
-            newPath = mutatePathByPathVariables(newPath, originalMethod, args);
+            newPath = mutatePathByPathVariables({
+                args,
+                path: newPath,
+                originalMethod,
+                pathVariables: template.options.pathVariables
+            });
+
             const bodyRegistry: MethodArgsRegistry = ensureMethodArgsRegistry(originalMethod, META_REQUEST_BODY);
             const indexBody: Nullable<number> = bodyRegistry.getIndexByKey(KEY_REQUEST_BODY);
             const body: Any = isNil(indexBody) ? template?.options.body : template?.options.body ?? args?.[indexBody];
