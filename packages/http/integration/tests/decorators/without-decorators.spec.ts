@@ -5,20 +5,10 @@ import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import {
-    Delete,
-    Get,
-    Patch,
-    PathVariable,
-    Post,
-    Put,
-    RequestBody,
-    RequestParam,
-    RestClient
-} from '@angular-ru/http/decorators';
+import { Delete, Get, Patch, PathVariable, Post, Put, RestClient } from '@angular-ru/http/decorators';
 import { Nullable } from '@angular-ru/common/typings';
 
-describe('[TEST]: HTTP decorators for client', () => {
+describe('[TEST]: HTTP without decorators for client', () => {
     const MOCK_API: string = 'http://localhost';
     let client: Nullable<ApiUsersClient> = null;
     let httpMock: HttpTestingController;
@@ -38,16 +28,18 @@ describe('[TEST]: HTTP decorators for client', () => {
         }
 
         @Get()
-        public findAllUsersWithPaginator(
-            @RequestParam('index') _pageIndex: number,
-            @RequestParam('size') _pageSize: number
-        ): Observable<User[]> {
-            return this.restTemplate({ queryParams: { size: 5 } });
+        public findAllUsersWithPaginator(index: number, size: number): Observable<User[]> {
+            return this.restTemplate({ queryParams: { index, size } });
         }
 
         @Get('/{id}')
-        public findByIdUser(@PathVariable('id') _id: number): Observable<User> {
-            return this.restTemplate();
+        public findByIdUser(id: number): Observable<User> {
+            return this.restTemplate({ pathVariables: { id } });
+        }
+
+        @Get('/{id}')
+        public findByIdUserWithoutOverride(@PathVariable('id') _id: number, id: number): Observable<User> {
+            return this.restTemplate({ pathVariables: { id } });
         }
 
         @Get('/')
@@ -56,23 +48,23 @@ describe('[TEST]: HTTP decorators for client', () => {
         }
 
         @Post('/{id}')
-        public createUser(@PathVariable('id') _id: number, @RequestBody() _body: Partial<User>): Observable<void> {
-            return this.restTemplate();
+        public createUser(id: number, body: Partial<User>): Observable<void> {
+            return this.restTemplate({ body, pathVariables: { id } });
         }
 
         @Put('/{id}')
-        public saveUser(@PathVariable('id') _id: number, @RequestBody() _body: User): Observable<void> {
-            return this.restTemplate();
+        public saveUser(id: number, body: User): Observable<void> {
+            return this.restTemplate({ body, pathVariables: { id } });
         }
 
         @Delete('/{id}')
-        public deleteByIdUser(@PathVariable('id') _id: number): Observable<void> {
-            return this.restTemplate();
+        public deleteByIdUser(id: number): Observable<void> {
+            return this.restTemplate({ pathVariables: { id } });
         }
 
         @Patch('/{id}')
-        public mutateUser(@PathVariable('id') _id: number, @RequestBody() _body: Partial<User>): Observable<void> {
-            return this.restTemplate();
+        public mutateUser(id: number, body: Partial<User>): Observable<void> {
+            return this.restTemplate({ body, pathVariables: { id } });
         }
     }
 
@@ -148,6 +140,28 @@ describe('[TEST]: HTTP decorators for client', () => {
         tick(100);
     }));
 
+    it('should be correct GET request with path variable without override', fakeAsync(() => {
+        client?.findByIdUserWithoutOverride(10, 2).subscribe((response: User) => {
+            expect(response).toEqual({ id: 2, name: 'b' });
+            expect(req.request.method).toEqual('GET');
+        });
+
+        req = httpMock.expectOne(`${MOCK_API}/users/2`);
+        req.flush({ id: 2, name: 'b' });
+
+        tick(100);
+
+        client?.findByIdUserWithoutOverride(100, 3).subscribe((response: User) => {
+            expect(response).toEqual({ id: 3, name: 'c' });
+            expect(req.request.method).toEqual('GET');
+        });
+
+        req = httpMock.expectOne(`${MOCK_API}/users/3`);
+        req.flush({ id: 3, name: 'c' });
+
+        tick(100);
+    }));
+
     it('should be correct POST request with path variable', fakeAsync(() => {
         client?.createUser(2, { id: 2, name: 'b' }).subscribe((): void => {
             expect(req.request.body).toEqual({ id: 2, name: 'b' });
@@ -196,7 +210,7 @@ describe('[TEST]: HTTP decorators for client', () => {
     }));
 
     it('should be correct GET request with request params', fakeAsync(() => {
-        client?.findAllUsersWithPaginator(4, 20).subscribe((): void => {
+        client?.findAllUsersWithPaginator(4, 5).subscribe((): void => {
             expect(req.request.params.toString()).toEqual('index=4&size=5');
             expect(req.request.method).toEqual('GET');
         });

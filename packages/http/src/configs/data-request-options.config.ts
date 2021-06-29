@@ -6,6 +6,7 @@ export const DATA_REQUEST_OPTIONS_CONFIG: DataClientRequestOptions = {
     body: null,
     headers: {},
     queryParams: {},
+    pathVariables: {},
     emitSuccess: false,
     emitFailure: true,
     responseType: 'json',
