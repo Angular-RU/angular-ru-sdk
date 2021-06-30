@@ -1,3 +1,11 @@
+#### 15.272.0 (2021-06-29)
+
+##### New Features
+
+-   **@angular-ru/http:** support passing explicit variables in path
+    ([#707](https://github.com/Angular-RU/angular-ru-sdk/pull/707))
+    ([71bc55b0](https://github.com/Angular-RU/angular-ru-sdk/commit/71bc55b0ecdd43bf723a7a52a14369f7de2d6fc4))
+
 #### 15.271.0 (2021-06-28)
 
 ##### New Features
