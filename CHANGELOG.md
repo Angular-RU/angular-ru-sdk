@@ -1,3 +1,10 @@
+#### 15.273.0 (2021-06-30)
+
+##### New Features
+
+-   **@angular-ru/common:** improved tryParseJson ([#708](https://github.com/Angular-RU/angular-ru-sdk/pull/708))
+    ([7db95973](https://github.com/Angular-RU/angular-ru-sdk/commit/7db95973efd0dec319dc178a3c3ba5756006fd7f))
+
 #### 15.272.0 (2021-06-29)
 
 ##### New Features
