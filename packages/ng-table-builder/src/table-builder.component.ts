@@ -20,6 +20,7 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { fadeInLinearAnimation } from '@angular-ru/common/animations';
+import { hasItems } from '@angular-ru/common/array';
 import { Any, DeepPartial, Nullable, PlainObjectOf, SortOrderType } from '@angular-ru/common/typings';
 import { checkValueIsFilled, detectChanges, isFalse, isFalsy, isNil, isNotNil } from '@angular-ru/common/utils';
 import { EMPTY, fromEvent, Observable, Subject } from 'rxjs';
@@ -297,6 +298,20 @@ export class TableBuilderComponent<T>
         if (isNotNil(key)) {
             this.recheckViewportChecked();
             this.templateParser.toggleColumnVisibility(key);
+            this.ngZone.runOutsideAngular((): void => {
+                window.requestAnimationFrame((): void => {
+                    this.changeSchema();
+                    this.recheckViewportChecked();
+                    detectChanges(this.cd);
+                });
+            });
+        }
+    }
+
+    public updateColumnsSchema(patch: Nullable<PlainObjectOf<Partial<ColumnsSchema>>>): void {
+        if (isNotNil(patch)) {
+            this.recheckViewportChecked();
+            this.templateParser.updateColumnsSchema(patch);
             this.ngZone.runOutsideAngular((): void => {
                 window.requestAnimationFrame((): void => {
                     this.changeSchema();
@@ -749,7 +764,11 @@ export class TableBuilderComponent<T>
      * because users can draw the wrong keys in the template (ngx-column key=invalid)
      */
     private parseTemplateKeys(): TemplateKeys {
-        this.templateParser.keyMap = this.generateColumnsKeyMap(this.keys.length ? this.keys : this.getModelKeys());
+        const modelKeys: string[] = this.getModelKeys();
+        const keys: string[] = hasItems(this.keys)
+            ? this.keys.filter((key: string): boolean => modelKeys.includes(key))
+            : modelKeys;
+        this.templateParser.keyMap = this.generateColumnsKeyMap(keys);
 
         this.templateParser.allowedKeyMap = this.keys.length
             ? this.generateColumnsKeyMap(this.customModelColumnsKeys)

@@ -67,18 +67,29 @@ export class TemplateParserService<T> {
 
     public toggleColumnVisibility(key: string): void {
         if (isNotNil(this.schema)) {
-            this.schema.columns = this.schema.columns.map(
-                (column: ColumnsSchema): ColumnsSchema =>
-                    key === column.key
-                        ? {
-                              ...column,
-                              isVisible: !column.isVisible
-                          }
-                        : column
-            );
+            this.schema.columns = this.schema.columns.map((column: ColumnsSchema): ColumnsSchema => {
+                if (key === column.key) {
+                    return { ...column, isVisible: !column.isVisible };
+                } else {
+                    return column;
+                }
+            });
 
-            this.synchronizedReference();
+            this.updateComputedWithSchema();
         }
+    }
+
+    public updateColumnsSchema(patch: PlainObjectOf<Partial<ColumnsSchema>>): void {
+        if (isNotNil(this.schema)) {
+            this.schema.columns = this.schema.columns.map((column: ColumnsSchema): ColumnsSchema => {
+                if (isNotNil(column.key)) {
+                    return { ...column, ...patch[column.key] };
+                } else {
+                    return column;
+                }
+            });
+        }
+        this.updateComputedWithSchema();
     }
 
     public initialSchema(columnOptions: ColumnOptionsDirective): void {
@@ -180,7 +191,7 @@ export class TemplateParserService<T> {
         };
     }
 
-    private synchronizedReference(): void {
+    private updateComputedWithSchema(): void {
         this.schema?.columns.forEach((column: ColumnsSchema): void => {
             this.compiledTemplates[column.key!] = column;
         });
