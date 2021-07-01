@@ -1,3 +1,17 @@
+### 1.06.2021 @angular-ru/common
+
+-   before
+
+```ts
+checkValueIsEmpty('null'); // true
+```
+
+-   after
+
+```ts
+checkValueIsEmpty('null'); // false
+```
+
 ### 11.05.2021 @angular-ru/common
 
 -   before
