@@ -10,7 +10,7 @@ import {
     isObject,
     isPlainObject,
     isSimpleObject,
-    mapObject,
+    shallowMapObject,
     pathsOfObject,
     replaceWithNull,
     sortByAsc,
@@ -415,17 +415,19 @@ describe('[TEST]: Object', () => {
 
     it('should correct map objects by keys', function () {
         const oneTypeObject = { a: 1, b: 3, c: 5 };
-        expect(mapObject(oneTypeObject, (a: number): number => a * 2)).toEqual({ a: 2, b: 6, c: 10 });
+        expect(shallowMapObject(oneTypeObject, (a: number): number => a * 2)).toEqual({ a: 2, b: 6, c: 10 });
 
         const baseTypeObject = { a: '1 asd', b: 3, c: true };
-        expect(mapObject(baseTypeObject, (a: number | string | boolean): string => `${a} - interpolated`)).toEqual({
+        expect(
+            shallowMapObject(baseTypeObject, (a: number | string | boolean): string => `${a} - interpolated`)
+        ).toEqual({
             a: '1 asd - interpolated',
             b: '3 - interpolated',
             c: `true - interpolated`
         });
 
         const complexObject = { a: 1, b: 'two', c: true, d: undefined, e: null, f: { field: 'value' }, g: [1, 2, 3] };
-        expect(mapObject(complexObject, (a): string => JSON.stringify(a))).toEqual({
+        expect(shallowMapObject(complexObject, (a): string => JSON.stringify(a))).toEqual({
             a: '1',
             b: '"two"',
             c: 'true',

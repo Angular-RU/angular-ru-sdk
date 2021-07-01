@@ -1,6 +1,6 @@
 import { PlainObjectOf } from '@angular-ru/common/typings';
 
-export function mapObject<Type, ReturnType>(
+export function shallowMapObject<Type, ReturnType>(
     object: PlainObjectOf<Type>,
     mapper: (obj: Type, key: string) => ReturnType
 ): PlainObjectOf<ReturnType> {
