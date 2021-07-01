@@ -45,8 +45,8 @@ describe('[TEST]: Common utils', () => {
     it('is empty value', () => {
         expect(checkValueIsEmpty(0)).toEqual(false);
         expect(checkValueIsEmpty('x')).toEqual(false);
+        expect(checkValueIsEmpty('null')).toEqual(false);
         expect(checkValueIsEmpty('')).toEqual(true);
-        expect(checkValueIsEmpty('null')).toEqual(true);
         expect(checkValueIsEmpty('    ')).toEqual(true);
         expect(checkValueIsEmpty(NaN)).toEqual(true);
         expect(checkValueIsEmpty(undefined)).toEqual(true);
@@ -63,6 +63,7 @@ describe('[TEST]: Common utils', () => {
         expect(checkValueIsFilled(true)).toEqual(true);
         expect(checkValueIsFilled(0)).toEqual(true);
         expect(checkValueIsFilled('x')).toEqual(true);
+        expect(checkValueIsFilled('null')).toEqual(true);
     });
 
     it('detect changes invoked three times', () => {
@@ -225,7 +226,7 @@ describe('[TEST]: fallbackIfEmpty', () => {
     });
 
     it('should return fallback if value is empty', () => {
-        expect(fallbackIfEmpty('null', {})).toEqual({});
+        expect(fallbackIfEmpty('null', {})).toEqual('null');
         expect(fallbackIfEmpty(Infinity, {})).toEqual({});
         expect(fallbackIfEmpty(NaN, 'fallback')).toEqual('fallback');
         expect(fallbackIfEmpty(null, 'fallback')).toEqual('fallback');

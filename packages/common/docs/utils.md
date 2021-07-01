@@ -53,8 +53,8 @@ import { checkValueIsEmpty } from '@angular-ru/common/utils';
 
 expect(checkValueIsEmpty(0)).toEqual(false);
 expect(checkValueIsEmpty('x')).toEqual(false);
+expect(checkValueIsEmpty('null')).toEqual(false);
 expect(checkValueIsEmpty('')).toEqual(true);
-expect(checkValueIsEmpty('null')).toEqual(true);
 expect(checkValueIsEmpty('    ')).toEqual(true);
 expect(checkValueIsEmpty(NaN)).toEqual(true);
 expect(checkValueIsEmpty(undefined)).toEqual(true);
@@ -68,8 +68,8 @@ import { checkValueIsFilled } from '@angular-ru/common/utils';
 
 expect(checkValueIsFilled(0)).toEqual(true);
 expect(checkValueIsFilled('x')).toEqual(true);
+expect(checkValueIsFilled('null')).toEqual(true);
 expect(checkValueIsFilled('')).toEqual(false);
-expect(checkValueIsFilled('null')).toEqual(false);
 expect(checkValueIsFilled('    ')).toEqual(false);
 expect(checkValueIsFilled(NaN)).toEqual(false);
 expect(checkValueIsFilled(undefined)).toEqual(false);
@@ -281,7 +281,7 @@ expect(fallbackIfEmpty(1, 'fallback')).toEqual(1);
 expect(fallbackIfEmpty('string', 'fallback')).toEqual('string');
 expect(fallbackIfEmpty({}, 'fallback')).toEqual({});
 
-expect(fallbackIfEmpty('null', {})).toEqual({});
+expect(fallbackIfEmpty('null', {})).toEqual('null');
 expect(fallbackIfEmpty(Infinity, {})).toEqual({});
 expect(fallbackIfEmpty(NaN, 'fallback')).toEqual('fallback');
 expect(fallbackIfEmpty(null, 'fallback')).toEqual('fallback');
