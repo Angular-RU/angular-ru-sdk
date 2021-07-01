@@ -42,7 +42,7 @@ export class ExcelBuilderService {
             .run((input: PreparedExcelWorkbook<T>): Blob => {
                 function isEmptyValue(value: Any): value is EmptyValue {
                     const val: Any = typeof value === 'string' ? value.trim() : value;
-                    return [undefined, null, NaN, '', 'null', Infinity].includes(val);
+                    return [undefined, null, NaN, '', Infinity].includes(val);
                 }
 
                 class ExcelBuilder {
