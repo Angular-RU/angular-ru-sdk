@@ -1,3 +1,10 @@
+#### 15.274.0 (2021-07-01)
+
+##### New Features
+
+-   **@angular-ru/common:** remove 'null' as empty value ([#710](https://github.com/Angular-RU/angular-ru-sdk/pull/710))
+    ([6f4d43a2](https://github.com/Angular-RU/angular-ru-sdk/commit/6f4d43a2d36fcc712c64f3cb0badc278d899e51c))
+
 #### 15.273.0 (2021-06-30)
 
 ##### New Features
