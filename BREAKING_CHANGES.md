@@ -1,4 +1,4 @@
-### 1.06.2021 @angular-ru/common
+### 1.07.2021 @angular-ru/common
 
 -   before
 
