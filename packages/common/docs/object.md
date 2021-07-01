@@ -446,3 +446,27 @@ it('should be correct deep equals with week type', (): void => {
     ).toEqual(false);
 });
 ```
+
+-   `mapObject`
+
+```ts
+import { mapObject } from '@angular-ru/common/object';
+
+const oneTypeObject = { a: 1, b: 3, c: 5 };
+expect(mapObject(oneTypeObject, (a: number): number => a * 2)).toEqual({
+    a: 2,
+    b: 6,
+    c: 10
+});
+
+const complexObject = { a: 1, b: 'two', c: true, d: undefined, e: null, f: { field: 'value' }, g: [1, 2, 3] };
+expect(mapObject(complexObject, (a): string => JSON.stringify(a))).toEqual({
+    a: '1',
+    b: '"two"',
+    c: 'true',
+    d: undefined,
+    e: 'null',
+    f: '{"field":"value"}',
+    g: '[1,2,3]'
+});
+```

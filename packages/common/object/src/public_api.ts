@@ -15,6 +15,7 @@ export { isIterable } from './is-iterable';
 export { isObject } from './is-object';
 export { isPlainObject } from './is-plain-object';
 export { isSimpleObject } from './is-simple-object';
+export { mapObject } from './map-object';
 export { pathsOfObject } from './paths-of-object';
 export { replaceWithNull } from './replace-with-null';
 export { sortByAsc } from './sort-by-asc';
