@@ -1,3 +1,10 @@
+#### 15.275.0 (2021-07-01)
+
+##### New Features
+
+-   **@angular-ru/common:** add mapObject function ([#709](https://github.com/Angular-RU/angular-ru-sdk/pull/709))
+    ([d10109f1](https://github.com/Angular-RU/angular-ru-sdk/commit/d10109f14f8e24519835157f2a5bff264b160c60))
+
 #### 15.274.0 (2021-07-01)
 
 ##### New Features
