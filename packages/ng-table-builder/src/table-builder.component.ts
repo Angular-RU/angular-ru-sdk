@@ -308,18 +308,13 @@ export class TableBuilderComponent<T>
         }
     }
 
-    public updateColumnsSchema(patch: Nullable<PlainObjectOf<Partial<ColumnsSchema>>>): void {
-        if (isNotNil(patch)) {
-            this.recheckViewportChecked();
-            this.templateParser.updateColumnsSchema(patch);
-            this.ngZone.runOutsideAngular((): void => {
-                window.requestAnimationFrame((): void => {
-                    this.changeSchema();
-                    this.recheckViewportChecked();
-                    detectChanges(this.cd);
-                });
+    public updateColumnsSchema(patch: PlainObjectOf<Partial<ColumnsSchema>>): void {
+        this.templateParser.updateColumnsSchema(patch);
+        this.ngZone.runOutsideAngular((): void => {
+            window.requestAnimationFrame((): void => {
+                this.changeSchema();
             });
-        }
+        });
     }
 
     public resetSchema(): void {

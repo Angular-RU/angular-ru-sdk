@@ -1,6 +1,7 @@
 import { Injectable, QueryList } from '@angular/core';
+import { shallowMapObject } from '@angular-ru/common/object';
 import { Any, Nullable, PlainObjectOf } from '@angular-ru/common/typings';
-import { checkValueIsFilled, isNil, isNotNil, isTrue } from '@angular-ru/common/utils';
+import { checkValueIsFilled, fallbackIfEmpty, isNil, isNotNil, isTrue } from '@angular-ru/common/utils';
 
 import { NgxColumnComponent } from '../../components/ngx-column/ngx-column.component';
 import { ColumnOptionsDirective } from '../../directives/column-options.directive';
@@ -160,7 +161,7 @@ export class TemplateParserService<T> {
             stickyLeft: getValidHtmlBooleanAttribute(column.stickyLeft),
             stickyRight: getValidHtmlBooleanAttribute(column.stickyRight),
             customColumn: isCustomKey,
-            width: getValidPredicate(column.width, this.columnOptions?.width),
+            width: fallbackIfEmpty(Number(column.width ?? this.columnOptions?.width ?? undefined), null),
             cssClass: getValidPredicate(column.cssClass, this.columnOptions?.cssClass) ?? [],
             cssStyle: getValidPredicate(column.cssStyle, this.columnOptions?.cssStyle) ?? [],
             resizable: getValidHtmlBooleanAttribute(
@@ -189,6 +190,18 @@ export class TemplateParserService<T> {
                 template: isEmptyHead ? null : thOptions.template
             }
         };
+    }
+
+    public exportSchema(): PlainObjectOf<Partial<ColumnsSchema>> {
+        return shallowMapObject(
+            this.compiledTemplates,
+            (column: ColumnsSchema): Partial<ColumnsSchema> => ({
+                key: column.key,
+                width: column.width,
+                isVisible: column.isVisible,
+                isModel: column.isModel
+            })
+        );
     }
 
     private updateComputedWithSchema(): void {
