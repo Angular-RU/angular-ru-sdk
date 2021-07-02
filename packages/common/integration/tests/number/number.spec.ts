@@ -23,10 +23,9 @@ describe('[TEST]: Number', () => {
             expect(toNumber(NaN)).toEqual(NaN);
             expect(toNumber(Infinity)).toEqual(Infinity);
             expect(toNumber('')).toEqual(NaN);
-            expect(toNumber(null as any)).toEqual(NaN);
-            expect(toNumber(undefined as any)).toEqual(NaN);
+            expect(toNumber(null)).toEqual(NaN);
+            expect(toNumber(undefined)).toEqual(NaN);
             expect(toNumber('')).toEqual(NaN);
-            expect(toNumber(undefined as any)).toEqual(NaN);
         });
 
         it('should be correct to number', () => {

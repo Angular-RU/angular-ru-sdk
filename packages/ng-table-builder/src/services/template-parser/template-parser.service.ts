@@ -1,4 +1,5 @@
 import { Injectable, QueryList } from '@angular/core';
+import { toNumber } from '@angular-ru/common/number';
 import { shallowMapObject } from '@angular-ru/common/object';
 import { Any, Nullable, PlainObjectOf } from '@angular-ru/common/typings';
 import { checkValueIsFilled, fallbackIfEmpty, isNil, isNotNil, isTrue } from '@angular-ru/common/utils';
@@ -161,7 +162,7 @@ export class TemplateParserService<T> {
             stickyLeft: getValidHtmlBooleanAttribute(column.stickyLeft),
             stickyRight: getValidHtmlBooleanAttribute(column.stickyRight),
             customColumn: isCustomKey,
-            width: fallbackIfEmpty(Number(column.width ?? this.columnOptions?.width ?? undefined), null),
+            width: fallbackIfEmpty(toNumber(column.width ?? this.columnOptions?.width), null),
             cssClass: getValidPredicate(column.cssClass, this.columnOptions?.cssClass) ?? [],
             cssStyle: getValidPredicate(column.cssStyle, this.columnOptions?.cssStyle) ?? [],
             resizable: getValidHtmlBooleanAttribute(

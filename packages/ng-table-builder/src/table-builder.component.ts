@@ -310,11 +310,7 @@ export class TableBuilderComponent<T>
 
     public updateColumnsSchema(patch: PlainObjectOf<Partial<ColumnsSchema>>): void {
         this.templateParser.updateColumnsSchema(patch);
-        this.ngZone.runOutsideAngular((): void => {
-            window.requestAnimationFrame((): void => {
-                this.changeSchema();
-            });
-        });
+        this.changeSchema();
     }
 
     public resetSchema(): void {

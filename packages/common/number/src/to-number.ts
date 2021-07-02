@@ -1,8 +1,11 @@
+import { Nullable } from '@angular-ru/common/typings';
+import { isNotNil } from '@angular-ru/common/utils';
+
 const formatToPartsValue: number = 12345.6;
 const intlFormatOrigin: number = 9876543210;
 
-export function toNumber(value: number | string, locale: string = 'ru-RU'): number {
-    let prepared: string = value?.toString().replace(/\s/g, '');
+export function toNumber(value: Nullable<number | string>, locale: string = 'ru-RU'): number {
+    let prepared: Nullable<string> = value?.toString().replace(/\s/g, '');
 
     const parts: Intl.NumberFormatPart[] = new Intl.NumberFormat(locale).formatToParts(formatToPartsValue);
 
@@ -26,5 +29,5 @@ export function toNumber(value: number | string, locale: string = 'ru-RU'): numb
 
     prepared = prepared?.trim().replace(group, '').replace(decimal, '.').replace(numeral, indexes);
 
-    return prepared ? +prepared : NaN;
+    return isNotNil(prepared) ? +prepared : NaN;
 }
