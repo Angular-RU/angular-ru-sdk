@@ -27,8 +27,8 @@
         columnHeight: columnHeight,
         statusRendered: isRendered,
         sourceLength: source?.length || 0,
-        headerHeight: headerRef?.nativeElement?.clientHeight! || 0,
-        footerHeight: footerRef?.nativeElement?.clientHeight! || 0
+        headerHeight: headerRef | getClientHeight,
+        footerHeight: footerRef | getClientHeight
     }"
     [tableViewport]="tableViewport"
 >
@@ -54,7 +54,7 @@
         (observeVisible)="calculateViewport(true)"
         [class.table-grid__native-scrollbar]="nativeScrollbar"
         [class.table-grid__scroll-offset]="viewPortInfo?.scrollTop! > 0"
-        [style.height]="'calc(100% - ' + (headerClientHeight + footerClientHeight) + 'px)'"
+        [style.height]="[headerRef, footerRef] | getClientHeight | getFreeSizePipe"
         [style.width.px]="
             columnListWidth !== 0 && root.offsetWidth !== 0 && columnListWidth < root.offsetWidth - scrollbarWidth
                 ? columnListWidth + scrollbarWidth

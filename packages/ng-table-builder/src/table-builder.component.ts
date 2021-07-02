@@ -33,6 +33,7 @@ import { TABLE_GLOBAL_OPTIONS } from './config/table-global-options';
 import { AutoHeightDirective } from './directives/auto-height.directive';
 import { CalculateRange, ColumnsSchema } from './interfaces/table-builder.external';
 import { RecalculatedStatus, TableSimpleChanges, TemplateKeys } from './interfaces/table-builder.internal';
+import { getClientHeight } from './operators/get-client-height';
 import { ContextMenuService } from './services/context-menu/context-menu.service';
 import { DraggableService } from './services/draggable/draggable.service';
 import { FilterableService } from './services/filterable/filterable.service';
@@ -123,7 +124,7 @@ export class TableBuilderComponent<T>
     public get rootHeight(): string {
         const height: Nullable<string | number> = this.expandableTableExpanded
             ? this.height
-            : this.headerClientHeight + this.footerClientHeight;
+            : getClientHeight(this.headerRef) + getClientHeight(this.footerRef);
         if (checkValueIsFilled(height)) {
             const heightAsNumber: number = Number(height);
             return isNaN(heightAsNumber) ? String(height) : `${height}px`;
@@ -132,20 +133,8 @@ export class TableBuilderComponent<T>
         }
     }
 
-    public get headerClientHeight(): number {
-        return this.headerRef?.nativeElement?.clientHeight || 0;
-    }
-
-    public get footerClientHeight(): number {
-        return this.footerRef?.nativeElement?.clientHeight || 0;
-    }
-
     private get expandableTableExpanded(): boolean {
-        return (
-            !this.headerTemplate ||
-            !coerceBoolean(this.headerTemplate.expandable) ||
-            coerceBoolean(this.headerTemplate.expanded)
-        );
+        return isNil(this.headerTemplate) || !this.headerTemplate.expandable || this.headerTemplate.expanded;
     }
 
     private get viewIsDirty(): boolean {
@@ -383,8 +372,8 @@ export class TableBuilderComponent<T>
     }
 
     public updateTableHeight(): void {
-        detectChanges(this.cd);
         this.autoHeight.calculateHeight();
+        detectChanges(this.cd);
     }
 
     protected calculateViewPortByRange({ start, end, bufferOffset, force }: CalculateRange): void {
@@ -814,8 +803,8 @@ export class TableBuilderComponent<T>
     }
 
     private listenExpandChange(): void {
-        this.headerTemplate?.expandedChange.pipe(takeUntil(this.destroy$)).subscribe((_: boolean): void => {
-            this.updateTableHeight();
-        });
+        this.headerTemplate?.expandedChange
+            .pipe(takeUntil(this.destroy$))
+            .subscribe((): void => this.updateTableHeight());
     }
 }
