@@ -2,6 +2,7 @@ import { isFunctionLike } from '@angular-ru/common/function';
 import { getValueByPath } from '@angular-ru/common/object';
 import { Any, Nullable } from '@angular-ru/common/typings';
 import { isNotNil } from '@angular-ru/common/utils';
+
 type TrackBy<T> = (item: T) => Any;
 
 export function uniqueArrayOf<T>(list: T[], trackBy: string | TrackBy<T>): T[] {

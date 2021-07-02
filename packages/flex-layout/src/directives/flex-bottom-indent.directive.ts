@@ -2,6 +2,7 @@ import { AfterViewInit, Directive, ElementRef, HostBinding, Input } from '@angul
 import { Nullable } from '@angular-ru/common/typings';
 
 import { AbstractFlexLayoutDirective } from './abstract-flex-layout.directive';
+
 @Directive({ selector: '[flex-bottom-indent]' })
 export class FlexBottomIndentDirective extends AbstractFlexLayoutDirective implements AfterViewInit {
     @Input('flex-bottom-indent')

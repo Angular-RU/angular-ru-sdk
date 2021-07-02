@@ -4,6 +4,7 @@ import 'jest-preset-angular/setup-jest';
 import { Any } from '@angular-ru/common/typings';
 
 const jsdom: Any = require('jsdom');
+
 const { JSDOM }: Any = jsdom;
 
 const dom: Any = new JSDOM('<!DOCTYPE html><html><head></head><body></body></html>');
