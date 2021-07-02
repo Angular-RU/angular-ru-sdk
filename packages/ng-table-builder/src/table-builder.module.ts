@@ -34,7 +34,7 @@ import { TemplateHeadThDirective } from './directives/rows/template-head-th.dire
 import { VirtualForDirective } from './directives/virtual-for.directive';
 import { DisableRowPipe } from './pipes/disable-row.pipe';
 import { GetClientHeightPipe } from './pipes/get-client-height.pipe';
-import { GetFreeSizePipePipe } from './pipes/get-free-size.pipe';
+import { GetFreeSizePipe } from './pipes/get-free-size.pipe';
 import { TableSelectedItemsPipe } from './pipes/table-selected-items.pipe';
 import { TableBuilderComponent } from './table-builder.component';
 
@@ -74,7 +74,7 @@ import { TableBuilderComponent } from './table-builder.component';
         DisableRowPipe,
         TableSelectedItemsPipe,
         VirtualForDirective,
-        GetFreeSizePipePipe,
+        GetFreeSizePipe,
         GetClientHeightPipe
     ],
     providers: [WebWorkerThreadService],

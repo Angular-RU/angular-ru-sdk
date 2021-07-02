@@ -1,7 +1,7 @@
-import { GetFreeSizePipePipe } from '../../../src/pipes/get-free-size.pipe';
+import { GetFreeSizePipe } from '../../../src/pipes/get-free-size.pipe';
 
 describe('[TEST] getFreeSizePipe', () => {
-    const pipe = new GetFreeSizePipePipe();
+    const pipe = new GetFreeSizePipe();
 
     it('should be correct calculate FreeSize when occupiedPixels = 20', () => {
         expect(pipe.transform(20)).toBe('calc(100% - 20px)');
