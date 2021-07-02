@@ -1,3 +1,11 @@
+#### 15.275.1 (2021-07-02)
+
+##### Bug Fixes
+
+-   **@angular-ru/ng-table-builder:** set async stub for trigger onChanges
+    ([#713](https://github.com/Angular-RU/angular-ru-sdk/pull/713))
+    ([fdb44939](https://github.com/Angular-RU/angular-ru-sdk/commit/fdb44939f1b4c8892e900f8839ee6a6d7e69b351))
+
 #### 15.275.0 (2021-07-01)
 
 ##### New Features

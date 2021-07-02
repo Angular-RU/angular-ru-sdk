@@ -2,6 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { getValueByPath } from '@angular-ru/common/object';
 import { Nullable } from '@angular-ru/common/typings';
 import { checkValueIsEmpty } from '@angular-ru/common/utils';
+
 @Pipe({ name: 'deepPath' })
 export class DeepPathPipe implements PipeTransform {
     public transform<T, K = unknown>(

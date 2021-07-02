@@ -134,6 +134,7 @@ module.exports = {
                 'no-new-wrappers': 'error',
                 'no-prototype-builtins': 'off',
                 'import/exports-last': 'off',
+                'import/newline-after-import': ['error', { count: 1 }],
                 'no-redeclare': 'error',
                 'no-restricted-exports': ['error'],
                 'no-restricted-syntax': [
