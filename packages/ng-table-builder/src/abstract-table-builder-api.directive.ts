@@ -151,6 +151,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
     private filterIdTask: Nullable<number> = null;
     private idleDetectChangesId: Nullable<number> = null;
     private columnFrameId: Nullable<number> = null;
+    private onChangesId: number = 0;
     private _headHeight: Nullable<number> = null;
     private _rowHeight: Nullable<number> = null;
 
@@ -330,7 +331,15 @@ export abstract class AbstractTableBuilderApiDirective<T>
     public async sortAndFilter(): Promise<void> {
         await this.sortAndFilterOriginalSource();
         this.selection.rows = this.source;
-        this.onChanges.emit(this.sourceRef);
+
+        // TODO: need research this code, because we have problem with recursive update,
+        //  when page have more than one tables
+        this.ngZone.runOutsideAngular((): void => {
+            clearTimeout(this.onChangesId);
+            this.onChangesId = setTimeout((): void => {
+                this.onChanges.emit(this.sourceRef);
+            });
+        });
     }
 
     public sortByKey(key: string): void {
