@@ -134,7 +134,11 @@ export class TableBuilderComponent<T>
     }
 
     private get expandableTableExpanded(): boolean {
-        return isNil(this.headerTemplate) || !this.headerTemplate.expandable || this.headerTemplate.expanded;
+        return (
+            isNil(this.headerTemplate) ||
+            !coerceBoolean(this.headerTemplate.expandable) ||
+            coerceBoolean(this.headerTemplate.expanded)
+        );
     }
 
     private get viewIsDirty(): boolean {
