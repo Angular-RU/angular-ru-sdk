@@ -11,7 +11,7 @@
     [style.width]="width"
     [sourceRef]="sourceRef"
     class="table-grid__root"
-    [style.height.px]="height"
+    [style.height]="rootHeight"
     [class.table-grid__root-auto-height]="autoHeightDetect"
     [class.table-grid__no-display]="!(columnSchema.length > 0)"
     [class.table-grid__root--is-rendered]="isRendered"
@@ -22,7 +22,7 @@
     (recalculatedHeight)="recalculateHeight()"
     [autoHeight]="{
         detect: autoHeightDetect,
-        height: height,
+        height: rootHeight,
         inViewport: true,
         columnHeight: columnHeight,
         statusRendered: isRendered,
@@ -40,6 +40,9 @@
         [innerHTML]="ngxEmptyContent?.nativeElement?.innerHTML | safe: 'html'"
     ></div>
 
+    <div class="table-grid__header-sticky" #header>
+        <ng-content select="ngx-header"></ng-content>
+    </div>
     <div
         observerView
         cdkDropList
@@ -51,16 +54,13 @@
         (observeVisible)="calculateViewport(true)"
         [class.table-grid__native-scrollbar]="nativeScrollbar"
         [class.table-grid__scroll-offset]="viewPortInfo?.scrollTop! > 0"
+        [style.height]="'calc(100% - ' + (headerClientHeight + footerClientHeight) + 'px)'"
         [style.width.px]="
             columnListWidth !== 0 && root.offsetWidth !== 0 && columnListWidth < root.offsetWidth - scrollbarWidth
                 ? columnListWidth + scrollbarWidth
                 : null
         "
     >
-        <div class="table-grid__header-sticky" *ngIf="headerTemplate" #header>
-            <ng-content select="ngx-header"></ng-content>
-        </div>
-
         <div
             #area
             [style.height.px]="columnHeight"
@@ -114,7 +114,6 @@
                             [column-schema]="schema"
                             (mouseleave)="disableDragging()"
                             [column-width]="column.offsetWidth"
-                            [header-top]="headerRef?.nativeElement?.offsetHeight! || 0"
                             [sortable-definition]="sortable.definition"
                             [sortable-position]="sortable.positionMap"
                             [sortable-count]="sortable.sortableCount"
@@ -154,10 +153,10 @@
                 </div>
             </ng-container>
         </div>
+    </div>
 
-        <div class="table-grid__footer-sticky" *ngIf="footerTemplate && isRendered" #footer>
-            <ng-content select="ngx-footer"></ng-content>
-        </div>
+    <div class="table-grid__footer-sticky" *ngIf="footerTemplate && isRendered" #footer>
+        <ng-content select="ngx-footer"></ng-content>
     </div>
 </div>
 

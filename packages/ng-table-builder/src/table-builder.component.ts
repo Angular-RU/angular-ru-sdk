@@ -21,6 +21,7 @@ import {
 } from '@angular/core';
 import { fadeInLinearAnimation } from '@angular-ru/common/animations';
 import { hasItems } from '@angular-ru/common/array';
+import { coerceBoolean } from '@angular-ru/common/coercion';
 import { Any, DeepPartial, Nullable, PlainObjectOf, SortOrderType } from '@angular-ru/common/typings';
 import { checkValueIsFilled, detectChanges, isFalse, isFalsy, isNil, isNotNil } from '@angular-ru/common/utils';
 import { EMPTY, fromEvent, Observable, Subject } from 'rxjs';
@@ -29,6 +30,7 @@ import { catchError, takeUntil } from 'rxjs/operators';
 import { AbstractTableBuilderApiDirective } from './abstract-table-builder-api.directive';
 import { NgxColumnComponent } from './components/ngx-column/ngx-column.component';
 import { TABLE_GLOBAL_OPTIONS } from './config/table-global-options';
+import { AutoHeightDirective } from './directives/auto-height.directive';
 import { CalculateRange, ColumnsSchema } from './interfaces/table-builder.external';
 import { RecalculatedStatus, TableSimpleChanges, TemplateKeys } from './interfaces/table-builder.internal';
 import { ContextMenuService } from './services/context-menu/context-menu.service';
@@ -67,6 +69,8 @@ export class TableBuilderComponent<T>
 {
     @ViewChild('header', { static: false }) public headerRef!: ElementRef<HTMLDivElement>;
     @ViewChild('footer', { static: false }) public footerRef!: ElementRef<HTMLDivElement>;
+    @ViewChild(AutoHeightDirective, { static: false })
+    public readonly autoHeight!: AutoHeightDirective<T>;
     public dirty: boolean = true;
     public rendering: boolean = false;
     public isRendered: boolean = false;
@@ -114,6 +118,34 @@ export class TableBuilderComponent<T>
 
     public get sourceExists(): boolean {
         return this.sourceRef.length > 0;
+    }
+
+    public get rootHeight(): string {
+        const height: Nullable<string | number> = this.expandableTableExpanded
+            ? this.height
+            : this.headerClientHeight + this.footerClientHeight;
+        if (checkValueIsFilled(height)) {
+            const heightAsNumber: number = Number(height);
+            return isNaN(heightAsNumber) ? String(height) : `${height}px`;
+        } else {
+            return '';
+        }
+    }
+
+    public get headerClientHeight(): number {
+        return this.headerRef?.nativeElement?.clientHeight || 0;
+    }
+
+    public get footerClientHeight(): number {
+        return this.footerRef?.nativeElement?.clientHeight || 0;
+    }
+
+    private get expandableTableExpanded(): boolean {
+        return (
+            !this.headerTemplate ||
+            !coerceBoolean(this.headerTemplate.expandable) ||
+            coerceBoolean(this.headerTemplate.expanded)
+        );
     }
 
     private get viewIsDirty(): boolean {
@@ -203,6 +235,8 @@ export class TableBuilderComponent<T>
         if (this.sourceExists) {
             this.render();
         }
+
+        this.listenExpandChange();
     }
 
     public ngAfterViewInit(): void {
@@ -346,6 +380,11 @@ export class TableBuilderComponent<T>
 
     public setSource(source: Nullable<T[]>): void {
         this.originalSource = this.source = this.selection.rows = source;
+    }
+
+    public updateTableHeight(): void {
+        detectChanges(this.cd);
+        this.autoHeight.calculateHeight();
     }
 
     protected calculateViewPortByRange({ start, end, bufferOffset, force }: CalculateRange): void {
@@ -772,5 +811,11 @@ export class TableBuilderComponent<T>
             overridingRenderedKeys: this.templateParser.overrideTemplateKeys!,
             simpleRenderedKeys: this.templateParser.templateKeys!
         };
+    }
+
+    private listenExpandChange(): void {
+        this.headerTemplate?.expandedChange.pipe(takeUntil(this.destroy$)).subscribe((_: boolean): void => {
+            this.updateTableHeight();
+        });
     }
 }

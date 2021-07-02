@@ -11,7 +11,7 @@ import {
     SimpleChanges
 } from '@angular/core';
 import { Any, Nullable } from '@angular-ru/common/typings';
-import { isNotNil, isTrue } from '@angular-ru/common/utils';
+import { checkValueIsFilled, isNotNil, isTrue } from '@angular-ru/common/utils';
 import { fromEvent, Subject } from 'rxjs';
 import { delay, takeUntil } from 'rxjs/operators';
 
@@ -36,10 +36,6 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
 
     constructor(private readonly element: ElementRef, public readonly ngZone: NgZone) {}
 
-    private get height(): number {
-        return parseInt((this.autoHeight.height! ?? 0) as string);
-    }
-
     private get canCalculated(): boolean {
         return isTrue(this.autoHeight.inViewport) && this.autoHeight.sourceLength! > 0 && this.sourceRef.length > 0;
     }
@@ -48,8 +44,8 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
     private get style(): string {
         let height: Nullable<string> = null;
 
-        if (this.height) {
-            height = `${this.height}px`;
+        if (checkValueIsFilled(this.autoHeight.height)) {
+            height = this.autoHeight.height;
         } else if (isTrue(this.autoHeight.detect)) {
             const paddingTop: string = AutoHeightDirective.getStyle(this.rootCurrentElement, 'padding-top');
             const paddingBottom: string = AutoHeightDirective.getStyle(this.rootCurrentElement, 'padding-bottom');
@@ -65,7 +61,7 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
             }
         }
 
-        return isNotNil(height) ? `display: block; height: ${height ?? 0}` : '';
+        return isNotNil(height) ? `display: block; height: ${height}` : '';
     }
 
     private get isNotEmptyParentHeight(): boolean {
