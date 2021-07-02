@@ -3,6 +3,7 @@ import { isNil } from '@angular-ru/common/utils';
 
 import { toNumber } from '../to-number';
 import { NumberFormatOptions } from './number-format-options';
+
 export function numberFormat(value?: Nullable<string | number>, options?: NumberFormatOptions): string {
     const fallback: string = options?.fallback ?? '';
     const locales: string | string[] = options?.locales ?? 'ru-RU';
