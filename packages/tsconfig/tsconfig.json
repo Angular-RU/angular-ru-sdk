@@ -59,6 +59,7 @@
         "module": "esnext",
         "target": "es2015",
         "incremental": true,
+        "types": [],
         "forceConsistentCasingInFileNames": true,
         "tsBuildInfoFile": ".cache/tsconfig.buildinfo"
     },
