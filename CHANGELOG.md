@@ -1,3 +1,11 @@
+#### 15.276.0 (2021-07-02)
+
+##### New Features
+
+-   **@angular-ru/eslint-config:** required new line after import
+    ([#714](https://github.com/Angular-RU/angular-ru-sdk/pull/714))
+    ([c218e7de](https://github.com/Angular-RU/angular-ru-sdk/commit/c218e7de7c137a095cf10a06647a41418d667f06))
+
 #### 15.275.1 (2021-07-02)
 
 ##### Bug Fixes
