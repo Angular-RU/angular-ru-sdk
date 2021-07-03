@@ -1,5 +1,5 @@
 import { Nullable } from '@angular-ru/common/typings';
-import { isNotNil } from '@angular-ru/common/utils';
+import { checkValueIsFilled } from '@angular-ru/common/utils';
 
 const formatToPartsValue: number = 12345.6;
 const intlFormatOrigin: number = 9876543210;
@@ -29,5 +29,5 @@ export function toNumber(value: Nullable<number | string>, locale: string = 'ru-
 
     prepared = prepared?.trim().replace(group, '').replace(decimal, '.').replace(numeral, indexes);
 
-    return isNotNil(prepared) ? +prepared : NaN;
+    return checkValueIsFilled(prepared) ? +prepared : NaN;
 }

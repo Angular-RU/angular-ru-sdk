@@ -25,7 +25,6 @@ describe('[TEST]: Number', () => {
             expect(toNumber('')).toEqual(NaN);
             expect(toNumber(null)).toEqual(NaN);
             expect(toNumber(undefined)).toEqual(NaN);
-            expect(toNumber('')).toEqual(NaN);
         });
 
         it('should be correct to number', () => {

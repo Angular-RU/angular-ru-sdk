@@ -23,7 +23,6 @@ expect(toNumber(Infinity)).toEqual(Infinity);
 expect(toNumber('')).toEqual(NaN);
 expect(toNumber(null)).toEqual(NaN);
 expect(toNumber(undefined)).toEqual(NaN);
-expect(toNumber('')).toEqual(NaN);
 
 expect(toNumber(0)).toEqual(0);
 expect(toNumber('0.1')).toEqual(0.1);
