@@ -4,9 +4,6 @@
         "rootDir": ".",
         "baseUrl": ".",
         "outDir": "./dist/out-tsc",
-        "typeRoots": ["../../node_modules/@types"],
-        "paths": {
-            "@angular-ru/common/*": ["*/src/public_api.ts"]
-        }
+        "typeRoots": ["../../node_modules/@types"]
     }
 }
