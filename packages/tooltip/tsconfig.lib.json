@@ -9,8 +9,7 @@
         "experimentalDecorators": true,
         "importHelpers": true,
         "noUnusedParameters": true,
-        "noUnusedLocals": true,
-        "types": []
+        "noUnusedLocals": true
     },
     "exclude": ["**/*.spec.ts"]
 }
