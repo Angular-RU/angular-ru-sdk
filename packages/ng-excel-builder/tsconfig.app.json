@@ -2,8 +2,6 @@
     "extends": "./tsconfig.json",
     "compilerOptions": {
         "outDir": "../out-tsc/app",
-        "target": "es2015",
-        "types": [],
         "paths": {
             "@angular-ru/ng-excel-builder": ["./dist/library"],
             "@angular-ru/common/*": ["../common/dist/library/*"]

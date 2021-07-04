@@ -2,7 +2,6 @@
     "extends": "./tsconfig.json",
     "compilerOptions": {
         "outDir": "../out-tsc/app",
-        "target": "es2015",
         "paths": {
             "@angular-ru/flex-layout": ["./src/public_api"],
             "@angular-ru/common/*": ["../common/dist/library/*"]

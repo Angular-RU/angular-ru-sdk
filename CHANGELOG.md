@@ -1,3 +1,12 @@
+#### 15.276.1 (2021-07-03)
+
+##### Build System / Dependencies
+
+-   **@angular-ru/flex-layout:** correct resolve paths ([#716](https://github.com/Angular-RU/angular-ru-sdk/pull/716))
+    ([31e9bbde](https://github.com/Angular-RU/angular-ru-sdk/commit/31e9bbde2403afa00ead7c25167d5e8074969bfe))
+-   remove redundant ([#715](https://github.com/Angular-RU/angular-ru-sdk/pull/715))
+    ([764094a2](https://github.com/Angular-RU/angular-ru-sdk/commit/764094a24925a9883e7b8650cfad7cc494c8b223))
+
 #### 15.276.0 (2021-07-02)
 
 ##### New Features

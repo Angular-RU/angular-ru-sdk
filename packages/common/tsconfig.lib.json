@@ -1,6 +1,8 @@
 {
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
-        "types": []
+        "paths": {
+            "@angular-ru/common/*": ["dist/library/common/dist/library/*"]
+        }
     }
 }
