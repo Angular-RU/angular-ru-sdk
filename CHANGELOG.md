@@ -1,3 +1,10 @@
+#### 15.276.2 (2021-07-04)
+
+##### Build System / Dependencies
+
+-   use es2015 by default ([#717](https://github.com/Angular-RU/angular-ru-sdk/pull/717))
+    ([10f3328d](https://github.com/Angular-RU/angular-ru-sdk/commit/10f3328d8b97771a195e38adde3a0b3eaf79d49d))
+
 #### 15.276.1 (2021-07-03)
 
 ##### Build System / Dependencies
