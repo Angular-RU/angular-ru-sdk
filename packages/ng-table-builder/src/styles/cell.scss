@@ -102,12 +102,11 @@
 
         &--content {
             overflow: hidden;
-            cursor: pointer;
             margin: auto 3px;
             word-break: keep-all;
         }
 
-        &:active {
+        &--is-clickable:active {
             background: var(--ngx-table-header-cell-active-background);
             fill: var(--ngx-table-header-cell-active-color);
             stroke: var(--ngx-table-header-cell-active-color);
