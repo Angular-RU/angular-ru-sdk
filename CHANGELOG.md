@@ -1,3 +1,34 @@
+#### 15.277.0 (2021-07-05)
+
+##### New Features
+
+-   **@angular-ru/common:** update default date suggestion map
+    ([#718](https://github.com/Angular-RU/angular-ru-sdk/pull/718))
+    ([05a5c9f7](https://github.com/Angular-RU/angular-ru-sdk/commit/05a5c9f78fd98c8e90c98f8a28546e623fba0b90))
+
+#### 15.276.3 (2021-07-05)
+
+##### Bug Fixes
+
+-   **ng-table-builder:** table features and typings ([#711](https://github.com/Angular-RU/angular-ru-sdk/pull/711))
+    ([fb0f2f74](https://github.com/Angular-RU/angular-ru-sdk/commit/fb0f2f7467433edf9c9bfda1131de1d2628bf56c))
+
+#### 15.276.2 (2021-07-04)
+
+##### Build System / Dependencies
+
+-   use es2015 by default ([#717](https://github.com/Angular-RU/angular-ru-sdk/pull/717))
+    ([10f3328d](https://github.com/Angular-RU/angular-ru-sdk/commit/10f3328d8b97771a195e38adde3a0b3eaf79d49d))
+
+#### 15.276.1 (2021-07-03)
+
+##### Build System / Dependencies
+
+-   **@angular-ru/flex-layout:** correct resolve paths ([#716](https://github.com/Angular-RU/angular-ru-sdk/pull/716))
+    ([31e9bbde](https://github.com/Angular-RU/angular-ru-sdk/commit/31e9bbde2403afa00ead7c25167d5e8074969bfe))
+-   remove redundant ([#715](https://github.com/Angular-RU/angular-ru-sdk/pull/715))
+    ([764094a2](https://github.com/Angular-RU/angular-ru-sdk/commit/764094a24925a9883e7b8650cfad7cc494c8b223))
+
 #### 15.276.0 (2021-07-02)
 
 ##### New Features

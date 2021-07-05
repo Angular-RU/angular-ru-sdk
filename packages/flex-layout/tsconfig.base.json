@@ -2,8 +2,8 @@
     "extends": "../tsconfig/tsconfig.json",
     "compilerOptions": {
         "rootDir": ".",
-        "baseUrl": ".",
+        "baseUrl": "./",
         "outDir": "./dist/out-tsc",
-        "typeRoots": ["../../node_modules/@types"]
+        "typeRoots": ["../../node_modules/@types", "./"]
     }
 }
