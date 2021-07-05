@@ -1,4 +1,8 @@
-import { REG_EXP_NO_CYRILLIC, REG_EXP_STRICT_NAME } from '@angular-ru/common/regexp';
+import {
+    REG_EXP_NO_CYRILLIC,
+    REG_EXP_STRICT_NAME,
+    REG_EXP_INTEGERS_SEPARATED_BY_COMMA
+} from '@angular-ru/common/regexp';
 
 describe('[TEST]: Regexp constants', () => {
     it('should parse string with REG_EXP_STRICT_NAME', () => {
@@ -14,6 +18,12 @@ describe('[TEST]: Regexp constants', () => {
     it('should parse string with REG_EXP_NO_CYRILLIC', () => {
         expect(parse('aaa BBB @ ! 7', REG_EXP_NO_CYRILLIC)).toEqual('aaa BBB @ ! 7');
         expect(parse('aaa ДДД', REG_EXP_NO_CYRILLIC)).toEqual('aaa ');
+    });
+
+    it('should parse string with REG_EXP_NUMBERS_SEPARATED_BY_COMMA', () => {
+        expect(parse('12,13,77', REG_EXP_INTEGERS_SEPARATED_BY_COMMA)).toEqual('12,13,77');
+        expect(parse(' 12 13, 77 ', REG_EXP_INTEGERS_SEPARATED_BY_COMMA)).toEqual('1213,77');
+        expect(parse('aaa,12,bbb', REG_EXP_INTEGERS_SEPARATED_BY_COMMA)).toEqual('12,');
     });
 });
 
