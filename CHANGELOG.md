@@ -1,3 +1,11 @@
+#### 15.277.0 (2021-07-05)
+
+##### New Features
+
+-   **@angular-ru/common:** update default date suggestion map
+    ([#718](https://github.com/Angular-RU/angular-ru-sdk/pull/718))
+    ([05a5c9f7](https://github.com/Angular-RU/angular-ru-sdk/commit/05a5c9f78fd98c8e90c98f8a28546e623fba0b90))
+
 #### 15.276.3 (2021-07-05)
 
 ##### Bug Fixes
