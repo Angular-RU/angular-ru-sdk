@@ -1,7 +1,6 @@
 {
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
-        "outDir": "../../out-tsc/lib",
         "paths": {
             "@angular-ru/flex-layout": ["dist/library"],
             "@angular-ru/common/*": ["../common/dist/library/*"]
