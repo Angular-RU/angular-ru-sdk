@@ -12,9 +12,9 @@ Default implementation has 8 built-in strategies:
 -   `YESTERDAY` — set at the beginning and end of yesterday;
 -   `CALENDAR_WEEK` — set to the beginning of the calendar week and the end of the current day. Required to provide a
     DateAdapter;
--   `LAST_3_DAYS`, `LAST_3_DAYS`, `LAST_3_DAYS` — set X last days;
+-   `LAST_3_DAYS`, `LAST_7_DAYS`, `LAST_60_DAYS` — set X last days;
 -   `FIRST_DAY_OF_INTERVAL` — set the beginning and end of the first day from the current interval;
--   `LAST_99_DAYS_OF_INTERVAL` — set 99 days to the last day from the current interval.
+-   `LAST_180_DAYS_OF_INTERVAL` — set 180 days to the last day from the current interval.
 
 ```ts
 import { DateSuggestionModule, DateSuggestionComposer, DefaultDateIntervalSuggestion } from '@angular-ru/common/date';
