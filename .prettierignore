@@ -1,6 +1,7 @@
 **/.idea/**
 **/.cache/**
 **/coverage/**
+**/file-suites/**
 **/node_modules/**
 **/dist/**
 **/lib/**

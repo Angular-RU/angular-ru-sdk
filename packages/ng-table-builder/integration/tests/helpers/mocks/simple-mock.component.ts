@@ -4,7 +4,7 @@ import { PlainObject } from '@angular-ru/common/typings';
 // noinspection AngularMissingOrInvalidDeclarationInModule
 @Component({
     selector: 'app',
-    template: ` <ngx-table-builder [source]="data"></ngx-table-builder> `,
+    template: `<ngx-table-builder [source]="data"></ngx-table-builder> `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SimpleMockComponent {
