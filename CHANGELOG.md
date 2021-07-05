@@ -1,3 +1,22 @@
+#### 15.301.0 (2021-07-05)
+
+##### Build System / Dependencies
+
+-   force bump versions ([#722](https://github.com/Angular-RU/angular-ru-sdk/pull/722))
+    ([a926eaaf](https://github.com/Angular-RU/angular-ru-sdk/commit/a926eaafe6a29ed6a9c7558b4f3800dcdca848c8))
+-   add tsconfig.base.json ([#721](https://github.com/Angular-RU/angular-ru-sdk/pull/721))
+    ([cccb10a5](https://github.com/Angular-RU/angular-ru-sdk/commit/cccb10a572760ae15f23ade48428b0f9870d5b26))
+
+##### New Features
+
+-   **@angular-ru/ngx-table-builder:** added extensibility and height n…
+    ([#712](https://github.com/Angular-RU/angular-ru-sdk/pull/712))
+    ([fa8421ac](https://github.com/Angular-RU/angular-ru-sdk/commit/fa8421ac13872e393dc863e470692bb9ad6dc83f))
+-   added regexp REG_EXP_INTEGERS_SEPARATED_BY_COMMA ([#720](https://github.com/Angular-RU/angular-ru-sdk/pull/720))
+    ([159f2869](https://github.com/Angular-RU/angular-ru-sdk/commit/159f28690c4d2b6caa1d17cb1eba1527be743c1e))
+-   added empty array as no value for the form ([#719](https://github.com/Angular-RU/angular-ru-sdk/pull/719))
+    ([184561a7](https://github.com/Angular-RU/angular-ru-sdk/commit/184561a7ca9eec3bd9fc78e1f9710c8e29eb1c9e))
+
 #### 15.277.0 (2021-07-05)
 
 ##### New Features
