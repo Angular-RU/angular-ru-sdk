@@ -34,7 +34,7 @@ export interface ColumnsSchema<T = Any> {
     key: Nullable<string>;
     td: TableCellOptions<T>;
     th: TableCellOptions<T> & TableHeadCellOptions;
-    width?: Nullable<string | number>;
+    width?: Nullable<number>;
     cssStyle: string[];
     cssClass: string[];
     stickyLeft: boolean;
