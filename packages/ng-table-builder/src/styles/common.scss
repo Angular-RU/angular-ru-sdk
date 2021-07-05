@@ -15,6 +15,7 @@
     transform: translate(0);
     box-sizing: border-box;
     width: 100%;
+    border: 1px solid var(--ngx-table-border-color);
 
     &--is-rendered .table-grid {
         overflow: scroll;

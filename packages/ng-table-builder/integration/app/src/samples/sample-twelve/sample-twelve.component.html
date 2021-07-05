@@ -132,4 +132,21 @@
     <ngx-footer content-cell align-center bold>Footer 1</ngx-footer>
 </ngx-table-builder>
 
+<h3>Table with header can be expandable</h3>
+<pre><code class="html" ngNonBindable>
+  &lt;!-- app.component.html -->
+
+    &lt;ngx-table-builder [source]="data" height="100%">
+        &lt;ngx-options is-draggable is-sortable>&lt;/ngx-options>
+        &lt;ngx-header content-cell align-center bold expandable>Header 3&lt;/ngx-header>
+    &lt;/ngx-table-builder>
+
+</code></pre>
+<br />
+<div style="height: 500px">
+    <ngx-table-builder [source]="data" height="100%">
+        <ngx-options is-draggable is-sortable></ngx-options>
+        <ngx-header content-cell align-center bold expandablePanel>Header 3</ngx-header>
+    </ngx-table-builder>
+</div>
 <br /><br />
