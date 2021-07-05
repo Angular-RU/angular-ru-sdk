@@ -14,7 +14,8 @@ import { TableContentDirective } from '../../directives/table-content.directive'
 export class NgxHeaderComponent extends TableContentDirective {
     @Output() public readonly expandedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
     @AttributeBoolean() @Input() public expanded: InputBoolean = true;
-    @AttributeBoolean() @Input() public expandable: InputBoolean = false;
+    @AttributeBoolean() @Input() public expandablePanel: InputBoolean = false;
+    @AttributeBoolean() @Input() public hideToggle: InputBoolean = false;
 
     public toggleExpand(): void {
         this.expanded = !coerceBoolean(this.expanded);

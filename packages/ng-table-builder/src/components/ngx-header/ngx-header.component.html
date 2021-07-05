@@ -1,6 +1,6 @@
 <div
     class="table-grid__table-content-place"
-    [class.table-grid__header-expandable]="expandable"
+    [class.table-grid__header-expandable]="expandablePanel"
     [class.table-grid__table-content-place--content-cell]="contentCell !== null"
     [class.table-grid__table-content-place--align-center]="alignCenter !== null"
     [class.table-grid__table-content-place--bold]="bold !== null"
@@ -9,7 +9,7 @@
     <div [ngClass]="cssClasses" [class.content-box]="contentCell !== null">
         <ng-content></ng-content>
     </div>
-    <ng-container *ngIf="expandable">
+    <ng-container *ngIf="expandablePanel && !hideToggle">
         <div class="table-grid__header-sticky--expand-button-wrapper">
             <mat-icon
                 class="table-grid__header-sticky--expand-button"

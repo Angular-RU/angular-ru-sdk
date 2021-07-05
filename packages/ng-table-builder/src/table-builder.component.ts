@@ -136,7 +136,7 @@ export class TableBuilderComponent<T>
     private get expandableTableExpanded(): boolean {
         return (
             isNil(this.headerTemplate) ||
-            !coerceBoolean(this.headerTemplate.expandable) ||
+            !coerceBoolean(this.headerTemplate.expandablePanel) ||
             coerceBoolean(this.headerTemplate.expanded)
         );
     }
