@@ -22,7 +22,7 @@
         "lib"
     ],
     "scripts": {
-        "build:lib": "tsc -p ./tsconfig.json",
+        "build:lib": "tsc -p ./tsconfig.lib.json",
         "test": "yarn jest --config ./jest.config.js"
     },
     "dependencies": {

@@ -1,7 +1,6 @@
 {
-    "extends": "./tsconfig.json",
+    "extends": "./tsconfig.base.json",
     "compilerOptions": {
-        "outDir": "../out-tsc/app",
         "paths": {
             "@angular-ru/common/*": ["./*/src/public_api"]
         }
