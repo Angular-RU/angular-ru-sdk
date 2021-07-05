@@ -16,7 +16,6 @@ import { OVERLOAD_WIDTH_TABLE_HEAD_CELL } from '../../table-builder.properties';
     animations: [fadeInLinearAnimation]
 })
 export class TableTheadComponent<T> {
-    @Input('header-top') public headerTop: Nullable<number> = null;
     @Input('column-width') public columnWidth: number = 0;
     @Input('head-height') public headHeight: Nullable<string | number> = null;
     @Input('sortable-definition') public sortableDefinition: PlainObjectOf<SortOrderType> = {};
