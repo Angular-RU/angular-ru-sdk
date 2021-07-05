@@ -55,9 +55,9 @@ describe('[TEST]: Trim Input', () => {
             dateTo: endOfDay()
         });
 
-        composer.getStrategy(DefaultDateIntervalSuggestion.LAST_99_DAYS).updateIntervalFor(form, descriptor);
+        composer.getStrategy(DefaultDateIntervalSuggestion.LAST_60_DAYS).updateIntervalFor(form, descriptor);
         expect(form.getRawValue()).toEqual({
-            dateFrom: startOfDay(shiftDate({ days: -98 })),
+            dateFrom: startOfDay(shiftDate({ days: -59 })),
             dateTo: endOfDay()
         });
     });
@@ -78,7 +78,7 @@ describe('[TEST]: Trim Input', () => {
 
     it('should set date interval based on FirstDayOfIntervalStrategy', function () {
         const mockStart: Date = new Date('10 Apr 2021 12:00:00');
-        form.controls[descriptor.dateFromKey].setValue(mockStart);
+        form.controls[descriptor.dateFromKey]?.setValue(mockStart);
         composer.getStrategy(DefaultDateIntervalSuggestion.FIRST_DAY_OF_INTERVAL).updateIntervalFor(form, descriptor);
         expect(form.getRawValue()).toEqual({
             dateFrom: startOfDay(mockStart),
@@ -88,12 +88,12 @@ describe('[TEST]: Trim Input', () => {
 
     it('should set date interval based on LastDaysOfIntervalStrategy', function () {
         const mockEnd: Date = new Date('10 Apr 2021 12:00:00');
-        form.controls[descriptor.dateToKey].setValue(mockEnd);
+        form.controls[descriptor.dateToKey]?.setValue(mockEnd);
         composer
-            .getStrategy(DefaultDateIntervalSuggestion.LAST_99_DAYS_OF_INTERVAL)
+            .getStrategy(DefaultDateIntervalSuggestion.LAST_180_DAYS_OF_INTERVAL)
             .updateIntervalFor(form, descriptor);
         expect(form.getRawValue()).toEqual({
-            dateFrom: startOfDay(shiftDate({ days: -98 }, mockEnd)),
+            dateFrom: startOfDay(shiftDate({ days: -179 }, mockEnd)),
             dateTo: endOfDay(mockEnd)
         });
     });
