@@ -1,3 +1,18 @@
+#### 15.277.0 (2021-07-05)
+
+##### New Features
+
+-   **@angular-ru/common:** update default date suggestion map
+    ([#718](https://github.com/Angular-RU/angular-ru-sdk/pull/718))
+    ([05a5c9f7](https://github.com/Angular-RU/angular-ru-sdk/commit/05a5c9f78fd98c8e90c98f8a28546e623fba0b90))
+
+#### 15.276.3 (2021-07-05)
+
+##### Bug Fixes
+
+-   **ng-table-builder:** table features and typings ([#711](https://github.com/Angular-RU/angular-ru-sdk/pull/711))
+    ([fb0f2f74](https://github.com/Angular-RU/angular-ru-sdk/commit/fb0f2f7467433edf9c9bfda1131de1d2628bf56c))
+
 #### 15.276.2 (2021-07-04)
 
 ##### Build System / Dependencies

@@ -1,6 +1,6 @@
 <div
-    [style.top.px]="headerTop"
     class="table-grid__cell table-grid__header-cell"
+    [class.table-grid__header-cell--is-clickable]="columnSchema?.sortable"
     [class.table-grid__cell--empty-head]="columnSchema?.th?.emptyHead"
     [class.table-grid__cell--custom-cell]="columnSchema?.customColumn"
     [class.table-grid__cell--is-model-cell]="columnSchema?.isModel"
@@ -16,7 +16,7 @@
     <div
         class="table-grid__cell--content table-grid__header-cell--content"
         [class.table-grid__cell--content-sortable-is-active]="sortableDefinition[columnSchema?.key!]"
-        [class.table-grid__cell--content-sortable]="columnSchema?.sortable!"
+        [class.table-grid__cell--content-sortable]="columnSchema?.sortable"
         [class.table-grid__cell--nowrap]="columnSchema?.th?.nowrap!"
     >
         <ng-template
