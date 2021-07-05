@@ -44,8 +44,8 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
     private get style(): string {
         let height: Nullable<string> = null;
 
-        if (checkValueIsFilled(this.autoHeight.height)) {
-            height = this.autoHeight.height;
+        if (checkValueIsFilled(this.autoHeight.rootHeight)) {
+            height = this.autoHeight.rootHeight;
         } else if (isTrue(this.autoHeight.detect)) {
             const paddingTop: string = AutoHeightDirective.getStyle(this.rootCurrentElement, 'padding-top');
             const paddingBottom: string = AutoHeightDirective.getStyle(this.rootCurrentElement, 'padding-bottom');

@@ -15,7 +15,7 @@ export interface DynamicHeightOptions {
     columnHeight: number;
     sourceLength: number;
     statusRendered: boolean;
-    height: Nullable<string>;
+    rootHeight: Nullable<string>;
 }
 
 export interface RecalculatedStatus {
