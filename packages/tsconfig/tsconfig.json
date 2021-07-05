@@ -58,10 +58,9 @@
         "lib": ["esnext", "dom"],
         "module": "esnext",
         "target": "es2015",
-        "incremental": true,
         "types": [],
         "forceConsistentCasingInFileNames": true,
-        "tsBuildInfoFile": ".cache/tsconfig.buildinfo"
+        "incremental": false
     },
     "exclude": ["node_modules", "dist/**", "__tests__/**", "coverage/**", ".cache/**"]
 }

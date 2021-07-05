@@ -1,7 +1,6 @@
 {
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
-        "outDir": "../../out-tsc/spec",
         "preserveConstEnums": true,
         "types": ["jest", "node"],
         "paths": {
