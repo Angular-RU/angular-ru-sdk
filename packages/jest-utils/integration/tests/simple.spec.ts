@@ -1,6 +1,4 @@
-/// <reference types="jest" />
 import { createTsJestConfig } from '../../src';
-// @ts-ignore
 import { Hello } from '@mock/hello';
 
 describe('[TEST]: Hello world', () => {
@@ -39,6 +37,7 @@ describe('[TEST]: Hello world', () => {
                 }
             },
             moduleNameMapper: {
+                '^@angular\\-ru/common/(.*)$': '<rootDir>/../common/dist/library/$1',
                 '^@mock/(.*)$': '<rootDir>/integration/tests/helpers/$1'
             },
             bail: 1,

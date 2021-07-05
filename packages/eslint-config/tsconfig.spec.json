@@ -1,7 +1,7 @@
 {
-    "extends": "../../tsconfig.json",
+    "extends": "./tsconfig.base.json",
     "compilerOptions": {
-        "baseUrl": "./",
+        "baseUrl": ".",
         "preserveConstEnums": true,
         "paths": {
             "@angular-ru/common/*": ["../common/dist/library/*"],

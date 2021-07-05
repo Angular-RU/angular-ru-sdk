@@ -1,9 +1,8 @@
 {
-    "extends": "./tsconfig.json",
+    "extends": "./tsconfig.base.json",
     "compilerOptions": {
-        "outDir": "../out-tsc/app",
         "paths": {
-            "@angular-ru/ng-excel-builder": ["./dist/library"],
+            "@angular-ru/ng-excel-builder": ["./src/public_api.ts"],
             "@angular-ru/common/*": ["../common/dist/library/*"]
         }
     },
