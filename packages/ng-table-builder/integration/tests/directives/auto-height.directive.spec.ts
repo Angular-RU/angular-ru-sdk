@@ -97,25 +97,25 @@ describe('[TEST]: auto height', () => {
         directive.calculateHeight();
         expect(style).toEqual(``);
 
-        directive.autoHeight = { detect: false, height: '200px', inViewport: false, sourceLength: 1 };
+        directive.autoHeight = { detect: false, rootHeight: '200px', inViewport: false, sourceLength: 1 };
         directive.calculateHeight();
         expect(style).toEqual(``);
     });
 
     it('should be correct calculate custom height', () => {
-        directive.autoHeight = { detect: true, height: '500px', inViewport: true, sourceLength: 1 };
+        directive.autoHeight = { detect: true, rootHeight: '500px', inViewport: true, sourceLength: 1 };
         directive.calculateHeight();
         expect(style).toEqual(`display: block; height: 500px`);
     });
 
     it('should be correct empty style when autoHeight not called', () => {
-        directive.autoHeight = { detect: false, height: null, inViewport: true, sourceLength: 1 };
+        directive.autoHeight = { detect: false, rootHeight: null, inViewport: true, sourceLength: 1 };
         directive.calculateHeight();
         expect(style).toEqual(``);
     });
 
     it('should be correct recalculate height', fakeAsync(() => {
-        directive.autoHeight = { height: '200px', inViewport: true, sourceLength: 1 };
+        directive.autoHeight = { rootHeight: '200px', inViewport: true, sourceLength: 1 };
 
         directive.recalculateTableSize();
         tick(100);
