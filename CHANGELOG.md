@@ -1,3 +1,10 @@
+#### 15.278.0 (2021-07-05)
+
+##### New Features
+
+-   added empty array as no value for the form ([#719](https://github.com/Angular-RU/angular-ru-sdk/pull/719))
+    ([184561a7](https://github.com/Angular-RU/angular-ru-sdk/commit/184561a7ca9eec3bd9fc78e1f9710c8e29eb1c9e))
+
 #### 15.277.0 (2021-07-05)
 
 ##### New Features
