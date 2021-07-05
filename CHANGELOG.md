@@ -1,3 +1,17 @@
+#### 15.276.3 (2021-07-05)
+
+##### Bug Fixes
+
+-   **ng-table-builder:** table features and typings ([#711](https://github.com/Angular-RU/angular-ru-sdk/pull/711))
+    ([fb0f2f74](https://github.com/Angular-RU/angular-ru-sdk/commit/fb0f2f7467433edf9c9bfda1131de1d2628bf56c))
+
+#### 15.276.2 (2021-07-04)
+
+##### Build System / Dependencies
+
+-   use es2015 by default ([#717](https://github.com/Angular-RU/angular-ru-sdk/pull/717))
+    ([10f3328d](https://github.com/Angular-RU/angular-ru-sdk/commit/10f3328d8b97771a195e38adde3a0b3eaf79d49d))
+
 #### 15.276.1 (2021-07-03)
 
 ##### Build System / Dependencies
