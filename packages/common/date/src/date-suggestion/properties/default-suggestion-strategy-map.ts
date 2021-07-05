@@ -25,13 +25,13 @@ export const DEFAULT_SUGGESTION_STRATEGY_MAP: SuggestionStrategyMap<DefaultDateI
         strategy: DateSuggestionLastFewDaysStrategy,
         providers: [{ provide: DAYS_COUNT, useValue: 7 }]
     },
-    [DefaultDateIntervalSuggestion.LAST_99_DAYS]: {
+    [DefaultDateIntervalSuggestion.LAST_60_DAYS]: {
         strategy: DateSuggestionLastFewDaysStrategy,
-        providers: [{ provide: DAYS_COUNT, useValue: 99 }]
+        providers: [{ provide: DAYS_COUNT, useValue: 60 }]
     },
     [DefaultDateIntervalSuggestion.FIRST_DAY_OF_INTERVAL]: { strategy: DateSuggestionFirstDayOfIntervalStrategy },
-    [DefaultDateIntervalSuggestion.LAST_99_DAYS_OF_INTERVAL]: {
+    [DefaultDateIntervalSuggestion.LAST_180_DAYS_OF_INTERVAL]: {
         strategy: DateSuggestionLastDaysOfIntervalStrategy,
-        providers: [{ provide: DAYS_COUNT, useValue: 99 }]
+        providers: [{ provide: DAYS_COUNT, useValue: 180 }]
     }
 };

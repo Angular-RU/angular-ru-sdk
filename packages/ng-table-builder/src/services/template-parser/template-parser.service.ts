@@ -1,6 +1,8 @@
 import { Injectable, QueryList } from '@angular/core';
+import { toNumber } from '@angular-ru/common/number';
+import { shallowMapObject } from '@angular-ru/common/object';
 import { Any, Nullable, PlainObjectOf } from '@angular-ru/common/typings';
-import { checkValueIsFilled, isNil, isNotNil, isTrue } from '@angular-ru/common/utils';
+import { checkValueIsFilled, fallbackIfEmpty, isNil, isNotNil, isTrue } from '@angular-ru/common/utils';
 
 import { NgxColumnComponent } from '../../components/ngx-column/ngx-column.component';
 import { ColumnOptionsDirective } from '../../directives/column-options.directive';
@@ -67,18 +69,29 @@ export class TemplateParserService<T> {
 
     public toggleColumnVisibility(key: string): void {
         if (isNotNil(this.schema)) {
-            this.schema.columns = this.schema.columns.map(
-                (column: ColumnsSchema): ColumnsSchema =>
-                    key === column.key
-                        ? {
-                              ...column,
-                              isVisible: !column.isVisible
-                          }
-                        : column
-            );
+            this.schema.columns = this.schema.columns.map((column: ColumnsSchema): ColumnsSchema => {
+                if (key === column.key) {
+                    return { ...column, isVisible: !column.isVisible };
+                } else {
+                    return column;
+                }
+            });
 
-            this.synchronizedReference();
+            this.updateComputedWithSchema();
         }
+    }
+
+    public updateColumnsSchema(patch: PlainObjectOf<Partial<ColumnsSchema>>): void {
+        if (isNotNil(this.schema)) {
+            this.schema.columns = this.schema.columns.map((column: ColumnsSchema): ColumnsSchema => {
+                if (isNotNil(column.key)) {
+                    return { ...column, ...patch[column.key] };
+                } else {
+                    return column;
+                }
+            });
+        }
+        this.updateComputedWithSchema();
     }
 
     public initialSchema(columnOptions: ColumnOptionsDirective): void {
@@ -149,7 +162,7 @@ export class TemplateParserService<T> {
             stickyLeft: getValidHtmlBooleanAttribute(column.stickyLeft),
             stickyRight: getValidHtmlBooleanAttribute(column.stickyRight),
             customColumn: isCustomKey,
-            width: getValidPredicate(column.width, this.columnOptions?.width),
+            width: fallbackIfEmpty(toNumber(column.width ?? this.columnOptions?.width), null),
             cssClass: getValidPredicate(column.cssClass, this.columnOptions?.cssClass) ?? [],
             cssStyle: getValidPredicate(column.cssStyle, this.columnOptions?.cssStyle) ?? [],
             resizable: getValidHtmlBooleanAttribute(
@@ -180,7 +193,19 @@ export class TemplateParserService<T> {
         };
     }
 
-    private synchronizedReference(): void {
+    public exportSchema(): PlainObjectOf<Partial<ColumnsSchema>> {
+        return shallowMapObject(
+            this.compiledTemplates,
+            (column: ColumnsSchema): Partial<ColumnsSchema> => ({
+                key: column.key,
+                width: column.width,
+                isVisible: column.isVisible,
+                isModel: column.isModel
+            })
+        );
+    }
+
+    private updateComputedWithSchema(): void {
         this.schema?.columns.forEach((column: ColumnsSchema): void => {
             this.compiledTemplates[column.key!] = column;
         });
