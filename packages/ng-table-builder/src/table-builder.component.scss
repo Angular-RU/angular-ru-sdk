@@ -11,7 +11,6 @@
     max-width: 100%;
     box-sizing: border-box;
     background: var(--ngx-table-background-color);
-    border: 1px solid var(--ngx-table-border-color);
 
     &__column-area-content {
         display: flex;
@@ -28,6 +27,36 @@
     &__header-sticky {
         top: 0;
         left: 0;
+
+        .table-grid__header-expandable {
+            position: relative;
+            padding-right: 40px;
+        }
+
+        &--expand-button-wrapper {
+            position: absolute;
+            height: 24px;
+            top: 50%;
+            right: 8px;
+            user-select: none;
+            font-weight: 400;
+            font-size: 15px;
+            transform: translateY(-50%);
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.04);
+            }
+        }
+
+        &--expand-button {
+            cursor: pointer;
+            color: #000;
+            transition: 0.2s all;
+
+            &--expanded {
+                transform: rotate(180deg);
+            }
+        }
     }
 
     &__footer-sticky {

@@ -1,6 +1,7 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import {
     DeepPathPipeModule,
     DefaultValuePipeModule,
@@ -32,6 +33,8 @@ import { TemplateBodyTdDirective } from './directives/rows/template-body-td.dire
 import { TemplateHeadThDirective } from './directives/rows/template-head-th.directive';
 import { VirtualForDirective } from './directives/virtual-for.directive';
 import { DisableRowPipe } from './pipes/disable-row.pipe';
+import { GetClientHeightPipe } from './pipes/get-client-height.pipe';
+import { GetFreeSizePipe } from './pipes/get-free-size.pipe';
 import { TableSelectedItemsPipe } from './pipes/table-selected-items.pipe';
 import { TableBuilderComponent } from './table-builder.component';
 
@@ -42,7 +45,8 @@ import { TableBuilderComponent } from './table-builder.component';
         DeepPathPipeModule,
         DefaultValuePipeModule,
         SafePipeModule,
-        MergeCssClassesPipeModule
+        MergeCssClassesPipeModule,
+        MatIconModule
     ],
     declarations: [
         TableBuilderComponent,
@@ -69,7 +73,9 @@ import { TableBuilderComponent } from './table-builder.component';
         NgxSourceNullComponent,
         DisableRowPipe,
         TableSelectedItemsPipe,
-        VirtualForDirective
+        VirtualForDirective,
+        GetFreeSizePipe,
+        GetClientHeightPipe
     ],
     providers: [WebWorkerThreadService],
     exports: [
