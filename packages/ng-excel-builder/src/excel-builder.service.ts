@@ -178,7 +178,7 @@ export class ExcelBuilderService {
                         return maxLength * this.sizes.fontWidth;
                     }
 
-                    private getTranslatedTitle(key: string, translatePrefix?: string): string {
+                    private getTranslatedTitle(key: string, translatePrefix?: Nullable<string>): string {
                         const translatePath: string = ExcelBuilder.isFilled(translatePrefix)
                             ? `${translatePrefix}.${key}`
                             : key;

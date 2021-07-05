@@ -6,8 +6,8 @@ import { EntriesKeys } from './entries-keys';
 export interface ExcelWorksheet<T> {
     entries: Nullable<T[]>;
     worksheetName: string;
-    prefixKeyForTranslate?: string;
-    keys?: EntriesKeys<T>;
-    excludeKeys?: EntriesKeys<T>;
-    columnParameters?: PlainObjectOf<ColumnParameters>;
+    prefixKeyForTranslate?: Nullable<string>;
+    keys?: Nullable<EntriesKeys<T>>;
+    excludeKeys?: Nullable<EntriesKeys<T>>;
+    columnParameters?: Nullable<PlainObjectOf<ColumnParameters>>;
 }

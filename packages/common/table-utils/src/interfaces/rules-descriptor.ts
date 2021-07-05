@@ -1,4 +1,6 @@
+import { Nullable } from '@angular-ru/common/typings';
+
 export interface RulesDescriptor {
-    includeKeys?: string[];
-    excludeKeys?: string[];
+    includeKeys?: Nullable<string[]>;
+    excludeKeys?: Nullable<string[]>;
 }

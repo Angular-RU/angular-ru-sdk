@@ -48,7 +48,7 @@ export class SampleFourteenComponent implements OnInit, AfterViewInit {
     constructor(public readonly dialog: MatDialog, private readonly cd: ChangeDetectorRef) {}
 
     public ngOnInit(): void {
-        const rows: number = 100;
+        const rows: number = 10000;
         const cols: number = 59;
         MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => {
             this.data = data;
