@@ -1,3 +1,10 @@
+#### 15.301.1 (2021-07-06)
+
+##### Build System / Dependencies
+
+-   update jasmine ([#680](https://github.com/Angular-RU/angular-ru-sdk/pull/680))
+    ([aef9d215](https://github.com/Angular-RU/angular-ru-sdk/commit/aef9d215774877690c2874512f4f0954b5618770))
+
 #### 15.301.0 (2021-07-05)
 
 ##### Build System / Dependencies
