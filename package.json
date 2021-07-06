@@ -95,7 +95,6 @@
         "ngx-toastr": "14.0.0",
         "pretty": "2.0.0",
         "rxjs": "6.6.7",
-        "rxjs-marbles": "6.0.1",
         "tsickle": "0.43.0",
         "tslib": "2.3.0",
         "typescript": "4.3.4",
