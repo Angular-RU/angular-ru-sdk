@@ -41,6 +41,11 @@ describe('[TEST]: requiredSomeValueByKeysValidator', () => {
         expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
     });
 
+    it('should return error if all controls with no values: []', () => {
+        form.controls['aaa'].setValue([]);
+        expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
+    });
+
     it('should return error if all controls with no values', () => {
         expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
     });
