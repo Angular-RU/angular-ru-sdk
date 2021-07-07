@@ -1,3 +1,10 @@
+#### 15.301.3 (2021-07-07)
+
+##### Build System / Dependencies
+
+-   update jest 27
+    ([12de1a28](https://github.com/Angular-RU/angular-ru-sdk/commit/12de1a285be4880966f0c24dc94ba320b96a1bb0))
+
 #### 15.301.2 (2021-07-07)
 
 ##### Bug Fixes
