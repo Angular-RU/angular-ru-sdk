@@ -1,4 +1,4 @@
-const fs = require('fs');
+import * as fs from 'fs';
 
 describe('[TEST]: Angular-RU eslint recommendations for i18n', (): void => {
     function getInfoByReportFile(type: 'bad' | 'good'): string {

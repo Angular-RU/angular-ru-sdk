@@ -57,7 +57,7 @@ describe('[TEST]: Filter Simple Input', () => {
     }
 
     it('should correct sync modelView with model', () => {
-        expect(component.filterValue).toEqual('abcД');
+        expect(component!.filterValue).toEqual('abcД');
 
         debugElement!.nativeElement.value = 'ab c Д';
         debugElement!.triggerEventHandler('input', {
@@ -71,19 +71,19 @@ describe('[TEST]: Filter Simple Input', () => {
     });
 
     it('should filter input with characters', () => {
-        component.predicate = ['a', 'b'];
+        component!.predicate = ['a', 'b'];
         setValueAndDispatch('aaabbbccc');
         expect(debugElement!.nativeElement.value).toEqual('aaabbb');
     });
 
     it('should filter input with RegExp', () => {
-        component.predicate = /[a,b]+/;
+        component!.predicate = /[a,b]+/;
         setValueAndDispatch('aaabbbccc');
         expect(debugElement!.nativeElement.value).toEqual('aaabbb');
     });
 
     it('should filter input with custom function', () => {
-        component.predicate = (item: string): boolean => item === 'a' || item === 'b';
+        component!.predicate = (item: string): boolean => item === 'a' || item === 'b';
         setValueAndDispatch('aaabbbccc');
         expect(debugElement!.nativeElement.value).toEqual('aaabbb');
     });

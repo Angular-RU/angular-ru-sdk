@@ -22,22 +22,18 @@ describe('[TEST]: Hello world', () => {
                 }
             })
         ).toEqual({
+            transform: { '^.+\\.(ts|js|html)$': 'jest-preset-angular' },
             globals: {
                 'ts-jest': {
-                    diagnostics: { ignoreCodes: ['6059'] },
-                    isolatedModules: true,
+                    diagnostics: { ignoreCodes: ['6059'], pretty: true, warnOnly: false },
+                    isolatedModules: false,
                     tsconfig: expect.any(String),
                     stringifyContentPathRegex: '\\.html$',
-                    astTransformers: {
-                        before: [
-                            'jest-preset-angular/build/InlineFilesTransformer',
-                            'jest-preset-angular/build/StripStylesTransformer'
-                        ]
-                    }
+                    astTransformers: { before: [] }
                 }
             },
             moduleNameMapper: {
-                '^@angular\\-ru/common/(.*)$': '<rootDir>/../common/dist/library/$1',
+                '^@angular\\-ru/common/(.*)$': '<rootDir>/../common/$1/src/public_api.ts',
                 '^@mock/(.*)$': '<rootDir>/integration/tests/helpers/$1'
             },
             bail: 1,

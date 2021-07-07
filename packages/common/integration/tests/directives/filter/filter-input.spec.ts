@@ -80,23 +80,23 @@ describe('[TEST]: Filter Input', () => {
     });
 
     it('should filter input with characters', () => {
-        component.predicate = ['a', 'b'];
+        component!.predicate = ['a', 'b'];
         setValueAndDispatch('aaabbbccc');
-        expect(component.form.value).toEqual({ value: 'aaabbb' });
+        expect(component!.form.value).toEqual({ value: 'aaabbb' });
         expect(debugElement!.nativeElement.value).toEqual('aaabbb');
     });
 
     it('should filter input with RegExp', () => {
-        component.predicate = /[a,b]+/;
+        component!.predicate = /[a,b]+/;
         setValueAndDispatch('aaabbbccc');
-        expect(component.form.value).toEqual({ value: 'aaabbb' });
+        expect(component!.form.value).toEqual({ value: 'aaabbb' });
         expect(debugElement!.nativeElement.value).toEqual('aaabbb');
     });
 
     it('should filter input with custom function', () => {
-        component.predicate = (item: string): boolean => item === 'a' || item === 'b';
+        component!.predicate = (item: string): boolean => item === 'a' || item === 'b';
         setValueAndDispatch('aaabbbccc');
-        expect(component.form.value).toEqual({ value: 'aaabbb' });
+        expect(component!.form.value).toEqual({ value: 'aaabbb' });
         expect(debugElement!.nativeElement.value).toEqual('aaabbb');
     });
 });

@@ -70,18 +70,18 @@ export function createTsJestConfig(options: JestConfigOptions): Config.InitialOp
         /**
          * A set of global variables that need to be available in all test environments.
          */
+        transform: { '^.+\\.(ts|js|html)$': 'jest-preset-angular' },
         globals: options.jestConfig?.globals ?? {
             'ts-jest': {
                 tsconfig: resolvedTsConfigPath,
-                diagnostics: { ignoreCodes: DEFAULT_TS_JEST_IGNORE_CODES },
+                diagnostics: {
+                    pretty: true,
+                    warnOnly: false,
+                    ignoreCodes: DEFAULT_TS_JEST_IGNORE_CODES
+                },
                 isolatedModules: options.isolatedModules ?? DEFAULT_ISOLATED_MODULES,
                 stringifyContentPathRegex: '\\.html$',
-                astTransformers: {
-                    before: [
-                        'jest-preset-angular/build/InlineFilesTransformer',
-                        'jest-preset-angular/build/StripStylesTransformer'
-                    ]
-                }
+                astTransformers: { before: [] }
             }
         },
 

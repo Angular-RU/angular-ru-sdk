@@ -2,11 +2,10 @@
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
         "paths": {
-            "@angular-ru/common/*": ["../common/dist/library/*"],
+            "@angular-ru/common/*": ["../common/*/public_api.ts"],
             "@angular-ru/logger": ["./src/public_api.ts"]
         }
     },
     "files": ["integration/app/main.ts", "integration/app/polyfills.ts"],
-    "include": ["src/**/*.d.ts"],
-    "exclude": ["**/*.spec.ts"]
+    "exclude": ["integration/tests"]
 }

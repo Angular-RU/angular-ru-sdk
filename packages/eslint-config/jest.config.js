@@ -6,7 +6,6 @@ module.exports = createTsJestConfig({
         rootDir: '.',
         cacheDirectory: '../../.cache',
         displayName: '@angular-ru/eslint-config',
-        modulePathIgnorePatterns: ['<rootDir>/dist/'],
         setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
         testMatch: ['<rootDir>/integration/tests/**/*.spec.ts'],
         collectCoverageFrom: ['<rootDir>/**/*.ts', '!<rootDir>/integration/**', '!<rootDir>/dist/**']

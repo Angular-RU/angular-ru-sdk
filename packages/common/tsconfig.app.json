@@ -1,9 +1,4 @@
 {
     "extends": "./tsconfig.base.json",
-    "compilerOptions": {
-        "paths": {
-            "@angular-ru/common/*": ["./*/src/public_api"]
-        }
-    },
     "include": ["integration/app/main.ts", "integration/app/polyfills.ts"]
 }

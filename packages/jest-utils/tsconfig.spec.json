@@ -2,10 +2,6 @@
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
         "types": ["node", "jest"],
-        "preserveConstEnums": true,
-        "paths": {
-            "@angular-ru/common/*": ["../common/dist/library/*"],
-            "@mock/*": ["integration/tests/helpers/*"]
-        }
+        "preserveConstEnums": true
     }
 }

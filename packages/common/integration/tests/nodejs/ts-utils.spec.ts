@@ -7,7 +7,7 @@ describe('[TEST]: TS Utils', () => {
         );
 
         expect(exposeTsCompilerOptionsByTsConfig('./tsconfig.lib.json').paths).toEqual({
-            '@angular-ru/common/*': ['dist/library/common/dist/library/*']
+            '@angular-ru/common/*': ['dist/library/*']
         });
     });
 });

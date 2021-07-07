@@ -27,9 +27,9 @@
     },
     "dependencies": {
         "@types/jest": "26.0.23",
-        "jest": "27.0.3",
-        "jest-preset-angular": "9.0.1",
-        "ts-jest": "27.0.2"
+        "jest": "27.0.6",
+        "jest-preset-angular": "9.0.4",
+        "ts-jest": "27.0.3"
     },
     "peerDependencies": {
         "@angular-ru/common": ">=15.133.0"

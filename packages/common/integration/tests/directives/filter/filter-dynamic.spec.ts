@@ -61,38 +61,38 @@ describe('[TEST]: Filter Dynamic', () => {
     }
 
     it('should correct sync modelView with model and dynamic control name', () => {
-        expect(component.form.value).toEqual({ a: 'kkk', b: null });
-        expect(component.control).toEqual(component.form.get('b'));
+        expect(component?.form.value).toEqual({ a: 'kkk', b: null });
+        expect(component?.control).toEqual(component?.form.get('b'));
         expect(debugElement!.nativeElement.value).toEqual('');
 
-        component.control = component.form.get('a');
+        component!.control = component!.form.get('a');
         localDetectChanges();
         setValueAndDispatch('aaaqqq');
-        expect(component.form.value).toEqual({ a: 'aaa', b: null });
+        expect(component?.form.value).toEqual({ a: 'aaa', b: null });
         expect(debugElement!.nativeElement.value).toEqual('aaa');
 
-        component.control = component.form.get('b');
+        component!.control = component?.form.get('b');
         localDetectChanges();
         setValueAndDispatch('bbbddd');
-        expect(component.form.value).toEqual({ a: 'aaa', b: 'bbb' });
+        expect(component!.form.value).toEqual({ a: 'aaa', b: 'bbb' });
         expect(debugElement!.nativeElement.value).toEqual('bbb');
 
-        component.control = component.form.get('a');
+        component!.control = component?.form.get('a');
         localDetectChanges();
         setValueAndDispatch('eeeccc');
-        expect(component.form.value).toEqual({ a: 'ccc', b: 'bbb' });
+        expect(component!.form.value).toEqual({ a: 'ccc', b: 'bbb' });
         expect(debugElement!.nativeElement.value).toEqual('ccc');
     });
 
     it('should correct sync modelView with filter characters', () => {
-        expect(component.form.value).toEqual({ a: 'kkk', b: null });
-        expect(component.control).toEqual(component.form.get('b'));
+        expect(component!.form.value).toEqual({ a: 'kkk', b: null });
+        expect(component!.control).toEqual(component?.form.get('b'));
         expect(debugElement!.nativeElement.value).toEqual('');
 
-        component.predicate = ['d', 'e', 'f', ' '];
+        component!.predicate = ['d', 'e', 'f', ' '];
         localDetectChanges();
         setValueAndDispatch('d e f abc');
-        expect(component.form.value).toEqual({ a: 'kkk', b: 'd e f ' });
+        expect(component!.form.value).toEqual({ a: 'kkk', b: 'd e f ' });
         expect(debugElement!.nativeElement.value).toEqual('d e f ');
     });
 });

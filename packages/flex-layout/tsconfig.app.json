@@ -3,9 +3,8 @@
     "compilerOptions": {
         "paths": {
             "@angular-ru/flex-layout": ["./src/public_api"],
-            "@angular-ru/common/*": ["../common/dist/library/*"]
+            "@angular-ru/common/*": ["../common/*/public_api.ts"]
         }
     },
-    "files": ["integration/app/main.ts", "integration/app/polyfills.ts"],
-    "include": ["src/**/*.d.ts"]
+    "files": ["integration/app/main.ts", "integration/app/polyfills.ts"]
 }

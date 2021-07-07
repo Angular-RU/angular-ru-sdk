@@ -90,7 +90,7 @@ export class ConsoleFake implements Console {
         stackObject.forEach((line: string[]): void => {
             for (const levelLog in line) {
                 if (line.hasOwnProperty(levelLog)) {
-                    stackList.push(line[levelLog]);
+                    stackList.push(line[levelLog]!);
                 }
             }
         });
@@ -106,7 +106,7 @@ export class ConsoleFake implements Console {
             stackOptionsList.push({
                 label: String(line[0]).replace('%c', ''),
                 // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-                styles: this.parseCssString(line[usageNext ? 2 : 1])
+                styles: this.parseCssString(line[usageNext ? 2 : 1]!)
             });
         });
 

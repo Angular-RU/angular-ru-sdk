@@ -3,6 +3,9 @@
     "compilerOptions": {
         "rootDir": ".",
         "baseUrl": ".",
-        "typeRoots": ["../../node_modules/@types"]
+        "typeRoots": ["../../node_modules/@types"],
+        "paths": {
+            "@angular-ru/common/*": ["./*/src/public_api.ts"]
+        }
     }
 }

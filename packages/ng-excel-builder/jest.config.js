@@ -6,7 +6,6 @@ module.exports = createTsJestConfig({
         rootDir: '.',
         cacheDirectory: '../../.cache',
         displayName: '@angular-ru/ng-excel-builder',
-        modulePathIgnorePatterns: ['<rootDir>/dist/'],
         collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
         testMatch: ['<rootDir>/integration/tests/**/*.spec.ts'],
         setupFilesAfterEnv: ['<rootDir>/setup-jest.ts']

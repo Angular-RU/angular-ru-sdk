@@ -1,7 +1,7 @@
 import { ApplicationRef, ChangeDetectorRef, ElementRef, NgZone, QueryList, SimpleChanges } from '@angular/core';
 import { fakeAsync, tick } from '@angular/core/testing';
 import { deepClone } from '@angular-ru/common/object';
-import { Any, Fn, PlainObject } from '@angular-ru/common/typings';
+import { Any, Fn, Nullable, PlainObject } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { NgxColumnComponent, NgxTableViewChangesService, TableBuilderComponent } from '@angular-ru/ng-table-builder';
 
@@ -38,7 +38,7 @@ describe('[TEST]: Lifecycle table', () => {
     };
 
     interface PeriodicElement {
-        name: string;
+        name: Nullable<string>;
         position: number;
         weight: number;
         symbol: string;

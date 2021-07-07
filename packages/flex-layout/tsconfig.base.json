@@ -3,6 +3,10 @@
     "compilerOptions": {
         "rootDir": ".",
         "baseUrl": ".",
+        "paths": {
+            "@angular-ru/flex-layout": ["./src/public_api.ts"],
+            "@angular-ru/common/*": ["../common/*/src/public_api.ts"]
+        },
         "typeRoots": ["../../node_modules/@types", "./"]
     }
 }

@@ -1,4 +1,3 @@
-/* tslint:disable:quotemark */
 import { LoggerService } from '../../src/logger.service';
 import { ConsoleFake, TestLoggerGroupType, TestLoggerLineType } from './helpers/console-fake';
 import { TestBed } from '@angular/core/testing';
@@ -6,7 +5,6 @@ import { LoggerModule } from '../../src/logger.module';
 import { CUSTOM_COLORS, CUSTOM_LABELS } from './helpers/custom-colors';
 import { LoggerLevel } from '../../src/interfaces/logger.external';
 
-// tslint:disable-next-line:no-big-function
 describe('[TEST]: Check work in groups', () => {
     let logger: LoggerService;
     const fakeConsole: ConsoleFake = new ConsoleFake();

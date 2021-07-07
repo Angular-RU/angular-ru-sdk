@@ -108,7 +108,7 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
         });
     }
 
-    function expectRsponseOrder(): void {
+    function expectResponseOrder(): void {
         responseOrder.forEach((item: string, index: number): void => {
             expect(item).toEqual(expectOrder[index]);
         });
@@ -122,120 +122,138 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
     it('requests must complete in a right order: Limit Concurrency = 1', fakeAsync(() => {
         ({ client, httpMock } = configureTestingModule(1));
 
-        expectOrder = [requestList[0].response, requestList[1].response, requestList[2].response];
+        expectOrder = [requestList[0]!.response, requestList[1]!.response, requestList[2]!.response];
 
         generateRequests(3);
 
-        req_0 = httpMock.expectOne(requestList[0].url);
-        httpMock.expectNone(requestList[1].url);
-        httpMock.expectNone(requestList[2].url);
+        req_0 = httpMock.expectOne(requestList[0]!.url);
+        httpMock.expectNone(requestList[1]!.url);
+        httpMock.expectNone(requestList[2]!.url);
 
         setTimeout(() => {
-            req_0.flush(requestList[0].response);
-        }, requestList[0].delay);
-        tick(requestList[0].delay);
+            req_0.flush(requestList[0]!.response);
+        }, requestList[0]!.delay);
+        tick(requestList[0]!.delay);
 
-        req_1 = httpMock.expectOne(requestList[1].url);
+        req_1 = httpMock.expectOne(requestList[1]!.url);
         setTimeout(() => {
-            req_1.flush(requestList[1].response);
-        }, requestList[1].delay);
-        tick(requestList[1].delay);
+            req_1.flush(requestList[1]!.response);
+        }, requestList[1]!.delay);
+        tick(requestList[1]!.delay);
 
-        req_2 = httpMock.expectOne(requestList[2].url);
+        req_2 = httpMock.expectOne(requestList[2]!.url);
         setTimeout(() => {
-            req_2.flush(requestList[2].response);
-        }, requestList[2].delay);
-        tick(requestList[2].delay);
+            req_2.flush(requestList[2]!.response);
+        }, requestList[2]!.delay);
+        tick(requestList[2]!.delay);
 
-        expectRsponseOrder();
+        expectResponseOrder();
     }));
 
     it('requests must complete in a right order: Limit Concurrency = 3', fakeAsync(() => {
         ({ client, httpMock } = configureTestingModule(3));
 
         expectOrder = [
-            requestList[1].response,
-            requestList[3].response,
-            requestList[2].response,
-            requestList[4].response,
-            requestList[0].response
+            requestList[1]!.response,
+            requestList[3]!.response,
+            requestList[2]!.response,
+            requestList[4]!.response,
+            requestList[0]!.response
         ];
 
         generateRequests(5);
 
-        req_0 = httpMock.expectOne(requestList[0].url);
-        req_1 = httpMock.expectOne(requestList[1].url);
-        req_2 = httpMock.expectOne(requestList[2].url);
-        httpMock.expectNone(requestList[3].url);
-        httpMock.expectNone(requestList[4].url);
+        req_0 = httpMock.expectOne(requestList[0]!.url);
+        req_1 = httpMock.expectOne(requestList[1]!.url);
+        req_2 = httpMock.expectOne(requestList[2]!.url);
+        httpMock.expectNone(requestList[3]!.url);
+        httpMock.expectNone(requestList[4]!.url);
 
+        // noinspection DuplicatedCode
         setTimeout(() => {
-            req_0.flush(requestList[0].response);
-        }, requestList[0].delay);
-        setTimeout(() => {
-            req_1.flush(requestList[1].response);
-        }, requestList[1].delay);
-        setTimeout(() => {
-            req_2.flush(requestList[2].response);
-        }, requestList[2].delay);
+            req_0.flush(requestList[0]!.response);
+        }, requestList[0]!.delay);
 
-        tick(1100);
-
-        req_3 = httpMock.expectOne(requestList[3].url);
+        // noinspection DuplicatedCode
         setTimeout(() => {
-            req_3.flush(requestList[3].response);
-        }, requestList[3].delay);
+            req_1.flush(requestList[1]!.response);
+        }, requestList[1]!.delay);
+
+        // noinspection DuplicatedCode
+        setTimeout(() => {
+            req_2.flush(requestList[2]!.response);
+        }, requestList[2]!.delay);
 
         tick(1100);
 
-        req_4 = httpMock.expectOne(requestList[4].url);
+        req_3 = httpMock.expectOne(requestList[3]!.url);
+
+        // noinspection DuplicatedCode
         setTimeout(() => {
-            req_4.flush(requestList[4].response);
-        }, requestList[4].delay);
+            req_3.flush(requestList[3]!.response);
+        }, requestList[3]!.delay);
+
+        tick(1100);
+
+        req_4 = httpMock.expectOne(requestList[4]!.url);
+
+        // noinspection DuplicatedCode
+        setTimeout(() => {
+            req_4.flush(requestList[4]!.response);
+        }, requestList[4]!.delay);
 
         tick(3000);
 
-        expectRsponseOrder();
+        expectResponseOrder();
     }));
 
     it('requests must complete in a right order: Limit Concurrency = 5', fakeAsync(() => {
         ({ client, httpMock } = configureTestingModule(5));
 
         expectOrder = [
-            requestList[1].response,
-            requestList[3].response,
-            requestList[4].response,
-            requestList[2].response,
-            requestList[0].response
+            requestList[1]!.response,
+            requestList[3]!.response,
+            requestList[4]!.response,
+            requestList[2]!.response,
+            requestList[0]!.response
         ];
 
         generateRequests(5);
 
-        req_0 = httpMock.expectOne(requestList[0].url);
-        req_1 = httpMock.expectOne(requestList[1].url);
-        req_2 = httpMock.expectOne(requestList[2].url);
-        req_3 = httpMock.expectOne(requestList[3].url);
-        req_4 = httpMock.expectOne(requestList[4].url);
+        req_0 = httpMock.expectOne(requestList[0]!.url);
+        req_1 = httpMock.expectOne(requestList[1]!.url);
+        req_2 = httpMock.expectOne(requestList[2]!.url);
+        req_3 = httpMock.expectOne(requestList[3]!.url);
+        req_4 = httpMock.expectOne(requestList[4]!.url);
 
+        // noinspection DuplicatedCode
         setTimeout(() => {
-            req_0.flush(requestList[0].response);
-        }, requestList[0].delay);
+            req_0.flush(requestList[0]!.response);
+        }, requestList[0]!.delay);
+
+        // noinspection DuplicatedCode
         setTimeout(() => {
-            req_1.flush(requestList[1].response);
-        }, requestList[1].delay);
+            req_1.flush(requestList[1]!.response);
+        }, requestList[1]!.delay);
+
+        // noinspection DuplicatedCode
         setTimeout(() => {
-            req_2.flush(requestList[2].response);
-        }, requestList[2].delay);
+            req_2.flush(requestList[2]!.response);
+        }, requestList[2]!.delay);
+
+        // noinspection DuplicatedCode
         setTimeout(() => {
-            req_3.flush(requestList[3].response);
-        }, requestList[3].delay);
+            req_3.flush(requestList[3]!.response);
+        }, requestList[3]!.delay);
+
+        // noinspection DuplicatedCode
         setTimeout(() => {
-            req_4.flush(requestList[4].response);
-        }, requestList[4].delay);
+            req_4.flush(requestList[4]!.response);
+        }, requestList[4]!.delay);
 
         tick(5100);
 
-        expectRsponseOrder();
+        expectResponseOrder();
     }));
 
     it(`limit concurrency by default should be ${defaultLimit}`, fakeAsync(() => {

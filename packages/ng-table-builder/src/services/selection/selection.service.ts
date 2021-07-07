@@ -72,14 +72,22 @@ export class SelectionService<T> implements OnDestroy {
         this.onChanges.next();
     }
 
-    public toggle(row: T): void {
+    public toggle(row?: Nullable<T>): void {
+        if (isNil(row)) {
+            return;
+        }
+
         this.ngZone.runOutsideAngular((): void => window.clearInterval(this.selectionTaskIdle!));
         this.selectionModel.toggle(this.getIdByRow(row), row, true);
         this.onChanges.next();
         this.checkIsAllSelected();
     }
 
-    public selectRow(row: T, event: MouseEvent): void {
+    public selectRow(row: Nullable<T>, event: MouseEvent): void {
+        if (isNil(row)) {
+            return;
+        }
+
         const rows: T[] = this.rows ?? [];
         const { shiftKey, ctrlKey }: MouseEvent = event;
         const index: number = rows.findIndex(
@@ -98,7 +106,7 @@ export class SelectionService<T> implements OnDestroy {
         this.checkIsAllSelected();
     }
 
-    public getIdByRow(row: T): RowId {
+    public getIdByRow(row?: Nullable<T>): RowId {
         const id: RowId = ((row as Any) ?? {})[this.primaryKey];
 
         if (checkValueIsEmpty(id)) {

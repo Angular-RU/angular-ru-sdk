@@ -47,7 +47,7 @@ describe('[TEST]: Selection service', () => {
 
     beforeEach(() => {
         selection = new SelectionService(mockNgZone as NgZone);
-        selection.originalRows = selection.rows = data;
+        selection.rows = data;
         selection.selectionModeIsEnabled = true;
     });
 

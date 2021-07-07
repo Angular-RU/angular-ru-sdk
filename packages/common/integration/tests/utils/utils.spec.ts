@@ -322,6 +322,6 @@ describe('[TEST]: Common utils downloadFile', () => {
         expect(tryParseJson('{ a: 1 }')).toEqual(undefined);
 
         const plain: string = '{ checked: true }';
-        expect(tryParseJson(plain)?.checked ?? false).toBe(false);
+        expect(tryParseJson<{ checked: boolean }>(plain)?.checked ?? false).toBe(false);
     });
 });
