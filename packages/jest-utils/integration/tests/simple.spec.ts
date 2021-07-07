@@ -22,22 +22,18 @@ describe('[TEST]: Hello world', () => {
                 }
             })
         ).toEqual({
+            transform: { '^.+\\.(ts|js|html)$': 'jest-preset-angular' },
             globals: {
                 'ts-jest': {
-                    diagnostics: { ignoreCodes: ['6059'] },
-                    isolatedModules: true,
+                    diagnostics: { ignoreCodes: ['6059'], pretty: true, warnOnly: false },
+                    isolatedModules: false,
                     tsconfig: expect.any(String),
                     stringifyContentPathRegex: '\\.html$',
-                    astTransformers: {
-                        before: [
-                            'jest-preset-angular/build/InlineFilesTransformer',
-                            'jest-preset-angular/build/StripStylesTransformer'
-                        ]
-                    }
+                    astTransformers: { before: [] }
                 }
             },
             moduleNameMapper: {
-                '^@angular\\-ru/common/(.*)$': '<rootDir>/../common/dist/library/$1',
+                '^@angular\\-ru/common/(.*)$': '<rootDir>/../common/$1/src/public_api.ts',
                 '^@mock/(.*)$': '<rootDir>/integration/tests/helpers/$1'
             },
             bail: 1,
@@ -45,15 +41,15 @@ describe('[TEST]: Hello world', () => {
             watch: false,
             cache: true,
             testMatch: [],
-            modulePathIgnorePatterns: ['.cache', 'dist'],
+            modulePathIgnorePatterns: ['.cache', 'dist', '<rootDir>/dist/'],
             onlyChanged: false,
             testPathIgnorePatterns: ['/node_modules/', '/dist/', '/e2e/'],
             preset: 'jest-preset-angular',
             displayName: 'Hello world',
             rootDir: expect.any(String),
-            maxWorkers: 1,
+            maxWorkers: 2,
             setupFilesAfterEnv: [],
-            maxConcurrency: 1,
+            maxConcurrency: 2,
             cacheDirectory: '<rootDir>/.cache',
             coverageReporters: ['html', 'lcov', 'json', 'text', 'lcov', 'clover'],
             collectCoverageFrom: []

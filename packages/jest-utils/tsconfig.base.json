@@ -6,6 +6,7 @@
         "types": ["node"],
         "typeRoots": ["../../node_modules/@types", "./"],
         "paths": {
+            "@angular-ru/common/*": ["../common/*/src/public_api.ts"],
             "@mock/*": ["integration/tests/helpers/*"]
         }
     }

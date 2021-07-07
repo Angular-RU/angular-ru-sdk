@@ -59,6 +59,9 @@
     "eslintConfig": {
         "extends": "./packages/eslint-config/index.js"
     },
+    "resolutions": {
+        "@types/node": "15.12.4"
+    },
     "devDependencies": {
         "@angular-devkit/build-angular": "0.1102.12",
         "@angular-devkit/build-ng-packagr": "0.1002.0",

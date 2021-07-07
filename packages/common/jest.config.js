@@ -5,10 +5,8 @@ module.exports = createTsJestConfig({
     jestConfig: {
         rootDir: '.',
         cacheDirectory: '../../.cache',
-        displayName: '@angular-ru/common',
-        modulePathIgnorePatterns: ['<rootDir>/dist/'],
         testMatch: ['<rootDir>/integration/tests/**/*.spec.ts'],
-        setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
-        collectCoverageFrom: ['<rootDir>/**/*.ts', '!<rootDir>/integration/**', '!<rootDir>/dist/**']
+        collectCoverageFrom: ['<rootDir>/**/*.ts', '!<rootDir>/integration/**', '!<rootDir>/dist/**'],
+        setupFilesAfterEnv: ['<rootDir>/setup-jest.ts']
     }
 });

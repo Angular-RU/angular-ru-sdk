@@ -2,9 +2,8 @@
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
         "paths": {
-            "@angular-ru/flex-layout": ["dist/library"],
             "@angular-ru/common/*": ["../common/dist/library/*"]
         }
     },
-    "exclude": ["**/*.spec.ts", "**/integration/**"]
+    "exclude": ["integration"]
 }

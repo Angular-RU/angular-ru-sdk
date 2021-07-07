@@ -2,11 +2,7 @@
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
         "types": ["jest", "node"],
-        "preserveConstEnums": true,
-        "paths": {
-            "@angular-ru/websocket": ["src/public_api.ts"],
-            "@angular-ru/common/*": ["../common/dist/library/*"]
-        }
+        "preserveConstEnums": true
     },
     "include": ["**/*.spec.ts", "**/*.d.ts"]
 }

@@ -2,9 +2,8 @@
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
         "paths": {
-            "@angular-ru/common/*": ["../common/dist/library/*"],
-            "@angular-ru/logger": ["./src/public_api.ts"]
+            "@angular-ru/common/*": ["../common/dist/library/*"]
         }
     },
-    "exclude": ["**/*.spec.ts"]
+    "exclude": ["integration"]
 }

@@ -1,7 +1,7 @@
-/* eslint-disable no-console,@typescript-eslint/no-magic-numbers */
 import { exposeTsCompilerOptionsByTsConfig } from '@angular-ru/common/node.js';
-import { Nullable } from '@angular-ru/common/typings';
-import { isTrue } from '@angular-ru/common/utils';
+import { stringify } from '@angular-ru/common/string';
+import { Nullable, PlainObject } from '@angular-ru/common/typings';
+import { isNotNil, isTrue } from '@angular-ru/common/utils';
 import type { Config } from '@jest/types';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -20,6 +20,7 @@ import {
     DEFAULT_MODULE_PATH_IGNORE_PATTERS,
     DEFAULT_ONLY_CHANGED,
     DEFAULT_PRESET,
+    DEFAULT_SETUP_FILES_AFTER_ENV,
     DEFAULT_TEST_PATH_IGNORE_PATTERS,
     DEFAULT_TS_JEST_IGNORE_CODES,
     DEFAULT_VERBOSE,
@@ -32,6 +33,17 @@ import { JestModuleMapper } from '../interfaces/jest-module-mapper';
 export function createTsJestConfig(options: JestConfigOptions): Config.InitialOptions {
     const rootDir: string = options.jestConfig?.rootDir ?? path.resolve('.');
     const resolvedRootDir: string = path.isAbsolute(rootDir) ? rootDir : path.resolve(rootDir);
+    const packageJsonPath: string = path.resolve(rootDir, 'package.json');
+    let displayName: Nullable<string | Config.DisplayName>;
+
+    if (isNotNil(options.jestConfig?.displayName)) {
+        displayName = options.jestConfig?.displayName ?? DEFAULT_DISPLAY_NAME;
+    } else if (fs.existsSync(packageJsonPath)) {
+        const packageJson: PlainObject = JSON.parse(fs.readFileSync(packageJsonPath).toString() ?? '{}');
+        displayName = packageJson.name;
+    }
+
+    displayName = displayName ?? DEFAULT_DISPLAY_NAME;
 
     const resolvedTsConfigPath: string = path.isAbsolute(options.tsConfig)
         ? options.tsConfig
@@ -54,15 +66,20 @@ export function createTsJestConfig(options: JestConfigOptions): Config.InitialOp
     const moduleNameMapper: JestModuleMapper = options.jestConfig?.moduleNameMapper ?? rootModuleNameMapper;
 
     if (isTrue(options.debug)) {
+        // eslint-disable-next-line
         console.log('[DEBUG]: rootDir: ', resolvedRootDir);
+        // eslint-disable-next-line
         console.log('[DEBUG]: tsConfig: ', resolvedTsConfigPath);
+        // eslint-disable-next-line
         console.log('[DEBUG]: prefix: ', prefix);
-        console.log('[DEBUG]: moduleNameMapper: ', JSON.stringify(moduleNameMapper, null, 4), '\n');
+        // eslint-disable-next-line
+        console.log('[DEBUG]: moduleNameMapper: ', stringify(moduleNameMapper), '\n');
     }
 
     return {
         ...options.jestConfig,
         rootDir: resolvedRootDir,
+        displayName: displayName as string,
         cache: options.jestConfig?.cache ?? DEFAULT_CACHE,
         watch: options.jestConfig?.watch ?? DEFAULT_WATCH,
         onlyChanged: options.jestConfig?.onlyChanged ?? DEFAULT_ONLY_CHANGED,
@@ -70,18 +87,18 @@ export function createTsJestConfig(options: JestConfigOptions): Config.InitialOp
         /**
          * A set of global variables that need to be available in all test environments.
          */
+        transform: { '^.+\\.(ts|js|html)$': 'jest-preset-angular' },
         globals: options.jestConfig?.globals ?? {
             'ts-jest': {
                 tsconfig: resolvedTsConfigPath,
-                diagnostics: { ignoreCodes: DEFAULT_TS_JEST_IGNORE_CODES },
+                diagnostics: {
+                    pretty: true,
+                    warnOnly: false,
+                    ignoreCodes: DEFAULT_TS_JEST_IGNORE_CODES
+                },
                 isolatedModules: options.isolatedModules ?? DEFAULT_ISOLATED_MODULES,
                 stringifyContentPathRegex: '\\.html$',
-                astTransformers: {
-                    before: [
-                        'jest-preset-angular/build/InlineFilesTransformer',
-                        'jest-preset-angular/build/StripStylesTransformer'
-                    ]
-                }
+                astTransformers: { before: [] }
             }
         },
 
@@ -114,7 +131,6 @@ export function createTsJestConfig(options: JestConfigOptions): Config.InitialOp
 
         preset: options.jestConfig?.preset ?? DEFAULT_PRESET,
 
-        displayName: options.jestConfig?.displayName ?? DEFAULT_DISPLAY_NAME,
         maxWorkers: options?.jestConfig?.maxWorkers ?? DEFAULT_MAX_WORKERS,
 
         /**
@@ -132,7 +148,7 @@ export function createTsJestConfig(options: JestConfigOptions): Config.InitialOp
          * of running some code immediately after the test framework has been installed
          * in the environment.
          */
-        setupFilesAfterEnv: options?.jestConfig?.setupFilesAfterEnv ?? [],
+        setupFilesAfterEnv: options?.jestConfig?.setupFilesAfterEnv ?? DEFAULT_SETUP_FILES_AFTER_ENV,
 
         /**
          * An array of regexp pattern strings that are matched against all module paths before those

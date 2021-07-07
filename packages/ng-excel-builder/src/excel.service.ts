@@ -21,8 +21,8 @@ export class ExcelService {
     public exportExcel<T>(workbook: Partial<ExcelWorkbook<T>>): void {
         this.getTranslatedColumn()
             .toPromise()
-            .then((translatedKeys: Nullable<PlainObject>): void => {
-                this.builder.exportExcelByWorkbook({
+            .then(async (translatedKeys: Nullable<PlainObject>): Promise<void> => {
+                await this.builder.exportExcelByWorkbook({
                     filename: this.interceptFilename<T>(workbook),
                     worksheets: this.interceptWorksheets<T>(workbook),
                     translatedKeys: translatedKeys ?? workbook.translatedKeys ?? {}

@@ -1,4 +1,3 @@
-/* tslint:disable:no-unused-css */
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
 import { Any } from '@angular-ru/common/typings';
 

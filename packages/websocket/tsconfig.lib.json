@@ -5,5 +5,5 @@
             "@angular-ru/common/*": ["../common/dist/library/*"]
         }
     },
-    "exclude": ["**/*.spec.ts"]
+    "exclude": ["integration"]
 }

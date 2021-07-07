@@ -81,8 +81,11 @@ describe('[TEST] Excel service', () => {
     });
 
     it('should correctly convert to excel xml', async () => {
-        excelService.exportExcel({ filename: 'simple', worksheets: [{ entries: dataset }] });
-        await new Promise(setImmediate);
+        excelService.exportExcel({
+            filename: 'simple',
+            worksheets: [{ entries: dataset }]
+        });
+        await new Promise((resolve) => setTimeout(resolve));
         const [blob, filename] = downloadSpy.mock.calls[0];
         expect(await readFromBlob(blob)).toBe(readFile('test-1-simple.xls'));
         expect(filename).toBe('simple');
@@ -93,7 +96,7 @@ describe('[TEST] Excel service', () => {
             filename: 'by-keys',
             worksheets: [{ entries: dataset, keys: ['id', 'lastName', 'falseField'] }]
         });
-        await new Promise(setImmediate);
+        await new Promise((resolve) => setTimeout(resolve));
         const [blob, filename] = downloadSpy.mock.calls[0];
         expect(await readFromBlob(blob)).toBe(readFile('test-2-by-keys.xls'));
         expect(filename).toBe('by-keys');
@@ -102,9 +105,14 @@ describe('[TEST] Excel service', () => {
     it('should correctly convert to excel xml excluding keys', async () => {
         excelService.exportExcel({
             filename: 'exclude-keys',
-            worksheets: [{ entries: dataset, excludeKeys: ['firstName', 'falseField'] }]
+            worksheets: [
+                {
+                    entries: dataset,
+                    excludeKeys: ['firstName', 'falseField']
+                }
+            ]
         });
-        await new Promise(setImmediate);
+        await new Promise((resolve) => setTimeout(resolve));
         const [blob, filename] = downloadSpy.mock.calls[0];
         expect(await readFromBlob(blob)).toBe(readFile('test-3-exclude-keys.xls'));
         expect(filename).toBe('exclude-keys');
@@ -126,7 +134,7 @@ describe('[TEST] Excel service', () => {
                 }
             ]
         });
-        await new Promise(setImmediate);
+        await new Promise((resolve) => setTimeout(resolve));
         const [blob, filename] = downloadSpy.mock.calls[0];
         expect(await readFromBlob(blob)).toBe(readFile('test-4-options.xls'));
         expect(filename).toBe('options');
@@ -145,7 +153,7 @@ describe('[TEST] Excel service', () => {
                 }
             ]
         });
-        await new Promise(setImmediate);
+        await new Promise((resolve) => setTimeout(resolve));
         const [blob, filename] = downloadSpy.mock.calls[0];
         expect(await readFromBlob(blob)).toBe(readFile('test-5-translate.xls'));
         expect(filename).toBe('translate');

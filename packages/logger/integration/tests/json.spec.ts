@@ -23,7 +23,6 @@ describe('[TEST]: Check JSON', () => {
             fakeConsole.createStack({
                 [TestLoggerLineType.LOG]: [
                     [
-                        // tslint:disable-next-line:max-line-length
                         '{\n  %c"a":%c %ctrue%c,\n  %c"b":%c [\n    %c1%c,\n    %c2%c\n  ],\n  %c"c":%c %c"test string"%c,\n  %c"d":%c %cnull%c\n}',
                         'color:red',
                         '',

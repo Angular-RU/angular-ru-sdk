@@ -3,7 +3,7 @@
     "compilerOptions": {
         "paths": {
             "@angular-ru/common/*": ["../common/dist/library/*"],
-            "@angular-ru/tooltip": ["src/public_api.ts"]
+            "@angular-ru/tooltip": ["./src/public_api.ts"]
         }
     },
     "include": ["integration/app/main.ts", "integration/app/polyfills.ts"]

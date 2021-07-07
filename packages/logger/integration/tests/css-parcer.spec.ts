@@ -16,9 +16,7 @@ describe('[TEST]: Check style', () => {
                 LoggerModule.forRoot({
                     instance: fakeConsole,
                     cssClassMap: {
-                        // tslint:disable-next-line:no-duplicate-string
                         'class-1': 'font-weight: bold',
-                        // tslint:disable-next-line:no-duplicate-string
                         'class-2': 'text-decoration: line-through',
                         'class-3': 'color: #666'
                     }

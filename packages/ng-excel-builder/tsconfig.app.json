@@ -7,6 +7,5 @@
         }
     },
     "files": ["integration/app/main.ts", "integration/app/polyfills.ts"],
-    "include": ["src/**/*.d.ts"],
-    "exclude": ["**/*.spec.ts"]
+    "exclude": ["integration/tests"]
 }

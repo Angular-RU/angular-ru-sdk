@@ -1,7 +1,7 @@
 {
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
-        "baseUrl": ".",
+        "types": ["jest", "node"],
         "preserveConstEnums": true,
         "paths": {
             "@angular-ru/common/*": ["../common/dist/library/*"],

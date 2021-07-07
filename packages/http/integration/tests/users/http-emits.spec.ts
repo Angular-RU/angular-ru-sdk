@@ -1,4 +1,3 @@
-import { Fn } from '@angular-ru/common/typings';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
 import { Component, Injectable } from '@angular/core';
 import { Delete, Get, Patch, Post, Put, RestClient } from '@angular-ru/http/decorators';
@@ -85,10 +84,9 @@ describe('[TEST]: HTTP Client', () => {
         httpMock = TestBed.inject(HttpTestingController);
     });
 
-    it('GET ({ emitSuccess: false, emitFailure: false })', (done: Fn) => {
+    it('GET ({ emitSuccess: false, emitFailure: false })', () => {
         client?.getMethod().subscribe(() => {
             expect(req.request.method).toEqual('GET');
-            done();
         });
 
         req = httpMock.expectOne(`${MOCK_API}/get`);
@@ -96,7 +94,6 @@ describe('[TEST]: HTTP Client', () => {
 
         client?.putMethod().subscribe(() => {
             expect(req.request.method).toEqual('PUT');
-            done();
         });
 
         req = httpMock.expectOne(`${MOCK_API}/put`);
@@ -104,7 +101,6 @@ describe('[TEST]: HTTP Client', () => {
 
         client?.postMethod().subscribe(() => {
             expect(req.request.method).toEqual('POST');
-            done();
         });
 
         req = httpMock.expectOne(`${MOCK_API}/post`);
@@ -112,7 +108,6 @@ describe('[TEST]: HTTP Client', () => {
 
         client?.patchMethod().subscribe(() => {
             expect(req.request.method).toEqual('PATCH');
-            done();
         });
 
         req = httpMock.expectOne(`${MOCK_API}/patch`);
@@ -120,7 +115,6 @@ describe('[TEST]: HTTP Client', () => {
 
         client?.deleteMethod().subscribe(() => {
             expect(req.request.method).toEqual('DELETE');
-            done();
         });
 
         req = httpMock.expectOne(`${MOCK_API}/delete`);
