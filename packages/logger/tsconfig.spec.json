@@ -2,11 +2,7 @@
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
         "types": ["jest", "node"],
-        "preserveConstEnums": true,
-        "paths": {
-            "@angular-ru/common/*": ["../common/dist/library/*"],
-            "@angular-ru/logger": ["./src/public_api.ts"]
-        }
+        "preserveConstEnums": true
     },
     "include": ["**/*.spec.ts", "**/*.d.ts"]
 }

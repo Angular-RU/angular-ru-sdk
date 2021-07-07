@@ -113,7 +113,7 @@ describe('[TEST] Excel service', () => {
             ]
         });
         await new Promise((resolve) => setTimeout(resolve));
-        const [, filename] = downloadSpy.mock.calls[0];
+        const [blob, filename] = downloadSpy.mock.calls[0];
         expect(await readFromBlob(blob)).toBe(readFile('test-3-exclude-keys.xls'));
         expect(filename).toBe('exclude-keys');
     });
