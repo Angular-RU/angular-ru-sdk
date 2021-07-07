@@ -1,3 +1,11 @@
+#### 15.301.2 (2021-07-07)
+
+##### Bug Fixes
+
+-   **@angular-ru/ng-table-builder:** fix styles of expand button
+    ([#725](https://github.com/Angular-RU/angular-ru-sdk/pull/725))
+    ([0e1a673d](https://github.com/Angular-RU/angular-ru-sdk/commit/0e1a673dfee0cdbd1c61f6477c7a5caaf0aaea7f))
+
 #### 15.301.1 (2021-07-06)
 
 ##### Build System / Dependencies
