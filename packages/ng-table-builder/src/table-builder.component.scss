@@ -49,9 +49,15 @@
         }
 
         &--expand-button {
-            cursor: pointer;
-            color: #000;
-            transition: 0.2s all;
+            &.mat-icon {
+                cursor: pointer;
+                color: #000;
+                transition: 0.2s all;
+                height: 24px;
+                width: 24px;
+                font-size: 24px;
+                line-height: 1;
+            }
 
             &--expanded {
                 transform: rotate(180deg);
