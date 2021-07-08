@@ -12,8 +12,7 @@ import { ExcelWorkbook } from './domain/excel-workbook';
 import { ExcelWorksheet } from './domain/excel-worksheet';
 import { PreparedExcelWorkbook, WidthOfSymbols } from './domain/prepared-excel-workbook';
 import { PreparedExcelWorksheet } from './domain/prepared-excel-worksheet';
-
-const widthOfSymbolsMap: Promise<WidthOfSymbols> = import('./domain/width-of-symbols-map.json');
+import widthOfSymbolsMap from './domain/width-of-symbols-map.json';
 
 interface StyleSizes {
     fontWidth: number;
@@ -256,7 +255,7 @@ export class ExcelBuilderService {
             ...workbook,
             worksheets: preparedWorksheets,
             preparedTranslatedKeys,
-            widthOfSymbols: await widthOfSymbolsMap
+            widthOfSymbols: widthOfSymbolsMap
         };
     }
 
