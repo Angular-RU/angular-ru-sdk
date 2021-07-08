@@ -31,9 +31,6 @@
         "jest-preset-angular": "9.0.4",
         "ts-jest": "27.0.3"
     },
-    "peerDependencies": {
-        "@angular-ru/common": ">=15.133.0"
-    },
     "publishConfig": {
         "access": "public"
     }

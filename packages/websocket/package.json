@@ -23,11 +23,6 @@
         "postversion": "npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\"",
         "test": "yarn jest --config ./jest.config.js"
     },
-    "peerDependencies": {
-        "@angular-ru/common": ">=13.19.0",
-        "@angular/common": ">=8.0.0 <12.0.0",
-        "@angular/core": ">=8.0.0 <12.0.0"
-    },
     "publishConfig": {
         "access": "public",
         "directory": "dist/library"
