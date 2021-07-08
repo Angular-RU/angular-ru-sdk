@@ -361,7 +361,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
         const renderedColumns: Nullable<DeepPartial<ColumnsSchema>[]> = this.templateParser.schema?.exportColumns();
         const columns: Nullable<DeepPartial<ColumnsSchema>[]> = defaultColumns ?? renderedColumns;
         const generalTableSettings: GeneralTableSettings = {
-            expanded: isNotNil(this.headerTemplate?.expanded) ? coerceBoolean(this.headerTemplate?.expanded) : null
+            expanded: this.expanded
         };
 
         if (isNotNil(columns)) {
@@ -502,5 +502,11 @@ export abstract class AbstractTableBuilderApiDirective<T>
                       )
               )
             : keys;
+    }
+
+    private get expanded(): Nullable<boolean> {
+        return coerceBoolean(this.headerTemplate?.expandablePanel) && isNotNil(this.headerTemplate?.expanded)
+            ? coerceBoolean(this.headerTemplate?.expanded)
+            : null;
     }
 }
