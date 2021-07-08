@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/ng-table-builder",
-    "version": "15.301.3",
+    "version": "15.302.0",
     "description": "Angular-RU package",
     "keywords": [
         "angular-ru",
@@ -20,10 +20,10 @@
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "scripts": {
-        "build:app": "ng build integration --prod",
-        "build:lib": "ng build library && cp README.md dist/library",
-        "deploy": "cp README.md dist/integration && ng deploy --no-build",
-        "start": "ng serve --open --hmr",
+        "build:app": "ng build ng-table-builder-app --prod",
+        "build:lib": "ng build ng-table-builder-library && cp README.md dist/library",
+        "deploy": "cp README.md dist/integration && ng deploy ng-table-builder-app",
+        "start": "ng serve ng-table-builder-app --open --hmr",
         "test": "yarn jest --config ./jest.config.js",
         "postversion": "npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\""
     },
