@@ -21,6 +21,7 @@ import {
     ViewChild,
     ViewChildren
 } from '@angular/core';
+import { coerceBoolean } from '@angular-ru/common/coercion';
 import { pathsOfObject } from '@angular-ru/common/object';
 import { Any, DeepPartial, Fn, Nullable, PlainObjectOf, PrimaryKey } from '@angular-ru/common/typings';
 import { detectChanges, isNotNil, isTrue } from '@angular-ru/common/utils';
@@ -36,6 +37,7 @@ import { TABLE_GLOBAL_OPTIONS } from './config/table-global-options';
 import {
     ColumnsSchema,
     ExcludePattern,
+    GeneralTableSettings,
     OrderedField,
     ProduceDisableFn,
     TableUpdateSchema,
@@ -358,10 +360,14 @@ export abstract class AbstractTableBuilderApiDirective<T>
     public changeSchema(defaultColumns: Nullable<DeepPartial<ColumnsSchema>[]> = null): void {
         const renderedColumns: Nullable<DeepPartial<ColumnsSchema>[]> = this.templateParser.schema?.exportColumns();
         const columns: Nullable<DeepPartial<ColumnsSchema>[]> = defaultColumns ?? renderedColumns;
+        const generalTableSettings: GeneralTableSettings = {
+            expanded: coerceBoolean(this.headerTemplate?.expanded ?? true)
+        };
 
         if (isNotNil(columns)) {
             const updateSchema: TableUpdateSchema = {
                 columns,
+                generalTableSettings,
                 name: this.name!,
                 version: this.schemaVersion
             };
