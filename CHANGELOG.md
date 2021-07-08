@@ -1,3 +1,11 @@
+#### 15.302.0 (2021-07-08)
+
+##### New Features
+
+-   **@angular-ru/ng-table-builder:** expand state to TableUpdateSchema
+    ([#726](https://github.com/Angular-RU/angular-ru-sdk/pull/726))
+    ([986b520b](https://github.com/Angular-RU/angular-ru-sdk/commit/986b520b019d44a0ee135c30edd9a259fb1b56ff))
+
 #### 15.301.3 (2021-07-07)
 
 ##### Build System / Dependencies
