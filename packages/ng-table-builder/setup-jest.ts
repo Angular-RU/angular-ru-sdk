@@ -8,8 +8,20 @@ const { JSDOM }: Any = jsdom;
 
 const dom: Any = new JSDOM('<!DOCTYPE html><html><head></head><body></body></html>');
 
+const observe: Any = jest.fn();
+const unobserve: Any = jest.fn();
+
 global['window'] = dom.window;
 global['document'] = dom.window.document;
+
+// you can also pass the mock implementation
+// to jest.fn as an argument
+global['window']!.IntersectionObserver = jest.fn(
+    (): Any => ({
+        observe,
+        unobserve
+    })
+);
 
 // Simulate window resize events
 const resizeEvent: Any = document.createEvent('Event');
