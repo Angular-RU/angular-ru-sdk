@@ -9,8 +9,11 @@ import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { ColumnParameters } from './domain/column-parameters';
 import { ColumnWidth } from './domain/column-width';
 import { ExcelWorkbook } from './domain/excel-workbook';
-import { PreparedExcelWorkbook } from './domain/prepared-excel-workbook';
+import { ExcelWorksheet } from './domain/excel-worksheet';
+import { PreparedExcelWorkbook, WidthOfSymbols } from './domain/prepared-excel-workbook';
 import { PreparedExcelWorksheet } from './domain/prepared-excel-worksheet';
+
+const widthOfSymbolsMap: Promise<WidthOfSymbols> = import('./domain/width-of-symbols-map.json');
 
 interface StyleSizes {
     fontWidth: number;
@@ -171,11 +174,27 @@ export class ExcelBuilderService {
                     }
 
                     private calcMaxWidthByEntries(entries: PlainObject[], key: string): number {
+                        const headerLength: number = this.getWidthOfString(key, 'bold');
+                        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+                        const padding: number = this.sizes.fontWidth * 2;
                         const maxLength: number = entries.reduce((length: number, entry: PlainObject): number => {
-                            const currentLength: number = (entry[key]?.toString() ?? '').length;
+                            const currentLength: number = this.getWidthOfString(
+                                entry[key]?.toString() ?? '',
+                                'regular'
+                            );
                             return Math.max(currentLength, length);
-                        }, 0);
-                        return maxLength * this.sizes.fontWidth;
+                        }, headerLength);
+                        return Math.round(maxLength) + padding;
+                    }
+
+                    private getWidthOfString(string: string, fontWeight: keyof WidthOfSymbols): number {
+                        return string
+                            .split('')
+                            .reduce(
+                                (sum: number, symbol: string): number =>
+                                    sum + (input.widthOfSymbols[fontWeight][symbol] ?? this.sizes.fontWidth),
+                                0
+                            );
                     }
 
                     private getTranslatedTitle(key: string, translatePrefix?: Nullable<string>): string {
@@ -223,21 +242,32 @@ export class ExcelBuilderService {
     }
 
     private async prepareWorkbook<T>(workbook: ExcelWorkbook<T>): Promise<PreparedExcelWorkbook<T>> {
-        const preparedWorksheets: PreparedExcelWorksheet<T>[] = [];
-        for (const worksheet of workbook.worksheets) {
-            let flatEntries: PlainObject[] = [];
-            if (isNotNil(worksheet.entries)) {
-                flatEntries = await this.plainTableComposer.compose(worksheet.entries, {
-                    includeKeys: worksheet.keys,
-                    excludeKeys: worksheet.excludeKeys
-                });
-            }
-            preparedWorksheets.push({ ...worksheet, flatEntries });
-        }
+        const preparedWorksheets: PreparedExcelWorksheet<T>[] = await Promise.all(
+            workbook.worksheets.map(
+                async (worksheet: ExcelWorksheet<T>): Promise<PreparedExcelWorksheet<T>> =>
+                    await this.prepareWorksheet(worksheet)
+            )
+        );
 
         const preparedTranslatedKeys: PlainObject = workbook.translatedKeys
             ? await this.plainTableComposer.composeSingle<PlainObject>(workbook.translatedKeys)
             : {};
-        return { ...workbook, worksheets: preparedWorksheets, preparedTranslatedKeys };
+        return {
+            ...workbook,
+            worksheets: preparedWorksheets,
+            preparedTranslatedKeys,
+            widthOfSymbols: await widthOfSymbolsMap
+        };
+    }
+
+    private async prepareWorksheet<T>(worksheet: ExcelWorksheet<T>): Promise<PreparedExcelWorksheet<T>> {
+        let flatEntries: PlainObject[] = [];
+        if (isNotNil(worksheet.entries)) {
+            flatEntries = await this.plainTableComposer.compose(worksheet.entries, {
+                includeKeys: worksheet.keys,
+                excludeKeys: worksheet.excludeKeys
+            });
+        }
+        return { ...worksheet, flatEntries };
     }
 }
