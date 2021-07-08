@@ -19,10 +19,10 @@
     "author": "angular-ru@yandex.ru",
     "main": "lib/index.js",
     "scripts": {
-        "build:app": "ng build integration --prod",
-        "build:lib": "ng build library && cp README.md dist/library",
-        "deploy": "cp README.md dist/integration && ng deploy --no-build",
-        "start": "ng serve --open --hmr",
+        "build:app": "ng build tooltip-app --prod",
+        "build:lib": "ng build tooltip-library && cp README.md dist/library",
+        "deploy": "cp README.md dist/integration && ng deploy tooltip-app",
+        "start": "ng serve tooltip-app --open --hmr",
         "postversion": "npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\""
     },
     "peerDependencies": {

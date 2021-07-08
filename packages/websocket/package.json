@@ -19,8 +19,7 @@
     "author": "splincode@yandex.ru",
     "main": "lib/index.js",
     "scripts": {
-        "build:lib": "ng build library && cp README.md dist/library",
-        "start": "ng serve",
+        "build:lib": "ng build websocket-library && cp README.md dist/library",
         "postversion": "npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\"",
         "test": "yarn jest --config ./jest.config.js"
     },

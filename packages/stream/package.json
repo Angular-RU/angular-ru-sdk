@@ -20,10 +20,10 @@
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "scripts": {
-        "build:app": "yarn ng build --prod",
-        "build:lib": "ng build library && cp README.md dist/library",
-        "start": "yarn ng serve --open",
-        "test": "export CI=true && yarn ng test",
+        "build:app": "yarn ng build stream-app --prod",
+        "build:lib": "ng build stream-library && cp README.md dist/library",
+        "start": "yarn ng serve stream-app --open",
+        "test": "export CI=true && yarn ng test stream-app",
         "test:browser": "export CI=false && yarn ng test",
         "postversion": "npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\""
     },
