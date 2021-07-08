@@ -24,14 +24,12 @@ describe('[TEST]: Filter Simple Input', () => {
         constructor(public readonly cd: ChangeDetectorRef) {}
     }
 
-    beforeEach(async () => {
-        await TestBed.configureTestingModule({
+    beforeEach(() => {
+        TestBed.configureTestingModule({
             imports: [ReactiveFormsModule, MatInputModule, FilterModule],
             declarations: [TestComponent]
         }).compileComponents();
-    });
 
-    beforeEach(() => {
         fixture = TestBed.createComponent(TestComponent);
         component = fixture.componentInstance;
         fixture.autoDetectChanges();
