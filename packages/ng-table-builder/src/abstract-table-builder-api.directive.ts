@@ -361,7 +361,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
         const renderedColumns: Nullable<DeepPartial<ColumnsSchema>[]> = this.templateParser.schema?.exportColumns();
         const columns: Nullable<DeepPartial<ColumnsSchema>[]> = defaultColumns ?? renderedColumns;
         const generalTableSettings: GeneralTableSettings = {
-            expanded: coerceBoolean(this.headerTemplate?.expanded ?? true)
+            expanded: isNotNil(this.headerTemplate?.expanded) ? coerceBoolean(this.headerTemplate?.expanded) : null
         };
 
         if (isNotNil(columns)) {
