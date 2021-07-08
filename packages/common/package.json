@@ -20,7 +20,7 @@
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "scripts": {
-        "build:app": "ng build common-app --prod",
+        "build:app": "ng build common-app",
         "deploy": "cp README.md dist/integration && ng deploy common-app",
         "build:lib": "ng build common-library && cp README.md dist/library && yarn symlink",
         "symlink": "sh symlink.sh",

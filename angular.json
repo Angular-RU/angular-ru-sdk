@@ -34,7 +34,14 @@
                         "index": "packages/common/integration/app/index.html",
                         "assets": ["packages/common/integration/app/assets"],
                         "polyfills": "packages/common/integration/app/polyfills.ts",
-                        "styles": [".styles/integration-app.style.scss", "packages/common/integration/app/styles.scss"]
+                        "styles": [".styles/integration-app.style.scss", "packages/common/integration/app/styles.scss"],
+                        "aot": false,
+                        "vendorChunk": true,
+                        "extractLicenses": false,
+                        "buildOptimizer": false,
+                        "sourceMap": true,
+                        "optimization": false,
+                        "namedChunks": true
                     },
                     "configurations": {
                         "production": {
@@ -50,7 +57,6 @@
                             "namedChunks": false,
                             "aot": true,
                             "extractLicenses": true,
-                            "vendorChunk": true,
                             "buildOptimizer": true,
                             "budgets": [
                                 {
@@ -60,7 +66,8 @@
                                 }
                             ]
                         }
-                    }
+                    },
+                    "defaultConfiguration": "production"
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
@@ -115,7 +122,14 @@
                         "styles": [
                             ".styles/integration-app.style.scss",
                             "packages/flex-layout/integration/app/styles.scss"
-                        ]
+                        ],
+                        "aot": false,
+                        "vendorChunk": true,
+                        "extractLicenses": false,
+                        "buildOptimizer": false,
+                        "sourceMap": true,
+                        "optimization": false,
+                        "namedChunks": true
                     },
                     "configurations": {
                         "production": {
@@ -131,7 +145,6 @@
                             "namedChunks": false,
                             "aot": true,
                             "extractLicenses": true,
-                            "vendorChunk": true,
                             "buildOptimizer": true,
                             "budgets": [
                                 {
@@ -141,7 +154,8 @@
                                 }
                             ]
                         }
-                    }
+                    },
+                    "defaultConfiguration": "production"
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
@@ -193,7 +207,14 @@
                         "outputPath": "packages/http/dist/integration",
                         "tsConfig": "packages/http/tsconfig.app.json",
                         "assets": ["packages/http/integration/app/assets"],
-                        "styles": [".styles/integration-app.style.scss", "packages/http/integration/app/styles.scss"]
+                        "styles": [".styles/integration-app.style.scss", "packages/http/integration/app/styles.scss"],
+                        "aot": false,
+                        "vendorChunk": true,
+                        "extractLicenses": false,
+                        "buildOptimizer": false,
+                        "sourceMap": true,
+                        "optimization": false,
+                        "namedChunks": true
                     },
                     "configurations": {
                         "production": {
@@ -209,7 +230,6 @@
                             "namedChunks": false,
                             "aot": true,
                             "extractLicenses": true,
-                            "vendorChunk": true,
                             "buildOptimizer": true,
                             "budgets": [
                                 {
@@ -219,7 +239,8 @@
                                 }
                             ]
                         }
-                    }
+                    },
+                    "defaultConfiguration": "production"
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
@@ -271,7 +292,14 @@
                         "outputPath": "packages/logger/dist/integration",
                         "tsConfig": "packages/logger/tsconfig.app.json",
                         "assets": ["packages/logger/integration/app/assets"],
-                        "styles": ["packages/logger/integration/app/styles.css"]
+                        "styles": ["packages/logger/integration/app/styles.css"],
+                        "aot": false,
+                        "vendorChunk": true,
+                        "extractLicenses": false,
+                        "buildOptimizer": false,
+                        "sourceMap": true,
+                        "optimization": false,
+                        "namedChunks": true
                     },
                     "configurations": {
                         "production": {
@@ -287,7 +315,6 @@
                             "namedChunks": false,
                             "aot": true,
                             "extractLicenses": true,
-                            "vendorChunk": true,
                             "buildOptimizer": true,
                             "budgets": [
                                 {
@@ -297,7 +324,8 @@
                                 }
                             ]
                         }
-                    }
+                    },
+                    "defaultConfiguration": "production"
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
@@ -353,7 +381,14 @@
                         "styles": [
                             ".styles/integration-app.style.scss",
                             "packages/ng-excel-builder/integration/app/styles.css"
-                        ]
+                        ],
+                        "aot": false,
+                        "vendorChunk": true,
+                        "extractLicenses": false,
+                        "buildOptimizer": false,
+                        "sourceMap": true,
+                        "optimization": false,
+                        "namedChunks": true
                     },
                     "configurations": {
                         "production": {
@@ -369,7 +404,6 @@
                             "namedChunks": false,
                             "aot": true,
                             "extractLicenses": true,
-                            "vendorChunk": true,
                             "buildOptimizer": true,
                             "budgets": [
                                 {
@@ -379,7 +413,8 @@
                                 }
                             ]
                         }
-                    }
+                    },
+                    "defaultConfiguration": "production"
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
@@ -437,7 +472,14 @@
                         "styles": [
                             ".styles/integration-app.style.scss",
                             "packages/ng-table-builder/integration/app/styles.scss"
-                        ]
+                        ],
+                        "aot": false,
+                        "vendorChunk": true,
+                        "extractLicenses": false,
+                        "buildOptimizer": false,
+                        "sourceMap": true,
+                        "optimization": false,
+                        "namedChunks": true
                     },
                     "configurations": {
                         "production": {
@@ -463,7 +505,8 @@
                                 }
                             ]
                         }
-                    }
+                    },
+                    "defaultConfiguration": "production"
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
@@ -519,7 +562,12 @@
                             "packages/stream/integration/app/assets"
                         ],
                         "styles": ["packages/stream/integration/app/styles.css"],
-                        "aot": true
+                        "vendorChunk": true,
+                        "extractLicenses": false,
+                        "buildOptimizer": false,
+                        "sourceMap": true,
+                        "optimization": false,
+                        "namedChunks": true
                     },
                     "configurations": {
                         "production": {
@@ -549,7 +597,8 @@
                                 }
                             ]
                         }
-                    }
+                    },
+                    "defaultConfiguration": "production"
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
@@ -604,7 +653,17 @@
                         "outputPath": "packages/tooltip/dist/integration",
                         "tsConfig": "packages/tooltip/tsconfig.app.json",
                         "assets": ["packages/tooltip/integration/app/assets"],
-                        "styles": [".styles/integration-app.style.scss", "packages/tooltip/integration/app/styles.scss"]
+                        "styles": [
+                            ".styles/integration-app.style.scss",
+                            "packages/tooltip/integration/app/styles.scss"
+                        ],
+                        "aot": false,
+                        "vendorChunk": true,
+                        "extractLicenses": false,
+                        "buildOptimizer": false,
+                        "sourceMap": true,
+                        "optimization": false,
+                        "namedChunks": true
                     },
                     "configurations": {
                         "production": {
@@ -620,7 +679,6 @@
                             "namedChunks": false,
                             "aot": true,
                             "extractLicenses": true,
-                            "vendorChunk": true,
                             "buildOptimizer": true,
                             "budgets": [
                                 {
@@ -630,7 +688,8 @@
                                 }
                             ]
                         }
-                    }
+                    },
+                    "defaultConfiguration": "production"
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",

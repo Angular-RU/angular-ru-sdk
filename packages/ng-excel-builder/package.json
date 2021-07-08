@@ -20,7 +20,7 @@
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "scripts": {
-        "build:app": "ng build ng-excel-builder-app --prod",
+        "build:app": "ng build ng-excel-builder-app",
         "build:lib": "ng build ng-excel-builder-library && cp README.md dist/library",
         "deploy": "cp README.md dist/integration && ng deploy ng-excel-builder-app",
         "start": "ng serve ng-excel-builder-app",

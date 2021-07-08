@@ -19,7 +19,7 @@
     "author": "angular-ru@yandex.ru",
     "main": "lib/index.js",
     "scripts": {
-        "build:app": "ng build flex-layout-app --prod",
+        "build:app": "ng build flex-layout-app",
         "build:lib": "ng build flex-layout-library && cp README.md dist/library",
         "deploy": "cp README.md dist/integration && ng deploy flex-layout-app",
         "start": "ng serve flex-layout-app --open --hmr",

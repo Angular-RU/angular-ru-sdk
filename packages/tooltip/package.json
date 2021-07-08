@@ -19,7 +19,7 @@
     "author": "angular-ru@yandex.ru",
     "main": "lib/index.js",
     "scripts": {
-        "build:app": "ng build tooltip-app --prod",
+        "build:app": "ng build tooltip-app",
         "build:lib": "ng build tooltip-library && cp README.md dist/library",
         "deploy": "cp README.md dist/integration && ng deploy tooltip-app",
         "start": "ng serve tooltip-app --open --hmr",

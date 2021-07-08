@@ -19,7 +19,7 @@
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "scripts": {
-        "build:app": "ng build logger-app --prod",
+        "build:app": "ng build logger-app",
         "build:lib": "ng build logger-library && cp README.md dist/library",
         "deploy": "cp README.md dist/integration && ng deploy logger-app",
         "start": "ng serve logger-app",

@@ -20,7 +20,7 @@
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "scripts": {
-        "build:app": "yarn ng build stream-app --prod",
+        "build:app": "yarn ng build stream-app",
         "build:lib": "ng build stream-library && cp README.md dist/library",
         "start": "yarn ng serve stream-app --open",
         "test": "export CI=true && yarn ng test stream-app",

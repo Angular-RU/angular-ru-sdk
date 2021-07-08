@@ -19,7 +19,7 @@
     "author": "splincode@yandex.ru",
     "main": "lib/index.js",
     "scripts": {
-        "build:app": "ng build http-app --prod",
+        "build:app": "ng build http-app",
         "build:lib": "ng build http-library && cp README.md dist/library",
         "deploy": "cp README.md dist/integration && ng deploy http-app",
         "start": "ng serve",
