@@ -57,7 +57,7 @@ jobs:
             - name: Run lint step
               run: |
                   yarn format
-                  yarn lint --fix
+                  yarn lint
 
             - name: Run test step
               run: yarn test --parallel

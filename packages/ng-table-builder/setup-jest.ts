@@ -1,4 +1,3 @@
-import 'intersection-observer';
 import 'jest-preset-angular/setup-jest';
 
 import { Any } from '@angular-ru/common/typings';

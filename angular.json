@@ -11,7 +11,7 @@
             "sourceRoot": "packages/common",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-ng-packagr:build",
+                    "builder": "@angular-devkit/build-angular:ng-packagr",
                     "options": {
                         "tsConfig": "packages/common/tsconfig.lib.json",
                         "project": "packages/common/ng-package.json"
@@ -96,7 +96,7 @@
             "sourceRoot": "packages/flex-layout",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-ng-packagr:build",
+                    "builder": "@angular-devkit/build-angular:ng-packagr",
                     "options": {
                         "tsConfig": "packages/flex-layout/tsconfig.lib.json",
                         "project": "packages/flex-layout/ng-package.json"
@@ -184,7 +184,7 @@
             "projectType": "library",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-ng-packagr:build",
+                    "builder": "@angular-devkit/build-angular:ng-packagr",
                     "options": {
                         "tsConfig": "packages/http/tsconfig.lib.json",
                         "project": "packages/http/ng-package.json"
@@ -269,7 +269,7 @@
             "projectType": "library",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-ng-packagr:build",
+                    "builder": "@angular-devkit/build-angular:ng-packagr",
                     "options": {
                         "tsConfig": "packages/logger/tsconfig.lib.json",
                         "project": "packages/logger/ng-package.json"
@@ -354,7 +354,7 @@
             "sourceRoot": "packages/ng-excel-builder",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-ng-packagr:build",
+                    "builder": "@angular-devkit/build-angular:ng-packagr",
                     "options": {
                         "tsConfig": "packages/ng-excel-builder/tsconfig.lib.json",
                         "project": "packages/ng-excel-builder/ng-package.json"
@@ -443,7 +443,7 @@
             "projectType": "library",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-ng-packagr:build",
+                    "builder": "@angular-devkit/build-angular:ng-packagr",
                     "options": {
                         "tsConfig": "packages/ng-table-builder/tsconfig.lib.json",
                         "project": "packages/ng-table-builder/ng-package.json"
@@ -535,7 +535,7 @@
             "sourceRoot": "packages/stream",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-ng-packagr:build",
+                    "builder": "@angular-devkit/build-angular:ng-packagr",
                     "options": {
                         "tsConfig": "packages/stream/tsconfig.lib.json",
                         "project": "packages/stream/ng-package.json"
@@ -630,7 +630,7 @@
             "sourceRoot": "packages/tooltip",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-ng-packagr:build",
+                    "builder": "@angular-devkit/build-angular:ng-packagr",
                     "options": {
                         "tsConfig": "packages/tooltip/tsconfig.lib.json",
                         "project": "packages/tooltip/ng-package.json"
@@ -718,7 +718,7 @@
             "projectType": "library",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-ng-packagr:build",
+                    "builder": "@angular-devkit/build-angular:ng-packagr",
                     "options": {
                         "tsConfig": "packages/websocket/tsconfig.lib.json",
                         "project": "packages/websocket/ng-package.json"
