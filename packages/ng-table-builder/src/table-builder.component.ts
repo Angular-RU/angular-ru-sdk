@@ -807,8 +807,9 @@ export class TableBuilderComponent<T>
     }
 
     private listenExpandChange(): void {
-        this.headerTemplate?.expandedChange
-            .pipe(takeUntil(this.destroy$))
-            .subscribe((): void => this.updateTableHeight());
+        this.headerTemplate?.expandedChange.pipe(takeUntil(this.destroy$)).subscribe((): void => {
+            this.updateTableHeight();
+            this.changeSchema();
+        });
     }
 }

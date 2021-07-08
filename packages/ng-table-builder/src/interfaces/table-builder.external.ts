@@ -54,8 +54,13 @@ export interface ColumnsSchema<T = Any> {
 
 export interface TableUpdateSchema {
     columns: DeepPartial<ColumnsSchema>[];
+    generalTableSettings?: GeneralTableSettings;
     name: Nullable<string>;
     version: number;
+}
+
+export interface GeneralTableSettings {
+    expanded?: Nullable<boolean>;
 }
 
 export interface TableEvent<T, K> {
