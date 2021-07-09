@@ -1,3 +1,10 @@
+#### 15.303.0 (2021-07-09)
+
+##### New Features
+
+-   add Angular 12 ([#730](https://github.com/Angular-RU/angular-ru-sdk/pull/730))
+    ([dc62ef37](https://github.com/Angular-RU/angular-ru-sdk/commit/dc62ef3783391a79ea34faf76b5cf2397f5c073c))
+
 #### 15.302.2 (2021-07-09)
 
 ##### Bug Fixes
