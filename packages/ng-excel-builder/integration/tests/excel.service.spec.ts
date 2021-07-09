@@ -158,4 +158,50 @@ describe('[TEST] Excel service', () => {
         expect(await readFromBlob(blob)).toBe(readFile('test-5-translate.xls'));
         expect(filename).toBe('translate');
     });
+
+    it('should correctly calculate auto width', async () => {
+        excelService.exportExcel({
+            filename: 'auto-width',
+            worksheets: [
+                {
+                    entries: datasetNested,
+                    columnParameters: {
+                        id: { width: ColumnWidth.MAX_WIDTH },
+                        firstName: { width: ColumnWidth.MAX_WIDTH },
+                        lastName: { width: ColumnWidth.MAX_WIDTH },
+                        age: { width: ColumnWidth.MAX_WIDTH },
+                        'locale.code': { width: ColumnWidth.MAX_WIDTH },
+                        'locale.lang': { width: ColumnWidth.MAX_WIDTH },
+                        'locale.country': { width: ColumnWidth.MAX_WIDTH }
+                    }
+                }
+            ]
+        });
+        await new Promise((resolve) => setTimeout(resolve));
+        const [blob, filename] = downloadSpy.mock.calls[0];
+        expect(await readFromBlob(blob)).toBe(readFile('test-6-auto-width.xls'));
+        expect(filename).toBe('auto-width');
+    });
+
+    it('should correctly calculate auto width for translated header', async () => {
+        excelService.exportExcel({
+            filename: 'auto-width-translate',
+            worksheets: [
+                {
+                    entries: datasetTranslated,
+                    prefixKeyForTranslate: 'model',
+                    columnParameters: {
+                        uid: { width: ColumnWidth.MAX_WIDTH },
+                        name: { width: ColumnWidth.MAX_WIDTH },
+                        'appearance.color': { width: ColumnWidth.MAX_WIDTH },
+                        'appearance.shape': { width: ColumnWidth.MAX_WIDTH }
+                    }
+                }
+            ]
+        });
+        await new Promise((resolve) => setTimeout(resolve));
+        const [blob, filename] = downloadSpy.mock.calls[0];
+        expect(await readFromBlob(blob)).toBe(readFile('test-7-auto-width-translate.xls'));
+        expect(filename).toBe('auto-width-translate');
+    });
 });

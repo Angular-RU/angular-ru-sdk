@@ -1,3 +1,11 @@
+#### 15.302.2 (2021-07-09)
+
+##### Bug Fixes
+
+-   **@angular-ru/ng-excel-builder:** fixed automatic column width
+    ([#729](https://github.com/Angular-RU/angular-ru-sdk/pull/729))
+    ([b4bb7591](https://github.com/Angular-RU/angular-ru-sdk/commit/b4bb759188fecd197d82258169cacdf836aa2011))
+
 #### 15.302.1 (2021-07-09)
 
 ##### Build System / Dependencies
