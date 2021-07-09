@@ -1,3 +1,12 @@
+#### 15.304.4 (2021-07-09)
+
+##### Build System / Dependencies
+
+-   update dependency @types/node to v15.14.1 ([#744](https://github.com/Angular-RU/angular-ru-sdk/pull/744))
+    ([a5cb2fbe](https://github.com/Angular-RU/angular-ru-sdk/commit/a5cb2fbe56b5a4b5f337c3f3b44db9f2ccff6f0b))
+-   update dependency ng-packagr to v12.1.1 ([#739](https://github.com/Angular-RU/angular-ru-sdk/pull/739))
+    ([4d3f4f1e](https://github.com/Angular-RU/angular-ru-sdk/commit/4d3f4f1e471737135d269101f9be30a20474da1a))
+
 #### 15.304.3 (2021-07-09)
 
 ##### Build System / Dependencies
