@@ -65,12 +65,6 @@ jobs:
             - name: Run building integration apps step
               run: yarn build:app --parallel
 
-            - name: Deploy integration apps
-              env:
-                  GH_TOKEN: ${{ secrets.GH_TOKEN }}
-              if: contains('refs/heads/master', github.ref)
-              run: yarn deploy --parallel
-
             - name: Deploy npm packages
               env:
                   GH_TOKEN: ${{ secrets.GH_TOKEN }}
