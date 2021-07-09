@@ -9,8 +9,10 @@ import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { ColumnParameters } from './domain/column-parameters';
 import { ColumnWidth } from './domain/column-width';
 import { ExcelWorkbook } from './domain/excel-workbook';
-import { PreparedExcelWorkbook } from './domain/prepared-excel-workbook';
+import { ExcelWorksheet } from './domain/excel-worksheet';
+import { PreparedExcelWorkbook, WidthOfSymbols } from './domain/prepared-excel-workbook';
 import { PreparedExcelWorksheet } from './domain/prepared-excel-worksheet';
+import widthOfSymbolsMap from './domain/width-of-symbols-map.json';
 
 interface StyleSizes {
     fontWidth: number;
@@ -145,7 +147,10 @@ export class ExcelBuilderService {
                         keys.forEach((key: string): void => {
                             const title: string = this.getTranslatedTitle(key, prefixKeyForTranslate);
                             const parameters: Nullable<ColumnParameters> = columnParameters?.[key];
-                            const width: number = this.getWidthOfColumn(key, flatEntries, parameters);
+                            const entriesColumn: string[] = flatEntries.map(
+                                (entry: PlainObject): string => entry[key]?.toString() ?? ''
+                            );
+                            const width: number = this.getWidthOfColumn(title, entriesColumn, parameters);
                             columnsDescriptor += `<Column ss:Width="${width}" />`;
                             columnCells += ExcelBuilder.renderCell(title, StyleType.HEAD);
                         });
@@ -155,14 +160,14 @@ export class ExcelBuilderService {
                     }
 
                     private getWidthOfColumn(
-                        key: string,
-                        entries: PlainObject[],
+                        title: string,
+                        entries: string[],
                         parameters: Nullable<ColumnParameters>
                     ): number {
                         const { minColumnWidth }: StyleSizes = this.sizes;
 
                         if (parameters?.width === ColumnWidth.MAX_WIDTH) {
-                            return this.calcMaxWidthByEntries(entries, key);
+                            return this.calcMaxWidthByEntries(entries, title);
                         } else if (typeof parameters?.width === 'number') {
                             return parameters.width;
                         } else {
@@ -170,12 +175,23 @@ export class ExcelBuilderService {
                         }
                     }
 
-                    private calcMaxWidthByEntries(entries: PlainObject[], key: string): number {
-                        const maxLength: number = entries.reduce((length: number, entry: PlainObject): number => {
-                            const currentLength: number = (entry[key]?.toString() ?? '').length;
+                    private calcMaxWidthByEntries(entries: string[], title: string): number {
+                        const titleLength: number = this.getWidthOfString(title, 'bold');
+                        const indentMeasuredInSymbols: number = 2;
+                        const indent: number = this.sizes.fontWidth * indentMeasuredInSymbols;
+                        const maxLength: number = entries.reduce((length: number, entry: string): number => {
+                            const currentLength: number = this.getWidthOfString(entry, 'regular');
                             return Math.max(currentLength, length);
-                        }, 0);
-                        return maxLength * this.sizes.fontWidth;
+                        }, titleLength);
+                        return Math.round(maxLength) + indent;
+                    }
+
+                    private getWidthOfString(string: string, fontWeight: keyof WidthOfSymbols): number {
+                        let width: number = 0;
+                        for (const symbol of string) {
+                            width += input.widthOfSymbols[fontWeight][symbol] ?? this.sizes.fontWidth;
+                        }
+                        return width;
                     }
 
                     private getTranslatedTitle(key: string, translatePrefix?: Nullable<string>): string {
@@ -223,21 +239,32 @@ export class ExcelBuilderService {
     }
 
     private async prepareWorkbook<T>(workbook: ExcelWorkbook<T>): Promise<PreparedExcelWorkbook<T>> {
-        const preparedWorksheets: PreparedExcelWorksheet<T>[] = [];
-        for (const worksheet of workbook.worksheets) {
-            let flatEntries: PlainObject[] = [];
-            if (isNotNil(worksheet.entries)) {
-                flatEntries = await this.plainTableComposer.compose(worksheet.entries, {
-                    includeKeys: worksheet.keys,
-                    excludeKeys: worksheet.excludeKeys
-                });
-            }
-            preparedWorksheets.push({ ...worksheet, flatEntries });
-        }
+        const preparedWorksheets: PreparedExcelWorksheet<T>[] = await Promise.all(
+            workbook.worksheets.map(
+                async (worksheet: ExcelWorksheet<T>): Promise<PreparedExcelWorksheet<T>> =>
+                    await this.prepareWorksheet(worksheet)
+            )
+        );
 
         const preparedTranslatedKeys: PlainObject = workbook.translatedKeys
             ? await this.plainTableComposer.composeSingle<PlainObject>(workbook.translatedKeys)
             : {};
-        return { ...workbook, worksheets: preparedWorksheets, preparedTranslatedKeys };
+        return {
+            ...workbook,
+            worksheets: preparedWorksheets,
+            preparedTranslatedKeys,
+            widthOfSymbols: widthOfSymbolsMap
+        };
+    }
+
+    private async prepareWorksheet<T>(worksheet: ExcelWorksheet<T>): Promise<PreparedExcelWorksheet<T>> {
+        let flatEntries: PlainObject[] = [];
+        if (isNotNil(worksheet.entries)) {
+            flatEntries = await this.plainTableComposer.compose(worksheet.entries, {
+                includeKeys: worksheet.keys,
+                excludeKeys: worksheet.excludeKeys
+            });
+        }
+        return { ...worksheet, flatEntries };
     }
 }
