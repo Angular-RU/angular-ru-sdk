@@ -147,7 +147,10 @@ export class ExcelBuilderService {
                         keys.forEach((key: string): void => {
                             const title: string = this.getTranslatedTitle(key, prefixKeyForTranslate);
                             const parameters: Nullable<ColumnParameters> = columnParameters?.[key];
-                            const width: number = this.getWidthOfColumn(key, flatEntries, parameters);
+                            const entriesColumn: string[] = flatEntries.map(
+                                (entry: PlainObject): string => entry[key]?.toString() ?? ''
+                            );
+                            const width: number = this.getWidthOfColumn(title, entriesColumn, parameters);
                             columnsDescriptor += `<Column ss:Width="${width}" />`;
                             columnCells += ExcelBuilder.renderCell(title, StyleType.HEAD);
                         });
@@ -157,14 +160,14 @@ export class ExcelBuilderService {
                     }
 
                     private getWidthOfColumn(
-                        key: string,
-                        entries: PlainObject[],
+                        title: string,
+                        entries: string[],
                         parameters: Nullable<ColumnParameters>
                     ): number {
                         const { minColumnWidth }: StyleSizes = this.sizes;
 
                         if (parameters?.width === ColumnWidth.MAX_WIDTH) {
-                            return this.calcMaxWidthByEntries(entries, key);
+                            return this.calcMaxWidthByEntries(entries, title);
                         } else if (typeof parameters?.width === 'number') {
                             return parameters.width;
                         } else {
@@ -172,17 +175,14 @@ export class ExcelBuilderService {
                         }
                     }
 
-                    private calcMaxWidthByEntries(entries: PlainObject[], key: string): number {
-                        const headerLength: number = this.getWidthOfString(key, 'bold');
+                    private calcMaxWidthByEntries(entries: string[], title: string): number {
+                        const titleLength: number = this.getWidthOfString(title, 'bold');
                         // eslint-disable-next-line @typescript-eslint/no-magic-numbers
                         const padding: number = this.sizes.fontWidth * 2;
-                        const maxLength: number = entries.reduce((length: number, entry: PlainObject): number => {
-                            const currentLength: number = this.getWidthOfString(
-                                entry[key]?.toString() ?? '',
-                                'regular'
-                            );
+                        const maxLength: number = entries.reduce((length: number, entry: string): number => {
+                            const currentLength: number = this.getWidthOfString(entry, 'regular');
                             return Math.max(currentLength, length);
-                        }, headerLength);
+                        }, titleLength);
                         return Math.round(maxLength) + padding;
                     }
 
