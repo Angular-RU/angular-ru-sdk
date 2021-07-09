@@ -96,7 +96,7 @@
         "rxjs": "6.6.7",
         "tsickle": "0.43.0",
         "tslib": "2.3.0",
-        "typescript": "4.3.4",
+        "typescript": "4.3.5",
         "zone.js": "0.11.4"
     }
 }
