@@ -20,7 +20,7 @@
         "build:app": "lerna run build:app",
         "build:lib": "lerna run build:lib",
         "clean": "rm -rf .cache ./packages/**/dist ./packages/**/lib ./packages/**/.cache",
-        "deploy": "lerna run deploy",
+        "deploy": "echo 1; #lerna run deploy",
         "format": "yarn format:sort-package-json && yarn format:prettier",
         "postinstall": "ngcc --async && husky install && lerna run symlink",
         "lint": "yarn eslint --fix --cache --cache-location .cache/.eslintcache \"**/*.ts\" --ignore-pattern **/file-suites/**",

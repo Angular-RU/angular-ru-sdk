@@ -23,7 +23,7 @@
             "prefix": "",
             "root": ".",
             "projectType": "application",
-            "sourceRoot": "packages/common/integration/app",
+            "sourceRoot": "integration/app",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
