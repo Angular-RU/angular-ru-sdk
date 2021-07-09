@@ -177,23 +177,21 @@ export class ExcelBuilderService {
 
                     private calcMaxWidthByEntries(entries: string[], title: string): number {
                         const titleLength: number = this.getWidthOfString(title, 'bold');
-                        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-                        const padding: number = this.sizes.fontWidth * 2;
+                        const indentMeasuredInSymbols: number = 2;
+                        const indent: number = this.sizes.fontWidth * indentMeasuredInSymbols;
                         const maxLength: number = entries.reduce((length: number, entry: string): number => {
                             const currentLength: number = this.getWidthOfString(entry, 'regular');
                             return Math.max(currentLength, length);
                         }, titleLength);
-                        return Math.round(maxLength) + padding;
+                        return Math.round(maxLength) + indent;
                     }
 
                     private getWidthOfString(string: string, fontWeight: keyof WidthOfSymbols): number {
-                        return string
-                            .split('')
-                            .reduce(
-                                (sum: number, symbol: string): number =>
-                                    sum + (input.widthOfSymbols[fontWeight][symbol] ?? this.sizes.fontWidth),
-                                0
-                            );
+                        let width: number = 0;
+                        for (const symbol of string) {
+                            width += input.widthOfSymbols[fontWeight][symbol] ?? this.sizes.fontWidth;
+                        }
+                        return width;
                     }
 
                     private getTranslatedTitle(key: string, translatePrefix?: Nullable<string>): string {
