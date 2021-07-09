@@ -1,3 +1,12 @@
+#### 15.302.1 (2021-07-09)
+
+##### Build System / Dependencies
+
+-   remove deploy app ([#731](https://github.com/Angular-RU/angular-ru-sdk/pull/731))
+    ([583a46a3](https://github.com/Angular-RU/angular-ru-sdk/commit/583a46a31ec4d39f789bcf724c08f2d4e713f9c9))
+-   use global angular.json ([#727](https://github.com/Angular-RU/angular-ru-sdk/pull/727))
+    ([483c009a](https://github.com/Angular-RU/angular-ru-sdk/commit/483c009a34ecf08ec276e0ba909f4060543722eb))
+
 #### 15.302.0 (2021-07-08)
 
 ##### New Features
