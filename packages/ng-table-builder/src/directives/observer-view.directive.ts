@@ -30,7 +30,7 @@ export class ObserverViewDirective implements AfterViewInit, OnDestroy {
                 }
             );
 
-            this.observer.observe(this.element.nativeElement);
+            this.observer?.observe?.(this.element.nativeElement);
         });
     }
 
@@ -38,7 +38,7 @@ export class ObserverViewDirective implements AfterViewInit, OnDestroy {
         this.element = { nativeElement: null };
         cancelAnimationFrame(this.frameId!);
         if (isNotNil(this.observer)) {
-            this.observer.disconnect();
+            this.observer?.disconnect?.();
         }
     }
 

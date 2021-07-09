@@ -20,18 +20,13 @@
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "scripts": {
-        "build:app": "ng build common-app --prod",
-        "deploy": "cp README.md dist/integration && ng deploy common-app",
+        "build:app": "ng build common-app",
         "build:lib": "ng build common-library && cp README.md dist/library && yarn symlink",
+        "deploy": "echo 1; #cp README.md dist/integration && ng deploy common-app",
         "symlink": "sh symlink.sh",
         "start": "ng serve common-app --open",
         "test": "yarn jest --config ./jest.config.js",
         "postversion": "npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\""
-    },
-    "peerDependencies": {
-        "@angular/common": ">=8.0.0 <12.0.0",
-        "@angular/core": ">=8.0.0  <12.0.0",
-        "rxjs": ">=6.1.0"
     },
     "publishConfig": {
         "access": "public",

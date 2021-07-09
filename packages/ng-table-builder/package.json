@@ -20,20 +20,12 @@
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "scripts": {
-        "build:app": "ng build ng-table-builder-app --prod",
+        "build:app": "ng build ng-table-builder-app",
         "build:lib": "ng build ng-table-builder-library && cp README.md dist/library",
-        "deploy": "cp README.md dist/integration && ng deploy ng-table-builder-app",
+        "deploy": "echo 1; #cp README.md dist/integration && ng deploy ng-table-builder-app",
         "start": "ng serve ng-table-builder-app --open --hmr",
         "test": "yarn jest --config ./jest.config.js",
         "postversion": "npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\""
-    },
-    "peerDependencies": {
-        "@angular-ru/common": ">=15.0.0",
-        "@angular/animations": ">=8.0.0 <12.0.0",
-        "@angular/cdk": ">=8.0.0  <12.0.0",
-        "@angular/common": ">=8.0.0 <12.0.0",
-        "@angular/core": ">=8.0.0  <12.0.0",
-        "rxjs": ">=6.1.0"
     },
     "publishConfig": {
         "access": "public",
