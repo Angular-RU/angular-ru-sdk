@@ -24,7 +24,7 @@
         "@types/node": "15.12.4",
         "cross-env": "7.0.3",
         "generate-changelog": "1.8.0",
-        "husky": "6.0.0",
+        "husky": "7.0.1",
         "inquirer-directory": "2.2.0",
         "lint-staged": "11.0.0",
         "ng-packagr": "12.1.0",
