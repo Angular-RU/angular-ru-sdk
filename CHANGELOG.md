@@ -1,3 +1,12 @@
+#### 15.304.3 (2021-07-09)
+
+##### Build System / Dependencies
+
+-   update dependency typescript to v4.3.5 ([#741](https://github.com/Angular-RU/angular-ru-sdk/pull/741))
+    ([1cf421e5](https://github.com/Angular-RU/angular-ru-sdk/commit/1cf421e5199b4b4909b339ae6b52ca8169b58200))
+-   update dependency @types/jasmine to v3.8.1 ([#743](https://github.com/Angular-RU/angular-ru-sdk/pull/743))
+    ([0e395472](https://github.com/Angular-RU/angular-ru-sdk/commit/0e395472be79b8382a39e9774a7006237b37e4dd))
+
 #### 15.304.2 (2021-07-09)
 
 ##### Build System / Dependencies
