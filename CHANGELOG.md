@@ -1,3 +1,10 @@
+#### 15.304.2 (2021-07-09)
+
+##### Build System / Dependencies
+
+-   update dependency husky to v7 ([#746](https://github.com/Angular-RU/angular-ru-sdk/pull/746))
+    ([3cee3ff1](https://github.com/Angular-RU/angular-ru-sdk/commit/3cee3ff101afaf9c59e159c6a3091222084a1c48))
+
 #### 15.304.1 (2021-07-09)
 
 ##### Build System / Dependencies
