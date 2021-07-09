@@ -1,3 +1,10 @@
+#### 15.304.0 (2021-07-09)
+
+##### New Features
+
+-   **@angular-ru/renovate:** update renovate ([#734](https://github.com/Angular-RU/angular-ru-sdk/pull/734))
+    ([5e8fc8a7](https://github.com/Angular-RU/angular-ru-sdk/commit/5e8fc8a70cf879bc4d3c0f8fd5ff97956744394b))
+
 #### 15.303.0 (2021-07-09)
 
 ##### New Features
