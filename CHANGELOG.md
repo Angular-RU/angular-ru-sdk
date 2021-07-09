@@ -1,3 +1,17 @@
+#### 15.304.1 (2021-07-09)
+
+##### Build System / Dependencies
+
+-   update dependency prettier to v2.3.2 ([#740](https://github.com/Angular-RU/angular-ru-sdk/pull/740))
+    ([f5371a08](https://github.com/Angular-RU/angular-ru-sdk/commit/f5371a083c4197285d7af9793412fdaacc730e0b))
+-   update dependency @types/jest to v26.0.24 ([#738](https://github.com/Angular-RU/angular-ru-sdk/pull/738))
+    ([cd8da1d7](https://github.com/Angular-RU/angular-ru-sdk/commit/cd8da1d75e1f14203a980928eb5177015d66033f))
+
+##### Documentation Changes
+
+-   add LICENSE ([#735](https://github.com/Angular-RU/angular-ru-sdk/pull/735))
+    ([5390403e](https://github.com/Angular-RU/angular-ru-sdk/commit/5390403e947e6d77185f0e980155652fa255a22d))
+
 #### 15.304.0 (2021-07-09)
 
 ##### New Features
