@@ -41,14 +41,19 @@
 	</Styles>
 	<Worksheet ss:Name="UNKNOWN WORKSHEET NAME">
 		<Table ss:DefaultColumnWidth="150" ss:DefaultRowHeight="40">
-			<Column ss:Width="150" />
+			<Column ss:Width="21" />
+			<Column ss:Width="61" />
 			<Column ss:Width="59" />
-			<Column ss:Width="150" />
+			<Column ss:Width="30" />
+			<Column ss:Width="84" />
+			<Column ss:Width="67" />
 			<Column ss:Width="70" />
-			<Column ss:Width="50" />
 			<Row>
 				<Cell ss:StyleID="HeadCellStyle">
 					<Data ss:Type="String">id</Data>
+				</Cell>
+				<Cell ss:StyleID="HeadCellStyle">
+					<Data ss:Type="String">firstName</Data>
 				</Cell>
 				<Cell ss:StyleID="HeadCellStyle">
 					<Data ss:Type="String">lastName</Data>
@@ -62,10 +67,16 @@
 				<Cell ss:StyleID="HeadCellStyle">
 					<Data ss:Type="String">locale.lang</Data>
 				</Cell>
+				<Cell ss:StyleID="HeadCellStyle">
+					<Data ss:Type="String">locale.code</Data>
+				</Cell>
 			</Row>
 			<Row ss:Height="40">
 				<Cell ss:StyleID="BodyCellStyle">
 					<Data ss:Type="Number">1</Data>
+				</Cell>
+				<Cell ss:StyleID="BodyCellStyle">
+					<Data ss:Type="String">albattani</Data>
 				</Cell>
 				<Cell ss:StyleID="BodyCellStyle">
 					<Data ss:Type="String">herschel</Data>
@@ -79,10 +90,16 @@
 				<Cell ss:StyleID="BodyCellStyle">
 					<Data ss:Type="String">en</Data>
 				</Cell>
+				<Cell ss:StyleID="BodyCellStyle">
+					<Data ss:Type="Number">44</Data>
+				</Cell>
 			</Row>
 			<Row ss:Height="40">
 				<Cell ss:StyleID="BodyCellStyle">
 					<Data ss:Type="Number">2</Data>
+				</Cell>
+				<Cell ss:StyleID="BodyCellStyle">
+					<Data ss:Type="String">allen</Data>
 				</Cell>
 				<Cell ss:StyleID="BodyCellStyle">
 					<Data ss:Type="String">hermann</Data>
@@ -96,10 +113,16 @@
 				<Cell ss:StyleID="BodyCellStyle">
 					<Data ss:Type="String">en</Data>
 				</Cell>
+				<Cell ss:StyleID="BodyCellStyle">
+					<Data ss:Type="Number">1</Data>
+				</Cell>
 			</Row>
 			<Row ss:Height="40">
 				<Cell ss:StyleID="BodyCellStyle">
 					<Data ss:Type="Number">3</Data>
+				</Cell>
+				<Cell ss:StyleID="BodyCellStyle">
+					<Data ss:Type="String">antonelli</Data>
 				</Cell>
 				<Cell ss:StyleID="BodyCellStyle">
 					<Data ss:Type="String">-</Data>
@@ -113,10 +136,16 @@
 				<Cell ss:StyleID="BodyCellStyle">
 					<Data ss:Type="String">de</Data>
 				</Cell>
+				<Cell ss:StyleID="BodyCellStyle">
+					<Data ss:Type="Number">43</Data>
+				</Cell>
 			</Row>
 			<Row ss:Height="40">
 				<Cell ss:StyleID="BodyCellStyle">
 					<Data ss:Type="Number">4</Data>
+				</Cell>
+				<Cell ss:StyleID="BodyCellStyle">
+					<Data ss:Type="String">almeida</Data>
 				</Cell>
 				<Cell ss:StyleID="BodyCellStyle">
 					<Data ss:Type="String">hawking</Data>
@@ -129,6 +158,9 @@
 				</Cell>
 				<Cell ss:StyleID="BodyCellStyle">
 					<Data ss:Type="String">ru</Data>
+				</Cell>
+				<Cell ss:StyleID="BodyCellStyle">
+					<Data ss:Type="Number">7</Data>
 				</Cell>
 			</Row>
 		</Table>
