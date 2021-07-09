@@ -24,6 +24,7 @@
     },
     "renovate-config": {
         "default": {
+            "enabled": true,
             "automerge": false,
             "pinVersions": true,
             "rangeStrategy": "bump",
@@ -32,15 +33,14 @@
             "separateMajorMinor": true,
             "separateMinorPatch": false,
             "semanticCommits": true,
+            "dependencyDashboard": false,
+            "dependencyDashboardApproval": false,
             "semanticPrefix": "build",
             "prHourlyLimit": 2,
             "labels": [
                 "comp: build & ci",
                 "action: review"
             ],
-            "lockFileMaintenance": {
-                "enabled": true
-            },
             "baseBranches": [
                 "master"
             ],
@@ -57,23 +57,9 @@
                 },
                 {
                     "packagePatterns": [
-                        "^@angular/.*",
-                        "^@angular-devkit/.*",
-                        "^@schematics/.*"
-                    ],
-                    "groupName": "Angular"
-                },
-                {
-                    "packagePatterns": [
                         "^rxjs.*"
                     ],
                     "groupName": "RxJS"
-                },
-                {
-                    "packagePatterns": [
-                        "^@angular/fire$"
-                    ],
-                    "groupName": "Angular Firebase"
                 },
                 {
                     "packagePatterns": [
@@ -83,31 +69,27 @@
                 },
                 {
                     "packagePatterns": [
-                        "^@angular-ru/.*"
-                    ],
-                    "groupName": "Angular RU"
-                },
-                {
-                    "packagePatterns": [
+                        "^@angular/.*",
+                        "^@angular-ru/.*",
+                        "^@angular-devkit/.*",
+                        "^@schematics/.*",
                         "^@angular/cdk$",
                         "^@angular/cli$",
                         "^@angular/cdk-experimental$",
                         "^@angular/flex-layout$",
-                        "^@angular/material$"
-                    ],
-                    "groupName": "Angular Material"
-                },
-                {
-                    "packagePatterns": [
-                        "^@angular-builders/.*"
-                    ],
-                    "groupName": "Angular Builders"
-                },
-                {
-                    "packagePatterns": [
+                        "^@angular/material$",
+                        "^@angular-builders/.*",
                         "^ng-packagr$"
                     ],
-                    "groupName": "ng-packagr"
+                    "groupName": "Angular",
+                    "postUpgradeTasks": {
+                        "commands": [
+                            "ng update {{{depName}}} --from={{{fromVersion}}} --to={{{toVersion}}} --migrateOnly --allowDirty --force"
+                        ],
+                        "fileFilters": [
+                            "**/**"
+                        ]
+                    }
                 },
                 {
                     "packagePatterns": [
