@@ -1,3 +1,10 @@
+#### 15.304.6 (2021-07-10)
+
+##### Build System / Dependencies
+
+-   update eslint (major) ([#747](https://github.com/Angular-RU/angular-ru-sdk/pull/747))
+    ([06e5cb08](https://github.com/Angular-RU/angular-ru-sdk/commit/06e5cb0897e03c04365fb6372f64dd667e8609fc))
+
 #### 15.304.5 (2021-07-09)
 
 ##### Build System / Dependencies
