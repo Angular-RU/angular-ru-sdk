@@ -47,12 +47,14 @@ describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
         expect(bad.includes("Operator '+' must be spaced")).toBeTruthy();
         expect(bad.includes("'someNum' is assigned a value but never used")).toBeTruthy();
         expect(bad.includes("'someNum' is never reassigned. Use 'const' instead")).toBeTruthy();
-        expect(bad.includes('This lifecycle method is not called for Injectable')).toBeTruthy();
-        expect(bad.includes("The selector of the component 'AppComponent' is mandatory")).toBeTruthy();
+        expect(
+            bad.includes('Angular will not invoke the `ngOnInit` lifecycle method within `@Injectable()` classes')
+        ).toBeTruthy();
+        expect(bad.includes('The selector of the component is mandatory')).toBeTruthy();
         expect(bad.includes('`template` has too many lines (7). Maximum allowed is 3')).toBeTruthy();
         expect(bad.includes('Use @HostBinding or @HostListener rather than the `host` metadata property')).toBeTruthy();
         expect(bad.includes('Use @Input rather than the `inputs` metadata property')).toBeTruthy();
-        expect(bad.includes('Use @Output rather than the `outputs` metadata property')).toBeTruthy();
+        expect(bad.includes('Use `@Output` rather than the `outputs` metadata property')).toBeTruthy();
         expect(bad.includes("Lifecycle interface 'OnInit' should be implemented for method 'ngOnInit'")).toBeTruthy();
         expect(bad.includes('Pipes should implement `PipeTransform` interface')).toBeTruthy();
         expect(bad.includes('Unexpected any. Specify a different type')).toBeTruthy();
@@ -78,12 +80,14 @@ describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
         expect(bad.includes('Strings must use singlequote')).toBeTruthy();
         expect(bad.includes('Unexpected trailing comma')).toBeTruthy();
         expect(bad.includes('Expected non-Promise value in a boolean conditional')).toBeTruthy();
-        expect(bad.includes('The name of the class MyEtc should end with the suffix Component')).toBeTruthy();
-        expect(bad.includes('The name of the class FooEtc should end with suffix(es) "Directive"')).toBeTruthy();
+        expect(bad.includes('Component class names should end with one of these suffixes: "Component"')).toBeTruthy();
+        expect(bad.includes('Directive class names should end with one of these suffixes: "Directive"')).toBeTruthy();
         expect(bad.includes('Lifecycle methods should not be empty')).toBeTruthy();
         expect(bad.includes('Declaring ngDoCheck and ngOnChanges method in a class is not recommended')).toBeTruthy();
         expect(bad.includes('Avoid using `forwardRef`')).toBeTruthy();
-        expect(bad.includes('The output property should not be named or renamed as a native event')).toBeTruthy();
+        expect(
+            bad.includes('Output bindings, including aliases, should not be named as standard DOM events')
+        ).toBeTruthy();
         expect(bad.includes('Prefer named exports')).toBeTruthy();
         expect(
             bad.includes('Unexpected any value in conditional. An explicit comparison or type cast is required')
