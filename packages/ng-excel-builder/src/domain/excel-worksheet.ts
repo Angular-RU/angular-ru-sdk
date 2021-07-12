@@ -10,4 +10,5 @@ export interface ExcelWorksheet<T> {
     keys?: Nullable<EntriesKeys<T>>;
     excludeKeys?: Nullable<EntriesKeys<T>>;
     columnParameters?: Nullable<PlainObjectOf<ColumnParameters>>;
+    generalColumnParameters?: Nullable<ColumnParameters>;
 }
