@@ -1,3 +1,11 @@
+#### 15.306.0 (2021-07-12)
+
+##### New Features
+
+-   **@angular-ru/ng-excel-builder:** added generalColumnParameters
+    ([#756](https://github.com/Angular-RU/angular-ru-sdk/pull/756))
+    ([186e3f00](https://github.com/Angular-RU/angular-ru-sdk/commit/186e3f002cc44a9eb9984c62b6fca67f01a7358b))
+
 #### 15.305.3 (2021-07-12)
 
 ##### Bug Fixes
