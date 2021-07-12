@@ -381,7 +381,7 @@ export class TableBuilderComponent<T>
     }
 
     public filterBySubstring(substring: Nullable<string>): void {
-        this.filterable.filterValue = substring;
+        this.filterable.filterValue = substring?.toString();
         this.filter();
     }
 
