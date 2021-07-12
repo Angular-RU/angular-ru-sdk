@@ -1,3 +1,11 @@
+#### 15.305.0 (2021-07-12)
+
+##### New Features
+
+-   **@angular-ru/ng-table-builder:** add public method filterBySubstring
+    ([#748](https://github.com/Angular-RU/angular-ru-sdk/pull/748))
+    ([2ae57d01](https://github.com/Angular-RU/angular-ru-sdk/commit/2ae57d01386377d5a064c3826af04e444ef6822c))
+
 #### 15.304.6 (2021-07-10)
 
 ##### Build System / Dependencies
