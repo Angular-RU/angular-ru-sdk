@@ -204,4 +204,25 @@ describe('[TEST] Excel service', () => {
         expect(await readFromBlob(blob)).toBe(readFile('test-7-auto-width-translate.xls'));
         expect(filename).toBe('auto-width-translate');
     });
+
+    it('should correctly calculate auto width', async () => {
+        excelService.exportExcel({
+            filename: 'auto-width',
+            worksheets: [
+                {
+                    entries: datasetNested,
+                    columnParameters: {
+                        id: { width: 50 }
+                    },
+                    generalColumnParameters: {
+                        width: ColumnWidth.MAX_WIDTH
+                    }
+                }
+            ]
+        });
+        await new Promise((resolve) => setTimeout(resolve));
+        const [blob, filename] = downloadSpy.mock.calls[0];
+        expect(await readFromBlob(blob)).toBe(readFile('test-8-auto-width.xls'));
+        expect(filename).toBe('auto-width');
+    });
 });
