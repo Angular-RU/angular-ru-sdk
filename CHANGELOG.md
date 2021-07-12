@@ -1,3 +1,15 @@
+#### 15.305.2 (2021-07-12)
+
+##### Build System / Dependencies
+
+-   update dependency @types/node to v15.14.2 ([#751](https://github.com/Angular-RU/angular-ru-sdk/pull/751))
+    ([d42505f1](https://github.com/Angular-RU/angular-ru-sdk/commit/d42505f1901b771e17ba0b2f06966a028c359edf))
+-   update dependency ts-node to v10.1.0 ([#753](https://github.com/Angular-RU/angular-ru-sdk/pull/753))
+    ([0a76cb38](https://github.com/Angular-RU/angular-ru-sdk/commit/0a76cb38a89c09ba26a97886002773d71a99a0be))
+-   update dependency karma-jasmine-html-reporter to v1.7.0
+    ([#752](https://github.com/Angular-RU/angular-ru-sdk/pull/752))
+    ([c0f26b68](https://github.com/Angular-RU/angular-ru-sdk/commit/c0f26b685590aacbc7a5c00dc73c5872f7fd6b17))
+
 #### 15.305.1 (2021-07-12)
 
 ##### Bug Fixes
