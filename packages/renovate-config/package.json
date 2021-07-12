@@ -29,7 +29,7 @@
             "pinVersions": true,
             "rangeStrategy": "bump",
             "timezone": "Europe/Moscow",
-            "masterIssueApproval": true,
+            "masterIssueApproval": false,
             "separateMajorMinor": true,
             "separateMinorPatch": false,
             "semanticCommits": true,
