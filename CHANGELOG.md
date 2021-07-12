@@ -1,3 +1,11 @@
+#### 15.305.1 (2021-07-12)
+
+##### Bug Fixes
+
+-   **@angular-ru/renovate-config:** set masterIssueApproval as false
+    ([#749](https://github.com/Angular-RU/angular-ru-sdk/pull/749))
+    ([3a4d45ff](https://github.com/Angular-RU/angular-ru-sdk/commit/3a4d45ffd2bfdf7853822e8a7b685ae9214b9bce))
+
 #### 15.305.0 (2021-07-12)
 
 ##### New Features
