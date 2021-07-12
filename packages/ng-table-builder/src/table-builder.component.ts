@@ -380,8 +380,8 @@ export class TableBuilderComponent<T>
         detectChanges(this.cd);
     }
 
-    public filterBySubstring(substring: Nullable<string>): void {
-        this.filterable.filterValue = substring;
+    public filterBySubstring(substring: Nullable<Any>): void {
+        this.filterable.filterValue = substring?.toString();
         this.filter();
     }
 
