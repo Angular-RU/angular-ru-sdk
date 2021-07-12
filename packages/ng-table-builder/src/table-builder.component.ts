@@ -380,6 +380,11 @@ export class TableBuilderComponent<T>
         detectChanges(this.cd);
     }
 
+    public filterBySubstring(substring: Nullable<string>): void {
+        this.filterable.filterValue = substring;
+        this.filter();
+    }
+
     protected calculateViewPortByRange({ start, end, bufferOffset, force }: CalculateRange): void {
         let newStartIndex: number = start;
         if (this.startIndexIsNull()) {
