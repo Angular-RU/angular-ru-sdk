@@ -1,3 +1,11 @@
+#### 15.305.3 (2021-07-12)
+
+##### Bug Fixes
+
+-   **@angular-ru/ng-table-builder:** additional substring processing in…
+    ([#755](https://github.com/Angular-RU/angular-ru-sdk/pull/755))
+    ([1190c6a2](https://github.com/Angular-RU/angular-ru-sdk/commit/1190c6a29dea03c49fb7023dcca16f036f5da494))
+
 #### 15.305.2 (2021-07-12)
 
 ##### Build System / Dependencies
