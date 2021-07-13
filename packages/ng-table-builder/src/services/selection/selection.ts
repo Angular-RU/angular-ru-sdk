@@ -34,7 +34,7 @@ export class SelectionMap<T> {
     }
 
     public get keys(): RowId[] {
-        return [...this.map.keys()];
+        return Array.from(this.map.keys());
     }
 
     public get(key?: RowId): boolean {
