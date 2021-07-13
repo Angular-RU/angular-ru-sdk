@@ -33,6 +33,10 @@ export class SelectionMap<T> {
         return this.hasValue() && !this.isAll;
     }
 
+    public get keys(): RowId[] {
+        return Array.from(this.map.keys());
+    }
+
     public get(key?: RowId): boolean {
         return isNotNil(key) ? this.map.get(key) ?? false : false;
     }
