@@ -1,3 +1,10 @@
+#### 15.307.0 (2021-07-13)
+
+##### New Features
+
+-   added property that return selected keys ([#761](https://github.com/Angular-RU/angular-ru-sdk/pull/761))
+    ([bf6b0561](https://github.com/Angular-RU/angular-ru-sdk/commit/bf6b0561a458a89098897c3bd2864b0c97175f73))
+
 #### 15.306.1 (2021-07-13)
 
 ##### Build System / Dependencies
