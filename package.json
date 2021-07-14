@@ -12,7 +12,7 @@
         "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
     },
     "license": "MIT",
-    "author": "splincode",
+    "author": "angular-ru@yandex.ru",
     "workspaces": [
         "packages/*"
     ],
