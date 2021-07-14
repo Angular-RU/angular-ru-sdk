@@ -1,3 +1,17 @@
+#### independent (2021-07-14)
+
+##### Build System / Dependencies
+
+-   update eslint to v12.3.0 ([#759](https://github.com/Angular-RU/angular-ru-sdk/pull/759))
+    ([d83d3b9f](https://github.com/Angular-RU/angular-ru-sdk/commit/d83d3b9fa9d7bfeb56715b3efa243c0908c50ad4))
+-   set independent version in lerna.json ([#762](https://github.com/Angular-RU/angular-ru-sdk/pull/762))
+    ([b9eb8a05](https://github.com/Angular-RU/angular-ru-sdk/commit/b9eb8a052eb4fc3b13f36563cef5c790773d6e5a))
+
+##### Continuous Integration
+
+-   force update ([#763](https://github.com/Angular-RU/angular-ru-sdk/pull/763))
+    ([ac58684d](https://github.com/Angular-RU/angular-ru-sdk/commit/ac58684d43dc2708a1da68f158a7b83c7e50dfc7))
+
 #### 15.307.1 (2021-07-14)
 
 ##### Build System / Dependencies

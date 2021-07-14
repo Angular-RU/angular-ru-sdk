@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/sdk",
-    "version": "15.310.0",
+    "version": "independent",
     "private": true,
     "description": "Angular-RU SDK",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk#readme",
