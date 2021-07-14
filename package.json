@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/sdk",
-    "version": "15.307.0",
+    "version": "15.307.1",
     "private": true,
     "description": "Angular-RU SDK",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk#readme",
@@ -12,7 +12,7 @@
         "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
     },
     "license": "MIT",
-    "author": "splincode",
+    "author": "angular-ru@yandex.ru",
     "workspaces": [
         "packages/*"
     ],

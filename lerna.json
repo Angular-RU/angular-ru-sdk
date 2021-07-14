@@ -7,7 +7,7 @@
     "npmClient": "yarn",
     "changelog": false,
     "useWorkspaces": true,
-    "version": "15.307.0",
+    "version": "independent",
     "command": {
         "version": {
             "allowBranch": "master",
@@ -23,7 +23,7 @@
             "npmClient": "npm",
             "force-publish": "*",
             "conventionalCommits": true,
-            "message": "ci: updated release notes and package versions [ci skip]",
+            "message": "updated release notes and package versions [ci skip]",
             "registry": "https://registry.npmjs.org",
             "ignoreChanges": [
                 "node_modules",

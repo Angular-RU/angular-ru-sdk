@@ -1,3 +1,10 @@
+#### 15.307.1 (2021-07-14)
+
+##### Build System / Dependencies
+
+-   update dependency ng-packagr to v12.1.2 ([#760](https://github.com/Angular-RU/angular-ru-sdk/pull/760))
+    ([da2e7f0d](https://github.com/Angular-RU/angular-ru-sdk/commit/da2e7f0ddfeddcc86c2289ac69bcea10e38713a2))
+
 #### 15.307.0 (2021-07-13)
 
 ##### New Features
