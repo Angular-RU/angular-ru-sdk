@@ -53,7 +53,7 @@ describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
         expect(bad.includes('The selector of the component is mandatory')).toBeTruthy();
         expect(bad.includes('`template` has too many lines (7). Maximum allowed is 3')).toBeTruthy();
         expect(bad.includes('Use @HostBinding or @HostListener rather than the `host` metadata property')).toBeTruthy();
-        expect(bad.includes('Use @Input rather than the `inputs` metadata property')).toBeTruthy();
+        expect(bad.includes('Use `@Input` rather than the `inputs` metadata property')).toBeTruthy();
         expect(bad.includes('Use `@Output` rather than the `outputs` metadata property')).toBeTruthy();
         expect(bad.includes("Lifecycle interface 'OnInit' should be implemented for method 'ngOnInit'")).toBeTruthy();
         expect(bad.includes('Pipes should implement `PipeTransform` interface')).toBeTruthy();
