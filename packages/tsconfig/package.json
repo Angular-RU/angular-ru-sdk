@@ -1,19 +1,7 @@
 {
-    "name": "@angular-ru/tsconfig",
-    "version": "15.303.0",
+    "name": "@angular-ru/tsconfig.json",
+    "version": "12.0.0",
     "description": "Angular-RU package",
-    "keywords": [
-        "angular-ru",
-        "angular",
-        "sdk",
-        "strict",
-        "typings",
-        "tsconfig",
-        "typescript",
-        "ts",
-        "config",
-        "configuration"
-    ],
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/tsconfig#readme",
     "bugs": {
         "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
