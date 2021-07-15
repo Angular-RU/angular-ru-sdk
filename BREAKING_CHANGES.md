@@ -1,3 +1,29 @@
+### 15.07.2021 @angular-ru/common
+
+-   before
+
+```ts
+$ npm install @angular-ru/tsconfig -D
+```
+
+`tsconfig.json`
+
+```json
+{ "extends": "@angular-ru/tsconfig" }
+```
+
+-   after
+
+```ts
+$ npm install @angular-ru/typescript -D
+```
+
+`tsconfig.json`
+
+```json
+{ "extends": "@angular-ru/typescript/tsconfig.json" }
+```
+
 ### 1.07.2021 @angular-ru/common
 
 -   before
