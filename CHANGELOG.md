@@ -1,3 +1,10 @@
+#### independent (2021-07-15)
+
+##### New Features
+
+-   **tsconfig.json:** flat version with Angular 12 ([#765](https://github.com/Angular-RU/angular-ru-sdk/pull/765))
+    ([52de9e9c](https://github.com/Angular-RU/angular-ru-sdk/commit/52de9e9c5b1cfc4da8b06afa26c7da297c109725))
+
 #### independent (2021-07-14)
 
 ##### Build System / Dependencies
