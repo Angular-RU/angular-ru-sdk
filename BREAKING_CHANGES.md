@@ -1,3 +1,17 @@
+### 17.07.2021 @angular-ru/common
+
+-   before
+
+```ts
+$ npm install @angular-ru/build-tools -D
+```
+
+-   after
+
+```ts
+$ npm install @angular-ru/dev-dependencies -D
+```
+
 ### 15.07.2021 @angular-ru/common
 
 -   before
