@@ -1,12 +1,7 @@
 {
-    "name": "@angular-ru/build-tools",
-    "version": "15.307.1",
+    "name": "@angular-ru/dev-dependencies",
+    "version": "12.0.0",
     "description": "Angular-RU package",
-    "keywords": [
-        "angular-ru",
-        "angular",
-        "sdk"
-    ],
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/build-tools#readme",
     "bugs": {
         "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
