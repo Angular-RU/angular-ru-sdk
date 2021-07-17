@@ -1,3 +1,10 @@
+#### independent (2021-07-17)
+
+##### New Features
+
+-   rename to dev-dependencies ([#768](https://github.com/Angular-RU/angular-ru-sdk/pull/768))
+    ([5a74822a](https://github.com/Angular-RU/angular-ru-sdk/commit/5a74822ac23928fb3ffa17d6e3ff883eb5156db0))
+
 #### independent (2021-07-15)
 
 ##### New Features
