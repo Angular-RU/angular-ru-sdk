@@ -9,7 +9,7 @@
 ```json
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": ["@angular-ru"],
+    "extends": ["@angular-ru/renovate"],
     "baseBranches": ["master"]
 }
 ```
@@ -19,7 +19,7 @@
 ```json
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": ["@angular-ru"],
+    "extends": ["@angular-ru/renovate"],
     "baseBranches": ["develop"],
     "packageRules": []
 }
