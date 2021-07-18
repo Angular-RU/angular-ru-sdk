@@ -1,3 +1,13 @@
+#### independent (2021-07-18)
+
+##### Documentation Changes
+
+-   update BREAKING_CHANGES.md (4efa0dfa)
+
+##### New Features
+
+-   rename packages (#770) (312b9ce0)
+
 #### independent (2021-07-17)
 
 ##### New Features

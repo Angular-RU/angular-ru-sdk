@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/eslint",
-    "version": "12.0.0",
+    "version": "12.1.0",
     "description": "Angular-RU package",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/eslint#readme",
     "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
@@ -28,7 +28,7 @@
         "@angular-eslint/eslint-plugin": "12.3.0",
         "@angular-eslint/eslint-plugin-template": "12.3.0",
         "@angular-eslint/template-parser": "12.3.0",
-        "@angular-ru/eslint-plugin": "^15.301.0",
+        "@angular-ru/eslint-plugin": "^15.302.0",
         "@types/eslint": "7.28.0",
         "@typescript-eslint/eslint-plugin": "4.28.3",
         "@typescript-eslint/parser": "4.28.3",
