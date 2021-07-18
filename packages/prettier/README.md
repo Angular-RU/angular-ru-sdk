@@ -1,18 +1,12 @@
 # Shareable Prettier config for Angular projects
 
-<p>
-  <a href="https://badge.fury.io/js/%40angular-ru%2Fprettier-config">
-    <img src="https://badge.fury.io/js/%40angular-ru%2Fprettier-config.svg" />
-  </a>
-  <a href="https://npm-stat.com/charts.html?package=%40angular-ru%2Fprettier-config&from=2019-09-01">
-    <img src="https://img.shields.io/npm/dw/@angular-ru/prettier-config" />
-  </a>
-</p>
+[![image](https://badge.fury.io/js/%40angular-ru%2Fprettier.svg)](https://badge.fury.io/js/%40angular-ru%2Fprettier)
+[![image](https://img.shields.io/npm/dw/@angular-ru/prettier)](https://badge.fury.io/js/%40angular-ru%2Fprettier)
 
 ### Quick start
 
 ```bash
-$ npm install @angular-ru/prettier-config -D
+$ npm install @angular-ru/prettier -D
 ```
 
 Add to your `package.json`:
@@ -21,7 +15,7 @@ Add to your `package.json`:
 {
     "name": "my-app-project",
     "version": "9000.0.1",
-    "prettier": "@angular-ru/prettier-config"
+    "prettier": "@angular-ru/prettier"
 }
 ```
 
@@ -29,7 +23,7 @@ or `.prettierrc.js`:
 
 ```js
 module.exports = {
-    ...require('@angular-ru/prettier-config'),
+    ...require('@angular-ru/prettier'),
     // override
     semi: false
 };
@@ -40,7 +34,7 @@ module.exports = {
 We recommend using these settings.
 
 ```text
-# Editor configuration, see http://editorconfig.org
+# Editor configuration, see https://editorconfig.org
 root = true
 
 [*]
