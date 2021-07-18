@@ -2,14 +2,11 @@
     "name": "@angular-ru/dev-dependencies",
     "version": "12.1.0",
     "description": "Angular-RU package",
-    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/build-tools#readme",
+    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/dev-dependencies#readme",
     "bugs": {
         "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
-    },
+    "repository": "git+https://github.com/Angular-RU/angular-ru-sdk.git",
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "dependencies": {

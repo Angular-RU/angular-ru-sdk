@@ -1,4 +1,18 @@
-### 17.07.2021 @angular-ru/common
+### 18.07.2021 @angular-ru/commitlint-config
+
+-   before
+
+```ts
+$ npm install @angular-ru/commitlint-config -D
+```
+
+-   after
+
+```ts
+$ npm install @angular-ru/commitlint -D
+```
+
+### 17.07.2021
 
 -   before
 
@@ -12,7 +26,7 @@ $ npm install @angular-ru/build-tools -D
 $ npm install @angular-ru/dev-dependencies -D
 ```
 
-### 15.07.2021 @angular-ru/common
+### 15.07.2021
 
 -   before
 
