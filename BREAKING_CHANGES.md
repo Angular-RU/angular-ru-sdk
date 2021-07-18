@@ -30,14 +30,6 @@ $ npm install @angular-ru/eslint -D
 }
 ```
 
-`tsconfig.json`
-
-```json
-{
-    "extends": "@angular-ru/typescript/tsconfig.json"
-}
-```
-
 ### 1.07.2021 @angular-ru/common
 
 -   before
