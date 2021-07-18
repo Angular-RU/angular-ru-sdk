@@ -2,9 +2,7 @@
     "name": "@angular-ru/commitlint",
     "version": "12.0.0",
     "description": "Shared commit lint config for Angular projects",
-    "bugs": {
-        "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
-    },
+    "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
     "repository": "git+https://github.com/Angular-RU/angular-ru-sdk.git",
     "license": "MIT",
     "author": "angular-ru@yandex.ru",

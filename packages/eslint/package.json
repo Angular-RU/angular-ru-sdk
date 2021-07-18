@@ -1,20 +1,10 @@
 {
-    "name": "@angular-ru/eslint-config",
-    "version": "15.306.2",
+    "name": "@angular-ru/eslint",
+    "version": "12.0.0",
     "description": "Angular-RU package",
-    "keywords": [
-        "angular-ru",
-        "angular",
-        "sdk"
-    ],
-    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/eslint-config#readme",
-    "bugs": {
-        "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
-    },
+    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/eslint#readme",
+    "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
+    "repository": "git+https://github.com/Angular-RU/angular-ru-sdk.git",
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "main": "index.js",
@@ -33,9 +23,6 @@
         "prepare:report": "yarn prepare:report-ts && yarn prepare:report-i18n && yarn prepare:report-file-pattern",
         "prepare:folder": "rm -rf ./out && mkdir ./out",
         "test": "yarn prepare:folder && yarn prepare:report && yarn -s jest --config ./jest.config.js"
-    },
-    "resolutions": {
-        "eslint": "7.30.0"
     },
     "dependencies": {
         "@angular-eslint/eslint-plugin": "12.3.0",

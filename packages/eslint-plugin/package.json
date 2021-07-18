@@ -2,20 +2,9 @@
     "name": "@angular-ru/eslint-plugin",
     "version": "15.301.0",
     "description": "Angular-RU package",
-    "keywords": [
-        "angular-ru",
-        "angular",
-        "eslint-plugin",
-        "sdk"
-    ],
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/eslint-plugin-file-pattern#readme",
-    "bugs": {
-        "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
-    },
+    "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
+    "repository": "git+https://github.com/Angular-RU/angular-ru-sdk.git",
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "main": "lib/index.js",

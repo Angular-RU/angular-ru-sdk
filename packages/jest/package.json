@@ -1,20 +1,10 @@
 {
-    "name": "@angular-ru/jest-utils",
-    "version": "15.304.1",
+    "name": "@angular-ru/jest",
+    "version": "12.0.0",
     "description": "Angular-RU package",
-    "keywords": [
-        "angular-ru",
-        "angular",
-        "sdk"
-    ],
-    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/jest-utils#readme",
-    "bugs": {
-        "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
-    },
+    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/jest#readme",
+    "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
+    "repository": "git+https://github.com/Angular-RU/angular-ru-sdk.git",
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "main": "lib/index.js",

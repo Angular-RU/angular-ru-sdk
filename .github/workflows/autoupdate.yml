@@ -1,12 +1,6 @@
 name: autoupdate
-on:
-    # This will trigger on all pushes to all branches.
-    push: {}
-    # Alternatively, you can only trigger if commits are pushed to certain branches, e.g.:
-    # push:
-    #   branches:
-    #     - master
-    #     - unstable
+on: [push]
+
 jobs:
     autoupdate:
         name: autoupdate
@@ -14,9 +8,10 @@ jobs:
         steps:
             - uses: docker://chinthakagodawita/autoupdate-action:v1
               env:
-                  GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
-                  DRY_RUN: "false"
-                  MERGE_MSG: "branch was auto-updated"
-                  RETRY_COUNT: "5"
-                  RETRY_SLEEP: "300"
-                  MERGE_CONFLICT_ACTION: "ignore"
+                  GITHUB_TOKEN: '${{ secrets.GH_TOKEN }}'
+                  DRY_RUN: 'false'
+                  MERGE_MSG: 'branch was auto-updated'
+                  EXCLUDED_LABELS: 'renovate'
+                  RETRY_COUNT: '5'
+                  RETRY_SLEEP: '300'
+                  MERGE_CONFLICT_ACTION: 'ignore'

@@ -1,55 +1,41 @@
-### 18.07.2021 @angular-ru/commitlint-config
+### 15.07.2021 - 18.07.2021
 
 -   before
 
 ```ts
+$ npm install @angular-ru/build-tools -D -D
+$ npm install @angular-ru/tsconfig -D
 $ npm install @angular-ru/commitlint-config -D
-```
-
--   after
-
-```ts
-$ npm install @angular-ru/commitlint -D
-```
-
-### 17.07.2021
-
--   before
-
-```ts
-$ npm install @angular-ru/build-tools -D
+$ npm install @angular-ru/renovate-config -D
+$ npm install @angular-ru/prettier-config -D
+$ npm install @angular-ru/eslint-config -D
 ```
 
 -   after
 
 ```ts
 $ npm install @angular-ru/dev-dependencies -D
-```
-
-### 15.07.2021
-
--   before
-
-```ts
-$ npm install @angular-ru/tsconfig -D
-```
-
-`tsconfig.json`
-
-```json
-{ "extends": "@angular-ru/tsconfig" }
-```
-
--   after
-
-```ts
 $ npm install @angular-ru/typescript -D
+$ npm install @angular-ru/commitlint -D
+$ npm install @angular-ru/renovate -D
+$ npm install @angular-ru/prettier -D
+$ npm install @angular-ru/eslint -D
 ```
 
 `tsconfig.json`
 
 ```json
-{ "extends": "@angular-ru/typescript/tsconfig.json" }
+{
+    "extends": "@angular-ru/typescript/tsconfig.json"
+}
+```
+
+`tsconfig.json`
+
+```json
+{
+    "extends": "@angular-ru/typescript/tsconfig.json"
+}
 ```
 
 ### 1.07.2021 @angular-ru/common

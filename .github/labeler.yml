@@ -1,63 +1,63 @@
-"comp: @angular-ru/build-tools":
-    - packages/build-tools/*
-    - packages/build-tools/**/*
+'comp: @angular-ru/dev-dependencies':
+    - packages/dev-dependencies/*
+    - packages/dev-dependencies/**/*
 
-"comp: @angular-ru/commitlint-config":
-    - packages/commitlint-config/*
-    - packages/commitlint-config/**/*
+'comp: @angular-ru/commitlint':
+    - packages/commitlint/*
+    - packages/commitlint/**/*
 
-"comp: @angular-ru/common":
+'comp: @angular-ru/typescript':
+    - packages/typescript/*
+    - packages/typescript/**/*
+
+'comp: @angular-ru/common':
     - packages/common/*
     - packages/common/**/*
 
-"comp: @angular-ru/eslint-config":
-    - packages/eslint-config/*
-    - packages/eslint-config/**/*
+'comp: @angular-ru/eslint-config':
+    - packages/eslint/*
+    - packages/eslint/**/*
 
-"comp: @angular-ru/eslint-plugin":
+'comp: @angular-ru/eslint-plugin':
     - packages/eslint-plugin/*
     - packages/eslint-plugin/**/*
 
-"comp: @angular-ru/flex-layout":
+'comp: @angular-ru/flex-layout':
     - packages/flex-layout/*
     - packages/flex-layout/**/*
 
-"comp: @angular-ru/http":
+'comp: @angular-ru/http':
     - packages/http/*
     - packages/http/**/*
 
-"comp: @angular-ru/jest-utils":
-    - packages/jest-utils/*
-    - packages/jest-utils/**/*
+'comp: @angular-ru/jest':
+    - packages/jest/*
+    - packages/jest/**/*
 
-"comp: @angular-ru/logger":
+'comp: @angular-ru/logger':
     - packages/logger/*
     - packages/logger/**/*
 
-"comp: @angular-ru/ng-excel-builder":
+'comp: @angular-ru/ng-excel-builder':
     - packages/ng-excel-builder/*
     - packages/ng-excel-builder/**/*
 
-"comp: @angular-ru/ng-table-builder":
+'comp: @angular-ru/ng-table-builder':
     - packages/ng-table-builder/*
     - packages/ng-table-builder/**/*
 
-"comp: @angular-ru/prettier-config":
-    - packages/prettier-config/*
-    - packages/prettier-config/**/*
+'comp: @angular-ru/prettier':
+    - packages/prettier/*
+    - packages/prettier/**/*
 
-"comp: @angular-ru/renovate-config":
-    - packages/renovate-config/*
-    - packages/renovate-config/**/*
+'comp: @angular-ru/renovate':
+    - packages/renovate/*
+    - packages/renovate/**/*
 
-"comp: @angular-ru/stream":
+'comp: @angular-ru/stream':
     - packages/stream/*
     - packages/stream/**/*
 
-"comp: @angular-ru/tooltip":
+'comp: @angular-ru/tooltip':
     - packages/tooltip/*
     - packages/tooltip/**/*
-
-"comp: @angular-ru/tsconfig":
-    - packages/tsconfig/*
-    - packages/tsconfig/**/*
