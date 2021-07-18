@@ -1,13 +1,7 @@
 # Shareable Configs for Angular projects
 
-<p>
-  <a href="https://badge.fury.io/js/%40angular-ru%2Feslint-config">
-    <img src="https://badge.fury.io/js/%40angular-ru%2Feslint-config.svg" />
-  </a>
-  <a href="https://npm-stat.com/charts.html?package=%40angular-ru%2Feslint-config&from=2019-09-01">
-    <img src="https://img.shields.io/npm/dw/@angular-ru/eslint-config" />
-  </a>
-</p>
+[![image](https://badge.fury.io/js/%40angular-ru%2Feslint.svg)](https://badge.fury.io/js/%40angular-ru%2Feslint)
+[![image](https://img.shields.io/npm/dw/@angular-ru/eslint)](https://badge.fury.io/js/%40angular-ru%2Feslint)
 
 These rules are the most stringent, which allow you to control all types of data in your project, as well as more
 strictly determine the order of imports.
@@ -15,7 +9,7 @@ strictly determine the order of imports.
 ### Quick start
 
 ```bash
-$ npm install @angular-ru/eslint-config -D
+$ npm install @angular-ru/eslint -D
 ```
 
 Also you do not need to manually install ESLint, it will always be the newest.
@@ -24,7 +18,7 @@ Add to your `.eslintrc.json`:
 
 ```json
 {
-    "extends": "@angular-ru/eslint-config"
+    "extends": "@angular-ru/eslint"
 }
 ```
 
@@ -40,7 +34,7 @@ $ eslint "**/*.ts"
 
 ```json5
 {
-    extends: '@angular-ru/eslint-config',
+    extends: '@angular-ru/eslint',
     rules: {
         // override extended rules
     }
@@ -53,7 +47,7 @@ $ eslint "**/*.ts"
 
 ```json
 {
-    "extends": "@angular-ru/eslint-config",
+    "extends": "@angular-ru/eslint",
     "rules": {
         "import/no-deprecated": "error"
     }

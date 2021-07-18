@@ -1,26 +1,20 @@
 # Automatic create Jest config for Angular projects
 
-<p>
-  <a href="https://badge.fury.io/js/%40angular-ru%2Fjest-utils">
-    <img src="https://badge.fury.io/js/%40angular-ru%2Fjest-utils.svg" />
-  </a>
-  <a href="https://npm-stat.com/charts.html?package=%40angular-ru%2Fjest-utils&from=2019-09-01">
-    <img src="https://img.shields.io/npm/dw/@angular-ru/jest-utils" />
-  </a>
-</p>
+[![image](https://badge.fury.io/js/%40angular-ru%2Fjest.svg)](https://badge.fury.io/js/%40angular-ru%2Fjest)
+[![image](https://img.shields.io/npm/dw/@angular-ru/jest)](https://badge.fury.io/js/%40angular-ru%2Fjest)
 
 It's very convenient to testing our applications with Angular and Jest now.
 
 ### Quick start
 
 ```bash
-$ npm install @angular-ru/jest-utils -D
+$ npm install @angular-ru/jest -D
 ```
 
 Create `jest.config.js`
 
 ```ts
-const { createTsJestConfig } = require('@angular-ru/jest-utils');
+const { createTsJestConfig } = require('@angular-ru/jest');
 
 module.exports = createTsJestConfig({
     tsConfig: './tsconfig.json',
