@@ -1,5 +1,4 @@
 name: CI build
-
 on: [push]
 
 jobs:

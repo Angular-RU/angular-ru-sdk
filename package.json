@@ -4,13 +4,8 @@
     "private": true,
     "description": "Angular-RU SDK",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk#readme",
-    "bugs": {
-        "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
-    },
+    "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
+    "repository": "git+https://github.com/Angular-RU/angular-ru-sdk.git",
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "workspaces": [
@@ -25,7 +20,7 @@
         "postinstall": "ngcc --async && husky install && lerna run symlink",
         "lint": "yarn eslint --fix --cache --cache-location .cache/.eslintcache \"**/*.ts\" --ignore-pattern **/file-suites/**",
         "format:sort-package-json": "yarn sort-package-json \"package.json\" \"packages/*/package.json\"",
-        "format:prettier": "yarn prettier \"**/*.{ts,html,css,scss,md,js,json}\" --write",
+        "format:prettier": "yarn prettier \"**/*.{ts,html,css,scss,md,js,json,yml}\" --write",
         "release:bump": "RELEASE_VERSION=$(node -p -e \"require('./lerna.json').version\") && yarn npe version \"$RELEASE_VERSION\"",
         "pretest": "lerna run pretest",
         "test": "lerna run test",
@@ -33,7 +28,7 @@
     },
     "commitlint": {
         "extends": [
-            "./packages/commitlint-config/index.js"
+            "./packages/commitlint/index.js"
         ]
     },
     "lint-staged": {
@@ -55,9 +50,9 @@
         "not IE 11",
         "> 1%"
     ],
-    "prettier": "./packages/prettier-config/prettier.config.js",
+    "prettier": "./packages/prettier/prettier.config.js",
     "eslintConfig": {
-        "extends": "./packages/eslint-config/index.js"
+        "extends": "./packages/eslint/index.js"
     },
     "resolutions": {
         "@types/node": "15.14.2"

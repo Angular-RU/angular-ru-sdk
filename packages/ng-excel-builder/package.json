@@ -2,21 +2,9 @@
     "name": "@angular-ru/ng-excel-builder",
     "version": "15.306.0",
     "description": "Angular-RU package",
-    "keywords": [
-        "angular-ru",
-        "angular",
-        "excel",
-        "builder",
-        "sdk"
-    ],
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/ng-excel-builder#readme",
-    "bugs": {
-        "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
-    },
+    "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
+    "repository": "git+https://github.com/Angular-RU/angular-ru-sdk.git",
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "scripts": {

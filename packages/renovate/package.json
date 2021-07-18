@@ -1,22 +1,10 @@
 {
-    "name": "@angular-ru/renovate-config",
-    "version": "15.305.1",
+    "name": "@angular-ru/renovate",
+    "version": "12.0.0",
     "description": "Shared Renovate config for Angular projects",
-    "keywords": [
-        "angular-ru",
-        "angular",
-        "sdk",
-        "renovate",
-        "renovate-config"
-    ],
-    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/renovate-config#readme",
-    "bugs": {
-        "url": "https://github.com/Angular-RU/angular-ru-sdk/issues"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Angular-RU/angular-ru-sdk.git"
-    },
+    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/renovate#readme",
+    "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
+    "repository": "git+https://github.com/Angular-RU/angular-ru-sdk.git",
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "publishConfig": {
@@ -25,7 +13,7 @@
     "renovate-config": {
         "default": {
             "enabled": true,
-            "automerge": false,
+            "automerge": true,
             "pinVersions": true,
             "rangeStrategy": "bump",
             "timezone": "Europe/Moscow",
@@ -36,10 +24,9 @@
             "dependencyDashboard": false,
             "dependencyDashboardApproval": false,
             "semanticPrefix": "build",
-            "prHourlyLimit": 2,
+            "rebaseWhen": "behind-base-branch",
             "labels": [
-                "comp: build & ci",
-                "action: review"
+                "renovate"
             ],
             "baseBranches": [
                 "master"
@@ -49,6 +36,21 @@
                 "packages/**/package.json"
             ],
             "packageRules": [
+                {
+                    "matchUpdateTypes": [
+                        "major"
+                    ],
+                    "automerge": false
+                },
+                {
+                    "matchUpdateTypes": [
+                        "minor",
+                        "patch",
+                        "pin",
+                        "digest"
+                    ],
+                    "automerge": true
+                },
                 {
                     "depTypeList": [
                         "peerDependencies"

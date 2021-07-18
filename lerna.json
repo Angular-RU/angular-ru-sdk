@@ -39,12 +39,7 @@
         "create": {
             "yes": true,
             "license": "MIT",
-            "description": "Angular-RU SDK package",
-            "keywords": [
-                "angular-ru",
-                "angular",
-                "sdk"
-            ]
+            "description": "Angular-RU SDK package"
         }
     }
 }
