@@ -1,3 +1,13 @@
+#### independent (2021-07-19)
+
+##### Continuous Integration
+
+-   renovate-approve support (#775) (089c5b5d)
+
+##### New Features
+
+-   **@angular-ru/eslint-config-enterprise:** add enterprise config package (b42bfed0)
+
 #### independent (2021-07-18)
 
 ##### Documentation Changes
