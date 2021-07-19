@@ -1,5 +1,11 @@
 #### independent (2021-07-19)
 
+##### Build System / Dependencies
+
+-   update eslint (#766) (b1ba1194)
+
+#### independent (2021-07-19)
+
 ##### Continuous Integration
 
 -   renovate-approve support (#775) (089c5b5d)
