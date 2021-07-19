@@ -2,6 +2,13 @@
 
 ##### Build System / Dependencies
 
+-   update dependency lint-staged to v11.0.1 (#758) (ceebefa4)
+-   update angular to v12.1.2 (#764) (31a9b732)
+
+#### independent (2021-07-19)
+
+##### Build System / Dependencies
+
 -   update eslint (#766) (b1ba1194)
 
 #### independent (2021-07-19)
