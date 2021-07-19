@@ -14,9 +14,9 @@
     - packages/common/*
     - packages/common/**/*
 
-'comp: @angular-ru/eslint':
-    - packages/eslint/*
-    - packages/eslint/**/*
+'comp: @angular-ru/eslint-config-enterprise':
+    - packages/eslint-config-enterprise/*
+    - packages/eslint-config-enterprise/**/*
 
 'comp: @angular-ru/eslint-plugin':
     - packages/eslint-plugin/*
