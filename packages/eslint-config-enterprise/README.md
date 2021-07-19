@@ -9,7 +9,7 @@ strictly determine the order of imports.
 ### Quick start
 
 ```bash
-$ npm install @angular-ru/eslint -D
+$ npm install @angular-ru/eslint-config-enterprise -D
 ```
 
 Also you do not need to manually install ESLint, it will always be the newest.
@@ -18,7 +18,7 @@ Add to your `.eslintrc.json`:
 
 ```json
 {
-    "extends": "@angular-ru/eslint"
+    "extends": "@angular-ru/eslint-config-enterprise"
 }
 ```
 
@@ -34,7 +34,7 @@ $ eslint "**/*.ts"
 
 ```json5
 {
-    extends: '@angular-ru/eslint',
+    extends: '@angular-ru/eslint-config-enterprise',
     rules: {
         // override extended rules
     }
@@ -47,7 +47,7 @@ $ eslint "**/*.ts"
 
 ```json
 {
-    "extends": "@angular-ru/eslint",
+    "extends": "@angular-ru/eslint-config-enterprise",
     "rules": {
         "import/no-deprecated": "error"
     }
