@@ -2,6 +2,12 @@
 
 ##### Documentation Changes
 
+-   update (#771) (6d4a1379)
+
+#### independent (2021-07-18)
+
+##### Documentation Changes
+
 -   update BREAKING_CHANGES.md (4efa0dfa)
 
 ##### New Features
