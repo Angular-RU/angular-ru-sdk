@@ -1,4 +1,4 @@
-name: Pull Request Labeler
+name: ci/labels
 on: [push]
 
 jobs:

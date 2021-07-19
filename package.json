@@ -52,7 +52,7 @@
     ],
     "prettier": "./packages/prettier/prettier.config.js",
     "eslintConfig": {
-        "extends": "./packages/eslint/index.js"
+        "extends": "./packages/eslint-config-enterprise/index.js"
     },
     "resolutions": {
         "@types/node": "15.14.2"

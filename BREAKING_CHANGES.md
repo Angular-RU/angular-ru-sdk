@@ -1,4 +1,4 @@
-### 15.07.2021 - 18.07.2021
+### 15.07.2021 - 19.07.2021
 
 -   before
 
@@ -19,7 +19,7 @@ $ npm install @angular-ru/typescript -D
 $ npm install @angular-ru/commitlint -D
 $ npm install @angular-ru/renovate -D
 $ npm install @angular-ru/prettier -D
-$ npm install @angular-ru/eslint -D
+$ npm install @angular-ru/eslint-config-enterprise -D
 ```
 
 `tsconfig.json`
