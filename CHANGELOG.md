@@ -1,3 +1,9 @@
+#### independent (2021-07-20)
+
+##### Build System / Dependencies
+
+-   update dependency eslint-plugin-jsdoc to v35.5.0 (#778) (260a759b)
+
 #### independent (2021-07-19)
 
 ##### Build System / Dependencies
