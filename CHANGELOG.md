@@ -1,5 +1,11 @@
 #### independent (2021-07-20)
 
+##### New Features
+
+-   **@angular-ru/common:** move websocket to common (#779) (ceca2604)
+
+#### independent (2021-07-20)
+
 ##### Build System / Dependencies
 
 -   update dependency eslint-plugin-jsdoc to v35.5.0 (#778) (260a759b)
