@@ -1,8 +1,0 @@
-{
-    "extends": "./tsconfig.base.json",
-    "compilerOptions": {
-        "types": ["jest", "node"],
-        "preserveConstEnums": true
-    },
-    "include": ["**/*.spec.ts", "**/*.d.ts"]
-}
