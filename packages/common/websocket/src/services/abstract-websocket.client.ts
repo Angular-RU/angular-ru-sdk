@@ -1,6 +1,6 @@
 import { Injectable, NgZone, OnDestroy } from '@angular/core';
-import { Any, PlainObject } from '@angular-ru/common/typings';
-import { tryParseJson } from '@angular-ru/common/utils';
+import { Any, Nullable, PlainObject } from '@angular-ru/common/typings';
+import { isFalsy, tryParseJson } from '@angular-ru/common/utils';
 import { Observable, ReplaySubject, Subject, Subscription, throwError } from 'rxjs';
 import { WebSocketMessage } from 'rxjs/internal/observable/dom/WebSocketSubject';
 import { catchError, filter, map, take, takeUntil } from 'rxjs/operators';
@@ -22,9 +22,9 @@ export abstract class AbstractWebsocketClient<K extends string | PlainObject>
     public destroy$: Subject<boolean> = new Subject<boolean>();
     protected readonly messages$: Subject<WebsocketMessage<K, Any>> = new Subject();
     private connected: boolean = false;
-    private socket$!: WebSocketSubject<WebsocketMessage<K, Any>>;
-    private subscription!: Subscription;
-    private handlerPath!: string;
+    private socket$: Nullable<WebSocketSubject<WebsocketMessage<K, Any>>>;
+    private socketSubscription: Nullable<Subscription>;
+    private handlerPath: Nullable<string>;
 
     protected constructor(private readonly wsConfig: WebsocketConfig, private readonly ngZone: NgZone) {}
 
@@ -72,7 +72,7 @@ export abstract class AbstractWebsocketClient<K extends string | PlainObject>
     }
 
     public disconnect(): void {
-        this.subscription?.unsubscribe();
+        this.socketSubscription?.unsubscribe();
         this.socket$?.unsubscribe();
         this.destroy$.next(true);
         this.destroy$.complete();
@@ -92,7 +92,7 @@ export abstract class AbstractWebsocketClient<K extends string | PlainObject>
     }
 
     public sendMessage<T>(type: K, data: T): void {
-        this.socket$.next({ type, data });
+        this.socket$?.next({ type, data });
     }
 
     public ngOnDestroy(): void {
@@ -131,7 +131,7 @@ export abstract class AbstractWebsocketClient<K extends string | PlainObject>
 
     private _connect(): void {
         this.socket$ = webSocket(this.webSocketSubjectConfig);
-        this.subscription = this.socket$.pipe(takeUntil(this.destroy$)).subscribe(
+        this.socketSubscription = this.socket$.pipe(takeUntil(this.destroy$)).subscribe(
             (message: WebsocketMessage<K, Any>): void => {
                 window.requestAnimationFrame((): void => this.messages$.next(message));
             },
@@ -140,15 +140,23 @@ export abstract class AbstractWebsocketClient<K extends string | PlainObject>
     }
 
     private reconnect(): void {
-        if (!this.socket$.isStopped) {
-            this.socket$.complete();
-        }
-        if (!this.subscription.closed) {
-            this.subscription.unsubscribe();
-        }
+        this.completeStoppedSocket();
+        this.socketUnsubscribe();
 
         this.ngZone.runOutsideAngular((): void => {
             window.setTimeout((): void => this._connect(), this.wsConfig.reconnectionDelay);
         });
+    }
+
+    private completeStoppedSocket(): void {
+        if (isFalsy(this.socket$?.isStopped)) {
+            this.socket$?.complete();
+        }
+    }
+
+    private socketUnsubscribe(): void {
+        if (isFalsy(this.socketSubscription?.closed)) {
+            this.socketSubscription?.unsubscribe();
+        }
     }
 }

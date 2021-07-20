@@ -1,9 +1,24 @@
+### 20.07.2021
+
+-   before
+
+```ts
+$ npm install @angular-ru/websocket -D
+```
+
+-   after
+
+```ts
+$ npm install @angular-ru/common -D
+# import { WebsocketModule } from '@angular-ru/common/websocket'
+```
+
 ### 15.07.2021 - 19.07.2021
 
 -   before
 
 ```ts
-$ npm install @angular-ru/build-tools -D -D
+$ npm install @angular-ru/build-tools -D
 $ npm install @angular-ru/tsconfig -D
 $ npm install @angular-ru/commitlint-config -D
 $ npm install @angular-ru/renovate-config -D

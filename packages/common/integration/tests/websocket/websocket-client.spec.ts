@@ -1,7 +1,13 @@
 import { Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { Any } from '@angular-ru/common/typings';
-import { AbstractWebsocketClient, WebsocketConfig, WebsocketMessage, PLAIN_TEXT, BINARY } from '@angular-ru/websocket';
+import {
+    AbstractWebsocketClient,
+    WebsocketConfig,
+    WebsocketMessage,
+    PLAIN_TEXT,
+    BINARY
+} from '@angular-ru/common/websocket';
 
 @Injectable()
 class WebsocketSimpleParseClient extends AbstractWebsocketClient<Any> {
