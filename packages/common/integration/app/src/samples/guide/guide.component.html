@@ -10,6 +10,10 @@
 
     <h3>inputFilter directive</h3>
 
+    <h4>default filter (only numbers)</h4>
+    <input inputFilter [value]="valueNumbers" class="filter-input" />
+    <span>{{ onlyNumbers }}</span>
+
     <h4>simple input</h4>
     <input [inputFilter]="filterRegExp" [value]="value" class="filter-input" />
     <span>{{ filterRegExp }}</span>
