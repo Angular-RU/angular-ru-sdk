@@ -1,20 +1,21 @@
 import { By } from '@angular/platform-browser';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FilterModule } from '@angular-ru/common/directives';
+import { InputFilterModule } from '@angular-ru/common/directives';
 import { FilterPredicate } from '@angular-ru/common/string';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { Nullable } from '@angular-ru/common/typings';
+import { REG_EXP_NO_CYRILLIC } from '@angular-ru/common/regexp';
 
-describe('[TEST]: Filter Simple Input', () => {
+describe('[TEST]: inputFilter Simple Input', () => {
     let fixture: Nullable<ComponentFixture<TestComponent>> = null;
     let component: Nullable<TestComponent> = null;
     let debugElement: Nullable<DebugElement> = null;
 
     @Component({
         selector: 'test',
-        template: ` <input [value]="filterValue" [filter]="predicate" /> `,
+        template: ` <input [value]="filterValue" [inputFilter]="predicate" /> `,
         changeDetection: ChangeDetectionStrategy.OnPush
     })
     class TestComponent {
@@ -26,7 +27,7 @@ describe('[TEST]: Filter Simple Input', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [ReactiveFormsModule, MatInputModule, FilterModule],
+            imports: [ReactiveFormsModule, MatInputModule, InputFilterModule.forRoot({ default: REG_EXP_NO_CYRILLIC })],
             declarations: [TestComponent]
         }).compileComponents();
 
@@ -84,5 +85,10 @@ describe('[TEST]: Filter Simple Input', () => {
         component!.predicate = (item: string): boolean => item === 'a' || item === 'b';
         setValueAndDispatch('aaabbbccc');
         expect(debugElement!.nativeElement.value).toEqual('aaabbb');
+    });
+
+    it('should filter cyrillic by default', () => {
+        setValueAndDispatch('aaaДДДccc');
+        expect(debugElement!.nativeElement.value).toEqual('aaaccc');
     });
 });

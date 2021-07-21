@@ -2,12 +2,12 @@ import { AbstractControl, FormBuilder, ReactiveFormsModule } from '@angular/form
 import { By } from '@angular/platform-browser';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FilterModule } from '@angular-ru/common/directives';
+import { InputFilterModule } from '@angular-ru/common/directives';
 import { FilterPredicate } from '@angular-ru/common/string';
 import { MatInputModule } from '@angular/material/input';
 import { Nullable } from '@angular-ru/common/typings';
 
-describe('[TEST]: Filter Dynamic', () => {
+describe('[TEST]: inputFilter Dynamic', () => {
     let fixture: Nullable<ComponentFixture<DynamicTestComponent>> = null;
     let component: Nullable<DynamicTestComponent> = null;
     let debugElement: Nullable<DebugElement> = null;
@@ -16,7 +16,7 @@ describe('[TEST]: Filter Dynamic', () => {
         selector: 'test',
         template: `
             <div [formGroup]="form">
-                <input matInput type="text" [formControl]="control" [filter]="predicate" />
+                <input matInput type="text" [formControl]="control" [inputFilter]="predicate" />
             </div>
         `,
         changeDetection: ChangeDetectionStrategy.OnPush
@@ -31,7 +31,7 @@ describe('[TEST]: Filter Dynamic', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [ReactiveFormsModule, MatInputModule, FilterModule],
+            imports: [ReactiveFormsModule, MatInputModule, InputFilterModule],
             declarations: [DynamicTestComponent]
         }).compileComponents();
     });
@@ -84,7 +84,7 @@ describe('[TEST]: Filter Dynamic', () => {
         expect(debugElement!.nativeElement.value).toEqual('ccc');
     });
 
-    it('should correct sync modelView with filter characters', () => {
+    it('should correct sync modelView with inputFilter characters', () => {
         expect(component!.form.value).toEqual({ a: 'kkk', b: null });
         expect(component!.control).toEqual(component?.form.get('b'));
         expect(debugElement!.nativeElement.value).toEqual('');
