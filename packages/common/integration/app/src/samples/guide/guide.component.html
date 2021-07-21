@@ -11,15 +11,15 @@
     <h3>inputFilter directive</h3>
 
     <h4>default filter (only numbers)</h4>
-    <input inputFilter [value]="valueNumbers" class="filter-input" />
+    <input inputFilter [value]="valueNumbers" class="input-filter" />
     <span>{{ onlyNumbers }}</span>
 
     <h4>simple input</h4>
-    <input [inputFilter]="filterRegExp" [value]="value" class="filter-input" />
+    <input [inputFilter]="filterRegExp" [value]="value" class="input-filter" />
     <span>{{ filterRegExp }}</span>
 
     <h4>with control</h4>
-    <input [formControl]="filterControl" [inputFilter]="filterRegExp" class="filter-input" />
+    <input [formControl]="filterControl" [inputFilter]="filterRegExp" class="input-filter" />
     <span>{{ filterRegExp }}</span>
     <br />
     control: "{{ filterControl.value }}"
