@@ -1,13 +1,13 @@
 import { By } from '@angular/platform-browser';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FilterModule } from '@angular-ru/common/directives';
+import { InputFilterModule } from '@angular-ru/common/directives';
 import { FilterPredicate } from '@angular-ru/common/string';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { Nullable } from '@angular-ru/common/typings';
 
-describe('[TEST]: Filter Input', () => {
+describe('[TEST]: inputFilter Input', () => {
     let fixture: Nullable<ComponentFixture<TestComponent>> = null;
     let component: Nullable<TestComponent> = null;
     let debugElement: Nullable<DebugElement> = null;
@@ -16,7 +16,7 @@ describe('[TEST]: Filter Input', () => {
         selector: 'test',
         template: `
             <div [formGroup]="form">
-                <input matInput type="text" formControlName="value" [filter]="predicate" />
+                <input matInput type="text" formControlName="value" [inputFilter]="predicate" />
             </div>
         `,
         changeDetection: ChangeDetectionStrategy.OnPush
@@ -30,7 +30,7 @@ describe('[TEST]: Filter Input', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [ReactiveFormsModule, MatInputModule, FilterModule],
+            imports: [ReactiveFormsModule, MatInputModule, InputFilterModule],
             declarations: [TestComponent]
         }).compileComponents();
     });

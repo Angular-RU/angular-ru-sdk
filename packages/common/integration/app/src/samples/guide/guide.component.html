@@ -8,14 +8,14 @@
         </mat-form-field>
     </form>
 
-    <h3>filter directive</h3>
+    <h3>inputFilter directive</h3>
 
     <h4>simple input</h4>
-    <input [filter]="filterRegExp" [value]="value" class="filter-input" />
+    <input [inputFilter]="filterRegExp" [value]="value" class="filter-input" />
     <span>{{ filterRegExp }}</span>
 
     <h4>with control</h4>
-    <input [formControl]="filterControl" [filter]="filterRegExp" class="filter-input" />
+    <input [formControl]="filterControl" [inputFilter]="filterRegExp" class="filter-input" />
     <span>{{ filterRegExp }}</span>
     <br />
     control: "{{ filterControl.value }}"

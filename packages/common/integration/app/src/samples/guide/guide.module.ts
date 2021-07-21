@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
-import { AmountFormatModule, FilterModule } from '@angular-ru/common/directives';
+import { AmountFormatModule, InputFilterModule } from '@angular-ru/common/directives';
 
 import { GuideComponent } from './guide.component';
 
@@ -24,7 +24,7 @@ import { GuideComponent } from './guide.component';
         MatInputModule,
         AmountFormatModule,
         ReactiveFormsModule,
-        FilterModule
+        InputFilterModule
     ]
 })
 export class GuideModule {}
