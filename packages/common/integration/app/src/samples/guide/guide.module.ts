@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { AmountFormatModule, InputFilterModule } from '@angular-ru/common/directives';
 
 import { GuideComponent } from './guide.component';
+import { REG_EXP_ONLY_NUMBERS } from './properties/constants';
 
 @NgModule({
     declarations: [GuideComponent],
@@ -24,7 +25,9 @@ import { GuideComponent } from './guide.component';
         MatInputModule,
         AmountFormatModule,
         ReactiveFormsModule,
-        InputFilterModule
+        InputFilterModule.forChild({
+            default: REG_EXP_ONLY_NUMBERS
+        })
     ]
 })
 export class GuideModule {}

@@ -1,7 +1,9 @@
-import { Directive, ElementRef, HostListener, Input, Optional } from '@angular/core';
+import { Directive, ElementRef, HostListener, Inject, Input, Optional } from '@angular/core';
+import { hasItems } from '@angular-ru/common/array';
 import { ControlValueInterceptor } from '@angular-ru/common/forms';
 import { filter, FilterPredicate } from '@angular-ru/common/string';
 import { Nullable } from '@angular-ru/common/typings';
+import { checkValueIsFilled } from '@angular-ru/common/utils';
 
 import { InputFilterConfig } from './input-filter.config';
 
@@ -10,13 +12,14 @@ import { InputFilterConfig } from './input-filter.config';
     providers: [ControlValueInterceptor]
 })
 export class InputFilterDirective {
-    @Input() public inputFilter: Nullable<FilterPredicate> = null;
+    @Input() public inputFilter: Nullable<FilterPredicate | ''> = null;
     private manualEvent: Nullable<InputEvent> = null;
 
     constructor(
         private readonly elementRef: ElementRef<HTMLInputElement>,
         @Optional()
-        private readonly config: InputFilterConfig
+        @Inject(InputFilterConfig)
+        private readonly config: Nullable<InputFilterConfig>
     ) {}
 
     @HostListener('input', ['$event'])
@@ -25,7 +28,7 @@ export class InputFilterDirective {
             return;
         }
 
-        const predicate: FilterPredicate = this.inputFilter ?? this.config?.default ?? [];
+        const predicate: FilterPredicate = this.getPredicate();
         const baseValue: string = this.elementRef.nativeElement.value;
         const preparedValue: string = filter(baseValue, predicate);
 
@@ -36,5 +39,15 @@ export class InputFilterDirective {
         this.manualEvent = new InputEvent('input', { ...baseEvent, data: preparedValue });
         this.elementRef.nativeElement.value = this.manualEvent?.data ?? '';
         this.elementRef.nativeElement.dispatchEvent(this.manualEvent);
+    }
+
+    private getPredicate(): FilterPredicate {
+        const isInputPredicate: boolean = Array.isArray(this.inputFilter)
+            ? hasItems(this.inputFilter)
+            : checkValueIsFilled(this.inputFilter);
+        const predicate: Nullable<FilterPredicate | ''> = isInputPredicate
+            ? this.inputFilter
+            : this.config?.default ?? [];
+        return predicate as FilterPredicate;
     }
 }
