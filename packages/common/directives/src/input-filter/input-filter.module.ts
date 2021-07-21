@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { Nullable } from '@angular-ru/common/typings';
 
 import { InputFilterConfig } from './input-filter.config';
 import { InputFilterDirective } from './input-filter.directive';
@@ -10,7 +11,7 @@ import { InputFilterDirective } from './input-filter.directive';
     exports: [InputFilterDirective]
 })
 export class InputFilterModule {
-    public static forRoot(config: Partial<InputFilterConfig> = {}): ModuleWithProviders<InputFilterModule> {
+    public static forRoot(config: Nullable<Partial<InputFilterConfig>>): ModuleWithProviders<InputFilterModule> {
         return {
             ngModule: InputFilterModule,
             providers: [
@@ -22,7 +23,7 @@ export class InputFilterModule {
         };
     }
 
-    public static forChild(config: Partial<InputFilterConfig> = {}): ModuleWithProviders<InputFilterModule> {
+    public static forChild(config: Nullable<Partial<InputFilterConfig>>): ModuleWithProviders<InputFilterModule> {
         return {
             ngModule: InputFilterModule,
             providers: [
