@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Input, Optional } from '@angular/core';
+import { Directive, ElementRef, HostListener, Inject, Input, Optional } from '@angular/core';
 import { hasItems } from '@angular-ru/common/array';
 import { ControlValueInterceptor } from '@angular-ru/common/forms';
 import { filter, FilterPredicate } from '@angular-ru/common/string';
@@ -18,7 +18,8 @@ export class InputFilterDirective {
     constructor(
         private readonly elementRef: ElementRef<HTMLInputElement>,
         @Optional()
-        private readonly config: InputFilterConfig
+        @Inject(InputFilterConfig)
+        private readonly config: Nullable<InputFilterConfig>
     ) {}
 
     @HostListener('input', ['$event'])
