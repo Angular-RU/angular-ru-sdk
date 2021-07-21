@@ -21,4 +21,16 @@ export class InputFilterModule {
             ]
         };
     }
+
+    public static forChild(config: Partial<InputFilterConfig> = {}): ModuleWithProviders<InputFilterModule> {
+        return {
+            ngModule: InputFilterModule,
+            providers: [
+                {
+                    provide: InputFilterConfig,
+                    useValue: config
+                }
+            ]
+        };
+    }
 }
