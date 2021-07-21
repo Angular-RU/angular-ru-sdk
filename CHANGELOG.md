@@ -1,5 +1,11 @@
 #### independent (2021-07-21)
 
+##### Build System / Dependencies
+
+-   update dependency ts-jest to v27.0.4 (#784) (283a6506)
+
+#### independent (2021-07-21)
+
 #### independent (2021-07-21)
 
 ##### Refactors
