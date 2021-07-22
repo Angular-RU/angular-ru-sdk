@@ -1,3 +1,10 @@
+#### independent (2021-07-22)
+
+##### Build System / Dependencies
+
+-   update dependency eslint-plugin-jsdoc to v35.5.1 (#786) (398f2796)
+-   update angular to v12.1.3 (#785) (fe35961d)
+
 #### independent (2021-07-21)
 
 ##### Build System / Dependencies
