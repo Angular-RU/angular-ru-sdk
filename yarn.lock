@@ -2664,11 +2664,6 @@
   resolved "https://registry.npmjs.org/@types/estree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
   integrity sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==
 
-"@types/estree@^0.0.49":
-  version "0.0.49"
-  resolved "https://registry.npmjs.org/@types/estree/-/estree-0.0.49.tgz#3facb98ebcd4114a4ecef74e0de2175b56fd4464"
-  integrity sha512-K1AFuMe8a+pXmfHTtnwBvqoEylNKVeaiKYkjmcEAdytMQVJ/i9Fu7sc13GxgXdO49gkE7Hy8SyJonUZUn+eVaw==
-
 "@types/glob@^7.1.1":
   version "7.1.4"
   resolved "https://registry.npmjs.org/@types/glob/-/glob-7.1.4.tgz#ea59e21d2ee5c517914cb4bc8e4153b99e566672"
@@ -7813,16 +7808,14 @@ jest-pnp-resolver@^1.2.2:
   resolved "https://registry.npmjs.org/jest-pnp-resolver/-/jest-pnp-resolver-1.2.2.tgz#b704ac0ae028a89108a4d040b3f919dfddc8e33c"
   integrity sha512-olV41bKSMm8BdnuMsewT4jqlZ8+3TCARAXjZGT9jcoSnrfUnRCqnMoF9XEeoWjbzObpqF9dRhHQj0Xb9QdF6/w==
 
-jest-preset-angular@9.0.4:
-  version "9.0.4"
-  resolved "https://registry.npmjs.org/jest-preset-angular/-/jest-preset-angular-9.0.4.tgz#d3a8dbc7902d6034ecf83122f5eb2e417fdea352"
-  integrity sha512-N/nPUwMXTW3bUiSzijn5vlQ51cuVEzJxDJ3s6EN8e3Wx2SF4Q9DBJIWpW+LVvSinLljYXJN9jPwkVstnnoJd9g==
+jest-preset-angular@9.0.5:
+  version "9.0.5"
+  resolved "https://registry.npmjs.org/jest-preset-angular/-/jest-preset-angular-9.0.5.tgz#0cbd86aee68a7ed3a84ffade7f40c277ce38b61c"
+  integrity sha512-FTvyTA1lXg6voqOV7gH/6ZXqalNCpD3Yuv+uJg11BAhO13wdjy/ebutiuQAqSq/Zu8zFS6oDIhCzan1EpyY0tQ==
   dependencies:
     jest-environment-jsdom "^27.0.0"
     pretty-format "^27.0.0"
     ts-jest "^27.0.0"
-  optionalDependencies:
-    webpack "^4.0.0 || ^5.30.0"
 
 jest-regex-util@^27.0.6:
   version "27.0.6"
@@ -13380,35 +13373,6 @@ webpack@5.44.0:
   dependencies:
     "@types/eslint-scope" "^3.7.0"
     "@types/estree" "^0.0.50"
-    "@webassemblyjs/ast" "1.11.1"
-    "@webassemblyjs/wasm-edit" "1.11.1"
-    "@webassemblyjs/wasm-parser" "1.11.1"
-    acorn "^8.4.1"
-    browserslist "^4.14.5"
-    chrome-trace-event "^1.0.2"
-    enhanced-resolve "^5.8.0"
-    es-module-lexer "^0.7.1"
-    eslint-scope "5.1.1"
-    events "^3.2.0"
-    glob-to-regexp "^0.4.1"
-    graceful-fs "^4.2.4"
-    json-parse-better-errors "^1.0.2"
-    loader-runner "^4.2.0"
-    mime-types "^2.1.27"
-    neo-async "^2.6.2"
-    schema-utils "^3.0.0"
-    tapable "^2.1.1"
-    terser-webpack-plugin "^5.1.3"
-    watchpack "^2.2.0"
-    webpack-sources "^2.3.0"
-
-"webpack@^4.0.0 || ^5.30.0":
-  version "5.43.0"
-  resolved "https://registry.npmjs.org/webpack/-/webpack-5.43.0.tgz#36a122d6e9bac3836273857f56ed7801d40c9145"
-  integrity sha512-ex3nB9uxNI0azzb0r3xGwi+LS5Gw1RCRSKk0kg3kq9MYdIPmLS6UI3oEtG7esBaB51t9I+5H+vHmL3htaxqMSw==
-  dependencies:
-    "@types/eslint-scope" "^3.7.0"
-    "@types/estree" "^0.0.49"
     "@webassemblyjs/ast" "1.11.1"
     "@webassemblyjs/wasm-edit" "1.11.1"
     "@webassemblyjs/wasm-parser" "1.11.1"
