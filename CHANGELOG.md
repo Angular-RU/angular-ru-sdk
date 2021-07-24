@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update dependency jest-preset-angular to v9.0.5 (#788) (2fd1a243)
+
+#### independent (2021-07-22)
+
+##### Build System / Dependencies
+
 -   update dependency lint-staged to v11.1.0 (#787) (88488d8c)
 
 #### independent (2021-07-22)
