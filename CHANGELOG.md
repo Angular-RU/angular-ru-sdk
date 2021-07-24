@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update dependency @types/node to v15.14.3 (#793) (3ce43ecf)
+
+#### independent (2021-07-24)
+
+##### Build System / Dependencies
+
 -   update dependency lint-staged to v11.1.1 (#792) (1e59c5e0)
 
 #### independent (2021-07-22)
