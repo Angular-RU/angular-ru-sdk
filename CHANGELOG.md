@@ -1,3 +1,10 @@
+#### independent (2021-07-25)
+
+##### Build System / Dependencies
+
+-   update dependency eslint-plugin-jsdoc to v36 (#794) (c33e1129)
+-   update dependency @commitlint/config-conventional to v13 (#791) (da83d69f)
+
 #### independent (2021-07-24)
 
 ##### Build System / Dependencies
