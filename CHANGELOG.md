@@ -1,3 +1,9 @@
+#### independent (2021-07-26)
+
+##### Build System / Dependencies
+
+-   update eslint to v4.28.5 (#795) (af752d10)
+
 #### independent (2021-07-25)
 
 ##### Build System / Dependencies
