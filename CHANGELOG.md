@@ -1,3 +1,9 @@
+#### independent (2021-07-28)
+
+##### Build System / Dependencies
+
+-   update dependency eslint-plugin-jsdoc to v36.0.6 (#799) (828a5aaf)
+
 #### independent (2021-07-27)
 
 ##### Build System / Dependencies
