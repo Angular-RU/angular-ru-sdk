@@ -2,6 +2,13 @@
 
 ##### Build System / Dependencies
 
+-   update dependency @types/node to v15.14.4 (#802) (4739d085)
+-   update angular to v12.1.4 (#801) (a72c76c5)
+
+#### independent (2021-07-28)
+
+##### Build System / Dependencies
+
 -   update dependency @types/jasmine to v3.8.2 (#800) (7048050d)
 
 #### independent (2021-07-28)
