@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update dependency @types/jasmine to v3.8.2 (#800) (7048050d)
+
+#### independent (2021-07-28)
+
+##### Build System / Dependencies
+
 -   update dependency eslint-plugin-jsdoc to v36.0.6 (#799) (828a5aaf)
 
 #### independent (2021-07-27)
