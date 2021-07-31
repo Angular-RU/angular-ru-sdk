@@ -1,4 +1,0 @@
-{
-    "extends": "./tsconfig.base.json",
-    "include": ["integration/app/main.ts", "integration/app/polyfills.ts"]
-}

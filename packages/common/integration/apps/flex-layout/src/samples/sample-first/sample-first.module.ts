@@ -4,7 +4,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
-import { FlexLayoutModule } from '@angular-ru/flex-layout';
+import { FlexLayoutModule } from '@angular-ru/common/flex-layout';
 
 import { SampleFirstComponent } from './sample-first.component';
 

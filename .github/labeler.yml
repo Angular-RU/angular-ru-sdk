@@ -22,10 +22,6 @@
     - packages/eslint-plugin/*
     - packages/eslint-plugin/**/*
 
-'comp: @angular-ru/flex-layout':
-    - packages/flex-layout/*
-    - packages/flex-layout/**/*
-
 'comp: @angular-ru/http':
     - packages/http/*
     - packages/http/**/*
