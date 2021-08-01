@@ -72,6 +72,7 @@ export class TableBuilderComponent<T>
     @ViewChild('footer', { static: false }) public footerRef!: ElementRef<HTMLDivElement>;
     @ViewChild(AutoHeightDirective, { static: false })
     public readonly autoHeight!: AutoHeightDirective<T>;
+
     public dirty: boolean = true;
     public rendering: boolean = false;
     public isRendered: boolean = false;
