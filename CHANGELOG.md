@@ -1,3 +1,9 @@
+#### independent (2021-08-01)
+
+##### New Features
+
+-   move flex layout to common (#805) (ffac3c2d)
+
 #### independent (2021-07-31)
 
 ##### Build System / Dependencies
