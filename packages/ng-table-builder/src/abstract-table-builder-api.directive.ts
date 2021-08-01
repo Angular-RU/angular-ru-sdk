@@ -91,22 +91,31 @@ export abstract class AbstractTableBuilderApiDirective<T>
     @Output() public readonly sortChanges: EventEmitter<OrderedField[]> = new EventEmitter();
     @ContentChild(NgxOptionsComponent, { static: false })
     public columnOptions: Nullable<NgxOptionsComponent> = null;
+
     @ContentChildren(NgxColumnComponent)
     public columnTemplates: Nullable<QueryList<NgxColumnComponent<T>>> = null;
+
     @ContentChild(NgxContextMenuComponent, { static: false })
     public contextMenuTemplate: Nullable<NgxContextMenuComponent<T>> = null;
+
     @ContentChild(NgxEmptyComponent, { read: ElementRef })
     public ngxEmptyContent: Nullable<ElementRef> = null;
+
     @ContentChild(NgxHeaderComponent, { static: false })
     public headerTemplate: Nullable<NgxHeaderComponent> = null;
+
     @ContentChild(NgxFooterComponent, { static: false })
     public footerTemplate: Nullable<NgxFooterComponent> = null;
+
     @ContentChild(NgxFilterComponent, { static: false })
     public filterTemplate: Nullable<NgxFilterComponent<T>> = null;
+
     @ViewChild('tableViewport', { static: true })
     public scrollContainer!: ElementRef<HTMLElement>;
+
     @ViewChildren('column', { read: false })
     public columnList!: QueryList<ElementRef<HTMLDivElement>>;
+
     public scrollbarWidth: number = SCROLLBAR_SIZE;
     public columnListWidth: number = 0;
     public viewPortInfo: ViewPortInfo = {};

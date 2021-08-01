@@ -106,7 +106,7 @@
                         "main": "packages/common/integration/apps/flex-layout/main.ts",
                         "index": "packages/common/integration/apps/flex-layout/index.html",
                         "polyfills": "packages/common/integration/apps/flex-layout/polyfills.ts",
-                        "outputPath": "packages/common/dist/integration/apps",
+                        "outputPath": "packages/common/dist/integration/apps/flex-layout",
                         "tsConfig": "packages/common/integration/apps/flex-layout/tsconfig.app.json",
                         "assets": ["packages/common/integration/apps/flex-layout/assets"],
                         "styles": [
@@ -167,37 +167,25 @@
                 }
             }
         },
-        "http-library": {
-            "prefix": "",
-            "root": ".",
-            "sourceRoot": "packages/http",
-            "projectType": "library",
-            "architect": {
-                "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
-                    "options": {
-                        "tsConfig": "packages/http/tsconfig.lib.json",
-                        "project": "packages/http/ng-package.json"
-                    }
-                }
-            }
-        },
         "http-app": {
             "prefix": "",
             "root": ".",
-            "sourceRoot": "packages/http/integration/app",
+            "sourceRoot": "packages/common/integration/apps/http",
             "projectType": "application",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "main": "packages/http/integration/app/main.ts",
-                        "index": "packages/http/integration/app/index.html",
-                        "polyfills": "packages/http/integration/app/polyfills.ts",
-                        "outputPath": "packages/http/dist/integration",
-                        "tsConfig": "packages/http/tsconfig.app.json",
-                        "assets": ["packages/http/integration/app/assets"],
-                        "styles": [".styles/integration-app.style.scss", "packages/http/integration/app/styles.scss"],
+                        "main": "packages/common/integration/apps/http/main.ts",
+                        "index": "packages/common/integration/apps/http/index.html",
+                        "polyfills": "packages/common/integration/apps/http/polyfills.ts",
+                        "outputPath": "packages/common/dist/integration/apps/http",
+                        "tsConfig": "packages/common/integration/apps/http/tsconfig.app.json",
+                        "assets": ["packages/common/integration/apps/http/assets"],
+                        "styles": [
+                            ".styles/integration-app.style.scss",
+                            "packages/common/integration/apps/http/styles.scss"
+                        ],
                         "aot": false,
                         "vendorChunk": true,
                         "extractLicenses": false,
@@ -210,8 +198,8 @@
                         "production": {
                             "fileReplacements": [
                                 {
-                                    "replace": "packages/http/integration/app/environments/environment.ts",
-                                    "with": "packages/http/integration/app/environments/environment.prod.ts"
+                                    "replace": "packages/common/integration/apps/http/environments/environment.ts",
+                                    "with": "packages/common/integration/apps/http/environments/environment.prod.ts"
                                 }
                             ],
                             "optimization": true,

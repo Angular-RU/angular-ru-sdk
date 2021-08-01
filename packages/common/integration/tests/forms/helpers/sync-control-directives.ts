@@ -41,5 +41,6 @@ export class AutoSplitDirective {
             this.interceptor.detach(this.descriptor);
         }
     }
+
     constructor(private readonly interceptor: ControlValueInterceptor) {}
 }

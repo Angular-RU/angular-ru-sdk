@@ -23,6 +23,7 @@ export class TableTheadComponent<T> {
     @Input('sortable-count') public sortableCount: number = 0;
     @Input('filterable-definition') public filterableDefinition: PlainObjectOf<string> | ReadonlyMap<unknown, unknown> =
         {};
+
     @Input('client-row-height') public clientRowHeight: Nullable<number> = null;
     @Input('column-schema') public columnSchema: Nullable<ColumnsSchema> = null;
     @Output() public readonly resizing: EventEmitter<ResizeEvent> = new EventEmitter();

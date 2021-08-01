@@ -69,6 +69,7 @@ module.exports = {
                     // Note: after prettier 2.3+ we have collisions with current rules
                     'off'
                 ],
+                'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
                 camelcase: 'off',
                 'comma-dangle': ['error', 'never'],
                 'comma-spacing': ['error', { before: false, after: true }],
