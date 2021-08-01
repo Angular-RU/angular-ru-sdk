@@ -10,5 +10,6 @@
             "@angular-ru/common/date": "angular-ru-common-date"
         }
     },
+    "assets": ["./flex-layout/styles"],
     "dest": "./dist/library"
 }

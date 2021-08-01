@@ -23,18 +23,21 @@
             "prefix": "",
             "root": ".",
             "projectType": "application",
-            "sourceRoot": "packages/common/integration/app",
+            "sourceRoot": "packages/common/integration/apps/common",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "packages/common/dist/integration",
-                        "tsConfig": "packages/common/tsconfig.app.json",
-                        "main": "packages/common/integration/app/main.ts",
-                        "index": "packages/common/integration/app/index.html",
-                        "assets": ["packages/common/integration/app/assets"],
-                        "polyfills": "packages/common/integration/app/polyfills.ts",
-                        "styles": [".styles/integration-app.style.scss", "packages/common/integration/app/styles.scss"],
+                        "outputPath": "packages/common/dist/integration/apps/common",
+                        "tsConfig": "packages/common/integration/apps/common/tsconfig.app.json",
+                        "main": "packages/common/integration/apps/common/main.ts",
+                        "index": "packages/common/integration/apps/common/index.html",
+                        "assets": ["packages/common/integration/apps/common/assets"],
+                        "polyfills": "packages/common/integration/apps/common/polyfills.ts",
+                        "styles": [
+                            ".styles/integration-app.style.scss",
+                            "packages/common/integration/apps/common/styles.scss"
+                        ],
                         "aot": false,
                         "vendorChunk": true,
                         "extractLicenses": false,
@@ -47,8 +50,8 @@
                         "production": {
                             "fileReplacements": [
                                 {
-                                    "replace": "packages/common/integration/app/environments/environment.ts",
-                                    "with": "packages/common/integration/app/environments/environment.prod.ts"
+                                    "replace": "packages/common/integration/apps/common/environments/environment.ts",
+                                    "with": "packages/common/integration/apps/common/environments/environment.prod.ts"
                                 }
                             ],
                             "optimization": true,
@@ -73,7 +76,9 @@
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": { "browserTarget": "common-app:build" },
                     "configurations": {
-                        "production": { "browserTarget": "common-app:build:production" }
+                        "production": {
+                            "browserTarget": "common-app:build:production"
+                        }
                     }
                 },
                 "deploy": {
@@ -89,39 +94,24 @@
                 }
             }
         },
-        "flex-layout-library": {
-            "prefix": "",
-            "root": ".",
-            "projectType": "library",
-            "sourceRoot": "packages/flex-layout",
-            "architect": {
-                "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
-                    "options": {
-                        "tsConfig": "packages/flex-layout/tsconfig.lib.json",
-                        "project": "packages/flex-layout/ng-package.json"
-                    }
-                }
-            }
-        },
         "flex-layout-app": {
             "prefix": "",
             "root": ".",
             "projectType": "application",
-            "sourceRoot": "packages/flex-layout/integration/app",
+            "sourceRoot": "packages/common/integration/apps/flex-layout",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "main": "packages/flex-layout/integration/app/main.ts",
-                        "index": "packages/flex-layout/integration/app/index.html",
-                        "polyfills": "packages/flex-layout/integration/app/polyfills.ts",
-                        "outputPath": "packages/flex-layout/dist/integration",
-                        "tsConfig": "packages/flex-layout/tsconfig.app.json",
-                        "assets": ["packages/flex-layout/integration/app/assets"],
+                        "main": "packages/common/integration/apps/flex-layout/main.ts",
+                        "index": "packages/common/integration/apps/flex-layout/index.html",
+                        "polyfills": "packages/common/integration/apps/flex-layout/polyfills.ts",
+                        "outputPath": "packages/common/dist/integration/apps",
+                        "tsConfig": "packages/common/integration/apps/flex-layout/tsconfig.app.json",
+                        "assets": ["packages/common/integration/apps/flex-layout/assets"],
                         "styles": [
                             ".styles/integration-app.style.scss",
-                            "packages/flex-layout/integration/app/styles.scss"
+                            "packages/common/integration/apps/flex-layout/styles.scss"
                         ],
                         "aot": false,
                         "vendorChunk": true,
@@ -135,8 +125,8 @@
                         "production": {
                             "fileReplacements": [
                                 {
-                                    "replace": "packages/flex-layout/integration/app/environments/environment.ts",
-                                    "with": "packages/flex-layout/integration/app/environments/environment.prod.ts"
+                                    "replace": "packages/common/integration/apps/flex-layout/environments/environment.ts",
+                                    "with": "packages/common/integration/apps/flex-layout/environments/environment.prod.ts"
                                 }
                             ],
                             "optimization": true,
@@ -465,10 +455,7 @@
                         "main": "packages/ng-table-builder/integration/app/main.ts",
                         "polyfills": "packages/ng-table-builder/integration/app/polyfills.ts",
                         "tsConfig": "packages/ng-table-builder/tsconfig.app.json",
-                        "assets": [
-                            "packages/ng-table-builder/integration/app/favicon.ico",
-                            "packages/ng-table-builder/integration/app/assets"
-                        ],
+                        "assets": ["packages/ng-table-builder/integration/app/assets"],
                         "styles": [
                             ".styles/integration-app.style.scss",
                             "packages/ng-table-builder/integration/app/styles.scss"
