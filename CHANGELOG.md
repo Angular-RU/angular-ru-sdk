@@ -1,5 +1,11 @@
 #### independent (2021-08-01)
 
+##### New Features
+
+-   move http to common (#807) (bffce65e)
+
+#### independent (2021-08-01)
+
 ##### Build System / Dependencies
 
 -   update dependency @types/node to v15.14.5 (#806) (37529247)
