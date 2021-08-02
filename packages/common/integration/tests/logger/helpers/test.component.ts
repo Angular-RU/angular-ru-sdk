@@ -1,21 +1,24 @@
 // noinspection AngularMissingOrInvalidDeclarationInModule
 
 import { Component, OnInit } from '@angular/core';
+import {
+    DebugLog,
+    ErrorLog,
+    Group,
+    GroupCollapsed,
+    InfoLog,
+    Log,
+    LogFn,
+    Logger,
+    LoggerLevel,
+    LoggerService,
+    TimerInfo,
+    TimerLog,
+    TraceLog,
+    WarnLog
+} from '@angular-ru/common/logger';
 import { Fn, Nullable } from '@angular-ru/common/typings';
 import { isNotNil } from '@angular-ru/common/utils';
-
-import { DebugLog } from '../../../src/decorators/debug.decorator';
-import { ErrorLog } from '../../../src/decorators/error.decorator';
-import { Group } from '../../../src/decorators/groups/group.decorator';
-import { GroupCollapsed } from '../../../src/decorators/groups/group-collapsed.decorator';
-import { InfoLog } from '../../../src/decorators/info.decorator';
-import { Log } from '../../../src/decorators/log.decorator';
-import { Logger } from '../../../src/decorators/logger.decorator';
-import { TimerLog } from '../../../src/decorators/timer.decorator';
-import { TraceLog } from '../../../src/decorators/trace.decorator';
-import { WarnLog } from '../../../src/decorators/warn.decorator';
-import { LogFn, LoggerLevel, TimerInfo } from '../../../src/interfaces/logger.external';
-import { LoggerService } from '../../../src/logger.service';
 
 interface HttpDebugInterface {
     method: string;

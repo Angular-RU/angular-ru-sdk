@@ -1,8 +1,8 @@
-import { LoggerService } from '../../src/logger.service';
+import { LoggerService } from '@angular-ru/common/logger';
 import { ConsoleFake, TestLoggerLineType } from './helpers/console-fake';
 import { TestBed } from '@angular/core/testing';
-import { LoggerModule } from '../../src/logger.module';
-import { LoggerLevel } from '../../src/interfaces/logger.external';
+import { LoggerModule } from '@angular-ru/common/logger';
+import { LoggerLevel } from '@angular-ru/common/logger';
 
 describe('[TEST]: Check style', () => {
     let logger: LoggerService;

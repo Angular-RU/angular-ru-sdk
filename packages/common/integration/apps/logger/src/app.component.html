@@ -1,4 +1,4 @@
-<div class="ext-box" id="app" [class.load]="isLoaded">
+<div class="ext-box" id="app">
     <div class="int-box">
         <div class="container">
             <div class="row">
@@ -10,7 +10,7 @@
                 </div>
             </div>
 
-            <div id="console-activate" class="row example" [class.no-display]="!devToolsIsOpen">
+            <div id="console-activate" class="row example">
                 <div class="col-3">
                     <button class="center-block" (click)="exampleBasicMethods()">Show me</button>
                     <h5 class="center m-bottom">
@@ -107,12 +107,6 @@
                     <button class="center-block" (click)="exampleBasicMethods()">Show me</button>
                     <h5 class="center m-bottom">Full configuration</h5>
                 </div>
-            </div>
-        </div>
-
-        <div id="console-dis-activate" class="row example" [class.no-display]="devToolsIsOpen">
-            <div class="col-12">
-                <h4 class="center m-bottom">You need open console</h4>
             </div>
         </div>
     </div>

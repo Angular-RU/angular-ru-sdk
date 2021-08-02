@@ -26,10 +26,6 @@
     - packages/jest/*
     - packages/jest/**/*
 
-'comp: @angular-ru/logger':
-    - packages/logger/*
-    - packages/logger/**/*
-
 'comp: @angular-ru/ng-excel-builder':
     - packages/ng-excel-builder/*
     - packages/ng-excel-builder/**/*
