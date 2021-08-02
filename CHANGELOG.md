@@ -1,3 +1,9 @@
+#### independent (2021-08-02)
+
+##### New Features
+
+-   move logger to common (#808) (6eba2185)
+
 #### independent (2021-08-01)
 
 ##### New Features
