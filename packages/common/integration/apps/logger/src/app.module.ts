@@ -1,8 +1,8 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { LoggerModule } from '@angular-ru/common/logger';
 import { isTrue } from '@angular-ru/common/utils';
-import { LoggerModule } from '@angular-ru/logger';
 
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';

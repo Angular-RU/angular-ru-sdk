@@ -1,9 +1,9 @@
 import { PlainObject } from '@angular-ru/common/typings';
 import { TestBed } from '@angular/core/testing';
-import { LoggerModule } from '../../src/logger.module';
-import { LoggerService } from '../../src/logger.service';
+import { LoggerModule } from '@angular-ru/common/logger';
+import { LoggerService } from '@angular-ru/common/logger';
 import { ConsoleFake, TestLoggerLineType } from './helpers/console-fake';
-import { LoggerLevel } from '../../src/interfaces/logger.external';
+import { LoggerLevel } from '@angular-ru/common/logger';
 
 describe('[TEST]: Execute method by Level', () => {
     let logger: LoggerService;

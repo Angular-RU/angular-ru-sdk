@@ -1,5 +1,4 @@
-import { LoggerInjector } from '../../src/logger.injector';
-import { LoggerService } from '../../src/logger.service';
+import { LoggerInjector, LoggerService } from '@angular-ru/common/logger';
 import { Nullable } from '@angular-ru/common/typings';
 
 describe('[TEST]: Check injector error', () => {

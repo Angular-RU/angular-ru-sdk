@@ -240,37 +240,22 @@
                 }
             }
         },
-        "logger-library": {
-            "prefix": "",
-            "root": ".",
-            "sourceRoot": "packages/logger",
-            "projectType": "library",
-            "architect": {
-                "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
-                    "options": {
-                        "tsConfig": "packages/logger/tsconfig.lib.json",
-                        "project": "packages/logger/ng-package.json"
-                    }
-                }
-            }
-        },
         "logger-app": {
             "prefix": "",
             "root": ".",
-            "sourceRoot": "packages/logger/integration/app",
+            "sourceRoot": "packages/common/integration/apps/logger",
             "projectType": "application",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "main": "packages/logger/integration/app/main.ts",
-                        "index": "packages/logger/integration/app/index.html",
-                        "polyfills": "packages/logger/integration/app/polyfills.ts",
-                        "outputPath": "packages/logger/dist/integration",
-                        "tsConfig": "packages/logger/tsconfig.app.json",
-                        "assets": ["packages/logger/integration/app/assets"],
-                        "styles": ["packages/logger/integration/app/styles.css"],
+                        "main": "packages/common/integration/apps/logger/main.ts",
+                        "index": "packages/common/integration/apps/logger/index.html",
+                        "polyfills": "packages/common/integration/apps/logger/polyfills.ts",
+                        "outputPath": "packages/common/dist/integration/apps/logger",
+                        "tsConfig": "packages/common/integration/apps/logger/tsconfig.app.json",
+                        "assets": ["packages/common/integration/apps/logger/assets"],
+                        "styles": ["packages/common/integration/apps/logger/styles.css"],
                         "aot": false,
                         "vendorChunk": true,
                         "extractLicenses": false,
@@ -283,8 +268,8 @@
                         "production": {
                             "fileReplacements": [
                                 {
-                                    "replace": "packages/logger/integration/app/environments/environment.ts",
-                                    "with": "packages/logger/integration/app/environments/environment.prod.ts"
+                                    "replace": "packages/common/integration/apps/logger/environments/environment.ts",
+                                    "with": "packages/common/integration/apps/logger/environments/environment.prod.ts"
                                 }
                             ],
                             "optimization": true,

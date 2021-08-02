@@ -2,11 +2,8 @@
 
 > Lightweight and configurable Angular logger
 
-[![npm version](https://badge.fury.io/js/%40angular-ru%2Flogger.svg)](https://badge.fury.io/js/%40angular-ru%2Flogger)
-[![npm-stat](https://img.shields.io/npm/dt/@angular-ru/logger.svg)](https://npm-stat.com/charts.html?package=@angular-ru/logger&from=2017-01-12)
-
 ```ts
-import { LoggerModule } from '@angular-ru/logger';
+import { LoggerModule } from '@angular-ru/common/logger';
 ...
 
 @NgModule({
@@ -45,11 +42,11 @@ setting of logging levels and convenient work with groups. Among other things, y
 ## Logging
 
 ```
-$ npm install @angular-ru/logger --save
+$ npm install @angular-ru/common --save
 ```
 
 ```ts
-import { LoggerModule } from '@angular-ru/logger';
+import { LoggerModule } from '@angular-ru/common/logger';
 ...
 
 @NgModule({
@@ -68,7 +65,7 @@ export class AppModule {}
 ### Example: basic methods
 
 ```ts
-import { LoggerService } from '@angular-ru/logger';
+import { LoggerService } from '@angular-ru/common/logger';
 
 export class AppComponent implements OnInit {
     constructor(private readonly logger: LoggerService) {}
@@ -90,7 +87,7 @@ export class AppComponent implements OnInit {
 -   **Disable trace on console (filter):**
 
 ```ts
-import { LoggerService } from '@angular-ru/logger';
+import { LoggerService } from '@angular-ru/common/logger';
 
 export class AppComponent implements OnInit {
     constructor(private readonly logger: LoggerService) {}
@@ -110,7 +107,7 @@ export class AppComponent implements OnInit {
 -   **Logger groups with auto closed (usage callback):**
 
 ```ts
-import { LoggerService } from '@angular-ru/logger';
+import { LoggerService } from '@angular-ru/common/logger';
 
 export class AppComponent implements OnInit {
     constructor(private readonly logger: LoggerService) {}
@@ -146,7 +143,7 @@ export class AppComponent implements OnInit {
 -   **Logger nested groups (with pipe):**
 
 ```ts
-import { LoggerService } from '@angular-ru/logger';
+import { LoggerService } from '@angular-ru/common/logger';
 
 export class AppComponent implements OnInit {
     constructor(private readonly logger: LoggerService) {}
@@ -200,7 +197,7 @@ export class AppComponent implements OnInit {
 Basic parameterization
 
 ```ts
-import { LoggerService } from '@angular-ru/logger';
+import { LoggerService } from '@angular-ru/common/logger';
 
 export class AppComponent implements OnInit {
     constructor(private readonly logger: LoggerService) {}
@@ -229,7 +226,7 @@ export class AppComponent implements OnInit {
 -   **Logger level groups (pretty usage API):**
 
 ```ts
-import { LoggerService, LoggerLevel } from '@angular-ru/logger';
+import { LoggerService, LoggerLevel } from '@angular-ru/common/logger';
 
 export class AppComponent implements OnInit {
     constructor(private readonly logger: LoggerService) {}
@@ -298,7 +295,7 @@ export class AppComponent implements OnInit {
 ### Example: set style line
 
 ```ts
-import { LoggerService } from '@angular-ru/logger';
+import { LoggerService } from '@angular-ru/common/logger';
 
 export class AppComponent implements OnInit {
     constructor(private readonly logger: LoggerService) {}
@@ -321,7 +318,7 @@ export class AppComponent implements OnInit {
 ### Example: set global style line
 
 ```ts
-import { LoggerService } from '@angular-ru/logger';
+import { LoggerService } from '@angular-ru/common/logger';
 
 export class AppComponent implements OnInit {
     constructor(private readonly logger: LoggerService) {}
@@ -341,7 +338,7 @@ export class AppComponent implements OnInit {
 ### Example: CSS classes
 
 ```ts
-import { LoggerModule } from '@angular-ru/logger';
+import { LoggerModule } from '@angular-ru/common/logger';
 
 @NgModule({
     // ..
@@ -364,7 +361,7 @@ import { LoggerModule } from '@angular-ru/logger';
 ```
 
 ```ts
-import { LoggerService } from '@angular-ru/logger';
+import { LoggerService } from '@angular-ru/common/logger';
 
 export class AppComponent implements OnInit {
     constructor(private readonly logger: LoggerService) {}
@@ -387,7 +384,7 @@ export class AppModule {}
 ### Example: pretty json
 
 ```ts
-import { LoggerService } from '@angular-ru/logger';
+import { LoggerService } from '@angular-ru/common/logger';
 
 export class AppComponent implements OnInit {
     constructor(private readonly logger: LoggerService) {}
@@ -407,7 +404,17 @@ export class AppComponent implements OnInit {
 ### Example: decorators
 
 ```ts
-import { LoggerService, Logger, DebugLog, TraceLog, InfoLog, WarnLog, ErrorLog, Log, LogFn } from '@angular-ru/logger';
+import {
+    LoggerService,
+    Logger,
+    DebugLog,
+    TraceLog,
+    InfoLog,
+    WarnLog,
+    ErrorLog,
+    Log,
+    LogFn
+} from '@angular-ru/common/logger';
 
 export class AppComponent {
     @Logger() public logger: LoggerService;
@@ -435,7 +442,7 @@ export class AppComponent {
 ### Example: decorator groups
 
 ```ts
-import { LoggerService, Logger, LoggerLevel, Group } from '@angular-ru/logger';
+import { LoggerService, Logger, LoggerLevel, Group } from '@angular-ru/common/logger';
 
 export class AppComponent {
     @Logger() public logger: LoggerService;
@@ -457,7 +464,7 @@ export class AppComponent {
 ### Example: decorator group with function title
 
 ```ts
-import { Log, LogFn, Group } from '@angular-ru/logger';
+import { Log, LogFn, Group } from '@angular-ru/common/logger';
 
 export class AppComponent {
     @Log() public log: LogFn;
@@ -479,7 +486,7 @@ export class AppComponent {
 ### Example: timer decorator
 
 ```ts
-import { Log, LogFn, TimerLog, LoggerLevel, LoggerService, Logger } from '@angular-ru/logger';
+import { Log, LogFn, TimerLog, LoggerLevel, LoggerService, Logger } from '@angular-ru/common/logger';
 export class AppComponent {
     @Log() public log: LogFn;
     @Logger() public logger: LoggerService;
@@ -503,7 +510,7 @@ export class AppComponent {
 ### Example: format output
 
 ```ts
-import { LoggerModule, NgModule, FormatOutput } from '@angular-ru/logger';
+import { LoggerModule, NgModule, FormatOutput } from '@angular-ru/common/logger';
 
 @NgModule({
     //..
@@ -521,7 +528,7 @@ export class AppModule {}
 ```
 
 ```ts
-import { LoggerService, OnInit } from '@angular-ru/logger';
+import { LoggerService, OnInit } from '@angular-ru/common/logger';
 
 export class AppComponent implements OnInit {
     constructor(private readonly logger: LoggerService) {}
@@ -541,7 +548,7 @@ export class AppComponent implements OnInit {
 ### Example: full configurations
 
 ```ts
-import { LoggerModule, NgModule, LoggerLevel } from '@angular-ru/logger';
+import { LoggerModule, NgModule, LoggerLevel } from '@angular-ru/common/logger';
 
 @NgModule({
     // ..
@@ -581,7 +588,7 @@ export class AppModule {}
 ```
 
 ```ts
-import { LoggerService } from '@angular-ru/logger';
+import { LoggerService } from '@angular-ru/common/logger';
 
 export class AppComponent implements OnInit {
 

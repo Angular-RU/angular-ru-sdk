@@ -12,9 +12,8 @@ import {
     TimerLog,
     TraceLog,
     WarnLog
-} from '@angular-ru/logger';
-import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
-import * as devtools from 'devtools-detect';
+} from '@angular-ru/common/logger';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
     selector: 'app-root',
@@ -23,7 +22,7 @@ import * as devtools from 'devtools-detect';
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
     @Logger() public loggerInjection!: LoggerService;
     @TraceLog() public trace!: LogFn;
     @DebugLog() public debug!: LogFn;
@@ -32,9 +31,6 @@ export class AppComponent implements OnInit {
     @WarnLog() public warn!: LogFn;
     @Log() public log!: LogFn;
 
-    public isLoaded: boolean = false;
-    public devToolsIsOpen: boolean = devtools.isOpen;
-
     private readonly traceIsWork: string = 'trace is worked';
     private readonly debugIsWork: string = 'debug is worked';
     private readonly infoIsWork: string = 'info is worked';
@@ -42,13 +38,6 @@ export class AppComponent implements OnInit {
     private readonly errorIsWork: string = 'error is worked';
 
     constructor(private readonly logger: LoggerService) {}
-
-    public ngOnInit(): void {
-        this.isLoaded = true;
-        window.addEventListener('devtoolschange', (e: devtools.DevToolsEvent) => {
-            this.devToolsIsOpen = e.detail.isOpen;
-        });
-    }
 
     public exampleBasicMethods(): void {
         this.logger.clear();
