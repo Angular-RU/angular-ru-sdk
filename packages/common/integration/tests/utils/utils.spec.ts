@@ -21,7 +21,7 @@ import {
     tryParseJson
 } from '@angular-ru/common/utils';
 
-import { FileToDownloadInfo } from '../../../dist/library/utils/download-file';
+import { FileToDownloadInfo } from '@angular-ru/common/utils/download-file';
 
 describe('[TEST]: Common utils', () => {
     it('$any/$cast', () => {

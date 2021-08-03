@@ -9,7 +9,7 @@ import {
     ExcelBuilderModule,
     ExcelBuilderTextColumnInterceptor,
     ExcelService
-} from '@angular-ru/ng-excel-builder';
+} from '@angular-ru/common/excel';
 import { Observable, of } from 'rxjs';
 
 import { readFile, readFromBlob } from './helpers/file-utils';
