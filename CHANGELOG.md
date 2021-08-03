@@ -1,3 +1,9 @@
+#### independent (2021-08-03)
+
+##### New Features
+
+-   move excel to common (#810) (f681de3a)
+
 #### independent (2021-08-02)
 
 ##### Build System / Dependencies
