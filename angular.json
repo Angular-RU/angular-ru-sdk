@@ -60,14 +60,7 @@
                             "namedChunks": false,
                             "aot": true,
                             "extractLicenses": true,
-                            "buildOptimizer": true,
-                            "budgets": [
-                                {
-                                    "type": "initial",
-                                    "maximumWarning": "2mb",
-                                    "maximumError": "5mb"
-                                }
-                            ]
+                            "buildOptimizer": true
                         }
                     },
                     "defaultConfiguration": "production"
@@ -135,14 +128,7 @@
                             "namedChunks": false,
                             "aot": true,
                             "extractLicenses": true,
-                            "buildOptimizer": true,
-                            "budgets": [
-                                {
-                                    "type": "initial",
-                                    "maximumWarning": "2mb",
-                                    "maximumError": "5mb"
-                                }
-                            ]
+                            "buildOptimizer": true
                         }
                     },
                     "defaultConfiguration": "production"
@@ -208,14 +194,7 @@
                             "namedChunks": false,
                             "aot": true,
                             "extractLicenses": true,
-                            "buildOptimizer": true,
-                            "budgets": [
-                                {
-                                    "type": "initial",
-                                    "maximumWarning": "2mb",
-                                    "maximumError": "5mb"
-                                }
-                            ]
+                            "buildOptimizer": true
                         }
                     },
                     "defaultConfiguration": "production"
@@ -278,14 +257,7 @@
                             "namedChunks": false,
                             "aot": true,
                             "extractLicenses": true,
-                            "buildOptimizer": true,
-                            "budgets": [
-                                {
-                                    "type": "initial",
-                                    "maximumWarning": "2mb",
-                                    "maximumError": "5mb"
-                                }
-                            ]
+                            "buildOptimizer": true
                         }
                     },
                     "defaultConfiguration": "production"
@@ -310,40 +282,25 @@
                 }
             }
         },
-        "ng-excel-builder-library": {
-            "prefix": "",
-            "root": ".",
-            "projectType": "library",
-            "sourceRoot": "packages/ng-excel-builder",
-            "architect": {
-                "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
-                    "options": {
-                        "tsConfig": "packages/ng-excel-builder/tsconfig.lib.json",
-                        "project": "packages/ng-excel-builder/ng-package.json"
-                    }
-                }
-            }
-        },
-        "ng-excel-builder-app": {
+        "excel-app": {
             "root": ".",
             "prefix": "",
             "projectType": "application",
-            "sourceRoot": "packages/ng-excel-builder/integration/app",
+            "sourceRoot": "packages/common/integration/apps/excel",
             "schematics": {},
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "main": "packages/ng-excel-builder/integration/app/main.ts",
-                        "index": "packages/ng-excel-builder/integration/app/index.html",
-                        "polyfills": "packages/ng-excel-builder/integration/app/polyfills.ts",
-                        "outputPath": "packages/ng-excel-builder/dist/integration",
-                        "tsConfig": "packages/ng-excel-builder/tsconfig.app.json",
-                        "assets": ["packages/ng-excel-builder/integration/app/assets"],
+                        "main": "packages/common/integration/apps/excel/main.ts",
+                        "index": "packages/common/integration/apps/excel/index.html",
+                        "polyfills": "packages/common/integration/apps/excel/polyfills.ts",
+                        "outputPath": "packages/common/dist/integration/apps/excel",
+                        "tsConfig": "packages/common/integration/apps/excel/tsconfig.app.json",
+                        "assets": ["packages/common/integration/apps/excel/assets"],
                         "styles": [
                             ".styles/integration-app.style.scss",
-                            "packages/ng-excel-builder/integration/app/styles.css"
+                            "packages/common/integration/apps/excel/styles.css"
                         ],
                         "aot": false,
                         "vendorChunk": true,
@@ -357,8 +314,8 @@
                         "production": {
                             "fileReplacements": [
                                 {
-                                    "replace": "packages/ng-excel-builder/integration/app/environments/environment.ts",
-                                    "with": "packages/ng-excel-builder/integration/app/environments/environment.prod.ts"
+                                    "replace": "packages/common/integration/apps/excel/environments/environment.ts",
+                                    "with": "packages/common/integration/apps/excel/environments/environment.prod.ts"
                                 }
                             ],
                             "optimization": true,
@@ -367,23 +324,16 @@
                             "namedChunks": false,
                             "aot": true,
                             "extractLicenses": true,
-                            "buildOptimizer": true,
-                            "budgets": [
-                                {
-                                    "type": "initial",
-                                    "maximumWarning": "2mb",
-                                    "maximumError": "5mb"
-                                }
-                            ]
+                            "buildOptimizer": true
                         }
                     },
                     "defaultConfiguration": "production"
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
-                    "options": { "browserTarget": "ng-excel-builder-app:build" },
+                    "options": { "browserTarget": "excel-app:build" },
                     "configurations": {
-                        "production": { "browserTarget": "ng-excel-builder-app:build:production" }
+                        "production": { "browserTarget": "excel-app:build:production" }
                     }
                 },
                 "deploy": {
@@ -456,14 +406,7 @@
                             "aot": true,
                             "extractLicenses": true,
                             "vendorChunk": false,
-                            "buildOptimizer": true,
-                            "budgets": [
-                                {
-                                    "type": "initial",
-                                    "maximumWarning": "2mb",
-                                    "maximumError": "5mb"
-                                }
-                            ]
+                            "buildOptimizer": true
                         }
                     },
                     "defaultConfiguration": "production"
@@ -639,14 +582,7 @@
                             "namedChunks": false,
                             "aot": true,
                             "extractLicenses": true,
-                            "buildOptimizer": true,
-                            "budgets": [
-                                {
-                                    "type": "initial",
-                                    "maximumWarning": "2mb",
-                                    "maximumError": "5mb"
-                                }
-                            ]
+                            "buildOptimizer": true
                         }
                     },
                     "defaultConfiguration": "production"

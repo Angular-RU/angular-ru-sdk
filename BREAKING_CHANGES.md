@@ -147,7 +147,7 @@ expect(toNumber('30.000,65', 'de')).toEqual(30000.65);
 -   if you use `TranslateModule` from `@ngx-translate/core` then you need past
 
 ```ts
-import { EXCEL_BUILDER_NGX_TRANSLATE_FALLBACK_PROVIDER, ExcelBuilderModule } from '@angular-ru/ng-excel-builder';
+import { EXCEL_BUILDER_NGX_TRANSLATE_FALLBACK_PROVIDER, ExcelBuilderModule } from '@angular-ru/common/excel';
 
 @NgModule({
     // ...

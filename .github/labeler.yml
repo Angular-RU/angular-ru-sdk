@@ -26,10 +26,6 @@
     - packages/jest/*
     - packages/jest/**/*
 
-'comp: @angular-ru/ng-excel-builder':
-    - packages/ng-excel-builder/*
-    - packages/ng-excel-builder/**/*
-
 'comp: @angular-ru/ng-table-builder':
     - packages/ng-table-builder/*
     - packages/ng-table-builder/**/*

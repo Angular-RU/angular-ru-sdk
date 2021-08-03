@@ -8,7 +8,7 @@
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "scripts": {
-        "build:app": "ng build common-app && ng build flex-layout-app && ng build http-app && ng build logger-app",
+        "build:app": "ng build common-app && ng build flex-layout-app && ng build http-app && ng build logger-app && ng build excel-app",
         "build:lib": "ng build common-library && cp README.md dist/library && yarn symlink",
         "deploy": "echo 1; #cp README.md dist/integration && ng deploy common-app",
         "symlink": "sh symlink.sh",
