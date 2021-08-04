@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update dependency @types/node to v15.14.6 (#812) (404ccce2)
+
+#### independent (2021-08-04)
+
+##### Build System / Dependencies
+
 -   update angular (#811) (1a1359d4)
 
 #### independent (2021-08-03)
