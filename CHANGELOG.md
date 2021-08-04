@@ -1,3 +1,9 @@
+#### independent (2021-08-04)
+
+##### Build System / Dependencies
+
+-   update angular (#811) (1a1359d4)
+
 #### independent (2021-08-03)
 
 ##### New Features
