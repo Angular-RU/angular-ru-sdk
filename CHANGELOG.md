@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update dependency @types/node to v15.14.7 (#814) (4e545bfa)
+
+#### independent (2021-08-04)
+
+##### Build System / Dependencies
+
 -   update dependency @types/node to v15.14.6 (#812) (404ccce2)
 
 #### independent (2021-08-04)
