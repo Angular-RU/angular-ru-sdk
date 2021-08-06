@@ -1,3 +1,11 @@
+#### independent (2021-08-06)
+
+##### Build System / Dependencies
+
+-   update dependency lint-staged to v11.1.2 (#816) (ae71fed5)
+-   update dependency ngx-toastr to v14.1.0 (#815) (705ba64b)
+-   update angular to v12.2.0 (#813) (32d4722f)
+
 #### independent (2021-08-04)
 
 ##### Build System / Dependencies
