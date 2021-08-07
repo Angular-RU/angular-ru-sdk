@@ -12,7 +12,7 @@
     ],
     "dependencies": {
         "@commitlint/cli": "12.1.4",
-        "@commitlint/config-angular": "13.1.0",
+        "@commitlint/config-angular": "12.1.4",
         "@commitlint/config-conventional": "13.1.0"
     },
     "publishConfig": {
