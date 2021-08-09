@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update eslint to v4.29.1 (#819) (6d733311)
+
+#### independent (2021-08-09)
+
+##### Build System / Dependencies
+
 -   update dependency ts-node to v10.2.0 (#818) (c548f6f5)
 
 #### independent (2021-08-09)
