@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update dependency ts-node to v10.2.0 (#818) (c548f6f5)
+
+#### independent (2021-08-09)
+
+##### Build System / Dependencies
+
 -   update dependency eslint-plugin-import to v2.24.0 (#817) (9e12556d)
 -   update dependency @commitlint/config-angular to v13 (#790) (5681724d)
 
