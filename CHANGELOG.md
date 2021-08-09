@@ -1,3 +1,14 @@
+#### independent (2021-08-09)
+
+##### Build System / Dependencies
+
+-   update dependency eslint-plugin-import to v2.24.0 (#817) (9e12556d)
+-   update dependency @commitlint/config-angular to v13 (#790) (5681724d)
+
+##### Other Changes
+
+-   update dependency @commitlint/config-angular to v13 (#790)" (c2c2bc96)
+
 #### independent (2021-08-06)
 
 ##### Build System / Dependencies
