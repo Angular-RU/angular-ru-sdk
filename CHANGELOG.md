@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update dependency @types/jest to v27 (#820) (726cbaa5)
+
+#### independent (2021-08-11)
+
+##### Build System / Dependencies
+
 -   update dependency eslint-plugin-jsdoc to v36.0.7 (#821) (3659d5d9)
 
 #### independent (2021-08-09)
