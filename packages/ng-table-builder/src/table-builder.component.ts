@@ -199,6 +199,8 @@ export class TableBuilderComponent<T>
             this.setSortTypes();
         }
 
+        this.handleFilterDefinitionChanges(changes);
+
         clearTimeout(this.changesTimerId);
         this.changesTimerId = window.setTimeout((): void => this.updateViewport(), CHANGE_DELAY);
     }
@@ -477,6 +479,13 @@ export class TableBuilderComponent<T>
         this.sortable.setDefinition({ ...(this.sortTypes as PlainObjectOf<SortOrderType>) });
         if (this.sourceExists) {
             this.sortAndFilter().then((): void => this.reCheckDefinitions());
+        }
+    }
+
+    private handleFilterDefinitionChanges(changes: SimpleChanges): void {
+        if (TableSimpleChanges.FILTER_DEFINITION in changes) {
+            this.filterable.setDefinition(this.filterDefinition ?? []);
+            this.filter();
         }
     }
 

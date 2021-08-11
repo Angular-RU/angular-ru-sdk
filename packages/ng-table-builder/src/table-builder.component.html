@@ -1,4 +1,4 @@
-<div *ngIf="source?.length === 0 && !filterable.filtering">
+<div *ngIf="source?.length === 0 && !(columnSchema.length > 0)">
     <ng-content select="ngx-empty"></ng-content>
 </div>
 
