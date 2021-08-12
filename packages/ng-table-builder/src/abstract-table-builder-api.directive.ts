@@ -46,6 +46,7 @@ import {
 import { ResizeEvent } from './interfaces/table-builder.internal';
 import { ContextMenuService } from './services/context-menu/context-menu.service';
 import { DraggableService } from './services/draggable/draggable.service';
+import { FilterDescriptor } from './services/filterable/filter-descriptor';
 import { FilterWorkerEvent } from './services/filterable/filter-worker-event';
 import { FilterableService } from './services/filterable/filterable.service';
 import { ResizableService } from './services/resizer/resizable.service';
@@ -71,6 +72,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
     @Input() public name: Nullable<string> = null;
     @Input('skip-sort') public skipSort: boolean | string = false;
     @Input('sort-types') public sortTypes: TableSortTypes = null;
+    @Input('filter-definition') public filterDefinition: Nullable<FilterDescriptor[]> = [];
     @Input('exclude-keys') public excludeKeys: ExcludePattern<T>[] = [];
     @Input('auto-width') public autoWidth: boolean | string = false;
     @Input('auto-height') public autoHeightDetect: boolean = true;

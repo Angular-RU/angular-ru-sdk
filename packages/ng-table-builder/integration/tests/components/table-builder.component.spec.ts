@@ -2,7 +2,7 @@ import { Component, Injectable, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { deepClone } from '@angular-ru/common/object';
-import { PlainObject, SortOrderType } from '@angular-ru/common/typings';
+import { Nullable, PlainObject, SortOrderType } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import {
     TableBuilderComponent,
@@ -10,6 +10,7 @@ import {
     TableFilterType,
     TableSortTypes
 } from '@angular-ru/ng-table-builder';
+import { FilterDescriptor } from '../../../src/services/filterable/filter-descriptor';
 
 @Component({
     selector: 'app-ngx-table-builder-mock',
@@ -18,6 +19,7 @@ import {
         enable-filtering
         [source]="data"
         [sort-types]="sortTypes"
+        [filter-definition]="filterDefinition"
     ></ngx-table-builder>`
 })
 class NgxTableBuilderMockComponent {
@@ -30,6 +32,8 @@ class NgxTableBuilderMockComponent {
         { id: 3, name: 'Petr', lastName: 'Sidorov' },
         { id: 4, name: null, lastName: null }
     ];
+
+    public filterDefinition: Nullable<FilterDescriptor[]> = null;
 
     public sortTypes: TableSortTypes = null;
 }
@@ -229,6 +233,31 @@ describe('[TEST] Table builder', (): void => {
 
         tableBuilderComponent.filterable.setDefinition([{ value: 2, type: TableFilterType.LESS_OR_EQUAL, key: 'id' }]);
         await tableBuilderComponent.sortAndFilter();
+
+        expect(tableBuilderComponent.source).toEqual([
+            { id: 1, name: 'Max', lastName: 'Ivanov' },
+            { id: 2, name: 'Ivan', lastName: 'Petrov' }
+        ]);
+    });
+
+    it('should correctly filter table by input', async (): Promise<void> => {
+        const tableBuilderComponent: TableBuilderComponent<PlainObject> = component.tableBuilderComponent;
+
+        expect(tableBuilderComponent.source).toEqual([
+            { id: 1, name: 'Max', lastName: 'Ivanov' },
+            { id: 2, name: 'Ivan', lastName: 'Petrov' },
+            { id: 3, name: 'Petr', lastName: 'Sidorov' },
+            { id: 4, name: null, lastName: null }
+        ]);
+
+        component.filterDefinition = [{ value: 2, type: TableFilterType.LESS_OR_EQUAL, key: 'id' }];
+        componentFixture.detectChanges();
+        /**
+         * Caretaker note:
+         * since the filtering happens several times and outside the zone,
+         * there is no way to catch the moment when the filtering is completed using `whenStable`
+         */
+        await new Promise((resolve) => setTimeout(resolve, 1000));
 
         expect(tableBuilderComponent.source).toEqual([
             { id: 1, name: 'Max', lastName: 'Ivanov' },
