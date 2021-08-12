@@ -2,6 +2,12 @@
 
 ##### New Features
 
+-   new selected items pipe (based on array) (#825) (d8f0feb4)
+
+#### independent (2021-08-12)
+
+##### New Features
+
 -   add standard-version (#827) (3149b0b9)
 
 #### independent (2021-08-12)
