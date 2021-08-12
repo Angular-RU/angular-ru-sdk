@@ -7,19 +7,20 @@ import { RowId } from '../../interfaces/table-builder.internal';
 export class SelectionMap<T> {
     public isAll: boolean = false;
     public entries: PlainObjectOf<boolean> = {};
+    public selectedList: RowId[] = [];
     public produceDisableFn: ProduceDisableFn<T> = null;
-    private readonly map: Map<RowId, boolean> = new Map<RowId, boolean>();
+    private readonly selectionSet: Set<RowId> = new Set<RowId>();
 
     public get size(): number {
-        return this.map.size;
+        return this.selectionSet.size;
     }
 
     public generateImmutableEntries(): void {
-        const arrayBuffer: [RowId, boolean][] = Array.from(this.map.entries());
+        this.selectedList = Array.from(this.selectionSet.values());
         const newEntries: PlainObjectOf<boolean> = {};
 
-        arrayBuffer.forEach(([key, value]: [RowId, boolean]): void => {
-            newEntries[key] = value;
+        this.selectedList.forEach((key: RowId): void => {
+            newEntries[key] = true;
         });
 
         this.entries = newEntries;
@@ -33,12 +34,8 @@ export class SelectionMap<T> {
         return this.hasValue() && !this.isAll;
     }
 
-    public get keys(): RowId[] {
-        return Array.from(this.map.keys());
-    }
-
     public get(key?: RowId): boolean {
-        return isNotNil(key) ? this.map.get(key) ?? false : false;
+        return isNotNil(key) ? this.selectionSet.has(key) : false;
     }
 
     public select(key: RowId, row: T, emit: boolean): boolean {
@@ -46,7 +43,7 @@ export class SelectionMap<T> {
             return false;
         }
 
-        this.map.set(key, true);
+        this.selectionSet.add(key);
 
         if (emit) {
             this.generateImmutableEntries();
@@ -64,19 +61,20 @@ export class SelectionMap<T> {
     }
 
     public delete(key: RowId, emit: boolean): void {
-        this.map.delete(key);
+        this.selectionSet.delete(key);
         if (emit) {
             this.generateImmutableEntries();
         }
     }
 
     public has(key: RowId): boolean {
-        return this.map.has(key);
+        return this.selectionSet.has(key);
     }
 
     public clear(): void {
-        this.map.clear();
+        this.selectionSet.clear();
         this.entries = {};
+        this.selectedList = [];
         this.isAll = false;
     }
 }
