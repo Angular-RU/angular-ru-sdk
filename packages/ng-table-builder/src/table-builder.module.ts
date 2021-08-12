@@ -35,6 +35,7 @@ import { VirtualForDirective } from './directives/virtual-for.directive';
 import { DisableRowPipe } from './pipes/disable-row.pipe';
 import { GetClientHeightPipe } from './pipes/get-client-height.pipe';
 import { GetFreeSizePipe } from './pipes/get-free-size.pipe';
+import { MapToTableEntriesPipe } from './pipes/map-to-table-entries.pipe';
 import { TableSelectedItemsPipe } from './pipes/table-selected-items.pipe';
 import { TableBuilderComponent } from './table-builder.component';
 
@@ -73,6 +74,7 @@ import { TableBuilderComponent } from './table-builder.component';
         NgxSourceNullComponent,
         DisableRowPipe,
         TableSelectedItemsPipe,
+        MapToTableEntriesPipe,
         VirtualForDirective,
         GetFreeSizePipe,
         GetClientHeightPipe
@@ -95,6 +97,7 @@ import { TableBuilderComponent } from './table-builder.component';
         NgxFilterComponent,
         NgxFilterDirective,
         TableSelectedItemsPipe,
+        MapToTableEntriesPipe,
         NgxSourceNullComponent
     ]
 })

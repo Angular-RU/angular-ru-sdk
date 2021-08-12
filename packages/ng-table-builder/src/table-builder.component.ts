@@ -32,7 +32,7 @@ import { NgxColumnComponent } from './components/ngx-column/ngx-column.component
 import { TABLE_GLOBAL_OPTIONS } from './config/table-global-options';
 import { AutoHeightDirective } from './directives/auto-height.directive';
 import { CalculateRange, ColumnsSchema } from './interfaces/table-builder.external';
-import { RecalculatedStatus, TableSimpleChanges, TemplateKeys } from './interfaces/table-builder.internal';
+import { RecalculatedStatus, RowId, TableSimpleChanges, TemplateKeys } from './interfaces/table-builder.internal';
 import { getClientHeight } from './operators/get-client-height';
 import { ContextMenuService } from './services/context-menu/context-menu.service';
 import { DraggableService } from './services/draggable/draggable.service';
@@ -114,6 +114,13 @@ export class TableBuilderComponent<T>
         this.viewChanges = injector.get<NgxTableViewChangesService>(NgxTableViewChangesService);
     }
 
+    public get selectedKeyList(): RowId[] {
+        return this.selection.selectionModel.selectedList;
+    }
+
+    /** @deprecated
+     * Use `selectedKeyList` instead
+     */
     public get selectionEntries(): PlainObjectOf<boolean> {
         return this.selection.selectionModel.entries;
     }

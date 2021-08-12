@@ -5,6 +5,7 @@ import { Any, Fn, Nullable, PlainObject } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { NgxColumnComponent, NgxTableViewChangesService, TableBuilderComponent } from '@angular-ru/ng-table-builder';
 
+import { MapToTableEntriesPipe } from '../../../../src/pipes/map-to-table-entries.pipe';
 import { TableSelectedItemsPipe } from '../../../../src/pipes/table-selected-items.pipe';
 import { ContextMenuService } from '../../../../src/services/context-menu/context-menu.service';
 import { DraggableService } from '../../../../src/services/draggable/draggable.service';
@@ -126,6 +127,18 @@ describe('[TEST]: Lifecycle table', () => {
         expect(new TableSelectedItemsPipe(table).transform({ 1: true, 2: true })).toEqual([
             { position: 1, name: 'Hydrogen', symbol: 'H', weight: 1.0079 },
             { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' }
+        ]);
+
+        // expect MapToTableEntriesPipe pipe works
+        expect(new MapToTableEntriesPipe(table).transform([1, 2])).toEqual([
+            { position: 1, name: 'Hydrogen', symbol: 'H', weight: 1.0079 },
+            { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' }
+        ]);
+
+        // expect MapToTableEntriesPipe pipe works with another ordering
+        expect(new MapToTableEntriesPipe(table).transform([2, 1])).toEqual([
+            { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
+            { position: 1, name: 'Hydrogen', symbol: 'H', weight: 1.0079 }
         ]);
 
         // enable and check filter

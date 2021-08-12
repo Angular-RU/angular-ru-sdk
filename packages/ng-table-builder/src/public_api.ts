@@ -36,6 +36,7 @@ export {
     VirtualIndex
 } from './interfaces/table-builder.external';
 export { selectFromTableBy } from './operators/select-from-table-by';
+export { MapToTableEntriesPipe } from './pipes/map-to-table-entries.pipe';
 export { TableSelectedItemsPipe } from './pipes/table-selected-items.pipe';
 export { FilterColumnsOpts } from './services/filterable/filter-columns-opts';
 export { FilterEvent } from './services/filterable/filter-event';
