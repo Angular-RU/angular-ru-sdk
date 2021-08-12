@@ -1,3 +1,14 @@
+#### independent (2021-08-12)
+
+##### Build System / Dependencies
+
+-   update dependency tslib to v2.3.1 (#824) (dc167e7e)
+-   update angular to v12.2.1 (#823) (12ad45df)
+
+##### Bug Fixes
+
+-   **@angular-ru/ng-table-builder:** filter definition by input (#822) (80aeac6d)
+
 #### independent (2021-08-11)
 
 ##### Build System / Dependencies
