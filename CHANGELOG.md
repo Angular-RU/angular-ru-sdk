@@ -1,5 +1,11 @@
 #### independent (2021-08-12)
 
+##### New Features
+
+-   support chore prefix (#826) (00c8fa1e)
+
+#### independent (2021-08-12)
+
 ##### Build System / Dependencies
 
 -   update dependency tslib to v2.3.1 (#824) (dc167e7e)
