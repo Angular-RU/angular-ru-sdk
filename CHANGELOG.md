@@ -1,5 +1,11 @@
 #### independent (2021-08-12)
 
+##### Build System / Dependencies
+
+-   update dependency @types/jest to v27.0.1 (#828) (38cacb67)
+
+#### independent (2021-08-12)
+
 ##### New Features
 
 -   new selected items pipe (based on array) (#825) (d8f0feb4)
