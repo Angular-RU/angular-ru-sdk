@@ -2,6 +2,12 @@
 
 ##### New Features
 
+-   add standard-version (#827) (3149b0b9)
+
+#### independent (2021-08-12)
+
+##### New Features
+
 -   support chore prefix (#826) (00c8fa1e)
 
 #### independent (2021-08-12)
