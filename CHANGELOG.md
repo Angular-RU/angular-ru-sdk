@@ -1,3 +1,9 @@
+#### independent (2021-08-13)
+
+##### Build System / Dependencies
+
+-   update dependency eslint-plugin-sonarjs to v0.10.0 (#829) (4e48979b)
+
 #### independent (2021-08-12)
 
 ##### Build System / Dependencies
