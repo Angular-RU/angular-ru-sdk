@@ -1,3 +1,9 @@
+#### independent (2021-08-16)
+
+##### Build System / Dependencies
+
+-   update eslint to v4.29.2 (#830) (220dc63d)
+
 #### independent (2021-08-13)
 
 ##### Build System / Dependencies
