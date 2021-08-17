@@ -1,5 +1,11 @@
 #### independent (2021-08-17)
 
+##### Build System / Dependencies
+
+-   update dependency jest-preset-angular to v9.0.6 (#832) (0e765ab5)
+
+#### independent (2021-08-17)
+
 ##### New Features
 
 -   added REG_EXP_INTEGER (#833) (d2bf2233)
