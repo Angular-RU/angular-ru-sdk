@@ -60,3 +60,13 @@ function parse(value: string, regexp: RegExp): string {
     return (value.match(regexp) ?? []).join('');
 }
 ```
+
+-   `REG_EXP_INTEGER`
+
+```ts
+expect(parse('abc 123 abc 4,5', REG_EXP_INTEGER)).toEqual('12345');
+
+function parse(value: string, regexp: RegExp): string {
+    return (value.match(regexp) ?? []).join('');
+}
+```
