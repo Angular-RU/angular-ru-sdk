@@ -1,3 +1,9 @@
+#### independent (2021-08-17)
+
+##### Build System / Dependencies
+
+-   update dependency ts-jest to v27.0.5 (#831) (e3fcd52e)
+
 #### independent (2021-08-16)
 
 ##### Build System / Dependencies
