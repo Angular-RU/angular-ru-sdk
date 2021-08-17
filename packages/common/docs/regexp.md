@@ -49,22 +49,22 @@ function parse(value: string, regexp: RegExp): string {
 }
 ```
 
--   `REG_EXP_INTEGERS_SEPARATED_BY_COMMA`
+-   `REG_EXP_DIGITS_SEPARATED_BY_COMMA`
 
 ```ts
-expect(parse('12,13,77', REG_EXP_INTEGERS_SEPARATED_BY_COMMA)).toEqual('12,13,77');
-expect(parse(' 12 13, 77 ', REG_EXP_INTEGERS_SEPARATED_BY_COMMA)).toEqual('1213,77');
-expect(parse('aaa,12,bbb', REG_EXP_INTEGERS_SEPARATED_BY_COMMA)).toEqual('12,');
+expect(parse('12,13,77', REG_EXP_DIGITS_SEPARATED_BY_COMMA)).toEqual('12,13,77');
+expect(parse(' 12 13, 77 ', REG_EXP_DIGITS_SEPARATED_BY_COMMA)).toEqual('1213,77');
+expect(parse('aaa,12,bbb', REG_EXP_DIGITS_SEPARATED_BY_COMMA)).toEqual('12,');
 
 function parse(value: string, regexp: RegExp): string {
     return (value.match(regexp) ?? []).join('');
 }
 ```
 
--   `REG_EXP_INTEGER`
+-   `REG_EXP_DIGITS`
 
 ```ts
-expect(parse('abc 123 abc 4,5', REG_EXP_INTEGER)).toEqual('12345');
+expect(parse('abc 123 abc 4,5', REG_EXP_DIGITS)).toEqual('12345');
 
 function parse(value: string, regexp: RegExp): string {
     return (value.match(regexp) ?? []).join('');

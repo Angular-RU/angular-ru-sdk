@@ -1,8 +1,8 @@
 import {
     REG_EXP_NO_CYRILLIC,
     REG_EXP_STRICT_NAME,
-    REG_EXP_INTEGERS_SEPARATED_BY_COMMA,
-    REG_EXP_INTEGER
+    REG_EXP_DIGITS_SEPARATED_BY_COMMA,
+    REG_EXP_DIGITS
 } from '@angular-ru/common/regexp';
 
 describe('[TEST]: Regexp constants', () => {
@@ -21,19 +21,19 @@ describe('[TEST]: Regexp constants', () => {
         expect(parse('aaa ДДД', REG_EXP_NO_CYRILLIC)).toEqual('aaa ');
     });
 
-    it('should parse string with REG_EXP_INTEGERS_SEPARATED_BY_COMMA', () => {
-        expect(parse('12,13,77', REG_EXP_INTEGERS_SEPARATED_BY_COMMA)).toEqual('12,13,77');
-        expect(parse(' 12 13, 77 ', REG_EXP_INTEGERS_SEPARATED_BY_COMMA)).toEqual('1213,77');
-        expect(parse('aaa,12,bbb', REG_EXP_INTEGERS_SEPARATED_BY_COMMA)).toEqual('12,');
+    it('should parse string with REG_EXP_DIGITS_SEPARATED_BY_COMMA', () => {
+        expect(parse('12,13,77', REG_EXP_DIGITS_SEPARATED_BY_COMMA)).toEqual('12,13,77');
+        expect(parse(' 12 13, 77 ', REG_EXP_DIGITS_SEPARATED_BY_COMMA)).toEqual('1213,77');
+        expect(parse('aaa,12,bbb', REG_EXP_DIGITS_SEPARATED_BY_COMMA)).toEqual('12,');
     });
 
-    it('should parse string with REG_EXP_INTEGER', () => {
-        expect(parse('123', REG_EXP_INTEGER)).toEqual('123');
-        expect(parse('123abc', REG_EXP_INTEGER)).toEqual('123');
-        expect(parse('abc123abc', REG_EXP_INTEGER)).toEqual('123');
-        expect(parse(' 1 2 3 ', REG_EXP_INTEGER)).toEqual('123');
-        expect(parse('123,4', REG_EXP_INTEGER)).toEqual('1234');
-        expect(parse('abc 123 abc 4,5', REG_EXP_INTEGER)).toEqual('12345');
+    it('should parse string with REG_EXP_DIGITS', () => {
+        expect(parse('123', REG_EXP_DIGITS)).toEqual('123');
+        expect(parse('123abc', REG_EXP_DIGITS)).toEqual('123');
+        expect(parse('abc123abc', REG_EXP_DIGITS)).toEqual('123');
+        expect(parse(' 1 2 3 ', REG_EXP_DIGITS)).toEqual('123');
+        expect(parse('123,4', REG_EXP_DIGITS)).toEqual('1234');
+        expect(parse('abc 123 abc 4,5', REG_EXP_DIGITS)).toEqual('12345');
     });
 });
 
