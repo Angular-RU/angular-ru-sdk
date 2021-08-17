@@ -1,5 +1,11 @@
 #### independent (2021-08-17)
 
+##### New Features
+
+-   added REG_EXP_INTEGER (#833) (d2bf2233)
+
+#### independent (2021-08-17)
+
 ##### Build System / Dependencies
 
 -   update dependency ts-jest to v27.0.5 (#831) (e3fcd52e)
