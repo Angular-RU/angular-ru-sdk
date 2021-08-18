@@ -1,3 +1,9 @@
+#### independent (2021-08-18)
+
+##### Build System / Dependencies
+
+-   update dependency ts-node to v10.2.1 (#835) (6bfb7108)
+
 #### independent (2021-08-17)
 
 ##### Build System / Dependencies
