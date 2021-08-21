@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/eslint-config-enterprise",
-    "version": "12.3.6",
+    "version": "12.3.7",
     "description": "Angular-RU package",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/eslint-config-enterprise#readme",
     "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
@@ -40,7 +40,7 @@
         "eslint-plugin-jsdoc": "36.0.7",
         "eslint-plugin-max-params-no-constructor": "0.0.4",
         "eslint-plugin-no-cyrillic-string": "1.0.5",
-        "eslint-plugin-prettier": "3.4.0",
+        "eslint-plugin-prettier": "3.4.1",
         "eslint-plugin-simple-import-sort": "7.0.0",
         "eslint-plugin-sonarjs": "0.10.0"
     },

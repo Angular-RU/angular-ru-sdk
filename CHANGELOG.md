@@ -1,3 +1,9 @@
+#### independent (2021-08-19)
+
+##### Build System / Dependencies
+
+-   update dependency eslint-plugin-import to v2.24.1 (#837) (7b0199cf)
+
 #### independent (2021-08-18)
 
 ##### Build System / Dependencies
