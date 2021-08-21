@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update dependency @types/node to v15.14.9 (#839) (bc094bee)
+
+#### independent (2021-08-21)
+
+##### Build System / Dependencies
+
 -   update dependency eslint-plugin-prettier to v3.4.1 (#838) (d529ed1e)
 
 #### independent (2021-08-19)

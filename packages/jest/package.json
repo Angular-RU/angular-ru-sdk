@@ -18,7 +18,7 @@
     "dependencies": {
         "@types/jest": "27.0.1",
         "jest": "27.0.6",
-        "jest-preset-angular": "9.0.6",
+        "jest-preset-angular": "9.0.7",
         "ts-jest": "27.0.5"
     },
     "publishConfig": {
