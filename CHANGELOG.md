@@ -1,3 +1,10 @@
+#### independent (2021-08-23)
+
+##### Build System / Dependencies
+
+-   update dependency @commitlint/cli to v13 (#789) (fae9e535)
+-   update dependency jasmine-core to v3.9.0 (#841) (692bbd28)
+
 #### independent (2021-08-21)
 
 ##### Build System / Dependencies
