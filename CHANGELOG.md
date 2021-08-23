@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update eslint to v4.29.3 (#843) (77504aae)
+
+#### independent (2021-08-23)
+
+##### Build System / Dependencies
+
 -   update dependency @commitlint/cli to v13 (#789) (fae9e535)
 -   update dependency jasmine-core to v3.9.0 (#841) (692bbd28)
 
