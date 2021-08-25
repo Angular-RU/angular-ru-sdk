@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update dependency eslint-plugin-jsdoc to v36.0.8 (#846) (e13c1840)
+
+#### independent (2021-08-25)
+
+##### Build System / Dependencies
+
 -   update dependency husky to v7.0.2 (#845) (ed8b97da)
 
 #### independent (2021-08-25)
