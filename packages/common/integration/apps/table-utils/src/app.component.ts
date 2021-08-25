@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
-import { ExcelService } from '@angular-ru/common/excel';
+import { ExcelService } from '@angular-ru/common/table-utils';
 import { TranslateService } from '@ngx-translate/core';
 
 interface A {
