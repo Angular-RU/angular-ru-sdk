@@ -1,11 +1,10 @@
 import { TestBed } from '@angular/core/testing';
-import { TableClipboardModule } from '@angular-ru/common/table-utils';
+import { TableClipboardModule, TableClipboardService } from '@angular-ru/common/table-utils';
 import { Nullable, PlainObject } from '@angular-ru/common/typings';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
 
-import { TableClipboardService } from '../../../dist/library/table-utils';
 import { dataset, datasetNested, datasetTranslated, translationMap } from './helpers/file-suites/mock-data';
 import { readFile, readFromBlob } from './helpers/file-utils';
 
