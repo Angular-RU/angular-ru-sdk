@@ -9,7 +9,7 @@ import { TableClipboardService } from '../../../dist/library/table-utils';
 import { dataset, datasetNested, datasetTranslated, translationMap } from './helpers/file-suites/mock-data';
 import { readFile, readFromBlob } from './helpers/file-utils';
 
-describe('[TEST] Excel service', () => {
+describe('[TEST] Table clipboard service', () => {
     let tableClipboard: TableClipboardService;
     let copySpy: jest.SpyInstance;
 
@@ -55,14 +55,14 @@ describe('[TEST] Excel service', () => {
         copySpy.mockReset();
     });
 
-    it('should correctly convert to excel xml', async () => {
+    it('should correctly convert to plain html', async () => {
         tableClipboard.generateTableAndCopy({ entries: dataset });
         await new Promise((resolve) => setTimeout(resolve));
         const blob = copySpy.mock.calls[0][0][0].types['text/html'];
         expect(await readFromBlob(blob)).toBe(readFile('clipboard', 'test-1-simple.html'));
     });
 
-    it('should correctly convert to excel xml by keys', async () => {
+    it('should correctly convert to plain html by keys', async () => {
         tableClipboard.generateTableAndCopy({
             entries: dataset,
             rules: { includeKeys: ['id', 'lastName', 'falseField'] }
@@ -72,7 +72,7 @@ describe('[TEST] Excel service', () => {
         expect(await readFromBlob(blob)).toBe(readFile('clipboard', 'test-2-by-keys.html'));
     });
 
-    it('should correctly convert to excel xml excluding keys', async () => {
+    it('should correctly convert to plain html excluding keys', async () => {
         tableClipboard.generateTableAndCopy({
             entries: dataset,
             rules: { excludeKeys: ['firstName', 'falseField'] }
@@ -82,7 +82,7 @@ describe('[TEST] Excel service', () => {
         expect(await readFromBlob(blob)).toBe(readFile('clipboard', 'test-3-exclude-keys.html'));
     });
 
-    it('should correctly convert nested data to excel xml with options', async () => {
+    it('should correctly convert nested data to plain html with options', async () => {
         tableClipboard.generateTableAndCopy({
             entries: datasetNested,
             rules: { excludeKeys: ['firstName', 'locale.code'] }
