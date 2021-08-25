@@ -282,25 +282,25 @@
                 }
             }
         },
-        "excel-app": {
+        "table-utils-app": {
             "root": ".",
             "prefix": "",
             "projectType": "application",
-            "sourceRoot": "packages/common/integration/apps/excel",
+            "sourceRoot": "packages/common/integration/apps/table-utils",
             "schematics": {},
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "main": "packages/common/integration/apps/excel/main.ts",
-                        "index": "packages/common/integration/apps/excel/index.html",
-                        "polyfills": "packages/common/integration/apps/excel/polyfills.ts",
-                        "outputPath": "packages/common/dist/integration/apps/excel",
-                        "tsConfig": "packages/common/integration/apps/excel/tsconfig.app.json",
-                        "assets": ["packages/common/integration/apps/excel/assets"],
+                        "main": "packages/common/integration/apps/table-utils/main.ts",
+                        "index": "packages/common/integration/apps/table-utils/index.html",
+                        "polyfills": "packages/common/integration/apps/table-utils/polyfills.ts",
+                        "outputPath": "packages/common/dist/integration/apps/table-utils",
+                        "tsConfig": "packages/common/integration/apps/table-utils/tsconfig.app.json",
+                        "assets": ["packages/common/integration/apps/table-utils/assets"],
                         "styles": [
                             ".styles/integration-app.style.scss",
-                            "packages/common/integration/apps/excel/styles.css"
+                            "packages/common/integration/apps/table-utils/styles.css"
                         ],
                         "aot": false,
                         "vendorChunk": true,
@@ -314,8 +314,8 @@
                         "production": {
                             "fileReplacements": [
                                 {
-                                    "replace": "packages/common/integration/apps/excel/environments/environment.ts",
-                                    "with": "packages/common/integration/apps/excel/environments/environment.prod.ts"
+                                    "replace": "packages/common/integration/apps/table-utils/environments/environment.ts",
+                                    "with": "packages/common/integration/apps/table-utils/environments/environment.prod.ts"
                                 }
                             ],
                             "optimization": true,
@@ -331,9 +331,9 @@
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
-                    "options": { "browserTarget": "excel-app:build" },
+                    "options": { "browserTarget": "table-utils-app:build" },
                     "configurations": {
-                        "production": { "browserTarget": "excel-app:build:production" }
+                        "production": { "browserTarget": "table-utils-app:build:production" }
                     }
                 },
                 "deploy": {

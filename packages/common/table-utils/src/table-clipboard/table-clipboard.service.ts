@@ -26,6 +26,21 @@ declare class ClipboardItem {
     constructor(types: Record<string, Blob>);
 }
 
+declare interface ExtendedClipboard extends Clipboard {
+    write: (items: ClipboardItem[]) => Promise<void>;
+}
+
+declare interface ExtendedNavigator extends Navigator {
+    clipboard: ExtendedClipboard;
+}
+
+declare interface ExtendedWindow extends Window {
+    ClipboardItem: typeof ClipboardItem;
+    navigator: ExtendedNavigator;
+}
+
+declare let window: ExtendedWindow;
+
 @Injectable()
 export class TableClipboardService {
     constructor(
@@ -35,7 +50,7 @@ export class TableClipboardService {
     ) {}
 
     // eslint-disable-next-line max-lines-per-function
-    public async convertToTableAndCopy<EntryType extends PlainObject>(request: Request<EntryType>): Promise<void> {
+    public async generateTableAndCopy<EntryType extends PlainObject>(request: Request<EntryType>): Promise<void> {
         const preparedRequest: PreparedRequest = {
             ...request,
             entries: await this.plainTableComposer.compose(request.entries, request.rules),
@@ -70,7 +85,7 @@ export class TableClipboardService {
                                 const htmlBody: string = entities
                                     .map((asd: PlainObject): string => this.generateBodyRow(asd, keys))
                                     .join('');
-                                return `<table><tbody>${htmlHeader} ${htmlBody}</tbody></table>`;
+                                return `<html><body><table border="1" cellspacing="0"><tbody>${htmlHeader}${htmlBody}</tbody></table></body></html>`;
                             } else {
                                 return '';
                             }
@@ -114,7 +129,7 @@ export class TableClipboardService {
                 }, preparedRequest)
                 .then(
                     (blob: Blob): Promise<void> =>
-                        (window.navigator.clipboard as Any).write([new ClipboardItem({ 'text/html': blob })])
+                        window.navigator.clipboard.write([new window.ClipboardItem({ 'text/html': blob })])
                 )
         );
     }

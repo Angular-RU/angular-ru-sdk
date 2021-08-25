@@ -9,8 +9,8 @@ export function readFromBlob(blob: Blob): Promise<string> {
     }).then(minify);
 }
 
-export function readFile(filePath: string): string {
-    return minify(fs.readFileSync(path.join(__dirname, 'file-suites', filePath)).toString());
+export function readFile(...filePath: string[]): string {
+    return minify(fs.readFileSync(path.join(__dirname, 'file-suites', ...filePath)).toString());
 }
 
 export function minify(content: string): string {

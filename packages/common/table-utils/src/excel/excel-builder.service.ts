@@ -1,11 +1,11 @@
 // eslint-disable-next-line max-classes-per-file
 import { Injectable } from '@angular/core';
 import { toFormatDateTime } from '@angular-ru/common/date';
-import { PlainTableComposerService } from '@angular-ru/common/table-utils';
 import { Any, EmptyValue, Nullable, PlainObject } from '@angular-ru/common/typings';
 import { downloadFile, isNotNil } from '@angular-ru/common/utils';
 import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 
+import { PlainTableComposerService } from '../plain-table-composer/plain-table-composer.service';
 import { ColumnParameters } from './domain/column-parameters';
 import { ColumnWidth } from './domain/column-width';
 import { ExcelWorkbook } from './domain/excel-workbook';

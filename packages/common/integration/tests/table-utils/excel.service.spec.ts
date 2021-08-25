@@ -1,17 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 import { getValueByPath } from '@angular-ru/common/object';
-import { Any, Nullable, PlainObject } from '@angular-ru/common/typings';
-import { isNotNil } from '@angular-ru/common/utils';
-import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import {
     ColumnWidth,
     EXCEL_BUILDER_INTERCEPTOR_TOKEN,
     ExcelBuilderModule,
     ExcelBuilderTextColumnInterceptor,
     ExcelService
-} from '@angular-ru/common/excel';
+} from '@angular-ru/common/table-utils';
+import { Any, Nullable, PlainObject } from '@angular-ru/common/typings';
+import { isNotNil } from '@angular-ru/common/utils';
+import { WebWorkerThreadService } from '@angular-ru/common/webworker';
 import { Observable, of } from 'rxjs';
 
+import { dataset, datasetNested, datasetTranslated, translationMap } from './helpers/file-suites/mock-data';
 import { readFile, readFromBlob } from './helpers/file-utils';
 
 describe('[TEST] Excel service', () => {
@@ -25,41 +26,15 @@ describe('[TEST] Excel service', () => {
     };
 
     class TranslateMock implements ExcelBuilderTextColumnInterceptor {
-        map: PlainObject = { model: { uid: 'UID', name: 'Name', appearance: { color: 'Color', shape: 'Shape' } } };
+        map: PlainObject = translationMap;
         getTranslationMap(): Observable<Nullable<PlainObject>> {
             return of(this.map);
         }
+
         instant(key?: Nullable<string>): Nullable<string> {
             return isNotNil(key) ? getValueByPath(this.map, key) : key;
         }
     }
-
-    const dataset: PlainObject[] = [
-        { id: 1, firstName: 'albattani', lastName: 'herschel', age: 32, nullable: null },
-        { id: 2, firstName: 'allen', lastName: 'hermann', age: 42, nullable: 'not null' },
-        { id: 3, firstName: 'almeida', lastName: 'heisenberg', age: 50, nullable: 'not null' },
-        { nullable: undefined, id: 4, firstName: 'antonelli', age: 19 },
-        { firstName: 'agnesi', id: 5, lastName: 'hawking', age: 22, nullable: null }
-    ];
-
-    const datasetNested: PlainObject[] = [
-        {
-            id: 1,
-            firstName: 'albattani',
-            lastName: 'herschel',
-            age: 32,
-            locale: { country: 'uk', lang: 'en', code: 44 }
-        },
-        { id: 2, firstName: 'allen', lastName: 'hermann', age: 42, locale: { country: 'us', lang: 'en', code: 1 } },
-        { id: 3, firstName: 'antonelli', age: 19, locale: { country: 'at', lang: 'de', code: 43 } },
-        { id: 4, firstName: 'almeida', lastName: 'hawking', age: 42, locale: { country: 'ru', lang: 'ru', code: 7 } }
-    ];
-
-    const datasetTranslated: PlainObject[] = [
-        { uid: 'qwe-123', name: 'albattani', appearance: { color: 'black', shape: 'square' } },
-        { uid: 'wer-456', name: 'allen', appearance: { color: 'red', shape: 'arrow' } },
-        { uid: 'asd-434', name: 'antonelli', appearance: { color: null, shape: null } }
-    ];
 
     beforeEach(function (): void {
         TestBed.configureTestingModule({
@@ -87,7 +62,7 @@ describe('[TEST] Excel service', () => {
         });
         await new Promise((resolve) => setTimeout(resolve));
         const [blob, filename] = downloadSpy.mock.calls[0];
-        expect(await readFromBlob(blob)).toBe(readFile('test-1-simple.xls'));
+        expect(await readFromBlob(blob)).toBe(readFile('excel', 'test-1-simple.xls'));
         expect(filename).toBe('simple');
     });
 
@@ -98,7 +73,7 @@ describe('[TEST] Excel service', () => {
         });
         await new Promise((resolve) => setTimeout(resolve));
         const [blob, filename] = downloadSpy.mock.calls[0];
-        expect(await readFromBlob(blob)).toBe(readFile('test-2-by-keys.xls'));
+        expect(await readFromBlob(blob)).toBe(readFile('excel', 'test-2-by-keys.xls'));
         expect(filename).toBe('by-keys');
     });
 
@@ -114,7 +89,7 @@ describe('[TEST] Excel service', () => {
         });
         await new Promise((resolve) => setTimeout(resolve));
         const [blob, filename] = downloadSpy.mock.calls[0];
-        expect(await readFromBlob(blob)).toBe(readFile('test-3-exclude-keys.xls'));
+        expect(await readFromBlob(blob)).toBe(readFile('excel', 'test-3-exclude-keys.xls'));
         expect(filename).toBe('exclude-keys');
     });
 
@@ -136,7 +111,7 @@ describe('[TEST] Excel service', () => {
         });
         await new Promise((resolve) => setTimeout(resolve));
         const [blob, filename] = downloadSpy.mock.calls[0];
-        expect(await readFromBlob(blob)).toBe(readFile('test-4-options.xls'));
+        expect(await readFromBlob(blob)).toBe(readFile('excel', 'test-4-options.xls'));
         expect(filename).toBe('options');
     });
 
@@ -155,7 +130,7 @@ describe('[TEST] Excel service', () => {
         });
         await new Promise((resolve) => setTimeout(resolve));
         const [blob, filename] = downloadSpy.mock.calls[0];
-        expect(await readFromBlob(blob)).toBe(readFile('test-5-translate.xls'));
+        expect(await readFromBlob(blob)).toBe(readFile('excel', 'test-5-translate.xls'));
         expect(filename).toBe('translate');
     });
 
@@ -179,7 +154,7 @@ describe('[TEST] Excel service', () => {
         });
         await new Promise((resolve) => setTimeout(resolve));
         const [blob, filename] = downloadSpy.mock.calls[0];
-        expect(await readFromBlob(blob)).toBe(readFile('test-6-auto-width.xls'));
+        expect(await readFromBlob(blob)).toBe(readFile('excel', 'test-6-auto-width.xls'));
         expect(filename).toBe('auto-width');
     });
 
@@ -201,7 +176,7 @@ describe('[TEST] Excel service', () => {
         });
         await new Promise((resolve) => setTimeout(resolve));
         const [blob, filename] = downloadSpy.mock.calls[0];
-        expect(await readFromBlob(blob)).toBe(readFile('test-7-auto-width-translate.xls'));
+        expect(await readFromBlob(blob)).toBe(readFile('excel', 'test-7-auto-width-translate.xls'));
         expect(filename).toBe('auto-width-translate');
     });
 
@@ -222,7 +197,7 @@ describe('[TEST] Excel service', () => {
         });
         await new Promise((resolve) => setTimeout(resolve));
         const [blob, filename] = downloadSpy.mock.calls[0];
-        expect(await readFromBlob(blob)).toBe(readFile('test-8-auto-width.xls'));
+        expect(await readFromBlob(blob)).toBe(readFile('excel', 'test-8-auto-width.xls'));
         expect(filename).toBe('auto-width');
     });
 });
