@@ -1,6 +1,7 @@
 {
     "packages": [
-        "packages/*"
+        "packages/*",
+        "dev-infra/*"
     ],
     "stream": true,
     "concurrency": 1,

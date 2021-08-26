@@ -18,9 +18,9 @@
     - packages/eslint-config-enterprise/*
     - packages/eslint-config-enterprise/**/*
 
-'comp: @angular-ru/eslint-plugin':
-    - packages/eslint-plugin/*
-    - packages/eslint-plugin/**/*
+'comp: @angular-ru/eslint-plugin-enterprise':
+    - packages/eslint-plugin-enterprise/*
+    - packages/eslint-plugin-enterprise/**/*
 
 'comp: @angular-ru/jest':
     - packages/jest/*

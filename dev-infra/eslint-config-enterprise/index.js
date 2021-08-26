@@ -54,9 +54,9 @@ module.exports = {
                 'eslint-plugin-jsdoc',
                 'eslint-plugin-import',
                 '@typescript-eslint',
-                '@angular-eslint/eslint-plugin',
                 'sonarjs',
-                '@angular-ru/eslint-plugin'
+                '@angular-eslint/eslint-plugin',
+                '@angular-ru/eslint-plugin-enterprise'
             ],
             rules: {
                 /**
@@ -515,7 +515,7 @@ module.exports = {
                 /**
                  * Angular-RU rules
                  */
-                '@angular-ru/no-suffix-file': [
+                '@angular-ru/enterprise/no-suffix-file': [
                     'error',
                     {
                         fileEndsWithList: [
