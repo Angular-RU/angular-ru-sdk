@@ -58,7 +58,7 @@ jobs:
               run: yarn test
 
             - name: Run building integration apps step
-              run: yarn build:app
+              run: yarn integration
 
             - name: Deploy npm packages
               env:
