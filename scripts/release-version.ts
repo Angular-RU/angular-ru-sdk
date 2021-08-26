@@ -4,6 +4,7 @@ import { $, nothrow } from 'zx';
 void (async function (): Promise<void> {
     // eslint-disable-next-line no-console
     console.log(chalk.blue(`[RELEASE]`));
-    await nothrow($`yarn sort-package-json package.json packages/*/package.json dev-infra/*/package.json`);
-    await nothrow($`yarn prettier '**/*.{ts,html,css,scss,md,js,json,yml}' --write`);
+    await nothrow($`yarn generate-changelog`);
+    await nothrow($`git add .`);
+    await nothrow($`git update-index --again`);
 })();

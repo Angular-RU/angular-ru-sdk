@@ -21,9 +21,7 @@
         "lint": "yarn zx scripts/lint.ts",
         "format": "yarn zx scripts/format.ts",
         "test": "yarn zx scripts/test.ts",
-        "version": "yarn zx scripts/release-version.ts",
-        "release:bump": "RELEASE_VERSION=$(node -p -e \"require('./lerna.json').version\") && yarn npe version \"$RELEASE_VERSION\"",
-        "version:legacy": "yarn release:bump && yarn generate-changelog && git add . && git update-index --again"
+        "version": "yarn zx scripts/release-version.ts"
     },
     "commitlint": {
         "extends": [
