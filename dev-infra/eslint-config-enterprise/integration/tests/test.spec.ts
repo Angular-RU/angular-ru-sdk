@@ -103,16 +103,16 @@ describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
         const filePattern: string = getInfoByReportFile('file-pattern');
         expect(filePattern.includes('4 problems (4 errors, 0 warnings)')).toBeTruthy();
         expect(
-            filePattern.includes("Files doesn't must end with by .enum.ts  @angular-ru/no-suffix-file")
+            filePattern.includes("Files doesn't must end with by .enum.ts  @angular-ru/enterprise/no-suffix-file")
         ).toBeTruthy();
         expect(
-            filePattern.includes("Files doesn't must end with by .model.ts  @angular-ru/no-suffix-file")
+            filePattern.includes("Files doesn't must end with by .model.ts  @angular-ru/enterprise/no-suffix-file")
         ).toBeTruthy();
         expect(
-            filePattern.includes("Files doesn't must end with by .interface.ts  @angular-ru/no-suffix-file")
+            filePattern.includes("Files doesn't must end with by .interface.ts  @angular-ru/enterprise/no-suffix-file")
         ).toBeTruthy();
         expect(
-            filePattern.includes("Files doesn't must end with by .interfaces.ts  @angular-ru/no-suffix-file")
+            filePattern.includes("Files doesn't must end with by .interfaces.ts  @angular-ru/enterprise/no-suffix-file")
         ).toBeTruthy();
     });
 });

@@ -28,7 +28,7 @@
         "@angular-eslint/eslint-plugin": "12.3.1",
         "@angular-eslint/eslint-plugin-template": "12.3.1",
         "@angular-eslint/template-parser": "12.3.1",
-        "@angular-ru/eslint-plugin": "^15.302.0",
+        "@angular-ru/eslint-plugin-enterprise": "^12.0.0",
         "@types/eslint": "7.28.0",
         "@typescript-eslint/eslint-plugin": "4.29.3",
         "@typescript-eslint/parser": "4.29.3",

@@ -3,28 +3,22 @@
 An ESLint-specific plugin that contains rules which are specific to Angular projects. It can be combined with any other
 ESLint plugins in the normal way.
 
-<p>
-  <a href="https://badge.fury.io/js/%40angular-ru%2Feslint-plugin">
-    <img src="https://badge.fury.io/js/%40angular-ru%2Feslint-plugin.svg" />
-  </a>
-  <a href="https://npm-stat.com/charts.html?package=%40angular-ru%2Feslint-plugin&from=2019-09-01">
-    <img src="https://img.shields.io/npm/dw/@angular-ru/eslint-plugin" />
-  </a>
-</p>
+[![image](https://badge.fury.io/js/%40angular-ru%2Feslint-plugin-enterprise.svg)](https://badge.fury.io/js/%40angular-ru%2Feslint-plugin-enterprise)
+[![image](https://img.shields.io/npm/dw/@angular-ru/eslint-plugin-enterprise)](https://badge.fury.io/js/%40angular-ru%2Feslint-plugin-enterprise)
 
 ### Quick start
 
 ```bash
-$ npm install @angular-ru/eslint-plugin -D
+$ npm install @angular-ru/eslint-plugin-enterprise -D
 ```
 
 Add to your `.eslintrc.json`:
 
 ```js
 {
-    "plugins": ["@angular-ru/eslint-plugin"],
+    "plugins": ["@angular-ru/eslint-plugin-enterprise"],
     "rules": {
-        // by default in @angular-ru/eslint-plugin
+        // by default
         "@angular-ru/no-suffix-file": [
             "error",
             {

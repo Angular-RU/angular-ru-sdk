@@ -1,18 +1,18 @@
 #!/bin/bash
 
-PACKAGE_NAME="eslint-plugin";
+PACKAGE_NAME="eslint-plugin-enterprise";
 
 echo "[INFO]: starting create symlink..."
 mkdir -p ../../node_modules/@angular-ru/
 cd ../../node_modules/@angular-ru/ || echo 'not exist ./node_modules/@angular-ru'
 
-if [ -d "../../packages/$PACKAGE_NAME/lib" ]
+if [ -d "../../dev-infra/$PACKAGE_NAME/lib" ]
 then
-    echo "[INFO]: Directory ../../packages/$PACKAGE_NAME/lib exists."
+    echo "[INFO]: Directory ../../dev-infra/$PACKAGE_NAME/lib exists."
     rm -rf "$PACKAGE_NAME"
-    ln -s -f "../../packages/$PACKAGE_NAME" "$PACKAGE_NAME"
+    ln -s -f "../../dev-infra/$PACKAGE_NAME" "$PACKAGE_NAME"
     echo '[INFO]: created symlink'
 else
-    echo "[ERROR]: Directory ../../packages/$PACKAGE_NAME/lib does not exists"
+    echo "[ERROR]: Directory ../../dev-infra/$PACKAGE_NAME/lib does not exists"
     echo "skip create symlink, please run 'yarn lerna run build:lib --scope=@angular-ru/$PACKAGE_NAME' before"
 fi

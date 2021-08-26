@@ -1,13 +1,13 @@
 {
     "extends": "../../tsconfig.json",
     "compilerOptions": {
-        "baseUrl": ".",
+        "baseUrl": "./",
         "outDir": "./lib",
         "module": "commonjs",
         "types": ["node"],
         "typeRoots": ["../../node_modules/@types", "./"],
         "paths": {
-            "@angular-ru/common/*": ["../common/dist/library/*"]
+            "@angular-ru/common/*": ["../../packages/common/dist/library/*"]
         }
     },
     "include": ["./src"],
