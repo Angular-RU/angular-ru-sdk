@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   refactor scripts (#852) (0ee8b2da)
+
+#### independent (2021-08-26)
+
+##### Build System / Dependencies
+
 -   update angular to v12.2.3 (#850) (1c6ea203)
 
 ##### New Features
