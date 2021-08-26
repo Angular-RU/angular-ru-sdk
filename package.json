@@ -13,19 +13,15 @@
         "dev-infra/*"
     ],
     "scripts": {
-        "clean": "yarn zx tools/clean.ts",
-        "build": "yarn zx tools/build.ts",
-        "test": "yarn zx tools/test.ts",
-        "build:app": "lerna run build:app",
-        "build:lib": "lerna run build:lib",
-        "deploy": "echo 1; #lerna run deploy",
-        "format": "yarn format:sort-package-json && yarn format:prettier",
-        "postinstall": "ngcc --async && husky install && lerna run symlink",
-        "lint": "yarn eslint --fix --cache --cache-location .cache/.eslintcache \"**/*.ts\" --ignore-pattern **/file-suites/**",
-        "format:sort-package-json": "yarn sort-package-json \"package.json\" \"packages/*/package.json\"",
-        "format:prettier": "yarn prettier \"**/*.{ts,html,css,scss,md,js,json,yml}\" --write",
-        "release:bump": "RELEASE_VERSION=$(node -p -e \"require('./lerna.json').version\") && yarn npe version \"$RELEASE_VERSION\"",
-        "version": "yarn release:bump && yarn generate-changelog && git add . && git update-index --again"
+        "postinstall": "ngcc --async && husky install && yarn symlink",
+        "clean": "yarn zx scripts/clean.ts",
+        "build": "yarn zx scripts/build.ts",
+        "symlink": "yarn zx scripts/symlink.ts",
+        "integration": "yarn zx scripts/integration.ts",
+        "lint": "yarn zx scripts/lint.ts",
+        "format": "yarn zx scripts/format.ts",
+        "test": "yarn zx scripts/test.ts",
+        "version": "yarn zx scripts/release-version.ts"
     },
     "commitlint": {
         "extends": [

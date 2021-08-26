@@ -1,3 +1,13 @@
+#### independent (2021-08-26)
+
+##### Build System / Dependencies
+
+-   update angular to v12.2.3 (#850) (1c6ea203)
+
+##### New Features
+
+-   **@angular-ru/eslint-plugin-enterprise:** add new package (#851) (714d0645)
+
 #### independent (2021-08-25)
 
 ##### Build System / Dependencies

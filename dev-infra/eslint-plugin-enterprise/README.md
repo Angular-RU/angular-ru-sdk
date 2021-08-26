@@ -19,7 +19,7 @@ Add to your `.eslintrc.json`:
     "plugins": ["@angular-ru/eslint-plugin-enterprise"],
     "rules": {
         // by default
-        "@angular-ru/no-suffix-file": [
+        "@angular-ru/enterprise/no-suffix-file": [
             "error",
             {
                 "fileEndsWithList": [

@@ -1,8 +1,8 @@
 {
     "name": "@angular-ru/renovate",
-    "version": "12.1.1",
+    "version": "12.2.0",
     "description": "Shared Renovate config for Angular projects",
-    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/renovate#readme",
+    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/dev-infra/renovate#readme",
     "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
     "repository": "git+https://github.com/Angular-RU/angular-ru-sdk.git",
     "license": "MIT",
@@ -32,8 +32,9 @@
                 "master"
             ],
             "packageFiles": [
-                "package.json",
-                "packages/**/package.json"
+                "./package.json",
+                "./packages/package.json",
+                "./dev-infra/package.json"
             ],
             "packageRules": [
                 {

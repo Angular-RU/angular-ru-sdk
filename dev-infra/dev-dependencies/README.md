@@ -23,4 +23,4 @@ Example after install, you can use `husky` or another tools
 ```
 
 See what packages will be
-[installed](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/dev-dependencies/package.json)
+[installed](https://github.com/Angular-RU/angular-ru-sdk/blob/master/dev-infra/dev-dependencies/package.json)
