@@ -12,8 +12,8 @@
         "lib"
     ],
     "scripts": {
-        "build:lib": "tsc -p ./tsconfig.lib.json",
-        "test": "yarn jest --config ./jest.config.js"
+        "build:lib": "tsc -p tsconfig.lib.json",
+        "test": "yarn node_modules/.bin/jest --config ./jest.config.js"
     },
     "dependencies": {
         "@types/jest": "27.0.1",
