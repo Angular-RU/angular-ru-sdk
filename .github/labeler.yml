@@ -1,42 +1,42 @@
 'comp: @angular-ru/dev-dependencies':
-    - packages/dev-dependencies/*
-    - packages/dev-dependencies/**/*
+    - dev-infra/dev-dependencies/*
+    - dev-infra/dev-dependencies/**/*
 
 'comp: @angular-ru/commitlint':
-    - packages/commitlint/*
-    - packages/commitlint/**/*
+    - dev-infra/commitlint/*
+    - dev-infra/commitlint/**/*
 
 'comp: @angular-ru/typescript':
-    - packages/typescript/*
-    - packages/typescript/**/*
+    - dev-infra/typescript/*
+    - dev-infra/typescript/**/*
 
 'comp: @angular-ru/common':
     - packages/common/*
     - packages/common/**/*
 
-'comp: @angular-ru/eslint-config-enterprise':
-    - packages/eslint-config-enterprise/*
-    - packages/eslint-config-enterprise/**/*
-
 'comp: @angular-ru/eslint-plugin-enterprise':
-    - packages/eslint-plugin-enterprise/*
-    - packages/eslint-plugin-enterprise/**/*
+    - dev-infra/eslint-plugin-enterprise/*
+    - dev-infra/eslint-plugin-enterprise/**/*
+
+'comp: @angular-ru/eslint-config-enterprise':
+    - dev-infra/eslint-config-enterprise/*
+    - dev-infra/eslint-config-enterprise/**/*
 
 'comp: @angular-ru/jest':
-    - packages/jest/*
-    - packages/jest/**/*
+    - dev-infra/jest/*
+    - dev-infra/jest/**/*
 
 'comp: @angular-ru/ng-table-builder':
     - packages/ng-table-builder/*
     - packages/ng-table-builder/**/*
 
 'comp: @angular-ru/prettier':
-    - packages/prettier/*
-    - packages/prettier/**/*
+    - dev-infra/prettier/*
+    - dev-infra/prettier/**/*
 
 'comp: @angular-ru/renovate':
-    - packages/renovate/*
-    - packages/renovate/**/*
+    - dev-infra/renovate/*
+    - dev-infra/renovate/**/*
 
 'comp: @angular-ru/stream':
     - packages/stream/*
