@@ -1,14 +1,38 @@
+### 30.07.2021
+
+-   before
+
+```bash
+$ npm install @angular-ru/tooltip -D
+$ npm install @angular-ru/stream -D
+$ npm install @angular-ru/ng-table-builder -D
+```
+
+-   after
+
+```bash
+$ npm install @angular-ru/common -D
+# import { compress } from '@angular-ru/common/stream'
+
+$ npm install @angular-ru/common -D
+# import { TooltipModule } from '@angular-ru/common/tooltip'
+
+
+$ npm install @angular-ru/common -D
+# import { TableBuilderModule } from '@angular-ru/common/virtual-table'
+```
+
 ### 20.07.2021
 
 -   before
 
-```ts
+```bash
 $ npm install @angular-ru/websocket -D
 ```
 
 -   after
 
-```ts
+```bash
 $ npm install @angular-ru/common -D
 # import { WebsocketModule } from '@angular-ru/common/websocket'
 ```
@@ -17,7 +41,7 @@ $ npm install @angular-ru/common -D
 
 -   before
 
-```ts
+```bash
 $ npm install @angular-ru/build-tools -D
 $ npm install @angular-ru/tsconfig -D
 $ npm install @angular-ru/commitlint-config -D
@@ -28,7 +52,7 @@ $ npm install @angular-ru/eslint-config -D
 
 -   after
 
-```ts
+```bash
 $ npm install @angular-ru/dev-dependencies -D
 $ npm install @angular-ru/typescript -D
 $ npm install @angular-ru/commitlint -D
@@ -129,7 +153,7 @@ expect(toNumber('30,000.65', 'en-IN')).toEqual(30000.65);
 expect(toNumber('30.000,65', 'de')).toEqual(30000.65);
 ```
 
-### 19.03.2021 @angular-ru/ng-table-builder
+### 19.03.2021 @angular-ru/common/virtual-table
 
 -   `TableBuilderComponent<T>` required generic type,
 -   `[exclude-keys]` only support `ExcludePattern<T>[]` instead `(string | RegExp)[]`

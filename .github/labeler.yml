@@ -1,3 +1,7 @@
+'comp: @angular-ru/common':
+    - packages/common/*
+    - packages/common/**/*
+
 'comp: @angular-ru/dev-dependencies':
     - dev-infra/dev-dependencies/*
     - dev-infra/dev-dependencies/**/*
@@ -9,10 +13,6 @@
 'comp: @angular-ru/typescript':
     - dev-infra/typescript/*
     - dev-infra/typescript/**/*
-
-'comp: @angular-ru/common':
-    - packages/common/*
-    - packages/common/**/*
 
 'comp: @angular-ru/eslint-plugin-enterprise':
     - dev-infra/eslint-plugin-enterprise/*
@@ -26,10 +26,6 @@
     - dev-infra/jest/*
     - dev-infra/jest/**/*
 
-'comp: @angular-ru/ng-table-builder':
-    - packages/ng-table-builder/*
-    - packages/ng-table-builder/**/*
-
 'comp: @angular-ru/prettier':
     - dev-infra/prettier/*
     - dev-infra/prettier/**/*
@@ -37,11 +33,3 @@
 'comp: @angular-ru/renovate':
     - dev-infra/renovate/*
     - dev-infra/renovate/**/*
-
-'comp: @angular-ru/stream':
-    - packages/stream/*
-    - packages/stream/**/*
-
-'comp: @angular-ru/tooltip':
-    - packages/tooltip/*
-    - packages/tooltip/**/*

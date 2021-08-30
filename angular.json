@@ -287,7 +287,6 @@
             "prefix": "",
             "projectType": "application",
             "sourceRoot": "packages/common/integration/apps/excel",
-            "schematics": {},
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
@@ -349,216 +348,24 @@
                 }
             }
         },
-        "ng-table-builder-library": {
-            "prefix": "",
-            "root": ".",
-            "sourceRoot": "packages/ng-table-builder",
-            "projectType": "library",
-            "architect": {
-                "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
-                    "options": {
-                        "tsConfig": "packages/ng-table-builder/tsconfig.lib.json",
-                        "project": "packages/ng-table-builder/ng-package.json"
-                    }
-                }
-            }
-        },
-        "ng-table-builder-app": {
-            "prefix": "",
-            "root": ".",
-            "projectType": "application",
-            "sourceRoot": "packages/ng-table-builder/integration/app",
-            "architect": {
-                "build": {
-                    "builder": "@angular-devkit/build-angular:browser",
-                    "options": {
-                        "outputPath": "packages/ng-table-builder/dist/integration",
-                        "index": "packages/ng-table-builder/integration/app/index.html",
-                        "main": "packages/ng-table-builder/integration/app/main.ts",
-                        "polyfills": "packages/ng-table-builder/integration/app/polyfills.ts",
-                        "tsConfig": "packages/ng-table-builder/tsconfig.app.json",
-                        "assets": ["packages/ng-table-builder/integration/app/assets"],
-                        "styles": [
-                            ".styles/integration-app.style.scss",
-                            "packages/ng-table-builder/integration/app/styles.scss"
-                        ],
-                        "aot": false,
-                        "vendorChunk": true,
-                        "extractLicenses": false,
-                        "buildOptimizer": false,
-                        "sourceMap": true,
-                        "optimization": false,
-                        "namedChunks": true
-                    },
-                    "configurations": {
-                        "production": {
-                            "fileReplacements": [
-                                {
-                                    "replace": "packages/ng-table-builder/integration/app/environments/environment.ts",
-                                    "with": "packages/ng-table-builder/integration/app/environments/environment.prod.ts"
-                                }
-                            ],
-                            "optimization": true,
-                            "outputHashing": "all",
-                            "sourceMap": false,
-                            "namedChunks": false,
-                            "aot": true,
-                            "extractLicenses": true,
-                            "vendorChunk": false,
-                            "buildOptimizer": true
-                        }
-                    },
-                    "defaultConfiguration": "production"
-                },
-                "serve": {
-                    "builder": "@angular-devkit/build-angular:dev-server",
-                    "options": { "browserTarget": "ng-table-builder-app:build" },
-                    "configurations": {
-                        "production": { "browserTarget": "ng-table-builder-app:build:production" }
-                    }
-                },
-                "deploy": {
-                    "builder": "angular-cli-ghpages:deploy",
-                    "options": {
-                        "noSilent": true,
-                        "noBuild": true,
-                        "branch": "master",
-                        "name": "angular-ru",
-                        "email": "angular-ru@yandex.ru",
-                        "repo": "https://github.com/Angular-RU/angular-ru-ng-table-builder-example-app.git"
-                    }
-                }
-            }
-        },
-        "stream-library": {
-            "root": ".",
-            "prefix": "",
-            "projectType": "library",
-            "sourceRoot": "packages/stream",
-            "architect": {
-                "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
-                    "options": {
-                        "tsConfig": "packages/stream/tsconfig.lib.json",
-                        "project": "packages/stream/ng-package.json"
-                    }
-                }
-            }
-        },
-        "stream-app": {
-            "prefix": "",
-            "root": ".",
-            "projectType": "application",
-            "sourceRoot": "packages/stream/integration/app",
-            "architect": {
-                "build": {
-                    "builder": "@angular-devkit/build-angular:browser",
-                    "options": {
-                        "outputPath": "packages/stream/dist/integration",
-                        "index": "packages/stream/integration/app/index.html",
-                        "main": "packages/stream/integration/app/main.ts",
-                        "polyfills": "packages/stream/integration/app/polyfills.ts",
-                        "tsConfig": "packages/stream/tsconfig.app.json",
-                        "assets": [
-                            "packages/stream/integration/app/favicon.ico",
-                            "packages/stream/integration/app/assets"
-                        ],
-                        "styles": ["packages/stream/integration/app/styles.css"],
-                        "vendorChunk": true,
-                        "extractLicenses": false,
-                        "buildOptimizer": false,
-                        "sourceMap": true,
-                        "optimization": false,
-                        "namedChunks": true
-                    },
-                    "configurations": {
-                        "production": {
-                            "fileReplacements": [
-                                {
-                                    "replace": "packages/stream/integration/app/environments/environment.ts",
-                                    "with": "packages/stream/integration/app/environments/environment.prod.ts"
-                                }
-                            ],
-                            "optimization": true,
-                            "outputHashing": "all",
-                            "sourceMap": false,
-                            "namedChunks": false,
-                            "extractLicenses": true,
-                            "vendorChunk": false,
-                            "buildOptimizer": true,
-                            "budgets": [
-                                {
-                                    "type": "initial",
-                                    "maximumWarning": "2mb",
-                                    "maximumError": "5mb"
-                                },
-                                {
-                                    "type": "anyComponentStyle",
-                                    "maximumWarning": "6kb",
-                                    "maximumError": "10kb"
-                                }
-                            ]
-                        }
-                    },
-                    "defaultConfiguration": "production"
-                },
-                "serve": {
-                    "builder": "@angular-devkit/build-angular:dev-server",
-                    "options": { "browserTarget": "stream-app:build" },
-                    "configurations": {
-                        "production": { "browserTarget": "stream-app:build:production" }
-                    }
-                },
-                "test": {
-                    "builder": "@angular-devkit/build-angular:karma",
-                    "options": {
-                        "main": "packages/stream/setup-karma.ts",
-                        "polyfills": "packages/stream/integration/app/polyfills.ts",
-                        "tsConfig": "packages/stream/tsconfig.spec.json",
-                        "karmaConfig": "packages/stream/karma.conf.js",
-                        "assets": [
-                            "packages/stream/integration/app/favicon.ico",
-                            "packages/stream/integration/app/assets"
-                        ],
-                        "styles": ["packages/stream/integration/app/styles.css"]
-                    }
-                }
-            }
-        },
-        "tooltip-library": {
-            "prefix": "",
-            "root": ".",
-            "projectType": "library",
-            "sourceRoot": "packages/tooltip",
-            "architect": {
-                "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
-                    "options": {
-                        "tsConfig": "packages/tooltip/tsconfig.lib.json",
-                        "project": "packages/tooltip/ng-package.json"
-                    }
-                }
-            }
-        },
         "tooltip-app": {
             "root": ".",
             "prefix": "",
-            "sourceRoot": "packages/tooltip/integration/app",
             "projectType": "application",
+            "sourceRoot": "packages/common/integration/apps/tooltip",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "main": "packages/tooltip/integration/app/main.ts",
-                        "index": "packages/tooltip/integration/app/index.html",
-                        "polyfills": "packages/tooltip/integration/app/polyfills.ts",
-                        "outputPath": "packages/tooltip/dist/integration",
-                        "tsConfig": "packages/tooltip/tsconfig.app.json",
-                        "assets": ["packages/tooltip/integration/app/assets"],
+                        "main": "packages/common/integration/apps/tooltip/main.ts",
+                        "index": "packages/common/integration/apps/tooltip/index.html",
+                        "polyfills": "packages/common/integration/apps/tooltip/polyfills.ts",
+                        "outputPath": "packages/common/dist/integration/apps/tooltip",
+                        "tsConfig": "packages/common/integration/apps/tooltip/tsconfig.app.json",
+                        "assets": ["packages/common/integration/apps/tooltip/assets"],
                         "styles": [
                             ".styles/integration-app.style.scss",
-                            "packages/tooltip/integration/app/styles.scss"
+                            "packages/common/integration/apps/tooltip/styles.scss"
                         ],
                         "aot": false,
                         "vendorChunk": true,
@@ -572,8 +379,8 @@
                         "production": {
                             "fileReplacements": [
                                 {
-                                    "replace": "packages/tooltip/integration/app/environments/environment.ts",
-                                    "with": "packages/tooltip/integration/app/environments/environment.prod.ts"
+                                    "replace": "packages/common/integration/apps/tooltip/environments/environment.ts",
+                                    "with": "packages/common/integration/apps/tooltip/environments/environment.prod.ts"
                                 }
                             ],
                             "optimization": true,
@@ -607,17 +414,86 @@
                 }
             }
         },
-        "websocket-library": {
+        "stream-app": {
             "prefix": "",
             "root": ".",
-            "sourceRoot": "packages/websocket",
-            "projectType": "library",
+            "projectType": "application",
+            "sourceRoot": "packages/common/integration/apps/stream",
+            "architect": {
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "packages/common/integration/tests/karma/setup-karma.ts",
+                        "polyfills": "packages/common/integration/tests/karma/polyfills.ts",
+                        "tsConfig": "packages/common/integration/tests/karma/tsconfig.karma.json",
+                        "karmaConfig": "packages/common/integration/tests/karma/karma.conf.js"
+                    }
+                }
+            }
+        },
+        "virtual-table-app": {
+            "prefix": "",
+            "root": ".",
+            "projectType": "application",
+            "sourceRoot": "packages/common/integration/apps/virtual-table",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "tsConfig": "packages/websocket/tsconfig.lib.json",
-                        "project": "packages/websocket/ng-package.json"
+                        "outputPath": "packages/common/dist/integration/apps/virtual-table",
+                        "index": "packages/common/integration/apps/virtual-table/index.html",
+                        "main": "packages/common/integration/apps/virtual-table/main.ts",
+                        "polyfills": "packages/common/integration/apps/virtual-table/polyfills.ts",
+                        "tsConfig": "packages/common/integration/apps/virtual-table/tsconfig.app.json",
+                        "assets": ["packages/common/integration/apps/virtual-table/assets"],
+                        "styles": [
+                            ".styles/integration-app.style.scss",
+                            "packages/common/integration/apps/virtual-table/styles.scss"
+                        ],
+                        "aot": false,
+                        "vendorChunk": true,
+                        "extractLicenses": false,
+                        "buildOptimizer": false,
+                        "sourceMap": true,
+                        "optimization": false,
+                        "namedChunks": true
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "packages/common/integration/apps/virtual-table/environments/environment.ts",
+                                    "with": "packages/common/integration/apps/virtual-table/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": { "browserTarget": "virtual-table-app:build" },
+                    "configurations": {
+                        "production": { "browserTarget": "virtual-table-app:build:production" }
+                    }
+                },
+                "deploy": {
+                    "builder": "angular-cli-ghpages:deploy",
+                    "options": {
+                        "noSilent": true,
+                        "noBuild": true,
+                        "branch": "master",
+                        "name": "angular-ru",
+                        "email": "angular-ru@yandex.ru",
+                        "repo": "https://github.com/Angular-RU/angular-ru-ng-table-builder-example-app.git"
                     }
                 }
             }

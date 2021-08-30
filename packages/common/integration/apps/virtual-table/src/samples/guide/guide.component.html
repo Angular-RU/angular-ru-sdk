@@ -1,0 +1,74 @@
+<div class="main__wrap">
+    <h1>Guide overview</h1>
+
+    <p>
+        The <strong>ngx-table-builder</strong> provides a styled data-table that can be used to display rows of data.
+        The <strong>ngx-table-builder</strong> is an customizable data-table with a fully-templated API, dynamic
+        columns, and an accessible DOM structure. This component acts as the core upon which anyone can build their own
+        tailored data-table experience.
+    </p>
+
+    <pre><code class="plaintext">
+  $ npm install --save @angular-ru/common/virtual-table
+
+</code></pre>
+
+    <p><strong>Benefits:</strong><br /></p>
+    <ul>
+        <li>Outstanding Performance;</li>
+        <li>Simple use and setup;</li>
+        <li>Customisable Appearance;</li>
+        <li>State Persistence;</li>
+        <li>Filtering;</li>
+        <li>Sorting;</li>
+        <li>Selection;</li>
+    </ul>
+
+    <p>
+        After a few seconds of waiting, you should be good to go. Let's get to the actual coding! As a first step, let's
+        add the Angular table builder module to our app module (src/app.module.ts):
+    </p>
+
+    <pre><code class="javascript" ngNonBindable>
+    import &#123; TableBuilderModule &#125; from '@angular-ru/common/virtual-table';
+
+    @NgModule(&#123;
+       imports: [
+          TableBuilderModule.forRoot()
+       ],
+       ...
+    &#125;)
+    export class AppModule &#123; &#125;
+    </code></pre>
+
+    <p>Next, let's declare the basic grid configuration. Edit src/app.component.ts:</p>
+
+    <pre><code class="typescript">
+    import &#123; Component } from '@angular/core';
+    import &#123; MyData } from './my-data.interface';
+
+    @Component(&#123;
+      selector: 'app-root',
+      template: `&lt;ngx-table-builder [source]="data"&gt;&lt;/ngx-table-builder&gt;`
+    })
+    export class AppComponent &#123;
+      public data: MyData[] = [
+          &#123; make: 'Toyota', model: 'Celica', price: 35000 },
+          &#123; make: 'Ford', model: 'Mondeo', price: 32000 },
+          &#123; make: 'Porsche', model: 'Boxter', price: 72000 }
+      ];
+    }
+    </code></pre>
+
+    <ngx-table-builder [source]="rowData"></ngx-table-builder>
+
+    <p>
+        For more information on the interface and a detailed look at how the table is implemented, see the
+        <a routerLink="samples/guide">guide</a>.
+    </p>
+
+    <div class="guide">
+        <h2>Rendering pipeline</h2>
+        <img src="assets/img/pipeline.png" alt="" />
+    </div>
+</div>

@@ -8,12 +8,14 @@
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "scripts": {
-        "build:app": "ng build common-app && ng build flex-layout-app && ng build http-app && ng build logger-app && ng build excel-app",
+        "build:app": "ng build common-app && ng build flex-layout-app && ng build http-app && ng build logger-app && ng build excel-app && ng build tooltip-app && ng build virtual-table-app",
         "build:lib": "ng build common-library && cp README.md dist/library && yarn symlink",
         "deploy": "echo 1; #cp README.md dist/integration && ng deploy common-app",
         "symlink": "sh symlink.sh",
         "start": "ng serve common-app --open",
-        "test": "yarn jest --config ./jest.config.js",
+        "test": "yarn test:jest && yarn test:karma",
+        "test:jest": "yarn jest --config integration/tests/jest/jest.config.js",
+        "test:karma": "export CI=true && yarn ng test stream-app",
         "postversion": "npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\""
     },
     "publishConfig": {

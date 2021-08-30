@@ -1,0 +1,11 @@
+{
+    "extends": "../../../tsconfig.base.json",
+    "compilerOptions": {
+        "types": ["jasmine", "node"],
+        "paths": {
+            "@angular-ru/common/*": ["../../common/*/public_api.ts"]
+        }
+    },
+    "files": ["setup-karma.ts", "polyfills.ts"],
+    "include": ["**/*.spec.ts", "**/*.d.ts"]
+}
