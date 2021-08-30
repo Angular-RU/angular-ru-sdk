@@ -33,13 +33,14 @@ class WebsocketSerializeClient extends AbstractWebsocketClient<Any> {
 
 describe('[TEST] Websocket client', (): void => {
     beforeEach(() => {
-        jest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => {
-            cb(0);
+        jest.spyOn(window, 'requestAnimationFrame').mockImplementation((callback: FrameRequestCallback): number => {
+            callback(0);
             return 0;
         });
-        jest.spyOn(window, 'setTimeout').mockImplementation((cb) => {
-            cb(0);
-            return 0 as Any;
+
+        jest.spyOn(window, 'setTimeout').mockImplementation((callback: Any): NodeJS.Timeout => {
+            callback(0);
+            return 0 as unknown as NodeJS.Timeout;
         });
 
         TestBed.configureTestingModule({

@@ -1,14 +1,11 @@
-#!/usr/bin/env zx
-import { $, cd, nothrow } from 'zx';
+import { asyncExec } from './utils/async-exec';
+import { errorHandler } from './utils/error-handler';
+import { getPackages } from './utils/get-packages';
+import { log } from './utils/log';
 
-void (async function (): Promise<void> {
-    const { packages }: typeof import('../package.json') = require('../package.json');
-
-    for (const packagePath of packages) {
-        // eslint-disable-next-line no-console
-        console.log(chalk.blue(`[TEST]: ${packagePath}`));
-        cd(packagePath);
-        await nothrow($`yarn pretest`);
-        await nothrow($`yarn test`);
+void (async function main(): Promise<void> {
+    for (const packagePath of getPackages()) {
+        log(`[TEST]: ${packagePath}`);
+        await asyncExec(`cd ${packagePath} && yarn test`).catch(errorHandler);
     }
 })();

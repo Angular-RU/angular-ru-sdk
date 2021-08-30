@@ -1,9 +1,8 @@
-#!/usr/bin/env zx
-import { $, nothrow } from 'zx';
+import { asyncExec } from './utils/async-exec';
+import { log } from './utils/log';
 
-void (async function (): Promise<void> {
-    // eslint-disable-next-line no-console
-    console.log(chalk.blue(`[FORMAT]`));
-    await nothrow($`yarn sort-package-json package.json packages/*/package.json dev-infra/*/package.json`);
-    await nothrow($`yarn prettier '**/*.{ts,html,css,scss,md,js,json,yml}' --write`);
+void (async function main(): Promise<void> {
+    log(`[FORMAT]`);
+    await asyncExec(`yarn sort-package-json package.json packages/*/package.json dev-infra/*/package.json`);
+    await asyncExec(`yarn prettier '**/*.{ts,html,css,scss,md,js,json,yml}' --write`);
 })();

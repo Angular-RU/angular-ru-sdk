@@ -14,14 +14,14 @@
     ],
     "scripts": {
         "postinstall": "ngcc --async && husky install && yarn symlink",
-        "clean": "yarn zx scripts/clean.ts",
-        "build": "yarn zx scripts/build.ts",
-        "symlink": "yarn zx scripts/symlink.ts",
-        "integration": "yarn zx scripts/integration.ts",
-        "lint": "yarn zx scripts/lint.ts",
-        "format": "yarn zx scripts/format.ts",
-        "test": "yarn zx scripts/test.ts",
-        "version": "yarn zx scripts/release-version.ts"
+        "clean": "yarn ts-node scripts/clean.ts",
+        "build": "yarn ts-node scripts/build.ts",
+        "symlink": "yarn ts-node scripts/symlink.ts",
+        "integration": "yarn ts-node scripts/integration.ts",
+        "lint": "yarn ts-node scripts/lint.ts",
+        "format": "yarn ts-node scripts/format.ts",
+        "test": "yarn ts-node scripts/test.ts",
+        "version": "yarn ts-node scripts/release-version.ts"
     },
     "commitlint": {
         "extends": [
@@ -70,7 +70,6 @@
         "@ngx-translate/http-loader": "6.0.0",
         "angular-cli-ghpages": "1.0.0-rc.2",
         "class-transformer": "0.4.0",
-        "devtools-detect": "3.0.1",
         "jasmine-core": "3.9.0",
         "jasmine-spec-reporter": "7.0.0",
         "karma": "6.3.4",
@@ -85,7 +84,7 @@
         "rxjs": "6.6.7",
         "tsickle": "0.43.0",
         "tslib": "2.3.1",
-        "typescript": "4.3.5",
+        "typescript": "4.4.2",
         "zone.js": "0.11.4"
     },
     "packages": [

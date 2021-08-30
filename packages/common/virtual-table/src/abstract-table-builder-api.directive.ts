@@ -348,8 +348,8 @@ export abstract class AbstractTableBuilderApiDirective<T>
         // TODO: need research this code, because we have problem with recursive update,
         //  when page have more than one tables
         this.ngZone.runOutsideAngular((): void => {
-            clearTimeout(this.onChangesId);
-            this.onChangesId = setTimeout((): void => {
+            window.clearTimeout(this.onChangesId);
+            this.onChangesId = window.setTimeout((): void => {
                 this.onChanges.emit(this.sourceRef);
             });
         });
