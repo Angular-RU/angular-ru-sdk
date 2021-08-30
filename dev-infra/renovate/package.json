@@ -82,7 +82,8 @@
                         "^@angular/flex-layout$",
                         "^@angular/material$",
                         "^@angular-builders/.*",
-                        "^ng-packagr$"
+                        "^ng-packagr$",
+                        "^zone.js"
                     ],
                     "groupName": "Angular",
                     "postUpgradeTasks": {
@@ -111,6 +112,7 @@
                     "packagePatterns": [
                         "^@types/eslint$",
                         "^@angular-eslint/.*",
+                        "^@angular-ru/eslint-.*",
                         "^@typescript-eslint/.*",
                         "^eslint.*"
                     ],

@@ -329,8 +329,8 @@ describe('[TEST]: ConsoleService based', () => {
     it(`should be throw logger`, () => {
         try {
             logger.info.group('hello world');
-        } catch (e) {
-            expect(e.message).toEqual('logger.info.group is not a function');
+        } catch (e: unknown) {
+            expect((e as Error).message).toEqual('logger.info.group is not a function');
         }
     });
 });

@@ -149,7 +149,7 @@ describe('[TEST]: Decorator API', () => {
         try {
             component.badRequest();
         } catch (e) {
-            expect(e.message).toEqual('error');
+            expect((e as Error).message).toEqual('error');
         }
     });
 });
