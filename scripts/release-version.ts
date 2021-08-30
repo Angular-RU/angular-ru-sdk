@@ -1,10 +1,9 @@
-#!/usr/bin/env zx
-import { $, nothrow } from 'zx';
+import { asyncExec } from './utils/async-exec';
+import { log } from './utils/log';
 
-void (async function (): Promise<void> {
-    // eslint-disable-next-line no-console
-    console.log(chalk.blue(`[RELEASE]`));
-    await nothrow($`yarn generate-changelog`);
-    await nothrow($`git add .`);
-    await nothrow($`git update-index --again`);
+void (async function main(): Promise<void> {
+    log(`[RELEASE]`);
+    await asyncExec(`yarn generate-changelog`);
+    await asyncExec(`git add .`);
+    await asyncExec(`git update-index --again`);
 })();

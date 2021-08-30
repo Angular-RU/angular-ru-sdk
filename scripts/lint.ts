@@ -1,10 +1,9 @@
-#!/usr/bin/env zx
-import { $, nothrow } from 'zx';
+import { asyncExec } from './utils/async-exec';
+import { log } from './utils/log';
 
-void (async function (): Promise<void> {
-    // eslint-disable-next-line no-console
-    console.log(chalk.blue(`[LINT]`));
-    await nothrow(
-        $`yarn eslint --fix --cache --cache-location node_modules/.cache/.eslintcache '**/*.ts' --ignore-pattern '**/file-suites/**'`
+void (async function main(): Promise<void> {
+    log('[LINT]');
+    await asyncExec(
+        `yarn eslint --fix --cache --cache-location node_modules/.cache/.eslintcache '**/*.ts' --ignore-pattern '**/file-suites/**'`
     );
 })();

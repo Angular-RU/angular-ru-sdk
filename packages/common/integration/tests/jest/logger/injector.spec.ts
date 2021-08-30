@@ -7,8 +7,8 @@ describe('[TEST]: Check injector error', () => {
 
         try {
             LoggerInjector.getInjector().get<LoggerService>(LoggerService).log;
-        } catch (e) {
-            message = e.message;
+        } catch (e: unknown) {
+            message = (e as Error).message;
         }
 
         expect(message).toEqual(`You've forgotten to import \`LoggerModule\``);

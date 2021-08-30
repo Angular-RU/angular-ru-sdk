@@ -270,8 +270,8 @@ describe('[TEST]: Object', () => {
 
             try {
                 origin.b.c = 5;
-            } catch (e) {
-                message = e.message;
+            } catch (e: unknown) {
+                message = (e as Error).message;
             }
 
             expect(message).toEqual(`Cannot assign to read only property 'c' of object '[object Object]'`);

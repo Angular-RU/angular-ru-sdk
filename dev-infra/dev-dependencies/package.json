@@ -12,6 +12,7 @@
         "@types/jasminewd2": "2.0.10",
         "@types/karma": "6.3.1",
         "@types/node": "16.7.6",
+        "chalk": "4.1.2",
         "cross-env": "7.0.3",
         "generate-changelog": "1.8.0",
         "husky": "7.0.2",
@@ -23,8 +24,7 @@
         "nyc": "15.1.0",
         "sort-package-json": "1.50.0",
         "standard-version": "9.3.1",
-        "ts-node": "10.2.1",
-        "zx": "3.1.0"
+        "ts-node": "10.2.1"
     },
     "publishConfig": {
         "access": "public"
