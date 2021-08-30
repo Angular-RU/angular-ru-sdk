@@ -12,18 +12,15 @@ found in the Angular.
 
 ---
 
-### Component libraries
+### CDK
 
-| **Package**                                                                            | **Version**                                                                   | **README**                                                                                 | **Downloads**                                                                                                             |
-| -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
-| [@angular-ru/common](https://npmjs.com/package/@angular-ru/common)                     | ![](https://img.shields.io/npm/v/%40angular-ru%2Fcommon/latest.svg)           | [![](https://img.shields.io/badge/README--green.svg)](packages/common/README.md)           | [![](https://img.shields.io/npm/dm/@angular-ru/common)](https://npmjs.com/package/@angular-ru/common)                     |
-| [@angular-ru/tooltip](https://npmjs.com/package/@angular-ru/tooltip)                   | ![](https://img.shields.io/npm/v/%40angular-ru%2Ftooltip/latest.svg)          | [![](https://img.shields.io/badge/README--green.svg)](packages/tooltip/README.md)          | [![](https://img.shields.io/npm/dm/@angular-ru/tooltip)](https://npmjs.com/package/@angular-ru/tooltip)                   |
-| [@angular-ru/ng-table-builder](https://npmjs.com/package/@angular-ru/ng-table-builder) | ![](https://img.shields.io/npm/v/%40angular-ru%2Fng-table-builder/latest.svg) | [![](https://img.shields.io/badge/README--green.svg)](packages/ng-table-builder/README.md) | [![](https://img.shields.io/npm/dm/@angular-ru/ng-table-builder)](https://npmjs.com/package/@angular-ru/ng-table-builder) |
-| [@angular-ru/stream](https://npmjs.com/package/@angular-ru/stream)                     | ![](https://img.shields.io/npm/v/%40angular-ru%2Fstream/latest.svg)           | [![](https://img.shields.io/badge/README--green.svg)](packages/stream/README.md)           | [![](https://img.shields.io/npm/dm/@angular-ru/stream)](https://npmjs.com/package/@angular-ru/stream)                     |
+| **Package**                                                        | **Version**                                                         | **README**                                                                       | **Downloads**                                                                                         |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| [@angular-ru/common](https://npmjs.com/package/@angular-ru/common) | ![](https://img.shields.io/npm/v/%40angular-ru%2Fcommon/latest.svg) | [![](https://img.shields.io/badge/README--green.svg)](packages/common/README.md) | [![](https://img.shields.io/npm/dm/@angular-ru/common)](https://npmjs.com/package/@angular-ru/common) |
 
 ---
 
-### Development infrastructure
+### Infrastructure
 
 #### Sharable configs
 

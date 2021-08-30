@@ -31,7 +31,7 @@
     "lint-staged": {
         "*.ts": [
             "yarn prettier --write",
-            "yarn eslint --fix --ignore-pattern **/file-suites/**"
+            "yarn eslint --fix --quiet --ignore-pattern '**/file-suites/**'"
         ],
         "*.{html,css,scss,md,js,json}": [
             "yarn prettier --write"
@@ -50,9 +50,6 @@
     "prettier": "./dev-infra/prettier/prettier.config.js",
     "eslintConfig": {
         "extends": "./dev-infra/eslint-config-enterprise/index.js"
-    },
-    "resolutions": {
-        "@types/node": "15.14.9"
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "12.2.2",
@@ -93,9 +90,6 @@
     },
     "packages": [
         "packages/common",
-        "packages/ng-table-builder",
-        "packages/stream",
-        "packages/tooltip",
         "dev-infra/commitlint",
         "dev-infra/dev-dependencies",
         "dev-infra/eslint-plugin-enterprise",
