@@ -1,3 +1,9 @@
+#### independent (2021-08-30)
+
+##### New Features
+
+-   remove tooltip, stream, ng-table-builder package (#853) (8446333f)
+
 #### independent (2021-08-26)
 
 ##### Build System / Dependencies
