@@ -1,5 +1,11 @@
 #### independent (2021-08-30)
 
+##### Build System / Dependencies
+
+-   use ts-node instead zx (#855) (b8fc7ab8)
+
+#### independent (2021-08-30)
+
 ##### New Features
 
 -   remove tooltip, stream, ng-table-builder package (#853) (8446333f)
