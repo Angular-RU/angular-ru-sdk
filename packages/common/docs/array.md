@@ -161,21 +161,25 @@ expect([unique, { v: 2 }, { v: 3 }].filter(include([unique]))).toEqual([unique])
 -   `hasItems`
 
 ```ts
-hasNoItem([1]); // true
-hasNoItem([1, 2, 3]); // true
-hasNoItem([]); // false
-hasNoItem(null); // false
-hasNoItem(undefined); // false
+hasItems([1]); // true
+hasItems([1, 2, 3]); // true
+hasItems([]); // false
+hasItems(new Set<number>([1])); // true
+hasItems(new Map([['a', 1]])); // true
+hasItems(null); // false
+hasItems(undefined); // false
 ```
 
 -   `hasNoItems`
 
 ```ts
-hasNoItem([1]); // false
-hasNoItem([1, 2, 3]); // false
-hasNoItem([]); // true
-hasNoItem(null); // true
-hasNoItem(undefined); // true
+hasNoItems([1]); // false
+hasNoItems([1, 2, 3]); // false
+hasNoItems([]); // true
+hasNoItems(new Set<number>([1])); // false
+hasNoItems(new Map([['a', 1]])); // false
+hasNoItems(null); // true
+hasNoItems(undefined); // true
 ```
 
 -   `hasOneItem`
@@ -184,6 +188,8 @@ hasNoItem(undefined); // true
 hasOneItem([1]); // true
 hasOneItem([1, 2, 3]); // false
 hasOneItem([]); // false
+hasOneItem(new Set<number>([1])); // true
+hasOneItem(new Map([['a', 1]])); // true
 hasOneItem(null); // false
 hasOneItem(undefined); // false
 ```
@@ -194,6 +200,14 @@ hasOneItem(undefined); // false
 hasManyItems([1]); // false
 hasManyItems([1, 2, 3]); // true
 hasManyItems([]); // false
+hasManyItems(new Set<number>([1, 2, 3])); // true
+hasManyItems(
+    new Map([
+        ['a', 1],
+        ['b', 2],
+        ['c', 3]
+    ])
+); // true
 hasManyItems(null); // false
 hasManyItems(undefined); // false
 ```
@@ -204,6 +218,8 @@ hasManyItems(undefined); // false
 hasAtMostOneItem([1]); // true
 hasAtMostOneItem([1, 2, 3]); // false
 hasAtMostOneItem([]); // true
+hasAtMostOneItem(new Set<number>([1])); // true
+hasAtMostOneItem(new Map([['a', 1]])); // true
 hasAtMostOneItem(null); // true
 hasAtMostOneItem(undefined); // true
 ```

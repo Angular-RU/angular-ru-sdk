@@ -5,18 +5,18 @@ import {
     isFilledList,
     isMultipleList,
     isSingleList,
-    hasManyItems,
-    hasAtMostOneItem,
     hasItems,
-    hasNoItems,
-    hasOneItem,
     partition,
     secondItem,
     thirdItem,
     takeFirstItem,
     takeSecondItem,
     takeThirdItem,
-    takeLastItem
+    takeLastItem,
+    hasNoItems,
+    hasOneItem,
+    hasManyItems,
+    hasAtMostOneItem
 } from '@angular-ru/common/array';
 import { isNumber } from '@angular-ru/common/number';
 import { PlainObject } from '@angular-ru/common/typings';
@@ -61,6 +61,16 @@ describe('[TEST]: Array utility', () => {
         expect(hasItems(null)).toEqual(false);
         expect(hasItems(undefined)).toEqual(false);
         expect(hasItems()).toEqual(false);
+
+        const nums: Set<number> = new Set<number>();
+        expect(hasItems(nums)).toEqual(false);
+        nums.add(1);
+        expect(hasItems(nums)).toEqual(true);
+
+        const list: Map<string, number> = new Map();
+        expect(hasItems(list)).toEqual(false);
+        list.set('a', 1);
+        expect(hasItems(list)).toEqual(true);
     });
 
     it('has no items', () => {
@@ -70,6 +80,30 @@ describe('[TEST]: Array utility', () => {
         expect(hasNoItems(null)).toEqual(true);
         expect(hasNoItems(undefined)).toEqual(true);
         expect(hasNoItems()).toEqual(true);
+
+        const nums: Set<number> = new Set<number>();
+        expect(hasNoItems(nums)).toEqual(true);
+        nums.add(1);
+        expect(hasNoItems(nums)).toEqual(false);
+        nums.add(2);
+        expect(hasNoItems(nums)).toEqual(false);
+
+        const list: Set<Object> = new Set<Object>();
+        expect(hasNoItems(list)).toEqual(true);
+        list.add({});
+        expect(hasNoItems(list)).toEqual(false);
+
+        const items: Map<string, number> = new Map();
+        expect(hasNoItems(items)).toEqual(true);
+        items.set('a', 1);
+        expect(hasNoItems(items)).toEqual(false);
+        items.set('b', 2);
+        expect(hasNoItems(items)).toEqual(false);
+
+        const values: Map<string, Object> = new Map();
+        expect(hasNoItems(values)).toEqual(true);
+        values.set('a', {});
+        expect(hasNoItems(values)).toEqual(false);
     });
 
     it('has one item', () => {
@@ -79,6 +113,20 @@ describe('[TEST]: Array utility', () => {
         expect(hasOneItem(null)).toEqual(false);
         expect(hasOneItem(undefined)).toEqual(false);
         expect(hasOneItem()).toEqual(false);
+
+        const nums: Set<number> = new Set<number>();
+        expect(hasOneItem(nums)).toEqual(false);
+        nums.add(1);
+        expect(hasOneItem(nums)).toEqual(true);
+        nums.add(2);
+        expect(hasOneItem(nums)).toEqual(false);
+
+        const list: Map<string, number> = new Map();
+        expect(hasOneItem(list)).toEqual(false);
+        list.set('a', 1);
+        expect(hasOneItem(list)).toEqual(true);
+        list.set('b', 2);
+        expect(hasOneItem(list)).toEqual(false);
     });
 
     it('has many items', () => {
@@ -88,6 +136,20 @@ describe('[TEST]: Array utility', () => {
         expect(hasManyItems(null)).toEqual(false);
         expect(hasManyItems(undefined)).toEqual(false);
         expect(hasManyItems()).toEqual(false);
+
+        const nums: Set<number> = new Set<number>();
+        expect(hasManyItems(nums)).toEqual(false);
+        nums.add(1);
+        expect(hasManyItems(nums)).toEqual(false);
+        nums.add(2);
+        expect(hasManyItems(nums)).toEqual(true);
+
+        const list: Map<string, number> = new Map();
+        expect(hasManyItems(list)).toEqual(false);
+        list.set('a', 1);
+        expect(hasManyItems(list)).toEqual(false);
+        list.set('b', 2);
+        expect(hasManyItems(list)).toEqual(true);
     });
 
     it('has at most one item', () => {
@@ -97,9 +159,23 @@ describe('[TEST]: Array utility', () => {
         expect(hasAtMostOneItem(null)).toEqual(true);
         expect(hasAtMostOneItem(undefined)).toEqual(true);
         expect(hasAtMostOneItem()).toEqual(true);
+
+        const nums: Set<number> = new Set<number>();
+        expect(hasAtMostOneItem(nums)).toEqual(true);
+        nums.add(1);
+        expect(hasAtMostOneItem(nums)).toEqual(true);
+        nums.add(2);
+        expect(hasAtMostOneItem(nums)).toEqual(false);
+
+        const list: Map<string, number> = new Map();
+        expect(hasAtMostOneItem(list)).toEqual(true);
+        list.set('a', 1);
+        expect(hasAtMostOneItem(list)).toEqual(true);
+        list.set('b', 2);
+        expect(hasAtMostOneItem(list)).toEqual(false);
     });
 
-    it('is first item', () => {
+    it('takeFirstItem', () => {
         expect(firstItem()).toEqual(null);
         expect(firstItem(null)).toEqual(null);
         expect(firstItem([])).toEqual(null);
@@ -113,7 +189,7 @@ describe('[TEST]: Array utility', () => {
         expect(takeFirstItem([1, 2])).toEqual(1);
     });
 
-    it('is second item', () => {
+    it('takeSecondItem', () => {
         expect(secondItem()).toEqual(null);
         expect(secondItem(null)).toEqual(null);
         expect(secondItem([])).toEqual(null);
@@ -127,7 +203,7 @@ describe('[TEST]: Array utility', () => {
         expect(takeSecondItem([1, 2])).toEqual(2);
     });
 
-    it('is third item', () => {
+    it('takeThirdItem', () => {
         expect(thirdItem()).toEqual(null);
         expect(thirdItem(null)).toEqual(null);
         expect(thirdItem([])).toEqual(null);
@@ -142,7 +218,7 @@ describe('[TEST]: Array utility', () => {
         expect(takeThirdItem([1, 2, 3])).toEqual(3);
     });
 
-    it('is last item', () => {
+    it('takeLastItem', () => {
         expect(takeLastItem()).toEqual(undefined);
         expect(takeLastItem(null)).toEqual(undefined);
         expect(takeLastItem([])).toEqual(undefined);
