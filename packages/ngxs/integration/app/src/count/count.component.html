@@ -1,0 +1,47 @@
+<a
+    href="https://stackblitz.com/github/ngxs-labs/data?file=integration%2Fapp%2Fexamples%2Fcount%2Fcount.state.ts"
+    target="_blank"
+>
+    <img
+        class="stackblitz"
+        src="https://habrastorage.org/webt/ma/me/jm/mamejmzzxqu5pfn6rfieay6oisi.png"
+        alt="stackblitz"
+    />
+</a>
+
+<h3>CountState</h3>
+
+PS: CountSubState will be persistence in sessionStorage <br />
+
+<br /><b class="title">Selection:</b>
+<br />
+
+counter.state$ = {{ counter.state$ | async | json }}
+<br />
+
+<span> counter.values$ = {{ counter.values$ | async | json }} </span>
+
+<br /><br />
+
+<br /><b class="title">Actions:</b>
+
+<button (click)="counter.increment()">increment</button>
+<button (click)="counter.countSubIncrement()">countSubIncrement</button>
+<button (click)="counter.decrement()">decrement</button>
+<button (click)="counter.reset()">reset</button>
+
+<br />
+<br />
+
+<b class="title">counter model:</b>
+<input type="text" [ngModel]="(counter.state$ | async)?.val" (ngModelChange)="counter.setDebounceValue($event)" />
+
+(delay 300ms)
+
+<br />
+<br />
+
+<b class="title">subCount model:</b>
+<input type="text" [ngModel]="(subCount.state$ | async)?.val" (ngModelChange)="subCount.setDebounceSubValue($event)" />
+
+(delay 300ms)
