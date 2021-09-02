@@ -1,3 +1,9 @@
+#### independent (2021-09-02)
+
+##### New Features
+
+-   add @angular-ru/ngxs (#857) (66e7df94)
+
 #### independent (2021-08-30)
 
 ##### Build System / Dependencies
