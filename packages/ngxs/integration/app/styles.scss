@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+html {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    background: #f5f5f5;
+    font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 1.4em;
+    color: #4d4d4d;
+    margin: 0 auto;
+    -webkit-font-smoothing: antialiased;
+    font-weight: 300;
+}
+
+body {
+    width: calc(100% - 50px);
+    margin: auto;
+    padding-left: 50px;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+th,
+td {
+    overflow: hidden;
+    width: 200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+ul,
+li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+button {
+    background: none;
+}
+
+.add-todo {
+    position: relative;
+    padding: 1em;
+    display: flex;
+
+    input {
+        display: inline-flex;
+        width: 100%;
+        margin-right: 5px;
+    }
+}
+
+.container {
+    position: relative;
+    display: flex;
+    background: #fff;
+    font-size: 20px;
+    margin: auto;
+    min-height: 40vh;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+    min-width: 900px;
+}
+
+.content {
+    padding: 0.5em 1em;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.my-code {
+    cursor: help;
+}
+
+.title {
+    margin-right: 10px;
+    color: #000;
+}
+
+.stackblitz {
+    opacity: 0.5;
+    position: absolute;
+    right: 5px;
+    width: 35px;
+    top: 5px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.panel {
+    overflow: auto;
+    padding: 20px;
+    font-size: 12px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: calc(100% - 40px);
+    min-width: 210px;
+    background-color: #fff;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+    z-index: 100;
+
+    .logo {
+        margin-top: 20px;
+        width: 180px;
+    }
+
+    .panel-content {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+.link {
+    margin-right: 10px;
+}
+
+.todo {
+    display: block;
+    position: relative;
+    text-align: center;
+    padding: 1em;
+    margin: 0 auto;
+    border-top: solid 1px #ddd;
+}
+
+.menu {
+    margin-left: 10px;
+    min-width: 900px;
+    a {
+        margin-right: 5px;
+    }
+
+    .menu-top {
+        margin-bottom: 10px;
+    }
+}
+
+.button-actions {
+    button {
+        margin-right: 10px;
+    }
+}
+
+.ng-icon {
+    .img {
+        height: 16px;
+        display: block;
+        float: left;
+        margin-right: 10px;
+    }
+}
+
+.menu,
+.container,
+.panel-content {
+    width: 100%;
+}
+
+.main-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: auto;
+    width: 1024px;
+    margin: 100px auto auto;
+}

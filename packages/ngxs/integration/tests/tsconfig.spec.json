@@ -1,0 +1,13 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "types": ["jest", "node"],
+        "preserveConstEnums": true,
+        "paths": {
+            "@angular-ru/common/*": ["../common/*/src/public_api.ts"],
+            "@angular-ru/ngxs": ["./src/public_api.ts"],
+            "@angular-ru/ngxs/*": ["./*/src/public_api.ts"]
+        }
+    },
+    "include": ["**/*.spec.ts", "**/*.d.ts"]
+}
