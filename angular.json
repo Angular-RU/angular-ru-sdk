@@ -73,16 +73,74 @@
                             "browserTarget": "common-app:build:production"
                         }
                     }
-                },
-                "deploy": {
-                    "builder": "angular-cli-ghpages:deploy",
+                }
+            }
+        },
+        "ngxs-library": {
+            "prefix": "",
+            "root": ".",
+            "projectType": "library",
+            "sourceRoot": "packages/ngxs",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:ng-packagr",
                     "options": {
-                        "noSilent": true,
-                        "noBuild": true,
-                        "branch": "master",
-                        "name": "angular-ru",
-                        "email": "angular-ru@yandex.ru",
-                        "repo": "https://github.com/Angular-RU/angular-ru-common-example-app.git"
+                        "tsConfig": "packages/ngxs/tsconfig.lib.json",
+                        "project": "packages/ngxs/ng-package.json"
+                    }
+                }
+            }
+        },
+        "ngxs-app": {
+            "prefix": "",
+            "root": ".",
+            "projectType": "application",
+            "sourceRoot": "packages/ngxs/integration/app",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "packages/ngxs/dist/integration/app",
+                        "tsConfig": "packages/ngxs/integration/app/tsconfig.app.json",
+                        "main": "packages/ngxs/integration/app/main.ts",
+                        "index": "packages/ngxs/integration/app/index.html",
+                        "assets": ["packages/ngxs/integration/app/assets"],
+                        "polyfills": "packages/ngxs/integration/app/polyfills.ts",
+                        "styles": [".styles/integration-app.style.scss", "packages/ngxs/integration/app/styles.scss"],
+                        "aot": false,
+                        "vendorChunk": true,
+                        "extractLicenses": false,
+                        "buildOptimizer": false,
+                        "sourceMap": true,
+                        "optimization": false,
+                        "namedChunks": true
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "packages/ngxs/integration/app/environments/environment.ts",
+                                    "with": "packages/ngxs/integration/app/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "buildOptimizer": true
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": { "browserTarget": "ngxs-app:build" },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "ngxs-app:build:production"
+                        }
                     }
                 }
             }
@@ -139,17 +197,6 @@
                     "configurations": {
                         "production": { "browserTarget": "flex-layout-app:build:production" }
                     }
-                },
-                "deploy": {
-                    "builder": "angular-cli-ghpages:deploy",
-                    "options": {
-                        "noSilent": true,
-                        "noBuild": true,
-                        "branch": "master",
-                        "name": "angular-ru",
-                        "email": "angular-ru@yandex.ru",
-                        "repo": "https://github.com/Angular-RU/angular-ru-flex-layout-example-app.git"
-                    }
                 }
             }
         },
@@ -205,17 +252,6 @@
                     "configurations": {
                         "production": { "browserTarget": "http-app:build:production" }
                     }
-                },
-                "deploy": {
-                    "builder": "angular-cli-ghpages:deploy",
-                    "options": {
-                        "noSilent": true,
-                        "noBuild": true,
-                        "branch": "master",
-                        "name": "angular-ru",
-                        "email": "angular-ru@yandex.ru",
-                        "repo": "https://github.com/Angular-RU/angular-ru-http-example-app.git"
-                    }
                 }
             }
         },
@@ -267,17 +303,6 @@
                     "options": { "browserTarget": "logger-app:build" },
                     "configurations": {
                         "production": { "browserTarget": "logger-app:build:production" }
-                    }
-                },
-                "deploy": {
-                    "builder": "angular-cli-ghpages:deploy",
-                    "options": {
-                        "noSilent": true,
-                        "noBuild": true,
-                        "branch": "master",
-                        "name": "angular-ru",
-                        "email": "angular-ru@yandex.ru",
-                        "repo": "https://github.com/Angular-RU/angular-ru-logger-example-app.git"
                     }
                 }
             }
@@ -334,17 +359,6 @@
                     "configurations": {
                         "production": { "browserTarget": "excel-app:build:production" }
                     }
-                },
-                "deploy": {
-                    "builder": "angular-cli-ghpages:deploy",
-                    "options": {
-                        "noSilent": true,
-                        "noBuild": true,
-                        "branch": "master",
-                        "name": "angular-ru",
-                        "email": "angular-ru@yandex.ru",
-                        "repo": "https://github.com/Angular-RU/angular-ru-excel-example-app.git"
-                    }
                 }
             }
         },
@@ -399,17 +413,6 @@
                     "options": { "browserTarget": "tooltip-app:build" },
                     "configurations": {
                         "production": { "browserTarget": "tooltip-app:build:production" }
-                    }
-                },
-                "deploy": {
-                    "builder": "angular-cli-ghpages:deploy",
-                    "options": {
-                        "noSilent": true,
-                        "noBuild": true,
-                        "branch": "master",
-                        "name": "angular-ru",
-                        "email": "angular-ru@yandex.ru",
-                        "repo": "https://github.com/Angular-RU/angular-ru-tooltip-example-app.git"
                     }
                 }
             }
@@ -483,17 +486,6 @@
                     "options": { "browserTarget": "virtual-table-app:build" },
                     "configurations": {
                         "production": { "browserTarget": "virtual-table-app:build:production" }
-                    }
-                },
-                "deploy": {
-                    "builder": "angular-cli-ghpages:deploy",
-                    "options": {
-                        "noSilent": true,
-                        "noBuild": true,
-                        "branch": "master",
-                        "name": "angular-ru",
-                        "email": "angular-ru@yandex.ru",
-                        "repo": "https://github.com/Angular-RU/angular-ru-ng-table-builder-example-app.git"
                     }
                 }
             }

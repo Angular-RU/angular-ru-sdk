@@ -1,0 +1,27 @@
+<div class="main-wrap">
+    <div class="menu">
+        <div class="ng-icon">
+            <img class="img" src="https://cdn.worldvectorlogo.com/logos/angular-icon-1.svg" />
+            Angular 8+, NGXS 3.6.2+
+        </div>
+
+        <span>🏀 <a class="link" [routerLink]="['count']">CountState</a></span>
+        <span>🧭 <a class="link" [routerLink]="['todo']">TodoState</a></span>
+        <span>😋 <a class="link" [routerLink]="['person']">PersonState</a></span>
+        <span>💰 <a class="link" [routerLink]="['amount']">AmountState</a></span>
+        <span>📋 <a class="link" [routerLink]="['article']">ArticleEntitiesState</a></span>
+    </div>
+
+    <br />
+
+    <div class="container">
+        <div class="content"><router-outlet></router-outlet></div>
+    </div>
+
+    <br />
+
+    <div class="panel-content">
+        <h2>Store:</h2>
+        <pre>{{ snapshot | async | json }}</pre>
+    </div>
+</div>

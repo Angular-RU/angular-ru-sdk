@@ -15,6 +15,7 @@ export { declinationOfNumber } from './declination-of-number/declination-of-numb
 export { detectChanges } from './detect-changes';
 export { downloadFile } from './download-file';
 export { fallbackIfEmpty } from './fallback-if-empty';
+export { generateUid } from './generate-uid';
 export { getBodyRect } from './get-body-rect';
 export { isFalse } from './is-false';
 export { isFalsy } from './is-falsy';

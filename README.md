@@ -12,15 +12,16 @@ found in the Angular.
 
 ---
 
-### CDK
+### Development kit packages
 
 | **Package**                                                        | **Version**                                                         | **README**                                                                       | **Downloads**                                                                                         |
 | ------------------------------------------------------------------ | ------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
 | [@angular-ru/common](https://npmjs.com/package/@angular-ru/common) | ![](https://img.shields.io/npm/v/%40angular-ru%2Fcommon/latest.svg) | [![](https://img.shields.io/badge/README--green.svg)](packages/common/README.md) | [![](https://img.shields.io/npm/dm/@angular-ru/common)](https://npmjs.com/package/@angular-ru/common) |
+| [@angular-ru/ngxs](https://npmjs.com/package/@angular-ru/ngxs)     | ![](https://img.shields.io/npm/v/%40angular-ru%2Fngxs/latest.svg)   | [![](https://img.shields.io/badge/README--green.svg)](packages/ngxs/README.md)   | [![](https://img.shields.io/npm/dm/@angular-ru/ngxs)](https://npmjs.com/package/@angular-ru/ngxs)     |
 
 ---
 
-### Infrastructure
+### Infrastructure packages
 
 #### Sharable configs
 

@@ -68,7 +68,8 @@
         "@angular/router": "12.2.3",
         "@ngx-translate/core": "13.0.0",
         "@ngx-translate/http-loader": "6.0.0",
-        "angular-cli-ghpages": "1.0.0-rc.2",
+        "@ngxs/logger-plugin": "3.7.2",
+        "@ngxs/store": "3.7.2",
         "class-transformer": "0.4.0",
         "jasmine-core": "3.9.0",
         "jasmine-spec-reporter": "7.0.0",
@@ -89,6 +90,7 @@
     },
     "packages": [
         "packages/common",
+        "packages/ngxs",
         "dev-infra/commitlint",
         "dev-infra/dev-dependencies",
         "dev-infra/eslint-plugin-enterprise",
