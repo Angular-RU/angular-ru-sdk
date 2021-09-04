@@ -24,7 +24,7 @@
             "npmClient": "npm",
             "force-publish": "*",
             "conventionalCommits": true,
-            "message": "chore(release): %s [ci skip]",
+            "message": "chore(release): update CHANGELOG.md [ci skip]",
             "registry": "https://registry.npmjs.org",
             "ignoreChanges": [
                 "node_modules",
