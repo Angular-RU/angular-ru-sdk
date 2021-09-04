@@ -29,7 +29,6 @@
             "ignoreChanges": [
                 "node_modules",
                 "dist",
-                "__tests__",
                 "integration",
                 "**/integration/**",
                 "jest.config.js",

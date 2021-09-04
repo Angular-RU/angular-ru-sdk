@@ -1,7 +1,7 @@
-import { exposeTsCompilerOptionsByTsConfig } from '@angular-ru/common/node.js';
-import { stringify } from '@angular-ru/common/string';
-import { Nullable, PlainObject } from '@angular-ru/common/typings';
-import { isNotNil, isTrue } from '@angular-ru/common/utils';
+import { exposeTsCompilerOptionsByTsConfig } from '@angular-ru/cdk/node.js';
+import { stringify } from '@angular-ru/cdk/string';
+import { Nullable, PlainObject } from '@angular-ru/cdk/typings';
+import { isNotNil, isTrue } from '@angular-ru/cdk/utils';
 import type { Config } from '@jest/types';
 import * as fs from 'fs';
 import * as path from 'path';

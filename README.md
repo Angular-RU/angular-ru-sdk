@@ -14,10 +14,10 @@ found in the Angular.
 
 ### Development kit packages
 
-| **Package**                                                        | **Version**                                                         | **README**                                                                       | **Downloads**                                                                                         |
-| ------------------------------------------------------------------ | ------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| [@angular-ru/common](https://npmjs.com/package/@angular-ru/common) | ![](https://img.shields.io/npm/v/%40angular-ru%2Fcommon/latest.svg) | [![](https://img.shields.io/badge/README--green.svg)](packages/common/README.md) | [![](https://img.shields.io/npm/dm/@angular-ru/common)](https://npmjs.com/package/@angular-ru/common) |
-| [@angular-ru/ngxs](https://npmjs.com/package/@angular-ru/ngxs)     | ![](https://img.shields.io/npm/v/%40angular-ru%2Fngxs/latest.svg)   | [![](https://img.shields.io/badge/README--green.svg)](packages/ngxs/README.md)   | [![](https://img.shields.io/npm/dm/@angular-ru/ngxs)](https://npmjs.com/package/@angular-ru/ngxs)     |
+| **Package**                                                    | **Version**                                                       | **README**                                                                     | **Downloads**                                                                                     |
+| -------------------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------- |
+| [@angular-ru/cdk](https://npmjs.com/package/@angular-ru/cdk)   | ![](https://img.shields.io/npm/v/%40angular-ru%2Fcdk/latest.svg)  | [![](https://img.shields.io/badge/README--green.svg)](packages/cdk/README.md)  | [![](https://img.shields.io/npm/dm/@angular-ru/cdk)](https://npmjs.com/package/@angular-ru/cdk)   |
+| [@angular-ru/ngxs](https://npmjs.com/package/@angular-ru/ngxs) | ![](https://img.shields.io/npm/v/%40angular-ru%2Fngxs/latest.svg) | [![](https://img.shields.io/badge/README--green.svg)](packages/ngxs/README.md) | [![](https://img.shields.io/npm/dm/@angular-ru/ngxs)](https://npmjs.com/package/@angular-ru/ngxs) |
 
 ---
 

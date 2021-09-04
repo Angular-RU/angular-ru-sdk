@@ -3,7 +3,7 @@
     "compilerOptions": {
         "outDir": "./lib",
         "paths": {
-            "@angular-ru/common/*": ["../common/dist/library/*"]
+            "@angular-ru/cdk/*": ["../cdk/dist/library/*"]
         }
     },
     "include": ["./src"],

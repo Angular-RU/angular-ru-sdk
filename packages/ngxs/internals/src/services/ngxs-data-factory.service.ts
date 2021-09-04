@@ -1,6 +1,6 @@
 import { Injectable, Type } from '@angular/core';
-import { Any, PlainObjectOf } from '@angular-ru/common/typings';
-import { isNil, isNotNil } from '@angular-ru/common/utils';
+import { Any, PlainObjectOf } from '@angular-ru/cdk/typings';
+import { isNil, isNotNil } from '@angular-ru/cdk/utils';
 import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
 import {
     ActionEvent,

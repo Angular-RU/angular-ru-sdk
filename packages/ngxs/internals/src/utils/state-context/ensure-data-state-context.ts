@@ -1,6 +1,6 @@
 import { isDevMode } from '@angular/core';
-import { deepFreeze } from '@angular-ru/common/object';
-import { Any } from '@angular-ru/common/typings';
+import { deepFreeze } from '@angular-ru/cdk/object';
+import { Any } from '@angular-ru/cdk/typings';
 import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
 import { StateContext } from '@ngxs/store';
 

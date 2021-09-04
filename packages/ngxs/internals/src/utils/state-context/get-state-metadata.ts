@@ -1,4 +1,4 @@
-import { Any } from '@angular-ru/common/typings';
+import { Any } from '@angular-ru/cdk/typings';
 import { NGXS_META_KEY } from '@angular-ru/ngxs/tokens';
 import { DataStateClass } from '@angular-ru/ngxs/typings';
 import { MetaDataModel } from '@ngxs/store/src/internal/internals';

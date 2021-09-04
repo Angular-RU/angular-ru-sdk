@@ -1,6 +1,6 @@
-import { deepClone } from '@angular-ru/common/object';
-import { Any } from '@angular-ru/common/typings';
-import { isNil } from '@angular-ru/common/utils';
+import { deepClone } from '@angular-ru/cdk/object';
+import { Any } from '@angular-ru/cdk/typings';
+import { isNil } from '@angular-ru/cdk/utils';
 import {
     buildDefaultsGraph,
     createContext,

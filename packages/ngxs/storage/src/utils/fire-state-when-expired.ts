@@ -1,5 +1,5 @@
-import { Any } from '@angular-ru/common/typings';
-import { isNotNil } from '@angular-ru/common/utils';
+import { Any } from '@angular-ru/cdk/typings';
+import { isNotNil } from '@angular-ru/cdk/utils';
 import { NgxsDataInjector } from '@angular-ru/ngxs/internals';
 import { NgxsDataAfterExpired, NgxsDataExpiredEvent, TtLCreatorOptions } from '@angular-ru/ngxs/typings';
 

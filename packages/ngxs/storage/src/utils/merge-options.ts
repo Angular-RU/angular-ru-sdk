@@ -1,4 +1,4 @@
-import { isNotNil } from '@angular-ru/common/utils';
+import { isNotNil } from '@angular-ru/cdk/utils';
 import { MergeOptions, PersistenceProvider, TTL_EXPIRED_STRATEGY } from '@angular-ru/ngxs/typings';
 
 import { STORAGE_TTL_DELAY } from '../tokens/storage-ttl-delay';

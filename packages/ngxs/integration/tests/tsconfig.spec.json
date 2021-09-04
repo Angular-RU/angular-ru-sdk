@@ -4,7 +4,7 @@
         "types": ["jest", "node"],
         "preserveConstEnums": true,
         "paths": {
-            "@angular-ru/common/*": ["../common/*/src/public_api.ts"],
+            "@angular-ru/cdk/*": ["../cdk/*/src/public_api.ts"],
             "@angular-ru/ngxs": ["./src/public_api.ts"],
             "@angular-ru/ngxs/*": ["./*/src/public_api.ts"]
         }

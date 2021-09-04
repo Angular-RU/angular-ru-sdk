@@ -1,6 +1,6 @@
 import { StateRepository } from '@angular-ru/ngxs/decorators';
 import { State } from '@ngxs/store';
-import { createEntityCollections } from '@angular-ru/common/entity';
+import { createEntityCollections } from '@angular-ru/cdk/entity';
 import { NgxsDataEntityCollectionsRepository } from '@angular-ru/ngxs/repositories';
 import { ngxsTestingPlatform } from '@angular-ru/ngxs/testing';
 import { Injectable } from '@angular/core';

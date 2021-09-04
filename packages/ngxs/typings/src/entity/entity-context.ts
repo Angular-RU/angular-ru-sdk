@@ -1,5 +1,5 @@
-import { EntityCollections, EntityPatchValue, EntityStateValue } from '@angular-ru/common/entity';
-import { Any } from '@angular-ru/common/typings';
+import { EntityCollections, EntityPatchValue, EntityStateValue } from '@angular-ru/cdk/entity';
+import { Any } from '@angular-ru/cdk/typings';
 import { ActionType } from '@ngxs/store';
 import { Observable } from 'rxjs';
 

@@ -29,7 +29,7 @@ import {
 import { Actions, NGXS_PLUGINS, NgxsModule, ofActionDispatched, ofActionSuccessful, State, Store } from '@ngxs/store';
 import { NGXS_DATA_EXCEPTIONS, NGXS_DATA_STORAGE_EVENT_TYPE } from '@angular-ru/ngxs/tokens';
 import { Subject } from 'rxjs';
-import { Any } from '@angular-ru/common/typings';
+import { Any } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: Storage plugin', () => {
     let store: Store;

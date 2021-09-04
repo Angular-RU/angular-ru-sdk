@@ -4,7 +4,14 @@ import { noThrow } from './utils/no-throw';
 
 void (async function main(): Promise<void> {
     log(`[CLEAN]`);
-    await asyncExec(`rm -rf .cache`).catch(noThrow);
-    await asyncExec(`rm -rf packages/**/dist packages/**/lib packages/**/.cache`).catch(noThrow);
-    await asyncExec(`rm -rf dev-infra/**/dist dev-infra/**/lib dev-infra/**/.cache`).catch(noThrow);
+
+    const commands: string[] = [
+        `rm -rf .cache`,
+        `rm -rf packages/**/dist packages/**/lib packages/**/.cache packages/**/node_modules`,
+        `rm -rf dev-infra/**/dist dev-infra/**/lib dev-infra/**/.cache dev-infra/**/node_modules`
+    ];
+
+    for (const command of commands) {
+        await asyncExec(command).catch(noThrow);
+    }
 })();

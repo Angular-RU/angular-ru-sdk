@@ -1,4 +1,4 @@
-import { Any, Fn } from '@angular-ru/common/typings';
+import { Any, Fn } from '@angular-ru/cdk/typings';
 import { NGXS_ARGUMENT_REGISTRY_META } from '@angular-ru/ngxs/tokens';
 
 import { MethodArgsRegistry } from './method-args-registry';

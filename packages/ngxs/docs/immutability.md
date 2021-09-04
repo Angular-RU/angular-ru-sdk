@@ -79,7 +79,7 @@ Thus, the developer will not be able to make his own mistake. If he mutates the 
 methods. If you need to use states for set input property:
 
 ```ts
-import { Immutable } from '@angular-ru/common/typings';
+import { Immutable } from '@angular-ru/cdk/typings';
 
 @Component({ .. })
 class TodoComponent {
@@ -117,7 +117,7 @@ export class TodoState extends NgxsImmutableDataRepository<string[]> {
 or `Into template` without creating `mutableState$`:
 
 ```ts
-import { MutableTypeModule } from '@angular-ru/common/pipes';
+import { MutableTypeModule } from '@angular-ru/cdk/pipes';
 
 @NgModule({
     imports: [

@@ -1,5 +1,5 @@
 import { Type } from '@angular/core';
-import { Any, PlainObject } from '@angular-ru/common/typings';
+import { Any, PlainObject } from '@angular-ru/cdk/typings';
 import { ActionType, Store } from '@ngxs/store';
 import { StateClass } from '@ngxs/store/internals';
 import { Subject, Subscription } from 'rxjs';

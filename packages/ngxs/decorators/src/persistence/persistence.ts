@@ -1,5 +1,5 @@
-import { Any } from '@angular-ru/common/typings';
-import { isFalsy, isNil } from '@angular-ru/common/utils';
+import { Any } from '@angular-ru/cdk/typings';
+import { isFalsy, isNil } from '@angular-ru/cdk/utils';
 import { ensureStateMetadata, getRepository, STORAGE_INIT_EVENT } from '@angular-ru/ngxs/internals';
 import { ensureProviders, registerStorageProviders } from '@angular-ru/ngxs/storage';
 import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';

@@ -1,6 +1,6 @@
 import { Injector } from '@angular/core';
-import { Any } from '@angular-ru/common/typings';
-import { isNil } from '@angular-ru/common/utils';
+import { Any } from '@angular-ru/cdk/typings';
+import { isNil } from '@angular-ru/cdk/utils';
 import {
     DataStorage,
     ExistingEngineProvider,

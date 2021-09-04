@@ -1,4 +1,4 @@
-import { MutableTypePipe, MutableTypePipeModule } from '@angular-ru/common/pipes';
+import { MutableTypePipe, MutableTypePipeModule } from '@angular-ru/cdk/pipes';
 import { Component, Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
@@ -6,7 +6,7 @@ import { StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { NgxsModule, State } from '@ngxs/store';
 
-import { Immutable } from '@angular-ru/common/typings';
+import { Immutable } from '@angular-ru/cdk/typings';
 
 describe('Mutable', () => {
     interface A {

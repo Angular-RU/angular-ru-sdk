@@ -1,5 +1,5 @@
-import { Fn } from '@angular-ru/common/typings';
-import { isNotNil } from '@angular-ru/common/utils';
+import { Fn } from '@angular-ru/cdk/typings';
+import { isNotNil } from '@angular-ru/cdk/utils';
 import { NgxsDataInjector } from '@angular-ru/ngxs/internals';
 import { TtLCreatorOptions } from '@angular-ru/ngxs/typings';
 import { interval, Subscription } from 'rxjs';

@@ -32,32 +32,32 @@ jobs:
                   git config --global user.email "angular-ru@yandex.ru"
                   git config remote.origin.url https://x-access-token:$GH_TOKEN@github.com/$GITHUB_REPOSITORY
 
-            - name: Restore lerna
+            - name: Restore cache
               uses: actions/cache@v2
               with:
                   path: |
-                      .cache
                       node_modules
                       */*/node_modules
                   key: ${{ runner.os }}--build-cache-hash--${{ hashFiles('**/yarn.lock') }}
 
-            - name: Run install step
+            - name: Run install
               run: |
-                  yarn --ignore-engines --frozen-lockfile
+                  yarn install --ignore-engines --frozen-lockfile
 
-            - name: Run building libraries step
+            - name: Run build libraries
               run: |
                   yarn build
 
-            - name: Run lint step
+            - name: Run lint
               run: |
+                  yarn commitlint --from=HEAD~1
                   yarn format
                   yarn lint
 
             - name: Run test step
               run: yarn test
 
-            - name: Run building integration apps step
+            - name: Run build integration apps
               run: yarn integration
 
             - name: Deploy npm packages

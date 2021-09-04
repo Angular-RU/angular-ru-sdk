@@ -5,7 +5,7 @@ import { StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
 import { Action, NgxsModule, State, StateContext, Store } from '@ngxs/store';
 import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
-import { Any, Immutable } from '@angular-ru/common/typings';
+import { Any, Immutable } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
     it('should be throw exception when forgot add StateRepository', () => {

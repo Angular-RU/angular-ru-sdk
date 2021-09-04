@@ -1,5 +1,5 @@
 /* istanbul ignore next */
-import { Any } from '@angular-ru/common/typings';
+import { Any } from '@angular-ru/cdk/typings';
 import { NGXS_DATA_META, NGXS_META_KEY } from '@angular-ru/ngxs/tokens';
 import { MetaDataModel, StateClassInternal } from '@ngxs/store/src/internal/internals';
 

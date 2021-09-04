@@ -1,6 +1,6 @@
-import { $args } from '@angular-ru/common/function';
-import { Any, Descriptor, PlainObjectOf } from '@angular-ru/common/typings';
-import { isNil, isTrue } from '@angular-ru/common/utils';
+import { $args } from '@angular-ru/cdk/function';
+import { Any, Descriptor, PlainObjectOf } from '@angular-ru/cdk/typings';
+import { isNil, isTrue } from '@angular-ru/cdk/utils';
 import {
     actionNameCreator,
     combineStream,

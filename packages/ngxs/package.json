@@ -2,18 +2,18 @@
     "name": "@angular-ru/ngxs",
     "version": "12.1.0",
     "description": "Angular-RU package",
-    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/common#readme",
+    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/cdk#readme",
     "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
     "repository": "git+https://github.com/Angular-RU/angular-ru-sdk.git",
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "scripts": {
-        "build:app": "ng build ngxs-app",
-        "build:lib": "ng build ngxs-library && cp README.md dist/library && yarn symlink",
+        "build:app": "yarn ng build ngxs-app",
+        "build:lib": "yarn ng build ngxs-library && cp README.md dist/library && yarn symlink",
         "symlink": "sh symlink.sh",
-        "start": "ng serve ngxs-app --open",
+        "start": "yarn ng serve ngxs-app --open",
         "test": "yarn jest --config integration/tests/jest.config.js",
-        "postversion": "npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\""
+        "postversion": "yarn npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\""
     },
     "publishConfig": {
         "access": "public",

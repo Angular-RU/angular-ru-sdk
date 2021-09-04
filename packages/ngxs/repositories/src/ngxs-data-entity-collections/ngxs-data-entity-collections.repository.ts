@@ -8,10 +8,10 @@ import {
     EntitySortBy,
     EntityUpdate,
     KeysDictionary
-} from '@angular-ru/common/entity';
-import { sortByAsc, sortByDesc } from '@angular-ru/common/object';
-import { Any, PrimaryKey, SortOrderType } from '@angular-ru/common/typings';
-import { isNil } from '@angular-ru/common/utils';
+} from '@angular-ru/cdk/entity';
+import { sortByAsc, sortByDesc } from '@angular-ru/cdk/object';
+import { Any, PrimaryKey, SortOrderType } from '@angular-ru/cdk/typings';
+import { isNil } from '@angular-ru/cdk/utils';
 import { Computed, DataAction, Payload } from '@angular-ru/ngxs/decorators';
 import { ensureDataStateContext, ensureSnapshot } from '@angular-ru/ngxs/internals';
 import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
