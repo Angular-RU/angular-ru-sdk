@@ -14,14 +14,14 @@
     ],
     "scripts": {
         "postinstall": "ngcc --async && husky install && yarn build",
-        "clean": "yarn ts-node scripts/clean.ts",
-        "build": "yarn ts-node scripts/build.ts",
-        "symlink": "yarn ts-node scripts/symlink.ts",
-        "integration": "yarn ts-node scripts/integration.ts",
-        "lint": "yarn ts-node scripts/lint.ts",
-        "format": "yarn ts-node scripts/format.ts",
-        "test": "yarn ts-node scripts/test.ts",
-        "version": "yarn ts-node scripts/release-version.ts"
+        "clean": "yarn ts-node .scripts/clean.ts",
+        "build": "yarn ts-node .scripts/build.ts",
+        "symlink": "yarn ts-node .scripts/symlink.ts",
+        "integration": "yarn ts-node .scripts/integration.ts",
+        "lint": "yarn ts-node .scripts/lint.ts",
+        "format": "yarn ts-node .scripts/format.ts",
+        "test": "yarn ts-node .scripts/test.ts",
+        "version": "yarn ts-node .scripts/release-version.ts"
     },
     "lint-staged": {
         "*.ts": [
