@@ -1,4 +1,4 @@
-import { Any } from '@angular-ru/common/typings';
+import { Any } from '@angular-ru/cdk/typings';
 import { Observable } from 'rxjs';
 
 export interface ComputedOptions {

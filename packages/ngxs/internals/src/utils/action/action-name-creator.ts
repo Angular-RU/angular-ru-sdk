@@ -1,4 +1,4 @@
-import { isNotNil } from '@angular-ru/common/utils';
+import { isNotNil } from '@angular-ru/cdk/utils';
 
 import { MethodArgsRegistry } from '../method-args-registry/method-args-registry';
 

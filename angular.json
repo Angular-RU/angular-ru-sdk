@@ -1,42 +1,42 @@
 {
     "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
     "version": 1,
-    "defaultProject": "common-library",
+    "defaultProject": "cdk",
     "newProjectRoot": "packages",
     "projects": {
-        "common-library": {
+        "cdk": {
             "prefix": "",
             "root": ".",
             "projectType": "library",
-            "sourceRoot": "packages/common",
+            "sourceRoot": "packages/cdk",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:ng-packagr",
                     "options": {
-                        "tsConfig": "packages/common/tsconfig.lib.json",
-                        "project": "packages/common/ng-package.json"
+                        "tsConfig": "packages/cdk/tsconfig.lib.json",
+                        "project": "packages/cdk/ng-package.json"
                     }
                 }
             }
         },
-        "common-app": {
+        "cdk-app": {
             "prefix": "",
             "root": ".",
             "projectType": "application",
-            "sourceRoot": "packages/common/integration/apps/common",
+            "sourceRoot": "packages/cdk/integration/apps/cdk",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "packages/common/dist/integration/apps/common",
-                        "tsConfig": "packages/common/integration/apps/common/tsconfig.app.json",
-                        "main": "packages/common/integration/apps/common/main.ts",
-                        "index": "packages/common/integration/apps/common/index.html",
-                        "assets": ["packages/common/integration/apps/common/assets"],
-                        "polyfills": "packages/common/integration/apps/common/polyfills.ts",
+                        "outputPath": "packages/cdk/dist/integration/apps/cdk",
+                        "tsConfig": "packages/cdk/integration/apps/cdk/tsconfig.app.json",
+                        "main": "packages/cdk/integration/apps/cdk/main.ts",
+                        "index": "packages/cdk/integration/apps/cdk/index.html",
+                        "assets": ["packages/cdk/integration/apps/cdk/assets"],
+                        "polyfills": "packages/cdk/integration/apps/cdk/polyfills.ts",
                         "styles": [
                             ".styles/integration-app.style.scss",
-                            "packages/common/integration/apps/common/styles.scss"
+                            "packages/cdk/integration/apps/cdk/styles.scss"
                         ],
                         "aot": false,
                         "vendorChunk": true,
@@ -50,8 +50,8 @@
                         "production": {
                             "fileReplacements": [
                                 {
-                                    "replace": "packages/common/integration/apps/common/environments/environment.ts",
-                                    "with": "packages/common/integration/apps/common/environments/environment.prod.ts"
+                                    "replace": "packages/cdk/integration/apps/cdk/environments/environment.ts",
+                                    "with": "packages/cdk/integration/apps/cdk/environments/environment.prod.ts"
                                 }
                             ],
                             "optimization": true,
@@ -67,10 +67,10 @@
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
-                    "options": { "browserTarget": "common-app:build" },
+                    "options": { "browserTarget": "cdk-app:build" },
                     "configurations": {
                         "production": {
-                            "browserTarget": "common-app:build:production"
+                            "browserTarget": "cdk-app:build:production"
                         }
                     }
                 }
@@ -149,20 +149,20 @@
             "prefix": "",
             "root": ".",
             "projectType": "application",
-            "sourceRoot": "packages/common/integration/apps/flex-layout",
+            "sourceRoot": "packages/cdk/integration/apps/flex-layout",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "main": "packages/common/integration/apps/flex-layout/main.ts",
-                        "index": "packages/common/integration/apps/flex-layout/index.html",
-                        "polyfills": "packages/common/integration/apps/flex-layout/polyfills.ts",
-                        "outputPath": "packages/common/dist/integration/apps/flex-layout",
-                        "tsConfig": "packages/common/integration/apps/flex-layout/tsconfig.app.json",
-                        "assets": ["packages/common/integration/apps/flex-layout/assets"],
+                        "main": "packages/cdk/integration/apps/flex-layout/main.ts",
+                        "index": "packages/cdk/integration/apps/flex-layout/index.html",
+                        "polyfills": "packages/cdk/integration/apps/flex-layout/polyfills.ts",
+                        "outputPath": "packages/cdk/dist/integration/apps/flex-layout",
+                        "tsConfig": "packages/cdk/integration/apps/flex-layout/tsconfig.app.json",
+                        "assets": ["packages/cdk/integration/apps/flex-layout/assets"],
                         "styles": [
                             ".styles/integration-app.style.scss",
-                            "packages/common/integration/apps/flex-layout/styles.scss"
+                            "packages/cdk/integration/apps/flex-layout/styles.scss"
                         ],
                         "aot": false,
                         "vendorChunk": true,
@@ -176,8 +176,8 @@
                         "production": {
                             "fileReplacements": [
                                 {
-                                    "replace": "packages/common/integration/apps/flex-layout/environments/environment.ts",
-                                    "with": "packages/common/integration/apps/flex-layout/environments/environment.prod.ts"
+                                    "replace": "packages/cdk/integration/apps/flex-layout/environments/environment.ts",
+                                    "with": "packages/cdk/integration/apps/flex-layout/environments/environment.prod.ts"
                                 }
                             ],
                             "optimization": true,
@@ -203,21 +203,21 @@
         "http-app": {
             "prefix": "",
             "root": ".",
-            "sourceRoot": "packages/common/integration/apps/http",
+            "sourceRoot": "packages/cdk/integration/apps/http",
             "projectType": "application",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "main": "packages/common/integration/apps/http/main.ts",
-                        "index": "packages/common/integration/apps/http/index.html",
-                        "polyfills": "packages/common/integration/apps/http/polyfills.ts",
-                        "outputPath": "packages/common/dist/integration/apps/http",
-                        "tsConfig": "packages/common/integration/apps/http/tsconfig.app.json",
-                        "assets": ["packages/common/integration/apps/http/assets"],
+                        "main": "packages/cdk/integration/apps/http/main.ts",
+                        "index": "packages/cdk/integration/apps/http/index.html",
+                        "polyfills": "packages/cdk/integration/apps/http/polyfills.ts",
+                        "outputPath": "packages/cdk/dist/integration/apps/http",
+                        "tsConfig": "packages/cdk/integration/apps/http/tsconfig.app.json",
+                        "assets": ["packages/cdk/integration/apps/http/assets"],
                         "styles": [
                             ".styles/integration-app.style.scss",
-                            "packages/common/integration/apps/http/styles.scss"
+                            "packages/cdk/integration/apps/http/styles.scss"
                         ],
                         "aot": false,
                         "vendorChunk": true,
@@ -231,8 +231,8 @@
                         "production": {
                             "fileReplacements": [
                                 {
-                                    "replace": "packages/common/integration/apps/http/environments/environment.ts",
-                                    "with": "packages/common/integration/apps/http/environments/environment.prod.ts"
+                                    "replace": "packages/cdk/integration/apps/http/environments/environment.ts",
+                                    "with": "packages/cdk/integration/apps/http/environments/environment.prod.ts"
                                 }
                             ],
                             "optimization": true,
@@ -258,19 +258,19 @@
         "logger-app": {
             "prefix": "",
             "root": ".",
-            "sourceRoot": "packages/common/integration/apps/logger",
+            "sourceRoot": "packages/cdk/integration/apps/logger",
             "projectType": "application",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "main": "packages/common/integration/apps/logger/main.ts",
-                        "index": "packages/common/integration/apps/logger/index.html",
-                        "polyfills": "packages/common/integration/apps/logger/polyfills.ts",
-                        "outputPath": "packages/common/dist/integration/apps/logger",
-                        "tsConfig": "packages/common/integration/apps/logger/tsconfig.app.json",
-                        "assets": ["packages/common/integration/apps/logger/assets"],
-                        "styles": ["packages/common/integration/apps/logger/styles.css"],
+                        "main": "packages/cdk/integration/apps/logger/main.ts",
+                        "index": "packages/cdk/integration/apps/logger/index.html",
+                        "polyfills": "packages/cdk/integration/apps/logger/polyfills.ts",
+                        "outputPath": "packages/cdk/dist/integration/apps/logger",
+                        "tsConfig": "packages/cdk/integration/apps/logger/tsconfig.app.json",
+                        "assets": ["packages/cdk/integration/apps/logger/assets"],
+                        "styles": ["packages/cdk/integration/apps/logger/styles.css"],
                         "aot": false,
                         "vendorChunk": true,
                         "extractLicenses": false,
@@ -283,8 +283,8 @@
                         "production": {
                             "fileReplacements": [
                                 {
-                                    "replace": "packages/common/integration/apps/logger/environments/environment.ts",
-                                    "with": "packages/common/integration/apps/logger/environments/environment.prod.ts"
+                                    "replace": "packages/cdk/integration/apps/logger/environments/environment.ts",
+                                    "with": "packages/cdk/integration/apps/logger/environments/environment.prod.ts"
                                 }
                             ],
                             "optimization": true,
@@ -311,20 +311,20 @@
             "root": ".",
             "prefix": "",
             "projectType": "application",
-            "sourceRoot": "packages/common/integration/apps/excel",
+            "sourceRoot": "packages/cdk/integration/apps/excel",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "main": "packages/common/integration/apps/excel/main.ts",
-                        "index": "packages/common/integration/apps/excel/index.html",
-                        "polyfills": "packages/common/integration/apps/excel/polyfills.ts",
-                        "outputPath": "packages/common/dist/integration/apps/excel",
-                        "tsConfig": "packages/common/integration/apps/excel/tsconfig.app.json",
-                        "assets": ["packages/common/integration/apps/excel/assets"],
+                        "main": "packages/cdk/integration/apps/excel/main.ts",
+                        "index": "packages/cdk/integration/apps/excel/index.html",
+                        "polyfills": "packages/cdk/integration/apps/excel/polyfills.ts",
+                        "outputPath": "packages/cdk/dist/integration/apps/excel",
+                        "tsConfig": "packages/cdk/integration/apps/excel/tsconfig.app.json",
+                        "assets": ["packages/cdk/integration/apps/excel/assets"],
                         "styles": [
                             ".styles/integration-app.style.scss",
-                            "packages/common/integration/apps/excel/styles.css"
+                            "packages/cdk/integration/apps/excel/styles.css"
                         ],
                         "aot": false,
                         "vendorChunk": true,
@@ -338,8 +338,8 @@
                         "production": {
                             "fileReplacements": [
                                 {
-                                    "replace": "packages/common/integration/apps/excel/environments/environment.ts",
-                                    "with": "packages/common/integration/apps/excel/environments/environment.prod.ts"
+                                    "replace": "packages/cdk/integration/apps/excel/environments/environment.ts",
+                                    "with": "packages/cdk/integration/apps/excel/environments/environment.prod.ts"
                                 }
                             ],
                             "optimization": true,
@@ -366,20 +366,20 @@
             "root": ".",
             "prefix": "",
             "projectType": "application",
-            "sourceRoot": "packages/common/integration/apps/tooltip",
+            "sourceRoot": "packages/cdk/integration/apps/tooltip",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "main": "packages/common/integration/apps/tooltip/main.ts",
-                        "index": "packages/common/integration/apps/tooltip/index.html",
-                        "polyfills": "packages/common/integration/apps/tooltip/polyfills.ts",
-                        "outputPath": "packages/common/dist/integration/apps/tooltip",
-                        "tsConfig": "packages/common/integration/apps/tooltip/tsconfig.app.json",
-                        "assets": ["packages/common/integration/apps/tooltip/assets"],
+                        "main": "packages/cdk/integration/apps/tooltip/main.ts",
+                        "index": "packages/cdk/integration/apps/tooltip/index.html",
+                        "polyfills": "packages/cdk/integration/apps/tooltip/polyfills.ts",
+                        "outputPath": "packages/cdk/dist/integration/apps/tooltip",
+                        "tsConfig": "packages/cdk/integration/apps/tooltip/tsconfig.app.json",
+                        "assets": ["packages/cdk/integration/apps/tooltip/assets"],
                         "styles": [
                             ".styles/integration-app.style.scss",
-                            "packages/common/integration/apps/tooltip/styles.scss"
+                            "packages/cdk/integration/apps/tooltip/styles.scss"
                         ],
                         "aot": false,
                         "vendorChunk": true,
@@ -393,8 +393,8 @@
                         "production": {
                             "fileReplacements": [
                                 {
-                                    "replace": "packages/common/integration/apps/tooltip/environments/environment.ts",
-                                    "with": "packages/common/integration/apps/tooltip/environments/environment.prod.ts"
+                                    "replace": "packages/cdk/integration/apps/tooltip/environments/environment.ts",
+                                    "with": "packages/cdk/integration/apps/tooltip/environments/environment.prod.ts"
                                 }
                             ],
                             "optimization": true,
@@ -421,15 +421,15 @@
             "prefix": "",
             "root": ".",
             "projectType": "application",
-            "sourceRoot": "packages/common/integration/apps/stream",
+            "sourceRoot": "packages/cdk/integration/apps/stream",
             "architect": {
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
-                        "main": "packages/common/integration/tests/karma/setup-karma.ts",
-                        "polyfills": "packages/common/integration/tests/karma/polyfills.ts",
-                        "tsConfig": "packages/common/integration/tests/karma/tsconfig.karma.json",
-                        "karmaConfig": "packages/common/integration/tests/karma/karma.conf.js"
+                        "main": "packages/cdk/integration/tests/karma/setup-karma.ts",
+                        "polyfills": "packages/cdk/integration/tests/karma/polyfills.ts",
+                        "tsConfig": "packages/cdk/integration/tests/karma/tsconfig.karma.json",
+                        "karmaConfig": "packages/cdk/integration/tests/karma/karma.conf.js"
                     }
                 }
             }
@@ -438,20 +438,20 @@
             "prefix": "",
             "root": ".",
             "projectType": "application",
-            "sourceRoot": "packages/common/integration/apps/virtual-table",
+            "sourceRoot": "packages/cdk/integration/apps/virtual-table",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "packages/common/dist/integration/apps/virtual-table",
-                        "index": "packages/common/integration/apps/virtual-table/index.html",
-                        "main": "packages/common/integration/apps/virtual-table/main.ts",
-                        "polyfills": "packages/common/integration/apps/virtual-table/polyfills.ts",
-                        "tsConfig": "packages/common/integration/apps/virtual-table/tsconfig.app.json",
-                        "assets": ["packages/common/integration/apps/virtual-table/assets"],
+                        "outputPath": "packages/cdk/dist/integration/apps/virtual-table",
+                        "index": "packages/cdk/integration/apps/virtual-table/index.html",
+                        "main": "packages/cdk/integration/apps/virtual-table/main.ts",
+                        "polyfills": "packages/cdk/integration/apps/virtual-table/polyfills.ts",
+                        "tsConfig": "packages/cdk/integration/apps/virtual-table/tsconfig.app.json",
+                        "assets": ["packages/cdk/integration/apps/virtual-table/assets"],
                         "styles": [
                             ".styles/integration-app.style.scss",
-                            "packages/common/integration/apps/virtual-table/styles.scss"
+                            "packages/cdk/integration/apps/virtual-table/styles.scss"
                         ],
                         "aot": false,
                         "vendorChunk": true,
@@ -465,8 +465,8 @@
                         "production": {
                             "fileReplacements": [
                                 {
-                                    "replace": "packages/common/integration/apps/virtual-table/environments/environment.ts",
-                                    "with": "packages/common/integration/apps/virtual-table/environments/environment.prod.ts"
+                                    "replace": "packages/cdk/integration/apps/virtual-table/environments/environment.ts",
+                                    "with": "packages/cdk/integration/apps/virtual-table/environments/environment.prod.ts"
                                 }
                             ],
                             "optimization": true,

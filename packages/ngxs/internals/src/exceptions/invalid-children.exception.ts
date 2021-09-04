@@ -1,5 +1,5 @@
-import { Any } from '@angular-ru/common/typings';
-import { isNotNil } from '@angular-ru/common/utils';
+import { Any } from '@angular-ru/cdk/typings';
+import { isNotNil } from '@angular-ru/cdk/utils';
 import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
 
 export class InvalidChildrenException extends Error {

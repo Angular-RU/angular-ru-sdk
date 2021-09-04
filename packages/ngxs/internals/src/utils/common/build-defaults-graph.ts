@@ -1,6 +1,6 @@
-import { deepClone, isSimpleObject } from '@angular-ru/common/object';
-import { Any, PlainObject } from '@angular-ru/common/typings';
-import { checkValueIsEmpty } from '@angular-ru/common/utils';
+import { deepClone, isSimpleObject } from '@angular-ru/cdk/object';
+import { Any, PlainObject } from '@angular-ru/cdk/typings';
+import { checkValueIsEmpty } from '@angular-ru/cdk/utils';
 import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
 import { DataStateClass } from '@angular-ru/ngxs/typings';
 import { StoreOptions } from '@ngxs/store/src/symbols';

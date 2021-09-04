@@ -7,7 +7,7 @@ import { NgxsDataPluginModule } from '@angular-ru/ngxs';
 import { Injectable } from '@angular/core';
 import { MetaDataModel, SharedSelectorOptions } from '@ngxs/store/src/internal/internals';
 import { isObservable } from 'rxjs';
-import { Any } from '@angular-ru/common/typings';
+import { Any } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: Utils', () => {
     it('build-defaults-graph', () => {

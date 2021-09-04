@@ -1,4 +1,4 @@
-import { Any } from '@angular-ru/common/typings';
+import { Any } from '@angular-ru/cdk/typings';
 import { DataStateClass } from '@angular-ru/ngxs/typings';
 import { StoreOptions } from '@ngxs/store/src/symbols';
 

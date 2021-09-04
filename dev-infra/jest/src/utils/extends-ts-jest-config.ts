@@ -1,6 +1,6 @@
-import { checkIsNodeEnvironment } from '@angular-ru/common/node.js';
-import { Any } from '@angular-ru/common/typings';
-import { isTrue } from '@angular-ru/common/utils';
+import { checkIsNodeEnvironment } from '@angular-ru/cdk/node.js';
+import { Any } from '@angular-ru/cdk/typings';
+import { isTrue } from '@angular-ru/cdk/utils';
 import type { Config } from '@jest/types';
 
 import { JestCombinerOptions } from '../interfaces/jest-combiner-options';

@@ -1,4 +1,4 @@
-import { Fn } from '@angular-ru/common/typings';
+import { Fn } from '@angular-ru/cdk/typings';
 
 import { ComputedOptions } from './computed-options';
 

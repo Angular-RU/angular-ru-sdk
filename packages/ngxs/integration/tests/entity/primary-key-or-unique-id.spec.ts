@@ -1,4 +1,4 @@
-import { createEntityCollections, EntityDictionary, EntityIdType, EntityCollections } from '@angular-ru/common/entity';
+import { createEntityCollections, EntityDictionary, EntityIdType, EntityCollections } from '@angular-ru/cdk/entity';
 import { NgxsDataEntityCollectionsRepository } from '@angular-ru/ngxs/repositories';
 import { ngxsTestingPlatform } from '@angular-ru/ngxs/testing';
 import { StateRepository } from '@angular-ru/ngxs/decorators';

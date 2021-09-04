@@ -1,4 +1,4 @@
-import { Any } from '@angular-ru/common/typings';
+import { Any } from '@angular-ru/cdk/typings';
 import { isObservable } from 'rxjs';
 
 export function itObservable(value: Any): boolean {

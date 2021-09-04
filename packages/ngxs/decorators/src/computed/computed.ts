@@ -1,5 +1,5 @@
-import { Any, Descriptor } from '@angular-ru/common/typings';
-import { isNil, isTrue } from '@angular-ru/common/utils';
+import { Any, Descriptor } from '@angular-ru/cdk/typings';
+import { isNil, isTrue } from '@angular-ru/cdk/utils';
 import {
     ensureComputedCache,
     globalSequenceId,

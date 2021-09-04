@@ -7,7 +7,7 @@
         "types": ["node"],
         "typeRoots": ["../../node_modules/@types", "./"],
         "paths": {
-            "@angular-ru/common/*": ["../../packages/common/dist/library/*"]
+            "@angular-ru/cdk/*": ["../../packages/cdk/dist/library/*"]
         }
     },
     "include": ["./src"],

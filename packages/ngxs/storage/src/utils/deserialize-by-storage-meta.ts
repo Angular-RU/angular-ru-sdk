@@ -1,6 +1,6 @@
-import { isSimpleObject } from '@angular-ru/common/object';
-import { Any } from '@angular-ru/common/typings';
-import { checkValueIsEmpty } from '@angular-ru/common/utils';
+import { isSimpleObject } from '@angular-ru/cdk/object';
+import { Any } from '@angular-ru/cdk/typings';
+import { checkValueIsEmpty } from '@angular-ru/cdk/utils';
 import { PersistenceProvider, STORAGE_DECODE_TYPE, StorageData, StorageMeta } from '@angular-ru/ngxs/typings';
 
 import { InvalidDataValueException } from '../exceptions/invalid-data-value.exception';

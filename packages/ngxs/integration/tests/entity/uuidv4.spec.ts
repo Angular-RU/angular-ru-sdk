@@ -1,4 +1,4 @@
-import { generateUid } from '@angular-ru/common/utils';
+import { generateUid } from '@angular-ru/cdk/utils';
 
 describe('[TEST]: Entity uuidv4', () => {
     it('should be correct generate uui', () => {

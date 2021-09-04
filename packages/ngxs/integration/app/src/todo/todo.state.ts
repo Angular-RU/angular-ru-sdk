@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Immutable } from '@angular-ru/common/typings';
+import { Immutable } from '@angular-ru/cdk/typings';
 import { DataAction, Payload, Persistence, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import {

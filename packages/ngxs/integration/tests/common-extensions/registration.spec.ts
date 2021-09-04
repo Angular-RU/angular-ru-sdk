@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
 import { DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
-import { Any } from '@angular-ru/common/typings';
+import { Any } from '@angular-ru/cdk/typings';
 import { NgxsModule, Select, State, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 

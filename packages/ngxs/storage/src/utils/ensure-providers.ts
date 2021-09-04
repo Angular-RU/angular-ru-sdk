@@ -1,5 +1,5 @@
 import { Type } from '@angular/core';
-import { isNotNil } from '@angular-ru/common/utils';
+import { isNotNil } from '@angular-ru/cdk/utils';
 import {
     NgxsRepositoryMeta,
     PersistenceProvider,

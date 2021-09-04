@@ -13,7 +13,7 @@
         "dev-infra/*"
     ],
     "scripts": {
-        "postinstall": "ngcc --async && husky install && yarn symlink",
+        "postinstall": "ngcc --async && husky install && yarn build",
         "clean": "yarn ts-node scripts/clean.ts",
         "build": "yarn ts-node scripts/build.ts",
         "symlink": "yarn ts-node scripts/symlink.ts",
@@ -22,11 +22,6 @@
         "format": "yarn ts-node scripts/format.ts",
         "test": "yarn ts-node scripts/test.ts",
         "version": "yarn ts-node scripts/release-version.ts"
-    },
-    "commitlint": {
-        "extends": [
-            "./dev-infra/commitlint/index.js"
-        ]
     },
     "lint-staged": {
         "*.ts": [
@@ -89,7 +84,7 @@
         "zone.js": "0.11.4"
     },
     "packages": [
-        "packages/common",
+        "packages/cdk",
         "packages/ngxs",
         "dev-infra/commitlint",
         "dev-infra/dev-dependencies",

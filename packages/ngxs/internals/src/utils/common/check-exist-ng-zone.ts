@@ -1,4 +1,4 @@
-import { isNil } from '@angular-ru/common/utils';
+import { isNil } from '@angular-ru/cdk/utils';
 import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
 
 import { NgxsDataInjector } from '../../services/ngxs-data-injector.service';

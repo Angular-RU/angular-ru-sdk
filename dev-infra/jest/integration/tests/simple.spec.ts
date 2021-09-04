@@ -33,7 +33,7 @@ describe('[TEST]: Hello world', () => {
                 }
             },
             moduleNameMapper: {
-                '^@angular\\-ru/common/(.*)$': '<rootDir>/../common/$1/src/public_api.ts',
+                '^@angular\\-ru/cdk/(.*)$': '<rootDir>/../cdk/$1/src/public_api.ts',
                 '^@mock/(.*)$': '<rootDir>/integration/tests/helpers/$1'
             },
             bail: 1,

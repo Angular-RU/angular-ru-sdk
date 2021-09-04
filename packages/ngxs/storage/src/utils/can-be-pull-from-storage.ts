@@ -1,5 +1,5 @@
-import { Any } from '@angular-ru/common/typings';
-import { isFalsy, isNotNil, isTruthy } from '@angular-ru/common/utils';
+import { Any } from '@angular-ru/cdk/typings';
+import { isFalsy, isNotNil, isTruthy } from '@angular-ru/cdk/utils';
 import { NgxsDataMigrateStorage, PullFromStorageInfo, PullFromStorageOptions } from '@angular-ru/ngxs/typings';
 
 import { existTtl } from './exist-ttl';

@@ -1,7 +1,7 @@
 import { isDevMode } from '@angular/core';
-import { deepFreeze } from '@angular-ru/common/object';
-import { Any } from '@angular-ru/common/typings';
-import { isNil, isNotNil } from '@angular-ru/common/utils';
+import { deepFreeze } from '@angular-ru/cdk/object';
+import { Any } from '@angular-ru/cdk/typings';
+import { isNil, isNotNil } from '@angular-ru/cdk/utils';
 import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
 import { DataStateClass, NgxsRepositoryMeta } from '@angular-ru/ngxs/typings';
 import { Observable } from 'rxjs';

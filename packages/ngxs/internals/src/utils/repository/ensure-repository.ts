@@ -1,4 +1,4 @@
-import { isNil } from '@angular-ru/common/utils';
+import { isNil } from '@angular-ru/cdk/utils';
 import { DataStateClass, NgxsRepositoryMeta } from '@angular-ru/ngxs/typings';
 
 import { defineDefaultRepositoryMeta } from './define-default-repository-meta';

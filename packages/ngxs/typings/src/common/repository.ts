@@ -1,4 +1,4 @@
-import { Immutable, PlainObjectOf } from '@angular-ru/common/typings';
+import { Immutable, PlainObjectOf } from '@angular-ru/cdk/typings';
 import { ActionOptions, ActionType } from '@ngxs/store';
 import { MetaDataModel, StateClassInternal } from '@ngxs/store/src/internal/internals';
 import { Observable } from 'rxjs';

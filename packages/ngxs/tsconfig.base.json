@@ -5,7 +5,7 @@
         "baseUrl": ".",
         "typeRoots": ["../../node_modules/@types"],
         "paths": {
-            "@angular-ru/common/*": ["../common/dist/library/*"],
+            "@angular-ru/cdk/*": ["../cdk/dist/library/*"],
             "@angular-ru/ngxs": ["./src/public_api.ts"],
             "@angular-ru/ngxs/*": ["./*/src/public_api.ts"]
         }

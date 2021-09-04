@@ -7,7 +7,7 @@ import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
 import { NgxsModule, State, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Immutable } from '@angular-ru/common/typings';
+import { Immutable } from '@angular-ru/cdk/typings';
 
 describe('Mutate', () => {
     let store: Store;

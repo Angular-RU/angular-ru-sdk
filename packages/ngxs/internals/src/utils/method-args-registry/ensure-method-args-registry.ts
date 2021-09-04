@@ -1,5 +1,5 @@
-import { Any, Fn } from '@angular-ru/common/typings';
-import { isNil } from '@angular-ru/common/utils';
+import { Any, Fn } from '@angular-ru/cdk/typings';
+import { isNil } from '@angular-ru/cdk/utils';
 import { NGXS_ARGUMENT_REGISTRY_META } from '@angular-ru/ngxs/tokens';
 
 import { getMethodArgsRegistry } from './get-method-args-registry';

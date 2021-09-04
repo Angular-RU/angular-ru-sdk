@@ -1,8 +1,8 @@
 /* eslint-disable no-redeclare */
 import { SchemaMetadata, Type } from '@angular/core';
 import { TestBed, TestModuleMetadata } from '@angular/core/testing';
-import { Any } from '@angular-ru/common/typings';
-import { isNil } from '@angular-ru/common/utils';
+import { Any } from '@angular-ru/cdk/typings';
+import { isNil } from '@angular-ru/cdk/utils';
 import { getStateMetadata } from '@angular-ru/ngxs/internals';
 import { Store } from '@ngxs/store';
 import { StateClass } from '@ngxs/store/internals';

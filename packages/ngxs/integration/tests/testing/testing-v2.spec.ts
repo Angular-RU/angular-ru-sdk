@@ -4,7 +4,7 @@ import { NgxsDataRepository, NgxsImmutableDataRepository } from '@angular-ru/ngx
 import { NgxsDataAfterReset, NgxsDataDoCheck } from '@angular-ru/ngxs/typings';
 import { Injectable } from '@angular/core';
 import { ngxsTestingPlatform } from '@angular-ru/ngxs/testing';
-import { Any, Immutable } from '@angular-ru/common/typings';
+import { Any, Immutable } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: Abstract ngxs data repository', () => {
     let event: string[] = [];

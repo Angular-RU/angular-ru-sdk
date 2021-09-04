@@ -1,4 +1,4 @@
-import { Any } from '@angular-ru/common/typings';
+import { Any } from '@angular-ru/cdk/typings';
 
 export class Hello {
     public static readonly nameClass: string = 'World';

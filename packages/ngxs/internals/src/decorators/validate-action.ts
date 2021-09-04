@@ -1,4 +1,4 @@
-import { Any, Fn } from '@angular-ru/common/typings';
+import { Any, Fn } from '@angular-ru/cdk/typings';
 import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
 
 export function validateAction(target: Fn, descriptor: TypedPropertyDescriptor<Any>): void {

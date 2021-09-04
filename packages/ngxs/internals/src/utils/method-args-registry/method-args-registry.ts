@@ -1,4 +1,4 @@
-import { isTruthy } from '@angular-ru/common/utils';
+import { isTruthy } from '@angular-ru/cdk/utils';
 import { ArgName, ArgNameMap, PayloadMap, PayloadName } from '@angular-ru/ngxs/typings';
 
 import { InvalidArgsNamesException } from '../../exceptions/invalid-args-names.exception';

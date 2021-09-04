@@ -1,5 +1,5 @@
-import { Any } from '@angular-ru/common/typings';
-import { isFalsy, isTruthy } from '@angular-ru/common/utils';
+import { Any } from '@angular-ru/cdk/typings';
+import { isFalsy, isTruthy } from '@angular-ru/cdk/utils';
 import { MigrateFn, NgxsDataMigrateStorage, RehydrateInfo, RehydrateInfoOptions } from '@angular-ru/ngxs/typings';
 import { getValue, setValue } from '@ngxs/store';
 import { PlainObject } from '@ngxs/store/internals';

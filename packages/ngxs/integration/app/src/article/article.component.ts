@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Sort } from '@angular/material/sort';
-import { generateUid, isNotNil } from '@angular-ru/common/utils';
+import { generateUid, isNotNil } from '@angular-ru/cdk/utils';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 

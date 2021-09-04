@@ -1,5 +1,5 @@
-import { Any, Fn } from '@angular-ru/common/typings';
-import { isNil } from '@angular-ru/common/utils';
+import { Any, Fn } from '@angular-ru/cdk/typings';
+import { isNil } from '@angular-ru/cdk/utils';
 import { ComputedCacheMap, ComputedOptions } from '@angular-ru/ngxs/typings';
 
 import { computedKey } from '../common/computed-key';

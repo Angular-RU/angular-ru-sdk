@@ -1,6 +1,6 @@
 import { isDevMode } from '@angular/core';
-import { Any, Descriptor } from '@angular-ru/common/typings';
-import { isNotNil } from '@angular-ru/common/utils';
+import { Any, Descriptor } from '@angular-ru/cdk/typings';
+import { isNotNil } from '@angular-ru/cdk/utils';
 import { checkExistNgZone, NgxsDataInjector } from '@angular-ru/ngxs/internals';
 import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
 

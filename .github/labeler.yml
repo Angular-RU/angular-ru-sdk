@@ -1,6 +1,6 @@
-'comp: @angular-ru/common':
-    - packages/common/*
-    - packages/common/**/*
+'comp: @angular-ru/cdk':
+    - packages/cdk/*
+    - packages/cdk/**/*
 
 'comp: @angular-ru/dev-dependencies':
     - dev-infra/dev-dependencies/*

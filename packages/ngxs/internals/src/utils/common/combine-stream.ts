@@ -1,4 +1,4 @@
-import { Any } from '@angular-ru/common/typings';
+import { Any } from '@angular-ru/cdk/typings';
 import { forkJoin, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
