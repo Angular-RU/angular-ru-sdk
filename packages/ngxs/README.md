@@ -10,7 +10,7 @@
   <a href="https://badge.fury.io/js/%40angular-ru%2Fngxs">
     <img src="https://badge.fury.io/js/%40angular-ru%2Fngxs.svg" />
   </a>
-  <a href="https://npm-stat.com/charts.html?package=%40ngxs-labs%2Fdata&from=2019-09-01">
+  <a href="https://npm-stat.com/charts.html?package=%40angular-ru%2Fngxs&from=2019-09-01">
     <img src="https://img.shields.io/npm/dm/@angular-ru/ngxs" />
   </a>
 </p>
@@ -21,6 +21,10 @@
 
 NGXS Persistence API is an extension based the Repository Design Pattern that offers a gentle introduction to NGXS by
 simplifying management of entities or plain data while reducing the amount of explicitness.
+
+```bash
+$ npm i @angular-ru/{cdk,ngxs}
+```
 
 ![](https://habrastorage.org/webt/jd/t4/wo/jdt4woihu-chhiwlqqd4eogpelu.png)
 
@@ -120,8 +124,8 @@ export class AppComponent {
 
 ```ts
 import { State } from '@ngxs/store';
-import { DataAction, StateRepository } from '@ngxs-labs/data/decorators';
-import { NgxsDataRepository } from '@ngxs-labs/data/repositories';
+import { DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
+import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
 
 @StateRepository()
 @State<number>({
