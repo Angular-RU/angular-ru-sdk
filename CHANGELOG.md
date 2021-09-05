@@ -1,5 +1,11 @@
 #### independent (2021-09-05)
 
+##### Documentation Changes
+
+-   **ngxs:** update README.md (#871) (2e7976d0)
+
+#### independent (2021-09-05)
+
 ##### Build System / Dependencies
 
 -   **cdk:** update lerna.json (#860) (11742a5e)
