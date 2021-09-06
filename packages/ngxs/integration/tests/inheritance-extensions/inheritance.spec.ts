@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { Immutable } from '@angular-ru/cdk/typings';
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
 import { DataAction, Persistence, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsDataRepository, NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
+import { NGXS_DATA_STORAGE_PLUGIN } from '@angular-ru/ngxs/storage';
 import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
 import { NgxsModule, Selector, State, Store } from '@ngxs/store';
-import { NGXS_DATA_STORAGE_PLUGIN } from '@angular-ru/ngxs/storage';
 
 describe('Inheritance', () => {
     it('should be throw', () => {
         try {
-            abstract class CountRepo extends NgxsImmutableDataRepository<number> {
+            abstract class AbstractCountRepo extends NgxsImmutableDataRepository<number> {
                 // @ts-ignore
                 @DataAction() public increment;
             }
@@ -21,7 +22,7 @@ describe('Inheritance', () => {
                 name: 'count',
                 defaults: 0
             })
-            class CountState extends CountRepo {}
+            class CountState extends AbstractCountRepo {}
 
             TestBed.configureTestingModule({
                 imports: [NgxsModule.forRoot([CountState])]
@@ -43,9 +44,9 @@ describe('Inheritance', () => {
         }
 
         class TodoStateModel {
-            todos: Todo[] = [];
-            loaded: boolean = false;
-            selectedTodo: Todo | null = null;
+            public todos: Todo[] = [];
+            public loaded: boolean = false;
+            public selectedTodo: Todo | null = null;
         }
 
         @Persistence([
@@ -65,17 +66,19 @@ describe('Inheritance', () => {
         })
         @Injectable()
         class TodoState extends NgxsDataRepository<TodoStateModel> {
+            constructor(protected readonly api: TodoApiService) {
+                super();
+            }
+
             @Selector()
             public static todos(state: TodoStateModel) {
                 return state.todos;
             }
 
-            constructor(protected readonly api: TodoApiService) {
-                super();
-            }
-
             @DataAction()
-            public getTodos() {}
+            public getTodos() {
+                // ...
+            }
         }
 
         TestBed.configureTestingModule({
@@ -89,10 +92,10 @@ describe('Inheritance', () => {
     });
 
     it('should be correct with inheritance', () => {
-        abstract class CountRepo extends NgxsImmutableDataRepository<number> {
+        abstract class AbstractCountRepo extends NgxsImmutableDataRepository<number> {
             @DataAction()
             public decrement(): void {
-                this.ctx.setState((state) => --state);
+                this.ctx.setState((state: Immutable<number>) => state - 1);
             }
         }
 
@@ -102,10 +105,10 @@ describe('Inheritance', () => {
             name: 'count',
             defaults: 0
         })
-        class CountState extends CountRepo {
+        class CountState extends AbstractCountRepo {
             @DataAction()
             public increment(): void {
-                this.ctx.setState((state) => ++state);
+                this.ctx.setState((state: Immutable<number>) => state + 1);
             }
         }
 

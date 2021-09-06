@@ -1,5 +1,5 @@
-import { BracePipe, BracePipeModule } from '@angular-ru/cdk/pipes';
 import { TestBed } from '@angular/core/testing';
+import { BracePipe, BracePipeModule } from '@angular-ru/cdk/pipes';
 
 describe('brace pipe', () => {
     let pipe: BracePipe;

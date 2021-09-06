@@ -1,5 +1,5 @@
-import { Any, PlainObject } from '@angular-ru/cdk/typings';
 import { NgZone } from '@angular/core';
+import { Any, PlainObject } from '@angular-ru/cdk/typings';
 
 import { RowId } from '../../../../../virtual-table/src/interfaces/table-builder.internal';
 import { SelectionMap } from '../../../../../virtual-table/src/services/selection/selection';
@@ -17,6 +17,7 @@ describe('[TEST]: Selection service', () => {
 
     const mockPreventDefault: Partial<MouseEvent> = {
         preventDefault: (): void => {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             preventDefaultInvoked++;
         }
     };

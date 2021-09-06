@@ -1,9 +1,9 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Any } from '@angular-ru/cdk/typings';
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
 import { DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
-import { Any } from '@angular-ru/cdk/typings';
 import { NgxsModule, Select, State, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
@@ -41,7 +41,7 @@ describe('Check correct deep instance', () => {
         public address$!: Observable<IFormState>;
 
         @DataAction()
-        public addAddress(address: IFormState) {
+        public addAddress(address: IFormState): Any {
             return this.ctx.setState(() => ({ address }));
         }
     }

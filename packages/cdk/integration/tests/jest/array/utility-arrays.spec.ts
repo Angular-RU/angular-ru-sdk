@@ -1,22 +1,22 @@
 import {
     exclude,
     firstItem,
+    hasAtMostOneItem,
+    hasItems,
+    hasManyItems,
+    hasNoItems,
+    hasOneItem,
     isEmptyList,
     isFilledList,
     isMultipleList,
     isSingleList,
-    hasManyItems,
-    hasAtMostOneItem,
-    hasItems,
-    hasNoItems,
-    hasOneItem,
     partition,
     secondItem,
-    thirdItem,
     takeFirstItem,
+    takeLastItem,
     takeSecondItem,
     takeThirdItem,
-    takeLastItem
+    thirdItem
 } from '@angular-ru/cdk/array';
 import { isNumber } from '@angular-ru/cdk/number';
 import { PlainObject } from '@angular-ru/cdk/typings';

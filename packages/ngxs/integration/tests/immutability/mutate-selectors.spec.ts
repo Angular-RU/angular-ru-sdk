@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { Immutable } from '@angular-ru/cdk/typings';
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
 import { StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
@@ -7,7 +8,6 @@ import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
 import { NgxsModule, State, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Immutable } from '@angular-ru/cdk/typings';
 
 describe('Mutate', () => {
     let store: Store;
@@ -63,7 +63,9 @@ describe('Mutate', () => {
         });
 
         todo.mutable$().subscribe(
-            () => {},
+            () => {
+                // ...
+            },
             (e) => {
                 error = (e as Error).message;
             }
@@ -108,7 +110,7 @@ describe('Mutate', () => {
             error = (e as Error).message;
         }
 
-        expect(error).toEqual("Cannot assign to read only property '0' of object '[object Array]'");
+        expect(error).toEqual(`Cannot assign to read only property '0' of object '[object Array]'`);
 
         try {
             (todo.getState() as A[])[0]!.a++;
@@ -116,6 +118,6 @@ describe('Mutate', () => {
             error = (e as Error).message;
         }
 
-        expect(error).toEqual("Cannot assign to read only property 'a' of object '[object Object]'");
+        expect(error).toEqual(`Cannot assign to read only property 'a' of object '[object Object]'`);
     });
 });

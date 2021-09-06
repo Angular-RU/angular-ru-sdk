@@ -1,14 +1,14 @@
-import { NgxsModule, State } from '@ngxs/store';
 import { Injectable } from '@angular/core';
-import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { TestBed } from '@angular/core/testing';
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
-import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
 import { DataAction, Payload, StateRepository } from '@angular-ru/ngxs/decorators';
 import { getRepository } from '@angular-ru/ngxs/internals';
+import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
+import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
+import { NgxsModule, State } from '@ngxs/store';
 
 describe('[TEST]: Action decorator', () => {
-    it("don't should be working without @StateRepository decorator", () => {
+    it(`don't should be working without @StateRepository decorator`, () => {
         let message: string | null = null;
 
         try {
@@ -34,7 +34,7 @@ describe('[TEST]: Action decorator', () => {
         expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_STATE_DECORATOR);
     });
 
-    it("don't should be working without @StateRepository and @State decorator", () => {
+    it(`don't should be working without @StateRepository and @State decorator`, () => {
         let message: string | null = null;
 
         try {
@@ -59,7 +59,7 @@ describe('[TEST]: Action decorator', () => {
         expect(message).toEqual('States must be decorated with @State() decorator');
     });
 
-    it("don't should be working without provided meta information", () => {
+    it(`don't should be working without provided meta information`, () => {
         let message: string | null = null;
 
         try {
@@ -67,7 +67,9 @@ describe('[TEST]: Action decorator', () => {
             @Injectable()
             class InvalidState {
                 @DataAction()
-                public setup(): void {}
+                public setup(): void {
+                    // ...
+                }
             }
 
             TestBed.configureTestingModule({
@@ -83,7 +85,7 @@ describe('[TEST]: Action decorator', () => {
         expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_STATE_DECORATOR);
     });
 
-    it("don't should be working when register as service", () => {
+    it(`don't should be working when register as service`, () => {
         let message: string | null = null;
 
         try {
@@ -91,7 +93,9 @@ describe('[TEST]: Action decorator', () => {
             @Injectable()
             class InvalidState {
                 @DataAction()
-                public setup(): void {}
+                public setup(): void {
+                    // ...
+                }
             }
 
             TestBed.configureTestingModule({

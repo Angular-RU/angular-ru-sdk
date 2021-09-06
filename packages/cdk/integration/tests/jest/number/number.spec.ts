@@ -7,6 +7,7 @@ import {
     toNumber,
     truncated
 } from '@angular-ru/cdk/number';
+import { Any } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: Number', () => {
     it('is number', () => {
@@ -71,11 +72,11 @@ describe('[TEST]: Number', () => {
         expect(half(Infinity)).toEqual(Infinity);
         expect(half(-Infinity)).toEqual(-Infinity);
         expect(half(NaN)).toEqual(NaN);
-        expect(half([] as any)).toEqual(NaN);
-        expect(half({} as any)).toEqual(NaN);
-        expect(half(null as any)).toEqual(NaN);
-        expect(half(undefined as any)).toEqual(NaN);
-        expect(half('' as any)).toEqual(NaN);
+        expect(half([] as Any)).toEqual(NaN);
+        expect(half({} as Any)).toEqual(NaN);
+        expect(half(null as Any)).toEqual(NaN);
+        expect(half(undefined as Any)).toEqual(NaN);
+        expect(half('' as Any)).toEqual(NaN);
     });
 
     it('truncated', () => {

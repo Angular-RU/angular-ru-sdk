@@ -1,8 +1,8 @@
 import {
-    REG_EXP_NO_CYRILLIC,
-    REG_EXP_STRICT_NAME,
+    REG_EXP_DIGITS,
     REG_EXP_DIGITS_SEPARATED_BY_COMMA,
-    REG_EXP_DIGITS
+    REG_EXP_NO_CYRILLIC,
+    REG_EXP_STRICT_NAME
 } from '@angular-ru/cdk/regexp';
 
 describe('[TEST]: Regexp constants', () => {
@@ -13,11 +13,13 @@ describe('[TEST]: Regexp constants', () => {
         expect(REG_EXP_STRICT_NAME.test('777aaaBBB')).toEqual(false);
         expect(REG_EXP_STRICT_NAME.test('aaa BBB')).toEqual(false);
         expect(REG_EXP_STRICT_NAME.test('aaaBBB!')).toEqual(false);
+        // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
         expect(REG_EXP_STRICT_NAME.test('aaaДДД')).toEqual(false);
     });
 
     it('should parse string with REG_EXP_NO_CYRILLIC', () => {
         expect(parse('aaa BBB @ ! 7', REG_EXP_NO_CYRILLIC)).toEqual('aaa BBB @ ! 7');
+        // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
         expect(parse('aaa ДДД', REG_EXP_NO_CYRILLIC)).toEqual('aaa ');
     });
 

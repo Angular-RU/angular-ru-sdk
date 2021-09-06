@@ -1,9 +1,8 @@
-import { PlainObject } from '@angular-ru/cdk/typings';
 import { TestBed } from '@angular/core/testing';
-import { LoggerModule } from '@angular-ru/cdk/logger';
-import { LoggerService } from '@angular-ru/cdk/logger';
+import { LoggerLevel, LoggerModule, LoggerService } from '@angular-ru/cdk/logger';
+import { PlainObject } from '@angular-ru/cdk/typings';
+
 import { ConsoleFake, TestLoggerLineType } from './helpers/console-fake';
-import { LoggerLevel } from '@angular-ru/cdk/logger';
 
 describe('[TEST]: Execute method by Level', () => {
     let logger: LoggerService;

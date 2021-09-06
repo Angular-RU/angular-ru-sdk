@@ -1,5 +1,5 @@
-import { MarkByFilterPipe, MarkByFilterPipeModule } from '@angular-ru/cdk/pipes';
 import { TestBed } from '@angular/core/testing';
+import { MarkByFilterPipe, MarkByFilterPipeModule } from '@angular-ru/cdk/pipes';
 
 describe('mark by filter pipe', () => {
     let pipe: MarkByFilterPipe;

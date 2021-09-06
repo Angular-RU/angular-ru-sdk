@@ -2,27 +2,29 @@ import {
     capitalize,
     generateQuickGuid,
     getByteSize,
+    getCountSpacesOnString,
+    getFirstSymbol,
     getLastSymbol,
     isString,
     removeLastSymbol,
     removeNonNumericSymbols,
+    replaceEveryCommaOnDot,
     splitOnUniqueValues,
     stringify,
     toStringVal,
-    getFirstSymbol,
-    trim,
-    replaceEveryCommaOnDot,
-    getCountSpacesOnString
+    trim
 } from '@angular-ru/cdk/string';
+import { Any } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: String', () => {
     it('toString', () => {
         expect(toStringVal([1, 2, 3])).toEqual('1,2,3');
-        expect(toStringVal([1, 2, 3], {} as any)).toEqual('1,2,3');
+        expect(toStringVal([1, 2, 3], {} as Any)).toEqual('1,2,3');
         expect(toStringVal([1, 2, 3], (value: number[]) => value.join('; '))).toEqual('1; 2; 3');
     });
 
     it('get byte size', () => {
+        // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
         expect(getByteSize('сын')).toEqual(6);
         expect(getByteSize('son')).toEqual(3);
     });

@@ -1,11 +1,11 @@
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { DataHttpClient, DataHttpClientModule } from '@angular-ru/cdk/http';
-import { Component, Injectable } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
-import { Any } from '@angular-ru/cdk/typings';
+import { Component, Injectable } from '@angular/core';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { DataHttpClient, DataHttpClientModule } from '@angular-ru/cdk/http';
 import { RestClient } from '@angular-ru/cdk/http/decorators';
-import { Nullable } from '@angular-ru/cdk/typings';
+import { Any, Nullable } from '@angular-ru/cdk/typings';
+
 describe('[TEST]: HTTP decorators for client', () => {
     const MOCK_API: string = 'http://localhost';
     let client: Nullable<ApiGithubClient> = null;

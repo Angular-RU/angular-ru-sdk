@@ -1,5 +1,5 @@
-import { HttpReplacerPipe, HttpReplacerPipeModule } from '@angular-ru/cdk/pipes';
 import { TestBed } from '@angular/core/testing';
+import { HttpReplacerPipe, HttpReplacerPipeModule } from '@angular-ru/cdk/pipes';
 
 describe('http replacer pipe', () => {
     let pipe: HttpReplacerPipe;

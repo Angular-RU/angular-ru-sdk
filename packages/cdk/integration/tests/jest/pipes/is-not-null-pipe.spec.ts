@@ -1,5 +1,5 @@
-import { IsNotNullPipeModule, IsNotNullPipe } from '@angular-ru/cdk/pipes';
 import { TestBed } from '@angular/core/testing';
+import { IsNotNullPipe, IsNotNullPipeModule } from '@angular-ru/cdk/pipes';
 
 describe('is not null pipe', () => {
     let pipe: IsNotNullPipe;

@@ -1,5 +1,5 @@
-import { FormatDatePipe, FormatDatePipeModule } from '@angular-ru/cdk/pipes';
 import { TestBed } from '@angular/core/testing';
+import { FormatDatePipe, FormatDatePipeModule } from '@angular-ru/cdk/pipes';
 
 describe('format date pipe', () => {
     let pipe: FormatDatePipe;

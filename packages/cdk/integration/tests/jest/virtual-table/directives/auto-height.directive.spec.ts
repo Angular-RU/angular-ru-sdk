@@ -1,6 +1,6 @@
-import { Any, Fn, Nullable, PlainObject } from '@angular-ru/cdk/typings';
 import { ElementRef, NgZone } from '@angular/core';
 import { fakeAsync, tick } from '@angular/core/testing';
+import { Any, Fn, Nullable, PlainObject } from '@angular-ru/cdk/typings';
 
 import { AutoHeightDirective } from '../../../../../virtual-table/src/directives/auto-height.directive';
 
@@ -51,7 +51,9 @@ describe('[TEST]: auto height', () => {
         },
         removeEventListener: {
             value: (): void => {
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 recalculateDispatcher = null;
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 removeEvent = true;
             }
         }
@@ -61,6 +63,7 @@ describe('[TEST]: auto height', () => {
         directive = new AutoHeightDirective(mockElementRef, mockNgZone as NgZone);
         directive.sourceRef = [{ a: 1 }];
         style = '';
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         ticked = 0;
     });
 

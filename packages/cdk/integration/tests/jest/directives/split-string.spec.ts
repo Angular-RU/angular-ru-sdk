@@ -1,5 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SplitStringModule, SplitStringOptions } from '@angular-ru/cdk/directives';
 
@@ -12,6 +12,7 @@ describe('[TEST]: Trim Input', () => {
 
     @Component({
         selector: 'test',
+
         template: `
             <form [formGroup]="form">
                 <textarea
@@ -33,9 +34,9 @@ describe('[TEST]: Trim Input', () => {
         `
     })
     class TestComponent {
-        @ViewChild('textAreaElement') textAreaElement!: ElementRef<HTMLTextAreaElement>;
-        @ViewChild('inputElement') inputElement!: ElementRef<HTMLInputElement>;
-        @ViewChild('tdfInputElement') tdfInputElement!: ElementRef<HTMLInputElement>;
+        @ViewChild('textAreaElement') public textAreaElement!: ElementRef<HTMLTextAreaElement>;
+        @ViewChild('inputElement') public inputElement!: ElementRef<HTMLInputElement>;
+        @ViewChild('tdfInputElement') public tdfInputElement!: ElementRef<HTMLInputElement>;
         public splitStringOptions?: Partial<SplitStringOptions>;
         public form = this.fb.group({ textarea: null, input: null });
         public list?: string[];

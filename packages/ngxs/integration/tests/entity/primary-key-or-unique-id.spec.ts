@@ -1,9 +1,9 @@
-import { createEntityCollections, EntityDictionary, EntityIdType, EntityCollections } from '@angular-ru/cdk/entity';
+import { Injectable } from '@angular/core';
+import { createEntityCollections, EntityCollections, EntityDictionary, EntityIdType } from '@angular-ru/cdk/entity';
+import { StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsDataEntityCollectionsRepository } from '@angular-ru/ngxs/repositories';
 import { ngxsTestingPlatform } from '@angular-ru/ngxs/testing';
-import { StateRepository } from '@angular-ru/ngxs/decorators';
 import { Action, State } from '@ngxs/store';
-import { Injectable } from '@angular/core';
 
 describe('[TEST]: Entity - primary key or unique id', () => {
     interface Lesson {
@@ -32,7 +32,7 @@ describe('[TEST]: Entity - primary key or unique id', () => {
         }
 
         it(
-            "The entity passed to the 'selectId' implementation returned undefined",
+            `The entity passed to the 'selectId' implementation returned undefined`,
             ngxsTestingPlatform([LessonEntitiesState], (_store, lesson) => {
                 expect(lesson.getState()).toEqual({ ids: [], entities: {} });
 
@@ -42,8 +42,8 @@ describe('[TEST]: Entity - primary key or unique id', () => {
 
                 expect(spy).toHaveBeenCalledTimes(1);
                 expect(console.warn).toHaveBeenLastCalledWith(
-                    "The entity passed to the 'selectId' implementation returned undefined.",
-                    "You should probably provide your own 'selectId' implementation.",
+                    `The entity passed to the 'selectId' implementation returned undefined.`,
+                    `You should probably provide your own 'selectId' implementation.`,
                     'The entity that was passed:',
                     { lessonId: 1, title: 'A' },
                     'The current `selectId` implementation: (entity: V): K => entity.id'
@@ -93,8 +93,8 @@ describe('[TEST]: Entity - primary key or unique id', () => {
                 expect(lesson.getState()).toEqual({
                     ids: [1, 2],
                     entities: {
-                        '1': { lessonId: 1, title: 'A' },
-                        '2': { lessonId: 2, title: 'B' }
+                        1: { lessonId: 1, title: 'A' },
+                        2: { lessonId: 2, title: 'B' }
                     }
                 });
             })
@@ -128,9 +128,9 @@ describe('[TEST]: Entity - primary key or unique id', () => {
                 expect(lesson.getState()).toEqual({
                     ids: [1, 2, 3],
                     entities: {
-                        '1': { lessonId: 1, title: 'A' },
-                        '2': { lessonId: 2, title: 'B' },
-                        '3': { lessonId: 3, title: 'C' }
+                        1: { lessonId: 1, title: 'A' },
+                        2: { lessonId: 2, title: 'B' },
+                        3: { lessonId: 3, title: 'C' }
                     }
                 });
 
@@ -154,9 +154,9 @@ describe('[TEST]: Entity - primary key or unique id', () => {
                 expect(lesson.getState()).toEqual({
                     ids: [1, 2, 3],
                     entities: {
-                        '1': { lessonId: 1, title: 'A' },
-                        '2': { lessonId: 2, title: 'B' },
-                        '3': { lessonId: 3, title: 'C' }
+                        1: { lessonId: 1, title: 'A' },
+                        2: { lessonId: 2, title: 'B' },
+                        3: { lessonId: 3, title: 'C' }
                     }
                 });
 
@@ -169,9 +169,9 @@ describe('[TEST]: Entity - primary key or unique id', () => {
                 expect(lesson.getState()).toEqual({
                     ids: [1, 2, 3],
                     entities: {
-                        '1': { lessonId: 1, title: 'A*' },
-                        '2': { lessonId: 2, title: 'B' },
-                        '3': { lessonId: 3, title: 'C*' }
+                        1: { lessonId: 1, title: 'A*' },
+                        2: { lessonId: 2, title: 'B' },
+                        3: { lessonId: 3, title: 'C*' }
                     }
                 });
 
@@ -180,10 +180,10 @@ describe('[TEST]: Entity - primary key or unique id', () => {
                 expect(lesson.getState()).toEqual({
                     ids: [1, 2, 3, 0],
                     entities: {
-                        '1': { lessonId: 1, title: 'A*' },
-                        '2': { lessonId: 2, title: 'B' },
-                        '3': { lessonId: 3, title: 'C*' },
-                        '0': { lessonId: 0, title: 'R' }
+                        1: { lessonId: 1, title: 'A*' },
+                        2: { lessonId: 2, title: 'B' },
+                        3: { lessonId: 3, title: 'C*' },
+                        0: { lessonId: 0, title: 'R' }
                     }
                 });
 
@@ -192,10 +192,10 @@ describe('[TEST]: Entity - primary key or unique id', () => {
                 expect(lesson.getState()).toEqual({
                     ids: [1, 2, 3, 0],
                     entities: {
-                        '0': { lessonId: 0, title: 'R*' },
-                        '1': { lessonId: 1, title: 'A*' },
-                        '2': { lessonId: 2, title: 'B' },
-                        '3': { lessonId: 3, title: 'C*' }
+                        0: { lessonId: 0, title: 'R*' },
+                        1: { lessonId: 1, title: 'A*' },
+                        2: { lessonId: 2, title: 'B' },
+                        3: { lessonId: 3, title: 'C*' }
                     }
                 });
             })

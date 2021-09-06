@@ -3,13 +3,14 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { deepClone } from '@angular-ru/cdk/object';
 import { Nullable, PlainObject, SortOrderType } from '@angular-ru/cdk/typings';
-import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
 import {
     TableBuilderComponent,
     TableBuilderModule,
     TableFilterType,
     TableSortTypes
 } from '@angular-ru/cdk/virtual-table';
+import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
+
 import { FilterDescriptor } from '../../../../../virtual-table/src/services/filterable/filter-descriptor';
 
 @Component({
@@ -100,6 +101,7 @@ describe('[TEST] Table builder', (): void => {
             { id: 1, name: 'Max', lastName: 'Ivanov' }
         ]);
 
+        // eslint-disable-next-line require-atomic-updates
         component.sortTypes = { name: SortOrderType.ASC };
         componentFixture.detectChanges();
         await componentFixture.whenStable();
@@ -131,6 +133,7 @@ describe('[TEST] Table builder', (): void => {
         tableBuilderComponent.selection.selectRow(tableBuilderComponent.source![1], mockShiftClientEvent);
         expect(tableBuilderComponent.selection.selectionModel.entries).toEqual({ 1: true, 2: true });
 
+        // eslint-disable-next-line require-atomic-updates
         component.sortTypes = { name: SortOrderType.DESC };
         componentFixture.detectChanges();
         await componentFixture.whenStable();

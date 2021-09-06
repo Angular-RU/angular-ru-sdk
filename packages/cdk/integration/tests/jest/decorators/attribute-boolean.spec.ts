@@ -3,6 +3,7 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AttributeBoolean } from '@angular-ru/cdk/decorators';
 import { Any, InputBoolean } from '@angular-ru/cdk/typings';
+import { isNotNil } from '@angular-ru/cdk/utils';
 
 describe('[TEST]: Attribute boolean', () => {
     let hostFixture: ComponentFixture<HostComponent>;
@@ -23,7 +24,7 @@ describe('[TEST]: Attribute boolean', () => {
         }
 
         public get propWithSetter(): InputBoolean {
-            return this._propWithSetter ? `${this._propWithSetter} - from getter` : undefined;
+            return isNotNil(this._propWithSetter) ? `${this._propWithSetter} - from getter` : undefined;
         }
 
         public hookCalls: boolean[] = [];
@@ -36,6 +37,7 @@ describe('[TEST]: Attribute boolean', () => {
 
     @Component({
         selector: 'host-component',
+
         template: `
             <child-component #simpleProp prop></child-component>
             <child-component #noProp></child-component>

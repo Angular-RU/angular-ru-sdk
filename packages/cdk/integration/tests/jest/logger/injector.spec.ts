@@ -6,7 +6,7 @@ describe('[TEST]: Check injector error', () => {
         let message: Nullable<string> = null;
 
         try {
-            LoggerInjector.getInjector().get<LoggerService>(LoggerService).log;
+            LoggerInjector.getInjector().get<LoggerService>(LoggerService).log();
         } catch (e: unknown) {
             message = (e as Error).message;
         }

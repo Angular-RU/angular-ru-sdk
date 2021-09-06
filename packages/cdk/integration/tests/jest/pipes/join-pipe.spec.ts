@@ -1,5 +1,5 @@
-import { Any } from '@angular-ru/cdk/typings';
 import { JoinPipe } from '@angular-ru/cdk/pipes';
+import { Any } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: Join Pipe', () => {
     it('only separator', () => {

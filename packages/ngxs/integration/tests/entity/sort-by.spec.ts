@@ -1,10 +1,10 @@
-import { StateRepository } from '@angular-ru/ngxs/decorators';
-import { State } from '@ngxs/store';
 import { Injectable } from '@angular/core';
+import { createEntityCollections } from '@angular-ru/cdk/entity';
+import { Any, SortOrderType } from '@angular-ru/cdk/typings';
+import { StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsDataEntityCollectionsRepository } from '@angular-ru/ngxs/repositories';
 import { ngxsTestingPlatform } from '@angular-ru/ngxs/testing';
-import { Any, SortOrderType } from '@angular-ru/cdk/typings';
-import { createEntityCollections } from '@angular-ru/cdk/entity';
+import { State } from '@ngxs/store';
 
 describe('Sort by entities', () => {
     let spy: jest.MockInstance<Any, Any>;
@@ -39,11 +39,11 @@ describe('Sort by entities', () => {
             expect(people.getState()).toEqual({
                 ids: [1, 2, 3, 4, 5],
                 entities: {
-                    '1': { id: 1, name: 'Max', age: 25 },
-                    '2': { id: 2, name: 'Ivan', age: 15 },
-                    '3': { id: 3, name: 'Roger', age: 35 },
-                    '4': { id: 4, name: 'Petr', age: 40 },
-                    '5': { id: 5, name: 'Anton', age: 12 }
+                    1: { id: 1, name: 'Max', age: 25 },
+                    2: { id: 2, name: 'Ivan', age: 15 },
+                    3: { id: 3, name: 'Roger', age: 35 },
+                    4: { id: 4, name: 'Petr', age: 40 },
+                    5: { id: 5, name: 'Anton', age: 12 }
                 }
             });
 
@@ -55,11 +55,11 @@ describe('Sort by entities', () => {
             expect(people.getState()).toEqual({
                 ids: [1, 2, 3, 4, 5],
                 entities: {
-                    '1': { id: 1, name: 'Max', age: 25 },
-                    '2': { id: 2, name: 'Ivan', age: 15 },
-                    '3': { id: 3, name: 'Roger', age: 35 },
-                    '4': { id: 4, name: 'Petr', age: 40 },
-                    '5': { id: 5, name: 'Anton', age: 12 }
+                    1: { id: 1, name: 'Max', age: 25 },
+                    2: { id: 2, name: 'Ivan', age: 15 },
+                    3: { id: 3, name: 'Roger', age: 35 },
+                    4: { id: 4, name: 'Petr', age: 40 },
+                    5: { id: 5, name: 'Anton', age: 12 }
                 }
             });
         })
@@ -71,11 +71,11 @@ describe('Sort by entities', () => {
             expect(people.getState()).toEqual({
                 ids: [1, 2, 3, 4, 5],
                 entities: {
-                    '1': { id: 1, name: 'Max', age: 25 },
-                    '2': { id: 2, name: 'Ivan', age: 15 },
-                    '3': { id: 3, name: 'Roger', age: 35 },
-                    '4': { id: 4, name: 'Petr', age: 40 },
-                    '5': { id: 5, name: 'Anton', age: 12 }
+                    1: { id: 1, name: 'Max', age: 25 },
+                    2: { id: 2, name: 'Ivan', age: 15 },
+                    3: { id: 3, name: 'Roger', age: 35 },
+                    4: { id: 4, name: 'Petr', age: 40 },
+                    5: { id: 5, name: 'Anton', age: 12 }
                 }
             });
 
@@ -89,11 +89,11 @@ describe('Sort by entities', () => {
             expect(people.getState()).toEqual({
                 ids: [5, 2, 1, 3, 4],
                 entities: {
-                    '1': { id: 1, name: 'Max', age: 25 },
-                    '2': { id: 2, name: 'Ivan', age: 15 },
-                    '3': { id: 3, name: 'Roger', age: 35 },
-                    '4': { id: 4, name: 'Petr', age: 40 },
-                    '5': { id: 5, name: 'Anton', age: 12 }
+                    1: { id: 1, name: 'Max', age: 25 },
+                    2: { id: 2, name: 'Ivan', age: 15 },
+                    3: { id: 3, name: 'Roger', age: 35 },
+                    4: { id: 4, name: 'Petr', age: 40 },
+                    5: { id: 5, name: 'Anton', age: 12 }
                 }
             });
 
@@ -113,11 +113,11 @@ describe('Sort by entities', () => {
             expect(people.getState()).toEqual({
                 ids: [4, 3, 1, 2, 5],
                 entities: {
-                    '1': { id: 1, name: 'Max', age: 25 },
-                    '2': { id: 2, name: 'Ivan', age: 15 },
-                    '3': { id: 3, name: 'Roger', age: 35 },
-                    '4': { id: 4, name: 'Petr', age: 40 },
-                    '5': { id: 5, name: 'Anton', age: 12 }
+                    1: { id: 1, name: 'Max', age: 25 },
+                    2: { id: 2, name: 'Ivan', age: 15 },
+                    3: { id: 3, name: 'Roger', age: 35 },
+                    4: { id: 4, name: 'Petr', age: 40 },
+                    5: { id: 5, name: 'Anton', age: 12 }
                 }
             });
 
@@ -170,11 +170,11 @@ describe('Sort by entities', () => {
             expect(people.getState()).toEqual({
                 ids: [1, 2, 3, 4, 5],
                 entities: {
-                    '1': { id: 1, name: 'Max', age: 25 },
-                    '2': { id: 2, name: 'Ivan', age: 15 },
-                    '3': { id: 3, name: 'Roger', age: 35 },
-                    '4': { id: 4, name: 'Petr', age: 40 },
-                    '5': { id: 5, name: 'Anton', age: 12 }
+                    1: { id: 1, name: 'Max', age: 25 },
+                    2: { id: 2, name: 'Ivan', age: 15 },
+                    3: { id: 3, name: 'Roger', age: 35 },
+                    4: { id: 4, name: 'Petr', age: 40 },
+                    5: { id: 5, name: 'Anton', age: 12 }
                 }
             });
 
@@ -183,11 +183,11 @@ describe('Sort by entities', () => {
             expect(people.getState()).toEqual({
                 ids: [5, 2, 1, 3, 4],
                 entities: {
-                    '1': { id: 1, name: 'Max', age: 25 },
-                    '2': { id: 2, name: 'Ivan', age: 15 },
-                    '3': { id: 3, name: 'Roger', age: 35 },
-                    '4': { id: 4, name: 'Petr', age: 40 },
-                    '5': { id: 5, name: 'Anton', age: 12 }
+                    1: { id: 1, name: 'Max', age: 25 },
+                    2: { id: 2, name: 'Ivan', age: 15 },
+                    3: { id: 3, name: 'Roger', age: 35 },
+                    4: { id: 4, name: 'Petr', age: 40 },
+                    5: { id: 5, name: 'Anton', age: 12 }
                 }
             });
 
@@ -212,18 +212,18 @@ describe('Sort by entities', () => {
             expect(people.getState()).toEqual({
                 ids: [4, 3, 1, 2, 5],
                 entities: {
-                    '1': { id: 1, name: 'Max', age: 25 },
-                    '2': { id: 2, name: 'Ivan', age: 15 },
-                    '3': { id: 3, name: 'Roger', age: 35 },
-                    '4': { id: 4, name: 'Petr', age: 40 },
-                    '5': { id: 5, name: 'Anton', age: 12 }
+                    1: { id: 1, name: 'Max', age: 25 },
+                    2: { id: 2, name: 'Ivan', age: 15 },
+                    3: { id: 3, name: 'Roger', age: 35 },
+                    4: { id: 4, name: 'Petr', age: 40 },
+                    5: { id: 5, name: 'Anton', age: 12 }
                 }
             });
         })
     );
 
     it(
-        "{ sortByOrder: '' } not supported",
+        `{ sortByOrder: '' } not supported`,
         ngxsTestingPlatform([PeopleEntitiesState], (_, people) => {
             spy = jest.spyOn(console, 'warn').mockImplementation();
 

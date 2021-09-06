@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { NgxsModule, State } from '@ngxs/store';
-import { DataAction, Named, Payload, StateRepository } from '@angular-ru/ngxs/decorators';
 import { TestBed } from '@angular/core/testing';
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
-import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
+import { DataAction, Named, Payload, StateRepository } from '@angular-ru/ngxs/decorators';
 import { getRepository } from '@angular-ru/ngxs/internals';
-import { NgxsRepositoryMeta } from '@angular-ru/ngxs/typings';
+import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
+import { NgxsRepositoryMeta } from '@angular-ru/ngxs/typings';
+import { NgxsModule, State } from '@ngxs/store';
 
 describe('[TEST]: Argument decorators', () => {
     it('should be correct ensure meta from A', () => {
@@ -200,7 +200,7 @@ describe('[TEST]: Argument decorators', () => {
                 message = (e as Error).message;
             }
 
-            expect(message).toEqual("An argument with the name 'y' already exists in the method 'setYZ'");
+            expect(message).toEqual(`An argument with the name 'y' already exists in the method 'setYZ'`);
         });
 
         it('should be duplicate payload name', () => {
@@ -222,7 +222,7 @@ describe('[TEST]: Argument decorators', () => {
                 message = (e as Error).message;
             }
 
-            expect(message).toEqual("An argument with the name 'y' already exists in the method 'setYZ'");
+            expect(message).toEqual(`An argument with the name 'y' already exists in the method 'setYZ'`);
         });
 
         it('should be duplicate payload name as argument name', () => {
@@ -244,7 +244,7 @@ describe('[TEST]: Argument decorators', () => {
                 message = (e as Error).message;
             }
 
-            expect(message).toEqual("An argument with the name 'y' already exists in the method 'setYZ'");
+            expect(message).toEqual(`An argument with the name 'y' already exists in the method 'setYZ'`);
         });
     });
 });

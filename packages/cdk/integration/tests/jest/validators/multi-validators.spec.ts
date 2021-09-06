@@ -1,6 +1,6 @@
+import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { toUtc } from '@angular-ru/cdk/date';
 import { orderedIntervalValidator, requiredSomeValueByKeysValidator } from '@angular-ru/cdk/validators';
-import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 
 describe('[TEST]: requiredSomeValueByKeysValidator vs orderedIntervalValidator', () => {
     let form: FormGroup;

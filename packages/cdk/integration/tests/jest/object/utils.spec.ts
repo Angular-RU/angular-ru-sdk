@@ -1,5 +1,5 @@
+import { equals, flatten, objectToString, shallowTrimProperties, strictEquals } from '@angular-ru/cdk/object';
 import { Any, PlainObject } from '@angular-ru/cdk/typings';
-import { equals, objectToString, flatten, strictEquals, shallowTrimProperties } from '@angular-ru/cdk/object';
 
 describe('[TEST]: Correct work object utils', (): void => {
     it('should be object A equals object B', (): void => {

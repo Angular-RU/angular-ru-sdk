@@ -1,4 +1,4 @@
-import { $args, isFunctionLike, hasConstructor } from '@angular-ru/cdk/function';
+import { $args, hasConstructor, isFunctionLike } from '@angular-ru/cdk/function';
 import { Any, Fn, KeyboardKeys } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: Function', () => {
@@ -7,7 +7,11 @@ describe('[TEST]: Function', () => {
 
         expect(isFunctionLike(null)).toEqual(false);
         expect(isFunctionLike(A)).toEqual(true);
-        expect(isFunctionLike(() => {})).toEqual(true);
+        expect(
+            isFunctionLike(() => {
+                // ...
+            })
+        ).toEqual(true);
         expect(isFunctionLike(1)).toEqual(false);
         expect(isFunctionLike({})).toEqual(false);
         expect(isFunctionLike([])).toEqual(false);
@@ -34,8 +38,12 @@ describe('[TEST]: Function', () => {
 
     it('hasConstructor', () => {
         class A {}
-        function B() {}
-        const C: Fn = () => {};
+        function B() {
+            // ...
+        }
+        const C: Fn = () => {
+            // ...
+        };
         class D extends A {}
 
         expect(hasConstructor(A)).toEqual(true);

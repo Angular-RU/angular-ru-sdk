@@ -1,12 +1,11 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ChangeDetectionStrategy, Component, DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { TrimInputModule } from '@angular-ru/cdk/directives';
-import { NgxMaskModule } from 'ngx-mask';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserModule, By } from '@angular/platform-browser';
-import { Any } from '@angular-ru/cdk/typings';
-import { Nullable } from '@angular-ru/cdk/typings';
+import { TrimInputModule } from '@angular-ru/cdk/directives';
+import { Any, Nullable } from '@angular-ru/cdk/typings';
+import { NgxMaskModule } from 'ngx-mask';
 
 describe('[TEST]: Trim Input', () => {
     let fixture: Nullable<ComponentFixture<NgModelTestComponent>> = null;

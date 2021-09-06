@@ -32,7 +32,7 @@ describe('Correct behavior NGXS DATA with Count, Todo states', () => {
 
         @DataAction()
         public increment(): void {
-            this.ctx.setState((state) => ++state);
+            this.ctx.setState((state) => state + 1);
         }
 
         public incorrectReturnedValue(val: number): void {
@@ -143,7 +143,9 @@ describe('Correct behavior NGXS DATA with Count, Todo states', () => {
                     finalized = true;
                 })
             )
-            .subscribe((response: number) => (result = response));
+            .subscribe((response: number) => {
+                result = response;
+            });
 
         tick(2000);
 
@@ -160,7 +162,9 @@ describe('Correct behavior NGXS DATA with Count, Todo states', () => {
                     finalized = true;
                 })
             )
-            .subscribe((response: number) => (result = response));
+            .subscribe((response: number) => {
+                result = response;
+            });
 
         tick(2000);
 
@@ -213,7 +217,9 @@ describe('Correct behavior NGXS DATA with Count, Todo states', () => {
                     finalized = true;
                 })
             )
-            .subscribe((response: number) => (result = response));
+            .subscribe((response: number) => {
+                result = response;
+            });
 
         tick(2000);
 
@@ -250,7 +256,9 @@ describe('Correct behavior NGXS DATA with Count, Todo states', () => {
                     finalized = true;
                 })
             )
-            .subscribe((response: number) => (result = response));
+            .subscribe((response: number) => {
+                result = response;
+            });
 
         tick(2000);
 

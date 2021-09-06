@@ -1,5 +1,5 @@
-import { EntrySingleSetPipe, EntrySingleSetPipeModule } from '@angular-ru/cdk/pipes';
 import { TestBed } from '@angular/core/testing';
+import { EntrySingleSetPipe, EntrySingleSetPipeModule } from '@angular-ru/cdk/pipes';
 
 describe('entry single pipe', () => {
     let pipe: EntrySingleSetPipe;

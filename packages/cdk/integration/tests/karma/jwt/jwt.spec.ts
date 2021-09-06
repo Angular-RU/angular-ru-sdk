@@ -1,5 +1,5 @@
-import { Any, PlainObject } from '@angular-ru/cdk/typings';
 import { decodeJwt, toBase64 } from '@angular-ru/cdk/stream/jwt';
+import { Any, PlainObject } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: JWT', (): void => {
     const decodeModel: PlainObject = {

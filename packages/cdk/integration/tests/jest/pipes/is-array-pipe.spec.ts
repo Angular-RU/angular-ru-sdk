@@ -1,5 +1,5 @@
-import { IsArrayPipe, IsArrayPipeModule } from '@angular-ru/cdk/pipes';
 import { TestBed } from '@angular/core/testing';
+import { IsArrayPipe, IsArrayPipeModule } from '@angular-ru/cdk/pipes';
 
 describe('is array pipe', () => {
     let pipe: IsArrayPipe;

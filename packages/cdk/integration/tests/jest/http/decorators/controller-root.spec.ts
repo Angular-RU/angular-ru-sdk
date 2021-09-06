@@ -1,12 +1,11 @@
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { DataHttpClient, DataHttpClientModule } from '@angular-ru/cdk/http';
-import { Component, Injectable } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
+import { Component, Injectable } from '@angular/core';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { DataHttpClient, DataHttpClientModule } from '@angular-ru/cdk/http';
+import { BaseUrl, Get, HostUrl, RestClient } from '@angular-ru/cdk/http/decorators';
+import { Any, Nullable } from '@angular-ru/cdk/typings';
 import { Observable } from 'rxjs';
-import { BaseUrl, Get, RestClient, HostUrl } from '@angular-ru/cdk/http/decorators';
-import { Any } from '@angular-ru/cdk/typings';
-import { Nullable } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: HTTP decorators for client', () => {
     let client: Nullable<ApiUsersClient> = null;

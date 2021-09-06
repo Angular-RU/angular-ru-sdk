@@ -11,12 +11,12 @@ describe('[TEST]: Common types', () => {
 
     it('keyof', () => {
         class B {
-            c: string = '';
+            public c: string = '';
         }
 
         class A {
-            a: string = '';
-            b: B = new B();
+            public a: string = '';
+            public b: B = new B();
         }
 
         const keys: KeyOfList<A> = ['a', 'b']; // output keys
@@ -25,13 +25,13 @@ describe('[TEST]: Common types', () => {
 
     it('deep keyof', () => {
         class B {
-            c: string = '';
-            etc: { f: string } = { f: '' };
+            public c: string = '';
+            public etc: { f: string } = { f: '' };
         }
 
         class A {
-            a: string = '';
-            b: B = new B();
+            public a: string = '';
+            public b: B = new B();
         }
 
         const keys: DeepKeyOfList<A> = ['a', 'b.c', 'b.etc.f']; // output keys
@@ -40,13 +40,13 @@ describe('[TEST]: Common types', () => {
 
     it('leaves', () => {
         class B {
-            c: string = '';
-            etc: { f: string } = { f: '' };
+            public c: string = '';
+            public etc: { f: string } = { f: '' };
         }
 
         class A {
-            a: string = '';
-            b: B = new B();
+            public a: string = '';
+            public b: B = new B();
         }
 
         const keys: Leaves<A>[] = ['a', 'b.c', 'b.etc.f']; // output keys
@@ -55,13 +55,13 @@ describe('[TEST]: Common types', () => {
 
     it('paths', () => {
         class B {
-            c: string = '';
-            etc: { f: string } = { f: '' };
+            public c: string = '';
+            public etc: { f: string } = { f: '' };
         }
 
         class A {
-            a: string = '';
-            b: B = new B();
+            public a: string = '';
+            public b: B = new B();
         }
 
         const paths: Paths<A>[] = ['a', 'b', 'b.c', 'b.etc', 'b.etc.f']; // output keys

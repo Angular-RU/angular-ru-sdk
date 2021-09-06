@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { PlainTableComposerModule, PlainTableComposerService } from '@angular-ru/cdk/table-utils';
-import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
 import { PlainObject } from '@angular-ru/cdk/typings';
+import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
 
 describe('[TEST] Table utils', () => {
     let plainTableComposer: PlainTableComposerService;

@@ -1,9 +1,7 @@
-import { ConsoleFake } from './helpers/console-fake';
 import { TestBed } from '@angular/core/testing';
-import { LoggerModule } from '@angular-ru/cdk/logger';
-import { ConsoleService } from '@angular-ru/cdk/logger';
-import { LoggerService } from '@angular-ru/cdk/logger';
-import { LoggerLevel } from '@angular-ru/cdk/logger';
+import { ConsoleService, LoggerLevel, LoggerModule, LoggerService } from '@angular-ru/cdk/logger';
+
+import { ConsoleFake } from './helpers/console-fake';
 
 describe('[TEST]: ConsoleService', () => {
     let consoleInternal: ConsoleService;

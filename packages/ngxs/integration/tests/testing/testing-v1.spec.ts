@@ -1,10 +1,10 @@
-import { TestBed } from '@angular/core/testing';
-import { NgxsDataTestingModule } from '@angular-ru/ngxs/testing';
-import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
 import { Injectable } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
-import { State } from '@ngxs/store';
+import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
+import { NgxsDataTestingModule } from '@angular-ru/ngxs/testing';
 import { NgxsDataAfterReset, NgxsDataDoCheck } from '@angular-ru/ngxs/typings';
+import { State } from '@ngxs/store';
 
 describe('[TEST]: NgxsTestingModule', () => {
     describe('AppState', () => {
@@ -42,7 +42,7 @@ describe('[TEST]: NgxsTestingModule', () => {
 
             @DataAction()
             public increment(): void {
-                this.ctx.setState((state) => ++state);
+                this.ctx.setState((state: number) => state + 1);
                 events.push(`${this.name}::increment`);
             }
         }

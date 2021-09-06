@@ -1,7 +1,8 @@
 import { Nullable } from '@angular-ru/cdk/typings';
+
 import { GetClientHeightPipe } from '../../../../../virtual-table/src/pipes/get-client-height.pipe';
 
-class MockElementRef<T = any> {
+class MockElementRef<T = unknown> {
     public nativeElement: Nullable<T>;
 
     constructor(nativeElement: Nullable<T>) {

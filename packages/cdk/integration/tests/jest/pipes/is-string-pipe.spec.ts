@@ -1,5 +1,5 @@
-import { IsStringPipe, IsStringPipeModule } from '@angular-ru/cdk/pipes';
 import { TestBed } from '@angular/core/testing';
+import { IsStringPipe, IsStringPipeModule } from '@angular-ru/cdk/pipes';
 
 describe('is string pipe', () => {
     let pipe: IsStringPipe;

@@ -1,8 +1,8 @@
-import { ngxsTestingPlatform } from '@angular-ru/ngxs/testing';
-import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
 import { Injectable, NgZone } from '@angular/core';
-import { State } from '@ngxs/store';
 import { DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
+import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
+import { ngxsTestingPlatform } from '@angular-ru/ngxs/testing';
+import { State } from '@ngxs/store';
 
 describe('[TEST]: Zone', () => {
     @StateRepository()

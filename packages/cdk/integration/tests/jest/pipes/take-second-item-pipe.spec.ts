@@ -1,5 +1,5 @@
-import { TakeSecondItemPipe, TakeSecondItemPipeModule } from '@angular-ru/cdk/pipes';
 import { TestBed } from '@angular/core/testing';
+import { TakeSecondItemPipe, TakeSecondItemPipeModule } from '@angular-ru/cdk/pipes';
 
 describe('take second pipe', () => {
     let pipe: TakeSecondItemPipe;

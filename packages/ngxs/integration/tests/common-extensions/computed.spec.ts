@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
 import { Computed, DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
+import { NgxsDataSequence } from '@angular-ru/ngxs/internals';
 import { NgxsDataRepository, NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
 import { NgxsModule, State, Store } from '@ngxs/store';
-import { NgxsDataSequence } from '@angular-ru/ngxs/internals';
 import { BehaviorSubject } from 'rxjs';
 
 describe('[TEST]: Computed fields', () => {
@@ -232,10 +232,10 @@ describe('[TEST]: Computed fields', () => {
     });
 
     it('should be correct computed when change other states', () => {
-        abstract class CommonCounter extends NgxsDataRepository<number> {
+        abstract class AbstractCommonCounter extends NgxsDataRepository<number> {
             @DataAction()
             public increment() {
-                this.ctx.setState((state: number) => ++state);
+                this.ctx.setState((state: number) => state + 1);
             }
         }
 
@@ -245,7 +245,7 @@ describe('[TEST]: Computed fields', () => {
             defaults: 0
         })
         @Injectable()
-        class A extends CommonCounter {}
+        class A extends AbstractCommonCounter {}
 
         @StateRepository()
         @State({
@@ -253,7 +253,7 @@ describe('[TEST]: Computed fields', () => {
             defaults: 0
         })
         @Injectable()
-        class B extends CommonCounter {}
+        class B extends AbstractCommonCounter {}
 
         TestBed.configureTestingModule({
             imports: [NgxsModule.forRoot([A, B]), NgxsDataPluginModule.forRoot()]
@@ -286,7 +286,7 @@ describe('[TEST]: Computed fields', () => {
         class CommonCounterState extends NgxsDataRepository<number> {
             @DataAction()
             public increment() {
-                this.ctx.setState((state: number) => ++state);
+                this.ctx.setState((state: number) => state + 1);
             }
         }
 
@@ -373,7 +373,7 @@ describe('[TEST]: Computed fields', () => {
         class A extends NgxsDataRepository<Model> {
             public heavyCount: number = 0;
 
-            constructor(private b: B) {
+            constructor(private readonly b: B) {
                 super();
             }
 
@@ -481,7 +481,7 @@ describe('[TEST]: Computed fields', () => {
 
             @DataAction()
             public increment(): void {
-                this.ctx.setState((state: number) => ++state);
+                this.ctx.setState((state: number) => state + 1);
             }
         }
 
@@ -550,7 +550,7 @@ describe('[TEST]: Computed fields', () => {
 
             @DataAction()
             public increment(): void {
-                this.ctx.setState((state: number) => ++state);
+                this.ctx.setState((state: number) => state + 1);
             }
         }
 

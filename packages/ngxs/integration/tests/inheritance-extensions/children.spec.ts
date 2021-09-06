@@ -1,11 +1,11 @@
 import { Component, Injectable, OnDestroy, OnInit } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Any, Immutable } from '@angular-ru/cdk/typings';
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
 import { StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { Action, NgxsModule, State, StateContext, Store } from '@ngxs/store';
 import { PlainObjectOf } from '@ngxs/store/internals';
-import { Any, Immutable } from '@angular-ru/cdk/typings';
 
 describe('Check correct deep instance', () => {
     let app: AppState;

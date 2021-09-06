@@ -1,5 +1,5 @@
-import { requiredSomeValueByKeysValidator } from '@angular-ru/cdk/validators';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn } from '@angular/forms';
+import { requiredSomeValueByKeysValidator } from '@angular-ru/cdk/validators';
 
 describe('[TEST]: requiredSomeValueByKeysValidator', () => {
     let form: FormGroup;

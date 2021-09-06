@@ -1,5 +1,5 @@
-import { DisplayItemPipe, DisplayItemPipeModule } from '@angular-ru/cdk/pipes';
 import { inject, TestBed } from '@angular/core/testing';
+import { DisplayItemPipe, DisplayItemPipeModule } from '@angular-ru/cdk/pipes';
 
 describe('[TEST]: display item pipe', () => {
     beforeEach(() => TestBed.configureTestingModule({ imports: [DisplayItemPipeModule] }));

@@ -20,7 +20,6 @@ import {
     serializeXmlToString,
     tryParseJson
 } from '@angular-ru/cdk/utils';
-
 import { FileToDownloadInfo } from '@angular-ru/cdk/utils/download-file';
 
 describe('[TEST]: Common utils', () => {
@@ -245,9 +244,7 @@ describe('[TEST]: Common utils downloadFile', () => {
     };
 
     beforeEach(() => {
-        link = <HTMLAnchorElement>(<unknown>{
-            click: jest.fn()
-        });
+        link = { click: jest.fn() } as unknown as HTMLAnchorElement;
         window.URL.createObjectURL = jest.fn((blob: Blob) => `${blob}`);
         window.URL.revokeObjectURL = jest.fn();
     });
@@ -274,22 +271,24 @@ describe('[TEST]: Common utils downloadFile', () => {
     });
 
     it('should correct build file name without extension', () => {
-        const file: FileToDownloadInfo = {
+        jest.spyOn(document, 'createElement').mockImplementation(() => link);
+
+        downloadFile({
             blob: new Blob(['text-file']),
             name: 'text'
-        };
-        jest.spyOn(document, 'createElement').mockImplementation(() => link);
-        downloadFile(file);
+        });
+
         expect(link.download).toEqual('text');
     });
 
     it('should correct build file name without input name', () => {
-        const file: FileToDownloadInfo = {
+        jest.spyOn(document, 'createElement').mockImplementation(() => link);
+
+        downloadFile({
             blob: new Blob(['text-file']),
             extension: 'txt'
-        };
-        jest.spyOn(document, 'createElement').mockImplementation(() => link);
-        downloadFile(file);
+        });
+
         expect(link.download).toEqual('txt');
     });
 
