@@ -1,3 +1,9 @@
+#### independent (2021-09-06)
+
+##### New Features
+
+-   **cdk:** validate spec file by eslint (#872) (bb920367)
+
 #### independent (2021-09-05)
 
 ##### Documentation Changes
