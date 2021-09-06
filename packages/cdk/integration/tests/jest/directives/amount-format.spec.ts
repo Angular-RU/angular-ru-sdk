@@ -1,14 +1,14 @@
-import { FormBuilder, FormGroup, FormsModule, NgControl, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder, FormGroup, FormsModule, NgControl, ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 import {
     AmountFormatDirective,
     AmountFormatModule,
     AmountOptions,
     DEFAULT_AMOUNT_OPTIONS
 } from '@angular-ru/cdk/directives';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common';
 import { Nullable } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: Amount format directive', () => {
@@ -24,7 +24,9 @@ describe('[TEST]: Amount format directive', () => {
             element = {
                 nativeElement: {
                     value: '',
-                    setSelectionRange() {}
+                    setSelectionRange() {
+                        // ...
+                    }
                 }
             };
 

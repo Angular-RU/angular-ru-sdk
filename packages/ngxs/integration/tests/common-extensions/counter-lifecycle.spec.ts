@@ -73,6 +73,7 @@ describe('Complex lifecycle', () => {
             public ngOnInit(): void {
                 hooks.push('NgxsTestComponent - ngOnInit');
             }
+
             public ngAfterViewInit(): void {
                 hooks.push('NgxsTestComponent - ngAfterViewInit');
             }
@@ -84,6 +85,7 @@ describe('Complex lifecycle', () => {
             entryComponents: [NgxsTestComponent]
         })
         class AppTestModule {
+            // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
             public static ngDoBootstrap(app: ApplicationRef): void {
                 AppTestModule.createRootNode();
                 app.bootstrap(NgxsTestComponent);

@@ -1,10 +1,9 @@
-import { Fn } from '@angular-ru/cdk/typings';
-import { ConsoleFake, TestLoggerLineType } from './helpers/console-fake';
-import { LoggerModule } from '@angular-ru/cdk/logger';
-import { LoggerService } from '@angular-ru/cdk/logger';
-import { MyTestComponent } from './helpers/test.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { LoggerLevel } from '@angular-ru/cdk/logger';
+import { LoggerLevel, LoggerModule, LoggerService } from '@angular-ru/cdk/logger';
+import { Fn } from '@angular-ru/cdk/typings';
+
+import { ConsoleFake, TestLoggerLineType } from './helpers/console-fake';
+import { MyTestComponent } from './helpers/test.component';
 
 describe('[TEST]: Decorator API', () => {
     let logger: LoggerService;

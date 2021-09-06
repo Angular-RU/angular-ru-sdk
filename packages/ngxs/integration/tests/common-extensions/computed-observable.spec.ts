@@ -1,11 +1,11 @@
-import { Computed, DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
-import { NgxsModule, State } from '@ngxs/store';
 import { Injectable } from '@angular/core';
-import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
 import { TestBed } from '@angular/core/testing';
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
-import { map } from 'rxjs/operators';
+import { Computed, DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
+import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
+import { NgxsModule, State } from '@ngxs/store';
 import { combineLatest, Observable, Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 describe('[TEST]: Observable with computed $a field', () => {
     let a: A;
@@ -49,7 +49,7 @@ describe('[TEST]: Observable with computed $a field', () => {
         public subscribeA$: number = 0;
         public subscribeA$_$B: number = 0;
 
-        constructor(private b: B) {
+        constructor(private readonly _b: B) {
             super();
         }
 
@@ -63,9 +63,9 @@ describe('[TEST]: Observable with computed $a field', () => {
             this.subscribeA$++;
             return this.state$.pipe(
                 map((val): string => {
-                    const a = val.value;
-                    const b = this.b.snapshot.value;
-                    return `a(${a}) + b(${b}) = ${a + b}`;
+                    const aX = val.value;
+                    const bX = this._b.snapshot.value;
+                    return `a(${aX}) + b(${bX}) = ${aX + bX}`;
                 })
             );
         }
@@ -73,10 +73,8 @@ describe('[TEST]: Observable with computed $a field', () => {
         @Computed()
         public get $aWith$b(): Observable<string> {
             this.subscribeA$_$B++;
-            return combineLatest([this.state$, this.b.state$]).pipe(
-                map(([a, b]): string => {
-                    return `a(${a.value}) + b(${b.value}) = ${a.value + b.value}`;
-                })
+            return combineLatest([this.state$, this._b.state$]).pipe(
+                map(([_a, _b]): string => `a(${_a.value}) + b(${_b.value}) = ${_a.value + _b.value}`)
             );
         }
 

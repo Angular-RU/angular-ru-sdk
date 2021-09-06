@@ -1,5 +1,5 @@
-import { ObjectSizePipe, ObjectSizePipeModule } from '@angular-ru/cdk/pipes';
 import { TestBed } from '@angular/core/testing';
+import { ObjectSizePipe, ObjectSizePipeModule } from '@angular-ru/cdk/pipes';
 
 describe('[TEST] Object size pipe', () => {
     let pipe: ObjectSizePipe;

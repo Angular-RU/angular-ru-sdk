@@ -1,13 +1,13 @@
-import { buildDefaultsGraph, ensureStateMetadata, getStateMetadata } from '@angular-ru/ngxs/internals';
-import { NgxsModule, State, Store } from '@ngxs/store';
-import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
-import { StateRepository } from '@angular-ru/ngxs/decorators';
-import { TestBed } from '@angular/core/testing';
-import { NgxsDataPluginModule } from '@angular-ru/ngxs';
 import { Injectable } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { Any } from '@angular-ru/cdk/typings';
+import { NgxsDataPluginModule } from '@angular-ru/ngxs';
+import { StateRepository } from '@angular-ru/ngxs/decorators';
+import { buildDefaultsGraph, ensureStateMetadata, getStateMetadata } from '@angular-ru/ngxs/internals';
+import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
+import { NgxsModule, State, Store } from '@ngxs/store';
 import { MetaDataModel, SharedSelectorOptions } from '@ngxs/store/src/internal/internals';
 import { isObservable } from 'rxjs';
-import { Any } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: Utils', () => {
     it('build-defaults-graph', () => {
@@ -149,7 +149,7 @@ describe('[TEST]: Utils', () => {
                 getSelectorOptions(localOptions?: SharedSelectorOptions): SharedSelectorOptions {
                     return localOptions as Any;
                 },
-                getStateGetter(_key: any): (state: any) => any {
+                getStateGetter(_key: Any): (state: Any) => Any {
                     // selector
                     return (state) => state;
                 }
@@ -189,9 +189,9 @@ describe('[TEST]: Utils', () => {
                 getSelectorOptions(localOptions?: SharedSelectorOptions): SharedSelectorOptions {
                     return localOptions as Any;
                 },
-                getStateGetter(key: any): (state: any) => any {
+                getStateGetter(key: Any): (state: Any) => Any {
                     // selector
-                    return (state) => state[key];
+                    return (_state: Any) => _state[key];
                 }
             })(store.snapshot())
         ).toEqual([1, 2, 3]);

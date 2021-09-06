@@ -1,4 +1,4 @@
-import { compress, arrayBufferToBase64, base64ToArrayBuffer, decompress } from '@angular-ru/cdk/stream';
+import { arrayBufferToBase64, base64ToArrayBuffer, compress, decompress } from '@angular-ru/cdk/stream';
 
 describe('[TEST]: Stream API', () => {
     const base64: string = 'eJzLSM3JyVcozy/KSQEAGgsEXQ==';

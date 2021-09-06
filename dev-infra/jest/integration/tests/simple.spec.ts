@@ -1,5 +1,6 @@
-import { createTsJestConfig } from '../../src';
 import { Hello } from '@mock/hello';
+
+import { createTsJestConfig } from '../../src';
 
 describe('[TEST]: Hello world', () => {
     it('should be', () => {

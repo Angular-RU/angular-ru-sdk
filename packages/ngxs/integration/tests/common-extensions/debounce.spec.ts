@@ -1,10 +1,10 @@
-import { DataAction, Debounce, StateRepository } from '@angular-ru/ngxs/decorators';
-import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
 import { Injectable } from '@angular/core';
-import { NgxsModule, State } from '@ngxs/store';
-import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
+import { DataAction, Debounce, StateRepository } from '@angular-ru/ngxs/decorators';
+import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
+import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
+import { NgxsModule, State } from '@ngxs/store';
 
 describe('[TEST]: Debounce', () => {
     it('should be check ngZone', () => {
@@ -12,7 +12,9 @@ describe('[TEST]: Debounce', () => {
         try {
             class App {
                 @Debounce()
-                public invoke(): void {}
+                public invoke(): void {
+                    // ...
+                }
             }
 
             new App().invoke();
@@ -33,13 +35,13 @@ describe('[TEST]: Debounce', () => {
             @Debounce()
             @DataAction()
             public increment(): void {
-                this.setState((state: number): number => ++state);
+                this.setState((state: number): number => state + 1);
             }
 
             @Debounce(50)
             @DataAction()
             public decrement(): void {
-                this.setState((state: number): number => --state);
+                this.setState((state: number): number => state - 1);
             }
 
             @Debounce(50)

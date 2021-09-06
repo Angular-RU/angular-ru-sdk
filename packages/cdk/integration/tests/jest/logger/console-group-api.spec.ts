@@ -1,9 +1,8 @@
-import { LoggerService } from '@angular-ru/cdk/logger';
-import { ConsoleFake, TestLoggerGroupType, TestLoggerLineType } from './helpers/console-fake';
 import { TestBed } from '@angular/core/testing';
-import { LoggerModule } from '@angular-ru/cdk/logger';
+import { LoggerLevel, LoggerModule, LoggerService } from '@angular-ru/cdk/logger';
+
+import { ConsoleFake, TestLoggerGroupType, TestLoggerLineType } from './helpers/console-fake';
 import { CUSTOM_COLORS, CUSTOM_LABELS } from './helpers/custom-colors';
-import { LoggerLevel } from '@angular-ru/cdk/logger';
 
 describe('[TEST]: Check work in groups', () => {
     let logger: LoggerService;

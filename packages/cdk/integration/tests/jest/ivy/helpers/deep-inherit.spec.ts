@@ -1,10 +1,10 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, Directive, Injectable, Injector, NgModule, NgZone, Type } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { useInjector } from '@angular-ru/cdk/ivy';
 import { Any } from '@angular-ru/cdk/typings';
 
 function Injection<T>(classRef: Type<T>): PropertyDecorator {
-    return <T extends typeof Object.prototype>(prototypeRef: T, propertyKey: string | symbol): void => {
+    return <R extends typeof Object.prototype>(prototypeRef: R, propertyKey: string | symbol): void => {
         useInjector(prototypeRef.constructor, (injector: Injector, instance: Any): void => {
             instance[propertyKey] = injector.get(classRef);
         });

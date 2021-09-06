@@ -1,8 +1,8 @@
-import { ngxsTestingPlatform } from '@angular-ru/ngxs/testing';
-import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
 import { Injectable } from '@angular/core';
-import { State, Store } from '@ngxs/store';
 import { StateRepository } from '@angular-ru/ngxs/decorators';
+import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
+import { ngxsTestingPlatform } from '@angular-ru/ngxs/testing';
+import { State, Store } from '@ngxs/store';
 
 describe('AppState', () => {
     @StateRepository()
@@ -26,7 +26,9 @@ describe('AppState', () => {
         let message: string | null = null;
 
         try {
-            await ngxsTestingPlatform([InvalidState], () => {})();
+            await ngxsTestingPlatform([InvalidState], () => {
+                // ..
+            })();
         } catch (e) {
             message = (e as Error).message;
         }

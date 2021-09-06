@@ -4,6 +4,7 @@ import { ApplicationRef, Component, Directive, Injectable, NgZone } from '@angul
 import { InjectFeatureTestService, InjectNgZone, InjectTestService } from './test-decorators';
 import { FeatureTestService, TestService } from './test-default';
 
+// noinspection AngularMissingOrInvalidDeclarationInModule
 @Directive({
     selector: '[test-stairs-a]'
 })

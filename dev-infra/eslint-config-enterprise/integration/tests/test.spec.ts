@@ -39,14 +39,14 @@ describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
             bad.includes(`Type Alias name \`alist\` must match one of the following formats: PascalCase`)
         ).toBeTruthy();
         expect(bad.includes('Useless constructor')).toBeTruthy();
-        expect(bad.includes("function 'f1' has too many parameters (4). Maximum allowed is 3")).toBeTruthy();
+        expect(bad.includes(`function 'f1' has too many parameters (4). Maximum allowed is 3`)).toBeTruthy();
         expect(bad.includes('arrow function has too many parameters (4). Maximum allowed is 3')).toBeTruthy();
-        expect(bad.includes("method 'f3' has too many parameters (4). Maximum allowed is 3")).toBeTruthy();
-        expect(bad.includes("Expected a space after the ':'")).toBeTruthy();
-        expect(bad.includes("Operator '=' must be spaced")).toBeTruthy();
-        expect(bad.includes("Operator '+' must be spaced")).toBeTruthy();
-        expect(bad.includes("'someNum' is assigned a value but never used")).toBeTruthy();
-        expect(bad.includes("'someNum' is never reassigned. Use 'const' instead")).toBeTruthy();
+        expect(bad.includes(`method 'f3' has too many parameters (4). Maximum allowed is 3`)).toBeTruthy();
+        expect(bad.includes(`Expected a space after the ':'`)).toBeTruthy();
+        expect(bad.includes(`Operator '=' must be spaced`)).toBeTruthy();
+        expect(bad.includes(`Operator '+' must be spaced`)).toBeTruthy();
+        expect(bad.includes(`'someNum' is assigned a value but never used`)).toBeTruthy();
+        expect(bad.includes(`'someNum' is never reassigned. Use 'const' instead`)).toBeTruthy();
         expect(
             bad.includes('Angular will not invoke the `ngOnInit` lifecycle method within `@Injectable()` classes')
         ).toBeTruthy();
@@ -55,25 +55,25 @@ describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
         expect(bad.includes('Use @HostBinding or @HostListener rather than the `host` metadata property')).toBeTruthy();
         expect(bad.includes('Use `@Input` rather than the `inputs` metadata property')).toBeTruthy();
         expect(bad.includes('Use `@Output` rather than the `outputs` metadata property')).toBeTruthy();
-        expect(bad.includes("Lifecycle interface 'OnInit' should be implemented for method 'ngOnInit'")).toBeTruthy();
+        expect(bad.includes(`Lifecycle interface 'OnInit' should be implemented for method 'ngOnInit'`)).toBeTruthy();
         expect(bad.includes('Pipes should implement `PipeTransform` interface')).toBeTruthy();
         expect(bad.includes('Unexpected any. Specify a different type')).toBeTruthy();
-        expect(bad.includes("'otherComplexFunction' is defined but never used")).toBeTruthy();
+        expect(bad.includes(`'otherComplexFunction' is defined but never used`)).toBeTruthy();
         expect(
-            bad.includes("Remove this conditional structure or edit its code blocks so that they're not all the same")
+            bad.includes(`Remove this conditional structure or edit its code blocks so that they're not all the same`)
         ).toBeTruthy();
         expect(bad.includes('215:1    error  Missing return type on function')).toBeTruthy();
         expect(bad.includes('274:11   error  Missing return type on function')).toBeTruthy();
         expect(bad.includes('276:36   error  Missing return type on function')).toBeTruthy();
         expect(bad.includes('276:36   error  Missing return type on function')).toBeTruthy();
         expect(bad.includes('280:31   error  Missing return type on function')).toBeTruthy();
-        expect(bad.includes("Function 'someComplexFunction' has too many lines (32)")).toBeTruthy();
-        expect(bad.includes("Function 'someComplexFunction' has a complexity of 9")).toBeTruthy();
+        expect(bad.includes(`Function 'someComplexFunction' has too many lines (32)`)).toBeTruthy();
+        expect(bad.includes(`Function 'someComplexFunction' has a complexity of 9`)).toBeTruthy();
         expect(
-            bad.includes("Remove this conditional structure or edit its code blocks so that they're not all the same")
+            bad.includes(`Remove this conditional structure or edit its code blocks so that they're not all the same`)
         ).toBeTruthy();
         expect(bad.includes('Use the opposite operator (<=) instead')).toBeTruthy();
-        expect(bad.includes("285:5    error  Assignment to function parameter 'variable'")).toBeTruthy();
+        expect(bad.includes(`285:5    error  Assignment to function parameter 'variable'`)).toBeTruthy();
         expect(
             bad.includes('Enum Member name `worldName` must match one of the following formats: PascalCase, UPPER_CASE')
         ).toBeTruthy();
@@ -103,16 +103,16 @@ describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
         const filePattern: string = getInfoByReportFile('file-pattern');
         expect(filePattern.includes('4 problems (4 errors, 0 warnings)')).toBeTruthy();
         expect(
-            filePattern.includes("Files doesn't must end with by .enum.ts  @angular-ru/enterprise/no-suffix-file")
+            filePattern.includes(`Files doesn't must end with by .enum.ts  @angular-ru/enterprise/no-suffix-file`)
         ).toBeTruthy();
         expect(
-            filePattern.includes("Files doesn't must end with by .model.ts  @angular-ru/enterprise/no-suffix-file")
+            filePattern.includes(`Files doesn't must end with by .model.ts  @angular-ru/enterprise/no-suffix-file`)
         ).toBeTruthy();
         expect(
-            filePattern.includes("Files doesn't must end with by .interface.ts  @angular-ru/enterprise/no-suffix-file")
+            filePattern.includes(`Files doesn't must end with by .interface.ts  @angular-ru/enterprise/no-suffix-file`)
         ).toBeTruthy();
         expect(
-            filePattern.includes("Files doesn't must end with by .interfaces.ts  @angular-ru/enterprise/no-suffix-file")
+            filePattern.includes(`Files doesn't must end with by .interfaces.ts  @angular-ru/enterprise/no-suffix-file`)
         ).toBeTruthy();
     });
 });

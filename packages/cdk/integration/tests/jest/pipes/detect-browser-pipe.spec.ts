@@ -1,5 +1,5 @@
-import { DetectBrowserPipe, DetectBrowserPipeModule } from '@angular-ru/cdk/pipes';
 import { TestBed } from '@angular/core/testing';
+import { DetectBrowserPipe, DetectBrowserPipeModule } from '@angular-ru/cdk/pipes';
 
 describe('detect browser pipe', () => {
     let pipe: DetectBrowserPipe;

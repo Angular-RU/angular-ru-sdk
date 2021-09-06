@@ -3,6 +3,7 @@ import 'reflect-metadata';
 import {
     ONLY_TO_CLASS,
     transformAsPrepareFieldsFromClass,
+    transformDateToFormat,
     transformParseFloat,
     transformParseInt,
     transformToBoolean,
@@ -12,8 +13,7 @@ import {
     transformToPrettyFormat,
     transformToStringVal,
     transformToTrim,
-    transformToUnix,
-    transformDateToFormat
+    transformToUnix
 } from '@angular-ru/cdk/class-transformer';
 import { Exclude, Expose, plainToClass, Transform, Type } from 'class-transformer';
 
@@ -44,12 +44,15 @@ describe('[TEST]: Integration with class-transformer', () => {
         @Expose()
         @Transform(transformDateToFormat({ format: 'dd.MM.yyyy', timezone: 'GMT+03:00' }), ONLY_TO_CLASS)
         public dateCustomFormatWithTimezone?: number;
+
         @Expose()
         @Transform(transformDateToFormat({ format: 'dd.MM.yyyy HH:mm', timezone: 'GMT+06:00' }), ONLY_TO_CLASS)
         public datetimeCustomFormatWithTimezone?: number;
+
         @Expose()
         @Transform(transformDateToFormat({ format: 'dd.MM.yyyy' }), ONLY_TO_CLASS)
         public dateCustomFormatWithoutTimezone?: number;
+
         @Expose() @Transform(transformDateToFormat(), ONLY_TO_CLASS) public dateCustomFormatEmptyOptions?: number;
     }
 

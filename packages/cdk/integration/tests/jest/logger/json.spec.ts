@@ -1,7 +1,7 @@
-import { LoggerService } from '@angular-ru/cdk/logger';
-import { ConsoleFake, TestLoggerLineType } from './helpers/console-fake';
 import { TestBed } from '@angular/core/testing';
-import { LoggerModule } from '@angular-ru/cdk/logger';
+import { LoggerModule, LoggerService } from '@angular-ru/cdk/logger';
+
+import { ConsoleFake, TestLoggerLineType } from './helpers/console-fake';
 
 describe('[TEST]: Check JSON', () => {
     let logger: LoggerService;

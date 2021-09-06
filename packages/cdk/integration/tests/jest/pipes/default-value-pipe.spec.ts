@@ -1,5 +1,5 @@
-import { DefaultValuePipe, DefaultValuePipeModule } from '@angular-ru/cdk/pipes';
 import { TestBed } from '@angular/core/testing';
+import { DefaultValuePipe, DefaultValuePipeModule } from '@angular-ru/cdk/pipes';
 import { Nullable } from '@angular-ru/cdk/typings';
 
 describe('default value', () => {

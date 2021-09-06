@@ -1,5 +1,5 @@
-import { DeepPathPipe, MutableTypePipeModule, MutableTypePipe } from '@angular-ru/cdk/pipes';
 import { TestBed } from '@angular/core/testing';
+import { DeepPathPipe, MutableTypePipe, MutableTypePipeModule } from '@angular-ru/cdk/pipes';
 import { Immutable, Nullable, PlainObject } from '@angular-ru/cdk/typings';
 
 describe('mutable', () => {

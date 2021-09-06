@@ -2,8 +2,8 @@ import { ApplicationRef, ChangeDetectorRef, ElementRef, NgZone, QueryList, Simpl
 import { fakeAsync, tick } from '@angular/core/testing';
 import { deepClone } from '@angular-ru/cdk/object';
 import { Any, Fn, Nullable, PlainObject } from '@angular-ru/cdk/typings';
-import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
 import { NgxColumnComponent, NgxTableViewChangesService, TableBuilderComponent } from '@angular-ru/cdk/virtual-table';
+import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
 
 import { MapToTableEntriesPipe } from '../../../../../../virtual-table/src/pipes/map-to-table-entries.pipe';
 import { TableSelectedItemsPipe } from '../../../../../../virtual-table/src/pipes/table-selected-items.pipe';
@@ -23,10 +23,15 @@ describe('[TEST]: Lifecycle table', () => {
     let changes: SimpleChanges;
 
     const mockChangeDetector: Partial<ChangeDetectorRef> = {
-        detectChanges: (): void => {}
+        detectChanges: (): void => {
+            // ...
+        }
     };
+
     const appRef: Partial<ApplicationRef> = {
-        tick: (): void => {}
+        tick: (): void => {
+            // ...
+        }
     };
     const mockNgZone: Partial<NgZone> = {
         run: (callback: Fn): Any => callback(),
@@ -69,9 +74,12 @@ describe('[TEST]: Lifecycle table', () => {
         draggable = new DraggableService(parser);
 
         resizeService = new ResizableService();
+
+        // @ts-ignore
         sortable = new SortableService(worker, zone);
 
         table = new TableBuilderComponent(mockChangeDetector as ChangeDetectorRef, {
+            // eslint-disable-next-line complexity
             get(token: Any): Any {
                 switch (token) {
                     case SelectionService:
@@ -90,8 +98,8 @@ describe('[TEST]: Lifecycle table', () => {
                         return app;
                     case FilterableService:
                         return new FilterableService({
-                            get(token: Any): Any {
-                                switch (token) {
+                            get(_token: Any): Any {
+                                switch (_token) {
                                     case ApplicationRef:
                                         return app;
                                     case WebWorkerThreadService:
@@ -112,7 +120,7 @@ describe('[TEST]: Lifecycle table', () => {
         table.scrollContainer = {
             nativeElement: {
                 offsetHeight: 900
-            } as any
+            } as unknown as HTMLElement
         };
 
         table.primaryKey = 'position';

@@ -1,12 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup } from '@angular/forms';
 import { DateAdapter, NativeDateModule } from '@angular/material/core';
-import { endOfDay, shiftDate, startOfDay } from '@angular-ru/cdk/date';
 import {
     DateSuggestionComposer,
     DateSuggestionModule,
     DEFAULT_SUGGESTION_STRATEGY_MAP,
-    DefaultDateIntervalSuggestion
+    DefaultDateIntervalSuggestion,
+    endOfDay,
+    shiftDate,
+    startOfDay
 } from '@angular-ru/cdk/date';
 import { DateIntervalDescriptor } from '@angular-ru/cdk/typings';
 

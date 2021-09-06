@@ -128,7 +128,9 @@ describe('[TEST]: CountState', () => {
             @Injectable()
             class CountState {
                 @DataAction()
-                public incorrect(): void {}
+                public incorrect(): void {
+                    // ...
+                }
             }
 
             TestBed.configureTestingModule({
@@ -154,7 +156,9 @@ describe('[TEST]: CountState', () => {
                 @Injectable()
                 class CountState {
                     @DataAction()
-                    public static incorrect(): void {}
+                    public static incorrect(): void {
+                        // ...
+                    }
                 }
 
                 CountState.incorrect();
@@ -214,9 +218,9 @@ describe('[TEST]: CountState', () => {
             count.setState(10);
             count.reset();
 
-            count.setState((state: number) => ++state);
-            count.setState((state: number) => --state);
-            count.setState((state: number) => ++state);
+            count.setState((state: number) => state + 1);
+            count.setState((state: number) => state - 1);
+            count.setState((state: number) => state + 1);
 
             expect(count.getState()).toEqual(1);
             expect(store.snapshot()).toEqual({ count: 1 });

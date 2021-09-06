@@ -1,11 +1,11 @@
 import { Component, Injectable } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Any, Immutable } from '@angular-ru/cdk/typings';
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
 import { StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
-import { Action, NgxsModule, State, StateContext, Store } from '@ngxs/store';
 import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
-import { Any, Immutable } from '@angular-ru/cdk/typings';
+import { Action, NgxsModule, State, StateContext, Store } from '@ngxs/store';
 
 describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
     it('should be throw exception when forgot add StateRepository', () => {

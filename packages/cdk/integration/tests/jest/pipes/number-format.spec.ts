@@ -1,5 +1,5 @@
-import { NumberFormatPipe, NumberFormatPipeModule } from '@angular-ru/cdk/pipes';
 import { inject, TestBed } from '@angular/core/testing';
+import { NumberFormatPipe, NumberFormatPipeModule } from '@angular-ru/cdk/pipes';
 
 describe('[TEST]: number format pipe', () => {
     beforeEach(() => TestBed.configureTestingModule({ imports: [NumberFormatPipeModule] }));

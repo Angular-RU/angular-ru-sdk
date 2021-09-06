@@ -3,10 +3,10 @@ import { TestBed } from '@angular/core/testing';
 import { Any } from '@angular-ru/cdk/typings';
 import {
     AbstractWebsocketClient,
-    WebsocketConfig,
-    WebsocketMessage,
+    BINARY,
     PLAIN_TEXT,
-    BINARY
+    WebsocketConfig,
+    WebsocketMessage
 } from '@angular-ru/cdk/websocket';
 
 @Injectable()
@@ -119,7 +119,9 @@ describe('[TEST] Websocket client', (): void => {
 
         const nativeSocket: WebSocket = (client as Any).socket$._socket;
         const spyClose: jest.SpyInstance = jest.spyOn(nativeSocket, 'close');
-        const spySend: jest.SpyInstance = jest.spyOn(nativeSocket, 'send').mockImplementation((): void => {});
+        const spySend: jest.SpyInstance = jest.spyOn(nativeSocket, 'send').mockImplementation((): void => {
+            // ...
+        });
         expect(nativeSocket).toBeInstanceOf(WebSocket);
         nativeSocket.dispatchEvent(new MessageEvent('open'));
         expect(nativeSocket.url).toBe('ws://null/');

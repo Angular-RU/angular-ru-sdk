@@ -1,5 +1,6 @@
 import { Injectable, PLATFORM_ID } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { Any, Immutable } from '@angular-ru/cdk/typings';
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
 import { DataAction, Persistence, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsDataRepository, NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
@@ -13,6 +14,7 @@ import {
     NgxsDataStoragePlugin,
     STORAGE_TTL_DELAY
 } from '@angular-ru/ngxs/storage';
+import { NGXS_DATA_EXCEPTIONS, NGXS_DATA_STORAGE_EVENT_TYPE } from '@angular-ru/ngxs/tokens';
 import {
     DataStorage,
     NgxsDataAfterExpired,
@@ -21,15 +23,13 @@ import {
     NgxsDataMigrateStorage,
     NgxsDataStorageEvent,
     PersistenceProvider,
+    STORAGE_DECODE_TYPE,
     StorageContainer,
     StorageMeta,
-    TTL_EXPIRED_STRATEGY,
-    STORAGE_DECODE_TYPE
+    TTL_EXPIRED_STRATEGY
 } from '@angular-ru/ngxs/typings';
 import { Actions, NGXS_PLUGINS, NgxsModule, ofActionDispatched, ofActionSuccessful, State, Store } from '@ngxs/store';
-import { NGXS_DATA_EXCEPTIONS, NGXS_DATA_STORAGE_EVENT_TYPE } from '@angular-ru/ngxs/tokens';
 import { Subject } from 'rxjs';
-import { Any } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: Storage plugin', () => {
     let store: Store;
@@ -222,7 +222,7 @@ describe('[TEST]: Storage plugin', () => {
                 class B extends NgxsImmutableDataRepository<number> {
                     @DataAction()
                     public increment(): B {
-                        this.ctx.setState((val) => ++val);
+                        this.ctx.setState((val: Immutable<number>) => val + 1);
                         return this;
                     }
                 }
@@ -333,7 +333,7 @@ describe('[TEST]: Storage plugin', () => {
 
             expect(spy).toHaveBeenCalledTimes(1);
             expect(console.warn).toHaveBeenLastCalledWith(
-                "Error occurred while deserializing value from metadata { key: '@ngxs.store.c', value: 'invalid' }. \n" +
+                `Error occurred while deserializing value from metadata { key: '@ngxs.store.c', value: 'invalid' }. \n` +
                     'Error deserialize: Unexpected token i in JSON at position 0. \n' +
                     'Incorrect structure for deserialization!!! Your structure should be like this: \n' +
                     '{\n' +
@@ -368,7 +368,7 @@ describe('[TEST]: Storage plugin', () => {
 
             expect(spy).toHaveBeenCalledTimes(1);
             expect(console.warn).toHaveBeenLastCalledWith(
-                "Error occurred while deserializing value from metadata { key: '@ngxs.store.c1', value: '1' }. \n" +
+                `Error occurred while deserializing value from metadata { key: '@ngxs.store.c1', value: '1' }. \n` +
                     'Error deserialize: "1" not an object. \n' +
                     'Incorrect structure for deserialization!!! Your structure should be like this: \n' +
                     '{\n' +
@@ -433,7 +433,7 @@ describe('[TEST]: Storage plugin', () => {
             expect(spy).toHaveBeenCalledTimes(1);
             expect(console.warn).toHaveBeenLastCalledWith(
                 'Error occurred while deserializing value from metadata { key: \'@ngxs.store.c3\', value: \'{"lastChanged":"2020-01-01T12:00:00.000Z"}\' }. \n' +
-                    "Error deserialize: It's not possible to determine version (undefined), since it must be a integer type and must equal or more than 1."
+                    `Error deserialize: It's not possible to determine version (undefined), since it must be a integer type and must equal or more than 1.`
             );
 
             expect(stateC3.getState()).toEqual('DEFAULT_VALUE');
@@ -465,7 +465,7 @@ describe('[TEST]: Storage plugin', () => {
             expect(spy).toHaveBeenCalledTimes(1);
             expect(console.warn).toHaveBeenLastCalledWith(
                 'Error occurred while deserializing value from metadata { key: \'@ngxs.store.c4\', value: \'{"lastChanged":"2020-01-01T12:00:00.000Z","version":"1.5"}\' }. \n' +
-                    "Error deserialize: It's not possible to determine version (1.5), since it must be a integer type and must equal or more than 1."
+                    `Error deserialize: It's not possible to determine version (1.5), since it must be a integer type and must equal or more than 1.`
             );
 
             expect(stateC4.getState()).toEqual('DEFAULT_VALUE');
@@ -497,7 +497,7 @@ describe('[TEST]: Storage plugin', () => {
             expect(spy).toHaveBeenCalledTimes(1);
             expect(console.warn).toHaveBeenLastCalledWith(
                 'Error occurred while deserializing value from metadata { key: \'@ngxs.store.c5\', value: \'{"lastChanged":"2020-01-01T12:00:00.000Z","version":1}\' }. \n' +
-                    "Error deserialize: missing key 'data' or it's value not serializable."
+                    `Error deserialize: missing key 'data' or it's value not serializable.`
             );
 
             expect(stateC5.getState()).toEqual('DEFAULT_VALUE');
@@ -840,7 +840,7 @@ describe('[TEST]: Storage plugin', () => {
 
             expect(message).toEqual(
                 'Not found storage engine from `existingEngine` or not found instance after injecting by `useClass`. ' +
-                    "\nMetadata { key: '@ngxs.store.c14' }"
+                    `\nMetadata { key: '@ngxs.store.c14' }`
             );
         });
 
@@ -1041,7 +1041,7 @@ describe('[TEST]: Storage plugin', () => {
 
             expect(spy).toHaveBeenCalledTimes(1);
             expect(console.warn).toHaveBeenLastCalledWith(
-                "Error occurred while serializing value from metadata { key: '@ngxs.store.c17' }. \n" +
+                `Error occurred while serializing value from metadata { key: '@ngxs.store.c17' }. \n` +
                     'Error serialize: Custom error'
             );
         });
@@ -1314,7 +1314,7 @@ describe('[TEST]: Storage plugin', () => {
 
                 localStorage.setItem(
                     '@ngxs.store.fire',
-                    JSON.stringify({ lastChanged: lastChanged, version: 1, data: 'FIRE_VALUE' })
+                    JSON.stringify({ lastChanged, version: 1, data: 'FIRE_VALUE' })
                 );
 
                 @Persistence({

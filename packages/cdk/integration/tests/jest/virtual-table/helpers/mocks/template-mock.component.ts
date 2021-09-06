@@ -10,7 +10,7 @@ interface LicenseSample {
 @Component({
     selector: 'template-mock',
     // eslint-disable-next-line @angular-eslint/component-max-inline-declarations
-    template: `<!-- app.component.html -->
+    template: `
         <ngx-table-builder [source]="licenses">
             <ngx-column key="name">
                 <ng-template ngx-th>License</ng-template>
@@ -21,7 +21,8 @@ interface LicenseSample {
                 <ng-template ngx-th>Cost</ng-template>
                 <ng-template ngx-td let-price>{{ price | currency }}</ng-template>
             </ngx-column>
-        </ngx-table-builder> `,
+        </ngx-table-builder>
+    `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TemplateMockComponent {

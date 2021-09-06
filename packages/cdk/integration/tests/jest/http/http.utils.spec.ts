@@ -1,17 +1,17 @@
+import { HttpHeaders, HttpParams } from '@angular/common/http';
 import {
+    buildUrl,
     ensurePathByPathVariables,
     getHttpHeader,
     getHttpParams,
     getPathWithoutQueryParams,
-    makeUrlSegments,
     isAbsolutePath,
     isLocalhost,
+    makeUrlSegments,
     parseQueryParams,
     replaceDoubleSlash,
-    buildUrl,
     replaceLeadingAndTrailingSlashes
 } from '@angular-ru/cdk/http/utils';
-import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { PlainObject } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: http utils', () => {

@@ -1,20 +1,21 @@
+import { CommonModule } from '@angular/common';
+import { HTTP_INTERCEPTORS, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
+import { Component, Injectable } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { RestClient } from '@angular-ru/cdk/http/decorators';
 import {
     DATA_HTTP_CLIENT_INTERCEPTOR,
     DataHttpClient,
     DataHttpClientModule,
     DefaultHttpClientInterceptor
 } from '@angular-ru/cdk/http';
-import { Component, Injectable } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
-import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
-import { Any } from '@angular-ru/cdk/typings';
-import { HttpMockInterceptor } from '../helpers/http-mock-interceptor';
+import { RestClient } from '@angular-ru/cdk/http/decorators';
 import { DataBeforeRequestOptions, DataHttpInterceptor } from '@angular-ru/cdk/http/typings';
+import { Any, Nullable } from '@angular-ru/cdk/typings';
+
 import { MetaDataRequest } from '../../../../../http/typings/src/interfaces/meta-data-request';
-import { Nullable } from '@angular-ru/cdk/typings';
+import { HttpMockInterceptor } from '../helpers/http-mock-interceptor';
+
 describe('[TEST]: HTTP Intercept Client', () => {
     const MOCK_API: string = 'http://localhost';
     let client: Nullable<ApiEventsClient> = null;

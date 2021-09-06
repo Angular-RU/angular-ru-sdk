@@ -1,10 +1,9 @@
-import { PlainObject } from '@angular-ru/cdk/typings';
 import { TestBed } from '@angular/core/testing';
-import { LoggerModule } from '@angular-ru/cdk/logger';
-import { LoggerService } from '@angular-ru/cdk/logger';
+import { FormatOutput, LoggerLevel, LoggerModule, LoggerService } from '@angular-ru/cdk/logger';
+import { PlainObject } from '@angular-ru/cdk/typings';
+
 import { ConsoleFake } from './helpers/console-fake';
 import { CUSTOM_COLORS, CUSTOM_LABELS } from './helpers/custom-colors';
-import { FormatOutput, LoggerLevel } from '@angular-ru/cdk/logger';
 
 describe('[TEST]: Check global style', () => {
     let logger: LoggerService;

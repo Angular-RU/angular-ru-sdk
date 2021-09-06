@@ -1,8 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { getValueByPath } from '@angular-ru/cdk/object';
-import { Any, Nullable, PlainObject } from '@angular-ru/cdk/typings';
-import { isNotNil } from '@angular-ru/cdk/utils';
-import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
 import {
     ColumnWidth,
     EXCEL_BUILDER_INTERCEPTOR_TOKEN,
@@ -10,6 +6,10 @@ import {
     ExcelBuilderTextColumnInterceptor,
     ExcelService
 } from '@angular-ru/cdk/excel';
+import { getValueByPath } from '@angular-ru/cdk/object';
+import { Any, Nullable, PlainObject } from '@angular-ru/cdk/typings';
+import { isNotNil } from '@angular-ru/cdk/utils';
+import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
 import { Observable, of } from 'rxjs';
 
 import { readFile, readFromBlob } from './helpers/file-utils';
@@ -25,11 +25,15 @@ describe('[TEST] Excel service', () => {
     };
 
     class TranslateMock implements ExcelBuilderTextColumnInterceptor {
-        map: PlainObject = { model: { uid: 'UID', name: 'Name', appearance: { color: 'Color', shape: 'Shape' } } };
-        getTranslationMap(): Observable<Nullable<PlainObject>> {
+        public map: PlainObject = {
+            model: { uid: 'UID', name: 'Name', appearance: { color: 'Color', shape: 'Shape' } }
+        };
+
+        public getTranslationMap(): Observable<Nullable<PlainObject>> {
             return of(this.map);
         }
-        instant(key?: Nullable<string>): Nullable<string> {
+
+        public instant(key?: Nullable<string>): Nullable<string> {
             return isNotNil(key) ? getValueByPath(this.map, key) : key;
         }
     }

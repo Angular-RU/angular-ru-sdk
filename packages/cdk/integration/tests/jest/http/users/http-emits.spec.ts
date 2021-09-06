@@ -1,16 +1,17 @@
+import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
 import { Component, Injectable } from '@angular/core';
-import { Delete, Get, Patch, Post, Put, RestClient } from '@angular-ru/cdk/http/decorators';
+import { TestBed } from '@angular/core/testing';
 import {
     DATA_HTTP_CLIENT_INTERCEPTOR,
     DataHttpClient,
     DataHttpClientModule,
     DefaultHttpClientInterceptor
 } from '@angular-ru/cdk/http';
-import { TestBed } from '@angular/core/testing';
-import { CommonModule } from '@angular/common';
+import { Delete, Get, Patch, Post, Put, RestClient } from '@angular-ru/cdk/http/decorators';
 import { DataBeforeRequestOptions, DataHttpInterceptor } from '@angular-ru/cdk/http/typings';
 import { Nullable } from '@angular-ru/cdk/typings';
+
 describe('[TEST]: HTTP Client', () => {
     const MOCK_API: string = 'http://localhost';
     let client: Nullable<ApiEmitsClient> = null;

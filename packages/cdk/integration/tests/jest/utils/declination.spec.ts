@@ -1,3 +1,4 @@
+/* eslint-disable no-cyrillic-string/no-cyrillic-string */
 import { DeclinationDictionary, declinationOfNumber } from '@angular-ru/cdk/utils';
 
 describe('[TEST]: declinationOfNumber', () => {

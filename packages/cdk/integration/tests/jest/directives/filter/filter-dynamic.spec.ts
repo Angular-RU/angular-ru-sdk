@@ -1,10 +1,10 @@
-import { AbstractControl, FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { By } from '@angular/platform-browser';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AbstractControl, FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { By } from '@angular/platform-browser';
 import { InputFilterModule } from '@angular-ru/cdk/directives';
 import { FilterPredicate } from '@angular-ru/cdk/string';
-import { MatInputModule } from '@angular/material/input';
 import { Nullable } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: inputFilter Dynamic', () => {

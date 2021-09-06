@@ -18,9 +18,6 @@ module.exports = {
         '**/coverage/**',
         'eslintrc.js',
         '.eslintrc.js',
-        '**/*.spec.ts',
-        '**/*-spec.ts',
-        '**/*.lint.ts',
         '**/*.d.ts',
         '**/dist/**',
         '**/docs/**',
@@ -530,6 +527,21 @@ module.exports = {
                         ]
                     }
                 ]
+            }
+        },
+        {
+            files: ['*.spec.ts'], // light version rules for test files
+            rules: {
+                '@typescript-eslint/explicit-function-return-type': 'off',
+                'max-lines-per-function': 'off',
+                '@typescript-eslint/no-magic-numbers': 'off',
+                'max-classes-per-file': 'off',
+                '@typescript-eslint/typedef': 'off',
+                '@typescript-eslint/ban-ts-comment': 'off',
+                'max-nested-callbacks': 'off',
+                '@angular-eslint/prefer-on-push-component-change-detection': 'off',
+                '@angular-eslint/component-max-inline-declarations': 'off',
+                '@angular-eslint/use-component-selector': 'off'
             }
         },
         {

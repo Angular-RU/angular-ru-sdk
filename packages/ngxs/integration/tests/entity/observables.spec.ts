@@ -1,9 +1,9 @@
-import { StateRepository } from '@angular-ru/ngxs/decorators';
-import { State } from '@ngxs/store';
+import { Injectable } from '@angular/core';
 import { createEntityCollections } from '@angular-ru/cdk/entity';
+import { StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsDataEntityCollectionsRepository } from '@angular-ru/ngxs/repositories';
 import { ngxsTestingPlatform } from '@angular-ru/ngxs/testing';
-import { Injectable } from '@angular/core';
+import { State } from '@ngxs/store';
 
 describe('[TEST]: Entity observables', () => {
     describe('entityArray$', () => {

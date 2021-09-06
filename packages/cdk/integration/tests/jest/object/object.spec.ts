@@ -10,9 +10,9 @@ import {
     isObject,
     isPlainObject,
     isSimpleObject,
-    shallowMapObject,
     pathsOfObject,
     replaceWithNull,
+    shallowMapObject,
     sortByAsc,
     sortByDesc
 } from '@angular-ru/cdk/object';
@@ -76,14 +76,24 @@ describe('[TEST]: Object', () => {
             expect(isObject(new A())).toBe(true);
             expect(isObject(new Date())).toBe(true);
             expect(isObject(new Map())).toBe(true);
-            expect(isObject(() => {})).toBe(true);
-            // noinspection JSPrimitiveTypeWrapperUsage
+            expect(
+                isObject(() => {
+                    // ...
+                })
+            ).toBe(true);
+            // eslint-disable-next-line no-new-wrappers
             expect(isObject(new Number(6))).toBe(true);
             expect(isObject(Math)).toBe(true);
             expect(isObject(Object.create(null))).toBe(true);
             expect(isObject(document.createElement('div'))).toBe(true);
-            // @ts-ignore
-            expect(isObject(new (function Foo() {})())).toBe(true);
+            expect(
+                isObject(
+                    // @ts-ignore
+                    new (function Foo() {
+                        // ...
+                    })()
+                )
+            ).toBe(true);
             expect(isObject(window)).toBe(true);
         });
 
@@ -102,13 +112,23 @@ describe('[TEST]: Object', () => {
             expect(isPlainObject(new A())).toBe(false);
             expect(isPlainObject(new Date())).toBe(false);
             expect(isPlainObject(new Map())).toBe(false);
-            expect(isPlainObject(() => {})).toBe(false);
-            // noinspection JSPrimitiveTypeWrapperUsage
+            expect(
+                isPlainObject(() => {
+                    // ...
+                })
+            ).toBe(false);
+            // eslint-disable-next-line no-new-wrappers
             expect(isPlainObject(new Number(6))).toBe(false);
             expect(isPlainObject(Math)).toBe(false);
             expect(isPlainObject(document.createElement('div'))).toBe(false);
-            // @ts-ignore
-            expect(isPlainObject(new (function Foo() {})())).toBe(false);
+            expect(
+                isPlainObject(
+                    // @ts-ignore
+                    new (function Foo() {
+                        // ...
+                    })()
+                )
+            ).toBe(false);
         });
 
         it('is simple object', () => {
@@ -122,14 +142,24 @@ describe('[TEST]: Object', () => {
             expect(isSimpleObject(new A())).toBe(true);
             expect(isSimpleObject(Object.create(null))).toBe(true);
             expect(isSimpleObject({})).toBe(true);
-            // @ts-ignore
-            expect(isSimpleObject(new (function Foo() {})())).toBe(true);
+            expect(
+                isSimpleObject(
+                    // @ts-ignore
+                    new (function Foo() {
+                        // ...
+                    })()
+                )
+            ).toBe(true);
             // complex object (Array, DOM, Set, Map, other structure)
             expect(isSimpleObject([])).toBe(false);
             expect(isSimpleObject(new Date())).toBe(false);
             expect(isSimpleObject(new Map())).toBe(false);
-            expect(isSimpleObject(() => {})).toBe(false);
-            // noinspection JSPrimitiveTypeWrapperUsage
+            expect(
+                isSimpleObject(() => {
+                    // ...
+                })
+            ).toBe(false);
+            // eslint-disable-next-line no-new-wrappers
             expect(isSimpleObject(new Number(6))).toBe(false);
             expect(isSimpleObject(Math)).toBe(false);
             expect(isSimpleObject(document.createElement('div'))).toBe(false);
@@ -188,7 +218,7 @@ describe('[TEST]: Object', () => {
             expect(isGetter(new A(), 'base')).toEqual(true);
 
             class Z {
-                get base() {
+                public get base() {
                     return 'base';
                 }
             }
@@ -209,7 +239,8 @@ describe('[TEST]: Object', () => {
             expect(isGetter(undefined, 'a')).toEqual(false);
             expect(isGetter(NaN, 'a')).toEqual(false);
             expect(isGetter(5, 'a')).toEqual(false);
-            expect(isGetter(Number(5), 'a')).toEqual(false);
+            // eslint-disable-next-line no-new-wrappers
+            expect(isGetter(new Number(5), 'a')).toEqual(false);
             expect(isGetter(String(5), 'a')).toEqual(false);
         });
     });
@@ -247,7 +278,7 @@ describe('[TEST]: Object', () => {
         it('should be correct clone object', () => {
             class Mock {
                 public a: string = null!;
-                public b: object[] = [{ c: 1, d: 2 }];
+                public b: PlainObject[] = [{ c: 1, d: 2 }];
                 public e: number = NaN;
                 public f: number = Infinity;
                 public g: Date | string = new Date(2018, 10, 28);
@@ -385,7 +416,11 @@ describe('[TEST]: Object', () => {
         expect(isIterable(undefined)).toBe(false);
         expect(isIterable(0)).toBe(false);
         expect(isIterable(true)).toBe(false);
-        expect(isIterable(() => {})).toBe(false);
+        expect(
+            isIterable(() => {
+                // ...
+            })
+        ).toBe(false);
     });
 
     it('should correct return paths of object', () => {

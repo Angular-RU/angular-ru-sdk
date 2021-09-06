@@ -1,6 +1,6 @@
 import { Component, Injectable, InjectFlags } from '@angular/core';
-import { directiveInject, inject } from '@angular-ru/cdk/ivy';
 import { TestBed } from '@angular/core/testing';
+import { directiveInject, inject } from '@angular-ru/cdk/ivy';
 import { Nullable } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: injection utils', () => {

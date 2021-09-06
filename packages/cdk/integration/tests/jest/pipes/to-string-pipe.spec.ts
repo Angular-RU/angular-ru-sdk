@@ -1,5 +1,5 @@
-import { ToStringPipe, ToStringPipeModule } from '@angular-ru/cdk/pipes';
 import { TestBed } from '@angular/core/testing';
+import { ToStringPipe, ToStringPipeModule } from '@angular-ru/cdk/pipes';
 
 describe('to string pipe', () => {
     let pipe: ToStringPipe;

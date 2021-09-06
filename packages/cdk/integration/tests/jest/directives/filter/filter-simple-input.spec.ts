@@ -1,12 +1,12 @@
-import { By } from '@angular/platform-browser';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { InputFilterModule } from '@angular-ru/cdk/directives';
-import { FilterPredicate } from '@angular-ru/cdk/string';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { Nullable } from '@angular-ru/cdk/typings';
+import { By } from '@angular/platform-browser';
+import { InputFilterModule } from '@angular-ru/cdk/directives';
 import { REG_EXP_NO_CYRILLIC } from '@angular-ru/cdk/regexp';
+import { FilterPredicate } from '@angular-ru/cdk/string';
+import { Nullable } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: inputFilter Simple Input', () => {
     let fixture: Nullable<ComponentFixture<TestComponent>> = null;
@@ -19,6 +19,7 @@ describe('[TEST]: inputFilter Simple Input', () => {
         changeDetection: ChangeDetectionStrategy.OnPush
     })
     class TestComponent {
+        // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
         public filterValue = 'abcД';
         public predicate: FilterPredicate = ['a', 'b', 'c', ' '];
 
@@ -56,8 +57,10 @@ describe('[TEST]: inputFilter Simple Input', () => {
     }
 
     it('should correct sync modelView with model', () => {
+        // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
         expect(component!.filterValue).toEqual('abcД');
 
+        // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
         debugElement!.nativeElement.value = 'ab c Д';
         debugElement!.triggerEventHandler('input', {
             target: debugElement!.nativeElement
@@ -88,6 +91,7 @@ describe('[TEST]: inputFilter Simple Input', () => {
     });
 
     it('should filter cyrillic by default', () => {
+        // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
         setValueAndDispatch('aaaДДДccc');
         expect(debugElement!.nativeElement.value).toEqual('aaaccc');
     });

@@ -1,9 +1,9 @@
-import { By } from '@angular/platform-browser';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { InputFilterModule } from '@angular-ru/cdk/directives';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { By } from '@angular/platform-browser';
+import { InputFilterModule } from '@angular-ru/cdk/directives';
 import { Nullable } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: inputFilter Config', () => {
