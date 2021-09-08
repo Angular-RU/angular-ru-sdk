@@ -1,6 +1,7 @@
 #### `@angular-ru/cdk/array`
 
--   `updateArray<T>(source: T[], updated: T[], compareFnOrKey: string | CompareFn<T>)`
+-   `updateArray<T extends { id: Any }>(sourceArray: Nullable<T[]>, updatedArray: Nullable<T[]>): T[];`
+-   `updateArray<T>(sourceArray: Nullable<T[]>, updatedArray: Nullable<T[]>, compareFnOrKey: keyof T | CompareFn<T>): T[]`
 
 ```ts
 expect(
