@@ -1,11 +1,18 @@
+/* eslint-disable no-redeclare */
 import { isFunctionLike } from '@angular-ru/cdk/function';
 import { Any, CompareFn, Nullable, PrimaryKey } from '@angular-ru/cdk/typings';
 
-// eslint-disable-next-line max-lines-per-function,complexity,sonarjs/cognitive-complexity
+export function updateArray<T extends { id: Any }>(sourceArray: Nullable<T[]>, updatedArray: Nullable<T[]>): T[];
 export function updateArray<T>(
-    sourceArray?: Nullable<T[] | never[]>,
-    updatedArray?: Nullable<T[] | never[]>,
-    compareFnOrKey: string | CompareFn<T> = PrimaryKey.ID
+    sourceArray: Nullable<T[]>,
+    updatedArray: Nullable<T[]>,
+    compareFnOrKey: keyof T | CompareFn<T>
+): T[];
+// eslint-disable-next-line complexity,max-lines-per-function,sonarjs/cognitive-complexity
+export function updateArray<T>(
+    sourceArray: Nullable<T[]>,
+    updatedArray: Nullable<T[]>,
+    compareFnOrKey: typeof PrimaryKey.ID | keyof T | CompareFn<T> = PrimaryKey.ID
 ): T[] {
     const preparedSourceArray: T[] = sourceArray ?? [];
     const newSourceArray: T[] = [];
