@@ -1,5 +1,5 @@
 import { updateArray } from '@angular-ru/cdk/array';
-import { Any } from '@angular-ru/cdk/typings';
+import { Any, Nullable } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: Array', () => {
     interface Value {
@@ -22,12 +22,14 @@ describe('[TEST]: Array', () => {
         });
 
         it('nullable values', () => {
-            expect(updateArray()).toEqual([]);
-            expect(updateArray(null, null)).toEqual([]);
-            expect(updateArray([1], undefined)).toEqual([1]);
-            expect(updateArray([1], null)).toEqual([1]);
-            expect(updateArray(undefined, [2])).toEqual([]);
-            expect(updateArray(null, [2])).toEqual([]);
+            const nullOrArray: Nullable<Value[]> = null;
+            const undefinedOrArray: Nullable<Value[]> = undefined;
+
+            expect(updateArray(nullOrArray, nullOrArray)).toEqual([]);
+            expect(updateArray(origin, undefinedOrArray)).toEqual(origin);
+            expect(updateArray(origin, null)).toEqual(origin);
+            expect(updateArray(undefined, [{ id: 3, value: 3 }])).toEqual([]);
+            expect(updateArray(null, [{ id: 3, value: 3 }])).toEqual([]);
         });
 
         it('should update two items', () => {
