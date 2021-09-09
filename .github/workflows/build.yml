@@ -54,9 +54,6 @@ jobs:
                   yarn format
                   yarn lint
 
-            - name: Run test step
-              run: yarn test
-
             - name: Run build integration apps
               run: yarn integration
 
