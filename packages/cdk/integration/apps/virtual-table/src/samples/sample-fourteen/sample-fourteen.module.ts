@@ -8,7 +8,7 @@ import { NotFoundComponent } from './not-found.component';
 import { SampleFourteenComponent } from './sample-fourteen.component';
 
 @NgModule({
-    declarations: [SampleFourteenComponent, ContextMenuSampleComponent, NotFoundComponent],
+    declarations: [ContextMenuSampleComponent, NotFoundComponent, SampleFourteenComponent],
     imports: [CommonModule, SharedModule, RouterModule.forChild([{ path: '', component: SampleFourteenComponent }])]
 })
 export class SampleFourteenModule {}

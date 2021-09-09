@@ -6,6 +6,7 @@ import { AbstractFlexLayoutDirective } from './abstract-flex-layout.directive';
 
 @Directive({ selector: '[flex-column]' })
 export class FlexColumnDirective extends AbstractFlexLayoutDirective implements AfterViewInit {
+    // eslint-disable-next-line @angular-eslint/no-input-rename
     @Input('flex-direction') public flexDirection: Nullable<string> = null;
 
     constructor(protected readonly el: ElementRef) {

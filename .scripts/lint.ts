@@ -4,6 +4,6 @@ import { log } from './utils/log';
 void (async function main(): Promise<void> {
     log('[LINT]');
     await asyncExec(
-        `yarn eslint --fix --cache --cache-location node_modules/.cache/.eslintcache '**/*.ts' --ignore-pattern '**/file-suites/**'`
+        `yarn eslint --fix --cache --cache-location node_modules/.cache/.eslintcache '**/*.ts' '**/*.component.html' '**/*.json' --ignore-pattern '**/file-suites/**'`
     );
 })();

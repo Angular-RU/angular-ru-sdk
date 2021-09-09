@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/no-input-rename */
 import { Directive, Input } from '@angular/core';
 import { Nullable } from '@angular-ru/cdk/typings';
 

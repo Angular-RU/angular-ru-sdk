@@ -13,18 +13,18 @@ import { REG_EXP_ONLY_NUMBERS } from './properties/constants';
 @NgModule({
     declarations: [GuideComponent],
     imports: [
-        CommonModule,
+        AmountFormatModule,
         RouterModule.forChild([
             {
                 path: '',
                 component: GuideComponent
             }
         ]),
+        CommonModule,
         MatIconModule,
-        ScrollingModule,
         MatInputModule,
-        AmountFormatModule,
         ReactiveFormsModule,
+        ScrollingModule,
         InputFilterModule.forChild({
             default: REG_EXP_ONLY_NUMBERS
         })

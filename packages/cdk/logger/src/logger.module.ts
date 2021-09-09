@@ -13,14 +13,14 @@ import { TimerFactory } from './services/timer-factory.service';
 
 @NgModule({
     providers: [
-        LoggerService,
-        LoggerFactory,
         ConsoleService,
-        GroupFactory,
         CssFactory,
+        GroupFactory,
         JsonFactory,
-        TimerFactory,
-        LoggerInjector
+        LoggerFactory,
+        LoggerInjector,
+        LoggerService,
+        TimerFactory
     ]
 })
 export class LoggerModule {

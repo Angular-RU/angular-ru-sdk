@@ -13,13 +13,13 @@ import { AppRoutingModule } from './app-routing.module';
 @NgModule({
     declarations: [AppComponent],
     imports: [
-        BrowserModule,
-        HttpClientModule,
         AppRoutingModule,
         BrowserAnimationsModule,
+        BrowserModule,
+        HttpClientModule,
+        MatListModule,
         MatSidenavModule,
         MatToolbarModule,
-        MatListModule,
         AmountFormatModule.forRoot()
     ],
     bootstrap: [AppComponent]

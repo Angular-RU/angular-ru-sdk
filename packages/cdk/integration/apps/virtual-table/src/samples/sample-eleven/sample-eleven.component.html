@@ -174,6 +174,7 @@
                         <ngx-column key="action" custom-key sticky [is-draggable]="false" width="50">
                             <ng-template ngx-th></ng-template>
                             <ng-template ngx-td row let-row>
+                                <!-- eslint-disable @angular-eslint/template/no-call-expression -->
                                 {{ table2.selectionModel.get($any(row).id) ? 'x' : '-' }}
                             </ng-template>
                         </ngx-column>

@@ -14,10 +14,10 @@ import { AppRoutingModule } from './app-routing.module';
 @NgModule({
     declarations: [AppComponent],
     imports: [
-        BrowserModule,
-        FormsModule,
         AppRoutingModule,
         BrowserAnimationsModule,
+        BrowserModule,
+        FormsModule,
         ReactiveFormsModule,
         NgxsModule.forRoot([], {
             developmentMode: !environment.production,

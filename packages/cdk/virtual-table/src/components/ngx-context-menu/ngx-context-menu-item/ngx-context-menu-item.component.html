@@ -9,6 +9,7 @@
     >
         <ng-content select="ngx-menu-content"></ng-content>
 
+        <!-- eslint-disable @angular-eslint/template/no-call-expression -->
         <div
             class="context-menu__sub-menu-place"
             [class.context-menu__sub-hidden]="ref.innerHTML.trim().length === 0 || disableSubMenu !== false"

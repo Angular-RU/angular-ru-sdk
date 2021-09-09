@@ -1,4 +1,3 @@
-/* eslint-disable no-redeclare */
 import { isFunctionLike } from '@angular-ru/cdk/function';
 import { Any, CompareFn, Nullable, PrimaryKey } from '@angular-ru/cdk/typings';
 

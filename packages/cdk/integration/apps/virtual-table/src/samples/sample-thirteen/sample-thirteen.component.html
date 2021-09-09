@@ -83,6 +83,7 @@
                     ></mat-checkbox>
                 </ng-template>
                 <ng-template ngx-td row let-row (onClick)="$event.preventDefault()">
+                    <!-- eslint-disable @angular-eslint/template/no-call-expression -->
                     <mat-checkbox
                         [checked]="tableFirst.selectionModel.get($any(row).id)"
                         (change)="tableFirst.selection.toggle(row)"
@@ -111,6 +112,7 @@
                     ></mat-checkbox>
                 </ng-template>
                 <ng-template ngx-td row let-row (onClick)="$event.preventDefault()">
+                    <!-- eslint-disable @angular-eslint/template/no-call-expression -->
                     <mat-checkbox
                         [checked]="tableSecond.selectionModel.get($any(row).id)"
                         (change)="tableSecond.selection.toggle(row)"

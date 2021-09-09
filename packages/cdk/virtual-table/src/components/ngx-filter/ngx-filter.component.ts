@@ -30,6 +30,7 @@ const FILTER_MIN_TOP_Y: number = 50;
 export class NgxFilterComponent<T> extends AbstractModalViewLayerDirective<T, FilterStateEvent> implements OnInit {
     @Input() public width: number = FILTER_WIDTH;
     @Input() public height: Nullable<number> = null;
+    // eslint-disable-next-line @angular-eslint/no-input-rename
     @Input('max-height') public maxHeight: Nullable<number> = null;
     @ContentChild(NgxFilterDirective, { static: false }) public filter!: NgxFilterDirective;
     public readonly leftX: number = FILTER_MIN_LEFT_X;

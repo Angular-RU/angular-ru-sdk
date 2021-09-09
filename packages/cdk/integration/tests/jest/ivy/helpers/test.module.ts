@@ -14,17 +14,17 @@ import { TestTokenComponent } from './test-token';
 
 @NgModule({
     declarations: [
-        TestDirective,
-        TestComponent,
-        FeatureTestComponent,
         ExtendingTestComponent,
+        FeatureTestComponent,
+        TestComponent,
+        TestDirective,
         TestPipe,
         TestStairsComponent,
         TestTokenComponent
     ],
     providers: [
-        TestService,
         FeatureTestService,
+        TestService,
         {
             provide: MODULE_TOKEN,
             useValue: 'MODULE_TOKEN'

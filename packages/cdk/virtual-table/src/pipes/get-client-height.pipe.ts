@@ -5,6 +5,7 @@ import { getClientHeight } from '../operators/get-client-height';
 
 @Pipe({
     name: 'getClientHeight',
+    // eslint-disable-next-line @angular-eslint/no-pipe-impure
     pure: false
 })
 export class GetClientHeightPipe implements PipeTransform {

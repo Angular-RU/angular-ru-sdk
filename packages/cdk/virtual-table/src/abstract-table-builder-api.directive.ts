@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/no-input-rename */
 import { CdkDragSortEvent } from '@angular/cdk/drag-drop';
 import {
     AfterContentInit,

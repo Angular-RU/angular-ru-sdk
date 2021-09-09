@@ -19,15 +19,15 @@ import { ArticleDialogComponent } from './dialog/article-dialog.component';
     entryComponents: [ArticleDialogComponent],
     imports: [
         CommonModule,
-        MatDialogModule,
         MatButtonModule,
-        ReactiveFormsModule,
-        MatTableModule,
-        MatInputModule,
+        MatDialogModule,
         MatIconModule,
+        MatInputModule,
+        MatSortModule,
+        MatTableModule,
         NgxsModule.forFeature([ArticleEntitiesState]),
         RouterModule.forChild([{ path: '', component: ArticleComponent }]),
-        MatSortModule
+        ReactiveFormsModule
     ]
 })
 export class ArticleModule {}
