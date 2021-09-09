@@ -1,3 +1,17 @@
+#### independent (2021-09-09)
+
+##### Continuous Integration
+
+-   remove build & temporary test & fix tests for updateArray (#876) (bb305e99)
+
+##### Documentation Changes
+
+-   **cdk:** update README.md (a2679344)
+
+##### Refactors
+
+-   **cdk:** improve signature for updateArray function (#874) (f6ed6716)
+
 #### independent (2021-09-06)
 
 ##### New Features
