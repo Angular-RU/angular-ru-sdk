@@ -1,5 +1,11 @@
 #### independent (2021-09-09)
 
+##### New Features
+
+-   **eslint-config-enterprise:** add strict rules (#879) (5ba1531d)
+
+#### independent (2021-09-09)
+
 ##### Bug Fixes
 
 -   **cdk:** fix updateArray id type (#880) (c03e8ed6)
