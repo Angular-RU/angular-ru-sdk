@@ -44,10 +44,6 @@ jobs:
               run: |
                   yarn install --ignore-engines --frozen-lockfile
 
-            - name: Run build libraries
-              run: |
-                  yarn build
-
             - name: Run lint
               run: |
                   yarn commitlint --from=HEAD~1
