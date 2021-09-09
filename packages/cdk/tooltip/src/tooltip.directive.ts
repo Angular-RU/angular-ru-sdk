@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/no-input-rename */
 import {
     Directive,
     ElementRef,
@@ -65,7 +66,7 @@ export class TooltipDirective implements OnDestroy {
         this.refreshTooltipContent();
     }
 
-    @Input('tooltip')
+    @Input()
     public set tooltip(tooltipValue: TooltipValue) {
         this.internalTooltipValue = tooltipValue;
         this.refreshTooltipContent();

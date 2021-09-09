@@ -14,15 +14,15 @@ import { AppRoutingModule } from './app-routing.module';
 @NgModule({
     declarations: [AppComponent],
     imports: [
-        HttpClientModule,
-        BrowserModule,
         AppRoutingModule,
-        MatMenuModule,
-        MatListModule,
-        MatToolbarModule,
-        MatSidenavModule,
+        BrowserAnimationsModule,
+        BrowserModule,
         FlexLayoutModule,
-        BrowserAnimationsModule
+        HttpClientModule,
+        MatListModule,
+        MatMenuModule,
+        MatSidenavModule,
+        MatToolbarModule
     ],
     bootstrap: [AppComponent]
 })

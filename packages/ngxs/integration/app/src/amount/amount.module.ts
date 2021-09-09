@@ -11,8 +11,8 @@ import { PriceState } from './price.state';
 @NgModule({
     declarations: [AmountComponent],
     imports: [
-        FormsModule,
         CommonModule,
+        FormsModule,
         NgxsModule.forFeature([AmountState, PriceState]),
         RouterModule.forChild([{ path: '', component: AmountComponent }])
     ]

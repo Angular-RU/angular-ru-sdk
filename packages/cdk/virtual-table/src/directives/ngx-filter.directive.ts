@@ -5,6 +5,7 @@ import { Nullable } from '@angular-ru/cdk/typings';
     selector: 'ng-template[ngx-filter]'
 })
 export class NgxFilterDirective {
+    // eslint-disable-next-line @angular-eslint/no-input-rename
     @Input('ngx-filter') public type: Nullable<string> = null;
     constructor(public template: TemplateRef<unknown>) {}
 }

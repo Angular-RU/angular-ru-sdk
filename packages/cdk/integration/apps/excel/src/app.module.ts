@@ -22,13 +22,13 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     bootstrap: [AppComponent],
     declarations: [AppComponent],
     imports: [
-        BrowserModule,
-        MatListModule,
-        HttpClientModule,
-        MatToolbarModule,
-        MatSidenavModule,
-        MatButtonModule,
         BrowserAnimationsModule,
+        BrowserModule,
+        HttpClientModule,
+        MatButtonModule,
+        MatListModule,
+        MatSidenavModule,
+        MatToolbarModule,
         TranslateModule.forRoot({
             loader: {
                 deps: [HttpClient],

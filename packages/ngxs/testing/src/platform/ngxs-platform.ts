@@ -1,4 +1,3 @@
-/* eslint-disable no-redeclare */
 import { SchemaMetadata, Type } from '@angular/core';
 import { TestBed, TestModuleMetadata } from '@angular/core/testing';
 import { Any } from '@angular-ru/cdk/typings';

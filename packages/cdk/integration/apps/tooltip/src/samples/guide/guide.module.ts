@@ -11,15 +11,15 @@ import { GuideComponent } from './guide.component';
     declarations: [GuideComponent],
     imports: [
         CommonModule,
-        TooltipModule,
+        MatIconModule,
         RouterModule.forChild([
             {
                 path: '',
                 component: GuideComponent
             }
         ]),
-        MatIconModule,
-        ScrollingModule
+        ScrollingModule,
+        TooltipModule
     ]
 })
 export class GuideModule {}

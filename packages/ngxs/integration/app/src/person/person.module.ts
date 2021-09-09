@@ -25,6 +25,6 @@ import { PersonState } from './person.state';
             }
         ])
     ],
-    providers: [PersonService, PersonResolver]
+    providers: [PersonResolver, PersonService]
 })
 export class PersonModule {}

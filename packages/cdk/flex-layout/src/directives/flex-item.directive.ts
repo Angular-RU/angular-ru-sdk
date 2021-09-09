@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/no-input-rename */
 import { AfterViewInit, Directive, ElementRef, Input } from '@angular/core';
 
 import { AbstractFlexLayoutDirective } from './abstract-flex-layout.directive';

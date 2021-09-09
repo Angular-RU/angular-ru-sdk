@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/no-input-rename */
 import { Directive, EventEmitter, Input, Optional, Output, TemplateRef } from '@angular/core';
 import { Any, Nullable, PlainObject } from '@angular-ru/cdk/typings';
 

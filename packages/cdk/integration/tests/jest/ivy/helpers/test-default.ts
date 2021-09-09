@@ -36,6 +36,7 @@ export class TestComponent {
 
 @Pipe({
     name: 'test',
+    // eslint-disable-next-line @angular-eslint/no-pipe-impure
     pure: false
 })
 export class TestPipe implements PipeTransform {

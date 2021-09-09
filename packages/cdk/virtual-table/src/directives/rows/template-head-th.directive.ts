@@ -5,6 +5,7 @@ import { AbstractTemplateCellCommonDirective } from './abstract-template-cell-co
 
 @Directive({ selector: 'ng-template[ngx-th]' })
 export class TemplateHeadThDirective<T> extends AbstractTemplateCellCommonDirective<T> {
+    // eslint-disable-next-line @angular-eslint/no-input-rename
     @Input('ngx-th') public type: Nullable<string> = null;
     public nowrap: boolean = false;
 

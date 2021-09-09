@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/no-input-rename */
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { fadeInLinearAnimation } from '@angular-ru/cdk/animations';
 import { Nullable, PlainObjectOf, SortOrderType } from '@angular-ru/cdk/typings';

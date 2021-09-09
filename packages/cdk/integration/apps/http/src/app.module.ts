@@ -14,13 +14,13 @@ import { ApiClient } from './services/clients/api.client';
 @NgModule({
     declarations: [AppComponent],
     imports: [
-        BrowserModule,
-        HttpClientModule,
         AppRoutingModule,
         BrowserAnimationsModule,
+        BrowserModule,
+        HttpClientModule,
+        MatListModule,
         MatSidenavModule,
         MatToolbarModule,
-        MatListModule,
         DataHttpClientModule.forRoot([ApiClient], {
             hostUrl: 'https://jsonplaceholder.typicode.com',
             limitConcurrency: 5
