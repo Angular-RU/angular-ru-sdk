@@ -1,5 +1,11 @@
 #### independent (2021-09-09)
 
+##### Bug Fixes
+
+-   **cdk:** fix updateArray id type (#880) (c03e8ed6)
+
+#### independent (2021-09-09)
+
 ##### Continuous Integration
 
 -   remove build & temporary test & fix tests for updateArray (#876) (bb305e99)

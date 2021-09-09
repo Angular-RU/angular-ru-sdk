@@ -1,7 +1,7 @@
 import { isFunctionLike } from '@angular-ru/cdk/function';
 import { Any, CompareFn, Nullable, PrimaryKey } from '@angular-ru/cdk/typings';
 
-export function updateArray<T extends { id: Any }>(sourceArray: Nullable<T[]>, updatedArray: Nullable<T[]>): T[];
+export function updateArray<T extends { id?: Any }>(sourceArray: Nullable<T[]>, updatedArray: Nullable<T[]>): T[];
 export function updateArray<T>(
     sourceArray: Nullable<T[]>,
     updatedArray: Nullable<T[]>,
