@@ -8,7 +8,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [16.x]
+                node-version: [14.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -51,7 +51,7 @@ jobs:
                   yarn lint
 
             - name: Run test step
-              run: yarn lerna run test --no-bail
+              run: yarn test
 
             - name: Run build integration apps
               run: yarn integration
