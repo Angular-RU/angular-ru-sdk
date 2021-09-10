@@ -1,5 +1,13 @@
 #### independent (2021-09-10)
 
+##### Build System / Dependencies
+
+-   update upgrade eslint (#929) (a2bc7145)
+-   update angular dependencies to v12.2.5 (#927) (e16c8d25)
+-   update all dependencies (minor/patch) (#928) (7826d11c)
+
+#### independent (2021-09-10)
+
 ##### Bug Fixes
 
 -   **renovate:**
