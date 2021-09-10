@@ -1,5 +1,11 @@
 #### independent (2021-09-10)
 
+##### New Features
+
+-   **renovate:** add new rules (#892) (b5617691)
+
+#### independent (2021-09-10)
+
 ##### Bug Fixes
 
 -   **renovate:** remove packageFiles (aebe32b6)
