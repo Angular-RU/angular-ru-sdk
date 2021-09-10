@@ -24,17 +24,12 @@
             "dependencyDashboard": false,
             "dependencyDashboardApproval": false,
             "semanticPrefix": "build",
-            "rebaseWhen": "behind-base-branch",
+            "rebaseWhen": "auto",
             "labels": [
                 "renovate"
             ],
             "baseBranches": [
                 "master"
-            ],
-            "packageFiles": [
-                "./package.json",
-                "./packages/package.json",
-                "./dev-infra/package.json"
             ],
             "packageRules": [
                 {
