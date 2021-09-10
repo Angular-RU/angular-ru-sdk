@@ -2,6 +2,16 @@
 
 ##### Build System / Dependencies
 
+-   update dependency sort-package-json to v1.51.0 (#932) (bab1cd19)
+
+##### Bug Fixes
+
+-   **cdk:** remove `transform: typeof` signature (#931) (10029ddc)
+
+#### independent (2021-09-10)
+
+##### Build System / Dependencies
+
 -   update upgrade eslint (#929) (a2bc7145)
 -   update angular dependencies to v12.2.5 (#927) (e16c8d25)
 -   update all dependencies (minor/patch) (#928) (7826d11c)
