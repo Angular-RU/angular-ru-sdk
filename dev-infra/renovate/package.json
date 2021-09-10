@@ -231,7 +231,7 @@
                         "*"
                     ],
                     "groupName": "all dependencies (minor/patch)",
-                    "groupSlug": "all (minor/patch)"
+                    "groupSlug": "all-minor-patch"
                 }
             ]
         }
