@@ -2,6 +2,12 @@
 
 ##### New Features
 
+-   **renovate:** rewrite rules for exclude expected groups (#916) (241ab45e)
+
+#### independent (2021-09-10)
+
+##### New Features
+
 -   **renovate:** rewrite rules for exclude expected groups (#906) (326464b4)
 
 #### independent (2021-09-10)
