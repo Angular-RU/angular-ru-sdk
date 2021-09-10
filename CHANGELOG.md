@@ -1,5 +1,13 @@
 #### independent (2021-09-10)
 
+##### Bug Fixes
+
+-   **renovate:**
+    -   rename groups for correct messages (#924) (b1de21d0)
+    -   lift to the top common rule (#922) (16215044)
+
+#### independent (2021-09-10)
+
 ##### New Features
 
 -   **renovate:** rewrite rules for exclude expected groups (#916) (241ab45e)
