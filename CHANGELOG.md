@@ -1,5 +1,11 @@
 #### independent (2021-09-10)
 
+##### New Features
+
+-   **renovate:** rewrite rules for exclude expected groups (#906) (326464b4)
+
+#### independent (2021-09-10)
+
 ##### Build System / Dependencies
 
 -   update actions/setup-node action to v2 (#889) (6420f5f9)
