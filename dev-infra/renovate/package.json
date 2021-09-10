@@ -44,6 +44,17 @@
             "packageRules": [
                 {
                     "matchUpdateTypes": [
+                        "minor",
+                        "patch"
+                    ],
+                    "matchPackagePatterns": [
+                        "*"
+                    ],
+                    "groupName": "all dependencies (minor/patch)",
+                    "groupSlug": "all-minor-patch"
+                },
+                {
+                    "matchUpdateTypes": [
                         "major"
                     ],
                     "labels": [
@@ -184,54 +195,6 @@
                     ],
                     "groupSlug": "typescript",
                     "groupName": "upgrade typescript"
-                },
-                {
-                    "matchUpdateTypes": [
-                        "minor",
-                        "patch"
-                    ],
-                    "excludePackagePatterns": [
-                        "^rxjs.*",
-                        "^prettier",
-                        "^@angular/.*",
-                        "^@angular-ru/.*",
-                        "^@angular-devkit/.*",
-                        "^@schematics/.*",
-                        "^@angular/cdk$",
-                        "^@angular/cli$",
-                        "^@angular/cdk-experimental$",
-                        "^@angular/flex-layout$",
-                        "^@angular/material$",
-                        "^@angular-builders/.*",
-                        "^ng-packagr$",
-                        "^zone.js",
-                        "^class-transformer$",
-                        "^@nrwl/.*",
-                        "^@sentry/.*",
-                        "^@ngxs/.*",
-                        "^@ngxs-labs/.*",
-                        "^@types/eslint$",
-                        "^@angular-eslint/.*",
-                        "^@angular-ru/eslint.*",
-                        "^@typescript-eslint/.*",
-                        "^eslint.*",
-                        "^@types/jest$",
-                        "^jest.*",
-                        "^ts-jest$",
-                        "^jest-preset-angular$",
-                        "@types/karma.*",
-                        "^karma.*",
-                        "@types/jasmine",
-                        "@types/jasmine*",
-                        "^jasmine.*",
-                        "^typescript",
-                        "^tslib"
-                    ],
-                    "matchPackagePatterns": [
-                        "*"
-                    ],
-                    "groupName": "all dependencies (minor/patch)",
-                    "groupSlug": "all-minor-patch"
                 }
             ]
         }
