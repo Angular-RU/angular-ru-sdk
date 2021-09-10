@@ -16,6 +16,7 @@
             "automerge": true,
             "pinVersions": true,
             "rangeStrategy": "bump",
+            "branchPrefix": "renovate",
             "timezone": "Europe/Moscow",
             "masterIssueApproval": false,
             "separateMajorMinor": true,
@@ -45,12 +46,20 @@
                     "matchUpdateTypes": [
                         "major"
                     ],
+                    "labels": [
+                        "renovate",
+                        "major"
+                    ],
                     "automerge": false
                 },
                 {
                     "matchUpdateTypes": [
                         "minor",
                         "patch"
+                    ],
+                    "labels": [
+                        "renovate",
+                        "minor/patch"
                     ],
                     "automerge": true
                 },
@@ -62,52 +71,20 @@
                     "enabled": false
                 },
                 {
-                    "matchUpdateTypes": [
-                        "minor",
-                        "patch"
-                    ],
                     "matchPackagePatterns": [
                         "^rxjs.*"
                     ],
                     "groupSlug": "rxjs",
-                    "groupName": "RxJS [dependencies - minor/patch]"
+                    "groupName": "upgrade rxjs"
                 },
                 {
-                    "matchUpdateTypes": [
-                        "major"
-                    ],
                     "matchPackagePatterns": [
-                        "^rxjs.*"
-                    ],
-                    "groupSlug": "rxjs",
-                    "groupName": "RxJS [dependencies - major]"
-                },
-                {
-                    "matchUpdateTypes": [
-                        "minor",
-                        "patch"
-                    ],
-                    "matchPackagePatterns": [
-                        "^prettier$"
+                        "^prettier"
                     ],
                     "groupSlug": "prettier",
-                    "groupName": "Prettier [dependencies - minor/patch]"
+                    "groupName": "upgrade prettier"
                 },
                 {
-                    "matchUpdateTypes": [
-                        "major"
-                    ],
-                    "matchPackagePatterns": [
-                        "^prettier$"
-                    ],
-                    "groupSlug": "prettier",
-                    "groupName": "Prettier [dependencies - major]"
-                },
-                {
-                    "matchUpdateTypes": [
-                        "minor",
-                        "patch"
-                    ],
                     "matchPackagePatterns": [
                         "^@angular/.*",
                         "^@angular-ru/.*",
@@ -123,7 +100,7 @@
                         "^zone.js"
                     ],
                     "groupSlug": "angular",
-                    "groupName": "Angular [dependencies - minor/patch]",
+                    "groupName": "upgrade angular",
                     "postUpgradeTasks": {
                         "commands": [
                             "ng update {{{depName}}} --from={{{fromVersion}}} --to={{{toVersion}}} --migrateOnly --allowDirty --force"
@@ -134,10 +111,84 @@
                     }
                 },
                 {
-                    "matchUpdateTypes": [
-                        "major"
-                    ],
                     "matchPackagePatterns": [
+                        "^class-transformer$"
+                    ],
+                    "groupSlug": "class-transformer",
+                    "groupName": "upgrade class-transformer"
+                },
+                {
+                    "matchPackagePatterns": [
+                        "^@nrwl/.*"
+                    ],
+                    "groupSlug": "nrwl",
+                    "groupName": "upgrade nrwl"
+                },
+                {
+                    "matchPackagePatterns": [
+                        "^@sentry/.*"
+                    ],
+                    "groupSlug": "sentry",
+                    "groupName": "upgrade sentry"
+                },
+                {
+                    "matchPackagePatterns": [
+                        "^@ngxs/.*",
+                        "^@ngxs-labs/.*"
+                    ],
+                    "groupSlug": "ngxs",
+                    "groupName": "upgrade ngxs"
+                },
+                {
+                    "matchPackagePatterns": [
+                        "^@types/eslint$",
+                        "^@angular-eslint/.*",
+                        "^@angular-ru/eslint.*",
+                        "^@typescript-eslint/.*",
+                        "^eslint.*"
+                    ],
+                    "groupSlug": "eslint",
+                    "groupName": "upgrade eslint"
+                },
+                {
+                    "matchPackagePatterns": [
+                        "^@types/jest$",
+                        "^jest.*",
+                        "^ts-jest$",
+                        "^jest-preset-angular$"
+                    ],
+                    "groupSlug": "jest",
+                    "groupName": "upgrade jest"
+                },
+                {
+                    "matchPackagePatterns": [
+                        "@types/karma.*",
+                        "^karma.*"
+                    ],
+                    "groupSlug": "karma",
+                    "groupName": "upgrade karma"
+                },
+                {
+                    "matchPackagePatterns": [
+                        "@types/jasmine",
+                        "@types/jasmine*",
+                        "^jasmine.*"
+                    ],
+                    "groupSlug": "jasmine",
+                    "groupName": "upgrade jasmine"
+                },
+                {
+                    "matchPackagePatterns": [
+                        "^typescript",
+                        "^tslib"
+                    ],
+                    "groupSlug": "typescript",
+                    "groupName": "upgrade typescript"
+                },
+                {
+                    "excludePackagePatterns": [
+                        "^rxjs.*",
+                        "^prettier",
                         "^@angular/.*",
                         "^@angular-ru/.*",
                         "^@angular-devkit/.*",
@@ -149,231 +200,34 @@
                         "^@angular/material$",
                         "^@angular-builders/.*",
                         "^ng-packagr$",
-                        "^zone.js"
-                    ],
-                    "groupSlug": "angular",
-                    "groupName": "Angular [dependencies - major]",
-                    "postUpgradeTasks": {
-                        "commands": [
-                            "ng update {{{depName}}} --from={{{fromVersion}}} --to={{{toVersion}}} --migrateOnly --allowDirty --force"
-                        ],
-                        "fileFilters": [
-                            "**/**"
-                        ]
-                    }
-                },
-                {
-                    "matchUpdateTypes": [
-                        "minor",
-                        "patch"
-                    ],
-                    "matchPackagePatterns": [
-                        "^class-transformer$"
-                    ],
-                    "groupSlug": "class-transformer",
-                    "groupName": "class-transformer [dependencies - minor/patch]"
-                },
-                {
-                    "matchUpdateTypes": [
-                        "major"
-                    ],
-                    "matchPackagePatterns": [
-                        "^class-transformer$"
-                    ],
-                    "groupSlug": "class-transformer",
-                    "groupName": "class-transformer [dependencies - major]"
-                },
-                {
-                    "matchUpdateTypes": [
-                        "minor",
-                        "patch"
-                    ],
-                    "matchPackagePatterns": [
-                        "^@nrwl/.*"
-                    ],
-                    "groupSlug": "nrwl",
-                    "groupName": "Nx [dependencies - minor/patch]"
-                },
-                {
-                    "matchUpdateTypes": [
-                        "major"
-                    ],
-                    "matchPackagePatterns": [
-                        "^@nrwl/.*"
-                    ],
-                    "groupSlug": "nrwl",
-                    "groupName": "Nx [dependencies - major]"
-                },
-                {
-                    "matchUpdateTypes": [
-                        "minor",
-                        "patch"
-                    ],
-                    "matchPackagePatterns": [
-                        "^@sentry/.*"
-                    ],
-                    "groupSlug": "sentry",
-                    "groupName": "Sentry [dependencies - minor/patch]"
-                },
-                {
-                    "matchUpdateTypes": [
-                        "major"
-                    ],
-                    "matchPackagePatterns": [
-                        "^@sentry/.*"
-                    ],
-                    "groupSlug": "sentry",
-                    "groupName": "Sentry [dependencies - major]"
-                },
-                {
-                    "matchUpdateTypes": [
-                        "minor",
-                        "patch"
-                    ],
-                    "matchPackagePatterns": [
+                        "^zone.js",
+                        "^class-transformer$",
+                        "^@nrwl/.*",
+                        "^@sentry/.*",
                         "^@ngxs/.*",
-                        "^@ngxs-labs/.*"
-                    ],
-                    "groupSlug": "ngxs",
-                    "groupName": "NGXS [dependencies - minor/patch]"
-                },
-                {
-                    "matchUpdateTypes": [
-                        "major"
-                    ],
-                    "matchPackagePatterns": [
-                        "^@ngxs/.*",
-                        "^@ngxs-labs/.*"
-                    ],
-                    "groupSlug": "ngxs",
-                    "groupName": "NGXS [dependencies - major]"
-                },
-                {
-                    "matchUpdateTypes": [
-                        "minor",
-                        "patch"
-                    ],
-                    "matchPackagePatterns": [
+                        "^@ngxs-labs/.*",
                         "^@types/eslint$",
                         "^@angular-eslint/.*",
                         "^@angular-ru/eslint.*",
                         "^@typescript-eslint/.*",
-                        "^eslint.*"
-                    ],
-                    "groupSlug": "eslint",
-                    "groupName": "ESLint [dependencies - minor/patch]"
-                },
-                {
-                    "matchUpdateTypes": [
-                        "major"
-                    ],
-                    "matchPackagePatterns": [
-                        "^@types/eslint$",
-                        "^@angular-eslint/.*",
-                        "^@angular-ru/eslint.*",
-                        "^@typescript-eslint/.*",
-                        "^eslint.*"
-                    ],
-                    "groupSlug": "eslint",
-                    "groupName": "ESLint [dependencies - major]"
-                },
-                {
-                    "matchUpdateTypes": [
-                        "minor",
-                        "patch"
-                    ],
-                    "matchPackagePatterns": [
+                        "^eslint.*",
                         "^@types/jest$",
                         "^jest.*",
                         "^ts-jest$",
-                        "^jest-preset-angular$"
-                    ],
-                    "groupSlug": "jest",
-                    "groupName": "Jest [dependencies - minor/patch]"
-                },
-                {
-                    "matchUpdateTypes": [
-                        "major"
-                    ],
-                    "matchPackagePatterns": [
-                        "^@types/jest$",
-                        "^jest.*",
-                        "^ts-jest$",
-                        "^jest-preset-angular$"
-                    ],
-                    "groupSlug": "jest",
-                    "groupName": "Jest [dependencies - major]"
-                },
-                {
-                    "matchUpdateTypes": [
-                        "minor",
-                        "patch"
-                    ],
-                    "matchPackagePatterns": [
+                        "^jest-preset-angular$",
                         "@types/karma.*",
-                        "^karma.*"
-                    ],
-                    "groupSlug": "karma",
-                    "groupName": "Karma [dependencies - minor/patch]"
-                },
-                {
-                    "matchUpdateTypes": [
-                        "major"
-                    ],
-                    "matchPackagePatterns": [
-                        "@types/karma.*",
-                        "^karma.*"
-                    ],
-                    "groupSlug": "karma",
-                    "groupName": "Karma [dependencies - major]"
-                },
-                {
-                    "matchUpdateTypes": [
-                        "minor",
-                        "patch"
-                    ],
-                    "matchPackagePatterns": [
+                        "^karma.*",
                         "@types/jasmine",
                         "@types/jasmine*",
-                        "^jasmine.*"
-                    ],
-                    "groupSlug": "jasmine",
-                    "groupName": "Jasmine [dependencies - minor/patch]"
-                },
-                {
-                    "matchUpdateTypes": [
-                        "major"
+                        "^jasmine.*",
+                        "^typescript",
+                        "^tslib"
                     ],
                     "matchPackagePatterns": [
-                        "@types/jasmine",
-                        "@types/jasmine*",
-                        "^jasmine.*"
+                        "*"
                     ],
-                    "groupSlug": "jasmine",
-                    "groupName": "Jasmine [dependencies - major]"
-                },
-                {
-                    "matchUpdateTypes": [
-                        "minor",
-                        "patch"
-                    ],
-                    "packageNames": [
-                        "^typescript$",
-                        "^tslib$"
-                    ],
-                    "groupSlug": "typescript",
-                    "groupName": "TypeScript [dependencies - minor/patch]"
-                },
-                {
-                    "matchUpdateTypes": [
-                        "major"
-                    ],
-                    "packageNames": [
-                        "^typescript$",
-                        "^tslib$"
-                    ],
-                    "groupSlug": "typescript",
-                    "groupName": "TypeScript [dependencies - major]"
+                    "groupName": "all non-major dependencies",
+                    "groupSlug": "all-minor-patch"
                 }
             ]
         }

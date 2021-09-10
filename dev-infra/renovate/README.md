@@ -24,3 +24,6 @@
     "packageRules": []
 }
 ```
+
+-   `groupSlug` - Slug to use for group (e.g. in branch name). Will be calculated from groupName if null.`
+-   `groupName` - Human understandable name for the dependency group.
