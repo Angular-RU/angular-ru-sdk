@@ -1,3 +1,9 @@
+#### independent (2021-09-10)
+
+##### Bug Fixes
+
+-   **renovate:** remove packageFiles (aebe32b6)
+
 #### independent (2021-09-09)
 
 ##### New Features
