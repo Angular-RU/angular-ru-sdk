@@ -8,7 +8,6 @@ const scopes = packages.map((dir) => {
 module.exports = {
     extends: ['./dev-infra/commitlint/index.js'],
     rules: {
-        'scope-empty': [2, 'never'],
         'scope-enum': () => [2, 'always', [...scopes, 'release']]
     }
 };
