@@ -16,7 +16,7 @@
             "automerge": true,
             "pinVersions": true,
             "rangeStrategy": "bump",
-            "branchPrefix": "renovate",
+            "branchPrefix": "renovate/",
             "timezone": "Europe/Moscow",
             "masterIssueApproval": false,
             "separateMajorMinor": true,
@@ -186,6 +186,10 @@
                     "groupName": "upgrade typescript"
                 },
                 {
+                    "matchUpdateTypes": [
+                        "minor",
+                        "patch"
+                    ],
                     "excludePackagePatterns": [
                         "^rxjs.*",
                         "^prettier",
@@ -226,7 +230,7 @@
                     "matchPackagePatterns": [
                         "*"
                     ],
-                    "groupName": "all non-major dependencies",
+                    "groupName": "all dependencies (minor/patch)",
                     "groupSlug": "all-minor-patch"
                 }
             ]
