@@ -374,33 +374,6 @@
                     ],
                     "groupSlug": "typescript",
                     "groupName": "TypeScript [dependencies - major]"
-                },
-                {
-                    "matchDepTypes": [
-                        "dependencies",
-                        "devDependencies"
-                    ],
-                    "matchPackagePatterns": [
-                        ".*"
-                    ],
-                    "matchUpdateTypes": [
-                        "patch",
-                        "minor"
-                    ],
-                    "groupName": "all [dependencies - minor/patch]"
-                },
-                {
-                    "matchDepTypes": [
-                        "dependencies",
-                        "devDependencies"
-                    ],
-                    "matchPackagePatterns": [
-                        ".*"
-                    ],
-                    "matchUpdateTypes": [
-                        "major"
-                    ],
-                    "groupName": "all [dependencies - major]"
                 }
             ]
         }
