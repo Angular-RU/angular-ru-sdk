@@ -31,6 +31,11 @@
             "baseBranches": [
                 "master"
             ],
+            "includePaths": [
+                "package.json",
+                "**/package.json",
+                "!node_modules/**"
+            ],
             "packageRules": [
                 {
                     "matchUpdateTypes": [
