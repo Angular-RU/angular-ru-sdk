@@ -1,7 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { declinationOfNumber } from '@angular-ru/cdk/utils';
+import { Nullable } from '@angular-ru/cdk/typings';
+import { DeclinationDictionary, declinationOfNumber } from '@angular-ru/cdk/utils';
 
 @Pipe({ name: 'declinationOfNumber' })
 export class DeclinationOfNumberPipe implements PipeTransform {
-    public transform: typeof declinationOfNumber = declinationOfNumber;
+    public transform(numberValue: number, dictionary: DeclinationDictionary): Nullable<string> {
+        return declinationOfNumber(numberValue, dictionary);
+    }
 }

@@ -112,7 +112,7 @@ class HttpClient {
 // @ts-ignore
 // eslint-disable-next-line @typescript-eslint/no-unused-vars,no-unused-vars
 class GoodComponent implements OnInit {
-    @Input('var-a') public a: Any;
+    @Input() public a: Any;
     @Input() public _a: Any;
     @Input() public b: Any;
     @Output() public readonly e!: EventEmitter<Any>;

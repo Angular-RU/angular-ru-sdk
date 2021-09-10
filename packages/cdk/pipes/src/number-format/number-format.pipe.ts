@@ -1,7 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { numberFormat } from '@angular-ru/cdk/number';
+import { numberFormat, NumberFormatOptions } from '@angular-ru/cdk/number';
+import { Nullable } from '@angular-ru/cdk/typings';
 
 @Pipe({ name: 'numberFormat' })
 export class NumberFormatPipe implements PipeTransform {
-    public transform: typeof numberFormat = numberFormat;
+    public transform(value?: Nullable<string | number>, options?: NumberFormatOptions): string {
+        return numberFormat(value, options);
+    }
 }
