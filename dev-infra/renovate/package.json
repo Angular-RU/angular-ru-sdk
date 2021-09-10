@@ -49,23 +49,60 @@
                 },
                 {
                     "depTypeList": [
+                        "engines",
                         "peerDependencies"
                     ],
                     "enabled": false
                 },
                 {
+                    "matchUpdateTypes": [
+                        "minor",
+                        "patch",
+                        "pin",
+                        "digest"
+                    ],
                     "packagePatterns": [
                         "^rxjs.*"
                     ],
-                    "groupName": "RxJS"
+                    "groupName": "RxJS [dependencies - minor/patch]"
                 },
                 {
+                    "matchUpdateTypes": [
+                        "major"
+                    ],
+                    "packagePatterns": [
+                        "^rxjs.*"
+                    ],
+                    "groupName": "RxJS [dependencies - major]"
+                },
+                {
+                    "matchUpdateTypes": [
+                        "minor",
+                        "patch",
+                        "pin",
+                        "digest"
+                    ],
                     "packagePatterns": [
                         "^prettier$"
                     ],
-                    "groupName": "Prettier"
+                    "groupName": "Prettier [dependencies - minor/patch]"
                 },
                 {
+                    "matchUpdateTypes": [
+                        "major"
+                    ],
+                    "packagePatterns": [
+                        "^prettier$"
+                    ],
+                    "groupName": "Prettier [dependencies - major]"
+                },
+                {
+                    "matchUpdateTypes": [
+                        "minor",
+                        "patch",
+                        "pin",
+                        "digest"
+                    ],
                     "packagePatterns": [
                         "^@angular/.*",
                         "^@angular-ru/.*",
@@ -80,7 +117,7 @@
                         "^ng-packagr$",
                         "^zone.js"
                     ],
-                    "groupName": "Angular",
+                    "groupName": "Angular [dependencies - minor/patch]",
                     "postUpgradeTasks": {
                         "commands": [
                             "ng update {{{depName}}} --from={{{fromVersion}}} --to={{{toVersion}}} --migrateOnly --allowDirty --force"
@@ -91,58 +128,276 @@
                     }
                 },
                 {
+                    "matchUpdateTypes": [
+                        "major"
+                    ],
+                    "packagePatterns": [
+                        "^@angular/.*",
+                        "^@angular-ru/.*",
+                        "^@angular-devkit/.*",
+                        "^@schematics/.*",
+                        "^@angular/cdk$",
+                        "^@angular/cli$",
+                        "^@angular/cdk-experimental$",
+                        "^@angular/flex-layout$",
+                        "^@angular/material$",
+                        "^@angular-builders/.*",
+                        "^ng-packagr$",
+                        "^zone.js"
+                    ],
+                    "groupName": "Angular [dependencies - major]",
+                    "postUpgradeTasks": {
+                        "commands": [
+                            "ng update {{{depName}}} --from={{{fromVersion}}} --to={{{toVersion}}} --migrateOnly --allowDirty --force"
+                        ],
+                        "fileFilters": [
+                            "**/**"
+                        ]
+                    }
+                },
+                {
+                    "matchUpdateTypes": [
+                        "minor",
+                        "patch",
+                        "pin",
+                        "digest"
+                    ],
                     "packagePatterns": [
                         "^class-transformer$"
                     ],
-                    "groupName": "class-transformer"
+                    "groupName": "class-transformer [dependencies - minor/patch]"
                 },
                 {
+                    "matchUpdateTypes": [
+                        "major"
+                    ],
+                    "packagePatterns": [
+                        "^class-transformer$"
+                    ],
+                    "groupName": "class-transformer [dependencies - major]"
+                },
+                {
+                    "matchUpdateTypes": [
+                        "minor",
+                        "patch",
+                        "pin",
+                        "digest"
+                    ],
+                    "packagePatterns": [
+                        "^@nrwl/.*"
+                    ],
+                    "groupName": "Nx [dependencies - minor/patch]"
+                },
+                {
+                    "matchUpdateTypes": [
+                        "major"
+                    ],
+                    "packagePatterns": [
+                        "^@nrwl/.*"
+                    ],
+                    "groupName": "Nx [dependencies - major]"
+                },
+                {
+                    "matchUpdateTypes": [
+                        "minor",
+                        "patch",
+                        "pin",
+                        "digest"
+                    ],
+                    "packagePatterns": [
+                        "^@sentry/.*"
+                    ],
+                    "groupName": "Sentry [dependencies - minor/patch]"
+                },
+                {
+                    "matchUpdateTypes": [
+                        "major"
+                    ],
+                    "packagePatterns": [
+                        "^@sentry/.*"
+                    ],
+                    "groupName": "Sentry [dependencies - major]"
+                },
+                {
+                    "matchUpdateTypes": [
+                        "minor",
+                        "patch",
+                        "pin",
+                        "digest"
+                    ],
                     "packagePatterns": [
                         "^@ngxs/.*",
                         "^@ngxs-labs/.*"
                     ],
-                    "groupName": "NGXS"
+                    "groupName": "NGXS [dependencies - minor/patch]"
                 },
                 {
+                    "matchUpdateTypes": [
+                        "major"
+                    ],
+                    "packagePatterns": [
+                        "^@ngxs/.*",
+                        "^@ngxs-labs/.*"
+                    ],
+                    "groupName": "NGXS [dependencies - major]"
+                },
+                {
+                    "matchUpdateTypes": [
+                        "minor",
+                        "patch",
+                        "pin",
+                        "digest"
+                    ],
                     "packagePatterns": [
                         "^@types/eslint$",
                         "^@angular-eslint/.*",
-                        "^@angular-ru/eslint-.*",
+                        "^@angular-ru/eslint.*",
                         "^@typescript-eslint/.*",
                         "^eslint.*"
                     ],
-                    "groupName": "ESLint"
+                    "groupName": "ESLint [dependencies - minor/patch]"
                 },
                 {
+                    "matchUpdateTypes": [
+                        "major"
+                    ],
+                    "packagePatterns": [
+                        "^@types/eslint$",
+                        "^@angular-eslint/.*",
+                        "^@angular-ru/eslint.*",
+                        "^@typescript-eslint/.*",
+                        "^eslint.*"
+                    ],
+                    "groupName": "ESLint [dependencies - major]"
+                },
+                {
+                    "matchUpdateTypes": [
+                        "minor",
+                        "patch",
+                        "pin",
+                        "digest"
+                    ],
                     "packagePatterns": [
                         "^@types/jest$",
                         "^jest.*",
                         "^ts-jest$",
                         "^jest-preset-angular$"
                     ],
-                    "groupName": "Jest"
+                    "groupName": "Jest [dependencies - minor/patch]"
                 },
                 {
+                    "matchUpdateTypes": [
+                        "major"
+                    ],
+                    "packagePatterns": [
+                        "^@types/jest$",
+                        "^jest.*",
+                        "^ts-jest$",
+                        "^jest-preset-angular$"
+                    ],
+                    "groupName": "Jest [dependencies - major]"
+                },
+                {
+                    "matchUpdateTypes": [
+                        "minor",
+                        "patch",
+                        "pin",
+                        "digest"
+                    ],
                     "packagePatterns": [
                         "@types/karma.*",
                         "^karma.*"
                     ],
-                    "groupName": "Karma"
+                    "groupName": "Karma [dependencies - minor/patch]"
                 },
                 {
+                    "matchUpdateTypes": [
+                        "major"
+                    ],
+                    "packagePatterns": [
+                        "@types/karma.*",
+                        "^karma.*"
+                    ],
+                    "groupName": "Karma [dependencies - major]"
+                },
+                {
+                    "matchUpdateTypes": [
+                        "minor",
+                        "patch",
+                        "pin",
+                        "digest"
+                    ],
                     "packagePatterns": [
                         "@types/jasmine",
                         "@types/jasmine*",
                         "^jasmine.*"
                     ],
-                    "groupName": "Jasmine"
+                    "groupName": "Jasmine [dependencies - minor/patch]"
                 },
                 {
+                    "matchUpdateTypes": [
+                        "major"
+                    ],
+                    "packagePatterns": [
+                        "@types/jasmine",
+                        "@types/jasmine*",
+                        "^jasmine.*"
+                    ],
+                    "groupName": "Jasmine [dependencies - major]"
+                },
+                {
+                    "matchUpdateTypes": [
+                        "minor",
+                        "patch",
+                        "pin",
+                        "digest"
+                    ],
                     "packageNames": [
                         "^typescript$",
                         "^tslib$"
                     ],
-                    "groupName": "TypeScript"
+                    "groupName": "TypeScript [dependencies - minor/patch]"
+                },
+                {
+                    "matchUpdateTypes": [
+                        "major"
+                    ],
+                    "packageNames": [
+                        "^typescript$",
+                        "^tslib$"
+                    ],
+                    "groupName": "TypeScript [dependencies - major]"
+                },
+                {
+                    "matchDepTypes": [
+                        "dependencies",
+                        "devDependencies"
+                    ],
+                    "packagePatterns": [
+                        "*"
+                    ],
+                    "matchUpdateTypes": [
+                        "patch",
+                        "minor",
+                        "pin",
+                        "digest"
+                    ],
+                    "groupSlug": "all",
+                    "groupName": "all [dependencies - minor/patch]"
+                },
+                {
+                    "matchDepTypes": [
+                        "dependencies",
+                        "devDependencies"
+                    ],
+                    "packagePatterns": [
+                        "*"
+                    ],
+                    "matchUpdateTypes": [
+                        "major"
+                    ],
+                    "groupSlug": "all",
+                    "groupName": "all [dependencies - major]"
                 }
             ]
         }
