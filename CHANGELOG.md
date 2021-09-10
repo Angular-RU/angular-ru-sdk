@@ -1,5 +1,15 @@
 #### independent (2021-09-10)
 
+##### Build System / Dependencies
+
+-   update actions/setup-node action to v2 (#889) (6420f5f9)
+
+##### Bug Fixes
+
+-   **renovate:** remove all slug (#902) (fb714b52)
+
+#### independent (2021-09-10)
+
 ##### New Features
 
 -   **renovate:** add new rules (#895) (c8793c8e)
