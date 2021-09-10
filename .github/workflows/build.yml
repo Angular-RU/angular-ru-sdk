@@ -8,7 +8,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [16.x]
+                node-version: [14.x]
 
         steps:
             - uses: actions/checkout@v2
@@ -49,6 +49,9 @@ jobs:
                   yarn commitlint --from=HEAD~1
                   yarn format
                   yarn lint
+
+            - name: Run test step
+              run: yarn test
 
             - name: Run build integration apps
               run: yarn integration
