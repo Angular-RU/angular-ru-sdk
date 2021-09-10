@@ -51,7 +51,7 @@ jobs:
                   yarn lint
 
             - name: Run test step
-              run: yarn test
+              run: yarn lerna run test --no-bail
 
             - name: Run build integration apps
               run: yarn integration
