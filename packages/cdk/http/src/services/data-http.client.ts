@@ -30,7 +30,7 @@ export class DataHttpClient<K = unknown> extends AbstractHttpClient<K> {
         );
     }
 
-    protected request<T, R = T>(options: DataBeforeRequestOptions): Observable<R> {
+    public request<T, R = T>(options: DataBeforeRequestOptions): Observable<R> {
         if (isNil(this.local)) {
             throw new Error(`You must use the @RestClient('controller') decorator for work correctly`);
         }

@@ -20,7 +20,7 @@ export class FileSizePipe implements PipeTransform {
                 unit++;
             }
 
-            result = `${calculatedBytes.toFixed(+precision)} ${this.units[unit]}`;
+            result = `${calculatedBytes.toFixed(Number(precision))} ${this.units[unit]}`;
         }
         return result;
     }

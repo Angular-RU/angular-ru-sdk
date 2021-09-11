@@ -36,6 +36,10 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
 
     constructor(private readonly element: ElementRef, public readonly ngZone: NgZone) {}
 
+    public get destroy(): Subject<boolean> {
+        return this.destroy$;
+    }
+
     private get canCalculated(): boolean {
         return isTrue(this.autoHeight.inViewport) && this.autoHeight.sourceLength! > 0 && this.sourceRef.length > 0;
     }

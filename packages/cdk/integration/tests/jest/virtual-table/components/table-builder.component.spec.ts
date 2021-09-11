@@ -1,5 +1,6 @@
 import { Component, Injectable, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { deepClone } from '@angular-ru/cdk/object';
 import { Nullable, PlainObject, SortOrderType } from '@angular-ru/cdk/typings';
@@ -50,19 +51,6 @@ describe('[TEST] Table builder', (): void => {
     let componentFixture: ComponentFixture<NgxTableBuilderMockComponent>;
     let component: NgxTableBuilderMockComponent;
 
-    beforeAll((): void => {
-        TestBed.configureTestingModule({
-            imports: [TableBuilderModule]
-        }).compileComponents();
-        const someSortableService = TestBed.createComponent(TableBuilderComponent).componentInstance.sortable;
-        someSortableService.constructor.prototype.idleResolve = jest.fn(function idleResolve<T>(
-            resolve: (value: T[]) => void,
-            sorted: T[]
-        ): void {
-            resolve(sorted);
-        });
-    });
-
     beforeEach((): void => {
         TestBed.configureTestingModule({
             declarations: [NgxTableBuilderMockComponent],
@@ -71,9 +59,18 @@ describe('[TEST] Table builder', (): void => {
                 {
                     provide: WebWorkerThreadService,
                     useClass: MockWebWorkerThreadService
-                }
+                },
+                { provide: MATERIAL_SANITY_CHECKS, useValue: false }
             ]
         }).compileComponents();
+
+        const someSortableService = TestBed.createComponent(TableBuilderComponent).componentInstance.sortable;
+        someSortableService.constructor.prototype.idleResolve = jest.fn(function idleResolve<T>(
+            resolve: (value: T[]) => void,
+            sorted: T[]
+        ): void {
+            resolve(sorted);
+        });
     });
 
     afterAll((): void => {

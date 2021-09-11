@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { By } from '@angular/platform-browser';
 import { InputFilterModule } from '@angular-ru/cdk/directives';
@@ -17,15 +18,19 @@ describe('[TEST]: inputFilter Config', () => {
         changeDetection: ChangeDetectionStrategy.OnPush
     })
     class TestComponent {
+        public filterValue: string = '';
         constructor(public readonly cd: ChangeDetectorRef) {}
     }
 
-    it('should filter input with root config', () => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [ReactiveFormsModule, MatInputModule, InputFilterModule.forRoot({ default: /[0-9]+/ })],
+            providers: [{ provide: MATERIAL_SANITY_CHECKS, useValue: false }],
             declarations: [TestComponent]
         }).compileComponents();
+    });
 
+    it('should filter input with root config', () => {
         fixture = TestBed.createComponent(TestComponent);
         component = fixture.componentInstance;
         fixture.autoDetectChanges();
@@ -37,11 +42,6 @@ describe('[TEST]: inputFilter Config', () => {
     });
 
     it('should filter input with child config', () => {
-        TestBed.configureTestingModule({
-            imports: [ReactiveFormsModule, MatInputModule, InputFilterModule.forChild({ default: /[0-9]+/ })],
-            declarations: [TestComponent]
-        }).compileComponents();
-
         fixture = TestBed.createComponent(TestComponent);
         component = fixture.componentInstance;
         fixture.autoDetectChanges();

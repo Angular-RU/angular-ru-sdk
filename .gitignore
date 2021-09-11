@@ -2,11 +2,14 @@
 *.iml
 *.log
 .idea
-**/lib/**
 **/dist/**
 **/out/**
 **/.cache**/
 **/node_modules**/
 
+# for ts lint testing
+**/file-suites/**/*.ts
+
 .DS_Store
 .DS_Store?
+

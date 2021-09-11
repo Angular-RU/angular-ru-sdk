@@ -1,8 +1,8 @@
 import { asyncExec } from './utils/async-exec';
-import { log } from './utils/log';
+import { info } from './utils/info';
 
 void (async function main(): Promise<void> {
-    log(`[RELEASE]`);
+    info(`RELEASE`);
     await asyncExec(`yarn generate-changelog`);
     await asyncExec(`git add .`);
     await asyncExec(`git update-index --again`);

@@ -358,3 +358,31 @@ const val: boolean | number | undefined | unknown = undefined as unknown;
 if (val) {
     console.error('hello');
 }
+
+class Xp {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+    private priv_prop: number = 123;
+}
+
+const xp: Xp = new Xp();
+xp['priv_prop'] = 123;
+
+const foods: string = 'apple.orange.com';
+
+const xb1: boolean = !!foods;
+console.error(xb1);
+
+const xb2: number = ~foods.indexOf('.');
+console.error(xb2);
+
+let fooX: number = 0;
+// eslint-disable-next-line @typescript-eslint/no-magic-numbers
+for (let i: number = 0; i < 10; ++i) {
+    // Bad, `foo` is not in the loop-block's scope and `foo` is modified in/after the loop
+    setTimeout((): void => {
+        console.error(fooX);
+    });
+    fooX += 1;
+}

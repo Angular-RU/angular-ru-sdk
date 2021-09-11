@@ -17,32 +17,30 @@ describe('[TEST]: requiredSomeValueByKeysValidator', () => {
     it('should return error if control is not part of FormGroup', () => {
         const control: AbstractControl = new FormControl();
         const validator: ValidatorFn = requiredSomeValueByKeysValidator(['aaa', 'bbb', 'ccc']);
-        expect(() =>
-            validator(control)?.toThrow(new Error('requiredSomeValueByKeysValidator must be used on form group'))
-        );
+        expect(() => validator(control))?.toThrow(new Error('requiredSomeValueByKeys must be used on form group'));
     });
 
     it('should return error if all controls with no values: undefined, null, NaN', () => {
-        form.controls['aaa']?.setValue(undefined);
-        form.controls['bbb']?.setValue(null);
-        form.controls['ccc']?.setValue(NaN);
+        form.controls.aaa?.setValue(undefined);
+        form.controls.bbb?.setValue(null);
+        form.controls.ccc?.setValue(NaN);
         expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
     });
 
     it('should return error if all controls with no values: "", "null", Infinity', () => {
-        form.controls['aaa']?.setValue('');
-        form.controls['bbb']?.setValue(null);
-        form.controls['ccc']?.setValue(Infinity);
+        form.controls.aaa?.setValue('');
+        form.controls.bbb?.setValue(null);
+        form.controls.ccc?.setValue(Infinity);
         expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
     });
 
     it('should return error if all controls with no values: []', () => {
-        form.controls['aaa']?.setValue([]);
+        form.controls.aaa?.setValue([]);
         expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
     });
 
     it('should return error if all controls with no values: []', () => {
-        form.controls['aaa']?.setValue([]);
+        form.controls.aaa?.setValue([]);
         expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
     });
 
@@ -51,24 +49,24 @@ describe('[TEST]: requiredSomeValueByKeysValidator', () => {
     });
 
     it('should be valid if there is only one value with type number', () => {
-        form.controls['aaa']?.setValue(13);
+        form.controls.aaa?.setValue(13);
         expect(form.valid).toEqual(true);
     });
 
     it('should be valid if there is only one value with type string', () => {
-        form.controls['bbb']?.setValue('awesome');
+        form.controls.bbb?.setValue('awesome');
         expect(form.valid).toEqual(true);
     });
 
     it('should be valid if there is only one value with type Object', () => {
-        form.controls['ccc']?.setValue({});
+        form.controls.ccc?.setValue({});
         expect(form.valid).toEqual(true);
     });
 
     it('should be valid if there is more than one value', () => {
-        form.controls['aaa']?.setValue(13);
-        form.controls['bbb']?.setValue('awesome');
-        form.controls['ccc']?.setValue({});
+        form.controls.aaa?.setValue(13);
+        form.controls.bbb?.setValue('awesome');
+        form.controls.ccc?.setValue({});
         expect(form.valid).toEqual(true);
     });
 

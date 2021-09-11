@@ -3,10 +3,16 @@ import { ChildProcess, exec, ExecException } from 'child_process';
 type Resolve = (value: string) => void;
 type Reject = (value: unknown) => void;
 
-export function asyncExec(command: string): Promise<string> {
+export interface AsyncExecOptions {
+    shareStd: boolean;
+}
+
+export function asyncExec(command: string | string[], options: AsyncExecOptions = { shareStd: true }): Promise<string> {
+    const preparedCmd: string = Array.isArray(command) ? command.join(' && ') : command;
+
     return new Promise((resolve: Resolve, reject: Reject): void => {
         const childProcess: ChildProcess = exec(
-            command,
+            preparedCmd,
             (error: ExecException | null, stdout: string, stderr: string): void => {
                 if (error) {
                     reject(stderr);
@@ -17,7 +23,9 @@ export function asyncExec(command: string): Promise<string> {
             }
         );
 
-        childProcess.stdout?.pipe(process.stdout);
-        childProcess.stderr?.pipe(process.stderr);
+        if (options.shareStd) {
+            childProcess.stdout?.pipe(process.stdout);
+            childProcess.stderr?.pipe(process.stderr);
+        }
     });
 }

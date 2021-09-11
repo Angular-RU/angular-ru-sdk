@@ -1,14 +1,14 @@
 import { asyncExec } from './utils/async-exec';
-import { log } from './utils/log';
+import { info } from './utils/info';
 import { noThrow } from './utils/no-throw';
 
 void (async function main(): Promise<void> {
-    log(`[CLEAN]`);
+    info(`CLEAN OLD BUILDS/CACHE`);
 
     const commands: string[] = [
-        `rm -rf .cache`,
-        `rm -rf packages/**/dist packages/**/lib packages/**/.cache packages/**/node_modules`,
-        `rm -rf dev-infra/**/dist dev-infra/**/lib dev-infra/**/.cache dev-infra/**/node_modules`
+        `rm -rf node_modules/.cache`,
+        `rm -rf packages/**/dist packages/**/.cache packages/**/node_modules/.cache`,
+        `rm -rf dev-infra/**/dist dev-infra/**/.cache packages/**/dev-infra/.cache`
     ];
 
     for (const command of commands) {

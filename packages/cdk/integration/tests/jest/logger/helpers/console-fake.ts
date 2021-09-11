@@ -70,7 +70,7 @@ export class ConsoleFake implements Console {
 
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     public stack(withoutLabel: number = 2): string {
-        const history: PlainObject = [...this._stack];
+        const history: PlainObject[] = [...this._stack];
         history.forEach((line: PlainObject, index: number): void => {
             for (const arg in line) {
                 if (line.hasOwnProperty(arg)) {
@@ -83,11 +83,11 @@ export class ConsoleFake implements Console {
         return JSON.stringify(history);
     }
 
-    public stackList(stack: string): string[] {
-        const stackObject: PlainObject = JSON.parse(stack);
-        const stackList: string[] = [];
+    public stackList(stack: string): PlainObject[] {
+        const stackObject: PlainObject[] = JSON.parse(stack);
+        const stackList: PlainObject[] = [];
 
-        stackObject.forEach((line: string[]): void => {
+        stackObject.forEach((line: PlainObject): void => {
             for (const levelLog in line) {
                 if (line.hasOwnProperty(levelLog)) {
                     stackList.push(line[levelLog]!);
@@ -99,10 +99,10 @@ export class ConsoleFake implements Console {
     }
 
     public stackOptionsList(usageNext: boolean = false): PlainObject {
-        const stackList: string[] = this.stackList(this.stack(0));
-        const stackOptionsList: PlainObject = [];
+        const stackList: PlainObject[] = this.stackList(this.stack(0));
+        const stackOptionsList: PlainObject[] = [];
 
-        stackList.forEach((line: string): void => {
+        stackList.forEach((line: PlainObject): void => {
             stackOptionsList.push({
                 label: String(line[0]).replace('%c', ''),
                 // eslint-disable-next-line @typescript-eslint/no-magic-numbers

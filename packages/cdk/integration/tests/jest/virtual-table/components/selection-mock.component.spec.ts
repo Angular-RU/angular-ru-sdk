@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { PlainObject } from '@angular-ru/cdk/typings';
 import { TableBuilderComponent, TableBuilderModule } from '@angular-ru/cdk/virtual-table';
@@ -26,8 +27,15 @@ describe('[TEST] Table builder', (): void => {
     let componentFixture: ComponentFixture<SelectionMockComponent>;
     let component: SelectionMockComponent;
 
-    beforeAll((): void => {
-        TestBed.configureTestingModule({ imports: [TableBuilderModule] }).compileComponents();
+    beforeEach((): void => {
+        TestBed.configureTestingModule({
+            declarations: [SelectionMockComponent],
+            imports: [TableBuilderModule, NoopAnimationsModule],
+            providers: [
+                { provide: WebWorkerThreadService, useClass: MockWebWorkerService },
+                { provide: MATERIAL_SANITY_CHECKS, useValue: false }
+            ]
+        }).compileComponents();
 
         const someSortableService = TestBed.createComponent(TableBuilderComponent).componentInstance.sortable;
         someSortableService.constructor.prototype.idleResolve = jest.fn(function idleResolve<T>(
@@ -36,14 +44,6 @@ describe('[TEST] Table builder', (): void => {
         ): void {
             resolve(sorted);
         });
-    });
-
-    beforeEach((): void => {
-        TestBed.configureTestingModule({
-            declarations: [SelectionMockComponent],
-            imports: [TableBuilderModule, NoopAnimationsModule],
-            providers: [{ provide: WebWorkerThreadService, useClass: MockWebWorkerService }]
-        }).compileComponents();
     });
 
     beforeEach((): void => {
