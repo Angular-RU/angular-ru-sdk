@@ -1,5 +1,6 @@
-// eslint-disable-next-line
-export const environment: any = {
+import { NgEnvironment } from '@angular-ru/cdk/typings';
+
+export const environment: NgEnvironment = {
     production: false,
     useConfig: true
 };

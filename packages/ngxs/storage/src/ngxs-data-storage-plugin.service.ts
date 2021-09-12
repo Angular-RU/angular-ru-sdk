@@ -49,7 +49,7 @@ export class NgxsDataStoragePlugin implements NgxsPlugin, DataStoragePlugin {
     private static eventsSubscriptions: Subscription | null = null;
     private static ttlListeners: WeakMap<PersistenceProvider, TtlListenerOptions> = new WeakMap();
 
-    constructor(@Inject(PLATFORM_ID) private readonly _platformId: string, @Self() injector: Injector) {
+    constructor(@Inject(PLATFORM_ID) public readonly platformId: string, @Self() injector: Injector) {
         NgxsDataStoragePlugin.injector = injector;
         STORAGE_INIT_EVENT.events$.next();
         this.listenWindowEvents();
@@ -97,7 +97,7 @@ export class NgxsDataStoragePlugin implements NgxsPlugin, DataStoragePlugin {
     }
 
     private get skipStorageInterceptions(): boolean {
-        return this.size === 0 || isPlatformServer(this._platformId);
+        return this.size === 0 || isPlatformServer(this.platformId);
     }
 
     private static checkIsStorageEvent<T>(
@@ -283,7 +283,7 @@ export class NgxsDataStoragePlugin implements NgxsPlugin, DataStoragePlugin {
     }
 
     private listenWindowEvents(): void {
-        if (isPlatformServer(this._platformId)) {
+        if (isPlatformServer(this.platformId)) {
             return;
         }
 

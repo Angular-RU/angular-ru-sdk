@@ -58,6 +58,12 @@ export abstract class AbstractHttpClient<K = unknown> {
         return this.request<T, R>(this.createRequestOptions({ method: RequestType.DELETE, path, options }));
     }
 
+    public createRequestOptions({ method, path, options }: ReqProperty): DataBeforeRequestOptions {
+        return { path, method, clientOptions: this.configurator.mergeGlobalOptionsWith(this.local, options ?? {}) };
+    }
+
+    public abstract request<T = Any, R = T>(options: DataBeforeRequestOptions): Observable<R>;
+
     protected createDataHttpRequestOptions<T>(options: DataBeforeRequestOptions): DataHttpRequestOptions {
         const httpParams: HttpParams = getHttpParams(options.path, options.clientOptions.queryParams);
         const headers: HttpHeaders = getHttpHeader(options.clientOptions.headers);
@@ -70,12 +76,6 @@ export abstract class AbstractHttpClient<K = unknown> {
             params: this.interceptor.onInterceptHttpParams?.(options, httpParams) ?? httpParams
         };
     }
-
-    protected createRequestOptions({ method, path, options }: ReqProperty): DataBeforeRequestOptions {
-        return { path, method, clientOptions: this.configurator.mergeGlobalOptionsWith(this.local, options ?? {}) };
-    }
-
-    protected abstract request<T = Any, R = T>(options: DataBeforeRequestOptions): Observable<R>;
 
     private createHttpBody<T>(options: DataBeforeRequestOptions): T | FormData {
         const payload: T = options.clientOptions.body as T;

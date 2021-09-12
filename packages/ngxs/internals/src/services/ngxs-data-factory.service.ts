@@ -57,7 +57,7 @@ export class NgxsDataFactory {
     }
 
     public static getStateClassByInstance(target: DataStateClass | Any): DataStateClass {
-        return (target ?? {})['constructor'];
+        return (target ?? {}).constructor;
     }
 
     public static clearMetaByInstance(target: DataStateClass | Any): void {

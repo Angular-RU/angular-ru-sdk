@@ -29,5 +29,5 @@ export function toNumber(value: Nullable<number | string>, locale: string = 'ru-
 
     prepared = prepared?.trim().replace(group, '').replace(decimal, '.').replace(numeral, indexes);
 
-    return checkValueIsFilled(prepared) ? +prepared : NaN;
+    return checkValueIsFilled(prepared) ? Number(prepared) : NaN;
 }

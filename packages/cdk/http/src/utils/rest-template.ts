@@ -84,8 +84,7 @@ export class RestTemplate<T> {
         return fakeProxy as Observable<T>;
     }
 
-    // noinspection JSUnusedGlobalSymbols
-    protected asObservable(): Observable<T> {
+    public asObservable(): Observable<T> {
         this.markAsRequest = true;
 
         if (isNil(this._client)) {
@@ -94,13 +93,13 @@ export class RestTemplate<T> {
             throw new Error(`Method ${this.methodType} not supported`);
         }
 
-        const options: DataBeforeRequestOptions = this._client['createRequestOptions']({
+        const options: DataBeforeRequestOptions = this._client.createRequestOptions({
             path: this.path,
             method: this.methodType,
             options: this.options
         });
 
-        let stream: Observable<T> = this._client['request'](options);
+        let stream: Observable<T> = this._client.request(options);
 
         if (this.operators.length) {
             this.operators.forEach((operator: OperatorFunction<T, Any>): void => {

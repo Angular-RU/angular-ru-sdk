@@ -8,7 +8,7 @@ export function HostUrl(hostUrl: string = ''): (clientClass: ClassType) => void 
     return (clientClass: ClassType): void => {
         validateHttpParentDecorator('@HostUrl', clientClass);
 
-        const localRef: Partial<DataClientRequestOptions> = clientClass.prototype?.['local'];
+        const localRef: Partial<DataClientRequestOptions> = clientClass.prototype?.local;
 
         if (isNotNil(localRef)) {
             localRef.hostUrl = hostUrl;

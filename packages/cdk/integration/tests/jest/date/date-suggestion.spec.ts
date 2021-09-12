@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup } from '@angular/forms';
-import { DateAdapter, NativeDateModule } from '@angular/material/core';
+import { DateAdapter, MATERIAL_SANITY_CHECKS, NativeDateModule } from '@angular/material/core';
 import {
     DateSuggestionComposer,
     DateSuggestionModule,
@@ -30,7 +30,8 @@ describe('[TEST]: Trim Input', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [DateSuggestionModule.forRoot(), NativeDateModule]
+            imports: [DateSuggestionModule.forRoot(), NativeDateModule],
+            providers: [{ provide: MATERIAL_SANITY_CHECKS, useValue: false }]
         }).compileComponents();
 
         composer = TestBed.inject(DateSuggestionComposer);

@@ -442,7 +442,7 @@ describe('[TEST]: Object', () => {
         }
 
         // @ts-ignore
-        Person.prototype['age'] = 25;
+        Person.prototype.age = 25;
         const willem: Person = new Person('Willem', 'Groningen');
 
         expect(pathsOfObject(willem)).toEqual(['name', 'city']);

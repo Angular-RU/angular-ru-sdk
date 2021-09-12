@@ -7,9 +7,9 @@
     "repository": "git+https://github.com/Angular-RU/angular-ru-sdk.git",
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
-    "main": "lib/index.js",
+    "main": "dist/index.js",
     "files": [
-        "lib"
+        "dist"
     ],
     "scripts": {
         "build:lib": "tsc -p tsconfig.lib.json",

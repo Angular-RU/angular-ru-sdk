@@ -17,8 +17,8 @@ export class ResizableService {
     private static clearSelection(): void {
         if (isNotNil(window.getSelection)) {
             window.getSelection()?.removeAllRanges();
-        } else if (isNotNil((document as Any)['selection'])) {
-            (document as Any)['selection']?.empty();
+        } else if (isNotNil((document as Any).selection)) {
+            (document as Any).selection?.empty();
         }
     }
 

@@ -510,7 +510,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
             ? keys.filter(
                   (key: string): boolean =>
                       !this.excludeKeys.some((excludeKey: ExcludePattern<T>): boolean =>
-                          excludeKey instanceof RegExp ? !!key.match(excludeKey) : key === excludeKey
+                          excludeKey instanceof RegExp ? Boolean(key.match(excludeKey)) : key === excludeKey
                       )
               )
             : keys;

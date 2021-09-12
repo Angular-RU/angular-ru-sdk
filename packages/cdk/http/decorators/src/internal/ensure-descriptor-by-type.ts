@@ -57,7 +57,7 @@ export function ensureDescriptorByType<T>({
             throw new Error('You must return observable from your method');
         }
 
-        return template?.['asObservable']?.();
+        return template?.asObservable?.();
     };
 
     return descriptor;

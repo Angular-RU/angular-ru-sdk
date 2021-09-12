@@ -9,7 +9,7 @@ export function BaseUrl(baseUrl: string = ''): (clientClass: ClassType) => void 
     return (clientClass: ClassType): void => {
         validateHttpParentDecorator('@BaseUrl', clientClass);
 
-        const localRef: Partial<DataClientRequestOptions> = clientClass.prototype?.['local'];
+        const localRef: Partial<DataClientRequestOptions> = clientClass.prototype?.local;
 
         if (isNotNil(localRef)) {
             localRef.baseUrl = replaceDoubleSlash(baseUrl);

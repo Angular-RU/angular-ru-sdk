@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AbstractControl, FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { By } from '@angular/platform-browser';
 import { InputFilterModule } from '@angular-ru/cdk/directives';
@@ -32,6 +33,7 @@ describe('[TEST]: inputFilter Dynamic', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [ReactiveFormsModule, MatInputModule, InputFilterModule],
+            providers: [{ provide: MATERIAL_SANITY_CHECKS, useValue: false }],
             declarations: [DynamicTestComponent]
         }).compileComponents();
     });

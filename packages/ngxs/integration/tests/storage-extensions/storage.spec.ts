@@ -60,7 +60,7 @@ describe('[TEST]: Storage plugin', () => {
 
             // noinspection SuspiciousTypeOfGuard
             expect(plugin instanceof NgxsDataStoragePlugin).toEqual(true);
-            expect(plugin['_platformId']).toEqual('browser');
+            expect(plugin.platformId).toEqual('browser');
             expect(plugin.store === store).toEqual(true);
         });
 

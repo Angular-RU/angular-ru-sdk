@@ -34,7 +34,7 @@ describe('[TEST]: Amount format directive', () => {
                 value: null,
                 reset(value?: string | number): void {
                     // @ts-ignore
-                    control['value'] = ngModelValue = value;
+                    control.value = ngModelValue = value;
                 }
             };
 

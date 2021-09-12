@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Nullable } from 'dist/library/typings';
+import { Nullable } from '@angular-ru/cdk/typings';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AnyType = any;
@@ -21,7 +21,7 @@ export class DialogTemplateComponent implements OnInit {
     ) {}
 
     public ngOnInit(): void {
-        this.form = this.fb.group({ ...this.data, id: new FormControl({ value: this.data['id'], disabled: true }) });
+        this.form = this.fb.group({ ...this.data, id: new FormControl({ value: this.data.id, disabled: true }) });
     }
 
     public save(): void {

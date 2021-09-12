@@ -85,6 +85,7 @@ export class SortableService<T> {
             if (existKey === SortOrderType.ASC) {
                 definition[key] = SortOrderType.DESC;
             } else {
+                // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
                 delete definition[key];
             }
         } else {

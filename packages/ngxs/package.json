@@ -13,7 +13,7 @@
         "symlink": "sh symlink.sh",
         "start": "yarn ng serve ngxs-app --open",
         "test": "yarn jest --config integration/tests/jest.config.js",
-        "postversion": "yarn npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\""
+        "postversion": "yarn npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\" || exit 0"
     },
     "publishConfig": {
         "access": "public",

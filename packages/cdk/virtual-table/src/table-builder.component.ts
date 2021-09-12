@@ -114,6 +114,10 @@ export class TableBuilderComponent<T>
         this.viewChanges = injector.get<NgxTableViewChangesService>(NgxTableViewChangesService);
     }
 
+    public get destroy(): Subject<boolean> {
+        return this.destroy$;
+    }
+
     public get selectedKeyList(): RowId[] {
         return this.selection.selectionModel.selectedList;
     }
@@ -227,7 +231,7 @@ export class TableBuilderComponent<T>
     }
 
     public markVisibleColumn(column: HTMLDivElement, visible: boolean): void {
-        (column as Any)['visible'] = visible;
+        (column as Any).visible = visible;
         this.idleDetectChanges();
     }
 
@@ -253,8 +257,10 @@ export class TableBuilderComponent<T>
 
     public cdkDragMoved(event: CdkDragStart, root: HTMLElement): void {
         this.isDragMoving = true;
+        // eslint-disable-next-line @typescript-eslint/dot-notation
         const preview: HTMLElement = event.source._dragRef['_preview'];
         const top: number = root.getBoundingClientRect().top;
+        // eslint-disable-next-line @typescript-eslint/dot-notation
         const transform: string = event.source._dragRef['_preview'].style.transform ?? '';
         const [x, , z]: [number, number, number] = transform
             .replace(/translate3d|\(|\)|px/g, '')

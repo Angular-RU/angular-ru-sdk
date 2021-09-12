@@ -6,7 +6,7 @@ const gaussPointer: number = 2;
 
 export function gaussRound(num: number, decimalPlaces: number = 0): number {
     const mantisa: number = Math.pow(mantisaDigits, decimalPlaces);
-    const numberValue: number = +(decimalPlaces ? num * mantisa : num).toFixed(fractionDigits);
+    const numberValue: number = Number((decimalPlaces ? num * mantisa : num).toFixed(fractionDigits));
     const integerValue: number = Math.floor(numberValue);
     const decimalPointValue: number = numberValue - integerValue;
     const gaussPointCondition: boolean = decimalPointValue > bias - epsilon && decimalPointValue < bias + epsilon;

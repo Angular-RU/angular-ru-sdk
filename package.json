@@ -13,8 +13,9 @@
         "dev-infra/*"
     ],
     "scripts": {
-        "postinstall": "ngcc --async && husky install && yarn build",
+        "postinstall": "yarn ts-node .scripts/postinstall.ts",
         "clean": "yarn ts-node .scripts/clean.ts",
+        "verify:ng": "yarn ts-node .scripts/verify-ng-major.ts",
         "build": "yarn ts-node .scripts/build.ts",
         "symlink": "yarn ts-node .scripts/symlink.ts",
         "integration": "yarn ts-node .scripts/integration.ts",

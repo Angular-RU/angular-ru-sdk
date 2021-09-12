@@ -1,11 +1,11 @@
 import { asyncExec } from './utils/async-exec';
 import { errorHandler } from './utils/error-handler';
 import { getPackages } from './utils/get-packages';
-import { log } from './utils/log';
+import { info } from './utils/info';
 
 void (async function main(): Promise<void> {
     for (const packagePath of getPackages()) {
-        log(`[TEST]: ${packagePath}`);
+        info(`TEST: ${packagePath}`);
         await asyncExec(`cd ${packagePath} && yarn test`).catch(errorHandler);
     }
 })();

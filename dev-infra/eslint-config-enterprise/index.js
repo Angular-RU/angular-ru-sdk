@@ -178,6 +178,8 @@ module.exports = {
                 ],
                 'prefer-const': 'error',
                 'prefer-object-spread': 'error',
+                'no-implicit-coercion': 'error',
+                'no-loop-func': 'error',
                 'quote-props': ['error', 'as-needed'],
                 quotes: 'off',
                 radix: 'off',
@@ -236,6 +238,8 @@ module.exports = {
                 /**
                  * @typescript-eslint
                  */
+                '@typescript-eslint/no-dynamic-delete': 'error',
+                '@typescript-eslint/dot-notation': 'error',
                 '@typescript-eslint/strict-boolean-expressions': 'error',
                 '@typescript-eslint/no-invalid-this': ['error'],
                 '@typescript-eslint/no-dupe-class-members': ['error'],

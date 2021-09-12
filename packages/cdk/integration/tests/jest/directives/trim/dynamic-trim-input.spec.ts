@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserModule, By } from '@angular/platform-browser';
 import { TrimInputModule } from '@angular-ru/cdk/directives';
@@ -38,6 +39,7 @@ describe('[TEST]: Trim Input', () => {
                 TrimInputModule,
                 NgxMaskModule.forRoot()
             ],
+            providers: [{ provide: MATERIAL_SANITY_CHECKS, useValue: false }],
             declarations: [DynamicTestComponent]
         }).compileComponents();
     });
