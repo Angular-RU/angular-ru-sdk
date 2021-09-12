@@ -23,12 +23,12 @@ describe('[TEST]: Check style', () => {
             ]
         });
 
-        logger = TestBed.get(LoggerService);
+        logger = TestBed.inject(LoggerService);
     });
 
     beforeEach(() => logger.clear());
 
-    it(`Set style another console line `, () => {
+    it(`set style another console line`, () => {
         logger.level = LoggerLevel.ALL;
 
         logger.css('color: red; text-decoration: underline; font-weight: bold').info(`It's awesome`);
@@ -43,7 +43,7 @@ describe('[TEST]: Check style', () => {
         );
     });
 
-    it('Add css class', () => {
+    it('add css class', () => {
         logger.cssClass('class-1 class-3').log('Hello world');
 
         expect(fakeConsole.stack()).toEqual(
@@ -60,7 +60,7 @@ describe('[TEST]: Check style', () => {
         );
     });
 
-    it('Clear line style', () => {
+    it('clear line style', () => {
         // with style
         logger.css('font-weight: bold');
         expect(logger.getCurrentLineStyle()).toEqual('font-weight: bold;');
@@ -71,7 +71,7 @@ describe('[TEST]: Check style', () => {
         expect(logger.getCurrentLineStyle()).toEqual('');
     });
 
-    it('Get current line style', () => {
+    it('get current line style', () => {
         logger.css('text-transform: uppercase, font-weight: bold, font-size: 12px, margin: 10px, padding: 10px');
 
         expect(logger.getCurrentLineStyle()).toEqual(
@@ -101,7 +101,7 @@ describe('[TEST]: Check global styles', () => {
             ]
         });
 
-        logger = TestBed.get(LoggerService);
+        logger = TestBed.inject(LoggerService);
     });
 
     beforeEach(() => logger.clear());

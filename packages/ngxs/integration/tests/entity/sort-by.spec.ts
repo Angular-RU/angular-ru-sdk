@@ -6,7 +6,7 @@ import { NgxsDataEntityCollectionsRepository } from '@angular-ru/ngxs/repositori
 import { ngxsTestingPlatform } from '@angular-ru/ngxs/testing';
 import { State } from '@ngxs/store';
 
-describe('Sort by entities', () => {
+describe('sort by entities', () => {
     let spy: jest.MockInstance<Any, Any>;
 
     interface People {

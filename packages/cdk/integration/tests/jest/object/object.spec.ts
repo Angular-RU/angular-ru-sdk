@@ -57,7 +57,7 @@ describe('[TEST]: Object', () => {
     it('should correct return first key', () => {
         expect(firstKey({ a: 1 })).toEqual('a');
         expect(firstKey({ b: 2, a: 1, c: 3 })).toEqual('b');
-        expect(firstKey(null)).toEqual(null);
+        expect(firstKey(null)).toBeNull();
     });
 
     describe('detect object', () => {
@@ -269,10 +269,10 @@ describe('[TEST]: Object', () => {
 
         it('copy null/NaN/undefined/0/Infinity', () => {
             expect(deepClone(0)).toEqual(0);
-            expect(deepClone(NaN)).toEqual(null);
-            expect(deepClone(Infinity)).toEqual(null);
-            expect(deepClone(null)).toEqual(null);
-            expect(deepClone(undefined)).toEqual(undefined);
+            expect(deepClone(NaN)).toBeNull();
+            expect(deepClone(Infinity)).toBeNull();
+            expect(deepClone(null)).toBeNull();
+            expect(deepClone(undefined)).toBeUndefined();
         });
 
         it('should be correct clone object', () => {
@@ -369,15 +369,15 @@ describe('[TEST]: Object', () => {
     it('getValueByPath', () => {
         const obj: PlainObject = { a: 1, f: [{ a: 2 }, { a: 3 }], g: { a: 4 } };
 
-        expect(getValueByPath(null, '')).toEqual(null);
+        expect(getValueByPath(null, '')).toBeNull();
         expect(getValueByPath({ a: 2 }, '')).toEqual({ a: 2 });
-        expect(getValueByPath(null, 'ge')).toEqual(undefined);
-        expect(getValueByPath(undefined, 'ge')).toEqual(undefined);
-        expect(getValueByPath(obj, 'ge')).toEqual(undefined);
+        expect(getValueByPath(null, 'ge')).toBeUndefined();
+        expect(getValueByPath(undefined, 'ge')).toBeUndefined();
+        expect(getValueByPath(obj, 'ge')).toBeUndefined();
         expect(getValueByPath(obj, 'g.a')).toEqual(4);
         expect(getValueByPath(obj, 'f.0')).toEqual({ a: 2 });
         expect(getValueByPath(obj, 'f.0.a')).toEqual(2);
-        expect(getValueByPath(obj, 'abc')).toEqual(undefined);
+        expect(getValueByPath(obj, 'abc')).toBeUndefined();
         expect(getValueByPath(obj, 'f.0.a.Z', [])).toEqual([]);
     });
 

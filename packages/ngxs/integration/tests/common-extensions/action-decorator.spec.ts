@@ -170,7 +170,7 @@ describe('[TEST]: Action decorator', () => {
         });
     });
 
-    describe('Complex inheritance', () => {
+    describe('complex inheritance', () => {
         @StateRepository()
         @State({ name: 'a', defaults: 'a' })
         @Injectable()

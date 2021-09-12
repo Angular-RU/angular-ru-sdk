@@ -102,7 +102,7 @@ describe('[TEST]: Trim Input', () => {
     });
 
     it.each(mockFirstWeekdays)(
-        'Set calendar week as interval (first day of week is %s)',
+        'set calendar week as interval (first day of week is %s)',
         function ({ firstDayOfWeekNumber, firstDayOfWeek }) {
             const dateAdapter: DateAdapter<unknown> = TestBed.inject(DateAdapter);
             // mocking locale day of week

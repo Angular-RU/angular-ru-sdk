@@ -43,14 +43,14 @@ describe('[TEST]: Check work in groups', () => {
             ]
         });
 
-        logger = TestBed.get(LoggerService);
+        logger = TestBed.inject(LoggerService);
     });
 
     beforeEach(() => {
         logger.clear();
     });
 
-    it(`Show classic group`, () => {
+    it(`show classic group`, () => {
         logger.group('group label', ({ trace }: LoggerService): void => {
             trace(traceIsWork, 1, { a: 1 });
         });
@@ -64,7 +64,7 @@ describe('[TEST]: Check work in groups', () => {
         );
     });
 
-    it(`Pipe group`, () => {
+    it(`pipe group`, () => {
         logger
             .group('group name')
             .pipe(({ trace }: LoggerService) => trace(traceIsWork))
@@ -87,7 +87,7 @@ describe('[TEST]: Check work in groups', () => {
         );
     });
 
-    it(`Pipe group-collapsed`, () => {
+    it(`pipe group-collapsed`, () => {
         logger
             .groupCollapsed('group collapsed name')
             .pipe(({ trace }: LoggerService) => trace(traceIsWork))
@@ -110,7 +110,7 @@ describe('[TEST]: Check work in groups', () => {
         );
     });
 
-    it(`Pipe groups (with collapsed)`, () => {
+    it(`pipe groups (with collapsed)`, () => {
         logger
             .groupCollapsed('group A')
             .pipe(({ trace }: LoggerService) => trace(traceIsWork))
@@ -131,7 +131,7 @@ describe('[TEST]: Check work in groups', () => {
         );
     });
 
-    it(`Great groups with group`, () => {
+    it(`great groups with group`, () => {
         logger
             .group('A')
             .pipe(
@@ -186,7 +186,7 @@ describe('[TEST]: Check work in groups', () => {
         );
     });
 
-    it(`Level pretty groups`, () => {
+    it(`level pretty groups`, () => {
         logger.level = LoggerLevel.ALL;
 
         logger.trace.group('A opened', ({ trace }: LoggerService) => trace(traceGroupIsWork));
@@ -240,7 +240,7 @@ describe('[TEST]: Check work in groups', () => {
         );
     });
 
-    it(`Level groups with pretty pipes`, () => {
+    it(`level groups with pretty pipes`, () => {
         logger.level = LoggerLevel.INFO;
 
         logger.trace
@@ -322,14 +322,18 @@ describe('[TEST]: ConsoleService based', () => {
             ]
         });
 
-        logger = TestBed.get(LoggerService);
+        logger = TestBed.inject(LoggerService);
     });
 
     it(`should be throw logger`, () => {
+        let message: string | null = null;
+
         try {
             logger.info.group('hello world');
         } catch (e: unknown) {
-            expect((e as Error).message).toEqual('logger.info.group is not a function');
+            message = (e as Error).message;
         }
+
+        expect(message).toEqual('logger.info.group is not a function');
     });
 });

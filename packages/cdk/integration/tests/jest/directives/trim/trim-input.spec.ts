@@ -50,7 +50,7 @@ describe('[TEST]: Trim Input', () => {
         debugElement = fixture?.debugElement.query(By.css('input'));
     });
 
-    it('correct sync modelView with model', () => {
+    it('correct sync modelView with model', async () => {
         expect(component?.form.value).toEqual({ value: '1234000012340000' });
         expect(debugElement!.nativeElement.value).toEqual('1234-0000-1234-0000');
 
@@ -62,14 +62,14 @@ describe('[TEST]: Trim Input', () => {
             target: debugElement!.nativeElement
         });
 
-        fixture?.whenStable().then(() => {
-            fixture?.detectChanges();
+        await fixture?.whenStable();
 
-            expect(component!.form.pristine).toEqual(false);
-            expect(component!.form.dirty).toEqual(true);
+        fixture?.detectChanges();
 
-            expect(component?.form.value).toEqual({ value: '1234000012340000' });
-            expect(debugElement!.nativeElement.value).toEqual('1234-0000-1234-0000');
-        });
+        expect(component!.form.pristine).toEqual(false);
+        expect(component!.form.dirty).toEqual(true);
+
+        expect(component?.form.value).toEqual({ value: '1234000012340000' });
+        expect(debugElement!.nativeElement.value).toEqual('1234-0000-1234-0000');
     });
 });

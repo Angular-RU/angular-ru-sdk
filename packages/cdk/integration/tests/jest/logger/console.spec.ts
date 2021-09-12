@@ -16,7 +16,7 @@ describe('[TEST]: ConsoleService', () => {
             ]
         });
 
-        consoleInternal = TestBed.get(ConsoleService);
+        consoleInternal = TestBed.inject(ConsoleService);
     });
 
     it(`check console instance`, () => {
@@ -34,8 +34,8 @@ describe('[TEST]: ConsoleService without options', () => {
             imports: [LoggerModule.forRoot()]
         });
 
-        logger = TestBed.get(LoggerService);
-        consoleService = TestBed.get(ConsoleService);
+        logger = TestBed.inject(LoggerService);
+        consoleService = TestBed.inject(ConsoleService);
     });
 
     it(`should be truthy logger`, () => {

@@ -245,8 +245,9 @@ describe('[TEST]: Common utils downloadFile', () => {
 
     beforeEach(() => {
         link = { click: jest.fn() } as unknown as HTMLAnchorElement;
-        window.URL.createObjectURL = jest.fn((blob: Blob) => `${blob}`);
-        window.URL.revokeObjectURL = jest.fn();
+
+        Object.defineProperty(window.URL, 'createObjectURL', { value: jest.fn((blob: Blob) => `${blob}`) });
+        Object.defineProperty(window.URL, 'revokeObjectURL', { value: jest.fn() });
     });
 
     it('should throw error if both file name and extension not provided', () => {
@@ -308,7 +309,7 @@ describe('[TEST]: Common utils downloadFile', () => {
         expect(tryParseJson('{}')).toEqual({});
         expect(tryParseJson('{ "a": 1 }')).toEqual({ a: 1 });
         expect(tryParseJson('"text"')).toEqual('text');
-        expect(tryParseJson('null')).toEqual(null);
+        expect(tryParseJson('null')).toBeNull();
         expect(tryParseJson('true')).toEqual(true);
         expect(tryParseJson('[ 1, { "a": 1, "b": "b" }, true, null, "b" ]')).toEqual([
             1,
@@ -317,8 +318,8 @@ describe('[TEST]: Common utils downloadFile', () => {
             null,
             'b'
         ]);
-        expect(tryParseJson('qwerty')).toEqual(undefined);
-        expect(tryParseJson('{ a: 1 }')).toEqual(undefined);
+        expect(tryParseJson('qwerty')).toBeUndefined();
+        expect(tryParseJson('{ a: 1 }')).toBeUndefined();
 
         const plain: string = '{ checked: true }';
         expect(tryParseJson<{ checked: boolean }>(plain)?.checked ?? false).toBe(false);

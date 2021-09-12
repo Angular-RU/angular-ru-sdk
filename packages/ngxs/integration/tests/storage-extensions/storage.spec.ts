@@ -50,7 +50,7 @@ describe('[TEST]: Storage plugin', () => {
     }
 
     describe('simple API', () => {
-        it('it should be work with correct providers', () => {
+        it('should be work with correct providers', () => {
             TestBed.configureTestingModule({
                 imports: [NgxsModule.forRoot([]), NgxsDataPluginModule.forRoot([NGXS_DATA_STORAGE_PLUGIN])]
             });
@@ -108,34 +108,11 @@ describe('[TEST]: Storage plugin', () => {
 
             expect(message?.includes('No provider for InjectionToken NGXS_DATA_STORAGE_CONTAINER_TOKEN')).toBeTruthy();
         });
-
-        it.skip('dont work when incorrect providers (without NGXS_DATA_STORAGE_EXTENSION)', () => {
-            @Persistence()
-            @StateRepository()
-            @State({ name: 'custom', defaults: 'hello world' })
-            @Injectable()
-            class CustomState extends NgxsImmutableDataRepository<string> {}
-
-            TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([CustomState]), NgxsDataPluginModule.forRoot()]
-            });
-
-            let message: string | null = null;
-
-            try {
-                const state: CustomState = TestBed.inject(CustomState);
-                expect(state.getState()).toBeDefined();
-            } catch (e) {
-                message = (e as Error).message;
-            }
-
-            expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_PERSISTENCE_CONTAINER);
-        });
     });
 
-    describe('Native (LocalStorage, SessionStorage)', () => {
+    describe('native (LocalStorage, SessionStorage)', () => {
         describe('not isolated each test', () => {
-            it('A stateClass', () => {
+            it('a stateClass', () => {
                 @Persistence()
                 @StateRepository()
                 @State({ name: 'a', defaults: 0 })
@@ -205,7 +182,7 @@ describe('[TEST]: Storage plugin', () => {
                 ]);
             });
 
-            it('B stateClass', () => {
+            it('b stateClass', () => {
                 localStorage.setItem(
                     '@ngxs.store.b',
                     JSON.stringify({
@@ -311,7 +288,7 @@ describe('[TEST]: Storage plugin', () => {
             });
         });
 
-        it('C stateClass', () => {
+        it('c stateClass', () => {
             spy = jest.spyOn(console, 'warn').mockImplementation();
 
             localStorage.setItem('@ngxs.store.c', 'invalid');
@@ -346,7 +323,7 @@ describe('[TEST]: Storage plugin', () => {
             expect(stateC.getState()).toEqual('DEFAULT_VALUE');
         });
 
-        it('C1 stateClass', () => {
+        it('c1 stateClass', () => {
             spy = jest.spyOn(console, 'warn').mockImplementation();
 
             localStorage.setItem('@ngxs.store.c1', JSON.stringify(1));
@@ -381,7 +358,7 @@ describe('[TEST]: Storage plugin', () => {
             expect(stateC1.getState()).toEqual('DEFAULT_VALUE');
         });
 
-        it('C2 stateClass', () => {
+        it('c2 stateClass', () => {
             spy = jest.spyOn(console, 'warn').mockImplementation();
 
             localStorage.setItem('@ngxs.store.c2', JSON.stringify({ hello: 'world' }));
@@ -410,7 +387,7 @@ describe('[TEST]: Storage plugin', () => {
             expect(stateC2.getState()).toEqual('DEFAULT_VALUE');
         });
 
-        it('C3 stateClass', () => {
+        it('c3 stateClass', () => {
             spy = jest.spyOn(console, 'warn').mockImplementation();
 
             localStorage.setItem('@ngxs.store.c3', JSON.stringify({ lastChanged: '2020-01-01T12:00:00.000Z' }));
@@ -439,7 +416,7 @@ describe('[TEST]: Storage plugin', () => {
             expect(stateC3.getState()).toEqual('DEFAULT_VALUE');
         });
 
-        it('C4 stateClass', () => {
+        it('c4 stateClass', () => {
             spy = jest.spyOn(console, 'warn').mockImplementation();
 
             localStorage.setItem(
@@ -471,7 +448,7 @@ describe('[TEST]: Storage plugin', () => {
             expect(stateC4.getState()).toEqual('DEFAULT_VALUE');
         });
 
-        it('C5 stateClass', () => {
+        it('c5 stateClass', () => {
             spy = jest.spyOn(console, 'warn').mockImplementation();
 
             localStorage.setItem(
@@ -503,7 +480,7 @@ describe('[TEST]: Storage plugin', () => {
             expect(stateC5.getState()).toEqual('DEFAULT_VALUE');
         });
 
-        it('C6 stateClass', () => {
+        it('c6 stateClass', () => {
             localStorage.setItem(
                 '@myCompany.store.c6',
                 JSON.stringify({ lastChanged: '2020-01-01T12:00:00.000Z', version: 1, data: 'cachedValue' })
@@ -525,7 +502,7 @@ describe('[TEST]: Storage plugin', () => {
             expect(stateC6.getState()).toEqual('cachedValue');
         });
 
-        it('C7, C8, C9 stateClass', () => {
+        it('c7, C8, C9 stateClass', () => {
             localStorage.setItem(
                 '@ngxs.store.c7',
                 JSON.stringify({ lastChanged: '2020-01-01T12:00:00.000Z', version: 1, data: null })
@@ -567,7 +544,7 @@ describe('[TEST]: Storage plugin', () => {
             const stateC8: C8 = TestBed.inject<C8>(C8);
             const stateC9: C8 = TestBed.inject<C9>(C9);
 
-            expect(stateC7.getState()).toEqual(null);
+            expect(stateC7.getState()).toBeNull();
             expect(stateC8.getState()).toEqual('DEFAULT_VALUE');
             expect(stateC9.getState()).toEqual('HELLO');
 
@@ -630,7 +607,7 @@ describe('[TEST]: Storage plugin', () => {
             );
         });
 
-        it('C10, C11, C12 stateClass', () => {
+        it('c10, C11, C12 stateClass', () => {
             localStorage.setItem(
                 '@ngxs.store.c10',
                 JSON.stringify({ lastChanged: '2020-01-01T12:00:00.000Z', version: 1, data: '10' })
@@ -761,7 +738,7 @@ describe('[TEST]: Storage plugin', () => {
             );
         });
 
-        it('C13 stateClass', () => {
+        it('c13 stateClass', () => {
             localStorage.setItem(
                 '@ngxs.store.c13',
                 JSON.stringify({ lastChanged: '2020-01-01T12:00:00.000Z', version: 1, data: 'VALUE' })
@@ -789,7 +766,7 @@ describe('[TEST]: Storage plugin', () => {
             expect(message).toEqual('StorageEngine instance should be implemented by DataStorageEngine interface');
         });
 
-        it('C14 stateClass', () => {
+        it('c14 stateClass', () => {
             localStorage.setItem(
                 '@ngxs.store.c14',
                 JSON.stringify({ lastChanged: '2020-01-01T12:00:00.000Z', version: 1, data: 'VALUE' })
@@ -844,7 +821,7 @@ describe('[TEST]: Storage plugin', () => {
             );
         });
 
-        it('C15 stateClass', () => {
+        it('c15 stateClass', () => {
             localStorage.setItem(
                 '@ngxs.store.c15',
                 JSON.stringify({ lastChanged: '2020-01-01T12:00:00.000Z', version: 1, data: 'VALUE' })
@@ -915,7 +892,7 @@ describe('[TEST]: Storage plugin', () => {
             ]);
         });
 
-        it('C16 stateClass', () => {
+        it('c16 stateClass', () => {
             localStorage.setItem(
                 '@ngxs.store.c16',
                 JSON.stringify({ lastChanged: '2020-01-01T12:00:00.000Z', version: 1, data: 'VALUE' })
@@ -982,7 +959,7 @@ describe('[TEST]: Storage plugin', () => {
             expect(events).toEqual([]);
         });
 
-        it('C17 stateClass', () => {
+        it('c17 stateClass', () => {
             spy = jest.spyOn(console, 'warn').mockImplementation();
 
             localStorage.setItem(
@@ -1424,7 +1401,7 @@ describe('[TEST]: Storage plugin', () => {
                 });
 
                 const storage: StorageState = TestBed.inject<StorageState>(StorageState);
-                expect(storage.getState()).toEqual(null);
+                expect(storage.getState()).toBeNull();
             });
         });
 
@@ -1485,7 +1462,7 @@ describe('[TEST]: Storage plugin', () => {
             });
         });
 
-        describe('TTL', () => {
+        describe('tTL', () => {
             interface AuthJwtModel {
                 accessToken: string | null;
                 refreshToken: string | null;
@@ -1527,8 +1504,8 @@ describe('[TEST]: Storage plugin', () => {
                 const events: NgxsDataExpiredEvent[] = [];
 
                 state.expired$.subscribe((e) => events.push(e));
-                expect(events.length).toEqual(0);
-                expect(state.internalEvents.length).toEqual(0);
+                expect(events).toHaveLength(0);
+                expect(state.internalEvents).toHaveLength(0);
 
                 const expiredFirst: string = ensureMockStorage('@ngxs.store.auth.accessToken').expiry!;
 
@@ -1640,8 +1617,8 @@ describe('[TEST]: Storage plugin', () => {
                 const events: NgxsDataExpiredEvent[] = [];
 
                 state.expired$.subscribe((e) => events.push(e));
-                expect(events.length).toEqual(0);
-                expect(state.internalEvents.length).toEqual(1);
+                expect(events).toHaveLength(0);
+                expect(state.internalEvents).toHaveLength(1);
 
                 expect(state.internalEvents).toEqual([
                     {
@@ -1751,7 +1728,7 @@ describe('[TEST]: Storage plugin', () => {
             }));
         });
 
-        describe('Migration strategy', () => {
+        describe('migration strategy', () => {
             it('v1 -> v2 (without migrate)', () => {
                 localStorage.setItem(
                     '@ngxs.store.migrate',

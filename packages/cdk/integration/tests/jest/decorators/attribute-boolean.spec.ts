@@ -75,7 +75,7 @@ describe('[TEST]: Attribute boolean', () => {
     it('should correct convert html boolean value', () => {
         hostFixture.detectChanges();
         expect(host.simplePropRef.prop).toBe(true);
-        expect(host.simplePropRef.propWithSetter).toBe(undefined);
+        expect(host.simplePropRef.propWithSetter).toBeUndefined();
         expect(host.simplePropRef.hookCalls).toEqual([]);
         expect(host.noPropRef.prop).toBe(false);
         expect(host.emptyStringPropRef.prop).toBe(true);

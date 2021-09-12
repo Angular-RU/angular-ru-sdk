@@ -23,7 +23,7 @@ describe('default value', () => {
             defaultPipe = new DefaultValuePipe();
         });
 
-        it('Should be correct fallback value with default pipe', () => {
+        it('should be correct fallback value with default pipe', () => {
             const fallback: string = 'Not found value';
             expect(defaultPipe.transform('', fallback)).toEqual(fallback);
             expect(defaultPipe.transform('\n\n\n', fallback)).toEqual(fallback);

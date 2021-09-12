@@ -7,7 +7,7 @@ import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { Action, NgxsModule, State, StateContext, Store } from '@ngxs/store';
 import { PlainObjectOf } from '@ngxs/store/internals';
 
-describe('Check correct deep instance', () => {
+describe('check correct deep instance', () => {
     let app: AppState;
     let store: Store;
 

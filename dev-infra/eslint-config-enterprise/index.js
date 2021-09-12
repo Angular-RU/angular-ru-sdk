@@ -530,6 +530,7 @@ module.exports = {
         },
         {
             files: ['*.spec.ts'], // light version rules for test files
+            extends: ['plugin:jest/style', 'plugin:jest/recommended'],
             rules: {
                 '@typescript-eslint/explicit-function-return-type': 'off',
                 'max-lines-per-function': 'off',
@@ -540,7 +541,12 @@ module.exports = {
                 'max-nested-callbacks': 'off',
                 '@angular-eslint/prefer-on-push-component-change-detection': 'off',
                 '@angular-eslint/component-max-inline-declarations': 'off',
-                '@angular-eslint/use-component-selector': 'off'
+                '@angular-eslint/use-component-selector': 'off',
+
+                // jest
+                'jest/expect-expect': 'error',
+                'jest/no-disabled-tests': 'error',
+                'jest/no-jasmine-globals': 'off'
             }
         },
         {

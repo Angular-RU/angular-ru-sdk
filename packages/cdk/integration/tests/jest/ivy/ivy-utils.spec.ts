@@ -17,7 +17,7 @@ import { TestTokenComponent, TestTokenService } from './helpers/test-token';
 
 describe('[TEST]: Ivy utils', (): void => {
     let componentFixture: ComponentFixture<TestComponent>;
-    console.error = jest.fn();
+    jest.spyOn(console, 'error').mockImplementation();
 
     beforeEach(function (): void {
         TestBed.configureTestingModule({ imports: [TestModule] });

@@ -9,7 +9,7 @@ import { NgxsModule, State, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-describe('Mutate', () => {
+describe('mutate', () => {
     let store: Store;
 
     it('should be throw incorrect provides', () => {
@@ -105,7 +105,7 @@ describe('Mutate', () => {
         expect(Object.isFrozen(todo.getState())).toEqual(true);
 
         try {
-            expect((todo.getState() as A[]).reverse());
+            (todo.getState() as A[]).reverse();
         } catch (e) {
             error = (e as Error).message;
         }

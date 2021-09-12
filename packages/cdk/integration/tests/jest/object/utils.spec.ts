@@ -48,7 +48,7 @@ describe('[TEST]: Correct work object utils', (): void => {
         expect(objectToString(1 as Any)).toBe('1');
         expect(objectToString('1' as Any)).toBe('"1"');
         expect(objectToString(null!)).toBe('null');
-        expect(objectToString(undefined!)).toBe(undefined);
+        expect(objectToString(undefined!)).toBeUndefined();
 
         expect(objectToString({ a: 1, b: 2 })).toBe('{"a":1,"b":2}');
 

@@ -7,7 +7,7 @@ import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { NgxsModule, Select, State, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
-describe('Check correct deep instance', () => {
+describe('check correct deep instance', () => {
     let component: AppComponent;
     let store: Store;
     let fixture: ComponentFixture<AppComponent>;
@@ -79,6 +79,6 @@ describe('Check correct deep instance', () => {
         component.ngOnInit();
 
         expect(store.snapshot()).toEqual({ registration: { address: { dirty: true, model: { hello: 'world' } } } });
-        expect(component.result).toEqual(undefined);
+        expect(component.result).toBeUndefined();
     });
 });

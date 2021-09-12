@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { deepClone } from '@angular-ru/cdk/object';
-import { Nullable, PlainObject, SortOrderType } from '@angular-ru/cdk/typings';
+import { Any, Nullable, PlainObject, SortOrderType } from '@angular-ru/cdk/typings';
 import {
     TableBuilderComponent,
     TableBuilderModule,
@@ -65,12 +65,9 @@ describe('[TEST] Table builder', (): void => {
         }).compileComponents();
 
         const someSortableService = TestBed.createComponent(TableBuilderComponent).componentInstance.sortable;
-        someSortableService.constructor.prototype.idleResolve = jest.fn(function idleResolve<T>(
-            resolve: (value: T[]) => void,
-            sorted: T[]
-        ): void {
-            resolve(sorted);
-        });
+        jest.spyOn(someSortableService.constructor.prototype, 'idleResolve').mockImplementation(
+            (resolve: Any, sorted: unknown) => resolve(sorted)
+        );
     });
 
     afterAll((): void => {

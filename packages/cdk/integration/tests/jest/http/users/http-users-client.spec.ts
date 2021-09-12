@@ -2,10 +2,10 @@ import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
 import { Component, Injectable } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { DataHttpClient, DataHttpClientModule } from '@angular-ru/cdk/http';
 import { RestClient } from '@angular-ru/cdk/http/decorators';
-import { Fn, Nullable, PlainObject, PlainObjectOf } from '@angular-ru/cdk/typings';
+import { Any, Nullable, PlainObject, PlainObjectOf } from '@angular-ru/cdk/typings';
 
 import { HttpMockInterceptor } from '../helpers/http-mock-interceptor';
 
@@ -13,10 +13,14 @@ describe('[TEST]: HTTP Client', () => {
     const MOCK_API: string = 'http://localhost';
     const queryParams: PlainObject = { params: 'value' };
     const body: PlainObjectOf<string> = { payload: 'value' };
-
     let client: Nullable<ApiUsersClient> = null;
     let httpMock: HttpTestingController;
     let req: TestRequest;
+    let response: Any = null;
+    let requestBody: Any = null;
+    let requestKeys: string[] = [];
+    let responseType: Any = null;
+    let requestMethod: Any = null;
 
     @Injectable()
     @RestClient()
@@ -53,80 +57,107 @@ describe('[TEST]: HTTP Client', () => {
         expect(users.api).toEqual(client);
     });
 
-    it('should be correct send GET request', (done: Fn) => {
-        client?.get('my-api-get').subscribe((response: unknown) => {
-            expect(response).toEqual({ data: [] });
-            expect(req.request.method).toEqual('GET');
-            done();
+    it('should be correct send GET request', fakeAsync(() => {
+        client?.get('my-api-get').subscribe((res: unknown) => {
+            response = res;
+            requestMethod = req.request.method;
         });
 
         req = httpMock.expectOne(`${MOCK_API}/my-api-get`);
         req.flush({ data: [] });
-    });
 
-    it('should be correct send POST', (done: Fn) => {
+        tick(2000);
+
+        expect(response).toEqual({ data: [] });
+        expect(requestMethod).toEqual('GET');
+    }));
+
+    it('should be correct send POST', fakeAsync(() => {
         client
             ?.post('my-api-post', { body: { a: 1 }, queryParams: { params: 'value' } })
-            .subscribe((response: PlainObject) => {
-                expect(response).toEqual({});
-                expect(req.request.body).toEqual({ a: 1 });
-                expect(req.request.method).toEqual('POST');
-                done();
+            .subscribe((res: PlainObject) => {
+                response = res;
+                requestMethod = req.request.method;
+                requestBody = req.request.body;
             });
 
         req = httpMock.expectOne(`${MOCK_API}/my-api-post?params=value`);
         req.flush({});
-    });
 
-    it('should be correct send POST request with baseUrl', (done: Fn) => {
-        client
-            ?.post('my-api-post', { baseUrl: 'my-proxy-path', body, queryParams })
-            .subscribe((response: PlainObject) => {
-                expect(response).toEqual({});
-                expect(req.request.body).toEqual(body);
-                expect(req.request.method).toEqual('POST');
-                done();
-            });
+        tick(2000);
+
+        expect(response).toEqual({});
+        expect(requestBody).toEqual({ a: 1 });
+        expect(requestMethod).toEqual('POST');
+    }));
+
+    it('should be correct send POST request with baseUrl', fakeAsync(() => {
+        client?.post('my-api-post', { baseUrl: 'my-proxy-path', body, queryParams }).subscribe((res: PlainObject) => {
+            response = res;
+            requestMethod = req.request.method;
+            requestBody = req.request.body;
+        });
 
         req = httpMock.expectOne(`${MOCK_API}/my-proxy-path/my-api-post?params=value`);
         req.flush({});
-    });
 
-    it('should be correct send PUT request', (done: Fn) => {
-        client?.put('my-api-put', { responseType: 'text' }).subscribe((response: unknown) => {
-            expect(response).toEqual('OK');
-            expect(req.request.method).toEqual('PUT');
-            expect(req.request.responseType).toEqual('text');
-            done();
+        tick(2000);
+
+        expect(response).toEqual({});
+        expect(requestBody).toEqual(body);
+        expect(requestMethod).toEqual('POST');
+    }));
+
+    it('should be correct send PUT request', fakeAsync(() => {
+        client?.put('my-api-put', { responseType: 'text' }).subscribe((res: unknown) => {
+            response = res;
+            requestMethod = req.request.method;
+            requestBody = req.request.body;
+            responseType = req.request.responseType;
         });
 
         req = httpMock.expectOne(`${MOCK_API}/my-api-put`);
         req.flush('OK');
-    });
 
-    it('should be correct send DELETE request', (done: Fn) => {
-        client?.delete('my-api-delete').subscribe((response: unknown) => {
-            expect(response).toEqual({ status: true });
-            expect(req.request.method).toEqual('DELETE');
-            expect(req.request.responseType).toEqual('json');
-            done();
+        tick(2000);
+
+        expect(response).toEqual('OK');
+        expect(requestBody).toBeNull();
+        expect(responseType).toEqual('text');
+        expect(requestMethod).toEqual('PUT');
+    }));
+
+    it('should be correct send DELETE request', fakeAsync(() => {
+        client?.delete('my-api-delete').subscribe((res: unknown) => {
+            response = res;
+            requestMethod = req.request.method;
+            requestBody = req.request.body;
         });
 
         req = httpMock.expectOne(`${MOCK_API}/my-api-delete`);
         req.flush({ status: true });
-    });
 
-    it('should be correct send request when absolute path', (done: Fn) => {
+        tick(2000);
+
+        expect(response).toEqual({ status: true });
+        expect(req.request.method).toEqual('DELETE');
+        expect(req.request.responseType).toEqual('json');
+    }));
+
+    it('should be correct send request when absolute path', fakeAsync(() => {
         client?.post('https://angular.io/api/my-api-get').subscribe(() => {
-            expect(req.request.method).toEqual('POST');
-            done();
+            requestMethod = req.request.method;
         });
 
         req = httpMock.expectOne(`https://angular.io/api/my-api-get`);
         req.flush(null);
-    });
 
-    it('should be correct send request with query params (any values)', (done: Fn) => {
+        tick(2000);
+
+        expect(requestMethod).toEqual('POST');
+    }));
+
+    it('should be correct send request with query params (any values)', fakeAsync(() => {
         client
             ?.get('my-api-big-query-params', {
                 queryParams: {
@@ -139,14 +170,18 @@ describe('[TEST]: HTTP Client', () => {
                 }
             })
             .subscribe(() => {
-                expect(req.request.params.keys()).toEqual(['param5', 'param6']);
-                expect(req.request.method).toEqual('GET');
-                done();
+                requestKeys = req.request.params.keys();
+                requestMethod = req.request.method;
             });
 
         req = httpMock.expectOne(`${MOCK_API}/my-api-big-query-params?param5=value&param6=-1`);
         req.flush([]);
-    });
+
+        tick(2000);
+
+        expect(requestKeys).toEqual(['param5', 'param6']);
+        expect(requestMethod).toEqual('GET');
+    }));
 
     afterEach(() => {
         httpMock.verify();

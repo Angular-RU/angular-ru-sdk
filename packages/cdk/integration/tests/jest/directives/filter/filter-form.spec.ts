@@ -51,7 +51,7 @@ describe('[TEST]: inputFilter Input', () => {
         expect(component).toBeTruthy();
     });
 
-    it('correct sync modelView with model', () => {
+    it('correct sync modelView with model', async () => {
         expect(component?.form.value).toEqual({ value: 'aaaKKK' });
 
         debugElement1!.nativeElement.value = 'bbbOOO';
@@ -59,18 +59,18 @@ describe('[TEST]: inputFilter Input', () => {
             target: debugElement1!.nativeElement
         });
 
-        fixture?.whenStable().then(() => {
-            fixture?.detectChanges();
+        await fixture?.whenStable();
 
-            expect(component!.form.pristine).toEqual(false);
-            expect(component!.form.dirty).toEqual(true);
+        fixture?.detectChanges();
 
-            expect(component?.form.value).toEqual({ value: 'bbb' });
-            expect(debugElement1!.nativeElement.value).toEqual('bbb');
-        });
+        expect(component!.form.pristine).toEqual(false);
+        expect(component!.form.dirty).toEqual(true);
+
+        expect(component?.form.value).toEqual({ value: 'bbb' });
+        expect(debugElement1!.nativeElement.value).toEqual('bbb');
     });
 
-    it('correct sync modelView with ngModel', () => {
+    it('correct sync modelView with ngModel', async () => {
         expect(component?.name).toEqual('aaaKKK');
         expect(debugElement2!.nativeElement.value).toEqual('aaaKKK');
 
@@ -79,12 +79,12 @@ describe('[TEST]: inputFilter Input', () => {
             target: debugElement2!.nativeElement
         });
 
-        fixture?.whenStable().then(() => {
-            fixture?.detectChanges();
+        await fixture?.whenStable();
 
-            expect(component?.name).toEqual('bbb');
-            expect(debugElement2!.nativeElement.value).toEqual('bbb');
-        });
+        fixture?.detectChanges();
+
+        expect(component?.name).toEqual('bbb');
+        expect(debugElement2!.nativeElement.value).toEqual('bbb');
     });
 
     it('should trigger "input" event only once', () => {

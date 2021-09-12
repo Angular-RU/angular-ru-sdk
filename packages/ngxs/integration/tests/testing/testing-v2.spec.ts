@@ -92,22 +92,22 @@ describe('[TEST]: Abstract ngxs data repository', () => {
     it(
         'should be ngxs data repository',
         ngxsTestingPlatform([A], (store: Store, a: A) => {
-            expect(store.snapshot()).toEqual({ a: { value: 1 } });
+            expect(store.snapshot()).toStrictEqual({ a: { value: 1 } });
 
-            expect(a.isInitialised).toEqual(true);
-            expect(a.isBootstrapped).toEqual(true);
+            expect(a.isInitialised).toStrictEqual(true);
+            expect(a.isBootstrapped).toStrictEqual(true);
 
             a.state$.subscribe((e: Model) => event.push(`state(${a.name}): set value - ${e.value}`));
 
-            expect(a.name).toEqual('a');
+            expect(a.name).toStrictEqual('a');
 
             a.setState({ value: 2 });
-            expect(a.getState()).toEqual({ value: 2 });
+            expect(a.getState()).toStrictEqual({ value: 2 });
 
             a.initialState.value = 5; // not affected
             a.reset();
 
-            expect(a.getState()).toEqual({ value: 1 });
+            expect(a.getState()).toStrictEqual({ value: 1 });
 
             a.setState({ value: 3 });
             a.setState({ value: 4 });

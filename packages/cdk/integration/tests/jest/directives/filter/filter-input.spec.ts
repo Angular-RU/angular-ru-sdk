@@ -63,7 +63,7 @@ describe('[TEST]: inputFilter Input', () => {
         fixture!.componentInstance.cd.detectChanges();
     }
 
-    it('should correct sync modelView with model', () => {
+    it('should correct sync modelView with model', async () => {
         // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
         expect(component?.form.value).toEqual({ value: 'abcД' });
 
@@ -73,15 +73,14 @@ describe('[TEST]: inputFilter Input', () => {
             target: debugElement!.nativeElement
         });
 
-        fixture?.whenStable().then(() => {
-            fixture?.detectChanges();
+        fixture?.whenStable();
+        fixture?.detectChanges();
 
-            expect(component!.form.pristine).toEqual(false);
-            expect(component!.form.dirty).toEqual(true);
+        expect(component!.form.pristine).toEqual(false);
+        expect(component!.form.dirty).toEqual(true);
 
-            expect(component?.form.value).toEqual({ value: 'ab c ' });
-            expect(debugElement!.nativeElement.value).toEqual('ab c ');
-        });
+        expect(component?.form.value).toEqual({ value: 'ab c ' });
+        expect(debugElement!.nativeElement.value).toEqual('ab c ');
     });
 
     it('should filter input with characters', () => {

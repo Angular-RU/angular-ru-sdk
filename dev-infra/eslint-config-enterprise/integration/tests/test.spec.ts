@@ -103,7 +103,7 @@ describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
 
     it('check success files', (): void => {
         const good: string = getInfoByReportFile('good-file');
-        expect(good.length).toEqual(0);
+        expect(good).toHaveLength(0);
     });
 
     it('check file pattern in directories', () => {

@@ -7,7 +7,7 @@ import { NgxsDataAfterReset, NgxsDataDoCheck } from '@angular-ru/ngxs/typings';
 import { State } from '@ngxs/store';
 
 describe('[TEST]: NgxsTestingModule', () => {
-    describe('AppState', () => {
+    describe('appState', () => {
         const events: string[] = [];
 
         @StateRepository()

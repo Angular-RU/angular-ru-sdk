@@ -12,6 +12,6 @@ describe('[TEST]: Angular-RU eslint recommendations for i18n', (): void => {
 
     it('check success files', (): void => {
         const good: string = getInfoByReportFile('good');
-        expect(good.length).toEqual(0);
+        expect(good).toHaveLength(0);
     });
 });

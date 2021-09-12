@@ -68,7 +68,7 @@ class TestModule {}
 describe('[TEST] Ivy utils - check deep inheritance', () => {
     let componentFixture: ComponentFixture<MockComponent>;
 
-    console.error = jest.fn();
+    jest.spyOn(console, 'error').mockImplementation();
 
     beforeEach(function (): void {
         TestBed.configureTestingModule({ imports: [TestModule] });

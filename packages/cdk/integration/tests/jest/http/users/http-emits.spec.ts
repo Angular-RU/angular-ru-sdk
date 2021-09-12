@@ -85,7 +85,7 @@ describe('[TEST]: HTTP Client', () => {
         httpMock = TestBed.inject(HttpTestingController);
     });
 
-    it('GET ({ emitSuccess: false, emitFailure: false })', () => {
+    it('gET ({ emitSuccess: false, emitFailure: false })', () => {
         client?.getMethod().subscribe(() => {
             expect(req.request.method).toEqual('GET');
         });

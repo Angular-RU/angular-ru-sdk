@@ -20,7 +20,7 @@ describe('[TEST]: Number', () => {
     });
 
     describe('to number', () => {
-        it('NaN', () => {
+        it('naN', () => {
             expect(toNumber(NaN)).toEqual(NaN);
             expect(toNumber(Infinity)).toEqual(Infinity);
             expect(toNumber('')).toEqual(NaN);

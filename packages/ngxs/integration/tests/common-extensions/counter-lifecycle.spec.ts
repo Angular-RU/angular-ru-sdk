@@ -8,7 +8,7 @@ import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
 import { NgxsAfterBootstrap, NgxsModule, NgxsOnInit, State, Store } from '@ngxs/store';
 
-describe('Complex lifecycle', () => {
+describe('complex lifecycle', () => {
     @Injectable()
     class MyApiService {}
 
@@ -33,12 +33,16 @@ describe('Complex lifecycle', () => {
             providers: [MyApiService]
         });
 
+        let message: string | null = null;
+
         try {
             TestBed.inject<CountState>(CountState);
             TestBed.inject<Store>(Store);
         } catch (e) {
-            expect((e as Error).message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_MODULE_EXCEPTION);
+            message = (e as Error).message;
         }
+
+        expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_MODULE_EXCEPTION);
     });
 
     it('should be correct lifecycle', () => {

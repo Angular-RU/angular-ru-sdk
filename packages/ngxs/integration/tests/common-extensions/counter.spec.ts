@@ -10,6 +10,11 @@ import { Actions, NgxsModule, ofActionDispatched, State, Store } from '@ngxs/sto
 
 describe('[TEST]: CountState', () => {
     let store: Store;
+    let message: string | null = null;
+
+    beforeEach(() => {
+        message = null;
+    });
 
     it('should be get correct snapshot from simple state', () => {
         @State({ name: 'count', defaults: 0 })
@@ -25,7 +30,7 @@ describe('[TEST]: CountState', () => {
         expect(store.snapshot()).toEqual({ count: 0 });
     });
 
-    describe('Exceptions', () => {
+    describe('exceptions', () => {
         it('@StateRepository should be add before decorator @State', () => {
             try {
                 @Injectable()
@@ -40,8 +45,10 @@ describe('[TEST]: CountState', () => {
                     imports: [NgxsModule.forRoot([CountState])]
                 });
             } catch (e) {
-                expect((e as Error).message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_STATE);
+                message = (e as Error).message;
             }
+
+            expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_STATE);
         });
 
         it('should be throw exception when not import NgxsDataModulePlugin', () => {
@@ -65,11 +72,13 @@ describe('[TEST]: CountState', () => {
             try {
                 count.getState();
             } catch (e) {
-                expect((e as Error).message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_MODULE_EXCEPTION);
+                message = (e as Error).message;
             }
+
+            expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_MODULE_EXCEPTION);
         });
 
-        it('should be throw when forgot add @StateRepository', () => {
+        it('should be throw when forgot add @StateRepository #1', () => {
             @State({
                 name: 'count',
                 defaults: 0
@@ -86,11 +95,13 @@ describe('[TEST]: CountState', () => {
             try {
                 count.getState();
             } catch (e) {
-                expect((e as Error).message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_STATE_DECORATOR);
+                message = (e as Error).message;
             }
+
+            expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_STATE_DECORATOR);
         });
 
-        it('should be throw when forgot add @StateRepository', () => {
+        it('should be throw when forgot add @StateRepository #2', () => {
             @State({
                 name: 'count',
                 defaults: 0
@@ -108,16 +119,20 @@ describe('[TEST]: CountState', () => {
             try {
                 count.getState();
             } catch (e) {
-                expect((e as Error).message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_STATE_DECORATOR);
+                message = (e as Error).message;
             }
+
+            expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_STATE_DECORATOR);
         });
 
         it('should be throw when invalid instance', () => {
             try {
                 NgxsDataFactory.getRepositoryByInstance(null);
             } catch (e) {
-                expect((e as Error).message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_STATE_DECORATOR);
+                message = (e as Error).message;
             }
+
+            expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_STATE_DECORATOR);
         });
 
         it('should be throw when use @DataAction without context', () => {
@@ -142,8 +157,10 @@ describe('[TEST]: CountState', () => {
             try {
                 count.incorrect();
             } catch (e) {
-                expect((e as Error).message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_STATE_DECORATOR);
+                message = (e as Error).message;
             }
+
+            expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_STATE_DECORATOR);
         });
 
         it('should be throw when use static with @DataAction', () => {
@@ -163,12 +180,14 @@ describe('[TEST]: CountState', () => {
 
                 CountState.incorrect();
             } catch (e) {
-                expect((e as Error).message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_STATIC_ACTION);
+                message = (e as Error).message;
             }
+
+            expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_STATIC_ACTION);
         });
     });
 
-    describe('Correct behavior NGXS DATA', () => {
+    describe('correct behavior NGXS DATA', () => {
         let count: CountState;
         let actions$: Actions;
 
