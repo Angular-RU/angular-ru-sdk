@@ -52,8 +52,6 @@ describe('[TEST]: HTTP Client', () => {
         httpMock = TestBed.inject(HttpTestingController);
     });
 
-    afterEach(() => httpMock.verify());
-
     it('correct inject users http client', () => {
         const users: UserComponent = TestBed.createComponent(UserComponent).componentInstance;
         expect(users.api).toEqual(client);
@@ -184,4 +182,8 @@ describe('[TEST]: HTTP Client', () => {
         expect(requestKeys).toEqual(['param5', 'param6']);
         expect(requestMethod).toEqual('GET');
     }));
+
+    afterEach(() => {
+        httpMock.verify();
+    });
 });

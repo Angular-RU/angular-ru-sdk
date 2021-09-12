@@ -1,4 +1,4 @@
-/* eslint-disable jest/no-conditional-expect,jest/no-if */
+/* eslint-disable jest/no-conditional-expect */
 import { toISOStringWithoutTimezone } from '@angular-ru/cdk/date';
 
 describe('[TEST]: toISOStringWithoutTimezone', (): void => {

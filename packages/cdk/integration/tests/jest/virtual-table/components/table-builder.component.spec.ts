@@ -68,15 +68,17 @@ describe('[TEST] Table builder', (): void => {
         jest.spyOn(someSortableService.constructor.prototype, 'idleResolve').mockImplementation(
             (resolve: Any, sorted: unknown) => resolve(sorted)
         );
-
-        componentFixture = TestBed.createComponent(NgxTableBuilderMockComponent);
-        component = componentFixture.componentInstance;
-        componentFixture.autoDetectChanges();
     });
 
     afterAll((): void => {
         const someSortableService = TestBed.createComponent(TableBuilderComponent).componentInstance.sortable;
         someSortableService.constructor.prototype.idleResolve.mockRestore();
+    });
+
+    beforeEach((): void => {
+        componentFixture = TestBed.createComponent(NgxTableBuilderMockComponent);
+        component = componentFixture.componentInstance;
+        componentFixture.autoDetectChanges();
     });
 
     it('should correct sort by input', async (): Promise<void> => {

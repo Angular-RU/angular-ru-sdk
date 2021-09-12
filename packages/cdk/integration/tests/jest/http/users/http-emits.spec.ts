@@ -85,8 +85,6 @@ describe('[TEST]: HTTP Client', () => {
         httpMock = TestBed.inject(HttpTestingController);
     });
 
-    afterEach(() => httpMock.verify());
-
     it('gET ({ emitSuccess: false, emitFailure: false })', () => {
         client?.getMethod().subscribe(() => {
             expect(req.request.method).toEqual('GET');
@@ -130,5 +128,9 @@ describe('[TEST]: HTTP Client', () => {
             'PATCH: /patch - { emitSuccess: true, emitFailure: true }',
             'DELETE: /delete - { emitSuccess: true, emitFailure: true }'
         ]);
+    });
+
+    afterEach(() => {
+        httpMock.verify();
     });
 });

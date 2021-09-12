@@ -41,14 +41,11 @@ describe('[TEST] Table builder', (): void => {
         jest.spyOn(someSortableService.constructor.prototype, 'idleResolve').mockImplementation(
             (resolve: Any, sorted: unknown) => resolve(sorted)
         );
-
-        componentFixture = TestBed.createComponent(SelectionMockComponent);
-        component = componentFixture.componentInstance;
     });
 
-    afterAll((): void => {
-        const someSortableService = TestBed.createComponent(TableBuilderComponent).componentInstance.sortable;
-        someSortableService.constructor.prototype.idleResolve.mockRestore();
+    beforeEach((): void => {
+        componentFixture = TestBed.createComponent(SelectionMockComponent);
+        component = componentFixture.componentInstance;
     });
 
     it('should be correct select items from 1..2 by shift key', async () => {
@@ -71,5 +68,10 @@ describe('[TEST] Table builder', (): void => {
         );
 
         expect(tableBuilderComponent.selection.selectionModel.entries).toEqual({ 1: true, 2: true });
+    });
+
+    afterAll((): void => {
+        const someSortableService = TestBed.createComponent(TableBuilderComponent).componentInstance.sortable;
+        someSortableService.constructor.prototype.idleResolve.mockRestore();
     });
 });
