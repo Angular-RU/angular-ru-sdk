@@ -1,3 +1,13 @@
+#### independent (2021-09-12)
+
+##### Build System / Dependencies
+
+-   update dependency typescript to v4.4.3 (#933) (7bd83a3f)
+
+##### New Features
+
+-   **cdk:** improved eslint rules and type checking (#934) (31a66540)
+
 #### independent (2021-09-10)
 
 ##### Build System / Dependencies
