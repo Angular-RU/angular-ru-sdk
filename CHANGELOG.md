@@ -1,3 +1,9 @@
+#### independent (2021-09-13)
+
+##### Build System / Dependencies
+
+-   update dependency jest to v27.2.0 (#935) (38a88845)
+
 #### independent (2021-09-12)
 
 ##### Build System / Dependencies
