@@ -1,5 +1,11 @@
 #### independent (2021-09-13)
 
+##### New Features
+
+-   added requiredSomeValueValidator (#936) (97d7a5e1)
+
+#### independent (2021-09-13)
+
 ##### Build System / Dependencies
 
 -   update dependency eslint-import-resolver-typescript to v2.5.0 (#930) (11727fe3)
