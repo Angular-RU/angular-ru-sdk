@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update dependency eslint-import-resolver-typescript to v2.5.0 (#930) (11727fe3)
+
+#### independent (2021-09-13)
+
+##### Build System / Dependencies
+
 -   update dependency jest to v27.2.0 (#935) (38a88845)
 
 #### independent (2021-09-12)
