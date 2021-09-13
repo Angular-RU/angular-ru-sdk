@@ -19,19 +19,19 @@ describe('[TEST]: Ivy utils', (): void => {
     let componentFixture: ComponentFixture<TestComponent>;
     jest.spyOn(console, 'error').mockImplementation();
 
-    beforeEach(function (): void {
+    beforeEach((): void => {
         TestBed.configureTestingModule({ imports: [TestModule] });
         componentFixture = TestBed.createComponent(TestComponent);
     });
 
-    afterAll(function (): void {
+    afterAll((): void => {
         (console.error as Any).mockRestore();
     });
 
     /** @description due to test running Angular in JIT mode,
      * it is necessary to defer the patch until the next cycle by `Promise.then`
      * so Jest requires to mark such test as async */
-    it(`should work useInjector with component's fields`, async function (): Promise<void> {
+    it(`should work useInjector with component's fields`, async (): Promise<void> => {
         const component: TestComponent = componentFixture.componentInstance;
 
         expect(component.ngZone.constructor).toBe(NgZone);
@@ -39,7 +39,7 @@ describe('[TEST]: Ivy utils', (): void => {
         expect(component.testService.testField).toBe('test');
     });
 
-    it(`should work useInjector with directive's fields`, async function (): Promise<void> {
+    it(`should work useInjector with directive's fields`, async (): Promise<void> => {
         const directiveElement: DebugElement = componentFixture.debugElement.query(By.directive(TestDirective));
         const directive: TestDirective = directiveElement.injector.get(TestDirective);
 
@@ -48,7 +48,7 @@ describe('[TEST]: Ivy utils', (): void => {
         expect(directive.testService.testField).toBe('test');
     });
 
-    it(`should work useInjector with pipe's fields`, async function (): Promise<void> {
+    it(`should work useInjector with pipe's fields`, async (): Promise<void> => {
         const testService: TestService = TestBed.inject(TestService);
         componentFixture.detectChanges();
         const paragraphContent: string = componentFixture.debugElement.nativeElement.querySelector('p.pipe').innerHTML;
@@ -56,7 +56,7 @@ describe('[TEST]: Ivy utils', (): void => {
         expect(paragraphContent).toBe(`testValue: ${testService.testField} (besides ${NgZone.name})`);
     });
 
-    it(`should work useInjector with service's fields`, async function (): Promise<void> {
+    it(`should work useInjector with service's fields`, async (): Promise<void> => {
         const service: FeatureTestService = TestBed.inject(FeatureTestService);
 
         expect(service.ngZone.constructor).toBe(NgZone);
@@ -64,7 +64,7 @@ describe('[TEST]: Ivy utils', (): void => {
         expect(service.testService.testField).toBe('test');
     });
 
-    it('should work useInjector with nested and multiple usages', async function (): Promise<void> {
+    it('should work useInjector with nested and multiple usages', async (): Promise<void> => {
         const featureTestComponentFixture: ComponentFixture<FeatureTestComponent> =
             TestBed.createComponent(FeatureTestComponent);
         const component: FeatureTestComponent = featureTestComponentFixture.componentInstance;
@@ -77,7 +77,7 @@ describe('[TEST]: Ivy utils', (): void => {
         expect(component.featureTestService.callsCounter).toBe(1);
     });
 
-    it('should work useInjector with component extending directive', async function (): Promise<void> {
+    it('should work useInjector with component extending directive', async (): Promise<void> => {
         const extendingTestComponentFixture: ComponentFixture<ExtendingTestComponent> =
             TestBed.createComponent(ExtendingTestComponent);
         const component: ExtendingTestComponent = extendingTestComponentFixture.componentInstance;
@@ -89,7 +89,7 @@ describe('[TEST]: Ivy utils', (): void => {
         expect(component.featureTestService.testService.testField).toBe('test');
     });
 
-    it('should work useInjector with component 3-level extending chain', async function (): Promise<void> {
+    it('should work useInjector with component 3-level extending chain', async (): Promise<void> => {
         const testStairsComponentFixture: ComponentFixture<TestStairsComponent> =
             TestBed.createComponent(TestStairsComponent);
         const component: TestStairsComponent = testStairsComponentFixture.componentInstance;
@@ -105,7 +105,7 @@ describe('[TEST]: Ivy utils', (): void => {
         expect(content).toBe(`${NgZone.name} test ${FeatureTestService.name}`);
     });
 
-    it('should work with injection tokens', async function (): Promise<void> {
+    it('should work with injection tokens', async (): Promise<void> => {
         const testTokenComponentFixture: ComponentFixture<TestTokenComponent> =
             TestBed.createComponent(TestTokenComponent);
         const component: TestTokenComponent = testTokenComponentFixture.componentInstance;
@@ -121,7 +121,7 @@ describe('[TEST]: Ivy utils', (): void => {
         expect(testService.serviceToken).toBe('SERVICE_TOKEN');
     });
 
-    it('should not work with non-injectable classes', async function (): Promise<void> {
+    it('should not work with non-injectable classes', async (): Promise<void> => {
         const nonInjectable: NonInjectable = new NonInjectable();
         expect(nonInjectable.ngZone).not.toBeDefined();
         expect(console.error).toHaveBeenCalledWith(new Error('Class with useInjector in decorator must be Injectable'));

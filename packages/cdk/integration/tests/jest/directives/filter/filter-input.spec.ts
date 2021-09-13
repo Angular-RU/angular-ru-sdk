@@ -8,7 +8,7 @@ import { InputFilterModule } from '@angular-ru/cdk/directives';
 import { FilterPredicate } from '@angular-ru/cdk/string';
 import { Nullable } from '@angular-ru/cdk/typings';
 
-describe('[TEST]: inputFilter Input', () => {
+describe('[TEST]: inputFilter Input', function () {
     let fixture: Nullable<ComponentFixture<TestComponent>> = null;
     let component: Nullable<TestComponent> = null;
     let debugElement: Nullable<DebugElement> = null;
@@ -36,9 +36,7 @@ describe('[TEST]: inputFilter Input', () => {
             providers: [{ provide: MATERIAL_SANITY_CHECKS, useValue: false }],
             declarations: [TestComponent]
         }).compileComponents();
-    });
 
-    beforeEach(() => {
         fixture = TestBed.createComponent(TestComponent);
         component = fixture.componentInstance;
         fixture.autoDetectChanges();

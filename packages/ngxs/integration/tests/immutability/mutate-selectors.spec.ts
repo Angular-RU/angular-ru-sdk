@@ -12,7 +12,7 @@ import { map } from 'rxjs/operators';
 describe('mutate', () => {
     let store: Store;
 
-    it('should be throw incorrect provides', () => {
+    it('should be throw incorrect provides', function () {
         let message: string | null = null;
 
         try {

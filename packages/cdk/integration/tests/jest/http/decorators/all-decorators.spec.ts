@@ -95,6 +95,8 @@ describe('[TEST]: HTTP decorators for client', () => {
         httpMock = TestBed.inject(HttpTestingController);
     });
 
+    afterEach(() => httpMock.verify());
+
     it('should be correct send GET request with decorator', fakeAsync(() => {
         client?.findAllUsers().subscribe((response: User[]) => {
             expect(response).toEqual([
@@ -206,8 +208,4 @@ describe('[TEST]: HTTP decorators for client', () => {
 
         tick(100);
     }));
-
-    afterEach(() => {
-        httpMock.verify();
-    });
 });

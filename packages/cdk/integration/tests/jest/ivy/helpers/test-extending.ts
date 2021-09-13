@@ -9,14 +9,12 @@ import { FeatureTestService, TestService } from './test-default';
     selector: '[test-stairs-a]'
 })
 export class TestStairsADirective {
-    @InjectNgZone()
-    public ngZone!: NgZone;
+    @InjectNgZone() public ngZone!: NgZone;
 }
 
 @Injectable()
 export class TestStairsB extends TestStairsADirective {
-    @InjectTestService()
-    public testService!: TestService;
+    @InjectTestService() public testService!: TestService;
 }
 
 // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
@@ -25,16 +23,14 @@ export class TestStairsB extends TestStairsADirective {
     template: '{{ ngZone.constructor.name }} {{ testService.testField }} {{ featureTestService.constructor.name }}'
 })
 export class TestStairsComponent extends TestStairsB {
-    @InjectFeatureTestService()
-    public featureTestService!: FeatureTestService;
+    @InjectFeatureTestService() public featureTestService!: FeatureTestService;
 }
 
 @Directive({
     selector: '[super-test-directive]'
 })
 export abstract class AbstractSuperTestDirective {
-    @InjectFeatureTestService()
-    public featureTestService!: FeatureTestService;
+    @InjectFeatureTestService() public featureTestService!: FeatureTestService;
 
     public abstract ngZone: NgZone;
 
@@ -47,8 +43,7 @@ export abstract class AbstractSuperTestDirective {
     template: ''
 })
 export class ExtendingTestComponent extends AbstractSuperTestDirective {
-    @InjectNgZone()
-    public ngZone!: NgZone;
+    @InjectNgZone() public ngZone!: NgZone;
 
     constructor(public appRef: ApplicationRef) {
         super(appRef);

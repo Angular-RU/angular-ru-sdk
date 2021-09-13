@@ -8,7 +8,7 @@ import { InputFilterModule } from '@angular-ru/cdk/directives';
 import { FilterPredicate } from '@angular-ru/cdk/string';
 import { Nullable } from '@angular-ru/cdk/typings';
 
-describe('[TEST]: inputFilter Dynamic', () => {
+describe('[TEST]: inputFilter Dynamic', function () {
     let fixture: Nullable<ComponentFixture<DynamicTestComponent>> = null;
     let component: Nullable<DynamicTestComponent> = null;
     let debugElement: Nullable<DebugElement> = null;
@@ -36,9 +36,7 @@ describe('[TEST]: inputFilter Dynamic', () => {
             providers: [{ provide: MATERIAL_SANITY_CHECKS, useValue: false }],
             declarations: [DynamicTestComponent]
         }).compileComponents();
-    });
 
-    beforeEach(() => {
         fixture = TestBed.createComponent(DynamicTestComponent);
         component = fixture.componentInstance;
         fixture.autoDetectChanges();

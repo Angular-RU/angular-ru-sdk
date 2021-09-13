@@ -132,7 +132,7 @@ describe('sync control value interceptor', () => {
         expect(component.value).toEqual(['value3', 'value4']);
     }));
 
-    it('should unsubscribe after ngOnDestroy', function () {
+    it('should unsubscribe after ngOnDestroy', () => {
         expect(component.inputElementRef.nativeElement.value).toBe('value1, value2');
         expect(component.interceptor.constructor).toBe(ControlValueInterceptor);
 

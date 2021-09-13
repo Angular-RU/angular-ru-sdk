@@ -111,6 +111,12 @@ describe('[TEST]: Storage plugin', () => {
     });
 
     describe('native (LocalStorage, SessionStorage)', () => {
+        afterEach(() => {
+            localStorage.clear();
+            sessionStorage.clear();
+            spy?.mockClear();
+        });
+
         describe('not isolated each test', () => {
             it('a stateClass', () => {
                 @Persistence()
@@ -2215,11 +2221,5 @@ describe('[TEST]: Storage plugin', () => {
         function ensureMockStorage<T>(key: string, storage: Storage = localStorage): StorageMeta<T> {
             return JSON.parse(storage.getItem(key)! ?? '{}');
         }
-
-        afterEach(() => {
-            localStorage.clear();
-            sessionStorage.clear();
-            spy?.mockClear();
-        });
     });
 });

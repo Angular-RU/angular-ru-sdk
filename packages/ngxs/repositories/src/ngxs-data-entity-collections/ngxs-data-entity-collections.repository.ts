@@ -295,9 +295,7 @@ export abstract class AbstractNgxsDataEntityCollectionsRepository<
             const newId: K = this.selectIdValue(updated);
 
             if (newId !== update.id) {
-                // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
                 delete keys[update.id];
-                // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
                 delete entities[update.id];
             }
 
@@ -333,9 +331,7 @@ export abstract class AbstractNgxsDataEntityCollectionsRepository<
 
         for (const id of ids) {
             if (id in entities) {
-                // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
                 delete keys[id];
-                // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
                 delete entities[id];
             }
         }

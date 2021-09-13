@@ -391,7 +391,7 @@ describe('[TEST]: Object', () => {
         expect(checkIsShallowEmpty({ a: '', b: undefined, c: NaN, d: '   ' })).toEqual(true);
     });
 
-    it('should correct recognize iterable values', function () {
+    it('should correct recognize iterable values', () => {
         expect(isIterable([1, 2])).toBe(true);
         expect(isIterable('Some String')).toBe(true);
         expect(isIterable(new Set([1, 2]))).toBe(true);
@@ -448,7 +448,7 @@ describe('[TEST]: Object', () => {
         expect(pathsOfObject(willem)).toEqual(['name', 'city']);
     });
 
-    it('should correct map objects by keys', function () {
+    it('should correct map objects by keys', () => {
         const oneTypeObject = { a: 1, b: 3, c: 5 };
         expect(shallowMapObject(oneTypeObject, (a: number): number => a * 2)).toEqual({ a: 2, b: 6, c: 10 });
 

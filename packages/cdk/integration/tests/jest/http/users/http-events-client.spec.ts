@@ -100,6 +100,8 @@ describe('[TEST]: HTTP Intercept Client', () => {
         httpMock = TestBed.inject(HttpTestingController);
     });
 
+    afterEach(() => httpMock.verify());
+
     it('should be correct GET intercept', fakeAsync(() => {
         client
             ?.get('api-get', { queryParams: { value: 1 }, headers: { Authorization: 'token xxx', KeepAlive: 'true' } })
@@ -149,8 +151,4 @@ describe('[TEST]: HTTP Intercept Client', () => {
             '{onFinalizeAfterRequest} post - http://localhost/backend/api-post'
         ]);
     }));
-
-    afterEach(() => {
-        httpMock.verify();
-    });
 });

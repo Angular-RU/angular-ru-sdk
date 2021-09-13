@@ -65,7 +65,7 @@ describe('[TEST] Excel service', () => {
         { uid: 'asd-434', name: 'antonelli', appearance: { color: null, shape: null } }
     ];
 
-    beforeEach(function (): void {
+    beforeEach((): void => {
         TestBed.configureTestingModule({
             imports: [ExcelBuilderModule.forRoot()],
             providers: [
@@ -80,7 +80,7 @@ describe('[TEST] Excel service', () => {
         });
     });
 
-    afterEach(function (): void {
+    afterEach((): void => {
         downloadSpy.mockReset();
     });
 

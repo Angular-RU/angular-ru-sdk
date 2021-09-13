@@ -116,6 +116,8 @@ describe('[TEST]: Canceling requests and unsubscribing', () => {
         httpMock = TestBed.inject(HttpTestingController);
     });
 
+    afterEach(() => httpMock.verify());
+
     it('all requests must be canceled when the component is destroyed', fakeAsync(() => {
         component.ngOnInit();
         for (let i = 0; i < limitConcurrency; i++) {
@@ -137,8 +139,4 @@ describe('[TEST]: Canceling requests and unsubscribing', () => {
             expect(item.cancelled).toBe(true);
         });
     }));
-
-    afterEach(() => {
-        httpMock.verify();
-    });
 });

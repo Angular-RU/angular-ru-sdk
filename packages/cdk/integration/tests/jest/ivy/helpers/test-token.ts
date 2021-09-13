@@ -6,14 +6,9 @@ import { InjectByToken } from './test-decorators';
 
 @Injectable()
 export class TestTokenService {
-    @InjectByToken(MODULE_TOKEN)
-    public moduleToken!: string;
-
-    @InjectByToken(SERVICE_TOKEN)
-    public serviceToken!: string;
-
-    @InjectByToken(COMPONENT_TOKEN)
-    public componentToken!: string;
+    @InjectByToken(MODULE_TOKEN) public moduleToken!: string;
+    @InjectByToken(SERVICE_TOKEN) public serviceToken!: string;
+    @InjectByToken(COMPONENT_TOKEN) public componentToken!: string;
 
     constructor(public ngZone: NgZone) {}
 }
@@ -29,17 +24,10 @@ export class TestTokenService {
     ]
 })
 export class TestTokenComponent {
-    @InjectByToken(MODULE_TOKEN)
-    public moduleToken!: string;
-
-    @InjectByToken(SERVICE_TOKEN)
-    public serviceToken!: string;
-
-    @InjectByToken(COMPONENT_TOKEN)
-    public componentToken!: string;
-
-    @InjectByToken(TestTokenService)
-    public testTokenService!: TestTokenService;
+    @InjectByToken(MODULE_TOKEN) public moduleToken!: string;
+    @InjectByToken(SERVICE_TOKEN) public serviceToken!: string;
+    @InjectByToken(COMPONENT_TOKEN) public componentToken!: string;
+    @InjectByToken(TestTokenService) public testTokenService!: TestTokenService;
 
     constructor(public appRef: ApplicationRef) {}
 }

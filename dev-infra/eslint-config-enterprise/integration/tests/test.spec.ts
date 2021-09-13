@@ -7,8 +7,8 @@ describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
 
     it('check failed files', (): void => {
         const bad: string = getInfoByReportFile('bad-file');
-        expect(bad.includes('80 problems (80 errors, 0 warnings)')).toBeTruthy();
-        expect(bad.includes('14 errors and 0 warnings potentially fixable with the `--fix` option')).toBeTruthy();
+        expect(bad.includes('81 problems (81 errors, 0 warnings)')).toBeTruthy();
+        expect(bad.includes('15 errors and 0 warnings potentially fixable with the `--fix` option')).toBeTruthy();
         expect(bad.includes(`Run autofix to sort these imports!`)).toBeTruthy();
         expect(bad.includes(`Expected hello to have a type annotation`)).toBeTruthy();
         expect(bad.includes('Missing accessibility modifier on class property hello')).toBeTruthy();
@@ -99,6 +99,7 @@ describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
         expect(
             bad.includes(`Function declared in a loop contains unsafe references to variable(s) 'fooX'`)
         ).toBeTruthy();
+        expect(bad.includes('Unexpected function expression')).toBeTruthy();
     });
 
     it('check success files', (): void => {

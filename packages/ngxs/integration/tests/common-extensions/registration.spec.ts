@@ -37,8 +37,7 @@ describe('check correct deep instance', () => {
     })
     @Injectable()
     class RegistrationState extends NgxsImmutableDataRepository<IRegistrationStateModel> {
-        @Select((state: Any) => state.registration)
-        public address$!: Observable<IFormState>;
+        @Select((state: Any) => state.registration) public address$!: Observable<IFormState>;
 
         @DataAction()
         public addAddress(address: IFormState): Any {

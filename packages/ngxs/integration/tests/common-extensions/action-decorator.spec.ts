@@ -8,6 +8,8 @@ import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
 import { NgxsModule, State } from '@ngxs/store';
 
 describe('[TEST]: Action decorator', () => {
+    afterEach(() => TestBed.resetTestingModule());
+
     it(`don't should be working without @StateRepository decorator`, () => {
         let message: string | null = null;
 
@@ -583,9 +585,5 @@ describe('[TEST]: Action decorator', () => {
                 }
             });
         });
-    });
-
-    afterEach(() => {
-        TestBed.resetTestingModule();
     });
 });

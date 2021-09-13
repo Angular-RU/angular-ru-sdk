@@ -679,7 +679,7 @@ describe('[TEST]: Amount format directive', () => {
         });
     });
 
-    describe('expect with component', () => {
+    describe('expect with component', function () {
         let fixture: Nullable<ComponentFixture<HelloWorldComponent>> = null;
 
         @Component({
@@ -691,8 +691,7 @@ describe('[TEST]: Amount format directive', () => {
             `
         })
         class HelloWorldComponent {
-            @ViewChild(AmountFormatDirective)
-            public directive!: AmountFormatDirective;
+            @ViewChild(AmountFormatDirective) public directive!: AmountFormatDirective;
 
             public form: FormGroup = this.fb.group({
                 amount: this.fb.control('INVALID_VALUE')
@@ -752,14 +751,12 @@ describe('[TEST]: Amount format directive', () => {
             return getDirectiveInfo()?.getCursorPosition();
         }
 
-        beforeEach(() =>
+        beforeEach(() => {
             TestBed.configureTestingModule({
                 declarations: [HelloWorldComponent],
                 imports: [AmountFormatModule.forRoot(), CommonModule, FormsModule, ReactiveFormsModule]
-            })
-        );
+            });
 
-        beforeEach(() => {
             fixture = TestBed.createComponent(HelloWorldComponent);
             fixture.autoDetectChanges();
         });

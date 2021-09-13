@@ -70,19 +70,19 @@ describe('[TEST] Ivy utils - check deep inheritance', () => {
 
     jest.spyOn(console, 'error').mockImplementation();
 
-    beforeEach(function (): void {
+    beforeEach((): void => {
         TestBed.configureTestingModule({ imports: [TestModule] });
         componentFixture = TestBed.createComponent(MockComponent);
     });
 
-    afterAll(function (): void {
+    afterAll((): void => {
         (console.error as Any).mockRestore();
     });
 
     /** @description due to test running Angular in JIT mode,
      * it is necessary to defer the patch until the next cycle by `Promise.then`
      * so Jest requires to mark such test as async */
-    it('deep inheritance', async function (): Promise<void> {
+    it('deep inheritance', async (): Promise<void> => {
         const component: MockComponent = componentFixture.componentInstance;
 
         expect(component.ngZone.constructor).toBe(NgZone);

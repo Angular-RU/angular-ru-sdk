@@ -8,6 +8,10 @@ import { Actions, NgxsModule, State } from '@ngxs/store';
 import { take } from 'rxjs/operators';
 
 describe('[TEST]: Deep data action type', () => {
+    afterEach(() => {
+        TestBed.resetTestingModule();
+    });
+
     it('should use deeply nested @DataAction() names', fakeAsync(() => {
         @StateRepository()
         @State({ name: 'c', defaults: { prop: undefined } })
@@ -85,8 +89,4 @@ describe('[TEST]: Deep data action type', () => {
             }
         });
     }));
-
-    afterEach(() => {
-        TestBed.resetTestingModule();
-    });
 });

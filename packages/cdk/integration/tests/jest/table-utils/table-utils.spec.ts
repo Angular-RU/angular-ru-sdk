@@ -20,7 +20,7 @@ describe('[TEST] Table utils', () => {
         { firstName: 'agnesi', id: 5, lastName: 'hawking', age: 22, nullable: null }
     ];
 
-    beforeEach(function (): void {
+    beforeEach((): void => {
         TestBed.configureTestingModule({
             imports: [PlainTableComposerModule.forRoot()],
             providers: [{ provide: WebWorkerThreadService, useValue: mockWebWorker }]
