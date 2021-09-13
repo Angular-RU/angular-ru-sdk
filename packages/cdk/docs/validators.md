@@ -88,7 +88,17 @@ export class AppComponent {
     public form: FormGroup;
 
     constructor(private readonly fb: FormBuilder) {
-        this.form = new FormGroup(
+        this.validForm = new FormGroup(
+            {
+                a: new FormControl(13),
+                b: new FormGroup({
+                    c: new FormControl()
+                })
+            },
+            [requiredSomeValueByKeysValidator(['a', 'b.c'])]
+        );
+
+        this.invalidForm = new FormGroup(
             {
                 a: new FormControl(),
                 b: new FormGroup({
@@ -96,6 +106,39 @@ export class AppComponent {
                 })
             },
             [requiredSomeValueByKeysValidator(['a', 'b.c'])]
+        );
+    }
+}
+```
+
+-   `requiredSomeValueValidator`
+
+```ts
+import { requiredSomeValueValidator } from '@angular-ru/cdk/validators';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component } from '@angular/core';
+
+@Component()
+export class AppComponent {
+    public form: FormGroup;
+
+    constructor(private readonly fb: FormBuilder) {
+        this.validForm = new FormGroup(
+            {
+                a: new FormControl(13),
+                b: new FormControl(),
+                c: new FormControl()
+            },
+            [requiredSomeValueValidator()]
+        );
+
+        this.invalidForm = new FormGroup(
+            {
+                a: new FormControl(),
+                b: new FormControl(),
+                c: new FormControl()
+            },
+            [requiredSomeValueValidator()]
         );
     }
 }
