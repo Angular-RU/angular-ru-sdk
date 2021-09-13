@@ -1,5 +1,11 @@
 #### independent (2021-09-13)
 
+##### Build System / Dependencies
+
+-   update eslint dependencies to v4.31.1 (#937) (415980cb)
+
+#### independent (2021-09-13)
+
 ##### New Features
 
 -   added requiredSomeValueValidator (#936) (97d7a5e1)
