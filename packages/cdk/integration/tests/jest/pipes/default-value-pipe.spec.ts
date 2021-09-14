@@ -13,6 +13,7 @@ describe('default value', () => {
     it('fallback for empty', () => {
         const value: Nullable<string> = null;
         const result = pipe.transform(value);
+
         expect(result).toEqual('-');
     });
 
@@ -25,6 +26,7 @@ describe('default value', () => {
 
         it('should be correct fallback value with default pipe', () => {
             const fallback: string = 'Not found value';
+
             expect(defaultPipe.transform('', fallback)).toEqual(fallback);
             expect(defaultPipe.transform('\n\n\n', fallback)).toEqual(fallback);
             expect(defaultPipe.transform('\t   ', fallback)).toEqual(fallback);

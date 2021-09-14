@@ -35,6 +35,7 @@ export class GroupFactory {
     // eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
     public group<T>(title: string, pipeline: Nullable<Pipeline<T>>, logger: LoggerService, level: LoggerLevel): T {
         const group: GroupMethod = this.console.instance.group.bind(this.console.instance);
+
         return this.createGroupLogger<T>(group, title, pipeline, logger, level);
     }
 
@@ -46,6 +47,7 @@ export class GroupFactory {
         level: LoggerLevel
     ): T {
         const groupCollapsed: GroupMethod = this.console.instance.groupCollapsed.bind(this.console.instance);
+
         return this.createGroupLogger<T>(groupCollapsed, title, pipeline, logger, level);
     }
 
@@ -74,6 +76,7 @@ export class GroupFactory {
 
             if (isNotNil(pipeline)) {
                 const result: Any = pipeline(logger);
+
                 this.close();
                 pipeLineResult = result;
             }

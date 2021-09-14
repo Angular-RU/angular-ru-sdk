@@ -11,6 +11,7 @@ describe('deep path', () => {
 
     it('decide if element is in array', () => {
         const array: string[] = ['first', 'second', 'third', 'last'];
+
         expect(pipe.transform(array, 'first')).toEqual(true);
         expect(pipe.transform(array, 'second')).toEqual(true);
         expect(pipe.transform(array, 'fifth')).toEqual(false);

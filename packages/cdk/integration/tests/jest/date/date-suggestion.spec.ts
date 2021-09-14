@@ -81,6 +81,7 @@ describe('[TEST]: Trim Input', () => {
 
     it('should set date interval based on FirstDayOfIntervalStrategy', () => {
         const mockStart: Date = new Date('10 Apr 2021 12:00:00');
+
         form.controls[descriptor.dateFromKey]?.setValue(mockStart);
         composer.getStrategy(DefaultDateIntervalSuggestion.FIRST_DAY_OF_INTERVAL).updateIntervalFor(form, descriptor);
         expect(form.getRawValue()).toEqual({
@@ -91,6 +92,7 @@ describe('[TEST]: Trim Input', () => {
 
     it('should set date interval based on LastDaysOfIntervalStrategy', () => {
         const mockEnd: Date = new Date('10 Apr 2021 12:00:00');
+
         form.controls[descriptor.dateToKey]?.setValue(mockEnd);
         composer
             .getStrategy(DefaultDateIntervalSuggestion.LAST_180_DAYS_OF_INTERVAL)
@@ -105,6 +107,7 @@ describe('[TEST]: Trim Input', () => {
         'set calendar week as interval (first day of week is %s)',
         ({ firstDayOfWeekNumber, firstDayOfWeek }) => {
             const dateAdapter: DateAdapter<unknown> = TestBed.inject(DateAdapter);
+
             // mocking locale day of week
             jest.spyOn(dateAdapter, 'getFirstDayOfWeek').mockImplementation(() => firstDayOfWeekNumber);
 

@@ -26,6 +26,7 @@ describe('empty validator', () => {
         });
 
         const app: ComponentFixture<AppComponent> = TestBed.createComponent(AppComponent);
+
         expect(app.componentInstance.form.valid).toEqual(true);
     });
 
@@ -54,6 +55,7 @@ describe('empty validator', () => {
         });
 
         const app: ComponentFixture<AppComponent> = TestBed.createComponent(AppComponent);
+
         expect(app.componentInstance.form.valid).toEqual(false);
 
         app.componentInstance.form.get('name')?.setValue('maxim');

@@ -50,6 +50,7 @@ export class SelectionService<T> implements OnDestroy {
 
     public toggleAll(rows: Nullable<T[]>): void {
         let selectedSize: Nullable<number> = null;
+
         window.clearInterval(this.selectionTaskIdle!);
 
         if (this.selectionModel.isAll) {
@@ -57,6 +58,7 @@ export class SelectionService<T> implements OnDestroy {
         } else {
             rows?.forEach((row: T): void => {
                 const selected: boolean = this.selectionModel.select(this.getIdByRow(row), row, false);
+
                 if (selected) {
                     selectedSize = (selectedSize ?? 0) + 1;
                 }
@@ -157,15 +159,18 @@ export class SelectionService<T> implements OnDestroy {
 
     private multipleSelectByShiftKeydown(index: number): void {
         const rows: T[] = this.rows ?? [];
+
         this.selectionModel.clear();
         this.range.put(index);
         const selectedRange: boolean = this.range.selectedRange();
 
         if (selectedRange) {
             const { start, end }: SelectionRange = this.range.sortKeys();
+
             for (let i: number = start!; i <= end!; ++i) {
                 const row: T = rows[i] as T;
                 const rowId: RowId = this.getIdByRow(row);
+
                 this.selectionModel.select(rowId, row, false);
             }
         }

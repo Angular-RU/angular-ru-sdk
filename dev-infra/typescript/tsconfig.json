@@ -23,6 +23,7 @@
         "strictLiteralTypes": true
     },
     "compilerOptions": {
+        "incremental": false,
         "newLine": "lf",
         "allowJs": true,
         "checkJs": true,
@@ -62,7 +63,7 @@
         "target": "es2015",
         "types": [],
         "forceConsistentCasingInFileNames": true,
-        "incremental": false
+        "allowSyntheticDefaultImports": true
     },
     "exclude": ["node_modules", "dist/**", "__tests__/**", "coverage/**", ".cache/**"]
 }

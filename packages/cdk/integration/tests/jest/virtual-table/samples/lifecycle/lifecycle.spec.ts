@@ -71,6 +71,7 @@ describe('[TEST]: Lifecycle table', () => {
         const view: NgxTableViewChangesService = new NgxTableViewChangesService();
 
         const parser: TemplateParserService<PlainObject> = new TemplateParserService();
+
         draggable = new DraggableService(parser);
 
         resizeService = new ResizableService();
@@ -99,6 +100,7 @@ describe('[TEST]: Lifecycle table', () => {
                     case FilterableService:
                         return new FilterableService({
                             get(_token: Any): Any {
+                                // eslint-disable-next-line sonarjs/no-nested-switch
                                 switch (_token) {
                                     case ApplicationRef:
                                         return app;
@@ -252,6 +254,7 @@ describe('[TEST]: Lifecycle table', () => {
 
     it('should be correct template changes', fakeAsync(() => {
         const templates: QueryList<NgxColumnComponent<PlainObject>> = new QueryList();
+
         table.columnTemplates = templates;
         table.source = [];
 
@@ -292,6 +295,7 @@ describe('[TEST]: Lifecycle table', () => {
 
     it('should be correct template changes with check renderCount', fakeAsync(() => {
         const templates: QueryList<NgxColumnComponent<PlainObject>> = new QueryList();
+
         table.columnTemplates = templates;
         table.source = deepClone(data);
 
@@ -340,6 +344,7 @@ describe('[TEST]: Lifecycle table', () => {
 
     it('should be correct template changes query list', fakeAsync(() => {
         const templates: QueryList<NgxColumnComponent<PlainObject>> = new QueryList();
+
         table.columnTemplates = templates;
         table.source = [];
 

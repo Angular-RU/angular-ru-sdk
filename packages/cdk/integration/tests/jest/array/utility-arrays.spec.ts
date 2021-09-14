@@ -172,6 +172,7 @@ describe('[TEST]: Array utility', () => {
         ]);
 
         const unique: PlainObject = { v: 1 };
+
         expect([unique, { v: 2 }, { v: 3 }, { v: 4 }].filter(exclude([unique, { v: 2 }]))).toEqual([
             { v: 2 },
             { v: 3 },

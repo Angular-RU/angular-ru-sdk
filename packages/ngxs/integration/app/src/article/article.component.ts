@@ -25,6 +25,7 @@ export class ArticleComponent {
 
     public editById(id: string): void {
         const entity: Article = this.articleEntities.selectOne(id)!;
+
         this.ensureDialog(entity).subscribe((article: Article): void =>
             this.articleEntities.updateOne({ id, changes: article })
         );

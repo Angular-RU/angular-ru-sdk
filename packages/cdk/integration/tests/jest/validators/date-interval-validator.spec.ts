@@ -12,6 +12,7 @@ describe('date interval validator', () => {
             },
             [dateMaxIntervalValidator(new Date(0).setDate(60), { dateToKey: 'dateTo', dateFromKey: 'dateFrom' })]
         );
+
         expect(form.errors).toEqual({ maxDateIntervalLimit: true });
 
         // changing to valid value
@@ -28,6 +29,7 @@ describe('date interval validator', () => {
             },
             [dateMinIntervalValidator(new Date(0).setDate(70), { dateToKey: 'dateTo', dateFromKey: 'dateFrom' })]
         );
+
         expect(form.errors).toEqual({ minDateIntervalLimit: true });
 
         // changing to valid value
@@ -47,6 +49,7 @@ describe('date interval validator', () => {
                 dateMaxIntervalValidator(new Date(0).setDate(70), { dateToKey: 'dateTo', dateFromKey: 'dateFrom' })
             ]
         );
+
         expect(form.errors).toEqual({ minDateIntervalLimit: true });
 
         // changing to valid value

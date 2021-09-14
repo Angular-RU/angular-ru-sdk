@@ -44,16 +44,19 @@ describe('[TEST]: HTTP Intercept Client', () => {
 
         public onInterceptHttpParams(_options: DataBeforeRequestOptions, httpParams: HttpParams): HttpParams {
             this.events.push(`{onInterceptHttpParams} httpParams: ${httpParams.toString()}`);
+
             return httpParams;
         }
 
         public onInterceptHttpHeaders(_options: DataBeforeRequestOptions, headers: HttpHeaders): HttpHeaders {
             this.events.push(`{onInterceptHttpHeaders} headers keys[]: ${headers.keys()}`);
+
             return headers;
         }
 
         public onInterceptBodyPayload<T>(_options: DataBeforeRequestOptions, body: T): T {
             this.events.push(`{onInterceptBodyPayload} body: ${JSON.stringify(body)}`);
+
             return body;
         }
 

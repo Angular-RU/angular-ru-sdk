@@ -6,12 +6,14 @@ describe('[TEST]: Stream API', () => {
     it('compress', async () => {
         const buffer: ArrayBuffer = await compress('hello world');
         const result: string = arrayBufferToBase64(buffer);
+
         expect(result).toEqual(base64);
     });
 
     it('decompress', async () => {
         const buffer: ArrayBuffer = base64ToArrayBuffer(base64);
         const result: string = await decompress(buffer);
+
         expect(result).toEqual('hello world');
     });
 });

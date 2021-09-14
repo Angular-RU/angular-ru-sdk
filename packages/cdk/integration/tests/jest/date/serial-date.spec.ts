@@ -14,6 +14,7 @@ const isoFormat: string = 'yyyy-MM-dd HH:mm:ss';
 describe('[TEST]: Date', (): void => {
     it('should be correct date pipe', (): void => {
         const dateTime: number = 1544532097434;
+
         expect(
             toFormatDateTime(dateTime, {
                 timezone: '+0300'
@@ -44,11 +45,13 @@ describe('[TEST]: Date', (): void => {
 
     it('should correct return date', (): void => {
         const date = '11.12.202018 15:41:37';
+
         expect(dateStringToDate(date).getFullYear()).toEqual(new Date().getFullYear());
     });
 
     it('should be correct parse date when paste valid value (27.02.2019 14:25)', (): void => {
         const date: Date = dateStringToDate('27.02.2019 14:25');
+
         expect(date.getDate()).toBe(27);
         expect(date.getFullYear()).toBe(2019);
         expect(date.getMonth()).toBe(1);
@@ -58,6 +61,7 @@ describe('[TEST]: Date', (): void => {
 
     it('should be correct parse date when paste valid value (25.10.2019 18:24:36)', (): void => {
         const date: Date = dateStringToDate('25.10.2019 18:24:36');
+
         expect(date.getDate()).toBe(25);
         expect(date.getFullYear()).toBe(2019);
         expect(date.getMonth()).toBe(9);
@@ -68,17 +72,20 @@ describe('[TEST]: Date', (): void => {
 
     it('should be correct parse date when paste invalid value', (): void => {
         const date: Date = dateStringToDate('incorrect value');
+
         // noinspection SuspiciousTypeOfGuard
         expect(date instanceof Date).toEqual(true);
     });
 
     it('should correct change data with short day', (): void => {
         const date: Nullable<string> = toTimestamp('5.07.2019 00:00', isoFormat);
+
         expect(date).toEqual('2019-07-05 00:00:00');
     });
 
     it('should correct be correct invalidate date', (): void => {
         let date: Nullable<string> = toTimestamp('5.7.2019', isoFormat);
+
         expect(date).toEqual('2019-07-05 00:00:00');
 
         date = toTimestamp('1.2.2019', isoFormat);
@@ -102,6 +109,7 @@ describe('[TEST]: Date', (): void => {
 
     it('should correct pass correct data', (): void => {
         const date: Nullable<string> = toTimestamp('25.07.2019 00:00', isoFormat);
+
         expect(date).toEqual('2019-07-25 00:00:00');
     });
 

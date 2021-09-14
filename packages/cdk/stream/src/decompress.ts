@@ -17,5 +17,6 @@ export async function decompress(bytes: ArrayBuffer, encoding: EncodingType = En
     writer.close();
 
     const arrayBuffer: ArrayBuffer = await new Response(decompressionStream.readable).arrayBuffer();
+
     return new TextDecoder().decode(arrayBuffer);
 }

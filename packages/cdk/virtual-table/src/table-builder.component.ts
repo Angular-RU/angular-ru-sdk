@@ -136,8 +136,10 @@ export class TableBuilderComponent<T>
         const height: Nullable<string | number> = this.expandableTableExpanded
             ? this.height
             : getClientHeight(this.headerRef) + getClientHeight(this.footerRef);
+
         if (checkValueIsFilled(height)) {
             const heightAsNumber: number = Number(height);
+
             return isNaN(heightAsNumber) ? String(height) : `${height}px`;
         } else {
             return '';
@@ -226,6 +228,7 @@ export class TableBuilderComponent<T>
             this.selection.selectionModeIsEnabled = true;
             this.selection.setProducerDisableFn(this.produceDisableFn);
         }
+
         this.sortable.setSortChanges(this.sortChanges);
     }
 
@@ -300,6 +303,7 @@ export class TableBuilderComponent<T>
      */
     public generateColumnsKeyMap(keys: string[]): PlainObjectOf<boolean> {
         const map: PlainObjectOf<boolean> = {};
+
         keys.forEach((key: string): void => {
             map[key] = true;
         });
@@ -378,10 +382,12 @@ export class TableBuilderComponent<T>
         }
 
         const isDownMoved: boolean = this.isDownMoved();
+
         this.viewPortInfo.prevScrollOffsetTop = this.scrollOffsetTop;
         const start: number = this.getOffsetVisibleStartIndex();
         const end: number = this.calculateEndIndex(start);
         const bufferOffset: number = this.calculateBuffer(isDownMoved, start, end);
+
         this.calculateViewPortByRange({ start, end, bufferOffset, force });
         this.viewPortInfo.bufferOffset = bufferOffset;
     }
@@ -402,6 +408,7 @@ export class TableBuilderComponent<T>
 
     protected calculateViewPortByRange({ start, end, bufferOffset, force }: CalculateRange): void {
         let newStartIndex: number = start;
+
         if (this.startIndexIsNull()) {
             this.updateViewportInfo(newStartIndex, end);
         } else if (this.needRecalculateBuffer(bufferOffset)) {
@@ -412,6 +419,7 @@ export class TableBuilderComponent<T>
             newStartIndex = this.recalculateStartIndex(newStartIndex);
             this.updateViewportInfo(newStartIndex, end);
             detectChanges(this.cd);
+
             return;
         }
 
@@ -430,11 +438,13 @@ export class TableBuilderComponent<T>
 
     protected recalculateStartIndex(start: number): number {
         const newStart: number = start - TABLE_GLOBAL_OPTIONS.MIN_BUFFER;
+
         return newStart >= 0 ? newStart : 0;
     }
 
     protected calculateBuffer(isDownMoved: boolean, start: number, end: number): number {
         const lastVisibleIndex: number = this.getOffsetVisibleEndIndex();
+
         return isDownMoved
             ? (this.viewPortInfo.endIndex ?? end) - lastVisibleIndex
             : start - this.viewPortInfo.startIndex!;
@@ -442,6 +452,7 @@ export class TableBuilderComponent<T>
 
     protected calculateEndIndex(start: number): number {
         const end: number = start + this.getVisibleCountItems() + TABLE_GLOBAL_OPTIONS.MIN_BUFFER;
+
         return end > this.sourceRef.length ? this.sourceRef.length : end;
     }
 
@@ -475,6 +486,7 @@ export class TableBuilderComponent<T>
     private checkCorrectInitialSchema(changes: SimpleChanges = {}): void {
         if (TableSimpleChanges.SCHEMA_COLUMNS in changes) {
             const schemaChange: Nullable<SimpleChange> = changes[TableSimpleChanges.SCHEMA_COLUMNS];
+
             if (isNotNil(schemaChange?.currentValue)) {
                 if (isNil(this.name)) {
                     console.error(`Table name is required! Example: <ngx-table-builder name="my-table-name" />`);
@@ -489,6 +501,7 @@ export class TableBuilderComponent<T>
 
     private setSortTypes(): void {
         this.sortable.setDefinition({ ...(this.sortTypes as PlainObjectOf<SortOrderType>) });
+
         if (this.sourceExists) {
             this.sortAndFilter().then((): void => this.reCheckDefinitions());
         }
@@ -529,6 +542,7 @@ export class TableBuilderComponent<T>
             this.timeoutViewCheckedId = window.setTimeout((): void => {
                 this.afterViewInitDone = true;
                 this.listenScroll();
+
                 if (!this.isRendered && !this.rendering && this.sourceRef.length === 0) {
                     this.emitRendered();
                     detectChanges(this.cd);
@@ -543,6 +557,7 @@ export class TableBuilderComponent<T>
                 .pipe(
                     catchError((): Observable<never> => {
                         this.calculateViewport(true);
+
                         return EMPTY;
                     }),
                     takeUntil(this.destroy$)
@@ -686,6 +701,7 @@ export class TableBuilderComponent<T>
         for (let index: number = 0; index < columnList.length; index++) {
             const key: string = columnList[index] as string;
             const schema: Nullable<ColumnsSchema> = this.getCompiledColumnSchema(key, index);
+
             if (isNotNil(schema)) {
                 this.processedColumnList(schema, columnList[index]);
             }
@@ -706,6 +722,7 @@ export class TableBuilderComponent<T>
 
         if (!this.templateParser.compiledTemplates[key]) {
             const column: NgxColumnComponent<T> = new NgxColumnComponent<T>().withKey(key);
+
             this.templateParser.compileColumnMetadata(column);
         }
 
@@ -760,6 +777,7 @@ export class TableBuilderComponent<T>
      */
     private generateDisplayedColumns(): string[] {
         let generatedList: string[];
+
         this.templateParser.initialSchema(this.columnOptions!);
         const { simpleRenderedKeys, allRenderedKeys }: TemplateKeys = this.parseTemplateKeys();
         const isValid: boolean = this.validationSchemaColumnsAndResetIfInvalid();
@@ -818,6 +836,7 @@ export class TableBuilderComponent<T>
         const keys: string[] = hasItems(this.keys)
             ? this.keys.filter((key: string): boolean => modelKeys.includes(key))
             : modelKeys;
+
         this.templateParser.keyMap = this.generateColumnsKeyMap(keys);
 
         this.templateParser.allowedKeyMap = this.keys.length

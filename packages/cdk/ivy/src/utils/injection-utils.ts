@@ -33,6 +33,7 @@ export function directiveInject<T>(
     token: Type<T> | AbstractType<T> | InjectionToken<T>,
     flags: InjectFlags
 ): Nullable<T>;
+
 export function directiveInject<T>(
     token: Type<T> | AbstractType<T> | InjectionToken<T>,
     flags?: InjectFlags
@@ -45,6 +46,7 @@ export function directiveInject<T>(
  */
 export function inject<T>(token: Type<T> | AbstractType<T> | InjectionToken<T>): T;
 export function inject<T>(token: Type<T> | AbstractType<T> | InjectionToken<T>, flags: InjectFlags): Nullable<T>;
+
 export function inject<T>(token: Type<T> | AbstractType<T> | InjectionToken<T>, flags?: InjectFlags): Nullable<T> {
     return wrapperForInject(ivyInject, token, flags);
 }

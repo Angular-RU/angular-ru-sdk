@@ -38,8 +38,10 @@ export function flatten<T = string>(object: PlainObject, excludeKeys: string[] =
 
 export function mutate<T>(object: PlainObject, depthGraph: PlainObjectOf<T>, key: string): void {
     const isObjectLike: boolean = typeof object[key] === 'object' && object[key] !== null!;
+
     if (isObjectLike) {
         const flatObject: PlainObject = flatten(object[key]);
+
         for (const path in flatObject) {
             if (flatObject.hasOwnProperty(path)) {
                 depthGraph[`${key}.${path}`] = flatObject[path];
@@ -55,6 +57,7 @@ export function deepObjectReduce<T>({ accumulator, key, targetValue, options }: 
 
     if (isTrue(options.weekType)) {
         const isComplexType: boolean = typeof targetValue === 'object' && targetValue !== null!;
+
         value = isComplexType ? targetValue : String(checkValueIsEmpty(targetValue) ? null : targetValue);
     }
 
@@ -91,12 +94,14 @@ export function shallowTrimProperties<T>(obj: PlainObjectOf<Any>): T {
     return Object.entries(obj).reduce((result: T, [key, value]: [string, Any]): T => {
         // note: don't use isString for preserve circular dependencies
         (result as Any)[key] = typeof value === 'string' ? value.trim() : value;
+
         return result;
     }, {} as T);
 }
 
 export function strictEquals<T, K>(a: T, b: K): boolean {
     const options: ObjectExtraOptions = { weekType: true, deep: true };
+
     return objectToString<T>(a, options) === objectToString<K>(b, options);
 }
 

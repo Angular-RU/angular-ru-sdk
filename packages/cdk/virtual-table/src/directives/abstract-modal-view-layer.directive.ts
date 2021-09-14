@@ -56,6 +56,7 @@ export abstract class AbstractModalViewLayerDirective<T, K extends PositionState
 
     public get overflowX(): number {
         const overflowX: number = this.width! + this.left - (getBodyRect()?.width ?? 0);
+
         return overflowX > 0 ? overflowX + SCROLLBAR_SIZE : 0;
     }
 
@@ -83,7 +84,7 @@ export abstract class AbstractModalViewLayerDirective<T, K extends PositionState
             } else {
                 height = this.menu.nativeElement.scrollHeight;
             }
-        } catch (e) {
+        } catch (e: unknown) {
             height = this.height;
         }
 

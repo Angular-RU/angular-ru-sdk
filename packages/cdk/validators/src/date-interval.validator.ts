@@ -36,9 +36,11 @@ export function orderedIntervalValidator({ dateFromKey, dateToKey }: DateInterva
         const formGroupValue: PlainObject = formGroup.getRawValue();
         const from: Timestamp | null = formGroupValue[dateFromKey];
         const to: Timestamp | null = formGroupValue[dateToKey];
+
         if (checkSomeValueIsEmpty(from, to)) {
             return null;
         }
+
         return from! > to! ? { [validatorType]: true } : null;
     };
 }
@@ -59,6 +61,7 @@ function dateIntervalValidator(
             (type === DateIntervalValidatorType.LIMIT_MAX_INTERVAL
                 ? interval > intervalLimitTimestamp
                 : interval < intervalLimitTimestamp);
+
         return limitExceeded ? { [type]: true } : null;
     };
 }

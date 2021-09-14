@@ -28,6 +28,7 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
 
     function filterColumnsTogether(item: T, operand: string, filterType: TableFilterType | string): boolean {
         const flattenedItem: PlainObject = flatten(item);
+
         return isSatisfying(Object.values(flattenedItem), operand, filterType);
     }
 
@@ -39,6 +40,7 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
 
             if (isPlainValue(fieldValue) && isFilled(fieldOperand) && isNotNil(fieldFilterType)) {
                 const satisfies: boolean = isSatisfying([fieldValue], fieldOperand, fieldFilterType);
+
                 if (!satisfies) {
                     return false;
                 }
@@ -99,13 +101,17 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
 
     function compareNumber(comparing: string, type: NumericFilterTypes): (value: PlainValue) => boolean {
         const comparingNumber: number = asNumber(comparing);
+
         switch (type) {
             case types.MORE_THAN:
                 return (value: PlainValue): boolean => Number(value) > comparingNumber;
+
             case types.MORE_OR_EQUAL:
                 return (value: PlainValue): boolean => Number(value) >= comparingNumber;
+
             case types.LESS_THAN:
                 return (value: PlainValue): boolean => Number(value) < comparingNumber;
+
             case types.LESS_OR_EQUAL:
                 return (value: PlainValue): boolean => Number(value) <= comparingNumber;
         }
@@ -113,6 +119,7 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
 
     function asNumber(value: string): number {
         const comparingNumber: number = Number(value);
+
         if (isNaN(comparingNumber)) {
             throw new Error('Operand is not a number');
         } else {
@@ -144,8 +151,10 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
 
     function mutate<K>(object: PlainObject, depthGraph: PlainObjectOf<K>, key: string): void {
         const isObject: boolean = typeof object[key] === 'object' && object[key] !== null;
+
         if (isObject) {
             const flatObject: PlainObject = flatten(object[key]);
+
             for (const path in flatObject) {
                 if (flatObject.hasOwnProperty(path)) {
                     depthGraph[`${key}.${path}`] = flatObject[path];

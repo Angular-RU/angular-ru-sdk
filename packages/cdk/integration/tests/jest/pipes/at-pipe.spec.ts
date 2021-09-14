@@ -11,6 +11,7 @@ describe('deep path', () => {
 
     it('get element at index', () => {
         const array: string[] = ['first', 'second', 'third', 'last'];
+
         expect(pipe.transform(array, 0)).toEqual('first');
         expect(pipe.transform(array, 1)).toEqual('second');
         expect(pipe.transform(array, 3)).toEqual('last');

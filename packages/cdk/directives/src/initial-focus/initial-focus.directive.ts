@@ -37,6 +37,7 @@ export class InitialFocusDirective implements AfterViewInit, OnDestroy {
     private focus(): void {
         if (this.isFocused()) {
             window.clearInterval(this.timeoutId!);
+
             return;
         }
 

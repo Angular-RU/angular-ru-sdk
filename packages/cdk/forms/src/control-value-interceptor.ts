@@ -45,17 +45,21 @@ export class ControlValueInterceptor<ModelValue = unknown, ViewValue = ModelValu
 
     private toModelValue(viewValue: ViewValue): ModelValue {
         let value: Any = viewValue;
+
         for (const operator of this.controlValueOperators) {
             value = isFunctionLike(operator.toModelValue) ? operator.toModelValue(value) : value;
         }
+
         return value as ModelValue;
     }
 
     private toViewValue(modelValue: ModelValue): ViewValue {
         let value: Any = modelValue;
+
         for (const operator of this.controlValueOperators) {
             value = isFunctionLike(operator.toViewValue) ? operator.toViewValue(value) : value;
         }
+
         return value as ViewValue;
     }
 

@@ -18,6 +18,7 @@ export class SampleSevenComponent implements OnInit, AfterViewInit {
     public ngOnInit(): void {
         const rowsNumber: number = 10000;
         const cols: number = 30;
+
         MocksGenerator.generator(rowsNumber, cols).then((data: PlainObject[]): void => {
             this.data = data;
             this.cd.detectChanges();
@@ -32,6 +33,7 @@ export class SampleSevenComponent implements OnInit, AfterViewInit {
 
     public alert(row: PlainObject): void {
         const space: number = 4;
+
         window.alert(JSON.stringify(row, null, space));
     }
 }

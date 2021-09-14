@@ -9,6 +9,7 @@ import { NgxsModule, State } from '@ngxs/store';
 describe('[TEST]: Debounce', () => {
     it('should be check ngZone', () => {
         let message: string | null = null;
+
         try {
             class App {
                 @Debounce()
@@ -18,7 +19,7 @@ describe('[TEST]: Debounce', () => {
             }
 
             new App().invoke();
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 
@@ -48,6 +49,7 @@ describe('[TEST]: Debounce', () => {
             @DataAction()
             public incrementByValue(val: number): number {
                 this.setState((state: number): number => state + val);
+
                 return this.getState();
             }
         }

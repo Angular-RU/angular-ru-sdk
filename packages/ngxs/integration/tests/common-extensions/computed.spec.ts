@@ -26,7 +26,7 @@ describe('[TEST]: Computed fields', () => {
             TestBed.configureTestingModule({
                 imports: [NgxsModule.forRoot([A]), NgxsDataPluginModule.forRoot()]
             });
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 
@@ -45,6 +45,7 @@ describe('[TEST]: Computed fields', () => {
             @Computed()
             public get snapshot(): string {
                 this.countSnapshot++;
+
                 return this.ctx.getState();
             }
         }
@@ -99,11 +100,13 @@ describe('[TEST]: Computed fields', () => {
                 @Computed()
                 public get total(): number {
                     this.memoized++;
+
                     return this.snapshot.price * this.snapshot.amount;
                 }
 
                 public get classicTotal(): number {
                     this.nonMemoized++;
+
                     return this.snapshot.price * this.snapshot.amount;
                 }
 
@@ -173,11 +176,13 @@ describe('[TEST]: Computed fields', () => {
                 @Computed()
                 public get total(): number {
                     this.memoized++;
+
                     return this.snapshot.price * this.snapshot.amount;
                 }
 
                 public get classicTotal(): number {
                     this.nonMemoized++;
+
                     return this.snapshot.price * this.snapshot.amount;
                 }
 
@@ -380,6 +385,7 @@ describe('[TEST]: Computed fields', () => {
             @Computed()
             public get sum(): number {
                 this.heavyCount++;
+
                 return this.snapshot.value + this.b.snapshot.value;
             }
         }

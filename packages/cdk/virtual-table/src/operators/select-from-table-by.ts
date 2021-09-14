@@ -10,5 +10,6 @@ export function selectFromTableBy<T>(
 ): SelectFromTableResult<T> {
     const selectedItems: T[] = Array.isArray(entries) ? entries : table?.selectedItems ?? [];
     const firstSelected: Nullable<T> = firstItem(selectedItems);
+
     return { items: selectedItems, first: firstSelected };
 }

@@ -29,7 +29,7 @@ describe('appState', () => {
             await ngxsTestingPlatform([InvalidState], () => {
                 // ..
             })();
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 

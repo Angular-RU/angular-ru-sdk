@@ -8,6 +8,7 @@ import { ttlHandler } from './ttl-handler';
 
 export function createTtlInterval(options: TtLCreatorOptions): void {
     const { provider, map }: TtLCreatorOptions = options;
+
     map.get(provider)?.subscription.unsubscribe();
 
     const watcher: Fn = (): void => {

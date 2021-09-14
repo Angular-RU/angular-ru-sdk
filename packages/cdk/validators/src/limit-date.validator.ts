@@ -16,11 +16,14 @@ export function minDateValidator(maxDate: Timestamp): ValidatorFn {
 
 function limitDateValidator(maxDate: Timestamp, type: DateLimitValidatorType): ValidatorFn {
     const maxDateTimestamp: number = new Date(maxDate).getTime();
+
     if (isNaN(maxDateTimestamp)) {
         throw new Error('maxDate value must be correct date');
     }
+
     return (control: AbstractControl): ValidationErrors | null => {
         const dateTimestamp: number = new Date(control.value).getTime();
+
         if (isNaN(dateTimestamp)) {
             return null;
         } else {
@@ -28,6 +31,7 @@ function limitDateValidator(maxDate: Timestamp, type: DateLimitValidatorType): V
                 type === DateLimitValidatorType.LIMIT_MAX_INTERVAL
                     ? dateTimestamp > maxDateTimestamp
                     : dateTimestamp < maxDateTimestamp;
+
             return limitExceeded ? { [type]: true } : null;
         }
     };

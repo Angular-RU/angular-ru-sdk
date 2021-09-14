@@ -15,6 +15,7 @@ export function RequestParam(name: string): ParameterDecorator {
 
         const originalMethod: Fn = (target as Any)?.[methodName as Any];
         const registry: MethodArgsRegistry = ensureMethodArgsRegistry(originalMethod, META_REQUEST_PARAM);
+
         registry.putIndexByName(key, methodName as string, parameterIndex);
     };
 }

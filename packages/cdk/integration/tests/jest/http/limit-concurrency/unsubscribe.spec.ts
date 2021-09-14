@@ -120,18 +120,23 @@ describe('[TEST]: Canceling requests and unsubscribing', () => {
 
     it('all requests must be canceled when the component is destroyed', fakeAsync(() => {
         component.ngOnInit();
+
         for (let i = 0; i < limitConcurrency; i++) {
             req = httpMock.expectOne(`${apiUrl}${i}`);
             active.push(req);
         }
+
         for (let i = limitConcurrency; i < countRequests; i++) {
             httpMock.expectNone(`${apiUrl}${i}`);
         }
+
         component.ngOnDestroy();
+
         for (let i = limitConcurrency; i < countRequests; i++) {
             req = httpMock.expectOne(`${apiUrl}${i}`);
             queue.push(req);
         }
+
         active.forEach((item: TestRequest): void => {
             expect(item.cancelled).toBe(true);
         });

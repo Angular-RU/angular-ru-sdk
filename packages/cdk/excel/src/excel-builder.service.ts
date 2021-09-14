@@ -44,6 +44,7 @@ export class ExcelBuilderService {
             .run((input: PreparedExcelWorkbook<T>): Blob => {
                 function isEmptyValue(value: Any): value is EmptyValue {
                     const val: Any = typeof value === 'string' ? value.trim() : value;
+
                     return [undefined, null, NaN, '', Infinity].includes(val);
                 }
 
@@ -99,10 +100,12 @@ export class ExcelBuilderService {
                     private static renderCell(value: Any, styleId: StyleType): string {
                         const type: Any = typeof value === 'number' ? 'Number' : 'String';
                         let cellValue: Any = isEmptyValue(value) ? '-' : value;
+
                         if (typeof cellValue === 'string') {
                             cellValue = cellValue.trim();
                             cellValue = cellValue.replace(/[<>]/g, '');
                         }
+
                         return `<Cell ss:StyleID="${styleId}"><Data ss:Type="${type}">${cellValue}</Data></Cell>`;
                     }
 
@@ -112,6 +115,7 @@ export class ExcelBuilderService {
 
                     public buildWorkbook(worksheets: PreparedExcelWorksheet<T>[]): string {
                         const xmlWorksheets: string = this.generateWorksheets(worksheets);
+
                         return ExcelBuilder.generateWorkbook(xmlWorksheets);
                     }
 
@@ -119,6 +123,7 @@ export class ExcelBuilderService {
                         const xmlSheets: string[] = worksheets.map((worksheet: PreparedExcelWorksheet<T>): string =>
                             this.generateWorksheet(worksheet)
                         );
+
                         return xmlSheets.join('');
                     }
 
@@ -151,9 +156,11 @@ export class ExcelBuilderService {
                             const widthSetting: Nullable<number | ColumnWidth> =
                                 parameters?.width ?? worksheet.generalColumnParameters?.width;
                             const width: number = this.getWidthOfColumn(title, entriesColumn, widthSetting);
+
                             columnsDescriptor += `<Column ss:Width="${width}" />`;
                             columnCells += ExcelBuilder.renderCell(title, StyleType.HEAD);
                         });
+
                         return `
                             ${columnsDescriptor}
                             <Row>${columnCells}</Row>`;
@@ -181,16 +188,20 @@ export class ExcelBuilderService {
                         const indent: number = this.sizes.fontWidth * indentMeasuredInSymbols;
                         const maxLength: number = entries.reduce((length: number, entry: string): number => {
                             const currentLength: number = this.getWidthOfString(entry, 'regular');
+
                             return Math.max(currentLength, length);
                         }, titleLength);
+
                         return Math.round(maxLength) + indent;
                     }
 
                     private getWidthOfString(string: string, fontWeight: keyof WidthOfSymbols): number {
                         let width: number = 0;
+
                         for (const symbol of string) {
                             width += input.widthOfSymbols[fontWeight][symbol] ?? this.sizes.fontWidth;
                         }
+
                         return width;
                     }
 
@@ -198,6 +209,7 @@ export class ExcelBuilderService {
                         const translatePath: string = ExcelBuilder.isFilled(translatePrefix)
                             ? `${translatePrefix}.${key}`
                             : key;
+
                         return this.flattenTranslatedKeys[translatePath] ?? key;
                     }
 
@@ -205,6 +217,7 @@ export class ExcelBuilderService {
                         const { rowHeight }: StyleSizes = this.sizes;
                         const xmlRows: string[] = entries.map((cell: PlainObject): string => {
                             const xmlCells: string = this.generateCells(cell);
+
                             return `<Row ss:Height="${rowHeight}">${xmlCells}</Row>`;
                         });
 
@@ -220,6 +233,7 @@ export class ExcelBuilderService {
                             const symbolCount: number = String(value).length;
                             const overflow: boolean = symbolCount * fontWidth >= minColumnWidth;
                             const localStyleId: StyleType = overflow ? StyleType.BIG_DATA : StyleType.BODY;
+
                             return ExcelBuilder.renderCell(value, localStyleId);
                         });
 
@@ -233,6 +247,7 @@ export class ExcelBuilderService {
                 ).buildWorkbook(input.worksheets);
 
                 const UTF8: string = '\ufeff';
+
                 return new Blob([UTF8, xmlBookTemplate], { type: 'application/vnd.ms-excel;charset=UTF-8' });
             }, preparedWorkbook)
             .then((blob: Blob): void => ExcelBuilderService.downloadWorkbook(blob, workbook.filename));
@@ -249,6 +264,7 @@ export class ExcelBuilderService {
         const preparedTranslatedKeys: PlainObject = workbook.translatedKeys
             ? await this.plainTableComposer.composeSingle<PlainObject>(workbook.translatedKeys)
             : {};
+
         return {
             ...workbook,
             worksheets: preparedWorksheets,
@@ -259,12 +275,14 @@ export class ExcelBuilderService {
 
     private async prepareWorksheet<T>(worksheet: ExcelWorksheet<T>): Promise<PreparedExcelWorksheet<T>> {
         let flatEntries: PlainObject[] = [];
+
         if (isNotNil(worksheet.entries)) {
             flatEntries = await this.plainTableComposer.compose(worksheet.entries, {
                 includeKeys: worksheet.keys,
                 excludeKeys: worksheet.excludeKeys
             });
         }
+
         return { ...worksheet, flatEntries };
     }
 }

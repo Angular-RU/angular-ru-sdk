@@ -37,7 +37,9 @@ describe('[TEST]: Zone', () => {
             }
 
             const newState: number = this.getState() + 1;
+
             this.ctx.setState(newState);
+
             return newState;
         }
     }

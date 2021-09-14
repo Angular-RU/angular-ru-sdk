@@ -127,12 +127,15 @@ class GoodComponent implements OnInit {
 }
 
 const foo = (): number => 0;
+
 console.error(foo);
 
 const arrowFn = () => (): Any => ({});
+
 console.error(arrowFn);
 
 const error = (message: string) => void console.error(message);
+
 error('hello world');
 
 switchMap((): Observable<ExampleDeep> => of(new ExampleDeep()));
@@ -142,10 +145,12 @@ document.addEventListener('click', (): void => {
 });
 
 const fooZ: number[] = [].map((i: number): number => i * i);
+
 console.error(fooZ);
 
 (function a(variable: string): void {
     let newVar: string = variable;
+
     newVar = newVar + ' world';
     console.error(newVar);
 })('hello');

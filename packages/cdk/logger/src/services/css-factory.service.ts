@@ -13,7 +13,9 @@ export class CssFactory {
 
     public get style(): string {
         const style: string = this.localStyle;
+
         this.clearLocalStyle();
+
         return `${this.globalStyles}${style}`;
     }
 
@@ -31,6 +33,7 @@ export class CssFactory {
 
     public getStyleLabel(level: LoggerLevel): string {
         const color: Nullable<string> = this.options.labelColors[level];
+
         return `color: ${color}; font-weight: bold`;
     }
 
@@ -47,6 +50,7 @@ export class CssFactory {
         });
 
         const localStyles: string = styles.length ? styles.join('; ') : '';
+
         this.lineStyle = `${this.globalStyles}${localStyles}`;
     }
 

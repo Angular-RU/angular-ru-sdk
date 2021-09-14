@@ -67,6 +67,7 @@ export abstract class AbstractHttpClient<K = unknown> {
     protected createDataHttpRequestOptions<T>(options: DataBeforeRequestOptions): DataHttpRequestOptions {
         const httpParams: HttpParams = getHttpParams(options.path, options.clientOptions.queryParams);
         const headers: HttpHeaders = getHttpHeader(options.clientOptions.headers);
+
         return {
             withCredentials: false,
             body: this.createHttpBody<T>(options),
@@ -79,11 +80,13 @@ export abstract class AbstractHttpClient<K = unknown> {
 
     private createHttpBody<T>(options: DataBeforeRequestOptions): T | FormData {
         const payload: T = options.clientOptions.body as T;
+
         if (payload instanceof FormData) {
             return payload;
         }
 
         const body: T = this.interceptor.onInterceptBodyPayload?.(options, payload) ?? payload;
+
         return isTrue(options.clientOptions.nullInsteadEmpty) ? replaceWithNull(body) : body;
     }
 }

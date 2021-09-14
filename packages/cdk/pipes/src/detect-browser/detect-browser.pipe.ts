@@ -9,11 +9,13 @@ import { DetectBrowserPipeOptions } from './detect-browser-pipe';
 export class DetectBrowserPipe implements PipeTransform {
     private static getBrowserMatchers(userAgent?: string): Nullable<RegExpMatchArray> {
         const ua: string = userAgent ?? navigator.userAgent;
+
         return ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) ?? [];
     }
 
     private static ensureInternetExplorer(ua: string): string {
         const matcher: Nullable<RegExpMatchArray> = /\brv[ :]+(\d+)/g.exec(ua) || [];
+
         return `IE ${secondItem(matcher)}` ?? '';
     }
 

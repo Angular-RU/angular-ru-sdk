@@ -98,26 +98,31 @@ export class LoggerService {
 
     public groupCollapsed(title: string, pipeline?: Pipeline): LoggerService {
         this.groupFactory.groupCollapsed(title, pipeline, this, LoggerLevel.INFO);
+
         return this;
     }
 
     public close(): LoggerService {
         this.groupFactory.close();
+
         return this;
     }
 
     public closeAll(): LoggerService {
         this.groupFactory.closeAll();
+
         return this;
     }
 
     public group(title: string, pipeline?: Pipeline): LoggerService {
         this.groupFactory.group(title, pipeline, this, LoggerLevel.INFO);
+
         return this;
     }
 
     public css(style: string): LoggerService {
         this.cssFactory.style = style;
+
         return this;
     }
 
@@ -127,6 +132,7 @@ export class LoggerService {
 
     public cssClass(cssClassName: string): LoggerService {
         this.cssFactory.setClass(cssClassName);
+
         return this;
     }
 

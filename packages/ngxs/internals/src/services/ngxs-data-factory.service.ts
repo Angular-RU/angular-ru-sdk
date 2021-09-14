@@ -62,6 +62,7 @@ export class NgxsDataFactory {
 
     public static clearMetaByInstance(target: DataStateClass | Any): void {
         const repository: NgxsRepositoryMeta = NgxsDataFactory.getRepositoryByInstance(target);
+
         repository.stateMeta!.actions = {};
         repository.operations = {};
     }
@@ -72,6 +73,7 @@ export class NgxsDataFactory {
 
         for (let index: number = 0; index < arrayArgs.length; index++) {
             const payloadName: PayloadName | null | undefined = registry?.getPayloadTypeByIndex(index);
+
             if (isNotNil(payloadName)) {
                 payload[payloadName] = arrayArgs[index];
             }
@@ -83,6 +85,7 @@ export class NgxsDataFactory {
     public static createAction(operation: NgxsDataOperation, args: Any[], registry?: MethodArgsRegistry): ActionEvent {
         const payload: PlainObjectOf<Any> | null = NgxsDataFactory.createPayload(args, registry);
         const dynamicActionByTypeFactory: Type<Any> = dynamicActionByType(operation.type);
+
         return new dynamicActionByTypeFactory(payload) as ActionEvent;
     }
 

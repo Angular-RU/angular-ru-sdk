@@ -4,6 +4,7 @@ import { orderedIntervalValidator, requiredSomeValueByKeysValidator } from '@ang
 
 describe('[TEST]: requiredSomeValueByKeysValidator vs orderedIntervalValidator', () => {
     let form: FormGroup;
+
     beforeEach(() => {
         form = new FormGroup(
             {
@@ -25,6 +26,7 @@ describe('[TEST]: requiredSomeValueByKeysValidator vs orderedIntervalValidator',
         const controlFrom: AbstractControl = form.get('dateFrom') ?? new FormControl();
         const controlTo: AbstractControl = form.get('dateTo') ?? new FormControl();
         const controlA: AbstractControl = form.get('aaa') ?? new FormControl();
+
         controlFrom.setValue(toUtc());
         controlTo.setValue(toUtc({ month: new Date().getMonth() + 1 }));
         controlA.setValue(1);
@@ -34,17 +36,20 @@ describe('[TEST]: requiredSomeValueByKeysValidator vs orderedIntervalValidator',
     it('should return error if both invalid', () => {
         const controlFrom: AbstractControl = form.get('dateFrom') ?? new FormControl();
         const controlTo: AbstractControl = form.get('dateTo') ?? new FormControl();
+
         controlFrom.setValue(toUtc());
         controlTo.setValue(toUtc({ month: new Date().getMonth() - 1 }));
         form.updateValueAndValidity();
         const error: string = JSON.stringify(form.errors);
         const expectError: string = JSON.stringify({ requiredSomeValueByKeys: true, orderedInterval: true });
+
         expect(error).toEqual(expectError);
     });
 
     it('should return error if only requiredSomeValueByKeysValidator is invalid', () => {
         const controlFrom: AbstractControl = form.get('dateFrom') ?? new FormControl();
         const controlTo: AbstractControl = form.get('dateTo') ?? new FormControl();
+
         controlFrom.setValue(toUtc());
         controlTo.setValue(toUtc());
         expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
@@ -54,6 +59,7 @@ describe('[TEST]: requiredSomeValueByKeysValidator vs orderedIntervalValidator',
         const controlFrom: AbstractControl = form.get('dateFrom') ?? new FormControl();
         const controlTo: AbstractControl = form.get('dateTo') ?? new FormControl();
         const controlA: AbstractControl = form.get('aaa') ?? new FormControl();
+
         controlFrom.setValue(toUtc());
         controlTo.setValue(toUtc({ month: new Date().getMonth() - 1 }));
         controlA.setValue(1);

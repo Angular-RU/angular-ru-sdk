@@ -37,6 +37,7 @@ export class ObserverViewDirective implements AfterViewInit, OnDestroy {
     public ngOnDestroy(): void {
         this.element = { nativeElement: null };
         cancelAnimationFrame(this.frameId!);
+
         if (isNotNil(this.observer)) {
             this.observer?.disconnect?.();
         }
@@ -44,6 +45,7 @@ export class ObserverViewDirective implements AfterViewInit, OnDestroy {
 
     private observeChange(entry: IntersectionObserverEntry): void {
         const isVisible: boolean = entry.intersectionRatio > this.previousRation || entry.isIntersecting;
+
         cancelAnimationFrame(this.frameId!);
         this.frameId = window.requestAnimationFrame((): void => this.observeVisible.emit(isVisible));
     }

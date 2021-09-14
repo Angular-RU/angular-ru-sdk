@@ -29,7 +29,7 @@ describe('inheritance', () => {
             TestBed.configureTestingModule({
                 imports: [NgxsModule.forRoot([CountState])]
             });
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 

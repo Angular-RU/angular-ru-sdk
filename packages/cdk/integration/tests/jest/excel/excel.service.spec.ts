@@ -91,6 +91,7 @@ describe('[TEST] Excel service', () => {
         });
         await new Promise((resolve) => setTimeout(resolve));
         const [blob, filename] = downloadSpy.mock.calls[0];
+
         expect(await readFromBlob(blob)).toBe(readFile('test-1-simple.xls'));
         expect(filename).toBe('simple');
     });
@@ -102,6 +103,7 @@ describe('[TEST] Excel service', () => {
         });
         await new Promise((resolve) => setTimeout(resolve));
         const [blob, filename] = downloadSpy.mock.calls[0];
+
         expect(await readFromBlob(blob)).toBe(readFile('test-2-by-keys.xls'));
         expect(filename).toBe('by-keys');
     });
@@ -118,6 +120,7 @@ describe('[TEST] Excel service', () => {
         });
         await new Promise((resolve) => setTimeout(resolve));
         const [blob, filename] = downloadSpy.mock.calls[0];
+
         expect(await readFromBlob(blob)).toBe(readFile('test-3-exclude-keys.xls'));
         expect(filename).toBe('exclude-keys');
     });
@@ -140,6 +143,7 @@ describe('[TEST] Excel service', () => {
         });
         await new Promise((resolve) => setTimeout(resolve));
         const [blob, filename] = downloadSpy.mock.calls[0];
+
         expect(await readFromBlob(blob)).toBe(readFile('test-4-options.xls'));
         expect(filename).toBe('options');
     });
@@ -159,6 +163,7 @@ describe('[TEST] Excel service', () => {
         });
         await new Promise((resolve) => setTimeout(resolve));
         const [blob, filename] = downloadSpy.mock.calls[0];
+
         expect(await readFromBlob(blob)).toBe(readFile('test-5-translate.xls'));
         expect(filename).toBe('translate');
     });
@@ -184,6 +189,7 @@ describe('[TEST] Excel service', () => {
             });
             await new Promise((resolve) => setTimeout(resolve));
             const [blob, filename] = downloadSpy.mock.calls[0];
+
             expect(await readFromBlob(blob)).toBe(readFile('test-6-auto-width.xls'));
             expect(filename).toBe('auto-width');
         });
@@ -206,6 +212,7 @@ describe('[TEST] Excel service', () => {
             });
             await new Promise((resolve) => setTimeout(resolve));
             const [blob, filename] = downloadSpy.mock.calls[0];
+
             expect(await readFromBlob(blob)).toBe(readFile('test-7-auto-width-translate.xls'));
             expect(filename).toBe('auto-width-translate');
         });
@@ -227,6 +234,7 @@ describe('[TEST] Excel service', () => {
             });
             await new Promise((resolve) => setTimeout(resolve));
             const [blob, filename] = downloadSpy.mock.calls[0];
+
             expect(await readFromBlob(blob)).toBe(readFile('test-8-auto-width.xls'));
             expect(filename).toBe('auto-width');
         });

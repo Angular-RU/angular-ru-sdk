@@ -11,7 +11,9 @@ export function partition<T>(
              * @type {number}
              */
             const fittingToPredicateCoupleIndex: number = predicate(element, ...rest) ? 0 : 1;
+
             partitioning[fittingToPredicateCoupleIndex]?.push(element);
+
             return partitioning;
         },
         [[], []] as Couple<T[]>

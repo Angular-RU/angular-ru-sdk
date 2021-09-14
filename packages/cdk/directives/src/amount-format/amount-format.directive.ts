@@ -115,8 +115,10 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
 
     public format(): void {
         const fraction: string = this.getFractionSeparator();
+
         this.cursorPointer = this.element.selectionStart ?? 0;
         const isInSafeSelectionPosition: boolean = this.cursorPointer !== this.element.value.length;
+
         this.replaceAllInvalidSymbolsBeforeTranslation();
 
         if (this.viewModelIsOnlyMinus()) {
@@ -125,11 +127,13 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
             // because when we trigger ngControl?.reset
             // it's also reset view model
             this.element.value = '-';
+
             return;
         }
 
         const originValueBeforeReset: string = this.element.value;
         const numberValue: number = this.getNumberValueWithGaussRounded();
+
         this.setModelValueBy(numberValue);
         this.element.value = originValueBeforeReset;
 
@@ -156,6 +160,7 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
 
     private replaceAllInvalidSymbolsBeforeTranslation(): void {
         const fraction: string = this.getFractionSeparator();
+
         this.element.value = this.removeNonNumericSymbols();
         this.element.value = this.replaceInvalidFractionPosition(fraction);
         this.element.value = this.removeDuplicateMinusOrFractionSymbol(fraction);
@@ -180,6 +185,7 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
                 toNumber(`0${fraction}${lastSymbolsAsZeroDot}`, this.options.lang),
                 maximumFractionDigits
             );
+
             lastSymbolsAsZeroDot = isNaN(parsedDot) ? '' : parsedDot.toString().replace(/0\./, '');
         }
 
@@ -224,6 +230,7 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
 
     private getNumberValueWithGaussRounded(): number {
         const maximumFractionDigits: number = this.getMaximumFractionDigits();
+
         return gaussRound(toNumber(this.element.value, this.options.lang), maximumFractionDigits);
     }
 
@@ -241,6 +248,7 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
 
         value = value.replace(new RegExp(`\\${fraction}`, 'g'), (): string => {
             count++;
+
             return count > 1 ? '' : fraction;
         });
 
@@ -285,6 +293,7 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
 
     private recalculateWhenChangesOptions(): void {
         const value: number = toNumber(this.element.value, this.previousLang ?? this.options.lang);
+
         this.element.value = value.toLocaleString(this.options.lang, this.options.formatOptions);
         this.previousLang = this.options.lang;
         this.format();

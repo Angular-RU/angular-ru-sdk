@@ -71,10 +71,12 @@ export class ConsoleFake implements Console {
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     public stack(withoutLabel: number = 2): string {
         const history: PlainObject[] = [...this._stack];
+
         history.forEach((line: PlainObject, index: number): void => {
             for (const arg in line) {
                 if (line.hasOwnProperty(arg)) {
                     const isArray: boolean = Array.isArray(line[arg]);
+
                     history[index] = { [arg]: isArray ? line[arg].slice(withoutLabel) : line[arg] };
                 }
             }
@@ -189,6 +191,7 @@ export class ConsoleFake implements Console {
             const entry: string[] = attribute.split(':');
             const property: string = String(entry.splice(0, 1)[0]).trim();
             const options: string = entry.join(':').trim();
+
             if (property.length) {
                 result[property] = options;
             }

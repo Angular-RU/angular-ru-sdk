@@ -23,6 +23,7 @@ export class JoinPipe implements PipeTransform {
             result = input.reduce((prev: string, next: T, index: number, arr: T[]): string => {
                 const transformed: string = mapTransformer(next, index, arr);
                 const separatorOrEmpty: string = arr.length - 1 === index ? '' : currentSeparator;
+
                 return prev ? `${prev}${transformed}${separatorOrEmpty}` : `${transformed}${separatorOrEmpty}`;
             }, '');
         } else {

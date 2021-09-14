@@ -30,6 +30,7 @@ describe('[TEST] Table utils', () => {
 
     it('should correctly plain sets of data without rules', async () => {
         const plain = await plainTableComposer.compose(dataset);
+
         expect(plain).toEqual([
             { id: 1, firstName: 'albattani', lastName: 'herschel', age: 32, nullable: null },
             { id: 2, firstName: 'allen', lastName: 'hermann', age: 42, nullable: 'not null' },
@@ -44,6 +45,7 @@ describe('[TEST] Table utils', () => {
 
     it('should correctly plain sets of data with include rule', async () => {
         let plain: PlainObject[] = await plainTableComposer.compose(dataset, { includeKeys: ['id', 'lastName'] });
+
         expect(plain).toEqual([
             { id: 1, lastName: 'herschel' },
             { id: 2, lastName: 'hermann' },
@@ -66,6 +68,7 @@ describe('[TEST] Table utils', () => {
 
     it('should correctly plain sets of data with exclude rule', async () => {
         let plain: PlainObject[] = await plainTableComposer.compose(dataset, { excludeKeys: ['id', 'firstName'] });
+
         expect(plain).toEqual([
             { lastName: 'herschel', age: 32, nullable: null },
             { lastName: 'hermann', age: 42, nullable: 'not null' },

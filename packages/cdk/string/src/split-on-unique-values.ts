@@ -6,6 +6,7 @@ export function splitOnUniqueValues(value: Nullable<string>, separator: RegExp =
 
     for (const item of parsedValues) {
         const prepared: string = item?.trim();
+
         if (prepared) {
             uniqueValues.add(prepared);
         }

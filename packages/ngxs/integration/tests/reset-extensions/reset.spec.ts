@@ -50,6 +50,7 @@ describe('[TEST]: Reset', () => {
 
     it('should be correct reset A state', () => {
         const a: A = TestBed.inject<A>(A);
+
         expect(store.snapshot()).toEqual({ A: { C: { D: {} }, B: {} } });
         expect(a.getState()).toEqual({ C: { D: {} }, B: {} });
 
@@ -72,7 +73,7 @@ describe('[TEST]: Reset', () => {
             class BarState {}
 
             new BarState();
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 
@@ -89,7 +90,7 @@ describe('[TEST]: Reset', () => {
             class BarState {}
 
             new BarState();
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 
@@ -106,7 +107,7 @@ describe('[TEST]: Reset', () => {
             class BarState {}
 
             new BarState();
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 

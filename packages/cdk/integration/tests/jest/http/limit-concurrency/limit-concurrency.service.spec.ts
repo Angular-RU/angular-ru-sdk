@@ -47,6 +47,7 @@ describe('[TEST]: HTTP limit concurrency service with Marble', () => {
         it('should throw an error if limitConcurrency = -1', () => {
             testScheduler.run(({ cold }) => {
                 const expected$ = cold('-a|', TEST_DATA);
+
                 expect(() => service.add(expected$, limitConcurrency)).toThrow(
                     new Error('Limit concurrency should be more than 0')
                 );
@@ -60,6 +61,7 @@ describe('[TEST]: HTTP limit concurrency service with Marble', () => {
         it('should throw an error if limitConcurrency = 0', () => {
             testScheduler.run(({ cold }) => {
                 const expected$ = cold('-a|', TEST_DATA);
+
                 expect(() => service.add(expected$, limitConcurrency)).toThrow(
                     new Error('Limit concurrency should be more than 0')
                 );
@@ -73,6 +75,7 @@ describe('[TEST]: HTTP limit concurrency service with Marble', () => {
         it('should return Observable with the same data', () => {
             testScheduler.run(({ cold, expectObservable: expect }) => {
                 const expected$ = cold('1s-a-b|', TEST_DATA);
+
                 expect(service.add(expected$, limitConcurrency)).toBe('1s-a-b|', TEST_DATA);
             });
         });
@@ -83,6 +86,7 @@ describe('[TEST]: HTTP limit concurrency service with Marble', () => {
                 const request2$ = cold('-b|', TEST_DATA);
 
                 const mergedObservable = merge(service.add(request1$, limitConcurrency), service.add(request2$, 1));
+
                 expect(mergedObservable).toBe('-----a-b|', TEST_DATA);
             });
         });

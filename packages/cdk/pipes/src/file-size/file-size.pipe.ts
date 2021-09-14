@@ -22,6 +22,7 @@ export class FileSizePipe implements PipeTransform {
 
             result = `${calculatedBytes.toFixed(Number(precision))} ${this.units[unit]}`;
         }
+
         return result;
     }
 }

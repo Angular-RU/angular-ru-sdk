@@ -20,6 +20,7 @@ export function exposeTsCompilerOptionsByTsConfig(tsConfigPath: string): Compile
 
     if (shouldBeDiscoverPathsInParentTsConfig) {
         const parentTsConfigPath: string = path.resolve(path.dirname(resolvedPath), tsconfig.extends);
+
         return exposeTsCompilerOptionsByTsConfig(parentTsConfigPath);
     }
 

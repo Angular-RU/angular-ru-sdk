@@ -10,6 +10,7 @@ export function decodeJwt<T>(token: Nullable<string>): Nullable<T> {
         const base64Url: string = secondItem(token?.split('.')) ?? '';
         const base64: string = base64Url.replace(/-/g, '+').replace(/_/g, '/');
         const decodedStringValue: string = decodeURIComponent(escape(window.atob(base64)));
+
         result = tryParseJson(decodedStringValue) ?? null;
     }
 

@@ -13,6 +13,7 @@ export function requiredSomeValueValidator<T>(): ValidatorFn {
         const formGroupValue: T = formGroup.getRawValue();
         const keyList: (keyof T | string)[] = Object.keys(formGroupValue);
         const error: Any = requiredSomeValueByKeysValidator(keyList)(formGroup);
+
         return isNil(error) ? null : { [VALIDATOR_TYPE]: true };
     };
 }

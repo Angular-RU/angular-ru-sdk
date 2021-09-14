@@ -36,6 +36,7 @@ describe('[TEST]: Check global style', () => {
                     },
                     format(label: string, labelStyle: string): FormatOutput {
                         const customLabel: string = `${label}`;
+
                         return { label: customLabel, style: labelStyle };
                     }
                 })
@@ -53,18 +54,23 @@ describe('[TEST]: Check global style', () => {
         logger.level = LoggerLevel.ALL;
 
         const traceLine: number = 0;
+
         logger.trace(traceIsWork, 1, { a: 1 });
 
         const debugLine: number = 1;
+
         logger.debug(debugIsWork, 2, {});
 
         const infoLine: number = 2;
+
         logger.info(infoIsWork, 3, Object);
 
         const warnLine: number = 3;
+
         logger.warn(warnIsWork, 4, String);
 
         const errorLine: number = 4;
+
         logger.error(errorIsWork, 5, (2.55).toFixed());
 
         const stackOptionsList: PlainObject = fakeConsole.stackOptionsList();
@@ -86,18 +92,23 @@ describe('[TEST]: Check global style', () => {
         logger.level = LoggerLevel.ALL;
 
         const traceLine: number = 0;
+
         logger.trace(traceIsWork, 1, { a: 1 });
 
         const debugLine: number = 1;
+
         logger.debug(debugIsWork, 2, {});
 
         const infoLine: number = 2;
+
         logger.info(infoIsWork, 3, Object);
 
         const warnLine: number = 3;
+
         logger.warn(warnIsWork, 4, String);
 
         const errorLine: number = 4;
+
         logger.error(errorIsWork, 5, (2.55).toFixed());
 
         const stackOptionsList: PlainObject = fakeConsole.stackOptionsList();
@@ -125,18 +136,23 @@ describe('[TEST]: Check global style', () => {
         });
 
         const traceLine: number = 0;
+
         logger.trace(traceIsWork, 1, { a: 1 });
 
         const debugLine: number = 1;
+
         logger.debug(debugIsWork, 2, {});
 
         const infoLine: number = 2;
+
         logger.info(infoIsWork, 3, Object);
 
         const warnLine: number = 3;
+
         logger.warn(warnIsWork, 4, String);
 
         const errorLine: number = 4;
+
         logger.error(errorIsWork, 5, (2.55).toFixed());
 
         const stackOptionsList: PlainObject = fakeConsole.stackOptionsList();
@@ -167,18 +183,23 @@ describe('[TEST]: Check global style', () => {
         });
 
         const traceLine: number = 0;
+
         logger.trace(traceIsWork, 1, { a: 1 });
 
         const debugLine: number = 1;
+
         logger.debug(debugIsWork, 2, {});
 
         const infoLine: number = 2;
+
         logger.info(infoIsWork, 3, Object);
 
         const warnLine: number = 3;
+
         logger.warn(warnIsWork, 4, String);
 
         const errorLine: number = 4;
+
         logger.error(errorIsWork, 5, (2.55).toFixed());
 
         const stackOptionsList: PlainObject = fakeConsole.stackOptionsList();

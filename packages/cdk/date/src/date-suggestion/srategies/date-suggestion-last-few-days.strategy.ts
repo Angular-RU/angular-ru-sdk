@@ -14,6 +14,7 @@ export class DateSuggestionLastFewDaysStrategy implements DateSuggestionStrategy
 
     public updateIntervalFor(control: AbstractControl, { dateFromKey, dateToKey }: DateIntervalDescriptor): void {
         const daysShiftAgo: number = -(this.daysCount - 1);
+
         control.patchValue({
             [dateFromKey]: startOfDay(shiftDate({ days: daysShiftAgo })),
             [dateToKey]: endOfDay()

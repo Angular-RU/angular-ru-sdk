@@ -98,6 +98,7 @@ describe('[TEST]: Integration with class-transformer', () => {
 
     it('should be invalid transform to number as NaN', (): void => {
         const actual: DemoDto = new DemoDto();
+
         actual.numVal = 'INVALID NUMBER';
         expect(actual.numVal).toEqual('INVALID NUMBER');
         expect(plainToClass(DemoDto, actual).numVal).toEqual(NaN);
@@ -105,6 +106,7 @@ describe('[TEST]: Integration with class-transformer', () => {
 
     it('should be correct transform to number', (): void => {
         const actual: DemoDto = new DemoDto();
+
         actual.numVal = ' 100 ';
         expect(actual.numVal).toEqual(' 100 ');
         expect(plainToClass(DemoDto, actual).numVal).toEqual(100);

@@ -24,7 +24,7 @@ abstract class AbstractDemoChildComponent {
     public hello(): string {
         try {
             return this.anotherService2.testField;
-        } catch (e) {
+        } catch (e: unknown) {
             return 'INVALID';
         }
     }
@@ -42,7 +42,7 @@ class B extends A {
     public world(): string {
         try {
             return this.anotherService3.testField + '__hello__';
-        } catch (e) {
+        } catch (e: unknown) {
             return 'INVALID';
         }
     }

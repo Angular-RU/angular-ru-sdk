@@ -150,7 +150,7 @@ describe('[TEST]: Decorator API', () => {
 
         try {
             component.badRequest();
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 

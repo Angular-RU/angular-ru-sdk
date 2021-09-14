@@ -2,12 +2,14 @@ import { FileSizePipe } from '@angular-ru/cdk/pipes';
 
 describe('[TEST]: File Size Pipe', (): void => {
     let fileSizePipe: FileSizePipe;
+
     beforeEach((): void => {
         fileSizePipe = new FileSizePipe();
     });
 
     it('should correct transform file size', (): void => {
         let fileSize: number = 1100;
+
         expect(fileSizePipe.transform(fileSize)).toEqual('1.07 Kb');
         fileSize = 13;
         expect(fileSizePipe.transform(fileSize)).toEqual('13.00 bytes');

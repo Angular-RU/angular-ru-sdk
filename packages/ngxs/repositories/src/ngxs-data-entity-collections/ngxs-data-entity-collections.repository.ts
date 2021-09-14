@@ -53,6 +53,7 @@ export abstract class AbstractNgxsDataEntityCollectionsRepository<
     @Computed()
     public get entitiesArray(): V[] {
         const snapshot: EntityCollections<V, K, C> = this.snapshot;
+
         return snapshot.ids.map((id: K): V => snapshot.entities[id]);
     }
 
@@ -81,6 +82,7 @@ export abstract class AbstractNgxsDataEntityCollectionsRepository<
 
     public setComparator(comparator: EntityComparator<V> | null): this {
         this.comparator = comparator;
+
         return this;
     }
 
@@ -102,6 +104,7 @@ export abstract class AbstractNgxsDataEntityCollectionsRepository<
 
     public selectAll(): V[] {
         const state: EntityCollections<V, K, C> = this.getState();
+
         return state.ids.map((id: K): V => state.entities[id] as V);
     }
 
@@ -169,14 +172,17 @@ export abstract class AbstractNgxsDataEntityCollectionsRepository<
     @DataAction()
     public removeByEntity(@Payload('entity') entity: V): void {
         const id: K = this.selectId(entity);
+
         this.removeEntitiesMany([id]);
     }
 
     @DataAction()
     public removeByEntities(@Payload('entities') entities: V[]): void {
         const ids: K[] = [];
+
         for (const entity of entities) {
             const id: K = this.selectId(entity);
+
             ids.push(id);
         }
 
@@ -194,6 +200,7 @@ export abstract class AbstractNgxsDataEntityCollectionsRepository<
 
         if (isNil(this.comparator)) {
             console.warn(NGXS_DATA_EXCEPTIONS.NGXS_COMPARE);
+
             return;
         }
 
@@ -313,6 +320,7 @@ export abstract class AbstractNgxsDataEntityCollectionsRepository<
 
         for (const entity of entities) {
             const id: K = this.selectIdValue(entity);
+
             if (id in state.entities) {
                 updates.push({ id, changes: entity });
             } else {
@@ -341,6 +349,7 @@ export abstract class AbstractNgxsDataEntityCollectionsRepository<
 
     protected setEntitiesState(state: EntityCollections<V, K, C>): void {
         const ids: K[] = this.sortKeysByComparator(state.ids, state.entities);
+
         this.ctx.setState({ ...state, ids, entities: state.entities });
     }
 
@@ -365,10 +374,12 @@ export abstract class AbstractNgxsDataEntityCollectionsRepository<
                 return ids.sort((a: K, b: K): number =>
                     sortByAsc(comparator?.sortBy, entities[a] as V, entities[b] as V)
                 );
+
             case SortOrderType.DESC:
                 return ids.sort((a: K, b: K): number =>
                     sortByDesc(comparator?.sortBy, entities[a] as V, entities[b] as V)
                 );
+
             default:
                 if (isDevMode()) {
                     console.warn(`Invalid --> { sortByOrder: "${comparator?.sortByOrder}" } not supported!`);
@@ -381,12 +392,14 @@ export abstract class AbstractNgxsDataEntityCollectionsRepository<
     private generateKeyMap(state: EntityCollections<V, K, C>): KeysDictionary<K> {
         return state.ids.reduce((keyDictionary: KeysDictionary<K>, id: K): KeysDictionary<K> => {
             keyDictionary[id] = id;
+
             return keyDictionary;
         }, {});
     }
 
     private updateOrigin(entities: EntityDictionary<K, V>, update: EntityUpdate<V, K>): V {
         const original: V | undefined = entities[update.id];
+
         return { ...original, ...update.changes } as V;
     }
 

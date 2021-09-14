@@ -42,6 +42,7 @@ export class DataHttpClient<K = unknown> extends AbstractHttpClient<K> {
             observable,
             options.clientOptions.limitConcurrency
         );
+
         return this.wrapHttpRequestWithMeta<T, R>(meta, options, queueRequest);
     }
 
@@ -54,6 +55,7 @@ export class DataHttpClient<K = unknown> extends AbstractHttpClient<K> {
         const segments: DataUrlPathSegment = makeUrlSegments(options.clientOptions, this.controllerUrl, options.path);
         const requestOptions: DataHttpRequestOptions = this.createDataHttpRequestOptions(options);
         const url: string = buildUrl(segments);
+
         return { method: options.method, url, emitSuccess, emitFailure, requestOptions, segments };
     }
 

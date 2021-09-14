@@ -49,6 +49,7 @@ export class SampleTwelveComponent implements OnInit, AfterViewInit {
     public ngOnInit(): void {
         const rowNumber: number = 50;
         const colsNumber: number = 15;
+
         MocksGenerator.generator(rowNumber, colsNumber).then((data: PlainObject[]): void => {
             this.data = data;
             this.cd.detectChanges();

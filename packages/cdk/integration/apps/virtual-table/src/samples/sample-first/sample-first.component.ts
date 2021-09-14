@@ -30,6 +30,7 @@ export class SampleFirstComponent implements OnInit, OnDestroy {
         this.updateTable();
 
         const DEFAULT_TIMEOUT: number = 14500;
+
         this.ngZone.runOutsideAngular((): void => {
             this.idInterval = window.setInterval((): void => {
                 if (this.regenerate) {
@@ -68,53 +69,66 @@ export class SampleFirstComponent implements OnInit, OnDestroy {
     // eslint-disable-next-line max-lines-per-function
     public updateTable(): void {
         this.loading = true;
+
         switch (this.dataSize) {
             case '10x5':
                 {
                     const rows: number = 10;
                     const cols: number = 5;
+
                     MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => this.setData(data));
                 }
+
                 break;
 
             case '100x20':
                 {
                     const rows: number = 100;
                     const cols: number = 20;
+
                     MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => this.setData(data));
                 }
+
                 break;
 
             case '1000x30':
                 {
                     const rows: number = 1000;
                     const cols: number = 30;
+
                     MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => this.setData(data));
                 }
+
                 break;
 
             case '10000x50':
                 {
                     const rows: number = 10000;
                     const cols: number = 50;
+
                     MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => this.setData(data));
                 }
+
                 break;
 
             case '100000x100':
                 {
                     const rows: number = 100000;
                     const cols: number = 100;
+
                     MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => this.setData(data));
                 }
+
                 break;
         }
+
         this.cd.detectChanges();
     }
 
     private setData(data: PlainObject[]): void {
         this.simple = data;
         const timeout: number = 500;
+
         window.setTimeout((): void => {
             this.loading = false;
             this.cd.detectChanges();

@@ -23,7 +23,9 @@ export class DisplayItemPipe implements PipeTransform {
         if (DisplayItemPipe.invalidDisplayKey(displayKey)) {
             throw new Error('attribute "displayKey" can not be empty if input item has "object" type');
         }
+
         const value: string | Any[] = getValueByPath<T, string>(item, displayKey as string) ?? '';
+
         return Array.isArray(value) ? '' : value;
     }
 

@@ -110,6 +110,7 @@ describe('[TEST]: http utils', () => {
     describe('getHttpHeader', () => {
         it('case #1', () => {
             const headers: HttpHeaders = getHttpHeader({ a: '1', b: '2' });
+
             expect(headers.keys()).toEqual(['a', 'b']);
             expect(headers.get('a')).toEqual('1');
             expect(headers.get('b')).toEqual('2');
@@ -117,6 +118,7 @@ describe('[TEST]: http utils', () => {
 
         it('case #2', () => {
             const params: HttpParams = getHttpParams('/todos/get?pageSize=5&value=2', { pageIndex: 0 });
+
             expect(params.keys()).toEqual(['pageSize', 'value', 'pageIndex']);
             expect(params.get('pageSize')).toEqual('5');
             expect(params.get('value')).toEqual('2');
@@ -126,11 +128,13 @@ describe('[TEST]: http utils', () => {
 
     it('parseQueryParams', () => {
         const queryParams: PlainObject = parseQueryParams('/todos/get?pageSize=5&value=2');
+
         expect(queryParams).toEqual({ pageSize: '5', value: '2' });
     });
 
     it('ensurePathByPathVariables', () => {
         const map = new Map();
+
         map.set('id', 5);
         map.set('newId', 6);
 

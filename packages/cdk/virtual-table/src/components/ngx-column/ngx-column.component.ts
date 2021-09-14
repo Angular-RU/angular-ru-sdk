@@ -28,6 +28,7 @@ export class NgxColumnComponent<T> extends ColumnOptionsDirective {
 
     public withKey(key: string): NgxColumnComponent<T> {
         this.key = key;
+
         return this;
     }
 }

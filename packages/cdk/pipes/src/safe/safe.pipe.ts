@@ -13,6 +13,7 @@ export class SafePipe implements PipeTransform {
     // eslint-disable-next-line complexity
     public transform(value: Nullable<string>, type: SafeTypeOptions): SafeType | string {
         const prepared: string = value ?? '';
+
         switch (type) {
             case SafeValueType.HTML:
                 return this.sanitizer.bypassSecurityTrustHtml(prepared);
