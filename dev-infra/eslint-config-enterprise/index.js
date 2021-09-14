@@ -257,6 +257,7 @@ module.exports = {
                 'import/no-default-export': 'error',
                 'import/no-duplicates': 'error',
                 'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
+                'func-style': 'off',
                 'no-implicit-globals': 'error',
 
                 /**
@@ -554,7 +555,6 @@ module.exports = {
         },
         {
             files: ['*.spec.ts'], // light version rules for test files
-            plugins: ['mocha', 'jest'],
             extends: ['plugin:jest/style', 'plugin:jest/all', 'plugin:mocha/recommended'],
             rules: {
                 '@typescript-eslint/explicit-function-return-type': 'off',
