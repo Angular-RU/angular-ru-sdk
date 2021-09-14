@@ -75,12 +75,12 @@ describe('[TEST]: Array', () => {
             ]);
         });
 
-        it('should update one item', () => {
+        it('should update one item with one single', () => {
             expect(updateArray<Value>(origin, [{ value: 5 } as Any])).toEqual(origin);
         });
     });
 
-    describe('CompareFn', () => {
+    describe('compareFn', () => {
         it('should update two items', () => {
             expect(
                 updateArray<Value>(

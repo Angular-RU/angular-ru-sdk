@@ -23,7 +23,7 @@ describe('[TEST]: Freeze states', () => {
         const state: MyState = TestBed.inject<MyState>(MyState);
 
         expect(store.snapshot()).toEqual({ myState: null });
-        expect(state.getState()).toEqual(null);
+        expect(state.getState()).toBeNull();
     });
 
     it('should be return array from state', () => {

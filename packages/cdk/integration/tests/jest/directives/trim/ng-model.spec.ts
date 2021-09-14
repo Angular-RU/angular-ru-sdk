@@ -28,9 +28,7 @@ describe('[TEST]: Trim Input', () => {
             providers: [{ provide: MATERIAL_SANITY_CHECKS, useValue: false }],
             declarations: [NgModelTestComponent]
         }).compileComponents();
-    });
 
-    beforeEach(() => {
         fixture = TestBed.createComponent(NgModelTestComponent);
         component = fixture.componentInstance;
         fixture.autoDetectChanges();

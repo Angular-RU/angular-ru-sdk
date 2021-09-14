@@ -8,8 +8,10 @@ import { NGXS_DATA_STORAGE_PLUGIN } from '@angular-ru/ngxs/storage';
 import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
 import { NgxsModule, Selector, State, Store } from '@ngxs/store';
 
-describe('Inheritance', () => {
+describe('inheritance', () => {
     it('should be throw', () => {
+        let message: string | null = null;
+
         try {
             abstract class AbstractCountRepo extends NgxsImmutableDataRepository<number> {
                 // @ts-ignore
@@ -28,8 +30,10 @@ describe('Inheritance', () => {
                 imports: [NgxsModule.forRoot([CountState])]
             });
         } catch (e) {
-            expect((e as Error).message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_ACTION);
+            message = (e as Error).message;
         }
+
+        expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_ACTION);
     });
 
     it('should be correct work with Persistence, StateRepository, Selector decorators', () => {

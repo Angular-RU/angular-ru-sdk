@@ -4,7 +4,7 @@ import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
 import { ngxsTestingPlatform } from '@angular-ru/ngxs/testing';
 import { State, Store } from '@ngxs/store';
 
-describe('AppState', () => {
+describe('appState', () => {
     @StateRepository()
     @State({
         name: 'app',
@@ -21,7 +21,7 @@ describe('AppState', () => {
         })
     );
 
-    it('Invalid state', async () => {
+    it('invalid state', async () => {
         class InvalidState {}
         let message: string | null = null;
 

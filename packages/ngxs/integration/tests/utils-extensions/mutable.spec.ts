@@ -7,13 +7,13 @@ import { StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { NgxsModule, State } from '@ngxs/store';
 
-describe('Mutable', () => {
+describe('mutable', () => {
     interface A {
         a: number;
         b: number;
     }
 
-    it('Immutable<A> to A', () => {
+    it('immutable<A> to A', () => {
         const a: Immutable<A> = { a: 1, b: 2 };
         const mutableA = new MutableTypePipe().transform(a);
 
@@ -21,7 +21,7 @@ describe('Mutable', () => {
         expect(a).toEqual({ a: 1, b: 3 });
     });
 
-    it('Immutable<A>[] to A[]', () => {
+    it('immutable<A>[] to A[]', () => {
         const arr: Immutable<A[]> = [
             { a: 1, b: 2 },
             { a: 2, b: 3 }

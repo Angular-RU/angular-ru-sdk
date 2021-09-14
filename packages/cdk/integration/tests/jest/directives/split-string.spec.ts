@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SplitStringModule, SplitStringOptions } from '@angular-ru/cdk/directives';
 
-describe('[TEST]: Trim Input', () => {
+describe('[TEST]: Trim Input', function () {
     let fixture: ComponentFixture<TestComponent>;
     let component: TestComponent;
     let inputElement: HTMLInputElement;
@@ -57,7 +57,7 @@ describe('[TEST]: Trim Input', () => {
         textAreaElement = component.textAreaElement.nativeElement;
     });
 
-    it('should intercept split and join form group value', async function () {
+    it('should intercept split and join form group value', async () => {
         component.form.patchValue({ input: null });
         expect(inputElement.value).toBe('');
 

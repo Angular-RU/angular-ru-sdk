@@ -8,6 +8,8 @@ import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
 import { NgxsModule, State } from '@ngxs/store';
 
 describe('[TEST]: Action decorator', () => {
+    afterEach(() => TestBed.resetTestingModule());
+
     it(`don't should be working without @StateRepository decorator`, () => {
         let message: string | null = null;
 
@@ -170,7 +172,7 @@ describe('[TEST]: Action decorator', () => {
         });
     });
 
-    describe('Complex inheritance', () => {
+    describe('complex inheritance', () => {
         @StateRepository()
         @State({ name: 'a', defaults: 'a' })
         @Injectable()
@@ -583,9 +585,5 @@ describe('[TEST]: Action decorator', () => {
                 }
             });
         });
-    });
-
-    afterEach(() => {
-        TestBed.resetTestingModule();
     });
 });

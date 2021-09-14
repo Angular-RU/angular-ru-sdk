@@ -102,9 +102,9 @@ describe('[TEST]: Debounce', () => {
 
         tick(50);
 
-        expect(val1).toEqual(undefined);
-        expect(val2).toEqual(undefined);
-        expect(val3).toEqual(undefined);
+        expect(val1).toBeUndefined();
+        expect(val2).toBeUndefined();
+        expect(val3).toBeUndefined();
 
         expect(spy).toHaveBeenCalledTimes(1);
         expect(console.warn).toHaveBeenLastCalledWith(NGXS_DATA_EXCEPTIONS.NGXS_DATA_ASYNC_ACTION_RETURN_TYPE, -1);

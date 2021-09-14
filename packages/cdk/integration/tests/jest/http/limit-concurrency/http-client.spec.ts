@@ -109,12 +109,6 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
         });
     }
 
-    function expectResponseOrder(): void {
-        responseOrder.forEach((item: string, index: number): void => {
-            expect(item).toEqual(expectOrder[index]);
-        });
-    }
-
     it('should throw an error if limitConcurrency = 0', fakeAsync(() => {
         ({ client, httpMock } = configureTestingModule(0));
         expect(() => generateRequests(3)).toThrow(new Error('Limit concurrency should be more than 0'));
@@ -148,7 +142,9 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
         }, requestList[2]!.delay);
         tick(requestList[2]!.delay);
 
-        expectResponseOrder();
+        responseOrder.forEach((item: string, index: number): void => {
+            expect(item).toEqual(expectOrder[index]);
+        });
     }));
 
     it('requests must complete in a right order: Limit Concurrency = 3', fakeAsync(() => {
@@ -205,7 +201,9 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
 
         tick(3000);
 
-        expectResponseOrder();
+        responseOrder.forEach((item: string, index: number): void => {
+            expect(item).toEqual(expectOrder[index]);
+        });
     }));
 
     it('requests must complete in a right order: Limit Concurrency = 5', fakeAsync(() => {
@@ -254,7 +252,9 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
 
         tick(5100);
 
-        expectResponseOrder();
+        responseOrder.forEach((item: string, index: number): void => {
+            expect(item).toEqual(expectOrder[index]);
+        });
     }));
 
     it(`limit concurrency by default should be ${defaultLimit}`, fakeAsync(() => {
@@ -262,9 +262,12 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
         for (let i = 0; i < defaultLimit + exceedTheLimit; i++) {
             client?.get(`api-${i}`).subscribe();
         }
+
         for (let i = 0; i < defaultLimit; i++) {
-            httpMock.expectOne(`${apiUrl}-${i}`);
+            const result = httpMock.expectOne(`${apiUrl}-${i}`);
+            expect(result.request.url).toEqual(`${apiUrl}-${i}`);
         }
+
         for (let i = defaultLimit; i < defaultLimit + exceedTheLimit; i++) {
             httpMock.expectNone(`${apiUrl}-${i}`);
         }
@@ -275,8 +278,10 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
         for (let i = 0; i < defaultLimit + exceedTheLimit; i++) {
             client?.get(`api-${i}`).subscribe();
         }
+
         for (let i = 0; i < defaultLimit + exceedTheLimit; i++) {
-            httpMock.expectOne(`${apiUrl}-${i}`);
+            const result = httpMock.expectOne(`${apiUrl}-${i}`);
+            expect(result.request.url).toEqual(`${apiUrl}-${i}`);
         }
     }));
 });

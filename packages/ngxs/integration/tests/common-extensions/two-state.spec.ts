@@ -7,7 +7,7 @@ import { NgxsModule, State, Store } from '@ngxs/store';
 import { forkJoin, isObservable, Observable, of } from 'rxjs';
 import { delay, finalize, map, tap } from 'rxjs/operators';
 
-describe('Correct behavior NGXS DATA with Count, Todo states', () => {
+describe('correct behavior NGXS DATA with Count, Todo states', () => {
     let store: Store;
     let count: CountState;
     let todo: TodoState;
@@ -184,8 +184,8 @@ describe('Correct behavior NGXS DATA with Count, Todo states', () => {
 
         tick(2000);
 
-        expect(result).toEqual(null);
-        expect(finalized).toEqual(null);
+        expect(result).toBeNull();
+        expect(finalized).toBeNull();
         expect(count.getState()).toEqual(0);
     }));
 
@@ -198,16 +198,16 @@ describe('Correct behavior NGXS DATA with Count, Todo states', () => {
 
         tick(2000);
 
-        expect(result).toEqual(null);
-        expect(finalized).toEqual(null);
+        expect(result).toBeNull();
+        expect(finalized).toBeNull();
         expect(count.getState()).toEqual(0);
 
         count.asyncSetStateAction();
         count.asyncSetStateAction();
         count.asyncSetStateAction();
 
-        expect(result).toEqual(null);
-        expect(finalized).toEqual(null);
+        expect(result).toBeNull();
+        expect(finalized).toBeNull();
         expect(count.getState()).toEqual(0);
 
         count
@@ -237,16 +237,16 @@ describe('Correct behavior NGXS DATA with Count, Todo states', () => {
 
         tick(1000);
 
-        expect(result).toEqual(null);
-        expect(finalized).toEqual(null);
+        expect(result).toBeNull();
+        expect(finalized).toBeNull();
         expect(count.getState()).toEqual(0);
 
         count.asyncIncrementAction();
         count.asyncIncrementAction();
         count.asyncIncrementAction();
 
-        expect(result).toEqual(null);
-        expect(finalized).toEqual(null);
+        expect(result).toBeNull();
+        expect(finalized).toBeNull();
         expect(count.getState()).toEqual(0);
 
         count

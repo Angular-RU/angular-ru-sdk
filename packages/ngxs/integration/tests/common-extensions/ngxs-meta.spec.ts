@@ -5,7 +5,7 @@ import { DataStateClass } from '@angular-ru/ngxs/typings';
 import { State } from '@ngxs/store';
 
 describe('[TEST]: NGXS_META', () => {
-    it('DataStateClass', () => {
+    it('dataStateClass', () => {
         @StateRepository()
         @State({ name: 'app' })
         @Injectable()

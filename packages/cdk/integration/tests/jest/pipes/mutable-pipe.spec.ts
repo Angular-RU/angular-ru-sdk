@@ -23,7 +23,7 @@ describe('mutable', () => {
         expect(mutableObj.a).toEqual('str2');
     });
 
-    describe('Instance', () => {
+    describe('instance', () => {
         let pipePath: DeepPathPipe;
 
         beforeEach(() => {

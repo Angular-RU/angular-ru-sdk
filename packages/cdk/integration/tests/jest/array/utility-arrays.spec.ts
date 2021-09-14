@@ -100,52 +100,52 @@ describe('[TEST]: Array utility', () => {
     });
 
     it('is first item', () => {
-        expect(firstItem()).toEqual(null);
-        expect(firstItem(null)).toEqual(null);
-        expect(firstItem([])).toEqual(null);
+        expect(firstItem()).toBeNull();
+        expect(firstItem(null)).toBeNull();
+        expect(firstItem([])).toBeNull();
         expect(firstItem([1])).toEqual(1);
         expect(firstItem([1, 2])).toEqual(1);
 
-        expect(takeFirstItem()).toEqual(undefined);
-        expect(takeFirstItem(null)).toEqual(undefined);
-        expect(takeFirstItem([])).toEqual(undefined);
+        expect(takeFirstItem()).toBeUndefined();
+        expect(takeFirstItem(null)).toBeUndefined();
+        expect(takeFirstItem([])).toBeUndefined();
         expect(takeFirstItem([1])).toEqual(1);
         expect(takeFirstItem([1, 2])).toEqual(1);
     });
 
     it('is second item', () => {
-        expect(secondItem()).toEqual(null);
-        expect(secondItem(null)).toEqual(null);
-        expect(secondItem([])).toEqual(null);
-        expect(secondItem([1])).toEqual(null);
+        expect(secondItem()).toBeNull();
+        expect(secondItem(null)).toBeNull();
+        expect(secondItem([])).toBeNull();
+        expect(secondItem([1])).toBeNull();
         expect(secondItem([1, 2])).toEqual(2);
 
-        expect(takeSecondItem()).toEqual(undefined);
-        expect(takeSecondItem(null)).toEqual(undefined);
-        expect(takeSecondItem([])).toEqual(undefined);
-        expect(takeSecondItem([1])).toEqual(undefined);
+        expect(takeSecondItem()).toBeUndefined();
+        expect(takeSecondItem(null)).toBeUndefined();
+        expect(takeSecondItem([])).toBeUndefined();
+        expect(takeSecondItem([1])).toBeUndefined();
         expect(takeSecondItem([1, 2])).toEqual(2);
     });
 
     it('is third item', () => {
-        expect(thirdItem()).toEqual(null);
-        expect(thirdItem(null)).toEqual(null);
-        expect(thirdItem([])).toEqual(null);
-        expect(thirdItem([1])).toEqual(null);
-        expect(thirdItem([1, 2])).toEqual(null);
+        expect(thirdItem()).toBeNull();
+        expect(thirdItem(null)).toBeNull();
+        expect(thirdItem([])).toBeNull();
+        expect(thirdItem([1])).toBeNull();
+        expect(thirdItem([1, 2])).toBeNull();
         expect(thirdItem([1, 2, 3])).toEqual(3);
 
-        expect(takeThirdItem()).toEqual(undefined);
-        expect(takeThirdItem(null)).toEqual(undefined);
-        expect(takeThirdItem([])).toEqual(undefined);
-        expect(takeThirdItem([1])).toEqual(undefined);
+        expect(takeThirdItem()).toBeUndefined();
+        expect(takeThirdItem(null)).toBeUndefined();
+        expect(takeThirdItem([])).toBeUndefined();
+        expect(takeThirdItem([1])).toBeUndefined();
         expect(takeThirdItem([1, 2, 3])).toEqual(3);
     });
 
     it('is last item', () => {
-        expect(takeLastItem()).toEqual(undefined);
-        expect(takeLastItem(null)).toEqual(undefined);
-        expect(takeLastItem([])).toEqual(undefined);
+        expect(takeLastItem()).toBeUndefined();
+        expect(takeLastItem(null)).toBeUndefined();
+        expect(takeLastItem([])).toBeUndefined();
         expect(takeLastItem([1])).toEqual(1);
         expect(takeLastItem([1, 2, 3, 4])).toEqual(4);
     });

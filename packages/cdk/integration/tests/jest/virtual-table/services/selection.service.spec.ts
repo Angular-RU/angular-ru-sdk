@@ -28,18 +28,18 @@ describe('[TEST]: Selection service', () => {
         { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' }
     ];
 
-    (window as Any).addEventListener = jest.fn((type: string): void => {
-        if (type === 'keydown') {
+    jest.spyOn(window as Any, 'addEventListener').mockImplementation((...args: unknown[]): void => {
+        if (args[0] === 'keydown') {
             listenKeydown = true;
-        } else if (type === 'keyup') {
+        } else if (args[0] === 'keyup') {
             listenKeyup = true;
         }
     });
 
-    (window as Any).removeEventListener = jest.fn((type: string): void => {
-        if (type === 'keydown') {
+    jest.spyOn(window as Any, 'removeEventListener').mockImplementation((...args: unknown[]): void => {
+        if (args[0] === 'keydown') {
             listenKeydown = false;
-        } else if (type === 'keyup') {
+        } else if (args[0] === 'keyup') {
             listenKeyup = false;
         }
     });
@@ -53,11 +53,15 @@ describe('[TEST]: Selection service', () => {
     });
 
     it('should be correct exception', () => {
+        let message: string | null = null;
+
         try {
             selection.selectRow(data[0], mockPreventDefault as MouseEvent);
         } catch (e: unknown) {
-            expect((e as Error).message).toContain(`Can't select item, make sure you pass the correct primary key`);
+            message = (e as Error).message;
         }
+
+        expect(message).toContain(`Can't select item, make sure you pass the correct primary key`);
     });
 
     it('should be correct selection with shift key', (): void => {

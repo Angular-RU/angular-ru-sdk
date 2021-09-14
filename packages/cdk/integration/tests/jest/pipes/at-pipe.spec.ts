@@ -14,10 +14,10 @@ describe('deep path', () => {
         expect(pipe.transform(array, 0)).toEqual('first');
         expect(pipe.transform(array, 1)).toEqual('second');
         expect(pipe.transform(array, 3)).toEqual('last');
-        expect(pipe.transform(array, 4)).toEqual(undefined);
+        expect(pipe.transform(array, 4)).toBeUndefined();
         expect(pipe.transform(array, -1)).toEqual('last');
         expect(pipe.transform(array, -2)).toEqual('third');
         expect(pipe.transform(array, -4)).toEqual('first');
-        expect(pipe.transform(array, -5)).toEqual(undefined);
+        expect(pipe.transform(array, -5)).toBeUndefined();
     });
 });

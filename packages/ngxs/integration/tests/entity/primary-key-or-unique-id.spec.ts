@@ -11,7 +11,7 @@ describe('[TEST]: Entity - primary key or unique id', () => {
         title: string;
     }
 
-    describe('Incorrect lesson state', () => {
+    describe('incorrect lesson state', () => {
         @StateRepository()
         @State({
             name: 'lesson',
@@ -32,7 +32,7 @@ describe('[TEST]: Entity - primary key or unique id', () => {
         }
 
         it(
-            `The entity passed to the 'selectId' implementation returned undefined`,
+            `the entity passed to the 'selectId' implementation returned undefined`,
             ngxsTestingPlatform([LessonEntitiesState], (_store, lesson) => {
                 expect(lesson.getState()).toEqual({ ids: [], entities: {} });
 
@@ -49,7 +49,7 @@ describe('[TEST]: Entity - primary key or unique id', () => {
                     'The current `selectId` implementation: (entity: V): K => entity.id'
                 );
 
-                expect(lesson.selectId(null!)).toEqual(undefined);
+                expect(lesson.selectId(null!)).toBeUndefined();
 
                 expect(lesson.getState()).toEqual({
                     ids: [undefined],
@@ -202,7 +202,7 @@ describe('[TEST]: Entity - primary key or unique id', () => {
         );
     });
 
-    describe('Composite key', () => {
+    describe('composite key', () => {
         interface StudentEntity {
             groupId: number;
             batchId: number;
@@ -362,7 +362,7 @@ describe('[TEST]: Entity - primary key or unique id', () => {
                     dateOfBirth: expect.any(Date)
                 });
 
-                expect(studentEntities.selectOne('4_6')).toEqual(null);
+                expect(studentEntities.selectOne('4_6')).toBeNull();
 
                 expect(studentEntities.selectAll()).toEqual([
                     {

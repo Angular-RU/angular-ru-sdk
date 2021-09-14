@@ -6,7 +6,7 @@ import { NgxsDataEntityCollectionsRepository } from '@angular-ru/ngxs/repositori
 import { ngxsTestingPlatform } from '@angular-ru/ngxs/testing';
 import { State } from '@ngxs/store';
 
-describe('Sort by entities', () => {
+describe('sort by entities', () => {
     let spy: jest.MockInstance<Any, Any>;
 
     interface People {
@@ -30,6 +30,8 @@ describe('Sort by entities', () => {
     @State({ name: 'people', defaults })
     @Injectable()
     class PeopleEntitiesState extends NgxsDataEntityCollectionsRepository<People> {}
+
+    afterEach(() => spy.mockClear());
 
     it(
         'invalid comparator',
@@ -166,7 +168,7 @@ describe('Sort by entities', () => {
 
     it(
         'sort by compare function',
-        ngxsTestingPlatform([PeopleEntitiesState], (_, people) => {
+        ngxsTestingPlatform([PeopleEntitiesState], (_, people: PeopleEntitiesState) => {
             expect(people.getState()).toEqual({
                 ids: [1, 2, 3, 4, 5],
                 entities: {
@@ -178,7 +180,7 @@ describe('Sort by entities', () => {
                 }
             });
 
-            people.sort((a, b) => a.age - b.age);
+            people.sort((a: People, b: People) => a.age - b.age);
 
             expect(people.getState()).toEqual({
                 ids: [5, 2, 1, 3, 4],
@@ -251,8 +253,4 @@ describe('Sort by entities', () => {
             expect(console.warn).toHaveBeenLastCalledWith('Invalid --> { sortByOrder: "" } not supported!');
         })
     );
-
-    afterEach(() => {
-        spy.mockClear();
-    });
 });

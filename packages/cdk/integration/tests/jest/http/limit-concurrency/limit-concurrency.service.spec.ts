@@ -20,12 +20,12 @@ describe('[TEST]: HTTP limit concurrency service with Marble', () => {
         testScheduler = new TestScheduler((actual, expected) => expect(actual).toEqual(expected));
     });
 
-    describe('Infinity', () => {
+    describe('infinity', () => {
         const limitConcurrency: number = Infinity;
 
         it('should run all Observables in parallel if there is no limit Infinity', () => {
             // noinspection DuplicatedCode
-            testScheduler.run(({ cold, expectObservable }) => {
+            testScheduler.run(({ cold, expectObservable: expect }) => {
                 const request1$ = cold('-----a|', TEST_DATA);
                 const request2$ = cold('-b|', TEST_DATA);
                 const request3$ = cold('---c|', TEST_DATA);
@@ -36,7 +36,7 @@ describe('[TEST]: HTTP limit concurrency service with Marble', () => {
                     service.add(request3$, limitConcurrency)
                 );
 
-                expectObservable(mergedObservable).toBe('-b-c-a|', TEST_DATA);
+                expect(mergedObservable).toBe('-b-c-a|', TEST_DATA);
             });
         });
     });
@@ -71,19 +71,19 @@ describe('[TEST]: HTTP limit concurrency service with Marble', () => {
         const limitConcurrency: number = 1;
 
         it('should return Observable with the same data', () => {
-            testScheduler.run(({ cold, expectObservable }) => {
+            testScheduler.run(({ cold, expectObservable: expect }) => {
                 const expected$ = cold('1s-a-b|', TEST_DATA);
-                expectObservable(service.add(expected$, limitConcurrency)).toBe('1s-a-b|', TEST_DATA);
+                expect(service.add(expected$, limitConcurrency)).toBe('1s-a-b|', TEST_DATA);
             });
         });
 
         it('should wait until one observable complete before start another if limit is reached', () => {
-            testScheduler.run(({ cold, expectObservable }) => {
+            testScheduler.run(({ cold, expectObservable: expect }) => {
                 const request1$ = cold('-----a|', TEST_DATA);
                 const request2$ = cold('-b|', TEST_DATA);
 
                 const mergedObservable = merge(service.add(request1$, limitConcurrency), service.add(request2$, 1));
-                expectObservable(mergedObservable).toBe('-----a-b|', TEST_DATA);
+                expect(mergedObservable).toBe('-----a-b|', TEST_DATA);
             });
         });
     });
@@ -93,7 +93,7 @@ describe('[TEST]: HTTP limit concurrency service with Marble', () => {
 
         it('should run all Observables in parallel if the limit allows', () => {
             // noinspection DuplicatedCode
-            testScheduler.run(({ cold, expectObservable }) => {
+            testScheduler.run(({ cold, expectObservable: expect }) => {
                 const request1$ = cold('-----a|', TEST_DATA);
                 const request2$ = cold('-b|', TEST_DATA);
                 const request3$ = cold('---c|', TEST_DATA);
@@ -104,12 +104,12 @@ describe('[TEST]: HTTP limit concurrency service with Marble', () => {
                     service.add(request3$, limitConcurrency)
                 );
 
-                expectObservable(mergedObservable).toBe('-b-c-a|', TEST_DATA);
+                expect(mergedObservable).toBe('-b-c-a|', TEST_DATA);
             });
         });
 
         it('maximum of 3 Observables must be executed in parallel. And immediately start the next one if one of them is completed', () => {
-            testScheduler.run(({ cold, expectObservable }) => {
+            testScheduler.run(({ cold, expectObservable: expect }) => {
                 const request1$ = cold('---------------------a|', TEST_DATA);
                 const request2$ = cold('----b|', TEST_DATA);
                 const request3$ = cold('--------------c|', TEST_DATA);
@@ -124,7 +124,7 @@ describe('[TEST]: HTTP limit concurrency service with Marble', () => {
                     service.add(request5$, limitConcurrency)
                 );
 
-                expectObservable(mergedObservable$).toBe('----b----d----c--e---a|', TEST_DATA);
+                expect(mergedObservable$).toBe('----b----d----c--e---a|', TEST_DATA);
             });
         });
     });

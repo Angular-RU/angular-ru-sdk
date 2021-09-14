@@ -42,14 +42,14 @@ describe('[TEST]: Check global style', () => {
             ]
         });
 
-        logger = TestBed.get(LoggerService);
+        logger = TestBed.inject(LoggerService);
     });
 
     beforeEach(() => {
         logger.clear();
     });
 
-    it(`Set new text for labels: [trace, debug, info, warn, error]`, () => {
+    it(`set new text for labels: [trace, debug, info, warn, error]`, () => {
         logger.level = LoggerLevel.ALL;
 
         const traceLine: number = 0;
@@ -82,7 +82,7 @@ describe('[TEST]: Check global style', () => {
         expect(errorLabel).toEqual(CUSTOM_LABELS.ERROR);
     });
 
-    it(`Detect custom colors for labels`, () => {
+    it(`detect custom colors for labels`, () => {
         logger.level = LoggerLevel.ALL;
 
         const traceLine: number = 0;
@@ -115,7 +115,7 @@ describe('[TEST]: Check global style', () => {
         expect(errorStyle.color).toEqual(CUSTOM_COLORS.ERROR);
     });
 
-    it(`Clear custom labels: `, () => {
+    it(`clear custom labels:`, () => {
         logger.setLabels({
             [LoggerLevel.TRACE]: CUSTOM_LABELS.TRACE,
             [LoggerLevel.DEBUG]: CUSTOM_LABELS.DEBUG,
@@ -154,7 +154,7 @@ describe('[TEST]: Check global style', () => {
         expect(errorLabel).toEqual(CUSTOM_LABELS.ERROR);
     });
 
-    it(`Set new colors for labels`, () => {
+    it(`set new colors for labels`, () => {
         logger.level = LoggerLevel.ALL;
         logger.clear();
 

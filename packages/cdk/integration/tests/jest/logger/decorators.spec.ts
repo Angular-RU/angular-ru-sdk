@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoggerLevel, LoggerModule, LoggerService } from '@angular-ru/cdk/logger';
-import { Fn } from '@angular-ru/cdk/typings';
 
 import { ConsoleFake, TestLoggerLineType } from './helpers/console-fake';
 import { MyTestComponent } from './helpers/test.component';
@@ -28,16 +27,16 @@ describe('[TEST]: Decorator API', () => {
 
         fixture = TestBed.createComponent(MyTestComponent);
         component = fixture.componentInstance;
-        logger = TestBed.get(LoggerService);
+        logger = TestBed.inject(LoggerService);
         logger.clear();
     });
 
-    it('Logger decorator should correct work', () => {
+    it('logger decorator should correct work', () => {
         component.logger.log('Hello world');
         expect(fakeConsole.stack()).toEqual(fakeConsole.createStack({ [TestLoggerLineType.LOG]: ['Hello world'] }));
     });
 
-    it('Group decorator should correct work', () => {
+    it('group decorator should correct work', () => {
         const result: string = component.print(groupIsWork);
 
         expect(result).toEqual(groupIsWork);
@@ -46,7 +45,7 @@ describe('[TEST]: Decorator API', () => {
         );
     });
 
-    it('Group decorator with level should correct work', () => {
+    it('group decorator with level should correct work', () => {
         const result: string = component.printLevel(groupIsWork);
 
         expect(result).toEqual(groupIsWork);
@@ -55,7 +54,7 @@ describe('[TEST]: Decorator API', () => {
         );
     });
 
-    it('GroupCollapced decorator should correct work', () => {
+    it('groupCollapced decorator should correct work', () => {
         const result: string = component.printCollapsed(groupCollapsedIsWork);
 
         expect(result).toEqual(groupCollapsedIsWork);
@@ -68,7 +67,7 @@ describe('[TEST]: Decorator API', () => {
         );
     });
 
-    it('GroupCollapsed decorator with level should correct work', () => {
+    it('groupCollapsed decorator with level should correct work', () => {
         const result: string = component.printCollapsedLevel(groupCollapsedIsWork);
 
         expect(result).toEqual(groupCollapsedIsWork);
@@ -81,7 +80,7 @@ describe('[TEST]: Decorator API', () => {
         );
     });
 
-    it('Method decorators should correct work', () => {
+    it('method decorators should correct work', () => {
         component.log(logIsWork);
         component.trace(traceIsWork);
         component.debug(debugIsWork);
@@ -123,7 +122,7 @@ describe('[TEST]: Decorator API', () => {
     it('timer invoke', () => {
         logger.level = LoggerLevel.ALL;
         component.ngOnInit();
-        expect(fakeConsole.stack().includes('TimerLog: mock:ngOnInit')).toEqual(true);
+        expect(fakeConsole.stack()).toContain('TimerLog: mock:ngOnInit');
     });
 
     it('can not execute', () => {
@@ -132,23 +131,29 @@ describe('[TEST]: Decorator API', () => {
         expect(fakeConsole.stack()).toEqual(fakeConsole.createStack());
     });
 
-    it('query by second timer', (done: Fn) => {
-        component.longQueryBySecond(3, done);
-        expect(fakeConsole.stack()).toEqual(
-            fakeConsole.createStack({ info: ['TimerLog: longQueryBySecond', 'took 3s to execute'] })
-        );
-    });
+    it('query by second timer', () =>
+        new Promise((done) => {
+            component.longQueryBySecond(3, done);
+            expect(fakeConsole.stack()).toEqual(
+                fakeConsole.createStack({ info: ['TimerLog: longQueryBySecond', 'took 3s to execute'] })
+            );
+        }));
 
-    it('query by ms timer', (done: Fn) => {
-        component.longQueryBySecondMs(3, done);
-        expect(fakeConsole.stack().includes('TimerLog: longQueryBySecondMs')).toEqual(true);
-    });
+    it('query by ms timer', () =>
+        new Promise((done) => {
+            component.longQueryBySecondMs(3, done);
+            expect(fakeConsole.stack()).toContain('TimerLog: longQueryBySecondMs');
+        }));
 
     it('should correct work with errors', () => {
+        let message: string | null = null;
+
         try {
             component.badRequest();
         } catch (e) {
-            expect((e as Error).message).toEqual('error');
+            message = (e as Error).message;
         }
+
+        expect(message).toEqual('error');
     });
 });

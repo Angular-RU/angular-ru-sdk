@@ -48,6 +48,7 @@ module.exports = {
                 'plugin:json/recommended'
             ],
             plugins: [
+                'decorator-position',
                 'prettier',
                 'simple-import-sort',
                 'max-params-no-constructor',
@@ -61,6 +62,15 @@ module.exports = {
                 'json'
             ],
             rules: {
+                'decorator-position/decorator-position': [
+                    'error',
+                    {
+                        printWidth: 120,
+                        properties: 'prefer-inline',
+                        methods: 'above'
+                    }
+                ],
+
                 /**
                  * ESLint Core
                  */
@@ -234,11 +244,13 @@ module.exports = {
                 'import/first': 'error',
                 'import/no-default-export': 'error',
                 'import/no-duplicates': 'error',
+                'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
+                'no-implicit-globals': 'error',
 
                 /**
                  * @typescript-eslint
                  */
-                '@typescript-eslint/no-dynamic-delete': 'error',
+                '@typescript-eslint/no-dynamic-delete': 'off',
                 '@typescript-eslint/dot-notation': 'error',
                 '@typescript-eslint/strict-boolean-expressions': 'error',
                 '@typescript-eslint/no-invalid-this': ['error'],
@@ -530,6 +542,8 @@ module.exports = {
         },
         {
             files: ['*.spec.ts'], // light version rules for test files
+            plugins: ['mocha', 'jest'],
+            extends: ['plugin:jest/style', 'plugin:jest/all', 'plugin:mocha/recommended'],
             rules: {
                 '@typescript-eslint/explicit-function-return-type': 'off',
                 'max-lines-per-function': 'off',
@@ -540,7 +554,22 @@ module.exports = {
                 'max-nested-callbacks': 'off',
                 '@angular-eslint/prefer-on-push-component-change-detection': 'off',
                 '@angular-eslint/component-max-inline-declarations': 'off',
-                '@angular-eslint/use-component-selector': 'off'
+                '@angular-eslint/use-component-selector': 'off',
+
+                // jest
+                'jest/expect-expect': 'error',
+                'jest/no-disabled-tests': 'error',
+                'jest/no-jasmine-globals': 'off',
+                'jest/prefer-strict-equal': 'off',
+                'jest/no-hooks': 'off',
+                'jest/unbound-method': 'off',
+                'jest/prefer-expect-assertions': 'off',
+
+                // mocha
+                'mocha/no-mocha-arrows': 'off',
+                'mocha/no-setup-in-describe': 'off',
+                'mocha/no-hooks-for-single-case': 'off',
+                'mocha/prefer-arrow-callback': 'error'
             }
         },
         {

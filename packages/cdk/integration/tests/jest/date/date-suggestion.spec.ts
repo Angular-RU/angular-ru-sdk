@@ -41,11 +41,11 @@ describe('[TEST]: Trim Input', () => {
         });
     });
 
-    it('should return list of default strategies', function () {
+    it('should return list of default strategies', () => {
         expect(composer.getSuggestions()).toEqual(Object.keys(DEFAULT_SUGGESTION_STRATEGY_MAP));
     });
 
-    it('should set date interval based on LastFewDaysStrategy', function () {
+    it('should set date interval based on LastFewDaysStrategy', () => {
         composer.getStrategy(DefaultDateIntervalSuggestion.LAST_3_DAYS).updateIntervalFor(form, descriptor);
         expect(form.getRawValue()).toEqual({
             dateFrom: startOfDay(shiftDate({ days: -2 })),
@@ -65,7 +65,7 @@ describe('[TEST]: Trim Input', () => {
         });
     });
 
-    it('should set date interval based on SomeDayAgoStrategy', function () {
+    it('should set date interval based on SomeDayAgoStrategy', () => {
         composer.getStrategy(DefaultDateIntervalSuggestion.TODAY).updateIntervalFor(form, descriptor);
         expect(form.getRawValue()).toEqual({
             dateFrom: startOfDay(),
@@ -79,7 +79,7 @@ describe('[TEST]: Trim Input', () => {
         });
     });
 
-    it('should set date interval based on FirstDayOfIntervalStrategy', function () {
+    it('should set date interval based on FirstDayOfIntervalStrategy', () => {
         const mockStart: Date = new Date('10 Apr 2021 12:00:00');
         form.controls[descriptor.dateFromKey]?.setValue(mockStart);
         composer.getStrategy(DefaultDateIntervalSuggestion.FIRST_DAY_OF_INTERVAL).updateIntervalFor(form, descriptor);
@@ -89,7 +89,7 @@ describe('[TEST]: Trim Input', () => {
         });
     });
 
-    it('should set date interval based on LastDaysOfIntervalStrategy', function () {
+    it('should set date interval based on LastDaysOfIntervalStrategy', () => {
         const mockEnd: Date = new Date('10 Apr 2021 12:00:00');
         form.controls[descriptor.dateToKey]?.setValue(mockEnd);
         composer
@@ -102,8 +102,8 @@ describe('[TEST]: Trim Input', () => {
     });
 
     it.each(mockFirstWeekdays)(
-        'Set calendar week as interval (first day of week is %s)',
-        function ({ firstDayOfWeekNumber, firstDayOfWeek }) {
+        'set calendar week as interval (first day of week is %s)',
+        ({ firstDayOfWeekNumber, firstDayOfWeek }) => {
             const dateAdapter: DateAdapter<unknown> = TestBed.inject(DateAdapter);
             // mocking locale day of week
             jest.spyOn(dateAdapter, 'getFirstDayOfWeek').mockImplementation(() => firstDayOfWeekNumber);

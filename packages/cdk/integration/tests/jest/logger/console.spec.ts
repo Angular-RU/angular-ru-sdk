@@ -4,46 +4,50 @@ import { ConsoleService, LoggerLevel, LoggerModule, LoggerService } from '@angul
 import { ConsoleFake } from './helpers/console-fake';
 
 describe('[TEST]: ConsoleService', () => {
-    let consoleInternal: ConsoleService;
-    const fakeConsole: ConsoleFake = new ConsoleFake();
+    describe('case #1', () => {
+        let consoleInternal: ConsoleService;
+        const fakeConsole: ConsoleFake = new ConsoleFake();
 
-    beforeAll(() => {
-        TestBed.configureTestingModule({
-            imports: [
-                LoggerModule.forRoot({
-                    instance: fakeConsole
-                })
-            ]
+        beforeAll(() => {
+            TestBed.configureTestingModule({
+                imports: [
+                    LoggerModule.forRoot({
+                        instance: fakeConsole
+                    })
+                ]
+            });
+
+            consoleInternal = TestBed.inject(ConsoleService);
         });
 
-        consoleInternal = TestBed.get(ConsoleService);
-    });
-
-    it(`check console instance`, () => {
-        consoleInternal.console = console;
-        expect(consoleInternal.console).toEqual(console);
-    });
-});
-
-describe('[TEST]: ConsoleService without options', () => {
-    let logger: LoggerService;
-    let consoleService: ConsoleService;
-
-    beforeAll(() => {
-        TestBed.configureTestingModule({
-            imports: [LoggerModule.forRoot()]
+        it(`check console instance`, () => {
+            consoleInternal.console = console;
+            expect(consoleInternal.console).toEqual(console);
         });
-
-        logger = TestBed.get(LoggerService);
-        consoleService = TestBed.get(ConsoleService);
     });
 
-    it(`should be truthy logger`, () => {
-        expect(logger).toBeTruthy();
-    });
+    describe('case #2', () => {
+        describe('[TEST]: ConsoleService without options', () => {
+            let logger: LoggerService;
+            let consoleService: ConsoleService;
 
-    it(`should be correct minLevel and instance`, () => {
-        expect(consoleService.minLevel).toEqual(LoggerLevel.ALL);
-        expect(consoleService.instance).toEqual(console);
+            beforeAll(() => {
+                TestBed.configureTestingModule({
+                    imports: [LoggerModule.forRoot()]
+                });
+
+                logger = TestBed.inject(LoggerService);
+                consoleService = TestBed.inject(ConsoleService);
+            });
+
+            it(`should be truthy logger`, () => {
+                expect(logger).toBeTruthy();
+            });
+
+            it(`should be correct minLevel and instance`, () => {
+                expect(consoleService.minLevel).toEqual(LoggerLevel.ALL);
+                expect(consoleService.instance).toEqual(console);
+            });
+        });
     });
 });

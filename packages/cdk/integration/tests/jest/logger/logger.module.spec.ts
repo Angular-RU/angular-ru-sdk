@@ -20,12 +20,12 @@ describe('[TEST]: Execute method by Level', () => {
             imports: [LoggerModule.forRoot({ instance: fakeConsole })]
         });
 
-        logger = TestBed.get(LoggerService);
+        logger = TestBed.inject(LoggerService);
     });
 
     beforeEach(() => logger.clear());
 
-    it(`All data must go to the console, minimal level: TRACE`, () => {
+    it(`all data must go to the console, minimal level: TRACE`, () => {
         logger.level = LoggerLevel.TRACE;
 
         logger.log(customLogOutput);
@@ -47,7 +47,7 @@ describe('[TEST]: Execute method by Level', () => {
         );
     });
 
-    it(`Show console stack when minimal level: DEBUG`, () => {
+    it(`show console stack when minimal level: DEBUG`, () => {
         logger.level = LoggerLevel.DEBUG;
 
         logger.log(customLogOutput);
@@ -68,28 +68,7 @@ describe('[TEST]: Execute method by Level', () => {
         );
     });
 
-    it(`Show console stack when minimal level: DEBUG`, () => {
-        logger.level = LoggerLevel.DEBUG;
-
-        logger.log(customLogOutput);
-        logger.trace(traceIsWork, 1, { a: 1 });
-        logger.debug(debugIsWork, 2, {});
-        logger.info(infoIsWork, 3, Object);
-        logger.warn(warnIsWork, 4, String);
-        logger.error(errorIsWork, 5, (2.55).toFixed());
-
-        expect(fakeConsole.stack()).toEqual(
-            fakeConsole.createStack(
-                { [TestLoggerLineType.LOG]: [customLogOutput] },
-                { [TestLoggerLineType.DEBUG]: [debugIsWork, 2, {}] },
-                { [TestLoggerLineType.INFO]: [infoIsWork, 3, Object] },
-                { [TestLoggerLineType.WARN]: [warnIsWork, 4, String] },
-                { [TestLoggerLineType.ERROR]: [errorIsWork, 5, (2.55).toFixed()] }
-            )
-        );
-    });
-
-    it(`Show console stack when minimal level: INFO`, () => {
+    it(`show console stack when minimal level: INFO`, () => {
         logger.level = LoggerLevel.INFO;
 
         logger.log(customLogOutput);
@@ -109,7 +88,7 @@ describe('[TEST]: Execute method by Level', () => {
         );
     });
 
-    it(`Show console stack when minimal level: WARNING`, () => {
+    it(`show console stack when minimal level: WARNING`, () => {
         logger.level = LoggerLevel.WARN;
 
         logger.log(customLogOutput);
@@ -127,7 +106,7 @@ describe('[TEST]: Execute method by Level', () => {
         );
     });
 
-    it(`Show console stack when minimal level: ERROR`, () => {
+    it(`show console stack when minimal level: ERROR`, () => {
         logger.level = LoggerLevel.ERROR;
 
         logger.log(customLogOutput);
@@ -142,7 +121,7 @@ describe('[TEST]: Execute method by Level', () => {
         );
     });
 
-    it(`Not showing data in console, level: OFF`, () => {
+    it(`not showing data in console, level: OFF`, () => {
         logger.level = LoggerLevel.OFF;
 
         logger.log(customLogOutput);
@@ -155,29 +134,29 @@ describe('[TEST]: Execute method by Level', () => {
         expect(fakeConsole.stack()).toEqual(fakeConsole.createStack());
     });
 
-    it(`Clear console stack is worked`, () => {
+    it(`clear console stack is worked`, () => {
         logger.level = LoggerLevel.ALL;
         expect(fakeConsole.stack()).toEqual(fakeConsole.createStack());
     });
 
-    it(`Set minimal level: INFO`, () => {
+    it(`set minimal level: INFO`, () => {
         logger.level = LoggerLevel.INFO;
         expect(logger.level).toEqual(LoggerLevel.INFO);
     });
 
-    it(`Assert: 5 is not grater than 6`, () => {
+    it(`assert: 5 is not grater than 6`, () => {
         logger.assert(5 > 6, '5 is not grater than 6');
         expect(fakeConsole.stack(0)).toEqual(
             fakeConsole.createStack({ [TestLoggerLineType.ASSERT]: [`5 is not grater than 6`] })
         );
     });
 
-    it(`Assert: 10 is grater than 6`, () => {
+    it(`assert: 10 is grater than 6`, () => {
         logger.assert(10 > 6, '10 is not grater than 6');
         expect(fakeConsole.stack(0)).toEqual(fakeConsole.createStack());
     });
 
-    it(`Table`, () => {
+    it(`table`, () => {
         const data: PlainObject = [
             { name: 'Yusuf', age: 26 },
             { age: 34, name: 'Chen' }

@@ -12,7 +12,7 @@ describe('[TEST]: Check JSON', () => {
             imports: [LoggerModule.forRoot({ instance: fakeConsole })]
         });
 
-        logger = TestBed.get(LoggerService);
+        logger = TestBed.inject(LoggerService);
     });
 
     it('should be pretty json', () => {

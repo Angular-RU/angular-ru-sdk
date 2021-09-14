@@ -27,16 +27,22 @@ describe('[TEST]: Date', (): void => {
         ).toEqual('15:41 11.12.2018');
     });
 
-    it('toISOString', () => {
-        expect(toISOString(new Date(0))).toEqual('1970-01-01T00:00:00.000Z');
-        expect(toISOString('  ')).toEqual('');
-        expect(toISOString('')).toEqual('');
-        expect(toISOString(undefined as Any)).toEqual('');
-        expect(toISOString(null as Any)).toEqual('');
-        expect(toISOString('abcde')).toEqual('');
+    describe('toISOString', () => {
+        it('#1', () => {
+            expect(toISOString(new Date(0))).toEqual('1970-01-01T00:00:00.000Z');
+            expect(toISOString('  ')).toEqual('');
+            expect(toISOString('')).toEqual('');
+            expect(toISOString(undefined as Any)).toEqual('');
+            expect(toISOString(null as Any)).toEqual('');
+            expect(toISOString('abcde')).toEqual('');
+        });
+
+        it('#2', () => {
+            expect(toISOString(new Date(0))).toEqual('1970-01-01T00:00:00.000Z');
+        });
     });
 
-    it('Should correct return date', (): void => {
+    it('should correct return date', (): void => {
         const date = '11.12.202018 15:41:37';
         expect(dateStringToDate(date).getFullYear()).toEqual(new Date().getFullYear());
     });
@@ -71,7 +77,7 @@ describe('[TEST]: Date', (): void => {
         expect(date).toEqual('2019-07-05 00:00:00');
     });
 
-    it('should correct be correct invalidate date ', (): void => {
+    it('should correct be correct invalidate date', (): void => {
         let date: Nullable<string> = toTimestamp('5.7.2019', isoFormat);
         expect(date).toEqual('2019-07-05 00:00:00');
 
@@ -99,25 +105,23 @@ describe('[TEST]: Date', (): void => {
         expect(date).toEqual('2019-07-25 00:00:00');
     });
 
-    it('toISOString', () => {
-        expect(toISOString(new Date(0))).toEqual('1970-01-01T00:00:00.000Z');
-    });
-
     it('toUnix', () => {
         expect(toUnix(new Date('Thu Jul 30 2020 20:25:59 GMT+0300'))).toEqual(1596129959000);
     });
 
-    it('toPrettyFormat', () => {
-        expect(toPrettyFormat(new Date('01.01.2020'))).toEqual('01.01.2020 00:00:00');
-    });
+    describe('toPrettyFormat', () => {
+        it('#1', () => {
+            expect(toPrettyFormat(new Date('01.01.2020'))).toEqual('01.01.2020 00:00:00');
+        });
 
-    it('toPrettyFormat', () => {
-        expect(
-            toFormatDateTime(1544532097434, {
-                format: 'HH:mm dd.MM.yyyy',
-                timezone: '+0300'
-            })
-        ).toEqual('15:41 11.12.2018');
+        it('#2', () => {
+            expect(
+                toFormatDateTime(1544532097434, {
+                    format: 'HH:mm dd.MM.yyyy',
+                    timezone: '+0300'
+                })
+            ).toEqual('15:41 11.12.2018');
+        });
     });
 
     it(`toMilliseconds`, () => {

@@ -1,3 +1,4 @@
+/* eslint-disable jest/no-conditional-expect */
 import { startOfDay, toISOStringWithoutTimezone } from '@angular-ru/cdk/date';
 
 describe('[TEST]: StartOfDay', (): void => {

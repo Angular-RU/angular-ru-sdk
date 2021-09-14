@@ -12,8 +12,7 @@ export class TestService {
     selector: '[test-directive]'
 })
 export class TestDirective {
-    @InjectTestService()
-    public testService!: TestService;
+    @InjectTestService() public testService!: TestService;
 
     constructor(public ngZone: NgZone) {}
 }
@@ -28,8 +27,7 @@ export class TestDirective {
     `
 })
 export class TestComponent {
-    @InjectTestService()
-    public testService!: TestService;
+    @InjectTestService() public testService!: TestService;
 
     constructor(public ngZone: NgZone) {}
 }
@@ -40,8 +38,7 @@ export class TestComponent {
     pure: false
 })
 export class TestPipe implements PipeTransform {
-    @InjectTestService()
-    public testService!: TestService;
+    @InjectTestService() public testService!: TestService;
 
     constructor(public ngZone: NgZone) {}
 
@@ -52,8 +49,7 @@ export class TestPipe implements PipeTransform {
 
 @Injectable()
 export class FeatureTestService {
-    @InjectTestService()
-    public testService!: TestService;
+    @InjectTestService() public testService!: TestService;
 
     public callsCounter: number = 0;
 
@@ -66,16 +62,13 @@ export class FeatureTestService {
     template: ''
 })
 export class FeatureTestComponent {
-    @InjectFeatureTestService()
-    public featureTestService!: FeatureTestService;
+    @InjectFeatureTestService() public featureTestService!: FeatureTestService;
 
-    @InjectNgZone()
-    public ngZone!: NgZone;
+    @InjectNgZone() public ngZone!: NgZone;
 
     constructor(public appRef: ApplicationRef) {}
 }
 
 export class NonInjectable {
-    @InjectNgZone()
-    public ngZone!: NgZone;
+    @InjectNgZone() public ngZone!: NgZone;
 }

@@ -72,7 +72,7 @@ describe('[TEST]: auto height', () => {
         expect(addedEvent).toEqual(true);
     });
 
-    it('should be correct invoke ngOnInit', () => {
+    it('should be correct invoke ngOnDestroy', () => {
         directive.ngOnDestroy();
         expect(directive.destroy.closed).toEqual(true);
     });

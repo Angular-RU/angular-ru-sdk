@@ -107,24 +107,26 @@ describe('[TEST]: http utils', () => {
         );
     });
 
-    it('getHttpHeader', () => {
-        const headers: HttpHeaders = getHttpHeader({ a: '1', b: '2' });
-        expect(headers.keys()).toEqual(['a', 'b']);
-        expect(headers.get('a')).toEqual('1');
-        expect(headers.get('b')).toEqual('2');
+    describe('getHttpHeader', () => {
+        it('case #1', () => {
+            const headers: HttpHeaders = getHttpHeader({ a: '1', b: '2' });
+            expect(headers.keys()).toEqual(['a', 'b']);
+            expect(headers.get('a')).toEqual('1');
+            expect(headers.get('b')).toEqual('2');
+        });
+
+        it('case #2', () => {
+            const params: HttpParams = getHttpParams('/todos/get?pageSize=5&value=2', { pageIndex: 0 });
+            expect(params.keys()).toEqual(['pageSize', 'value', 'pageIndex']);
+            expect(params.get('pageSize')).toEqual('5');
+            expect(params.get('value')).toEqual('2');
+            expect(params.get('pageIndex')).toEqual(0);
+        });
     });
 
     it('parseQueryParams', () => {
         const queryParams: PlainObject = parseQueryParams('/todos/get?pageSize=5&value=2');
         expect(queryParams).toEqual({ pageSize: '5', value: '2' });
-    });
-
-    it('getHttpHeader', () => {
-        const params: HttpParams = getHttpParams('/todos/get?pageSize=5&value=2', { pageIndex: 0 });
-        expect(params.keys()).toEqual(['pageSize', 'value', 'pageIndex']);
-        expect(params.get('pageSize')).toEqual('5');
-        expect(params.get('value')).toEqual('2');
-        expect(params.get('pageIndex')).toEqual(0);
     });
 
     it('ensurePathByPathVariables', () => {
@@ -136,19 +138,21 @@ describe('[TEST]: http utils', () => {
         expect(ensurePathByPathVariables(`/a/{invalidName}`, map)).toEqual('/a/{invalidName}');
     });
 
-    it('removeLeadingAndTrailingSlashes', () => {
-        expect(replaceLeadingAndTrailingSlashes('')).toEqual('');
-    });
+    describe('removeLeadingAndTrailingSlashes', () => {
+        it('case #1', () => {
+            expect(replaceLeadingAndTrailingSlashes('')).toEqual('');
+        });
 
-    it('removeLeadingAndTrailingSlashes', () => {
-        expect(replaceLeadingAndTrailingSlashes('/')).toEqual('');
-    });
+        it('case #2', () => {
+            expect(replaceLeadingAndTrailingSlashes('/')).toEqual('');
+        });
 
-    it('removeLeadingAndTrailingSlashes', () => {
-        expect(replaceLeadingAndTrailingSlashes('//')).toEqual('');
-    });
+        it('case #3', () => {
+            expect(replaceLeadingAndTrailingSlashes('//')).toEqual('');
+        });
 
-    it('removeLeadingAndTrailingSlashes', () => {
-        expect(replaceLeadingAndTrailingSlashes('//ad/example///')).toEqual('ad/example');
+        it('case #4', () => {
+            expect(replaceLeadingAndTrailingSlashes('//ad/example///')).toEqual('ad/example');
+        });
     });
 });

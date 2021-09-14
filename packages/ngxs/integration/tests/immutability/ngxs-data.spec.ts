@@ -89,7 +89,7 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
         const state: MyDataState = TestBed.inject<MyDataState>(MyDataState);
 
         expect(store.snapshot()).toEqual({ myState: null });
-        expect(state.getState()).toEqual(null);
+        expect(state.getState()).toBeNull();
 
         state.setState({ a: 5 });
         expect(state.getState()).toEqual({ a: 5 });
@@ -101,7 +101,7 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
 
         state.reset();
 
-        expect(state.getState()).toEqual(null);
+        expect(state.getState()).toBeNull();
 
         state.dispatch({ type: 'myState.set' });
 

@@ -41,8 +41,7 @@ declare const hljs: Any;
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SampleFourteenComponent implements OnInit, AfterViewInit {
-    @ViewChild('table', { static: false })
-    public table!: TableBuilderComponent<PlainObject>;
+    @ViewChild('table', { static: false }) public table!: TableBuilderComponent<PlainObject>;
 
     public data: PlainObject[] = [];
     constructor(public readonly dialog: MatDialog, private readonly cd: ChangeDetectorRef) {}

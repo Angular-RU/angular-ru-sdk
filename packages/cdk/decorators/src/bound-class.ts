@@ -37,7 +37,6 @@ function boundMethod(target: Any, key: Any, descriptor: Any) {
                 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
                 set(value: Any) {
                     fn = value;
-                    // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
                     delete this[key];
                 }
             });

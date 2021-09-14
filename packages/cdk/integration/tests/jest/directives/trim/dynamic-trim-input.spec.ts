@@ -8,7 +8,7 @@ import { TrimInputModule } from '@angular-ru/cdk/directives';
 import { Nullable } from '@angular-ru/cdk/typings';
 import { NgxMaskModule } from 'ngx-mask';
 
-describe('[TEST]: Trim Input', () => {
+describe('[TEST]: Trim Input', function () {
     let fixture: Nullable<ComponentFixture<DynamicTestComponent>> = null;
     let component: Nullable<DynamicTestComponent> = null;
     let debugElement: Nullable<DebugElement> = null;
@@ -42,9 +42,7 @@ describe('[TEST]: Trim Input', () => {
             providers: [{ provide: MATERIAL_SANITY_CHECKS, useValue: false }],
             declarations: [DynamicTestComponent]
         }).compileComponents();
-    });
 
-    beforeEach(() => {
         fixture = TestBed.createComponent(DynamicTestComponent);
         component = fixture.componentInstance;
         fixture.autoDetectChanges();

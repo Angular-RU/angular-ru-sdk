@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { PlainObject } from '@angular-ru/cdk/typings';
+import { Any, PlainObject } from '@angular-ru/cdk/typings';
 import { TableBuilderComponent, TableBuilderModule } from '@angular-ru/cdk/virtual-table';
 import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
 
@@ -38,22 +38,22 @@ describe('[TEST] Table builder', (): void => {
         }).compileComponents();
 
         const someSortableService = TestBed.createComponent(TableBuilderComponent).componentInstance.sortable;
-        someSortableService.constructor.prototype.idleResolve = jest.fn(function idleResolve<T>(
-            resolve: (value: T[]) => void,
-            sorted: T[]
-        ): void {
-            resolve(sorted);
-        });
-    });
+        jest.spyOn(someSortableService.constructor.prototype, 'idleResolve').mockImplementation(
+            (resolve: Any, sorted: unknown) => resolve(sorted)
+        );
 
-    beforeEach((): void => {
         componentFixture = TestBed.createComponent(SelectionMockComponent);
         component = componentFixture.componentInstance;
     });
 
+    afterAll((): void => {
+        const someSortableService = TestBed.createComponent(TableBuilderComponent).componentInstance.sortable;
+        someSortableService.constructor.prototype.idleResolve.mockRestore();
+    });
+
     it('should be correct select items from 1..2 by shift key', async () => {
         const tableBuilderComponent: TableBuilderComponent<PlainObject> = component.tableBuilderComponent;
-        expect(tableBuilderComponent.source).toEqual(null);
+        expect(tableBuilderComponent.source).toBeNull();
 
         componentFixture.detectChanges();
         expect(tableBuilderComponent.source).toEqual([
@@ -71,10 +71,5 @@ describe('[TEST] Table builder', (): void => {
         );
 
         expect(tableBuilderComponent.selection.selectionModel.entries).toEqual({ 1: true, 2: true });
-    });
-
-    afterAll((): void => {
-        const someSortableService = TestBed.createComponent(TableBuilderComponent).componentInstance.sortable;
-        someSortableService.constructor.prototype.idleResolve.mockRestore();
     });
 });
