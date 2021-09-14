@@ -25,6 +25,7 @@ export class SampleFirstSecondComponent implements OnInit, OnDestroy {
         const DEFAULT_TIMEOUT: number = 14500;
 
         this.ngZone.runOutsideAngular((): void => {
+            // eslint-disable-next-line no-restricted-properties
             this.idInterval = window.setInterval((): void => {
                 this.updateTable();
             }, DEFAULT_TIMEOUT);

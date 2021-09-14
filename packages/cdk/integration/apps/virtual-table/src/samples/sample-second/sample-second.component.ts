@@ -65,6 +65,7 @@ export class SampleSecondComponent implements AfterViewInit {
             hljs.highlightBlock(block);
         });
 
+        // eslint-disable-next-line no-restricted-globals
         setTimeout(
             // eslint-disable-next-line max-lines-per-function
             (): void => {

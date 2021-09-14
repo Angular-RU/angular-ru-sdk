@@ -214,6 +214,7 @@ export class TableBuilderComponent<T>
         this.handleFilterDefinitionChanges(changes);
 
         clearTimeout(this.changesTimerId);
+        // eslint-disable-next-line no-restricted-properties
         this.changesTimerId = window.setTimeout((): void => this.updateViewport(), CHANGE_DELAY);
     }
 
@@ -314,6 +315,7 @@ export class TableBuilderComponent<T>
     public render(): void {
         this.contentCheck = false;
         this.ngZone.run((): void => {
+            // eslint-disable-next-line no-restricted-properties
             window.setTimeout((): void => {
                 this.renderTable();
                 this.idleDetectChanges();
@@ -368,6 +370,7 @@ export class TableBuilderComponent<T>
         this.changeSchema([]);
 
         this.ngZone.runOutsideAngular((): void => {
+            // eslint-disable-next-line no-restricted-properties
             window.setTimeout((): void => {
                 this.tableViewportChecked = true;
                 this.calculateColumnWidthSummary();
@@ -539,6 +542,7 @@ export class TableBuilderComponent<T>
 
     private afterViewInitChecked(): void {
         this.ngZone.runOutsideAngular((): void => {
+            // eslint-disable-next-line no-restricted-properties
             this.timeoutViewCheckedId = window.setTimeout((): void => {
                 this.afterViewInitDone = true;
                 this.listenScroll();
@@ -584,6 +588,7 @@ export class TableBuilderComponent<T>
         window.cancelAnimationFrame(this.frameCalculateViewportId!);
         this.ngZone.runOutsideAngular((): void => {
             window.clearTimeout(this.timeoutScrolledId!);
+            // eslint-disable-next-line no-restricted-properties
             this.timeoutScrolledId = window.setTimeout((): void => {
                 this.viewPortInfo.isScrolling = false;
                 detectChanges(this.cd);
@@ -653,6 +658,7 @@ export class TableBuilderComponent<T>
 
     private recheckTemplateChanges(): void {
         this.ngZone.runOutsideAngular((): void => {
+            // eslint-disable-next-line no-restricted-properties
             window.setTimeout((): void => detectChanges(this.cd), TIME_RELOAD);
         });
     }
@@ -676,6 +682,7 @@ export class TableBuilderComponent<T>
     private viewForceRefresh(): void {
         this.ngZone.runOutsideAngular((): void => {
             window.clearTimeout(this.timeoutCheckedTaskId!);
+            // eslint-disable-next-line no-restricted-properties
             this.timeoutCheckedTaskId = window.setTimeout((): void => {
                 this.forcedRefresh = true;
                 this.markTemplateContentCheck();
@@ -762,6 +769,7 @@ export class TableBuilderComponent<T>
         this.calculateViewport(true);
         this.recheckViewportChecked();
         this.ngZone.runOutsideAngular((): void => {
+            // eslint-disable-next-line no-restricted-properties
             window.setTimeout((): void => {
                 this.isRendered = true;
                 detectChanges(this.cd);

@@ -74,6 +74,30 @@ module.exports = {
                 /**
                  * ESLint Core
                  */
+                'no-restricted-globals': [
+                    'error',
+                    {
+                        name: 'setInterval',
+                        message: 'Avoid using timers. Use `interval` from rxjs instead.'
+                    },
+                    {
+                        name: 'setTimeout',
+                        message: 'Avoid using timers. Use `timer` from rxjs instead.'
+                    }
+                ],
+                'no-restricted-properties': [
+                    'error',
+                    {
+                        object: 'window',
+                        property: 'setInterval',
+                        message: 'Avoid using timers. Use `interval` from rxjs instead.'
+                    },
+                    {
+                        object: 'window',
+                        property: 'setTimeout',
+                        message: 'Avoid using timers. Use `timer` from rxjs instead.'
+                    }
+                ],
                 'padding-line-between-statements': 'off',
                 'no-invalid-this': 'off',
                 'arrow-body-style': 'error',

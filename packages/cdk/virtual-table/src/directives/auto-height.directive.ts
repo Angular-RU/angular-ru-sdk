@@ -150,6 +150,7 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
     public recalculateTableSize(): void {
         this.ngZone.runOutsideAngular((): void => {
             window.clearTimeout(this.taskId!);
+            // eslint-disable-next-line no-restricted-properties
             this.taskId = window.setTimeout((): void => {
                 if (this.canCalculated && !this.isDirtyCheck) {
                     this.markForCheck();

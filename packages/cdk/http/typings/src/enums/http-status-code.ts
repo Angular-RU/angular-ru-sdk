@@ -1,4 +1,8 @@
-// eslint-disable-next-line no-restricted-syntax
+/* eslint-disable no-restricted-syntax */
+
+/**
+ * @deprecated: use HttpStatusCode from `@angular/common/http`
+ */
 export enum HttpStatusCode {
     // 1×× Informational
     CONTINUE = 100,

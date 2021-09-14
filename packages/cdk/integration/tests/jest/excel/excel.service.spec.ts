@@ -89,6 +89,7 @@ describe('[TEST] Excel service', () => {
             filename: 'simple',
             worksheets: [{ entries: dataset }]
         });
+        // eslint-disable-next-line no-restricted-globals
         await new Promise((resolve) => setTimeout(resolve));
         const [blob, filename] = downloadSpy.mock.calls[0];
 
@@ -101,6 +102,7 @@ describe('[TEST] Excel service', () => {
             filename: 'by-keys',
             worksheets: [{ entries: dataset, keys: ['id', 'lastName', 'falseField'] }]
         });
+        // eslint-disable-next-line no-restricted-globals
         await new Promise((resolve) => setTimeout(resolve));
         const [blob, filename] = downloadSpy.mock.calls[0];
 
@@ -118,6 +120,7 @@ describe('[TEST] Excel service', () => {
                 }
             ]
         });
+        // eslint-disable-next-line no-restricted-globals
         await new Promise((resolve) => setTimeout(resolve));
         const [blob, filename] = downloadSpy.mock.calls[0];
 
@@ -141,6 +144,7 @@ describe('[TEST] Excel service', () => {
                 }
             ]
         });
+        // eslint-disable-next-line no-restricted-globals
         await new Promise((resolve) => setTimeout(resolve));
         const [blob, filename] = downloadSpy.mock.calls[0];
 
@@ -161,6 +165,7 @@ describe('[TEST] Excel service', () => {
                 }
             ]
         });
+        // eslint-disable-next-line no-restricted-globals
         await new Promise((resolve) => setTimeout(resolve));
         const [blob, filename] = downloadSpy.mock.calls[0];
 
@@ -187,6 +192,7 @@ describe('[TEST] Excel service', () => {
                     }
                 ]
             });
+            // eslint-disable-next-line no-restricted-globals
             await new Promise((resolve) => setTimeout(resolve));
             const [blob, filename] = downloadSpy.mock.calls[0];
 
@@ -210,6 +216,7 @@ describe('[TEST] Excel service', () => {
                     }
                 ]
             });
+            // eslint-disable-next-line no-restricted-globals
             await new Promise((resolve) => setTimeout(resolve));
             const [blob, filename] = downloadSpy.mock.calls[0];
 
@@ -232,6 +239,7 @@ describe('[TEST] Excel service', () => {
                     }
                 ]
             });
+            // eslint-disable-next-line no-restricted-globals
             await new Promise((resolve) => setTimeout(resolve));
             const [blob, filename] = downloadSpy.mock.calls[0];
 

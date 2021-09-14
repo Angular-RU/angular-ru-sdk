@@ -93,6 +93,7 @@ export class TableCellComponent<T> implements OnDestroy {
     private detectCheckOverflow(element: HTMLDivElement, event: MouseEvent): void {
         window.clearInterval(this.timeoutShowedFrameId!);
         this.ngZone.runOutsideAngular((): void => {
+            // eslint-disable-next-line no-restricted-properties
             this.timeoutShowedFrameId = window.setTimeout((): void => {
                 const canEnableTooltip: boolean = isTrue(this.viewportInfo?.isScrolling)
                     ? false
@@ -134,6 +135,7 @@ export class TableCellComponent<T> implements OnDestroy {
         this.closeElemSub = fromEvent(this.overflowCloseElem, 'click').subscribe((): void => this.removeElement());
 
         this.ngZone.runOutsideAngular((): void => {
+            // eslint-disable-next-line no-restricted-properties
             this.timeoutOverflowId = window.setTimeout((): void => {
                 if (isTrue(this.viewportInfo?.isScrolling)) {
                     this.removeElement();
@@ -148,6 +150,7 @@ export class TableCellComponent<T> implements OnDestroy {
         if (isNotNil(this.overflowContentElem)) {
             this.overflowContentElem.classList.remove('visible');
             this.ngZone.runOutsideAngular((): void => {
+                // eslint-disable-next-line no-restricted-properties
                 window.setTimeout((): void => {
                     if (isNotNil(this.overflowContentElem)) {
                         this.overflowContentElem.parentNode?.removeChild(this.overflowContentElem);

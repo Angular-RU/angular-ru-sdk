@@ -18,6 +18,7 @@ export class InitialFocusDirective implements AfterViewInit, OnDestroy {
     public ngAfterViewInit(): void {
         this.ngZone.runOutsideAngular((): void => {
             window.clearInterval(this.timeoutId!);
+            // eslint-disable-next-line no-restricted-properties
             this.timeoutId = window.setInterval((): void => this.focus(), this.focusDelay);
         });
     }

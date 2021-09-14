@@ -319,6 +319,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
             window.clearInterval(this.filterIdTask!);
             this.filteringRun = true;
             detectChanges(this.cd);
+            // eslint-disable-next-line no-restricted-properties
             this.filterIdTask = window.setTimeout((): void => {
                 if (!this.isEnableFiltering) {
                     throw new Error('You forgot to enable filtering: \n <ngx-table-builder enable-filtering />');
@@ -343,6 +344,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
         //  when page have more than one tables
         this.ngZone.runOutsideAngular((): void => {
             window.clearTimeout(this.onChangesId);
+            // eslint-disable-next-line no-restricted-properties
             this.onChangesId = window.setTimeout((): void => {
                 this.onChanges.emit(this.sourceRef);
             });
@@ -417,6 +419,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
         this.filterable.definition = { ...this.filterable.definition };
         this.filterable.changeFilteringStatus();
         this.calculateViewport(true);
+        // eslint-disable-next-line no-restricted-properties
         window.setTimeout((): void => this.app.tick(), TABLE_GLOBAL_OPTIONS.TIME_RELOAD);
     }
 
@@ -457,6 +460,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
 
         this.ngZone.runOutsideAngular((): void => {
             clearInterval(this.columnFrameId!);
+            // eslint-disable-next-line no-restricted-properties
             this.columnFrameId = window.setTimeout((): void => {
                 let width: number = 0;
 

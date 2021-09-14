@@ -32,6 +32,7 @@ export class GuideComponent {
 
     public markFavorite(favorite: Favorite): void {
         this.zone.runOutsideAngular((): void => {
+            // eslint-disable-next-line no-restricted-globals
             setTimeout((): void => {
                 this.favorites = this.favorites.map((item: Favorite): Favorite => {
                     if (favorite.id === item.id) {
@@ -48,6 +49,7 @@ export class GuideComponent {
 
     public remove(favorite: Favorite): void {
         this.zone.runOutsideAngular((): void => {
+            // eslint-disable-next-line no-restricted-globals
             setTimeout((): void => {
                 this.favorites = this.favorites.filter((item: Favorite): boolean => item.id !== favorite.id);
                 this.cd.detectChanges();

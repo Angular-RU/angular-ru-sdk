@@ -75,6 +75,7 @@ export class SortableService<T> {
 
     private idleResolve(resolve: (value: T[]) => void, sorted: T[]): void {
         this.zone.runOutsideAngular((): void => {
+            // eslint-disable-next-line no-restricted-properties
             window.setTimeout((): void => resolve(sorted), TABLE_GLOBAL_OPTIONS.TIME_IDLE);
         });
     }

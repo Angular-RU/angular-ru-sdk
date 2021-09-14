@@ -56,6 +56,7 @@ export class SampleNightComponent implements OnInit, AfterViewInit {
 
     public update(): void {
         this.ngZone.runOutsideAngular((): void => {
+            // eslint-disable-next-line no-restricted-globals
             setTimeout((): void => {
                 this.cd.detectChanges();
             });

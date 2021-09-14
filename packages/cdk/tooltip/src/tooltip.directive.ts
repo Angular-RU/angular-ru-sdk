@@ -123,8 +123,10 @@ export class TooltipDirective implements OnDestroy {
     public hideTooltip(): void {
         this.ngZone.runOutsideAngular((): void => {
             window.clearTimeout(this.hideId!);
+            // eslint-disable-next-line no-restricted-properties
             this.hideId = window.setTimeout((): void => {
                 this.removeTooltipShowClass();
+                // eslint-disable-next-line no-restricted-properties
                 this.timeoutId = window.setTimeout(
                     (): void => this.removeOldNodes(),
                     this.options.durationAfterDestroy
@@ -171,12 +173,14 @@ export class TooltipDirective implements OnDestroy {
 
     private addTooltipToBodyWithAnimation(): void {
         this.ngZone.runOutsideAngular((): void => {
+            // eslint-disable-next-line no-restricted-properties
             this.frameId = window.setTimeout((): void => {
                 this.addTooltipElementToBody();
 
                 if (isNotNil(this.tooltipDomElement)) {
                     this.tooltipListenOnHoverEvent();
 
+                    // eslint-disable-next-line no-restricted-properties
                     this.createLayoutId = window.setTimeout((): void => {
                         this.setPosition();
                         this.addTooltipShowClass();
@@ -275,6 +279,7 @@ export class TooltipDirective implements OnDestroy {
 
             this.tooltipMouseleave = fromEvent(this.tooltipDomElement, 'mouseleave').subscribe((): void => {
                 window.clearTimeout(this.mouseLeaveTooltipId!);
+                // eslint-disable-next-line no-restricted-properties
                 this.mouseLeaveTooltipId = window.setTimeout(
                     (): void => this.hideTooltip(),
                     this.options.timeoutForWaitAfterBlurTooltip

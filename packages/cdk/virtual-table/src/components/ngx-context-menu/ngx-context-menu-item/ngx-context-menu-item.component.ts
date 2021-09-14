@@ -118,6 +118,7 @@ export class NgxContextMenuItemComponent<T = Any> implements OnInit, OnDestroy {
 
     private deferCloseMenu(): void {
         this.ngZone.runOutsideAngular((): void => {
+            // eslint-disable-next-line no-restricted-properties
             this.taskId = window.setTimeout((): void => this.contextMenu.close());
         });
     }
@@ -125,6 +126,7 @@ export class NgxContextMenuItemComponent<T = Any> implements OnInit, OnDestroy {
     private deferUpdateView(): void {
         this.ngZone.runOutsideAngular((): void => {
             window.clearInterval(this.taskId!);
+            // eslint-disable-next-line no-restricted-properties
             this.taskId = window.setTimeout((): void => detectChanges(this.cd));
         });
     }

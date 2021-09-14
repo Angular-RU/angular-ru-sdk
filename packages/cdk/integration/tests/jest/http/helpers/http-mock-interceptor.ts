@@ -23,6 +23,7 @@ export class HttpMockInterceptor implements HttpInterceptor {
     }
 
     private timeout(ms: number): Promise<Any> {
+        // eslint-disable-next-line no-restricted-properties
         return new Promise((resolve: Fn): number => window.setTimeout(resolve, ms));
     }
 

@@ -10,7 +10,7 @@ jobs:
               env:
                   GITHUB_TOKEN: '${{ secrets.GH_TOKEN }}'
                   DRY_RUN: 'false'
-                  MERGE_MSG: 'branch was auto-updated'
+                  MERGE_MSG: 'chore: branch was auto-updated'
                   EXCLUDED_LABELS: 'renovate'
                   RETRY_COUNT: '5'
                   RETRY_SLEEP: '300'
