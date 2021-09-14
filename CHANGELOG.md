@@ -1,5 +1,11 @@
 #### independent (2021-09-14)
 
+##### Build System / Dependencies
+
+-   update dependency @types/jasmine to v3.9.1 (#944) (d7c33f48)
+
+#### independent (2021-09-14)
+
 ##### New Features
 
 -   **cdk:** added regexp for credit card (#942) (0d940e8c)
