@@ -24,6 +24,7 @@ export class MethodArgsRegistry {
 
     public putIndexByName(name: string, method: string, paramIndex: number): void {
         const info: MethodArgsRegistryMeta = { key: name, index: paramIndex };
+
         this.checkDuplicateName(name, method);
         this.argumentsIndexMap.set(paramIndex, info);
         this.argumentsIndexMap.set(name, info);

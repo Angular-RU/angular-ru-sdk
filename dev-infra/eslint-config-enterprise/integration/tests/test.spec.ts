@@ -7,6 +7,7 @@ describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
 
     it('check failed files', (): void => {
         const bad: string = getInfoByReportFile('bad-file');
+
         expect(bad.includes('81 problems (81 errors, 0 warnings)')).toBeTruthy();
         expect(bad.includes('15 errors and 0 warnings potentially fixable with the `--fix` option')).toBeTruthy();
         expect(bad.includes(`Run autofix to sort these imports!`)).toBeTruthy();
@@ -104,11 +105,13 @@ describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
 
     it('check success files', (): void => {
         const good: string = getInfoByReportFile('good-file');
+
         expect(good).toHaveLength(0);
     });
 
     it('check file pattern in directories', () => {
         const filePattern: string = getInfoByReportFile('file-pattern');
+
         expect(filePattern.includes('4 problems (4 errors, 0 warnings)')).toBeTruthy();
         expect(
             filePattern.includes(`Files doesn't must end with by .enum.ts  @angular-ru/enterprise/no-suffix-file`)

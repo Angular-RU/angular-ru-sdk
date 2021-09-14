@@ -3,6 +3,7 @@ import { requiredSomeValueValidator } from '@angular-ru/cdk/validators';
 
 describe('[TEST]: requiredSomeValueValidator', () => {
     let form: FormGroup;
+
     beforeEach(() => {
         form = new FormGroup(
             {
@@ -17,6 +18,7 @@ describe('[TEST]: requiredSomeValueValidator', () => {
     it('should return error if control is not part of FormGroup', () => {
         const control: AbstractControl = new FormControl();
         const validator: ValidatorFn = requiredSomeValueValidator();
+
         expect(() => validator(control))?.toThrow(new Error('requiredSomeValue must be used on form group'));
     });
 

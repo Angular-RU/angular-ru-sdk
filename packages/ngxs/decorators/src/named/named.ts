@@ -11,6 +11,7 @@ export function Named(name: string): StateArgumentDecorator {
         }
 
         const registry: MethodArgsRegistry = ensureMethodArgsRegistry(stateClass, methodName);
+
         registry.createArgumentName(key, methodName as string, parameterIndex);
     };
 }

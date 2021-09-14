@@ -11,25 +11,30 @@ export class MapToTableEntriesPipe<T> implements PipeTransform {
 
     public transform(selectedEntries?: RowId[]): T[] {
         const entries: RowId[] = selectedEntries ?? this.table.selectedKeyList;
+
         return this.filterItems(entries);
     }
 
     private filterItems(selectedEntries: RowId[]): T[] {
         const filteredEntriesMap: Map<RowId, Nullable<T>> = new Map();
+
         selectedEntries.forEach((rowId: RowId): void => void filteredEntriesMap.set(rowId, null));
 
         let itemsToFindLeft: number = filteredEntriesMap.size;
 
         for (const item of this.table.originalSourceRef) {
             const rowId: RowId = (item as Any)[this.table.primaryKey];
+
             if (selectedEntries.includes(rowId)) {
                 filteredEntriesMap.set(rowId, item);
                 itemsToFindLeft--;
             }
+
             if (itemsToFindLeft === 0) {
                 break;
             }
         }
+
         return Array.from(filteredEntriesMap.values()).filter(isNotNil);
     }
 }

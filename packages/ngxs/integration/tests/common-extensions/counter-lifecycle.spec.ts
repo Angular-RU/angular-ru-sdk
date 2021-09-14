@@ -99,6 +99,7 @@ describe('complex lifecycle', () => {
                 const document = TestBed.inject(DOCUMENT);
                 const adapter = new BrowserDomAdapter();
                 const root = adapter.createElement(selector);
+
                 document.body.appendChild(root);
             }
         }

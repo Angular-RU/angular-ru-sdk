@@ -62,6 +62,7 @@ export class SelectionMap<T> {
 
     public delete(key: RowId, emit: boolean): void {
         this.selectionSet.delete(key);
+
         if (emit) {
             this.generateImmutableEntries();
         }

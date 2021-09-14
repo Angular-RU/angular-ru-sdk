@@ -126,6 +126,7 @@ describe('check correct deep instance', () => {
 
     it('should be correct reset all', () => {
         const fixture: ComponentFixture<AppComponent> = TestBed.createComponent(AppComponent);
+
         fixture.componentInstance.ngOnInit();
 
         expect(app.initial).toEqual({

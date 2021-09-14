@@ -38,12 +38,15 @@ describe('[TEST]: Function', () => {
 
     it('hasConstructor', () => {
         class A {}
+
         function B() {
             // ...
         }
+
         const C: Fn = () => {
             // ...
         };
+
         class D extends A {}
 
         expect(hasConstructor(A)).toEqual(true);

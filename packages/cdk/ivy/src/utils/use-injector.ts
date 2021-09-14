@@ -58,10 +58,13 @@ function generateFactoryWrapper<T>(constructor: Any, definition: Any): (...args:
     return function (...args: Any[]): T {
         const instance: Any = ngFactory(...args);
         const patch: Nullable<PatchFunction<T>> = getPatcherOfClass(constructor);
+
         if (isNotNil(patch)) {
             const injector: Injector = directiveInject(INJECTOR);
+
             patch(injector, instance);
         }
+
         return instance;
     };
 }
@@ -92,6 +95,7 @@ function insertPatcher<T>(constructor: Any, effectFunction: (injector: Injector,
             } else if (isNotNil(patchSuper)) {
                 patchSuper(injector, instance);
             }
+
             effectFunction(injector, instance);
         }
     });

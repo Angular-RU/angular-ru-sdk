@@ -26,6 +26,7 @@ function boundMethod(target: Any, key: Any, descriptor: Any) {
             }
 
             const boundFn: Fn = fn.bind(this);
+
             definingProperty = true;
             Object.defineProperty(this, key, {
                 configurable: true,
@@ -41,6 +42,7 @@ function boundMethod(target: Any, key: Any, descriptor: Any) {
                 }
             });
             definingProperty = false;
+
             return boundFn;
         },
 
@@ -55,11 +57,13 @@ function boundMethod(target: Any, key: Any, descriptor: Any) {
 export function BoundClass(target: Any) {
     // (Using reflect to get all keys including symbols)
     let keys: Any[];
+
     // Use Reflect if exists
     if (typeof Reflect !== 'undefined' && typeof Reflect.ownKeys === 'function') {
         keys = Reflect.ownKeys(target.prototype);
     } else {
         keys = Object.getOwnPropertyNames(target.prototype);
+
         // Use symbols if support is provided
         if (typeof Object.getOwnPropertySymbols === 'function') {
             keys = keys.concat(Object.getOwnPropertySymbols(target.prototype));

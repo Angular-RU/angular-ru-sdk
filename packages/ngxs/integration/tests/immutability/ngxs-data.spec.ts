@@ -10,6 +10,7 @@ import { Action, NgxsModule, State, StateContext, Store } from '@ngxs/store';
 describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
     it('should be throw exception when forgot add StateRepository', () => {
         let message: string | null = null;
+
         try {
             @State({
                 name: 'myState',
@@ -37,6 +38,7 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
 
     it('should be throw exception when use context before bootstrap', () => {
         let message: string | null = null;
+
         try {
             @StateRepository()
             @State({
@@ -95,6 +97,7 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
         expect(state.getState()).toEqual({ a: 5 });
 
         const immutable: Immutable<Obj> = { a: 10 };
+
         state.patchState(immutable);
 
         expect(state.getState()).toEqual({ a: 10 });
@@ -225,6 +228,7 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
         }).compileComponents();
 
         const fixture: ComponentFixture<AppComponent> = TestBed.createComponent(AppComponent);
+
         fixture.autoDetectChanges();
 
         expect(JSON.parse(fixture.nativeElement.innerHTML)).toEqual([
@@ -246,6 +250,7 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
         expect(message).toEqual("Cannot assign to read only property '0' of object '[object Array]'");
 
         const immutable: Immutable<ListModel[]> = [{ a: 5, b: 7 }];
+
         state.setState(immutable);
 
         expect(state.getState()).toEqual([{ a: 5, b: 7 }]);

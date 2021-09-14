@@ -14,6 +14,7 @@ export class DateSuggestionSomeDayAgoStrategy implements DateSuggestionStrategy 
 
     public updateIntervalFor(control: AbstractControl, { dateFromKey, dateToKey }: DateIntervalDescriptor): void {
         const day: Timestamp = shiftDate({ days: -this.daysCount });
+
         control.patchValue({
             [dateFromKey]: startOfDay(day),
             [dateToKey]: endOfDay(day)

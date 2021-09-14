@@ -8,5 +8,6 @@ import { ensureRepository } from './ensure-repository';
  */
 export function createRepositoryMetadata(target: DataStateClass, stateMeta: MetaDataModel): void {
     const repositoryMeta: NgxsRepositoryMeta = ensureRepository(target);
+
     repositoryMeta.stateMeta = stateMeta;
 }

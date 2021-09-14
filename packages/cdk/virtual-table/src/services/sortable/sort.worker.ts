@@ -24,6 +24,7 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
         // note: don't use isString here
         // noinspection SuspiciousTypeOfGuard
         const val: string = typeof value === 'string' ? value.trim() : value;
+
         return [undefined, null, NaN, '', Infinity].includes(val);
     }
 
@@ -36,6 +37,7 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
             }
 
             const matches: PlainObjectOf<number> = Sortable.getMatchesKeys(keys);
+
             return data.sort((a: unknown, b: unknown): Any => Sortable.multiSort(a, b, matches));
         }
 
@@ -50,6 +52,7 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
                 // note: don't use isString here
                 if (typeof key === 'string') {
                     const depth: Nullable<number> = matches[key];
+
                     sorted = Sortable.deepSort(key, a, b, depth);
                     ix++;
                 }
@@ -81,6 +84,7 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
         private static deepSort(key: string, leftHand: Any, rightHand: Any, depth: Nullable<number>): number {
             const a: Any = getValueByPath(leftHand, key);
             const b: Any = getValueByPath(rightHand, key);
+
             return Sortable.shallowSort(a, b, depth);
         }
 
@@ -88,6 +92,7 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
             let newB: Any = b;
             // eslint-disable-next-line no-negated-condition
             const currentDepth: Nullable<number> = depth !== null ? depth : 1;
+
             newB = checkValueIsEmpty(newB) ? '' : newB;
 
             if (a === newB) {

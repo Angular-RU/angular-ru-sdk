@@ -48,6 +48,7 @@ export class InputFilterDirective {
         const predicate: Nullable<FilterPredicate | ''> = isInputPredicate
             ? this.inputFilter
             : this.config?.default ?? [];
+
         return predicate as FilterPredicate;
     }
 }

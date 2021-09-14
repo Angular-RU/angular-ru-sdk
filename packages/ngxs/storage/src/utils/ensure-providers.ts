@@ -31,6 +31,7 @@ export function ensureProviders(
 
     if (isNotNil(options)) {
         const prepared: PersistenceProvider[] = Array.isArray(options) ? options : [options];
+
         providers = prepared.map(
             (option: PersistenceProvider): PersistenceProvider =>
                 mergeOptions({ option, prefix, decodeType, meta, stateClassRef })

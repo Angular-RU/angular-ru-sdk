@@ -23,6 +23,7 @@ export class ContextMenuService<T, K = unknown> {
         this.events.next();
         event.stopPropagation();
         event.preventDefault();
+
         return false;
     }
 

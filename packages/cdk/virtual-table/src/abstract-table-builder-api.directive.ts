@@ -357,6 +357,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
     public drop({ previousIndex, currentIndex }: CdkDragSortEvent): void {
         const previousKey: Nullable<string> = this.visibleColumns[previousIndex];
         const currentKey: Nullable<string> = this.visibleColumns[currentIndex];
+
         this.isDragMoving = false;
         this.draggable.drop(previousKey, currentKey);
         this.changeSchema();
@@ -458,6 +459,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
             clearInterval(this.columnFrameId!);
             this.columnFrameId = window.setTimeout((): void => {
                 let width: number = 0;
+
                 this.columnList.forEach((element: ElementRef<HTMLDivElement>): void => {
                     width += element.nativeElement.offsetWidth;
                 });
@@ -471,11 +473,14 @@ export abstract class AbstractTableBuilderApiDirective<T>
 
     private async sortAndFilterOriginalSource(): Promise<void> {
         this.source = this.originalSource ?? [];
+
         if (this.shouldBeFiltered) {
             const filter: FilterWorkerEvent<T> = await this.filterable.filter(this.source);
+
             this.source = filter.source;
             filter.fireSelection();
         }
+
         if (this.shouldBeSorted) {
             this.source = await this.sortable.sort(this.source);
         }

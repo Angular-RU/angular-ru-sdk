@@ -87,6 +87,7 @@ describe('[TEST]: inputFilter Input', function () {
 
     it('should trigger "input" event only once', () => {
         let count: number = 0;
+
         debugElement2!.nativeElement.addEventListener('input', () => ++count);
         debugElement2!.nativeElement.value = 'bbbOOO';
         debugElement2!.triggerEventHandler('input', {

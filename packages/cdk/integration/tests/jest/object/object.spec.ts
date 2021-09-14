@@ -226,6 +226,7 @@ describe('[TEST]: Object', () => {
             class R extends Z {}
 
             const r = new R();
+
             Object.defineProperty(r, 'base', { value: 'joke' });
 
             expect(r.base).toEqual('joke');
@@ -249,6 +250,7 @@ describe('[TEST]: Object', () => {
         it('deep clone', () => {
             const origin: Origin = { a: 1, b: { c: 2 } };
             const copy: Origin = deepClone(origin) as Origin;
+
             expect(Object.is(origin, copy)).toEqual(false);
 
             copy.b.c = 4;
@@ -450,9 +452,11 @@ describe('[TEST]: Object', () => {
 
     it('should correct map objects by keys', () => {
         const oneTypeObject = { a: 1, b: 3, c: 5 };
+
         expect(shallowMapObject(oneTypeObject, (a: number): number => a * 2)).toEqual({ a: 2, b: 6, c: 10 });
 
         const baseTypeObject = { a: '1 asd', b: 3, c: true };
+
         expect(
             shallowMapObject(baseTypeObject, (a: number | string | boolean): string => `${a} - interpolated`)
         ).toEqual({
@@ -462,6 +466,7 @@ describe('[TEST]: Object', () => {
         });
 
         const complexObject = { a: 1, b: 'two', c: true, d: undefined, e: null, f: { field: 'value' }, g: [1, 2, 3] };
+
         expect(shallowMapObject(complexObject, (a): string => JSON.stringify(a))).toEqual({
             a: '1',
             b: '"two"',

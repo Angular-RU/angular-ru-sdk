@@ -30,6 +30,7 @@ export class SortableService<T> {
         return new Promise((resolve: (value: T[]) => void): void => {
             if (this.skipInternalSort) {
                 resolve(data);
+
                 return;
             }
 
@@ -58,6 +59,7 @@ export class SortableService<T> {
 
     private triggerOnChanges(): void {
         const orderedFields: OrderedField[] = [];
+
         this.positionMap = {};
 
         if (isNotNil(this.sortChanges)) {

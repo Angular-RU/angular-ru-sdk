@@ -23,6 +23,7 @@ export class ConvertCaseDirective implements AfterViewInit {
     @HostListener('input')
     public onInput(): void {
         const dirtyValue: string = toStringVal(this.element.value);
+
         this.element.value = this.toLowerCase ? dirtyValue.toLowerCase() : dirtyValue.toUpperCase();
         this.ngControl?.reset(this.element.value);
     }

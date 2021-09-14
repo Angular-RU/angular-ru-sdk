@@ -17,6 +17,7 @@ import { TestTokenComponent, TestTokenService } from './helpers/test-token';
 
 describe('[TEST]: Ivy utils', (): void => {
     let componentFixture: ComponentFixture<TestComponent>;
+
     jest.spyOn(console, 'error').mockImplementation();
 
     beforeEach((): void => {
@@ -50,6 +51,7 @@ describe('[TEST]: Ivy utils', (): void => {
 
     it(`should work useInjector with pipe's fields`, async (): Promise<void> => {
         const testService: TestService = TestBed.inject(TestService);
+
         componentFixture.detectChanges();
         const paragraphContent: string = componentFixture.debugElement.nativeElement.querySelector('p.pipe').innerHTML;
 
@@ -102,6 +104,7 @@ describe('[TEST]: Ivy utils', (): void => {
 
         testStairsComponentFixture.detectChanges();
         const content: string = testStairsComponentFixture.debugElement.nativeElement.innerHTML;
+
         expect(content).toBe(`${NgZone.name} test ${FeatureTestService.name}`);
     });
 
@@ -109,12 +112,14 @@ describe('[TEST]: Ivy utils', (): void => {
         const testTokenComponentFixture: ComponentFixture<TestTokenComponent> =
             TestBed.createComponent(TestTokenComponent);
         const component: TestTokenComponent = testTokenComponentFixture.componentInstance;
+
         expect(component.appRef.constructor).toBe(ApplicationRef);
         expect(component.componentToken).toBe('COMPONENT_TOKEN');
         expect(component.moduleToken).toBe('MODULE_TOKEN');
         expect(component.serviceToken).toBe('SERVICE_TOKEN');
 
         const testService: TestTokenService = component.testTokenService;
+
         expect(testService.ngZone.constructor).toBe(NgZone);
         expect(testService.componentToken).toBe('COMPONENT_TOKEN');
         expect(testService.moduleToken).toBe('MODULE_TOKEN');
@@ -123,6 +128,7 @@ describe('[TEST]: Ivy utils', (): void => {
 
     it('should not work with non-injectable classes', async (): Promise<void> => {
         const nonInjectable: NonInjectable = new NonInjectable();
+
         expect(nonInjectable.ngZone).not.toBeDefined();
         expect(console.error).toHaveBeenCalledWith(new Error('Class with useInjector in decorator must be Injectable'));
     });

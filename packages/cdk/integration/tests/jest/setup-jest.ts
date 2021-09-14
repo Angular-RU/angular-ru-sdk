@@ -25,6 +25,7 @@ global.window!.IntersectionObserver = jest.fn(
 
 // Simulate window resize events
 const resizeEvent: Any = document.createEvent('Event');
+
 resizeEvent.initEvent('resize', true, true);
 
 global.window.resizeTo = (width: number): void => {

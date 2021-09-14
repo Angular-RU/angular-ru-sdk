@@ -98,6 +98,7 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
             this.sourceRef.length === 1
                 ? SCROLLBAR_SIZE
                 : (this.tableViewport.offsetHeight ?? 0) - (this.tableViewport.clientHeight ?? 0);
+
         return scrollHeight + BORDER_TOB_WITH_BOTTOM;
     }
 
@@ -170,6 +171,7 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
 
     public markForCheck(): void {
         this.isDirtyCheck = true;
+
         if (this.parentOffsetHeight <= TABLE_GLOBAL_OPTIONS.ROW_HEIGHT) {
             this.useOnlyAutoViewPort = true;
         }
@@ -187,11 +189,13 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
 
     private getHeightByParent({ paddingTop, paddingBottom }: BoxView): string {
         const viewportHeight: number = this.parentOffsetHeight - parseInt(HEAD_TOP);
+
         return `calc(${viewportHeight}px - ${paddingTop} - ${paddingBottom})`;
     }
 
     private getHeightByViewPort({ paddingTop, paddingBottom }: BoxView): string {
         const viewportHeight: number = this.autoViewHeight - parseInt(HEAD_TOP);
+
         return this.columnHeight > viewportHeight
             ? `calc(${viewportHeight}px - ${paddingTop} - ${paddingBottom} - ${this.scrollbarHeight}px)`
             : this.getDefaultHeight();

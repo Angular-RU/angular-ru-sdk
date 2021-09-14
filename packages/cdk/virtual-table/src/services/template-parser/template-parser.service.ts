@@ -91,6 +91,7 @@ export class TemplateParserService<T> {
                 }
             });
         }
+
         this.updateComputedWithSchema();
     }
 

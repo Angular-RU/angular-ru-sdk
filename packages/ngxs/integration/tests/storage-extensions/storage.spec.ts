@@ -101,6 +101,7 @@ describe('[TEST]: Storage plugin', () => {
 
             try {
                 const state: CustomState = TestBed.inject(CustomState);
+
                 expect(state.getState()).toBeDefined();
             } catch (e) {
                 message = (e as Error).message;
@@ -136,6 +137,7 @@ describe('[TEST]: Storage plugin', () => {
                 const a: A = TestBed.inject<A>(A);
 
                 const container: StorageContainer = TestBed.inject(NGXS_DATA_STORAGE_CONTAINER_TOKEN);
+
                 expect(container.getProvidedKeys()).toEqual(['@ngxs.store.a']);
 
                 expect(Array.from(container.providers)).toEqual([
@@ -206,6 +208,7 @@ describe('[TEST]: Storage plugin', () => {
                     @DataAction()
                     public increment(): B {
                         this.ctx.setState((val: Immutable<number>) => val + 1);
+
                         return this;
                     }
                 }
@@ -221,6 +224,7 @@ describe('[TEST]: Storage plugin', () => {
                 const b: B = TestBed.inject<B>(B);
 
                 const container: StorageContainer = TestBed.inject(NGXS_DATA_STORAGE_CONTAINER_TOKEN);
+
                 expect(container.getProvidedKeys()).toEqual(['@ngxs.store.b']);
 
                 expect(Array.from(container.providers)).toEqual([
@@ -764,6 +768,7 @@ describe('[TEST]: Storage plugin', () => {
 
             try {
                 const stateC13: C13 = TestBed.inject<C13>(C13);
+
                 expect(stateC13.getState()).toEqual('VALUE');
             } catch (e) {
                 message = (e as Error).message;
@@ -816,6 +821,7 @@ describe('[TEST]: Storage plugin', () => {
 
             try {
                 const stateC14: C14 = TestBed.inject<C14>(C14);
+
                 expect(stateC14.getState()).toEqual('VALUE');
             } catch (e) {
                 message = (e as Error).message;
@@ -859,6 +865,7 @@ describe('[TEST]: Storage plugin', () => {
                 .subscribe(() => events.push(`${NGXS_DATA_STORAGE_EVENT_TYPE}.SUCCESS`));
 
             const stateC15: C15 = TestBed.inject<C15>(C15);
+
             expect(stateC15.getState()).toEqual('VALUE');
 
             localStorage.setItem(
@@ -931,6 +938,7 @@ describe('[TEST]: Storage plugin', () => {
                 .subscribe(() => events.push(`${NGXS_DATA_STORAGE_EVENT_TYPE}.SUCCESS_NEXT`));
 
             const stateC16: C16 = TestBed.inject<C16>(C16);
+
             expect(stateC16.getState()).toEqual('DEFAULT_VALUE');
 
             localStorage.setItem(
@@ -1018,6 +1026,7 @@ describe('[TEST]: Storage plugin', () => {
             });
 
             const stateC14: C17 = TestBed.inject<C17>(C17);
+
             expect(stateC14.getState()).toEqual('MY_VAL::VALUE');
 
             stateC14.setState('HELLO_WORLD');
@@ -1315,9 +1324,11 @@ describe('[TEST]: Storage plugin', () => {
                 });
 
                 const fire: FireState = TestBed.inject<FireState>(FireState);
+
                 expect(fire.snapshot).toEqual('FIRE_VALUE');
 
                 const newLastChanged: string = JSON.parse(localStorage.getItem('@ngxs.store.fire')!).lastChanged;
+
                 expect(lastChanged).not.toEqual(newLastChanged);
             });
 
@@ -1345,15 +1356,18 @@ describe('[TEST]: Storage plugin', () => {
                 });
 
                 const fire: Fire2State = TestBed.inject<Fire2State>(Fire2State);
+
                 expect(fire.snapshot).toEqual('FIRE_VALUE');
 
                 const newLastChanged: string = JSON.parse(localStorage.getItem('@ngxs.store.fire2')!).lastChanged;
+
                 expect(lastChanged).toEqual(newLastChanged);
 
                 fire.setState('FIRE2_VALUE');
                 expect(fire.snapshot).toEqual('FIRE2_VALUE');
 
                 const newLastChanged2: string = JSON.parse(localStorage.getItem('@ngxs.store.fire2')!).lastChanged;
+
                 expect(lastChanged).not.toEqual(newLastChanged2);
             });
         });
@@ -1381,6 +1395,7 @@ describe('[TEST]: Storage plugin', () => {
                 });
 
                 const storage: StorageState = TestBed.inject<StorageState>(StorageState);
+
                 expect(storage.getState()).toEqual('value');
             });
 
@@ -1407,6 +1422,7 @@ describe('[TEST]: Storage plugin', () => {
                 });
 
                 const storage: StorageState = TestBed.inject<StorageState>(StorageState);
+
                 expect(storage.getState()).toBeNull();
             });
         });
@@ -1434,6 +1450,7 @@ describe('[TEST]: Storage plugin', () => {
                 });
 
                 const state: RehydrateState = TestBed.inject<RehydrateState>(RehydrateState);
+
                 expect(state.getState()).toEqual('VALUE_FROM_STORAGE');
             });
 
@@ -1460,6 +1477,7 @@ describe('[TEST]: Storage plugin', () => {
                 });
 
                 const state: RehydrateState = TestBed.inject<RehydrateState>(RehydrateState);
+
                 expect(state.getState()).toEqual('value');
 
                 state.setState('new value');
@@ -1521,6 +1539,7 @@ describe('[TEST]: Storage plugin', () => {
                 expect(state.getState()).toEqual({ accessToken: 'ABC', refreshToken: 'CDE' });
 
                 const storageMeta: StorageMeta<string> = ensureMockStorage('@ngxs.store.auth.accessToken');
+
                 expect(storageMeta.expiry).not.toEqual(expiredFirst);
 
                 expect(storageMeta).toEqual({
@@ -1912,6 +1931,7 @@ describe('[TEST]: Storage plugin', () => {
 
                     public ngxsDataStorageMigrate(defaults: Any, _storage: Any): Any {
                         this.invoker++;
+
                         return defaults;
                     }
                 }
@@ -2013,6 +2033,7 @@ describe('[TEST]: Storage plugin', () => {
 
                     public ngxsDataStorageMigrate(defaults: Any, _storage: Any): Any {
                         this.invoker++;
+
                         return defaults;
                     }
                 }
@@ -2180,6 +2201,7 @@ describe('[TEST]: Storage plugin', () => {
 
             // noinspection DuplicatedCode
             const container: StorageContainer = TestBed.inject(NGXS_DATA_STORAGE_CONTAINER_TOKEN);
+
             expect(container.getProvidedKeys()).toEqual(['@ngxs.store.filter']);
 
             expect(Array.from(container.providers)).toEqual([

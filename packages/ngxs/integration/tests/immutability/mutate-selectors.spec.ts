@@ -53,6 +53,7 @@ describe('mutate', () => {
         store = TestBed.inject<Store>(Store);
 
         const todo: TodosState = TestBed.inject<TodosState>(TodosState);
+
         expect(store.snapshot()).toEqual({ todos: [1, 2, 3] });
 
         let error: string | null = null;

@@ -12,6 +12,7 @@ export class PlainTableComposerService {
 
     public async composeSingle<T extends PlainObject>(entry: T, keyRules?: RulesDescriptor): Promise<PlainObject> {
         const [composed]: PlainObject[] = await this.compose([entry], keyRules);
+
         return composed ?? {};
     }
 
@@ -38,6 +39,7 @@ export class PlainTableComposerService {
                                     (entry: T): PlainObject => this.flattenAndClean(entry)
                                 );
                                 const keys: string[] = this.rules?.includeKeys ?? Array.from(this.keySet);
+
                                 return flatEntries.map((entry: PlainObject): PlainObject => this.pickKeys(entry, keys));
                             }
 
@@ -51,6 +53,7 @@ export class PlainTableComposerService {
                                     if (this.passesBlacklist(path)) {
                                         if (PlainComposer.isObject(objectRef[key])) {
                                             const childKeys: PlainObject = this.flattenAndClean(objectRef[key], path);
+
                                             Object.assign(depthGraph, childKeys);
                                         } else {
                                             this.keySet.add(path);
@@ -65,6 +68,7 @@ export class PlainTableComposerService {
                             private pickKeys<E extends string>(source: PlainObject, keys: E[]): Record<E, T[E]> {
                                 return keys.reduce((collected: Record<E, T[E]>, key: E): Record<E, T[E]> => {
                                     collected[key] = source[key];
+
                                     return collected;
                                 }, {} as Record<E, T[E]>);
                             }

@@ -6,6 +6,7 @@ declare const document: Any;
 export function copyBuffer(str: string): void {
     const firstIndex: number = 0;
     const el: HTMLTextAreaElement = document.createElement('textarea');
+
     el.value = str;
     el.setAttribute('readonly', '');
     el.style.position = 'absolute';

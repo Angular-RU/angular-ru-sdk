@@ -13,13 +13,19 @@ export class LimitConcurrencyService {
         if (limitConcurrency === Infinity) {
             return request;
         }
+
         this.validate(limitConcurrency);
+
         if (this.activeRequestCount < limitConcurrency) {
             this.activeRequestCount++;
+
             return this.onComplete(request);
         }
+
         const requestInLine: Subject<boolean> = new Subject<boolean>();
+
         this.requestQueue.push(requestInLine);
+
         return requestInLine.pipe(switchMap((): Observable<R> => this.onComplete(request)));
     }
 
@@ -34,6 +40,7 @@ export class LimitConcurrencyService {
 
     private executeFromQueue(): void {
         const requestInLine: Nullable<Subject<boolean>> = this.requestQueue.shift();
+
         if (isNotNil(requestInLine)) {
             this.activeRequestCount++;
             requestInLine.next(true);

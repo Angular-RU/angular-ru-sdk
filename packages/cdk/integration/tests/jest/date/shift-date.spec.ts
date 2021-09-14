@@ -2,6 +2,7 @@ import { shiftDate } from '@angular-ru/cdk/date';
 
 describe('[TEST]: ShiftDate', (): void => {
     const someDate: Date = new Date('2021-03-20T00:00:00.000Z');
+
     it('should correctly shift date', (): void => {
         const expectDate: Date = shiftDate(
             {
@@ -15,14 +16,17 @@ describe('[TEST]: ShiftDate', (): void => {
             },
             someDate
         );
+
         expect(expectDate.toISOString()).toBe('2022-05-23T00:00:06.007Z');
     });
     it('should correctly add year', (): void => {
         const expectDate: Date = shiftDate({ years: 1 }, someDate);
+
         expect(expectDate.toISOString()).toBe('2022-03-20T00:00:00.000Z');
     });
     it('should correctly minus year', (): void => {
         const expectDate: Date = shiftDate({ years: -1 }, someDate);
+
         expect(expectDate.toISOString()).toBe('2020-03-20T00:00:00.000Z');
     });
 });

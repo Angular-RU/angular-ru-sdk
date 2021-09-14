@@ -27,6 +27,7 @@ export class SampleEighteenComponent implements OnInit {
     public ngOnInit(): void {
         const rows: number = 50;
         const cols: number = 5;
+
         MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => {
             this.data = data;
             this.cd.detectChanges();

@@ -37,6 +37,7 @@ export abstract class AbstractRepository<T> implements NgxsOnChanges, NgxsOnInit
 
     public ngxsAfterBootstrap(): void {
         this.isBootstrapped = true;
+
         if (this.dirty) {
             this.dirty = false;
             (this as NgxsDataDoCheck).ngxsDataDoCheck?.();

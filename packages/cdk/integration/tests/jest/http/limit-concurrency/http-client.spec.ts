@@ -92,9 +92,11 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
 
     function configureTestingModule(limitConcurrency?: number): HttpServices {
         const options: Any = limitConcurrency != null || limitConcurrency === 0 ? { limitConcurrency } : {};
+
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule, DataHttpClientModule.forRoot([MyClient], options)]
         });
+
         return {
             client: TestBed.inject(MyClient),
             httpMock: TestBed.inject(HttpTestingController)
@@ -259,12 +261,14 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
 
     it(`limit concurrency by default should be ${defaultLimit}`, fakeAsync(() => {
         ({ client, httpMock } = configureTestingModule());
+
         for (let i = 0; i < defaultLimit + exceedTheLimit; i++) {
             client?.get(`api-${i}`).subscribe();
         }
 
         for (let i = 0; i < defaultLimit; i++) {
             const result = httpMock.expectOne(`${apiUrl}-${i}`);
+
             expect(result.request.url).toEqual(`${apiUrl}-${i}`);
         }
 
@@ -275,12 +279,14 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
 
     it(`should be no limits if LimitConcurrency is Infinity`, fakeAsync(() => {
         ({ client, httpMock } = configureTestingModule(Infinity));
+
         for (let i = 0; i < defaultLimit + exceedTheLimit; i++) {
             client?.get(`api-${i}`).subscribe();
         }
 
         for (let i = 0; i < defaultLimit + exceedTheLimit; i++) {
             const result = httpMock.expectOne(`${apiUrl}-${i}`);
+
             expect(result.request.url).toEqual(`${apiUrl}-${i}`);
         }
     }));

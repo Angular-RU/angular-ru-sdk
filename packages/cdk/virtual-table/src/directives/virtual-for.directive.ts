@@ -77,8 +77,10 @@ export class VirtualForDirective<T> implements OnDestroy {
 
         if (isNotNil(cachedVirtualRef)) {
             const [oldRow, viewRef]: InternalVirtualRef<T> = cachedVirtualRef;
+
             if (isNotNil(row) && row !== oldRow) {
                 const stackId: number = this.view.indexOf(viewRef);
+
                 this.view.remove(stackId);
                 this.createEmbeddedView(row, index);
             }
@@ -90,6 +92,7 @@ export class VirtualForDirective<T> implements OnDestroy {
     private removeOldNodes(): void {
         if (this.dirty) {
             this.dirty = false;
+
             return;
         }
 
@@ -100,9 +103,11 @@ export class VirtualForDirective<T> implements OnDestroy {
 
     private removeEmbeddedViewByIndex(index: number): void {
         const ref: Nullable<InternalVirtualRef<T>> = this.cache.get(index);
+
         if (isNotNil(ref)) {
             const [, viewRefItem]: InternalVirtualRef<T> = ref;
             const stackId: number = this.view.indexOf(viewRefItem);
+
             this.cache.delete(index);
 
             if (stackId > -1) {

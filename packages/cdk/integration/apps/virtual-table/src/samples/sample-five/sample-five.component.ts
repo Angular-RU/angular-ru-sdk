@@ -20,6 +20,7 @@ export class SampleFiveComponent implements OnInit, AfterViewInit {
     public ngOnInit(): void {
         const rows: number = 1000;
         const cols: number = 40;
+
         MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => {
             this.data = data;
             this.cd.detectChanges();

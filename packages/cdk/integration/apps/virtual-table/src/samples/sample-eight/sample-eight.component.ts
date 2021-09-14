@@ -54,7 +54,9 @@ const COLORS: string[] = [
 
 function replaceAt(array: Any[], index: number, value: Any): Any[] {
     const ret: Any[] = array.slice(0);
+
     ret[index] = value;
+
     return ret;
 }
 
@@ -101,12 +103,14 @@ export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
 
     public updateRow(row: PlainObject, key: string, value: Any): void {
         const newRow: PlainObject = { ...row, [key]: value };
+
         this.data = replaceAt(this.data, this.data.indexOf(row), newRow);
         detectChanges(this.cd);
     }
 
     public asyncRow(row: PlainObject, key: string, value: Any): void {
         const time: number = 500;
+
         window.clearTimeout(this.timeout!);
         this.timeout = window.setTimeout((): void => this.updateRow(row, key, value), time);
     }
@@ -120,6 +124,7 @@ export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
     // eslint-disable-next-line max-lines-per-function
     private updateTable(): void {
         const length: number = 1000;
+
         this.data = new Array(length).fill(0).map(
             // eslint-disable-next-line max-lines-per-function
             (_: PlainObject, index: number): Any => ({

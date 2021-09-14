@@ -16,6 +16,7 @@ export function InjectFeatureTestService(): PropertyDecorator {
     return <T extends typeof Object.prototype>(prototypeRef: T, propertyKey: string | symbol): void => {
         useInjector(prototypeRef.constructor, (injector: Injector, instance: Any): void => {
             const service: FeatureTestService = injector.get(FeatureTestService);
+
             service.callsCounter++;
             instance[propertyKey] = service;
         });

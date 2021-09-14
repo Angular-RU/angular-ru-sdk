@@ -122,6 +122,7 @@ describe('[TEST]: Utils', () => {
 
         const state: MyState = TestBed.inject(MyState);
         const store: Store = TestBed.inject(Store);
+
         expect(state.getState()).toEqual(new MyState().getState());
 
         new MyState().setState('hello');

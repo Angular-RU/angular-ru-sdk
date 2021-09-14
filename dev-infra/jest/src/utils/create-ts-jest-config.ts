@@ -40,6 +40,7 @@ export function createTsJestConfig(options: JestConfigOptions): Config.InitialOp
         displayName = options.jestConfig?.displayName ?? DEFAULT_DISPLAY_NAME;
     } else if (fs.existsSync(packageJsonPath)) {
         const packageJson: PlainObject = JSON.parse(fs.readFileSync(packageJsonPath).toString() ?? '{}');
+
         displayName = packageJson?.name;
     }
 
@@ -50,6 +51,7 @@ export function createTsJestConfig(options: JestConfigOptions): Config.InitialOp
         : path.resolve(resolvedRootDir, options.tsConfig);
 
     const nonExist: boolean = !fs.existsSync(resolvedTsConfigPath);
+
     if (nonExist) {
         throw new Error(
             `[ERROR]: Doesn't exist tsConfig by path: ${resolvedTsConfigPath}\n rootDir: ${resolvedRootDir}`

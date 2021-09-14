@@ -56,6 +56,7 @@ describe('[TEST]: HTTP Client', () => {
 
     it('correct inject users http client', () => {
         const users: UserComponent = TestBed.createComponent(UserComponent).componentInstance;
+
         expect(users.api).toEqual(client);
     });
 

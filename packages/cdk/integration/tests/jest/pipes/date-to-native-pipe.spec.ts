@@ -11,6 +11,7 @@ describe('date to native pipe', () => {
 
     it('date to native', () => {
         const date: Date = pipe.transform('27.02.2019 14:25');
+
         expect(date.getDate()).toBe(27);
         expect(date.getFullYear()).toBe(2019);
         expect(date.getMonth()).toBe(1);

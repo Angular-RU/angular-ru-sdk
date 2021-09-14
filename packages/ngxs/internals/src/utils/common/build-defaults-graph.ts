@@ -28,11 +28,13 @@ export function buildDefaultsGraph(stateClasses: DataStateClass): Any {
 function buildChildrenGraph(currentDefaults: Any, children: DataStateClass[]): Any {
     return children.reduce((defaults: PlainObject, item: DataStateClass): PlainObject => {
         const childrenOptions: StoreOptions<Any> = getStoreOptions(item);
+
         if (checkValueIsEmpty(childrenOptions.name)) {
             throw new Error(NGXS_DATA_EXCEPTIONS.NGXS_DATA_STATE_NAME_NOT_FOUND);
         }
 
         const name: string = childrenOptions.name.toString();
+
         defaults[name] = buildDefaultsGraph(item);
 
         return defaults;

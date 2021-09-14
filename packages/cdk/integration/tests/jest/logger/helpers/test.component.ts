@@ -50,30 +50,35 @@ export class MyTestComponent implements OnInit {
 
     public static getUrlInfo({ method, url, queryParams }: Partial<HttpDebugInterface>): string {
         const params: string = isNotNil(queryParams) ? `?${queryParams}` : '';
+
         return `[${method}] - ${url}${params}`;
     }
 
     @Group('Test group')
     public print(val: string): string {
         this.logger.log(val);
+
         return val;
     }
 
     @Group('Test group', LoggerLevel.WARN)
     public printLevel(val: string): string {
         this.logger.log(val);
+
         return val;
     }
 
     @GroupCollapsed('Test group-collapsed')
     public printCollapsed(val: string): string {
         this.logger.log(val);
+
         return val;
     }
 
     @GroupCollapsed('Test group-collapsed', LoggerLevel.WARN)
     public printCollapsedLevel(val: string): string {
         this.logger.log(val);
+
         return val;
     }
 
@@ -91,12 +96,14 @@ export class MyTestComponent implements OnInit {
     @Group((name: string): string => `Test group with ${name}`)
     public method(name: string): string {
         this.logger.log('group is worked');
+
         return name;
     }
 
     @Group((options: Partial<HttpDebugInterface>): string => MyTestComponent.getUrlInfo(options))
     public hello(name: string): string {
         this.logger.log('group is worked');
+
         return name;
     }
 
@@ -112,6 +119,7 @@ export class MyTestComponent implements OnInit {
 
     public longQueryBySecondMs(seconds: number, done: Fn): void {
         const info: Nullable<TimerInfo> = this.logger.startTime('longQueryBySecondMs');
+
         this.extracted(seconds, done);
         this.logger.endTime(info);
     }
@@ -124,9 +132,11 @@ export class MyTestComponent implements OnInit {
     private extracted(seconds: number, done: Fn): void {
         // eslint-disable-next-line @typescript-eslint/no-magic-numbers
         const e: number = new Date().getTime() + seconds * 1000;
+
         while (new Date().getTime() <= e) {
             this.doneHeavy = true;
         }
+
         done();
     }
 }

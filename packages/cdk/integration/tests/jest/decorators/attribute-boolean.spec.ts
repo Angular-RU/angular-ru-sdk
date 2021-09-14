@@ -91,6 +91,7 @@ describe('[TEST]: Attribute boolean', () => {
         const receivedValues: InputBoolean[] = inputs.map((input) => {
             host.propValue = input;
             hostFixture.detectChanges();
+
             return host.dynamicPropRef.prop;
         });
 

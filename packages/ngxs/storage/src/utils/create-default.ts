@@ -5,6 +5,7 @@ import { STORAGE_TTL_DELAY } from '../tokens/storage-ttl-delay';
 // eslint-disable-next-line max-lines-per-function
 export function createDefault(options: CreateStorageDefaultOptions): PersistenceProvider[] {
     const { meta, decodeType, prefix, stateClassRef }: CreateStorageDefaultOptions = options;
+
     return [
         {
             get path(): string | null | undefined {

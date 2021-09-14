@@ -14,6 +14,7 @@ export class FlexItemDirective extends AbstractFlexLayoutDirective implements Af
 
     public ngAfterViewInit(): void {
         this.classList.add(`flex__item`);
+
         if (this.wide !== false) {
             this.classList.add(`flex__item--wide`);
         }

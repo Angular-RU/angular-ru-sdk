@@ -50,11 +50,13 @@ export class SampleThirteenComponent implements AfterViewInit {
 
     public rowOnClick(event: TableEvent<PlainObject, string>): void {
         const space: number = 4;
+
         this.toast.success(JSON.stringify(event, null, space), 'OnClick', { timeOut: 2000, onActivateTick: true });
     }
 
     public rowDblClick(event: TableEvent<PlainObject, string>): void {
         const space: number = 4;
+
         this.toast.success(JSON.stringify(event, null, space), 'DblClick', { timeOut: 2000, onActivateTick: true });
     }
 }

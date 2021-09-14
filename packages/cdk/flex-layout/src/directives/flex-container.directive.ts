@@ -15,6 +15,7 @@ export class FlexContainerDirective extends AbstractFlexLayoutDirective implemen
 
     public ngAfterViewInit(): void {
         this.classList.add(`flex-container`);
+
         if (this.center !== false) {
             this.classList.add(`flex-container--center`);
         }

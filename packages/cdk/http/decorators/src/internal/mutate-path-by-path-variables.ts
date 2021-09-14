@@ -24,6 +24,7 @@ export function mutatePathByPathVariables(options: MutatePathByPathVariablesOpti
     mutateMapByDefinedVariables(variableMap, definedVariables);
 
     let interpolationPath: string = path.toString(); // copy without mutation
+
     if (variableMap.size > 0) {
         interpolationPath = ensurePathByPathVariables(interpolationPath, variableMap);
     }
@@ -35,6 +36,7 @@ function mutateMapByMethodArgsRegistry(variableMap: Map<string, Any>, args: Any[
     if (registry.size > 0) {
         args.forEach((value: Any, index: number): void => {
             const key: Nullable<string> = registry.getNameByIndex(index);
+
             if (isNotNil(key)) {
                 variableMap.set(key, value);
             }
@@ -47,6 +49,7 @@ function mutateMapByDefinedVariables(variableMap: Map<string, Any>, definedVaria
         for (const key in definedVariables) {
             if (definedVariables.hasOwnProperty(key)) {
                 const value: Any = definedVariables[key];
+
                 variableMap.set(key, value);
             }
         }

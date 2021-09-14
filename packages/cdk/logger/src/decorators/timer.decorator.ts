@@ -14,6 +14,7 @@ export function TimerLog(
     return (_target: Type<unknown>, _key: string, descriptor: PropertyDescriptor): PropertyDescriptor => {
         let result: PropertyDescriptor;
         const method: Fn = descriptor.value;
+
         descriptor.value = function (...args: Any[]): PropertyDescriptor {
             const info: Nullable<TimerInfo> = LoggerInjector.getInjector()
                 .get<LoggerService>(LoggerService)
@@ -22,8 +23,10 @@ export function TimerLog(
             result = method.apply(this, args) as PropertyDescriptor;
 
             LoggerInjector.getInjector().get<LoggerService>(LoggerService).endTime(info!, level, isMillisecond);
+
             return result;
         };
+
         return descriptor;
     };
 }

@@ -17,9 +17,11 @@ export class TimerFactory {
         let result: Nullable<TimerInfo> = null;
         // eslint-disable-next-line sonarjs/no-inverted-boolean-check
         const canExecute: boolean = !(this.console.minLevel > level);
+
         if (canExecute) {
             result = { startTime: performance.now(), title };
         }
+
         return result;
     }
 
@@ -32,12 +34,14 @@ export class TimerFactory {
             const methodName: string = DEFAULT_METHODS[level];
             const time: string = this.ensureTime(info, isMillisecond);
             const logMethod: (...args: string[]) => void = (logger as Any)[methodName];
+
             logMethod(`TimerLog: ${info.title}`, `took ${time} to execute`);
         }
     }
 
     private ensureTime(info: TimerInfo, isMillisecond: boolean): string {
         const msTime: number = parseFloat((performance.now() - info.startTime).toFixed(this.DIGITS_TO_FIX));
+
         return isMillisecond ? `${msTime}ms` : `${Math.floor(msTime / this.SECONDS)}s`;
     }
 }

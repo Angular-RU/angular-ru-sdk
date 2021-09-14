@@ -12,6 +12,7 @@ export class TooltipDomLeakService {
         this.domMemoryLeakTicker$.pipe(debounceTime(this.timeoutCheck)).subscribe((): void => {
             Array.from(new Set(this.actualContainsInDomUidCollections)).forEach((uid: string): void => {
                 const notExistParent: boolean = !document.querySelector(`[data-tooltip-uid="${uid}"]`);
+
                 if (notExistParent) {
                     document.getElementById(uid)?.remove();
                 }

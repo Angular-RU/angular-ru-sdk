@@ -11,6 +11,7 @@ export class DeepPathPipe implements PipeTransform {
         fallback: Nullable<string> = ''
     ): Nullable<K | string> {
         const result: Nullable<K> = getValueByPath<T, K>(item, path);
+
         return checkValueIsEmpty(result) ? fallback ?? '' : result;
     }
 }

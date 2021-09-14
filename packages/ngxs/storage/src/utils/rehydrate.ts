@@ -23,10 +23,13 @@ export function rehydrate<T>(params: RehydrateInfoOptions<T>): RehydrateInfo {
         const instance: NgxsDataMigrateStorage = stateInstance as NgxsDataMigrateStorage;
         const migrateFn: MigrateFn = provider.migrate ?? instance.ngxsDataStorageMigrate?.bind(provider.stateInstance);
         const newMigrationData: PlainObject = migrateFn?.(prevData, data);
+
         states = setValue(states, path, newMigrationData);
+
         return { states, rehydrateIn: true };
     } else if (JSON.stringify(prevData) !== JSON.stringify(data)) {
         states = setValue(states, path, data);
+
         return { states, rehydrateIn: true };
     }
 

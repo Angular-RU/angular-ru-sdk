@@ -16,6 +16,7 @@ export class NgxMenuContentComponent {
     @HostBinding('class')
     public get class(): string {
         const cssClasses: string = `${this.noMargin === null ? '' : 'content-phrase'}`;
+
         return this.icon === null ? cssClasses : `icon-place ${cssClasses}`;
     }
 }

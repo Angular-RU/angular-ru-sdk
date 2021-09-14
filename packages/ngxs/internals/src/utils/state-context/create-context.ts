@@ -13,6 +13,7 @@ export function createContext(stateClass: DataStateClass): PropertyDescriptor {
         get(): StateContext<Any> {
             const meta: NgxsRepositoryMeta = getRepository(stateClass);
             const mappedMeta: MappedStore = NgxsDataFactory.ensureMappedState(meta.stateMeta)!;
+
             return NgxsDataFactory.createStateContext(mappedMeta);
         }
     };

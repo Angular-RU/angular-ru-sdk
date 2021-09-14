@@ -1,5 +1,6 @@
 import { Any, Nullable } from '@angular-ru/cdk/typings';
 import { isNotNil } from '@angular-ru/cdk/utils';
+
 // eslint-disable-next-line complexity
 export function getValueByPath<T = unknown, K = T>(
     obj: T,
@@ -17,6 +18,7 @@ export function getValueByPath<T = unknown, K = T>(
 
     for (; isNotNil(result) && index < parts.length; ++index) {
         const localIndex: string = parts?.[index] as string;
+
         result = (result as Any)?.[localIndex];
     }
 

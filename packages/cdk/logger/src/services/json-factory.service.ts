@@ -18,6 +18,7 @@ export class JsonFactory {
 
         resultJson = resultJson.replace(this.lexerTypeFinder, (match: string): string => {
             let style: string = this._number;
+
             if (/^"/.test(match)) {
                 if (/:$/.test(match)) {
                     style = this._key;
@@ -29,8 +30,10 @@ export class JsonFactory {
             } else if (/null/.test(match)) {
                 style = this._null;
             }
+
             arr.push(style);
             arr.push('');
+
             return `%c${match}%c`;
         });
 

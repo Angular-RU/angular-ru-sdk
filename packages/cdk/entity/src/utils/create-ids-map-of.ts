@@ -11,6 +11,7 @@ export function createIdsMapOf<T extends PlainObject, K extends keyof T = 'id'>(
     for (const entity of entities) {
         if (entity.hasOwnProperty(primaryKey)) {
             const keyId: T[K] = entity[primaryKey] as T[K];
+
             map[keyId] = entity;
         } else {
             throw new Error(`The current entity doesn't have primaryKey - ${primaryKey}.`);

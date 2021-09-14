@@ -95,6 +95,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
         public add(val: string): TodoState {
             this.ctx.setState((state) => state.concat(val));
             this.counter.increment();
+
             return this;
         }
     }
@@ -136,6 +137,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
     it('should be correct async method with subscribe', fakeAsync(() => {
         let result: number | null = null;
         let finalized: boolean | null = null;
+
         count
             .asyncSetState()
             .pipe(
@@ -176,6 +178,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
     it('should be correct async method without subscribe', fakeAsync(() => {
         const result: number | null = null;
         let finalized: boolean | null = null;
+
         count.asyncSetState().pipe(
             finalize(() => {
                 finalized = true;
@@ -270,6 +273,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
     it('should be correct forkJoin', fakeAsync(() => {
         let response: [number, number] | [] = [];
         let result: [number, number] | [] = [];
+
         forkJoin([count.asyncSetStateAction(), count.asyncIncrementAction()]).pipe(
             tap((val) => {
                 result = val;

@@ -28,6 +28,7 @@ describe('[TEST]: Action decorator', () => {
             });
 
             const state: InvalidState = TestBed.inject(InvalidState);
+
             state.setState('new value');
         } catch (e) {
             message = (e as Error).message;
@@ -53,6 +54,7 @@ describe('[TEST]: Action decorator', () => {
             });
 
             const state: InvalidState = TestBed.inject(InvalidState);
+
             state.setState('new value');
         } catch (e) {
             message = (e as Error).message;
@@ -79,6 +81,7 @@ describe('[TEST]: Action decorator', () => {
             });
 
             const state: InvalidState = TestBed.inject(InvalidState);
+
             state.setup();
         } catch (e) {
             message = (e as Error).message;
@@ -106,6 +109,7 @@ describe('[TEST]: Action decorator', () => {
             });
 
             const state: InvalidState = TestBed.inject(InvalidState);
+
             state.setup();
         } catch (e) {
             message = (e as Error).message;
@@ -188,12 +192,14 @@ describe('[TEST]: Action decorator', () => {
             @DataAction()
             public withValueSetStateAsAction(@Payload('name') name: string): string {
                 this.setState('new value - ' + this.word + ' - ' + this.name + ' - ' + name);
+
                 return this.getState();
             }
 
             // noinspection JSUnusedGlobalSymbols
             public withValueSetStateAsMethod(name: string): string {
                 this.setState('new value as method - ' + this.word + ' - ' + this.name + ' - ' + name);
+
                 return this.getState();
             }
         }

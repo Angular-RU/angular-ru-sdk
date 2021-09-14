@@ -9,6 +9,7 @@ export function RequestBody(): ParameterDecorator {
     return (target: Any, methodName: string | symbol, parameterIndex: number): void => {
         const originalMethod: Fn = (target as Any)?.[methodName as Any];
         const registry: MethodArgsRegistry = ensureMethodArgsRegistry(originalMethod, META_REQUEST_BODY);
+
         registry.putIndexByName(KEY_REQUEST_BODY, methodName as string, parameterIndex);
     };
 }

@@ -20,6 +20,7 @@ describe('[TEST]: Common types', () => {
         }
 
         const keys: KeyOfList<A> = ['a', 'b']; // output keys
+
         expect(keys).toEqual(['a', 'b']);
     });
 
@@ -35,6 +36,7 @@ describe('[TEST]: Common types', () => {
         }
 
         const keys: DeepKeyOfList<A> = ['a', 'b.c', 'b.etc.f']; // output keys
+
         expect(keys).toEqual(['a', 'b.c', 'b.etc.f']);
     });
 
@@ -50,6 +52,7 @@ describe('[TEST]: Common types', () => {
         }
 
         const keys: Leaves<A>[] = ['a', 'b.c', 'b.etc.f']; // output keys
+
         expect(keys).toEqual(['a', 'b.c', 'b.etc.f']);
     });
 
@@ -65,9 +68,11 @@ describe('[TEST]: Common types', () => {
         }
 
         const paths: Paths<A>[] = ['a', 'b', 'b.c', 'b.etc', 'b.etc.f']; // output keys
+
         expect(paths).toEqual(['a', 'b', 'b.c', 'b.etc', 'b.etc.f']);
 
         const etc: Paths<A['b']['etc']> = 'f';
+
         expect(etc).toEqual('f');
     });
 });

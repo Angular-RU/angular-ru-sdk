@@ -15,6 +15,7 @@ export function PathVariable(name: string): ParameterDecorator {
 
         const originalMethod: Fn = (target as Any)?.[methodName as Any];
         const registry: MethodArgsRegistry = ensureMethodArgsRegistry(originalMethod, META_PATH_VARIABLE);
+
         registry.putIndexByName(key, methodName as string, parameterIndex);
     };
 }

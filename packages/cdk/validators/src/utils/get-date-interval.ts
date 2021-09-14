@@ -5,6 +5,7 @@ export function getDateInterval(from?: Nullable<Timestamp>, to?: Nullable<Timest
     if (isNotNil(from) && isNotNil(to)) {
         const fromTimestamp: number = new Date(from).getTime();
         const toTimestamp: number = new Date(to).getTime();
+
         return Math.abs(toTimestamp - fromTimestamp);
     } else {
         return null;

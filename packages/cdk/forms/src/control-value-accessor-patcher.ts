@@ -38,9 +38,11 @@ export class ControlValueAccessorPatcher<ModelValue = Any, ViewValue = ModelValu
     private patchAccessorFunctions(): void {
         this.accessor.registerOnChange = (onModelValueChangeFunction: (modelValue: ModelValue) => void): void => {
             this.onModelValueChangeFunction = onModelValueChangeFunction;
+
             const proxyUpdateViewValue = (viewValue: ViewValue): void => {
                 this.onViewValueChangedSubject.next(viewValue);
             };
+
             this.registerOnViewValueChangeFunction(proxyUpdateViewValue);
         };
 

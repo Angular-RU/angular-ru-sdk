@@ -7,6 +7,7 @@ export function updateArray<T>(
     updatedArray: Nullable<T[]>,
     compareFnOrKey: keyof T | CompareFn<T>
 ): T[];
+
 // eslint-disable-next-line complexity,max-lines-per-function,sonarjs/cognitive-complexity
 export function updateArray<T>(
     sourceArray: Nullable<T[]>,
@@ -21,6 +22,7 @@ export function updateArray<T>(
     for (let i: number = 0; i < preparedSourceArray.length; i++) {
         const currentItem: T = preparedSourceArray[i] as T;
         let updated: boolean = false;
+
         for (let j: number = 0; j < newUpdatedArray.length; j++) {
             if (skipIndexes.has(j)) {
                 continue;
@@ -42,6 +44,7 @@ export function updateArray<T>(
                 break;
             }
         }
+
         if (!updated) {
             newSourceArray.push(currentItem);
         }

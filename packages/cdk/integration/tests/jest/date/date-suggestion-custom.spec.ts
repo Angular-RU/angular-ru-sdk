@@ -48,6 +48,7 @@ describe('[TEST]: Trim Input', () => {
 
         it('with options into shiftDate', () => {
             const dateFrom: Date = form.getRawValue()[descriptor.dateFromKey];
+
             composer.getStrategy(SuggestionAddition.TWO_DAYS_AROUND_START).updateIntervalFor(form, descriptor);
             expect(form.getRawValue()).toEqual({
                 dateFrom: startOfDay(shiftDate({ days: -2 }, dateFrom)),

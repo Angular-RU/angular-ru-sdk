@@ -8,12 +8,15 @@ export function filter(value: string, predicate: FilterPredicate = []): string {
     if (Array.isArray(predicate)) {
         return filterWithCharacters(value, predicate as string[]);
     }
+
     if (isFunctionLike(predicate)) {
         return filterWithFunction(value, predicate as FilterPredicateFn);
     }
+
     if (predicate instanceof RegExp) {
         return filterWithRegExp(value, predicate as RegExp);
     }
+
     return value;
 }
 

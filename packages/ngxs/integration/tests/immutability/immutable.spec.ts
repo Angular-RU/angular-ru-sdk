@@ -142,6 +142,7 @@ describe('[TEST]: Freeze states', () => {
         }).compileComponents();
 
         const fixture: ComponentFixture<AppComponent> = TestBed.createComponent(AppComponent);
+
         fixture.autoDetectChanges();
 
         expect(JSON.parse(fixture.nativeElement.innerHTML)).toEqual([

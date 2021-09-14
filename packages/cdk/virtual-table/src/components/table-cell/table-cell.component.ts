@@ -112,10 +112,12 @@ export class TableCellComponent<T> implements OnDestroy {
 
         if (empty) {
             this.removeElement();
+
             return;
         }
 
         const elem: HTMLDivElement = document.createElement('div');
+
         elem.classList.add(this.overflowSelector);
         const minOffset: number = 15;
         const left: number = event.clientX - minOffset;
@@ -125,6 +127,7 @@ export class TableCellComponent<T> implements OnDestroy {
 
         document.body.appendChild(elem);
         const innerText: string = String(element.innerText || '').trim();
+
         this.overflowContentElem.innerHTML = `<div class="${this.closeButtonSelector}"></div>${innerText}`;
 
         this.nodeSubscription = fromEvent(elem, 'mouseleave').subscribe((): void => this.removeElement());

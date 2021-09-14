@@ -12,6 +12,7 @@ export function buildUrl({ hostUrl, baseUrl, restUrl, pathUrl }: DataUrlPathSegm
         fullUrl = pathUrl;
     } else {
         const clearPathUrl: string = getPathWithoutQueryParams(pathUrl);
+
         fullUrl = [hostUrl, baseUrl, restUrl, clearPathUrl].filter(checkValueIsFilled).join('/');
     }
 

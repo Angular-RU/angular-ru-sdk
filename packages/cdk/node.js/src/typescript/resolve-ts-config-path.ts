@@ -14,6 +14,7 @@ export function resolveTsConfigPath(tsConfigPath: string): string | never {
     let resolvedPath: string = (path.isAbsolute(tsConfigPath) as boolean)
         ? tsConfigPath
         : path.resolve('.', tsConfigPath);
+
     resolvedPath = resolvedPath.endsWith('.json') ? resolvedPath : `${resolvedPath}.json`;
 
     if (isFalse(fs.existsSync(resolvedPath))) {

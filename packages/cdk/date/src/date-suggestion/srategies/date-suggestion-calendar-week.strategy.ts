@@ -17,6 +17,7 @@ export class DateSuggestionCalendarWeekStrategy implements DateSuggestionStrateg
     public updateIntervalFor(control: AbstractControl, { dateFromKey, dateToKey }: DateIntervalDescriptor): void {
         const localizedDayOfWeek: number =
             (new Date().getDay() + WEEK_LENGTH - this.dateAdapter.getFirstDayOfWeek()) % WEEK_LENGTH;
+
         control.patchValue({
             [dateFromKey]: startOfDay(shiftDate({ days: -localizedDayOfWeek })),
             [dateToKey]: endOfDay()

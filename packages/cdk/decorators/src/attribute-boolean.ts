@@ -7,6 +7,7 @@ export function AttributeBoolean(): PropertyDecorator {
         const descriptor: Nullable<PropertyDescriptor> = Object.getOwnPropertyDescriptor(prototype, key);
 
         const uniqueRefKey: symbol = Symbol(`It's boolean attribute`);
+
         return {
             set(value: InputBoolean): void {
                 this[uniqueRefKey] = coerceBoolean(value);

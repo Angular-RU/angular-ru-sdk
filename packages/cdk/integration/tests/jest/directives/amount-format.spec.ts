@@ -176,6 +176,7 @@ describe('[TEST]: Amount format directive', () => {
             beforeEach(() => {
                 // noinspection UnnecessaryLocalVariableJS
                 const options: AmountOptions = { lang: 'en-EU' };
+
                 directive.amountFormatOptions = options;
             });
 
@@ -317,6 +318,7 @@ describe('[TEST]: Amount format directive', () => {
             beforeEach(() => {
                 // noinspection UnnecessaryLocalVariableJS
                 const options: AmountOptions = { lang: 'de-DE' };
+
                 directive.amountFormatOptions = options;
             });
 
@@ -458,6 +460,7 @@ describe('[TEST]: Amount format directive', () => {
             beforeEach(() => {
                 // noinspection UnnecessaryLocalVariableJS
                 const options: AmountOptions = { lang: 'ja-JP' };
+
                 directive.amountFormatOptions = options;
             });
 
@@ -721,8 +724,10 @@ describe('[TEST]: Amount format directive', () => {
                 } else {
                     const current: string = input.nativeElement.value;
                     const position: number = input.nativeElement.selectionEnd ?? input.nativeElement.value.length;
+
                     input.nativeElement.value = `${current.slice(0, position)}${value}${current.slice(position)}`;
                     const newPosition = position + 1;
+
                     input.nativeElement.setSelectionRange(newPosition, newPosition);
                 }
 
@@ -738,6 +743,7 @@ describe('[TEST]: Amount format directive', () => {
 
         function setInputSelectionPosition(cursorPosition: number): void {
             const input = getInputRef()?.nativeElement as HTMLInputElement;
+
             input.setSelectionRange(cursorPosition, cursorPosition);
             input.selectionStart = cursorPosition;
             input.selectionEnd = cursorPosition;

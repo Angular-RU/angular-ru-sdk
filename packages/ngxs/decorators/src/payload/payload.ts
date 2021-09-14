@@ -11,6 +11,7 @@ export function Payload(name: string): StateArgumentDecorator {
         }
 
         const registry: MethodArgsRegistry = ensureMethodArgsRegistry(stateClass, methodName);
+
         registry.createPayloadType(key, methodName as string, parameterIndex);
     };
 }

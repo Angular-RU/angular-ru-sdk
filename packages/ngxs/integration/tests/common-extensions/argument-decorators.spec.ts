@@ -24,6 +24,7 @@ describe('[TEST]: Argument decorators', () => {
         a.setState('1');
 
         const repo: NgxsRepositoryMeta = getRepository(A);
+
         expect(repo.stateMeta?.actions).toEqual({
             '@a.setState(stateValue)': [
                 {
@@ -57,6 +58,7 @@ describe('[TEST]: Argument decorators', () => {
         b.set('2');
 
         const repo: NgxsRepositoryMeta = getRepository(B);
+
         expect(repo.stateMeta?.actions).toEqual({
             '@b.set($arg0, $arg1)': [
                 {
@@ -90,6 +92,7 @@ describe('[TEST]: Argument decorators', () => {
         c.set('4', '10');
 
         const repo: NgxsRepositoryMeta = getRepository(C);
+
         expect(repo.stateMeta?.actions).toEqual({
             '@c.set(val, plus)': [
                 {
@@ -123,6 +126,7 @@ describe('[TEST]: Argument decorators', () => {
         d.set('1', '2', '3');
 
         const repo: NgxsRepositoryMeta = getRepository(D);
+
         expect(repo.stateMeta?.actions).toEqual({
             '@d.set(X, y, $arg2)': [
                 {

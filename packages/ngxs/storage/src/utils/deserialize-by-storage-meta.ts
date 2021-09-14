@@ -30,6 +30,7 @@ export function deserializeByStorageMeta<T>(
 
 function versionIsInvalid<T>(meta: StorageMeta<T>): boolean {
     const version: number = parseFloat(meta.version as Any);
+
     return isNaN(version) || version < 1 || parseInt(meta.version as Any) !== version;
 }
 

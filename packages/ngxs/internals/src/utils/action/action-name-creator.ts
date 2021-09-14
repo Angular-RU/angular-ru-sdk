@@ -13,6 +13,7 @@ export function actionNameCreator(options: ActionNameCreatorOptions): string {
     const { statePath, argumentsNames, methodName, argumentRegistry }: ActionNameCreatorOptions = options;
 
     let argsList: string = '';
+
     for (let index: number = 0; index < argumentsNames.length; index++) {
         if (isNotNil(argumentRegistry?.getArgumentNameByIndex(index))) {
             argsList += argumentRegistry?.getArgumentNameByIndex(index);

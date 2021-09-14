@@ -20,6 +20,7 @@ export class SampleThirdComponent implements OnInit, AfterViewInit {
     public ngOnInit(): void {
         const rowNumber: number = 1000;
         const colsNumber: number = 59;
+
         MocksGenerator.generator(rowNumber, colsNumber).then((data: PlainObject[]): void => {
             this.data = data;
             this.cd.detectChanges();
@@ -28,6 +29,7 @@ export class SampleThirdComponent implements OnInit, AfterViewInit {
 
     public disableFn(item: Nullable<PlainObject>): boolean {
         const everyFifth: number = 5;
+
         return item?.id % everyFifth === 0;
     }
 

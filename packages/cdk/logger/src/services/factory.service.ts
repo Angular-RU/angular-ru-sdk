@@ -58,6 +58,7 @@ export class LoggerFactory {
             configurable: true,
             value: (label: string, pipeLine?: Pipeline): LoggerService => {
                 const groupMethod: GroupFactoryMethod = this.groupFactory[methodName].bind(this.groupFactory);
+
                 groupMethod(label, pipeLine, logger, level);
 
                 return logger;
@@ -77,11 +78,14 @@ export class LoggerFactory {
                 this.options.labelNames[level],
                 styleLabel
             );
+
             if (lineStyle) {
                 const label: string = this.console.getFormatTemplateLabel(formatLabel);
+
                 args.push(label, style, lineStyle);
             } else {
                 const label: string = this.console.getTemplateLabel(formatLabel);
+
                 args.push(label, style);
             }
         } else if (lineStyle) {

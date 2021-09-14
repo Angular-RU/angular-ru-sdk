@@ -21,16 +21,19 @@ export class RestTemplate<T> {
 
     public setPath(path: string): RestTemplate<T> {
         this.path = path;
+
         return this;
     }
 
     public setMethodType(type: RequestType): RestTemplate<T> {
         this.methodType = type;
+
         return this;
     }
 
     public setClient(client: DataHttpClient): RestTemplate<T> {
         this._client = client;
+
         return this;
     }
 
@@ -48,16 +51,19 @@ export class RestTemplate<T> {
 
     public setBody(body: unknown): RestTemplate<T> {
         this.options.body = body;
+
         return this;
     }
 
     public setParams(queryParams: Nullable<PlainObject>): RestTemplate<T> {
         this.options.queryParams = queryParams;
+
         return this;
     }
 
     public setOptions(options: Partial<DataClientRequestOptions>): RestTemplate<T> {
         this.options = { ...this.options, ...options };
+
         return this;
     }
 
@@ -69,6 +75,7 @@ export class RestTemplate<T> {
             restTemplateRef: that,
             pipe(...operators: OperatorFunction<T, Any>[]): Observable<T> {
                 that.operators.push(...operators);
+
                 return fakeProxy;
             },
             subscribe: (): Any => {

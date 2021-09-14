@@ -19,11 +19,13 @@ export class WebWorkerThreadService implements WebWorkerThread {
         `;
 
         const blob: Blob = new Blob([webWorkerTemplate], { type: 'text/javascript' });
+
         return URL.createObjectURL(blob);
     }
 
     public run<T, K>(workerFunction: (input: K) => T, data?: K): Promise<T> {
         const url: Nullable<string> = this.getOrCreateWorkerUrl(workerFunction);
+
         return this.runUrl(url!, data);
     }
 
@@ -58,15 +60,19 @@ export class WebWorkerThreadService implements WebWorkerThread {
     private getOrCreateWorkerUrl(fn: Fn): Nullable<string> {
         if (!this.workerFunctionToUrlMap.has(fn)) {
             const url: string = WebWorkerThreadService.createWorkerUrl(fn);
+
             this.workerFunctionToUrlMap.set(fn, url);
+
             return url;
         }
+
         return this.workerFunctionToUrlMap.get(fn);
     }
 
     private createPromiseCleaner<T>(promise: Promise<T>): (input: Any) => T {
         return (event: T): T => {
             this.removePromise(promise);
+
             return event;
         };
     }
@@ -79,6 +85,7 @@ export class WebWorkerThreadService implements WebWorkerThread {
         }
 
         this.promiseToWorkerMap.delete(promise);
+
         return promise;
     }
 }

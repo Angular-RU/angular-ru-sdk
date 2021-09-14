@@ -26,6 +26,7 @@ describe('[TEST]: injection utils', () => {
         it('should be correct provide nested service by directiveInject', async () => {
             await TestBed.configureTestingModule({ declarations: [CtxComponent] }).compileComponents();
             const fixture = TestBed.createComponent(CtxComponent);
+
             expect(fixture.componentInstance.service.hello).toEqual('world');
         });
     });
@@ -48,6 +49,7 @@ describe('[TEST]: injection utils', () => {
         it('should be correct provide nested service by inject', () => {
             TestBed.configureTestingModule({ providers: [Service, B] });
             const service = TestBed.inject(Service);
+
             expect(service.b.world).toEqual('hello');
         });
     });
@@ -69,6 +71,7 @@ describe('[TEST]: injection utils', () => {
             }
 
             const service = new Service();
+
             expect(service).toEqual({ b: null });
         });
 
@@ -92,6 +95,7 @@ describe('[TEST]: injection utils', () => {
             }
 
             const service = new CtxComponent();
+
             expect(service).toEqual({ service: null });
         });
     });

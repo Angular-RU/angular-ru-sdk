@@ -62,6 +62,7 @@ describe('mutable', () => {
 
         it('should be correct return object when set empty path', () => {
             const result: Nullable<string | PlainObject> = pipePath.transform({ a: { b: 1 } }, '');
+
             expect(result).toEqual({ a: { b: 1 } });
         });
 
@@ -69,6 +70,7 @@ describe('mutable', () => {
             const a: PlainObject = { a: { b: 1 } };
             const b: PlainObject = { a: { b: 2 } };
             const c: PlainObject = { a: { b: [1, 2, 3] } };
+
             expect(pipePath.transform(a, 'a.b')).toEqual(1);
             expect(pipePath.transform(b, 'a.b')).toEqual(2);
             expect(pipePath.transform(b, 'a')).toEqual({ b: 2 });

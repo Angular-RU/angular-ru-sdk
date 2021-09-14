@@ -78,6 +78,7 @@ export class NgxContextMenuItemComponent<T = Any> implements OnInit, OnDestroy {
 
     public calculateSubMenuPosition(ref: HTMLDivElement): void {
         const contentExist: boolean = ref.innerHTML.trim().length !== 0;
+
         if (contentExist) {
             this.offsetX = this.clientRect.left! + this.subMenuWidth - MIN_PADDING_CONTEXT_ITEM;
             this.offsetX = this.offsetX - this.overflowX();
@@ -89,11 +90,13 @@ export class NgxContextMenuItemComponent<T = Any> implements OnInit, OnDestroy {
 
     public overflowX(): number {
         const overflowX: number = this.subMenuWidth + this.offsetX! - (getBodyRect()?.width ?? 0);
+
         return overflowX > 0 ? overflowX + SCROLLBAR_SIZE : 0;
     }
 
     public overflowY(ref: HTMLDivElement): number {
         const overflowY: number = ref.offsetHeight + this.offsetY! - (getBodyRect()?.height ?? 0);
+
         return overflowY > 0 ? overflowY + SCROLLBAR_SIZE : 0;
     }
 

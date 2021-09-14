@@ -60,6 +60,7 @@ describe('mutable', () => {
         }).compileComponents();
 
         const app = TestBed.createComponent(AppComponent);
+
         app.autoDetectChanges();
 
         expect(parseFloat(app.nativeElement.innerHTML)).toEqual(0);

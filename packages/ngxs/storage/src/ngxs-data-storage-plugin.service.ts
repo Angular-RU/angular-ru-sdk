@@ -106,6 +106,7 @@ export class NgxsDataStoragePlugin implements NgxsPlugin, DataStoragePlugin {
         data: StorageData<T>
     ): void {
         const { action, provider, key, value }: GlobalStorageOptionsHandler = options;
+
         if (isTruthy(info.rehydrateIn) && isTruthy(isStorageEvent(action))) {
             const instance: NgxsDataAfterStorageEvent = provider.stateInstance as Any as NgxsDataAfterStorageEvent;
             const event: NgxsDataStorageEvent = { key, value, data, provider };
@@ -169,6 +170,7 @@ export class NgxsDataStoragePlugin implements NgxsPlugin, DataStoragePlugin {
         if (isTruthy(existTtl(provider))) {
             const engine: ExistingStorageEngine = exposeEngine(provider, NgxsDataStoragePlugin.injector!);
             const expiry: Date = new Date(Date.now() + parseInt(provider.ttl as Any));
+
             createTtlInterval({ provider, expiry, map: this.ttlListeners, engine });
             meta.expiry = expiry.toISOString();
         }
@@ -206,6 +208,7 @@ export class NgxsDataStoragePlugin implements NgxsPlugin, DataStoragePlugin {
 
                 try {
                     const data: Any = this.serialize(newData, provider);
+
                     engine.setItem(key, data);
                     this.keys.set(key);
                 } catch (error: unknown) {
@@ -248,6 +251,7 @@ export class NgxsDataStoragePlugin implements NgxsPlugin, DataStoragePlugin {
 
     private deserializeHandler<T>(states: PlainObject, options: GlobalStorageOptionsHandler): PlainObject | never {
         const { key, provider, value }: GlobalStorageOptionsHandler = options;
+
         try {
             const meta: StorageMeta<T> = parseStorageMeta<T>(value);
             const data: StorageData<T> = this.deserialize(meta, value, provider);
@@ -255,6 +259,7 @@ export class NgxsDataStoragePlugin implements NgxsPlugin, DataStoragePlugin {
 
             if (isTruthy(info.canBeOverrideFromStorage)) {
                 const rehydrateInfo: RehydrateInfo = rehydrate({ states, provider, data, info });
+
                 this.keys.set(key);
                 // mutate parent states
                 // eslint-disable-next-line no-param-reassign
@@ -292,6 +297,7 @@ export class NgxsDataStoragePlugin implements NgxsPlugin, DataStoragePlugin {
         NgxsDataStoragePlugin.eventsSubscriptions = fromEvent<StorageEvent>(window, 'storage').subscribe(
             (event: StorageEvent): void => {
                 const keyUsageInStore: boolean = checkValueIsFilled(event.key) && this.keys.has(event.key);
+
                 if (keyUsageInStore) {
                     this.store!.dispatch({ type: NGXS_DATA_STORAGE_EVENT_TYPE });
                 }

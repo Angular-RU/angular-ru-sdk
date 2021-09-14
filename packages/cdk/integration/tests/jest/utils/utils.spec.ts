@@ -88,6 +88,7 @@ describe('[TEST]: Common utils', () => {
 
     it('simple parse xml', () => {
         const xml = parseXmlFromString('<hello>123</hello>');
+
         expect(xml.querySelector('hello')?.textContent).toEqual('123');
     });
 
@@ -107,6 +108,7 @@ describe('[TEST]: Common utils', () => {
 
     it('xml to string', () => {
         const xml = parseXmlFromString('<hello>123</hello>');
+
         expect(serializeXmlToString(xml)).toEqual('<hello>123</hello>');
     });
 
@@ -255,6 +257,7 @@ describe('[TEST]: Common utils', () => {
                 name: null,
                 extension: null
             };
+
             expect(() => downloadFile(invalidFile)).toThrow('File name or file extension must be provided');
         });
 
@@ -321,6 +324,7 @@ describe('[TEST]: Common utils', () => {
             expect(tryParseJson('{ a: 1 }')).toBeUndefined();
 
             const plain: string = '{ checked: true }';
+
             expect(tryParseJson<{ checked: boolean }>(plain)?.checked ?? false).toBe(false);
         });
     });

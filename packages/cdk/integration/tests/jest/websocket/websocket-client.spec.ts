@@ -35,11 +35,13 @@ describe('[TEST] Websocket client', (): void => {
     beforeEach(() => {
         jest.spyOn(window, 'requestAnimationFrame').mockImplementation((callback: FrameRequestCallback): number => {
             callback(0);
+
             return 0;
         });
 
         jest.spyOn(window, 'setTimeout').mockImplementation((callback: Any): NodeJS.Timeout => {
             callback(0);
+
             return 0 as unknown as NodeJS.Timeout;
         });
 
@@ -55,13 +57,16 @@ describe('[TEST] Websocket client', (): void => {
     it('should connect and reconnect on error', () => {
         const client: WebsocketSimpleParseClient = TestBed.inject(WebsocketSimpleParseClient);
         const observer: jest.Mock = jest.fn();
+
         client.on<string>('message').subscribe(observer);
 
         const spyReconnect: jest.SpyInstance = jest.spyOn(client as Any, 'reconnect');
+
         client.connect('null');
 
         let nativeSocket: WebSocket = (client as Any).socket$._socket;
         const spyClose: jest.SpyInstance = jest.spyOn(nativeSocket, 'close');
+
         expect(nativeSocket).toBeInstanceOf(WebSocket);
         nativeSocket.dispatchEvent(new MessageEvent('open'));
         expect(nativeSocket.url).toBe('ws://null/');
@@ -110,11 +115,13 @@ describe('[TEST] Websocket client', (): void => {
         const messageObserver: jest.Mock = jest.fn();
         const plainTextObserver: jest.Mock = jest.fn();
         const binaryObserver: jest.Mock = jest.fn();
+
         client.on<string>('message').subscribe(messageObserver);
         client.on<string>(PLAIN_TEXT).subscribe(plainTextObserver);
         client.on<string>(BINARY).subscribe(binaryObserver);
 
         const spyReconnect: jest.SpyInstance = jest.spyOn(client as Any, 'reconnect');
+
         client.connect('null');
 
         const nativeSocket: WebSocket = (client as Any).socket$._socket;
@@ -122,6 +129,7 @@ describe('[TEST] Websocket client', (): void => {
         const spySend: jest.SpyInstance = jest.spyOn(nativeSocket, 'send').mockImplementation((): void => {
             // ...
         });
+
         expect(nativeSocket).toBeInstanceOf(WebSocket);
         nativeSocket.dispatchEvent(new MessageEvent('open'));
         expect(nativeSocket.url).toBe('ws://null/');
@@ -146,12 +154,14 @@ describe('[TEST] Websocket client', (): void => {
 
         // sending binary message
         const binaryData = new ArrayBuffer(1);
+
         nativeSocket.dispatchEvent(new MessageEvent('message', { data: binaryData }));
         expect(binaryObserver.mock.calls[0][0]).toEqual(binaryData);
         expect(spyReconnect).toHaveBeenCalledTimes(0);
         expect(spyClose).toHaveBeenCalledTimes(0);
 
         const message = { type: 'outgoing', data: 'message' };
+
         client.sendMessage(message.type, message.data);
         expect(spySend.mock.calls).toEqual([[JSON.stringify(message)]]);
 

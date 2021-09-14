@@ -12,6 +12,7 @@ describe('deep path', () => {
     it('ensure deep value', () => {
         const obj: { a: { b: { c: string } } } = { a: { b: { c: 'str' } } };
         const result = pipe.transform(obj, 'a.b.c');
+
         expect(result).toEqual('str');
     });
 });

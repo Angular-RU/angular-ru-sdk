@@ -16,6 +16,7 @@ export class HttpMockInterceptor implements HttpInterceptor {
         return next.handle(req).pipe(
             switchMap(async (value: unknown): Promise<unknown> => {
                 await this.emulateTimeoutIfLongRequest(req);
+
                 return value;
             })
         );

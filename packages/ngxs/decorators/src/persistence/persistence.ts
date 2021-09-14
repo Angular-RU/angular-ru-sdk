@@ -22,6 +22,7 @@ export function Persistence(options?: ProviderOptions): Any {
             }
 
             const providers: PersistenceProvider[] = ensureProviders(repositoryMeta, stateClass, options);
+
             registerStorageProviders(providers);
         });
     };

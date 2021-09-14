@@ -71,6 +71,7 @@ describe('[TEST]: Lifecycle table', () => {
         const view: NgxTableViewChangesService = new NgxTableViewChangesService();
 
         const parser: TemplateParserService<PlainObject> = new TemplateParserService();
+
         draggable = new DraggableService(parser);
 
         resizeService = new ResizableService();
@@ -84,33 +85,44 @@ describe('[TEST]: Lifecycle table', () => {
                 switch (token) {
                     case SelectionService:
                         return new SelectionService(zone);
+
                     case TemplateParserService:
                         return parser;
+
                     case NgZone:
                         return zone;
+
                     case ResizableService:
                         return resizeService;
+
                     case SortableService:
                         return sortable;
+
                     case ContextMenuService:
                         return new ContextMenuService();
+
                     case ApplicationRef:
                         return app;
+
                     case FilterableService:
                         return new FilterableService({
                             get(_token: Any): Any {
                                 switch (_token) {
                                     case ApplicationRef:
                                         return app;
+
                                     case WebWorkerThreadService:
                                         return worker;
+
                                     case NgZone:
                                         return zone;
                                 }
                             }
                         });
+
                     case DraggableService:
                         return draggable;
+
                     case NgxTableViewChangesService:
                         return view;
                 }
@@ -252,6 +264,7 @@ describe('[TEST]: Lifecycle table', () => {
 
     it('should be correct template changes', fakeAsync(() => {
         const templates: QueryList<NgxColumnComponent<PlainObject>> = new QueryList();
+
         table.columnTemplates = templates;
         table.source = [];
 
@@ -292,6 +305,7 @@ describe('[TEST]: Lifecycle table', () => {
 
     it('should be correct template changes with check renderCount', fakeAsync(() => {
         const templates: QueryList<NgxColumnComponent<PlainObject>> = new QueryList();
+
         table.columnTemplates = templates;
         table.source = deepClone(data);
 
@@ -340,6 +354,7 @@ describe('[TEST]: Lifecycle table', () => {
 
     it('should be correct template changes query list', fakeAsync(() => {
         const templates: QueryList<NgxColumnComponent<PlainObject>> = new QueryList();
+
         table.columnTemplates = templates;
         table.source = [];
 

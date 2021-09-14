@@ -13,6 +13,7 @@ export function isPlainObject(plainObject: Any): boolean {
     // If has modified constructor
     // eslint-disable-next-line prefer-const
     constructorRef = plainObject.constructor as Any;
+
     if (constructorRef === undefined) {
         return true;
     }
@@ -20,6 +21,7 @@ export function isPlainObject(plainObject: Any): boolean {
     // If has modified prototype
     // eslint-disable-next-line prefer-const
     prototypeRef = constructorRef.prototype as Any;
+
     if (!instanceOfPlainObject(prototypeRef)) {
         return false;
     }

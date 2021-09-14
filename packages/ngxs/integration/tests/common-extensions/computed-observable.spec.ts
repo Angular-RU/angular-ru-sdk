@@ -61,10 +61,12 @@ describe('[TEST]: Observable with computed $a field', () => {
         @Computed()
         public get a$(): Observable<string> {
             this.subscribeA$++;
+
             return this.state$.pipe(
                 map((val): string => {
                     const aX = val.value;
                     const bX = this._b.snapshot.value;
+
                     return `a(${aX}) + b(${bX}) = ${aX + bX}`;
                 })
             );
@@ -73,6 +75,7 @@ describe('[TEST]: Observable with computed $a field', () => {
         @Computed()
         public get $aWith$b(): Observable<string> {
             this.subscribeA$_$B++;
+
             return combineLatest([this.state$, this._b.state$]).pipe(
                 map(([_a, _b]): string => `a(${_a.value}) + b(${_b.value}) = ${_a.value + _b.value}`)
             );
