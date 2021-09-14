@@ -7,8 +7,9 @@ export function validateComputedMethod(target: Any, name: string | symbol): void
 
     if (notGetter) {
         throw new Error(
-            NGXS_DATA_EXCEPTIONS.NGXS_COMPUTED_DECORATOR +
-                `\nExample: \n@Computed() get ${name.toString()}() { \n\t .. \n}`
+            `${
+                NGXS_DATA_EXCEPTIONS.NGXS_COMPUTED_DECORATOR
+            }\nExample: \n@Computed() get ${name.toString()}() { \n\t .. \n}`
         );
     }
 }

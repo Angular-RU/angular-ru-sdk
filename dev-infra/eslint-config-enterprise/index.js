@@ -39,15 +39,8 @@ module.exports = {
                 errorOnTypeScriptSyntacticAndSemanticIssues: true,
                 warnOnUnsupportedTypeScriptVersion: false
             },
-            extends: [
-                'eslint:recommended',
-                'plugin:@typescript-eslint/eslint-recommended',
-                'plugin:@typescript-eslint/recommended',
-                'plugin:import/warnings',
-                'plugin:import/typescript',
-                'plugin:json/recommended'
-            ],
             plugins: [
+                'rxjs',
                 'decorator-position',
                 'prettier',
                 'simple-import-sort',
@@ -60,6 +53,15 @@ module.exports = {
                 '@angular-eslint/eslint-plugin',
                 '@angular-ru/eslint-plugin-enterprise',
                 'json'
+            ],
+            extends: [
+                'eslint:recommended',
+                'plugin:@typescript-eslint/eslint-recommended',
+                'plugin:@typescript-eslint/recommended',
+                'plugin:import/warnings',
+                'plugin:import/typescript',
+                'plugin:json/recommended',
+                'plugin:rxjs/recommended'
             ],
             rules: {
                 'decorator-position/decorator-position': [
@@ -74,6 +76,7 @@ module.exports = {
                 /**
                  * ESLint Core
                  */
+                'prefer-template': 'error',
                 'no-restricted-globals': [
                     'error',
                     {

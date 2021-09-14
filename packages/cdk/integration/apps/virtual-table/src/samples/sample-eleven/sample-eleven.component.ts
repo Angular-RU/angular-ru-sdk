@@ -90,15 +90,15 @@ export class SampleElevenComponent implements OnInit, AfterViewInit {
     }
 
     public exportExcel(data: PlainObject[]): void {
-        window.alert('export excel - ' + JSON.stringify(data));
+        window.alert(`export excel - ${JSON.stringify(data)}`);
     }
 
     public showLine(key: Nullable<string>, item: Nullable<PlainObject>): void {
-        window.alert('key - ' + key + ' item - ' + JSON.stringify(item));
+        window.alert(`key - ${key} item - ${JSON.stringify(item)}`);
     }
 
     public copyId(id: string): void {
-        window.alert('Copy on buffer - ' + id);
+        window.alert(`Copy on buffer - ${id}`);
     }
 
     public updatedSchema(event: TableUpdateSchema): void {
