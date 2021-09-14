@@ -2,6 +2,12 @@
 
 ##### New Features
 
+-   **cdk:** added regexp for credit card (#942) (0d940e8c)
+
+#### independent (2021-09-14)
+
+##### New Features
+
 -   **eslint-config-enterprise:** add strict rules (#939) (5950ad1a)
 
 #### independent (2021-09-14)
