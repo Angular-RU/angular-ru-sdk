@@ -38,7 +38,7 @@ describe('complex lifecycle', () => {
         try {
             TestBed.inject<CountState>(CountState);
             TestBed.inject<Store>(Store);
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 

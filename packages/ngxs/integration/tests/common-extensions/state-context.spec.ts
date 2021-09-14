@@ -58,7 +58,7 @@ describe('[TEST]: Utils', () => {
             class A {}
 
             buildDefaultsGraph(A);
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 
@@ -100,7 +100,7 @@ describe('[TEST]: Utils', () => {
             class G {}
 
             buildDefaultsGraph(G);
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 

@@ -55,7 +55,7 @@ describe('[TEST]: Freeze states', () => {
 
         try {
             snapshot[0]!.a!++;
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 
@@ -64,7 +64,7 @@ describe('[TEST]: Freeze states', () => {
 
         try {
             snapshot[0]!.b = 3;
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 
@@ -72,7 +72,7 @@ describe('[TEST]: Freeze states', () => {
 
         try {
             snapshot[1]!.b!++;
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 
@@ -156,7 +156,7 @@ describe('[TEST]: Freeze states', () => {
 
         try {
             (state.getState() as ListModel[]).reverse();
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 

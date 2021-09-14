@@ -76,7 +76,7 @@ describe('[TEST]: Storage plugin', () => {
                 TestBed.configureTestingModule({
                     imports: [NgxsModule.forRoot([Invalid]), NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)]
                 });
-            } catch (e) {
+            } catch (e: unknown) {
                 message = (e as Error).message;
             }
 
@@ -103,7 +103,7 @@ describe('[TEST]: Storage plugin', () => {
                 const state: CustomState = TestBed.inject(CustomState);
 
                 expect(state.getState()).toBeDefined();
-            } catch (e) {
+            } catch (e: unknown) {
                 message = (e as Error).message;
             }
 
@@ -770,7 +770,7 @@ describe('[TEST]: Storage plugin', () => {
                 const stateC13: C13 = TestBed.inject<C13>(C13);
 
                 expect(stateC13.getState()).toEqual('VALUE');
-            } catch (e) {
+            } catch (e: unknown) {
                 message = (e as Error).message;
             }
 
@@ -823,7 +823,7 @@ describe('[TEST]: Storage plugin', () => {
                 const stateC14: C14 = TestBed.inject<C14>(C14);
 
                 expect(stateC14.getState()).toEqual('VALUE');
-            } catch (e) {
+            } catch (e: unknown) {
                 message = (e as Error).message;
             }
 

@@ -73,7 +73,7 @@ describe('[TEST]: Reset', () => {
             class BarState {}
 
             new BarState();
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 
@@ -90,7 +90,7 @@ describe('[TEST]: Reset', () => {
             class BarState {}
 
             new BarState();
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 
@@ -107,7 +107,7 @@ describe('[TEST]: Reset', () => {
             class BarState {}
 
             new BarState();
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 

@@ -26,7 +26,7 @@ describe('[TEST]: Computed fields', () => {
             TestBed.configureTestingModule({
                 imports: [NgxsModule.forRoot([A]), NgxsDataPluginModule.forRoot()]
             });
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 

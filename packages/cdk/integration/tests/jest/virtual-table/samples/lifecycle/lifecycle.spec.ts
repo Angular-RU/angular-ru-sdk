@@ -85,44 +85,34 @@ describe('[TEST]: Lifecycle table', () => {
                 switch (token) {
                     case SelectionService:
                         return new SelectionService(zone);
-
                     case TemplateParserService:
                         return parser;
-
                     case NgZone:
                         return zone;
-
                     case ResizableService:
                         return resizeService;
-
                     case SortableService:
                         return sortable;
-
                     case ContextMenuService:
                         return new ContextMenuService();
-
                     case ApplicationRef:
                         return app;
-
                     case FilterableService:
                         return new FilterableService({
                             get(_token: Any): Any {
+                                // eslint-disable-next-line sonarjs/no-nested-switch
                                 switch (_token) {
                                     case ApplicationRef:
                                         return app;
-
                                     case WebWorkerThreadService:
                                         return worker;
-
                                     case NgZone:
                                         return zone;
                                 }
                             }
                         });
-
                     case DraggableService:
                         return draggable;
-
                     case NgxTableViewChangesService:
                         return view;
                 }

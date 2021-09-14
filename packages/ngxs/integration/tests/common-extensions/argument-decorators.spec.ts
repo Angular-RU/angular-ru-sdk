@@ -155,7 +155,7 @@ describe('[TEST]: Argument decorators', () => {
             }
 
             new E().setX();
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 
@@ -177,7 +177,7 @@ describe('[TEST]: Argument decorators', () => {
             }
 
             new G().setY();
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 
@@ -200,7 +200,7 @@ describe('[TEST]: Argument decorators', () => {
                 }
 
                 new G().setYZ();
-            } catch (e) {
+            } catch (e: unknown) {
                 message = (e as Error).message;
             }
 
@@ -222,7 +222,7 @@ describe('[TEST]: Argument decorators', () => {
                 }
 
                 new G().setYZ();
-            } catch (e) {
+            } catch (e: unknown) {
                 message = (e as Error).message;
             }
 
@@ -244,7 +244,7 @@ describe('[TEST]: Argument decorators', () => {
                 }
 
                 new G().setYZ();
-            } catch (e) {
+            } catch (e: unknown) {
                 message = (e as Error).message;
             }
 

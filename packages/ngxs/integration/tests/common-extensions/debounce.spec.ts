@@ -19,7 +19,7 @@ describe('[TEST]: Debounce', () => {
             }
 
             new App().invoke();
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 

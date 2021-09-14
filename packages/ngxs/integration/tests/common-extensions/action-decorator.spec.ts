@@ -30,7 +30,7 @@ describe('[TEST]: Action decorator', () => {
             const state: InvalidState = TestBed.inject(InvalidState);
 
             state.setState('new value');
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 
@@ -56,7 +56,7 @@ describe('[TEST]: Action decorator', () => {
             const state: InvalidState = TestBed.inject(InvalidState);
 
             state.setState('new value');
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 
@@ -83,7 +83,7 @@ describe('[TEST]: Action decorator', () => {
             const state: InvalidState = TestBed.inject(InvalidState);
 
             state.setup();
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 
@@ -111,7 +111,7 @@ describe('[TEST]: Action decorator', () => {
             const state: InvalidState = TestBed.inject(InvalidState);
 
             state.setup();
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 

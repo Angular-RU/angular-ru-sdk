@@ -74,18 +74,7 @@ module.exports = {
                 /**
                  * ESLint Core
                  */
-                'padding-line-between-statements': [
-                    'error',
-                    { blankLine: 'always', prev: '*', next: 'block' },
-                    { blankLine: 'always', prev: 'block', next: '*' },
-                    { blankLine: 'always', prev: '*', next: 'block-like' },
-                    { blankLine: 'always', prev: 'block-like', next: '*' },
-                    { blankLine: 'always', prev: '*', next: 'return' },
-                    { blankLine: 'always', prev: 'directive', next: '*' },
-                    { blankLine: 'any', prev: 'directive', next: 'directive' },
-                    { blankLine: 'always', prev: ['const', 'let', 'var'], next: '*' },
-                    { blankLine: 'any', prev: ['const', 'let', 'var'], next: ['const', 'let', 'var'] }
-                ],
+                'padding-line-between-statements': 'off',
                 'no-invalid-this': 'off',
                 'arrow-body-style': 'error',
                 'arrow-parens': ['error', 'always'],
@@ -93,7 +82,7 @@ module.exports = {
                     // Note: after prettier 2.3+ we have collisions with current rules
                     'off'
                 ],
-                'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
+                'lines-between-class-members': 'off',
                 camelcase: 'off',
                 'comma-dangle': ['error', 'never'],
                 'comma-spacing': ['error', { before: false, after: true }],
@@ -223,31 +212,11 @@ module.exports = {
                 'use-isnan': 'error',
                 'valid-typeof': 'off',
                 'no-dupe-class-members': 'off',
-
-                /**
-                 * prettier
-                 */
                 'prettier/prettier': 'error',
-
-                /**
-                 * simple-import-sort
-                 */
                 'simple-import-sort/imports': 'error',
                 'simple-import-sort/exports': 'error',
-
-                /**
-                 * max-params-no-constructor
-                 */
                 'max-params-no-constructor/max-params-no-constructor': ['error', 3],
-
-                /**
-                 * no-cyrillic-string
-                 */
                 'no-cyrillic-string/no-cyrillic-string': 'error',
-
-                /**
-                 * jsdoc
-                 */
                 'jsdoc/check-alignment': 'error',
 
                 /**
@@ -259,10 +228,36 @@ module.exports = {
                 'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
                 'func-style': 'off',
                 'no-implicit-globals': 'error',
+                'no-implied-eval': 'error',
 
                 /**
                  * @typescript-eslint
                  */
+                '@typescript-eslint/padding-line-between-statements': [
+                    'error',
+                    { blankLine: 'always', prev: '*', next: 'block' },
+                    { blankLine: 'always', prev: 'block', next: '*' },
+                    { blankLine: 'always', prev: '*', next: 'block-like' },
+                    { blankLine: 'always', prev: 'block-like', next: '*' },
+                    { blankLine: 'always', prev: '*', next: 'return' },
+                    { blankLine: 'always', prev: 'directive', next: '*' },
+                    { blankLine: 'any', prev: 'directive', next: 'directive' },
+                    { blankLine: 'always', prev: ['const', 'let', 'var'], next: '*' },
+                    { blankLine: 'any', prev: ['const', 'let', 'var'], next: ['const', 'let', 'var'] },
+                    { blankLine: 'any', prev: '*', next: 'class' },
+                    { blankLine: 'any', prev: 'class', next: '*' },
+                    {
+                        blankLine: 'always',
+                        prev: '*',
+                        next: ['interface', 'type']
+                    }
+                ],
+                '@typescript-eslint/lines-between-class-members': [
+                    'error',
+                    'always',
+                    { exceptAfterSingleLine: true, exceptAfterOverload: true }
+                ],
+                '@typescript-eslint/no-implicit-any-catch': 'error',
                 '@typescript-eslint/no-dynamic-delete': 'off',
                 '@typescript-eslint/dot-notation': 'error',
                 '@typescript-eslint/strict-boolean-expressions': 'error',
@@ -456,46 +451,12 @@ module.exports = {
                 'sonarjs/no-use-of-empty-return-value': 'error',
                 'sonarjs/no-useless-catch': 'error',
                 'sonarjs/prefer-immediate-return': 'error',
-                /**
-                 * not implemented yet
-                 */
-                // 'sonarjs/bool-param-default': 'error',
-                // 'sonarjs/comma-or-logical-or-case': 'error',
-                // 'sonarjs/max-union-size': 'error',
-                // 'sonarjs/no-accessor-field-mismatch': 'error',
-                // 'sonarjs/no-alphabetical-sort': 'error',
-                // 'sonarjs/no-array-delete': 'error',
-                // 'sonarjs/no-commented-code': 'error',
-                // 'sonarjs/no-dead-store': 'error',
-                // 'sonarjs/no-duplicate-in-composite': 'error',
-                // 'sonarjs/no-empty-collection': 'error',
-                // 'sonarjs/no-gratuitous-expressions': 'error',
-                // 'sonarjs/no-hardcoded-credentials': 'error',
-                // 'sonarjs/no-ignored-return': 'error',
-                // 'sonarjs/no-in-misuse': 'error',
-                // 'sonarjs/no-invalid-await': 'error',
-                // 'sonarjs/no-invariant-returns': 'error',
-                // 'sonarjs/no-misleading-array-reverse': 'error',
-                // 'sonarjs/no-nested-switch': 'error',
-                // 'sonarjs/no-nested-template-literals': 'error',
-                // 'sonarjs/no-parameter-reassignment': 'error',
-                // 'sonarjs/no-primitive-wrappers': 'error',
-                // 'sonarjs/no-redundant-optional': 'error',
-                // 'sonarjs/no-redundant-parentheses': 'error',
-                // 'sonarjs/no-return-type-any': 'error',
-                // 'sonarjs/no-try-promise': 'error',
-                // 'sonarjs/no-undefined-argument': 'error',
-                // 'sonarjs/no-unenclosed-multiline-block': 'error',
-                // 'sonarjs/no-unthrown-error': 'error',
-                // 'sonarjs/no-useless-increment': 'error',
-                // 'sonarjs/no-useless-intersection': 'error',
-                // 'sonarjs/no-variable-usage-before-declaration': 'error',
-                // 'sonarjs/non-existent-operator': 'error',
-                // 'sonarjs/parameters-max-number': 'error',
-                // 'sonarjs/prefer-default-last': 'error',
-                // 'sonarjs/prefer-promise-shorthand': 'error',
-                // 'sonarjs/prefer-type-guard': 'error',
-                // 'sonarjs/use-type-alias': 'error',
+                'sonarjs/no-empty-collection': 'error',
+                'sonarjs/no-gratuitous-expressions': 'error',
+                'sonarjs/no-ignored-return': 'error',
+                'sonarjs/no-nested-switch': 'error',
+                'sonarjs/no-nested-template-literals': 'error',
+                'sonarjs/non-existent-operator': 'error',
 
                 /**
                  * @angular-eslint

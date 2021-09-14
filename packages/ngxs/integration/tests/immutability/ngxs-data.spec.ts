@@ -29,7 +29,7 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
             });
 
             TestBed.inject(MyAppState);
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 
@@ -58,7 +58,7 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
             });
 
             TestBed.inject(MyState);
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 
@@ -141,7 +141,7 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
 
         try {
             snapshot[0]!.a!++;
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 
@@ -150,7 +150,7 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
 
         try {
             snapshot[0]!.b = 3;
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 
@@ -158,7 +158,7 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
 
         try {
             snapshot[1]!.b!++;
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 
@@ -242,7 +242,7 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
 
         try {
             state.getState().reverse();
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 

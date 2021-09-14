@@ -44,7 +44,7 @@ describe('[TEST]: CountState', () => {
                 TestBed.configureTestingModule({
                     imports: [NgxsModule.forRoot([CountState])]
                 });
-            } catch (e) {
+            } catch (e: unknown) {
                 message = (e as Error).message;
             }
 
@@ -71,7 +71,7 @@ describe('[TEST]: CountState', () => {
 
             try {
                 count.getState();
-            } catch (e) {
+            } catch (e: unknown) {
                 message = (e as Error).message;
             }
 
@@ -94,7 +94,7 @@ describe('[TEST]: CountState', () => {
 
             try {
                 count.getState();
-            } catch (e) {
+            } catch (e: unknown) {
                 message = (e as Error).message;
             }
 
@@ -118,7 +118,7 @@ describe('[TEST]: CountState', () => {
 
             try {
                 count.getState();
-            } catch (e) {
+            } catch (e: unknown) {
                 message = (e as Error).message;
             }
 
@@ -128,7 +128,7 @@ describe('[TEST]: CountState', () => {
         it('should be throw when invalid instance', () => {
             try {
                 NgxsDataFactory.getRepositoryByInstance(null);
-            } catch (e) {
+            } catch (e: unknown) {
                 message = (e as Error).message;
             }
 
@@ -156,7 +156,7 @@ describe('[TEST]: CountState', () => {
 
             try {
                 count.incorrect();
-            } catch (e) {
+            } catch (e: unknown) {
                 message = (e as Error).message;
             }
 
@@ -179,7 +179,7 @@ describe('[TEST]: CountState', () => {
                 }
 
                 CountState.incorrect();
-            } catch (e) {
+            } catch (e: unknown) {
                 message = (e as Error).message;
             }
 

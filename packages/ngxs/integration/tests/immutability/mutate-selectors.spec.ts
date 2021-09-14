@@ -29,7 +29,7 @@ describe('mutate', () => {
             });
 
             store = TestBed.inject<Store>(Store);
-        } catch (e) {
+        } catch (e: unknown) {
             message = (e as Error).message;
         }
 
@@ -107,7 +107,7 @@ describe('mutate', () => {
 
         try {
             (todo.getState() as A[]).reverse();
-        } catch (e) {
+        } catch (e: unknown) {
             error = (e as Error).message;
         }
 
@@ -115,7 +115,7 @@ describe('mutate', () => {
 
         try {
             (todo.getState() as A[])[0]!.a++;
-        } catch (e) {
+        } catch (e: unknown) {
             error = (e as Error).message;
         }
 

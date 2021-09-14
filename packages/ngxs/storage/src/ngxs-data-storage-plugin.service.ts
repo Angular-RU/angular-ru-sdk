@@ -269,7 +269,7 @@ export class NgxsDataStoragePlugin implements NgxsPlugin, DataStoragePlugin {
             } else {
                 this.removeKeyWhenPullInvalid(info, options);
             }
-        } catch (error) {
+        } catch (error: unknown) {
             silentDeserializeWarning(key, value, (error as Error).message);
         }
 
