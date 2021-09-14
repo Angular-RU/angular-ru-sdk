@@ -2806,10 +2806,10 @@
   resolved "https://registry.npmjs.org/@types/jasmine/-/jasmine-3.9.0.tgz#0118a74c447a580035406521c2600b22f28db4d4"
   integrity sha512-x7aAO0c4EpBEJkUd/v012GLO7tDXXtv+t7Cz5xK+WdSmitH27eHgsQr+36CblfJFuqBQ0++O0xgBTuaKJnB4fg==
 
-"@types/jasmine@3.8.2":
-  version "3.8.2"
-  resolved "https://registry.npmjs.org/@types/jasmine/-/jasmine-3.8.2.tgz#27ab0aaac29581bcbde5774e1843f90df977078e"
-  integrity sha512-u5h7dqzy2XpXTzhOzSNQUQpKGFvROF8ElNX9P/TJvsHnTg/JvsAseVsGWQAQQldqanYaM+5kwxW909BBFAUYsg==
+"@types/jasmine@3.9.1":
+  version "3.9.1"
+  resolved "https://registry.npmjs.org/@types/jasmine/-/jasmine-3.9.1.tgz#94c65ee8bf9d24d9e1d84abaed57b6e0da8b49de"
+  integrity sha512-PVpjh8S8lqKFKurWSKdFATlfBHGPzgy0PoDdzQ+rr78jTQ0aacyh9YndzZcAUPxhk4kRujItFFGQdUJ7flHumw==
 
 "@types/jasminewd2@2.0.10":
   version "2.0.10"
