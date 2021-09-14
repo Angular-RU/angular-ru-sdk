@@ -1,3 +1,9 @@
+#### independent (2021-09-14)
+
+##### New Features
+
+-   **eslint-config-enterprise:** add jest rules (#938) (ececb2a0)
+
 #### independent (2021-09-13)
 
 ##### Build System / Dependencies
