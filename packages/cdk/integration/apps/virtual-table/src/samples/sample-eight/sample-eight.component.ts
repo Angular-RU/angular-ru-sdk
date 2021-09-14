@@ -88,6 +88,7 @@ export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
         const DEFAULT_TIMEOUT: number = 14500;
 
         this.ngZone.runOutsideAngular((): void => {
+            // eslint-disable-next-line no-restricted-properties
             this.idInterval = window.setInterval((): void => {
                 if (this.regenerate) {
                     this.updateTable();
@@ -112,6 +113,7 @@ export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
         const time: number = 500;
 
         window.clearTimeout(this.timeout!);
+        // eslint-disable-next-line no-restricted-properties
         this.timeout = window.setTimeout((): void => this.updateRow(row, key, value), time);
     }
 

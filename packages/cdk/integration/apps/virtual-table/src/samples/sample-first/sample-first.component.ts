@@ -32,6 +32,7 @@ export class SampleFirstComponent implements OnInit, OnDestroy {
         const DEFAULT_TIMEOUT: number = 14500;
 
         this.ngZone.runOutsideAngular((): void => {
+            // eslint-disable-next-line no-restricted-properties
             this.idInterval = window.setInterval((): void => {
                 if (this.regenerate) {
                     this.updateTable();
@@ -129,6 +130,7 @@ export class SampleFirstComponent implements OnInit, OnDestroy {
         this.simple = data;
         const timeout: number = 500;
 
+        // eslint-disable-next-line no-restricted-properties
         window.setTimeout((): void => {
             this.loading = false;
             this.cd.detectChanges();

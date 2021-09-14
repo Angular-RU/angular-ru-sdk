@@ -103,10 +103,12 @@ export abstract class AbstractModalViewLayerDirective<T, K extends PositionState
         detectChanges(this.cd);
 
         this.ngZone.run((): void => {
+            // eslint-disable-next-line no-restricted-properties
             window.setTimeout((): void => {
                 this.minHeight = this.calculatedHeight;
                 detectChanges(this.cd);
 
+                // eslint-disable-next-line no-restricted-properties
                 window.setTimeout((): void => {
                     this.isShowed = true;
                     detectChanges(this.cd);

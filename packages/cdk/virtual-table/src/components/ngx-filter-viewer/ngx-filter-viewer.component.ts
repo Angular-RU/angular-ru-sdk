@@ -77,6 +77,7 @@ export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy
     private changeSelection(event: FilterEvent): void {
         this.ngZone.runOutsideAngular((): void => {
             window.clearInterval(this.taskId!);
+            // eslint-disable-next-line no-restricted-properties
             this.taskId = window.setTimeout((): void => {
                 const hasFilter: boolean =
                     isNotNil(event.value) || isNotNil((this.filterable.definition as Any)[this.key!]);

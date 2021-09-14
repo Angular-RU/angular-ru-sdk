@@ -17,6 +17,7 @@ export function Debounce(timeout: number = DEFAULT_TIMEOUT): MethodDecorator {
 
             NgxsDataInjector.ngZone?.runOutsideAngular((): void => {
                 window.clearTimeout(timeoutRef!);
+                // eslint-disable-next-line no-restricted-properties
                 timeoutRef = window.setTimeout((): void => {
                     const result: Any = originalMethod.apply(this, args);
 

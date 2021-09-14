@@ -254,6 +254,7 @@ describe('[TEST] Table builder', (): void => {
          * since the filtering happens several times and outside the zone,
          * there is no way to catch the moment when the filtering is completed using `whenStable`
          */
+        // eslint-disable-next-line no-restricted-globals
         await new Promise((resolve) => setTimeout(resolve, 1000));
 
         expect(tableBuilderComponent.source).toEqual([

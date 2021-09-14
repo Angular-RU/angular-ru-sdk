@@ -144,6 +144,7 @@ export abstract class AbstractWebsocketClient<K extends string | PlainObject>
         this.socketUnsubscribe();
 
         this.ngZone.runOutsideAngular((): void => {
+            // eslint-disable-next-line no-restricted-properties
             window.setTimeout((): void => this._connect(), this.wsConfig.reconnectionDelay);
         });
     }

@@ -50,6 +50,7 @@ export class NgxContextMenuComponent<T>
         detectChanges(this.cd);
 
         this.ngZone.runOutsideAngular((): void => {
+            // eslint-disable-next-line no-restricted-properties
             window.setTimeout((): void => {
                 this.contextMenu.close();
                 event.preventDefault();

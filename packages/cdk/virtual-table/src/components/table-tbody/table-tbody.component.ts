@@ -96,6 +96,7 @@ export class TableTbodyComponent<T> {
     public handleOnClick<K>(row: T, key: string, event: MouseEvent, emitter?: TableClickEventEmitter<T, K>): void {
         this.ngZone.run((): void => {
             if (this.enableSelection) {
+                // eslint-disable-next-line no-restricted-properties
                 this.selection.selectionTaskIdle = window.setTimeout((): void => {
                     this.selection.selectRow(row, event);
                     this.changed.emit();
@@ -126,6 +127,7 @@ export class TableTbodyComponent<T> {
     ): void {
         if (isNotNil(emitter)) {
             this.ngZone.runOutsideAngular((): void => {
+                // eslint-disable-next-line no-restricted-properties
                 window.setTimeout((): void => {
                     emitter.emit(this.generateTableCellInfo(row, key, event));
                 });
