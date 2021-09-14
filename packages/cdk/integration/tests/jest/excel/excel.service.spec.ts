@@ -12,11 +12,14 @@ import { isNotNil } from '@angular-ru/cdk/utils';
 import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
 import { Observable, of } from 'rxjs';
 
-import { readFile, readFromBlob } from './helpers/file-utils';
+import { fileSuitesReader, readFromBlob } from '../helpers/file-utils';
+import { dataset, datasetNested, datasetTranslated, translationMap } from '../helpers/table-mock-data';
 
 describe('[TEST] Excel service', () => {
     let excelService: ExcelService;
     let downloadSpy: jest.SpyInstance;
+
+    const readFile = fileSuitesReader(__dirname);
 
     const mockWebWorker: Partial<WebWorkerThreadService> = {
         run<T, K>(workerFunction: (input: K) => T, data?: K): Promise<T> {
@@ -25,9 +28,7 @@ describe('[TEST] Excel service', () => {
     };
 
     class TranslateMock implements ExcelBuilderTextColumnInterceptor {
-        public map: PlainObject = {
-            model: { uid: 'UID', name: 'Name', appearance: { color: 'Color', shape: 'Shape' } }
-        };
+        public map: PlainObject = translationMap;
 
         public getTranslationMap(): Observable<Nullable<PlainObject>> {
             return of(this.map);
@@ -37,33 +38,6 @@ describe('[TEST] Excel service', () => {
             return isNotNil(key) ? getValueByPath(this.map, key) : key;
         }
     }
-
-    const dataset: PlainObject[] = [
-        { id: 1, firstName: 'albattani', lastName: 'herschel', age: 32, nullable: null },
-        { id: 2, firstName: 'allen', lastName: 'hermann', age: 42, nullable: 'not null' },
-        { id: 3, firstName: 'almeida', lastName: 'heisenberg', age: 50, nullable: 'not null' },
-        { nullable: undefined, id: 4, firstName: 'antonelli', age: 19 },
-        { firstName: 'agnesi', id: 5, lastName: 'hawking', age: 22, nullable: null }
-    ];
-
-    const datasetNested: PlainObject[] = [
-        {
-            id: 1,
-            firstName: 'albattani',
-            lastName: 'herschel',
-            age: 32,
-            locale: { country: 'uk', lang: 'en', code: 44 }
-        },
-        { id: 2, firstName: 'allen', lastName: 'hermann', age: 42, locale: { country: 'us', lang: 'en', code: 1 } },
-        { id: 3, firstName: 'antonelli', age: 19, locale: { country: 'at', lang: 'de', code: 43 } },
-        { id: 4, firstName: 'almeida', lastName: 'hawking', age: 42, locale: { country: 'ru', lang: 'ru', code: 7 } }
-    ];
-
-    const datasetTranslated: PlainObject[] = [
-        { uid: 'qwe-123', name: 'albattani', appearance: { color: 'black', shape: 'square' } },
-        { uid: 'wer-456', name: 'allen', appearance: { color: 'red', shape: 'arrow' } },
-        { uid: 'asd-434', name: 'antonelli', appearance: { color: null, shape: null } }
-    ];
 
     beforeEach((): void => {
         TestBed.configureTestingModule({
