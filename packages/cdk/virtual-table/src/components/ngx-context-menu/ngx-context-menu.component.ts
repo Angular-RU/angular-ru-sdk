@@ -42,7 +42,7 @@ export class NgxContextMenuComponent<T>
     }
 
     public ngOnInit(): void {
-        this.subscription = this.contextMenu.events.subscribe((): void => this.update());
+        this.subscription = this.contextMenu.events$.subscribe((): void => this.update());
     }
 
     public close(event: MouseEvent): void {

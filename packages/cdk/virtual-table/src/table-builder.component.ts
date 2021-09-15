@@ -91,7 +91,7 @@ export class TableBuilderComponent<T>
     protected readonly draggable: DraggableService<T>;
     protected readonly viewChanges: NgxTableViewChangesService;
     private forcedRefresh: boolean = false;
-    private readonly destroy$: Subject<boolean> = new Subject<boolean>();
+    private readonly _destroy$: Subject<boolean> = new Subject<boolean>();
     private timeoutCheckedTaskId: Nullable<number> = null;
     private timeoutScrolledId: Nullable<number> = null;
     private timeoutViewCheckedId: Nullable<number> = null;
@@ -113,8 +113,8 @@ export class TableBuilderComponent<T>
         this.viewChanges = injector.get<NgxTableViewChangesService>(NgxTableViewChangesService);
     }
 
-    public get destroy(): Subject<boolean> {
-        return this.destroy$;
+    public get destroy$(): Subject<boolean> {
+        return this._destroy$;
     }
 
     public get selectedKeyList(): RowId[] {
@@ -285,8 +285,8 @@ export class TableBuilderComponent<T>
         window.clearTimeout(this.timeoutCheckedTaskId!);
         window.cancelAnimationFrame(this.frameCalculateViewportId!);
         this.templateParser.schema = null;
-        this.destroy$.next(true);
-        this.destroy$.unsubscribe();
+        this._destroy$.next(true);
+        this._destroy$.complete();
     }
 
     public markTemplateContentCheck(): void {
@@ -519,7 +519,7 @@ export class TableBuilderComponent<T>
 
     private listenColumnListChanges(): void {
         this.columnList.changes
-            .pipe(takeUntil(this.destroy$))
+            .pipe(takeUntil(this._destroy$))
             .subscribe((): void => this.calculateColumnWidthSummary());
     }
 
@@ -534,7 +534,7 @@ export class TableBuilderComponent<T>
     }
 
     private listenFilterResetChanges(): void {
-        this.filterable.resetEvents.pipe(takeUntil(this.destroy$)).subscribe((): void => {
+        this.filterable.resetEvents$.pipe(takeUntil(this._destroy$)).subscribe((): void => {
             this.source = this.originalSource;
             this.calculateViewport(true);
         });
@@ -564,7 +564,7 @@ export class TableBuilderComponent<T>
 
                         return EMPTY;
                     }),
-                    takeUntil(this.destroy$)
+                    takeUntil(this._destroy$)
                 )
                 .subscribe((): void => this.scrollHandler());
         });
@@ -665,7 +665,7 @@ export class TableBuilderComponent<T>
 
     private listenSelectionChanges(): void {
         if (this.isEnableSelection) {
-            this.selection.onChanges.pipe(takeUntil(this.destroy$)).subscribe((): void => {
+            this.selection.onChanges$.pipe(takeUntil(this._destroy$)).subscribe((): void => {
                 detectChanges(this.cd);
                 this.tryRefreshViewModelBySelection();
             });
@@ -693,14 +693,14 @@ export class TableBuilderComponent<T>
 
     private listenTemplateChanges(): void {
         if (isNotNil(this.columnTemplates)) {
-            this.columnTemplates.changes.pipe(takeUntil(this.destroy$)).subscribe((): void => {
+            this.columnTemplates.changes.pipe(takeUntil(this._destroy$)).subscribe((): void => {
                 this.markForCheck();
                 this.markTemplateContentCheck();
             });
         }
 
         if (isNotNil(this.contextMenuTemplate)) {
-            this.contextMenu.events.pipe(takeUntil(this.destroy$)).subscribe((): void => detectChanges(this.cd));
+            this.contextMenu.events$.pipe(takeUntil(this._destroy$)).subscribe((): void => detectChanges(this.cd));
         }
     }
 
@@ -861,7 +861,7 @@ export class TableBuilderComponent<T>
     }
 
     private listenExpandChange(): void {
-        this.headerTemplate?.expandedChange.pipe(takeUntil(this.destroy$)).subscribe((): void => {
+        this.headerTemplate?.expandedChange.pipe(takeUntil(this._destroy$)).subscribe((): void => {
             this.updateTableHeight();
             this.changeSchema();
         });

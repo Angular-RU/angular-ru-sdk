@@ -67,7 +67,7 @@ describe('mutate', () => {
             () => {
                 // ...
             },
-            (e) => {
+            (e: unknown) => {
                 error = (e as Error).message;
             }
         );

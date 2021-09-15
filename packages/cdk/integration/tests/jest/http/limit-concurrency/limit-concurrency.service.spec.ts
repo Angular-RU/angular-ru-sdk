@@ -30,13 +30,13 @@ describe('[TEST]: HTTP limit concurrency service with Marble', () => {
                 const request2$ = cold('-b|', TEST_DATA);
                 const request3$ = cold('---c|', TEST_DATA);
 
-                const mergedObservable = merge(
+                const mergedObservable$ = merge(
                     service.add(request1$, limitConcurrency),
                     service.add(request2$, limitConcurrency),
                     service.add(request3$, limitConcurrency)
                 );
 
-                expect(mergedObservable).toBe('-b-c-a|', TEST_DATA);
+                expect(mergedObservable$).toBe('-b-c-a|', TEST_DATA);
             });
         });
     });
@@ -85,9 +85,9 @@ describe('[TEST]: HTTP limit concurrency service with Marble', () => {
                 const request1$ = cold('-----a|', TEST_DATA);
                 const request2$ = cold('-b|', TEST_DATA);
 
-                const mergedObservable = merge(service.add(request1$, limitConcurrency), service.add(request2$, 1));
+                const mergedObservable$ = merge(service.add(request1$, limitConcurrency), service.add(request2$, 1));
 
-                expect(mergedObservable).toBe('-----a-b|', TEST_DATA);
+                expect(mergedObservable$).toBe('-----a-b|', TEST_DATA);
             });
         });
     });
@@ -102,13 +102,13 @@ describe('[TEST]: HTTP limit concurrency service with Marble', () => {
                 const request2$ = cold('-b|', TEST_DATA);
                 const request3$ = cold('---c|', TEST_DATA);
 
-                const mergedObservable = merge(
+                const mergedObservable$ = merge(
                     service.add(request1$, limitConcurrency),
                     service.add(request2$, limitConcurrency),
                     service.add(request3$, limitConcurrency)
                 );
 
-                expect(mergedObservable).toBe('-b-c-a|', TEST_DATA);
+                expect(mergedObservable$).toBe('-b-c-a|', TEST_DATA);
             });
         });
 

@@ -68,7 +68,7 @@ export class NgxContextMenuItemComponent<T = Any> implements OnInit, OnDestroy {
     }
 
     public ngOnInit(): void {
-        this.subscription = this.contextMenu.events.subscribe((): void => detectChanges(this.cd));
+        this.subscription = this.contextMenu.events$.subscribe((): void => detectChanges(this.cd));
     }
 
     public ngOnDestroy(): void {

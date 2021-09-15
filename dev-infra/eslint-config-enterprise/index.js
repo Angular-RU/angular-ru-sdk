@@ -64,6 +64,49 @@ module.exports = {
                 'plugin:rxjs/recommended'
             ],
             rules: {
+                /**
+                 * RxJS
+                 */
+                'rxjs/ban-observables': 'error',
+                'rxjs/ban-operators': 'error',
+                'rxjs/no-finnish': 'off',
+                'rxjs/finnish': [
+                    'error',
+                    {
+                        functions: false,
+                        methods: false,
+                        parameters: true,
+                        properties: true,
+                        strict: false,
+                        variables: true
+                    }
+                ],
+                'rxjs/just': 'off',
+                'rxjs/no-async-subscribe': 'error',
+                'rxjs/no-compat': 'error',
+                'rxjs/no-connectable': 'error',
+                'rxjs/no-create': 'error',
+                'rxjs/no-cyclic-action': 'error',
+                'rxjs/no-explicit-generics': 'error',
+                'rxjs/no-exposed-subjects': 'off',
+                'rxjs/no-ignored-error': 'off',
+                'rxjs/no-ignored-notifier': 'error',
+                'rxjs/no-ignored-observable': 'error',
+                'rxjs/no-ignored-replay-buffer': 'error',
+                'rxjs/no-ignored-subscribe': 'error',
+                'rxjs/no-subclass': 'error',
+                'rxjs/no-subject-value': 'off',
+                'rxjs/no-topromise': 'error',
+                'rxjs/no-unsafe-catch': 'error',
+                'rxjs/no-unsafe-first': 'off',
+                'rxjs/no-unsafe-switchmap': 'error',
+                'rxjs/prefer-observer': 'off',
+                'rxjs/suffix-subjects': 'off',
+                'rxjs/throw-error': 'error',
+
+                /**
+                 * decorator-position
+                 */
                 'decorator-position/decorator-position': [
                     'error',
                     {
@@ -106,8 +149,7 @@ module.exports = {
                 'arrow-body-style': 'error',
                 'arrow-parens': ['error', 'always'],
                 'brace-style': [
-                    // Note: after prettier 2.3+ we have collisions with current rules
-                    'off'
+                    'off' // Note: after prettier 2.3+ we have collisions with current rules
                 ],
                 'lines-between-class-members': 'off',
                 camelcase: 'off',
@@ -174,10 +216,7 @@ module.exports = {
                 'no-nested-ternary': 'error',
                 'no-new-wrappers': 'error',
                 'no-prototype-builtins': 'off',
-                'import/exports-last': 'off',
-                'import/newline-after-import': ['error', { count: 1 }],
                 'no-redeclare': 'off',
-                '@typescript-eslint/no-redeclare': ['error'],
                 'no-restricted-exports': ['error'],
                 'no-restricted-syntax': [
                     'error',
@@ -239,27 +278,46 @@ module.exports = {
                 'use-isnan': 'error',
                 'valid-typeof': 'off',
                 'no-dupe-class-members': 'off',
-                'prettier/prettier': 'error',
-                'simple-import-sort/imports': 'error',
-                'simple-import-sort/exports': 'error',
-                'max-params-no-constructor/max-params-no-constructor': ['error', 3],
-                'no-cyrillic-string/no-cyrillic-string': 'error',
-                'jsdoc/check-alignment': 'error',
-
-                /**
-                 * import
-                 */
-                'import/first': 'error',
-                'import/no-default-export': 'error',
-                'import/no-duplicates': 'error',
                 'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
                 'func-style': 'off',
                 'no-implicit-globals': 'error',
                 'no-implied-eval': 'error',
 
                 /**
+                 * prettier
+                 */
+                'prettier/prettier': 'error',
+
+                /**
+                 * import
+                 */
+                'simple-import-sort/imports': 'error',
+                'simple-import-sort/exports': 'error',
+                'import/first': 'error',
+                'import/no-default-export': 'error',
+                'import/no-duplicates': 'error',
+                'import/exports-last': 'off',
+                'import/newline-after-import': ['error', { count: 1 }],
+
+                /**
+                 * no cyrillic
+                 */
+                'no-cyrillic-string/no-cyrillic-string': 'error',
+
+                /**
+                 * json/jsdoc
+                 */
+                'jsdoc/check-alignment': 'error',
+
+                /**
+                 * max-params-no-constructor
+                 */
+                'max-params-no-constructor/max-params-no-constructor': ['error', 3],
+
+                /**
                  * @typescript-eslint
                  */
+                '@typescript-eslint/no-redeclare': ['error'],
                 '@typescript-eslint/padding-line-between-statements': [
                     'error',
                     { blankLine: 'always', prev: '*', next: 'block' },

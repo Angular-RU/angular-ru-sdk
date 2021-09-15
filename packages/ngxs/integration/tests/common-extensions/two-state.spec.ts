@@ -179,6 +179,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
         const result: number | null = null;
         let finalized: boolean | null = null;
 
+        // eslint-disable-next-line rxjs/no-ignored-observable
         count.asyncSetState().pipe(
             finalize(() => {
                 finalized = true;
@@ -205,8 +206,13 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
         expect(finalized).toBeNull();
         expect(count.getState()).toEqual(0);
 
+        // eslint-disable-next-line rxjs/no-ignored-observable
         count.asyncSetStateAction();
+
+        // eslint-disable-next-line rxjs/no-ignored-observable
         count.asyncSetStateAction();
+
+        // eslint-disable-next-line rxjs/no-ignored-observable
         count.asyncSetStateAction();
 
         expect(result).toBeNull();
@@ -244,8 +250,13 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
         expect(finalized).toBeNull();
         expect(count.getState()).toEqual(0);
 
+        // eslint-disable-next-line rxjs/no-ignored-observable
         count.asyncIncrementAction();
+
+        // eslint-disable-next-line rxjs/no-ignored-observable
         count.asyncIncrementAction();
+
+        // eslint-disable-next-line rxjs/no-ignored-observable
         count.asyncIncrementAction();
 
         expect(result).toBeNull();
@@ -274,6 +285,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
         let response: [number, number] | [] = [];
         let result: [number, number] | [] = [];
 
+        // eslint-disable-next-line rxjs/no-ignored-observable
         forkJoin([count.asyncSetStateAction(), count.asyncIncrementAction()]).pipe(
             tap((val) => {
                 result = val;

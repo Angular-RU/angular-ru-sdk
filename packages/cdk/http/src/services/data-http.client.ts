@@ -37,13 +37,13 @@ export class DataHttpClient<K = unknown> extends AbstractHttpClient<K> {
 
         this.interceptor.onBeforeRequest?.(options);
         const meta: MetaDataRequest = this.createMetaDataRequest(options);
-        const observable: Observable<R> = this.http.request(options.method, meta.url, meta.requestOptions);
-        const queueRequest: Observable<R> = this.limitConcurrency.add<R>(
-            observable,
+        const observable$: Observable<R> = this.http.request(options.method, meta.url, meta.requestOptions);
+        const queueRequest$: Observable<R> = this.limitConcurrency.add<R>(
+            observable$,
             options.clientOptions.limitConcurrency
         );
 
-        return this.wrapHttpRequestWithMeta<T, R>(meta, options, queueRequest);
+        return this.wrapHttpRequestWithMeta<T, R>(meta, options, queueRequest$);
     }
 
     protected restTemplate<T>(options?: Partial<DataClientRequestOptions>): Observable<T> {
@@ -62,14 +62,14 @@ export class DataHttpClient<K = unknown> extends AbstractHttpClient<K> {
     private wrapHttpRequestWithMeta<T, R = T>(
         meta: MetaDataRequest,
         options: DataBeforeRequestOptions,
-        observable: Observable<R>
+        observable$: Observable<R>
     ): Observable<R> {
-        return observable.pipe(
+        return observable$.pipe(
             tap(
                 (response: R): void => this.onSuccess(response, meta, options),
-                (error: HttpErrorResponse): void => this.onError(error, meta, options)
+                (error: unknown): void => this.onError(error as HttpErrorResponse, meta, options)
             ),
-            catchError((error: HttpErrorResponse): Observable<never> => this.onCatch(error, meta)),
+            catchError((error: unknown): Observable<never> => this.onCatch(error as HttpErrorResponse, meta)),
             finalize((): void => this.interceptor.onFinalizeAfterRequest?.(meta)),
             take(1)
         );

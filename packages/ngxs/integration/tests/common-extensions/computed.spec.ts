@@ -465,6 +465,7 @@ describe('[TEST]: Computed fields', () => {
             }
 
             public getValue(): number {
+                // eslint-disable-next-line rxjs/no-subject-value
                 return this.values$.getValue();
             }
         }

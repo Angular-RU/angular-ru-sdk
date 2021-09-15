@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
-    public snapshot: Observable<unknown> = this.store.select((state: unknown): unknown => state);
+    public snapshot$: Observable<unknown> = this.store.select((state: unknown): unknown => state);
 
     constructor(private readonly store: Store) {}
 

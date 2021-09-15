@@ -2,13 +2,14 @@ import { Injectable, NgZone, OnDestroy } from '@angular/core';
 import { Any, Nullable, PlainObject } from '@angular-ru/cdk/typings';
 import { isFalsy, tryParseJson } from '@angular-ru/cdk/utils';
 import { Observable, ReplaySubject, Subject, Subscription, throwError } from 'rxjs';
-import { WebSocketMessage } from 'rxjs/internal/observable/dom/WebSocketSubject';
 import { catchError, filter, map, take, takeUntil } from 'rxjs/operators';
 import { webSocket, WebSocketSubject, WebSocketSubjectConfig } from 'rxjs/webSocket';
 
 import { WebsocketHandler } from '../interfaces/websocket-handler';
 import { WebsocketMessage } from '../interfaces/websocket-message';
 import { WebsocketConfig } from './websocket-config';
+
+type WebSocketMessage = string | ArrayBuffer | Blob | ArrayBufferView;
 
 export const PLAIN_TEXT: PlainObject = {};
 export const BINARY: PlainObject = {};
@@ -17,8 +18,8 @@ export const BINARY: PlainObject = {};
 export abstract class AbstractWebsocketClient<K extends string | PlainObject>
     implements WebsocketHandler<K>, OnDestroy
 {
-    public connected$: ReplaySubject<Event> = new ReplaySubject();
-    public disconnected$: ReplaySubject<Event> = new ReplaySubject();
+    public connected$: ReplaySubject<Event> = new ReplaySubject(Number.POSITIVE_INFINITY);
+    public disconnected$: ReplaySubject<Event> = new ReplaySubject(Number.POSITIVE_INFINITY);
     public destroy$: Subject<boolean> = new Subject<boolean>();
     protected readonly messages$: Subject<WebsocketMessage<K, Any>> = new Subject();
     private connected: boolean = false;
@@ -73,7 +74,7 @@ export abstract class AbstractWebsocketClient<K extends string | PlainObject>
 
     public disconnect(): void {
         this.socketSubscription?.unsubscribe();
-        this.socket$?.unsubscribe();
+        this.socket$?.complete();
         this.destroy$.next(true);
         this.destroy$.complete();
     }
@@ -82,7 +83,7 @@ export abstract class AbstractWebsocketClient<K extends string | PlainObject>
         return this.messages$.pipe(
             filter((message: WebsocketMessage<K, T>): boolean => message.type === type),
             map((message: WebsocketMessage<K, T>): T => message.data),
-            catchError((err: Error): Observable<never> => throwError(err)),
+            catchError((err: unknown): Observable<never> => throwError(err as Error)),
             takeUntil(this.destroy$)
         );
     }

@@ -3,19 +3,17 @@ import { Any } from '@angular-ru/cdk/typings';
 import { Observable, Subject } from 'rxjs';
 
 export class ControlValueAccessorPatcher<ModelValue = Any, ViewValue = ModelValue> {
-    public readonly onViewValueChanged: Observable<ViewValue>;
-    public readonly onModelValueChanged: Observable<ModelValue>;
-
-    private readonly onViewValueChangedSubject: Subject<ViewValue> = new Subject<ViewValue>();
-    private readonly onModelValueChangedSubject: Subject<ModelValue> = new Subject<ModelValue>();
-
+    public readonly onViewValueChanged$: Observable<ViewValue>;
+    public readonly onModelValueChanged$: Observable<ModelValue>;
+    private readonly onViewValueChangedSubject$: Subject<ViewValue> = new Subject<ViewValue>();
+    private readonly onModelValueChangedSubject$: Subject<ModelValue> = new Subject<ModelValue>();
     private writeViewValueFunction!: (viewValue: ViewValue) => void;
     private registerOnViewValueChangeFunction!: (onViewValueChangeFunction: (viewValue: ViewValue) => void) => void;
     private onModelValueChangeFunction?: (modelValue: ModelValue) => void;
 
     constructor(private readonly accessor: ControlValueAccessor) {
-        this.onViewValueChanged = this.onViewValueChangedSubject.asObservable();
-        this.onModelValueChanged = this.onModelValueChangedSubject.asObservable();
+        this.onViewValueChanged$ = this.onViewValueChangedSubject$.asObservable();
+        this.onModelValueChanged$ = this.onModelValueChangedSubject$.asObservable();
 
         this.saveOriginalAccessorFunctions();
         this.patchAccessorFunctions();
@@ -40,14 +38,14 @@ export class ControlValueAccessorPatcher<ModelValue = Any, ViewValue = ModelValu
             this.onModelValueChangeFunction = onModelValueChangeFunction;
 
             const proxyUpdateViewValue = (viewValue: ViewValue): void => {
-                this.onViewValueChangedSubject.next(viewValue);
+                this.onViewValueChangedSubject$.next(viewValue);
             };
 
             this.registerOnViewValueChangeFunction(proxyUpdateViewValue);
         };
 
         this.accessor.writeValue = (modelValue: ModelValue): void => {
-            this.onModelValueChangedSubject.next(modelValue);
+            this.onModelValueChangedSubject$.next(modelValue);
         };
     }
 

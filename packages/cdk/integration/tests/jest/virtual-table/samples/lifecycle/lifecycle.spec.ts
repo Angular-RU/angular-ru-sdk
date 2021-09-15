@@ -386,7 +386,7 @@ describe('[TEST]: Lifecycle table', () => {
     }));
 
     it('should be correct ngOnDestroy', () => {
-        expect(table.destroy.closed).toEqual(false);
+        expect(table.destroy$.closed).toEqual(false);
 
         table.ngOnChanges(changes);
         table.ngOnInit();
@@ -395,7 +395,7 @@ describe('[TEST]: Lifecycle table', () => {
         table.ngAfterViewChecked();
         table.ngOnDestroy();
 
-        expect(table.destroy.closed).toEqual(true);
+        expect(table.destroy$.closed).toEqual(true);
     });
 
     it('should be correct sync rendering', fakeAsync(() => {

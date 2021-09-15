@@ -35,7 +35,7 @@ export class SampleSixteenComponent implements OnInit, AfterViewInit, OnDestroy 
             this.cd.detectChanges();
         });
 
-        this.sub = this.tableChanges.events.subscribe((event: TableUpdateSchema): void => this.save(event));
+        this.sub = this.tableChanges.events$.subscribe((event: TableUpdateSchema): void => this.save(event));
     }
 
     public ngAfterViewInit(): void {

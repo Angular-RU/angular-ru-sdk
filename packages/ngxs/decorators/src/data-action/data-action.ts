@@ -84,10 +84,10 @@ export function DataAction(options: RepositoryActionOptions = REPOSITORY_ACTION_
             };
 
             const event: ActionEvent = NgxsDataFactory.createAction(operation, args, registry);
-            const dispatcher: Observable<Any> = NgxsDataInjector.store!.dispatch(event);
+            const dispatcher$: Observable<Any> = NgxsDataInjector.store!.dispatch(event);
 
             if (isObservable(result)) {
-                return combineStream(dispatcher, result);
+                return combineStream(dispatcher$, result);
             } else {
                 return result;
             }

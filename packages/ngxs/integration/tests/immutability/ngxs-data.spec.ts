@@ -106,6 +106,7 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
 
         expect(state.getState()).toBeNull();
 
+        // eslint-disable-next-line rxjs/no-ignored-observable
         state.dispatch({ type: 'myState.set' });
 
         expect(state.getState()).toEqual({ a: 15 });
