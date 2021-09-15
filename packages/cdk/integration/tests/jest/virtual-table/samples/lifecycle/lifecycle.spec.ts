@@ -119,12 +119,11 @@ describe('[TEST]: Lifecycle table', () => {
             }
         });
 
-        table.scrollContainer = {
-            nativeElement: {
-                offsetHeight: 900
-            } as unknown as HTMLElement
-        };
+        const element: HTMLElement = document.createElement('div') as HTMLElement;
 
+        Object.defineProperty(element, 'offsetHeight', { value: 900 });
+
+        table.scrollContainer = { nativeElement: element };
         table.primaryKey = 'position';
         changes = {};
 
