@@ -1,3 +1,9 @@
+#### independent (2021-09-15)
+
+##### New Features
+
+-   **eslint-config-enterprise:** add rxjs rules (#946) (0b250248)
+
 #### independent (2021-09-14)
 
 ##### New Features

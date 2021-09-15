@@ -1,4 +1,4 @@
-const createTsJestConfig = require('./lib').createTsJestConfig;
+const createTsJestConfig = require('./dist/index').createTsJestConfig;
 
 module.exports = createTsJestConfig({
     tsConfig: './tsconfig.spec.json',

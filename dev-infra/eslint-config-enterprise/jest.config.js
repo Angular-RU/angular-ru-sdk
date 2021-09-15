@@ -1,5 +1,4 @@
-// @ts-ignore
-const createTsJestConfig = require('../jest').createTsJestConfig;
+const createTsJestConfig = require('../jest/dist/index').createTsJestConfig;
 
 module.exports = createTsJestConfig({
     tsConfig: './tsconfig.spec.json',
