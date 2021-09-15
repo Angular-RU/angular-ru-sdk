@@ -286,6 +286,13 @@ export class TableBuilderComponent<T>
         window.cancelAnimationFrame(this.frameCalculateViewportId!);
         this.templateParser.schema = null;
         this._destroy$.next(true);
+
+        /**
+         * @description
+         * If you want an Observable to be done with his task, you call observable.complete().
+         * This only exists on Subject and those who extend Subject.
+         * The complete method in itself will also unsubscribe any possible subscriptions.
+         */
         this._destroy$.complete();
     }
 
