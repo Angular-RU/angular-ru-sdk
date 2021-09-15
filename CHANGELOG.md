@@ -2,6 +2,12 @@
 
 ##### New Features
 
+-   support rxjs 7 (#947) (d8d59a37)
+
+#### independent (2021-09-15)
+
+##### New Features
+
 -   **eslint-config-enterprise:** add rxjs rules (#946) (0b250248)
 
 #### independent (2021-09-14)
