@@ -164,7 +164,9 @@ describe('check correct deep instance', () => {
             childA: { value: 'A_1' }
         });
 
+        // eslint-disable-next-line rxjs/no-ignored-observable
         app.dispatch({ type: 'MyChildBa_ACTION' });
+
         expect(app.getState()).toEqual({
             childB: {
                 value: 'B_A',

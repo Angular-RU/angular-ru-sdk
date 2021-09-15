@@ -20,9 +20,9 @@ export class FilterableService<T> implements Filterable {
     public types: ReadonlyMap<unknown, unknown> = TableFilterType as Any as ReadonlyMap<unknown, unknown>;
     public definition: ReadonlyMap<unknown, unknown> = {} as Any as ReadonlyMap<unknown, unknown>;
     public filterTypeDefinition: ReadonlyMap<unknown, TableFilterType> = {} as Any;
-    public readonly filterOpenEvents: Subject<void> = new Subject();
-    public readonly events: Subject<FilterEvent> = new ReplaySubject();
-    public readonly resetEvents: Subject<void> = new Subject<void>();
+    public readonly filterOpenEvents$: Subject<void> = new Subject();
+    public readonly events$: Subject<FilterEvent> = new ReplaySubject(Number.POSITIVE_INFINITY);
+    public readonly resetEvents$: Subject<void> = new Subject<void>();
     public state: FilterStateEvent = new FilterStateEvent();
     public filterValue: Nullable<string> = null;
     public filterType: Nullable<string | TableFilterType> = null;
@@ -73,15 +73,15 @@ export class FilterableService<T> implements Filterable {
         this.state = new FilterStateEvent();
         this.filtering = false;
         this.previousFiltering = false;
-        this.events.next({ value: null, type: null });
-        this.resetEvents.next();
+        this.events$.next({ value: null, type: null });
+        this.resetEvents$.next();
     }
 
     public changeFilteringStatus(): void {
         this.filtering = this.filterValueExist;
 
         if (this.previousFiltering && !this.filtering) {
-            this.events.next({ value: null, type: null });
+            this.events$.next({ value: null, type: null });
         }
 
         this.previousFiltering = this.filtering;
@@ -89,12 +89,12 @@ export class FilterableService<T> implements Filterable {
 
     public openFilter(key: string, event: MouseEvent): void {
         this.state = { opened: true, key, position: { left: event.clientX, top: event.clientY } };
-        this.filterOpenEvents.next();
+        this.filterOpenEvents$.next();
     }
 
     public closeFilter(): void {
         this.state = new FilterStateEvent();
-        this.filterOpenEvents.next();
+        this.filterOpenEvents$.next();
     }
 
     // eslint-disable-next-line max-lines-per-function
@@ -122,7 +122,7 @@ export class FilterableService<T> implements Filterable {
                     resolve({
                         source: sorted,
                         fireSelection: (): void => {
-                            this.events.next({ value, type });
+                            this.events$.next({ value, type });
                         }
                     });
                 });

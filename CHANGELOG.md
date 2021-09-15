@@ -1,5 +1,11 @@
 #### independent (2021-09-14)
 
+##### New Features
+
+-   **eslint-config-enterprise:** avoid timers (#943) (127c9d4f)
+
+#### independent (2021-09-14)
+
 ##### Build System / Dependencies
 
 -   update dependency @types/jasmine to v3.9.1 (#944) (d7c33f48)

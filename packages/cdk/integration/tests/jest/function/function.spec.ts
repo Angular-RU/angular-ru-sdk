@@ -30,7 +30,7 @@ describe('[TEST]: Function', () => {
 
     it('$arg', () => {
         function hello(name: string, value: number, a?: string[]): string {
-            return 'world' + name + value + a;
+            return `world${name}${value}${a}`;
         }
 
         expect($args(hello)).toEqual(['name', 'value', 'a']);

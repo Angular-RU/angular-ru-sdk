@@ -53,6 +53,6 @@ export class NgxFilterComponent<T> extends AbstractModalViewLayerDirective<T, Fi
     }
 
     public ngOnInit(): void {
-        this.subscription = this.filterable.filterOpenEvents.subscribe((): void => this.update());
+        this.subscription = this.filterable.filterOpenEvents$.subscribe((): void => this.update());
     }
 }

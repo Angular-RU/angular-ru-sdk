@@ -88,15 +88,25 @@ describe('[TEST]: Canceling requests and unsubscribing', () => {
         }
 
         private generateRequests(): void {
+            // eslint-disable-next-line rxjs/no-ignored-subscribe
             this._api.getData_0().pipe(takeUntil(this.destroy$)).subscribe();
+            // eslint-disable-next-line rxjs/no-ignored-subscribe
             this._api.getData_1().pipe(takeUntil(this.destroy$)).subscribe();
+            // eslint-disable-next-line rxjs/no-ignored-subscribe
             this._api.getData_2().pipe(takeUntil(this.destroy$)).subscribe();
+            // eslint-disable-next-line rxjs/no-ignored-subscribe
             this._api.getData_3().pipe(takeUntil(this.destroy$)).subscribe();
+            // eslint-disable-next-line rxjs/no-ignored-subscribe
             this._api.getData_4().pipe(takeUntil(this.destroy$)).subscribe();
+            // eslint-disable-next-line rxjs/no-ignored-subscribe
             this._api.getData_5().pipe(takeUntil(this.destroy$)).subscribe();
+            // eslint-disable-next-line rxjs/no-ignored-subscribe
             this._api.getData_6().pipe(takeUntil(this.destroy$)).subscribe();
+            // eslint-disable-next-line rxjs/no-ignored-subscribe
             this._api.getData_7().pipe(takeUntil(this.destroy$)).subscribe();
+            // eslint-disable-next-line rxjs/no-ignored-subscribe
             this._api.getData_8().pipe(takeUntil(this.destroy$)).subscribe();
+            // eslint-disable-next-line rxjs/no-ignored-subscribe
             this._api.getData_9().pipe(takeUntil(this.destroy$)).subscribe();
         }
     }

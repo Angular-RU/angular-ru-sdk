@@ -264,6 +264,7 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
         ({ client, httpMock } = configureTestingModule());
 
         for (let i = 0; i < defaultLimit + exceedTheLimit; i++) {
+            // eslint-disable-next-line rxjs/no-ignored-subscribe
             client?.get(`api-${i}`).subscribe();
         }
 
@@ -282,6 +283,7 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
         ({ client, httpMock } = configureTestingModule(Infinity));
 
         for (let i = 0; i < defaultLimit + exceedTheLimit; i++) {
+            // eslint-disable-next-line rxjs/no-ignored-subscribe
             client?.get(`api-${i}`).subscribe();
         }
 

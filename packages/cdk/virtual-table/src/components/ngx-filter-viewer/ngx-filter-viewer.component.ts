@@ -58,7 +58,7 @@ export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy
     }
 
     public ngOnInit(): void {
-        this.subscription = this.filterable.events.subscribe((event: FilterEvent): void => {
+        this.subscription = this.filterable.events$.subscribe((event: FilterEvent): void => {
             const hasFilter: boolean =
                 isNotNil((this.filterable.definition as Any)[this.key!]) || isNotNil(this.filterable.globalFilterValue);
 

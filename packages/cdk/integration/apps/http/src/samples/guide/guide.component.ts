@@ -17,10 +17,15 @@ export class GuideComponent implements OnInit {
     }
 
     private fetchData(): void {
+        // eslint-disable-next-line rxjs/no-ignored-subscribe
         this.apiClient.posts().subscribe();
+        // eslint-disable-next-line rxjs/no-ignored-subscribe
         this.apiClient.comments().subscribe();
+        // eslint-disable-next-line rxjs/no-ignored-subscribe
         this.apiClient.albums().subscribe();
+        // eslint-disable-next-line rxjs/no-ignored-subscribe
         this.apiClient.todos().subscribe();
+        // eslint-disable-next-line rxjs/no-ignored-subscribe
         this.apiClient.users().subscribe();
     }
 }

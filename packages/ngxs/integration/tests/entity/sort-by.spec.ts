@@ -201,7 +201,7 @@ describe('sort by entities', () => {
                 { id: 4, name: 'Petr', age: 40 }
             ]);
 
-            people.sort((a, b) => b.age - a.age);
+            people.sort((a: People, b: People) => b.age - a.age);
 
             expect(people.selectAll()).toEqual([
                 { id: 4, name: 'Petr', age: 40 },
