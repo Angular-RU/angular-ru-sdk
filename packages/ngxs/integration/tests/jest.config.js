@@ -1,4 +1,4 @@
-const createTsJestConfig = require('../../../../dev-infra/jest').createTsJestConfig;
+const createTsJestConfig = require('../../../../dev-infra/jest/dist/index').createTsJestConfig;
 
 module.exports = createTsJestConfig({
     tsConfig: './integration/tests/tsconfig.spec.json',
