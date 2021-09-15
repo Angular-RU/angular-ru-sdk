@@ -151,6 +151,6 @@ console.error(fooZ);
 (function a(variable: string): void {
     let newVar: string = variable;
 
-    newVar = newVar + ' world';
+    newVar = `${newVar} world`;
     console.error(newVar);
 })('hello');
