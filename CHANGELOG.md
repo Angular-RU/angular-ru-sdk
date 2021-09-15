@@ -2,6 +2,12 @@
 
 ##### New Features
 
+-   **cdk:** rows copy feature and reworks (#945) (a7120dc5)
+
+#### independent (2021-09-15)
+
+##### New Features
+
 -   support rxjs 7 (#947) (d8d59a37)
 
 #### independent (2021-09-15)
