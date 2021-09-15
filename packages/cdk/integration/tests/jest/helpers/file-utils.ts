@@ -1,7 +1,12 @@
+import { isNil } from '@angular-ru/cdk/utils';
 import fs from 'fs';
 import path from 'path';
 
-export function readFromBlob(blob: Blob): Promise<string> {
+export function readFromBlob(blob?: Blob): Promise<string> {
+    if (isNil(blob)) {
+        return Promise.reject();
+    }
+
     return new Promise((resolve: (value: string) => void): void => {
         const reader: FileReader = new FileReader();
 
@@ -10,8 +15,10 @@ export function readFromBlob(blob: Blob): Promise<string> {
     }).then(minify);
 }
 
-export function readFile(filePath: string): string {
-    return minify(fs.readFileSync(path.join(__dirname, 'file-suites', filePath)).toString());
+export function fileSuitesReader(base: string): (...filePath: string[]) => string {
+    return function (...filePath: string[]): string {
+        return minify(fs.readFileSync(path.join(base, 'file-suites', ...filePath)).toString());
+    };
 }
 
 export function minify(content: string): string {
