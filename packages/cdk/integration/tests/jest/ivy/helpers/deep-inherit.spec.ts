@@ -41,7 +41,7 @@ class A extends HelloWorldComponent {}
 class B extends A {
     public world(): string {
         try {
-            return this.anotherService3.testField + '__hello__';
+            return `${this.anotherService3.testField}__hello__`;
         } catch (e: unknown) {
             return 'INVALID';
         }

@@ -20,6 +20,7 @@ export class ExcelService {
 
     public exportExcel<T>(workbook: Partial<ExcelWorkbook<T>>): void {
         this.getTranslatedColumn()
+            // eslint-disable-next-line rxjs/no-topromise
             .toPromise()
             .then(async (translatedKeys: Nullable<PlainObject>): Promise<void> => {
                 await this.builder.exportExcelByWorkbook({

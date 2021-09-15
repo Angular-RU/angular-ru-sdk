@@ -8,7 +8,7 @@ import { ContextMenuState } from './context-menu-state';
 @Injectable()
 export class ContextMenuService<T, K = unknown> {
     public state: ContextMenuState<T, K> = new ContextMenuState<T, K>();
-    public readonly events: Subject<void> = new Subject();
+    public readonly events$: Subject<void> = new Subject();
 
     public openContextMenu(event: MouseEvent, key: Nullable<string> = null, row: Nullable<T> = null): boolean {
         this.state = new ContextMenuState<T, K>({
@@ -20,7 +20,7 @@ export class ContextMenuService<T, K = unknown> {
             position: { left: event.clientX, top: event.clientY }
         });
 
-        this.events.next();
+        this.events$.next();
         event.stopPropagation();
         event.preventDefault();
 
@@ -29,6 +29,6 @@ export class ContextMenuService<T, K = unknown> {
 
     public close(): void {
         this.state = new ContextMenuState<T, K>();
-        this.events.next();
+        this.events$.next();
     }
 }

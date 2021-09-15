@@ -11,7 +11,7 @@ import { ControlValueInterceptorDescriptor } from './control-value-interceptor-d
 
 @Injectable()
 export class ControlValueInterceptor<ModelValue = unknown, ViewValue = ModelValue> implements OnDestroy {
-    private onDestroy: Subject<void> = new Subject<void>();
+    private onDestroy$: Subject<void> = new Subject<void>();
     private readonly interceptor?: ControlValueAccessorPatcher<ModelValue, ViewValue>;
     private controlValueOperators: ControlValueInterceptorDescriptor<Any, Any>[] = [];
 
@@ -27,8 +27,8 @@ export class ControlValueInterceptor<ModelValue = unknown, ViewValue = ModelValu
 
     public ngOnDestroy(): void {
         this.interceptor?.detach();
-        this.onDestroy.next();
-        this.onDestroy.complete();
+        this.onDestroy$.next();
+        this.onDestroy$.complete();
     }
 
     public attach<MediatorModelValue = Any, MediatorViewValue = MediatorModelValue>(
@@ -69,19 +69,19 @@ export class ControlValueInterceptor<ModelValue = unknown, ViewValue = ModelValu
     }
 
     private listenModelConvertToViewValue(): void {
-        this.interceptor?.onModelValueChanged
+        this.interceptor?.onModelValueChanged$
             .pipe(
                 map((modelValue: ModelValue): ViewValue => this.toViewValue(modelValue)),
-                takeUntil(this.onDestroy)
+                takeUntil(this.onDestroy$)
             )
             .subscribe((viewValue: ViewValue): void => this.interceptor?.pushViewValue(viewValue));
     }
 
     private listenViewConvertToModelValue(): void {
-        this.interceptor?.onViewValueChanged
+        this.interceptor?.onViewValueChanged$
             .pipe(
                 map((viewValue: ViewValue): ModelValue => this.toModelValue(viewValue)),
-                takeUntil(this.onDestroy)
+                takeUntil(this.onDestroy$)
             )
             .subscribe((modelValue: ModelValue): void => this.interceptor?.pushModelValue(modelValue));
     }

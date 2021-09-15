@@ -296,10 +296,11 @@ export class NgxsDataStoragePlugin implements NgxsPlugin, DataStoragePlugin {
 
         NgxsDataStoragePlugin.eventsSubscriptions = fromEvent<StorageEvent>(window, 'storage').subscribe(
             (event: StorageEvent): void => {
-                const keyUsageInStore: boolean = checkValueIsFilled(event.key) && this.keys.has(event.key);
+                const keyUsageInStore: boolean = checkValueIsFilled(event.key) && this.keys.has(event!.key);
 
                 if (keyUsageInStore) {
-                    this.store!.dispatch({ type: NGXS_DATA_STORAGE_EVENT_TYPE });
+                    // eslint-disable-next-line rxjs/no-nested-subscribe,rxjs/no-ignored-subscribe
+                    this.store!.dispatch({ type: NGXS_DATA_STORAGE_EVENT_TYPE }).subscribe();
                 }
             }
         );

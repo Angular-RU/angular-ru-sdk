@@ -59,6 +59,7 @@ describe('[TEST]: Entity - primary key or unique id', () => {
                 lesson.set(createEntityCollections());
                 expect(lesson.getState()).toEqual({ ids: [], entities: {} });
 
+                // eslint-disable-next-line rxjs/no-ignored-observable
                 lesson.dispatch({ type: 'preparedLesson' });
 
                 expect(lesson.getState()).toEqual({

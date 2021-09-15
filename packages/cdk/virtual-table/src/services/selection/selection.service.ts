@@ -15,7 +15,7 @@ export class SelectionService<T> implements OnDestroy {
     public selectionStart: SelectionStatus = { status: false };
     public primaryKey: string = PrimaryKey.ID;
     public selectionTaskIdle: Nullable<number> = null;
-    public onChanges: Subject<void> = new Subject<void>();
+    public onChanges$: Subject<void> = new Subject<void>();
     public selectionModeIsEnabled: boolean = false;
     public rows: Nullable<T[]> = null;
     private readonly handler: PlainObjectOf<Fn> = {};
@@ -45,7 +45,7 @@ export class SelectionService<T> implements OnDestroy {
         this.range.clear();
         this.selectionStart = { status: false };
         this.selectionModel.clear();
-        this.onChanges.next();
+        this.onChanges$.next();
     }
 
     public toggleAll(rows: Nullable<T[]>): void {
@@ -71,7 +71,7 @@ export class SelectionService<T> implements OnDestroy {
     public reset(): void {
         this.selectionModel.clear();
         this.range.clear();
-        this.onChanges.next();
+        this.onChanges$.next();
     }
 
     public toggle(row?: Nullable<T>): void {
@@ -81,7 +81,7 @@ export class SelectionService<T> implements OnDestroy {
 
         this.ngZone.runOutsideAngular((): void => window.clearInterval(this.selectionTaskIdle!));
         this.selectionModel.toggle(this.getIdByRow(row), row, true);
-        this.onChanges.next();
+        this.onChanges$.next();
         this.checkIsAllSelected();
     }
 
@@ -154,7 +154,7 @@ export class SelectionService<T> implements OnDestroy {
             : allSize === this.selectionModel.size;
 
         this.selectionModel.generateImmutableEntries();
-        this.onChanges.next();
+        this.onChanges$.next();
     }
 
     private multipleSelectByShiftKeydown(index: number): void {

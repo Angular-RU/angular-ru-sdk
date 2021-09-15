@@ -73,8 +73,11 @@ describe('[TEST]: auto height', () => {
     });
 
     it('should be correct invoke ngOnDestroy', () => {
+        expect(directive.destroy$.closed).toEqual(false);
+        expect(directive.destroy$.isStopped).toEqual(false);
         directive.ngOnDestroy();
-        expect(directive.destroy.closed).toEqual(true);
+        expect(directive.destroy$.closed).toEqual(false);
+        expect(directive.destroy$.isStopped).toEqual(true);
     });
 
     it('should be correct calculate auto height when columnHeight = 45px', fakeAsync(() => {

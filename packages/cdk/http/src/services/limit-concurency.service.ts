@@ -9,9 +9,9 @@ export class LimitConcurrencyService {
     private activeRequestCount: number = 0;
     private requestQueue: Subject<boolean>[] = [];
 
-    public add<R>(request: Observable<R>, limitConcurrency: number): Observable<R> {
+    public add<R>(request$: Observable<R>, limitConcurrency: number): Observable<R> {
         if (limitConcurrency === Infinity) {
-            return request;
+            return request$;
         }
 
         this.validate(limitConcurrency);
@@ -19,18 +19,18 @@ export class LimitConcurrencyService {
         if (this.activeRequestCount < limitConcurrency) {
             this.activeRequestCount++;
 
-            return this.onComplete(request);
+            return this.onComplete(request$);
         }
 
-        const requestInLine: Subject<boolean> = new Subject<boolean>();
+        const requestInLine$: Subject<boolean> = new Subject<boolean>();
 
-        this.requestQueue.push(requestInLine);
+        this.requestQueue.push(requestInLine$);
 
-        return requestInLine.pipe(switchMap((): Observable<R> => this.onComplete(request)));
+        return requestInLine$.pipe(switchMap((): Observable<R> => this.onComplete(request$)));
     }
 
-    private onComplete<R>(request: Observable<R>): Observable<R> {
-        return request.pipe(
+    private onComplete<R>(request$: Observable<R>): Observable<R> {
+        return request$.pipe(
             finalize((): void => {
                 this.activeRequestCount--;
                 this.executeFromQueue();
@@ -39,12 +39,12 @@ export class LimitConcurrencyService {
     }
 
     private executeFromQueue(): void {
-        const requestInLine: Nullable<Subject<boolean>> = this.requestQueue.shift();
+        const requestInLine$: Nullable<Subject<boolean>> = this.requestQueue.shift();
 
-        if (isNotNil(requestInLine)) {
+        if (isNotNil(requestInLine$)) {
             this.activeRequestCount++;
-            requestInLine.next(true);
-            requestInLine.complete();
+            requestInLine$.next(true);
+            requestInLine$.complete();
         }
     }
 

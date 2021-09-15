@@ -130,9 +130,9 @@ describe('[TEST]: HTTP Intercept Client', () => {
 
     it('should be correct POST intercept', fakeAsync(() => {
         client?.post('api-post', { baseUrl: 'backend', body: { a: undefined, b: 2, c: 3 } }).subscribe({
-            error: (e: HttpErrorResponse) => {
-                expect(e.status).toEqual(400);
-                expect(e.statusText).toEqual('Bad Request');
+            error: (error: unknown) => {
+                expect((error as HttpErrorResponse).status).toEqual(400);
+                expect((error as HttpErrorResponse).statusText).toEqual('Bad Request');
             }
         });
 

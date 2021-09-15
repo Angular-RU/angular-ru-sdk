@@ -191,14 +191,14 @@ describe('[TEST]: Action decorator', () => {
 
             @DataAction()
             public withValueSetStateAsAction(@Payload('name') name: string): string {
-                this.setState('new value - ' + this.word + ' - ' + this.name + ' - ' + name);
+                this.setState(`new value - ${this.word} - ${this.name} - ${name}`);
 
                 return this.getState();
             }
 
             // noinspection JSUnusedGlobalSymbols
             public withValueSetStateAsMethod(name: string): string {
-                this.setState('new value as method - ' + this.word + ' - ' + this.name + ' - ' + name);
+                this.setState(`new value as method - ${this.word} - ${this.name} - ${name}`);
 
                 return this.getState();
             }

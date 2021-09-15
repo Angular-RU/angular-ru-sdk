@@ -994,7 +994,7 @@ describe('[TEST]: Storage plugin', () => {
                 public getItem(key: string): string {
                     return JSON.stringify({
                         lastChanged: '2020-01-01T12:00:00.000Z',
-                        data: 'MY_VAL::' + JSON.parse(localStorage.getItem(key) as string).data,
+                        data: `MY_VAL::${JSON.parse(localStorage.getItem(key) as string).data}`,
                         version: 1
                     });
                 }

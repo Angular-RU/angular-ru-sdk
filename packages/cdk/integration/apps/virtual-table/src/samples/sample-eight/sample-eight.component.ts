@@ -148,11 +148,9 @@ export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
                 // eslint-disable-next-line @typescript-eslint/no-magic-numbers
                 cost: Math.floor(Math.random() * 100) + 1,
                 active: true,
-                name:
-                    NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
-                    ' ' +
-                    NAMES[Math.round(Math.random() * (NAMES.length - 1))]?.charAt(0) +
-                    '.',
+                name: `${NAMES[Math.round(Math.random() * (NAMES.length - 1))]} ${NAMES[
+                    Math.round(Math.random() * (NAMES.length - 1))
+                ]?.charAt(0)}.`,
                 // eslint-disable-next-line @typescript-eslint/no-magic-numbers
                 weight: Math.round(Math.random() * 100).toString(),
                 firstName: NAMES[Math.round(Math.random() * (NAMES.length - 1))],
@@ -160,11 +158,11 @@ export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
                 dateOfBirth: 1985,
                 spokenLanguages: {
                     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-                    native: 'English' + Math.round(Math.random() * 100).toString(),
+                    native: `English${Math.round(Math.random() * 100).toString()}`,
                     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-                    fluent: 'Spanish' + Math.round(Math.random() * 100).toString(),
+                    fluent: `Spanish${Math.round(Math.random() * 100).toString()}`,
                     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-                    intermediate: 'Chinese' + Math.round(Math.random() * 100).toString()
+                    intermediate: `Chinese${Math.round(Math.random() * 100).toString()}`
                 }
             })
         );

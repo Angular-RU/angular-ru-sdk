@@ -28,7 +28,7 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
     @Input() public tableViewport: Partial<HTMLDivElement> = {};
     @Input() public sourceRef: T[] = [];
     @Output() public readonly recalculatedHeight: EventEmitter<void> = new EventEmitter(true);
-    private destroy$: Subject<boolean> = new Subject<boolean>();
+    private _destroy$: Subject<boolean> = new Subject<boolean>();
     private readonly minHeight: number = 0;
     private useOnlyAutoViewPort: boolean = false;
     private isDirtyCheck: boolean = false;
@@ -36,8 +36,8 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
 
     constructor(private readonly element: ElementRef, public readonly ngZone: NgZone) {}
 
-    public get destroy(): Subject<boolean> {
-        return this.destroy$;
+    public get destroy$(): Subject<boolean> {
+        return this._destroy$;
     }
 
     private get canCalculated(): boolean {
@@ -131,7 +131,7 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
     public ngOnInit(): void {
         this.ngZone.runOutsideAngular((): void => {
             fromEvent(window, 'resize', { passive: true })
-                .pipe(delay(MIN_RESIZE_DELAY), takeUntil(this.destroy$))
+                .pipe(delay(MIN_RESIZE_DELAY), takeUntil(this._destroy$))
                 .subscribe((): void => this.recalculateTableSize());
         });
     }
@@ -143,8 +143,15 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
     }
 
     public ngOnDestroy(): void {
-        this.destroy$.next(true);
-        this.destroy$.unsubscribe();
+        this._destroy$.next(true);
+
+        /**
+         * @description
+         * If you want an Observable to be done with his task, you call observable.complete().
+         * This only exists on Subject and those who extend Subject.
+         * The complete method in itself will also unsubscribe any possible subscriptions.
+         */
+        this._destroy$.complete();
     }
 
     public recalculateTableSize(): void {

@@ -31,7 +31,7 @@ describe('[TEST]: Computed fields', () => {
         }
 
         expect(message).toEqual(
-            NGXS_DATA_EXCEPTIONS.NGXS_COMPUTED_DECORATOR + `\nExample: \n@Computed() get getSnapshot() { \n\t .. \n}`
+            `${NGXS_DATA_EXCEPTIONS.NGXS_COMPUTED_DECORATOR}\nExample: \n@Computed() get getSnapshot() { \n\t .. \n}`
         );
     });
 
@@ -465,6 +465,7 @@ describe('[TEST]: Computed fields', () => {
             }
 
             public getValue(): number {
+                // eslint-disable-next-line rxjs/no-subject-value
                 return this.values$.getValue();
             }
         }
