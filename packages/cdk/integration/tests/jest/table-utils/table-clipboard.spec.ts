@@ -1,5 +1,6 @@
 /* eslint-disable no-restricted-globals */
 import { TestBed } from '@angular/core/testing';
+import { takeFirstItem } from '@angular-ru/cdk/array';
 import { TableClipboardModule, TableClipboardService } from '@angular-ru/cdk/table-utils';
 import { Nullable, PlainObject } from '@angular-ru/cdk/typings';
 import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
@@ -62,7 +63,7 @@ describe('[TEST] Table clipboard service', () => {
     it('should correctly convert to plain html', async () => {
         await tableClipboard.generateTableAndCopy({ entries: dataset });
         await new Promise((resolve) => setTimeout(resolve));
-        const blob = copySpy.mock.calls[0][0][0].types['text/html'];
+        const blob = getClipboardItemFromMock().types['text/html'];
 
         expect(await readFromBlob(blob)).toBe(readFile('test-1-simple.html'));
     });
@@ -73,7 +74,7 @@ describe('[TEST] Table clipboard service', () => {
             rules: { includeKeys: ['id', 'lastName', 'falseField'] }
         });
         await new Promise((resolve) => setTimeout(resolve));
-        const blob = copySpy.mock.calls[0][0][0].types['text/html'];
+        const blob = getClipboardItemFromMock().types['text/html'];
 
         expect(await readFromBlob(blob)).toBe(readFile('test-2-by-keys.html'));
     });
@@ -84,7 +85,7 @@ describe('[TEST] Table clipboard service', () => {
             rules: { excludeKeys: ['firstName', 'falseField'] }
         });
         await new Promise((resolve) => setTimeout(resolve));
-        const blob = copySpy.mock.calls[0][0][0].types['text/html'];
+        const blob = getClipboardItemFromMock().types['text/html'];
 
         expect(await readFromBlob(blob)).toBe(readFile('test-3-exclude-keys.html'));
     });
@@ -95,7 +96,7 @@ describe('[TEST] Table clipboard service', () => {
             rules: { excludeKeys: ['firstName', 'locale.code'] }
         });
         await new Promise((resolve) => setTimeout(resolve));
-        const blob = copySpy.mock.calls[0][0][0].types['text/html'];
+        const blob = getClipboardItemFromMock().types['text/html'];
 
         expect(await readFromBlob(blob)).toBe(readFile('test-4-options.html'));
     });
@@ -106,8 +107,15 @@ describe('[TEST] Table clipboard service', () => {
             translationPrefix: 'model'
         });
         await new Promise((resolve) => setTimeout(resolve));
-        const blob = copySpy.mock.calls[0][0][0].types['text/html'];
+        const blob = getClipboardItemFromMock().types['text/html'];
 
         expect(await readFromBlob(blob)).toBe(readFile('test-5-translate.html'));
     });
+
+    function getClipboardItemFromMock(): ClipboardItemMock {
+        const firstCall = takeFirstItem(copySpy.mock.calls);
+        const firstArgument = takeFirstItem(firstCall);
+
+        return takeFirstItem(firstArgument);
+    }
 });

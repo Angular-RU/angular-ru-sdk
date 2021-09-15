@@ -1,7 +1,12 @@
+import { isNil } from '@angular-ru/cdk/utils';
 import fs from 'fs';
 import path from 'path';
 
-export function readFromBlob(blob: Blob): Promise<string> {
+export function readFromBlob(blob?: Blob): Promise<string> {
+    if (isNil(blob)) {
+        return Promise.reject();
+    }
+
     return new Promise((resolve: (value: string) => void): void => {
         const reader: FileReader = new FileReader();
 
