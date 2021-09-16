@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Pipe, PipeTransform } from '@angular/core';
-import { firstItem } from '@angular-ru/cdk/array';
+import { takeFirstItem } from '@angular-ru/cdk/array';
 import { isString } from '@angular-ru/cdk/string';
 import { Nullable } from '@angular-ru/cdk/typings';
 
@@ -12,7 +12,7 @@ export class FormatDatePipe implements PipeTransform {
         let result: Nullable<string | number | Date> = value;
 
         if (isString(result) as boolean) {
-            result = firstItem((result as string).split('+')) ?? '';
+            result = takeFirstItem((result as string).split('+')) ?? '';
         }
 
         return (

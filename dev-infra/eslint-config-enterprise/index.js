@@ -41,8 +41,9 @@ module.exports = {
             },
             plugins: [
                 'rxjs',
-                'decorator-position',
                 'prettier',
+                'deprecation',
+                'decorator-position',
                 'simple-import-sort',
                 'max-params-no-constructor',
                 'eslint-plugin-no-cyrillic-string',
@@ -64,6 +65,11 @@ module.exports = {
                 'plugin:rxjs/recommended'
             ],
             rules: {
+                /**
+                 *  deprecation
+                 */
+                'deprecation/deprecation': 'error',
+
                 /**
                  * RxJS
                  */
@@ -93,6 +99,7 @@ module.exports = {
                 'rxjs/no-ignored-notifier': 'error',
                 'rxjs/no-ignored-observable': 'error',
                 'rxjs/no-ignored-replay-buffer': 'error',
+                'rxjs/no-nested-subscribe': 'error',
                 'rxjs/no-ignored-subscribe': 'error',
                 'rxjs/no-subclass': 'error',
                 'rxjs/no-subject-value': 'off',
@@ -119,6 +126,14 @@ module.exports = {
                 /**
                  * ESLint Core
                  */
+                'no-useless-rename': [
+                    'error',
+                    {
+                        ignoreDestructuring: true,
+                        ignoreImport: false,
+                        ignoreExport: true
+                    }
+                ],
                 'prefer-template': 'error',
                 'no-restricted-globals': [
                     'error',

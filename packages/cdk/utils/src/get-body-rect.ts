@@ -1,5 +1,5 @@
 import { Nullable } from '@angular-ru/cdk/typings';
 
-export function getBodyRect(): Nullable<ClientRect | DOMRect> {
+export function getBodyRect(): Nullable<DOMRect> {
     return document.querySelector('body')?.getBoundingClientRect();
 }

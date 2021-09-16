@@ -1,5 +1,4 @@
 export { HttpMethod } from './enums/http-method';
-export { HttpStatusCode } from './enums/http-status-code';
 export { RequestType } from './enums/request-type';
 export { DataBeforeRequestOptions } from './interfaces/data-before-request-options';
 export { DataClientRequestOptions, DataHeadersParams } from './interfaces/data-client-request-options';

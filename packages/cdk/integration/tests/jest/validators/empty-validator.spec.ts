@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControlOptions, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { emptyValidator } from '@angular-ru/cdk/validators';
 
 describe('empty validator', () => {
@@ -41,10 +41,10 @@ describe('empty validator', () => {
             constructor(private readonly fb: FormBuilder) {
                 this.form = this.fb.group(
                     {
-                        name: '',
-                        lastName: ''
+                        name: this.fb.control(''),
+                        lastName: this.fb.control('')
                     },
-                    { validators: emptyValidator }
+                    { validators: [emptyValidator] } as AbstractControlOptions
                 );
             }
         }

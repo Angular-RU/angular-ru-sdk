@@ -28,6 +28,8 @@ time = new Date().getTime();
 -   `NonEmptyArray`
 
 ```ts
+import { NonEmptyArray } from '@angular-ru/cdk/typings';
+
 export function assertIsEmptyList(arr: string[]): asserts arr is NonEmptyArray<string> {
     if (!Array.isArray(arr) || arr.length === 0) {
         throw new EmptyArrayList();

@@ -83,7 +83,7 @@ export abstract class AbstractWebsocketClient<K extends string | PlainObject>
         return this.messages$.pipe(
             filter((message: WebsocketMessage<K, T>): boolean => message.type === type),
             map((message: WebsocketMessage<K, T>): T => message.data),
-            catchError((err: unknown): Observable<never> => throwError(err as Error)),
+            catchError((err: unknown): Observable<never> => throwError((): Error => err as Error)),
             takeUntil(this.destroy$)
         );
     }
@@ -132,12 +132,12 @@ export abstract class AbstractWebsocketClient<K extends string | PlainObject>
 
     private _connect(): void {
         this.socket$ = webSocket(this.webSocketSubjectConfig);
-        this.socketSubscription = this.socket$.pipe(takeUntil(this.destroy$)).subscribe(
-            (message: WebsocketMessage<K, Any>): void => {
+        this.socketSubscription = this.socket$.pipe(takeUntil(this.destroy$)).subscribe({
+            next: (message: WebsocketMessage<K, Any>): void => {
                 window.requestAnimationFrame((): void => this.messages$.next(message));
             },
-            (): void => this.reconnect()
-        );
+            error: (): void => this.reconnect()
+        });
     }
 
     private reconnect(): void {
@@ -151,6 +151,8 @@ export abstract class AbstractWebsocketClient<K extends string | PlainObject>
     }
 
     private completeStoppedSocket(): void {
+        // TODO: need replace isStopped
+        // eslint-disable-next-line deprecation/deprecation
         if (isFalsy(this.socket$?.isStopped)) {
             this.socket$?.complete();
         }

@@ -11,7 +11,7 @@ describe('take second pipe', () => {
 
     it('take second', () => {
         expect(pipe.transform([1, 2])).toEqual(2);
-        expect(pipe.transform([2])).toBeNull();
-        expect(pipe.transform([])).toBeNull();
+        expect(pipe.transform([2])).toBeUndefined();
+        expect(pipe.transform([])).toBeUndefined();
     });
 });

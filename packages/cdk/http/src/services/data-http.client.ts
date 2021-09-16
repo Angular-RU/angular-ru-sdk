@@ -65,10 +65,10 @@ export class DataHttpClient<K = unknown> extends AbstractHttpClient<K> {
         observable$: Observable<R>
     ): Observable<R> {
         return observable$.pipe(
-            tap(
-                (response: R): void => this.onSuccess(response, meta, options),
-                (error: unknown): void => this.onError(error as HttpErrorResponse, meta, options)
-            ),
+            tap({
+                next: (response: R): void => this.onSuccess(response, meta, options),
+                error: (error: unknown): void => this.onError(error as HttpErrorResponse, meta, options)
+            }),
             catchError((error: unknown): Observable<never> => this.onCatch(error as HttpErrorResponse, meta)),
             finalize((): void => this.interceptor.onFinalizeAfterRequest?.(meta)),
             take(1)
@@ -94,6 +94,6 @@ export class DataHttpClient<K = unknown> extends AbstractHttpClient<K> {
     }
 
     private onCatch(error: HttpErrorResponse, meta: MetaDataRequest): Observable<never> {
-        return this.interceptor.onCatchErrorAfterRequest?.(error, meta) ?? throwError(error);
+        return this.interceptor.onCatchErrorAfterRequest?.(error, meta) ?? throwError((): HttpErrorResponse => error);
     }
 }

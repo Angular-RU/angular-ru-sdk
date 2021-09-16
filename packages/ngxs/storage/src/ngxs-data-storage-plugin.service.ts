@@ -1,5 +1,5 @@
 import { isPlatformServer } from '@angular/common';
-import { Inject, inject, Injectable, Injector, PLATFORM_ID, Self } from '@angular/core';
+import { Inject, inject, Injectable, Injector, PLATFORM_ID, ProviderToken, Self } from '@angular/core';
 import { isGetter } from '@angular-ru/cdk/object';
 import { Any } from '@angular-ru/cdk/typings';
 import { checkValueIsFilled, isFalsy, isNotNil, isTruthy } from '@angular-ru/cdk/utils';
@@ -123,7 +123,7 @@ export class NgxsDataStoragePlugin implements NgxsPlugin, DataStoragePlugin {
         if (isFalsy(provider.stateInstance)) {
             try {
                 provider.stateInstance =
-                    NgxsDataStoragePlugin.injector?.get(provider.stateClassRef, null) ??
+                    NgxsDataStoragePlugin.injector?.get(provider.stateClassRef as ProviderToken<Any>, null) ??
                     inject(provider.stateClassRef!);
             } catch {}
         }

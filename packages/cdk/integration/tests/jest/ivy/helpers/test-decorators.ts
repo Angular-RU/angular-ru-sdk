@@ -1,4 +1,4 @@
-import { Injector, NgZone } from '@angular/core';
+import { Injector, NgZone, ProviderToken } from '@angular/core';
 import { useInjector } from '@angular-ru/cdk/ivy';
 import { Any } from '@angular-ru/cdk/typings';
 
@@ -34,7 +34,7 @@ export function InjectNgZone(): PropertyDecorator {
 export function InjectByToken(token: Any): PropertyDecorator {
     return <T extends typeof Object.prototype>(prototypeRef: T, propertyKey: string | symbol): void => {
         useInjector(prototypeRef.constructor, (injector: Injector, instance: Any): void => {
-            instance[propertyKey] = injector.get(token);
+            instance[propertyKey] = injector.get(token as ProviderToken<Any>);
         });
     };
 }
