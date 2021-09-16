@@ -1,3 +1,10 @@
+#### independent (2021-09-16)
+
+##### Build System / Dependencies
+
+-   update dependency prettier to v2.4.1 (#949) (1b66a8f5)
+-   update angular dependencies to v12.2.6 (#948) (53196247)
+
 #### independent (2021-09-15)
 
 ##### New Features
