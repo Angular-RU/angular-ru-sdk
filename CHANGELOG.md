@@ -1,3 +1,9 @@
+#### independent (2021-09-17)
+
+##### Build System / Dependencies
+
+-   update dependency @types/node to v16.9.2 (#952) (34f817bb)
+
 #### independent (2021-09-16)
 
 ##### Build System / Dependencies
