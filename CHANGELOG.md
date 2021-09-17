@@ -1,5 +1,11 @@
 #### independent (2021-09-17)
 
+##### Build System / Dependencies
+
+-   update dependency eslint-plugin-jest to v24.4.2 (#953) (b7e44fc6)
+
+#### independent (2021-09-17)
+
 ##### New Features
 
 -   add new strict rules (#951) (5470b7df)
