@@ -1,5 +1,11 @@
 #### independent (2021-09-17)
 
+##### New Features
+
+-   **jest:** add default reporters (#954) (b6e1a2e8)
+
+#### independent (2021-09-17)
+
 ##### Build System / Dependencies
 
 -   update dependency eslint-plugin-jest to v24.4.2 (#953) (b7e44fc6)
