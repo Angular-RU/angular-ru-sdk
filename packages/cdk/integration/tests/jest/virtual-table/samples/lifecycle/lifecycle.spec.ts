@@ -133,6 +133,7 @@ describe('[TEST]: Lifecycle table', () => {
     it('should be basic api', async () => {
         table.setSource(deepClone(data));
 
+        // eslint-disable-next-line deprecation/deprecation
         expect(new TableSelectedItemsPipe(table).transform({ 1: true, 2: true })).toEqual([
             { position: 1, name: 'Hydrogen', symbol: 'H', weight: 1.0079 },
             { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' }
@@ -158,7 +159,9 @@ describe('[TEST]: Lifecycle table', () => {
         expect(table.source).toEqual([{ name: 'Hydrogen', position: 1, symbol: 'H', weight: 1.0079 }]);
 
         // expect selection pipe works even with filtered values
+        // eslint-disable-next-line deprecation/deprecation
         expect(new TableSelectedItemsPipe(table).transform({})).toEqual([]);
+        // eslint-disable-next-line deprecation/deprecation
         expect(new TableSelectedItemsPipe(table).transform({ 1: true, 2: true })).toEqual([
             { position: 1, name: 'Hydrogen', symbol: 'H', weight: 1.0079 },
             { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' }
@@ -386,6 +389,7 @@ describe('[TEST]: Lifecycle table', () => {
 
     it('should be correct ngOnDestroy', () => {
         expect(table.destroy$.closed).toEqual(false);
+        // eslint-disable-next-line deprecation/deprecation
         expect(table.destroy$.isStopped).toEqual(false);
 
         table.ngOnChanges(changes);
@@ -396,6 +400,7 @@ describe('[TEST]: Lifecycle table', () => {
         table.ngOnDestroy();
 
         expect(table.destroy$.closed).toEqual(false);
+        // eslint-disable-next-line deprecation/deprecation
         expect(table.destroy$.isStopped).toEqual(true);
     });
 

@@ -39,47 +39,6 @@ expect(
 ]);
 ```
 
--   `firstItem, secondItem, thirdItem`
-
-```ts
-console.log(firstItem([1, 2, 3])); // 1
-console.log(secondItem([1, 2, 3])); // 2
-console.log(thirdItem([1, 2, 3])); // 3
-```
-
--   ~~isSingleList~~ (Use `hasOneItem` instead)
-
-```ts
-console.log(isSingleList([1])); // true
-console.log(isSingleList([])); // false
-console.log(isSingleList([1, 2, 3])); // false
-```
-
--   ~~isMultipleList~~ (Use `hasManyItems` instead)
-
-```ts
-console.log(isMultipleList([1])); // false
-console.log(isMultipleList([])); // false
-console.log(isMultipleList([1, 2])); // true
-console.log(isMultipleList([1, 2, 3])); // true
-```
-
--   ~~isEmptyList~~ (Use `hasNoItems` instead)
-
-```ts
-console.log(isEmptyList([])); // true
-console.log(isEmptyList([1])); // false
-console.log(isEmptyList([1, 2, 3])); // false
-```
-
--   ~~isFilledList~~ (Use `hasItems` instead)
-
-```ts
-console.log(isFilledList([])); // false
-console.log(isFilledList([1])); // true
-console.log(isFilledList([1, 2, 3])); // true
-```
-
 -   `uniqueArrayOf`
 
 ```ts

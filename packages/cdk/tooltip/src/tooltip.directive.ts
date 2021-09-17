@@ -81,7 +81,7 @@ export class TooltipDirective implements OnDestroy {
     }
 
     private static getScrollPos(): number {
-        return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        return window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
     }
 
     public onMouseenterHandler(): void {

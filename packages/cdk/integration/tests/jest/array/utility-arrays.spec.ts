@@ -1,59 +1,20 @@
 import {
     exclude,
-    firstItem,
     hasAtMostOneItem,
     hasItems,
     hasManyItems,
     hasNoItems,
     hasOneItem,
-    isEmptyList,
-    isFilledList,
-    isMultipleList,
-    isSingleList,
     partition,
-    secondItem,
     takeFirstItem,
     takeLastItem,
     takeSecondItem,
-    takeThirdItem,
-    thirdItem
+    takeThirdItem
 } from '@angular-ru/cdk/array';
 import { isNumber } from '@angular-ru/cdk/number';
 import { PlainObject } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: Array utility', () => {
-    it('is single list', () => {
-        expect(isSingleList()).toEqual(false);
-        expect(isSingleList(null)).toEqual(false);
-        expect(isSingleList([])).toEqual(false);
-        expect(isSingleList([1, 2])).toEqual(false);
-        expect(isSingleList([1])).toEqual(true);
-    });
-
-    it('is multiple list', () => {
-        expect(isMultipleList()).toEqual(false);
-        expect(isMultipleList(null)).toEqual(false);
-        expect(isMultipleList([])).toEqual(false);
-        expect(isMultipleList([1])).toEqual(false);
-        expect(isMultipleList([1, 2])).toEqual(true);
-    });
-
-    it('is empty list', () => {
-        expect(isEmptyList()).toEqual(true);
-        expect(isEmptyList(null)).toEqual(true);
-        expect(isEmptyList([])).toEqual(true);
-        expect(isEmptyList([1])).toEqual(false);
-        expect(isEmptyList([1, 2])).toEqual(false);
-    });
-
-    it('is filled list', () => {
-        expect(isFilledList()).toEqual(false);
-        expect(isFilledList(null)).toEqual(false);
-        expect(isFilledList([])).toEqual(false);
-        expect(isFilledList([1])).toEqual(true);
-        expect(isFilledList([1, 2])).toEqual(true);
-    });
-
     it('has items', () => {
         expect(hasItems([1])).toEqual(true);
         expect(hasItems([1, 2, 3])).toEqual(true);
@@ -100,12 +61,6 @@ describe('[TEST]: Array utility', () => {
     });
 
     it('is first item', () => {
-        expect(firstItem()).toBeNull();
-        expect(firstItem(null)).toBeNull();
-        expect(firstItem([])).toBeNull();
-        expect(firstItem([1])).toEqual(1);
-        expect(firstItem([1, 2])).toEqual(1);
-
         expect(takeFirstItem()).toBeUndefined();
         expect(takeFirstItem(null)).toBeUndefined();
         expect(takeFirstItem([])).toBeUndefined();
@@ -114,12 +69,6 @@ describe('[TEST]: Array utility', () => {
     });
 
     it('is second item', () => {
-        expect(secondItem()).toBeNull();
-        expect(secondItem(null)).toBeNull();
-        expect(secondItem([])).toBeNull();
-        expect(secondItem([1])).toBeNull();
-        expect(secondItem([1, 2])).toEqual(2);
-
         expect(takeSecondItem()).toBeUndefined();
         expect(takeSecondItem(null)).toBeUndefined();
         expect(takeSecondItem([])).toBeUndefined();
@@ -128,13 +77,6 @@ describe('[TEST]: Array utility', () => {
     });
 
     it('is third item', () => {
-        expect(thirdItem()).toBeNull();
-        expect(thirdItem(null)).toBeNull();
-        expect(thirdItem([])).toBeNull();
-        expect(thirdItem([1])).toBeNull();
-        expect(thirdItem([1, 2])).toBeNull();
-        expect(thirdItem([1, 2, 3])).toEqual(3);
-
         expect(takeThirdItem()).toBeUndefined();
         expect(takeThirdItem(null)).toBeUndefined();
         expect(takeThirdItem([])).toBeUndefined();

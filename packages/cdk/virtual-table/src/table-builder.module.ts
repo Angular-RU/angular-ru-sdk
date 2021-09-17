@@ -73,6 +73,7 @@ import { TableBuilderComponent } from './table-builder.component';
         DragIconComponent,
         NgxSourceNullComponent,
         DisableRowPipe,
+        // eslint-disable-next-line deprecation/deprecation
         TableSelectedItemsPipe,
         MapToTableEntriesPipe,
         VirtualForDirective,
@@ -96,6 +97,7 @@ import { TableBuilderComponent } from './table-builder.component';
         TableBuilderComponent,
         TemplateBodyTdDirective,
         TemplateHeadThDirective,
+        // eslint-disable-next-line deprecation/deprecation
         TableSelectedItemsPipe,
         MapToTableEntriesPipe,
         NgxSourceNullComponent

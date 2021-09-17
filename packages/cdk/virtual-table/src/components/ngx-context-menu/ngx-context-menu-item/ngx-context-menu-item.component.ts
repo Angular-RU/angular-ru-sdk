@@ -59,7 +59,7 @@ export class NgxContextMenuItemComponent<T = Any> implements OnInit, OnDestroy {
         return this.contextMenu.state;
     }
 
-    public get clientRect(): Partial<ClientRect | DOMRect> {
+    public get clientRect(): Partial<DOMRect> {
         return this.itemElement.getBoundingClientRect?.() ?? {};
     }
 

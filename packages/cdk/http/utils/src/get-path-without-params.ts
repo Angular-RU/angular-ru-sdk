@@ -1,5 +1,5 @@
-import { firstItem } from '@angular-ru/cdk/array';
+import { takeFirstItem } from '@angular-ru/cdk/array';
 
 export function getPathWithoutQueryParams(path: string): string {
-    return firstItem(path.split('?')) ?? '';
+    return takeFirstItem(path.split('?')) ?? '';
 }

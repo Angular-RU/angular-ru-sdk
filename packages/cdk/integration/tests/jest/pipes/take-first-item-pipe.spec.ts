@@ -11,6 +11,6 @@ describe('take item pipe', () => {
 
     it('take item', () => {
         expect(pipe.transform([1, 2])).toEqual(1);
-        expect(pipe.transform([])).toBeNull();
+        expect(pipe.transform([])).toBeUndefined();
     });
 });

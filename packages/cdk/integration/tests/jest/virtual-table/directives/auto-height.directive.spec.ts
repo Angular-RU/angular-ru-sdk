@@ -26,7 +26,7 @@ describe('[TEST]: auto height', () => {
             setAttribute: (_: string, styleResult: string): void => {
                 style = styleResult;
             },
-            getBoundingClientRect: (): Partial<ClientRect> => ({ top: 10 })
+            getBoundingClientRect: (): Partial<DOMRect> => ({ top: 10 })
         }
     };
 
@@ -74,9 +74,11 @@ describe('[TEST]: auto height', () => {
 
     it('should be correct invoke ngOnDestroy', () => {
         expect(directive.destroy$.closed).toEqual(false);
+        // eslint-disable-next-line deprecation/deprecation
         expect(directive.destroy$.isStopped).toEqual(false);
         directive.ngOnDestroy();
         expect(directive.destroy$.closed).toEqual(false);
+        // eslint-disable-next-line deprecation/deprecation
         expect(directive.destroy$.isStopped).toEqual(true);
     });
 

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { secondItem, thirdItem } from '@angular-ru/cdk/array';
+import { takeSecondItem, takeThirdItem } from '@angular-ru/cdk/array';
 import { Nullable } from '@angular-ru/cdk/typings';
 import { isNotNil, isTrue } from '@angular-ru/cdk/utils';
 
@@ -16,7 +16,7 @@ export class DetectBrowserPipe implements PipeTransform {
     private static ensureInternetExplorer(ua: string): string {
         const matcher: Nullable<RegExpMatchArray> = /\brv[ :]+(\d+)/g.exec(ua) || [];
 
-        return `IE ${secondItem(matcher)}` ?? '';
+        return `IE ${takeSecondItem(matcher)}` ?? '';
     }
 
     private static ensureChrome(ua: string): string {
@@ -30,12 +30,14 @@ export class DetectBrowserPipe implements PipeTransform {
 
     private static ensureOtherBrowser(matchers: Nullable<RegExpMatchArray>, ua: string): string {
         const matcher: Nullable<RegExpMatchArray> = ua.match(/version\/(\d+)/i);
-        const otherMatchers: Nullable<string>[] = isNotNil(thirdItem(matchers))
-            ? [secondItem(matchers), thirdItem(matchers)]
-            : [navigator.appName, navigator.appVersion, '-?'];
+        const otherMatchers: Nullable<string>[] = isNotNil(takeThirdItem(matchers))
+            ? [takeSecondItem(matchers), takeThirdItem(matchers)]
+            : // TODO: need refactor deprecated method
+              // eslint-disable-next-line deprecation/deprecation
+              [navigator.appName, navigator.appVersion, '-?'];
 
         if (matcher !== null) {
-            otherMatchers?.splice(1, 1, secondItem(matcher));
+            otherMatchers?.splice(1, 1, takeSecondItem(matcher));
         }
 
         return otherMatchers?.join(' ') ?? '';
@@ -46,9 +48,9 @@ export class DetectBrowserPipe implements PipeTransform {
         const ua: string = userAgent ?? navigator.userAgent;
         const matchers: Nullable<RegExpMatchArray> = DetectBrowserPipe.getBrowserMatchers(ua);
 
-        if (/trident/i.test(secondItem(matchers) as string)) {
+        if (/trident/i.test(takeSecondItem(matchers) as string)) {
             browser = DetectBrowserPipe.ensureInternetExplorer(ua);
-        } else if (secondItem(matchers) === 'Chrome' && ua.match(/\b(OPR|Edge?)\/(\d+)/) !== null) {
+        } else if (takeSecondItem(matchers) === 'Chrome' && ua.match(/\b(OPR|Edge?)\/(\d+)/) !== null) {
             browser = DetectBrowserPipe.ensureChrome(ua);
         } else {
             browser = DetectBrowserPipe.ensureOtherBrowser(matchers, ua);

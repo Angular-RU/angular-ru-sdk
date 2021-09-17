@@ -63,14 +63,14 @@ describe('mutate', () => {
             expect(state).toEqual([3, 2, 1]);
         });
 
-        todo.mutable$().subscribe(
-            () => {
+        todo.mutable$().subscribe({
+            next: () => {
                 // ...
             },
-            (e: unknown) => {
+            error: (e: unknown) => {
                 error = (e as Error).message;
             }
-        );
+        });
 
         expect(error).toEqual(`Cannot assign to read only property '0' of object '[object Array]'`);
         expect(store.snapshot()).toEqual({ todos: [1, 2, 3] });
