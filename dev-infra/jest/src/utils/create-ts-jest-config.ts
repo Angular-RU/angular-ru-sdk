@@ -20,6 +20,7 @@ import {
     DEFAULT_MODULE_PATH_IGNORE_PATTERS,
     DEFAULT_ONLY_CHANGED,
     DEFAULT_PRESET,
+    DEFAULT_REPORTERS,
     DEFAULT_SETUP_FILES_AFTER_ENV,
     DEFAULT_TEST_PATH_IGNORE_PATTERS,
     DEFAULT_TS_JEST_IGNORE_CODES,
@@ -186,6 +187,8 @@ export function createTsJestConfig(options: JestConfigOptions): Config.InitialOp
          * Any istanbul reporter can be used.
          * https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib
          */
-        coverageReporters: options?.jestConfig?.coverageReporters ?? DEFAULT_COVERAGE_REPORTS
+        coverageReporters: options?.jestConfig?.coverageReporters ?? DEFAULT_COVERAGE_REPORTS,
+
+        reporters: options?.jestConfig?.reporters ?? DEFAULT_REPORTERS
     };
 }

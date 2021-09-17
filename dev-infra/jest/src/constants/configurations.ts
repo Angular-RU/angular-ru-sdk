@@ -19,3 +19,4 @@ export const DEFAULT_TEST_PATH_IGNORE_PATTERS: string[] = ['/node_modules/', '/d
 export const DEFAULT_CACHE_DIR: string = '<rootDir>/.cache';
 export const DEFAULT_COVERAGE_REPORTS: Config.CoverageReporters = ['html', 'lcov', 'json', 'text', 'lcov', 'clover'];
 export const DEFAULT_SETUP_FILES_AFTER_ENV: string[] = [];
+export const DEFAULT_REPORTERS: string[] = ['default', 'jest-junit'];
