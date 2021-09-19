@@ -1,3 +1,9 @@
+#### independent (2021-09-19)
+
+##### Build System / Dependencies
+
+-   update dependency @types/node to v16.9.3 (#955) (6aba8f28)
+
 #### independent (2021-09-17)
 
 ##### New Features
