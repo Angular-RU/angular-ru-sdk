@@ -36,8 +36,7 @@
             [tooltip]="template4"
             tooltip-size="medium"
             tooltip-placement="top"
-            tooltip-css-style="height: 100px; overflow: auto"
-        >
+            tooltip-css-style="height: 100px; overflow: auto">
             Top with HTML
 
             <ng-template #template4>
@@ -64,8 +63,7 @@
             <ng-container *cdkVirtualFor="let favorite of favorites">
                 <ng-template
                     [ngTemplateOutlet]="virtualRef"
-                    [ngTemplateOutletContext]="{ $implicit: favorite }"
-                ></ng-template>
+                    [ngTemplateOutletContext]="{ $implicit: favorite }"></ng-template>
             </ng-container>
         </cdk-virtual-scroll-viewport>
 
@@ -77,8 +75,7 @@
                     class="favorite-line--icon"
                     [tooltip-context]="favorite"
                     (click)="markFavorite(favorite)"
-                    [class.favorite-line--is-favorite]="favorite.isMarked"
-                >
+                    [class.favorite-line--is-favorite]="favorite.isMarked">
                     star_rate
                 </mat-icon>
 

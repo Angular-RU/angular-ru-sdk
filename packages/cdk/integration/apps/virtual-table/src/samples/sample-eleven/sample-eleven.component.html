@@ -56,8 +56,7 @@
 
                                 <ngx-context-menu-item (onClick)="exportExcel(licences)">
                                     <ngx-menu-content
-                                        icon="http://www.myiconfinder.com/uploads/iconsets/ae86b3a8881d697b6c42528aff5ba48b-excel.png"
-                                    >
+                                        icon="http://www.myiconfinder.com/uploads/iconsets/ae86b3a8881d697b6c42528aff5ba48b-excel.png">
                                     </ngx-menu-content>
                                     <ngx-menu-content>Export Excel</ngx-menu-content>
                                 </ngx-context-menu-item>
@@ -74,14 +73,12 @@
                                             (onClick)="
                                                 table1.toggleColumnVisibility(column.key); $event.preventDefault()
                                             "
-                                            [visible]="column.isModel"
-                                        >
+                                            [visible]="column.isModel">
                                             <ngx-menu-content no-margin>{{ column.key }}</ngx-menu-content>
                                             <ngx-menu-content no-margin align-center>
                                                 <mat-checkbox
                                                     color="primary"
-                                                    [checked]="column.isVisible"
-                                                ></mat-checkbox>
+                                                    [checked]="column.isVisible"></mat-checkbox>
                                             </ngx-menu-content>
                                         </ngx-context-menu-item>
                                     </ngx-context-menu-item>
@@ -91,8 +88,7 @@
                                     #item
                                     divider
                                     [disable]="!item.state.key"
-                                    (onClick)="showLine(item.state.key, item.state.item)"
-                                >
+                                    (onClick)="showLine(item.state.key, item.state.item)">
                                     <ngx-menu-content icon></ngx-menu-content>
                                     <ngx-menu-content>Show item row</ngx-menu-content>
                                 </ngx-context-menu-item>
@@ -100,8 +96,7 @@
                                 <ngx-context-menu-item
                                     #item
                                     *ngIf="item.state.key === 'id'"
-                                    (onClick)="copyId(item.state.value)"
-                                >
+                                    (onClick)="copyId(item.state.value)">
                                     <ngx-menu-content icon></ngx-menu-content>
                                     <ngx-menu-content>Copy in buffer ID</ngx-menu-content>
                                 </ngx-context-menu-item>
@@ -167,8 +162,7 @@
                         height="500"
                         [source]="data"
                         enable-selection
-                        (schemaChanges)="updatedSchema($event)"
-                    >
+                        (schemaChanges)="updatedSchema($event)">
                         <ngx-options is-draggable is-sortable></ngx-options>
 
                         <ngx-column key="action" custom-key sticky [is-draggable]="false" width="50">
@@ -212,8 +206,7 @@
                                 <ngx-context-menu-item
                                     *ngFor="let column of table2.columnSchema"
                                     (onClick)="table2.toggleColumnVisibility(column.key); $event.preventDefault()"
-                                    [visible]="column.isModel"
-                                >
+                                    [visible]="column.isModel">
                                     <ngx-menu-content no-margin>{{ column.key }}</ngx-menu-content>
                                     <ngx-menu-content no-margin align-center>
                                         <mat-checkbox color="primary" [checked]="column.isVisible"></mat-checkbox>
