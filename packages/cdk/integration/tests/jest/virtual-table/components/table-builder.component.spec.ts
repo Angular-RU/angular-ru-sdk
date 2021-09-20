@@ -21,8 +21,7 @@ import { FilterDescriptor } from '../../../../../virtual-table/src/services/filt
         enable-filtering
         [source]="data"
         [sort-types]="sortTypes"
-        [filter-definition]="filterDefinition"
-    ></ngx-table-builder>`
+        [filter-definition]="filterDefinition"></ngx-table-builder>`
 })
 class NgxTableBuilderMockComponent {
     @ViewChild(TableBuilderComponent, { static: true })

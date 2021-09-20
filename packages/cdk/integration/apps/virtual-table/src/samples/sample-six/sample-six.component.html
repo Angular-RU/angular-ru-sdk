@@ -15,8 +15,7 @@
     [source]="data"
     [skip-sort]="skipSort"
     [sort-types]="sortByIdDirection ? { id: 'asc' } : { id: 'desc' }"
-    (sortChanges)="sortChanges($event)"
->
+    (sortChanges)="sortChanges($event)">
     <ngx-empty>No data</ngx-empty>
     <ngx-source-null>Loading</ngx-source-null>
     <ngx-options is-sortable></ngx-options>

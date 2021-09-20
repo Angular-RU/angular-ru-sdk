@@ -20,15 +20,13 @@ describe('[TEST]: Trim Input', function () {
                     type="text"
                     formControlName="textarea"
                     splitString
-                    [splitOptions]="splitStringOptions"
-                ></textarea>
+                    [splitOptions]="splitStringOptions"></textarea>
                 <input
                     #inputElement
                     type="text"
                     formControlName="input"
                     splitString
-                    [splitOptions]="splitStringOptions"
-                />
+                    [splitOptions]="splitStringOptions" />
             </form>
             <input #tdfInputElement type="text" [(ngModel)]="list" splitString [splitOptions]="splitStringOptions" />
         `

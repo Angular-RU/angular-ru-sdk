@@ -19,8 +19,7 @@
             <div [@.disabled]="true">
                 <mat-checkbox
                     [checked]="$any(row)?.active"
-                    (change)="updateRow(row, 'active', $event.checked)"
-                ></mat-checkbox>
+                    (change)="updateRow(row, 'active', $event.checked)"></mat-checkbox>
             </div>
         </ng-template>
     </ngx-column>
@@ -47,8 +46,7 @@
                         matInput
                         placeholder="Editable field"
                         [ngModel]="$any(row)?.symbol"
-                        (ngModelChange)="asyncRow(row, 'symbol', $event)"
-                    />
+                        (ngModelChange)="asyncRow(row, 'symbol', $event)" />
                 </div>
             </mat-form-field>
         </ng-template>

@@ -261,8 +261,7 @@
                             <mat-option
                                 [value]="license.name"
                                 (click)="cd.detectChanges()"
-                                *ngFor="let license of licenses"
-                            >
+                                *ngFor="let license of licenses">
                                 {{ license.name }}
                             </mat-option>
                         </mat-select>

@@ -3,8 +3,7 @@
         <mat-label>Find options</mat-label>
         <mat-select
             [value]="$any(table.filterable.filterTypeDefinition)[state.key!]"
-            (valueChange)="table.filterable.updateFilterTypeBy($event, state.key); table.filter()"
-        >
+            (valueChange)="table.filterable.updateFilterTypeBy($event, state.key); table.filter()">
             <mat-option *ngFor="let type of table.filterable.types | keyvalue" [value]="type.value">
                 {{ type.key }}
             </mat-option>
@@ -18,8 +17,7 @@
             name="width"
             autocomplete="off"
             [ngModel]="$any(table.filterable.definition)[state.key!]"
-            (ngModelChange)="table.filterable.updateFilterValueBy($event, state.key); table.filter()"
-        />
+            (ngModelChange)="table.filterable.updateFilterValueBy($event, state.key); table.filter()" />
         <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
 </div>
