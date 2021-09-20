@@ -2,6 +2,16 @@
 
 ##### Build System / Dependencies
 
+-   update eslint dependencies (#958) (533b9a0b)
+
+##### Bug Fixes
+
+-   **prettier:** replace deprecated property jsxBracketSameLine (#959) (91d4c55d)
+
+#### independent (2021-09-20)
+
+##### Build System / Dependencies
+
 -   update dependency jest to v27.2.1 (#957) (70a0c67a)
 
 #### independent (2021-09-19)
