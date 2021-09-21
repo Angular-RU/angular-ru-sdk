@@ -1,3 +1,9 @@
+#### independent (2021-09-21)
+
+##### Build System / Dependencies
+
+-   update dependency @types/jest to v27.0.2 (#960) (8a81136e)
+
 #### independent (2021-09-20)
 
 ##### Build System / Dependencies
