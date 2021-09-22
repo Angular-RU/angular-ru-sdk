@@ -9,4 +9,3 @@ jobs:
             - uses: actions/labeler@main
               with:
                   repo-token: ${{ secrets.GH_TOKEN }}
-                  configuration-path: .github/labels.yml
