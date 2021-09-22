@@ -1,9 +1,9 @@
-name: ci/labels
+name: ci labels
+
 on: [push]
 
 jobs:
     triage:
-        name: triage
         runs-on: ubuntu-latest
         steps:
             - uses: actions/labeler@main
