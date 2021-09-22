@@ -1,3 +1,9 @@
+#### independent (2021-09-22)
+
+##### Build System / Dependencies
+
+-   update dependency jest-junit to v12.3.0 (#962) (d92e21b0)
+
 #### independent (2021-09-21)
 
 ##### Build System / Dependencies
