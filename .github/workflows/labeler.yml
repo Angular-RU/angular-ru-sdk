@@ -1,4 +1,4 @@
-name: ci labels
+name: Automatically label new pull requests based on the paths of files being changed
 
 on: [push]
 
@@ -8,4 +8,5 @@ jobs:
         steps:
             - uses: actions/labeler@main
               with:
-                  repo-token: '${{ secrets.GH_TOKEN }}'
+                  repo-token: ${{ secrets.GH_TOKEN }}
+                  configuration-path: .github/labels.yml
