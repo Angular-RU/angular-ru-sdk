@@ -7,22 +7,7 @@ jobs:
     rebase:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v2
-              with:
-                  fetch-depth: '0'
-                  persist-credentials: false
-
-            - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
-
-            - name: Prepare git
-              env:
-                  GH_TOKEN: ${{ secrets.GH_TOKEN }}
-              run: |
-                  git config --global push.default simple
-                  git config --global user.name "angular-ru"
-                  git config --global user.email "angular-ru@yandex.ru"
-                  git config remote.origin.url https://x-access-token:$GH_TOKEN@github.com/$GITHUB_REPOSITORY
-
             - uses: peter-evans/rebase@v1
               with:
+                  token: ${{ secrets.GH_TOKEN }}
                   base: master
