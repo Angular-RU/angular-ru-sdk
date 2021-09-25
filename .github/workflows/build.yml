@@ -42,22 +42,22 @@ jobs:
               run: yarn install --ignore-engines --frozen-lockfile
 
             - name: Verify NG version
-              if: github.ref != 'refs/heads/${{ env.BASE_BRANCH }}'
+              if: ${{ github.ref != 'refs/heads/${{ env.BASE_BRANCH }}' }}
               run: yarn verify:ng
 
             - name: Build
               run: yarn build
 
             - name: Lint
-              if: github.ref != 'refs/heads/${{ env.BASE_BRANCH }}'
+              if: ${{ github.ref != 'refs/heads/${{ env.BASE_BRANCH }}' }}
               run: yarn commitlint --from=HEAD~1 && yarn run-p format lint
 
             - name: Integration test
-              if: github.ref != 'refs/heads/${{ env.BASE_BRANCH }}'
-              run: yarn run-p format lint
+              if: ${{ github.ref != 'refs/heads/${{ env.BASE_BRANCH }}' }}
+              run: yarn run-p test integration
 
             - name: Deploy npm packages
-              if: github.ref == 'refs/heads/${{ env.BASE_BRANCH }}'
+              if: ${{ github.ref == 'refs/heads/${{ env.BASE_BRANCH }}' }}
               env:
                   GH_TOKEN: ${{ secrets.GH_TOKEN }}
                   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -67,7 +67,7 @@ jobs:
 
             # Auto push fixable code
             - name: Get last commit message
-              if: github.ref != 'refs/heads/${{ env.BASE_BRANCH }}'
+              if: ${{ github.ref != 'refs/heads/${{ env.BASE_BRANCH }}' }}
               id: last-commit-message
               run: |
                   echo "::set-output name=msg::$(git log -1 --pretty=%s)"
