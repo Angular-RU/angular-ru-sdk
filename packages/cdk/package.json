@@ -19,7 +19,7 @@
         "build:lib": "yarn ng build cdk && cp README.md dist/library && yarn symlink",
         "symlink": "sh symlink.sh",
         "start": "yarn ng serve cdk-app --open",
-        "test": "yarn test:jest && yarn test:karma",
+        "test": "yarn run-p test:jest test:karma",
         "test:jest": "yarn jest --config integration/tests/jest/jest.config.js",
         "test:karma": "export CI=true && yarn ng test stream-app",
         "postversion": "yarn npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\" || exit 0"
