@@ -7,7 +7,7 @@ env:
     BASE_BRANCH: 'master'
 
 jobs:
-    pre_job:
+    skip-duplicate-actions:
         runs-on: ubuntu-latest
         outputs:
             should_skip: ${{ steps.skip_check.outputs.should_skip }}
@@ -16,7 +16,7 @@ jobs:
               uses: fkirc/skip-duplicate-actions@master
 
     build:
-        needs: pre_job
+        needs: skip-duplicate-actions
 
         if: "!contains(github.event.head_commit.message , 'ci skip')"
         runs-on: ubuntu-latest
