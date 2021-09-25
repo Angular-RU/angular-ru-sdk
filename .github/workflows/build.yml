@@ -64,7 +64,8 @@ jobs:
               if: ${{ github.ref != 'refs/heads/${{ env.BASE_BRANCH }}' }}
               run: yarn integration
 
-            - name: Deploy npm packages (only for ${{ env.BASE_BRANCH }})
+            # move to release.yml
+            - name: Deploy npm packages
               if: ${{ github.ref == 'refs/heads/${{ env.BASE_BRANCH }}' }}
               run: |
                   echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
