@@ -1,15 +1,15 @@
-name: CI Build
+name: Angular-RU SDK pipelines
 
 on: [push]
 
+env:
+    NODE_VERSION: '16.9.x'
+    CI_MODE: 'true'
+
 jobs:
-    build:
+    setup:
         if: "!contains(github.event.head_commit.message , 'ci skip')"
         runs-on: ubuntu-latest
-
-        strategy:
-            matrix:
-                node-version: [16.9.1]
 
         steps:
             - uses: actions/checkout@v2
@@ -19,10 +19,10 @@ jobs:
 
             - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
 
-            - name: Use Node.js ${{ matrix.node-version }}
+            - name: Use Node.js ${{ env.NODE_VERSION }}
               uses: actions/setup-node@v2
               with:
-                  node-version: ${{ matrix.node-version }}
+                  node-version: ${{ env.NODE_VERSION }}
 
             - name: Prepare git
               env:
@@ -39,17 +39,14 @@ jobs:
                   path: |
                       node_modules
                       */*/node_modules
-                  key: ${{ runner.os }}--build-cache-hash--${{ hashFiles('**/yarn.lock') }}
+                  key: ${{ hashFiles('**/yarn.lock') }}
 
             - name: Run install
               run: |
                   yarn install --ignore-engines --frozen-lockfile
 
-            - name: Run lint
-              run: |
-                  yarn commitlint --from=HEAD~1
-                  yarn format
-                  yarn lint
+            - name: Run build
+              run: yarn build
 
             - name: Run test step
               run: yarn test
@@ -65,6 +62,41 @@ jobs:
               run: |
                   echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
                   GH_TOKEN=${{ secrets.GH_TOKEN }} yarn lerna publish
+
+    lint:
+        needs: setup
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+              with:
+                  fetch-depth: '0'
+                  persist-credentials: false
+
+            - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+
+            - name: Use Node.js ${{ env.NODE_VERSION }}
+              uses: actions/setup-node@v2
+              with:
+                  node-version: ${{ env.NODE_VERSION }}
+
+            - name: Restore cache
+              uses: actions/cache@v2
+              with:
+                  path: |
+                      node_modules
+                      */*/node_modules
+                  key: ${{ hashFiles('**/yarn.lock') }}
+
+            - name: Run install
+              run: |
+                  yarn install --ignore-engines --frozen-lockfile
+
+            - name: Run lint
+              run: |
+                  yarn commitlint --from=HEAD~1
+                  yarn format
+                  yarn lint
 
             - name: Get last commit message
               id: last-commit-message
