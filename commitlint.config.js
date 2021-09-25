@@ -1,6 +1,6 @@
-const { packages } = require('./package.json');
+const { packagesGraph } = require('./package.json');
 
-const scopes = packages.map((dir) => {
+const scopes = [...packagesGraph.common, ...packagesGraph.dependent].map((dir) => {
     const packageName = dir.split('/').pop();
     return `${packageName}`;
 });
