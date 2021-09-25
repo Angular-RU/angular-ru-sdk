@@ -3,6 +3,7 @@ import { getPackages } from './utils/get-packages';
 import { info } from './utils/info';
 import { debug } from './utils/debug';
 import { log } from './utils/log';
+import { PackagesGraph } from './utils/packages-graph';
 
 void (async function main(): Promise<void> {
     info(`CHECK ALIGNED NG VERSION`);
@@ -11,7 +12,10 @@ void (async function main(): Promise<void> {
     info(`Current version for Angular: ${ngccVersion}`);
     log(`-------------------------`);
 
-    for (const packagePath of getPackages()) {
+    const graph: PackagesGraph = getPackages();
+    const packages: string[] = [...graph.common, ...graph.dependent];
+
+    for (const packagePath of packages) {
         const packageName: string = packagePath.split('/')?.[1] ?? '';
         const localVersion: string = await asyncExec([`cd ${packagePath}`, `yarn -s npe version`], options);
         const globalMajorNgccVersion: number = Number(ngccVersion?.split('.')?.[0]) || 0;
