@@ -2,8 +2,8 @@ name: Angular-RU SDK pipelines
 on: [push]
 
 env:
-    NODE_VERSION: '16.9.x'
     CI_MODE: 'true'
+    NODE_VERSION: '16.9.x'
     BASE_BRANCH: 'master'
 
 jobs:
@@ -52,7 +52,11 @@ jobs:
               if: ${{ github.ref != 'refs/heads/${{ env.BASE_BRANCH }}' }}
               run: yarn commitlint --from=HEAD~1 && yarn run-p format lint
 
-            - name: Integration test
+            - name: Tests
+              if: ${{ github.ref != 'refs/heads/${{ env.BASE_BRANCH }}' }}
+              run: yarn run-p test integration
+
+            - name: Build integration apps
               if: ${{ github.ref != 'refs/heads/${{ env.BASE_BRANCH }}' }}
               run: yarn run-p test integration
 
