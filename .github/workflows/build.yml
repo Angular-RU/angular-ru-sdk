@@ -1,28 +1,26 @@
-name: CI Build
-
+name: Angular-RU SDK pipelines
 on: [push]
+
+env:
+    NODE_VERSION: '16.9.x'
+    CI_MODE: 'true'
 
 jobs:
     build:
         if: "!contains(github.event.head_commit.message , 'ci skip')"
         runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [16.9.1]
-
         steps:
             - uses: actions/checkout@v2
               with:
                   fetch-depth: '0'
                   persist-credentials: false
-
             - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
 
-            - name: Use Node.js ${{ matrix.node-version }}
+            - name: Use Node.js ${{ env.NODE_VERSION }}
               uses: actions/setup-node@v2
               with:
-                  node-version: ${{ matrix.node-version }}
+                  node-version: ${{ env.NODE_VERSION }}
 
             - name: Prepare git
               env:
@@ -39,23 +37,26 @@ jobs:
                   path: |
                       node_modules
                       */*/node_modules
-                  key: ${{ runner.os }}--build-cache-hash--${{ hashFiles('**/yarn.lock') }}
+                  key: ${{ runner.os }}--${{ hashFiles('**/yarn.lock') }}
 
-            - name: Run install
+            - name: Setup
               run: |
                   yarn install --ignore-engines --frozen-lockfile
+                  yarn verify:ng
+                  yarn build
 
-            - name: Run lint
-              run: |
-                  yarn commitlint --from=HEAD~1
-                  yarn format
-                  yarn lint
+            - name: Verify NG version
+              run: yarn verify:ng
 
-            - name: Run test step
-              run: yarn test
+            - name: Build
+              run: yarn build
 
-            - name: Run build integration apps
-              run: yarn integration
+            - name: Lint
+              if: contains('refs/heads/master', github.ref)
+              run: yarn commitlint --from=HEAD~1 && yarn run-p format lint
+
+            - name: Integration test
+              run: yarn run-p format lint
 
             - name: Deploy npm packages
               env:
@@ -66,11 +67,11 @@ jobs:
                   echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
                   GH_TOKEN=${{ secrets.GH_TOKEN }} yarn lerna publish
 
+            # Auto push fixable code
             - name: Get last commit message
               id: last-commit-message
               run: |
                   echo "::set-output name=msg::$(git log -1 --pretty=%s)"
-
             - uses: stefanzweifel/git-auto-commit-action@v4
               with:
                   commit_message: ${{ steps.last-commit-message.outputs.msg }}
