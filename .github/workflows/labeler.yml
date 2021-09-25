@@ -12,3 +12,5 @@ jobs:
             - uses: actions/labeler@v3
               with:
                   repo-token: ${{ secrets.GH_TOKEN }}
+                  configuration-path: .github/labels.yml
+                  sync-labels: true
