@@ -54,11 +54,11 @@ jobs:
 
             - name: Tests
               if: ${{ github.ref != 'refs/heads/${{ env.BASE_BRANCH }}' }}
-              run: yarn run-p test integration
+              run: yarn test
 
             - name: Build integration apps
               if: ${{ github.ref != 'refs/heads/${{ env.BASE_BRANCH }}' }}
-              run: yarn run-p test integration
+              run: yarn integration
 
             - name: Deploy npm packages
               if: ${{ github.ref == 'refs/heads/${{ env.BASE_BRANCH }}' }}
