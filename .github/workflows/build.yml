@@ -8,11 +8,9 @@ env:
 
 jobs:
     build:
-        if: "!contains(github.event.head_commit.message , 'ci skip')"
         runs-on: ubuntu-latest
-
         steps:
-            - name: Cancel an already running workflow.
+            - name: Cancel an already running workflow
               uses: fkirc/skip-duplicate-actions@v3.4.1
               with:
                   github_token: ${{ secrets.GH_TOKEN }}
@@ -44,21 +42,21 @@ jobs:
                       */*/node_modules
                   key: ${{ runner.os }}--${{ hashFiles('**/yarn.lock') }}
 
-            - name: Setup
+            - name: Install dependencies
               run: yarn install --ignore-engines --frozen-lockfile
 
-            - name: Verify NG version
+            - name: Verify major angular version
               if: ${{ github.ref != 'refs/heads/${{ env.BASE_BRANCH }}' }}
               run: yarn verify:ng
 
-            - name: Build
+            - name: Build packages
               run: yarn build
 
-            - name: Lint
+            - name: Linting code
               if: ${{ github.ref != 'refs/heads/${{ env.BASE_BRANCH }}' }}
               run: yarn commitlint --from=HEAD~1 && yarn run-p format lint
 
-            - name: Tests
+            - name: Run unit tests
               if: ${{ github.ref != 'refs/heads/${{ env.BASE_BRANCH }}' }}
               run: yarn test
 
@@ -66,11 +64,8 @@ jobs:
               if: ${{ github.ref != 'refs/heads/${{ env.BASE_BRANCH }}' }}
               run: yarn integration
 
-            - name: Deploy npm packages
+            - name: Deploy npm packages (only for ${{ env.BASE_BRANCH }})
               if: ${{ github.ref == 'refs/heads/${{ env.BASE_BRANCH }}' }}
-              env:
-                  GH_TOKEN: ${{ secrets.GH_TOKEN }}
-                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
               run: |
                   echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
                   GH_TOKEN=${{ secrets.GH_TOKEN }} yarn lerna publish
