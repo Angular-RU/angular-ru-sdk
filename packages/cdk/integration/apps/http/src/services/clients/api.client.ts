@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DataHttpClient } from '@angular-ru/cdk/http';
 import { Get, RestClient } from '@angular-ru/cdk/http/decorators';
-import { Any } from '@angular-ru/cdk/typings/any';
+import { Any } from '@angular-ru/cdk/typings';
 import { Observable } from 'rxjs';
 
 @Injectable()

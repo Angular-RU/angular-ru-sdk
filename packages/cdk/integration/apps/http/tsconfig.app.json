@@ -1,9 +1,4 @@
 {
     "extends": "../../../tsconfig.base.json",
-    "compilerOptions": {
-        "paths": {
-            "@angular-ru/cdk/*": ["./cdk/*/public_api.ts"]
-        }
-    },
     "include": ["main.ts", "polyfills.ts"]
 }
