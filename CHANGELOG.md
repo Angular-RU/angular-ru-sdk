@@ -1,3 +1,28 @@
+#### 0.0.0 (2021-09-26)
+
+##### Build System / Dependencies
+
+-   update dependency jest to v27.2.2 (799e8c93)
+
+##### Chores
+
+-   remove redundant (#966) (827fdb0c)
+-   update autorebase.yml #3 (74ef7e3f)
+-   update autorebase.yml #2 (d89ce53a)
+-   update autorebase.yml (832981dd)
+-   set dry-run for autoupdate (#965) (63ec2144)
+-   set dry-run for autoupdate (#964) (17db9d05)
+-   set dry-run for autoupdate (#963) (ec7814b8)
+-   set dry-run for autoupdate (ed676cca)
+
+##### Continuous Integration
+
+-   refactor workflow (#974) (ebb01c4d)
+-   refactor workflow (#972) (b88cb303)
+-   fix labeler (44626b2f)
+-   fix labeler (e06cf091)
+-   fixup labels (#967) (5f1bf211)
+
 #### independent (2021-09-22)
 
 ##### Build System / Dependencies
