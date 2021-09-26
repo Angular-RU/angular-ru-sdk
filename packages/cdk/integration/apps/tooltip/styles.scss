@@ -1,5 +1,6 @@
-@import '~@angular-ru/cdk/tooltip/styles';
+@import '../../packages/cdk/tooltip/styles';
 
+//noinspection DuplicatedCode
 .wrapper {
     display: grid;
     gap: 20px;
