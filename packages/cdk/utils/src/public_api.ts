@@ -17,6 +17,7 @@ export { downloadFile } from './download-file';
 export { fallbackIfEmpty } from './fallback-if-empty';
 export { generateUid } from './generate-uid';
 export { getBodyRect } from './get-body-rect';
+export { isBoolean } from './is-boolean';
 export { isFalse } from './is-false';
 export { isFalsy } from './is-falsy';
 export { isIE } from './is-ie';
