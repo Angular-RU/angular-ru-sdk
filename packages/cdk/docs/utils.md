@@ -194,6 +194,19 @@ it('xml to string', () => {
 });
 ```
 
+-   `isBoolean`
+
+```ts
+import { isBoolean } from '@angular-ru/cdk/utils';
+
+isBoolean(true); // true
+isBoolean(false); // true
+isBoolean('true'); // false
+isBoolean([]); // false
+isBoolean(null); // false
+isBoolean(42); // false
+```
+
 -   `isTrue, isFalse`
 
 ```ts
