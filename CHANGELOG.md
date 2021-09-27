@@ -1,5 +1,11 @@
 #### 0.0.0 (2021-09-27)
 
+##### New Features
+
+-   **cdk:** add 'isBoolean' utility (#975) (67bb3290)
+
+#### 0.0.0 (2021-09-27)
+
 ##### Build System / Dependencies
 
 -   update angular dependencies (#968) (4442cf50)
