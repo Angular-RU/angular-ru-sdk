@@ -1,3 +1,9 @@
+#### 0.0.0 (2021-09-27)
+
+##### Build System / Dependencies
+
+-   update angular dependencies (#968) (4442cf50)
+
 #### 0.0.0 (2021-09-26)
 
 ##### Build System / Dependencies
