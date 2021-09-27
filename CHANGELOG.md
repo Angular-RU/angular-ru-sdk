@@ -1,5 +1,11 @@
 #### 0.0.0 (2021-09-27)
 
+##### Build System / Dependencies
+
+-   update dependency jest-preset-angular to v10.0.1 (79b3a272)
+
+#### 0.0.0 (2021-09-27)
+
 ##### New Features
 
 -   **cdk:** add 'isBoolean' utility (#975) (67bb3290)
