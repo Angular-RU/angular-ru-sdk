@@ -13,15 +13,15 @@
         "dev-infra/*"
     ],
     "scripts": {
-        "postinstall": "yarn ts-node .scripts/postinstall.ts",
-        "clean": "yarn ts-node .scripts/clean.ts",
-        "verify:ng": "yarn ts-node .scripts/verify-ng-major.ts",
         "build": "yarn ts-node .scripts/build.ts",
-        "symlink": "yarn ts-node .scripts/symlink.ts",
+        "clean": "yarn ts-node .scripts/clean.ts",
+        "format": "yarn ts-node .scripts/format.ts",
+        "postinstall": "yarn ts-node .scripts/postinstall.ts",
         "integration": "yarn ts-node .scripts/integration.ts",
         "lint": "yarn ts-node .scripts/lint.ts",
-        "format": "yarn ts-node .scripts/format.ts",
+        "symlink": "yarn ts-node .scripts/symlink.ts",
         "test": "yarn ts-node .scripts/test.ts",
+        "verify:ng": "yarn ts-node .scripts/verify-ng-major.ts",
         "version": "yarn ts-node .scripts/release-version.ts"
     },
     "lint-staged": {
