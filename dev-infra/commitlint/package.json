@@ -11,9 +11,9 @@
         "index.js"
     ],
     "dependencies": {
-        "@commitlint/cli": "13.1.0",
-        "@commitlint/config-angular": "13.1.0",
-        "@commitlint/config-conventional": "13.1.0"
+        "@commitlint/cli": "13.2.0",
+        "@commitlint/config-angular": "13.2.0",
+        "@commitlint/config-conventional": "13.2.0"
     },
     "publishConfig": {
         "access": "public"
