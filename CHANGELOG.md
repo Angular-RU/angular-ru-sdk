@@ -1,3 +1,9 @@
+#### 0.0.0 (2021-09-28)
+
+##### Build System / Dependencies
+
+-   update dependency jest to v27.2.3 (#980) (cbfa92f7)
+
 #### 0.0.0 (2021-09-27)
 
 ##### Build System / Dependencies
