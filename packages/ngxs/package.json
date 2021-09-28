@@ -10,8 +10,8 @@
     "scripts": {
         "build:app": "yarn ng build ngxs-app",
         "build:lib": "yarn ng build ngxs-library && cp README.md dist/library && yarn symlink",
-        "symlink": "sh symlink.sh",
         "start": "yarn ng serve ngxs-app --open",
+        "symlink": "sh symlink.sh",
         "test": "yarn jest --config integration/tests/jest.config.js",
         "postversion": "yarn npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\" || exit 0"
     },
