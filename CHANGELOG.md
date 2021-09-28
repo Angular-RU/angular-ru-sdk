@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update all dependencies (minor/patch) to v13.2.0 (#981) (f440e4bc)
+
+#### 0.0.0 (2021-09-28)
+
+##### Build System / Dependencies
+
 -   update all dependencies (minor/patch) (#970) (d9a66d2b)
 -   update eslint dependencies to v4 (#979) (15994561)
 
