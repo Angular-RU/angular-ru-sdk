@@ -2,6 +2,13 @@
 
 ##### Build System / Dependencies
 
+-   update all dependencies (minor/patch) (#970) (d9a66d2b)
+-   update eslint dependencies to v4 (#979) (15994561)
+
+#### 0.0.0 (2021-09-28)
+
+##### Build System / Dependencies
+
 -   update dependency jest to v27.2.3 (#980) (cbfa92f7)
 
 #### 0.0.0 (2021-09-27)
