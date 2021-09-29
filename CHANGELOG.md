@@ -1,3 +1,9 @@
+#### 0.0.0 (2021-09-29)
+
+##### Build System / Dependencies
+
+-   update dependency eslint-plugin-jest to v24.5.0 (#983) (9be792b8)
+
 #### 0.0.0 (2021-09-28)
 
 ##### Build System / Dependencies
