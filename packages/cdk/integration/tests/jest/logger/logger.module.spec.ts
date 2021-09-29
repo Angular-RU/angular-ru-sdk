@@ -169,6 +169,6 @@ describe('[TEST]: Execute method by Level', () => {
     it('should be equals reference context (this)', () => {
         const { pipe }: LoggerService = logger;
 
-        expect(pipe() === logger).toEqual(true);
+        expect(pipe() === logger).toBe(true);
     });
 });

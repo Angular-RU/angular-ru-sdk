@@ -70,7 +70,7 @@ describe('sync control value interceptor', () => {
 
         component.inputElementRef.nativeElement.value = '    value5,value6    ';
         component.inputElementRef.nativeElement.dispatchEvent(new Event('input'));
-        expect(component.value).toEqual('value5,value6');
+        expect(component.value).toBe('value5,value6');
         component.value = ['down3', 'down4'];
         fixture.detectChanges();
         component.inputElementRef.nativeElement.value = 'down3,down4';
@@ -141,7 +141,7 @@ describe('sync control value interceptor', () => {
         // values does not pass
         component.inputElementRef.nativeElement.value = '    value3,value4    ';
         component.inputElementRef.nativeElement.dispatchEvent(new Event('input'));
-        expect(component.value).toEqual('    value3,value4    ');
+        expect(component.value).toBe('    value3,value4    ');
 
         // another value interceptor still works
         expect(component.formControlInputElementRef.nativeElement.value).toBe('valueA, valueB');

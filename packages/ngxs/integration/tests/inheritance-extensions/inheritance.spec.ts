@@ -124,13 +124,13 @@ describe('inheritance', () => {
         const count: CountState = TestBed.inject<CountState>(CountState);
 
         expect(store.snapshot()).toEqual({ count: 0 });
-        expect(count.getState()).toEqual(0);
+        expect(count.getState()).toBe(0);
 
         count.increment();
         count.decrement();
         count.increment();
 
         expect(store.snapshot()).toEqual({ count: 1 });
-        expect(count.getState()).toEqual(1);
+        expect(count.getState()).toBe(1);
     });
 });

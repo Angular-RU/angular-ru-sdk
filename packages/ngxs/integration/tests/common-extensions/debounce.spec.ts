@@ -60,7 +60,7 @@ describe('[TEST]: Debounce', () => {
 
         const state: DebounceState = TestBed.inject<DebounceState>(DebounceState);
 
-        expect(state.getState()).toEqual(0);
+        expect(state.getState()).toBe(0);
 
         state.increment();
         state.increment();
@@ -70,29 +70,29 @@ describe('[TEST]: Debounce', () => {
         state.increment();
         state.increment();
 
-        expect(state.getState()).toEqual(0);
+        expect(state.getState()).toBe(0);
 
         tick(300);
 
-        expect(state.getState()).toEqual(1);
+        expect(state.getState()).toBe(1);
 
         state.decrement();
         state.decrement();
         state.decrement();
         state.decrement();
 
-        expect(state.getState()).toEqual(1);
+        expect(state.getState()).toBe(1);
 
         tick(50);
 
-        expect(state.getState()).toEqual(0);
+        expect(state.getState()).toBe(0);
 
         state.decrement();
         state.decrement();
         state.decrement();
         state.decrement();
 
-        expect(state.getState()).toEqual(0);
+        expect(state.getState()).toBe(0);
 
         tick(50);
 

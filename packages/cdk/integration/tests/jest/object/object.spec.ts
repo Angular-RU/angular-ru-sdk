@@ -55,8 +55,8 @@ describe('[TEST]: Object', () => {
     });
 
     it('should correct return first key', () => {
-        expect(firstKey({ a: 1 })).toEqual('a');
-        expect(firstKey({ b: 2, a: 1, c: 3 })).toEqual('b');
+        expect(firstKey({ a: 1 })).toBe('a');
+        expect(firstKey({ b: 2, a: 1, c: 3 })).toBe('b');
         expect(firstKey(null)).toBeNull();
     });
 
@@ -176,8 +176,8 @@ describe('[TEST]: Object', () => {
                 public b: string = '2';
             }
 
-            expect(isGetter(new A(), 'a')).toEqual(true);
-            expect(isGetter(new A(), 'b')).toEqual(false);
+            expect(isGetter(new A(), 'a')).toBe(true);
+            expect(isGetter(new A(), 'b')).toBe(false);
 
             expect(
                 isGetter(
@@ -188,7 +188,7 @@ describe('[TEST]: Object', () => {
                     },
                     'a'
                 )
-            ).toEqual(true);
+            ).toBe(true);
 
             expect(
                 isGetter(
@@ -200,9 +200,9 @@ describe('[TEST]: Object', () => {
                     },
                     'a'
                 )
-            ).toEqual(false);
+            ).toBe(false);
 
-            expect(isGetter({ a: 2 }, 'a')).toEqual(false);
+            expect(isGetter({ a: 2 }, 'a')).toBe(false);
         });
 
         it('inheritance getter', () => {
@@ -214,8 +214,8 @@ describe('[TEST]: Object', () => {
 
             class A extends Base {}
 
-            expect(new A().base).toEqual('base');
-            expect(isGetter(new A(), 'base')).toEqual(true);
+            expect(new A().base).toBe('base');
+            expect(isGetter(new A(), 'base')).toBe(true);
 
             class Z {
                 public get base() {
@@ -229,20 +229,20 @@ describe('[TEST]: Object', () => {
 
             Object.defineProperty(r, 'base', { value: 'joke' });
 
-            expect(r.base).toEqual('joke');
-            expect(isGetter(r, 'base')).toEqual(false);
+            expect(r.base).toBe('joke');
+            expect(isGetter(r, 'base')).toBe(false);
         });
 
         it('correct check invalid', () => {
-            expect(isGetter(null, 'a')).toEqual(false);
-            expect(isGetter({}, 'a')).toEqual(false);
-            expect(isGetter(Infinity, 'a')).toEqual(false);
-            expect(isGetter(undefined, 'a')).toEqual(false);
-            expect(isGetter(NaN, 'a')).toEqual(false);
-            expect(isGetter(5, 'a')).toEqual(false);
+            expect(isGetter(null, 'a')).toBe(false);
+            expect(isGetter({}, 'a')).toBe(false);
+            expect(isGetter(Infinity, 'a')).toBe(false);
+            expect(isGetter(undefined, 'a')).toBe(false);
+            expect(isGetter(NaN, 'a')).toBe(false);
+            expect(isGetter(5, 'a')).toBe(false);
             // eslint-disable-next-line no-new-wrappers
-            expect(isGetter(new Number(5), 'a')).toEqual(false);
-            expect(isGetter(String(5), 'a')).toEqual(false);
+            expect(isGetter(new Number(5), 'a')).toBe(false);
+            expect(isGetter(String(5), 'a')).toBe(false);
         });
     });
 
@@ -251,14 +251,14 @@ describe('[TEST]: Object', () => {
             const origin: Origin = { a: 1, b: { c: 2 } };
             const copy: Origin = deepClone(origin) as Origin;
 
-            expect(Object.is(origin, copy)).toEqual(false);
+            expect(Object.is(origin, copy)).toBe(false);
 
             copy.b.c = 4;
-            expect(origin.b.c).toEqual(2);
+            expect(origin.b.c).toBe(2);
 
             origin.b.c = 3;
-            expect(origin.b.c).toEqual(3);
-            expect(copy.b.c).toEqual(4);
+            expect(origin.b.c).toBe(3);
+            expect(copy.b.c).toBe(4);
         });
 
         it('not equals', () => {
@@ -270,7 +270,7 @@ describe('[TEST]: Object', () => {
         });
 
         it('copy null/NaN/undefined/0/Infinity', () => {
-            expect(deepClone(0)).toEqual(0);
+            expect(deepClone(0)).toBe(0);
             expect(deepClone(NaN)).toBeNull();
             expect(deepClone(Infinity)).toBeNull();
             expect(deepClone(null)).toBeNull();
@@ -376,21 +376,21 @@ describe('[TEST]: Object', () => {
         expect(getValueByPath(null, 'ge')).toBeUndefined();
         expect(getValueByPath(undefined, 'ge')).toBeUndefined();
         expect(getValueByPath(obj, 'ge')).toBeUndefined();
-        expect(getValueByPath(obj, 'g.a')).toEqual(4);
+        expect(getValueByPath(obj, 'g.a')).toBe(4);
         expect(getValueByPath(obj, 'f.0')).toEqual({ a: 2 });
-        expect(getValueByPath(obj, 'f.0.a')).toEqual(2);
+        expect(getValueByPath(obj, 'f.0.a')).toBe(2);
         expect(getValueByPath(obj, 'abc')).toBeUndefined();
         expect(getValueByPath(obj, 'f.0.a.Z', [])).toEqual([]);
     });
 
     it('checkIsShallowEmpty', () => {
-        expect(checkIsShallowEmpty({ a: 0 })).toEqual(false);
-        expect(checkIsShallowEmpty({ a: { b: '' } })).toEqual(false);
-        expect(checkIsShallowEmpty({ a: 'hello' })).toEqual(false);
+        expect(checkIsShallowEmpty({ a: 0 })).toBe(false);
+        expect(checkIsShallowEmpty({ a: { b: '' } })).toBe(false);
+        expect(checkIsShallowEmpty({ a: 'hello' })).toBe(false);
         // shallow empty object
-        expect(checkIsShallowEmpty({})).toEqual(true);
-        expect(checkIsShallowEmpty({ a: null })).toEqual(true);
-        expect(checkIsShallowEmpty({ a: '', b: undefined, c: NaN, d: '   ' })).toEqual(true);
+        expect(checkIsShallowEmpty({})).toBe(true);
+        expect(checkIsShallowEmpty({ a: null })).toBe(true);
+        expect(checkIsShallowEmpty({ a: '', b: undefined, c: NaN, d: '   ' })).toBe(true);
     });
 
     it('should correct recognize iterable values', () => {

@@ -75,9 +75,9 @@ describe('[TEST]: Selection service', () => {
         } as MouseEvent);
 
         expect(selection.selectionModel.entries).toEqual({});
-        expect(selection.selectionModel.isAll).toEqual(false);
+        expect(selection.selectionModel.isAll).toBe(false);
         expect(selection.range).toEqual({ start: 2, end: null });
-        expect(selection.range.selectedRange()).toEqual(false);
+        expect(selection.range.selectedRange()).toBe(false);
 
         selection.selectRow(data[firstIndex], {
             ...mockPreventDefault,
@@ -85,9 +85,9 @@ describe('[TEST]: Selection service', () => {
         } as MouseEvent);
 
         expect(selection.selectionModel.entries).toEqual({ 1: true, 2: true, 3: true });
-        expect(selection.selectionModel.isAll).toEqual(true);
+        expect(selection.selectionModel.isAll).toBe(true);
         expect(selection.range).toEqual({ start: 0, end: 2 });
-        expect(selection.range.selectedRange()).toEqual(true);
+        expect(selection.range.selectedRange()).toBe(true);
     });
 
     it('should be correct selection with ctrl key', (): void => {
@@ -102,9 +102,9 @@ describe('[TEST]: Selection service', () => {
         } as MouseEvent);
 
         expect(selection.selectionModel.entries).toEqual({ 3: true });
-        expect(selection.selectionModel.isAll).toEqual(false);
+        expect(selection.selectionModel.isAll).toBe(false);
         expect(selection.range).toEqual({ start: 2, end: null });
-        expect(selection.range.selectedRange()).toEqual(false);
+        expect(selection.range.selectedRange()).toBe(false);
 
         selection.selectRow(data[firstIndex], {
             ...mockPreventDefault,
@@ -112,9 +112,9 @@ describe('[TEST]: Selection service', () => {
         } as MouseEvent);
 
         expect(selection.selectionModel.entries).toEqual({ 1: true, 3: true });
-        expect(selection.selectionModel.isAll).toEqual(false);
+        expect(selection.selectionModel.isAll).toBe(false);
         expect(selection.range).toEqual({ start: 0, end: null });
-        expect(selection.range.selectedRange()).toEqual(false);
+        expect(selection.range.selectedRange()).toBe(false);
     });
 
     it('should be correct selection without keypress', () => {
@@ -126,30 +126,30 @@ describe('[TEST]: Selection service', () => {
         selection.selectRow(data[lastIndex], mockPreventDefault as MouseEvent);
 
         expect(selection.selectionModel.entries).toEqual({ 3: true });
-        expect(selection.selectionModel.isAll).toEqual(false);
+        expect(selection.selectionModel.isAll).toBe(false);
         expect(selection.range).toEqual({ start: 2, end: null });
-        expect(selection.range.selectedRange()).toEqual(false);
+        expect(selection.range.selectedRange()).toBe(false);
 
         selection.selectRow(data[firstIndex], mockPreventDefault as MouseEvent);
 
         expect(selection.selectionModel.entries).toEqual({ 1: true });
-        expect(selection.selectionModel.isAll).toEqual(false);
+        expect(selection.selectionModel.isAll).toBe(false);
         expect(selection.range).toEqual({ start: 0, end: null });
-        expect(selection.range.selectedRange()).toEqual(false);
+        expect(selection.range.selectedRange()).toBe(false);
     });
 
     it('should be correct get Id by row', () => {
         selection.primaryKey = 'position';
-        expect(selection.getIdByRow(data[0])).toEqual(1);
+        expect(selection.getIdByRow(data[0])).toBe(1);
     });
 
     it('should be correct remove listener before ngOnDestroy', () => {
         selection.listenShiftKey();
-        expect(listenKeydown).toEqual(true);
-        expect(listenKeyup).toEqual(true);
+        expect(listenKeydown).toBe(true);
+        expect(listenKeyup).toBe(true);
         selection.ngOnDestroy();
-        expect(listenKeydown).toEqual(false);
-        expect(listenKeyup).toEqual(false);
+        expect(listenKeydown).toBe(false);
+        expect(listenKeyup).toBe(false);
     });
 
     it('should be correct change selection start', () => {
@@ -163,35 +163,35 @@ describe('[TEST]: Selection service', () => {
 
         selection.toggle(data[0]);
         expect(selection.selectionModel.entries).toEqual({ 1: true });
-        expect(selection.selectionModel.isAll).toEqual(false);
+        expect(selection.selectionModel.isAll).toBe(false);
 
         selection.reset();
         expect(selection.selectionModel.entries).toEqual({});
-        expect(selection.selectionModel.isAll).toEqual(false);
+        expect(selection.selectionModel.isAll).toBe(false);
 
         selection.toggleAll(data);
         expect(selection.selectionModel.entries).toEqual({ 1: true, 2: true, 3: true });
-        expect(selection.selectionModel.isAll).toEqual(true);
+        expect(selection.selectionModel.isAll).toBe(true);
 
         selection.toggleAll(data);
         expect(selection.selectionModel.entries).toEqual({});
-        expect(selection.selectionModel.isAll).toEqual(false);
+        expect(selection.selectionModel.isAll).toBe(false);
     });
 
     it('should be correct toggle', () => {
         const selectionMap: SelectionMap<PlainObject> = new SelectionMap();
         const id: RowId = 5;
 
-        expect(selectionMap.hasValue()).toEqual(false);
+        expect(selectionMap.hasValue()).toBe(false);
         selectionMap.select(id, {}, true);
 
-        expect(selectionMap.hasValue()).toEqual(true);
+        expect(selectionMap.hasValue()).toBe(true);
 
         selectionMap.toggle(id, {}, true);
         expect(selectionMap.entries).toEqual({});
 
         selectionMap.toggle(id, {}, true);
-        expect(selectionMap.get(5)).toEqual(true);
+        expect(selectionMap.get(5)).toBe(true);
         expect(selectionMap.entries).toEqual({ 5: true });
     });
 });

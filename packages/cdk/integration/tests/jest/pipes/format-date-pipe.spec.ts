@@ -10,6 +10,6 @@ describe('format date pipe', () => {
     });
 
     it('format date', () => {
-        expect(pipe.transform(1544532097434, { timezone: '+0300' })).toEqual('11.12.2018');
+        expect(pipe.transform(1544532097434, { timezone: '+0300' })).toBe('11.12.2018');
     });
 });

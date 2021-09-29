@@ -3,23 +3,23 @@ import { Any } from '@angular-ru/cdk/typings';
 
 describe('[TEST] Coercion', () => {
     it('coerceBoolean returned true', () => {
-        expect(coerceBoolean('')).toEqual(true);
-        expect(coerceBoolean('   ')).toEqual(true);
-        expect(coerceBoolean(true)).toEqual(true);
-        expect(coerceBoolean('true')).toEqual(true);
-        expect(coerceBoolean('12312s')).toEqual(true);
-        expect(coerceBoolean('0')).toEqual(true);
-        expect(coerceBoolean(1)).toEqual(true);
-        expect(coerceBoolean({} as Any)).toEqual(true);
-        expect(coerceBoolean([] as Any)).toEqual(true);
+        expect(coerceBoolean('')).toBe(true);
+        expect(coerceBoolean('   ')).toBe(true);
+        expect(coerceBoolean(true)).toBe(true);
+        expect(coerceBoolean('true')).toBe(true);
+        expect(coerceBoolean('12312s')).toBe(true);
+        expect(coerceBoolean('0')).toBe(true);
+        expect(coerceBoolean(1)).toBe(true);
+        expect(coerceBoolean({} as Any)).toBe(true);
+        expect(coerceBoolean([] as Any)).toBe(true);
     });
 
     it('coerceBoolean returned false', () => {
-        expect(coerceBoolean(null)).toEqual(false);
-        expect(coerceBoolean(undefined)).toEqual(false);
-        expect(coerceBoolean(' false  ')).toEqual(false);
-        expect(coerceBoolean('false')).toEqual(false);
-        expect(coerceBoolean(false)).toEqual(false);
-        expect(coerceBoolean(0)).toEqual(false);
+        expect(coerceBoolean(null)).toBe(false);
+        expect(coerceBoolean(undefined)).toBe(false);
+        expect(coerceBoolean(' false  ')).toBe(false);
+        expect(coerceBoolean('false')).toBe(false);
+        expect(coerceBoolean(false)).toBe(false);
+        expect(coerceBoolean(0)).toBe(false);
     });
 });

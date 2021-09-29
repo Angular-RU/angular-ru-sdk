@@ -59,9 +59,9 @@ describe('[TEST]: Storage plugin', () => {
             const plugin: NgxsDataStoragePlugin = ensureStoragePlugin();
 
             // noinspection SuspiciousTypeOfGuard
-            expect(plugin instanceof NgxsDataStoragePlugin).toEqual(true);
-            expect(plugin.platformId).toEqual('browser');
-            expect(plugin.store === store).toEqual(true);
+            expect(plugin instanceof NgxsDataStoragePlugin).toBe(true);
+            expect(plugin.platformId).toBe('browser');
+            expect(plugin.store === store).toBe(true);
         });
 
         it('@Persistence should be add before decorator @State and @StateRepository', () => {
@@ -159,7 +159,7 @@ describe('[TEST]: Storage plugin', () => {
                     }
                 ]);
 
-                expect(a.getState()).toEqual(0);
+                expect(a.getState()).toBe(0);
                 expect(store.snapshot()).toEqual({ a: 0 });
                 expect(JSON.parse(localStorage.getItem('@ngxs.store.a')!)).toEqual({
                     lastChanged: expect.any(String),
@@ -246,7 +246,7 @@ describe('[TEST]: Storage plugin', () => {
                     }
                 ]);
 
-                expect(b.getState()).toEqual(50);
+                expect(b.getState()).toBe(50);
                 expect(store.snapshot()).toEqual({ b: 50 });
                 expect(JSON.parse(localStorage.getItem('@ngxs.store.b')!)).toEqual({
                     lastChanged: expect.any(String),
@@ -256,7 +256,7 @@ describe('[TEST]: Storage plugin', () => {
 
                 b.increment().increment().increment();
 
-                expect(b.getState()).toEqual(53);
+                expect(b.getState()).toBe(53);
                 expect(store.snapshot()).toEqual({ b: 53 });
                 expect(JSON.parse(localStorage.getItem('@ngxs.store.b')!)).toEqual({
                     lastChanged: expect.any(String),
@@ -266,7 +266,7 @@ describe('[TEST]: Storage plugin', () => {
 
                 b.reset();
 
-                expect(b.getState()).toEqual(100);
+                expect(b.getState()).toBe(100);
                 expect(store.snapshot()).toEqual({ b: 100 });
                 expect(JSON.parse(localStorage.getItem('@ngxs.store.b')!)).toEqual({
                     lastChanged: expect.any(String),
@@ -330,7 +330,7 @@ describe('[TEST]: Storage plugin', () => {
                     '}'
             );
 
-            expect(stateC.getState()).toEqual('DEFAULT_VALUE');
+            expect(stateC.getState()).toBe('DEFAULT_VALUE');
         });
 
         it('c1 stateClass', () => {
@@ -365,7 +365,7 @@ describe('[TEST]: Storage plugin', () => {
                     '}'
             );
 
-            expect(stateC1.getState()).toEqual('DEFAULT_VALUE');
+            expect(stateC1.getState()).toBe('DEFAULT_VALUE');
         });
 
         it('c2 stateClass', () => {
@@ -394,7 +394,7 @@ describe('[TEST]: Storage plugin', () => {
                     'Error deserialize: lastChanged key not found in object {"hello":"world"}.'
             );
 
-            expect(stateC2.getState()).toEqual('DEFAULT_VALUE');
+            expect(stateC2.getState()).toBe('DEFAULT_VALUE');
         });
 
         it('c3 stateClass', () => {
@@ -423,7 +423,7 @@ describe('[TEST]: Storage plugin', () => {
                     `Error deserialize: It's not possible to determine version (undefined), since it must be a integer type and must equal or more than 1.`
             );
 
-            expect(stateC3.getState()).toEqual('DEFAULT_VALUE');
+            expect(stateC3.getState()).toBe('DEFAULT_VALUE');
         });
 
         it('c4 stateClass', () => {
@@ -455,7 +455,7 @@ describe('[TEST]: Storage plugin', () => {
                     `Error deserialize: It's not possible to determine version (1.5), since it must be a integer type and must equal or more than 1.`
             );
 
-            expect(stateC4.getState()).toEqual('DEFAULT_VALUE');
+            expect(stateC4.getState()).toBe('DEFAULT_VALUE');
         });
 
         it('c5 stateClass', () => {
@@ -487,7 +487,7 @@ describe('[TEST]: Storage plugin', () => {
                     `Error deserialize: missing key 'data' or it's value not serializable.`
             );
 
-            expect(stateC5.getState()).toEqual('DEFAULT_VALUE');
+            expect(stateC5.getState()).toBe('DEFAULT_VALUE');
         });
 
         it('c6 stateClass', () => {
@@ -509,7 +509,7 @@ describe('[TEST]: Storage plugin', () => {
 
             const stateC6: C6 = TestBed.inject<C6>(C6);
 
-            expect(stateC6.getState()).toEqual('cachedValue');
+            expect(stateC6.getState()).toBe('cachedValue');
         });
 
         it('c7, C8, C9 stateClass', () => {
@@ -555,8 +555,8 @@ describe('[TEST]: Storage plugin', () => {
             const stateC9: C8 = TestBed.inject<C9>(C9);
 
             expect(stateC7.getState()).toBeNull();
-            expect(stateC8.getState()).toEqual('DEFAULT_VALUE');
-            expect(stateC9.getState()).toEqual('HELLO');
+            expect(stateC8.getState()).toBe('DEFAULT_VALUE');
+            expect(stateC9.getState()).toBe('HELLO');
 
             const plugin: NgxsDataStoragePlugin = ensureStoragePlugin();
 
@@ -659,9 +659,9 @@ describe('[TEST]: Storage plugin', () => {
             const stateC11: C11 = TestBed.inject<C11>(C11);
             const stateC12: C12 = TestBed.inject<C12>(C12);
 
-            expect(stateC10.getState()).toEqual('10');
-            expect(stateC11.getState()).toEqual('11');
-            expect(stateC12.getState()).toEqual('DEFAULT_VALUE');
+            expect(stateC10.getState()).toBe('10');
+            expect(stateC11.getState()).toBe('11');
+            expect(stateC12.getState()).toBe('DEFAULT_VALUE');
 
             const plugin: NgxsDataStoragePlugin = ensureStoragePlugin();
 
@@ -769,12 +769,12 @@ describe('[TEST]: Storage plugin', () => {
             try {
                 const stateC13: C13 = TestBed.inject<C13>(C13);
 
-                expect(stateC13.getState()).toEqual('VALUE');
+                expect(stateC13.getState()).toBe('VALUE');
             } catch (e: unknown) {
                 message = (e as Error).message;
             }
 
-            expect(message).toEqual('StorageEngine instance should be implemented by DataStorageEngine interface');
+            expect(message).toBe('StorageEngine instance should be implemented by DataStorageEngine interface');
         });
 
         it('c14 stateClass', () => {
@@ -822,7 +822,7 @@ describe('[TEST]: Storage plugin', () => {
             try {
                 const stateC14: C14 = TestBed.inject<C14>(C14);
 
-                expect(stateC14.getState()).toEqual('VALUE');
+                expect(stateC14.getState()).toBe('VALUE');
             } catch (e: unknown) {
                 message = (e as Error).message;
             }
@@ -866,7 +866,7 @@ describe('[TEST]: Storage plugin', () => {
 
             const stateC15: C15 = TestBed.inject<C15>(C15);
 
-            expect(stateC15.getState()).toEqual('VALUE');
+            expect(stateC15.getState()).toBe('VALUE');
 
             localStorage.setItem(
                 '@ngxs.store.c15',
@@ -879,7 +879,7 @@ describe('[TEST]: Storage plugin', () => {
                 })
             );
 
-            expect(stateC15.getState()).toEqual('VALUE_2');
+            expect(stateC15.getState()).toBe('VALUE_2');
 
             localStorage.setItem('ANY_KEYS', 'ANY_VALUE');
             window.dispatchEvent(new StorageEvent('storage', { key: 'ANY_KEYS' }));
@@ -895,7 +895,7 @@ describe('[TEST]: Storage plugin', () => {
                 })
             );
 
-            expect(stateC15.getState()).toEqual('VALUE_3');
+            expect(stateC15.getState()).toBe('VALUE_3');
 
             expect(events).toEqual([
                 'NGXS_DATA_STORAGE_EVENT_TYPE.DISPATCHED',
@@ -939,7 +939,7 @@ describe('[TEST]: Storage plugin', () => {
 
             const stateC16: C16 = TestBed.inject<C16>(C16);
 
-            expect(stateC16.getState()).toEqual('DEFAULT_VALUE');
+            expect(stateC16.getState()).toBe('DEFAULT_VALUE');
 
             localStorage.setItem(
                 '@ngxs.store.c16',
@@ -952,7 +952,7 @@ describe('[TEST]: Storage plugin', () => {
                 })
             );
 
-            expect(stateC16.getState()).toEqual('DEFAULT_VALUE');
+            expect(stateC16.getState()).toBe('DEFAULT_VALUE');
 
             localStorage.setItem('ANY_KEYS', 'ANY_VALUE');
             window.dispatchEvent(new StorageEvent('storage', { key: 'ANY_KEYS' }));
@@ -968,7 +968,7 @@ describe('[TEST]: Storage plugin', () => {
                 })
             );
 
-            expect(stateC16.getState()).toEqual('DEFAULT_VALUE');
+            expect(stateC16.getState()).toBe('DEFAULT_VALUE');
 
             expect(events).toEqual([]);
         });
@@ -1027,7 +1027,7 @@ describe('[TEST]: Storage plugin', () => {
 
             const stateC14: C17 = TestBed.inject<C17>(C17);
 
-            expect(stateC14.getState()).toEqual('MY_VAL::VALUE');
+            expect(stateC14.getState()).toBe('MY_VAL::VALUE');
 
             stateC14.setState('HELLO_WORLD');
 
@@ -1077,8 +1077,8 @@ describe('[TEST]: Storage plugin', () => {
             d1.state$.subscribe((s) => events.push(`d1: ${s}`));
             d2.state$.subscribe((s) => events.push(`d2: ${s}`));
 
-            expect(d1.getState()).toEqual('VALUE_d1');
-            expect(d2.getState()).toEqual('VALUE_d2');
+            expect(d1.getState()).toBe('VALUE_d1');
+            expect(d2.getState()).toBe('VALUE_d2');
 
             sessionStorage.setItem(
                 '@ngxs.store.d2',
@@ -1091,8 +1091,8 @@ describe('[TEST]: Storage plugin', () => {
                 })
             );
 
-            expect(d1.getState()).toEqual('VALUE_d1');
-            expect(d2.getState()).toEqual('VALUE_d2_2');
+            expect(d1.getState()).toBe('VALUE_d1');
+            expect(d2.getState()).toBe('VALUE_d2_2');
             expect(events).toEqual(['d1: VALUE_d1', 'd2: VALUE_d2', 'd2: VALUE_d2_2']);
 
             sessionStorage.setItem(
@@ -1106,8 +1106,8 @@ describe('[TEST]: Storage plugin', () => {
                 })
             );
 
-            expect(d1.getState()).toEqual('VALUE_d1');
-            expect(d2.getState()).toEqual('VALUE_d2_2');
+            expect(d1.getState()).toBe('VALUE_d1');
+            expect(d2.getState()).toBe('VALUE_d2_2');
             expect(events).toEqual(['d1: VALUE_d1', 'd2: VALUE_d2', 'd2: VALUE_d2_2']);
         });
 
@@ -1325,7 +1325,7 @@ describe('[TEST]: Storage plugin', () => {
 
                 const fire: FireState = TestBed.inject<FireState>(FireState);
 
-                expect(fire.snapshot).toEqual('FIRE_VALUE');
+                expect(fire.snapshot).toBe('FIRE_VALUE');
 
                 const newLastChanged: string = JSON.parse(localStorage.getItem('@ngxs.store.fire')!).lastChanged;
 
@@ -1357,14 +1357,14 @@ describe('[TEST]: Storage plugin', () => {
 
                 const fire: Fire2State = TestBed.inject<Fire2State>(Fire2State);
 
-                expect(fire.snapshot).toEqual('FIRE_VALUE');
+                expect(fire.snapshot).toBe('FIRE_VALUE');
 
                 const newLastChanged: string = JSON.parse(localStorage.getItem('@ngxs.store.fire2')!).lastChanged;
 
                 expect(lastChanged).toEqual(newLastChanged);
 
                 fire.setState('FIRE2_VALUE');
-                expect(fire.snapshot).toEqual('FIRE2_VALUE');
+                expect(fire.snapshot).toBe('FIRE2_VALUE');
 
                 const newLastChanged2: string = JSON.parse(localStorage.getItem('@ngxs.store.fire2')!).lastChanged;
 
@@ -1396,7 +1396,7 @@ describe('[TEST]: Storage plugin', () => {
 
                 const storage: StorageState = TestBed.inject<StorageState>(StorageState);
 
-                expect(storage.getState()).toEqual('value');
+                expect(storage.getState()).toBe('value');
             });
 
             it('nullable: true', () => {
@@ -1451,7 +1451,7 @@ describe('[TEST]: Storage plugin', () => {
 
                 const state: RehydrateState = TestBed.inject<RehydrateState>(RehydrateState);
 
-                expect(state.getState()).toEqual('VALUE_FROM_STORAGE');
+                expect(state.getState()).toBe('VALUE_FROM_STORAGE');
             });
 
             it('rehydrate: false', () => {
@@ -1478,11 +1478,11 @@ describe('[TEST]: Storage plugin', () => {
 
                 const state: RehydrateState = TestBed.inject<RehydrateState>(RehydrateState);
 
-                expect(state.getState()).toEqual('value');
+                expect(state.getState()).toBe('value');
 
                 state.setState('new value');
-                expect(state.getState()).toEqual('new value');
-                expect(ensureMockStorage('@ngxs.store.rehydrate').data).toEqual('new value');
+                expect(state.getState()).toBe('new value');
+                expect(ensureMockStorage('@ngxs.store.rehydrate').data).toBe('new value');
             });
         });
 
@@ -1785,7 +1785,7 @@ describe('[TEST]: Storage plugin', () => {
 
                 const state: MigrateV1toV2State = TestBed.inject<MigrateV1toV2State>(MigrateV1toV2State);
 
-                expect(state.getState()).toEqual('hello_world');
+                expect(state.getState()).toBe('hello_world');
                 expect(ensureMockStorage('@ngxs.store.migrate')).toEqual({
                     lastChanged: expect.any(String),
                     version: 2,
@@ -1962,7 +1962,7 @@ describe('[TEST]: Storage plugin', () => {
                     data: { pageNumber: 2, pageSize: 10 }
                 });
 
-                expect(state.invoker).toEqual(0);
+                expect(state.invoker).toBe(0);
             });
 
             it('skip migrate v1 -> v2', () => {
@@ -2064,7 +2064,7 @@ describe('[TEST]: Storage plugin', () => {
                     data: { pageNumber: null, pageSize: null }
                 });
 
-                expect(state.invoker).toEqual(0);
+                expect(state.invoker).toBe(0);
             });
         });
 
@@ -2101,7 +2101,7 @@ describe('[TEST]: Storage plugin', () => {
 
             state.browserStorageEvents$.subscribe((e) => nativeEvents.push(e));
 
-            expect(state.getState()).toEqual(5);
+            expect(state.getState()).toBe(5);
 
             localStorage.setItem(
                 '@ngxs.store.count',
@@ -2114,7 +2114,7 @@ describe('[TEST]: Storage plugin', () => {
                 })
             );
 
-            expect(state.getState()).toEqual(15);
+            expect(state.getState()).toBe(15);
 
             expect(state.events).toEqual([
                 {

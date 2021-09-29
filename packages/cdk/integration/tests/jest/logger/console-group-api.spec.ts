@@ -335,7 +335,7 @@ describe('[TEST]: Check work in groups', () => {
                 message = (e as Error).message;
             }
 
-            expect(message).toEqual('logger.info.group is not a function');
+            expect(message).toBe('logger.info.group is not a function');
         });
     });
 });

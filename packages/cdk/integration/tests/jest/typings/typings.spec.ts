@@ -6,7 +6,7 @@ describe('[TEST]: Common types', () => {
         const b: Any = '8';
 
         // Duck typing
-        expect(parseInt(a + b)).toEqual(58);
+        expect(parseInt(a + b)).toBe(58);
     });
 
     it('keyof', () => {
@@ -73,6 +73,6 @@ describe('[TEST]: Common types', () => {
 
         const etc: Paths<A['b']['etc']> = 'f';
 
-        expect(etc).toEqual('f');
+        expect(etc).toBe('f');
     });
 });

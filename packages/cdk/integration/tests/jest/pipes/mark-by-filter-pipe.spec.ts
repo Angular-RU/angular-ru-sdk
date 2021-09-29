@@ -10,7 +10,7 @@ describe('mark by filter pipe', () => {
     });
 
     it('mark by filter', () => {
-        expect(pipe.transform('hello world')).toEqual('hello world');
+        expect(pipe.transform('hello world')).toBe('hello world');
 
         expect(pipe.transform('hello world', 'world')).toEqual({
             changingThisBreaksApplicationSecurity: 'hello&nbsp;<span style="background: #ffdd2d">world</span>'

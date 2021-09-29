@@ -89,12 +89,12 @@ describe('[TEST] Ivy utils - check deep inheritance', () => {
         expect(component.anotherService1).toEqual({ testField: 'test' });
         expect(component.anotherService2).toEqual({ testField: 'test' });
         expect(component.anotherService3).toEqual({ testField: 'test' });
-        expect(component.hello()).toEqual('test');
-        expect(component.world()).toEqual('test__hello__');
+        expect(component.hello()).toBe('test');
+        expect(component.world()).toBe('test__hello__');
 
-        expect(getHtml(componentFixture)).toEqual('<p class="service"></p>');
+        expect(getHtml(componentFixture)).toBe('<p class="service"></p>');
         componentFixture.detectChanges();
-        expect(getHtml(componentFixture)).toEqual('<p class="service">test__hello__</p>');
+        expect(getHtml(componentFixture)).toBe('<p class="service">test__hello__</p>');
     });
 
     function getHtml<T>(fixture: ComponentFixture<T>): string {

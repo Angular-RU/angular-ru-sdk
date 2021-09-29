@@ -40,7 +40,7 @@ describe('[TEST] Table utils', () => {
         ]);
         expect(plain.map(Object.keys)).toEqual(Array(5).fill(['id', 'firstName', 'lastName', 'age', 'nullable']));
 
-        expect(await plainTableComposer.compose([])).toEqual([]);
+        await expect(plainTableComposer.compose([])).resolves.toEqual([]);
     });
 
     it('should correctly plain sets of data with include rule', async () => {

@@ -101,14 +101,14 @@ describe('[TEST]: Decorator API', () => {
 
     it('should be correct invoke methods', () => {
         component.init();
-        expect(component.count).toEqual(1);
-        expect(fakeConsole.stack()).toEqual('[]');
+        expect(component.count).toBe(1);
+        expect(fakeConsole.stack()).toBe('[]');
     });
 
     it('should be correct title methods', () => {
         const result: string = component.method('hello world');
 
-        expect(result).toEqual('hello world');
+        expect(result).toBe('hello world');
 
         expect(fakeConsole.stack()).toEqual(
             fakeConsole.createStack(
@@ -154,6 +154,6 @@ describe('[TEST]: Decorator API', () => {
             message = (e as Error).message;
         }
 
-        expect(message).toEqual('error');
+        expect(message).toBe('error');
     });
 });

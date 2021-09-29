@@ -3,63 +3,63 @@ import { filter } from '@angular-ru/cdk/string';
 describe('[TEST]: Filter', () => {
     describe('no predicate', () => {
         it('should return text as it is if there is no filter params', () => {
-            expect(filter('abc ! 13_7')).toEqual('abc ! 13_7');
-            expect(filter('a')).toEqual('a');
-            expect(filter('')).toEqual('');
+            expect(filter('abc ! 13_7')).toBe('abc ! 13_7');
+            expect(filter('a')).toBe('a');
+            expect(filter('')).toBe('');
         });
     });
 
     describe('predicate as a list of characters', () => {
         it('should return text as it is if there is no characters', () => {
-            expect(filter('abc ! 13_7', [])).toEqual('abc ! 13_7');
+            expect(filter('abc ! 13_7', [])).toBe('abc ! 13_7');
         });
 
         it('should filter text with this characters: a, b, c', () => {
-            expect(filter('abc', ['a', 'b', 'c'])).toEqual('abc');
-            expect(filter('abc', ['a', 'b'])).toEqual('ab');
-            expect(filter('abc', ['c'])).toEqual('c');
+            expect(filter('abc', ['a', 'b', 'c'])).toBe('abc');
+            expect(filter('abc', ['a', 'b'])).toBe('ab');
+            expect(filter('abc', ['c'])).toBe('c');
         });
 
         it('should filter text with this characters: a, 4, _, !', () => {
-            expect(filter('a4_!OOO', ['a', '4', '_', '!'])).toEqual('a4_!');
+            expect(filter('a4_!OOO', ['a', '4', '_', '!'])).toBe('a4_!');
         });
 
         it('should remove spaces', () => {
-            expect(filter(' a b  c  ', ['a', 'b', 'c'])).toEqual('abc');
-            expect(filter(' a b  c  ', ['a', 'b', 'c', '\\s'])).toEqual('abc');
+            expect(filter(' a b  c  ', ['a', 'b', 'c'])).toBe('abc');
+            expect(filter(' a b  c  ', ['a', 'b', 'c', '\\s'])).toBe('abc');
         });
 
         it('should keep spaces', () => {
-            expect(filter(' a b  c  ', ['a', 'b', 'c', ' '])).toEqual(' a b  c  ');
+            expect(filter(' a b  c  ', ['a', 'b', 'c', ' '])).toBe(' a b  c  ');
         });
 
         it('should use only characters for filtering', () => {
-            expect(filter('aaa', ['aaa'])).toEqual('');
-            expect(filter('aaa aab abc', ['aa', 'aaa'])).toEqual('');
+            expect(filter('aaa', ['aaa'])).toBe('');
+            expect(filter('aaa aab abc', ['aa', 'aaa'])).toBe('');
         });
 
         it('should remove cyrillic characters', () => {
             // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
-            expect(filter('будет удалено abc', ['a', 'b', 'c'])).toEqual('abc');
+            expect(filter('будет удалено abc', ['a', 'b', 'c'])).toBe('abc');
         });
 
         it('should be case sensitive', () => {
-            expect(filter('aBc', ['a', 'b', 'c'])).toEqual('ac');
+            expect(filter('aBc', ['a', 'b', 'c'])).toBe('ac');
         });
     });
 
     describe('predicate as a function', () => {
         it('should return text based on predicate function', () => {
-            expect(filter('abc', (): boolean => false)).toEqual('');
-            expect(filter('abc', (): boolean => true)).toEqual('abc');
+            expect(filter('abc', (): boolean => false)).toBe('');
+            expect(filter('abc', (): boolean => true)).toBe('abc');
         });
 
         it('should filter text with this characters: a, c', () => {
-            expect(filter('aaabbbccc', (item: string): boolean => item === 'a' || item === 'c')).toEqual('aaaccc');
+            expect(filter('aaabbbccc', (item: string): boolean => item === 'a' || item === 'c')).toBe('aaaccc');
         });
 
         it('should remove spaces', () => {
-            expect(filter('a b c', (item: string): boolean => item === 'a' || item === 'b' || item === 'c')).toEqual(
+            expect(filter('a b c', (item: string): boolean => item === 'a' || item === 'b' || item === 'c')).toBe(
                 'abc'
             );
         });
@@ -67,15 +67,15 @@ describe('[TEST]: Filter', () => {
         it('should not remove spaces', () => {
             expect(
                 filter('a b c', (item: string): boolean => item === 'a' || item === 'b' || item === 'c' || item === ' ')
-            ).toEqual('a b c');
+            ).toBe('a b c');
         });
     });
 
     describe('predicate as a RegExp', () => {
         it('should use RegExp for filtering text', () => {
-            expect(filter('aaabbbccc', /a/)).toEqual('a');
-            expect(filter('aaabbbccc', /a/g)).toEqual('aaa');
-            expect(filter('aaabbbccc', /[a,b]+/)).toEqual('aaabbb');
+            expect(filter('aaabbbccc', /a/)).toBe('a');
+            expect(filter('aaabbbccc', /a/g)).toBe('aaa');
+            expect(filter('aaabbbccc', /[a,b]+/)).toBe('aaabbb');
         });
     });
 });

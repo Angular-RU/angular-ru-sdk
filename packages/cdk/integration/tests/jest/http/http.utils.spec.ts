@@ -16,19 +16,19 @@ import { PlainObject } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: http utils', () => {
     it('isLocalhost', () => {
-        expect(isLocalhost('https://localhost:4200')).toEqual(true);
-        expect(isLocalhost('https://0.0.0.0:4200')).toEqual(true);
-        expect(isLocalhost('https://127.0.0.1:4200')).toEqual(true);
-        expect(isLocalhost('https://google.com')).toEqual(false);
-        expect(isLocalhost('https://google.com/localhost')).toEqual(false);
+        expect(isLocalhost('https://localhost:4200')).toBe(true);
+        expect(isLocalhost('https://0.0.0.0:4200')).toBe(true);
+        expect(isLocalhost('https://127.0.0.1:4200')).toBe(true);
+        expect(isLocalhost('https://google.com')).toBe(false);
+        expect(isLocalhost('https://google.com/localhost')).toBe(false);
     });
 
     it('getPathWithoutQueryParams', () => {
-        expect(getPathWithoutQueryParams('http://hello/world/todo/1/all')).toEqual('http://hello/world/todo/1/all');
-        expect(getPathWithoutQueryParams('http://hello/world/todo/1/all/')).toEqual('http://hello/world/todo/1/all/');
-        expect(getPathWithoutQueryParams('http://hello/world/todo/1/all?')).toEqual('http://hello/world/todo/1/all');
-        expect(getPathWithoutQueryParams('http://hello/world/todo/1/all/?')).toEqual('http://hello/world/todo/1/all/');
-        expect(getPathWithoutQueryParams('http://hello/world/todo/1/all?pageSize=10&pageIndex=0')).toEqual(
+        expect(getPathWithoutQueryParams('http://hello/world/todo/1/all')).toBe('http://hello/world/todo/1/all');
+        expect(getPathWithoutQueryParams('http://hello/world/todo/1/all/')).toBe('http://hello/world/todo/1/all/');
+        expect(getPathWithoutQueryParams('http://hello/world/todo/1/all?')).toBe('http://hello/world/todo/1/all');
+        expect(getPathWithoutQueryParams('http://hello/world/todo/1/all/?')).toBe('http://hello/world/todo/1/all/');
+        expect(getPathWithoutQueryParams('http://hello/world/todo/1/all?pageSize=10&pageIndex=0')).toBe(
             'http://hello/world/todo/1/all'
         );
     });
@@ -86,23 +86,23 @@ describe('[TEST]: http utils', () => {
     });
 
     it('isAbsolutePath', () => {
-        expect(isAbsolutePath('/api')).toEqual(false);
-        expect(isAbsolutePath('//hello_world')).toEqual(false);
-        expect(isAbsolutePath('http://hello_world')).toEqual(true);
+        expect(isAbsolutePath('/api')).toBe(false);
+        expect(isAbsolutePath('//hello_world')).toBe(false);
+        expect(isAbsolutePath('http://hello_world')).toBe(true);
     });
 
     it('replaceDoubleSlash', () => {
-        expect(replaceDoubleSlash('https://a///b//c/d/')).toEqual('https://a/b/c/d/');
-        expect(replaceDoubleSlash('////a///b//c/d/')).toEqual('/a/b/c/d/');
+        expect(replaceDoubleSlash('https://a///b//c/d/')).toBe('https://a/b/c/d/');
+        expect(replaceDoubleSlash('////a///b//c/d/')).toBe('/a/b/c/d/');
     });
 
     it('buildUrl', () => {
-        expect(buildUrl(makeUrlSegments({}, '////a///b//c/d/'))).toEqual('http://localhost/a/b/c/d');
-        expect(buildUrl(makeUrlSegments({ baseUrl: 'api-backend' }, '////a///b//c/d'))).toEqual(
+        expect(buildUrl(makeUrlSegments({}, '////a///b//c/d/'))).toBe('http://localhost/a/b/c/d');
+        expect(buildUrl(makeUrlSegments({ baseUrl: 'api-backend' }, '////a///b//c/d'))).toBe(
             'http://localhost/api-backend/a/b/c/d'
         );
 
-        expect(buildUrl(makeUrlSegments({ hostUrl: 'https://127.0.0.0:8030' }, '', '////a///b//c/d?quick'))).toEqual(
+        expect(buildUrl(makeUrlSegments({ hostUrl: 'https://127.0.0.0:8030' }, '', '////a///b//c/d?quick'))).toBe(
             'https://127.0.0.0:8030/a/b/c/d'
         );
     });
@@ -112,17 +112,17 @@ describe('[TEST]: http utils', () => {
             const headers: HttpHeaders = getHttpHeader({ a: '1', b: '2' });
 
             expect(headers.keys()).toEqual(['a', 'b']);
-            expect(headers.get('a')).toEqual('1');
-            expect(headers.get('b')).toEqual('2');
+            expect(headers.get('a')).toBe('1');
+            expect(headers.get('b')).toBe('2');
         });
 
         it('case #2', () => {
             const params: HttpParams = getHttpParams('/todos/get?pageSize=5&value=2', { pageIndex: 0 });
 
             expect(params.keys()).toEqual(['pageSize', 'value', 'pageIndex']);
-            expect(params.get('pageSize')).toEqual('5');
-            expect(params.get('value')).toEqual('2');
-            expect(params.get('pageIndex')).toEqual(0);
+            expect(params.get('pageSize')).toBe('5');
+            expect(params.get('value')).toBe('2');
+            expect(params.get('pageIndex')).toBe(0);
         });
     });
 
@@ -138,25 +138,25 @@ describe('[TEST]: http utils', () => {
         map.set('id', 5);
         map.set('newId', 6);
 
-        expect(ensurePathByPathVariables(`/a/{newId}/b/{id}/d`, map)).toEqual('/a/6/b/5/d');
-        expect(ensurePathByPathVariables(`/a/{invalidName}`, map)).toEqual('/a/{invalidName}');
+        expect(ensurePathByPathVariables(`/a/{newId}/b/{id}/d`, map)).toBe('/a/6/b/5/d');
+        expect(ensurePathByPathVariables(`/a/{invalidName}`, map)).toBe('/a/{invalidName}');
     });
 
     describe('removeLeadingAndTrailingSlashes', () => {
         it('case #1', () => {
-            expect(replaceLeadingAndTrailingSlashes('')).toEqual('');
+            expect(replaceLeadingAndTrailingSlashes('')).toBe('');
         });
 
         it('case #2', () => {
-            expect(replaceLeadingAndTrailingSlashes('/')).toEqual('');
+            expect(replaceLeadingAndTrailingSlashes('/')).toBe('');
         });
 
         it('case #3', () => {
-            expect(replaceLeadingAndTrailingSlashes('//')).toEqual('');
+            expect(replaceLeadingAndTrailingSlashes('//')).toBe('');
         });
 
         it('case #4', () => {
-            expect(replaceLeadingAndTrailingSlashes('//ad/example///')).toEqual('ad/example');
+            expect(replaceLeadingAndTrailingSlashes('//ad/example///')).toBe('ad/example');
         });
     });
 });

@@ -66,29 +66,29 @@ describe('[TEST]: Trim Input', function () {
     }
 
     it('correct sync modelView with model and dynamic control name', () => {
-        expect(component!.controlName).toEqual('b');
+        expect(component!.controlName).toBe('b');
         expect(component?.form.value).toEqual({ a: 1234000012340000, b: undefined });
-        expect(debugElement!.nativeElement.value).toEqual('');
+        expect(debugElement!.nativeElement.value).toBe('');
 
         component!.controlName = 'a';
         localDetectChanges();
         setValueAndDispatchBlur('\t  2222000022220000   ');
-        expect(component!.controlName).toEqual('a');
+        expect(component!.controlName).toBe('a');
         expect(component?.form.value).toEqual({ a: '2222000022220000', b: undefined });
-        expect(debugElement!.nativeElement.value).toEqual('2222-0000-2222-0000');
+        expect(debugElement!.nativeElement.value).toBe('2222-0000-2222-0000');
 
         component!.controlName = 'b';
         localDetectChanges();
         setValueAndDispatchBlur('\t  3333000033330000   ');
-        expect(component!.controlName).toEqual('b');
+        expect(component!.controlName).toBe('b');
         expect(component?.form.value).toEqual({ a: '2222000022220000', b: '3333000033330000' });
-        expect(debugElement!.nativeElement.value).toEqual('3333-0000-3333-0000');
+        expect(debugElement!.nativeElement.value).toBe('3333-0000-3333-0000');
 
         component!.controlName = 'a';
         localDetectChanges();
         setValueAndDispatchBlur('\t  4444000044440000   ');
-        expect(component!.controlName).toEqual('a');
+        expect(component!.controlName).toBe('a');
         expect(component?.form.value).toEqual({ a: '4444000044440000', b: '3333000033330000' });
-        expect(debugElement!.nativeElement.value).toEqual('4444-0000-4444-0000');
+        expect(debugElement!.nativeElement.value).toBe('4444-0000-4444-0000');
     });
 });

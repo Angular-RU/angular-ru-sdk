@@ -110,7 +110,7 @@ describe('[TEST]: HTTP Intercept Client', () => {
             ?.get('api-get', { queryParams: { value: 1 }, headers: { Authorization: 'token xxx', KeepAlive: 'true' } })
             .subscribe((response: Any[]) => {
                 expect(response).toEqual([{ hello: 'world' }]);
-                expect(req.request.method).toEqual('GET');
+                expect(req.request.method).toBe('GET');
             });
 
         req = httpMock.expectOne(`${MOCK_API}/api-get?value=1`);
@@ -131,8 +131,8 @@ describe('[TEST]: HTTP Intercept Client', () => {
     it('should be correct POST intercept', fakeAsync(() => {
         client?.post('api-post', { baseUrl: 'backend', body: { a: undefined, b: 2, c: 3 } }).subscribe({
             error: (error: unknown) => {
-                expect((error as HttpErrorResponse).status).toEqual(400);
-                expect((error as HttpErrorResponse).statusText).toEqual('Bad Request');
+                expect((error as HttpErrorResponse).status).toBe(400);
+                expect((error as HttpErrorResponse).statusText).toBe('Bad Request');
             }
         });
 

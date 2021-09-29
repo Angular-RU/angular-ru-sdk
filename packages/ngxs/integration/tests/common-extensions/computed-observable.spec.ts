@@ -152,11 +152,11 @@ describe('[TEST]: Observable with computed $a field', () => {
         subResult.push('subscribe ref#5');
         ref5 = a.a$.subscribe((val) => subResult.push(`ref#5: ${val}`));
 
-        expect(ref1.closed).toEqual(true);
-        expect(ref2.closed).toEqual(true);
-        expect(ref3.closed).toEqual(false);
-        expect(ref4.closed).toEqual(false);
-        expect(ref5.closed).toEqual(false);
+        expect(ref1.closed).toBe(true);
+        expect(ref2.closed).toBe(true);
+        expect(ref3.closed).toBe(false);
+        expect(ref4.closed).toBe(false);
+        expect(ref5.closed).toBe(false);
 
         expect(a.snapshot).toEqual({ value: 4 });
         expect(b.snapshot).toEqual({ value: 5 });
@@ -188,7 +188,7 @@ describe('[TEST]: Observable with computed $a field', () => {
             'ref#5: a(4) + b(5) = 9'
         ]);
 
-        expect(a.subscribeA$).toEqual(1);
+        expect(a.subscribeA$).toBe(1);
     });
 
     it('should be trigger only when $a and $b states changed', () => {
@@ -277,6 +277,6 @@ describe('[TEST]: Observable with computed $a field', () => {
             'ref#5: a(4) + b(5) = 9'
         ]);
 
-        expect(a.subscribeA$_$B).toEqual(1);
+        expect(a.subscribeA$_$B).toBe(1);
     });
 });

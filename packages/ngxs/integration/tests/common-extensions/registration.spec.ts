@@ -72,7 +72,7 @@ describe('check correct deep instance', () => {
     });
 
     it('should be correct ngOnInit', () => {
-        expect(component.name).toEqual('Angular + NGXS');
+        expect(component.name).toBe('Angular + NGXS');
         expect(store.snapshot()).toEqual({ registration: { address: { dirty: false } } });
 
         component.ngOnInit();

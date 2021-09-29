@@ -64,18 +64,18 @@ describe('[TEST]: Check style', () => {
         it('clear line style', () => {
             // with style
             logger.css('font-weight: bold');
-            expect(logger.getCurrentLineStyle()).toEqual('font-weight: bold;');
+            expect(logger.getCurrentLineStyle()).toBe('font-weight: bold;');
 
             // without style
             logger.css('font-weight: bold');
             logger.clearCssCurrentLine();
-            expect(logger.getCurrentLineStyle()).toEqual('');
+            expect(logger.getCurrentLineStyle()).toBe('');
         });
 
         it('get current line style', () => {
             logger.css('text-transform: uppercase, font-weight: bold, font-size: 12px, margin: 10px, padding: 10px');
 
-            expect(logger.getCurrentLineStyle()).toEqual(
+            expect(logger.getCurrentLineStyle()).toBe(
                 'text-transform: uppercase, font-weight: bold, font-size: 12px, margin: 10px, padding: 10px;'
             );
         });
@@ -83,7 +83,7 @@ describe('[TEST]: Check style', () => {
         it('should work with empty cssClass', () => {
             logger.cssClass('').debug(testString);
 
-            expect(logger.getCurrentLineStyle()).toEqual('');
+            expect(logger.getCurrentLineStyle()).toBe('');
         });
     });
 
@@ -109,14 +109,14 @@ describe('[TEST]: Check style', () => {
 
         it('should use global styles', () => {
             logger.log(testString);
-            expect(fakeConsole.stack()).toEqual(
+            expect(fakeConsole.stack()).toBe(
                 '[{"log":["%c%s","color: violet; font-weight: bold; font-size: 12px;","test string"]}]'
             );
         });
 
         it('should use global styles and work with empty css', () => {
             logger.css('').log(testString);
-            expect(fakeConsole.stack()).toEqual(
+            expect(fakeConsole.stack()).toBe(
                 '[{"log":["%c%s","color: violet; font-weight: bold; font-size: 12px;","test string"]}]'
             );
         });

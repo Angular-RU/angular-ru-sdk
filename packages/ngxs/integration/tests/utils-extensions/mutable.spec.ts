@@ -63,6 +63,6 @@ describe('mutable', () => {
 
         app.autoDetectChanges();
 
-        expect(parseFloat(app.nativeElement.innerHTML)).toEqual(0);
+        expect(parseFloat(app.nativeElement.innerHTML)).toBe(0);
     });
 });

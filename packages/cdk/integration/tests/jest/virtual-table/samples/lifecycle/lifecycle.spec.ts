@@ -182,14 +182,14 @@ describe('[TEST]: Lifecycle table', () => {
     it('should be unchecked state before ngOnChange', () => {
         table.source = deepClone(data);
 
-        expect(table.isRendered).toEqual(false);
+        expect(table.isRendered).toBe(false);
         expect(table.modelColumnKeys).toEqual([]);
-        expect(table.dirty).toEqual(true);
-        expect(table.rendering).toEqual(false);
-        expect(table.contentInit).toEqual(false);
+        expect(table.dirty).toBe(true);
+        expect(table.rendering).toBe(false);
+        expect(table.contentInit).toBe(false);
         expect(table.displayedColumns).toEqual([]);
-        expect(table.contentCheck).toEqual(false);
-        expect(table.sourceExists).toEqual(true);
+        expect(table.contentCheck).toBe(false);
+        expect(table.sourceExists).toBe(true);
     });
 
     it('should be correct generate modelColumnKeys after ngOnChange', () => {
@@ -198,15 +198,15 @@ describe('[TEST]: Lifecycle table', () => {
         table.ngOnChanges(changes);
         table.ngOnInit();
 
-        expect(table.isRendered).toEqual(false);
+        expect(table.isRendered).toBe(false);
         expect(table.modelColumnKeys).toEqual(['position', 'name', 'weight', 'symbol']);
-        expect(table.dirty).toEqual(true);
-        expect(table.rendering).toEqual(false);
-        expect(table.contentInit).toEqual(false);
+        expect(table.dirty).toBe(true);
+        expect(table.rendering).toBe(false);
+        expect(table.contentInit).toBe(false);
         expect(table.displayedColumns).toEqual([]);
-        expect(table.contentCheck).toEqual(false);
-        expect(table.sourceExists).toEqual(true);
-        expect(table.selection.primaryKey).toEqual('position');
+        expect(table.contentCheck).toBe(false);
+        expect(table.sourceExists).toBe(true);
+        expect(table.selection.primaryKey).toBe('position');
     });
 
     it('should be correct state after ngAfterContentInit when source empty', () => {
@@ -216,14 +216,14 @@ describe('[TEST]: Lifecycle table', () => {
         table.ngOnInit();
         table.ngAfterContentInit();
 
-        expect(table.isRendered).toEqual(false);
+        expect(table.isRendered).toBe(false);
         expect(table.modelColumnKeys).toEqual([]);
-        expect(table.dirty).toEqual(false);
-        expect(table.rendering).toEqual(false);
-        expect(table.contentInit).toEqual(true);
+        expect(table.dirty).toBe(false);
+        expect(table.rendering).toBe(false);
+        expect(table.contentInit).toBe(true);
         expect(table.displayedColumns).toEqual([]);
-        expect(table.contentCheck).toEqual(false);
-        expect(table.sourceExists).toEqual(false);
+        expect(table.contentCheck).toBe(false);
+        expect(table.sourceExists).toBe(false);
     });
 
     it('should be correct state after ngAfterContentInit', fakeAsync(() => {
@@ -232,25 +232,25 @@ describe('[TEST]: Lifecycle table', () => {
         table.ngOnInit();
         table.ngAfterContentInit();
 
-        expect(table.isRendered).toEqual(false);
+        expect(table.isRendered).toBe(false);
         expect(table.modelColumnKeys).toEqual(['position', 'name', 'weight', 'symbol']);
-        expect(table.dirty).toEqual(false);
-        expect(table.rendering).toEqual(false);
-        expect(table.contentInit).toEqual(true);
+        expect(table.dirty).toBe(false);
+        expect(table.rendering).toBe(false);
+        expect(table.contentInit).toBe(true);
         expect(table.displayedColumns).toEqual([]);
-        expect(table.contentCheck).toEqual(false);
-        expect(table.sourceExists).toEqual(true);
+        expect(table.contentCheck).toBe(false);
+        expect(table.sourceExists).toBe(true);
 
         tick(600);
 
-        expect(table.rendering).toEqual(false);
-        expect(table.isRendered).toEqual(true);
+        expect(table.rendering).toBe(false);
+        expect(table.isRendered).toBe(true);
         expect(table.positionColumns).toEqual(['position', 'name', 'weight', 'symbol']);
 
         tick(400);
 
-        expect(table.rendering).toEqual(false);
-        expect(table.isRendered).toEqual(true);
+        expect(table.rendering).toBe(false);
+        expect(table.isRendered).toBe(true);
         expect(table.positionColumns).toEqual(['position', 'name', 'weight', 'symbol']);
     }));
 
@@ -265,14 +265,14 @@ describe('[TEST]: Lifecycle table', () => {
         table.ngAfterContentInit();
         table.ngAfterViewInit();
 
-        expect(table.isRendered).toEqual(false);
+        expect(table.isRendered).toBe(false);
         expect(table.modelColumnKeys).toEqual([]);
-        expect(table.dirty).toEqual(false);
-        expect(table.rendering).toEqual(false);
-        expect(table.contentInit).toEqual(true);
+        expect(table.dirty).toBe(false);
+        expect(table.rendering).toBe(false);
+        expect(table.contentInit).toBe(true);
         expect(table.displayedColumns).toEqual([]);
-        expect(table.contentCheck).toEqual(false);
-        expect(table.sourceExists).toEqual(false);
+        expect(table.contentCheck).toBe(false);
+        expect(table.sourceExists).toBe(false);
 
         table.source = deepClone(data);
         templates.reset([new NgxColumnComponent()]);
@@ -280,19 +280,19 @@ describe('[TEST]: Lifecycle table', () => {
 
         tick(1000);
 
-        expect(table.isRendered).toEqual(false);
+        expect(table.isRendered).toBe(false);
         expect(table.modelColumnKeys).toEqual([]);
-        expect(table.dirty).toEqual(false);
-        expect(table.rendering).toEqual(false);
-        expect(table.contentInit).toEqual(true);
+        expect(table.dirty).toBe(false);
+        expect(table.rendering).toBe(false);
+        expect(table.contentInit).toBe(true);
         expect(table.displayedColumns).toEqual([]);
-        expect(table.contentCheck).toEqual(true);
-        expect(table.sourceExists).toEqual(true);
+        expect(table.contentCheck).toBe(true);
+        expect(table.sourceExists).toBe(true);
 
         tick(1000);
 
-        expect(table.isRendered).toEqual(false);
-        expect(table.afterViewInitDone).toEqual(true);
+        expect(table.isRendered).toBe(false);
+        expect(table.afterViewInitDone).toBe(true);
     }));
 
     it('should be correct template changes with check renderCount', fakeAsync(() => {
@@ -309,39 +309,39 @@ describe('[TEST]: Lifecycle table', () => {
 
         tick(600);
 
-        expect(table.afterViewInitDone).toEqual(false);
-        expect(table.isRendered).toEqual(true);
+        expect(table.afterViewInitDone).toBe(false);
+        expect(table.isRendered).toBe(true);
         expect(table.modelColumnKeys).toEqual(['position', 'name', 'weight', 'symbol']);
-        expect(table.dirty).toEqual(false);
-        expect(table.rendering).toEqual(false);
-        expect(table.contentInit).toEqual(true);
+        expect(table.dirty).toBe(false);
+        expect(table.rendering).toBe(false);
+        expect(table.contentInit).toBe(true);
         expect(table.displayedColumns).toEqual(['position', 'name', 'weight', 'symbol']);
-        expect(table.contentCheck).toEqual(false);
-        expect(table.sourceExists).toEqual(true);
+        expect(table.contentCheck).toBe(false);
+        expect(table.sourceExists).toBe(true);
 
         table.source = deepClone(data);
         templates.reset([new NgxColumnComponent()]);
 
         templates.notifyOnChanges();
 
-        expect(table.isRendered).toEqual(true);
+        expect(table.isRendered).toBe(true);
         expect(table.modelColumnKeys).toEqual(['position', 'name', 'weight', 'symbol']);
-        expect(table.dirty).toEqual(false);
-        expect(table.rendering).toEqual(false);
-        expect(table.contentInit).toEqual(true);
+        expect(table.dirty).toBe(false);
+        expect(table.rendering).toBe(false);
+        expect(table.contentInit).toBe(true);
         expect(table.displayedColumns).toEqual(['position', 'name', 'weight', 'symbol']);
-        expect(table.contentCheck).toEqual(true);
-        expect(table.sourceExists).toEqual(true);
+        expect(table.contentCheck).toBe(true);
+        expect(table.sourceExists).toBe(true);
 
         templates.reset([new NgxColumnComponent(), new NgxColumnComponent()]);
         templates.notifyOnChanges();
         table.ngAfterViewChecked();
 
-        expect(table.afterViewInitDone).toEqual(false);
+        expect(table.afterViewInitDone).toBe(false);
 
         tick(1000);
 
-        expect(table.afterViewInitDone).toEqual(true);
+        expect(table.afterViewInitDone).toBe(true);
     }));
 
     it('should be correct template changes query list', fakeAsync(() => {
@@ -364,33 +364,33 @@ describe('[TEST]: Lifecycle table', () => {
 
         tick(1000);
 
-        expect(table.isRendered).toEqual(false);
+        expect(table.isRendered).toBe(false);
         expect(table.modelColumnKeys).toEqual(['position', 'name', 'weight', 'symbol']);
-        expect(table.dirty).toEqual(false);
-        expect(table.rendering).toEqual(false);
-        expect(table.contentInit).toEqual(true);
+        expect(table.dirty).toBe(false);
+        expect(table.rendering).toBe(false);
+        expect(table.contentInit).toBe(true);
         expect(table.displayedColumns).toEqual([]);
-        expect(table.contentCheck).toEqual(true);
-        expect(table.sourceExists).toEqual(true);
+        expect(table.contentCheck).toBe(true);
+        expect(table.sourceExists).toBe(true);
 
         table.ngAfterViewChecked();
 
         tick(1000);
 
-        expect(table.isRendered).toEqual(true);
+        expect(table.isRendered).toBe(true);
         expect(table.modelColumnKeys).toEqual(['position', 'name', 'weight', 'symbol']);
-        expect(table.dirty).toEqual(false);
-        expect(table.rendering).toEqual(false);
-        expect(table.contentInit).toEqual(true);
+        expect(table.dirty).toBe(false);
+        expect(table.rendering).toBe(false);
+        expect(table.contentInit).toBe(true);
         expect(table.displayedColumns).toEqual(['position', 'name', 'weight', 'symbol']);
-        expect(table.contentCheck).toEqual(false);
-        expect(table.sourceExists).toEqual(true);
+        expect(table.contentCheck).toBe(false);
+        expect(table.sourceExists).toBe(true);
     }));
 
     it('should be correct ngOnDestroy', () => {
-        expect(table.destroy$.closed).toEqual(false);
+        expect(table.destroy$.closed).toBe(false);
         // eslint-disable-next-line deprecation/deprecation
-        expect(table.destroy$.isStopped).toEqual(false);
+        expect(table.destroy$.isStopped).toBe(false);
 
         table.ngOnChanges(changes);
         table.ngOnInit();
@@ -399,9 +399,9 @@ describe('[TEST]: Lifecycle table', () => {
         table.ngAfterViewChecked();
         table.ngOnDestroy();
 
-        expect(table.destroy$.closed).toEqual(false);
+        expect(table.destroy$.closed).toBe(false);
         // eslint-disable-next-line deprecation/deprecation
-        expect(table.destroy$.isStopped).toEqual(true);
+        expect(table.destroy$.isStopped).toBe(true);
     });
 
     it('should be correct sync rendering', fakeAsync(() => {

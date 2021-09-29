@@ -81,9 +81,9 @@ describe('[TEST]: Deep data action type', () => {
 
         tick(100);
 
-        expect(actions[0].action.constructor.type).toEqual('@a.setProp(prop)');
-        expect(actions[2].action.constructor.type).toEqual('@a/b.setProp(prop)');
-        expect(actions[4].action.constructor.type).toEqual('@a/b/c.setProp(prop)');
+        expect(actions[0].action.constructor.type).toBe('@a.setProp(prop)');
+        expect(actions[2].action.constructor.type).toBe('@a/b.setProp(prop)');
+        expect(actions[4].action.constructor.type).toBe('@a/b/c.setProp(prop)');
 
         expect(stateA.snapshot).toEqual({
             prop: 'A',

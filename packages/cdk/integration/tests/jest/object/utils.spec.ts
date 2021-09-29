@@ -94,7 +94,7 @@ describe('[TEST]: Correct work object utils', (): void => {
                     c: { d: { f: { g: 'i' } } }
                 }
             )
-        ).toEqual(false);
+        ).toBe(false);
 
         expect(
             strictEquals(
@@ -109,7 +109,7 @@ describe('[TEST]: Correct work object utils', (): void => {
                     c: null
                 }
             )
-        ).toEqual(true);
+        ).toBe(true);
 
         expect(
             strictEquals(
@@ -123,7 +123,7 @@ describe('[TEST]: Correct work object utils', (): void => {
                     c: null
                 }
             )
-        ).toEqual(false);
+        ).toBe(false);
     });
 
     it('should be shallowTrimProperties', () => {

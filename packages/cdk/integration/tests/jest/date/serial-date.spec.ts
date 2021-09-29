@@ -19,27 +19,27 @@ describe('[TEST]: Date', (): void => {
             toFormatDateTime(dateTime, {
                 timezone: '+0300'
             })
-        ).toEqual('11.12.2018 15:41:37');
+        ).toBe('11.12.2018 15:41:37');
         expect(
             toFormatDateTime(dateTime, {
                 format: 'HH:mm dd.MM.yyyy',
                 timezone: '+0300'
             })
-        ).toEqual('15:41 11.12.2018');
+        ).toBe('15:41 11.12.2018');
     });
 
     describe('toISOString', () => {
         it('#1', () => {
-            expect(toISOString(new Date(0))).toEqual('1970-01-01T00:00:00.000Z');
-            expect(toISOString('  ')).toEqual('');
-            expect(toISOString('')).toEqual('');
-            expect(toISOString(undefined as Any)).toEqual('');
-            expect(toISOString(null as Any)).toEqual('');
-            expect(toISOString('abcde')).toEqual('');
+            expect(toISOString(new Date(0))).toBe('1970-01-01T00:00:00.000Z');
+            expect(toISOString('  ')).toBe('');
+            expect(toISOString('')).toBe('');
+            expect(toISOString(undefined as Any)).toBe('');
+            expect(toISOString(null as Any)).toBe('');
+            expect(toISOString('abcde')).toBe('');
         });
 
         it('#2', () => {
-            expect(toISOString(new Date(0))).toEqual('1970-01-01T00:00:00.000Z');
+            expect(toISOString(new Date(0))).toBe('1970-01-01T00:00:00.000Z');
         });
     });
 
@@ -74,52 +74,52 @@ describe('[TEST]: Date', (): void => {
         const date: Date = dateStringToDate('incorrect value');
 
         // noinspection SuspiciousTypeOfGuard
-        expect(date instanceof Date).toEqual(true);
+        expect(date instanceof Date).toBe(true);
     });
 
     it('should correct change data with short day', (): void => {
         const date: Nullable<string> = toTimestamp('5.07.2019 00:00', isoFormat);
 
-        expect(date).toEqual('2019-07-05 00:00:00');
+        expect(date).toBe('2019-07-05 00:00:00');
     });
 
     it('should correct be correct invalidate date', (): void => {
         let date: Nullable<string> = toTimestamp('5.7.2019', isoFormat);
 
-        expect(date).toEqual('2019-07-05 00:00:00');
+        expect(date).toBe('2019-07-05 00:00:00');
 
         date = toTimestamp('1.2.2019', isoFormat);
-        expect(date).toEqual('2019-02-01 00:00:00');
+        expect(date).toBe('2019-02-01 00:00:00');
 
         date = toTimestamp('0.0.2019', isoFormat);
-        expect(date).toEqual('2019-01-01 00:00:00');
+        expect(date).toBe('2019-01-01 00:00:00');
 
         date = toTimestamp('3..2019', isoFormat);
-        expect(date).toEqual('2019-01-03 00:00:00');
+        expect(date).toBe('2019-01-03 00:00:00');
 
         date = toTimestamp('.2.2019', isoFormat);
-        expect(date).toEqual('2019-02-01 00:00:00');
+        expect(date).toBe('2019-02-01 00:00:00');
 
         date = toTimestamp('..2019', isoFormat);
-        expect(date).toEqual('2019-01-01 00:00:00');
+        expect(date).toBe('2019-01-01 00:00:00');
 
         date = toTimestamp('.2.2019 01:00', isoFormat);
-        expect(date).toEqual('2019-02-01 01:00:00');
+        expect(date).toBe('2019-02-01 01:00:00');
     });
 
     it('should correct pass correct data', (): void => {
         const date: Nullable<string> = toTimestamp('25.07.2019 00:00', isoFormat);
 
-        expect(date).toEqual('2019-07-25 00:00:00');
+        expect(date).toBe('2019-07-25 00:00:00');
     });
 
     it('toUnix', () => {
-        expect(toUnix(new Date('Thu Jul 30 2020 20:25:59 GMT+0300'))).toEqual(1596129959000);
+        expect(toUnix(new Date('Thu Jul 30 2020 20:25:59 GMT+0300'))).toBe(1596129959000);
     });
 
     describe('toPrettyFormat', () => {
         it('#1', () => {
-            expect(toPrettyFormat(new Date('01.01.2020'))).toEqual('01.01.2020 00:00:00');
+            expect(toPrettyFormat(new Date('01.01.2020'))).toBe('01.01.2020 00:00:00');
         });
 
         it('#2', () => {
@@ -128,13 +128,13 @@ describe('[TEST]: Date', (): void => {
                     format: 'HH:mm dd.MM.yyyy',
                     timezone: '+0300'
                 })
-            ).toEqual('15:41 11.12.2018');
+            ).toBe('15:41 11.12.2018');
         });
     });
 
     it(`toMilliseconds`, () => {
-        expect(toMilliseconds(1599485851)).toEqual(1599485851000);
-        expect(toMilliseconds('1599485851')).toEqual(1599485851000);
-        expect(toMilliseconds(new Date(0))).toEqual(0);
+        expect(toMilliseconds(1599485851)).toBe(1599485851000);
+        expect(toMilliseconds('1599485851')).toBe(1599485851000);
+        expect(toMilliseconds(new Date(0))).toBe(0);
     });
 });

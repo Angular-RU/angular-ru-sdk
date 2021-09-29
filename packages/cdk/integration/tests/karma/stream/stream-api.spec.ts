@@ -14,6 +14,6 @@ describe('[TEST]: Stream API', () => {
         const buffer: ArrayBuffer = base64ToArrayBuffer(base64);
         const result: string = await decompress(buffer);
 
-        expect(result).toEqual('hello world');
+        expect(result).toBe('hello world');
     });
 });

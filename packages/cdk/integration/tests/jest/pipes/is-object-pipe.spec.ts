@@ -12,14 +12,14 @@ describe('is object pipe', () => {
     it('is object', () => {
         class A {}
 
-        expect(pipe.transform(new A())).toEqual(true);
-        expect(pipe.transform({ a: { b: { c: 'str' } } })).toEqual(true);
+        expect(pipe.transform(new A())).toBe(true);
+        expect(pipe.transform({ a: { b: { c: 'str' } } })).toBe(true);
 
-        expect(pipe.transform(0)).toEqual(false);
-        expect(pipe.transform([])).toEqual(false);
-        expect(pipe.transform(NaN)).toEqual(false);
-        expect(pipe.transform(Infinity)).toEqual(false);
-        expect(pipe.transform(null)).toEqual(false);
-        expect(pipe.transform(undefined)).toEqual(false);
+        expect(pipe.transform(0)).toBe(false);
+        expect(pipe.transform([])).toBe(false);
+        expect(pipe.transform(NaN)).toBe(false);
+        expect(pipe.transform(Infinity)).toBe(false);
+        expect(pipe.transform(null)).toBe(false);
+        expect(pipe.transform(undefined)).toBe(false);
     });
 });

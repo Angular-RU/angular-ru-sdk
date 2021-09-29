@@ -27,34 +27,34 @@ describe('[TEST] get client height pipe', () => {
     ];
 
     it('should be correct calculate client height when clientHeight = 30', () => {
-        expect(getClientHeightPipe.transform(elRef1)).toEqual(30);
+        expect(getClientHeightPipe.transform(elRef1)).toBe(30);
     });
 
     it('should be correct calculate client height when clientHeight = null', () => {
-        expect(getClientHeightPipe.transform(elRef2)).toEqual(0);
+        expect(getClientHeightPipe.transform(elRef2)).toBe(0);
     });
 
     it('should be correct calculate client height when clientHeight = undefined', () => {
-        expect(getClientHeightPipe.transform(elRef3)).toEqual(0);
+        expect(getClientHeightPipe.transform(elRef3)).toBe(0);
     });
 
     it('should be correct calculate client height when clientHeight is not key of nativeElement', () => {
-        expect(getClientHeightPipe.transform(elRef4)).toEqual(0);
+        expect(getClientHeightPipe.transform(elRef4)).toBe(0);
     });
 
     it('should be correct calculate client height when nativeElement = undefined', () => {
-        expect(getClientHeightPipe.transform(elRef5)).toEqual(0);
+        expect(getClientHeightPipe.transform(elRef5)).toBe(0);
     });
 
     it('should be correct calculate client height when nativeElement = null', () => {
-        expect(getClientHeightPipe.transform(elRef6)).toEqual(0);
+        expect(getClientHeightPipe.transform(elRef6)).toBe(0);
     });
 
     it('should be correct calculate client height when elementRef = null', () => {
-        expect(getClientHeightPipe.transform(elRef7)).toEqual(0);
+        expect(getClientHeightPipe.transform(elRef7)).toBe(0);
     });
 
     it('should be correct calculate client height for refs array', () => {
-        expect(getClientHeightPipe.transform(elRefs)).toEqual(50);
+        expect(getClientHeightPipe.transform(elRefs)).toBe(50);
     });
 });

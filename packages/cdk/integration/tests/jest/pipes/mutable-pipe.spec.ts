@@ -19,8 +19,8 @@ describe('mutable', () => {
         const mutableObj = pipe.transform(obj);
 
         mutableObj.a = 'str2';
-        expect(obj.a).toEqual('str2');
-        expect(mutableObj.a).toEqual('str2');
+        expect(obj.a).toBe('str2');
+        expect(mutableObj.a).toBe('str2');
     });
 
     describe('instance', () => {
@@ -57,7 +57,7 @@ describe('mutable', () => {
                 'a.b.c'
             );
 
-            expect(c).toEqual(1);
+            expect(c).toBe(1);
         });
 
         it('should be correct return object when set empty path', () => {
@@ -71,10 +71,10 @@ describe('mutable', () => {
             const b: PlainObject = { a: { b: 2 } };
             const c: PlainObject = { a: { b: [1, 2, 3] } };
 
-            expect(pipePath.transform(a, 'a.b')).toEqual(1);
-            expect(pipePath.transform(b, 'a.b')).toEqual(2);
+            expect(pipePath.transform(a, 'a.b')).toBe(1);
+            expect(pipePath.transform(b, 'a.b')).toBe(2);
             expect(pipePath.transform(b, 'a')).toEqual({ b: 2 });
-            expect(pipePath.transform(c, 'a.b.2')).toEqual(3);
+            expect(pipePath.transform(c, 'a.b.2')).toBe(3);
         });
     });
 });

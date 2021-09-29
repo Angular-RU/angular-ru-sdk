@@ -62,7 +62,7 @@ describe('[TEST]: Utils', () => {
             message = (e as Error).message;
         }
 
-        expect(message).toEqual('State name not provided in class');
+        expect(message).toBe('State name not provided in class');
 
         @State({
             name: 'f',
@@ -104,7 +104,7 @@ describe('[TEST]: Utils', () => {
             message = (e as Error).message;
         }
 
-        expect(message).toEqual('Child states can only be added to an object. Cannot convert Array to PlainObject');
+        expect(message).toBe('Child states can only be added to an object. Cannot convert Array to PlainObject');
     });
 
     it('should be create singleton context', () => {
@@ -127,7 +127,7 @@ describe('[TEST]: Utils', () => {
 
         new MyState().setState('hello');
 
-        expect(state.getState()).toEqual('hello');
+        expect(state.getState()).toBe('hello');
         expect(store.snapshot()).toEqual({ myState: 'hello' });
     });
 
@@ -175,7 +175,7 @@ describe('[TEST]: Utils', () => {
         const store: Store = TestBed.inject(Store);
         const meta: MetaDataModel = getStateMetadata(AppState);
 
-        expect(isObservable(state.state$)).toEqual(true);
+        expect(isObservable(state.state$)).toBe(true);
         expect(meta).toEqual({
             name: 'app',
             actions: {},

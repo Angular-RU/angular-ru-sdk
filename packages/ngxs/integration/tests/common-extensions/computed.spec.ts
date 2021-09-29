@@ -56,25 +56,25 @@ describe('[TEST]: Computed fields', () => {
 
         const b: B = TestBed.inject<B>(B); // sequenceId = 0
 
-        expect(b.snapshot).toEqual('value');
-        expect(b.snapshot).toEqual('value');
-        expect(b.snapshot).toEqual('value');
-        expect(b.snapshot).toEqual('value');
-        expect(b.snapshot).toEqual('value');
+        expect(b.snapshot).toBe('value');
+        expect(b.snapshot).toBe('value');
+        expect(b.snapshot).toBe('value');
+        expect(b.snapshot).toBe('value');
+        expect(b.snapshot).toBe('value');
 
         b.setState('hello'); // sequenceId = 1
 
-        expect(b.snapshot).toEqual('hello');
-        expect(b.snapshot).toEqual('hello');
-        expect(b.countSnapshot).toEqual(2);
+        expect(b.snapshot).toBe('hello');
+        expect(b.snapshot).toBe('hello');
+        expect(b.countSnapshot).toBe(2);
 
         b.setState('world'); // sequenceId = 2
 
-        expect(b.snapshot).toEqual('world');
-        expect(b.snapshot).toEqual('world');
-        expect(b.snapshot).toEqual('world');
-        expect(b.snapshot).toEqual('world');
-        expect(b.countSnapshot).toEqual(3);
+        expect(b.snapshot).toBe('world');
+        expect(b.snapshot).toBe('world');
+        expect(b.snapshot).toBe('world');
+        expect(b.snapshot).toBe('world');
+        expect(b.countSnapshot).toBe(3);
     });
 
     describe('calculate total', () => {
@@ -128,35 +128,35 @@ describe('[TEST]: Computed fields', () => {
             const state: OrderLineState = TestBed.inject<OrderLineState>(OrderLineState);
 
             // noinspection DuplicatedCode
-            expect(state.total).toEqual(0);
-            expect(state.total).toEqual(0);
-            expect(state.total).toEqual(0);
-            expect(state.total).toEqual(0);
-            expect(state.memoized).toEqual(1);
+            expect(state.total).toBe(0);
+            expect(state.total).toBe(0);
+            expect(state.total).toBe(0);
+            expect(state.total).toBe(0);
+            expect(state.memoized).toBe(1);
 
             // noinspection DuplicatedCode
-            expect(state.classicTotal).toEqual(0);
-            expect(state.classicTotal).toEqual(0);
-            expect(state.classicTotal).toEqual(0);
-            expect(state.classicTotal).toEqual(0);
-            expect(state.nonMemoized).toEqual(4);
+            expect(state.classicTotal).toBe(0);
+            expect(state.classicTotal).toBe(0);
+            expect(state.classicTotal).toBe(0);
+            expect(state.classicTotal).toBe(0);
+            expect(state.nonMemoized).toBe(4);
 
             state.setAmount(5);
             state.setPrice(5);
 
             // noinspection DuplicatedCode
-            expect(state.total).toEqual(25);
-            expect(state.total).toEqual(25);
-            expect(state.total).toEqual(25);
-            expect(state.total).toEqual(25);
-            expect(state.memoized).toEqual(2);
+            expect(state.total).toBe(25);
+            expect(state.total).toBe(25);
+            expect(state.total).toBe(25);
+            expect(state.total).toBe(25);
+            expect(state.memoized).toBe(2);
 
             // noinspection DuplicatedCode
-            expect(state.classicTotal).toEqual(25);
-            expect(state.classicTotal).toEqual(25);
-            expect(state.classicTotal).toEqual(25);
-            expect(state.classicTotal).toEqual(25);
-            expect(state.nonMemoized).toEqual(8);
+            expect(state.classicTotal).toBe(25);
+            expect(state.classicTotal).toBe(25);
+            expect(state.classicTotal).toBe(25);
+            expect(state.classicTotal).toBe(25);
+            expect(state.nonMemoized).toBe(8);
         });
 
         it('should be correct computed values with NgxsImmutableDataRepository', () => {
@@ -204,35 +204,35 @@ describe('[TEST]: Computed fields', () => {
             const state: ImmutableOrderLineState = TestBed.inject<ImmutableOrderLineState>(ImmutableOrderLineState);
 
             // noinspection DuplicatedCode
-            expect(state.total).toEqual(0);
-            expect(state.total).toEqual(0);
-            expect(state.total).toEqual(0);
-            expect(state.total).toEqual(0);
-            expect(state.memoized).toEqual(1);
+            expect(state.total).toBe(0);
+            expect(state.total).toBe(0);
+            expect(state.total).toBe(0);
+            expect(state.total).toBe(0);
+            expect(state.memoized).toBe(1);
 
             // noinspection DuplicatedCode
-            expect(state.classicTotal).toEqual(0);
-            expect(state.classicTotal).toEqual(0);
-            expect(state.classicTotal).toEqual(0);
-            expect(state.classicTotal).toEqual(0);
-            expect(state.nonMemoized).toEqual(4);
+            expect(state.classicTotal).toBe(0);
+            expect(state.classicTotal).toBe(0);
+            expect(state.classicTotal).toBe(0);
+            expect(state.classicTotal).toBe(0);
+            expect(state.nonMemoized).toBe(4);
 
             state.setAmount(5);
             state.setPrice(5);
 
             // noinspection DuplicatedCode
-            expect(state.total).toEqual(25);
-            expect(state.total).toEqual(25);
-            expect(state.total).toEqual(25);
-            expect(state.total).toEqual(25);
-            expect(state.memoized).toEqual(2);
+            expect(state.total).toBe(25);
+            expect(state.total).toBe(25);
+            expect(state.total).toBe(25);
+            expect(state.total).toBe(25);
+            expect(state.memoized).toBe(2);
 
             // noinspection DuplicatedCode
-            expect(state.classicTotal).toEqual(25);
-            expect(state.classicTotal).toEqual(25);
-            expect(state.classicTotal).toEqual(25);
-            expect(state.classicTotal).toEqual(25);
-            expect(state.nonMemoized).toEqual(8);
+            expect(state.classicTotal).toBe(25);
+            expect(state.classicTotal).toBe(25);
+            expect(state.classicTotal).toBe(25);
+            expect(state.classicTotal).toBe(25);
+            expect(state.nonMemoized).toBe(8);
         });
     });
 
@@ -269,8 +269,8 @@ describe('[TEST]: Computed fields', () => {
         const b: B = TestBed.inject<B>(B);
 
         expect(store.snapshot()).toEqual({ b: 0, a: 0 });
-        expect(a.snapshot).toEqual(0);
-        expect(b.snapshot).toEqual(0);
+        expect(a.snapshot).toBe(0);
+        expect(b.snapshot).toBe(0);
 
         a.increment();
         a.increment();
@@ -278,8 +278,8 @@ describe('[TEST]: Computed fields', () => {
         b.increment();
 
         expect(store.snapshot()).toEqual({ b: 1, a: 3 });
-        expect(a.snapshot).toEqual(3);
-        expect(b.snapshot).toEqual(1);
+        expect(a.snapshot).toBe(3);
+        expect(b.snapshot).toBe(1);
     });
 
     it('should be correct computed when change other states and inherited state', () => {
@@ -315,8 +315,8 @@ describe('[TEST]: Computed fields', () => {
         const b: B = TestBed.inject<B>(B);
 
         expect(store.snapshot()).toEqual({ b: 0, a: 0 });
-        expect(a.snapshot).toEqual(0);
-        expect(b.snapshot).toEqual(0);
+        expect(a.snapshot).toBe(0);
+        expect(b.snapshot).toBe(0);
 
         a.increment();
         a.increment();
@@ -324,8 +324,8 @@ describe('[TEST]: Computed fields', () => {
         b.increment();
 
         expect(store.snapshot()).toEqual({ b: 1, a: 3 });
-        expect(a.snapshot).toEqual(3);
-        expect(b.snapshot).toEqual(1);
+        expect(a.snapshot).toBe(3);
+        expect(b.snapshot).toBe(1);
 
         a.reset();
         b.reset();
@@ -336,8 +336,8 @@ describe('[TEST]: Computed fields', () => {
         a.increment();
 
         expect(store.snapshot()).toEqual({ b: 3, a: 1 });
-        expect(a.snapshot).toEqual(1);
-        expect(b.snapshot).toEqual(3);
+        expect(a.snapshot).toBe(1);
+        expect(b.snapshot).toBe(3);
         expect(a.snapshot === a.getState()).toBeTruthy();
         expect(b.snapshot === b.getState()).toBeTruthy();
 
@@ -350,8 +350,8 @@ describe('[TEST]: Computed fields', () => {
         b.increment();
 
         expect(store.snapshot()).toEqual({ b: 4, a: 7 });
-        expect(a.snapshot).toEqual(7);
-        expect(b.snapshot).toEqual(4);
+        expect(a.snapshot).toBe(7);
+        expect(b.snapshot).toBe(4);
         expect(a.snapshot === a.getState()).toBeTruthy();
         expect(b.snapshot === b.getState()).toBeTruthy();
     });
@@ -399,7 +399,7 @@ describe('[TEST]: Computed fields', () => {
         const b: B = TestBed.inject(B);
         const stream: NgxsDataSequence = TestBed.inject(NgxsDataSequence);
 
-        expect(stream.sequenceValue).toEqual(1);
+        expect(stream.sequenceValue).toBe(1);
         expect(store.snapshot()).toEqual({ b: { value: 2 }, a: { value: 1 } });
 
         expect(a.snapshot).toEqual({ value: 1 });
@@ -412,19 +412,19 @@ describe('[TEST]: Computed fields', () => {
         expect(b.snapshot).toEqual(b.snapshot);
         expect(b.snapshot).toEqual(b.snapshot);
 
-        expect(a.sum).toEqual(3);
-        expect(a.sum).toEqual(3);
-        expect(a.sum).toEqual(3);
-        expect(a.sum).toEqual(3);
-        expect(a.sum).toEqual(3);
-        expect(a.sum).toEqual(3);
-        expect(a.sum).toEqual(3);
+        expect(a.sum).toBe(3);
+        expect(a.sum).toBe(3);
+        expect(a.sum).toBe(3);
+        expect(a.sum).toBe(3);
+        expect(a.sum).toBe(3);
+        expect(a.sum).toBe(3);
+        expect(a.sum).toBe(3);
 
-        expect(a.heavyCount).toEqual(1);
+        expect(a.heavyCount).toBe(1);
 
         store.reset({ a: { value: 5 }, b: { value: 10 } });
 
-        expect(stream.sequenceValue).toEqual(2);
+        expect(stream.sequenceValue).toBe(2);
         expect(store.snapshot()).toEqual({ b: { value: 10 }, a: { value: 5 } });
 
         expect(a.snapshot).toEqual({ value: 5 });
@@ -437,22 +437,22 @@ describe('[TEST]: Computed fields', () => {
         expect(b.snapshot).toEqual(b.snapshot);
         expect(b.snapshot).toEqual(b.snapshot);
 
-        expect(a.sum).toEqual(15);
-        expect(a.sum).toEqual(15);
-        expect(a.sum).toEqual(15);
-        expect(a.sum).toEqual(15);
-        expect(a.sum).toEqual(15);
-        expect(a.sum).toEqual(15);
-        expect(a.sum).toEqual(15);
+        expect(a.sum).toBe(15);
+        expect(a.sum).toBe(15);
+        expect(a.sum).toBe(15);
+        expect(a.sum).toBe(15);
+        expect(a.sum).toBe(15);
+        expect(a.sum).toBe(15);
+        expect(a.sum).toBe(15);
 
-        expect(a.heavyCount).toEqual(2);
+        expect(a.heavyCount).toBe(2);
 
         stream.ngOnDestroy();
         store.reset({ a: { value: 0 }, b: { value: 0 } });
-        expect(stream.sequenceValue).toEqual(0);
+        expect(stream.sequenceValue).toBe(0);
 
         store.reset({ a: { value: 1 }, b: { value: 1 } });
-        expect(stream.sequenceValue).toEqual(0);
+        expect(stream.sequenceValue).toBe(0);
     });
 
     it('does not recalculate when use state from third-party service', () => {
@@ -500,25 +500,25 @@ describe('[TEST]: Computed fields', () => {
         const first: MyFirstCountService = TestBed.inject(MyFirstCountService);
         const second: MySecondCountState = TestBed.inject(MySecondCountState);
 
-        expect(first.getValue()).toEqual(0);
-        expect(second.snapshot).toEqual(0);
-        expect(second.sum).toEqual(0);
+        expect(first.getValue()).toBe(0);
+        expect(second.snapshot).toBe(0);
+        expect(second.sum).toBe(0);
 
         second.increment();
         second.increment();
 
-        expect(first.getValue()).toEqual(0);
-        expect(second.snapshot).toEqual(2);
-        expect(second.sum).toEqual(2);
+        expect(first.getValue()).toBe(0);
+        expect(second.snapshot).toBe(2);
+        expect(second.sum).toBe(2);
 
         first.increment();
         first.increment();
         first.increment();
 
         // Expect invalid behavior
-        expect(first.getValue()).toEqual(3);
-        expect(second.snapshot).toEqual(2);
-        expect(second.sum).toEqual(2);
+        expect(first.getValue()).toBe(3);
+        expect(second.snapshot).toBe(2);
+        expect(second.sum).toBe(2);
     });
 
     it('recalculate sum when use state from third-party service', () => {
@@ -569,24 +569,24 @@ describe('[TEST]: Computed fields', () => {
         const first: MyFirstCountService = TestBed.inject(MyFirstCountService);
         const second: MySecondCountState = TestBed.inject(MySecondCountState);
 
-        expect(first.getValue()).toEqual(0);
-        expect(second.snapshot).toEqual(0);
-        expect(second.sum).toEqual(0);
+        expect(first.getValue()).toBe(0);
+        expect(second.snapshot).toBe(0);
+        expect(second.sum).toBe(0);
 
         second.increment();
         second.increment();
 
-        expect(first.getValue()).toEqual(0);
-        expect(second.snapshot).toEqual(2);
-        expect(second.sum).toEqual(2);
+        expect(first.getValue()).toBe(0);
+        expect(second.snapshot).toBe(2);
+        expect(second.sum).toBe(2);
 
         first.increment();
         first.increment();
         first.increment();
 
         // Expect valid behavior
-        expect(first.getValue()).toEqual(3);
-        expect(second.snapshot).toEqual(2);
-        expect(second.sum).toEqual(5);
+        expect(first.getValue()).toBe(3);
+        expect(second.snapshot).toBe(2);
+        expect(second.sum).toBe(5);
     });
 });

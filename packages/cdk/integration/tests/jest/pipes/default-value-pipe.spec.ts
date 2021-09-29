@@ -14,7 +14,7 @@ describe('default value', () => {
         const value: Nullable<string> = null;
         const result = pipe.transform(value);
 
-        expect(result).toEqual('-');
+        expect(result).toBe('-');
     });
 
     describe('instance', () => {
@@ -30,7 +30,7 @@ describe('default value', () => {
             expect(defaultPipe.transform('', fallback)).toEqual(fallback);
             expect(defaultPipe.transform('\n\n\n', fallback)).toEqual(fallback);
             expect(defaultPipe.transform('\t   ', fallback)).toEqual(fallback);
-            expect(defaultPipe.transform('0', fallback)).toEqual('0');
+            expect(defaultPipe.transform('0', fallback)).toBe('0');
         });
     });
 });

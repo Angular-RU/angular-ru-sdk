@@ -10,10 +10,10 @@ describe('is string pipe', () => {
     });
 
     it('is string', () => {
-        expect(pipe.transform(1)).toEqual(false);
-        expect(pipe.transform([])).toEqual(false);
-        expect(pipe.transform(null)).toEqual(false);
-        expect(pipe.transform('1')).toEqual(true);
-        expect(pipe.transform('  ')).toEqual(true);
+        expect(pipe.transform(1)).toBe(false);
+        expect(pipe.transform([])).toBe(false);
+        expect(pipe.transform(null)).toBe(false);
+        expect(pipe.transform('1')).toBe(true);
+        expect(pipe.transform('  ')).toBe(true);
     });
 });

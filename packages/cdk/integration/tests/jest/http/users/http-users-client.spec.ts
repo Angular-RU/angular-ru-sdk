@@ -72,7 +72,7 @@ describe('[TEST]: HTTP Client', () => {
         tick(2000);
 
         expect(response).toEqual({ data: [] });
-        expect(requestMethod).toEqual('GET');
+        expect(requestMethod).toBe('GET');
     }));
 
     it('should be correct send POST', fakeAsync(() => {
@@ -91,7 +91,7 @@ describe('[TEST]: HTTP Client', () => {
 
         expect(response).toEqual({});
         expect(requestBody).toEqual({ a: 1 });
-        expect(requestMethod).toEqual('POST');
+        expect(requestMethod).toBe('POST');
     }));
 
     it('should be correct send POST request with baseUrl', fakeAsync(() => {
@@ -108,7 +108,7 @@ describe('[TEST]: HTTP Client', () => {
 
         expect(response).toEqual({});
         expect(requestBody).toEqual(body);
-        expect(requestMethod).toEqual('POST');
+        expect(requestMethod).toBe('POST');
     }));
 
     it('should be correct send PUT request', fakeAsync(() => {
@@ -124,10 +124,10 @@ describe('[TEST]: HTTP Client', () => {
 
         tick(2000);
 
-        expect(response).toEqual('OK');
+        expect(response).toBe('OK');
         expect(requestBody).toBeNull();
-        expect(responseType).toEqual('text');
-        expect(requestMethod).toEqual('PUT');
+        expect(responseType).toBe('text');
+        expect(requestMethod).toBe('PUT');
     }));
 
     it('should be correct send DELETE request', fakeAsync(() => {
@@ -143,8 +143,8 @@ describe('[TEST]: HTTP Client', () => {
         tick(2000);
 
         expect(response).toEqual({ status: true });
-        expect(req.request.method).toEqual('DELETE');
-        expect(req.request.responseType).toEqual('json');
+        expect(req.request.method).toBe('DELETE');
+        expect(req.request.responseType).toBe('json');
     }));
 
     it('should be correct send request when absolute path', fakeAsync(() => {
@@ -157,7 +157,7 @@ describe('[TEST]: HTTP Client', () => {
 
         tick(2000);
 
-        expect(requestMethod).toEqual('POST');
+        expect(requestMethod).toBe('POST');
     }));
 
     it('should be correct send request with query params (any values)', fakeAsync(() => {
@@ -183,6 +183,6 @@ describe('[TEST]: HTTP Client', () => {
         tick(2000);
 
         expect(requestKeys).toEqual(['param5', 'param6']);
-        expect(requestMethod).toEqual('GET');
+        expect(requestMethod).toBe('GET');
     }));
 });
