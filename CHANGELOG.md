@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update dependency @types/node to v16.10.2 (#984) (bef889d6)
+
+#### 0.0.0 (2021-09-29)
+
+##### Build System / Dependencies
+
 -   update dependency jest to v27.2.4 (#985) (3451be88)
 
 #### 0.0.0 (2021-09-29)
