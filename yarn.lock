@@ -5940,10 +5940,10 @@ eslint-module-utils@^2.6.2:
     debug "^3.2.7"
     pkg-dir "^2.0.0"
 
-eslint-plugin-decorator-position@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.npmjs.org/eslint-plugin-decorator-position/-/eslint-plugin-decorator-position-4.0.0.tgz#96e5f1fcb8d6c82310b616c944b2e6e6ef359668"
-  integrity sha512-aopU1aq6yFWuepkx6k0M3EUduIkTZbENqL8uIZp08wyH6RCbO9k3hHfOffpeCTLyxvTX9f9eHMqASW+smzTc6A==
+eslint-plugin-decorator-position@4.0.1:
+  version "4.0.1"
+  resolved "https://registry.npmjs.org/eslint-plugin-decorator-position/-/eslint-plugin-decorator-position-4.0.1.tgz#836b991dd2a69da2466ef2567b603b1480c9af5d"
+  integrity sha512-GqX0z19RtHYtpyCicERXIRpYELAsGwm3kcySP+eH2F4DpZr91xmKzyOU+D7heKq2xOl29lTKbeeqy9GhY2NFXA==
   dependencies:
     "@ember-data/rfc395-data" "^0.0.4"
     ember-rfc176-data "^0.3.12"
