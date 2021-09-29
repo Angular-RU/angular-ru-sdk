@@ -65,7 +65,7 @@ describe('[TEST] Table clipboard service', () => {
         await new Promise((resolve) => setTimeout(resolve));
         const blob = getClipboardItemFromMock().types['text/html'];
 
-        expect(await readFromBlob(blob)).toBe(readFile('test-1-simple.html'));
+        await expect(readFromBlob(blob)).resolves.toBe(readFile('test-1-simple.html'));
     });
 
     it('should correctly convert to plain html by keys', async () => {
@@ -76,7 +76,7 @@ describe('[TEST] Table clipboard service', () => {
         await new Promise((resolve) => setTimeout(resolve));
         const blob = getClipboardItemFromMock().types['text/html'];
 
-        expect(await readFromBlob(blob)).toBe(readFile('test-2-by-keys.html'));
+        await expect(readFromBlob(blob)).resolves.toBe(readFile('test-2-by-keys.html'));
     });
 
     it('should correctly convert to plain html excluding keys', async () => {
@@ -87,7 +87,7 @@ describe('[TEST] Table clipboard service', () => {
         await new Promise((resolve) => setTimeout(resolve));
         const blob = getClipboardItemFromMock().types['text/html'];
 
-        expect(await readFromBlob(blob)).toBe(readFile('test-3-exclude-keys.html'));
+        await expect(readFromBlob(blob)).resolves.toBe(readFile('test-3-exclude-keys.html'));
     });
 
     it('should correctly convert nested data to plain html with options', async () => {
@@ -98,7 +98,7 @@ describe('[TEST] Table clipboard service', () => {
         await new Promise((resolve) => setTimeout(resolve));
         const blob = getClipboardItemFromMock().types['text/html'];
 
-        expect(await readFromBlob(blob)).toBe(readFile('test-4-options.html'));
+        await expect(readFromBlob(blob)).resolves.toBe(readFile('test-4-options.html'));
     });
 
     it('should correctly convert nested data with translate', async () => {
@@ -109,7 +109,7 @@ describe('[TEST] Table clipboard service', () => {
         await new Promise((resolve) => setTimeout(resolve));
         const blob = getClipboardItemFromMock().types['text/html'];
 
-        expect(await readFromBlob(blob)).toBe(readFile('test-5-translate.html'));
+        await expect(readFromBlob(blob)).resolves.toBe(readFile('test-5-translate.html'));
     });
 
     function getClipboardItemFromMock(): ClipboardItemMock {

@@ -113,11 +113,11 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
 
     it('should be identify non-obvious behavior', () => {
         count.setValue(5);
-        expect(count.getState()).toEqual(5);
+        expect(count.getState()).toBe(5);
         expect(store.snapshot()).toEqual({ todos: [], count: 5 });
 
         count.incorrectReturnedValue(15);
-        expect(count.getState()).toEqual(15);
+        expect(count.getState()).toBe(15);
         expect(store.snapshot()).toEqual({ todos: [], count: 15 });
     });
 
@@ -151,9 +151,9 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
 
         tick(2000);
 
-        expect(result).toEqual(20);
-        expect(finalized).toEqual(true);
-        expect(count.getState()).toEqual(20);
+        expect(result).toBe(20);
+        expect(finalized).toBe(true);
+        expect(count.getState()).toBe(20);
 
         finalized = false;
 
@@ -170,9 +170,9 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
 
         tick(2000);
 
-        expect(result).toEqual(140);
-        expect(finalized).toEqual(true);
-        expect(count.getState()).toEqual(40);
+        expect(result).toBe(140);
+        expect(finalized).toBe(true);
+        expect(count.getState()).toBe(40);
     }));
 
     it('should be correct async method without subscribe', fakeAsync(() => {
@@ -190,21 +190,21 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
 
         expect(result).toBeNull();
         expect(finalized).toBeNull();
-        expect(count.getState()).toEqual(0);
+        expect(count.getState()).toBe(0);
     }));
 
     it('should be correct async action', fakeAsync(() => {
         let result: number | null = null;
         let finalized: boolean | null = null;
 
-        expect(count.getState()).toEqual(0);
-        expect(isObservable(count.asyncSetStateAction())).toEqual(true);
+        expect(count.getState()).toBe(0);
+        expect(isObservable(count.asyncSetStateAction())).toBe(true);
 
         tick(2000);
 
         expect(result).toBeNull();
         expect(finalized).toBeNull();
-        expect(count.getState()).toEqual(0);
+        expect(count.getState()).toBe(0);
 
         // eslint-disable-next-line rxjs/no-ignored-observable
         count.asyncSetStateAction();
@@ -217,7 +217,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
 
         expect(result).toBeNull();
         expect(finalized).toBeNull();
-        expect(count.getState()).toEqual(0);
+        expect(count.getState()).toBe(0);
 
         count
             .asyncSetStateAction()
@@ -232,23 +232,23 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
 
         tick(2000);
 
-        expect(result).toEqual(20);
-        expect(finalized).toEqual(true);
-        expect(count.getState()).toEqual(20);
+        expect(result).toBe(20);
+        expect(finalized).toBe(true);
+        expect(count.getState()).toBe(20);
     }));
 
     it('should be correct async increment action', fakeAsync(() => {
         let result: number | null = null;
         let finalized: boolean | null = null;
 
-        expect(count.getState()).toEqual(0);
-        expect(isObservable(count.asyncIncrementAction())).toEqual(true);
+        expect(count.getState()).toBe(0);
+        expect(isObservable(count.asyncIncrementAction())).toBe(true);
 
         tick(1000);
 
         expect(result).toBeNull();
         expect(finalized).toBeNull();
-        expect(count.getState()).toEqual(0);
+        expect(count.getState()).toBe(0);
 
         // eslint-disable-next-line rxjs/no-ignored-observable
         count.asyncIncrementAction();
@@ -261,7 +261,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
 
         expect(result).toBeNull();
         expect(finalized).toBeNull();
-        expect(count.getState()).toEqual(0);
+        expect(count.getState()).toBe(0);
 
         count
             .asyncIncrementAction()
@@ -276,9 +276,9 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
 
         tick(2000);
 
-        expect(result).toEqual(120);
-        expect(finalized).toEqual(true);
-        expect(count.getState()).toEqual(20);
+        expect(result).toBe(120);
+        expect(finalized).toBe(true);
+        expect(count.getState()).toBe(20);
     }));
 
     it('should be correct forkJoin', fakeAsync(() => {
@@ -294,7 +294,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
 
         tick(2000);
 
-        expect(count.getState()).toEqual(0);
+        expect(count.getState()).toBe(0);
         expect(result).toEqual([]);
 
         forkJoin([count.asyncSetStateAction(), count.asyncIncrementAction()])
@@ -309,7 +309,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
 
         tick(2000);
 
-        expect(count.getState()).toEqual(40);
+        expect(count.getState()).toBe(40);
         expect(result).toEqual([20, 140]);
         expect(response).toEqual([20, 140]);
     }));

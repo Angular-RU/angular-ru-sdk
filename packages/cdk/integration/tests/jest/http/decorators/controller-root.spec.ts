@@ -50,7 +50,7 @@ describe('[TEST]: HTTP decorators for client', () => {
                 { id: 1, name: 'a' },
                 { id: 2, name: 'b' }
             ]);
-            expect(req.request.method).toEqual('GET');
+            expect(req.request.method).toBe('GET');
         });
 
         req = httpMock.expectOne('https://github.com/users-api-balancer/users');

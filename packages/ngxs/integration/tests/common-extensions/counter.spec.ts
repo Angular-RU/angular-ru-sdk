@@ -223,7 +223,7 @@ describe('[TEST]: CountState', () => {
         });
 
         it('should be correct get name', () => {
-            expect(count.name).toEqual('count');
+            expect(count.name).toBe('count');
         });
 
         it('should be correct works with setState/getState', () => {
@@ -231,7 +231,7 @@ describe('[TEST]: CountState', () => {
 
             count.state$.subscribe((value: number) => val.push(value));
 
-            expect(count.getState()).toEqual(0);
+            expect(count.getState()).toBe(0);
             expect(store.snapshot()).toEqual({ count: 0 });
 
             count.setState(10);
@@ -241,11 +241,11 @@ describe('[TEST]: CountState', () => {
             count.setState((state: number) => state - 1);
             count.setState((state: number) => state + 1);
 
-            expect(count.getState()).toEqual(1);
+            expect(count.getState()).toBe(1);
             expect(store.snapshot()).toEqual({ count: 1 });
 
             count.reset();
-            expect(count.getState()).toEqual(0);
+            expect(count.getState()).toBe(0);
             expect(store.snapshot()).toEqual({ count: 0 });
 
             expect(val).toEqual([0, 10, 0, 1, 0, 1, 0]);
@@ -258,20 +258,20 @@ describe('[TEST]: CountState', () => {
                 .pipe(ofActionDispatched({ type: '@count.withAction(val)' }))
                 .subscribe((val) => dispatched.push(val));
 
-            expect(count.getState()).toEqual(0);
+            expect(count.getState()).toBe(0);
             expect(store.snapshot()).toEqual({ count: 0 });
 
             count.withoutAction(5);
 
-            expect(count.getState()).toEqual(5);
+            expect(count.getState()).toBe(5);
             expect(store.snapshot()).toEqual({ count: 5 });
 
             count.withAction(15);
-            expect(count.getState()).toEqual(15);
+            expect(count.getState()).toBe(15);
             expect(store.snapshot()).toEqual({ count: 15 });
 
             count.withAction(10);
-            expect(count.getState()).toEqual(10);
+            expect(count.getState()).toBe(10);
             expect(store.snapshot()).toEqual({ count: 10 });
 
             expect(dispatched).toEqual([{ val: 15 }, { val: 10 }]);
@@ -280,19 +280,19 @@ describe('[TEST]: CountState', () => {
         it('should be correct instance repository', () => {
             const repository: NgxsRepositoryMeta = NgxsDataFactory.getRepositoryByInstance(count);
 
-            expect(repository.stateMeta!.name).toEqual('count');
+            expect(repository.stateMeta!.name).toBe('count');
             expect(repository.stateMeta!.actions).toEqual({});
             expect(repository.operations).toEqual({});
-            expect(count.getState()).toEqual(0);
+            expect(count.getState()).toBe(0);
 
             count.setState(1);
-            expect(count.getState()).toEqual(1);
+            expect(count.getState()).toBe(1);
 
             count.withAction(2);
-            expect(count.getState()).toEqual(2);
+            expect(count.getState()).toBe(2);
 
             count.reset();
-            expect(count.getState()).toEqual(0);
+            expect(count.getState()).toBe(0);
 
             expect(repository.stateMeta!.actions).toEqual({
                 '@count.setState(stateValue)': [

@@ -69,17 +69,17 @@ describe('[TEST]: auto height', () => {
 
     it('should be correct invoke ngOnInit', () => {
         directive.ngOnInit();
-        expect(addedEvent).toEqual(true);
+        expect(addedEvent).toBe(true);
     });
 
     it('should be correct invoke ngOnDestroy', () => {
-        expect(directive.destroy$.closed).toEqual(false);
+        expect(directive.destroy$.closed).toBe(false);
         // eslint-disable-next-line deprecation/deprecation
-        expect(directive.destroy$.isStopped).toEqual(false);
+        expect(directive.destroy$.isStopped).toBe(false);
         directive.ngOnDestroy();
-        expect(directive.destroy$.closed).toEqual(false);
+        expect(directive.destroy$.closed).toBe(false);
         // eslint-disable-next-line deprecation/deprecation
-        expect(directive.destroy$.isStopped).toEqual(true);
+        expect(directive.destroy$.isStopped).toBe(true);
     });
 
     it('should be correct calculate auto height when columnHeight = 45px', fakeAsync(() => {

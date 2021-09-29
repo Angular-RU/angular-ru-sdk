@@ -11,9 +11,9 @@ describe('[TEST]: NGXS_META', () => {
         @Injectable()
         class AppState {}
 
-        expect(NGXS_META_KEY).toEqual('NGXS_META');
-        expect(NGXS_DATA_META).toEqual('NGXS_DATA_META');
-        expect(NGXS_ARGUMENT_REGISTRY_META).toEqual('NGXS_ARGUMENT_REGISTRY_META');
+        expect(NGXS_META_KEY).toBe('NGXS_META');
+        expect(NGXS_DATA_META).toBe('NGXS_DATA_META');
+        expect(NGXS_ARGUMENT_REGISTRY_META).toBe('NGXS_ARGUMENT_REGISTRY_META');
 
         expect((AppState as DataStateClass)[NGXS_META_KEY]).toEqual({
             name: 'app',

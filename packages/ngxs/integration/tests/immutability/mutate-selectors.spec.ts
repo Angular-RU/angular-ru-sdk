@@ -97,13 +97,13 @@ describe('mutate', () => {
         const todo: TodosState = TestBed.inject<TodosState>(TodosState);
 
         todo.state$.subscribe((state) => {
-            expect(Object.isFrozen(state)).toEqual(true);
+            expect(Object.isFrozen(state)).toBe(true);
         });
 
         let error: string | null = null;
 
         expect(todo.getState()).toEqual([{ a: 1 }, { a: 2 }]);
-        expect(Object.isFrozen(todo.getState())).toEqual(true);
+        expect(Object.isFrozen(todo.getState())).toBe(true);
 
         try {
             (todo.getState() as A[]).reverse();

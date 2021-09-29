@@ -5,27 +5,27 @@ describe('[TEST]: Function', () => {
     it('is function', () => {
         class A {}
 
-        expect(isFunctionLike(null)).toEqual(false);
-        expect(isFunctionLike(A)).toEqual(true);
+        expect(isFunctionLike(null)).toBe(false);
+        expect(isFunctionLike(A)).toBe(true);
         expect(
             isFunctionLike(() => {
                 // ...
             })
-        ).toEqual(true);
-        expect(isFunctionLike(1)).toEqual(false);
-        expect(isFunctionLike({})).toEqual(false);
-        expect(isFunctionLike([])).toEqual(false);
-        expect(isFunctionLike('')).toEqual(false);
+        ).toBe(true);
+        expect(isFunctionLike(1)).toBe(false);
+        expect(isFunctionLike({})).toBe(false);
+        expect(isFunctionLike([])).toBe(false);
+        expect(isFunctionLike('')).toBe(false);
     });
 
     it('typeofType', () => {
-        expect(KeyboardKeys.ARROW_DOWN).toEqual('ArrowDown');
-        expect(KeyboardKeys.ARROW_LEFT).toEqual('ArrowLeft');
-        expect(KeyboardKeys.ARROW_RIGHT).toEqual('ArrowRight');
-        expect(KeyboardKeys.ARROW_UP).toEqual('ArrowUp');
-        expect(KeyboardKeys.BACKSPACE).toEqual('Backspace');
-        expect(KeyboardKeys.SHIFT).toEqual('Shift');
-        expect(KeyboardKeys.CAPS_LOCK).toEqual('CapsLock');
+        expect(KeyboardKeys.ARROW_DOWN).toBe('ArrowDown');
+        expect(KeyboardKeys.ARROW_LEFT).toBe('ArrowLeft');
+        expect(KeyboardKeys.ARROW_RIGHT).toBe('ArrowRight');
+        expect(KeyboardKeys.ARROW_UP).toBe('ArrowUp');
+        expect(KeyboardKeys.BACKSPACE).toBe('Backspace');
+        expect(KeyboardKeys.SHIFT).toBe('Shift');
+        expect(KeyboardKeys.CAPS_LOCK).toBe('CapsLock');
     });
 
     it('$arg', () => {
@@ -49,15 +49,15 @@ describe('[TEST]: Function', () => {
 
         class D extends A {}
 
-        expect(hasConstructor(A)).toEqual(true);
-        expect(hasConstructor(B)).toEqual(true);
-        expect(hasConstructor(D)).toEqual(true);
-        expect(hasConstructor(String)).toEqual(true);
+        expect(hasConstructor(A)).toBe(true);
+        expect(hasConstructor(B)).toBe(true);
+        expect(hasConstructor(D)).toBe(true);
+        expect(hasConstructor(String)).toBe(true);
 
-        expect(hasConstructor(C)).toEqual(false);
-        expect(hasConstructor({} as Any)).toEqual(false);
-        expect(hasConstructor(1 as Any)).toEqual(false);
-        expect(hasConstructor(null)).toEqual(false);
-        expect(hasConstructor()).toEqual(false);
+        expect(hasConstructor(C)).toBe(false);
+        expect(hasConstructor({} as Any)).toBe(false);
+        expect(hasConstructor(1 as Any)).toBe(false);
+        expect(hasConstructor(null)).toBe(false);
+        expect(hasConstructor()).toBe(false);
     });
 });

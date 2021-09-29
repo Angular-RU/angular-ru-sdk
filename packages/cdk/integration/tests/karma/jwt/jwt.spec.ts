@@ -48,7 +48,7 @@ describe('[TEST]: JWT', (): void => {
     });
 
     it('should be correct encode', (): void => {
-        expect(toBase64({ login: 'username', password: 'password' })).toEqual(
+        expect(toBase64({ login: 'username', password: 'password' })).toBe(
             'eyJsb2dpbiI6InVzZXJuYW1lIiwicGFzc3dvcmQiOiJwYXNzd29yZCJ9'
         );
     });

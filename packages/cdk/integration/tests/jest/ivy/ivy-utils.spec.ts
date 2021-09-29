@@ -129,7 +129,7 @@ describe('[TEST]: Ivy utils', (): void => {
     it('should not work with non-injectable classes', async (): Promise<void> => {
         const nonInjectable: NonInjectable = new NonInjectable();
 
-        expect(nonInjectable.ngZone).not.toBeDefined();
+        expect(nonInjectable.ngZone).toBeUndefined();
         expect(console.error).toHaveBeenCalledWith(new Error('Class with useInjector in decorator must be Injectable'));
     });
 });

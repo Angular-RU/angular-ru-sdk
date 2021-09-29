@@ -30,7 +30,7 @@ describe('[TEST]: requiredSomeValueByKeysValidator vs orderedIntervalValidator',
         controlFrom.setValue(toUtc());
         controlTo.setValue(toUtc({ month: new Date().getMonth() + 1 }));
         controlA.setValue(1);
-        expect(form.valid).toEqual(true);
+        expect(form.valid).toBe(true);
     });
 
     it('should return error if both invalid', () => {

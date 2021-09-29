@@ -18,15 +18,15 @@ import { Any } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: String', () => {
     it('toString', () => {
-        expect(toStringVal([1, 2, 3])).toEqual('1,2,3');
-        expect(toStringVal([1, 2, 3], {} as Any)).toEqual('1,2,3');
-        expect(toStringVal([1, 2, 3], (value: number[]) => value.join('; '))).toEqual('1; 2; 3');
+        expect(toStringVal([1, 2, 3])).toBe('1,2,3');
+        expect(toStringVal([1, 2, 3], {} as Any)).toBe('1,2,3');
+        expect(toStringVal([1, 2, 3], (value: number[]) => value.join('; '))).toBe('1; 2; 3');
     });
 
     it('get byte size', () => {
         // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
-        expect(getByteSize('сын')).toEqual(6);
-        expect(getByteSize('son')).toEqual(3);
+        expect(getByteSize('сын')).toBe(6);
+        expect(getByteSize('son')).toBe(3);
     });
 
     it('stringify', () => {
@@ -39,15 +39,15 @@ describe('[TEST]: String', () => {
 }`
         );
 
-        expect(stringify(1)).toEqual('1');
-        expect(stringify(null)).toEqual('null');
-        expect(stringify(NaN)).toEqual('null');
-        expect(stringify(Infinity)).toEqual('null');
-        expect(stringify(undefined)).toEqual('undefined');
+        expect(stringify(1)).toBe('1');
+        expect(stringify(null)).toBe('null');
+        expect(stringify(NaN)).toBe('null');
+        expect(stringify(Infinity)).toBe('null');
+        expect(stringify(undefined)).toBe('undefined');
     });
 
     it('capitalize', () => {
-        expect(capitalize('hello world')).toEqual('Hello world');
+        expect(capitalize('hello world')).toBe('Hello world');
     });
 
     it('splitOnUniqueValues', () => {
@@ -78,58 +78,58 @@ describe('[TEST]: String', () => {
     });
 
     it('generateQuickGuid', () => {
-        expect(generateQuickGuid().length > 0).toEqual(true);
+        expect(generateQuickGuid().length > 0).toBe(true);
     });
 
     it('is string', () => {
-        expect(isString('')).toEqual(true);
-        expect(isString(0)).toEqual(false);
-        expect(isString(NaN)).toEqual(false);
-        expect(isString(Infinity)).toEqual(false);
-        expect(isString(null)).toEqual(false);
-        expect(isString(undefined)).toEqual(false);
+        expect(isString('')).toBe(true);
+        expect(isString(0)).toBe(false);
+        expect(isString(NaN)).toBe(false);
+        expect(isString(Infinity)).toBe(false);
+        expect(isString(null)).toBe(false);
+        expect(isString(undefined)).toBe(false);
     });
 
     it('correct trim', () => {
-        expect(trim('test ')).toEqual('test');
-        expect(trim('      test  ')).toEqual('test');
-        expect(trim('   test  test  ')).toEqual('test  test');
+        expect(trim('test ')).toBe('test');
+        expect(trim('      test  ')).toBe('test');
+        expect(trim('   test  test  ')).toBe('test  test');
     });
 
     it('getLastSymbol', () => {
-        expect(getLastSymbol('test ')).toEqual(' ');
-        expect(getLastSymbol('test')).toEqual('t');
+        expect(getLastSymbol('test ')).toBe(' ');
+        expect(getLastSymbol('test')).toBe('t');
     });
 
     it('getFirstSymbol', () => {
-        expect(getFirstSymbol('*test ')).toEqual('*');
-        expect(getFirstSymbol('e123')).toEqual('e');
+        expect(getFirstSymbol('*test ')).toBe('*');
+        expect(getFirstSymbol('e123')).toBe('e');
     });
 
     it('removeLastSymbol', () => {
-        expect(removeLastSymbol('test ')).toEqual('test');
-        expect(removeLastSymbol('123')).toEqual('12');
-        expect(removeLastSymbol('')).toEqual('');
+        expect(removeLastSymbol('test ')).toBe('test');
+        expect(removeLastSymbol('123')).toBe('12');
+        expect(removeLastSymbol('')).toBe('');
     });
 
     it('replaceEveryCommaOnDot', () => {
-        expect(replaceEveryCommaOnDot('1,2,3')).toEqual('1.2.3');
-        expect(replaceEveryCommaOnDot('1,2...3,5')).toEqual('1.2...3.5');
-        expect(replaceEveryCommaOnDot(null)).toEqual('');
-        expect(replaceEveryCommaOnDot()).toEqual('');
+        expect(replaceEveryCommaOnDot('1,2,3')).toBe('1.2.3');
+        expect(replaceEveryCommaOnDot('1,2...3,5')).toBe('1.2...3.5');
+        expect(replaceEveryCommaOnDot(null)).toBe('');
+        expect(replaceEveryCommaOnDot()).toBe('');
     });
 
     it('getCountSpacesOnString', () => {
-        expect(getCountSpacesOnString('')).toEqual(0);
-        expect(getCountSpacesOnString('1 2 3')).toEqual(2);
-        expect(getCountSpacesOnString(null)).toEqual(0);
-        expect(getCountSpacesOnString()).toEqual(0);
+        expect(getCountSpacesOnString('')).toBe(0);
+        expect(getCountSpacesOnString('1 2 3')).toBe(2);
+        expect(getCountSpacesOnString(null)).toBe(0);
+        expect(getCountSpacesOnString()).toBe(0);
     });
 
     it('removeNonNumericSymbols', () => {
-        expect(removeNonNumericSymbols('Tsgqw__-123,525.asdasd!~s . adqasllZ*a')).toEqual('-123,525..');
-        expect(removeNonNumericSymbols('1 2 3')).toEqual('123');
-        expect(removeNonNumericSymbols(null)).toEqual('');
-        expect(removeNonNumericSymbols()).toEqual('');
+        expect(removeNonNumericSymbols('Tsgqw__-123,525.asdasd!~s . adqasllZ*a')).toBe('-123,525..');
+        expect(removeNonNumericSymbols('1 2 3')).toBe('123');
+        expect(removeNonNumericSymbols(null)).toBe('');
+        expect(removeNonNumericSymbols()).toBe('');
     });
 });

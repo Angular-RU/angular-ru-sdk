@@ -60,7 +60,7 @@ describe('[TEST]: NgxsTestingModule', () => {
             app.increment();
             app.increment();
 
-            expect(app.getState()).toEqual(2);
+            expect(app.getState()).toBe(2);
 
             app.reset();
 
@@ -68,7 +68,7 @@ describe('[TEST]: NgxsTestingModule', () => {
             app.increment();
             app.increment();
 
-            expect(app.getState()).toEqual(3);
+            expect(app.getState()).toBe(3);
 
             app.reset();
 

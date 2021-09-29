@@ -10,8 +10,8 @@ describe('http replacer pipe', () => {
     });
 
     it('http replacer', () => {
-        expect(pipe.transform('http://hello.com')).toEqual('hello.com');
-        expect(pipe.transform('https://hello.com/index.php')).toEqual('hello.com');
-        expect(pipe.transform('https://www.hello.com/new/index.php')).toEqual('hello.com/new');
+        expect(pipe.transform('http://hello.com')).toBe('hello.com');
+        expect(pipe.transform('https://hello.com/index.php')).toBe('hello.com');
+        expect(pipe.transform('https://www.hello.com/new/index.php')).toBe('hello.com/new');
     });
 });

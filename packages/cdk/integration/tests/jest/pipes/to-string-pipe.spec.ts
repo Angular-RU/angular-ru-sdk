@@ -10,14 +10,14 @@ describe('to string pipe', () => {
     });
 
     it('to string', () => {
-        expect(pipe.transform(1)).toEqual('1');
-        expect(pipe.transform(null)).toEqual('');
-        expect(pipe.transform('1')).toEqual('1');
-        expect(pipe.transform('  ')).toEqual('  ');
-        expect(pipe.transform([])).toEqual('');
-        expect(pipe.transform([1, 2])).toEqual('1,2');
-        expect(pipe.transform({ a: 1, b: 2 })).toEqual('[object Object]');
-        expect(pipe.transform({ a: 1, b: 2 }, (obj: { a: number; b: number }) => JSON.stringify(obj))).toEqual(
+        expect(pipe.transform(1)).toBe('1');
+        expect(pipe.transform(null)).toBe('');
+        expect(pipe.transform('1')).toBe('1');
+        expect(pipe.transform('  ')).toBe('  ');
+        expect(pipe.transform([])).toBe('');
+        expect(pipe.transform([1, 2])).toBe('1,2');
+        expect(pipe.transform({ a: 1, b: 2 })).toBe('[object Object]');
+        expect(pipe.transform({ a: 1, b: 2 }, (obj: { a: number; b: number }) => JSON.stringify(obj))).toBe(
             '{"a":1,"b":2}'
         );
     });

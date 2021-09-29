@@ -89,35 +89,35 @@ describe('[TEST]: HTTP Client', () => {
 
     it('gET ({ emitSuccess: false, emitFailure: false })', () => {
         client?.getMethod().subscribe(() => {
-            expect(req.request.method).toEqual('GET');
+            expect(req.request.method).toBe('GET');
         });
 
         req = httpMock.expectOne(`${MOCK_API}/get`);
         req.flush(null);
 
         client?.putMethod().subscribe(() => {
-            expect(req.request.method).toEqual('PUT');
+            expect(req.request.method).toBe('PUT');
         });
 
         req = httpMock.expectOne(`${MOCK_API}/put`);
         req.flush(null);
 
         client?.postMethod().subscribe(() => {
-            expect(req.request.method).toEqual('POST');
+            expect(req.request.method).toBe('POST');
         });
 
         req = httpMock.expectOne(`${MOCK_API}/post`);
         req.flush(null);
 
         client?.patchMethod().subscribe(() => {
-            expect(req.request.method).toEqual('PATCH');
+            expect(req.request.method).toBe('PATCH');
         });
 
         req = httpMock.expectOne(`${MOCK_API}/patch`);
         req.flush(null);
 
         client?.deleteMethod().subscribe(() => {
-            expect(req.request.method).toEqual('DELETE');
+            expect(req.request.method).toBe('DELETE');
         });
 
         req = httpMock.expectOne(`${MOCK_API}/delete`);

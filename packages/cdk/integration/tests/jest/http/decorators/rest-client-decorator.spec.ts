@@ -40,7 +40,7 @@ describe('[TEST]: HTTP decorators for client', () => {
     it('should be correct send GET request', fakeAsync(() => {
         client?.get('api-get').subscribe((response: Any[]) => {
             expect(response).toEqual([{ hello: 'world' }]);
-            expect(req.request.method).toEqual('GET');
+            expect(req.request.method).toBe('GET');
         });
 
         req = httpMock.expectOne(`${MOCK_API}/hello/api-get`);

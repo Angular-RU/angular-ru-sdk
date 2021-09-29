@@ -61,16 +61,16 @@ describe('[TEST]: inputFilter Input', function () {
 
         fixture?.detectChanges();
 
-        expect(component!.form.pristine).toEqual(false);
-        expect(component!.form.dirty).toEqual(true);
+        expect(component!.form.pristine).toBe(false);
+        expect(component!.form.dirty).toBe(true);
 
         expect(component?.form.value).toEqual({ value: 'bbb' });
-        expect(debugElement1!.nativeElement.value).toEqual('bbb');
+        expect(debugElement1!.nativeElement.value).toBe('bbb');
     });
 
     it('correct sync modelView with ngModel', async () => {
-        expect(component?.name).toEqual('aaaKKK');
-        expect(debugElement2!.nativeElement.value).toEqual('aaaKKK');
+        expect(component?.name).toBe('aaaKKK');
+        expect(debugElement2!.nativeElement.value).toBe('aaaKKK');
 
         debugElement2!.nativeElement.value = 'bbbOOO';
         debugElement2!.triggerEventHandler('input', {
@@ -81,8 +81,8 @@ describe('[TEST]: inputFilter Input', function () {
 
         fixture?.detectChanges();
 
-        expect(component?.name).toEqual('bbb');
-        expect(debugElement2!.nativeElement.value).toEqual('bbb');
+        expect(component?.name).toBe('bbb');
+        expect(debugElement2!.nativeElement.value).toBe('bbb');
     });
 
     it('should trigger "input" event only once', () => {
@@ -93,6 +93,6 @@ describe('[TEST]: inputFilter Input', function () {
         debugElement2!.triggerEventHandler('input', {
             target: debugElement2!.nativeElement
         });
-        expect(count).toEqual(1);
+        expect(count).toBe(1);
     });
 });

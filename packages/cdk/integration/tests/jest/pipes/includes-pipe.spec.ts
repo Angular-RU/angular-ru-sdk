@@ -12,14 +12,14 @@ describe('deep path', () => {
     it('decide if element is in array', () => {
         const array: string[] = ['first', 'second', 'third', 'last'];
 
-        expect(pipe.transform(array, 'first')).toEqual(true);
-        expect(pipe.transform(array, 'second')).toEqual(true);
-        expect(pipe.transform(array, 'fifth')).toEqual(false);
-        expect(pipe.transform(array, undefined)).toEqual(false);
-        expect(pipe.transform(array, null)).toEqual(false);
-        expect(pipe.transform(null, null)).toEqual(false);
-        expect(pipe.transform(undefined, null)).toEqual(false);
-        expect(pipe.transform(null, 'first')).toEqual(false);
-        expect(pipe.transform(undefined, 'first')).toEqual(false);
+        expect(pipe.transform(array, 'first')).toBe(true);
+        expect(pipe.transform(array, 'second')).toBe(true);
+        expect(pipe.transform(array, 'fifth')).toBe(false);
+        expect(pipe.transform(array, undefined)).toBe(false);
+        expect(pipe.transform(array, null)).toBe(false);
+        expect(pipe.transform(null, null)).toBe(false);
+        expect(pipe.transform(undefined, null)).toBe(false);
+        expect(pipe.transform(null, 'first')).toBe(false);
+        expect(pipe.transform(undefined, 'first')).toBe(false);
     });
 });

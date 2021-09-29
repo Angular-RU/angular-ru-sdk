@@ -10,10 +10,10 @@ describe('is not null pipe', () => {
     });
 
     it('is not null', () => {
-        expect(pipe.transform({ a: { b: { c: 'str' } } })).toEqual(true);
-        expect(pipe.transform(0)).toEqual(true);
-        expect(pipe.transform(NaN)).toEqual(true);
-        expect(pipe.transform(null)).toEqual(false);
-        expect(pipe.transform(undefined)).toEqual(false);
+        expect(pipe.transform({ a: { b: { c: 'str' } } })).toBe(true);
+        expect(pipe.transform(0)).toBe(true);
+        expect(pipe.transform(NaN)).toBe(true);
+        expect(pipe.transform(null)).toBe(false);
+        expect(pipe.transform(undefined)).toBe(false);
     });
 });

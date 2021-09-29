@@ -198,7 +198,7 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
             date: new Date('01.06.1994')
         });
 
-        expect(state.getState().date.getFullYear()).toEqual(1994);
+        expect(state.getState().date.getFullYear()).toBe(1994);
     });
 
     it('should be correct work with immutable array', () => {
@@ -248,7 +248,7 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
         }
 
         // eslint-disable-next-line @typescript-eslint/quotes
-        expect(message).toEqual("Cannot assign to read only property '0' of object '[object Array]'");
+        expect(message).toBe("Cannot assign to read only property '0' of object '[object Array]'");
 
         const immutable: Immutable<ListModel[]> = [{ a: 5, b: 7 }];
 

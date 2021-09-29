@@ -47,23 +47,23 @@ describe('[TEST]: Zone', () => {
     it(
         'should be works inside/outside zone',
         ngxsTestingPlatform([CounterState], (_store, state) => {
-            expect(state.increment()).toEqual(1);
+            expect(state.increment()).toBe(1);
 
-            expect(state.outside).toEqual(1);
-            expect(state.inside).toEqual(0);
-            expect(state.getState()).toEqual(1);
+            expect(state.outside).toBe(1);
+            expect(state.inside).toBe(0);
+            expect(state.getState()).toBe(1);
 
-            expect(state.incrementWithoutAction()).toEqual(2);
+            expect(state.incrementWithoutAction()).toBe(2);
 
-            expect(state.outside).toEqual(2);
-            expect(state.inside).toEqual(0);
-            expect(state.getState()).toEqual(2);
+            expect(state.outside).toBe(2);
+            expect(state.inside).toBe(0);
+            expect(state.getState()).toBe(2);
 
-            expect(state.incrementInZone()).toEqual(3);
+            expect(state.incrementInZone()).toBe(3);
 
-            expect(state.outside).toEqual(2);
-            expect(state.inside).toEqual(1);
-            expect(state.getState()).toEqual(3);
+            expect(state.outside).toBe(2);
+            expect(state.inside).toBe(1);
+            expect(state.getState()).toBe(3);
         })
     );
 });

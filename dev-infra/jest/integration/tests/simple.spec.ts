@@ -4,11 +4,11 @@ import { createTsJestConfig } from '../../src';
 
 describe('[TEST]: Hello world', () => {
     it('should be', () => {
-        expect(1 + 2).toEqual(3);
+        expect(1 + 2).toBe(3);
     });
 
     it('should be correct resolve paths', () => {
-        expect(Hello.nameClass).toEqual('World');
+        expect(Hello.nameClass).toBe('World');
     });
 
     it('should be correct create', () => {

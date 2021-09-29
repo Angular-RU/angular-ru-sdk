@@ -2,22 +2,22 @@ import { ensureRegexp, isRegexpStr, matchedByRegExp } from '@angular-ru/cdk/rege
 
 describe('[TEST]: Regexp utils', () => {
     it('ensureRegexp', () => {
-        expect(ensureRegexp('/hello/')).toEqual('hello');
-        expect(ensureRegexp('/hello/')).toEqual('hello');
-        expect(ensureRegexp('/^a$/')).toEqual('^a$');
-        expect(ensureRegexp('/^a$/')).toEqual('^a$');
+        expect(ensureRegexp('/hello/')).toBe('hello');
+        expect(ensureRegexp('/hello/')).toBe('hello');
+        expect(ensureRegexp('/^a$/')).toBe('^a$');
+        expect(ensureRegexp('/^a$/')).toBe('^a$');
     });
 
     it('isRegexpStr', () => {
-        expect(isRegexpStr('/hello/')).toEqual(true);
-        expect(isRegexpStr('/hello/')).toEqual(true);
-        expect(isRegexpStr('/^a$/')).toEqual(true);
-        expect(isRegexpStr('/^a$/')).toEqual(true);
-        expect(isRegexpStr('123')).toEqual(false);
+        expect(isRegexpStr('/hello/')).toBe(true);
+        expect(isRegexpStr('/hello/')).toBe(true);
+        expect(isRegexpStr('/^a$/')).toBe(true);
+        expect(isRegexpStr('/^a$/')).toBe(true);
+        expect(isRegexpStr('123')).toBe(false);
     });
 
     it('matchedByRegexp', () => {
-        expect(matchedByRegExp('/hello/', 'hello world')).toEqual(true);
-        expect(matchedByRegExp('/1$/', '2020')).toEqual(false);
+        expect(matchedByRegExp('/hello/', 'hello world')).toBe(true);
+        expect(matchedByRegExp('/1$/', '2020')).toBe(false);
     });
 });

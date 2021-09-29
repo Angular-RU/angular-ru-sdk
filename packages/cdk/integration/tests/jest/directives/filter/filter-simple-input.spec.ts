@@ -60,7 +60,7 @@ describe('[TEST]: inputFilter Simple Input', () => {
 
     it('should correct sync modelView with model', async () => {
         // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
-        expect(component!.filterValue).toEqual('abcД');
+        expect(component!.filterValue).toBe('abcД');
 
         // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
         debugElement!.nativeElement.value = 'ab c Д';
@@ -71,30 +71,30 @@ describe('[TEST]: inputFilter Simple Input', () => {
         await fixture?.whenStable();
         fixture?.detectChanges();
 
-        expect(debugElement!.nativeElement.value).toEqual('ab c ');
+        expect(debugElement!.nativeElement.value).toBe('ab c ');
     });
 
     it('should filter input with characters', () => {
         component!.predicate = ['a', 'b'];
         setValueAndDispatch('aaabbbccc');
-        expect(debugElement!.nativeElement.value).toEqual('aaabbb');
+        expect(debugElement!.nativeElement.value).toBe('aaabbb');
     });
 
     it('should filter input with RegExp', () => {
         component!.predicate = /[a,b]+/;
         setValueAndDispatch('aaabbbccc');
-        expect(debugElement!.nativeElement.value).toEqual('aaabbb');
+        expect(debugElement!.nativeElement.value).toBe('aaabbb');
     });
 
     it('should filter input with custom function', () => {
         component!.predicate = (item: string): boolean => item === 'a' || item === 'b';
         setValueAndDispatch('aaabbbccc');
-        expect(debugElement!.nativeElement.value).toEqual('aaabbb');
+        expect(debugElement!.nativeElement.value).toBe('aaabbb');
     });
 
     it('should filter cyrillic by default', () => {
         // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
         setValueAndDispatch('aaaДДДccc');
-        expect(debugElement!.nativeElement.value).toEqual('aaaccc');
+        expect(debugElement!.nativeElement.value).toBe('aaaccc');
     });
 });

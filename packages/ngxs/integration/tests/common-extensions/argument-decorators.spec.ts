@@ -35,7 +35,7 @@ describe('[TEST]: Argument decorators', () => {
             ]
         });
 
-        expect(a.getState()).toEqual('1');
+        expect(a.getState()).toBe('1');
     });
 
     it('should be correct ensure meta from B', () => {
@@ -69,7 +69,7 @@ describe('[TEST]: Argument decorators', () => {
             ]
         });
 
-        expect(b.getState()).toEqual('23');
+        expect(b.getState()).toBe('23');
     });
 
     it('should be correct ensure meta from C', () => {
@@ -103,7 +103,7 @@ describe('[TEST]: Argument decorators', () => {
             ]
         });
 
-        expect(c.getState()).toEqual('410');
+        expect(c.getState()).toBe('410');
     });
 
     it('should be correct ensure meta from D', () => {
@@ -137,7 +137,7 @@ describe('[TEST]: Argument decorators', () => {
             ]
         });
 
-        expect(d.getState()).toEqual('123');
+        expect(d.getState()).toBe('123');
     });
 
     it('should be invalid payload', () => {

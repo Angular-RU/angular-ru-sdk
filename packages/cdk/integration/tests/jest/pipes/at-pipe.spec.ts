@@ -12,13 +12,13 @@ describe('deep path', () => {
     it('get element at index', () => {
         const array: string[] = ['first', 'second', 'third', 'last'];
 
-        expect(pipe.transform(array, 0)).toEqual('first');
-        expect(pipe.transform(array, 1)).toEqual('second');
-        expect(pipe.transform(array, 3)).toEqual('last');
+        expect(pipe.transform(array, 0)).toBe('first');
+        expect(pipe.transform(array, 1)).toBe('second');
+        expect(pipe.transform(array, 3)).toBe('last');
         expect(pipe.transform(array, 4)).toBeUndefined();
-        expect(pipe.transform(array, -1)).toEqual('last');
-        expect(pipe.transform(array, -2)).toEqual('third');
-        expect(pipe.transform(array, -4)).toEqual('first');
+        expect(pipe.transform(array, -1)).toBe('last');
+        expect(pipe.transform(array, -2)).toBe('third');
+        expect(pipe.transform(array, -4)).toBe('first');
         expect(pipe.transform(array, -5)).toBeUndefined();
     });
 });

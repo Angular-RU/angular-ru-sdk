@@ -17,7 +17,7 @@ describe('appState', () => {
         'should be correct ensure state from AppState',
         ngxsTestingPlatform([AppState], (store: Store, app: AppState) => {
             expect(store.snapshot()).toEqual({ app: 'hello world' });
-            expect(app.getState()).toEqual('hello world');
+            expect(app.getState()).toBe('hello world');
         })
     );
 
@@ -33,6 +33,6 @@ describe('appState', () => {
             message = (e as Error).message;
         }
 
-        expect(message).toEqual('InvalidState class must be decorated with @State() decorator');
+        expect(message).toBe('InvalidState class must be decorated with @State() decorator');
     });
 });

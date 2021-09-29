@@ -2,16 +2,16 @@ import { actionNameCreator, MethodArgsRegistry } from '@angular-ru/ngxs/internal
 
 describe('[TEST]: actionNameCreator', () => {
     it('should be correct', () => {
-        expect(actionNameCreator({ statePath: 'A', methodName: 'a', argumentsNames: [] })).toEqual('@A.a()');
+        expect(actionNameCreator({ statePath: 'A', methodName: 'a', argumentsNames: [] })).toBe('@A.a()');
 
-        expect(actionNameCreator({ statePath: 'A', methodName: 'a', argumentsNames: ['x', 'y', 'z'] })).toEqual(
+        expect(actionNameCreator({ statePath: 'A', methodName: 'a', argumentsNames: ['x', 'y', 'z'] })).toBe(
             '@A.a($arg0, $arg1, $arg2)'
         );
     });
 
     it('should be correct create nested statePath', () => {
-        expect(actionNameCreator({ statePath: 'A.B.C', methodName: 'a', argumentsNames: [] })).toEqual('@A/B/C.a()');
-        expect(actionNameCreator({ statePath: 'A.B', methodName: 'a', argumentsNames: ['x', 'y', 'z'] })).toEqual(
+        expect(actionNameCreator({ statePath: 'A.B.C', methodName: 'a', argumentsNames: [] })).toBe('@A/B/C.a()');
+        expect(actionNameCreator({ statePath: 'A.B', methodName: 'a', argumentsNames: ['x', 'y', 'z'] })).toBe(
             '@A/B.a($arg0, $arg1, $arg2)'
         );
     });
@@ -29,7 +29,7 @@ describe('[TEST]: actionNameCreator', () => {
                 argumentsNames: ['x', 'y', 'z'],
                 argumentRegistry: registry
             })
-        ).toEqual('@A.a(X, $arg1, Z)');
+        ).toBe('@A.a(X, $arg1, Z)');
     });
 
     it('should be correct create payload type when override type by name', () => {
@@ -46,6 +46,6 @@ describe('[TEST]: actionNameCreator', () => {
                 argumentsNames: ['x', 'y', 'z'],
                 argumentRegistry: registry
             })
-        ).toEqual('@A.a(_X_, $arg1, Z)');
+        ).toBe('@A.a(_X_, $arg1, Z)');
     });
 });

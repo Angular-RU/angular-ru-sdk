@@ -100,15 +100,15 @@ describe('[TEST]: Integration with class-transformer', () => {
         const actual: DemoDto = new DemoDto();
 
         actual.numVal = 'INVALID NUMBER';
-        expect(actual.numVal).toEqual('INVALID NUMBER');
-        expect(plainToClass(DemoDto, actual).numVal).toEqual(NaN);
+        expect(actual.numVal).toBe('INVALID NUMBER');
+        expect(plainToClass(DemoDto, actual).numVal).toBeNaN();
     });
 
     it('should be correct transform to number', (): void => {
         const actual: DemoDto = new DemoDto();
 
         actual.numVal = ' 100 ';
-        expect(actual.numVal).toEqual(' 100 ');
-        expect(plainToClass(DemoDto, actual).numVal).toEqual(100);
+        expect(actual.numVal).toBe(' 100 ');
+        expect(plainToClass(DemoDto, actual).numVal).toBe(100);
     });
 });

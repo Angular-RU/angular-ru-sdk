@@ -27,7 +27,7 @@ describe('[TEST]: injection utils', () => {
             await TestBed.configureTestingModule({ declarations: [CtxComponent] }).compileComponents();
             const fixture = TestBed.createComponent(CtxComponent);
 
-            expect(fixture.componentInstance.service.hello).toEqual('world');
+            expect(fixture.componentInstance.service.hello).toBe('world');
         });
     });
 
@@ -50,7 +50,7 @@ describe('[TEST]: injection utils', () => {
             TestBed.configureTestingModule({ providers: [Service, B] });
             const service = TestBed.inject(Service);
 
-            expect(service.b.world).toEqual('hello');
+            expect(service.b.world).toBe('hello');
         });
     });
 

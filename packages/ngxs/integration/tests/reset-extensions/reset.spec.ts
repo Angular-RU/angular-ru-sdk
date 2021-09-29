@@ -77,7 +77,7 @@ describe('[TEST]: Reset', () => {
             message = (e as Error).message;
         }
 
-        expect(message).toEqual('Child states can only be added to an object. Cannot convert String to PlainObject');
+        expect(message).toBe('Child states can only be added to an object. Cannot convert String to PlainObject');
 
         try {
             @State({ name: 'foo' })
@@ -94,7 +94,7 @@ describe('[TEST]: Reset', () => {
             message = (e as Error).message;
         }
 
-        expect(message).toEqual('Child states can only be added to an object. Cannot convert Array to PlainObject');
+        expect(message).toBe('Child states can only be added to an object. Cannot convert Array to PlainObject');
 
         try {
             @State({ name: 'foo' })
@@ -111,6 +111,6 @@ describe('[TEST]: Reset', () => {
             message = (e as Error).message;
         }
 
-        expect(message).toEqual('Child states can only be added to an object. Cannot convert null to PlainObject');
+        expect(message).toBe('Child states can only be added to an object. Cannot convert null to PlainObject');
     });
 });

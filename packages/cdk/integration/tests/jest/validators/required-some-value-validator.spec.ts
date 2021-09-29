@@ -47,23 +47,23 @@ describe('[TEST]: requiredSomeValueValidator', () => {
 
     it('should be valid if there is only one value with type number', () => {
         form.controls.aaa?.setValue(13);
-        expect(form.valid).toEqual(true);
+        expect(form.valid).toBe(true);
     });
 
     it('should be valid if there is only one value with type string', () => {
         form.controls.bbb?.setValue('awesome');
-        expect(form.valid).toEqual(true);
+        expect(form.valid).toBe(true);
     });
 
     it('should be valid if there is only one value with type Object', () => {
         form.controls.ccc?.setValue({});
-        expect(form.valid).toEqual(true);
+        expect(form.valid).toBe(true);
     });
 
     it('should be valid if there is more than one value', () => {
         form.controls.aaa?.setValue(13);
         form.controls.bbb?.setValue('awesome');
         form.controls.ccc?.setValue({});
-        expect(form.valid).toEqual(true);
+        expect(form.valid).toBe(true);
     });
 });

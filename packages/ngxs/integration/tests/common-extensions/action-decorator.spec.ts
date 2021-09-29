@@ -60,7 +60,7 @@ describe('[TEST]: Action decorator', () => {
             message = (e as Error).message;
         }
 
-        expect(message).toEqual('States must be decorated with @State() decorator');
+        expect(message).toBe('States must be decorated with @State() decorator');
     });
 
     it(`don't should be working without provided meta information`, () => {
@@ -148,7 +148,7 @@ describe('[TEST]: Action decorator', () => {
             operations: {}
         });
 
-        expect(stateA.setup()).toEqual('a');
+        expect(stateA.setup()).toBe('a');
 
         expect(getRepository(A)).toEqual({
             stateMeta: {
@@ -296,9 +296,9 @@ describe('[TEST]: Action decorator', () => {
         });
 
         it('should be prepare metadata after invoke first action', () => {
-            expect(stateA.a()).toEqual('a');
-            expect(stateB.a()).toEqual('b');
-            expect(stateC.a()).toEqual('c');
+            expect(stateA.a()).toBe('a');
+            expect(stateB.a()).toBe('b');
+            expect(stateC.a()).toBe('c');
 
             expect(getRepository(A)).toEqual({
                 stateMeta: {
@@ -378,40 +378,40 @@ describe('[TEST]: Action decorator', () => {
 
         it('super !== this', () => {
             // noinspection SpellCheckingInspection
-            expect(stateB.superA()).toEqual('bundefined');
+            expect(stateB.superA()).toBe('bundefined');
             // noinspection SpellCheckingInspection
-            expect(stateC.superA()).toEqual('cundefined');
+            expect(stateC.superA()).toBe('cundefined');
 
             // noinspection SpellCheckingInspection
-            expect(stateB.thisB()).toEqual('bhello');
+            expect(stateB.thisB()).toBe('bhello');
             // noinspection SpellCheckingInspection
-            expect(stateC.thisA()).toEqual('chello');
+            expect(stateC.thisA()).toBe('chello');
         });
 
         it('detect problem with invoke action into action', () => {
             // A
-            expect(stateA.withValueSetStateAsAction('LEONARD')).toEqual('a');
-            expect(stateA.getState()).toEqual('new value - hello - a - LEONARD');
+            expect(stateA.withValueSetStateAsAction('LEONARD')).toBe('a');
+            expect(stateA.getState()).toBe('new value - hello - a - LEONARD');
             stateA.reset();
-            expect(stateA.getState()).toEqual('a');
-            expect(stateA.withValueSetStateAsMethod('LEONARD')).toEqual('new value as method - hello - a - LEONARD');
-            expect(stateA.getState()).toEqual('new value as method - hello - a - LEONARD');
+            expect(stateA.getState()).toBe('a');
+            expect(stateA.withValueSetStateAsMethod('LEONARD')).toBe('new value as method - hello - a - LEONARD');
+            expect(stateA.getState()).toBe('new value as method - hello - a - LEONARD');
 
             // B
-            expect(stateB.withValueSetStateAsAction('SHELDON')).toEqual('b');
-            expect(stateB.getState()).toEqual('new value - hello - b - SHELDON');
+            expect(stateB.withValueSetStateAsAction('SHELDON')).toBe('b');
+            expect(stateB.getState()).toBe('new value - hello - b - SHELDON');
             stateB.reset();
-            expect(stateB.getState()).toEqual('b');
-            expect(stateB.withValueSetStateAsMethod('SHELDON')).toEqual('new value as method - hello - b - SHELDON');
-            expect(stateB.getState()).toEqual('new value as method - hello - b - SHELDON');
+            expect(stateB.getState()).toBe('b');
+            expect(stateB.withValueSetStateAsMethod('SHELDON')).toBe('new value as method - hello - b - SHELDON');
+            expect(stateB.getState()).toBe('new value as method - hello - b - SHELDON');
 
             // C
-            expect(stateC.withValueSetStateAsAction('HOWARD')).toEqual('c');
-            expect(stateC.getState()).toEqual('new value - hello - c - HOWARD');
+            expect(stateC.withValueSetStateAsAction('HOWARD')).toBe('c');
+            expect(stateC.getState()).toBe('new value - hello - c - HOWARD');
             stateC.reset();
-            expect(stateC.getState()).toEqual('c');
-            expect(stateC.withValueSetStateAsMethod('HOWARD')).toEqual('new value as method - hello - c - HOWARD');
-            expect(stateC.getState()).toEqual('new value as method - hello - c - HOWARD');
+            expect(stateC.getState()).toBe('c');
+            expect(stateC.withValueSetStateAsMethod('HOWARD')).toBe('new value as method - hello - c - HOWARD');
+            expect(stateC.getState()).toBe('new value as method - hello - c - HOWARD');
 
             expect(getRepository(A)).toEqual({
                 stateMeta: {
