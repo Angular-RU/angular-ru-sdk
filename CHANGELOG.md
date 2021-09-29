@@ -2,6 +2,13 @@
 
 ##### Build System / Dependencies
 
+-   update dependency eslint-plugin-decorator-position to v4.0.1 (#987) (623f7258)
+-   update angular dependencies to v12.2.8 (#986) (78f30f96)
+
+#### 0.0.0 (2021-09-29)
+
+##### Build System / Dependencies
+
 -   update dependency @types/node to v16.10.2 (#984) (bef889d6)
 
 #### 0.0.0 (2021-09-29)
