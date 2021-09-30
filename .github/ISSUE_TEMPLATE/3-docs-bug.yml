@@ -12,7 +12,9 @@ body:
       attributes:
           label: Description
           placeholder: |
-              Please provide a screenshot if possible
+              How do you trigger this bug?
+              Please walk us through it step by step.
+              Please provide a screenshot if possible.
       validations:
           required: true
 
