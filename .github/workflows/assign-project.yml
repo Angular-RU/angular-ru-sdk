@@ -6,7 +6,9 @@ on:
 
 env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    PROJECTS_BASE_URL: 'https://github.com/Angular-RU/angular-ru-sdk/projects/'
+    PROJECTS_BASE_URL: 'https://github.com/Angular-RU/angular-ru-sdk/projects'
+
+    # documentation project
     DOCS_PROJECT_ID: 1
     DOCS_LABEL_FOR_ASSIGN: 'documentation'
 
