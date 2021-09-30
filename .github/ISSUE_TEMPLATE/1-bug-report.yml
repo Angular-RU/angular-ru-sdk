@@ -1,0 +1,50 @@
+name: Bug Report
+description: Report a bug in the Angular-RU SDK
+labels: ['bug']
+
+body:
+    - type: dropdown
+      id: affected-packages
+      attributes:
+          label: Which @angular-ru/* package(s) are the source of the bug?
+          options:
+              - cdk
+              - ngxs
+              - commitlint
+              - dev-dependencies
+              - eslint-config-enterprise
+              - eslint-plugin-enterprise
+              - jest
+              - prettier
+              - renovate
+              - typescript
+              - Don't known / other
+          multiple: true
+      validations:
+          required: true
+
+    - type: dropdown
+      id: is-regression
+      attributes:
+          label: Is this a regression?
+          options:
+              - 'Yes'
+              - 'No'
+      validations:
+          required: true
+
+    - type: textarea
+      id: description
+      attributes:
+          label: Description
+          placeholder: |
+              Please provide a link to a minimal reproduction of the bug.
+              Please provide the exception or error you saw.
+
+              Please provide the environment you discovered this bug in:
+              Angular CLI: x.y.z
+              Node: x.y.z
+              Package Manager: npm x.y.z
+              OS: linux x64
+      validations:
+          required: true
