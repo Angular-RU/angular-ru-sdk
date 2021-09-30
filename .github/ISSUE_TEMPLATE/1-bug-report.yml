@@ -40,8 +40,8 @@ body:
           placeholder: |
               Please provide a link to a minimal reproduction of the bug.
               Please provide the exception or error you saw.
-
               Please provide the environment you discovered this bug in:
+
               Angular CLI: x.y.z
               Node: x.y.z
               Package Manager: npm x.y.z
