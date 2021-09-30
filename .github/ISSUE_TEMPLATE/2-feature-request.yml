@@ -1,6 +1,6 @@
 name: 'Feature Request'
 description: Suggest a feature for Angular-RU SDK
-labels: ['features']
+labels: ['feature']
 
 body:
     - type: dropdown
