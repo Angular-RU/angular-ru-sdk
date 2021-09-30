@@ -1,5 +1,6 @@
 name: 'Docs'
 description: Report an issue in Angular-RU SDK's documentation
+labels: ['documentation']
 
 body:
     - type: input

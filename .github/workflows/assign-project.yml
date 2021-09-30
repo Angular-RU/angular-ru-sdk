@@ -1,0 +1,19 @@
+name: Auto Assign to Project(s)
+
+on:
+    issues:
+        types: [opened, labeled]
+
+env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+    assign-one-project:
+        runs-on: ubuntu-latest
+        name: Assign to one project
+        steps:
+            - name: Assign issues to documentation project
+              uses: srggrs/assign-one-project-github-action@1.2.1
+              if: contains(github.event.issue.labels.*.name, 'documentation')
+              with:
+                  project: 'https://github.com/Angular-RU/angular-ru-sdk/projects/1'
