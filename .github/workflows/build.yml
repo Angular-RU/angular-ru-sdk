@@ -1,10 +1,5 @@
 name: Angular-RU SDK pipelines
-
-on:
-    workflow_run:
-        workflows: ['Cancel an already running workflow']
-        types:
-            - completed
+on: [push]
 
 env:
     CI_MODE: 'true'

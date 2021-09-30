@@ -3,10 +3,6 @@ name: Rebase all pull requests on push to the base branch
 on:
     push:
         branches: [master]
-    workflow_run:
-        workflows: ['Cancel an already running workflow']
-        types:
-            - completed
 
 jobs:
     rebase:
