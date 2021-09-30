@@ -1,4 +1,4 @@
-name: Angular-RU SDK skip workflow
+name: Cancel an already running workflow
 on: [push]
 
 jobs:
