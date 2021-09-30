@@ -9,12 +9,6 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-            - name: Cancel an already running workflow
-              uses: fkirc/skip-duplicate-actions@v3.4.1
-              with:
-                  github_token: ${{ secrets.GH_TOKEN }}
-                  cancel_others: true
-
             - uses: actions/checkout@v2
               with:
                   fetch-depth: '0'
