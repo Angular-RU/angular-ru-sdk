@@ -18,6 +18,6 @@ jobs:
         steps:
             - name: Assign issues to documentation project
               uses: srggrs/assign-one-project-github-action@1.3.0
-              if: contains(github.event.issue.labels.*.name, ${{ env.LABEL_FOR_ASSIGN }})
+              if: contains(github.event.issue.labels.*.name, env.LABEL_FOR_ASSIGN)
               with:
                   project: '${{ env.PROJECTS_BASE_URL }}/${{ env.PROJECT_ID }}'
