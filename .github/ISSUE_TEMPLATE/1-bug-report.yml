@@ -1,23 +1,27 @@
 name: Bug Report
-description: Report a bug in the Angular-RU SDK
+description: Report a bug in the Taiga UI
 labels: ['bug']
 
 body:
     - type: dropdown
       id: affected-packages
       attributes:
-          label: Which @angular-ru/* package(s) are the source of the bug?
+          label: Which @taiga-ui/* package(s) are the source of the bug?
           options:
+              - core
+              - kit
               - cdk
-              - ngxs
-              - commitlint
-              - dev-dependencies
-              - eslint-config-enterprise
-              - eslint-plugin-enterprise
-              - jest
-              - prettier
-              - renovate
-              - typescript
+              - i18n
+              - icons
+              - taiga-schematics
+              - testing
+              - addon-charts
+              - addon-commerce
+              - addon-doc
+              - addon-editor
+              - addon-mobile
+              - addon-table
+              - addon-tablebars
               - Don't known / other
           multiple: true
       validations:
@@ -43,6 +47,7 @@ body:
               Please provide the environment you discovered this bug in:
 
               Angular CLI: x.y.z
+              Taiga: x.y.z
               Node: x.y.z
               Package Manager: npm x.y.z
               OS: linux x64
