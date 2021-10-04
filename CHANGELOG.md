@@ -2,6 +2,13 @@
 
 ##### Build System / Dependencies
 
+-   update dependency lint-staged to v11.2.0 (#1007) (74a44166)
+-   update srggrs/assign-one-project-github-action action to v1.3.1 (#1006) (345ed3b5)
+
+#### 0.0.0 (2021-10-04)
+
+##### Build System / Dependencies
+
 -   update dependency eslint-plugin-jest to v24.5.2 (#1005) (f834420a)
 -   update dependency rxjs to v7.3.1 (#1004) (a0256b14)
 -   update srggrs/assign-one-project-github-action action to v1.3.0 (#992) (a4f153ea)
