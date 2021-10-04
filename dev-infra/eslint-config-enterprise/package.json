@@ -42,7 +42,7 @@
         "eslint-plugin-deprecation": "1.2.1",
         "eslint-plugin-i18n-json": "3.1.0",
         "eslint-plugin-import": "2.24.2",
-        "eslint-plugin-jest": "24.5.0",
+        "eslint-plugin-jest": "24.5.2",
         "eslint-plugin-jsdoc": "36.1.0",
         "eslint-plugin-json": "3.1.0",
         "eslint-plugin-max-params-no-constructor": "0.0.4",
