@@ -1,3 +1,42 @@
+#### 0.0.0 (2021-10-04)
+
+##### Build System / Dependencies
+
+-   update dependency eslint-plugin-jest to v24.5.2 (#1005) (f834420a)
+-   update dependency rxjs to v7.3.1 (#1004) (a0256b14)
+-   update srggrs/assign-one-project-github-action action to v1.3.0 (#992) (a4f153ea)
+
+##### Chores
+
+-   update (402ad67c)
+
+##### Continuous Integration
+
+-   refactor workflow (038f8127)
+-   refactor workflow (8ba257df)
+-   refactor workflow (8aad6238)
+-   refactor workflow (13b20821)
+-   refactor workflow (78aca872)
+-   refactor workflow (66408fd0)
+-   refactor workflow (67102015)
+-   refactor workflow (9f00c1db)
+-   refactor workflow (c874c583)
+-   refactor workflow (ddebcc33)
+-   refactor workflow (995e852e)
+-   refactor workflow (39e704a7)
+-   refactor workflow (0e0adf8e)
+-   refactor workflow (80e662ba)
+-   refactor workflow (971fae94)
+-   refactor workflow (7a3c3b05)
+-   refactor workflow (656c3d7c)
+-   refactor workflow (e8080b48)
+-   refactor workflow (b3928b03)
+-   refactor workflow (ee345129)
+-   refactor workflow (cce76444)
+-   refactor workflow (4d034c17)
+-   refactor workflow (0048969b)
+-   refactor workflow (33315a81)
+
 #### 0.0.0 (2021-09-29)
 
 ##### Build System / Dependencies
