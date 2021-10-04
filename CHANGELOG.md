@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update eslint dependencies to v4.33.0 (#1008) (f73ad5ec)
+
+#### 0.0.0 (2021-10-04)
+
+##### Build System / Dependencies
+
 -   update dependency lint-staged to v11.2.0 (#1007) (74a44166)
 -   update srggrs/assign-one-project-github-action action to v1.3.1 (#1006) (345ed3b5)
 
