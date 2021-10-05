@@ -6,10 +6,6 @@ The Angular-RU Software Development Kit (SDK) is a set of tool chain that implem
 being un opinionated about their presentation for Angular. It represents an abstraction of the core functionalities
 found in the Angular.
 
-#### Version policy
-
-`X.Y.Z`, where `X` align with Angular version, `Y` align with features and `Z` align with bugfixes.
-
 ---
 
 ### Development kit
@@ -50,3 +46,7 @@ found in the Angular.
 | **Package**                                                                            | **Version**                                                                   | **README**                                                                                  | **Downloads**                                                                                                             |
 | -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | [@angular-ru/dev-dependencies](https://npmjs.com/package/@angular-ru/dev-dependencies) | ![](https://img.shields.io/npm/v/%40angular-ru%2Fdev-dependencies/latest.svg) | [![](https://img.shields.io/badge/README--green.svg)](dev-infra/dev-dependencies/README.md) | [![](https://img.shields.io/npm/dw/@angular-ru/dev-dependencies)](https://npmjs.com/package/@angular-ru/dev-dependencies) |
+
+#### Version policy
+
+`X.Y.Z`, where `X` align with Angular version, `Y` align with features and `Z` align with bugfixes.
