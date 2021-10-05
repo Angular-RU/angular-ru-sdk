@@ -23,9 +23,9 @@ jobs:
             - name: Prepare git
               run: |
                   git config --global push.default simple
-                  git config --global user.name "angular-ru"
+                  git config --global user.name "angular-ru-bot"
                   git config --global user.email "angular-ru@yandex.ru"
-                  git config remote.origin.url https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/$GITHUB_REPOSITORY
+                  git config remote.origin.url https://x-access-token:${{ secrets.ANGULAR_RU_BOT_PAT }}@github.com/$GITHUB_REPOSITORY
 
             - name: Restore cache
               uses: actions/cache@v2
@@ -58,7 +58,7 @@ jobs:
               if: ${{ github.ref == 'refs/heads/master' }}
               run: |
                   echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
-                  GH_TOKEN=${{ secrets.GH_TOKEN }} yarn lerna publish
+                  GH_TOKEN=${{ secrets.ANGULAR_RU_BOT_PAT }} yarn lerna publish
 
             # Auto push fixable code
             - name: Get last commit message
@@ -76,12 +76,6 @@ jobs:
     demo:
         runs-on: ubuntu-latest
         steps:
-            - name: Cancel an already running workflow
-              uses: fkirc/skip-duplicate-actions@v3.4.1
-              with:
-                  github_token: ${{ secrets.GH_TOKEN }}
-                  cancel_others: true
-
             - uses: actions/checkout@v2
 
             - name: Use Node.js ${{ env.NODE_VERSION }}
