@@ -1,3 +1,9 @@
+#### 0.0.0 (2021-10-05)
+
+##### Continuous Integration
+
+-   check bot access (#1011) (26c19de8)
+
 #### 0.0.0 (2021-10-04)
 
 ##### Build System / Dependencies
