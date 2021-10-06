@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/jest",
-    "version": "12.24.1",
+    "version": "12.25.0",
     "description": "Angular-RU package",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/dev-infra/jest#readme",
     "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
