@@ -1,5 +1,12 @@
 #### 0.0.0 (2021-10-06)
 
+##### Chores
+
+-   force update (79c03cc6)
+-   force update (4dd044f1)
+
+#### 0.0.0 (2021-10-06)
+
 ##### Build System / Dependencies
 
 -   update dependency jest-junit to v13 (#1009) (be7771d9)
