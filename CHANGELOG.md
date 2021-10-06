@@ -1,3 +1,18 @@
+#### 0.0.0 (2021-10-06)
+
+##### Build System / Dependencies
+
+-   update dependency jest-junit to v13 (#1009) (be7771d9)
+-   update dependency @types/node to v16.10.3 (#1013) (0597aeec)
+
+##### Chores
+
+-   force update (1a6d80f3)
+
+##### Continuous Integration
+
+-   check bot access (#1011) (26c19de8)
+
 #### 0.0.0 (2021-10-04)
 
 ##### Build System / Dependencies
