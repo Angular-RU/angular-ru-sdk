@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update dependency jest to v27.2.5 (#1018) (5ac8a442)
+
+#### 0.0.0 (2021-10-08)
+
+##### Build System / Dependencies
+
 -   update dependency ng-packagr to v12.2.3 (#1017) (50f8f4a0)
 -   update angular dependencies to v12.2.9 (#1015) (062169fc)
 -   update dependency rxjs to v7.4.0 (#1016) (11621646)
