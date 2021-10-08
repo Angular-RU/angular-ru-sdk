@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update dependency @types/eslint to v7.28.1 (#1019) (fe9a4bd6)
+
+#### 0.0.0 (2021-10-08)
+
+##### Build System / Dependencies
+
 -   update dependency jest to v27.2.5 (#1018) (5ac8a442)
 
 #### 0.0.0 (2021-10-08)
