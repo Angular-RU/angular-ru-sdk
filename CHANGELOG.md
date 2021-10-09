@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update dependency @commitlint/cli to v13.2.1 (#1022) (127d1736)
+
+#### 0.0.0 (2021-10-09)
+
+##### Build System / Dependencies
+
 -   update dependency lint-staged to v11.2.1 (#1021) (f34e12a5)
 
 #### 0.0.0 (2021-10-09)
