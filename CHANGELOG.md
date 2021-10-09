@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update dependency lint-staged to v11.2.1 (#1021) (f34e12a5)
+
+#### 0.0.0 (2021-10-09)
+
+##### Build System / Dependencies
+
 -   update dependency eslint-plugin-jsdoc to v36.1.1 (#1020) (bed3e7be)
 
 #### 0.0.0 (2021-10-08)
