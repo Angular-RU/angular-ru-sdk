@@ -1,3 +1,9 @@
+#### 0.0.0 (2021-10-09)
+
+##### Build System / Dependencies
+
+-   update dependency eslint-plugin-jsdoc to v36.1.1 (#1020) (bed3e7be)
+
 #### 0.0.0 (2021-10-08)
 
 ##### Build System / Dependencies
