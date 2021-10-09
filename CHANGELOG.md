@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update dependency eslint-plugin-jest to v24.6.0 (#1024) (e2960eac)
+
+#### 0.0.0 (2021-10-09)
+
+##### Build System / Dependencies
+
 -   update dependency lint-staged to v11.2.2 (#1023) (acfbf05f)
 
 #### 0.0.0 (2021-10-09)
