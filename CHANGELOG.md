@@ -1,3 +1,9 @@
+#### 0.0.0 (2021-10-10)
+
+##### Build System / Dependencies
+
+-   update dependency lint-staged to v11.2.3 (#1027) (92fe7c3e)
+
 #### 0.0.0 (2021-10-09)
 
 ##### Build System / Dependencies
