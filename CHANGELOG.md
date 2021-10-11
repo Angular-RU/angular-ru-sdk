@@ -1,3 +1,9 @@
+#### 0.0.0 (2021-10-11)
+
+##### Build System / Dependencies
+
+-   update dependency ts-node to v10.3.0 (#1028) (633527f0)
+
 #### 0.0.0 (2021-10-10)
 
 ##### Build System / Dependencies
