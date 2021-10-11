@@ -24,7 +24,7 @@
         "nyc": "15.1.0",
         "sort-package-json": "1.52.0",
         "standard-version": "9.3.1",
-        "ts-node": "10.2.1"
+        "ts-node": "10.3.0"
     },
     "publishConfig": {
         "access": "public"
