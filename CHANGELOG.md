@@ -1,3 +1,9 @@
+#### 0.0.0 (2021-10-12)
+
+##### Build System / Dependencies
+
+-   update dependency @types/node to v16.10.4 (#1029) (16ec7cc5)
+
 #### 0.0.0 (2021-10-11)
 
 ##### Build System / Dependencies
