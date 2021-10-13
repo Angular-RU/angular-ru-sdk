@@ -42,3 +42,12 @@ it('decodeJwt', () => {
     expect(decodeJwt(jwtToken)).toEqual(decodeModel);
 });
 ```
+
+-   `encodeUnicodeToBase64, decodeBase64ToUnicode`
+
+```ts
+import { encodeUnicodeToBase64, decodeBase64ToUnicode } from '@angular-ru/cdk/stream';
+
+expect(encodeUnicodeToBase64('abcABC 0123')).toEqual('YWJjQUJDIDAxMjM=');
+expect(decodeBase64ToUnicode('YWJjQUJDIDAxMjM=')).toEqual('abcABC 0123');
+```
