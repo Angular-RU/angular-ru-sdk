@@ -43,6 +43,12 @@ describe('[TEST]: Stream API', () => {
 
                 expect(result).toEqual(unicodeCyrillic);
             });
+
+            it('should correctly decode symbols which > 1 byte', async () => {
+                const result: string = decodeBase64ToUnicode('4pyT');
+
+                expect(result).toBe('✓');
+            });
         });
 
         describe('encodeUnicodeToBase64', () => {
@@ -56,6 +62,12 @@ describe('[TEST]: Stream API', () => {
                 const result: string = encodeUnicodeToBase64(unicodeCyrillic);
 
                 expect(result).toEqual(b64Cyrillic);
+            });
+
+            it('should correctly encode symbols which > 1 byte', async () => {
+                const result: string = encodeUnicodeToBase64('✓');
+
+                expect(result).toBe('4pyT');
             });
         });
     });
