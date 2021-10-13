@@ -1,3 +1,16 @@
+#### 0.0.0 (2021-10-13)
+
+##### Build System / Dependencies
+
+-   update dependency @types/node to v16.10.5 (#1031) (b2115870)
+-   update dependency typescript to v4.4.4 (#1030) (a8a506fd)
+
+#### 0.0.0 (2021-10-12)
+
+##### Build System / Dependencies
+
+-   update dependency @types/node to v16.10.4 (#1029) (16ec7cc5)
+
 #### 0.0.0 (2021-10-11)
 
 ##### Build System / Dependencies
