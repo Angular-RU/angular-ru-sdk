@@ -1,5 +1,11 @@
 #### 0.0.0 (2021-10-13)
 
+##### New Features
+
+-   added utils encode/decode base64 (#1032) (285f1fd0)
+
+#### 0.0.0 (2021-10-13)
+
 ##### Build System / Dependencies
 
 -   update dependency @types/node to v16.10.5 (#1031) (b2115870)
