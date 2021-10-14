@@ -54,6 +54,7 @@ export abstract class AbstractTest {
 console.error(AbstractTest.hello);
 
 console.warn(A1);
+// eslint-disable-next-line deprecation/deprecation
 console.warn(new B1().hello('hello'));
 
 /****
@@ -105,7 +106,9 @@ class HttpClient {
 // noinspection AngularMissingOrInvalidDeclarationInModule
 @Component({
     selector: 'good-component',
-    template: `<p>Good component works!</p>`,
+    template: `
+        <p>Good component works!</p>
+    `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
