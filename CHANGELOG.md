@@ -1,3 +1,10 @@
+#### 0.0.0 (2021-10-14)
+
+##### Build System / Dependencies
+
+-   update dependency @types/node to v16.10.9 (#1033) (37cc3546)
+-   update angular dependencies to v12.2.10 (#1034) (71599872)
+
 #### 0.0.0 (2021-10-13)
 
 ##### New Features
