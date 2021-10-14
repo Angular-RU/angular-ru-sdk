@@ -15,7 +15,9 @@ describe('[TEST]: Trim Input', () => {
 
     @Component({
         selector: 'test',
-        template: ` <input matInput type="text" [(ngModel)]="value" trimInput mask="0000-0000-0000-0000" /> `,
+        template: `
+            <input matInput type="text" [(ngModel)]="value" trimInput mask="0000-0000-0000-0000" />
+        `,
         changeDetection: ChangeDetectionStrategy.OnPush
     })
     class NgModelTestComponent {

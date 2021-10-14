@@ -10,7 +10,9 @@ import { MockWebWorkerService } from '../helpers/mock-web-worker.service';
 
 @Component({
     selector: 'selection-mock',
-    template: ` <ngx-table-builder enable-selection [source]="data"></ngx-table-builder>`
+    template: `
+        <ngx-table-builder enable-selection [source]="data"></ngx-table-builder>
+    `
 })
 class SelectionMockComponent {
     @ViewChild(TableBuilderComponent, { static: true })

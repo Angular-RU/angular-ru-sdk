@@ -65,7 +65,8 @@ class AmountState extends NgxsDataRepository<number> {
 @Component({
     selector: 'app',
     template: `
-        <input placeholder="Price" [ngModel]="price.snapshot" (ngModelChange)="price.setPrice($event)" /> <br />
+        <input placeholder="Price" [ngModel]="price.snapshot" (ngModelChange)="price.setPrice($event)" />
+        <br />
         <input placeholder="Amount" [ngModel]="amount.snapshot" (ngModelChange)="amount.setAmount($event)" />
         <p>Sum: {{ amount.sum }}</p>
     `
@@ -193,7 +194,8 @@ class MySecondCountState extends NgxsDataRepository<number> {
 @Component({
     selector: 'app',
     template: `
-        <button (click)="firstCount.increment()">Increment firstCount</button> <br />
+        <button (click)="firstCount.increment()">Increment firstCount</button>
+        <br />
         <button (click)="secondCount.increment()">Increment secondCount</button>
 
         <p>Sum: {{ secondCount.sum }}</p>

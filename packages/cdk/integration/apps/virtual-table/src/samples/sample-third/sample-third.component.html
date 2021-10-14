@@ -1,7 +1,7 @@
 <mat-toolbar class="simple-toolbar">
     <span>
         Example selection
-        <span *ngIf="table.isRendered"> ({{ table.source?.length }}x{{ table.displayedColumns?.length }})</span>
+        <span *ngIf="table.isRendered">({{ table.source?.length }}x{{ table.displayedColumns?.length }})</span>
         <span style="margin-left: 5px">Selected: {{ table.selection.selectionModel.size }}</span>
     </span>
     <button class="show-simple" mat-raised-button (click)="showSample()">show code sample</button>

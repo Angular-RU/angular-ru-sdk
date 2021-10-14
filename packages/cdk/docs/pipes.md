@@ -16,7 +16,9 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `<data [list]="data | mutable"></data>`
+    template: `
+        <data [list]="data | mutable"></data>
+    `
 })
 export class AppComponent {
     public data: Immutable<Data[]> = [];
@@ -50,7 +52,9 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `{{ data | deepPath: 'a.b.c' }}` // view: 'hello'
+    template: `
+        {{ data | deepPath: 'a.b.c' }}
+    ` // view: 'hello'
 })
 export class AppComponent {
     public data = { a: { b: { c: 'hello' } } };
@@ -71,7 +75,9 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `{{ data | defaultValue: '-' }}` // view: '-'
+    template: `
+        {{ data | defaultValue: '-' }}
+    ` // view: '-'
 })
 export class AppComponent {
     public data = null;
@@ -92,7 +98,9 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `{{ data | isNotNull }}` // false
+    template: `
+        {{ data | isNotNull }}
+    ` // false
 })
 export class AppComponent {
     public data = null;
@@ -113,7 +121,9 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `{{ data | isNil }}` // true
+    template: `
+        {{ data | isNil }}
+    ` // true
 })
 export class AppComponent {
     public data = null;
@@ -134,7 +144,9 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `{{ data | isObject }}` // true
+    template: `
+        {{ data | isObject }}
+    ` // true
 })
 export class AppComponent {
     public data = {};
@@ -155,7 +167,9 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `{{ browser | detectBrowser }}` // Chrome 84
+    template: `
+        {{ browser | detectBrowser }}
+    ` // Chrome 84
 })
 export class AppComponent {
     public browser =
@@ -177,7 +191,9 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `{{ data | isString }}` // true
+    template: `
+        {{ data | isString }}
+    ` // true
 })
 export class AppComponent {
     public data = 'hello world';
@@ -198,7 +214,9 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `{{ data | isArray }}` // true
+    template: `
+        {{ data | isArray }}
+    ` // true
 })
 export class AppComponent {
     public data = [];
@@ -219,7 +237,9 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `{{ data | toString }}` // "1,2"
+    template: `
+        {{ data | toString }}
+    ` // "1,2"
 })
 export class AppComponent {
     public data = [1, 2];
@@ -240,7 +260,9 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `{{ data | toNumber }}` // 12
+    template: `
+        {{ data | toNumber }}
+    ` // 12
 })
 export class AppComponent {
     public data = '12';
@@ -261,7 +283,9 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `{{ data | formatDate }}` // 11.12.2018
+    template: `
+        {{ data | formatDate }}
+    ` // 11.12.2018
 })
 export class AppComponent {
     public data = 1544532097434;
@@ -282,7 +306,9 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `<div [innerHTML]="data | safe: 'html'"></div>`
+    template: `
+        <div [innerHTML]="data | safe: 'html'"></div>
+    `
 })
 export class AppComponent {
     public data = '<p>Hello world</p>';
@@ -303,7 +329,9 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `{{ data | numberFormat }}` // 1 500 300,5
+    template: `
+        {{ data | numberFormat }}
+    ` // 1 500 300,5
 })
 export class AppComponent {
     public data = 1500300.5;
@@ -324,7 +352,9 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `{{ data | httpReplacer }}` // hello.com/new
+    template: `
+        {{ data | httpReplacer }}
+    ` // hello.com/new
 })
 export class AppComponent {
     public data = 'https://www.hello.com/new/index.php';
@@ -345,7 +375,9 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `{{ data | takeFirstItem }}` // 1
+    template: `
+        {{ data | takeFirstItem }}
+    ` // 1
 })
 export class AppComponent {
     public data = [1, 2];
@@ -366,7 +398,9 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `{{ data | takeSecondItem }}` // 2
+    template: `
+        {{ data | takeSecondItem }}
+    ` // 2
 })
 export class AppComponent {
     public data = [1, 2];
@@ -387,7 +421,9 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `{{ data | dateNative }}` // Date(type)
+    template: `
+        {{ data | dateNative }}
+    ` // Date(type)
 })
 export class AppComponent {
     public data = '27.02.2019 14:25';
@@ -408,7 +444,9 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `{{ 'a' | entrySingleSet: setList }}` // true
+    template: `
+        {{ 'a' | entrySingleSet: setList }}
+    ` // true
 })
 export class AppComponent {
     public setList = new Set(['a']);
@@ -429,7 +467,9 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `{{ 'hello word' | markByFilter: filter }}` // hello <span style="background: #ffdd2d">world</span>
+    template: `
+        {{ 'hello word' | markByFilter: filter }}
+    ` // hello <span style="background: #ffdd2d">world</span>
 })
 export class AppComponent {
     public filter = 'world';
@@ -450,7 +490,9 @@ export class AppModule {}
 
 @Component({
     // ...
-    template: `{{ entity | displayItem: 'value.name' }}` // A
+    template: `
+        {{ entity | displayItem: 'value.name' }}
+    ` // A
 })
 export class AppComponent {
     public entity = { value: { name: 'A' } };
@@ -784,7 +826,9 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `{{ numberVal | declinationOfNumber: ['арбуз', 'арбуза', 'арбузов'] }}`
+    template: `
+        {{ numberVal | declinationOfNumber: ['арбуз', 'арбуза', 'арбузов'] }}
+    `
 })
 export class AppComponent {
     @Input() public numberVal: number;

@@ -34,7 +34,9 @@ import { MyData } from './my-data.interface';
 
 @Component({
     selector: 'app-root',
-    template: ` <ngx-table-builder [source]="data"></ngx-table-builder> `
+    template: `
+        <ngx-table-builder [source]="data"></ngx-table-builder>
+    `
 })
 export class AppComponent {
     public data: MyData[] = [
