@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update dependency @types/node to v16.11.0 (#1038) (a67fcbbd)
+
+#### 0.0.0 (2021-10-14)
+
+##### Build System / Dependencies
+
 -   update dependency ts-jest to v27.0.6 (#1037) (e05f9358)
 -   update dependency jasmine-core to v3.10.0 (#1035) (444168a4)
 
