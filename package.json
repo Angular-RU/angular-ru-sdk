@@ -67,7 +67,7 @@
         "@ngxs/logger-plugin": "3.7.2",
         "@ngxs/store": "3.7.2",
         "class-transformer": "0.4.0",
-        "jasmine-core": "3.9.0",
+        "jasmine-core": "3.10.0",
         "jasmine-spec-reporter": "7.0.0",
         "karma": "6.3.4",
         "karma-chrome-launcher": "3.1.0",
