@@ -14,7 +14,9 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `<input initialFocus placeholder="hello world" />`
+    template: `
+        <input initialFocus placeholder="hello world" />
+    `
 })
 export class AppComponent {}
 ```
@@ -33,7 +35,9 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `<input amountFormat value="10000000" />` // 1 000 000
+    template: `
+        <input amountFormat value="10000000" />
+    ` // 1 000 000
 })
 export class AppComponent {}
 ```
@@ -52,7 +56,9 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `<input convertCase placeholder="ru" />` // RU
+    template: `
+        <input convertCase placeholder="ru" />
+    ` // RU
 })
 export class AppComponent {}
 ```
@@ -71,7 +77,9 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `<input disableControl formControlName="name" />` // disabled = true
+    template: `
+        <input disableControl formControlName="name" />
+    ` // disabled = true
 })
 export class AppComponent {}
 ```
@@ -90,7 +98,9 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `<input maxLength="3000" placeholder="3001" />` // empty value
+    template: `
+        <input maxLength="3000" placeholder="3001" />
+    ` // empty value
 })
 export class AppComponent {}
 ```
@@ -109,7 +119,9 @@ export class AppModule {}
 
 @Component({
     //...
-    template: `<input trimInput placeholder="  Hello  " />` // 'Hello'
+    template: `
+        <input trimInput placeholder="  Hello  " />
+    ` // 'Hello'
 })
 export class AppComponent {}
 ```

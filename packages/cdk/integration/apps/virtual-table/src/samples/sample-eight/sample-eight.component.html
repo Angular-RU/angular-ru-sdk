@@ -32,7 +32,7 @@
 
     <ngx-column *ngFor="let key of table.modelColumnKeys" [key]="key">
         <ng-container *ngIf="key === 'symbol'; else other">
-            <ng-template ngx-td let-symbol> {{ symbol }} </ng-template>
+            <ng-template ngx-td let-symbol>{{ symbol }}</ng-template>
         </ng-container>
 
         <ng-template #other ngx-td [nowrap]="false" let-cell>{{ cell }}</ng-template>

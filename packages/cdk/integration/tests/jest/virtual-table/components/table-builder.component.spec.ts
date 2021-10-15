@@ -16,12 +16,14 @@ import { FilterDescriptor } from '../../../../../virtual-table/src/services/filt
 
 @Component({
     selector: 'app-ngx-table-builder-mock',
-    template: ` <ngx-table-builder
-        enable-selection
-        enable-filtering
-        [source]="data"
-        [sort-types]="sortTypes"
-        [filter-definition]="filterDefinition"></ngx-table-builder>`
+    template: `
+        <ngx-table-builder
+            enable-selection
+            enable-filtering
+            [source]="data"
+            [sort-types]="sortTypes"
+            [filter-definition]="filterDefinition"></ngx-table-builder>
+    `
 })
 class NgxTableBuilderMockComponent {
     @ViewChild(TableBuilderComponent, { static: true })

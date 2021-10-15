@@ -16,7 +16,9 @@ describe('[TEST]: inputFilter Simple Input', () => {
 
     @Component({
         selector: 'test',
-        template: ` <input [value]="filterValue" [inputFilter]="predicate" /> `,
+        template: `
+            <input [value]="filterValue" [inputFilter]="predicate" />
+        `,
         changeDetection: ChangeDetectionStrategy.OnPush
     })
     class TestComponent {

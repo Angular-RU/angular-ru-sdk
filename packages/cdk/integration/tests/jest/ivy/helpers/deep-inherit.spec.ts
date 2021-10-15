@@ -52,7 +52,9 @@ class C extends B {}
 
 @Component({
     selector: 'test-component',
-    template: `<p class="service">{{ world() }}</p> `
+    template: `
+        <p class="service">{{ world() }}</p>
+    `
 })
 class MockComponent extends C {
     @Injection(MockService) public testService!: MockService;

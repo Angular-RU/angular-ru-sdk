@@ -18,6 +18,7 @@ PS: TodoState will be persistence in localStorage (ttl: 30sec)
 </div>
 <ul>
     <li class="todo" *ngFor="let todoItem of todo.state$ | async; let i = index">
-        {{ todoItem }} <button (click)="todo.removeTodo(i)">🗑</button>
+        {{ todoItem }}
+        <button (click)="todo.removeTodo(i)">🗑</button>
     </li>
 </ul>

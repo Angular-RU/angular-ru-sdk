@@ -49,15 +49,14 @@
                         <ngx-table-builder #table1 [source]="licences" enable-selection>
                             <ngx-context-menu [height]="null">
                                 <ngx-context-menu-item contextTitle divider>
-                                    <ngx-menu-content icon="https://angular.io/assets/images/logos/angular/angular.svg">
-                                    </ngx-menu-content>
-                                    <ngx-menu-content> My custom context menu title</ngx-menu-content>
+                                    <ngx-menu-content
+                                        icon="https://angular.io/assets/images/logos/angular/angular.svg"></ngx-menu-content>
+                                    <ngx-menu-content>My custom context menu title</ngx-menu-content>
                                 </ngx-context-menu-item>
 
                                 <ngx-context-menu-item (onClick)="exportExcel(licences)">
                                     <ngx-menu-content
-                                        icon="http://www.myiconfinder.com/uploads/iconsets/ae86b3a8881d697b6c42528aff5ba48b-excel.png">
-                                    </ngx-menu-content>
+                                        icon="http://www.myiconfinder.com/uploads/iconsets/ae86b3a8881d697b6c42528aff5ba48b-excel.png"></ngx-menu-content>
                                     <ngx-menu-content>Export Excel</ngx-menu-content>
                                 </ngx-context-menu-item>
 
@@ -241,7 +240,7 @@
                                 <ngx-context-menu-item>
                                     <ngx-menu-content>Root C</ngx-menu-content>
                                     <ngx-context-menu-item>
-                                        <ngx-menu-content> Child C1</ngx-menu-content>
+                                        <ngx-menu-content>Child C1</ngx-menu-content>
                                     </ngx-context-menu-item>
                                     <ngx-context-menu-item>
                                         <ngx-menu-content>Child C2</ngx-menu-content>
@@ -258,7 +257,10 @@
                     <div class="column">
                         <br />
 
-                        <p><b>Note</b>: You can also wrap the templates in your component.</p>
+                        <p>
+                            <b>Note</b>
+                            : You can also wrap the templates in your component.
+                        </p>
 
                         <pre><code class="html" ngNonBindable>
   &lt;!-- app.component.html -->
@@ -298,7 +300,10 @@
                     </div>
                     <div class="column">
                         <br />
-                        <p><b>Note</b>: You can also wrap the templates in your component.</p>
+                        <p>
+                            <b>Note</b>
+                            : You can also wrap the templates in your component.
+                        </p>
                         <pre><code class="html" ngNonBindable>
   &lt;!-- my-menu.component.html -->
 
