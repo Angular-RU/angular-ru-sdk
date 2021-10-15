@@ -1,3 +1,9 @@
+#### 0.0.0 (2021-10-15)
+
+##### New Features
+
+-   **prettier:** ignore htmlWhitespaceSensitivity (#1036) (ce04ae32)
+
 #### 0.0.0 (2021-10-14)
 
 ##### Build System / Dependencies
