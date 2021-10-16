@@ -30,36 +30,36 @@ describe('[TEST]: auto height', () => {
         }
     };
 
-    Object.defineProperty(document.body, 'clientHeight', {
-        value: 1000
-    });
-
-    Object.defineProperty(window, 'setTimeout', {
-        value: (callback: Fn<void, void>): void => callback()
-    });
-
-    Object.defineProperty(window, 'requestAnimationFrame', {
-        value: (callback: Fn): unknown => callback()
-    });
-
-    Object.defineProperties(window, {
-        addEventListener: {
-            value: (_: string, fn: Fn): void => {
-                recalculateDispatcher = fn;
-                addedEvent = true;
-            }
-        },
-        removeEventListener: {
-            value: (): void => {
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                recalculateDispatcher = null;
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                removeEvent = true;
-            }
-        }
-    });
-
     beforeEach(() => {
+        Object.defineProperty(document.body, 'clientHeight', {
+            value: 1000
+        });
+
+        Object.defineProperty(window, 'setTimeout', {
+            value: (callback: Fn<void, void>): void => callback()
+        });
+
+        Object.defineProperty(window, 'requestAnimationFrame', {
+            value: (callback: Fn): unknown => callback()
+        });
+
+        Object.defineProperties(window, {
+            addEventListener: {
+                value: (_: string, fn: Fn): void => {
+                    recalculateDispatcher = fn;
+                    addedEvent = true;
+                }
+            },
+            removeEventListener: {
+                value: (): void => {
+                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                    recalculateDispatcher = null;
+                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                    removeEvent = true;
+                }
+            }
+        });
+
         directive = new AutoHeightDirective(mockElementRef, mockNgZone as NgZone);
         directive.sourceRef = [{ a: 1 }];
         style = '';
