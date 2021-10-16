@@ -1,3 +1,9 @@
+#### 0.0.0 (2021-10-16)
+
+##### Build System / Dependencies
+
+-   update dependency @types/jasmine to v3.10.0 (#1039) (26e8f480)
+
 #### 0.0.0 (2021-10-15)
 
 ##### New Features
