@@ -2,8 +2,8 @@ name: Angular-RU SDK pipelines
 on: [push]
 
 env:
-    CI_MODE: 'true'
-    NODE_VERSION: '16.9.x'
+    CI_MODE: true
+    NODE_VERSION: 16.9.x
 
 jobs:
     build:
