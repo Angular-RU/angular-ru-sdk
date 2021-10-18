@@ -1,5 +1,17 @@
 #### 0.0.0 (2021-10-18)
 
+##### Continuous Integration
+
+-   refactor concurrency (3daf0fe3)
+-   refactor concurrency (cdbfbcf7)
+-   refactor concurrency (edb28bfa)
+
+##### New Features
+
+-   **typescript:** improved performance build (ac7050b7)
+
+#### 0.0.0 (2021-10-18)
+
 ##### Build System / Dependencies
 
 -   update eslint dependencies (#1026) (2d179deb)
