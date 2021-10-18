@@ -14,7 +14,3 @@ jobs:
                   repo-token: ${{ secrets.ANGULAR_RU_BOT_PAT }}
                   configuration-path: .github/labels.yml
                   sync-labels: true
-
-concurrency:
-    group: labeler-${{ github.head_ref }}
-    cancel-in-progress: true
