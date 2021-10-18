@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update dependency jest to v27.3.0 (#1042) (50199635)
+
+#### 0.0.0 (2021-10-18)
+
+##### Build System / Dependencies
+
 -   update all dependencies (minor/patch) (#1041) (a099ecf6)
 
 #### 0.0.0 (2021-10-18)
