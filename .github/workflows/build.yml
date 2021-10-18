@@ -98,5 +98,5 @@ jobs:
               run: yarn integration
 
 concurrency:
-    group: ${{ github.workflow }}-${{ github.ref }}
+    group: ${{ github.workflow }}-${{ github.ref }}-v
     cancel-in-progress: true
