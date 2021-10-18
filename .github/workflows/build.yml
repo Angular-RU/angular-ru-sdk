@@ -8,9 +8,6 @@ env:
 jobs:
     build:
         runs-on: ubuntu-latest
-        concurrency:
-            group: build-${{ github.head_ref }}
-            cancel-in-progress: true
         steps:
             - uses: actions/checkout@v2
               with:
@@ -78,9 +75,6 @@ jobs:
 
     demo:
         runs-on: ubuntu-latest
-        concurrency:
-            group: demo-${{ github.head_ref }}
-            cancel-in-progress: true
         steps:
             - uses: actions/checkout@v2
 
@@ -102,3 +96,7 @@ jobs:
 
             - name: Build integration apps
               run: yarn integration
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
