@@ -1,5 +1,11 @@
 #### 0.0.0 (2021-10-18)
 
+##### Build System / Dependencies
+
+-   update all dependencies (minor/patch) (#1041) (a099ecf6)
+
+#### 0.0.0 (2021-10-18)
+
 ##### Continuous Integration
 
 -   refactor concurrency (3daf0fe3)
