@@ -8,9 +8,6 @@ env:
 jobs:
     build:
         runs-on: ubuntu-latest
-        concurrency:
-            group: build-${{ github.workflow }}-${{ github.head_ref }}
-            cancel-in-progress: true
         steps:
             - uses: actions/checkout@v2
               with:
@@ -78,9 +75,6 @@ jobs:
 
     demo:
         runs-on: ubuntu-latest
-        concurrency:
-            group: demo-${{ github.workflow }}-${{ github.head_ref }}
-            cancel-in-progress: true
         steps:
             - uses: actions/checkout@v2
 
