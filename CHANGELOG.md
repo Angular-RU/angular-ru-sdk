@@ -1,3 +1,16 @@
+#### 0.0.0 (2021-10-18)
+
+##### Build System / Dependencies
+
+-   update eslint dependencies (#1026) (2d179deb)
+
+##### Continuous Integration
+
+-   refactor concurrency (683a1cc7)
+-   refactor concurrency (601978df)
+-   refactor concurrency (b0c71fbd)
+-   refactor concurrency (a313045f)
+
 #### 0.0.0 (2021-10-16)
 
 ##### Build System / Dependencies
