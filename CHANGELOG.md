@@ -1,3 +1,9 @@
+#### 0.0.0 (2021-10-20)
+
+##### Build System / Dependencies
+
+-   update dependency jest to v27.3.1 (#1044) (40359bef)
+
 #### 0.0.0 (2021-10-18)
 
 ##### Build System / Dependencies
