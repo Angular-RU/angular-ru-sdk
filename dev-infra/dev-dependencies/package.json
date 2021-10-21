@@ -15,7 +15,7 @@
         "chalk": "4.1.2",
         "cross-env": "7.0.3",
         "generate-changelog": "1.8.0",
-        "husky": "7.0.2",
+        "husky": "7.0.4",
         "inquirer-directory": "2.2.0",
         "lint-staged": "11.2.3",
         "ng-packagr": "12.2.4",
