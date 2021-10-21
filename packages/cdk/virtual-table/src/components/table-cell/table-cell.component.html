@@ -2,7 +2,8 @@
     #divElement
     class="table-grid__cell--inner-content"
     (mouseenter)="mouseEnterCell(divElement, $event)"
-    (mouseleave)="mouseLeaveCell()">
+    (mouseleave)="mouseLeaveCell()"
+>
     <ng-template [ngIf]="columnSchema?.td?.template!" [ngIfElse]="defaultTd">
         <ng-template
             [ngTemplateOutlet]="columnSchema?.td?.template!"
@@ -13,7 +14,8 @@
                             ? (item | deepPath: columnSchema?.key:columnSchema?.stub)
                             : (item![$castKey(columnSchema?.key)] | defaultValue: columnSchema?.stub)
                         : item
-            }"></ng-template>
+            }"
+        ></ng-template>
     </ng-template>
     <ng-template #defaultTd>
         <ng-template [ngIf]="isFilterable || enableFiltering" [ngIfElse]="simple">
@@ -24,7 +26,8 @@
                     columnSchema?.td?.useDeepPath
                         ? (item | deepPath: columnSchema?.key:columnSchema?.stub)
                         : (item![$castKey(columnSchema?.key)] | defaultValue: columnSchema?.stub)
-                "></ngx-filter-viewer>
+                "
+            ></ngx-filter-viewer>
         </ng-template>
         <ng-template #simple>
             {{

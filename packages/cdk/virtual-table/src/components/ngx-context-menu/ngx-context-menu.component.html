@@ -2,7 +2,8 @@
     class="table-grid__background-flat"
     *ngIf="state?.opened"
     (click)="close($event)"
-    (contextmenu)="close($event)"></div>
+    (contextmenu)="close($event)"
+></div>
 
 <div class="table-grid__context-menu" *ngIf="state?.opened">
     <div
@@ -17,7 +18,8 @@
             'top.px': state?.position?.top! - overflowY,
             'left.px': state?.position?.left! - overflowX,
             visibility: isRendered && (menu?.offsetHeight || 0 > 10) ? 'visible' : 'hidden'
-        }">
+        }"
+    >
         <ng-content></ng-content>
     </div>
 </div>
