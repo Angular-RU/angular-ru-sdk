@@ -1,5 +1,11 @@
 #### 0.0.0 (2021-10-21)
 
+##### Build System / Dependencies
+
+-   update dependency ts-node to v10.3.1 (#1051) (b238a40c)
+
+#### 0.0.0 (2021-10-21)
+
 ##### Bug Fixes
 
 -   **prettier:** disable bracketSameLine (#1050) (5b79ba8f)
