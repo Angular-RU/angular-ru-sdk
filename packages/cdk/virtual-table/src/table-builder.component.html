@@ -30,13 +30,15 @@
         headerHeight: headerRef | getClientHeight,
         footerHeight: footerRef | getClientHeight
     }"
-    [tableViewport]="tableViewport">
+    [tableViewport]="tableViewport"
+>
     <div class="table-grid__root-filtering" *ngIf="filteringRun">filtering...</div>
 
     <div
         class="table-grid__root-empty-after-filter"
         *ngIf="source?.length === 0 && filterable.filterValueExist"
-        [innerHTML]="ngxEmptyContent?.nativeElement?.innerHTML | safe: 'html'"></div>
+        [innerHTML]="ngxEmptyContent?.nativeElement?.innerHTML | safe: 'html'"
+    ></div>
 
     <div class="table-grid__header-sticky" #header>
         <ng-content select="ngx-header"></ng-content>
@@ -57,7 +59,8 @@
             columnListWidth !== 0 && root.offsetWidth !== 0 && columnListWidth < root.offsetWidth - scrollbarWidth
                 ? columnListWidth + scrollbarWidth
                 : null
-        ">
+        "
+    >
         <div
             #area
             [style.height.px]="columnHeight"
@@ -66,7 +69,8 @@
                 tableViewportChecked && tableViewport.scrollWidth > tableViewport.clientWidth
                     ? tableViewport.scrollWidth
                     : null
-            ">
+            "
+        >
             <ng-container *ngFor="let schema of columnSchema; let index = index">
                 <div
                     #column
@@ -102,7 +106,8 @@
                         verticalBorder !== false || schema?.verticalLine !== false
                     "
                     (observeVisible)="markVisibleColumn(column, $event)"
-                    [@fadeInLinear]>
+                    [@fadeInLinear]
+                >
                     <div *ngIf="$any(column)['visible']!" [@fadeInLinear]>
                         <table-thead
                             cdkDragHandle
@@ -117,7 +122,8 @@
                             [head-height]="headLineHeight"
                             (resizing)="resizeColumn($event, column)"
                             (sortByKey)="sortByKey($event)"
-                            (mouseenter)="enableDragging(schema.key)"></table-thead>
+                            (mouseenter)="enableDragging(schema.key)"
+                        ></table-thead>
 
                         <table-tbody
                             [striped]="striped"
@@ -139,7 +145,8 @@
                             [produce-disable-fn]="produceDisableFn"
                             [virtual-indexes]="viewPortInfo.virtualIndexes!"
                             [column-virtual-height]="columnVirtualHeight"
-                            (changed)="idleDetectChanges()"></table-tbody>
+                            (changed)="idleDetectChanges()"
+                        ></table-tbody>
                     </div>
                 </div>
             </ng-container>

@@ -82,13 +82,15 @@
                     <mat-checkbox
                         (change)="tableFirst.selection.toggleAll(data)"
                         [indeterminate]="tableFirst.selectionModel.isIndeterminate"
-                        [checked]="tableFirst.selectionModel.isAll"></mat-checkbox>
+                        [checked]="tableFirst.selectionModel.isAll"
+                    ></mat-checkbox>
                 </ng-template>
                 <ng-template ngx-td row let-row (onClick)="$event.preventDefault()">
                     <!-- eslint-disable @angular-eslint/template/no-call-expression -->
                     <mat-checkbox
                         [checked]="tableFirst.selectionModel.get($any(row).id)"
-                        (change)="tableFirst.selection.toggle(row)"></mat-checkbox>
+                        (change)="tableFirst.selection.toggle(row)"
+                    ></mat-checkbox>
                 </ng-template>
             </ngx-column>
 
@@ -112,13 +114,15 @@
                     <mat-checkbox
                         (change)="tableSecond.selection.toggleAll(data)"
                         [indeterminate]="tableSecond.selectionModel.isIndeterminate"
-                        [checked]="tableSecond.selectionModel.isAll"></mat-checkbox>
+                        [checked]="tableSecond.selectionModel.isAll"
+                    ></mat-checkbox>
                 </ng-template>
                 <ng-template ngx-td row let-row (onClick)="$event.preventDefault()">
                     <!-- eslint-disable @angular-eslint/template/no-call-expression -->
                     <mat-checkbox
                         [checked]="tableSecond.selectionModel.get($any(row).id)"
-                        (change)="tableSecond.selection.toggle(row)"></mat-checkbox>
+                        (change)="tableSecond.selection.toggle(row)"
+                    ></mat-checkbox>
                 </ng-template>
             </ngx-column>
 

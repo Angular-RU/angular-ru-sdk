@@ -13,13 +13,15 @@
             <mat-checkbox
                 (change)="table.selection.toggleAll(data)"
                 [indeterminate]="table.selectionModel.isIndeterminate"
-                [checked]="table.selectionModel.isAll"></mat-checkbox>
+                [checked]="table.selectionModel.isAll"
+            ></mat-checkbox>
         </ng-template>
         <ng-template ngx-td row let-row (onClick)="$event.preventDefault()">
             <!-- eslint-disable @angular-eslint/template/no-call-expression -->
             <mat-checkbox
                 [checked]="table.selectionModel.get($any(row).id)"
-                (change)="table.selection.toggle(row)"></mat-checkbox>
+                (change)="table.selection.toggle(row)"
+            ></mat-checkbox>
         </ng-template>
     </ngx-column>
 

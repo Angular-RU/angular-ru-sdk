@@ -615,7 +615,8 @@ export class AppModule {}
         <p
             [innerHTML]="
                 [{ a: 1 }, { a: 2 }, { a: 3 }, { a: 4 }] | join: { separator: '::', mapTransformer: transformer }
-            "></p>
+            "
+        ></p>
         <!-- result html: 1 :: 10 :: 11 :: 100 -->
     `
 })

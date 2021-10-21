@@ -10,7 +10,8 @@
     [schema-version]="1"
     [schema-columns]="schema"
     [vertical-border]="false"
-    [exclude-keys]="['reverseId']">
+    [exclude-keys]="['reverseId']"
+>
     <ngx-options is-draggable is-filterable is-sortable></ngx-options>
 
     <ngx-context-menu>
@@ -24,7 +25,8 @@
             <ngx-context-menu-item
                 *ngFor="let column of table.columnSchema"
                 (onClick)="table.toggleColumnVisibility(column.key); $event.preventDefault()"
-                [visible]="column.isModel">
+                [visible]="column.isModel"
+            >
                 <ngx-menu-content no-margin>{{ column.key }}</ngx-menu-content>
                 <ngx-menu-content no-margin align-center>
                     <mat-checkbox color="primary" [checked]="column.isVisible"></mat-checkbox>
@@ -44,7 +46,8 @@
         width="100"
         vertical-line
         important-template
-        [is-draggable]="false"></ngx-column>
+        [is-draggable]="false"
+    ></ngx-column>
 
     <ngx-column key="reverseId" custom-key width="150" vertical-line important-template></ngx-column>
 

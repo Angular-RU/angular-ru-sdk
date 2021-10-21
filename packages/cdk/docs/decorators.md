@@ -53,7 +53,8 @@ class ChildComponent {
             [prop6]="someAnotherFalsy"
             prop7
             prop8
-            prop9="false"></child-component>
+            prop9="false"
+        ></child-component>
     `
 })
 class HostComponent {

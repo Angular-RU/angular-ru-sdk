@@ -11,7 +11,8 @@
             'top.px': state?.position?.top! + leftX - overflowY,
             'left.px': state?.position?.left! - topY - overflowX,
             visibility: state?.position ? 'visible' : 'hidden'
-        }">
+        }"
+    >
         <div class="table-close__button" (click)="closeFilter()"></div>
         <ng-content></ng-content>
     </div>
