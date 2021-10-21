@@ -1,5 +1,11 @@
 #### 0.0.0 (2021-10-21)
 
+##### Bug Fixes
+
+-   **prettier:** disable bracketSameLine (#1050) (5b79ba8f)
+
+#### 0.0.0 (2021-10-21)
+
 ##### Build System / Dependencies
 
 -   update dependency @types/node to v16.11.2 (#1049) (8a9aa24c)
