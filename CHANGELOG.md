@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update dependency @types/node to v16.11.2 (#1049) (8a9aa24c)
+
+#### 0.0.0 (2021-10-21)
+
+##### Build System / Dependencies
+
 -   update dependency husky to v7.0.4 (#1048) (94f5fa2c)
 -   update dependency karma to v6.3.5 (#1047) (d4c7847a)
 -   update angular dependencies to v12.2.11 (#1046) (16eb22e4)
