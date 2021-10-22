@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update all dependencies (minor/patch) (#1054) (203bdf80)
+
+#### 0.0.0 (2021-10-22)
+
+##### Build System / Dependencies
+
 -   update dependency @types/node to v16.11.3 (#1053) (4fd5f141)
 
 #### 0.0.0 (2021-10-22)
