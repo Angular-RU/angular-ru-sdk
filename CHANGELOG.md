@@ -1,3 +1,9 @@
+#### 0.0.0 (2021-10-22)
+
+##### Build System / Dependencies
+
+-   update dependency @types/eslint to v7.28.2 (#1052) (112d4664)
+
 #### 0.0.0 (2021-10-21)
 
 ##### Build System / Dependencies
