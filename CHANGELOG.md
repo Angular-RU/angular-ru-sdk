@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update dependency lint-staged to v11.2.4 (#1056) (5adea3d8)
+
+#### 0.0.0 (2021-10-23)
+
+##### Build System / Dependencies
+
 -   update jasmine dependencies to v3.10.1 (#1055) (8dd7386a)
 
 #### 0.0.0 (2021-10-22)
