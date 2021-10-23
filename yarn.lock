@@ -2905,10 +2905,10 @@
   resolved "https://registry.npmjs.org/@types/jasmine/-/jasmine-3.9.0.tgz#0118a74c447a580035406521c2600b22f28db4d4"
   integrity sha512-x7aAO0c4EpBEJkUd/v012GLO7tDXXtv+t7Cz5xK+WdSmitH27eHgsQr+36CblfJFuqBQ0++O0xgBTuaKJnB4fg==
 
-"@types/jasmine@3.10.0":
-  version "3.10.0"
-  resolved "https://registry.npmjs.org/@types/jasmine/-/jasmine-3.10.0.tgz#b55e7184102ef320c4e8fb3d64ebfac309f60bf7"
-  integrity sha512-sPHWB05cYGt7GXFkkn+03VL1533abxiA5bE8PKdr0nS3cEsOXCGjMk0sgqVwY6xkiwajoAiN3zc/7zDeXip3Pw==
+"@types/jasmine@3.10.1":
+  version "3.10.1"
+  resolved "https://registry.npmjs.org/@types/jasmine/-/jasmine-3.10.1.tgz#9a7ceab2e539503f70a7e6a7028c70171aca2754"
+  integrity sha512-So26woGjM6F9b2julbJlXdcPdyhwteZzEX2EbFmreuJBamPVVdp6w4djywUG9TmcwjiC+ECAe+RSSBgYEOgEqQ==
 
 "@types/jasminewd2@2.0.10":
   version "2.0.10"
@@ -8217,10 +8217,10 @@ istanbul-reports@^3.0.2:
     html-escaper "^2.0.0"
     istanbul-lib-report "^3.0.0"
 
-jasmine-core@3.10.0:
-  version "3.10.0"
-  resolved "https://registry.npmjs.org/jasmine-core/-/jasmine-core-3.10.0.tgz#1e3e4053d954eb6d0bfbb3eb859bb21a5655de45"
-  integrity sha512-XWGaJ25RUdOQnjGiLoQa9QG/R4u1e9Bk4uhLdn9F4JCBco84L4SKM52bxci4vWTSUzhmhuHNAkAHFN/6Cox9wQ==
+jasmine-core@3.10.1:
+  version "3.10.1"
+  resolved "https://registry.npmjs.org/jasmine-core/-/jasmine-core-3.10.1.tgz#7aa6fa2b834a522315c651a128d940eca553989a"
+  integrity sha512-ooZWSDVAdh79Rrj4/nnfklL3NQVra0BcuhcuWoAwwi+znLDoUeH87AFfeX8s+YeYi6xlv5nveRyaA1v7CintfA==
 
 jasmine-core@^3.6.0:
   version "3.9.0"
