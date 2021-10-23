@@ -1,3 +1,9 @@
+#### 0.0.0 (2021-10-23)
+
+##### Build System / Dependencies
+
+-   update jasmine dependencies to v3.10.1 (#1055) (8dd7386a)
+
 #### 0.0.0 (2021-10-22)
 
 ##### Build System / Dependencies
