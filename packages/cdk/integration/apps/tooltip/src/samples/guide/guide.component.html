@@ -2,23 +2,23 @@
     <h2>Basic</h2>
 
     <div class="wrapper wrapper--4">
-        <div class="cell" tooltip="Bottom" tooltip-placement="bottom">Bottom</div>
-        <div class="cell" tooltip="Right" tooltip-placement="right">Right</div>
-        <div class="cell" tooltip="Left" tooltip-placement="left">Left</div>
-        <div class="cell" tooltip="Top" tooltip-placement="top">Top</div>
+        <div tooltip="Bottom" tooltip-placement="bottom" class="cell">Bottom</div>
+        <div tooltip="Right" tooltip-placement="right" class="cell">Right</div>
+        <div tooltip="Left" tooltip-placement="left" class="cell">Left</div>
+        <div tooltip="Top" tooltip-placement="top" class="cell">Top</div>
     </div>
 
     <h2>With ng-template</h2>
 
     <div class="wrapper wrapper--4">
-        <div class="cell" [tooltip]="template1" [tooltip-context]="{ name: 'Max' }" tooltip-placement="bottom">
+        <div tooltip-placement="bottom" class="cell" [tooltip]="template1" [tooltip-context]="{ name: 'Max' }">
             Bottom with HTML
 
             <ng-template #template1 let-context>
                 <span style="text-decoration: underline; color: yellow">Hello {{ context.name }}</span>
             </ng-template>
         </div>
-        <div class="cell" [tooltip]="template2" tooltip-placement="right" [tooltip-context]="version">
+        <div tooltip-placement="right" class="cell" [tooltip]="template2" [tooltip-context]="version">
             Right with HTML
 
             <ng-template #template2 let-version>
@@ -26,17 +26,17 @@
                 Angular {{ version.full }}
             </ng-template>
         </div>
-        <div class="cell" [tooltip]="template3" tooltip-placement="left">
+        <div tooltip-placement="left" class="cell" [tooltip]="template3">
             Left with HTML
 
             <ng-template #template3>...</ng-template>
         </div>
         <div
-            class="cell"
-            [tooltip]="template4"
             tooltip-size="medium"
             tooltip-placement="top"
             tooltip-css-style="height: 100px; overflow: auto"
+            class="cell"
+            [tooltip]="template4"
         >
             Top with HTML
 
@@ -72,12 +72,12 @@
         <ng-template #virtualRef let-favorite>
             <div class="favorite-line">
                 <mat-icon
-                    [tooltip]="templateRef"
                     tooltip-placement="right"
                     class="favorite-line--icon"
+                    [tooltip]="templateRef"
                     [tooltip-context]="favorite"
-                    (click)="markFavorite(favorite)"
                     [class.favorite-line--is-favorite]="favorite.isMarked"
+                    (click)="markFavorite(favorite)"
                 >
                     star_rate
                 </mat-icon>

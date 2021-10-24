@@ -1,9 +1,8 @@
-<div class="table-grid__background-flat" *ngIf="state?.opened" (click)="close()" (contextmenu)="close()"></div>
+<div *ngIf="state?.opened" class="table-grid__background-flat" (click)="close()" (contextmenu)="close()"></div>
 
-<div class="table-grid__filter-menu" *ngIf="state?.opened">
+<div *ngIf="state?.opened" class="table-grid__filter-menu">
     <div
         class="filter-menu"
-        (contextmenu)="close()"
         [ngStyle]="{
             'width.px': width,
             'min-height.px': height,
@@ -12,6 +11,7 @@
             'left.px': state?.position?.left! - topY - overflowX,
             visibility: state?.position ? 'visible' : 'hidden'
         }"
+        (contextmenu)="close()"
     >
         <div class="table-close__button" (click)="closeFilter()"></div>
         <ng-content></ng-content>

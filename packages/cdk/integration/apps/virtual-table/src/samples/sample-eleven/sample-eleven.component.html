@@ -3,7 +3,7 @@
 </mat-toolbar>
 
 <div class="night">
-    <div class="column" *ngIf="licences.length">
+    <div *ngIf="licences.length" class="column">
         <mat-tab-group (selectedTabChange)="update()">
             <mat-tab label="Custom context menu">
                 <div class="column-samples">
@@ -46,7 +46,7 @@
                     <div class="column">
                         <br />
 
-                        <ngx-table-builder #table1 [source]="licences" enable-selection>
+                        <ngx-table-builder #table1 enable-selection [source]="licences">
                             <ngx-context-menu [height]="null">
                                 <ngx-context-menu-item contextTitle divider>
                                     <ngx-menu-content
@@ -71,10 +71,10 @@
 
                                         <ngx-context-menu-item
                                             *ngFor="let column of table1.columnSchema"
+                                            [visible]="column.isModel"
                                             (onClick)="
                                                 table1.toggleColumnVisibility(column.key); $event.preventDefault()
                                             "
-                                            [visible]="column.isModel"
                                         >
                                             <ngx-menu-content no-margin>{{ column.key }}</ngx-menu-content>
                                             <ngx-menu-content no-margin align-center>
@@ -98,15 +98,15 @@
                                 </ngx-context-menu-item>
 
                                 <ngx-context-menu-item
-                                    #item
                                     *ngIf="item.state.key === 'id'"
+                                    #item
                                     (onClick)="copyId(item.state.value)"
                                 >
                                     <ngx-menu-content icon></ngx-menu-content>
                                     <ngx-menu-content>Copy in buffer ID</ngx-menu-content>
                                 </ngx-context-menu-item>
 
-                                <ngx-context-menu-item #item *ngIf="item.state.key === 'price'">
+                                <ngx-context-menu-item *ngIf="item.state.key === 'price'" #item>
                                     <ngx-menu-content icon></ngx-menu-content>
                                     <ngx-menu-content>Price: {{ item.state.textContent }}</ngx-menu-content>
                                 </ngx-context-menu-item>
@@ -165,13 +165,13 @@
                     <ngx-table-builder
                         #table2
                         height="500"
-                        [source]="data"
                         enable-selection
+                        [source]="data"
                         (schemaChanges)="updatedSchema($event)"
                     >
                         <ngx-options is-draggable is-sortable></ngx-options>
 
-                        <ngx-column key="action" custom-key sticky [is-draggable]="false" width="50">
+                        <ngx-column key="action" custom-key sticky width="50" [is-draggable]="false">
                             <ng-template ngx-th></ng-template>
                             <ng-template ngx-td row let-row>
                                 <!-- eslint-disable @angular-eslint/template/no-call-expression -->
@@ -211,8 +211,8 @@
 
                                 <ngx-context-menu-item
                                     *ngFor="let column of table2.columnSchema"
-                                    (onClick)="table2.toggleColumnVisibility(column.key); $event.preventDefault()"
                                     [visible]="column.isModel"
+                                    (onClick)="table2.toggleColumnVisibility(column.key); $event.preventDefault()"
                                 >
                                     <ngx-menu-content no-margin>{{ column.key }}</ngx-menu-content>
                                     <ngx-menu-content no-margin align-center>
@@ -221,7 +221,7 @@
                                 </ngx-context-menu-item>
                             </ngx-context-menu-item>
 
-                            <ngx-context-menu-item (onClick)="table2.resetSchema()" divider>
+                            <ngx-context-menu-item divider (onClick)="table2.resetSchema()">
                                 <ngx-menu-content>Reset table settings</ngx-menu-content>
                             </ngx-context-menu-item>
 

@@ -3,9 +3,9 @@
     target="_blank"
 >
     <img
-        class="stackblitz"
         src="https://habrastorage.org/webt/ma/me/jm/mamejmzzxqu5pfn6rfieay6oisi.png"
         alt="stackblitz"
+        class="stackblitz"
     />
 </a>
 
@@ -14,12 +14,12 @@
 PS: TodoState will be persistence in localStorage (ttl: 30sec)
 
 <div class="add-todo">
-    <input placeholder="New Todo" #text />
+    <input #text placeholder="New Todo" />
     <button (click)="todo.addTodo(text.value)">Add</button>
     <button (click)="todo.reset()">Reset</button>
 </div>
 <ul>
-    <li class="todo" *ngFor="let todoItem of todo.state$ | async; let i = index">
+    <li *ngFor="let todoItem of todo.state$ | async; let i = index" class="todo">
         {{ todoItem }}
         <button (click)="todo.removeTodo(i)">🗑</button>
     </li>

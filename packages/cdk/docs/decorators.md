@@ -47,13 +47,13 @@ class ChildComponent {
         <child-component
             prop1
             prop2
+            prop7
+            prop8
+            prop9="false"
             [prop3]="falseString"
             [prop4]="someAnotherTruthy"
             [prop5]="emptyString"
             [prop6]="someAnotherFalsy"
-            prop7
-            prop8
-            prop9="false"
         ></child-component>
     `
 })

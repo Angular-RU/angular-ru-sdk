@@ -8,9 +8,9 @@
 
 <div
     #root
+    class="table-grid__root"
     [style.width]="width"
     [sourceRef]="sourceRef"
-    class="table-grid__root"
     [style.height]="rootHeight"
     [class.table-grid__root-auto-height]="autoHeightDetect"
     [class.table-grid__no-display]="!(columnSchema.length > 0)"
@@ -19,7 +19,6 @@
     [class.table-grid__no-visible]="!sourceRef.length && !filterable.filtering"
     [class.table-grid__root--is-scroll-overload]="tableViewport.scrollWidth > tableViewport.clientWidth"
     [class.table-grid__root--visible]="contentInit && root.offsetHeight > clientRowHeight && columnHeight"
-    (recalculatedHeight)="recalculateHeight()"
     [autoHeight]="{
         detect: autoHeightDetect,
         rootHeight: rootHeight,
@@ -31,27 +30,26 @@
         footerHeight: footerRef | getClientHeight
     }"
     [tableViewport]="tableViewport"
+    (recalculatedHeight)="recalculateHeight()"
 >
-    <div class="table-grid__root-filtering" *ngIf="filteringRun">filtering...</div>
+    <div *ngIf="filteringRun" class="table-grid__root-filtering">filtering...</div>
 
     <div
-        class="table-grid__root-empty-after-filter"
         *ngIf="source?.length === 0 && filterable.filterValueExist"
+        class="table-grid__root-empty-after-filter"
         [innerHTML]="ngxEmptyContent?.nativeElement?.innerHTML | safe: 'html'"
     ></div>
 
-    <div class="table-grid__header-sticky" #header>
+    <div #header class="table-grid__header-sticky">
         <ng-content select="ngx-header"></ng-content>
     </div>
     <div
+        #tableViewport
         observerView
         cdkDropList
-        #tableViewport
-        class="table-grid"
         cdkDropListOrientation="horizontal"
-        (cdkDropListDropped)="drop($event)"
+        class="table-grid"
         [cdkDropListDisabled]="!accessDragging"
-        (observeVisible)="calculateViewport(true)"
         [class.table-grid__native-scrollbar]="nativeScrollbar"
         [class.table-grid__scroll-offset]="viewPortInfo?.scrollTop! > 0"
         [style.height]="[headerRef, footerRef] | getClientHeight | getFreeSizePipe"
@@ -60,11 +58,13 @@
                 ? columnListWidth + scrollbarWidth
                 : null
         "
+        (cdkDropListDropped)="drop($event)"
+        (observeVisible)="calculateViewport(true)"
     >
         <div
             #area
-            [style.height.px]="columnHeight"
             class="table-grid__column-area-content"
+            [style.height.px]="columnHeight"
             [style.width.px]="
                 tableViewportChecked && tableViewport.scrollWidth > tableViewport.clientWidth
                     ? tableViewport.scrollWidth
@@ -73,14 +73,15 @@
         >
             <ng-container *ngFor="let schema of columnSchema; let index = index">
                 <div
+                    *ngIf="schema.isVisible"
                     #column
                     cdkDrag
                     observerView
-                    [observerRoot]="tableViewport"
                     observerRootMargin="0px 750px"
-                    [cdkDragBoundary]="area"
                     class="table-grid__column"
-                    *ngIf="schema.isVisible"
+                    [@fadeInLinear]
+                    [observerRoot]="tableViewport"
+                    [cdkDragBoundary]="area"
                     [attr.column-id]="schema.key"
                     [style.width.px]="schema?.width"
                     [ngClass]="schema?.cssClass || []"
@@ -88,7 +89,6 @@
                     [cdkDragDisabled]="!accessDragging"
                     [style.max-width.px]="schema?.width"
                     [style.min-width.px]="schema?.width"
-                    (cdkDragMoved)="cdkDragMoved($event, root)"
                     [class.table-grid__column--sticky-left]="schema?.stickyLeft"
                     [class.table-grid__column--default-width]="!schema?.width"
                     [class.table-grid__column--is-visible]="$any(column)['visible']!"
@@ -105,14 +105,13 @@
                     [class.table-grid__column--vertical-line]="
                         verticalBorder !== false || schema?.verticalLine !== false
                     "
+                    (cdkDragMoved)="cdkDragMoved($event, root)"
                     (observeVisible)="markVisibleColumn(column, $event)"
-                    [@fadeInLinear]
                 >
                     <div *ngIf="$any(column)['visible']!" [@fadeInLinear]>
                         <table-thead
                             cdkDragHandle
                             [column-schema]="schema"
-                            (mouseleave)="disableDragging()"
                             [column-width]="column.offsetWidth"
                             [sortable-definition]="sortable.definition"
                             [sortable-position]="sortable.positionMap"
@@ -120,6 +119,7 @@
                             [filterable-definition]="filterable.definition"
                             [client-row-height]="clientRowHeight"
                             [head-height]="headLineHeight"
+                            (mouseleave)="disableDragging()"
                             (resizing)="resizeColumn($event, column)"
                             (sortByKey)="sortByKey($event)"
                             (mouseenter)="enableDragging(schema.key)"
@@ -153,7 +153,7 @@
         </div>
     </div>
 
-    <div class="table-grid__footer-sticky" *ngIf="footerTemplate && isRendered" #footer>
+    <div *ngIf="footerTemplate && isRendered" #footer class="table-grid__footer-sticky">
         <ng-content select="ngx-footer"></ng-content>
     </div>
 </div>

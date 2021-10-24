@@ -76,13 +76,13 @@
         <br />
         <br />
 
-        <ngx-table-builder [source]="data" enable-selection #tableFirst>
+        <ngx-table-builder #tableFirst enable-selection [source]="data">
             <ngx-column key="selection" sticky width="55" custom-key>
                 <ng-template ngx-th>
                     <mat-checkbox
-                        (change)="tableFirst.selection.toggleAll(data)"
                         [indeterminate]="tableFirst.selectionModel.isIndeterminate"
                         [checked]="tableFirst.selectionModel.isAll"
+                        (change)="tableFirst.selection.toggleAll(data)"
                     ></mat-checkbox>
                 </ng-template>
                 <ng-template ngx-td row let-row (onClick)="$event.preventDefault()">
@@ -95,7 +95,7 @@
             </ngx-column>
 
             <ngx-column *ngFor="let key of tableFirst.modelColumnKeys" [key]="key">
-                <ng-template ngx-td (onClick)="rowOnClick($event)" let-cell>
+                <ng-template ngx-td let-cell (onClick)="rowOnClick($event)">
                     {{ cell }}
                 </ng-template>
             </ngx-column>
@@ -108,13 +108,13 @@
         <br />
         <br />
 
-        <ngx-table-builder [source]="data" enable-selection #tableSecond>
+        <ngx-table-builder #tableSecond enable-selection [source]="data">
             <ngx-column key="selection" sticky width="55" custom-key>
                 <ng-template ngx-th>
                     <mat-checkbox
-                        (change)="tableSecond.selection.toggleAll(data)"
                         [indeterminate]="tableSecond.selectionModel.isIndeterminate"
                         [checked]="tableSecond.selectionModel.isAll"
+                        (change)="tableSecond.selection.toggleAll(data)"
                     ></mat-checkbox>
                 </ng-template>
                 <ng-template ngx-td row let-row (onClick)="$event.preventDefault()">
@@ -127,7 +127,7 @@
             </ngx-column>
 
             <ngx-column *ngFor="let key of tableSecond.modelColumnKeys" [key]="key">
-                <ng-template ngx-td (dblClick)="rowDblClick($event)" let-cell>
+                <ng-template ngx-td let-cell (dblClick)="rowDblClick($event)">
                     {{ cell }}
                 </ng-template>
             </ngx-column>

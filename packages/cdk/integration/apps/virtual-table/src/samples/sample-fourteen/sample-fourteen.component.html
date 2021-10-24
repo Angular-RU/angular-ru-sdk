@@ -7,12 +7,12 @@
     </div>
 </mat-toolbar>
 
-<ngx-table-builder #table [source]="data" [row-height]="40" class="filter-example" enable-filtering enable-selection>
+<ngx-table-builder #table enable-filtering enable-selection class="filter-example" [source]="data" [row-height]="40">
     <ngx-options is-sortable is-filterable is-draggable is-resizable></ngx-options>
     <ngx-source-null>Loading...</ngx-source-null>
     <ngx-empty><not-found></not-found></ngx-empty>
 
-    <ngx-header [css-class]="['my-filter']" height="65">
+    <ngx-header height="65" [css-class]="['my-filter']">
         <div class="filter-form">
             <mat-form-field appearance="outline">
                 <mat-label>Filter</mat-label>
@@ -20,13 +20,13 @@
                     matInput
                     name="width"
                     autocomplete="off"
-                    (ngModelChange)="table.filter()"
                     [(ngModel)]="table.filterable.filterValue"
+                    (ngModelChange)="table.filter()"
                 />
                 <mat-icon matSuffix>search</mat-icon>
             </mat-form-field>
 
-            <mat-form-field class="filter-options" appearance="outline">
+            <mat-form-field appearance="outline" class="filter-options">
                 <mat-label>Find options</mat-label>
                 <mat-select [(value)]="table.filterable.filterType" (valueChange)="table.filter()">
                     <mat-option *ngFor="let type of table.filterable.types | keyvalue" [value]="type.value">
@@ -40,9 +40,9 @@
     <ngx-column key="selection" sticky width="55" custom-key>
         <ng-template ngx-th>
             <mat-checkbox
-                (change)="table.selection.toggleAll(data)"
                 [indeterminate]="table.selectionModel.isIndeterminate"
                 [checked]="table.selectionModel.isAll"
+                (change)="table.selection.toggleAll(data)"
             ></mat-checkbox>
         </ng-template>
         <ng-template ngx-td row let-row (onClick)="$event.preventDefault()">
@@ -55,7 +55,7 @@
     </ngx-column>
 
     <ngx-column *ngFor="let key of table.modelColumnKeys" [key]="key">
-        <ng-template ngx-td [nowrap]="false" let-cell>
+        <ng-template ngx-td let-cell [nowrap]="false">
             <a onclick="javascript:void(0)">
                 <ngx-filter-viewer [key]="key" [text]="cell"></ngx-filter-viewer>
             </a>

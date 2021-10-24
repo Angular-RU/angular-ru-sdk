@@ -13,19 +13,19 @@
         "README.md"
     ],
     "scripts": {
-        "prepare:bad-i18n": "yarn -s eslint -c index.js \"**/file-suites/**/bad.json\" > ./out/eslint.bad-i18n.report.txt || exit 0",
-        "prepare:bad-ts": "yarn -s eslint -c index.js \"**/file-suites/*.bad.ts\" > ./out/eslint.bad-file.report.txt || exit 0",
+        "prepare:bad-i18n": "FORCE_COLOR=0 yarn -s eslint -c index.js \"**/file-suites/**/bad.json\" > ./out/eslint.bad-i18n.report.txt || exit 0",
+        "prepare:bad-ts": "FORCE_COLOR=0 yarn -s eslint -c index.js \"**/file-suites/*.bad.ts\" > ./out/eslint.bad-file.report.txt || exit 0",
         "prepare:clean-ts": "find -L ./integration/tests/file-suites -name '*ts' -exec bash -c 'rm $0' {} \\;",
-        "prepare:folder": "yarn prepare:clean-ts && rm -rf ./out && mkdir ./out && yarn prepare:make-ts",
-        "prepare:good-i18n": "yarn -s eslint -c index.js \"**/file-suites/**/good.json\" > ./out/eslint.good-i18n.report.txt",
-        "prepare:good-ts": "yarn -s eslint -c index.js \"**/file-suites/*.good.ts\" > ./out/eslint.good-file.report.txt",
+        "prepare:folder": "FORCE_COLOR=0 yarn prepare:clean-ts && rm -rf ./out && mkdir ./out && yarn prepare:make-ts",
+        "prepare:good-i18n": "FORCE_COLOR=0 yarn -s eslint -c index.js \"**/file-suites/**/good.json\" > ./out/eslint.good-i18n.report.txt",
+        "prepare:good-ts": "FORCE_COLOR=0 yarn -s eslint -c index.js \"**/file-suites/*.good.ts\" > ./out/eslint.good-file.report.txt",
         "prepare:make-ts": "find -L ./integration/tests/file-suites -name '*lint.template' -exec bash -c 'cp $0 ${0/.lint.template/}' {} \\;",
-        "prepare:report": "yarn prepare:report-ts && yarn prepare:report-i18n && yarn prepare:report-file-pattern",
-        "prepare:report-file-pattern": "yarn -s eslint -c index.js \"**/file-suites/file-pattern/**/*.ts\" > ./out/eslint.file-pattern.report.txt || exit 0",
-        "prepare:report-i18n": "yarn prepare:good-i18n && yarn prepare:bad-i18n",
-        "prepare:report-ts": "yarn prepare:good-ts && yarn prepare:bad-ts",
-        "test": "yarn prepare:folder && yarn prepare:report && yarn -s jest --config ./jest.config.js",
-        "posttest": "yarn prepare:clean-ts"
+        "prepare:report": "FORCE_COLOR=0 yarn prepare:report-ts && yarn prepare:report-i18n && yarn prepare:report-file-pattern",
+        "prepare:report-file-pattern": "FORCE_COLOR=0 yarn -s eslint -c index.js \"**/file-suites/file-pattern/**/*.ts\" > ./out/eslint.file-pattern.report.txt || exit 0",
+        "prepare:report-i18n": "FORCE_COLOR=0 yarn prepare:good-i18n && yarn prepare:bad-i18n",
+        "prepare:report-ts": "FORCE_COLOR=0 yarn prepare:good-ts && yarn prepare:bad-ts",
+        "test": "FORCE_COLOR=0 yarn prepare:folder && yarn prepare:report && yarn -s jest --config ./jest.config.js",
+        "posttest": "FORCE_COLOR=0 yarn prepare:clean-ts"
     },
     "dependencies": {
         "@angular-eslint/eslint-plugin": "12.5.0",

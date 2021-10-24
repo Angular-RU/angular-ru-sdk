@@ -11596,6 +11596,11 @@ prettier-linter-helpers@^1.0.0:
   dependencies:
     fast-diff "^1.1.2"
 
+prettier-plugin-organize-attributes@0.0.4:
+  version "0.0.4"
+  resolved "https://registry.npmjs.org/prettier-plugin-organize-attributes/-/prettier-plugin-organize-attributes-0.0.4.tgz#70fa8f9c76b1a4b6baef063e040285393a2f8807"
+  integrity sha512-5KCDMX6HMCduUoeHlWLcYLKtDmh1D+j5kDSRGXH+tHDgL7mXtPGwwi7DnnD4cDnZmWMYwk8ih6VsCKwPlGuzNg==
+
 prettier@2.4.1:
   version "2.4.1"
   resolved "https://registry.npmjs.org/prettier/-/prettier-2.4.1.tgz#671e11c89c14a4cfc876ce564106c4a6726c9f5c"
