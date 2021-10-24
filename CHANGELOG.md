@@ -1,3 +1,9 @@
+#### 0.0.0 (2021-10-24)
+
+##### New Features
+
+-   **prettier:** add auto sort for ng attributes (#1057) (c4459397)
+
 #### 0.0.0 (2021-10-23)
 
 ##### Build System / Dependencies
