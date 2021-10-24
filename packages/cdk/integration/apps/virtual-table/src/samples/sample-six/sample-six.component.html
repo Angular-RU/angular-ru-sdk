@@ -3,12 +3,12 @@
         Example sorting
 
         <button mat-raised-button (click)="sortByIdDirection = !sortByIdDirection">Toggle sort by ID</button>
-        <mat-checkbox class="regenerate" [(ngModel)]="skipSort" [ngModelOptions]="{ standalone: true }">
+        <mat-checkbox class="regenerate" [ngModelOptions]="{ standalone: true }" [(ngModel)]="skipSort">
             Skip internal sort
         </mat-checkbox>
     </span>
 
-    <button class="show-simple" mat-raised-button (click)="showSample()">show code sample</button>
+    <button mat-raised-button class="show-simple" (click)="showSample()">show code sample</button>
 </mat-toolbar>
 
 <ngx-table-builder

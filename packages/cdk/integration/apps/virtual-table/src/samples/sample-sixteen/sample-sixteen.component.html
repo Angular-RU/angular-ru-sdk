@@ -1,6 +1,6 @@
 <mat-toolbar class="simple-toolbar">
     <span>Persistent state</span>
-    <button class="show-simple" mat-raised-button>show code sample</button>
+    <button mat-raised-button class="show-simple">show code sample</button>
 </mat-toolbar>
 
 <ngx-table-builder
@@ -24,8 +24,8 @@
 
             <ngx-context-menu-item
                 *ngFor="let column of table.columnSchema"
-                (onClick)="table.toggleColumnVisibility(column.key); $event.preventDefault()"
                 [visible]="column.isModel"
+                (onClick)="table.toggleColumnVisibility(column.key); $event.preventDefault()"
             >
                 <ngx-menu-content no-margin>{{ column.key }}</ngx-menu-content>
                 <ngx-menu-content no-margin align-center>
@@ -34,7 +34,7 @@
             </ngx-context-menu-item>
         </ngx-context-menu-item>
 
-        <ngx-context-menu-item (onClick)="table.resetSchema()" divider>
+        <ngx-context-menu-item divider (onClick)="table.resetSchema()">
             <ngx-menu-content>Reset table settings</ngx-menu-content>
         </ngx-context-menu-item>
     </ngx-context-menu>

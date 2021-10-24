@@ -1,7 +1,7 @@
 <mat-toolbar class="simple-toolbar">
     <span>Example dynamic changes</span>
 
-    <mat-checkbox class="regenerate" [(ngModel)]="regenerate" [ngModelOptions]="{ standalone: true }">
+    <mat-checkbox class="regenerate" [ngModelOptions]="{ standalone: true }" [(ngModel)]="regenerate">
         Auto regenerate (15sec)
     </mat-checkbox>
 </mat-toolbar>
@@ -36,7 +36,7 @@
             <ng-template ngx-td let-symbol>{{ symbol }}</ng-template>
         </ng-container>
 
-        <ng-template #other ngx-td [nowrap]="false" let-cell>{{ cell }}</ng-template>
+        <ng-template #other ngx-td let-cell [nowrap]="false">{{ cell }}</ng-template>
     </ngx-column>
 
     <ngx-column key="symbol-edit" sticky-end vertical-line custom-key important-template>

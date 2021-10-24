@@ -43,7 +43,7 @@ The value of option `'[tooltip-placement]'` by default is `'top'`.
 #### A custom template for the tooltip (html)
 
 ```html
-<div [tooltip]="tooltipTemplate" [tooltip-context]="{ name: 'Max' }" tooltip-placement="bottom">Bottom with HTML</div>
+<div tooltip-placement="bottom" [tooltip]="tooltipTemplate" [tooltip-context]="{ name: 'Max' }">Bottom with HTML</div>
 
 <ng-template #tooltipTemplate let-context>
     <span style="text-decoration: underline; color: yellow">Hello {{ context.name }}</span>

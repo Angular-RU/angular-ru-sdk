@@ -211,7 +211,7 @@
             <ngx-column key="status" width="50" sticky-end [css-class]="['status-column']">
                 <ng-template ngx-th></ng-template>
                 <ng-template ngx-td>
-                    <button class="button__done" mat-button>
+                    <button mat-button class="button__done">
                         <mat-icon>done</mat-icon>
                     </button>
                 </ng-template>
@@ -239,7 +239,7 @@
 
         <hr />
 
-        <ngx-table-builder [source]="licenses" row-height="60">
+        <ngx-table-builder row-height="60" [source]="licenses">
             <ngx-column key="id" width="100" empty-head>
                 <ng-template ngx-td let-id>№{{ id }}</ng-template>
             </ngx-column>
@@ -264,9 +264,9 @@
                         <mat-label>Relative</mat-label>
                         <mat-select>
                             <mat-option
+                                *ngFor="let license of licenses"
                                 [value]="license.name"
                                 (click)="cd.detectChanges()"
-                                *ngFor="let license of licenses"
                             >
                                 {{ license.name }}
                             </mat-option>

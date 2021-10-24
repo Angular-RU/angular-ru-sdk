@@ -13,6 +13,7 @@ export function asyncExec(command: string | string[], options: AsyncExecOptions 
     return new Promise((resolve: Resolve, reject: Reject): void => {
         const childProcess: ChildProcess = exec(
             preparedCmd,
+            { maxBuffer: Infinity, encoding: 'utf-8', env: ensureProcessEnv() },
             (error: ExecException | null, stdout: string, stderr: string): void => {
                 if (error) {
                     reject(stderr);
@@ -28,4 +29,10 @@ export function asyncExec(command: string | string[], options: AsyncExecOptions 
             childProcess.stderr?.pipe(process.stderr);
         }
     });
+}
+
+function ensureProcessEnv(): NodeJS.ProcessEnv {
+    const env = process.env;
+    env['FORCE_COLOR'] = '1';
+    return env;
 }
