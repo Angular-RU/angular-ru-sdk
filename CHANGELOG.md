@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update all dependencies (minor/patch) (#1062) (c9ebf5da)
+
+#### 0.0.0 (2021-10-25)
+
+##### Build System / Dependencies
+
 -   update angular dependencies (#1061) (9e6876af)
 
 #### 0.0.0 (2021-10-25)
