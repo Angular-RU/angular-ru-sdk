@@ -6,6 +6,7 @@ export { hasNoItems } from './has-no-items';
 export { hasOneItem } from './has-one-item';
 export { include } from './include';
 export { partition } from './partition';
+export { shallowFlat } from './shallow-flat';
 export { takeFirstItem } from './take-first-item';
 export { takeLastItem } from './take-last-item';
 export { takeSecondItem } from './take-second-item';
