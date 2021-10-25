@@ -38,7 +38,7 @@ describe('[TEST]: #everyArrayItemValidator', (): void => {
         expect(expectedControl.errors).toBeNull();
     });
 
-    it('should return first error', (): void => {
+    it('should return all errors', (): void => {
         validatorMock.mockImplementation((): ValidationErrors | null => ({
             firstError: 'firstError'
         }));
@@ -52,7 +52,8 @@ describe('[TEST]: #everyArrayItemValidator', (): void => {
         expectedControl.setValue(['st1']);
 
         expect(expectedControl.errors).toEqual({
-            firstError: 'firstError'
+            firstError: 'firstError',
+            secondError: 'secondError'
         });
     });
 });

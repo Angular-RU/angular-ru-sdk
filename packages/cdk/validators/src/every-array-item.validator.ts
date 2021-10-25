@@ -1,27 +1,27 @@
 import { AbstractControl, FormControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { exclude, hasItems, takeFirstItem } from '@angular-ru/cdk/array';
+import { checkIsShallowEmpty } from '@angular-ru/cdk/object';
 import { Any } from '@angular-ru/cdk/typings';
 
 export function everyArrayItemValidator(validators: ValidatorFn[]): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
         if (Array.isArray(control.value)) {
-            const errors: ValidationErrors[] = control.value
-                .map((value: Any): (ValidationErrors | null)[] => applyValidatorsForSingleValue(value, validators))
-                .reduce(
-                    (acc: ValidationErrors[], el: (ValidationErrors | null)[]): ValidationErrors[] =>
-                        acc.concat(...(el.filter(exclude(null)) as ValidationErrors[])),
-                    []
-                );
+            const errors: ValidationErrors = control.value
+                .map((value: Any): ValidationErrors | null => getErrorsForSingleValue(value, validators))
+                .reduce(concatErrors, {}) as ValidationErrors;
 
-            return hasItems(errors) ? takeFirstItem(errors) : null;
+            return checkIsShallowEmpty(errors) ? null : errors;
         }
 
         return null;
     };
 }
 
-function applyValidatorsForSingleValue(value: Any, validators: ValidatorFn[]): (ValidationErrors | null)[] {
-    const control: AbstractControl = new FormControl(value);
+function getErrorsForSingleValue(value: Any, validators: ValidatorFn[]): ValidationErrors | null {
+    const control: AbstractControl = new FormControl(value, { validators });
 
-    return validators.map((validator: ValidatorFn): ValidationErrors | null => validator(control));
+    return control.errors;
+}
+
+function concatErrors(acc: ValidationErrors, el: ValidationErrors | null): ValidationErrors {
+    return { ...acc, ...el };
 }
