@@ -143,3 +143,31 @@ export class AppComponent {
     }
 }
 ```
+
+-   `everyArrayItemValidator`
+
+```ts
+import { everyArrayItemValidator } from '@angular-ru/cdk/validators';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+
+@Component()
+export class AppComponent {
+    public validForm: FormGroup;
+    public invalidForm: FormGroup;
+
+    constructor(private readonly fb: FormBuilder) {
+        this.validForm = this.fb.group({
+            items: this.fb.control(['st1', 'st2'], {
+                validators: everyArrayItemValidator([Validators.minLength(2), Validators.maxLength(10)])
+            })
+        });
+
+        this.invalidForm = this.fb.group({
+            items: this.fb.control(['s', 'st2'], {
+                validators: everyArrayItemValidator([Validators.minLength(2), Validators.maxLength(10)])
+            })
+        });
+    }
+}
+```
