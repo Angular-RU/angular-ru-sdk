@@ -1,5 +1,11 @@
 #### 0.0.0 (2021-10-25)
 
+##### New Features
+
+-   **cdk:** added everyArrayItemValidator (#1060) (4760ff82)
+
+#### 0.0.0 (2021-10-25)
+
 ##### Build System / Dependencies
 
 -   update eslint dependencies to v12.6.0 (#1059) (3b2e2c56)
