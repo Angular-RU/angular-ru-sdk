@@ -167,3 +167,13 @@ hasAtMostOneItem([]); // true
 hasAtMostOneItem(null); // true
 hasAtMostOneItem(undefined); // true
 ```
+
+-   `shallowFlat`
+
+```ts
+shallowFlat([[1, 2], [3]]); // [1, 2, 3]
+shallowFlat([
+    [1, 2],
+    [[3, 4], 5]
+]); // [1, 2, [3, 4], 5]
+```
