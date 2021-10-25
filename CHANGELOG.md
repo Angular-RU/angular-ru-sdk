@@ -1,5 +1,11 @@
 #### 0.0.0 (2021-10-25)
 
+##### Build System / Dependencies
+
+-   update angular dependencies (#1061) (9e6876af)
+
+#### 0.0.0 (2021-10-25)
+
 ##### New Features
 
 -   **cdk:** added everyArrayItemValidator (#1060) (4760ff82)
