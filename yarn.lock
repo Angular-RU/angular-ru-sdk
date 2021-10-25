@@ -2966,10 +2966,10 @@
   resolved "https://registry.npmjs.org/@types/node/-/node-16.9.1.tgz#0611b37db4246c937feef529ddcc018cf8e35708"
   integrity sha512-QpLcX9ZSsq3YYUUnD3nFDY8H7wctAhQj/TFKL8Ya8v5fMm3CFXxo8zStsLAl780ltoYoo1WvKUVGBQK+1ifr7g==
 
-"@types/node@16.11.4":
-  version "16.11.4"
-  resolved "https://registry.npmjs.org/@types/node/-/node-16.11.4.tgz#90771124822d6663814f7c1c9b45a6654d8fd964"
-  integrity sha512-TMgXmy0v2xWyuCSCJM6NCna2snndD8yvQF67J29ipdzMcsPa9u+o0tjF5+EQNdhcuZplYuouYqpc4zcd5I6amQ==
+"@types/node@16.11.5":
+  version "16.11.5"
+  resolved "https://registry.npmjs.org/@types/node/-/node-16.11.5.tgz#e91be5ba4ab88c06095e7b61f9ad1767a1093faf"
+  integrity sha512-NyUV2DGcqYIx9op++MG2+Z4Nhw1tPhi0Wfs81TgncuX1aJC4zf2fgCJlJhl4BW9bCSS04e34VkqmOS96w0XQdg==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"
@@ -10013,10 +10013,10 @@ ngx-mask@12.0.0:
   dependencies:
     tslib "^2.1.0"
 
-ngx-toastr@14.1.3:
-  version "14.1.3"
-  resolved "https://registry.npmjs.org/ngx-toastr/-/ngx-toastr-14.1.3.tgz#93b45e8893e454b636e33ea7cdbd786942441086"
-  integrity sha512-UzOl3xqhd0t1CcCBNZZ5GzVOOAFuaaEcF8KdQ4CgVp2CY1sdmUdJcnlAvjvL2Cjz3G0sSVVYtF5UdPa+d0gzZA==
+ngx-toastr@14.1.4:
+  version "14.1.4"
+  resolved "https://registry.npmjs.org/ngx-toastr/-/ngx-toastr-14.1.4.tgz#80b9d3d3663e35cd11e402ed2eced8a29310b050"
+  integrity sha512-t1/9r+pOXm65LIl0gevvFat6XIl0g3tMA8UOArFjI4ta/nGwDe/14J/f4cZvOBDcomedvjvGAWi+d/2URdSTBg==
   dependencies:
     tslib "^2.2.0"
 
