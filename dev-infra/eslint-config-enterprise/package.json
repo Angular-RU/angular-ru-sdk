@@ -28,9 +28,9 @@
         "posttest": "FORCE_COLOR=0 yarn prepare:clean-ts"
     },
     "dependencies": {
-        "@angular-eslint/eslint-plugin": "12.6.0",
-        "@angular-eslint/eslint-plugin-template": "12.6.0",
-        "@angular-eslint/template-parser": "12.6.0",
+        "@angular-eslint/eslint-plugin": "12.6.1",
+        "@angular-eslint/eslint-plugin-template": "12.6.1",
+        "@angular-eslint/template-parser": "12.6.1",
         "@angular-ru/eslint-plugin-enterprise": "^12.26.1",
         "@types/eslint": "7.28.2",
         "@typescript-eslint/eslint-plugin": "4.33.0",
