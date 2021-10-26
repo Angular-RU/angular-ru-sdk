@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update dependency lint-staged to v11.2.6 (#1069) (7d1ba966)
+
+#### 0.0.0 (2021-10-26)
+
+##### Build System / Dependencies
+
 -   update eslint dependencies to v12.6.1 (#1068) (e61ab51a)
 
 #### 0.0.0 (2021-10-26)
