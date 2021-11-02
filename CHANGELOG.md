@@ -1,3 +1,11 @@
+#### 0.0.0 (2021-11-02)
+
+##### Build System / Dependencies
+
+-   update dependency @commitlint/config-conventional to v14 (#1074) (50e8fc10)
+-   update dependency karma to v6.3.7 (#1075) (d1c869b0)
+-   update angular dependencies to v12.2.12 (#1070) (e4e71a8a)
+
 #### 0.0.0 (2021-10-26)
 
 ##### Build System / Dependencies
