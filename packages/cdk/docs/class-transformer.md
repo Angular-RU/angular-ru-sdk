@@ -9,6 +9,7 @@ import {
     transformToBoolean,
     transformToClass,
     transformToFormatDateTime,
+    transformToNullableBoolean,
     transformToNumber,
     transformToPrettyFormat,
     transformToStringVal,
@@ -35,6 +36,7 @@ describe('[TEST]: Integration with class-transformer', () => {
         @Expose() @Transform(transformParseInt, ONLY_TO_CLASS) public intVal?: number;
         @Expose() @Transform(transformToNumber, ONLY_TO_CLASS) public numVal?: string;
         @Expose() @Transform(transformToBoolean, ONLY_TO_CLASS) public checked?: boolean;
+        @Expose() @Transform(transformToNullableBoolean, ONLY_TO_CLASS) public checkedNullable?: Nullable<boolean>;
 
         @Expose()
         @Type(transformToClass(IsoDto))
@@ -70,6 +72,7 @@ describe('[TEST]: Integration with class-transformer', () => {
                     c: false
                 },
                 checked: undefined,
+                checkedNullable: undefined,
                 dateCustomFormatWithTimezone: 1622657925000,
                 datetimeCustomFormatWithTimezone: 1622657925000,
                 dateCustomFormatWithoutTimezone: 1622657925000,
@@ -86,6 +89,7 @@ describe('[TEST]: Integration with class-transformer', () => {
             numVal: 1234,
             iso: { a: 2, b: 3 },
             checked: false,
+            checkedNullable: null,
             dateCustomFormatWithTimezone: '02.06.2021',
             datetimeCustomFormatWithTimezone: '03.06.2021 00:18',
             dateCustomFormatWithoutTimezone: expect.any(String),
