@@ -6,6 +6,7 @@ export { transformParseInt } from './transform-parse-int';
 export { transformToBoolean } from './transform-to-boolean';
 export { transformToClass } from './transform-to-class';
 export { transformToFormatDateTime } from './transform-to-format-date-time';
+export { transformToNullableBoolean } from './transform-to-nullable-boolean';
 export { transformToNumber } from './transform-to-number';
 export { transformToPrettyFormat } from './transform-to-pretty-format';
 export { transformToStringVal } from './transform-to-string-val';
