@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/dev-dependencies",
-    "version": "12.26.26",
+    "version": "12.26.27",
     "description": "Angular-RU package",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/dev-infra/dev-dependencies#readme",
     "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
@@ -11,7 +11,7 @@
         "@types/jasmine": "3.10.2",
         "@types/jasminewd2": "2.0.10",
         "@types/karma": "6.3.1",
-        "@types/node": "16.11.6",
+        "@types/node": "16.11.7",
         "chalk": "4.1.2",
         "cross-env": "7.0.3",
         "generate-changelog": "1.8.0",
