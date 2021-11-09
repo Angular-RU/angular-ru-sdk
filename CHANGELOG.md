@@ -1,3 +1,11 @@
+#### 0.0.0 (2021-11-09)
+
+##### Build System / Dependencies
+
+-   update dependency @types/node to v16.11.7 (#1083) (1ab643bb)
+-   update dependency karma to v6.3.8 (#1079) (2d30f401)
+-   update angular dependencies to v12.2.13 (#1078) (bf721584)
+
 #### 0.0.0 (2021-11-03)
 
 ##### Build System / Dependencies
