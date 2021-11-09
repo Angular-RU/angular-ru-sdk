@@ -1,5 +1,11 @@
 #### 0.0.0 (2021-11-09)
 
+##### New Features
+
+-   added util transformToNullableBoolean (#1082) (294f2e15)
+
+#### 0.0.0 (2021-11-09)
+
 ##### Build System / Dependencies
 
 -   update dependency @types/node to v16.11.7 (#1083) (1ab643bb)
