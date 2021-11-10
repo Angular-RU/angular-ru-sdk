@@ -1,3 +1,9 @@
+#### 0.0.0 (2021-11-10)
+
+##### Build System / Dependencies
+
+-   update dependency eslint-plugin-import to v2.25.3 (#1087) (561651f6)
+
 #### 0.0.0 (2021-11-09)
 
 ##### New Features
