@@ -32,3 +32,4 @@
     - [(@)angular-ru/cdk/stream](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/cdk/docs/stream/README.md)
     - [(@)angular-ru/cdk/tooltip](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/cdk/docs/tooltip/README.md)
     - [(@)angular-ru/cdk/virtual-table](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/cdk/docs/virtual-table/README.md)
+    - [(@)angular-ru/cdk/big-decimal](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/cdk/docs/big-decimal.md)
