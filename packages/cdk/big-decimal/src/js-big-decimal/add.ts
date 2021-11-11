@@ -1,9 +1,19 @@
-/* eslint-disable */
 import { Any } from '@angular-ru/cdk/typings';
-import { checkValueIsEmpty, isNil } from '@angular-ru/cdk/utils';
+import { checkValueIsEmpty, checkValueIsFilled, isNil } from '@angular-ru/cdk/utils';
 
-import { NUMBER_SYSTEM } from './properties';
+import { EXPONENTIAL_PARTS_LENGTH, NUMBER_SYSTEM } from './properties';
 import { CalculateResult } from './types';
+
+export function trim(number: string): string {
+    const splited: string[] = number.split('.') ?? [];
+    const parts: string[] = removeZerosAtTheBegining(splited);
+
+    if (isNil(parts[1])) {
+        return parts[0] ?? '';
+    } else {
+        return `${parts[0]}.${parts[1]}`;
+    }
+}
 
 // eslint-disable-next-line max-lines-per-function, complexity
 export function add(inputA: Any, inputB: Any = '0'): string {
@@ -21,8 +31,7 @@ export function add(inputA: Any, inputB: Any = '0'): string {
 
     if (inputB[0] === '-') {
         neg++;
-        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-        ind = 2;
+        ind = EXPONENTIAL_PARTS_LENGTH;
         b = inputB.substring(1);
     }
 
@@ -43,8 +52,7 @@ export function add(inputA: Any, inputB: Any = '0'): string {
 
     if (!neg) {
         return trim(res);
-        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-    } else if (neg === 2) {
+    } else if (neg === EXPONENTIAL_PARTS_LENGTH) {
         return `-${trim(res)}`;
     } else {
         if (a.length < res.length) {
@@ -55,66 +63,78 @@ export function add(inputA: Any, inputB: Any = '0'): string {
     }
 }
 
-function compliment(number: string) {
-    let s = '';
-    const l = number.length;
-    const dec = number.split('.')[1];
-    const ld = dec ? dec.length : 0;
+// eslint-disable-next-line max-lines-per-function, complexity
+export function pad(inputA: Any, inputB: Any): [string, string] {
+    const partsA: string[] = inputA.split('.');
+    const partsB: string[] = inputB.split('.');
 
-    for (let i = 0; i < l; i++) {
-        if ((number[i] ?? '') >= '0' && (number[i] ?? '') <= '9') {
-            s += 9 - parseInt(number[i] ?? '');
+    // pad integral part
+    let length1: number = partsA[0]?.length ?? 0;
+    let length2: number = partsB[0]?.length ?? 0;
+
+    let larger: number = Math.abs(length1 - length2);
+
+    if (length1 > length2) {
+        partsB[0] = getIntegralPart(partsB, larger);
+    } else {
+        partsA[0] = getIntegralPart(partsA, larger);
+    }
+
+    // pad fractional part
+    length1 = checkValueIsFilled(partsA[1]) ? partsA[1].length : 0;
+    length2 = checkValueIsFilled(partsB[1]) ? partsB[1].length : 0;
+
+    larger = Math.abs(length1 - length2);
+
+    if (length1 || length2) {
+        if (length1 > length2) {
+            partsB[1] = getFractionalPart(partsB, larger);
         } else {
-            s += number[i];
+            partsA[1] = getFractionalPart(partsA, larger);
         }
     }
 
-    const one = ld > 0 ? `0.${new Array(ld).join('0')}1` : '1';
+    const a: string = getPadFormat(partsA);
+    const b: string = getPadFormat(partsB);
+
+    return [a, b];
+}
+
+function compliment(num: string): string {
+    let s: string = '';
+    const dec: Any = num.split('.')[1];
+    const ld: number = checkValueIsFilled(dec) ? dec.length : 0;
+
+    for (let i: number = 0; i < num.length; i++) {
+        s += getPreparedDigit(num[i] ?? '');
+    }
+
+    const one: string = ld > 0 ? `0.${new Array(ld).join('0')}1` : '1';
 
     return addCore(s, one);
 }
 
-export function trim(number: string): string {
-    const splited: string[] = number.split('.') ?? [];
-    const parts: string[] = removeZerosAtTheBegining(splited);
+function getPreparedDigit(char: string): number | string {
+    const isDigit: boolean = char >= '0' && char <= '9';
 
-    if (isNil(parts[1])) {
-        return parts[0] ?? '';
+    if (isDigit) {
+        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+        return 9 - parseInt(char);
     } else {
-        return `${parts[0]}.${parts[1]}`;
+        return char;
     }
 }
 
-export function pad(inputA: Any, inputB: Any): [string, string] {
-    const partsA = inputA.split('.');
-    const partsB = inputB.split('.');
+function getIntegralPart(parts: string[], larger: number): string {
+    return new Array(larger + 1).join('0') + (checkValueIsFilled(parts[0]) ? parts[0] : '');
+}
 
-    // pad integral part
-    let length1 = partsA[0].length;
-    let length2 = partsB[0].length;
+function getFractionalPart(parts: string[], larger: number): string {
+    return (checkValueIsFilled(parts[1]) ? parts[1] : '') + new Array(larger + 1).join('0');
+}
 
-    if (length1 > length2) {
-        partsB[0] = new Array(Math.abs(length1 - length2) + 1).join('0') + (partsB[0] ? partsB[0] : '');
-    } else {
-        partsA[0] = new Array(Math.abs(length1 - length2) + 1).join('0') + (partsA[0] ? partsA[0] : '');
-    }
-
-    // pad fractional part
-    length1 = partsA[1] ? partsA[1].length : 0;
-    length2 = partsB[1] ? partsB[1].length : 0;
-
-    if (length1 || length2) {
-        if (length1 > length2) {
-            partsB[1] = (partsB[1] ? partsB[1] : '') + new Array(Math.abs(length1 - length2) + 1).join('0');
-        } else {
-            partsA[1] = (partsA[1] ? partsA[1] : '') + new Array(Math.abs(length1 - length2) + 1).join('0');
-        }
-    }
-
-    const a: string = partsA[0] + (partsA[1] ? `.${partsA[1]}` : '');
-    const b: string = partsB[0] + (partsB[1] ? `.${partsB[1]}` : '');
-
-    return [a, b];
+function getPadFormat(parts: string[]): string {
+    return parts[0] + (checkValueIsFilled(parts[1]) ? `.${parts[1]}` : '');
 }
 
 function removeZerosAtTheBegining(parts: string[]): string[] {
