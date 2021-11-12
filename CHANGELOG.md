@@ -1,3 +1,9 @@
+#### 0.0.0 (2021-11-12)
+
+##### Build System / Dependencies
+
+-   update dependency sort-package-json to v1.53.0 (#1088) (5bd079bd)
+
 #### 0.0.0 (2021-11-10)
 
 ##### Build System / Dependencies
