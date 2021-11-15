@@ -1,3 +1,10 @@
+#### 0.0.0 (2021-11-15)
+
+##### Build System / Dependencies
+
+-   update dependency @types/eslint to v7.29.0 (#1092) (7fb0ae0e)
+-   update dependency ngx-toastr to v14.2.0 (#1090) (67a1604c)
+
 #### 0.0.0 (2021-11-12)
 
 ##### Build System / Dependencies
