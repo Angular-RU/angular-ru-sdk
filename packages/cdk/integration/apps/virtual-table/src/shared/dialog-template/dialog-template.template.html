@@ -2,7 +2,7 @@
 
 <form *ngIf="form" [formGroup]="form">
     <mat-form-field *ngFor="let input of data | keyvalue">
-        <input matInput placeholder="{{input.key}}" [formControlName]="$any(input.key)" />
+        <input matInput placeholder="{{ input.key }}" [formControlName]="$any(input.key)" />
     </mat-form-field>
 </form>
 
