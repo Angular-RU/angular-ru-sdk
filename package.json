@@ -47,7 +47,7 @@
         "@angular/platform-browser-dynamic": "12.2.13",
         "@angular/router": "12.2.13",
         "@ngx-translate/core": "13.0.0",
-        "@ngx-translate/http-loader": "6.0.0",
+        "@ngx-translate/http-loader": "7.0.0",
         "@ngxs/logger-plugin": "3.7.2",
         "@ngxs/store": "3.7.2",
         "class-transformer": "0.4.0",
