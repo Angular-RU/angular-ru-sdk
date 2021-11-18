@@ -24,7 +24,7 @@
     "lint-staged": {
         "*.ts": ["yarn prettier --write", "yarn eslint --fix --quiet --ignore-pattern '**/file-suites/**'"],
         "*.{html,css,scss,md,js,json}": ["yarn prettier --write"],
-        "package.json": ["yarn prettier --write", "yarn sort-package-json"]
+        "package.json": ["yarn sort-package-json", "yarn prettier --write"]
     },
     "browserslist": ["Chrome >= 61", "Firefox >= 61", "not IE 11", "> 1%"],
     "prettier": "./dev-infra/prettier/prettier.config.js",
