@@ -20,7 +20,7 @@
         "@types/jest": "27.0.2",
         "jest": "27.3.1",
         "jest-junit": "13.0.0",
-        "jest-preset-angular": "10.1.0",
+        "jest-preset-angular": "11.0.0",
         "ts-jest": "27.0.7"
     },
     "publishConfig": {
