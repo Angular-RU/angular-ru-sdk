@@ -2,6 +2,16 @@
 
 ##### New Features
 
+-   **eslint-config-enterprise:**
+    -   restrict unbound methods (57e57e62)
+    -   add html plugin (dccd3d97)
+-   **dev-dependencies:** upgrade lint-staged (4d649e55)
+-   **renovate:** add new groups (dd1cd235)
+
+#### 0.0.0 (2021-11-18)
+
+##### New Features
+
 -   **prettier:** add xml plugin (2891c1df)
 
 #### 0.0.0 (2021-11-18)
