@@ -1,3 +1,13 @@
+#### 0.0.0 (2021-11-18)
+
+##### Build System / Dependencies
+
+-   update dependency karma to v6.3.9 (#1094) (419dac2e)
+
+##### Bug Fixes
+
+-   **cdk:** fix not-found display condition (#1099) (e2f52292)
+
 #### 0.0.0 (2021-11-15)
 
 ##### Build System / Dependencies
