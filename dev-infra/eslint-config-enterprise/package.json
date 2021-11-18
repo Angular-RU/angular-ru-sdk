@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/eslint-config-enterprise",
-    "version": "12.27.4",
+    "version": "12.28.0",
     "description": "Angular-RU package",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/dev-infra/eslint-config-enterprise#readme",
     "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
@@ -8,7 +8,10 @@
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "main": "index.js",
-    "files": ["index.js", "README.md"],
+    "files": [
+        "index.js",
+        "README.md"
+    ],
     "scripts": {
         "prepare:bad-i18n": "FORCE_COLOR=0 yarn -s eslint -c index.js \"**/file-suites/**/bad.json\" > ./out/eslint.bad-i18n.report.txt || exit 0",
         "prepare:bad-ts": "FORCE_COLOR=0 yarn -s eslint -c index.js \"**/file-suites/*.bad.ts\" > ./out/eslint.bad-file.report.txt || exit 0",
@@ -28,7 +31,7 @@
         "@angular-eslint/eslint-plugin": "12.6.1",
         "@angular-eslint/eslint-plugin-template": "12.6.1",
         "@angular-eslint/template-parser": "12.6.1",
-        "@angular-ru/eslint-plugin-enterprise": "^12.26.1",
+        "@angular-ru/eslint-plugin-enterprise": "^12.27.0",
         "@types/eslint": "7.29.0",
         "@typescript-eslint/eslint-plugin": "4.33.0",
         "@typescript-eslint/parser": "4.33.0",

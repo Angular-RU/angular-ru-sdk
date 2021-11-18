@@ -1,5 +1,11 @@
 #### 0.0.0 (2021-11-18)
 
+##### New Features
+
+-   **prettier:** add xml plugin (2891c1df)
+
+#### 0.0.0 (2021-11-18)
+
 ##### Build System / Dependencies
 
 -   update dependency jest-preset-angular to v11 (#1100) (a0af8afc)

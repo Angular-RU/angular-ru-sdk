@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/renovate",
-    "version": "12.26.1",
+    "version": "12.27.0",
     "description": "Shared Renovate config for Angular projects",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/dev-infra/renovate#readme",
     "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
@@ -26,41 +26,72 @@
             "dependencyDashboardApproval": false,
             "semanticPrefix": "build",
             "rebaseWhen": "auto",
-            "labels": ["renovate"],
-            "baseBranches": ["master"],
+            "labels": [
+                "renovate"
+            ],
+            "baseBranches": [
+                "master"
+            ],
             "digest": {
                 "enabled": false
             },
             "pinDigests": false,
-            "includePaths": ["package.json", "**/package.json", "!node_modules/**"],
+            "includePaths": [
+                "package.json",
+                "**/package.json",
+                "!node_modules/**"
+            ],
             "packageRules": [
                 {
-                    "matchUpdateTypes": ["minor", "patch"],
-                    "matchPackagePatterns": ["*"],
+                    "matchUpdateTypes": [
+                        "minor",
+                        "patch"
+                    ],
+                    "matchPackagePatterns": [
+                        "*"
+                    ],
                     "groupName": "all dependencies (minor/patch)",
                     "groupSlug": "all-minor-patch"
                 },
                 {
-                    "matchUpdateTypes": ["major"],
-                    "labels": ["renovate", "major"],
+                    "matchUpdateTypes": [
+                        "major"
+                    ],
+                    "labels": [
+                        "renovate",
+                        "major"
+                    ],
                     "automerge": false
                 },
                 {
-                    "matchUpdateTypes": ["minor", "patch"],
-                    "labels": ["renovate", "minor/patch"],
+                    "matchUpdateTypes": [
+                        "minor",
+                        "patch"
+                    ],
+                    "labels": [
+                        "renovate",
+                        "minor/patch"
+                    ],
                     "automerge": true
                 },
                 {
-                    "depTypeList": ["engines", "peerDependencies"],
+                    "depTypeList": [
+                        "engines",
+                        "peerDependencies"
+                    ],
                     "enabled": false
                 },
                 {
-                    "matchPackagePatterns": ["^rxjs.*"],
+                    "matchPackagePatterns": [
+                        "^rxjs.*"
+                    ],
                     "groupSlug": "rxjs",
                     "groupName": "rxjs dependencies"
                 },
                 {
-                    "matchPackagePatterns": ["^prettier"],
+                    "matchPackagePatterns": [
+                        "^prettier"
+                    ],
                     "groupSlug": "prettier",
                     "groupName": "prettier dependencies"
                 },
@@ -85,26 +116,37 @@
                         "commands": [
                             "ng update {{{depName}}} --from={{{fromVersion}}} --to={{{toVersion}}} --migrateOnly --allowDirty --force"
                         ],
-                        "fileFilters": ["**/**"]
+                        "fileFilters": [
+                            "**/**"
+                        ]
                     }
                 },
                 {
-                    "matchPackagePatterns": ["^class-transformer$"],
+                    "matchPackagePatterns": [
+                        "^class-transformer$"
+                    ],
                     "groupSlug": "class-transformer",
                     "groupName": "class-transformer dependencies"
                 },
                 {
-                    "matchPackagePatterns": ["^@nrwl/.*"],
+                    "matchPackagePatterns": [
+                        "^@nrwl/.*"
+                    ],
                     "groupSlug": "nrwl",
                     "groupName": "nrwl dependencies"
                 },
                 {
-                    "matchPackagePatterns": ["^@sentry/.*"],
+                    "matchPackagePatterns": [
+                        "^@sentry/.*"
+                    ],
                     "groupSlug": "sentry",
                     "groupName": "sentry dependencies"
                 },
                 {
-                    "matchPackagePatterns": ["^@ngxs/.*", "^@ngxs-labs/.*"],
+                    "matchPackagePatterns": [
+                        "^@ngxs/.*",
+                        "^@ngxs-labs/.*"
+                    ],
                     "groupSlug": "ngxs",
                     "groupName": "ngxs dependencies"
                 },
@@ -120,22 +162,37 @@
                     "groupName": "eslint dependencies"
                 },
                 {
-                    "matchPackagePatterns": ["^@types/jest$", "^jest.*", "^ts-jest$", "^jest-preset-angular$"],
+                    "matchPackagePatterns": [
+                        "^@types/jest$",
+                        "^jest.*",
+                        "^ts-jest$",
+                        "^jest-preset-angular$"
+                    ],
                     "groupSlug": "jest",
                     "groupName": "jest dependencies"
                 },
                 {
-                    "matchPackagePatterns": ["@types/karma.*", "^karma.*"],
+                    "matchPackagePatterns": [
+                        "@types/karma.*",
+                        "^karma.*"
+                    ],
                     "groupSlug": "karma",
                     "groupName": "karma dependencies"
                 },
                 {
-                    "matchPackagePatterns": ["@types/jasmine", "@types/jasmine*", "^jasmine.*"],
+                    "matchPackagePatterns": [
+                        "@types/jasmine",
+                        "@types/jasmine*",
+                        "^jasmine.*"
+                    ],
                     "groupSlug": "jasmine",
                     "groupName": "jasmine dependencies"
                 },
                 {
-                    "matchPackagePatterns": ["^typescript", "^tslib"],
+                    "matchPackagePatterns": [
+                        "^typescript",
+                        "^tslib"
+                    ],
                     "groupSlug": "typescript",
                     "groupName": "typescript dependencies"
                 }
