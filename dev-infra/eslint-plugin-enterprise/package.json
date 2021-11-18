@@ -9,10 +9,7 @@
     "author": "angular-ru@yandex.ru",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
-    "files": [
-        "dist",
-        "README.md"
-    ],
+    "files": ["dist", "README.md"],
     "scripts": {
         "build:lib": "tsc -p ./tsconfig.json  && yarn symlink",
         "symlink": "sh symlink.sh"

@@ -8,10 +8,7 @@
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "main": "prettier.config.js",
-    "files": [
-        "prettier.config.js",
-        "README.md"
-    ],
+    "files": ["prettier.config.js", "README.md"],
     "dependencies": {
         "@prettier/plugin-xml": "1.1.0",
         "prettier": "2.4.1",

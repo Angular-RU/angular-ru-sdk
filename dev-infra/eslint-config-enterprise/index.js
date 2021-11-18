@@ -8,10 +8,6 @@ module.exports = {
         es6: true,
         node: true
     },
-    settings: {
-        'import/parsers': { '@typescript-eslint/parser': ['.ts'] },
-        'import/resolver': { 'eslint-import-resolver-typescript': true }
-    },
     ignorePatterns: [
         'dist',
         'node_modules',
@@ -31,9 +27,13 @@ module.exports = {
         {
             files: ['*.ts'],
             parser: '@typescript-eslint/parser',
+            settings: {
+                'import/parsers': { '@typescript-eslint/parser': ['.ts'] },
+                'import/resolver': { 'eslint-import-resolver-typescript': true }
+            },
             parserOptions: {
                 createDefaultProgram: true,
-                project: './tsconfig.json',
+                project: './tsconfig*.json',
                 sourceType: 'module',
                 errorOnUnknownASTType: true,
                 errorOnTypeScriptSyntacticAndSemanticIssues: true,
@@ -52,8 +52,7 @@ module.exports = {
                 '@typescript-eslint',
                 'sonarjs',
                 '@angular-eslint/eslint-plugin',
-                '@angular-ru/eslint-plugin-enterprise',
-                'json'
+                '@angular-ru/eslint-plugin-enterprise'
             ],
             extends: [
                 'eslint:recommended',
@@ -313,6 +312,7 @@ module.exports = {
                 'import/no-duplicates': 'error',
                 'import/exports-last': 'off',
                 'import/newline-after-import': ['error', { count: 1 }],
+                'import/no-webpack-loader-syntax': 'error',
 
                 /**
                  * no cyrillic
@@ -646,6 +646,14 @@ module.exports = {
             }
         },
         {
+            files: ['*.html'],
+            plugins: ['html'],
+            settings: {
+                'html/indent': '+4',
+                'html/report-bad-indent': 'error'
+            }
+        },
+        {
             files: ['*.component.html'],
             extends: ['plugin:@angular-eslint/template/recommended'],
             rules: {
@@ -680,7 +688,7 @@ module.exports = {
         {
             files: ['*.json'],
             extends: ['plugin:json/recommended'],
-            plugins: ['json'],
+            plugins: ['prettier', 'json'],
             rules: {
                 'json/*': ['error', { allowComments: true }]
             }
