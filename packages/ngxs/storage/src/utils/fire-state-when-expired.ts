@@ -16,6 +16,7 @@ export function firedStateWhenExpired(key: string, options: TtLCreatorOptions): 
 
     instance?.expired$?.next(event);
 
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     if (isNotNil(instance?.ngxsDataAfterExpired)) {
         if (isNotNil(NgxsDataInjector.ngZone)) {
             NgxsDataInjector.ngZone?.run((): void => instance?.ngxsDataAfterExpired?.(event, provider));

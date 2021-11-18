@@ -10,6 +10,7 @@ export function isGetter(obj: Any, prop: string): boolean {
     if (isSimpleObject(currentObj)) {
         while (currentObj !== null) {
             if (isTrue(currentObj?.hasOwnProperty(prop))) {
+                // eslint-disable-next-line @typescript-eslint/unbound-method
                 result = Boolean(Object.getOwnPropertyDescriptor(currentObj, prop)?.get);
                 break;
             } else {

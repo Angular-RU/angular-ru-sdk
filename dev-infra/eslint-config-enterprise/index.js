@@ -501,6 +501,12 @@ module.exports = {
                         onlyInlineLambdas: true
                     }
                 ],
+                '@typescript-eslint/unbound-method': [
+                    'error',
+                    {
+                        ignoreStatic: true
+                    }
+                ],
                 '@typescript-eslint/quotes': [
                     'error',
                     'single',

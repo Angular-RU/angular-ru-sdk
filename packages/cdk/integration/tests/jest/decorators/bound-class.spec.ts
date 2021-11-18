@@ -24,6 +24,8 @@ describe('@BoundClass', () => {
         TestBed.configureTestingModule({ providers: [A, B] });
 
         const a = TestBed.inject(A);
+
+        // eslint-disable-next-line @typescript-eslint/unbound-method
         const { getA } = a;
 
         expect(a).toEqual({ a: '1', b: { b: '2' } });

@@ -167,6 +167,7 @@ describe('[TEST]: Execute method by Level', () => {
     });
 
     it('should be equals reference context (this)', () => {
+        // eslint-disable-next-line @typescript-eslint/unbound-method
         const { pipe }: LoggerService = logger;
 
         expect(pipe() === logger).toBe(true);
