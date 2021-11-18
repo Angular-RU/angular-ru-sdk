@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update dependency jest-preset-angular to v11 (#1100) (a0af8afc)
+
+#### 0.0.0 (2021-11-18)
+
+##### Build System / Dependencies
+
 -   update dependency karma to v6.3.9 (#1094) (419dac2e)
 
 ##### Bug Fixes
