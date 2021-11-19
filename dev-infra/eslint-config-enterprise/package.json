@@ -25,13 +25,13 @@
         "posttest": "FORCE_COLOR=0 yarn prepare:clean-ts"
     },
     "dependencies": {
-        "@angular-eslint/eslint-plugin": "12.6.1",
-        "@angular-eslint/eslint-plugin-template": "12.6.1",
-        "@angular-eslint/template-parser": "12.6.1",
+        "@angular-eslint/eslint-plugin": "12.7.0",
+        "@angular-eslint/eslint-plugin-template": "12.7.0",
+        "@angular-eslint/template-parser": "12.7.0",
         "@angular-ru/eslint-plugin-enterprise": "^12.28.0",
         "@types/eslint": "7.29.0",
         "@typescript-eslint/eslint-plugin": "4.33.0",
-        "@typescript-eslint/experimental-utils": "4.0.0-alpha.16",
+        "@typescript-eslint/experimental-utils": "4.33.0",
         "@typescript-eslint/parser": "4.33.0",
         "eslint": "7.32.0",
         "eslint-config-import": "0.13.0",
