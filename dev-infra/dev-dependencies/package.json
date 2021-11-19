@@ -11,7 +11,7 @@
         "@types/jasmine": "3.10.2",
         "@types/jasminewd2": "2.0.10",
         "@types/karma": "6.3.1",
-        "@types/node": "16.11.7",
+        "@types/node": "16.11.9",
         "chalk": "4.1.2",
         "cross-env": "7.0.3",
         "generate-changelog": "1.8.0",
