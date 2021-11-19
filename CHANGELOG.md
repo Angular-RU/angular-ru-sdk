@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update dependency @types/node to v16.11.9 (#1104) (fb6f4914)
+
+#### 0.0.0 (2021-11-19)
+
+##### Build System / Dependencies
+
 -   update dependency @types/jest to v27.0.3 (#1101) (015010a3)
 
 #### 0.0.0 (2021-11-19)
