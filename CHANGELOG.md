@@ -1,3 +1,13 @@
+#### 0.0.0 (2021-11-19)
+
+##### Build System / Dependencies
+
+-   update all dependencies (minor/patch) (#1102) (579f13f2)
+
+##### Continuous Integration
+
+-   fix failed tests (a0168917)
+
 #### 0.0.0 (2021-11-18)
 
 ##### New Features
