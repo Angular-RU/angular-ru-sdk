@@ -8,7 +8,7 @@ describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
     it('check failed files', (): void => {
         const bad: string = getInfoByReportFile('bad-file');
 
-        expect(bad.includes('97 problems (97 errors, 0 warnings)')).toBeTruthy();
+        expect(bad.includes('99 problems (99 errors, 0 warnings)')).toBeTruthy();
         expect(bad.includes('30 errors and 0 warnings potentially fixable with the `--fix` option')).toBeTruthy();
         expect(bad.includes(`Run autofix to sort these imports!`)).toBeTruthy();
         expect(bad.includes(`Expected hello to have a type annotation`)).toBeTruthy();
