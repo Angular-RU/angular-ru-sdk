@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/eslint-config-enterprise",
-    "version": "12.29.0",
+    "version": "12.29.1",
     "description": "Angular-RU package",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/dev-infra/eslint-config-enterprise#readme",
     "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
