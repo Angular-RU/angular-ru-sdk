@@ -10192,10 +10192,10 @@ ngx-mask@12.0.0:
   dependencies:
     tslib "^2.1.0"
 
-ngx-toastr@14.2.0:
-  version "14.2.0"
-  resolved "https://registry.npmjs.org/ngx-toastr/-/ngx-toastr-14.2.0.tgz#06692a228cc30bb50f8f823879ae417a77bc7f84"
-  integrity sha512-LdxJDTCCYj/UvMUW1ol+P8vOaJsdsWnqmRX5iXEPQCdDgs6E5CePSUMBsnQ3ekfy99eQvmwIJ9q7C2RvN7aAvw==
+ngx-toastr@14.2.1:
+  version "14.2.1"
+  resolved "https://registry.npmjs.org/ngx-toastr/-/ngx-toastr-14.2.1.tgz#2899cc6e69af607aa89a2de807c32b46fdc035f8"
+  integrity sha512-1Kq//y8tTgglUYKHIziZwpo4R7fe4/neidcxfbAXzXtcViSjT4Z21Vgqn/inoBlwoc7E9qXQDuZoJr2lanCgGA==
   dependencies:
     tslib "^2.3.0"
 
@@ -10367,10 +10367,10 @@ normalize-url@^6.0.1, normalize-url@^6.1.0:
   resolved "https://registry.npmjs.org/normalize-url/-/normalize-url-6.1.0.tgz#40d0885b535deffe3f3147bec877d05fe4c5668a"
   integrity sha512-DlL+XwOy3NxAQ8xuC0okPgK46iuVNAK01YN7RueYBqqFeGsBjV9XmCAzAdgt+667bCl5kPh9EqKKDwnaPG1I7A==
 
-npe@1.1.4:
-  version "1.1.4"
-  resolved "https://registry.npmjs.org/npe/-/npe-1.1.4.tgz#b6543d057b91af9a428911f62e1788c39f19a404"
-  integrity sha512-r8QJhLSwLy9ld72bnH7Dw7mTP0IBa3vPWq9nq84s3OTKGphZ6RoVmwCRDwQPwnxwFloFrHBv/mhQ5YaTPb+RQA==
+npe@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.npmjs.org/npe/-/npe-1.2.0.tgz#a54d78f868267de93ae822f33072fa5ed4e9d36f"
+  integrity sha512-sVbC5+7ljSI/039fvfKKnlH9kYQKskrsq81k6cwScvZ3CIpSDCrFIKVPpbb8VetVk6z/2mH4oDRlsiTWHUetyQ==
   dependencies:
     merge "^2.1.1"
     minimist "^1.2.5"
