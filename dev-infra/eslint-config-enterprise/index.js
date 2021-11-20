@@ -352,6 +352,15 @@ module.exports = {
                         next: ['interface', 'type']
                     }
                 ],
+                '@typescript-eslint/no-extraneous-class': [
+                    'error',
+                    {
+                        allowConstructorOnly: true,
+                        allowEmpty: false,
+                        allowStaticOnly: true,
+                        allowWithDecorator: true
+                    }
+                ],
                 '@typescript-eslint/lines-between-class-members': [
                     'error',
                     'always',
@@ -624,13 +633,19 @@ module.exports = {
             files: ['*.spec.ts'], // light version rules for test files
             extends: ['plugin:jest/style', 'plugin:jest/all', 'plugin:mocha/recommended'],
             rules: {
+                // base
+                '@typescript-eslint/no-extraneous-class': 'off',
                 '@typescript-eslint/explicit-function-return-type': 'off',
-                'max-lines-per-function': 'off',
-                '@typescript-eslint/no-magic-numbers': 'off',
-                'max-classes-per-file': 'off',
                 '@typescript-eslint/typedef': 'off',
+                '@typescript-eslint/no-magic-numbers': 'off',
                 '@typescript-eslint/ban-ts-comment': 'off',
+
+                // eslint
+                'max-lines-per-function': 'off',
+                'max-classes-per-file': 'off',
                 'max-nested-callbacks': 'off',
+
+                // angular
                 '@angular-eslint/prefer-on-push-component-change-detection': 'off',
                 '@angular-eslint/component-max-inline-declarations': 'off',
                 '@angular-eslint/use-component-selector': 'off',
