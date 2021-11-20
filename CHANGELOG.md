@@ -1,3 +1,11 @@
+#### 0.0.0 (2021-11-20)
+
+##### New Features
+
+-   **eslint-config-enterprise:**
+    -   improve member ordering (d17f8ae5)
+    -   add no-extraneous-class rule (f0356971)
+
 #### 0.0.0 (2021-11-19)
 
 ##### Build System / Dependencies
