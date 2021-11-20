@@ -14,17 +14,17 @@ export class ConsoleService implements ConsoleServiceInterface {
         this.instance = options.instance;
     }
 
+    public get noop(): ConsoleOperation {
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        return ((): void => {}) as ConsoleOperation;
+    }
+
     public get console(): Console {
         return this.instance;
     }
 
     public set console(instance: Console) {
         this.instance = instance;
-    }
-
-    public get noop(): ConsoleOperation {
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
-        return ((): void => {}) as ConsoleOperation;
     }
 
     public getTemplateLabel(text: string): string {

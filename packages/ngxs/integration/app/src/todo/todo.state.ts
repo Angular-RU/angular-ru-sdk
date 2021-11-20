@@ -35,19 +35,6 @@ export class TodoState
         super();
     }
 
-    public ngxsDataAfterExpired(event: NgxsDataExpiredEvent, _provider: PersistenceProvider): void {
-        this.snackBar.open('Expired', event.key, {
-            duration: 5000,
-            verticalPosition: 'top',
-            horizontalPosition: 'right'
-        });
-    }
-
-    public ngxsDataAfterStorageEvent(event: NgxsDataStorageEvent): void {
-        // eslint-disable-next-line no-console
-        console.log('event', event);
-    }
-
     @DataAction()
     public addTodo(@Payload('todo') todo: string): void {
         if (todo) {
@@ -61,5 +48,18 @@ export class TodoState
             (state: Immutable<string[]>): Immutable<string[]> =>
                 state.filter((_: string, index: number): boolean => index !== idx)
         );
+    }
+
+    public ngxsDataAfterExpired(event: NgxsDataExpiredEvent, _provider: PersistenceProvider): void {
+        this.snackBar.open('Expired', event.key, {
+            duration: 5000,
+            verticalPosition: 'top',
+            horizontalPosition: 'right'
+        });
+    }
+
+    public ngxsDataAfterStorageEvent(event: NgxsDataStorageEvent): void {
+        // eslint-disable-next-line no-console
+        console.log('event', event);
     }
 }

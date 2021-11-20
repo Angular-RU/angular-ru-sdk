@@ -12,8 +12,8 @@ import { DialogTemplateComponent } from '../../shared/dialog-template/dialog-tem
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SampleFirstSecondComponent implements OnInit, OnDestroy {
-    public data: PlainObject[] = [];
     private idInterval: Nullable<number> = null;
+    public data: PlainObject[] = [];
 
     constructor(
         private readonly cd: ChangeDetectorRef,

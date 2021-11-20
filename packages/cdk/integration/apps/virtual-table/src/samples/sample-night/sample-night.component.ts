@@ -21,11 +21,11 @@ declare const hljs: Any;
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SampleNightComponent implements OnInit, AfterViewInit {
+    private readonly ngZone: NgZone;
     public dataFirst: PlainObject[] = [];
     public dataSecond: PlainObject[] = [];
     public nativeScrollbar: boolean = false;
     public readonly dialog: MatDialog;
-    private readonly ngZone: NgZone;
 
     constructor(private readonly cd: ChangeDetectorRef, injector: Injector) {
         this.dialog = injector.get<MatDialog>(MatDialog);

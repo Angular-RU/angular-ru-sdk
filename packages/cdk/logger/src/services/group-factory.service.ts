@@ -10,8 +10,8 @@ import { CssFactory } from './css-factory.service';
 
 @Injectable()
 export class GroupFactory {
-    public executePipesGroup: boolean = false;
     private counterOpenedGroup: number = 0;
+    public executePipesGroup: boolean = false;
 
     constructor(
         private readonly console: ConsoleService,

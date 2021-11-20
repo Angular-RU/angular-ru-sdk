@@ -25,9 +25,9 @@ interface ReqProperty {
 
 @Injectable()
 export abstract class AbstractHttpClient<K = unknown> {
-    public interceptor: K & DataHttpInterceptor;
     protected controllerUrl!: string;
     protected local!: Partial<DataClientRequestOptions>;
+    public interceptor: K & DataHttpInterceptor;
 
     protected constructor(
         protected http: HttpClient,
@@ -37,6 +37,8 @@ export abstract class AbstractHttpClient<K = unknown> {
     ) {
         this.interceptor = _interceptor;
     }
+
+    public abstract request<T = Any, R = T>(options: DataBeforeRequestOptions): Observable<R>;
 
     public get<T = Any, R = T>(path: string, options: Partial<DataClientRequestOptions> = {}): Observable<R> {
         return this.request<T, R>(this.createRequestOptions({ method: RequestType.GET, path, options }));
@@ -61,8 +63,6 @@ export abstract class AbstractHttpClient<K = unknown> {
     public createRequestOptions({ method, path, options }: ReqProperty): DataBeforeRequestOptions {
         return { path, method, clientOptions: this.configurator.mergeGlobalOptionsWith(this.local, options ?? {}) };
     }
-
-    public abstract request<T = Any, R = T>(options: DataBeforeRequestOptions): Observable<R>;
 
     protected createDataHttpRequestOptions<T>(options: DataBeforeRequestOptions): DataHttpRequestOptions {
         const httpParams: HttpParams = getHttpParams(options.path, options.clientOptions.queryParams);

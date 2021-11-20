@@ -18,14 +18,14 @@ export const BINARY: PlainObject = {};
 export abstract class AbstractWebsocketClient<K extends string | PlainObject>
     implements WebsocketHandler<K>, OnDestroy
 {
-    public connected$: ReplaySubject<Event> = new ReplaySubject(Number.POSITIVE_INFINITY);
-    public disconnected$: ReplaySubject<Event> = new ReplaySubject(Number.POSITIVE_INFINITY);
-    public destroy$: Subject<boolean> = new Subject<boolean>();
-    protected readonly messages$: Subject<WebsocketMessage<K, Any>> = new Subject();
     private connected: boolean = false;
     private socket$: Nullable<WebSocketSubject<WebsocketMessage<K, Any>>>;
     private socketSubscription: Nullable<Subscription>;
     private handlerPath: Nullable<string>;
+    protected readonly messages$: Subject<WebsocketMessage<K, Any>> = new Subject();
+    public connected$: ReplaySubject<Event> = new ReplaySubject(Number.POSITIVE_INFINITY);
+    public disconnected$: ReplaySubject<Event> = new ReplaySubject(Number.POSITIVE_INFINITY);
+    public destroy$: Subject<boolean> = new Subject<boolean>();
 
     protected constructor(private readonly wsConfig: WebsocketConfig, private readonly ngZone: NgZone) {}
 
@@ -36,8 +36,6 @@ export abstract class AbstractWebsocketClient<K extends string | PlainObject>
     public get isDisconnected(): boolean {
         return !this.connected;
     }
-
-    public abstract get baseUrl(): string;
 
     public get connectionPath(): string {
         return `${this.baseUrl}${this.handlerPath}`;
@@ -57,6 +55,8 @@ export abstract class AbstractWebsocketClient<K extends string | PlainObject>
     private static isArrayBuffer(value: Any): value is ArrayBuffer | Blob {
         return value instanceof ArrayBuffer || value instanceof Blob;
     }
+
+    public abstract get baseUrl(): string;
 
     public onConnected(_event?: Event): void {
         // noop

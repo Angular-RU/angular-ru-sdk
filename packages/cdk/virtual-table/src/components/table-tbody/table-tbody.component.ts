@@ -37,6 +37,7 @@ const SELECTION_DELAY: number = 100;
     encapsulation: ViewEncapsulation.None
 })
 export class TableTbodyComponent<T> {
+    private readonly ngZone: NgZone;
     @Input() public source: Nullable<T[]> = null;
     @Input() public striped: boolean = false;
     @Input() public isRendered: boolean = false;
@@ -59,7 +60,6 @@ export class TableTbodyComponent<T> {
     @Output() public readonly changed: EventEmitter<void> = new EventEmitter(true);
     public selection: SelectionService<T>;
     public contextMenu: ContextMenuService<T>;
-    private readonly ngZone: NgZone;
 
     constructor(public cd: ChangeDetectorRef, injector: Injector) {
         this.selection = injector.get<SelectionService<T>>(SelectionService);

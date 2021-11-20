@@ -17,6 +17,8 @@ import { TableFilterType } from './table-filter-type';
 
 @Injectable()
 export class FilterableService<T> implements Filterable {
+    private previousFiltering: boolean = false;
+    private readonly thread: WebWorkerThreadService;
     public types: ReadonlyMap<unknown, unknown> = TableFilterType as Any as ReadonlyMap<unknown, unknown>;
     public definition: ReadonlyMap<unknown, unknown> = {} as Any as ReadonlyMap<unknown, unknown>;
     public filterTypeDefinition: ReadonlyMap<unknown, TableFilterType> = {} as Any;
@@ -27,8 +29,6 @@ export class FilterableService<T> implements Filterable {
     public filterValue: Nullable<string> = null;
     public filterType: Nullable<string | TableFilterType> = null;
     public filtering: boolean = false;
-    private previousFiltering: boolean = false;
-    private readonly thread: WebWorkerThreadService;
 
     constructor(injector: Injector) {
         this.thread = injector.get<WebWorkerThreadService>(WebWorkerThreadService);

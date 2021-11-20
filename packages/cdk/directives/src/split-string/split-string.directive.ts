@@ -10,11 +10,12 @@ import { SplitStringOptions } from './split-string-options';
     providers: [ControlValueInterceptor]
 })
 export class SplitStringDirective {
-    @Input() public splitOptions?: Partial<SplitStringOptions>;
     private defaultSplitOptions: SplitStringOptions = {
         separator: /[,;\n]/g,
         joinWith: ', '
     };
+
+    @Input() public splitOptions?: Partial<SplitStringOptions>;
 
     constructor(interceptor: ControlValueInterceptor) {
         interceptor.attach({

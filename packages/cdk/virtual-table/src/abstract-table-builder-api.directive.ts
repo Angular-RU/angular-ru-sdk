@@ -65,6 +65,26 @@ const { ROW_HEIGHT, FILTER_DELAY_TIME, TIME_IDLE }: typeof TABLE_GLOBAL_OPTIONS 
 export abstract class AbstractTableBuilderApiDirective<T>
     implements OnChanges, OnInit, AfterViewInit, AfterContentInit, AfterViewChecked, OnDestroy
 {
+    public abstract readonly templateParser: TemplateParserService<T>;
+    public abstract readonly selection: SelectionService<T>;
+    public abstract readonly cd: ChangeDetectorRef;
+    public abstract readonly resize: ResizableService;
+    public abstract readonly sortable: SortableService<T>;
+    public abstract readonly contextMenu: ContextMenuService<T>;
+    public abstract readonly filterable: FilterableService<T>;
+    public abstract readonly ngZone: NgZone;
+    protected abstract readonly app: ApplicationRef;
+    protected abstract readonly viewChanges: NgxTableViewChangesService;
+    protected abstract readonly draggable: DraggableService<T>;
+    private filterIdTask: Nullable<number> = null;
+    private idleDetectChangesId: Nullable<number> = null;
+    private columnFrameId: Nullable<number> = null;
+    private onChangesId: number = 0;
+    private _headHeight: Nullable<number> = null;
+    private _rowHeight: Nullable<number> = null;
+    protected originalSource: Nullable<T[]> = null;
+    protected renderedCountKeys: Nullable<number> = null;
+    protected isDragMoving: boolean = false;
     @Input() public height: Nullable<string | number> = null;
     @Input() public width: Nullable<string | number> = null;
     @Input() public source: Nullable<T[]> = null;
@@ -141,36 +161,6 @@ export abstract class AbstractTableBuilderApiDirective<T>
     public isDragging: PlainObjectOf<boolean> = {};
     public accessDragging: boolean = false;
     public filteringRun: boolean = false;
-    public abstract readonly templateParser: TemplateParserService<T>;
-    public abstract readonly selection: SelectionService<T>;
-    public abstract readonly cd: ChangeDetectorRef;
-    public abstract readonly resize: ResizableService;
-    public abstract readonly sortable: SortableService<T>;
-    public abstract readonly contextMenu: ContextMenuService<T>;
-    public abstract readonly filterable: FilterableService<T>;
-    public abstract readonly ngZone: NgZone;
-    protected originalSource: Nullable<T[]> = null;
-    protected renderedCountKeys: Nullable<number> = null;
-    protected isDragMoving: boolean = false;
-    protected abstract readonly app: ApplicationRef;
-    protected abstract readonly viewChanges: NgxTableViewChangesService;
-    protected abstract readonly draggable: DraggableService<T>;
-    private filterIdTask: Nullable<number> = null;
-    private idleDetectChangesId: Nullable<number> = null;
-    private columnFrameId: Nullable<number> = null;
-    private onChangesId: number = 0;
-    private _headHeight: Nullable<number> = null;
-    private _rowHeight: Nullable<number> = null;
-
-    @Input('head-height')
-    public set headHeight(val: string | number) {
-        this._headHeight = parseInt(val as string);
-    }
-
-    @Input('row-height')
-    public set rowHeight(val: Nullable<string | number>) {
-        this._rowHeight = parseInt((val ?? ROW_HEIGHT) as string);
-    }
 
     /**
      * @description - <table-builder [keys]=[ 'id', 'value', 'id', 'position', 'value' ] />
@@ -211,14 +201,6 @@ export abstract class AbstractTableBuilderApiDirective<T>
         );
     }
 
-    public get firstItem(): T {
-        return this.sourceRef[0] || ({} as T);
-    }
-
-    public get lastItem(): T {
-        return this.sourceRef[this.sourceRef.length - 1] || ({} as T);
-    }
-
     public get selectionModel(): SelectionMap<T> {
         return this.selection.selectionModel;
     }
@@ -250,6 +232,16 @@ export abstract class AbstractTableBuilderApiDirective<T>
         return this.source ?? [];
     }
 
+    public get firstItem(): T {
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+        return this.sourceRef[0] || ({} as T);
+    }
+
+    public get lastItem(): T {
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+        return this.sourceRef[this.sourceRef.length - 1] || ({} as T);
+    }
+
     /**
      * @description Returns the entire list of table entries, excluding filters and sorting.
      */
@@ -273,6 +265,16 @@ export abstract class AbstractTableBuilderApiDirective<T>
         return this.enableSelection !== false;
     }
 
+    @Input('head-height')
+    public set headHeight(val: string | number) {
+        this._headHeight = parseInt(val as string);
+    }
+
+    @Input('row-height')
+    public set rowHeight(val: Nullable<string | number>) {
+        this._rowHeight = parseInt((val ?? ROW_HEIGHT) as string);
+    }
+
     private get shouldBeFiltered(): boolean {
         return this.filterable.filterValueExist && this.isEnableFiltering;
     }
@@ -280,6 +282,25 @@ export abstract class AbstractTableBuilderApiDirective<T>
     private get shouldBeSorted(): boolean {
         return this.sortable.notEmpty;
     }
+
+    private get expanded(): Nullable<boolean> {
+        return coerceBoolean(this.headerTemplate?.expandablePanel) && isNotNil(this.headerTemplate?.expanded)
+            ? coerceBoolean(this.headerTemplate?.expanded)
+            : null;
+    }
+
+    public abstract setSource(source: Nullable<T[]>): void;
+    public abstract markDirtyCheck(): void;
+    public abstract markForCheck(): void;
+    public abstract markTemplateContentCheck(): void;
+    public abstract ngOnChanges(changes: SimpleChanges): void;
+    public abstract ngOnInit(): void;
+    public abstract ngAfterContentInit(): void;
+    public abstract ngAfterViewInit(): void;
+    public abstract ngAfterViewChecked(): void;
+    public abstract ngOnDestroy(): void;
+    public abstract calculateViewport(force: boolean): void;
+    protected abstract updateViewportInfo(start: number, end: number): void;
 
     public recheckViewportChecked(): void {
         this.tableViewportChecked = !this.tableViewportChecked;
@@ -393,28 +414,6 @@ export abstract class AbstractTableBuilderApiDirective<T>
         });
     }
 
-    public abstract setSource(source: Nullable<T[]>): void;
-
-    public abstract markDirtyCheck(): void;
-
-    public abstract markForCheck(): void;
-
-    public abstract markTemplateContentCheck(): void;
-
-    public abstract ngOnChanges(changes: SimpleChanges): void;
-
-    public abstract ngOnInit(): void;
-
-    public abstract ngAfterContentInit(): void;
-
-    public abstract ngAfterViewInit(): void;
-
-    public abstract ngAfterViewChecked(): void;
-
-    public abstract ngOnDestroy(): void;
-
-    public abstract calculateViewport(force: boolean): void;
-
     protected reCheckDefinitions(): void {
         this.filterable.definition = { ...this.filterable.definition };
         this.filterable.changeFilteringStatus();
@@ -473,8 +472,6 @@ export abstract class AbstractTableBuilderApiDirective<T>
         });
     }
 
-    protected abstract updateViewportInfo(start: number, end: number): void;
-
     private async sortAndFilterOriginalSource(): Promise<void> {
         this.source = this.originalSource ?? [];
 
@@ -516,11 +513,5 @@ export abstract class AbstractTableBuilderApiDirective<T>
                       )
               )
             : keys;
-    }
-
-    private get expanded(): Nullable<boolean> {
-        return coerceBoolean(this.headerTemplate?.expandablePanel) && isNotNil(this.headerTemplate?.expanded)
-            ? coerceBoolean(this.headerTemplate?.expanded)
-            : null;
     }
 }

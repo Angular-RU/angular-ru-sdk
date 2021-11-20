@@ -17,6 +17,12 @@ describe('[TEST]: NgxsTestingModule', () => {
         })
         @Injectable()
         class AppState extends NgxsDataRepository<number> implements NgxsDataDoCheck, NgxsDataAfterReset {
+            @DataAction()
+            public increment(): void {
+                this.ctx.setState((state: number) => state + 1);
+                events.push(`${this.name}::increment`);
+            }
+
             public ngxsOnChanges(): void {
                 events.push(`${this.name}::ngxsOnChanges`);
                 super.ngxsOnChanges();
@@ -38,12 +44,6 @@ describe('[TEST]: NgxsTestingModule', () => {
             public ngxsAfterBootstrap(): void {
                 events.push(`${this.name}::ngxsAfterBootstrap`);
                 super.ngxsAfterBootstrap();
-            }
-
-            @DataAction()
-            public increment(): void {
-                this.ctx.setState((state: number) => state + 1);
-                events.push(`${this.name}::increment`);
             }
         }
 

@@ -27,11 +27,6 @@ import { TOOLTIP_OPTIONS_TOKEN, TOOLTIP_TEXT_INTERCEPTOR_TOKEN } from './tooltip
 
 @Directive({ selector: '[tooltip]' })
 export class TooltipDirective implements OnDestroy {
-    @Input('tooltip-disabled') public tooltipDisabled!: boolean;
-    @Input('tooltip-placement') public placement: TooltipPlacement = 'top';
-    @Input('tooltip-css-style') public localCssStyle: Nullable<string> = null;
-    @Input('tooltip-size') public size: TooltipSize = 'small';
-    public uid: string = generateQuickGuid();
     private readonly delta: number = 2;
     private readonly layoutMinDuration: number = 100;
     private tooltipDomElement: Nullable<HTMLElement> = null;
@@ -45,6 +40,11 @@ export class TooltipDirective implements OnDestroy {
     private handlerOptions: AddEventListenerOptions = { passive: true };
     private internalTooltipValue: TooltipValue = null;
     private internalContext: TooltipContextValue = null;
+    @Input('tooltip-disabled') public tooltipDisabled!: boolean;
+    @Input('tooltip-placement') public placement: TooltipPlacement = 'top';
+    @Input('tooltip-css-style') public localCssStyle: Nullable<string> = null;
+    @Input('tooltip-size') public size: TooltipSize = 'small';
+    public uid: string = generateQuickGuid();
 
     constructor(
         private readonly el: ElementRef,

@@ -5,16 +5,13 @@ import { Observable, Subject } from 'rxjs';
 
 @Injectable()
 export abstract class AbstractRepository<T> implements NgxsOnChanges, NgxsOnInit, NgxsAfterBootstrap {
+    private _dirty: boolean = true;
     public browserStorageEvents$: Subject<NgxsDataStorageEvent<T>> = new Subject();
     public readonly name!: string;
     public readonly initialState!: T;
     public readonly state$!: Observable<T>;
     public isInitialised: boolean = false;
     public isBootstrapped: boolean = false;
-
-    public abstract get snapshot(): T;
-
-    private _dirty: boolean = true;
 
     protected get dirty(): boolean {
         return this._dirty;
@@ -23,6 +20,14 @@ export abstract class AbstractRepository<T> implements NgxsOnChanges, NgxsOnInit
     protected set dirty(value: boolean) {
         this._dirty = value;
     }
+
+    public abstract get snapshot(): T;
+
+    public abstract getState(): T;
+
+    public abstract dispatch(actions: ActionType | ActionType[]): Observable<void>;
+
+    public abstract reset(): void;
 
     public ngxsOnChanges(_?: NgxsSimpleChange): void {
         if (this.dirty && this.isBootstrapped) {
@@ -43,12 +48,6 @@ export abstract class AbstractRepository<T> implements NgxsOnChanges, NgxsOnInit
             (this as NgxsDataDoCheck).ngxsDataDoCheck?.();
         }
     }
-
-    public abstract getState(): T;
-
-    public abstract dispatch(actions: ActionType | ActionType[]): Observable<void>;
-
-    public abstract reset(): void;
 
     protected markAsDirtyAfterReset(): void {
         this.dirty = true;

@@ -30,9 +30,10 @@ export class TestStairsComponent extends TestStairsB {
     selector: '[super-test-directive]'
 })
 export abstract class AbstractSuperTestDirective {
-    @InjectFeatureTestService() public featureTestService!: FeatureTestService;
-
     public abstract ngZone: NgZone;
+
+    @InjectFeatureTestService()
+    public featureTestService!: FeatureTestService;
 
     protected constructor(public appRef: ApplicationRef) {}
 }

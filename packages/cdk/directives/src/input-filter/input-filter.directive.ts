@@ -12,8 +12,8 @@ import { InputFilterConfig } from './input-filter.config';
     providers: [ControlValueInterceptor]
 })
 export class InputFilterDirective {
-    @Input() public inputFilter: Nullable<FilterPredicate | ''> = null;
     private manualEvent: Nullable<InputEvent> = null;
+    @Input() public inputFilter: Nullable<FilterPredicate | ''> = null;
 
     constructor(
         private readonly elementRef: ElementRef<HTMLInputElement>,

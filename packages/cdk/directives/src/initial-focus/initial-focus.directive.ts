@@ -5,9 +5,9 @@ const MIN_DELAY: number = 500;
 
 @Directive({ selector: '[initialFocus]' })
 export class InitialFocusDirective implements AfterViewInit, OnDestroy {
-    @Input() public focusDelay: number = MIN_DELAY;
     private readonly className: string = 'initial-focused';
     private timeoutId: Nullable<number> = null;
+    @Input() public focusDelay: number = MIN_DELAY;
 
     constructor(private readonly element: ElementRef<HTMLInputElement>, private readonly ngZone: NgZone) {}
 

@@ -25,6 +25,13 @@ const TIME_IDLE: number = 1500;
     encapsulation: ViewEncapsulation.None
 })
 export class TableCellComponent<T> implements OnDestroy {
+    private readonly closeButtonSelector: string = 'table-close__button';
+    private readonly overflowSelector: string = 'table-grid__cell-overflow-content';
+    private readonly timeIdle: number = TIME_IDLE;
+    private nodeSubscription: Nullable<Subscription> = null;
+    private closeElemSub: Nullable<Subscription> = null;
+    private timeoutShowedFrameId: Nullable<number> = null;
+    private timeoutOverflowId: Nullable<number> = null;
     @Input() public item: Nullable<T> = null;
     @Input() public index: Nullable<number> = null;
     @Input() public parent: Nullable<HTMLDivElement> = null;
@@ -34,13 +41,6 @@ export class TableCellComponent<T> implements OnDestroy {
     @Input('enable-filtering') public enableFiltering: boolean = false;
     @Input('viewport-info') public viewportInfo: Nullable<ViewPortInfo> = null;
     public contextType: typeof ImplicitContext = ImplicitContext;
-    private readonly closeButtonSelector: string = 'table-close__button';
-    private readonly overflowSelector: string = 'table-grid__cell-overflow-content';
-    private readonly timeIdle: number = TIME_IDLE;
-    private nodeSubscription: Nullable<Subscription> = null;
-    private closeElemSub: Nullable<Subscription> = null;
-    private timeoutShowedFrameId: Nullable<number> = null;
-    private timeoutOverflowId: Nullable<number> = null;
 
     constructor(public readonly cd: ChangeDetectorRef, private readonly ngZone: NgZone) {}
 

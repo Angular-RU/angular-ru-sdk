@@ -5,12 +5,12 @@ import { isNotNil } from '@angular-ru/cdk/utils';
 // TODO: move this directive to common
 @Directive({ selector: '[observerView]' })
 export class ObserverViewDirective implements AfterViewInit, OnDestroy {
-    @Input() public observerRoot?: HTMLElement;
-    @Input() public observerRootMargin?: string;
-    @Output() public readonly observeVisible: EventEmitter<boolean> = new EventEmitter(true);
     private observer: Nullable<IntersectionObserver> = null;
     private previousRation: number = 0.0;
     private frameId: Nullable<number> = null;
+    @Input() public observerRoot?: HTMLElement;
+    @Input() public observerRootMargin?: string;
+    @Output() public readonly observeVisible: EventEmitter<boolean> = new EventEmitter(true);
 
     constructor(private element: ElementRef, private readonly ngZone: NgZone) {}
 

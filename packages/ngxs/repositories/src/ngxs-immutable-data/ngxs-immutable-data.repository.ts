@@ -29,14 +29,6 @@ export abstract class AbstractNgxsImmutableDataRepository<T>
         return ensureDataStateContext<T, Any>(this.context);
     }
 
-    public getState(): Immutable<T> {
-        return this.ctx.getState();
-    }
-
-    public dispatch(actions: ActionType | ActionType[]): Observable<void> {
-        return this.ctx.dispatch(actions);
-    }
-
     @DataAction()
     public patchState(@Payload('patchValue') val: ImmutablePatchValue<T>): void {
         this.ctx.patchState(val);
@@ -51,5 +43,13 @@ export abstract class AbstractNgxsImmutableDataRepository<T>
     public reset(): void {
         this.ctx.setState(this.initialState);
         this.markAsDirtyAfterReset();
+    }
+
+    public getState(): Immutable<T> {
+        return this.ctx.getState();
+    }
+
+    public dispatch(actions: ActionType | ActionType[]): Observable<void> {
+        return this.ctx.dispatch(actions);
     }
 }

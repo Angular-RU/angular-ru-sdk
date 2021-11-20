@@ -18,8 +18,8 @@ export const enum TestLoggerGroupType {
 }
 
 export class ConsoleFake implements Console {
-    public Console: Any;
     private _stack: PlainObject[] = [];
+    public Console: Any;
 
     public log(...args: string[]): void {
         args.unshift(null!, null!);

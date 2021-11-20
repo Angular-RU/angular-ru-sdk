@@ -2,7 +2,7 @@
 import { B1 } from './module/b1';
 import { A1 } from './module/a1';
 import { C1 } from './module/c1';
-import { Component, EventEmitter, Injectable, OnInit, Pipe, Directive, NgModule, forwardRef, OnChanges, DoCheck, Input, Output } from "@angular/core";
+import { Component, EventEmitter, Injectable, OnInit, Pipe, Directive, NgModule, forwardRef, OnChanges, DoCheck, Input, Output, ChangeDetectionStrategy } from "@angular/core";
 import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ExampleDeep } from './module/deep/deep/deep/deep/deep/deep/deeeeeeeeeeeeeeeeeeep/deeeeeeeeeeeeeeeeeeep/deeeeeeeeeeeeeeeeeeep/example-deep';
@@ -327,7 +327,17 @@ export class MyEtc implements OnInit, OnChanges, DoCheck {
     selector: 'fooEtc'
 })
 export class FooEtc {
-    @Output() public close: EventEmitter<void> = new EventEmitter();
+    @Output('click') public click: EventEmitter<void> = new EventEmitter();
+}
+
+// noinspection AngularMissingOrInvalidDeclarationInModule
+@Component({
+    selector: 'fooEtc',
+    template: '<div (click)="click.emit()"></div>',
+    changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class FooEtcComponent {
+    @Output() public click: EventEmitter<void> = new EventEmitter();
 }
 
 @NgModule({

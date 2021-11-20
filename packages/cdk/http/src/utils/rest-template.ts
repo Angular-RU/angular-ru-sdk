@@ -11,11 +11,11 @@ import { Observable, OperatorFunction } from 'rxjs';
 import { DataHttpClient } from '../services/data-http.client';
 
 export class RestTemplate<T> {
-    public path!: string;
-    public methodType!: RequestType;
-    protected operators: OperatorFunction<T, Any>[] = [];
     private markAsRequest: boolean = false;
     private _client: Nullable<DataHttpClient> = null;
+    protected operators: OperatorFunction<T, Any>[] = [];
+    public path!: string;
+    public methodType!: RequestType;
 
     constructor(public options: Partial<DataClientRequestOptions> = {}) {}
 

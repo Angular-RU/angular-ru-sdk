@@ -5,14 +5,18 @@ import { ProduceDisableFn } from '../../interfaces/table-builder.external';
 import { RowId } from '../../interfaces/table-builder.internal';
 
 export class SelectionMap<T> {
+    private readonly selectionSet: Set<RowId> = new Set<RowId>();
     public isAll: boolean = false;
     public entries: PlainObjectOf<boolean> = {};
     public selectedList: RowId[] = [];
     public produceDisableFn: ProduceDisableFn<T> = null;
-    private readonly selectionSet: Set<RowId> = new Set<RowId>();
 
     public get size(): number {
         return this.selectionSet.size;
+    }
+
+    public get isIndeterminate(): boolean {
+        return this.hasValue() && !this.isAll;
     }
 
     public generateImmutableEntries(): void {
@@ -28,10 +32,6 @@ export class SelectionMap<T> {
 
     public hasValue(): boolean {
         return this.size > 0;
-    }
-
-    public get isIndeterminate(): boolean {
-        return this.hasValue() && !this.isAll;
     }
 
     public get(key?: RowId): boolean {

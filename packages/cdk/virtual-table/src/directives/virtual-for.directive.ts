@@ -6,13 +6,13 @@ import { InternalVirtualRef, VirtualContext, VirtualIndex } from '../interfaces/
 
 @Directive({ selector: '[virtualFor][virtualForOf]' })
 export class VirtualForDirective<T> implements OnDestroy {
-    @Input() public virtualForDiffIndexes?: number[];
     private cache: Map<number, InternalVirtualRef<T>> = new Map();
     private _source: T[] = [];
     private _indexes: VirtualIndex[] = [];
     private removeFrameId: Nullable<number> = null;
     private initFrameId: Nullable<number> = null;
     private dirty: boolean = false;
+    @Input() public virtualForDiffIndexes?: number[];
 
     constructor(
         private readonly view: ViewContainerRef,

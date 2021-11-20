@@ -76,10 +76,10 @@ function replaceAt(array: Any[], index: number, value: Any): Any[] {
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
-    public data: PlainObject[] = [];
-    public regenerate: boolean = false;
     private idInterval: Nullable<number> = null;
     private timeout: Nullable<number> = null;
+    public data: PlainObject[] = [];
+    public regenerate: boolean = false;
 
     constructor(private readonly cd: ChangeDetectorRef, private readonly ngZone: NgZone) {}
 

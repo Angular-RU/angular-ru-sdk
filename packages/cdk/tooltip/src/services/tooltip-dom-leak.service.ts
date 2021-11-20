@@ -4,9 +4,9 @@ import { debounceTime } from 'rxjs/operators';
 
 @Injectable()
 export class TooltipDomLeakService {
-    public actualContainsInDomUidCollections: Set<string> = new Set<string>();
     private readonly domMemoryLeakTicker$: Subject<void> = new Subject<void>();
     private readonly timeoutCheck: number = 500;
+    public actualContainsInDomUidCollections: Set<string> = new Set<string>();
 
     constructor() {
         this.domMemoryLeakTicker$.pipe(debounceTime(this.timeoutCheck)).subscribe((): void => {

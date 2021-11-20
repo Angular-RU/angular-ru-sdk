@@ -35,6 +35,25 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
             this.ctx.setState((state) => state + 1);
         }
 
+        @DataAction()
+        public asyncSetStateAction(): Observable<number> {
+            return this.api.getData().pipe(
+                tap((val: number) => {
+                    this.ctx.setState(val);
+                })
+            );
+        }
+
+        @DataAction()
+        public asyncIncrementAction(): Observable<number> {
+            return this.api.getData().pipe(
+                tap((val: number) => {
+                    this.ctx.setState((state: number) => state + val);
+                }),
+                map(() => this.ctx.getState() + 100)
+            );
+        }
+
         public incorrectReturnedValue(val: number): void {
             this.ctx.setState(val);
         }
@@ -51,26 +70,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
             );
         }
 
-        @DataAction()
-        public asyncSetStateAction(): Observable<number> {
-            return this.api.getData().pipe(
-                tap((val: number) => {
-                    this.ctx.setState(val);
-                })
-            );
-        }
-
         public asyncIncrement(): Observable<number> {
-            return this.api.getData().pipe(
-                tap((val: number) => {
-                    this.ctx.setState((state: number) => state + val);
-                }),
-                map(() => this.ctx.getState() + 100)
-            );
-        }
-
-        @DataAction()
-        public asyncIncrementAction(): Observable<number> {
             return this.api.getData().pipe(
                 tap((val: number) => {
                     this.ctx.setState((state: number) => state + val);

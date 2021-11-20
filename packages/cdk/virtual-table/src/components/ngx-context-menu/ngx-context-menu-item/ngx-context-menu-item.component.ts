@@ -33,6 +33,10 @@ const MENU_WIDTH: number = 300;
     encapsulation: ViewEncapsulation.None
 })
 export class NgxContextMenuItemComponent<T = Any> implements OnInit, OnDestroy {
+    private subscription: Nullable<Subscription> = null;
+    private taskId: Nullable<number> = null;
+    private readonly contextMenu: ContextMenuService<T>;
+    private readonly ngZone: NgZone;
     @Input() public visible: string | boolean = true;
     @Input() public contextTitle: Nullable<string | boolean> = null;
     @Input() public disable: Nullable<string | boolean> = false;
@@ -45,10 +49,6 @@ export class NgxContextMenuItemComponent<T = Any> implements OnInit, OnDestroy {
     @ViewChild('item', { static: false }) public itemRef: Nullable<ElementRef<HTMLDivElement>> = null;
     public offsetX: Nullable<number> = null;
     public offsetY: Nullable<number> = null;
-    private subscription: Nullable<Subscription> = null;
-    private taskId: Nullable<number> = null;
-    private readonly contextMenu: ContextMenuService<T>;
-    private readonly ngZone: NgZone;
 
     constructor(private readonly cd: ChangeDetectorRef, injector: Injector) {
         this.contextMenu = injector.get<ContextMenuService<T>>(ContextMenuService);

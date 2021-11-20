@@ -10,11 +10,11 @@ import { SortableMessage } from './sortable-message';
 
 @Injectable()
 export class SortableService<T> {
+    private skipInternalSort: boolean = false;
+    private sortChanges: Nullable<EventEmitter<OrderedField[]>> = null;
     public definition: PlainObjectOf<SortOrderType> = {};
     public positionMap: PlainObjectOf<number> = {};
     public sortableCount: number = 0;
-    private skipInternalSort: boolean = false;
-    private sortChanges: Nullable<EventEmitter<OrderedField[]>> = null;
 
     constructor(private readonly thread: WebWorkerThreadService, private readonly zone: NgZone) {}
 

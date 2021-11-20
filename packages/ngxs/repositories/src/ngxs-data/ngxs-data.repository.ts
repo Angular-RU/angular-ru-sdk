@@ -23,14 +23,6 @@ export abstract class AbstractNgxsDataRepository<T>
         return ensureDataStateContext<T, StateContext<T>>(this.context as StateContext<T>);
     }
 
-    public getState(): T {
-        return this.ctx.getState();
-    }
-
-    public dispatch(actions: ActionType | ActionType[]): Observable<void> {
-        return this.ctx.dispatch(actions);
-    }
-
     @DataAction()
     public patchState(@Payload('patchValue') val: PatchValue<T>): void {
         this.ctx.patchState(val);
@@ -45,5 +37,13 @@ export abstract class AbstractNgxsDataRepository<T>
     public reset(): void {
         this.ctx.setState(this.initialState);
         this.markAsDirtyAfterReset();
+    }
+
+    public getState(): T {
+        return this.ctx.getState();
+    }
+
+    public dispatch(actions: ActionType | ActionType[]): Observable<void> {
+        return this.ctx.dispatch(actions);
     }
 }

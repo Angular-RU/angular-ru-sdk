@@ -11,6 +11,7 @@ import { CodeDialogComponent } from '../../shared/dialog/code-dialog.component';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SampleFirstComponent implements OnInit, OnDestroy {
+    private idInterval: Nullable<number> = null;
     public width: string = '100%';
     public height: Nullable<number> = null;
     public rowHeight: Nullable<string> = null;
@@ -18,7 +19,6 @@ export class SampleFirstComponent implements OnInit, OnDestroy {
     public loading: boolean = false;
     public simple: PlainObject[] = [];
     public regenerate: boolean = false;
-    private idInterval: Nullable<number> = null;
 
     constructor(
         private readonly cd: ChangeDetectorRef,

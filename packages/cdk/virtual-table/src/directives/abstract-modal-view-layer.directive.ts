@@ -25,6 +25,12 @@ export interface PositionState {
 
 @Directive()
 export abstract class AbstractModalViewLayerDirective<T, K extends PositionState> implements OnDestroy {
+    @ViewChild('menu', { static: false }) protected menu!: ElementRef<HTMLDivElement>;
+    protected subscription: Nullable<Subscription> = null;
+    protected readonly app: ApplicationRef;
+    protected readonly filterable: FilterableService<T>;
+    protected readonly ngZone: NgZone;
+    protected readonly contextMenu: ContextMenuService<T>;
     public width: Nullable<number> = null;
     public height: Nullable<number> = null;
     public isViewed: boolean = false;
@@ -32,12 +38,6 @@ export abstract class AbstractModalViewLayerDirective<T, K extends PositionState
     public isShowed: boolean = false;
     public maxHeight: Nullable<number> = null;
     public minHeight: Nullable<number> = null;
-    @ViewChild('menu', { static: false }) protected menu!: ElementRef<HTMLDivElement>;
-    protected subscription: Nullable<Subscription> = null;
-    protected readonly app: ApplicationRef;
-    protected readonly filterable: FilterableService<T>;
-    protected readonly ngZone: NgZone;
-    protected readonly contextMenu: ContextMenuService<T>;
 
     protected constructor(protected readonly cd: ChangeDetectorRef, injector: Injector) {
         this.app = injector.get<ApplicationRef>(ApplicationRef);
@@ -70,8 +70,6 @@ export abstract class AbstractModalViewLayerDirective<T, K extends PositionState
         }
     }
 
-    public abstract get state(): Partial<K>;
-
     public get calculatedHeight(): number {
         let height: Nullable<number>;
 
@@ -91,11 +89,13 @@ export abstract class AbstractModalViewLayerDirective<T, K extends PositionState
         return height!;
     }
 
+    public abstract get state(): Partial<K>;
+
+    public abstract close(event: MouseEvent): void;
+
     public ngOnDestroy(): void {
         this.subscription?.unsubscribe();
     }
-
-    public abstract close(event: MouseEvent): void;
 
     protected update(): void {
         this.isViewed = isTrue(this.state.opened);

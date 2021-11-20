@@ -14,10 +14,10 @@ declare const hljs: Any;
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SampleSixteenComponent implements OnInit, AfterViewInit, OnDestroy {
+    private sub: Nullable<Subscription> = null;
     public data: PlainObject[] = [];
     public schema: Nullable<TableUpdateSchema> = null;
     public readonly testName: string = 'test';
-    private sub: Nullable<Subscription> = null;
 
     constructor(
         public readonly dialog: MatDialog,
