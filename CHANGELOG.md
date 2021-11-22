@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update commitlint dependencies to v15 (#1105) (d6d4ffe7)
+
+#### 0.0.0 (2021-11-22)
+
+##### Build System / Dependencies
+
 -   update dependency jest-preset-angular to v11.0.1 (#1111) (36a47588)
 
 #### 0.0.0 (2021-11-22)
