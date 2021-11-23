@@ -15,7 +15,7 @@ import { Observable } from 'rxjs';
 
 import { DATA_HTTP_CLIENT_INTERCEPTOR } from '../tokens/data-http-client-interceptor.token';
 import { DataConfiguratorService } from './data-configurator.service';
-import { LimitConcurrencyService } from './limit-concurency.service';
+import { LimitConcurrencyService } from './limit-concurrency.service';
 
 interface ReqProperty {
     method: string;
