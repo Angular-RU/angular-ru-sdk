@@ -1,3 +1,4 @@
+/* eslint-disable spellcheck/spell-checker */
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { ExcelService } from '@angular-ru/cdk/excel';
 import { TranslateService } from '@ngx-translate/core';

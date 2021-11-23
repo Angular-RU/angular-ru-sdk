@@ -1,3 +1,4 @@
+/* eslint-disable spellcheck/spell-checker */
 import { AbstractControl, FormControl, FormGroup, ValidatorFn } from '@angular/forms';
 import { requiredSomeValueValidator } from '@angular-ru/cdk/validators';
 
@@ -22,6 +23,7 @@ describe('[TEST]: requiredSomeValueValidator', () => {
         expect(() => validator(control))?.toThrow(new Error('requiredSomeValue must be used on form group'));
     });
 
+    // TODO: refactor duplicate tests
     it('should return error if all controls with no values: undefined, null, NaN', () => {
         form.controls.aaa?.setValue(undefined);
         form.controls.bbb?.setValue(null);

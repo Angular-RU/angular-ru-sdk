@@ -85,7 +85,7 @@ export class TableClipboardService {
                                 const keys: string[] = Object.keys(firstEntry);
                                 const htmlHeader: string = this.generateHeaderRow(keys);
                                 const htmlBody: string = entities
-                                    .map((asd: PlainObject): string => this.generateBodyRow(asd, keys))
+                                    .map((obj: PlainObject): string => this.generateBodyRow(obj, keys))
                                     .join('');
 
                                 return `<html><body><table border="1" cellspacing="0"><tbody>${htmlHeader}${htmlBody}</tbody></table></body></html>`;

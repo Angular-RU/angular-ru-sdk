@@ -12,6 +12,7 @@ import { isString } from '@angular-ru/cdk/string';
 import { Any, Nullable } from '@angular-ru/cdk/typings';
 import { isNil, isNotNil, isTrue } from '@angular-ru/cdk/utils';
 
+// eslint-disable-next-line spellcheck/spell-checker
 export const NG_FACTORY_DEF: string = 'ɵfac' as const;
 export const PATCHER_KEY: string = 'NG_RU_PATCHER' as const;
 

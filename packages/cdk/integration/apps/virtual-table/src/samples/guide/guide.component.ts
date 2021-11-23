@@ -1,3 +1,4 @@
+/* eslint-disable spellcheck/spell-checker */
 import { AfterViewInit, ChangeDetectionStrategy, Component } from '@angular/core';
 import { Any, PlainObject } from '@angular-ru/cdk/typings';
 

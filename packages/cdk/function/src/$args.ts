@@ -1,8 +1,8 @@
 import { Fn } from '@angular-ru/cdk/typings';
 
-export function $args(func: Fn): string[] {
+export function $args(fn: Fn): string[] {
     return (
-        String(func) // fast to string
+        String(fn) // fast to string
             .replace(/[/][/].*$/gm, '') // strip single-line comments
             .replace(/\s+/g, '') // strip white space
             .replace(/[/][*][^/*]*[*][/]/g, '') // strip multi-line comments

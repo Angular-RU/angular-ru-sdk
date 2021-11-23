@@ -1,28 +1,8 @@
-/* eslint-disable */
 /**
  * @type {import('eslint').Linter.Config}
  */
 module.exports = {
-    env: {
-        browser: true,
-        es6: true,
-        node: true
-    },
-    ignorePatterns: [
-        'dist',
-        'node_modules',
-        '**/node_modules/**',
-        '**/schematics/*',
-        '**/coverage/**',
-        'eslintrc.js',
-        '.eslintrc.js',
-        '**/*.d.ts',
-        '**/dist/**',
-        '**/docs/**',
-        '.cache/**',
-        '.git/**',
-        '.idea/**'
-    ],
+    extends: ['./scope/base.js', './scope/ignore-patterns.js', './scope/spell-check.js'],
     overrides: [
         {
             files: ['*.ts'],
@@ -218,7 +198,6 @@ module.exports = {
                 'no-param-reassign': ['error'],
                 'no-constant-condition': 'error',
                 'no-debugger': 'error',
-                'no-duplicate-imports': 'error',
                 'no-empty': 'off',
                 'no-empty-functions': 'off',
                 'no-eval': 'error',
@@ -309,10 +288,12 @@ module.exports = {
                 'simple-import-sort/exports': 'error',
                 'import/first': 'error',
                 'import/no-default-export': 'error',
-                'import/no-duplicates': 'error',
                 'import/exports-last': 'off',
                 'import/newline-after-import': ['error', { count: 1 }],
                 'import/no-webpack-loader-syntax': 'error',
+                'import/no-duplicates': 'off',
+                'no-duplicate-imports': 'off',
+                '@typescript-eslint/no-duplicate-imports': 'error',
 
                 /**
                  * no cyrillic
