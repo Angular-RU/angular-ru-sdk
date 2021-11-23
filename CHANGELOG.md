@@ -2,6 +2,13 @@
 
 ##### Build System / Dependencies
 
+-   update dependency @types/node to v16.11.10 (#1112) (e5d560ab)
+-   update ngx-translate dependencies (#1106) (6bb19fd0)
+
+#### 0.0.0 (2021-11-23)
+
+##### Build System / Dependencies
+
 -   update dependency class-transformer to v0.5.1 (#1107) (ae41d0a9)
 
 ##### New Features
