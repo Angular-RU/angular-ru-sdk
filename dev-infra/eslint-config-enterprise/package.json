@@ -8,7 +8,7 @@
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "main": "index.js",
-    "files": ["index.js", "README.md"],
+    "files": ["index.js", "scope", "README.md"],
     "scripts": {
         "prepare:bad-i18n": "FORCE_COLOR=0 yarn -s eslint -c index.js \"**/file-suites/**/bad.json\" > ./out/eslint.bad-i18n.report.txt || exit 0",
         "prepare:bad-ts": "FORCE_COLOR=0 yarn -s eslint -c index.js \"**/file-suites/*.bad.ts\" > ./out/eslint.bad-file.report.txt || exit 0",
@@ -50,7 +50,8 @@
         "eslint-plugin-prettier": "4.0.0",
         "eslint-plugin-rxjs": "3.3.7",
         "eslint-plugin-simple-import-sort": "7.0.0",
-        "eslint-plugin-sonarjs": "0.10.0"
+        "eslint-plugin-sonarjs": "0.10.0",
+        "eslint-plugin-spellcheck": "0.0.19"
     },
     "publishConfig": {
         "access": "public"

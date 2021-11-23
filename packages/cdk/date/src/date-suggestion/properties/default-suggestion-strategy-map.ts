@@ -1,10 +1,10 @@
 import { DefaultDateIntervalSuggestion } from '../domain/enums/default-date-interval-suggestion';
 import { SuggestionStrategyMap } from '../domain/types/suggestion-strategy-map';
-import { DateSuggestionCalendarWeekStrategy } from '../srategies/date-suggestion-calendar-week.strategy';
-import { DateSuggestionFirstDayOfIntervalStrategy } from '../srategies/date-suggestion-first-day-of-interval.strategy';
-import { DateSuggestionLastDaysOfIntervalStrategy } from '../srategies/date-suggestion-last-days-of-interval.strategy';
-import { DateSuggestionLastFewDaysStrategy } from '../srategies/date-suggestion-last-few-days.strategy';
-import { DateSuggestionSomeDayAgoStrategy } from '../srategies/date-suggestion-some-day-ago.strategy';
+import { DateSuggestionCalendarWeekStrategy } from '../strategies/date-suggestion-calendar-week.strategy';
+import { DateSuggestionFirstDayOfIntervalStrategy } from '../strategies/date-suggestion-first-day-of-interval.strategy';
+import { DateSuggestionLastDaysOfIntervalStrategy } from '../strategies/date-suggestion-last-days-of-interval.strategy';
+import { DateSuggestionLastFewDaysStrategy } from '../strategies/date-suggestion-last-few-days.strategy';
+import { DateSuggestionSomeDayAgoStrategy } from '../strategies/date-suggestion-some-day-ago.strategy';
 import { DAYS_COUNT } from '../tokens/days-count';
 
 export const DEFAULT_SUGGESTION_STRATEGY_MAP: SuggestionStrategyMap<DefaultDateIntervalSuggestion> = {
