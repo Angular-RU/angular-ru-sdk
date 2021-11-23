@@ -396,3 +396,8 @@ for (let i: number = 0; i < 10; ++i) {
     });
     fooX += 1;
 }
+
+// note: xfd
+const res: string = `note: xfd`;
+
+console.error(res);
