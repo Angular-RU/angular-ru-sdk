@@ -1,3 +1,19 @@
+#### 0.0.0 (2021-11-23)
+
+##### Build System / Dependencies
+
+-   update dependency class-transformer to v0.5.1 (#1107) (ae41d0a9)
+
+##### New Features
+
+-   **typescript,jest:** improved performance (9e88be2c)
+-   **eslint-config-enterprise:**
+    -   add spell check plugin (cde77496)
+    -   add spell check plugin (8ddc8f6e)
+    -   add spell check plugin (209a522f)
+    -   add spell check plugin (a28394b1)
+    -   add spell check plugin (9b479d3a)
+
 #### 0.0.0 (2021-11-22)
 
 ##### Build System / Dependencies
