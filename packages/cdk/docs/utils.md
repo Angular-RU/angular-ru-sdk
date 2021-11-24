@@ -301,3 +301,26 @@ expect(fallbackIfEmpty(null, 'fallback')).toEqual('fallback');
 expect(fallbackIfEmpty('  ', 'fallback')).toEqual('fallback');
 expect(fallbackIfEmpty('', 'fallback')).toEqual('fallback');
 ```
+
+-   `replaceUnits`
+
+```ts
+import { DEFAULT_UNITS_MAP, replaceUnits, UnitsMap } from '@angular-ru/cdk/utils';
+
+expect(replaceUnits('1s', DEFAULT_UNITS_MAP)).toBe('1');
+expect(replaceUnits('1m', DEFAULT_UNITS_MAP)).toBe('60');
+expect(replaceUnits('1h', DEFAULT_UNITS_MAP)).toBe('3600');
+expect(replaceUnits('1d', DEFAULT_UNITS_MAP)).toBe('86400');
+expect(replaceUnits('1w', DEFAULT_UNITS_MAP)).toBe('604800');
+
+const CUSTOM_UNITS_MAP: UnitsMap = {
+    m: 60,
+    h: 3600
+};
+
+expect(replaceUnits('1m', CUSTOM_UNITS_MAP)).toBe('60');
+expect(replaceUnits('2m', CUSTOM_UNITS_MAP)).toBe('120');
+expect(replaceUnits('1.5m', CUSTOM_UNITS_MAP)).toBe('90');
+expect(replaceUnits('1.5h 2m', CUSTOM_UNITS_MAP)).toBe('5520');
+expect(replaceUnits('text 1.5h 2m text', CUSTOM_UNITS_MAP)).toBe('text 5520 text');
+```
