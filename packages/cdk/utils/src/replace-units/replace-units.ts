@@ -1,44 +1,62 @@
-import { Nullable } from '@angular-ru/cdk/typings';
+import { REG_EXP_NUMBER } from '@angular-ru/cdk/regexp';
 
-import { isNil } from '../is-nil';
-import { isNotNil } from '../is-not-nil';
 import { UnitsMap } from './types';
 
-const REGEXP_NUMBER: string = `[0-9]+([\.][0-9]+)?`;
+const NUMBER_PATTERN: string = new RegExp(REG_EXP_NUMBER.source.replace('^', '').replace('$', '')).source;
 
 export function replaceUnits(text: string, unitsMap: UnitsMap): string {
-    let result: string = text;
+    return parseMultiLineText(text, unitsMap);
+}
 
-    result = replaceMultiple(result, unitsMap);
-    result = replaceSingle(result, unitsMap);
+function parseMultiLineText(text: string, unitsMap: UnitsMap): string {
+    const textList: string[] = [];
 
-    return result;
+    text.split('\n').forEach((item: string): void => {
+        let prepared: string = item;
+
+        prepared = replaceMultiple(prepared, unitsMap);
+        prepared = replaceSingle(prepared, unitsMap);
+        textList.push(prepared);
+    });
+
+    return textList.join('\n');
 }
 
 function replaceMultiple(value: string, unitsMap: UnitsMap): string {
-    const unitKeys: string = getUnitKeys(unitsMap);
-    const pattern: RegExp = new RegExp(
-        `(^|\\s)((${REGEXP_NUMBER})(${unitKeys}))(\\s+((${REGEXP_NUMBER})(${unitKeys})))+(\\s|$)`
-    );
+    const pattern: RegExp = getMultipleUnitsPattern(unitsMap);
 
-    let result: string = value;
-    let match: Nullable<string> = null;
+    let text: string = value;
 
-    while (pattern.test(result)) {
-        match = pattern.exec(result)?.[0] ?? '';
-        const num: Nullable<number> = convertToNumberMultiple(match, unitsMap);
-        const unitValue: string = isNil(num) ? '' : num.toString();
-        const prepared: string = match.replace(RegExp(/\S.*\S/), unitValue);
-
-        result = result.replace(pattern, prepared);
+    while (pattern.test(text)) {
+        text = replaceByMatch(text, pattern, unitsMap);
     }
 
-    return result;
+    return text;
 }
 
-function convertToNumberMultiple(inputUnit: string, unitsMap: UnitsMap): Nullable<number> {
-    const unit: string = inputUnit.trim();
-    const sum: number = unit
+function replaceSingle(value: string, unitsMap: UnitsMap): string {
+    const pattern: RegExp = getSingleUnitPattern(unitsMap);
+
+    let text: string = value;
+
+    while (pattern.test(text)) {
+        text = replaceByMatch(text, pattern, unitsMap);
+    }
+
+    return text;
+}
+
+function replaceByMatch(text: string, pattern: RegExp, unitsMap: UnitsMap): string {
+    const match: string = pattern.exec(text)?.[0] ?? '';
+    const num: number = convertToNumber(match, unitsMap);
+    const prepared: string = match.replace(RegExp(/\S.*\S/), num.toString());
+
+    return text.replace(pattern, prepared);
+}
+
+function convertToNumber(text: string, unitsMap: UnitsMap): number {
+    const units: string = text.trim();
+    const sum: number = units
         .split(' ')
         .filter((item: string): boolean => item !== '')
         .map((item: string): number => {
@@ -52,48 +70,20 @@ function convertToNumberMultiple(inputUnit: string, unitsMap: UnitsMap): Nullabl
     return sum;
 }
 
-function replaceSingle(value: string, unitsMap: UnitsMap): string {
+function getMultipleUnitsPattern(unitsMap: UnitsMap): RegExp {
     const unitKeys: string = getUnitKeys(unitsMap);
-    const pattern: RegExp = new RegExp(`(^|\\s)(${REGEXP_NUMBER})(${unitKeys})(\\s|$)`);
 
-    let result: string = value;
-    let match: Nullable<string> = null;
-
-    while (pattern.test(result)) {
-        match = pattern.exec(result)?.[0] ?? '';
-        const num: Nullable<number> = convertToNumberSingle(match, unitsMap);
-        const unitValue: string = isNil(num) ? '' : num.toString();
-        const prepared: string = match.replace(RegExp(/\S.*\S/), unitValue);
-
-        result = result.replace(pattern, prepared);
-    }
-
-    return result;
+    return new RegExp(`(^|\\s)((${NUMBER_PATTERN})(${unitKeys}))(\\s+((${NUMBER_PATTERN})(${unitKeys})))+(\\s|$)`);
 }
 
-function convertToNumberSingle(inputUnit: string, unitsMap: UnitsMap): Nullable<number> {
-    const unit: string = inputUnit.trim();
-
-    if (isValidMatch(unit, unitsMap)) {
-        const coefficient: number = getCoefficient(unit);
-        const unitValue: number = getUnitValue(unit, unitsMap);
-
-        return coefficient * unitValue;
-    } else {
-        return null;
-    }
-}
-
-function isValidMatch(unit: string, unitsMap: UnitsMap): boolean {
+function getSingleUnitPattern(unitsMap: UnitsMap): RegExp {
     const unitKeys: string = getUnitKeys(unitsMap);
-    const pattern: RegExp = RegExp(`^${REGEXP_NUMBER}(${unitKeys})$`);
 
-    return isNotNil(unit.match(pattern));
+    return new RegExp(`(^|\\s)(${NUMBER_PATTERN})(${unitKeys})(\\s|$)`);
 }
 
 function getCoefficient(unit: string): number {
-    const prefix: string = unit.match(`^${REGEXP_NUMBER}`)?.[0] ?? '';
-
+    const prefix: string = unit.match(`^${NUMBER_PATTERN}`)?.[0] ?? '';
     const result: number = prefix.includes('.') ? parseFloat(prefix) : parseInt(prefix);
 
     return result;
