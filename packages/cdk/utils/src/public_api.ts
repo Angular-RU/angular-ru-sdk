@@ -26,5 +26,8 @@ export { isNotNil } from './is-not-nil';
 export { isTrue } from './is-true';
 export { isTruthy } from './is-truthy';
 export { parseXmlFromString } from './parse-xml-from-string';
+export { DEFAULT_UNITS_MAP } from './replace-units/properties';
+export { replaceUnits } from './replace-units/replace-units';
+export { UnitsMap } from './replace-units/types';
 export { serializeXmlToString } from './serialize-xml-to-string';
 export { tryParseJson } from './try-parse-json';
