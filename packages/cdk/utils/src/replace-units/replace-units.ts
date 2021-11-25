@@ -1,8 +1,6 @@
-import { REG_EXP_NUMBER } from '@angular-ru/cdk/regexp';
-
 import { UnitsMap } from './types';
 
-const NUMBER_PATTERN: string = new RegExp(REG_EXP_NUMBER.source.replace('^', '').replace('$', '')).source;
+const NUMBER_PATTERN: string = `([0-9]+([\.][0-9]+)?)`;
 
 export function replaceUnits(text: string, unitsMap: UnitsMap): string {
     return parseMultiLineText(text, unitsMap);
