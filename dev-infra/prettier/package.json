@@ -11,7 +11,7 @@
     "files": ["prettier.config.js", "README.md"],
     "dependencies": {
         "@prettier/plugin-xml": "1.1.0",
-        "prettier": "2.4.1",
+        "prettier": "2.5.0",
         "prettier-plugin-organize-attributes": "0.0.4"
     },
     "publishConfig": {
