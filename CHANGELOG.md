@@ -1,5 +1,11 @@
 #### 0.0.0 (2021-11-25)
 
+##### Build System / Dependencies
+
+-   update dependency prettier to v2.5.0 (#1114) (bb9968d5)
+
+#### 0.0.0 (2021-11-25)
+
 ##### New Features
 
 -   added util replace-with-numbers (#1110) (84f6007b)
