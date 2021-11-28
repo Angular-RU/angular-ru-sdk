@@ -18,10 +18,6 @@ export class TrimInputDirective implements OnInit {
         this.name = name;
     }
 
-    public ngOnInit(): void {
-        this.trimValue();
-    }
-
     @HostListener('keydown.enter')
     public onEnter(): void {
         this.trimValue();
@@ -29,6 +25,10 @@ export class TrimInputDirective implements OnInit {
 
     @HostListener('blur')
     public onBlur(): void {
+        this.trimValue();
+    }
+
+    public ngOnInit(): void {
         this.trimValue();
     }
 

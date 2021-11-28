@@ -31,9 +31,9 @@ export abstract class AbstractNgxsDataEntityCollectionsRepository<
     extends AbstractRepository<EntityCollections<V, K, C>>
     implements EntityRepository<V, K, C>
 {
+    private readonly context!: EntityContext<V, K, C>;
     public primaryKey: string = PrimaryKey.ID;
     public comparator: EntityComparator<V> | null = null;
-    private readonly context!: EntityContext<V, K, C>;
 
     @Computed()
     public get snapshot(): EntityCollections<V, K, C> {
@@ -78,34 +78,6 @@ export abstract class AbstractNgxsDataEntityCollectionsRepository<
         return ensureDataStateContext<EntityCollections<V, K, C>, StateContext<EntityCollections<V, K, C>>>(
             this.context as StateContext<EntityCollections<V, K, C>>
         );
-    }
-
-    public setComparator(comparator: EntityComparator<V> | null): this {
-        this.comparator = comparator;
-
-        return this;
-    }
-
-    public dispatch(actions: ActionType | ActionType[]): Observable<void> {
-        return this.ctx.dispatch(actions);
-    }
-
-    public getState(): EntityCollections<V, K, C> {
-        return this.ctx.getState();
-    }
-
-    public selectId(entity: V): K {
-        return (entity as Any)?.[this.primaryKey];
-    }
-
-    public selectOne(id: K): V | null {
-        return this.snapshot.entities[id] ?? null;
-    }
-
-    public selectAll(): V[] {
-        const state: EntityCollections<V, K, C> = this.getState();
-
-        return state.ids.map((id: K): V => state.entities[id] as V);
     }
 
     @DataAction()
@@ -205,6 +177,34 @@ export abstract class AbstractNgxsDataEntityCollectionsRepository<
         }
 
         this.setEntitiesState(this.getState());
+    }
+
+    public setComparator(comparator: EntityComparator<V> | null): this {
+        this.comparator = comparator;
+
+        return this;
+    }
+
+    public dispatch(actions: ActionType | ActionType[]): Observable<void> {
+        return this.ctx.dispatch(actions);
+    }
+
+    public getState(): EntityCollections<V, K, C> {
+        return this.ctx.getState();
+    }
+
+    public selectId(entity: V): K {
+        return (entity as Any)?.[this.primaryKey];
+    }
+
+    public selectOne(id: K): V | null {
+        return this.snapshot.entities[id] ?? null;
+    }
+
+    public selectAll(): V[] {
+        const state: EntityCollections<V, K, C> = this.getState();
+
+        return state.ids.map((id: K): V => state.entities[id] as V);
     }
 
     protected addEntityOne(entity: V): void {

@@ -1,19 +1,17 @@
 {
     "name": "@angular-ru/commitlint",
-    "version": "12.26.3",
+    "version": "12.28.1",
     "description": "Shared commit lint config for Angular projects",
     "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
     "repository": "git+https://github.com/Angular-RU/angular-ru-sdk.git",
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "main": "index.js",
-    "files": [
-        "index.js"
-    ],
+    "files": ["index.js"],
     "dependencies": {
-        "@commitlint/cli": "13.2.1",
-        "@commitlint/config-angular": "13.2.0",
-        "@commitlint/config-conventional": "14.1.0"
+        "@commitlint/cli": "15.0.0",
+        "@commitlint/config-angular": "15.0.0",
+        "@commitlint/config-conventional": "15.0.0"
     },
     "publishConfig": {
         "access": "public"

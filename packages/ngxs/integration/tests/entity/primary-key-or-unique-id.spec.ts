@@ -19,15 +19,13 @@ describe('[TEST]: Entity - primary key or unique id', () => {
         })
         @Injectable()
         class LessonEntitiesState extends NgxsDataEntityCollectionsRepository<Lesson> {
-            public set(val: EntityCollections<Lesson, string | number>): void {
-                this.setEntitiesState(val);
-            }
-
-            @Action({
-                type: 'preparedLesson'
-            })
+            @Action({ type: 'preparedLesson' })
             public preparedLesson() {
                 this.addEntityOne({ lessonId: 2, title: 'B' });
+            }
+
+            public set(val: EntityCollections<Lesson, string | number>): void {
+                this.setEntitiesState(val);
             }
         }
 

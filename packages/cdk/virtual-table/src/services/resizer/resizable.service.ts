@@ -10,9 +10,9 @@ const { COLUMN_RESIZE_MIN_WIDTH }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OP
 
 @Injectable()
 export class ResizableService {
+    private destroyed$: Nullable<ReplaySubject<boolean>> = null;
     public startX: Nullable<number> = null;
     public startWidth: Nullable<number> = null;
-    private destroyed$: Nullable<ReplaySubject<boolean>> = null;
 
     private static clearSelection(): void {
         if (isNotNil(window.getSelection)) {

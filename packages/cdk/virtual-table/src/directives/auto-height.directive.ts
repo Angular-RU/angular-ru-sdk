@@ -24,15 +24,15 @@ const RECALCULATE_HEIGHT: number = 100;
 
 @Directive({ selector: '[autoHeight]' })
 export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
-    @Input() public autoHeight: Partial<DynamicHeightOptions> = {};
-    @Input() public tableViewport: Partial<HTMLDivElement> = {};
-    @Input() public sourceRef: T[] = [];
-    @Output() public readonly recalculatedHeight: EventEmitter<void> = new EventEmitter(true);
     private _destroy$: Subject<boolean> = new Subject<boolean>();
     private readonly minHeight: number = 0;
     private useOnlyAutoViewPort: boolean = false;
     private isDirtyCheck: boolean = false;
     private taskId: Nullable<number> = null;
+    @Input() public autoHeight: Partial<DynamicHeightOptions> = {};
+    @Input() public tableViewport: Partial<HTMLDivElement> = {};
+    @Input() public sourceRef: T[] = [];
+    @Output() public readonly recalculatedHeight: EventEmitter<void> = new EventEmitter(true);
 
     constructor(private readonly element: ElementRef, public readonly ngZone: NgZone) {}
 

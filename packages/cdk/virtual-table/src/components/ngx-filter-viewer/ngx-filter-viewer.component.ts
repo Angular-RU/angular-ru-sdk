@@ -31,15 +31,15 @@ const { TIME_RELOAD }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
     encapsulation: ViewEncapsulation.None
 })
 export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy {
+    private subscription: Nullable<Subscription> = null;
+    private taskId: Nullable<number> = null;
+    private readonly ngZone: NgZone;
+    private readonly filterable: FilterableService<T>;
     @Input() public text?: Nullable<PlainObject | string> = null;
     @Input() public key?: Nullable<string> = null;
     @Input() public index?: Nullable<number> = 0;
     public html?: Nullable<string | SafeHtml> = null;
     public founded: boolean = false;
-    private subscription: Nullable<Subscription> = null;
-    private taskId: Nullable<number> = null;
-    private readonly ngZone: NgZone;
-    private readonly filterable: FilterableService<T>;
 
     constructor(private readonly cd: ChangeDetectorRef, private readonly sanitizer: DomSanitizer, injector: Injector) {
         this.cd.reattach();

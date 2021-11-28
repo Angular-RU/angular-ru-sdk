@@ -30,7 +30,11 @@ export class TrimDirective {
 })
 export class AutoSplitDirective {
     private descriptor?: ControlValueInterceptorDescriptor;
-    @Input('autoSplit') public set enable(enable: string | boolean) {
+
+    constructor(private readonly interceptor: ControlValueInterceptor) {}
+
+    @Input('autoSplit')
+    public set enable(enable: string | boolean) {
         if (coerceBoolean(enable)) {
             this.descriptor = {
                 toModelValue: (inline: string): string[] => (isNotNil(',') ? inline.split(',') : [inline]),
@@ -41,6 +45,4 @@ export class AutoSplitDirective {
             this.interceptor.detach(this.descriptor);
         }
     }
-
-    constructor(private readonly interceptor: ControlValueInterceptor) {}
 }

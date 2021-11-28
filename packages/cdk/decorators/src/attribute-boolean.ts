@@ -14,6 +14,7 @@ export function AttributeBoolean(): PropertyDecorator {
                 descriptor?.set?.call(this, this[uniqueRefKey]);
             },
             get(): boolean {
+                // eslint-disable-next-line @typescript-eslint/unbound-method
                 return isNotNil(descriptor?.get) ? descriptor?.get.call(this) : this[uniqueRefKey] ?? false;
             }
         };

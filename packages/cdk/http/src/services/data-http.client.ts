@@ -17,7 +17,7 @@ import { DATA_HTTP_CLIENT_INTERCEPTOR } from '../tokens/data-http-client-interce
 import { RestTemplate } from '../utils/rest-template';
 import { AbstractHttpClient } from './abstract-http.client';
 import { DataConfiguratorService } from './data-configurator.service';
-import { LimitConcurrencyService } from './limit-concurency.service';
+import { LimitConcurrencyService } from './limit-concurrency.service';
 
 @Injectable()
 export class DataHttpClient<K = unknown> extends AbstractHttpClient<K> {

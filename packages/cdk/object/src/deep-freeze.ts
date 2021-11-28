@@ -13,6 +13,8 @@ export const deepFreeze: (value: Any) => Any = (value: Any): Any => {
     Object.freeze(value);
 
     const oIsFunction: boolean = typeof value === 'function';
+
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     const hasOwnProp: (v: PropertyKey) => boolean = Object.prototype.hasOwnProperty;
 
     // eslint-disable-next-line complexity

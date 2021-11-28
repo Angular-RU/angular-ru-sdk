@@ -14,22 +14,25 @@ describe('[TEST]: Attribute boolean', () => {
         template: ''
     })
     class ChildComponent {
-        @Input() @AttributeBoolean() public declare prop: InputBoolean;
-
-        public _propWithSetter?: string;
-        @AttributeBoolean()
         @Input()
-        public set propWithSetter(value: InputBoolean) {
-            this._propWithSetter = `propWithSetter: ${value}`;
-        }
+        @AttributeBoolean()
+        public prop: InputBoolean;
+
+        public hookCalls: boolean[] = [];
+        public _propWithSetter?: string;
 
         public get propWithSetter(): InputBoolean {
             return isNotNil(this._propWithSetter) ? `${this._propWithSetter} - from getter` : undefined;
         }
 
-        public hookCalls: boolean[] = [];
-        @AttributeBoolean()
         @Input()
+        @AttributeBoolean()
+        public set propWithSetter(value: InputBoolean) {
+            this._propWithSetter = `propWithSetter: ${value}`;
+        }
+
+        @Input()
+        @AttributeBoolean()
         public set hookProp(value: InputBoolean) {
             this.hookCalls.push(value as boolean);
         }

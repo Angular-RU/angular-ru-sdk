@@ -1,3 +1,4 @@
+/* eslint-disable spellcheck/spell-checker */
 import { AbstractControl, FormControl, FormGroup, ValidatorFn } from '@angular/forms';
 import { requiredSomeValueByKeysValidator } from '@angular-ru/cdk/validators';
 

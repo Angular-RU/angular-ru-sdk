@@ -265,6 +265,8 @@ describe('[TEST]: Common utils', () => {
         it('should create objectUrl from input blob', () => {
             jest.spyOn(document, 'createElement').mockImplementation(() => link);
             downloadFile(file);
+
+            // eslint-disable-next-line @typescript-eslint/unbound-method
             expect(window.URL.createObjectURL).toHaveBeenCalledTimes(1);
         });
 
@@ -305,6 +307,8 @@ describe('[TEST]: Common utils', () => {
         it('should download the valid file', () => {
             jest.spyOn(document, 'createElement').mockImplementation(() => link);
             downloadFile(file);
+
+            // eslint-disable-next-line @typescript-eslint/unbound-method
             expect(link.click).toHaveBeenCalledTimes(1);
         });
 

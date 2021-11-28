@@ -83,7 +83,7 @@ describe('[TEST]: Storage plugin', () => {
             expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_PERSISTENCE_STATE);
         });
 
-        it('dont work when incorrect providers (without NGXS_DATA_STORAGE_CONTAINER)', () => {
+        it(`don't work when incorrect providers (without NGXS_DATA_STORAGE_CONTAINER)`, () => {
             @Persistence()
             @StateRepository()
             @State({ name: 'custom', defaults: 'hello world' })

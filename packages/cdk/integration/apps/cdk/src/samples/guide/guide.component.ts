@@ -1,3 +1,4 @@
+/* eslint-disable spellcheck/spell-checker */
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 

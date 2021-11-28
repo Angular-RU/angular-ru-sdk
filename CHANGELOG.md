@@ -1,3 +1,149 @@
+#### 0.0.0 (2021-11-25)
+
+##### Build System / Dependencies
+
+-   update dependency prettier to v2.5.0 (#1114) (bb9968d5)
+
+#### 0.0.0 (2021-11-25)
+
+##### New Features
+
+-   added util replace-with-numbers (#1110) (84f6007b)
+
+#### 0.0.0 (2021-11-23)
+
+##### Build System / Dependencies
+
+-   update dependency @types/node to v16.11.10 (#1112) (e5d560ab)
+-   update ngx-translate dependencies (#1106) (6bb19fd0)
+
+#### 0.0.0 (2021-11-23)
+
+##### Build System / Dependencies
+
+-   update dependency class-transformer to v0.5.1 (#1107) (ae41d0a9)
+
+##### New Features
+
+-   **typescript,jest:** improved performance (9e88be2c)
+-   **eslint-config-enterprise:**
+    -   add spell check plugin (cde77496)
+    -   add spell check plugin (8ddc8f6e)
+    -   add spell check plugin (209a522f)
+    -   add spell check plugin (a28394b1)
+    -   add spell check plugin (9b479d3a)
+
+#### 0.0.0 (2021-11-22)
+
+##### Build System / Dependencies
+
+-   update commitlint dependencies to v15 (#1105) (d6d4ffe7)
+
+#### 0.0.0 (2021-11-22)
+
+##### Build System / Dependencies
+
+-   update dependency jest-preset-angular to v11.0.1 (#1111) (36a47588)
+
+#### 0.0.0 (2021-11-22)
+
+##### Build System / Dependencies
+
+-   update dependency lint-staged to v12.1.2 (#1109) (c8ab00ed)
+
+#### 0.0.0 (2021-11-21)
+
+##### Build System / Dependencies
+
+-   update dependency lint-staged to v12.1.1 (#1108) (689784aa)
+
+#### 0.0.0 (2021-11-20)
+
+##### New Features
+
+-   **eslint-config-enterprise:**
+    -   improve member ordering (d17f8ae5)
+    -   add no-extraneous-class rule (f0356971)
+
+#### 0.0.0 (2021-11-19)
+
+##### Build System / Dependencies
+
+-   update eslint dependencies (#1103) (407c724f)
+
+#### 0.0.0 (2021-11-19)
+
+##### Build System / Dependencies
+
+-   update dependency @types/node to v16.11.9 (#1104) (fb6f4914)
+
+#### 0.0.0 (2021-11-19)
+
+##### Build System / Dependencies
+
+-   update dependency @types/jest to v27.0.3 (#1101) (015010a3)
+
+#### 0.0.0 (2021-11-19)
+
+##### Build System / Dependencies
+
+-   update all dependencies (minor/patch) (#1102) (579f13f2)
+
+##### Continuous Integration
+
+-   fix failed tests (a0168917)
+
+#### 0.0.0 (2021-11-18)
+
+##### New Features
+
+-   **eslint-config-enterprise:**
+    -   restrict unbound methods (57e57e62)
+    -   add html plugin (dccd3d97)
+-   **dev-dependencies:** upgrade lint-staged (4d649e55)
+-   **renovate:** add new groups (dd1cd235)
+
+#### 0.0.0 (2021-11-18)
+
+##### New Features
+
+-   **prettier:** add xml plugin (2891c1df)
+
+#### 0.0.0 (2021-11-18)
+
+##### Build System / Dependencies
+
+-   update dependency jest-preset-angular to v11 (#1100) (a0af8afc)
+
+#### 0.0.0 (2021-11-18)
+
+##### Build System / Dependencies
+
+-   update dependency karma to v6.3.9 (#1094) (419dac2e)
+
+##### Bug Fixes
+
+-   **cdk:** fix not-found display condition (#1099) (e2f52292)
+
+#### 0.0.0 (2021-11-15)
+
+##### Build System / Dependencies
+
+-   update dependency @types/eslint to v7.29.0 (#1092) (7fb0ae0e)
+-   update dependency ngx-toastr to v14.2.0 (#1090) (67a1604c)
+
+#### 0.0.0 (2021-11-12)
+
+##### Build System / Dependencies
+
+-   update dependency sort-package-json to v1.53.1 (#1089) (c2e04166)
+
+#### 0.0.0 (2021-11-12)
+
+##### Build System / Dependencies
+
+-   update dependency sort-package-json to v1.53.0 (#1088) (5bd079bd)
+
 #### 0.0.0 (2021-11-10)
 
 ##### Build System / Dependencies

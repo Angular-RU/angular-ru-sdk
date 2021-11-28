@@ -14,17 +14,17 @@ export class ConvertCaseDirective implements AfterViewInit {
         return this.el.nativeElement;
     }
 
-    public ngAfterViewInit(): void {
-        if (this.element.value) {
-            this.onInput();
-        }
-    }
-
     @HostListener('input')
     public onInput(): void {
         const dirtyValue: string = toStringVal(this.element.value);
 
         this.element.value = this.toLowerCase ? dirtyValue.toLowerCase() : dirtyValue.toUpperCase();
         this.ngControl?.reset(this.element.value);
+    }
+
+    public ngAfterViewInit(): void {
+        if (this.element.value) {
+            this.onInput();
+        }
     }
 }

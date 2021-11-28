@@ -113,6 +113,7 @@ export class NgxsDataStoragePlugin implements NgxsPlugin, DataStoragePlugin {
 
             instance?.browserStorageEvents$.next(event);
 
+            // eslint-disable-next-line @typescript-eslint/unbound-method
             if (isTruthy(instance?.ngxsDataAfterStorageEvent)) {
                 instance?.ngxsDataAfterStorageEvent?.(event);
             }

@@ -198,12 +198,12 @@ describe('[TEST]: CountState', () => {
         })
         @Injectable()
         class CountState extends NgxsImmutableDataRepository<number> {
-            public withoutAction(val: number): void {
+            @DataAction()
+            public withAction(@Payload('val') val: number): void {
                 this.ctx.setState(val);
             }
 
-            @DataAction()
-            public withAction(@Payload('val') val: number): void {
+            public withoutAction(val: number): void {
                 this.ctx.setState(val);
             }
         }

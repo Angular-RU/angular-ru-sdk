@@ -10,6 +10,7 @@ import { SelectionRange } from './selection-range';
 
 @Injectable()
 export class SelectionService<T> implements OnDestroy {
+    private readonly handler: PlainObjectOf<Fn> = {};
     public selectionModel: SelectionMap<T> = new SelectionMap();
     public range: SelectionRange = new SelectionRange();
     public selectionStart: SelectionStatus = { status: false };
@@ -18,7 +19,6 @@ export class SelectionService<T> implements OnDestroy {
     public onChanges$: Subject<void> = new Subject<void>();
     public selectionModeIsEnabled: boolean = false;
     public rows: Nullable<T[]> = null;
-    private readonly handler: PlainObjectOf<Fn> = {};
 
     constructor(private readonly ngZone: NgZone) {}
 

@@ -169,11 +169,11 @@ describe('[TEST]: Object', () => {
     describe('getter', () => {
         it('is getter', () => {
             class A {
+                public b: string = '2';
+
                 public get a(): number {
                     return 1;
                 }
-
-                public b: string = '2';
             }
 
             expect(isGetter(new A(), 'a')).toBe(true);

@@ -15,6 +15,7 @@
         "strictInputTypes": true,
         "strictInputAccessModifiers": true,
         "strictNullInputTypes": true,
+        "strictAttributeTypes": true,
         "strictSafeNavigationTypes": true,
         "strictDomLocalRefTypes": true,
         "strictOutputEventTypes": true,
@@ -23,7 +24,7 @@
         "strictLiteralTypes": true
     },
     "compilerOptions": {
-        "incremental": false,
+        "incremental": true,
         "newLine": "lf",
         "allowJs": true,
         "checkJs": true,

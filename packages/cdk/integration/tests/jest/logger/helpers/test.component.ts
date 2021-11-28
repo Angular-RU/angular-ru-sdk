@@ -82,11 +82,6 @@ export class MyTestComponent implements OnInit {
         return val;
     }
 
-    public init(): void {
-        this.logger.level = LoggerLevel.INFO;
-        this.increment();
-    }
-
     @Group('INCREMENT', LoggerLevel.DEBUG)
     public increment(): void {
         this.logger.debug('count', this.count);
@@ -117,16 +112,21 @@ export class MyTestComponent implements OnInit {
         this.extracted(seconds, done);
     }
 
+    @TimerLog('badRequest', LoggerLevel.DEBUG, false)
+    public badRequest(): void {
+        throw new Error('error');
+    }
+
+    public init(): void {
+        this.logger.level = LoggerLevel.INFO;
+        this.increment();
+    }
+
     public longQueryBySecondMs(seconds: number, done: Fn): void {
         const info: Nullable<TimerInfo> = this.logger.startTime('longQueryBySecondMs');
 
         this.extracted(seconds, done);
         this.logger.endTime(info);
-    }
-
-    @TimerLog('badRequest', LoggerLevel.DEBUG, false)
-    public badRequest(): void {
-        throw new Error('error');
     }
 
     private extracted(seconds: number, done: Fn): void {

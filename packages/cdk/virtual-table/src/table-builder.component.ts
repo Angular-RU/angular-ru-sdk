@@ -68,10 +68,20 @@ export class TableBuilderComponent<T>
     extends AbstractTableBuilderApiDirective<T>
     implements OnChanges, OnInit, AfterContentInit, AfterViewInit, AfterViewChecked, OnDestroy
 {
+    private forcedRefresh: boolean = false;
+    private readonly _destroy$: Subject<boolean> = new Subject<boolean>();
+    private timeoutCheckedTaskId: Nullable<number> = null;
+    private timeoutScrolledId: Nullable<number> = null;
+    private timeoutViewCheckedId: Nullable<number> = null;
+    private frameCalculateViewportId: Nullable<number> = null;
+    private selectionUpdateTaskId: Nullable<number> = null;
+    private changesTimerId: number = 0;
+    protected readonly app: ApplicationRef;
+    protected readonly draggable: DraggableService<T>;
+    protected readonly viewChanges: NgxTableViewChangesService;
     @ViewChild('header', { static: false }) public headerRef!: ElementRef<HTMLDivElement>;
     @ViewChild('footer', { static: false }) public footerRef!: ElementRef<HTMLDivElement>;
     @ViewChild(AutoHeightDirective, { static: false }) public readonly autoHeight!: AutoHeightDirective<T>;
-
     public dirty: boolean = true;
     public rendering: boolean = false;
     public isRendered: boolean = false;
@@ -87,17 +97,6 @@ export class TableBuilderComponent<T>
     public readonly sortable: SortableService<T>;
     public readonly contextMenu: ContextMenuService<T>;
     public readonly filterable: FilterableService<T>;
-    protected readonly app: ApplicationRef;
-    protected readonly draggable: DraggableService<T>;
-    protected readonly viewChanges: NgxTableViewChangesService;
-    private forcedRefresh: boolean = false;
-    private readonly _destroy$: Subject<boolean> = new Subject<boolean>();
-    private timeoutCheckedTaskId: Nullable<number> = null;
-    private timeoutScrolledId: Nullable<number> = null;
-    private timeoutViewCheckedId: Nullable<number> = null;
-    private frameCalculateViewportId: Nullable<number> = null;
-    private selectionUpdateTaskId: Nullable<number> = null;
-    private changesTimerId: number = 0;
 
     constructor(public readonly cd: ChangeDetectorRef, injector: Injector) {
         super();
@@ -174,6 +173,13 @@ export class TableBuilderComponent<T>
         return this.sourceExists && this.getCountKeys() !== this.renderedCountKeys;
     }
 
+    @HostListener('contextmenu', ['$event'])
+    public openContextMenu($event: MouseEvent): void {
+        if (isNotNil(this.contextMenuTemplate)) {
+            this.contextMenu.openContextMenu($event);
+        }
+    }
+
     public checkSourceIsNull(): boolean {
         // eslint-disable-next-line
         return !('length' in (this.source || {}));
@@ -183,13 +189,6 @@ export class TableBuilderComponent<T>
         this.recalculated = { recalculateHeight: true };
         this.forceCalculateViewport();
         this.idleDetectChanges();
-    }
-
-    @HostListener('contextmenu', ['$event'])
-    public openContextMenu($event: MouseEvent): void {
-        if (isNotNil(this.contextMenuTemplate)) {
-            this.contextMenu.openContextMenu($event);
-        }
     }
 
     public ngOnChanges(changes: SimpleChanges): void {

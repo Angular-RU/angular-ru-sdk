@@ -3,7 +3,7 @@ on: [push]
 
 env:
     CI_MODE: true
-    NODE_VERSION: 16.9.x
+    NODE_VERSION: 16.10.x
 
 jobs:
     build:
@@ -36,7 +36,7 @@ jobs:
                   key: ${{ runner.os }}--${{ hashFiles('**/yarn.lock') }}
 
             - name: Install dependencies
-              run: yarn install --ignore-engines --frozen-lockfile
+              run: yarn install --frozen-lockfile
 
             - name: Verify major angular version
               if: ${{ github.ref != 'refs/heads/master' }}
@@ -50,7 +50,6 @@ jobs:
               run: yarn commitlint --from=HEAD~1 && yarn run-p format lint
 
             - name: Run unit tests
-              if: ${{ github.ref != 'refs/heads/master' }}
               run: yarn test
 
             # move to release.yml

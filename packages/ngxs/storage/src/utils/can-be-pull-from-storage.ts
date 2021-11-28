@@ -57,6 +57,7 @@ function ensureInfoByVersionMismatch<T>(
     if (canBeOverrideFromStorage && meta.version !== provider.version) {
         const instance: NgxsDataMigrateStorage | undefined = provider.stateInstance as Any as NgxsDataMigrateStorage;
         const tryMigrate: boolean =
+            // eslint-disable-next-line @typescript-eslint/unbound-method
             isFalsy(provider.skipMigrate) && (isTruthy(instance?.ngxsDataStorageMigrate) || isTruthy(provider.migrate));
 
         if (tryMigrate) {

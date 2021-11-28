@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/eslint-config-enterprise",
-    "version": "12.27.3",
+    "version": "12.31.0",
     "description": "Angular-RU package",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/dev-infra/eslint-config-enterprise#readme",
     "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
@@ -8,10 +8,7 @@
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "main": "index.js",
-    "files": [
-        "index.js",
-        "README.md"
-    ],
+    "files": ["index.js", "scope", "README.md"],
     "scripts": {
         "prepare:bad-i18n": "FORCE_COLOR=0 yarn -s eslint -c index.js \"**/file-suites/**/bad.json\" > ./out/eslint.bad-i18n.report.txt || exit 0",
         "prepare:bad-ts": "FORCE_COLOR=0 yarn -s eslint -c index.js \"**/file-suites/*.bad.ts\" > ./out/eslint.bad-file.report.txt || exit 0",
@@ -28,18 +25,20 @@
         "posttest": "FORCE_COLOR=0 yarn prepare:clean-ts"
     },
     "dependencies": {
-        "@angular-eslint/eslint-plugin": "12.6.1",
-        "@angular-eslint/eslint-plugin-template": "12.6.1",
-        "@angular-eslint/template-parser": "12.6.1",
-        "@angular-ru/eslint-plugin-enterprise": "^12.26.1",
-        "@types/eslint": "7.28.2",
-        "@typescript-eslint/eslint-plugin": "4.33.0",
-        "@typescript-eslint/parser": "4.33.0",
+        "@angular-eslint/eslint-plugin": "12.7.0",
+        "@angular-eslint/eslint-plugin-template": "12.7.0",
+        "@angular-eslint/template-parser": "12.7.0",
+        "@angular-ru/eslint-plugin-enterprise": "^12.28.0",
+        "@types/eslint": "7.29.0",
+        "@typescript-eslint/eslint-plugin": "5.4.0",
+        "@typescript-eslint/experimental-utils": "5.4.0",
+        "@typescript-eslint/parser": "5.4.0",
         "eslint": "7.32.0",
         "eslint-config-import": "0.13.0",
         "eslint-import-resolver-typescript": "2.5.0",
         "eslint-plugin-decorator-position": "4.0.1",
         "eslint-plugin-deprecation": "1.2.1",
+        "eslint-plugin-html": "6.2.0",
         "eslint-plugin-i18n-json": "3.1.0",
         "eslint-plugin-import": "2.25.3",
         "eslint-plugin-jest": "24.7.0",
@@ -51,7 +50,8 @@
         "eslint-plugin-prettier": "4.0.0",
         "eslint-plugin-rxjs": "3.3.7",
         "eslint-plugin-simple-import-sort": "7.0.0",
-        "eslint-plugin-sonarjs": "0.10.0"
+        "eslint-plugin-sonarjs": "0.10.0",
+        "eslint-plugin-spellcheck": "0.0.19"
     },
     "publishConfig": {
         "access": "public"

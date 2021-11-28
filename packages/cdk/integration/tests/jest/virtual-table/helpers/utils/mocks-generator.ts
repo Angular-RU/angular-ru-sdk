@@ -31,6 +31,7 @@ export class MocksGenerator {
                                 const random = (min: number, max: number) => min + Math.random() * (max - min);
 
                                 if (cols > 6) {
+                                    // eslint-disable-next-line spellcheck/spell-checker
                                     baseRow['About Big Text And More Powerful Label Fugiat Tempor Sunt Nostrud'] =
                                         Array(Math.ceil(random(0, 1000)))
                                             .fill(null)

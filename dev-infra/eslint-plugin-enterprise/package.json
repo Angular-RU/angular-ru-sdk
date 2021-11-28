@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/eslint-plugin-enterprise",
-    "version": "12.26.1",
+    "version": "12.28.0",
     "description": "Angular-RU package",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/dev-infra/eslint-plugin-file-pattern#readme",
     "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
@@ -9,10 +9,7 @@
     "author": "angular-ru@yandex.ru",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
-    "files": [
-        "dist",
-        "README.md"
-    ],
+    "files": ["dist", "README.md"],
     "scripts": {
         "build:lib": "tsc -p ./tsconfig.json  && yarn symlink",
         "symlink": "sh symlink.sh"

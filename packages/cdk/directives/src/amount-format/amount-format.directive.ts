@@ -45,6 +45,14 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
         return this.isInsideAngularZone;
     }
 
+    public get dirty(): boolean {
+        return this.markedAsDirty;
+    }
+
+    public get element(): HTMLInputElement {
+        return this.el.nativeElement;
+    }
+
     public get amountFormatOptions(): Partial<AmountOptions> {
         return this.options;
     }
@@ -53,14 +61,6 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
     public set amountFormatOptions(options: Partial<AmountOptions>) {
         this.options = { ...this.options, ...(options ?? {}) };
         this.recalculateWhenChangesOptions();
-    }
-
-    public get dirty(): boolean {
-        return this.markedAsDirty;
-    }
-
-    public get element(): HTMLInputElement {
-        return this.el.nativeElement;
     }
 
     public setLang(lang: string): void {

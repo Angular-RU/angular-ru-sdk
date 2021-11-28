@@ -78,7 +78,7 @@ export function DataAction(options: RepositoryActionOptions = REPOSITORY_ACTION_
                     result = originalMethod.apply(instance, args);
                 }
 
-                // Note: store.dispatch automatically subscribes, but we don’t need it
+                // Note: store.dispatch automatically subscribes, but we don't need it
                 // We want to subscribe ourselves manually
                 return isObservable(result) ? of(null).pipe(map((): Any => result)) : result;
             };

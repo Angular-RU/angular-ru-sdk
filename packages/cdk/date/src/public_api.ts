@@ -7,11 +7,11 @@ export { DateSuggestionStrategy } from './date-suggestion/domain/interfaces/date
 export { SuggestionStrategyDescriptor } from './date-suggestion/domain/interfaces/suggestion-strategy-descriptor';
 export { SuggestionStrategyMap } from './date-suggestion/domain/types/suggestion-strategy-map';
 export { DEFAULT_SUGGESTION_STRATEGY_MAP } from './date-suggestion/properties/default-suggestion-strategy-map';
-export { DateSuggestionCalendarWeekStrategy } from './date-suggestion/srategies/date-suggestion-calendar-week.strategy';
-export { DateSuggestionFirstDayOfIntervalStrategy } from './date-suggestion/srategies/date-suggestion-first-day-of-interval.strategy';
-export { DateSuggestionLastDaysOfIntervalStrategy } from './date-suggestion/srategies/date-suggestion-last-days-of-interval.strategy';
-export { DateSuggestionLastFewDaysStrategy } from './date-suggestion/srategies/date-suggestion-last-few-days.strategy';
-export { DateSuggestionSomeDayAgoStrategy } from './date-suggestion/srategies/date-suggestion-some-day-ago.strategy';
+export { DateSuggestionCalendarWeekStrategy } from './date-suggestion/strategies/date-suggestion-calendar-week.strategy';
+export { DateSuggestionFirstDayOfIntervalStrategy } from './date-suggestion/strategies/date-suggestion-first-day-of-interval.strategy';
+export { DateSuggestionLastDaysOfIntervalStrategy } from './date-suggestion/strategies/date-suggestion-last-days-of-interval.strategy';
+export { DateSuggestionLastFewDaysStrategy } from './date-suggestion/strategies/date-suggestion-last-few-days.strategy';
+export { DateSuggestionSomeDayAgoStrategy } from './date-suggestion/strategies/date-suggestion-some-day-ago.strategy';
 export { DAYS_COUNT } from './date-suggestion/tokens/days-count';
 export { SUGGESTION_STRATEGY_MAP } from './date-suggestion/tokens/suggestion-strategy-map';
 export { endOfDay } from './end-of-day';

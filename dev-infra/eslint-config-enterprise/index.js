@@ -1,39 +1,19 @@
-/* eslint-disable */
 /**
  * @type {import('eslint').Linter.Config}
  */
 module.exports = {
-    env: {
-        browser: true,
-        es6: true,
-        node: true
-    },
-    settings: {
-        'import/parsers': { '@typescript-eslint/parser': ['.ts'] },
-        'import/resolver': { 'eslint-import-resolver-typescript': true }
-    },
-    ignorePatterns: [
-        'dist',
-        'node_modules',
-        '**/node_modules/**',
-        '**/schematics/*',
-        '**/coverage/**',
-        'eslintrc.js',
-        '.eslintrc.js',
-        '**/*.d.ts',
-        '**/dist/**',
-        '**/docs/**',
-        '.cache/**',
-        '.git/**',
-        '.idea/**'
-    ],
+    extends: ['./scope/base.js', './scope/ignore-patterns.js', './scope/spell-check.js'],
     overrides: [
         {
             files: ['*.ts'],
             parser: '@typescript-eslint/parser',
+            settings: {
+                'import/parsers': { '@typescript-eslint/parser': ['.ts'] },
+                'import/resolver': { 'eslint-import-resolver-typescript': true }
+            },
             parserOptions: {
                 createDefaultProgram: true,
-                project: './tsconfig.json',
+                project: './tsconfig*.json',
                 sourceType: 'module',
                 errorOnUnknownASTType: true,
                 errorOnTypeScriptSyntacticAndSemanticIssues: true,
@@ -52,8 +32,7 @@ module.exports = {
                 '@typescript-eslint',
                 'sonarjs',
                 '@angular-eslint/eslint-plugin',
-                '@angular-ru/eslint-plugin-enterprise',
-                'json'
+                '@angular-ru/eslint-plugin-enterprise'
             ],
             extends: [
                 'eslint:recommended',
@@ -219,7 +198,6 @@ module.exports = {
                 'no-param-reassign': ['error'],
                 'no-constant-condition': 'error',
                 'no-debugger': 'error',
-                'no-duplicate-imports': 'error',
                 'no-empty': 'off',
                 'no-empty-functions': 'off',
                 'no-eval': 'error',
@@ -310,9 +288,12 @@ module.exports = {
                 'simple-import-sort/exports': 'error',
                 'import/first': 'error',
                 'import/no-default-export': 'error',
-                'import/no-duplicates': 'error',
                 'import/exports-last': 'off',
                 'import/newline-after-import': ['error', { count: 1 }],
+                'import/no-webpack-loader-syntax': 'error',
+                'import/no-duplicates': 'off',
+                'no-duplicate-imports': 'off',
+                '@typescript-eslint/no-duplicate-imports': 'error',
 
                 /**
                  * no cyrillic
@@ -352,6 +333,15 @@ module.exports = {
                         next: ['interface', 'type']
                     }
                 ],
+                '@typescript-eslint/no-extraneous-class': [
+                    'error',
+                    {
+                        allowConstructorOnly: true,
+                        allowEmpty: false,
+                        allowStaticOnly: true,
+                        allowWithDecorator: true
+                    }
+                ],
                 '@typescript-eslint/lines-between-class-members': [
                     'error',
                     'always',
@@ -386,30 +376,97 @@ module.exports = {
                     {
                         default: [
                             'signature',
+                            /**
+                             * static fields
+                             * [sort: public -> protected -> private]
+                             **/
                             'public-static-field',
                             'protected-static-field',
                             'private-static-field',
-                            'public-decorated-field',
-                            'public-instance-field',
+                            /**
+                             * abstract fields
+                             * [sort: public -> protected -> private]
+                             **/
                             'public-abstract-field',
-                            'protected-decorated-field',
-                            'protected-instance-field',
                             'protected-abstract-field',
+                            'private-abstract-field',
+                            /**
+                             * instance fields
+                             * [sort: private -> protected -> public]
+                             * [sort: decorated -> non-decorated]
+                             **/
                             'private-decorated-field',
                             'private-instance-field',
-                            'private-abstract-field',
+                            'protected-decorated-field',
+                            'protected-instance-field',
+                            'public-decorated-field',
+                            'public-instance-field',
+                            /**
+                             * constructors
+                             * [sort: public -> protected -> private]
+                             **/
                             'public-constructor',
                             'protected-constructor',
                             'private-constructor',
+                            /**
+                             * static accessors
+                             * [sort: public -> protected -> private]
+                             **/
+                            /** static accessors **/
+                            'public-static-get',
+                            'public-static-set',
+                            'protected-static-get',
+                            'protected-static-set',
+                            'private-static-get',
+                            'private-static-set',
+                            /**
+                             * instance accessors
+                             * [sort: public -> protected -> private]
+                             * [sort: decorated -> non-decorated]
+                             **/
+                            'public-decorated-get',
+                            'public-instance-get',
+                            'public-decorated-set',
+                            'public-instance-set',
+                            'protected-decorated-get',
+                            'protected-instance-get',
+                            'protected-decorated-set',
+                            'protected-instance-set',
+                            'private-decorated-get',
+                            'private-instance-get',
+                            'private-decorated-set',
+                            'private-instance-set',
+                            /**
+                             * static methods
+                             * [sort: public -> protected -> private]
+                             **/
                             'public-static-method',
                             'protected-static-method',
                             'private-static-method',
-                            'public-instance-method',
+                            /**
+                             * abstract
+                             * [sort: public -> private -> protected]
+                             **/
+                            'public-abstract-get',
+                            'public-abstract-set',
+                            'protected-abstract-get',
+                            'protected-abstract-set',
+                            'private-abstract-get',
+                            'private-abstract-set',
                             'public-abstract-method',
-                            'protected-instance-method',
                             'protected-abstract-method',
-                            'private-instance-method',
-                            'private-abstract-method'
+                            'private-abstract-method',
+                            /**
+                             * methods
+                             * [sort: public -> protected -> private]
+                             * [sort: decorated -> non-decorated]
+                             **/
+                            'public-decorated-method',
+                            'public-instance-method',
+                            'protected-decorated-method',
+                            'protected-instance-method',
+                            'private-decorated-method',
+                            'private-instance-method'
                         ]
                     }
                 ],
@@ -499,6 +556,12 @@ module.exports = {
                     'error',
                     {
                         onlyInlineLambdas: true
+                    }
+                ],
+                '@typescript-eslint/unbound-method': [
+                    'error',
+                    {
+                        ignoreStatic: true
                     }
                 ],
                 '@typescript-eslint/quotes': [
@@ -618,13 +681,19 @@ module.exports = {
             files: ['*.spec.ts'], // light version rules for test files
             extends: ['plugin:jest/style', 'plugin:jest/all', 'plugin:mocha/recommended'],
             rules: {
+                // base
+                '@typescript-eslint/no-extraneous-class': 'off',
                 '@typescript-eslint/explicit-function-return-type': 'off',
-                'max-lines-per-function': 'off',
-                '@typescript-eslint/no-magic-numbers': 'off',
-                'max-classes-per-file': 'off',
                 '@typescript-eslint/typedef': 'off',
+                '@typescript-eslint/no-magic-numbers': 'off',
                 '@typescript-eslint/ban-ts-comment': 'off',
+
+                // eslint
+                'max-lines-per-function': 'off',
+                'max-classes-per-file': 'off',
                 'max-nested-callbacks': 'off',
+
+                // angular
                 '@angular-eslint/prefer-on-push-component-change-detection': 'off',
                 '@angular-eslint/component-max-inline-declarations': 'off',
                 '@angular-eslint/use-component-selector': 'off',
@@ -643,6 +712,14 @@ module.exports = {
                 'mocha/no-setup-in-describe': 'off',
                 'mocha/no-hooks-for-single-case': 'off',
                 'mocha/prefer-arrow-callback': 'error'
+            }
+        },
+        {
+            files: ['*.html'],
+            plugins: ['html'],
+            settings: {
+                'html/indent': '+4',
+                'html/report-bad-indent': 'error'
             }
         },
         {
@@ -680,7 +757,7 @@ module.exports = {
         {
             files: ['*.json'],
             extends: ['plugin:json/recommended'],
-            plugins: ['json'],
+            plugins: ['prettier', 'json'],
             rules: {
                 'json/*': ['error', { allowComments: true }]
             }
