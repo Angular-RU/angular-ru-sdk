@@ -1,98 +1,147 @@
-/* eslint-disable */
+import { Any } from '@angular-ru/cdk/typings';
+import { checkValueIsEmpty } from '@angular-ru/cdk/utils';
+
 import { add, trim } from './add';
+import { DEFAULT_PRECISSION, PRECISSION_SECOND } from './properties';
 import { roundOff } from './round';
 
-export function divide(dividend: any, divisor: any, precission = 8): string {
-    if (divisor == 0) {
-        throw new Error('Cannot divide by 0');
+// eslint-disable-next-line max-lines-per-function,complexity,sonarjs/cognitive-complexity
+export function divide(inputDividend: Any, inputDivisor: Any, inputPrecission: number = DEFAULT_PRECISSION): string {
+    checkDivisionByZero(inputDivisor);
+
+    let dividend: string = inputDividend.toString();
+    let divisor: string = inputDivisor.toString();
+
+    dividend = removeTrailingZeros(dividend);
+    divisor = removeTrailingZeros(divisor);
+
+    if (dividend === '0') {
+        return '0';
     }
 
-    dividend = dividend.toString();
-    divisor = divisor.toString();
+    const isNegative: boolean = checkNegative(divisor, dividend);
 
-    // remove trailing zeros in decimal ISSUE#18
-    dividend = dividend.replace(/(\.\d*?[1-9])0+$/g, '$1').replace(/\.0+$/, '');
-    divisor = divisor.replace(/(\.\d*?[1-9])0+$/g, '$1').replace(/\.0+$/, '');
-
-    if (dividend == 0) return '0';
-
-    let neg = 0;
-    if (divisor[0] == '-') {
-        divisor = divisor.substring(1);
-        neg++;
-    }
-    if (dividend[0] == '-') {
-        dividend = dividend.substring(1);
-        neg++;
-    }
-
-    var pt_dvsr = divisor.indexOf('.') > 0 ? divisor.length - divisor.indexOf('.') - 1 : -1;
+    divisor = getAbsoluteValue(divisor);
+    dividend = getAbsoluteValue(dividend);
+    dividend = parseDividend(dividend, divisor);
 
     divisor = trim(divisor.replace('.', ''));
-    if (pt_dvsr >= 0) {
-        let pt_dvnd = dividend.indexOf('.') > 0 ? dividend.length - dividend.indexOf('.') - 1 : -1;
-
-        if (pt_dvnd == -1) {
-            dividend = trim(dividend + new Array(pt_dvsr + 1).join('0'));
-        } else {
-            if (pt_dvsr > pt_dvnd) {
-                dividend = dividend.replace('.', '');
-                dividend = trim(dividend + new Array(pt_dvsr - pt_dvnd + 1).join('0'));
-            } else if (pt_dvsr < pt_dvnd) {
-                dividend = dividend.replace('.', '');
-                let loc = dividend.length - pt_dvnd + pt_dvsr;
-                dividend = trim(dividend.substring(0, loc) + '.' + dividend.substring(loc));
-            } else if (pt_dvsr == pt_dvnd) {
-                dividend = trim(dividend.replace('.', ''));
-            }
-        }
-    }
-
-    let prec = 0,
-        dl = divisor.length,
-        quotent = '';
-    let dvnd =
+    const dl: number = divisor.length;
+    let precission: number = 0;
+    let quotient: string = '';
+    let dividendBeforePoint: string =
         dividend.indexOf('.') > -1 && dividend.indexOf('.') < dl
             ? dividend.substring(0, dl + 1)
             : dividend.substring(0, dl);
+
     dividend =
         dividend.indexOf('.') > -1 && dividend.indexOf('.') < dl ? dividend.substring(dl + 1) : dividend.substring(dl);
 
-    if (dvnd.indexOf('.') > -1) {
-        let shift = dvnd.length - dvnd.indexOf('.') - 1;
-        dvnd = dvnd.replace('.', '');
-        if (dl > dvnd.length) {
-            shift += dl - dvnd.length;
-            dvnd = dvnd + new Array(dl - dvnd.length + 1).join('0');
+    if (dividendBeforePoint.indexOf('.') > -1) {
+        let shift: number = dividendBeforePoint.length - dividendBeforePoint.indexOf('.') - 1;
+
+        dividendBeforePoint = dividendBeforePoint.replace('.', '');
+
+        if (dl > dividendBeforePoint.length) {
+            shift += dl - dividendBeforePoint.length;
+            dividendBeforePoint = dividendBeforePoint + new Array(dl - dividendBeforePoint.length + 1).join('0');
         }
-        prec = shift;
-        quotent = '0.' + new Array(shift).join('0');
+
+        precission = shift;
+        quotient = `0.${new Array(shift).join('0')}`;
     }
 
-    precission = precission + 2;
+    while (precission <= inputPrecission + PRECISSION_SECOND) {
+        let qt: number = 0;
 
-    while (prec <= precission) {
-        let qt = 0;
-        while (parseInt(dvnd) >= parseInt(divisor)) {
-            dvnd = add(dvnd, '-' + divisor);
+        while (parseInt(dividendBeforePoint) >= parseInt(divisor)) {
+            dividendBeforePoint = add(dividendBeforePoint, `-${divisor}`);
             qt++;
         }
-        quotent += qt;
 
-        if (!dividend) {
-            if (!prec) quotent += '.';
-            prec++;
-            dvnd = dvnd + '0';
+        quotient += qt;
+        const isDividendEmpty: boolean = checkValueIsEmpty(dividend);
+
+        if (isDividendEmpty) {
+            if (!precission) {
+                quotient += '.';
+            }
+
+            precission++;
+            dividendBeforePoint = `${dividendBeforePoint}0`;
         } else {
-            if (dividend[0] == '.') {
-                quotent += '.';
-                prec++;
+            if (dividend[0] === '.') {
+                quotient += '.';
+                precission++;
                 dividend = dividend.substring(1);
             }
-            dvnd = dvnd + dividend.substring(0, 1);
+
+            dividendBeforePoint = dividendBeforePoint + dividend.substring(0, 1);
             dividend = dividend.substring(1);
         }
     }
 
-    return (neg == 1 ? '-' : '') + trim(roundOff(quotent, precission - 2));
+    return (isNegative ? '-' : '') + trim(roundOff(quotient, inputPrecission));
+}
+
+function parseDividend(inputDividend: string, divisor: string): string {
+    let dividend: string = inputDividend;
+    const ptDivisor: number = divisor.indexOf('.') > 0 ? divisor.length - divisor.indexOf('.') - 1 : -1;
+
+    if (ptDivisor >= 0) {
+        dividend = parseDividendByPositiveDividend(dividend, ptDivisor);
+    }
+
+    return dividend;
+}
+
+function parseDividendByPositiveDividend(inputDividend: string, ptDivisor: number): string {
+    let dividend: string = inputDividend;
+    const ptDividend: number = dividend.indexOf('.') > 0 ? dividend.length - dividend.indexOf('.') - 1 : -1;
+
+    if (ptDividend === -1) {
+        dividend = trim(dividend + new Array(ptDivisor + 1).join('0'));
+    } else {
+        if (ptDivisor > ptDividend) {
+            dividend = dividend.replace('.', '');
+            dividend = trim(dividend + new Array(ptDivisor - ptDividend + 1).join('0'));
+        } else if (ptDivisor < ptDividend) {
+            dividend = dividend.replace('.', '');
+            const i: number = dividend.length - ptDividend + ptDivisor;
+
+            dividend = trim(`${dividend.substring(0, i)}.${dividend.substring(i)}`);
+        } else if (ptDivisor === ptDividend) {
+            dividend = trim(dividend.replace('.', ''));
+        }
+    }
+
+    return dividend;
+}
+
+function removeTrailingZeros(value: string): string {
+    return value.replace(/(\.\d*?[1-9])0+$/g, '$1').replace(/\.0+$/, '');
+}
+
+function checkDivisionByZero(divisor: Any): void {
+    if (divisor === 0 || divisor === '0') {
+        throw new Error('Cannot divide by 0');
+    }
+}
+
+function checkNegative(divisor: string, dividend: string): boolean {
+    let isNegative: boolean = false;
+
+    if (divisor[0] === '-') {
+        isNegative = !isNegative;
+    }
+
+    if (dividend[0] === '-') {
+        isNegative = !isNegative;
+    }
+
+    return isNegative;
+}
+
+function getAbsoluteValue(value: string): string {
+    return value[0] === '-' ? value.substring(1) : value;
 }

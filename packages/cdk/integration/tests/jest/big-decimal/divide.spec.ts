@@ -18,6 +18,7 @@ describe('[TEST]: BigDecimal - divide', () => {
     });
 
     it('should do basic floating point division - 2', () => {
+        // eslint-disable-next-line @typescript-eslint/no-loss-of-precision
         expect(BigDecimal.divide(29629629362962961839.48344234, 12345678901234567890, 2)).toBe('2.40');
     });
 

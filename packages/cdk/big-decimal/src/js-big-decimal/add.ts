@@ -5,8 +5,8 @@ import { EXPONENTIAL_PARTS_LENGTH, NUMBER_SYSTEM } from './properties';
 import { CalculateResult } from './types';
 
 export function trim(number: string): string {
-    const splited: string[] = number.split('.') ?? [];
-    const parts: string[] = removeZerosAtTheBegining(splited);
+    const split: string[] = number.split('.') ?? [];
+    const parts: string[] = removeZerosAtTheBeginning(split);
 
     if (isNil(parts[1])) {
         return parts[0] ?? '';
@@ -102,8 +102,8 @@ export function pad(inputA: Any, inputB: Any): [string, string] {
 
 function compliment(num: string): string {
     let s: string = '';
-    const dec: Any = num.split('.')[1];
-    const ld: number = checkValueIsFilled(dec) ? dec.length : 0;
+    const part: Any = num.split('.')[1];
+    const ld: number = checkValueIsFilled(part) ? part.length : 0;
 
     for (let i: number = 0; i < num.length; i++) {
         s += getPreparedDigit(num[i] ?? '');
@@ -137,7 +137,7 @@ function getPadFormat(parts: string[]): string {
     return parts[0] + (checkValueIsFilled(parts[1]) ? `.${parts[1]}` : '');
 }
 
-function removeZerosAtTheBegining(parts: string[]): string[] {
+function removeZerosAtTheBeginning(parts: string[]): string[] {
     const result: string[] = [...parts];
 
     if (checkValueIsEmpty(result[0])) {
@@ -152,9 +152,9 @@ function removeZerosAtTheBegining(parts: string[]): string[] {
 }
 
 function addCore(inputA: string, inputB: string): string {
-    const paded: string[] = pad(inputA, inputB);
-    const a: string = paded[0] ?? '';
-    const b: string = paded[1] ?? '';
+    const parts: string[] = pad(inputA, inputB);
+    const a: string = parts[0] ?? '';
+    const b: string = parts[1] ?? '';
     const calculateResult: CalculateResult = calculateCarryAndSum(a, b);
 
     const sum: string = calculateResult.sum;

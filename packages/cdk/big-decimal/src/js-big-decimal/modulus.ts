@@ -32,8 +32,8 @@ export function modulus(inputDividend: number | string, inputDivisor: number | s
     return sign + result;
 }
 
-function validate(oparand: string): void {
-    if (oparand.indexOf('.') !== -1) {
+function validate(operand: string): void {
+    if (operand.indexOf('.') !== -1) {
         throw new Error('Modulus of non-integers not supported');
     }
 }
