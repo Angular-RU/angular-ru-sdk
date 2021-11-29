@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update eslint dependencies to v5.5.0 (#1120) (3bc6ed6f)
+
+#### 0.0.0 (2021-11-29)
+
+##### Build System / Dependencies
+
 -   update dependency jest to v27.4.0 (#1119) (ebde8f09)
 
 #### 0.0.0 (2021-11-29)
