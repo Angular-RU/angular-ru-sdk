@@ -1,3 +1,9 @@
+#### 0.0.0 (2021-11-29)
+
+##### New Features
+
+-   **cdk:** add big-decimal secondary package (#1085) (ec416615)
+
 #### 0.0.0 (2021-11-25)
 
 ##### Build System / Dependencies
