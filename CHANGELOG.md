@@ -1,5 +1,11 @@
 #### 0.0.0 (2021-11-30)
 
+##### Build System / Dependencies
+
+-   update dependency jest to v27.4.2 (#1122) (534b7c67)
+
+#### 0.0.0 (2021-11-30)
+
 ##### New Features
 
 -   **prettier:** support yaml (6bfc4346)
