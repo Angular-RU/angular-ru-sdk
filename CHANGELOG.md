@@ -1,3 +1,9 @@
+#### 0.0.0 (2021-11-30)
+
+##### Build System / Dependencies
+
+-   update dependency @types/node to v16.11.11 (#1121) (f36bf9b7)
+
 #### 0.0.0 (2021-11-29)
 
 ##### Build System / Dependencies
