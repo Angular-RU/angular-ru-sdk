@@ -4,30 +4,30 @@ description: Suggest a feature for Angular-RU SDK
 labels: ['feature']
 
 body:
-    - type: dropdown
-      id: affected-packages
-      attributes:
-          label: Which @angular-ru/* package(s) are relevant/releated to the feature request?
-          options:
-              - cdk
-              - ngxs
-              - commitlint
-              - dev-dependencies
-              - eslint-config-enterprise
-              - eslint-plugin-enterprise
-              - jest
-              - prettier
-              - renovate
-              - typescript
-              - Don't known / other
-          multiple: true
+  - type: dropdown
+    id: affected-packages
+    attributes:
+      label: Which @angular-ru/* package(s) are relevant/releated to the feature request?
+      options:
+        - cdk
+        - ngxs
+        - commitlint
+        - dev-dependencies
+        - eslint-config-enterprise
+        - eslint-plugin-enterprise
+        - jest
+        - prettier
+        - renovate
+        - typescript
+        - Don't known / other
+      multiple: true
 
-    - type: textarea
-      id: description
-      attributes:
-          label: Description
-          placeholder: |
-              Proposed solution.
-              Alternatives considered.
-      validations:
-          required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      placeholder: |
+        Proposed solution.
+        Alternatives considered.
+    validations:
+      required: true

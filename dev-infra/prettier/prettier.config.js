@@ -61,6 +61,10 @@ module.exports = {
         {
             files: ['*.xml'],
             options: { parser: 'xml' }
+        },
+        {
+            files: ['*.yml', '*.yaml'],
+            options: { parser: 'yaml', tabWidth: 2 }
         }
     ]
 };

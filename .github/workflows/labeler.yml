@@ -1,16 +1,16 @@
 name: Pull Request Labeler
 
 on:
-    pull_request:
-        types: [opened, synchronize, reopened]
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
-    triage:
-        name: triage
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/labeler@v3
-              with:
-                  repo-token: ${{ secrets.ANGULAR_RU_BOT_PAT }}
-                  configuration-path: .github/labels.yml
-                  sync-labels: true
+  triage:
+    name: triage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/labeler@v3
+        with:
+          repo-token: ${{ secrets.ANGULAR_RU_BOT_PAT }}
+          configuration-path: .github/labels.yml
+          sync-labels: true
