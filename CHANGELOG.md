@@ -1,5 +1,11 @@
 #### 0.0.0 (2021-11-30)
 
+##### New Features
+
+-   **prettier:** support yaml (6bfc4346)
+
+#### 0.0.0 (2021-11-30)
+
 ##### Build System / Dependencies
 
 -   update dependency @types/node to v16.11.11 (#1121) (f36bf9b7)
