@@ -11,17 +11,28 @@ import { RouterModule } from '@angular/router';
                     pathMatch: 'full',
                     redirectTo: 'samples'
                 },
+
                 {
                     path: 'samples',
                     children: [
                         {
                             path: '',
                             pathMatch: 'full',
-                            redirectTo: 'guide'
+                            redirectTo: 'amount-format'
                         },
                         {
-                            path: 'guide',
-                            loadChildren: () => import('./samples/guide/guide.module').then((m) => m.GuideModule)
+                            path: 'amount-format',
+                            loadChildren: () =>
+                                import('./samples/amount-format/amount-format-page.module').then(
+                                    (m) => m.AmountFormatPageModule
+                                )
+                        },
+                        {
+                            path: 'input-filter',
+                            loadChildren: () =>
+                                import('./samples/input-filter/input-filter-page.module').then(
+                                    (m) => m.InputFilterPageModule
+                                )
                         }
                     ]
                 }
