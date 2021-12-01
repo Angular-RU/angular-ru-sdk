@@ -5,29 +5,25 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
-import { AmountFormatModule, InputFilterModule } from '@angular-ru/cdk/directives';
+import { AmountFormatModule } from '@angular-ru/cdk/directives';
 
-import { GuideComponent } from './guide.component';
-import { REG_EXP_ONLY_NUMBERS } from './properties/constants';
+import { AmountFormatComponent } from './amount-format.component';
 
 @NgModule({
-    declarations: [GuideComponent],
+    declarations: [AmountFormatComponent],
     imports: [
         AmountFormatModule,
         RouterModule.forChild([
             {
                 path: '',
-                component: GuideComponent
+                component: AmountFormatComponent
             }
         ]),
         CommonModule,
         MatIconModule,
         MatInputModule,
         ReactiveFormsModule,
-        ScrollingModule,
-        InputFilterModule.forChild({
-            default: REG_EXP_ONLY_NUMBERS
-        })
+        ScrollingModule
     ]
 })
-export class GuideModule {}
+export class AmountFormatPageModule {}
