@@ -1,3 +1,13 @@
+#### 0.0.0 (2021-12-02)
+
+##### Build System / Dependencies
+
+-   update angular dependencies (#1125) (bf0e9a16)
+
+##### New Features
+
+-   **cdk:** add byPropertyValue utility (#1084) (218d9ca4)
+
 #### 0.0.0 (2021-12-01)
 
 ##### Build System / Dependencies
