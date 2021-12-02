@@ -194,7 +194,6 @@ export abstract class AbstractTableBuilderApiDirective<T>
      * remove and replace with AbstractTableBuilderApiDirective#getSelectedItems
      * while table refactoring
      */
-
     public get selectedItems(): T[] {
         return this.getSelectedItems();
     }
