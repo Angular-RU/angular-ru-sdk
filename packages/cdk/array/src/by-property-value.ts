@@ -1,6 +1,11 @@
-export function byPropertyValue<ArrayEntryType, ArrayEntryTypeKey extends keyof ArrayEntryType>(
+export function byPropertyValue<
+    ArrayEntryType,
+    ArrayEntryTypeKey extends keyof ArrayEntryType,
+    ValueType extends ArrayEntryType[ArrayEntryTypeKey]
+>(
     key: ArrayEntryTypeKey,
-    value: ArrayEntryType[ArrayEntryTypeKey]
-): (arrayItem: ArrayEntryType) => boolean {
-    return (arrayItem: ArrayEntryType): boolean => arrayItem[key] === value;
+    value: ValueType
+): (arrayItem: ArrayEntryType) => arrayItem is ArrayEntryType & { [key in ArrayEntryTypeKey]: ValueType } {
+    return (arrayItem: ArrayEntryType): arrayItem is ArrayEntryType & { [key in ArrayEntryTypeKey]: ValueType } =>
+        arrayItem[key] === value;
 }
