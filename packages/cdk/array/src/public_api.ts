@@ -1,3 +1,4 @@
+export { byPropertyValue } from './by-property-value';
 export { exclude } from './exclude';
 export { hasAtMostOneItem } from './has-at-most-one-item';
 export { hasItems } from './has-items';

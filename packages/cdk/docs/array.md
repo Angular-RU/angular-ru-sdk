@@ -118,6 +118,24 @@ const unique: PlainObject = { v: 1 };
 expect([unique, { v: 2 }, { v: 3 }].filter(include([unique]))).toEqual([unique]);
 ```
 
+-   `byPropertyValue`
+
+```ts
+const array: Array<{ a: string; b: number }> = [
+    { a: 'title', b: 1 },
+    { a: 'title2', b: 2 },
+    { a: 'title3', b: 3 }
+];
+
+expect(array.find(byPropertyValue('a', 'title'))).toStrictEqual({ a: 'title', b: 1 });
+expect(array.find(byPropertyValue('b', 1))).toStrictEqual({ a: 'title', b: 1 });
+expect(array.filter(byPropertyValue('a', 'title'))).toStrictEqual([
+    { a: 'title', b: 1 },
+    { a: 'title', b: 3 }
+]);
+expect(array.filter(byPropertyValue('b', 1))).toStrictEqual([{ a: 'title', b: 1 }]);
+```
+
 -   `hasItems`
 
 ```ts
