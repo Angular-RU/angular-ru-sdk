@@ -188,17 +188,11 @@ export abstract class AbstractTableBuilderApiDirective<T>
         return this.templateParser.schema?.columns ?? [];
     }
 
-    /**
-     * @deprecated - use {{ table.selectionEntries | tableSelectedItems }}
-     * @description - return selected item by selection map
-     * Don't use in angular templates, because function not pure
-     * avoid: {{ table.selectedItems.length  }}
-     * recommendation: {{ table.selectionModel.size  }}
-     */
+    // todo caretaker note
+    // remove and replace with AbstractTableBuilderApiDirective#getSelectedItems
+    // while table refactoring
     public get selectedItems(): T[] {
-        return this.sourceRef.filter((item: T): boolean =>
-            isNotNil(this.selectionModel.entries[(item as Any)[this.primaryKey]])
-        );
+        return this.getSelectedItems();
     }
 
     public get selectionModel(): SelectionMap<T> {
@@ -412,6 +406,12 @@ export abstract class AbstractTableBuilderApiDirective<T>
             window.cancelAnimationFrame(this.idleDetectChangesId!);
             this.idleDetectChangesId = window.requestAnimationFrame((): void => detectChanges(this.cd));
         });
+    }
+
+    public getSelectedItems(): T[] {
+        return this.sourceRef.filter((item: T): boolean =>
+            isNotNil(this.selectionModel.entries[(item as Any)[this.primaryKey]])
+        );
     }
 
     protected reCheckDefinitions(): void {
