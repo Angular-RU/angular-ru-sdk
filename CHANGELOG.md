@@ -1,5 +1,11 @@
 #### 0.0.0 (2021-12-02)
 
+##### Bug Fixes
+
+-   **cdk:** selectedItems refactor (#1126) (88decddd)
+
+#### 0.0.0 (2021-12-02)
+
 ##### Build System / Dependencies
 
 -   update angular dependencies (#1125) (bf0e9a16)
