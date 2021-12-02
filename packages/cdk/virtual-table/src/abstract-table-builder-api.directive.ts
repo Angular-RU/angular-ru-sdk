@@ -188,9 +188,13 @@ export abstract class AbstractTableBuilderApiDirective<T>
         return this.templateParser.schema?.columns ?? [];
     }
 
-    // todo caretaker note
-    // remove and replace with AbstractTableBuilderApiDirective#getSelectedItems
-    // while table refactoring
+    /**
+     * todo caretaker note
+     * @deprecated - remove in v13
+     * remove and replace with AbstractTableBuilderApiDirective#getSelectedItems
+     * while table refactoring
+     */
+
     public get selectedItems(): T[] {
         return this.getSelectedItems();
     }
