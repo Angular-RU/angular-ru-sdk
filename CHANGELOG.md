@@ -1,3 +1,13 @@
+#### 0.0.0 (2021-12-03)
+
+##### Build System / Dependencies
+
+-   update ngxs dependencies to v3.7.3 (#1127) (ffa49750)
+
+##### New Features
+
+-   **eslint-config-enterprise:** make spellchecker configurable on client (#1130) (6fbd7578)
+
 #### 0.0.0 (2021-12-02)
 
 ##### Bug Fixes
