@@ -1,8 +1,17 @@
 name: Angular-RU SDK pipelines
-on: [push]
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
 
 env:
   CI_MODE: true
+  IS_MASTER_BRANCH: ${{ github.ref == 'refs/heads/master' }}
+  IS_FORK: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
   NODE_VERSION: 16.10.x
 
 jobs:
@@ -21,6 +30,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: Prepare git
+        if: ${{ env.IS_FORK == 'false' }}
         run: |
           git config --global push.default simple
           git config --global user.name "angular-ru-bot"
@@ -54,14 +64,14 @@ jobs:
 
       # move to release.yml
       - name: Deploy npm packages
-        if: ${{ github.ref == 'refs/heads/master' }}
+        if: ${{ env.IS_FORK == 'false' || env.IS_MASTER_BRANCH == 'true' }}
         run: |
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
           GH_TOKEN=${{ secrets.ANGULAR_RU_BOT_PAT }} yarn lerna publish
 
       # Auto push fixable code
       - name: Get last commit message
-        if: ${{ github.ref != 'refs/heads/master' }}
+        if: ${{ env.IS_FORK == 'false' || env.IS_MASTER_BRANCH == 'false' }}
         id: last-commit-message
         run: |
           echo "::set-output name=msg::$(git log -1 --pretty=%s)"
