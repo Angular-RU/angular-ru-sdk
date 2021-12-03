@@ -1,4 +1,6 @@
-const skipWords = [
+const { cosmiconfigSync } = require('cosmiconfig');
+
+const baseSkipWords = [
     'dict',
     'aff',
     'hunspellchecker',
@@ -148,6 +150,10 @@ const skipWords = [
     'keyframes',
     'accessor'
 ];
+
+const { config: spellCheckerClientConfig } = cosmiconfigSync('spellchecker').search() || { config: {} };
+const clientSkipWordList = spellCheckerClientConfig.skipWords || [];
+const skipWords = [...baseSkipWords, ...clientSkipWordList];
 
 const lang = 'en_US';
 const skipIfMatch = ['http://[^s]*', 'https://[^s]*', '^[-\\w]+/[-\\w\\.]+$', '#', 'eslint-disable'];

@@ -41,6 +41,18 @@ $ eslint "**/*.ts"
 }
 ```
 
+### Spellchecker
+
+You can add your own words that will be skipped during the spellcheck.
+
+Create `.spellcheckerrc.json` or `.spellcheckerrc.js`:
+
+```json
+{
+    "skipWords": ["these", "words", "will", "be", "skipped"]
+}
+```
+
 ### Optional
 
 ### import/no-deprecated by default "off"
