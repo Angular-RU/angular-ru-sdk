@@ -163,7 +163,7 @@ export abstract class AbstractNgxsDataEntityCollectionsRepository<
 
     @DataAction()
     public removeAll(): void {
-        this.setEntitiesState(this.initialState);
+        this.setAll([]);
     }
 
     @DataAction()
