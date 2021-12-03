@@ -4,9 +4,13 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
+env:
+  IS_FORK: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
+
 jobs:
   triage:
     name: triage
+    if: ${{ env.IS_FORK == 'false' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/labeler@v3
