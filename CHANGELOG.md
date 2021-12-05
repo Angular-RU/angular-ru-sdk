@@ -1,3 +1,13 @@
+#### 0.0.0 (2021-12-05)
+
+##### Continuous Integration
+
+-   update build.yml (4e1bda66)
+-   update spell-check.js (bd350ffa)
+-   add detect-changed.yml (417b3f22)
+-   update labeler.yml (d5f1cc24)
+-   update.yml (db841213)
+
 #### 0.0.0 (2021-12-03)
 
 ##### Build System / Dependencies
