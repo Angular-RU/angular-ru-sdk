@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update dependency ts-jest to v27.1.0 (#1132) (64ccca05)
+
+#### 0.0.0 (2021-12-05)
+
+##### Build System / Dependencies
+
 -   update dependency prettier to v2.5.1 (#1131) (587ef89f)
 
 #### 0.0.0 (2021-12-05)
