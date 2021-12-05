@@ -30,7 +30,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: Prepare git
-        if: ${{ env.IS_FORK == 'false' }}
+        if: ${{ env.IS_FORK == 'false' || env.IS_MASTER_BRANCH == 'true' }}
         run: |
           git config --global push.default simple
           git config --global user.name "angular-ru-bot"
@@ -64,14 +64,14 @@ jobs:
 
       # move to release.yml
       - name: Deploy npm packages
-        if: ${{ env.IS_FORK == 'false' || env.IS_MASTER_BRANCH == 'true' }}
+        if: ${{ env.IS_MASTER_BRANCH == 'true' }}
         run: |
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
           GH_TOKEN=${{ secrets.ANGULAR_RU_BOT_PAT }} yarn lerna publish
 
       # Auto push fixable code
       - name: Get last commit message
-        if: ${{ env.IS_FORK == 'false' || env.IS_MASTER_BRANCH == 'false' }}
+        if: ${{ env.IS_FORK == 'false' && env.IS_MASTER_BRANCH == 'false' }}
         id: last-commit-message
         run: |
           echo "::set-output name=msg::$(git log -1 --pretty=%s)"
