@@ -1,5 +1,11 @@
 #### 0.0.0 (2021-12-05)
 
+##### Build System / Dependencies
+
+-   update dependency prettier to v2.5.1 (#1131) (587ef89f)
+
+#### 0.0.0 (2021-12-05)
+
 ##### Continuous Integration
 
 -   update build.yml (4e1bda66)
