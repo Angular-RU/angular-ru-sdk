@@ -26,6 +26,8 @@ export { FilterUniquePipeModule } from './filter-unique/filter-unique-pipe.modul
 export { FormatDatePipeOptions } from './format-date/format-date';
 export { FormatDatePipe } from './format-date/format-date.pipe';
 export { FormatDatePipeModule } from './format-date/format-date-pipe.module';
+export { HasPipe } from './has/has.pipe';
+export { HasPipeModule } from './has/has-pipe.module';
 export { HasAtMostOneItemPipe } from './has-at-most-one-item/has-at-most-one-item.pipe';
 export { HasAtMostOneItemPipeModule } from './has-at-most-one-item/has-at-most-one-item-pipe.module';
 export { HasItemsPipe } from './has-items/has-items.pipe';

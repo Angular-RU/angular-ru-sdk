@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { IncludesPipe, IncludesPipeModule } from '@angular-ru/cdk/pipes';
 
-describe('deep path', () => {
+describe('[TEST]: includes-pipe accessibility', () => {
     let pipe: IncludesPipe;
 
     beforeEach(() => {
