@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update dependency ng-packagr to v12.2.6 (#1143) (7beb586d)
+
+#### 0.0.0 (2021-12-08)
+
+##### Build System / Dependencies
+
 -   update dependency ts-jest to v27.1.1 (#1142) (3eff5b32)
 -   update angular dependencies to v12.2.14 (#1141) (6f52736a)
 
