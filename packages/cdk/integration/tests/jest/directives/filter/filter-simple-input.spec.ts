@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DebugElement } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
@@ -17,11 +17,12 @@ describe('[TEST]: inputFilter Simple Input', () => {
     @Component({
         selector: 'test',
         template: `
-            <input [value]="filterValue" [inputFilter]="predicate" />
+            <input [value]="filterValue" [inputFilter]="predicate" [filterDisabled]="disableFilter" />
         `,
         changeDetection: ChangeDetectionStrategy.OnPush
     })
     class TestComponent {
+        @Input() public disableFilter: boolean = false;
         // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
         public filterValue = 'abcД';
         public predicate: FilterPredicate = ['a', 'b', 'c', ' '];
@@ -43,6 +44,7 @@ describe('[TEST]: inputFilter Simple Input', () => {
     });
 
     it('should be created', () => {
+        // fixture?.detectChanges();
         expect(component).toBeTruthy();
     });
 
@@ -98,5 +100,12 @@ describe('[TEST]: inputFilter Simple Input', () => {
         // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
         setValueAndDispatch('aaaДДДccc');
         expect(debugElement!.nativeElement.value).toBe('aaaccc');
+    });
+
+    it('should not filter anything', () => {
+        component!.disableFilter = true;
+        fixture?.detectChanges();
+        setValueAndDispatch('aaaZZZZccc');
+        expect(debugElement!.nativeElement.value).toBe('aaaZZZZccc');
     });
 });
