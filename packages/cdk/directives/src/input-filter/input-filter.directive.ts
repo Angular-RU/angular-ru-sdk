@@ -14,6 +14,7 @@ import { InputFilterConfig } from './input-filter.config';
 export class InputFilterDirective {
     private manualEvent: Nullable<InputEvent> = null;
     @Input() public inputFilter: Nullable<FilterPredicate | ''> = null;
+    @Input() public filterDisabled: boolean = false;
 
     constructor(
         private readonly elementRef: ElementRef<HTMLInputElement>,
@@ -24,7 +25,7 @@ export class InputFilterDirective {
 
     @HostListener('input', ['$event'])
     public onInput(baseEvent: InputEvent): void {
-        if (this.manualEvent === baseEvent) {
+        if (this.filterDisabled || this.manualEvent === baseEvent) {
             return;
         }
 
