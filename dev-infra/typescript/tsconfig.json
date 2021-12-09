@@ -62,7 +62,7 @@
         "noPropertyAccessFromIndexSignature": true,
         "noFallthroughCasesInSwitch": true,
         "useDefineForClassFields": false,
-        "lib": ["esnext", "dom"],
+        "lib": ["esnext", "dom", "webworker"],
         "module": "esnext",
         "target": "es2015",
         "types": [],

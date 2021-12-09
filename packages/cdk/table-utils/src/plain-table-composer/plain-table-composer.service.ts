@@ -1,6 +1,6 @@
 // eslint-disable-next-line max-classes-per-file
 import { Injectable } from '@angular/core';
-import { Any, PlainObject } from '@angular-ru/cdk/typings';
+import { Any, Nullable, PlainObject } from '@angular-ru/cdk/typings';
 import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
 
 import { InputDescriptor } from './interfaces/input-descriptor';
@@ -23,7 +23,7 @@ export class PlainTableComposerService {
                 // eslint-disable-next-line max-lines-per-function,sonarjs/cognitive-complexity
                 .run(
                     // eslint-disable-next-line sonarjs/cognitive-complexity,max-lines-per-function
-                    (input: InputDescriptor<T>): PlainObject[] => {
+                    (input?: InputDescriptor<T>): PlainObject[] => {
                         class PlainComposer {
                             private keySet: Set<string> = new Set();
 
@@ -33,11 +33,10 @@ export class PlainTableComposerService {
                                 return typeof value === 'object' && value !== null;
                             }
 
-                            public toPlain(rawEntries: T[]): PlainObject[] {
+                            public toPlain(rawEntries: Nullable<T[]>): PlainObject[] {
                                 this.keySet.clear();
-                                const flatEntries: PlainObject[] = rawEntries.map(
-                                    (entry: T): PlainObject => this.flattenAndClean(entry)
-                                );
+                                const flatEntries: PlainObject[] =
+                                    rawEntries?.map((entry: T): PlainObject => this.flattenAndClean(entry)) ?? [];
                                 const keys: string[] = this.rules?.includeKeys ?? Array.from(this.keySet);
 
                                 return flatEntries.map((entry: PlainObject): PlainObject => this.pickKeys(entry, keys));
@@ -74,7 +73,9 @@ export class PlainTableComposerService {
                             }
 
                             private passesBlacklist(key: string): boolean {
+                                // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
                                 if (this.rules?.excludeKeys) {
+                                    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
                                     return !this.rules.excludeKeys.includes(key);
                                 } else {
                                     return true;
@@ -82,7 +83,7 @@ export class PlainTableComposerService {
                             }
                         }
 
-                        return new PlainComposer(input.rules).toPlain(input.entries);
+                        return new PlainComposer(input?.rules).toPlain(input?.entries);
                     },
                     { rules: keyRules, entries: tableEntries }
                 )

@@ -33,6 +33,10 @@ import { RouterModule } from '@angular/router';
                                 import('./samples/input-filter/input-filter-page.module').then(
                                     (m) => m.InputFilterPageModule
                                 )
+                        },
+                        {
+                            path: 'worker',
+                            loadChildren: () => import('./samples/worker/worker.module').then((m) => m.WorkerModule)
                         }
                     ]
                 }
