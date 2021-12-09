@@ -26,7 +26,7 @@
         "*.{html,css,scss,md,js,json}": ["yarn prettier --write"],
         "package.json": ["yarn sort-package-json", "yarn prettier --write"]
     },
-    "browserslist": ["Chrome >= 61", "Firefox >= 61", "not IE 11", "> 1%"],
+    "browserslist": ["defaults", "not IE 11", "maintained node versions"],
     "prettier": "./dev-infra/prettier/prettier.config.js",
     "eslintConfig": {
         "extends": "./dev-infra/eslint-config-enterprise/index.js"
