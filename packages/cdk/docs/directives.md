@@ -188,7 +188,7 @@ export class AppModule {}
     //...
     template: `
         <div [formGroup]="form">
-            <input matInput type="text" formControlName="value" [inputFilter]="predicate" />
+            <input matInput type="text" formControlName="value" [filterDisabled]="false" [inputFilter]="predicate" />
         </div>
     `
 })
