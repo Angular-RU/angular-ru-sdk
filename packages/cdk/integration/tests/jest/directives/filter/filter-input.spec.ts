@@ -50,9 +50,9 @@ describe('[TEST]: inputFilter Input', function () {
     function setValueAndDispatch(value: string) {
         localDetectChanges();
         debugElement = fixture!.debugElement.query(By.css('input'));
-        debugElement!.nativeElement.value = value;
-        debugElement!.triggerEventHandler('input', {
-            target: debugElement!.nativeElement
+        debugElement.nativeElement.value = value;
+        debugElement.triggerEventHandler('input', {
+            target: debugElement.nativeElement
         });
         localDetectChanges();
     }

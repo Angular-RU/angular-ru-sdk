@@ -30,6 +30,6 @@ export class SplitStringDirective {
     private splitAndTrimViewValue(viewValue: string): string[] {
         const separator: string | RegExp = this.splitOptions?.separator ?? this.defaultSplitOptions.separator;
 
-        return viewValue.split(separator).map(trim).filter(checkValueIsFilled) as string[];
+        return viewValue.split(separator).map(trim).filter(checkValueIsFilled);
     }
 }

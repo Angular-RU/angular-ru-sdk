@@ -111,7 +111,7 @@ function getOwnDefinitionOfClass(constructor: Any): Nullable<Any> {
         NG_INJ_DEF //   for module
     ].find((property: string): boolean => constructor.hasOwnProperty(property));
 
-    return (isString(definedProperty) as boolean) ? constructor[definedProperty as string] : undefined;
+    return isString(definedProperty) ? constructor[definedProperty] : undefined;
 }
 
 function getNgFactoryOfClass<T>(constructor: Any): Nullable<(...args: Any[]) => T> {

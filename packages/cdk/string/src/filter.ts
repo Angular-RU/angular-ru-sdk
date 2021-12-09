@@ -6,15 +6,15 @@ export type FilterPredicate = string[] | FilterPredicateFn | RegExp;
 
 export function filter(value: string, predicate: FilterPredicate = []): string {
     if (Array.isArray(predicate)) {
-        return filterWithCharacters(value, predicate as string[]);
+        return filterWithCharacters(value, predicate);
     }
 
     if (isFunctionLike(predicate)) {
-        return filterWithFunction(value, predicate as FilterPredicateFn);
+        return filterWithFunction(value, predicate);
     }
 
     if (predicate instanceof RegExp) {
-        return filterWithRegExp(value, predicate as RegExp);
+        return filterWithRegExp(value, predicate);
     }
 
     return value;

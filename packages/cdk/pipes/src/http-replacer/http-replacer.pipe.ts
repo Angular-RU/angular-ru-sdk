@@ -7,7 +7,7 @@ export class HttpReplacerPipe implements PipeTransform {
     public transform(value: Nullable<string>): string {
         let result: Nullable<string> = value;
 
-        if (isString(result) as boolean) {
+        if (isString(result)) {
             result = result
                 ?.replace(/^(http|https):\/\//, '')
                 .replace(/\/$/, '')

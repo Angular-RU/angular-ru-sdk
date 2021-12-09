@@ -588,6 +588,7 @@ module.exports = {
                     }
                 ],
                 '@typescript-eslint/unified-signatures': 'error',
+                '@typescript-eslint/no-unnecessary-type-assertion': 'error',
 
                 /**
                  * sonarjs

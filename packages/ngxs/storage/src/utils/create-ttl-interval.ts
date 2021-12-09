@@ -14,7 +14,7 @@ export function createTtlInterval(options: TtLCreatorOptions): void {
     const watcher: Fn = (): void => {
         const startListen: string = new Date(Date.now()).toISOString();
 
-        const subscription: Subscription = interval(provider.ttlDelay!).subscribe((): void =>
+        const subscription: Subscription = interval(provider.ttlDelay).subscribe((): void =>
             ttlHandler(startListen, options, subscription)
         );
 

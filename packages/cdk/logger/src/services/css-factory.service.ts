@@ -45,7 +45,7 @@ export class CssFactory {
             const style: Nullable<string> = this.options.cssClassMap[className];
 
             if (isNotNil(style)) {
-                styles.push(style as string);
+                styles.push(style);
             }
         });
 

@@ -13,7 +13,7 @@ export function PathVariable(name: string): ParameterDecorator {
             throw new Error(`@PathVariable name should be initialized`);
         }
 
-        const originalMethod: Fn = (target as Any)?.[methodName as Any];
+        const originalMethod: Fn = target?.[methodName as Any];
         const registry: MethodArgsRegistry = ensureMethodArgsRegistry(originalMethod, META_PATH_VARIABLE);
 
         registry.putIndexByName(key, methodName as string, parameterIndex);
