@@ -1,5 +1,11 @@
 #### 0.0.0 (2021-12-08)
 
+##### Other Changes
+
+-   disabling input (#1144) (0eb4913b)
+
+#### 0.0.0 (2021-12-08)
+
 ##### Build System / Dependencies
 
 -   update dependency ng-packagr to v12.2.6 (#1143) (7beb586d)
