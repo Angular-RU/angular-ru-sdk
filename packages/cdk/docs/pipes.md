@@ -792,6 +792,32 @@ export class AppComponent {
 }
 ```
 
+-   `HasPipe, HasPipeModule`
+
+```ts
+import { HasPipeModule } from '@angular-ru/cdk/pipes';
+
+@NgModule({
+    // ..
+    imports: [HasPipeModule]
+})
+export class AppModule {}
+
+@Component({
+    //...
+    template: `
+        <p *ngIf="someSet | has: 'first'">first</p>
+        <p *ngIf="someSet | has: 'fourth'">
+            <!-- this will not appear -->
+            fourth
+        </p>
+    `
+})
+export class AppComponent {
+    public someSet = new Set(['first', 'second', 'third', 'last']);
+}
+```
+
 -   `CoerceBooleanPipe, CoerceBooleanPipeModule`
 
 ```ts

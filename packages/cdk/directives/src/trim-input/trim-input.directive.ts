@@ -9,6 +9,8 @@ export class TrimInputDirective implements OnInit {
     private previousName: Nullable<string | number>;
     private previousValue: Any;
 
+    @Input('trimDisabled') public disabled: boolean = false;
+
     constructor(public readonly el: ElementRef, @Optional() private readonly ngControl?: NgControl) {}
 
     @Input()
@@ -33,6 +35,10 @@ export class TrimInputDirective implements OnInit {
     }
 
     private trimValue(): void {
+        if (this.disabled) {
+            return;
+        }
+
         this.el.nativeElement.value = this.el.nativeElement.value?.toString().trim();
 
         const control: Nullable<AbstractControl> = this.ngControl?.control?.parent

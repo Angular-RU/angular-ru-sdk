@@ -106,6 +106,11 @@ export class AppComponent {}
 ```
 
 -   `TrimInputDirective, TrimInputModule`
+-   Selector: `trimInput`
+
+API:
+
+-   `@Input('trimDisabled') disabled: boolean` - default: `false`
 
 ```ts
 import { TrimInputModule } from '@angular-ru/cdk/directives';
@@ -120,7 +125,7 @@ export class AppModule {}
 @Component({
     //...
     template: `
-        <input trimInput placeholder="  Hello  " />
+        <input trimInput placeholder="  Hello  " [trimDisabled]="false" />
     ` // 'Hello'
 })
 export class AppComponent {}
@@ -183,7 +188,7 @@ export class AppModule {}
     //...
     template: `
         <div [formGroup]="form">
-            <input matInput type="text" formControlName="value" [inputFilter]="predicate" />
+            <input matInput type="text" formControlName="value" [filterDisabled]="false" [inputFilter]="predicate" />
         </div>
     `
 })

@@ -1,3 +1,58 @@
+#### 0.0.0 (2021-12-08)
+
+##### Other Changes
+
+-   disabling input (#1144) (0eb4913b)
+
+#### 0.0.0 (2021-12-08)
+
+##### Build System / Dependencies
+
+-   update dependency ng-packagr to v12.2.6 (#1143) (7beb586d)
+
+#### 0.0.0 (2021-12-08)
+
+##### Build System / Dependencies
+
+-   update dependency ts-jest to v27.1.1 (#1142) (3eff5b32)
+-   update angular dependencies to v12.2.14 (#1141) (6f52736a)
+
+#### 0.0.0 (2021-12-07)
+
+##### Build System / Dependencies
+
+-   update dependency @types/node to v16.11.12 (#1136) (a7c593c0)
+
+#### 0.0.0 (2021-12-06)
+
+##### Build System / Dependencies
+
+-   update eslint dependencies to v5.6.0 (#1135) (1011e7cf)
+
+#### 0.0.0 (2021-12-06)
+
+#### 0.0.0 (2021-12-05)
+
+##### Build System / Dependencies
+
+-   update dependency ts-jest to v27.1.0 (#1132) (64ccca05)
+
+#### 0.0.0 (2021-12-05)
+
+##### Build System / Dependencies
+
+-   update dependency prettier to v2.5.1 (#1131) (587ef89f)
+
+#### 0.0.0 (2021-12-05)
+
+##### Continuous Integration
+
+-   update build.yml (4e1bda66)
+-   update spell-check.js (bd350ffa)
+-   add detect-changed.yml (417b3f22)
+-   update labeler.yml (d5f1cc24)
+-   update.yml (db841213)
+
 #### 0.0.0 (2021-12-03)
 
 ##### Build System / Dependencies
