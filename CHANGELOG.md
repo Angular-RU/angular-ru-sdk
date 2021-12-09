@@ -1,5 +1,11 @@
 #### 0.0.0 (2021-12-09)
 
+##### New Features
+
+-   initial focus disabling (#1145) (1f4f4af1)
+
+#### 0.0.0 (2021-12-09)
+
 ##### Continuous Integration
 
 -   delete detect-confilicts.yml (79847718)
