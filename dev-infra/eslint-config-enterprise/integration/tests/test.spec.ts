@@ -111,6 +111,9 @@ describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
         expect(bad.includes('You have a misspelled word: xb1 on Identifier')).toBeTruthy();
         expect(bad.includes('You have a misspelled word: xfd on Comment')).toBeTruthy();
         expect(bad.includes('You have a misspelled word: xfd on Template')).toBeTruthy();
+        expect(
+            bad.includes('This assertion is unnecessary since it does not change the type of the expression')
+        ).toBeTruthy();
     });
 
     it('check success files', (): void => {
