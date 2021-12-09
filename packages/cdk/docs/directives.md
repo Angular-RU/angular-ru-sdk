@@ -1,6 +1,11 @@
 #### `@angular-ru/cdk/directives`
 
 -   `InitialFocusDirective, InitialFocusModule`
+-   Selector: `initialFocus`
+
+-   API:
+
+    -   `Input() focusDisabled: boolean` - default: `false`
 
 ```ts
 import { InitialFocusModule } from '@angular-ru/cdk/directives';
@@ -15,7 +20,7 @@ export class AppModule {}
 @Component({
     //...
     template: `
-        <input initialFocus placeholder="hello world" />
+        <input initialFocus placeholder="hello world" [focusDisabled]="false" />
     `
 })
 export class AppComponent {}
