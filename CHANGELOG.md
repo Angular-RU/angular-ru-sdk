@@ -1,3 +1,9 @@
+#### 0.0.0 (2021-12-09)
+
+##### Continuous Integration
+
+-   delete detect-confilicts.yml (79847718)
+
 #### 0.0.0 (2021-12-08)
 
 ##### Other Changes
