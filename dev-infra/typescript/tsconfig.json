@@ -50,7 +50,7 @@
         "noStrictGenericChecks": false,
         "preserveConstEnums": false,
         "noUnusedParameters": true,
-        "noUnusedLocals": true,
+        "noUnusedLocals": false,
         "noUncheckedIndexedAccess": true,
         "skipLibCheck": true,
         "skipDefaultLibCheck": true,
