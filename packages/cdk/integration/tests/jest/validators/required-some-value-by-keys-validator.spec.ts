@@ -24,22 +24,23 @@ describe('[TEST]: requiredSomeValueByKeysValidator', () => {
             expect(() => validator(control))?.toThrow(new Error('requiredSomeValueByKeys must be used on form group'));
         });
 
+        // noinspection DuplicatedCode
         it('should return error if all controls with no values: undefined, null, NaN', () => {
-            form.controls.aaa?.setValue(undefined);
-            form.controls.bbb?.setValue(null);
-            form.controls.ccc?.setValue(NaN);
+            form.controls?.['aaa']?.setValue(undefined);
+            form.controls?.['bbb']?.setValue(null);
+            form.controls?.['ccc']?.setValue(NaN);
             expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
         });
 
         it('should return error if all controls with no values: "", "null", Infinity', () => {
-            form.controls.aaa?.setValue('');
-            form.controls.bbb?.setValue(null);
-            form.controls.ccc?.setValue(Infinity);
+            form.controls?.['aaa']?.setValue('');
+            form.controls?.['bbb']?.setValue(null);
+            form.controls?.['ccc']?.setValue(Infinity);
             expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
         });
 
         it('should return error if all controls with no values: []', () => {
-            form.controls.aaa?.setValue([]);
+            form.controls?.['aaa']?.setValue([]);
             expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
         });
 
@@ -48,24 +49,24 @@ describe('[TEST]: requiredSomeValueByKeysValidator', () => {
         });
 
         it('should be valid if there is only one value with type number', () => {
-            form.controls.aaa?.setValue(13);
+            form.controls?.['aaa']?.setValue(13);
             expect(form.valid).toBe(true);
         });
 
         it('should be valid if there is only one value with type string', () => {
-            form.controls.bbb?.setValue('awesome');
+            form.controls?.['bbb']?.setValue('awesome');
             expect(form.valid).toBe(true);
         });
 
         it('should be valid if there is only one value with type Object', () => {
-            form.controls.ccc?.setValue({});
+            form.controls?.['ccc']?.setValue({});
             expect(form.valid).toBe(true);
         });
 
         it('should be valid if there is more than one value', () => {
-            form.controls.aaa?.setValue(13);
-            form.controls.bbb?.setValue('awesome');
-            form.controls.ccc?.setValue({});
+            form.controls?.['aaa']?.setValue(13);
+            form.controls?.['bbb']?.setValue('awesome');
+            form.controls?.['ccc']?.setValue({});
             expect(form.valid).toBe(true);
         });
 
@@ -80,6 +81,7 @@ describe('[TEST]: requiredSomeValueByKeysValidator', () => {
         });
     });
 
+    // noinspection DuplicatedCode
     describe('case #2', () => {
         beforeEach(() => {
             form = new FormGroup(
@@ -118,6 +120,7 @@ describe('[TEST]: requiredSomeValueByKeysValidator', () => {
             );
         });
 
+        // noinspection DuplicatedCode
         it('should return error if nested control has no value', () => {
             expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
         });
@@ -145,6 +148,7 @@ describe('[TEST]: requiredSomeValueByKeysValidator', () => {
             );
         });
 
+        // noinspection DuplicatedCode
         it('should return error if nested control has no value', () => {
             expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
         });
@@ -156,6 +160,7 @@ describe('[TEST]: requiredSomeValueByKeysValidator', () => {
             expect(form.valid).toBe(true);
         });
 
+        // noinspection DuplicatedCode
         it('should be valid if not nested control has no value', () => {
             const control: AbstractControl = form.get('ddd') ?? new FormControl();
 
@@ -217,10 +222,12 @@ describe('[TEST]: requiredSomeValueByKeysValidator', () => {
             );
         });
 
+        // noinspection DuplicatedCode
         it('should return error if nested control has no value', () => {
             expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
         });
 
+        // noinspection DuplicatedCode
         it('should be valid if nested control has a value', () => {
             const control: AbstractControl = form.get('aaa.bbb.ccc') ?? new FormControl();
 

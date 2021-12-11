@@ -16,7 +16,7 @@ describe('date interval validator', () => {
         expect(form.errors).toEqual({ maxDateIntervalLimit: true });
 
         // changing to valid value
-        form.controls.dateFrom?.setValue(toUtc({ month: new Date().getMonth() - 1 }));
+        form.controls?.['dateFrom']?.setValue(toUtc({ month: new Date().getMonth() - 1 }));
         expect(form.valid).toBe(true);
     });
 
@@ -33,7 +33,7 @@ describe('date interval validator', () => {
         expect(form.errors).toEqual({ minDateIntervalLimit: true });
 
         // changing to valid value
-        form.controls.dateFrom?.setValue(toUtc({ month: new Date().getMonth() - 3 }));
+        form.controls?.['dateFrom']?.setValue(toUtc({ month: new Date().getMonth() - 3 }));
         expect(form.valid).toBe(true);
     });
 
@@ -53,11 +53,11 @@ describe('date interval validator', () => {
         expect(form.errors).toEqual({ minDateIntervalLimit: true });
 
         // changing to valid value
-        form.controls.dateFrom?.setValue(toUtc({ month: new Date().getMonth() - 2 }));
+        form.controls?.['dateFrom']?.setValue(toUtc({ month: new Date().getMonth() - 2 }));
         expect(form.valid).toBe(true);
 
         // changing to invalid value again
-        form.controls.dateFrom?.setValue(toUtc({ month: new Date().getMonth() - 3 }));
+        form.controls?.['dateFrom']?.setValue(toUtc({ month: new Date().getMonth() - 3 }));
         expect(form.errors).toEqual({ maxDateIntervalLimit: true });
     });
 });

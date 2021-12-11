@@ -28,9 +28,8 @@ export class SampleThirdComponent implements OnInit, AfterViewInit {
     }
 
     public disableFn(item: Nullable<PlainObject>): boolean {
-        const everyFifth: number = 5;
-
-        return item?.id % everyFifth === 0;
+        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+        return item?.['id'] % 5 === 0;
     }
 
     public ngAfterViewInit(): void {

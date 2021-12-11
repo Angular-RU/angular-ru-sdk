@@ -53,7 +53,7 @@ export class SampleFirstSecondComponent implements OnInit, OnDestroy {
                 .subscribe((data?: PlainObject): void => {
                     if (isNotNil(data)) {
                         this.data = this.data.map(
-                            (val: PlainObject): PlainObject => (val.id === data.id ? { ...data } : val)
+                            (val: PlainObject): PlainObject => (val?.['id'] === data?.['id'] ? { ...data } : val)
                         );
                         detectChanges(this.cd);
                     }
@@ -66,7 +66,7 @@ export class SampleFirstSecondComponent implements OnInit, OnDestroy {
         const cols: number = 10;
 
         const startIndex: number = this.data.length
-            ? Math.max(...this.data.map((item: PlainObject): number => item.id))
+            ? Math.max(...this.data.map((item: PlainObject): number => item?.['id'] ?? 0))
             : 0;
 
         MocksGenerator.generator(rows, cols, startIndex).then((row: PlainObject[]): void => {

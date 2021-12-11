@@ -1,5 +1,5 @@
-import { PlainObject } from '@angular-ru/cdk/typings';
+import { NgEnvironment } from '@angular-ru/cdk/typings';
 
-export const environment: PlainObject = {
+export const environment: NgEnvironment = {
     production: true
 };

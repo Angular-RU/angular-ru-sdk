@@ -42,7 +42,7 @@ export function createTsJestConfig(options: JestConfigOptions): Config.InitialOp
     } else if (fs.existsSync(packageJsonPath)) {
         const packageJson: PlainObject = JSON.parse(fs.readFileSync(packageJsonPath).toString() ?? '{}');
 
-        displayName = packageJson?.name;
+        displayName = packageJson?.['name'];
     }
 
     displayName = displayName ?? DEFAULT_DISPLAY_NAME;

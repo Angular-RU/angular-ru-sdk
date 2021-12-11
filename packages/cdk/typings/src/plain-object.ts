@@ -1,5 +1,3 @@
 import { Any } from './any';
 
-export interface PlainObject {
-    [key: string]: Any;
-}
+export type PlainObject<T = Any> = Record<string, T>;

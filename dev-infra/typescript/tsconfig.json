@@ -58,7 +58,7 @@
         "noImplicitAny": true,
         "noImplicitThis": true,
         "allowUmdGlobalAccess": true,
-        "noPropertyAccessFromIndexSignature": false,
+        "noPropertyAccessFromIndexSignature": true,
         "noFallthroughCasesInSwitch": true,
         "useDefineForClassFields": false,
         "lib": ["esnext", "dom"],

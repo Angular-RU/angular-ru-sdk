@@ -1,5 +1,4 @@
-import { PlainObject } from './plain-object';
-
-export interface NgEnvironment extends PlainObject {
+export interface NgEnvironment {
     production: boolean;
+    [key: string]: unknown;
 }
