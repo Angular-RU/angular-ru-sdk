@@ -1,3 +1,9 @@
+#### 0.0.0 (2021-12-11)
+
+##### New Features
+
+-   **typescript:** enable noPropertyAccessFromIndexSignature (5797941d)
+
 #### 0.0.0 (2021-12-09)
 
 ##### New Features
