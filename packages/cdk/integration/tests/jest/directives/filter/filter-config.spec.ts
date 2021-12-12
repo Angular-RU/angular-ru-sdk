@@ -40,7 +40,7 @@ describe('[TEST]: inputFilter Config', () => {
 
         expect(component).toBeTruthy();
         setValueAndDispatch('abc123');
-        expect(debugElement!.nativeElement.value).toBe('123');
+        expect(debugElement.nativeElement.value).toBe('123');
     });
 
     it('should filter input with child config', () => {
@@ -51,15 +51,15 @@ describe('[TEST]: inputFilter Config', () => {
 
         expect(component).toBeTruthy();
         setValueAndDispatch('abc123');
-        expect(debugElement!.nativeElement.value).toBe('123');
+        expect(debugElement.nativeElement.value).toBe('123');
     });
 
     function setValueAndDispatch(value: string) {
         localDetectChanges();
         debugElement = fixture!.debugElement.query(By.css('input'));
-        debugElement!.nativeElement.value = value;
-        debugElement!.triggerEventHandler('input', {
-            target: debugElement!.nativeElement
+        debugElement.nativeElement.value = value;
+        debugElement.triggerEventHandler('input', {
+            target: debugElement.nativeElement
         });
         localDetectChanges();
     }

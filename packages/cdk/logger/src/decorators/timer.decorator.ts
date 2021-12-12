@@ -22,7 +22,7 @@ export function TimerLog(
 
             result = method.apply(this, args) as PropertyDescriptor;
 
-            LoggerInjector.getInjector().get<LoggerService>(LoggerService).endTime(info!, level, isMillisecond);
+            LoggerInjector.getInjector().get<LoggerService>(LoggerService).endTime(info, level, isMillisecond);
 
             return result;
         };

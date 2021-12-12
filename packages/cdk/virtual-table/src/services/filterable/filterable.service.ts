@@ -35,7 +35,7 @@ export class FilterableService<T> implements Filterable {
     }
 
     public get globalFilterValue(): Nullable<string> {
-        return (isString(this.filterValue) as boolean) ? String(this.filterValue).trim() : null;
+        return isString(this.filterValue) ? String(this.filterValue).trim() : null;
     }
 
     public get filterValueExist(): boolean {
@@ -100,9 +100,7 @@ export class FilterableService<T> implements Filterable {
     // eslint-disable-next-line max-lines-per-function
     public filter(source: T[]): Promise<FilterWorkerEvent<T>> {
         const type: Nullable<string | TableFilterType> = this.filterType;
-        const value: Nullable<string> = (isString(this.globalFilterValue) as boolean)
-            ? String(this.globalFilterValue).trim()
-            : null;
+        const value: Nullable<string> = isString(this.globalFilterValue) ? String(this.globalFilterValue).trim() : null;
 
         return new Promise(
             // eslint-disable-next-line max-lines-per-function

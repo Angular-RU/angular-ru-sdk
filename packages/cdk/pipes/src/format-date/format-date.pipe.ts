@@ -11,8 +11,8 @@ export class FormatDatePipe implements PipeTransform {
     public transform(value?: Nullable<string | number | Date>, options?: FormatDatePipeOptions): string {
         let result: Nullable<string | number | Date> = value;
 
-        if (isString(result) as boolean) {
-            result = takeFirstItem((result as string).split('+')) ?? '';
+        if (isString(result)) {
+            result = takeFirstItem(result.split('+')) ?? '';
         }
 
         return (

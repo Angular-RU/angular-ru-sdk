@@ -7,7 +7,7 @@ export function everyArrayItemValidator(validators: ValidatorFn[]): ValidatorFn 
         if (Array.isArray(control.value)) {
             const errors: ValidationErrors = control.value
                 .map((value: Any): ValidationErrors | null => getErrorsForSingleValue(value, validators))
-                .reduce(concatErrors, {}) as ValidationErrors;
+                .reduce(concatErrors, {});
 
             return checkIsShallowEmpty(errors) ? null : errors;
         }

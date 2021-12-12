@@ -49,9 +49,9 @@ describe('[TEST]: inputFilter Dynamic', function () {
 
     function setValueAndDispatch(value: string) {
         debugElement = fixture!.debugElement.query(By.css('input'));
-        debugElement!.nativeElement.value = value;
-        debugElement!.triggerEventHandler('input', {
-            target: debugElement!.nativeElement
+        debugElement.nativeElement.value = value;
+        debugElement.triggerEventHandler('input', {
+            target: debugElement.nativeElement
         });
         localDetectChanges();
     }

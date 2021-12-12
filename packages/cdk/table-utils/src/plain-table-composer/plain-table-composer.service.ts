@@ -62,7 +62,7 @@ export class PlainTableComposerService {
                                     }
                                 });
 
-                                return depthGraph as PlainObject;
+                                return depthGraph;
                             }
 
                             private pickKeys<E extends string>(source: PlainObject, keys: E[]): Record<E, T[E]> {

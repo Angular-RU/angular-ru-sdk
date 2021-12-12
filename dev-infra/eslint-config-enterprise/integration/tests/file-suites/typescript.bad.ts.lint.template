@@ -400,4 +400,9 @@ for (let i: number = 0; i < 10; ++i) {
 // note: xfd
 const res: string = `note: xfd`;
 
+// error: This assertion is unnecessary since it does not change the type of the expression
+function uta(x: number): number {
+  return x!; // unnecessary non-null
+}
+
 console.error(res);

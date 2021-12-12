@@ -10,6 +10,6 @@ export class NgxTooltipTextInterceptor implements TooltipTextInterceptor {
     constructor(private readonly translate: TranslateService) {}
 
     public instant(value?: Nullable<string>): Nullable<string> {
-        return (isString(value) as boolean) ? this.translate.instant(value as string) : value;
+        return isString(value) ? this.translate.instant(value) : value;
     }
 }

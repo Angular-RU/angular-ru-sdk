@@ -56,7 +56,7 @@ describe('[TEST]: JWT', (): void => {
     it('should be return null when invalid token', (): void => {
         expect(decodeJwt(null)).toBeNull();
         expect(decodeJwt(NaN as Any)).toBeNull();
-        expect(decodeJwt(undefined!)).toBeNull();
+        expect(decodeJwt(undefined)).toBeNull();
         expect(decodeJwt('')).toBeNull();
         expect(decodeJwt('invalid jwt string')).toBeNull();
     });

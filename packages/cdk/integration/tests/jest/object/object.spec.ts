@@ -249,7 +249,7 @@ describe('[TEST]: Object', () => {
     describe('clone', () => {
         it('deep clone', () => {
             const origin: Origin = { a: 1, b: { c: 2 } };
-            const copy: Origin = deepClone(origin) as Origin;
+            const copy: Origin = deepClone(origin);
 
             expect(Object.is(origin, copy)).toBe(false);
 

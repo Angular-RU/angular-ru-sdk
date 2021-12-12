@@ -51,12 +51,12 @@ describe('[TEST]: Trim Input', function () {
 
     function setValueAndDispatchBlur(value: string) {
         debugElement = fixture!.debugElement.query(By.css('input'));
-        debugElement!.nativeElement.value = value;
-        debugElement!.triggerEventHandler('input', {
-            target: debugElement!.nativeElement
+        debugElement.nativeElement.value = value;
+        debugElement.triggerEventHandler('input', {
+            target: debugElement.nativeElement
         });
-        debugElement!.triggerEventHandler('blur', {
-            target: debugElement!.nativeElement
+        debugElement.triggerEventHandler('blur', {
+            target: debugElement.nativeElement
         });
         localDetectChanges();
     }
