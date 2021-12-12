@@ -1,3 +1,9 @@
+#### 0.0.0 (2021-12-12)
+
+##### New Features
+
+-   **eslint-config-enterprise:** added no-unnecessary-type-assertion rule (#1150) (35a802a6)
+
 #### 0.0.0 (2021-12-11)
 
 ##### New Features
