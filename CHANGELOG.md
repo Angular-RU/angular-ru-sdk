@@ -1,3 +1,10 @@
+#### 0.0.0 (2021-12-13)
+
+##### Build System / Dependencies
+
+-   update dependency jest to v27.4.4 (#1151) (58cb347e)
+-   update eslint dependencies to v5.7.0 (#1153) (b928c626)
+
 #### 0.0.0 (2021-12-12)
 
 ##### New Features
