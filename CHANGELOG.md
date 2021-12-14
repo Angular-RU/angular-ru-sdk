@@ -1,3 +1,9 @@
+#### 0.0.0 (2021-12-14)
+
+##### Build System / Dependencies
+
+-   update dependency eslint-plugin-deprecation to v1.3.0 (#1155) (1e7ba05b)
+
 #### 0.0.0 (2021-12-13)
 
 ##### Build System / Dependencies
