@@ -1,3 +1,9 @@
+#### 0.0.0 (2021-12-17)
+
+##### Bug Fixes
+
+-   selection service pulled out to public api (#1161) (3261418b)
+
 #### 0.0.0 (2021-12-14)
 
 ##### Build System / Dependencies
