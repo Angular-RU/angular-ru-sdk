@@ -48,6 +48,7 @@ export { FilterWorkerEvent } from './services/filterable/filter-worker-event';
 export { Filterable } from './services/filterable/filterable';
 export { FilterableMessage } from './services/filterable/filterable-message';
 export { TableFilterType } from './services/filterable/table-filter-type';
+export { SelectionService } from './services/selection/selection.service';
 export { NgxTableViewChangesService } from './services/table-view-changes/ngx-table-view-changes.service';
 export { TableBuilderComponent } from './table-builder.component';
 export { TableBuilderModule } from './table-builder.module';
