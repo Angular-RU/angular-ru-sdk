@@ -1,3 +1,11 @@
+#### 0.0.0 (2021-12-19)
+
+##### Build System / Dependencies
+
+-   update angular dependencies to v12.2.15 (#1159) (cfd49a9c)
+-   update dependency lint-staged to v12.1.3 (#1162) (ddb5aa49)
+-   update dependency @types/node to v17 (#1160) (d84ddf95)
+
 #### 0.0.0 (2021-12-17)
 
 ##### Bug Fixes
