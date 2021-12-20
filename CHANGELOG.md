@@ -1,3 +1,9 @@
+#### 0.0.0 (2021-12-20)
+
+##### Bug Fixes
+
+-   **cdk:** unexpected `&nbsp;` after marking & refactor (#1163) (ccd2a6e3)
+
 #### 0.0.0 (2021-12-19)
 
 ##### Build System / Dependencies
