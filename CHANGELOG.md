@@ -1,5 +1,11 @@
 #### 0.0.0 (2021-12-20)
 
+##### New Features
+
+-   **typescript:** enable noImplicitOverride (b3fe9859)
+
+#### 0.0.0 (2021-12-20)
+
 ##### Build System / Dependencies
 
 -   update eslint dependencies to v5.8.0 (#1164) (5e0e7e15)
