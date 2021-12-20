@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update eslint dependencies to v5.8.0 (#1164) (5e0e7e15)
+
+#### 0.0.0 (2021-12-20)
+
+##### Build System / Dependencies
+
 -   update dependency chalk to v5 (#1116) (16a49d7f)
 -   update jest dependencies (#1154) (c56dbfe1)
 -   update dependency eslint-plugin-deprecation to v1.3.2 (#1156) (ddd83458)
