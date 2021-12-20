@@ -57,6 +57,7 @@
         "noImplicitReturns": true,
         "noImplicitAny": true,
         "noImplicitThis": true,
+        "noImplicitOverride": true,
         "allowUmdGlobalAccess": true,
         "noPropertyAccessFromIndexSignature": true,
         "noFallthroughCasesInSwitch": true,

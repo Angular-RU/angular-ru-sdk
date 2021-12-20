@@ -60,11 +60,11 @@ describe('complex lifecycle', () => {
                 hooks.push('CountState - create');
             }
 
-            public ngxsOnInit(): void {
+            public override ngxsOnInit(): void {
                 hooks.push('CountState - ngxsOnInit');
             }
 
-            public ngxsAfterBootstrap(): void {
+            public override ngxsAfterBootstrap(): void {
                 hooks.push('CountState - ngxsAfterBootstrap');
             }
         }

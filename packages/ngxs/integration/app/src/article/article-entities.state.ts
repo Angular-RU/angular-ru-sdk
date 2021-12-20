@@ -16,5 +16,5 @@ import { Article } from './article';
 })
 @Injectable()
 export class ArticleEntitiesState extends NgxsDataEntityCollectionsRepository<Article, string> {
-    public primaryKey: string = 'uid';
+    public override primaryKey: string = 'uid';
 }

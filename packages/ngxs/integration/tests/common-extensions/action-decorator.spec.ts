@@ -229,11 +229,11 @@ describe('[TEST]: Action decorator', () => {
         @Injectable()
         class C extends B {
             @DataAction()
-            public b(): string {
+            public override b(): string {
                 return this.getState();
             }
 
-            public superA(): string {
+            public override superA(): string {
                 return super.superA();
             }
 

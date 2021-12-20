@@ -1,13 +1,5 @@
 /* eslint-disable @angular-eslint/no-input-rename */
-import {
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    Injector,
-    Input,
-    OnInit,
-    ViewEncapsulation
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Nullable } from '@angular-ru/cdk/typings';
 import { detectChanges } from '@angular-ru/cdk/utils';
 
@@ -32,10 +24,6 @@ export class NgxContextMenuComponent<T>
     @Input() public width: Nullable<number> = SIZE;
     @Input() public height: Nullable<number> = SIZE;
     @Input('max-height') public maxHeight: number = MAX_HEIGHT;
-
-    constructor(protected readonly cd: ChangeDetectorRef, injector: Injector) {
-        super(cd, injector);
-    }
 
     public get state(): ContextMenuState<T> {
         return this.contextMenu.state;

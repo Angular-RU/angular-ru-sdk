@@ -46,7 +46,7 @@ export abstract class AbstractSuperTestDirective {
 export class ExtendingTestComponent extends AbstractSuperTestDirective {
     @InjectNgZone() public ngZone!: NgZone;
 
-    constructor(public appRef: ApplicationRef) {
+    constructor(public override appRef: ApplicationRef) {
         super(appRef);
     }
 }

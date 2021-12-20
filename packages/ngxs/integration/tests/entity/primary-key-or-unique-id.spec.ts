@@ -76,7 +76,7 @@ describe('[TEST]: Entity - primary key or unique id', () => {
         })
         @Injectable()
         class LessonEntitiesState extends NgxsDataEntityCollectionsRepository<Lesson> {
-            public primaryKey: string = 'lessonId';
+            public override primaryKey: string = 'lessonId';
         }
 
         it(
@@ -108,7 +108,7 @@ describe('[TEST]: Entity - primary key or unique id', () => {
         })
         @Injectable()
         class LessonEntitiesState extends NgxsDataEntityCollectionsRepository<Lesson> {
-            public selectId(entity: Lesson): EntityIdType {
+            public override selectId(entity: Lesson): EntityIdType {
                 return entity.lessonId;
             }
         }
@@ -216,7 +216,7 @@ describe('[TEST]: Entity - primary key or unique id', () => {
             defaults: createEntityCollections()
         })
         class StudentEntitiesState extends NgxsDataEntityCollectionsRepository<StudentEntity, string> {
-            public selectId(entity: StudentEntity): string {
+            public override selectId(entity: StudentEntity): string {
                 return `${entity.groupId}_${entity.batchId}`;
             }
         }

@@ -25,21 +25,21 @@ export interface PositionState {
 
 @Directive()
 export abstract class AbstractModalViewLayerDirective<T, K extends PositionState> implements OnDestroy {
+    public abstract width: Nullable<number>;
+    public abstract height: Nullable<number>;
+    public abstract maxHeight: Nullable<number>;
     @ViewChild('menu', { static: false }) protected menu!: ElementRef<HTMLDivElement>;
     protected subscription: Nullable<Subscription> = null;
     protected readonly app: ApplicationRef;
     protected readonly filterable: FilterableService<T>;
     protected readonly ngZone: NgZone;
     protected readonly contextMenu: ContextMenuService<T>;
-    public width: Nullable<number> = null;
-    public height: Nullable<number> = null;
     public isViewed: boolean = false;
     public isRendered: boolean = false;
     public isShowed: boolean = false;
-    public maxHeight: Nullable<number> = null;
     public minHeight: Nullable<number> = null;
 
-    protected constructor(protected readonly cd: ChangeDetectorRef, injector: Injector) {
+    public constructor(protected readonly cd: ChangeDetectorRef, injector: Injector) {
         this.app = injector.get<ApplicationRef>(ApplicationRef);
         this.filterable = injector.get<FilterableService<T>>(FilterableService);
         this.ngZone = injector.get<NgZone>(NgZone);

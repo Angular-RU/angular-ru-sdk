@@ -1,13 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    ContentChild,
-    Injector,
-    Input,
-    OnInit,
-    ViewEncapsulation
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ContentChild, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { fadeInLinearAnimation } from '@angular-ru/cdk/animations';
 import { Nullable } from '@angular-ru/cdk/typings';
 
@@ -35,10 +26,6 @@ export class NgxFilterComponent<T> extends AbstractModalViewLayerDirective<T, Fi
     @ContentChild(NgxFilterDirective, { static: false }) public filter!: NgxFilterDirective;
     public readonly leftX: number = FILTER_MIN_LEFT_X;
     public readonly topY: number = FILTER_MIN_TOP_Y;
-
-    constructor(protected readonly cd: ChangeDetectorRef, injector: Injector) {
-        super(cd, injector);
-    }
 
     public get state(): Partial<FilterStateEvent> {
         return this.filterable.state;

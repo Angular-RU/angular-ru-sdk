@@ -23,12 +23,12 @@ describe('[TEST]: NgxsTestingModule', () => {
                 events.push(`${this.name}::increment`);
             }
 
-            public ngxsOnChanges(): void {
+            public override ngxsOnChanges(): void {
                 events.push(`${this.name}::ngxsOnChanges`);
                 super.ngxsOnChanges();
             }
 
-            public ngxsOnInit(): void {
+            public override ngxsOnInit(): void {
                 events.push(`${this.name}::ngxsOnInit`);
                 super.ngxsOnInit();
             }
@@ -41,7 +41,7 @@ describe('[TEST]: NgxsTestingModule', () => {
                 events.push(`${this.name}::ngxsDataAfterReset`);
             }
 
-            public ngxsAfterBootstrap(): void {
+            public override ngxsAfterBootstrap(): void {
                 events.push(`${this.name}::ngxsAfterBootstrap`);
                 super.ngxsAfterBootstrap();
             }

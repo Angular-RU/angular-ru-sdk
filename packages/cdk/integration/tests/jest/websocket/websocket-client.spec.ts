@@ -15,11 +15,11 @@ class WebsocketSimpleParseClient extends AbstractWebsocketClient<Any> {
         return 'ws://';
     }
 
-    protected serialize(message: Any): string {
+    protected override serialize(message: Any): string {
         return JSON.stringify(message);
     }
 
-    protected deserialize(messageEvent: MessageEvent): WebsocketMessage<Any, Any> {
+    protected override deserialize(messageEvent: MessageEvent): WebsocketMessage<Any, Any> {
         return JSON.parse(messageEvent.data);
     }
 }

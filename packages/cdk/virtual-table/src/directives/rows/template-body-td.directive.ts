@@ -6,9 +6,9 @@ import { AbstractTemplateCellCommonDirective } from './abstract-template-cell-co
 @Directive({ selector: 'ng-template[ngx-td]' })
 export class TemplateBodyTdDirective<T> extends AbstractTemplateCellCommonDirective<T> {
     // eslint-disable-next-line @angular-eslint/no-input-rename
-    @Input('ngx-td') public type: Nullable<string> = null;
+    @Input('ngx-td') public override type: Nullable<string> = null;
 
-    constructor(@Optional() public template?: TemplateRef<Any>) {
+    constructor(@Optional() public override template?: TemplateRef<Any>) {
         super(template);
     }
 }

@@ -25,17 +25,17 @@ describe('[TEST]: Abstract ngxs data repository', () => {
             event.push(`create: ${this.name}`);
         }
 
-        public ngxsOnInit(): void {
+        public override ngxsOnInit(): void {
             event.push(`ngxsOnInit: ${this.name}`);
             super.ngxsOnInit();
         }
 
-        public ngxsOnChanges(change: NgxsSimpleChange): void {
+        public override ngxsOnChanges(change: NgxsSimpleChange): void {
             event.push(`ngxsOnChanges: ${this.name} -> ${JSON.stringify(change)}`);
             super.ngxsOnChanges();
         }
 
-        public ngxsAfterBootstrap(): void {
+        public override ngxsAfterBootstrap(): void {
             event.push(`ngxsAfterBootstrap: ${this.name}`);
             super.ngxsAfterBootstrap();
         }
@@ -61,17 +61,17 @@ describe('[TEST]: Abstract ngxs data repository', () => {
             event.push(`create: ${this.name}`);
         }
 
-        public ngxsOnInit(): void {
+        public override ngxsOnInit(): void {
             event.push(`ngxsOnInit: ${this.name}`);
             super.ngxsOnInit();
         }
 
-        public ngxsOnChanges(change: NgxsSimpleChange): void {
+        public override ngxsOnChanges(change: NgxsSimpleChange): void {
             event.push(`ngxsOnChanges: ${this.name} -> ${JSON.stringify(change)}`);
             super.ngxsOnChanges();
         }
 
-        public ngxsAfterBootstrap(): void {
+        public override ngxsAfterBootstrap(): void {
             event.push(`ngxsAfterBootstrap: ${this.name}`);
             super.ngxsAfterBootstrap();
         }

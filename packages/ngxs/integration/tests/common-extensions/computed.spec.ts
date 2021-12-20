@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { Immutable } from '@angular-ru/cdk/typings';
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
 import { Computed, DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsDataSequence } from '@angular-ru/ngxs/internals';
@@ -43,7 +44,7 @@ describe('[TEST]: Computed fields', () => {
             public countSnapshot: number = 0;
 
             @Computed()
-            public get snapshot(): string {
+            public override get snapshot(): string {
                 this.countSnapshot++;
 
                 return this.ctx.getState();
@@ -112,12 +113,12 @@ describe('[TEST]: Computed fields', () => {
 
                 @DataAction()
                 public setPrice(price: number): void {
-                    this.ctx.setState((state) => ({ price, amount: state.amount }));
+                    this.ctx.setState((state: OrderLineModel) => ({ price, amount: state.amount }));
                 }
 
                 @DataAction()
                 public setAmount(amount: number): void {
-                    this.ctx.setState((state) => ({ price: state.price, amount }));
+                    this.ctx.setState((state: OrderLineModel) => ({ price: state.price, amount }));
                 }
             }
 
@@ -188,12 +189,12 @@ describe('[TEST]: Computed fields', () => {
 
                 @DataAction()
                 public setPrice(price: number): void {
-                    this.ctx.setState((state) => ({ price, amount: state.amount }));
+                    this.ctx.setState((state: Immutable<OrderLineModel>) => ({ price, amount: state.amount }));
                 }
 
                 @DataAction()
                 public setAmount(amount: number): void {
-                    this.ctx.setState((state) => ({ price: state.price, amount }));
+                    this.ctx.setState((state: Immutable<OrderLineModel>) => ({ price: state.price, amount }));
                 }
             }
 
