@@ -13,11 +13,11 @@ describe('mark by filter pipe', () => {
         expect(pipe.transform('hello world')).toBe('hello world');
 
         expect(pipe.transform('hello world', 'world')).toEqual({
-            changingThisBreaksApplicationSecurity: 'hello&nbsp;<span style="background: #ffdd2d">world</span>'
+            changingThisBreaksApplicationSecurity: 'hello <span style="background: #ffdd2d">world</span>'
         });
 
         expect(pipe.transform('hello world', 'world', '#c3c3c3')).toEqual({
-            changingThisBreaksApplicationSecurity: 'hello&nbsp;<span style="background: #c3c3c3">world</span>'
+            changingThisBreaksApplicationSecurity: 'hello <span style="background: #c3c3c3">world</span>'
         });
     });
 });

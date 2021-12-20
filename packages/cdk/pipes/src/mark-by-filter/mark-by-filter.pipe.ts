@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ensureRegexp, isRegexpStr } from '@angular-ru/cdk/regexp';
 import { toStringVal } from '@angular-ru/cdk/string';
-import { Any, Nullable } from '@angular-ru/cdk/typings';
+import { Nullable } from '@angular-ru/cdk/typings';
 import { isNotNil } from '@angular-ru/cdk/utils';
 
 import { MarkedValue } from './marked-value';
@@ -15,36 +15,27 @@ export class MarkByFilterPipe implements PipeTransform {
         return isNotNil(filter) ? this.search(value, filter, color) : value;
     }
 
-    private search(value: Nullable<string>, filter?: Nullable<string>, color?: string): SafeHtml {
-        const existFilter: boolean = isNotNil(value) && isNotNil(filter);
-        let newString: Nullable<string> = value;
+    private search(value: Nullable<string>, filter: string, color: string): SafeHtml {
+        if (isNotNil(value)) {
+            const highlighted: string = this.highLightingString(toStringVal(value), toStringVal(filter), color);
 
-        if (existFilter) {
-            newString = this.highLightingString(toStringVal(value), toStringVal(filter), color);
+            return this.sanitizer.bypassSecurityTrustHtml(highlighted);
+        } else {
+            return '';
         }
-
-        return this.sanitizer.bypassSecurityTrustHtml(newString as Any);
     }
 
-    private highLightingString(value: string, filter: string, color?: string): string {
-        let newString: string;
-        let filterValue: string = filter;
-
+    private highLightingString(value: string, filter: string, color: string): string {
         try {
-            filterValue = filterValue.replace(/\s/g, '&nbsp;');
+            const regexp: RegExp = isRegexpStr(filter)
+                ? new RegExp(ensureRegexp(filter), 'ig')
+                : new RegExp(filter, 'i');
 
-            const regexp: RegExp = isRegexpStr(filterValue)
-                ? new RegExp(ensureRegexp(filterValue), 'ig')
-                : new RegExp(filterValue, 'i');
-
-            newString = value
+            return value
                 ?.toString()
-                ?.replace(/\s/g, '&nbsp;')
                 ?.replace(regexp, (founded: string): string => `<span style="background: ${color}">${founded}</span>`);
         } catch {
-            newString = value;
+            return value;
         }
-
-        return newString;
     }
 }
