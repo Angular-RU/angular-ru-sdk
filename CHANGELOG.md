@@ -2,6 +2,12 @@
 
 ##### New Features
 
+-   **typescript:** enable exactOptionalPropertyTypes (92040ad0)
+
+#### 0.0.0 (2021-12-21)
+
+##### New Features
+
 -   **typescript:** enable exactOptionalPropertyTypes (847e7d96)
 
 #### 0.0.0 (2021-12-20)
