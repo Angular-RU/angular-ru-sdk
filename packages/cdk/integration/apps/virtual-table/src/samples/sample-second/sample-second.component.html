@@ -250,7 +250,8 @@
 
             <ngx-column key="price" head-title="Cost">
                 <ng-template ngx-td let-price>
-                    <button mat-button [matMenuTriggerFor]="menu">{{ price | currency }}</button>
+                    <!-- https://github.com/angular/components/issues/24126 -->
+                    <button mat-button [matMenuTriggerFor]="$any(menu)">{{ price | currency }}</button>
                     <mat-menu #menu="matMenu">
                         <button mat-menu-item>EUR</button>
                         <button mat-menu-item>DOL</button>

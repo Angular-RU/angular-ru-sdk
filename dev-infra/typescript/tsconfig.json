@@ -62,6 +62,7 @@
         "noPropertyAccessFromIndexSignature": true,
         "noFallthroughCasesInSwitch": true,
         "useDefineForClassFields": false,
+        "exactOptionalPropertyTypes": true,
         "lib": ["esnext", "dom"],
         "module": "esnext",
         "target": "es2015",

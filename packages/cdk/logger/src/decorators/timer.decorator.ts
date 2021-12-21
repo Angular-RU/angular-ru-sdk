@@ -1,5 +1,4 @@
-import { Type } from '@angular/core';
-import { Any, DecoratorMethod, Fn, Nullable } from '@angular-ru/cdk/typings';
+import { Any, Fn, Nullable } from '@angular-ru/cdk/typings';
 
 import { LoggerLevel, TimerInfo, TimerLevels } from '../interfaces/logger.external';
 import { LoggerInjector } from '../logger.injector';
@@ -10,8 +9,12 @@ export function TimerLog(
     title: string,
     level: TimerLevels = LoggerLevel.DEBUG,
     isMillisecond: boolean = true
-): DecoratorMethod {
-    return (_target: Type<unknown>, _key: string, descriptor: PropertyDescriptor): PropertyDescriptor => {
+): MethodDecorator {
+    return function (
+        _target: unknown,
+        _key: string | symbol,
+        descriptor: TypedPropertyDescriptor<Any>
+    ): TypedPropertyDescriptor<Any> {
         let result: PropertyDescriptor;
         const method: Fn = descriptor.value;
 

@@ -1,5 +1,5 @@
 import { Type } from '@angular/core';
-import { Any, PlainObject } from '@angular-ru/cdk/typings';
+import { Any, Nullable, PlainObject } from '@angular-ru/cdk/typings';
 import { ActionType, Store } from '@ngxs/store';
 import { StateClass } from '@ngxs/store/internals';
 import { Subject, Subscription } from 'rxjs';
@@ -32,7 +32,7 @@ interface CommonPersistenceProvider {
      * Path for slice
      * default: state.name
      */
-    path?: string | null;
+    path?: Nullable<string>;
 
     /**
      * Version for next migrate

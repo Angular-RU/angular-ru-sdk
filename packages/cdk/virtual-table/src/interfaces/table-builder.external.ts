@@ -75,16 +75,16 @@ export interface ContextItemEvent {
 }
 
 export interface ViewPortInfo {
-    isScrolling?: boolean;
-    startIndex?: number;
-    endIndex?: number;
-    bufferOffset?: number;
-    scrollTop?: number;
-    virtualIndexes?: VirtualIndex[];
-    indexes?: number[];
-    oldIndexes?: number[];
-    diffIndexes?: number[];
-    prevScrollOffsetTop?: number;
+    isScrolling?: Nullable<boolean>;
+    startIndex?: Nullable<number>;
+    endIndex?: Nullable<number>;
+    bufferOffset?: Nullable<number>;
+    scrollTop?: Nullable<number>;
+    virtualIndexes?: Nullable<VirtualIndex[]>;
+    indexes?: Nullable<number[]>;
+    oldIndexes?: Nullable<number[]>;
+    diffIndexes?: Nullable<number[]>;
+    prevScrollOffsetTop?: Nullable<number>;
 }
 
 export interface VirtualIndex {

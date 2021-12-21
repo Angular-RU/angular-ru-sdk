@@ -12,7 +12,7 @@ export class VirtualForDirective<T> implements OnDestroy {
     private removeFrameId: Nullable<number> = null;
     private initFrameId: Nullable<number> = null;
     private dirty: boolean = false;
-    @Input() public virtualForDiffIndexes?: number[];
+    @Input() public virtualForDiffIndexes?: Nullable<number[]>;
 
     constructor(
         private readonly view: ViewContainerRef,

@@ -66,7 +66,7 @@ export function createTsJestConfig(options: JestConfigOptions): Config.InitialOp
         { prefix }
     );
 
-    const moduleNameMapper: JestModuleMapper = options.jestConfig?.moduleNameMapper ?? rootModuleNameMapper;
+    const moduleNameMapper: Nullable<JestModuleMapper> = options.jestConfig?.moduleNameMapper ?? rootModuleNameMapper;
 
     if (isTrue(options.debug)) {
         // eslint-disable-next-line
@@ -125,7 +125,7 @@ export function createTsJestConfig(options: JestConfigOptions): Config.InitialOp
          * Use <rootDir> string token to refer to rootDir value if you want to use file paths.
          * Additionally, you can substitute captured regex groups using numbered back references.
          */
-        moduleNameMapper,
+        moduleNameMapper: moduleNameMapper ?? {},
 
         /**
          * The glob patterns Jest uses to detect test files.

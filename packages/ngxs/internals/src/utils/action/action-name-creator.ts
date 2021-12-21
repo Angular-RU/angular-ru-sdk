@@ -1,3 +1,4 @@
+import { Nullable } from '@angular-ru/cdk/typings';
 import { isNotNil } from '@angular-ru/cdk/utils';
 
 import { MethodArgsRegistry } from '../method-args-registry/method-args-registry';
@@ -6,7 +7,7 @@ interface ActionNameCreatorOptions {
     statePath: string;
     methodName: string;
     argumentsNames: string[];
-    argumentRegistry?: MethodArgsRegistry;
+    argumentRegistry?: Nullable<MethodArgsRegistry>;
 }
 
 export function actionNameCreator(options: ActionNameCreatorOptions): string {

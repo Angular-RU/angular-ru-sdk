@@ -61,27 +61,32 @@ describe('[TEST]: Integration with class-transformer', () => {
 
     it('should be correct use @Transform', () => {
         expect(
-            plainToClass(DemoDto, {
-                startDate: 757803600000,
-                endDate: '01.06.1994',
-                comment: '   Hello World   ',
-                lastChanged: 757803600000,
-                enabled: false,
-                floatVal: 123.25,
-                intVal: 11.5,
-                numVal: '1234',
-                iso: {
-                    a: ' 2 ',
-                    b: ' 3 ',
-                    c: false
-                },
-                checked: undefined,
-                checkedNullable: undefined,
-                dateCustomFormatWithTimezone: 1622657925000,
-                datetimeCustomFormatWithTimezone: 1622657925000,
-                dateCustomFormatWithoutTimezone: 1622657925000,
-                dateCustomFormatEmptyOptions: 1622657925000
-            } as DemoDto)
+            plainToClass(
+                DemoDto,
+                // need for testing
+                // @ts-ignore
+                {
+                    startDate: 757803600000,
+                    endDate: '01.06.1994',
+                    comment: '   Hello World   ',
+                    lastChanged: 757803600000,
+                    enabled: false,
+                    floatVal: 123.25,
+                    intVal: 11.5,
+                    numVal: '1234',
+                    iso: {
+                        a: ' 2 ',
+                        b: ' 3 ',
+                        c: false
+                    },
+                    checked: undefined,
+                    checkedNullable: undefined,
+                    dateCustomFormatWithTimezone: 1622657925000,
+                    datetimeCustomFormatWithTimezone: 1622657925000,
+                    dateCustomFormatWithoutTimezone: 1622657925000,
+                    dateCustomFormatEmptyOptions: 1622657925000
+                } as DemoDto
+            )
         ).toEqual({
             startDate: expect.any(String),
             endDate: expect.any(Number),

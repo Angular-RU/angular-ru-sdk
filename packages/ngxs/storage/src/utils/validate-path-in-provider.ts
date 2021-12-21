@@ -1,3 +1,4 @@
+import { Nullable } from '@angular-ru/cdk/typings';
 import { NgxsRepositoryMeta, PersistenceProvider } from '@angular-ru/ngxs/typings';
 
 export function validatePathInProvider(meta: NgxsRepositoryMeta, provider: PersistenceProvider): PersistenceProvider {
@@ -6,7 +7,7 @@ export function validatePathInProvider(meta: NgxsRepositoryMeta, provider: Persi
     if (!('path' in newProvider)) {
         newProvider = {
             ...newProvider,
-            get path(): string | null | undefined {
+            get path(): Nullable<string> {
                 return meta?.stateMeta?.path;
             }
         };

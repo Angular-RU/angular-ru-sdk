@@ -10,6 +10,8 @@ import { TestSpec } from './internal/types';
 import { NgxsDataTestingModule } from './ngxs-data-testing.module';
 import { resetPlatformAfterBootstrapping } from './reset-platform-after-bootrapping';
 
+export type PlatformMetadata = Required<Omit<TestModuleMetadata, 'teardown'>> | TestModuleMetadata;
+
 /**
  * GENERICS
  * ngxsTestingPlatform({ states: [ ...StateClasses ] }, (store, ...states) => {});
@@ -17,32 +19,32 @@ import { resetPlatformAfterBootstrapping } from './reset-platform-after-bootrapp
  */
 
 export function ngxsTestingPlatform<A>(
-    params: (TestModuleMetadata & { states?: [StateClass<A>] }) | [StateClass<A>],
+    params: (PlatformMetadata & { states?: [StateClass<A>] }) | [StateClass<A>],
     fn: (store: Store, a: A) => Any
 ): TestSpec;
 
 export function ngxsTestingPlatform<A, B>(
-    params: (TestModuleMetadata & { states?: [StateClass<A>, StateClass<B>] }) | [StateClass<A>, StateClass<B>],
+    params: (PlatformMetadata & { states?: [StateClass<A>, StateClass<B>] }) | [StateClass<A>, StateClass<B>],
     fn: (store: Store, a: A, b: B) => Any
 ): TestSpec;
 
 export function ngxsTestingPlatform<A, B, C>(
     params:
-        | (TestModuleMetadata & { states?: [StateClass<A>, StateClass<B>, StateClass<C>] })
+        | (PlatformMetadata & { states?: [StateClass<A>, StateClass<B>, StateClass<C>] })
         | [StateClass<A>, StateClass<B>, StateClass<C>],
     fn: (store: Store, a: A, b: B, c: C) => Any
 ): TestSpec;
 
 export function ngxsTestingPlatform<A, B, C, D>(
     params:
-        | (TestModuleMetadata & { states?: [StateClass<A>, StateClass<B>, StateClass<C>, StateClass<D>] })
+        | (PlatformMetadata & { states?: [StateClass<A>, StateClass<B>, StateClass<C>, StateClass<D>] })
         | [StateClass<A>, StateClass<B>, StateClass<C>, StateClass<D>],
     fn: (store: Store, a: A, b: B, c: C, d: D) => Any
 ): TestSpec;
 
 export function ngxsTestingPlatform<A, B, C, D, E>(
     params:
-        | (TestModuleMetadata & {
+        | (PlatformMetadata & {
               states?: [StateClass<A>, StateClass<B>, StateClass<C>, StateClass<D>, StateClass<E>];
           })
         | [StateClass<A>, StateClass<B>, StateClass<C>, StateClass<D>, StateClass<E>],
@@ -51,7 +53,7 @@ export function ngxsTestingPlatform<A, B, C, D, E>(
 
 export function ngxsTestingPlatform<A, B, C, D, E, F>(
     params:
-        | (TestModuleMetadata & {
+        | (PlatformMetadata & {
               states?: [StateClass<A>, StateClass<B>, StateClass<C>, StateClass<D>, StateClass<E>, StateClass<F>];
           })
         | [StateClass<A>, StateClass<B>, StateClass<C>, StateClass<D>, StateClass<E>, StateClass<F>],
@@ -59,7 +61,7 @@ export function ngxsTestingPlatform<A, B, C, D, E, F>(
 ): TestSpec;
 
 export function ngxsTestingPlatform(
-    params: TestModuleMetadata & { states?: StateClass[] },
+    params: PlatformMetadata & { states?: StateClass[] },
     fn: (store: Store, ...states: StateClass[]) => Any
 ): TestSpec;
 
@@ -68,7 +70,7 @@ export function ngxsTestingPlatform(
  */
 // eslint-disable-next-line max-lines-per-function
 export function ngxsTestingPlatform(
-    params: (TestModuleMetadata & { states?: StateClass[] }) | StateClass[],
+    params: (PlatformMetadata & { states?: StateClass[] }) | StateClass[],
     fn: (store: Store, ...states: StateClass[]) => Any
 ): TestSpec {
     // eslint-disable-next-line max-lines-per-function
@@ -81,7 +83,7 @@ export function ngxsTestingPlatform(
                 providers,
                 aotSummaries,
                 schemas
-            }: TestModuleMetadata & { states?: StateClass[] } = ensure(params);
+            }: PlatformMetadata & { states?: StateClass[] } = ensure(params);
 
             states?.forEach((state: StateClass): void => {
                 if (isNil(getStateMetadata(state))) {
@@ -94,7 +96,7 @@ export function ngxsTestingPlatform(
                 providers,
                 declarations,
                 aotSummaries,
-                imports: [NgxsDataTestingModule.forRoot(states), ...imports!]
+                imports: [NgxsDataTestingModule.forRoot(states), ...imports]
             }).compileComponents();
 
             NgxsDataTestingModule.ngxsInitPlatform();
@@ -113,7 +115,7 @@ export function ngxsTestingPlatform(
 // eslint-disable-next-line complexity,max-lines-per-function
 function ensure(
     options: (TestModuleMetadata & { states?: StateClass[] }) | StateClass[]
-): TestModuleMetadata & { states?: StateClass[] } {
+): Required<Omit<TestModuleMetadata, 'teardown'>> & { states?: StateClass[] } {
     let states: StateClass[] = [];
     let providers: Type<unknown>[] = [];
     let declarations: Type<unknown>[] = [];

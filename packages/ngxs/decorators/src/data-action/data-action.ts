@@ -1,6 +1,6 @@
 import { $args } from '@angular-ru/cdk/function';
 import { Any, Descriptor, PlainObjectOf } from '@angular-ru/cdk/typings';
-import { isNil, isTrue } from '@angular-ru/cdk/utils';
+import { isNil, isNotNil, isTrue } from '@angular-ru/cdk/utils';
 import {
     actionNameCreator,
     combineStream,
@@ -27,7 +27,7 @@ import { REPOSITORY_ACTION_OPTIONS } from './data-action.config';
 
 // eslint-disable-next-line max-lines-per-function
 export function DataAction(options: RepositoryActionOptions = REPOSITORY_ACTION_OPTIONS): MethodDecorator {
-    // eslint-disable-next-line max-lines-per-function
+    // eslint-disable-next-line max-lines-per-function,sonarjs/cognitive-complexity
     return (target: Any, name: string | symbol, descriptor: Descriptor): Descriptor => {
         validateAction(target, descriptor);
 
@@ -57,12 +57,14 @@ export function DataAction(options: RepositoryActionOptions = REPOSITORY_ACTION_
 
                 operation = operations[key] = {
                     type,
-                    options: { cancelUncompleted: options.cancelUncompleted }
+                    options: { cancelUncompleted: options.cancelUncompleted ?? false }
                 };
 
-                stateMeta.actions[operation.type] = [
-                    { type: operation.type, options: operation.options, fn: operation.type }
-                ];
+                if (isNotNil(operation)) {
+                    stateMeta.actions[operation.type] = [
+                        { type: operation.type, options: operation.options, fn: operation.type }
+                    ];
+                }
             }
 
             const mapped: MappedStore = NgxsDataFactory.ensureMappedState(stateMeta)!;
