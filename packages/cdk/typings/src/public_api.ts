@@ -6,6 +6,7 @@ export { ClassType } from './class-type';
 export { CompareFn } from './compare-fn';
 export { Couple } from './couple';
 export { DateIntervalDescriptor } from './date-interval-descriptor';
+// eslint-disable-next-line deprecation/deprecation
 export { DecoratorMethod } from './decorator-method';
 export { DeepKeyOfList } from './deep-key-of-list';
 export { DeepPartial } from './deep-partial';
