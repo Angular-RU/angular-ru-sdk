@@ -1,3 +1,9 @@
+#### 0.0.0 (2021-12-22)
+
+##### Build System / Dependencies
+
+-   update dependency @types/node to v17.0.2 (#1157) (869b908a)
+
 #### 0.0.0 (2021-12-21)
 
 ##### New Features
