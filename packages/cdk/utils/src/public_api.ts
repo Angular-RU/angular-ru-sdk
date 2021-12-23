@@ -9,7 +9,9 @@ export { checkSomeValueIsFalse } from './check-some-value-is-false';
 export { checkSomeValueIsTrue } from './check-some-value-is-true';
 export { checkValueIsEmpty } from './check-value-is-empty';
 export { checkValueIsFilled } from './check-value-is-filled';
-export { copyBuffer } from './copy-buffer';
+export { copyHtml } from './copy-html';
+// eslint-disable-next-line deprecation/deprecation
+export { copyBuffer, copyString } from './copy-string';
 export { DeclinationAssociativeMap, DeclinationDictionary } from './declination-of-number/declination-dictionary';
 export { declinationOfNumber } from './declination-of-number/declination-of-number';
 export { detectChanges } from './detect-changes';

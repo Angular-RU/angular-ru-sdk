@@ -157,12 +157,33 @@ import { getBodyRect } from '@angular-ru/cdk/utils';
 const rect: DOMRect = getBodyRect();
 ```
 
--   `copyBuffer`
+-   `copyString`
 
 ```ts
-import { copyBuffer } from '@angular-ru/cdk/utils';
+import { copyString } from '@angular-ru/cdk/utils';
 
-copyBuffer('hello world'); // copied in your buffer
+copyString('hello world'); // copied in your buffer
+```
+
+-   `copyHtml`
+
+```ts
+import { copyHtml } from '@angular-ru/cdk/utils';
+
+copyHtml(`
+    <table border="1" cellspacing="0">
+        <tbody>
+            <tr>
+                <th>Header 1</th>
+                <th>Content 1</th>
+            </tr>
+            <tr>
+                <td>Header 2</td>
+                <td>Content 2</td>
+            </tr>
+        </tbody>
+    </table>
+`); // copied in your buffer
 ```
 
 -   `parseXmlFromString`
