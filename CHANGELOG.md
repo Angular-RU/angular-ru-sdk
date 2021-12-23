@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update dependency @prettier/plugin-xml to v1.2.0 (#1166) (515119d2)
+
+#### 0.0.0 (2021-12-23)
+
+##### Build System / Dependencies
+
 -   update dependency @types/node to v17.0.4 (#1165) (aef8a8b8)
 
 #### 0.0.0 (2021-12-22)
