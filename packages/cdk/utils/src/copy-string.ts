@@ -3,7 +3,12 @@ import { Any } from '@angular-ru/cdk/typings';
 
 declare const document: Any;
 
-export function copyBuffer(str: string): void {
+/**
+ * @deprecated Use `copyString`
+ */
+export const copyBuffer: (str: string) => void = copyString;
+
+export function copyString(str: string): void {
     const firstIndex: number = 0;
     const el: HTMLTextAreaElement = document.createElement('textarea');
 

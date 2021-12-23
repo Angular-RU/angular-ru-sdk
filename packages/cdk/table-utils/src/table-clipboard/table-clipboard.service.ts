@@ -1,7 +1,7 @@
 // eslint-disable-next-line max-classes-per-file
 import { Injectable, Optional } from '@angular/core';
 import { Any, EmptyValue, Nullable, PlainObject } from '@angular-ru/cdk/typings';
-import { isNotNil } from '@angular-ru/cdk/utils';
+import { copyHtml, isNotNil } from '@angular-ru/cdk/utils';
 import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
 import { TranslateService } from '@ngx-translate/core';
 import { firstValueFrom, Observable, of } from 'rxjs';
@@ -22,25 +22,6 @@ interface PreparedRequest {
     translationMap?: PlainObject;
 }
 
-declare class ClipboardItem {
-    constructor(types: Record<string, Blob>);
-}
-
-declare interface ExtendedClipboard extends Clipboard {
-    write: (items: ClipboardItem[]) => Promise<void>;
-}
-
-declare interface ExtendedNavigator extends Navigator {
-    clipboard: ExtendedClipboard;
-}
-
-declare interface ExtendedWindow extends Window {
-    ClipboardItem: typeof ClipboardItem;
-    navigator: ExtendedNavigator;
-}
-
-declare let window: ExtendedWindow;
-
 @Injectable()
 export class TableClipboardService {
     constructor(
@@ -60,7 +41,7 @@ export class TableClipboardService {
         return (
             this.webWorker
                 // eslint-disable-next-line max-lines-per-function
-                .run((input: PreparedRequest): Blob => {
+                .run((input: PreparedRequest): string => {
                     function isEmptyValue(value: Any): value is EmptyValue {
                         const val: Any = typeof value === 'string' ? value.trim() : value;
 
@@ -130,16 +111,10 @@ export class TableClipboardService {
                     }
 
                     const { translationMap, translationPrefix, entries }: PreparedRequest = input;
-                    const plainHtml: string = new PlainTableBuilder(translationMap, translationPrefix).generateTable(
-                        entries
-                    );
 
-                    return new Blob([plainHtml], { type: 'text/html' });
+                    return new PlainTableBuilder(translationMap, translationPrefix).generateTable(entries);
                 }, preparedRequest)
-                .then(
-                    (blob: Blob): Promise<void> =>
-                        window.navigator.clipboard.write([new window.ClipboardItem({ 'text/html': blob })])
-                )
+                .then(copyHtml)
         );
     }
 
