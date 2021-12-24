@@ -1,3 +1,9 @@
+#### 0.0.0 (2021-12-24)
+
+##### Build System / Dependencies
+
+-   update dependency lint-staged to v12.1.4 (#1168) (e5f21013)
+
 #### 0.0.0 (2021-12-23)
 
 ##### New Features
