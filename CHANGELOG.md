@@ -1,3 +1,9 @@
+#### 0.0.0 (2021-12-27)
+
+##### Build System / Dependencies
+
+-   update eslint dependencies to v5.8.1 (#1171) (b64f9255)
+
 #### 0.0.0 (2021-12-24)
 
 ##### Build System / Dependencies
