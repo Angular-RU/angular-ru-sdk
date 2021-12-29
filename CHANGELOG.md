@@ -1,3 +1,9 @@
+#### 0.0.0 (2021-12-29)
+
+##### New Features
+
+-   added util longValidator (#1173) (4f93fb10)
+
 #### 0.0.0 (2021-12-27)
 
 ##### Build System / Dependencies
