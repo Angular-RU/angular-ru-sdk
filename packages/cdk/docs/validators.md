@@ -171,3 +171,17 @@ export class AppComponent {
     }
 }
 ```
+
+-   `longValidator`
+
+```ts
+import { longValidator } from '@angular-ru/cdk/validators';
+import { FormControl } from '@angular/forms';
+import { Component } from '@angular/core';
+
+@Component()
+export class AppComponent {
+    // valid range: ('-9223372036854775808', '9223372036854775807')
+    public control: FormControl = new FormControl(null, longValidator());
+}
+```

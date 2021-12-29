@@ -3,6 +3,9 @@ import { PlainObject } from '@angular-ru/cdk/typings';
 
 export type EmptyValidatorFn = (control: FormGroup) => ValidationErrors | null;
 
+/**
+ * @deprecated use `requiredSomeValueValidator`
+ */
 export const emptyValidator: EmptyValidatorFn = (control: FormGroup): ValidationErrors | null => {
     const filterData: PlainObject = control.controls;
     const values: FormControl[] = Object.values(filterData);
