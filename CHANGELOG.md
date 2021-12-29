@@ -1,5 +1,11 @@
 #### 0.0.0 (2021-12-29)
 
+##### Build System / Dependencies
+
+-   update dependency @types/node to v17.0.5 (#1170) (ab5be503)
+
+#### 0.0.0 (2021-12-29)
+
 ##### New Features
 
 -   added util longValidator (#1173) (4f93fb10)
