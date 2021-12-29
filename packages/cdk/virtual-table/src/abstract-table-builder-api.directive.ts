@@ -339,10 +339,6 @@ export abstract class AbstractTableBuilderApiDirective<T>
             detectChanges(this.cd);
             // eslint-disable-next-line no-restricted-properties
             this.filterIdTask = window.setTimeout((): void => {
-                if (!this.isEnableFiltering) {
-                    throw new Error('You forgot to enable filtering: \n <ngx-table-builder enable-filtering />');
-                }
-
                 this.sortAndFilter().then((): void => {
                     this.reCheckDefinitions();
                     after?.();
