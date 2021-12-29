@@ -2,6 +2,13 @@
 
 ##### Build System / Dependencies
 
+-   update commitlint dependencies (#1169) (3be2e0cd)
+-   update dependency rxjs to v7.5.1 (#1172) (12419ab9)
+
+#### 0.0.0 (2021-12-29)
+
+##### Build System / Dependencies
+
 -   update dependency @types/node to v17.0.5 (#1170) (ab5be503)
 
 #### 0.0.0 (2021-12-29)
