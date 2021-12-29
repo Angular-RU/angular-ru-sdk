@@ -248,8 +248,8 @@ describe('[TEST] Table builder', (): void => {
             { id: 3, name: 'Petr', lastName: 'Sidorov' },
             { id: 4, name: null, lastName: null }
         ]);
-
-        component.filterDefinition = [{ value: 2, type: TableFilterType.LESS_OR_EQUAL, key: 'id' }];
+        tableBuilderComponent.filterable.updateFilterTypeBy(TableFilterType.LESS_OR_EQUAL, 'id');
+        tableBuilderComponent.filterable.updateFilterValueBy('2', 'id');
         componentFixture.detectChanges();
         /**
          * Caretaker note:
@@ -262,6 +262,36 @@ describe('[TEST] Table builder', (): void => {
         expect(tableBuilderComponent.source).toEqual([
             { id: 1, name: 'Max', lastName: 'Ivanov' },
             { id: 2, name: 'Ivan', lastName: 'Petrov' }
+        ]);
+    });
+
+    it('should not filter table', async (): Promise<void> => {
+        const tableBuilderComponent: TableBuilderComponent<PlainObject> = component.tableBuilderComponent;
+
+        tableBuilderComponent.enableFiltering = false;
+
+        expect(tableBuilderComponent.source).toEqual([
+            { id: 1, name: 'Max', lastName: 'Ivanov' },
+            { id: 2, name: 'Ivan', lastName: 'Petrov' },
+            { id: 3, name: 'Petr', lastName: 'Sidorov' },
+            { id: 4, name: null, lastName: null }
+        ]);
+        // default type - TableFilterType.CONTAINS
+        tableBuilderComponent.filterable.updateFilterValueBy('rov', 'lastName');
+        componentFixture.detectChanges();
+        /**
+         * Caretaker note:
+         * since the filtering happens several times and outside the zone,
+         * there is no way to catch the moment when the filtering is completed using `whenStable`
+         */
+        // eslint-disable-next-line no-restricted-globals
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
+        expect(tableBuilderComponent.source).toEqual([
+            { id: 1, name: 'Max', lastName: 'Ivanov' },
+            { id: 2, name: 'Ivan', lastName: 'Petrov' },
+            { id: 3, name: 'Petr', lastName: 'Sidorov' },
+            { id: 4, name: null, lastName: null }
         ]);
     });
 });
