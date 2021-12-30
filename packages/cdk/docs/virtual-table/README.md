@@ -105,6 +105,107 @@ export class AppComponent {
 </ngx-table-builder>
 ```
 
+### Filtering
+
+```ts
+// app.component.ts
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { LicenseSample } from './license.interface';
+
+@Component({
+    selector: 'app',
+    templateUrl: './app.component.html'
+})
+export class AppComponent implements AfterViewInit {
+    @ViewChild('table') table;
+
+    public licenses: LicenseSample[] = [
+        {
+            id: 1,
+            name: 'single111',
+            price: 29.3
+        },
+        {
+            id: 2,
+            name: 'developer123',
+            price: 49.8
+        },
+        {
+            id: 3,
+            name: 'beginner211',
+            price: 99.5
+        },
+        {
+            id: 4,
+            name: 'enterprise321',
+            price: 199
+        }
+    ];
+
+    ngAfterViewInit() {
+        this.table.filterable.updateFilterTypeBy(TableFilterType.CONTAINS, 'er');
+        this.table.filterable.updateFilterValueBy('11', 'name');
+    }
+}
+```
+
+```html
+<!-- app.component.html -->
+<ngx-table-builder #table enable-filtering [source]="licenses">
+    <ngx-column key="name" is-filterable>
+        <ng-template ngx-th>License</ng-template>
+        <ng-template ngx-td let-name>{{ name | uppercase }}</ng-template>
+    </ngx-column>
+
+    <ngx-column key="price" is-filterable>
+        <ng-template ngx-th>Cost</ng-template>
+        <ng-template ngx-td let-price>{{ price | currency }}</ng-template>
+    </ngx-column>
+</ngx-table-builder>
+```
+
+Filtration:
+
+```ts
+this.table.filterable.updateFilterTypeBy(TableFilterType.CONTAINS, 'name');
+this.table.filterable.updateFilterValueBy('11', 'name');
+```
+
+Actions above filter the table and leave us with:
+
+```
+        {
+            id: 1,
+            name: 'single111',
+            price: 29.3
+        },
+        {
+            id: 3,
+            name: 'beginner211',
+            price: 99.5
+        }
+```
+
+This example use filter table type _CONTAINS_. For other available types check _TableFilterType_
+
+_is-filterable_ input set to _true_ also adds filer symbol to column, a click on it leads to open a filter which you can
+provide like this:
+
+```html
+<ngx-table-builder>
+    ...
+    <ngx-filter>
+        <your-custom-filter></your-custom-filter>
+    </ngx-filter>
+    ...
+</ngx-table-builder>
+```
+
+#### External filtering
+
+If leave _enable-filtering_ to be set _false_ and set _is-filterable_ to _true_ it will allow using default filters but
+table builder will not filter source by its own rules, so you can handle it on your own
+
 ### TODO:
 
 -   [x] Simple use and setup;
