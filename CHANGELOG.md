@@ -1,5 +1,11 @@
 #### 0.0.0 (2021-12-30)
 
+##### Build System / Dependencies
+
+-   update dependency @types/jest to v27.4.0 (#1176) (1cafaa24)
+
+#### 0.0.0 (2021-12-30)
+
 #### 0.0.0 (2021-12-29)
 
 ##### Build System / Dependencies
