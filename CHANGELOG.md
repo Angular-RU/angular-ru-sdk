@@ -1,3 +1,10 @@
+#### 0.0.0 (2022-01-02)
+
+##### Build System / Dependencies
+
+-   update dependency @types/jasmine to v3.10.3 (#1180) (cfda99c4)
+-   update dependency jasmine-core to v3.99.0 (#1178) (04da4950)
+
 #### 0.0.0 (2022-01-01)
 
 ##### Build System / Dependencies
