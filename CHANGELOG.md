@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update eslint dependencies to v5.9.0 (#1184) (8f6996d0)
+
+#### 0.0.0 (2022-01-03)
+
+##### Build System / Dependencies
+
 -   update dependency @types/node to v17.0.7 (#1183) (708153a6)
 
 #### 0.0.0 (2022-01-03)
