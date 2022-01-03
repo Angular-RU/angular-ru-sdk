@@ -2,6 +2,12 @@
 
 ##### Build System / Dependencies
 
+-   update dependency eslint-plugin-import to v2.25.4 (#1182) (877019ee)
+
+#### 0.0.0 (2022-01-03)
+
+##### Build System / Dependencies
+
 -   update dependency lint-staged to v12.1.5 (#1181) (805508af)
 
 #### 0.0.0 (2022-01-02)
