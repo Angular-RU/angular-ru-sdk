@@ -1,3 +1,9 @@
+#### 0.0.0 (2022-01-03)
+
+##### Build System / Dependencies
+
+-   update dependency lint-staged to v12.1.5 (#1181) (805508af)
+
 #### 0.0.0 (2022-01-02)
 
 ##### Build System / Dependencies
