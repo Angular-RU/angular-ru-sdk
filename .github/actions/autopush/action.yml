@@ -1,0 +1,35 @@
+name: Angular-RU SDK action auto push
+description: Auto push fixable code
+
+inputs:
+  token:
+    description: Github personal access token
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Prepare git
+      shell: bash
+      run: |
+        git config --global push.default simple
+        git config --global user.name "angular-ru-bot"
+        git config --global user.email "angular-ru@yandex.ru"
+        git config remote.origin.url https://x-access-token:${{ inputs.token }}@github.com/$GITHUB_REPOSITORY
+        echo "Done for $GITHUB_REPOSITORY"
+
+    - name: Git status
+      run: git status
+      shell: bash
+
+    - name: Get last commit message
+      id: last-commit-message
+      shell: bash
+      run: echo "::set-output name=msg::$(git log -1 --pretty=%s)"
+
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: ${{ steps.last-commit-message.outputs.msg }}
+        commit_options: '--amend --no-edit'
+        push_options: '--force'
+        skip_fetch: true

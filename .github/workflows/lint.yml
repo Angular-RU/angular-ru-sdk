@@ -1,61 +1,27 @@
-name: Lint
+name: CI
 
-on:
-  pull_request:
-    branches:
-      - master
-  push:
-    branches:
-      - master
-
-env:
-  CI_MODE: true
-  IS_MASTER_BRANCH: ${{ github.ref == 'refs/heads/master' }}
-  IS_FORK: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
-  NODE_VERSION: 16.10.x
+on: [pull_request]
 
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
+      # required before import local actions
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: '0'
-          persist-credentials: false
-      - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
 
-      - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v2
+      - id: setup
+        uses: ./.github/actions/setup
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          token: ${{ secrets.ANGULAR_RU_BOT_PAT }}
 
-      - name: Prepare git
-        if: ${{ env.IS_FORK == 'false' || env.IS_MASTER_BRANCH == 'true' }}
+      - name: Check commit name
+        run: yarn commitlint --from=HEAD~1
+
+      - name: Format by prettier
+        run: yarn format
+
+      - name: Linting code by ESLint
         run: |
-          git config --global push.default simple
-          git config --global user.name "angular-ru-bot"
-          git config --global user.email "angular-ru@yandex.ru"
-          git config remote.origin.url https://x-access-token:${{ secrets.ANGULAR_RU_BOT_PAT }}@github.com/$GITHUB_REPOSITORY
-
-      - name: Restore cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            node_modules
-            */*/node_modules
-          key: ${{ runner.os }}--${{ hashFiles('**/yarn.lock') }}
-
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: Linting code
-        if: ${{ github.ref != 'refs/heads/master' }}
-        run: |
-          yarn commitlint --from=HEAD~1
-
-          # run prettier
-          yarn format
-
           # build eslint common dependencies before
           yarn lerna run --scope @angular-ru/cdk build:lib
           yarn lerna run --scope @angular-ru/ngxs build:lib
@@ -64,15 +30,10 @@ jobs:
           # run lint
           yarn lint
 
-      # Auto push fixable code
-      - name: Get last commit message
-        if: ${{ env.IS_FORK == 'false' && env.IS_MASTER_BRANCH == 'false' }}
-        id: last-commit-message
-        run: |
-          echo "::set-output name=msg::$(git log -1 --pretty=%s)"
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - uses: ./.github/actions/autopush
         with:
-          commit_message: ${{ steps.last-commit-message.outputs.msg }}
-          commit_options: '--amend --no-edit'
-          push_options: '--force'
-          skip_fetch: true
+          token: ${{ secrets.ANGULAR_RU_BOT_PAT }}
+
+concurrency:
+  group: lint-${{ github.head_ref }}
+  cancel-in-progress: true
