@@ -1,3 +1,9 @@
+#### 0.0.0 (2022-01-04)
+
+##### Build System / Dependencies
+
+-   update dependency @types/node to v17.0.8 (#1186) (94b5c07f)
+
 #### 0.0.0 (2022-01-03)
 
 ##### Build System / Dependencies
