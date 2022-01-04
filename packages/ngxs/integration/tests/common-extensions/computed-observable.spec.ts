@@ -35,7 +35,7 @@ describe('[TEST]: Observable with computed $a field', () => {
 
         @DataAction()
         public increment(): void {
-            this.ctx.setState((state) => ({ value: state.value + 1 }));
+            this.ctx.setState((state: Model) => ({ value: state.value + 1 }));
         }
     }
 
@@ -83,7 +83,7 @@ describe('[TEST]: Observable with computed $a field', () => {
 
         @DataAction()
         public increment(): void {
-            this.ctx.setState((state) => ({ value: state.value + 1 }));
+            this.ctx.setState((state: Model) => ({ value: state.value + 1 }));
         }
     }
 

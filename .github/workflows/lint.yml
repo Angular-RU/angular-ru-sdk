@@ -1,0 +1,41 @@
+name: CI
+on: [pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Scan repo for find local actions
+        uses: actions/checkout@v2
+
+      - name: Setup Git
+        uses: ./.github/actions/git
+        id: git-setup
+        with:
+          token: ${{ secrets.ANGULAR_RU_BOT_PAT }}
+
+      - name: Setup Node.js and Cache
+        uses: ./.github/actions/nodejs
+
+      - name: Check commit name
+        run: yarn commitlint --from=HEAD~1
+
+      - name: Format by prettier
+        run: yarn format
+
+      - name: Linting code by ESLint
+        run: |
+          yarn lerna run --scope @angular-ru/cdk build:lib
+          yarn lerna run --scope @angular-ru/ngxs build:lib
+          yarn lerna run --scope @angular-ru/eslint-plugin-enterprise build:lib
+          yarn lint
+
+      - name: Autocommit fixed files and push
+        uses: ./.github/actions/autopush
+        with:
+          username: ${{ steps.git-setup.outputs.username }}
+          email: ${{ steps.git-setup.outputs.email }}
+
+concurrency:
+  group: lint-${{ github.head_ref }}
+  cancel-in-progress: true
