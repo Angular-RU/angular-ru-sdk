@@ -9,18 +9,9 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Prepare git
-      shell: bash
-      run: |
-        git config --global push.default simple
-        git config --global user.name "angular-ru-bot"
-        git config --global user.email "angular-ru@yandex.ru"
-        git config remote.origin.url https://x-access-token:${{ inputs.token }}@github.com/$GITHUB_REPOSITORY
-        echo "Done for $GITHUB_REPOSITORY"
-
-    - name: Git status
-      run: git status
-      shell: bash
+    - uses: ./.github/actions/git
+      with:
+        token: ${{ inputs.token }}
 
     - name: Get last commit message
       id: last-commit-message

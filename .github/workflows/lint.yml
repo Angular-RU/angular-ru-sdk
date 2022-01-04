@@ -6,7 +6,6 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      # required before import local actions
       - uses: actions/checkout@v2
 
       - id: setup
