@@ -1,3 +1,9 @@
+#### 0.0.0 (2022-01-05)
+
+##### Build System / Dependencies
+
+-   update dependency jest to v27.4.6 (#1187) (a678bbcd)
+
 #### 0.0.0 (2022-01-04)
 
 ##### Build System / Dependencies
