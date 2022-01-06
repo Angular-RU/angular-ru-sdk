@@ -1,0 +1,25 @@
+name: CI
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+
+jobs:
+  integration:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Scan repo for find local actions
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js and Cache
+        uses: ./.github/actions/nodejs
+
+      - name: Build integration apps
+        run: yarn integration
+
+concurrency:
+  group: integration-${{ github.head_ref }}
+  cancel-in-progress: true
