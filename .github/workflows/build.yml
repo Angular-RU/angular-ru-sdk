@@ -29,10 +29,6 @@ jobs:
       - name: Setup Node.js and Cache
         uses: ./.github/actions/nodejs
 
-      - name: Verify major angular version
-        if: ${{ github.ref != 'refs/heads/master' }}
-        run: yarn verify:ng
-
       - name: Build packages
         run: yarn build
 

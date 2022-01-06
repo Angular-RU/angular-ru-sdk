@@ -2,6 +2,7 @@ import type { Config } from '@jest/types';
 
 export const DEFAULT_ONLY_CHANGED: boolean = false;
 export const DEFAULT_ISOLATED_MODULES: boolean = false;
+export const DEFAULT_COLLECT_COVERAGE: boolean = false;
 export const DEFAULT_CACHE: boolean = true;
 export const DEFAULT_WATCH: boolean = false;
 export const DEFAULT_MAX_CONCURRENCY: number = 2;

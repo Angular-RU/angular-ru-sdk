@@ -12,6 +12,7 @@ import {
     DEFAULT_BAIL,
     DEFAULT_CACHE,
     DEFAULT_CACHE_DIR,
+    DEFAULT_COLLECT_COVERAGE,
     DEFAULT_COVERAGE_REPORTS,
     DEFAULT_DISPLAY_NAME,
     DEFAULT_ISOLATED_MODULES,
@@ -91,6 +92,9 @@ export function createTsJestConfig(options: JestConfigOptions): Config.InitialOp
          * A set of global variables that need to be available in all test environments.
          */
         transform: { '^.+\\.(ts|js|html)$': 'jest-preset-angular' },
+
+        collectCoverage: options.jestConfig?.collectCoverage ?? DEFAULT_COLLECT_COVERAGE,
+
         globals: options.jestConfig?.globals ?? {
             'ts-jest': {
                 tsconfig: resolvedTsConfigPath,
