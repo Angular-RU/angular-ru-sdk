@@ -17,18 +17,20 @@ jobs:
       - name: Setup Node.js and Cache
         uses: ./.github/actions/nodejs
 
-      - name: Check commit name
+      - name: Run commitlint
         run: yarn commitlint --from=HEAD~1
 
-      - name: Format by prettier
+      - name: Run prettier
         run: yarn format
 
-      - name: Linting code by ESLint
+      - name: Run build artifacts dependent
         run: |
           yarn lerna run --scope @angular-ru/cdk build:lib
           yarn lerna run --scope @angular-ru/ngxs build:lib
           yarn lerna run --scope @angular-ru/eslint-plugin-enterprise build:lib
-          yarn lint
+
+      - name: Run eslint
+        run: yarn lint
 
       - name: Autocommit fixed files and push
         uses: ./.github/actions/autopush

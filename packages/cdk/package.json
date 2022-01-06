@@ -8,7 +8,7 @@
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "scripts": {
-        "build:app": "yarn run-p build:app:* --max-parallel 3",
+        "build:app": "yarn run-p build:app:*",
         "build:app:1": "yarn ng build cdk-app",
         "build:app:2": "yarn ng build flex-layout-app",
         "build:app:3": "yarn ng build http-app",
