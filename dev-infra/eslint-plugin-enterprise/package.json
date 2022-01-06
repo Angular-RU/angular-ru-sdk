@@ -11,7 +11,7 @@
     "types": "dist/index.d.ts",
     "files": ["dist", "README.md"],
     "scripts": {
-        "build:lib": "tsc -p ./tsconfig.json  && yarn symlink",
+        "build:lib": "tsc -p ./tsconfig.json && yarn symlink",
         "symlink": "sh symlink.sh"
     },
     "publishConfig": {

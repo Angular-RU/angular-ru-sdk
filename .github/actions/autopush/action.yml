@@ -1,0 +1,34 @@
+name: Angular-RU SDK action auto push
+description: Auto push fixable code
+
+inputs:
+  commit-message:
+    description: Commit message
+    required: false
+    default: 'chore: fix formatting'
+  username:
+    description: Git username
+    required: true
+  email:
+    description: Git user email
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Auto push
+      shell: bash
+      run: |
+        echo "git status"
+        git status
+        echo "------"
+
+        echo "git add ."
+        git add .
+        echo "------"
+
+        echo "git commit ..."
+        git commit -m "${{ inputs.commit-message }}" \
+                   --no-verify --no-edit \
+                   --author="${{ inputs.username }} <${{ inputs.email }}>" && \
+        git push --force-with-lease || true
