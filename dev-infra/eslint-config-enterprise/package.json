@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/eslint-config-enterprise",
-    "version": "12.33.7",
+    "version": "12.33.8",
     "description": "Angular-RU package",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/dev-infra/eslint-config-enterprise#readme",
     "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
@@ -28,7 +28,7 @@
         "@angular-eslint/eslint-plugin": "12.7.0",
         "@angular-eslint/eslint-plugin-template": "12.7.0",
         "@angular-eslint/template-parser": "12.7.0",
-        "@angular-ru/eslint-plugin-enterprise": "^12.28.0",
+        "@angular-ru/eslint-plugin-enterprise": "^12.28.1",
         "@types/eslint": "7.29.0",
         "@typescript-eslint/eslint-plugin": "5.9.0",
         "@typescript-eslint/experimental-utils": "5.9.0",

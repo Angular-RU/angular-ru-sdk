@@ -1,3 +1,9 @@
+#### 0.0.0 (2022-01-06)
+
+##### Continuous Integration
+
+-   add lint code (#1189) (f4471f8b)
+
 #### 0.0.0 (2022-01-05)
 
 ##### Build System / Dependencies
