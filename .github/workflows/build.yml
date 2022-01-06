@@ -1,5 +1,4 @@
-name: Angular-RU SDK pipelines
-
+name: CI
 on:
   pull_request:
     branches:
@@ -16,37 +15,19 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - name: Scan repo for find local actions
+        uses: actions/checkout@v2
+
+      - name: Setup Git
+        uses: ./.github/actions/git
+        id: git-setup
         with:
-          fetch-depth: '0'
-          persist-credentials: false
-      - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+          token: ${{ secrets.ANGULAR_RU_BOT_PAT }}
 
-      - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: Prepare git
-        if: ${{ env.IS_FORK == 'false' || env.IS_MASTER_BRANCH == 'true' }}
-        run: |
-          git config --global push.default simple
-          git config --global user.name "angular-ru-bot"
-          git config --global user.email "angular-ru@yandex.ru"
-          git config remote.origin.url https://x-access-token:${{ secrets.ANGULAR_RU_BOT_PAT }}@github.com/$GITHUB_REPOSITORY
-
-      - name: Restore cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            node_modules
-            */*/node_modules
-          key: ${{ runner.os }}--${{ hashFiles('**/yarn.lock') }}
-
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
+      - name: Setup Node.js and Cache
+        uses: ./.github/actions/nodejs
 
       - name: Verify major angular version
         if: ${{ github.ref != 'refs/heads/master' }}
@@ -65,26 +46,6 @@ jobs:
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
           GH_TOKEN=${{ secrets.ANGULAR_RU_BOT_PAT }} yarn lerna publish
 
-  demo:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: Restore cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            node_modules
-            */*/node_modules
-          key: ${{ runner.os }}--${{ hashFiles('**/yarn.lock') }}
-
-      - name: Install dependencies
-        run: yarn install --ignore-engines --frozen-lockfile
-
-      - name: Build integration apps
-        run: yarn integration
+concurrency:
+  group: build-${{ github.head_ref }}
+  cancel-in-progress: true

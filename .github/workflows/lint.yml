@@ -3,7 +3,7 @@ on: [pull_request]
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Scan repo for find local actions
         uses: actions/checkout@v2
