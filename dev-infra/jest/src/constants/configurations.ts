@@ -2,11 +2,11 @@ import type { Config } from '@jest/types';
 
 export const DEFAULT_ONLY_CHANGED: boolean = false;
 export const DEFAULT_ISOLATED_MODULES: boolean = false;
-export const DEFAULT_COLLECT_COVERAGE: boolean = true;
+export const DEFAULT_COLLECT_COVERAGE: boolean = false;
 export const DEFAULT_CACHE: boolean = true;
 export const DEFAULT_WATCH: boolean = false;
-export const DEFAULT_MAX_CONCURRENCY: number = 3;
-export const DEFAULT_MAX_WORKERS: string | number = '75%';
+export const DEFAULT_MAX_CONCURRENCY: number = 2;
+export const DEFAULT_MAX_WORKERS: string | number = '50%';
 export const DEFAULT_BAIL: number = 1;
 export const DEFAULT_VERBOSE: boolean = true;
 export const DEFAULT_DISPLAY_NAME: string = 'JEST';
