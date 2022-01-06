@@ -10,10 +10,10 @@
     "author": "angular-ru@yandex.ru",
     "workspaces": ["packages/*", "dev-infra/*"],
     "scripts": {
-        "build": "yarn ts-node .scripts/build.ts",
         "clean": "yarn ts-node .scripts/clean.ts",
-        "format": "yarn ts-node .scripts/format.ts",
         "postinstall": "yarn husky install && yarn ngcc --async",
+        "build": "yarn ts-node .scripts/build.ts",
+        "format": "yarn ts-node .scripts/format.ts",
         "integration": "yarn ts-node .scripts/integration.ts",
         "lint": "yarn ts-node .scripts/lint.ts",
         "symlink": "yarn ts-node .scripts/symlink.ts",
