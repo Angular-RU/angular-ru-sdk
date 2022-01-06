@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/jest",
-    "version": "12.31.3",
+    "version": "12.31.4",
     "description": "Angular-RU package",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/dev-infra/jest#readme",
     "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
@@ -9,7 +9,9 @@
     "author": "angular-ru@yandex.ru",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
-    "files": ["dist"],
+    "files": [
+        "dist"
+    ],
     "scripts": {
         "build:lib": "tsc -p tsconfig.lib.json",
         "test": "yarn node_modules/.bin/jest --config ./jest.config.js"
