@@ -27,6 +27,9 @@ outputs:
   is-not-master:
     description: This branch is not master
     value: ${{ steps.is-not-master-checker.outputs.is-not-master }}
+  is-repo-owner:
+    description: This is own repo
+    value: ${{ steps.is-repo-owner-checker.outputs.is-repo-owner }}
   is-fork:
     description: This is fork
     value: ${{ steps.is-fork-checker.outputs.is-fork }}
@@ -40,8 +43,25 @@ outputs:
 runs:
   using: composite
   steps:
+    - run: echo "github.repository - ${{ github.repository }}"
+      shell: bash
+
+    - run: echo "pull_request.head.repo.full_name - ${{ github.event.pull_request.head.repo.full_name }}"
+      shell: bash
+
+    - run: echo "repository_owner - ${{ github.repository_owner }}"
+      shell: bash
+
+    - name: Set env variables
+      run: |
+        echo "IS_REPO_OWNER=${{ github.repository_owner == 'Angular-RU' }}" >> $GITHUB_ENV
+        echo "IS_FORK=${{ github.repository_owner != 'Angular-RU' }}" >> $GITHUB_ENV
+        echo "IS_MASTER_BRANCH=${{ github.ref == 'refs/heads/master' }}" >> $GITHUB_ENV
+        echo "IS_NOT_MASTER_BRANCH=${{ github.ref != 'refs/heads/master' }}" >> $GITHUB_ENV
+      shell: bash
+
     - uses: actions/checkout@v2
-      if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+      if: ${{ env.IS_REPO_OWNER }}
       with:
         ref: ${{ github.head_ref }}
         token: ${{ inputs.token }}
@@ -49,12 +69,12 @@ runs:
         fetch-depth: 0
 
     - uses: actions/checkout@v2
-      if: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
+      if: ${{ env.IS_FORK }}
       with:
         fetch-depth: 0
 
-    - name: Prepare git # if (isNotFork)
-      if: ${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/master' }}
+    - name: Prepare git with token
+      if: ${{ env.IS_REPO_OWNER }}
       shell: bash
       run: |
         git config --global push.default simple
@@ -63,47 +83,42 @@ runs:
         git config remote.origin.url "https://x-access-token:${{ inputs.token }}@github.com/$GITHUB_REPOSITORY"
         echo "Done for $GITHUB_REPOSITORY"
 
-    - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/* # if (isNotFork)
-      if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+    - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+      if: ${{ env.IS_REPO_OWNER }}
       shell: bash
 
-    - run: git fetch # if (isFork)
-      if: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
+    - run: git fetch
+      if: ${{ env.IS_FORK }}
       shell: bash
 
-    - name: Get branch name
-      id: get-branch
-      shell: bash
+    - id: get-branch
       run: echo "::set-output name=branch-name::$(echo ${{ github.head_ref }})"
-
-    - name: Get last commit message
-      id: commit-message
       shell: bash
+
+    - id: commit-message
       run: echo "::set-output name=last-commit-message::$(git log -1 --pretty=%s)"
-
-    - name: Check is fork
-      id: is-fork-checker
-      env:
-        IS_FORK: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
       shell: bash
-      run: echo "::set-output name=is-fork::$(echo $IS_FORK)"
+
+    - id: is-fork-checker
+      run: echo "::set-output name=is-fork::$(echo ${{ env.IS_FORK }})"
+      shell: bash
+
+    - id: is-repo-owner-checker
+      run: echo "::set-output name=is-fork::$(echo ${{ env.IS_REPO_OWNER }})"
+      shell: bash
 
     - id: is-master-checker
-      env:
-        IS_MASTER: ${{ github.ref == 'refs/heads/master' }}
+      run: echo "::set-output name=is-master::$(echo ${{ env.IS_MASTER_BRANCH }})"
       shell: bash
-      run: echo "::set-output name=is-master::$(echo $IS_MASTER)"
 
     - id: is-not-master-checker
-      env:
-        IS_NOT_MASTER: ${{ github.ref != 'refs/heads/master' }}
       shell: bash
-      run: echo "::set-output name=is-not-master::$(echo $IS_NOT_MASTER)"
+      run: echo "::set-output name=is-not-master::$(echo ${{ env.IS_NOT_MASTER_BRANCH }})"
 
     - id: git-username
-      shell: bash
       run: echo "::set-output name=username::$(git config user.name)"
+      shell: bash
 
     - id: git-email
-      shell: bash
       run: echo "::set-output name=email::$(git config user.email)"
+      shell: bash
