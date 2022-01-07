@@ -40,7 +40,7 @@ outputs:
 runs:
   using: composite
   steps:
-    - uses: actions/checkout@v2 # if (isNotFork)
+    - uses: actions/checkout@v2
       if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
       with:
         ref: ${{ github.head_ref }}
@@ -48,7 +48,7 @@ runs:
         persist-credentials: false
         fetch-depth: 0
 
-    - uses: actions/checkout@v2 # if (isFork)
+    - uses: actions/checkout@v2
       if: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
       with:
         fetch-depth: 0
