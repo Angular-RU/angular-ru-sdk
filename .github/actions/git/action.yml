@@ -17,28 +17,28 @@ inputs:
 outputs:
   branch-name:
     description: Branch name
-    value: ${{ steps.get-branch.outputs.branch-name }}
+    value: ${{ steps.output.outputs.branch-name }}
   last-commit-message:
     description: Last commit message
-    value: ${{ steps.commit-message.outputs.last-commit-message }}
+    value: ${{ steps.output.outputs.last-commit-message }}
   is-master:
     description: This branch is master
-    value: ${{ steps.is-master-checker.outputs.is-master }}
+    value: ${{ steps.output.outputs.is-master }}
   is-not-master:
     description: This branch is not master
-    value: ${{ steps.is-not-master-checker.outputs.is-not-master }}
+    value: ${{ steps.output.outputs.is-not-master }}
   is-repo-owner:
     description: This is own repo
-    value: ${{ steps.is-repo-owner-checker.outputs.is-repo-owner }}
+    value: ${{ steps.output.outputs.is-repo-owner }}
   is-fork:
     description: This is fork
-    value: ${{ steps.is-fork-checker.outputs.is-fork }}
+    value: ${{ steps.output.outputs.is-fork }}
   username:
     description: Git username
-    value: ${{ steps.git-username.outputs.username }}
+    value: ${{ steps.output.outputs.username }}
   email:
     description: Git user email
-    value: ${{ steps.git-email.outputs.email }}
+    value: ${{ steps.output.outputs.email }}
 
 runs:
   using: composite
@@ -67,53 +67,20 @@ runs:
       if: ${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/master' }}
       shell: bash
 
-    # Outputs
-    - name: Set env variables
+    - id: output
+      shell: bash
+      env:
+        IS_REPO_OWNER:
+          ${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/master' }}
+        IS_FORK: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
+        IS_MASTER_BRANCH: ${{ github.ref == 'refs/heads/master' }}
+        IS_NOT_MASTER_BRANCH: ${{ github.ref != 'refs/heads/master' }}
       run: |
-        echo "IS_REPO_OWNER=${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/master' }}" >> $GITHUB_ENV
-        echo "IS_FORK=${{ github.event.pull_request.head.repo.full_name != github.repository }}" >> $GITHUB_ENV
-        echo "IS_MASTER_BRANCH=${{ github.ref == 'refs/heads/master' }}" >> $GITHUB_ENV
-        echo "IS_NOT_MASTER_BRANCH=${{ github.ref != 'refs/heads/master' }}" >> $GITHUB_ENV
-      shell: bash
-
-    - name: Debug variables
-      run: |
-        echo "env.IS_MASTER_BRANCH - ${{ env.IS_MASTER_BRANCH }}"
-        echo "env.IS_REPO_OWNER - ${{ env.IS_REPO_OWNER }}"
-        echo "env.IS_FORK - ${{ env.IS_FORK }}"
-        echo "pull_request.head.repo.full_name - ${{ github.event.pull_request.head.repo.full_name }}"
-        echo "github.repository - ${{ github.repository }}"
-        echo "github.ref - ${{ github.ref }}"
-      shell: bash
-
-    - id: get-branch
-      run: echo "::set-output name=branch-name::$(echo ${{ github.head_ref }})"
-      shell: bash
-
-    - id: commit-message
-      run: echo "::set-output name=last-commit-message::$(git log -1 --pretty=%s)"
-      shell: bash
-
-    - id: is-fork-checker
-      run: echo "::set-output name=is-fork::$(echo ${{ env.IS_FORK }})"
-      shell: bash
-
-    - id: is-repo-owner-checker
-      run: echo "::set-output name=is-fork::$(echo ${{ env.IS_REPO_OWNER }})"
-      shell: bash
-
-    - id: is-master-checker
-      run: echo "::set-output name=is-master::$(echo ${{ env.IS_MASTER_BRANCH }})"
-      shell: bash
-
-    - id: is-not-master-checker
-      shell: bash
-      run: echo "::set-output name=is-not-master::$(echo ${{ env.IS_NOT_MASTER_BRANCH }})"
-
-    - id: git-username
-      run: echo "::set-output name=username::$(git config user.name)"
-      shell: bash
-
-    - id: git-email
-      run: echo "::set-output name=email::$(git config user.email)"
-      shell: bash
+        echo "::set-output name=branch-name::$(echo ${{ github.head_ref }})"
+        echo "::set-output name=last-commit-message::$(git log -1 --pretty=%s)"
+        echo "::set-output name=is-fork::$(echo ${{ env.IS_FORK }})"
+        echo "::set-output name=is-repo-owner::$(echo ${{ env.IS_REPO_OWNER }})"
+        echo "::set-output name=is-master::$(echo ${{ env.IS_MASTER_BRANCH }})"
+        echo "::set-output name=is-not-master::$(echo ${{ env.IS_NOT_MASTER_BRANCH }})"
+        echo "::set-output name=username::$(git config user.name)"
+        echo "::set-output name=email::$(git config user.email)"
