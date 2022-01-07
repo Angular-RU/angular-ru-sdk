@@ -4,7 +4,7 @@ module.exports = createTsJestConfig({
     tsConfig: './tsconfig.spec.json',
     jestConfig: {
         rootDir: '.',
-        collectCoverage: true,
+        collectCoverage: false,
         cacheDirectory: '../../node_modules/.cache/jest',
         coverageDirectory: '../../coverage/eslint-config-enterprise',
         testMatch: ['<rootDir>/integration/tests/**/*.spec.ts'],

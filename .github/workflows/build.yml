@@ -20,6 +20,9 @@ jobs:
       - name: Scan repo for find local actions
         uses: actions/checkout@v2
 
+      - run: echo ${{ github.repository }}
+      - run: echo ${{ github.event.pull_request.head.repo.full_name }}
+
       - name: Setup Git
         uses: ./.github/actions/git
         id: git-setup

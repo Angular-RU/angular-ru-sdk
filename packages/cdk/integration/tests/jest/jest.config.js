@@ -9,6 +9,11 @@ module.exports = createTsJestConfig({
         cacheDirectory: '../../node_modules/.cache/jest',
         testMatch: ['<rootDir>/integration/tests/jest/**/*.spec.ts'],
         setupFilesAfterEnv: ['<rootDir>/integration/tests/jest/setup-jest.ts'],
-        collectCoverageFrom: ['<rootDir>/**/*.ts', '!<rootDir>/integration/**', '!<rootDir>/dist/**']
+        collectCoverageFrom: [
+            '<rootDir>/**/*.ts',
+            '!<rootDir>/integration/**',
+            '!<rootDir>/dist/**',
+            '!<rootDir>/**/stream/**/*.ts'
+        ]
     }
 });
