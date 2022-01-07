@@ -2,8 +2,8 @@
 
 ##### Continuous Integration
 
-*  decomposition actions (#1191) (82716936)
-*  decomposition actions (#1190) (7581db2a)
+-   decomposition actions (#1191) (82716936)
+-   decomposition actions (#1190) (7581db2a)
 
 #### 0.0.0 (2022-01-06)
 
