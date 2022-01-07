@@ -47,6 +47,3 @@ runs:
     - run: yarn install --frozen-lockfile
       if: steps.cache-node-modules.outputs.cache-hit != 'true'
       shell: bash
-
-    - run: ls -la . # for debug
-      shell: bash
