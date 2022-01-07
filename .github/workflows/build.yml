@@ -20,13 +20,13 @@ jobs:
         with:
           token: ${{ secrets.ANGULAR_RU_BOT_PAT }}
 
-      - run: ${{ steps.git-setup.outputs.is-master }}
-      - run: ${{ steps.git-setup.outputs.is-not-master }}
-      - run: ${{ steps.git-setup.outputs.is-repo-owner }}
-      - run: ${{ steps.git-setup.outputs.is-fork }}
-      - run: ${{ steps.git-setup.outputs.username }}
-      - run: ${{ steps.git-setup.outputs.email }}
-      - run: ${{ steps.git-setup.outputs.last-commit-message }}
+      - run: echo ${{ steps.git-setup.outputs.is-master }}
+      - run: echo ${{ steps.git-setup.outputs.is-not-master }}
+      - run: echo ${{ steps.git-setup.outputs.is-repo-owner }}
+      - run: echo ${{ steps.git-setup.outputs.is-fork }}
+      - run: echo ${{ steps.git-setup.outputs.username }}
+      - run: echo ${{ steps.git-setup.outputs.email }}
+      - run: echo ${{ steps.git-setup.outputs.last-commit-message }}
 
       - name: Setup Node.js and Cache
         uses: ./.github/actions/nodejs
