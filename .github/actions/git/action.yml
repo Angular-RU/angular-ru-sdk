@@ -54,8 +54,8 @@ runs:
 
     - name: Set env variables
       run: |
-        echo "IS_REPO_OWNER=${{ github.repository_owner == 'Angular-RU' }}" >> $GITHUB_ENV
-        echo "IS_FORK=${{ github.repository_owner != 'Angular-RU' }}" >> $GITHUB_ENV
+        echo "IS_REPO_OWNER=${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/master' }}" >> $GITHUB_ENV
+        echo "IS_FORK=${{ github.event.pull_request.head.repo.full_name != github.repository }}" >> $GITHUB_ENV
         echo "IS_MASTER_BRANCH=${{ github.ref == 'refs/heads/master' }}" >> $GITHUB_ENV
         echo "IS_NOT_MASTER_BRANCH=${{ github.ref != 'refs/heads/master' }}" >> $GITHUB_ENV
       shell: bash
