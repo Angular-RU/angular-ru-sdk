@@ -1,0 +1,41 @@
+name: CI
+on: [pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Scan repo for find local actions
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js and Cache
+        uses: ./.github/actions/nodejs
+
+      - name: Run build artifacts dependent
+        run: |
+          yarn lerna run --scope @angular-ru/cdk build:lib
+          yarn lerna run --scope @angular-ru/jest build:lib
+          yarn lerna run --scope @angular-ru/eslint-plugin-enterprise build:lib
+
+      - name: Run unit tests
+        run: yarn test
+
+      - uses: codecov/codecov-action@v2
+        if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: ./coverage/cdk/
+          flags: unittests
+          name: cdk
+
+      - uses: codecov/codecov-action@v2
+        if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: ./coverage/ngxs/
+          flags: unittests
+          name: ngxs
+
+concurrency:
+  group: test-${{ github.head_ref }}
+  cancel-in-progress: true
