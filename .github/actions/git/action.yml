@@ -43,6 +43,31 @@ outputs:
 runs:
   using: composite
   steps:
+    - uses: actions/checkout@v2
+      if: ${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/master' }}
+      with:
+        ref: ${{ github.head_ref }}
+        token: ${{ inputs.token }}
+        persist-credentials: false
+        fetch-depth: 0
+
+    - name: Prepare git with token
+      if: ${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/master' }}
+      shell: bash
+      run: |
+        git config --global push.default simple
+        git config --global user.name "${{ inputs.username }}"
+        git config --global user.email "${{ inputs.email }}"
+        git config remote.origin.url "https://x-access-token:${{ inputs.token }}@github.com/$GITHUB_REPOSITORY"
+
+    - uses: actions/checkout@v2
+      if: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
+
+    - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+      if: ${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/master' }}
+      shell: bash
+
+    # Outputs
     - name: Set env variables
       run: |
         echo "IS_REPO_OWNER=${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/master' }}" >> $GITHUB_ENV
@@ -59,38 +84,6 @@ runs:
         echo "pull_request.head.repo.full_name - ${{ github.event.pull_request.head.repo.full_name }}"
         echo "github.repository - ${{ github.repository }}"
         echo "github.ref - ${{ github.ref }}"
-      shell: bash
-
-    - uses: actions/checkout@v2
-      if: ${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/master' }}
-      with:
-        ref: ${{ github.head_ref }}
-        token: ${{ inputs.token }}
-        persist-credentials: false
-        fetch-depth: 0
-
-    - uses: actions/checkout@v2
-      if: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
-      with:
-        ref: ${{ github.head_ref }}
-        fetch-depth: 1
-
-    - name: Prepare git with token
-      if: ${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/master' }}
-      shell: bash
-      run: |
-        git config --global push.default simple
-        git config --global user.name "${{ inputs.username }}"
-        git config --global user.email "${{ inputs.email }}"
-        git config remote.origin.url "https://x-access-token:${{ inputs.token }}@github.com/$GITHUB_REPOSITORY"
-        echo "Done for $GITHUB_REPOSITORY"
-
-    - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
-      if: ${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/master' }}
-      shell: bash
-
-    - run: git fetch
-      if: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
       shell: bash
 
     - id: get-branch
