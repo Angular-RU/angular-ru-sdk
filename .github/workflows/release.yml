@@ -25,7 +25,10 @@ jobs:
 
       - name: Deploy npm packages
         run: |
+          git config --global user.name "${{ steps.git-setup.outputs.username }}"
+          git config --global user.email "${{ steps.git-setup.outputs.email }}"
           git config remote.origin.url "https://x-access-token:${{ secrets.ANGULAR_RU_BOT_PAT }}@github.com/$GITHUB_REPOSITORY"
+
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
           GH_TOKEN=${{ secrets.ANGULAR_RU_BOT_PAT }} yarn lerna publish
 
