@@ -6,6 +6,32 @@
 
 ##### Continuous Integration
 
+*  bump versions again (6a286a5c)
+*  bump versions again (f2b63a5c)
+*  bump versions again (6ce8f593)
+*  bump versions again (cdfccbba)
+*  bump versions again (3d62fc16)
+*  bump versions (c318c194)
+*  decomposition actions (8d1899bf)
+*  decomposition actions (1bc5938f)
+*  decomposition actions (8e1ead10)
+*  decomposition actions (b3eb46ca)
+*  decomposition actions (#1200) (66078fd3)
+*  decomposition actions (#1200) (04047f1e)
+*  decomposition actions (#1200) (30844f95)
+*  decomposition actions (#1200) (d8a26df7)
+*  decomposition actions (#1196) (#1198) (#1199) (635853b0)
+*  decomposition actions (#1196) (#1198) (bdab3cc8)
+*  decomposition actions (#1196) (65bad87e)
+
+#### 0.0.0 (2022-01-07)
+
+##### Build System / Dependencies
+
+*  update actions/checkout action to v2 (#1197) (9486ab39)
+
+##### Continuous Integration
+
 *  decomposition actions (8d1899bf)
 *  decomposition actions (1bc5938f)
 *  decomposition actions (8e1ead10)
