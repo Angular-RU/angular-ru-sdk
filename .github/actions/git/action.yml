@@ -62,7 +62,7 @@ runs:
       shell: bash
 
     - uses: actions/checkout@v2
-      if: ${{ env.IS_REPO_OWNER }}
+      if: ${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/master' }}
       with:
         ref: ${{ github.head_ref }}
         token: ${{ inputs.token }}
@@ -70,13 +70,13 @@ runs:
         fetch-depth: 0
 
     - uses: actions/checkout@v2
-      if: ${{ env.IS_FORK }}
+      if: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
       with:
         ref: ${{ github.head_ref }}
         fetch-depth: 1
 
     - name: Prepare git with token
-      if: ${{ env.IS_REPO_OWNER }}
+      if: ${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/master' }}
       shell: bash
       run: |
         git config --global push.default simple
@@ -86,11 +86,11 @@ runs:
         echo "Done for $GITHUB_REPOSITORY"
 
     - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
-      if: ${{ env.IS_REPO_OWNER }}
+      if: ${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/master' }}
       shell: bash
 
     - run: git fetch
-      if: ${{ env.IS_FORK }}
+      if: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
       shell: bash
 
     - id: get-branch
