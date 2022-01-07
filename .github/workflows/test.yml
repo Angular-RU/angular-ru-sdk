@@ -29,13 +29,13 @@ jobs:
       - uses: codecov/codecov-action@v2
         with:
           directory: ./coverage/cdk/
-          flags: tests,cdk
+          flags: summary,cdk
           name: cdk
 
       - uses: codecov/codecov-action@v2
         with:
           directory: ./coverage/ngxs/
-          flags: tests,ngxs
+          flags: summary,ngxs
           name: ngxs
 
 concurrency:

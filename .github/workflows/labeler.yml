@@ -3,7 +3,7 @@ on: [pull_request]
 
 jobs:
   labeler:
-    if: ${{ github.repository_owner == 'Angular-RU' }}
+    if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/labeler@v3
