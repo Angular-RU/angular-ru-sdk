@@ -7,21 +7,12 @@ on:
     branches:
       - master
 
-env:
-  CI_MODE: true
-  IS_MASTER_BRANCH: ${{ github.ref == 'refs/heads/master' }}
-  IS_FORK: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
-  NODE_VERSION: 16.10.x
-
 jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
       - name: Scan repo for find local actions
         uses: actions/checkout@v2
-
-      - run: echo ${{ github.repository }}
-      - run: echo ${{ github.event.pull_request.head.repo.full_name }}
 
       - name: Setup Git
         uses: ./.github/actions/git
@@ -40,7 +31,7 @@ jobs:
 
       # move to release.yml
       - name: Deploy npm packages
-        if: ${{ env.IS_MASTER_BRANCH == 'true' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: |
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
           GH_TOKEN=${{ secrets.ANGULAR_RU_BOT_PAT }} yarn lerna publish

@@ -3,7 +3,6 @@ on: [pull_request]
 
 jobs:
   labeler:
-    # it just blocks the action from running in PRs in peoples forks
     if: ${{ github.repository_owner == 'Angular-RU' }}
     runs-on: ubuntu-20.04
     steps:

@@ -1,0 +1,8 @@
+codecov:
+  branch: master
+  bot: angular-ru-bot
+
+coverage:
+  precision: 2
+  round: down
+  range: '70...100'
