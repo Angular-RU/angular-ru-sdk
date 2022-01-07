@@ -51,10 +51,6 @@ runs:
     - uses: actions/checkout@v2
       # if (isNotFork)
       if: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
-      with:
-        ref: ${{ github.head_ref }}
-        persist-credentials: false
-        fetch-depth: 0
 
     - name: Prepare git
       if: ${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/master' }}
@@ -67,6 +63,7 @@ runs:
         echo "Done for $GITHUB_REPOSITORY"
 
     - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+      if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
       shell: bash
 
     - name: Get branch name
