@@ -12,7 +12,7 @@ inputs:
     default: angular-ru@yandex.ru
   token:
     description: Github personal access token
-    required: false # because need work also for fork
+    required: false
 
 outputs:
   branch-name:
@@ -40,7 +40,7 @@ outputs:
 runs:
   using: composite
   steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v2 # if (isNotFork)
       if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
       with:
         ref: ${{ github.head_ref }}
@@ -48,11 +48,12 @@ runs:
         persist-credentials: false
         fetch-depth: 0
 
-    - uses: actions/checkout@v2
-      # if (isNotFork)
+    - uses: actions/checkout@v2 # if (isFork)
       if: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
+      with:
+        fetch-depth: 0
 
-    - name: Prepare git
+    - name: Prepare git # if (isNotFork)
       if: ${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/master' }}
       shell: bash
       run: |
@@ -62,8 +63,12 @@ runs:
         git config remote.origin.url "https://x-access-token:${{ inputs.token }}@github.com/$GITHUB_REPOSITORY"
         echo "Done for $GITHUB_REPOSITORY"
 
-    - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+    - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/* # if (isNotFork)
       if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+      shell: bash
+
+    - run: git fetch # if (isFork)
+      if: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
       shell: bash
 
     - name: Get branch name

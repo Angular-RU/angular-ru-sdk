@@ -20,6 +20,22 @@ jobs:
       - name: Run unit tests
         run: yarn test
 
+      - uses: codecov/codecov-action@v2
+        if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: ./coverage/cdk/
+          flags: unittests
+          name: cdk
+
+      - uses: codecov/codecov-action@v2
+        if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: ./coverage/ngxs/
+          flags: unittests
+          name: ngxs
+
 concurrency:
   group: test-${{ github.head_ref }}
   cancel-in-progress: true
