@@ -1,0 +1,33 @@
+name: CI
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Scan repo for find local actions
+        uses: actions/checkout@v2
+
+      - name: Setup Git
+        uses: ./.github/actions/git
+        id: git-setup
+        with:
+          token: ${{ secrets.ANGULAR_RU_BOT_PAT }}
+
+      - name: Setup Node.js and Cache
+        uses: ./.github/actions/nodejs
+
+      - name: Build packages
+        run: yarn build
+
+      - name: Deploy npm packages
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
+          GH_TOKEN=${{ secrets.ANGULAR_RU_BOT_PAT }} yarn lerna publish
+
+concurrency:
+  group: release-${{ github.head_ref }}
+  cancel-in-progress: true

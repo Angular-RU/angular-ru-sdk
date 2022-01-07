@@ -1,11 +1,5 @@
 name: CI
-on:
-  pull_request:
-    branches:
-      - master
-  push:
-    branches:
-      - master
+on: [pull_request]
 
 jobs:
   build:
@@ -14,35 +8,11 @@ jobs:
       - name: Scan repo for find local actions
         uses: actions/checkout@v2
 
-      - name: Setup Git
-        uses: ./.github/actions/git
-        id: git-setup
-        with:
-          token: ${{ secrets.ANGULAR_RU_BOT_PAT }}
-
-      - run: echo ${{ steps.git-setup.outputs.is-master }}
-      - run: echo ${{ steps.git-setup.outputs.is-not-master }}
-      - run: echo ${{ steps.git-setup.outputs.is-repo-owner }}
-      - run: echo ${{ steps.git-setup.outputs.is-fork }}
-      - run: echo ${{ steps.git-setup.outputs.username }}
-      - run: echo ${{ steps.git-setup.outputs.email }}
-      - run: echo ${{ steps.git-setup.outputs.last-commit-message }}
-
       - name: Setup Node.js and Cache
         uses: ./.github/actions/nodejs
 
       - name: Build packages
         run: yarn build
-
-      - name: Run unit tests
-        run: yarn test
-
-      # move to release.yml
-      - name: Deploy npm packages
-        if: ${{ github.ref == 'refs/heads/master' }}
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
-          GH_TOKEN=${{ secrets.ANGULAR_RU_BOT_PAT }} yarn lerna publish
 
 concurrency:
   group: build-${{ github.head_ref }}
