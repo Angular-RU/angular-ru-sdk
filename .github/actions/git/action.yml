@@ -43,21 +43,22 @@ outputs:
 runs:
   using: composite
   steps:
-    - run: echo "github.repository - ${{ github.repository }}"
-      shell: bash
-
-    - run: echo "pull_request.head.repo.full_name - ${{ github.event.pull_request.head.repo.full_name }}"
-      shell: bash
-
-    - run: echo "repository_owner - ${{ github.repository_owner }}"
-      shell: bash
-
     - name: Set env variables
       run: |
         echo "IS_REPO_OWNER=${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/master' }}" >> $GITHUB_ENV
         echo "IS_FORK=${{ github.event.pull_request.head.repo.full_name != github.repository }}" >> $GITHUB_ENV
         echo "IS_MASTER_BRANCH=${{ github.ref == 'refs/heads/master' }}" >> $GITHUB_ENV
         echo "IS_NOT_MASTER_BRANCH=${{ github.ref != 'refs/heads/master' }}" >> $GITHUB_ENV
+      shell: bash
+
+    - name: Debug variables
+      run: |
+        echo "env.IS_MASTER_BRANCH - ${{ env.IS_MASTER_BRANCH }}"
+        echo "env.IS_REPO_OWNER - ${{ env.IS_REPO_OWNER }}"
+        echo "env.IS_FORK - ${{ env.IS_FORK }}"
+        echo "pull_request.head.repo.full_name - ${{ github.event.pull_request.head.repo.full_name }}"
+        echo "github.repository - ${{ github.repository }}"
+        echo "github.ref - ${{ github.ref }}"
       shell: bash
 
     - uses: actions/checkout@v2
@@ -71,7 +72,8 @@ runs:
     - uses: actions/checkout@v2
       if: ${{ env.IS_FORK }}
       with:
-        fetch-depth: 0
+        ref: ${{ github.head_ref }}
+        fetch-depth: 1
 
     - name: Prepare git with token
       if: ${{ env.IS_REPO_OWNER }}
