@@ -2,6 +2,18 @@
 
 ##### Build System / Dependencies
 
+*  update actions/checkout action to v2 (#1197) (9486ab39)
+
+##### Continuous Integration
+
+*  decomposition actions (#1196) (#1198) (#1199) (635853b0)
+*  decomposition actions (#1196) (#1198) (bdab3cc8)
+*  decomposition actions (#1196) (65bad87e)
+
+#### 0.0.0 (2022-01-07)
+
+##### Build System / Dependencies
+
 -   update dependency jasmine-core to v4 (#1179) (67331438)
 -   update dependency lint-staged to v12.1.6 (#1193) (48ba742d)
 
