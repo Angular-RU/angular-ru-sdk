@@ -17,6 +17,7 @@ runs:
   using: composite
   steps:
     - name: Auto push
+      if: ${{ github.repository_owner == 'Angular-RU' }}
       shell: bash
       run: |
         echo "git status"
