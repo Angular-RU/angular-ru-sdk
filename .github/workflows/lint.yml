@@ -18,7 +18,11 @@ jobs:
         uses: ./.github/actions/nodejs
 
       - name: Run commitlint
-        run: echo "${{ steps.git-setup.outputs.last-commit-message }}" | yarn commitlint
+        run: |
+          echo "${{ steps.git-setup.outputs.last-commit-message }}" | yarn commitlint
+          echo "${{ github.event.pull_request.base.sha }}"
+          echo "${{ github.event.pull_request.head.sha }}"
+          yarn commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
 
       - name: Run prettier
         run: yarn format

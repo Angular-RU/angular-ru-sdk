@@ -62,6 +62,10 @@ runs:
 
     - uses: actions/checkout@v2
       if: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
+      with:
+        ref: ${{ github.event.pull_request.base.sha }}
+        token: ${{ github.token }}
+        fetch-depth: 0
 
     - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
       if: ${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/master' }}
@@ -72,7 +76,8 @@ runs:
       env:
         IS_REPO_OWNER:
           ${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/master' }}
-        IS_FORK: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
+        IS_FORK:
+          ${{ github.event.pull_request.head.repo.full_name != github.repository && github.ref != 'refs/heads/master' }}
         IS_MASTER_BRANCH: ${{ github.ref == 'refs/heads/master' }}
         IS_NOT_MASTER_BRANCH: ${{ github.ref != 'refs/heads/master' }}
       run: |
