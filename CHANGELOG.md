@@ -1,5 +1,11 @@
 #### 0.0.0 (2022-01-07)
 
+##### Continuous Integration
+
+*  decomposition actions (b3eb46ca)
+
+#### 0.0.0 (2022-01-07)
+
 ##### Build System / Dependencies
 
 -   update dependency jasmine-core to v4 (#1179) (67331438)
