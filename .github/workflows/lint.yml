@@ -18,7 +18,7 @@ jobs:
         uses: ./.github/actions/nodejs
 
       - name: Run commitlint
-        run: yarn commitlint --from=HEAD~1
+        run: echo "${{ steps.git-setup.outputs.last-commit-message }}" | yarn commitlint
 
       - name: Run prettier
         run: yarn format
