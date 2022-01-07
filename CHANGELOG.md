@@ -1,3 +1,14 @@
+#### 0.0.0 (2022-01-07)
+
+##### Build System / Dependencies
+
+-   update dependency jasmine-core to v4 (#1179) (67331438)
+-   update dependency lint-staged to v12.1.6 (#1193) (48ba742d)
+
+##### Continuous Integration
+
+-   decomposition actions (9dc730dc)
+
 #### 0.0.0 (2022-01-06)
 
 ##### Continuous Integration
