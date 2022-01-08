@@ -23,6 +23,11 @@ jobs:
       #- name: Build packages
       #  run: yarn build
 
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
+          fetch-depth: 0
+
       - name: Deploy npm packages
         run: |
           yarn format
@@ -30,7 +35,7 @@ jobs:
           git config --global push.default simple
           git config --global user.name "angular-ru-bot"
           git config --global user.email "angular-ru@yandex.ru"
-          git config remote.origin.url https://x-access-token:${{ secrets.ANGULAR_RU_BOT_PAT }}@github.com/$GITHUB_REPOSITORY
+          git remote set-url origin https://x-access-token:${{ secrets.ANGULAR_RU_BOT_PAT }}@github.com/${{ github.repository }}
 
           echo "git status"
           git status
