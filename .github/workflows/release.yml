@@ -31,9 +31,9 @@ jobs:
           yarn format
 
           git config --global push.default simple
-          git config --global user.name "angular-ru-bot"
-          git config --global user.email "angular-ru@yandex.ru"
-          git remote set-url origin https://x-access-token:${{ secrets.ANGULAR_RU_BOT_PAT }}@github.com/${{ github.repository }}
+          git config --global user.name "splincode"
+          git config --global user.email "omaxhp@yandex.ru"
+          git remote set-url origin https://x-access-token:${{ secrets.ADMIN_TOKEN }}@github.com/${{ github.repository }}
 
           echo "git status"
           git status
@@ -46,17 +46,11 @@ jobs:
           echo "git commit ..."
           git commit -m "ci: detect uncommitted [ci skip]" \
             --no-verify --no-edit \
-            --author="${{ steps.git-setup.outputs.username }} <${{ steps.git-setup.outputs.email }}>" || true
-
+            --author="splincode <omaxphp@yandex.ru>" && \
+             git push --follow-tags --no-verify origin HEAD:master || true
 
           #echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
           #GH_TOKEN=${{ secrets.ANGULAR_RU_BOT_PAT }} yarn lerna publish
-
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.ADMIN_TOKEN }}
-          branch: ${{ github.ref }}
 
 concurrency:
   group: release-${{ github.head_ref }}
