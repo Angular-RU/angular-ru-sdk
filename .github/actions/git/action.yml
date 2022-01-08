@@ -64,11 +64,11 @@ runs:
       with:
         ref: ${{ github.event.pull_request.base.sha }}
         token: ${{ github.token }}
-        fetch-depth: 0
+        fetch-depth: 1
 
-   # - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
-   #   if: ${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/master' }}
-   #   shell: bash
+    - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+      if: ${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/master' }}
+      shell: bash
 
     - id: output
       shell: bash
