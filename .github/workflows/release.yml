@@ -33,6 +33,7 @@ jobs:
           git config --global push.default simple
           git config --global user.name "splincode"
           git config --global user.email "omaxhp@yandex.ru"
+          git remote set-url origin https://x-access-token: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@github.com/angular-ru/angular-ru-sdk
           git remote set-url origin https://x-access-token:${{ secrets.ADMIN_TOKEN }}@github.com/${{ github.repository }}
 
           echo "git status"
