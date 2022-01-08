@@ -47,11 +47,17 @@ jobs:
           git commit -m "ci: detect uncommitted [ci skip]" \
             --no-verify --no-edit \
             --author="${{ steps.git-setup.outputs.username }} <${{ steps.git-setup.outputs.email }}>" && \
-          git push || true
+         || true
 
 
           #echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
           #GH_TOKEN=${{ secrets.ANGULAR_RU_BOT_PAT }} yarn lerna publish
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.ANGULAR_RU_BOT_PAT }}
+          branch: ${{ github.ref }}
 
 concurrency:
   group: release-${{ github.head_ref }}
