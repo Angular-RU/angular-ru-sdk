@@ -55,7 +55,7 @@ jobs:
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.ANGULAR_RU_BOT_PAT }}
+          github_token: ${{ secrets.ADMIN_TOKEN }}
           branch: ${{ github.ref }}
 
 concurrency:
