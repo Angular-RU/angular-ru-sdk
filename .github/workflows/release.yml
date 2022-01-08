@@ -27,9 +27,10 @@ jobs:
         run: |
           yarn format
 
-          git config --global user.name "${{ steps.git-setup.outputs.username }}"
-          git config --global user.email "${{ steps.git-setup.outputs.email }}"
-          git config remote.origin.url "https://x-access-token:${{ secrets.ANGULAR_RU_BOT_PAT }}@github.com/$GITHUB_REPOSITORY"
+          git config --global push.default simple
+          git config --global user.name "angular-ru-bot"
+          git config --global user.email "angular-ru@yandex.ru"
+          git config remote.origin.url https://x-access-token:${{ secrets.ANGULAR_RU_BOT_PAT }}@github.com/$GITHUB_REPOSITORY
 
           echo "git status"
           git status
