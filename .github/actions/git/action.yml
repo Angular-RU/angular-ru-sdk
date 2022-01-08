@@ -43,7 +43,7 @@ outputs:
 runs:
   using: composite
   steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2.3.4
       if: ${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/master' }}
       with:
         ref: ${{ github.head_ref }}
@@ -59,16 +59,16 @@ runs:
         git config --global user.name "${{ inputs.username }}"
         git config --global user.email "${{ inputs.email }}"
 
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2.3.4
       if: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
       with:
         ref: ${{ github.event.pull_request.base.sha }}
         token: ${{ github.token }}
         fetch-depth: 0
 
-    - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
-      if: ${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/master' }}
-      shell: bash
+   # - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+   #   if: ${{ github.event.pull_request.head.repo.full_name == github.repository || github.ref == 'refs/heads/master' }}
+   #   shell: bash
 
     - id: output
       shell: bash
