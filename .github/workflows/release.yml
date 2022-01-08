@@ -46,8 +46,7 @@ jobs:
           echo "git commit ..."
           git commit -m "ci: detect uncommitted [ci skip]" \
             --no-verify --no-edit \
-            --author="${{ steps.git-setup.outputs.username }} <${{ steps.git-setup.outputs.email }}>" && \
-         || true
+            --author="${{ steps.git-setup.outputs.username }} <${{ steps.git-setup.outputs.email }}>" || true
 
 
           #echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
