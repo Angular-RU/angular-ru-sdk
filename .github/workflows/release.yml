@@ -44,9 +44,7 @@ jobs:
           echo "------"
 
           echo "git commit ..."
-          git commit -m "ci: detect uncommitted [ci skip]" \
-            --no-verify --no-edit && \
-          git push || true
+          git commit -m "ci: detect uncommitted [ci skip]" --no-verify --no-edit && git push || true
 
           #echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
           #GH_TOKEN=${{ secrets.ANGULAR_RU_BOT_PAT }} yarn lerna publish
