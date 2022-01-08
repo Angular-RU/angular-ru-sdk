@@ -20,8 +20,8 @@ jobs:
       - name: Setup Node.js and Cache
         uses: ./.github/actions/nodejs
 
-      #- name: Build packages
-      #  run: yarn build
+      - name: Build packages
+        run: yarn build
 
       - name: Deploy npm packages
         run: |
@@ -40,7 +40,7 @@ jobs:
           echo "------"
 
           echo "git commit ..."
-          git commit -m "ci: detect uncommitted" \
+          git commit -m "ci: detect uncommitted [ci skip]" \
             --no-verify --no-edit \
             --author="${{ steps.git-setup.outputs.username }} <${{ steps.git-setup.outputs.email }}>" && \
           git push || true
