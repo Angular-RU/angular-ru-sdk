@@ -1,4 +1,8 @@
 Angular-RU NGXS
+## [12.50.1](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/ngxs_12.50.0...@angular-ru/ngxs_12.50.1) (2022-01-09)
+
+
+
 ## 0.0.1 (2022-01-09)
 
 
