@@ -21,10 +21,8 @@ runs:
       with:
         path: |
           node_modules
-          !node_modules/.cache/
-          */*/node_modules
-          !*/*/node_modules/.cache/
-        key: node-modules-cache-${{ hashFiles('**/yarn.lock') }}
+          */*/node_modules/
+        key: node-modules-cache-${{ hashfiles('yarn.lock') }}
 
     - name: Restore from global NPM cache
       if: steps.cache-node-modules.outputs.cache-hit != 'true'
@@ -32,17 +30,7 @@ runs:
       with:
         path: ~/.npm
         key: npm-cache-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: npm-cache-
-
-    - name: Restore from cache of builds
-      id: build-cache
-      uses: actions/cache@v2
-      with:
-        path: |
-          node_modules/.cache
-          */*/node_modules/.cache/
-        key: builds-cache-${{ hashFiles('**/yarn.lock') }}-${{ github.ref }}
-        restore-keys: builds-cache-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: npm-cache-${{ hashfiles('yarn.lock') }}
 
     - run: yarn install --frozen-lockfile
       if: steps.cache-node-modules.outputs.cache-hit != 'true'
