@@ -1,10 +1,10 @@
-@import 'virtual-table/src/styles/common';
-@import 'virtual-table/src/styles/variables';
-@import 'virtual-table/src/styles/scrollbar';
-@import 'virtual-table/src/styles/columns';
-@import 'virtual-table/src/styles/cell';
-@import 'virtual-table/src/styles/icon';
-@import 'virtual-table/src/styles/draggable';
+@import './styles/common';
+@import './styles/variables';
+@import './styles/scrollbar';
+@import './styles/columns';
+@import './styles/cell';
+@import './styles/icon';
+@import './styles/draggable';
 
 .table-grid {
     height: 100%;

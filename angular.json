@@ -1,10 +1,8 @@
 {
-    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-    "version": 1,
-    "defaultProject": "cdk",
-    "newProjectRoot": "packages",
+    "version": 2,
     "projects": {
-        "cdk": {
+        "cdk": "packages/cdk",
+        "cdk32": {
             "prefix": "",
             "root": ".",
             "projectType": "library",
@@ -16,6 +14,9 @@
                         "tsConfig": "packages/cdk/tsconfig.lib.json",
                         "project": "packages/cdk/ng-package.json"
                     }
+                },
+                "version": {
+                    "builder": "@jscutlery/semver:version"
                 }
             }
         },

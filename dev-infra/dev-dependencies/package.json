@@ -8,6 +8,11 @@
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "dependencies": {
+        "@jscutlery/semver": "2.17.4",
+        "@nrwl/cli": "13.4.3",
+        "@nrwl/nx-cloud": "13.0.2",
+        "@nrwl/tao": "13.4.3",
+        "@nrwl/workspace": "13.4.3",
         "@types/jasmine": "3.10.3",
         "@types/jasminewd2": "2.0.10",
         "@types/karma": "6.3.2",
@@ -24,13 +29,7 @@
         "nyc": "15.1.0",
         "sort-package-json": "1.53.1",
         "standard-version": "9.3.2",
-        "ts-node": "10.4.0",
-        "semantic-release": "^18.0.1",
-        "semantic-release-cli": "^5.4.4",
-        "@semantic-release/changelog": "^6.0.1",
-        "@semantic-release/git": "^10.0.1",
-        "@semantic-release/npm": "^8.0.3",
-        "@semantic-release/exec": "^6.0.3"
+        "ts-node": "10.4.0"
     },
     "publishConfig": {
         "access": "public"
