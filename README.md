@@ -15,8 +15,8 @@ found in the Angular.
 
 ### Development kit
 
-| **Package**                                                    | **Version**                                                       | **README**                                                                     | **Downloads**                                                                                     |
-| -------------------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------- |
+| **Package**                                                    | **Version**                                                       | **README**                                                                 | **Downloads**                                                                                     |
+| -------------------------------------------------------------- | ----------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | [@angular-ru/cdk](https://npmjs.com/package/@angular-ru/cdk)   | ![](https://img.shields.io/npm/v/%40angular-ru%2Fcdk/latest.svg)  | [![](https://img.shields.io/badge/README--green.svg)](libs/cdk/README.md)  | [![](https://img.shields.io/npm/dw/@angular-ru/cdk)](https://npmjs.com/package/@angular-ru/cdk)   |
 | [@angular-ru/ngxs](https://npmjs.com/package/@angular-ru/ngxs) | ![](https://img.shields.io/npm/v/%40angular-ru%2Fngxs/latest.svg) | [![](https://img.shields.io/badge/README--green.svg)](libs/ngxs/README.md) | [![](https://img.shields.io/npm/dw/@angular-ru/ngxs)](https://npmjs.com/package/@angular-ru/ngxs) |
 

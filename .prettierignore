@@ -4,6 +4,7 @@
 **/file-suites/**
 **/node_modules/**
 **/dist/**
+**/@angular-ru/**
 **/lib/**
 lerna.json
 typescript.bad.ts

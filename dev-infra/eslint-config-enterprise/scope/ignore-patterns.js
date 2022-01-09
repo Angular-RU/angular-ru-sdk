@@ -6,6 +6,7 @@ module.exports = {
         'dist',
         'node_modules',
         '**/node_modules/**',
+        '**/@angular-ru/**',
         '**/schematics/*',
         '**/coverage/**',
         'eslintrc.js',
