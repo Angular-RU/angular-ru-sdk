@@ -13,11 +13,14 @@
         "version": {
             "executor": "@jscutlery/semver:version",
             "options": {
+                "postTargets": ["ngxs:build"],
+                "changelogHeader": "Angular-RU NGXS",
                 "commitMessageFormat": "chore(${projectName}): release version ${version} [ci skip]",
                 "versionTagPrefix": "@angular-ru/${target}@",
                 "skipProjectChangelog": true,
+                "skipRootChangelog": true,
                 "trackDeps": true,
-                "noVerify": false
+                "noVerify": true
             }
         }
     }
