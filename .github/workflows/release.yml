@@ -1,4 +1,4 @@
-name: CI
+name: CI Release
 on:
   push:
     branches:
@@ -6,7 +6,6 @@ on:
 
 jobs:
   release:
-    name: Release
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
@@ -46,6 +45,8 @@ jobs:
           #echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
           #GH_TOKEN=${{ secrets.ANGULAR_RU_BOT_PAT }} yarn lerna publish
 
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
+          yarn nx affected:version
           git push --follow-tags origin master
 
 concurrency:
