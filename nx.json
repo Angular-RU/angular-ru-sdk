@@ -1,0 +1,23 @@
+{
+    "extends": "@nrwl/workspace/presets/npm.json",
+    "npmScope": "angular-ru",
+    "tasksRunnerOptions": {
+        "default": {
+            "runner": "@nrwl/nx-cloud",
+            "options": {
+                "cacheableOperations": ["build", "test", "lint", "package", "prepare"]
+            }
+        }
+    },
+    "targetDependencies": {
+        "version": [
+            {
+                "target": "version",
+                "projects": "dependencies"
+            }
+        ]
+    },
+    "affected": {
+        "defaultBase": "master"
+    }
+}

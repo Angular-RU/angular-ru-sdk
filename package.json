@@ -1,6 +1,5 @@
 {
     "name": "@angular-ru/sdk",
-    "version": "0.0.0",
     "private": true,
     "description": "Angular-RU SDK",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk#readme",
@@ -8,7 +7,10 @@
     "repository": "git+https://github.com/Angular-RU/angular-ru-sdk.git",
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
-    "workspaces": ["packages/*", "dev-infra/*"],
+    "workspaces": [
+        "packages/*",
+        "dev-infra/*"
+    ],
     "scripts": {
         "build": "yarn ts-node .scripts/build.ts",
         "clean": "yarn ts-node .scripts/clean.ts",
@@ -19,15 +21,27 @@
         "symlink": "yarn ts-node .scripts/symlink.ts",
         "test": "yarn ts-node .scripts/test.ts",
         "verify:ng": "yarn ts-node .scripts/verify-ng-major.ts",
-        "version": "yarn ts-node .scripts/release-version.ts",
-        "semantic-release": "semantic-release"
+        "version": "yarn ts-node .scripts/release-version.ts"
     },
     "lint-staged": {
-        "*.ts": ["yarn prettier --write", "yarn eslint --fix --quiet --ignore-pattern '**/file-suites/**'"],
-        "*.{html,css,scss,md,js,json}": ["yarn prettier --write"],
-        "package.json": ["yarn sort-package-json", "yarn prettier --write"]
+        "*.ts": [
+            "yarn prettier --write",
+            "yarn eslint --fix --quiet --ignore-pattern '**/file-suites/**'"
+        ],
+        "*.{html,css,scss,md,js,json}": [
+            "yarn prettier --write"
+        ],
+        "package.json": [
+            "yarn sort-package-json",
+            "yarn prettier --write"
+        ]
     },
-    "browserslist": ["Chrome >= 61", "Firefox >= 61", "not IE 11", "> 1%"],
+    "browserslist": [
+        "Chrome >= 61",
+        "Firefox >= 61",
+        "not IE 11",
+        "> 1%"
+    ],
     "prettier": "./dev-infra/prettier/prettier.config.js",
     "eslintConfig": {
         "extends": "./dev-infra/eslint-config-enterprise/index.js"
@@ -69,39 +83,16 @@
         "typescript": "4.4.4",
         "zone.js": "0.11.4"
     },
-    "standard-version": {
-        "skip": {
-            "changelog": false,
-            "commit": true,
-            "tag": true
-        }
-    },
-    "release": {
-        "branch": "master",
-        "verifyConditions": [
-            "@semantic-release/changelog",
-            "@semantic-release/npm",
-            "@semantic-release/git",
-            "@semantic-release/github"
-        ],
-        "prepare": [
-            "@semantic-release/changelog",
-            "@semantic-release/npm",
-            "@semantic-release/exec",
-            "@semantic-release/git"
-        ],
-        "publish": ["@semantic-release/github", "@semantic-release/npm"],
-        "success": ["@semantic-release/github"],
-        "failure": ["@semantic-release/github"],
-        "prepareCmd": "npm run version"
-    },
     "engines": {
         "node": ">=v14.17.6",
         "npm": "Please use yarn instead of NPM to install dependencies",
         "yarn": ">=1.22.11"
     },
     "packagesGraph": {
-        "common": ["packages/cdk", "dev-infra/eslint-plugin-enterprise"],
+        "common": [
+            "packages/cdk",
+            "dev-infra/eslint-plugin-enterprise"
+        ],
         "dependent": [
             "packages/ngxs",
             "dev-infra/commitlint",
@@ -112,5 +103,6 @@
             "dev-infra/renovate",
             "dev-infra/typescript"
         ]
-    }
+    },
+    "version": "12.45.3"
 }

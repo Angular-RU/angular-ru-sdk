@@ -1,0 +1,23 @@
+{
+    "root": ".",
+    "projectType": "library",
+    "sourceRoot": "packages/cdk",
+    "prefix": ".",
+    "targets": {
+        "build": {
+            "builder": "@angular-devkit/build-angular:ng-packagr",
+            "options": {
+                "tsConfig": "packages/cdk/tsconfig.lib.json",
+                "project": "packages/cdk/ng-package.json"
+            }
+        },
+        "version": {
+            "executor": "@jscutlery/semver:version",
+            "options": {
+                "commitMessageFormat": "chore(${projectName}): release version ${version} [ci skip]",
+                "versionTagPrefix": "@angular-ru/${target}@"
+            }
+        }
+    },
+    "tags": ["@angular-ru/cdk"]
+}
