@@ -9,7 +9,7 @@
     "main": "index.js",
     "files": ["index.js"],
     "dependencies": {
-        "@commitlint/cli": "16.0.1",
+        "@commitlint/cli": "16.0.2",
         "@commitlint/config-angular": "16.0.0",
         "@commitlint/config-conventional": "16.0.0"
     },
