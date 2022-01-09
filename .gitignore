@@ -8,7 +8,6 @@
 **/coverage/**
 **/.cache**/
 **/node_modules**/
-**/libs/**/CHANGELOG.md
 
 # for ts lint testing
 **/file-suites/**/*.ts
