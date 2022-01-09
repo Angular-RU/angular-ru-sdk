@@ -3,6 +3,6 @@
     "projects": {
         "ngxs": "libs/ngxs",
         "cdk": "libs/cdk",
-        "typescript": "dev-infra/typescript"
+        "typescript": "libs/typescript"
     }
 }
