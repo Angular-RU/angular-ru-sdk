@@ -1,6 +1,6 @@
 {
     "root": "packages/ngxs/",
-    "sourceRoot": "packages/ngxs/src",
+    "sourceRoot": "packages/ngxs/",
     "projectType": "library",
     "targets": {
         "build": {
@@ -16,9 +16,10 @@
                 "postTargets": ["ngxs:build"],
                 "changelogHeader": "Angular-RU NGXS",
                 "commitMessageFormat": "chore(${projectName}): release version ${version} [ci skip]",
-                "versionTagPrefix": "@angular-ru/${target}@",
+                "versionTagPrefix": "@angular-ru/ngxs_",
                 "skipProjectChangelog": true,
                 "skipRootChangelog": true,
+                "baseBranch": "master",
                 "trackDeps": true,
                 "noVerify": true
             }
