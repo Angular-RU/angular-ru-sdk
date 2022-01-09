@@ -18,7 +18,13 @@
                 "skipProjectChangelog": true,
                 "trackDeps": true,
                 "noVerify": true
-            }
+            },
+            "dependsOn": [
+                {
+                    "target": "version",
+                    "projects": "dependencies"
+                }
+            ]
         }
     }
 }

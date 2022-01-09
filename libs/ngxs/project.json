@@ -33,7 +33,13 @@
                 "baseBranch": "master",
                 "trackDeps": true,
                 "noVerify": true
-            }
+            },
+            "dependsOn": [
+                {
+                    "target": "version",
+                    "projects": "dependencies"
+                }
+            ]
         }
     }
 }
