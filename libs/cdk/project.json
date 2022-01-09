@@ -1,22 +1,27 @@
 {
-    "root": "packages/ngxs/",
-    "sourceRoot": "packages/ngxs/",
+    "root": "libs/cdk/",
+    "sourceRoot": "libs/cdk/",
     "projectType": "library",
     "targets": {
         "build": {
             "builder": "@angular-devkit/build-angular:ng-packagr",
             "options": {
-                "tsConfig": "packages/ngxs/tsconfig.lib.json",
-                "project": "packages/ngxs/ng-package.json"
+                "tsConfig": "libs/cdk/tsconfig.lib.json",
+                "project": "libs/cdk/ng-package.json"
+            }
+        },
+        "publish": {
+            "builder": "@nrwl/workspace:run-commands",
+            "options": {
+                "command": "npm publish ./@angular-ru/cdk --ignore-scripts"
             }
         },
         "version": {
             "executor": "@jscutlery/semver:version",
             "options": {
-                "postTargets": ["ngxs:build"],
-                "changelogHeader": "Angular-RU NGXS",
+                "postTargets": ["cdk:build", "cdk:publish"],
                 "commitMessageFormat": "chore(${projectName}): release version ${version} [ci skip]",
-                "versionTagPrefix": "@angular-ru/ngxs_",
+                "versionTagPrefix": "@angular-ru/cdk_",
                 "skipProjectChangelog": true,
                 "skipRootChangelog": true,
                 "baseBranch": "master",

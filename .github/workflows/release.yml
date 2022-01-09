@@ -46,6 +46,8 @@ jobs:
           #echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
           #GH_TOKEN=${{ secrets.ANGULAR_RU_BOT_PAT }} yarn lerna publish
 
+          git push --follow-tags origin master
+
 concurrency:
   group: release-${{ github.head_ref }}
   cancel-in-progress: true

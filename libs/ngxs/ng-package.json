@@ -2,8 +2,7 @@
     "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
     "lib": {
         "entryFile": "./src/public_api.ts",
-        "flatModuleFile": "angular-ru-cdk"
+        "flatModuleFile": "angular-ru-ngxs"
     },
-    "assets": ["./flex-layout/styles", "./tooltip/styles"],
-    "dest": "./dist/library"
+    "dest": "../../@angular-ru/ngxs"
 }

@@ -3,6 +3,7 @@
 *.log
 .idea
 **/dist/**
+**/@angular-ru/**
 **/out/**
 **/coverage/**
 **/.cache**/
