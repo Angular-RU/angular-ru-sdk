@@ -1,0 +1,8 @@
+{
+    "version": 2,
+    "projects": {
+        "ngxs": "packages/ngxs",
+        "cdk": "packages/cdk",
+        "typescript": "dev-infra/typescript"
+    }
+}

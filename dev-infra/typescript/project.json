@@ -1,16 +1,8 @@
 {
-    "root": ".",
+    "root": "dev-infra/typescript/",
+    "sourceRoot": "packages/typescript/",
     "projectType": "library",
-    "sourceRoot": "packages/cdk",
-    "prefix": ".",
     "targets": {
-        "build": {
-            "builder": "@angular-devkit/build-angular:ng-packagr",
-            "options": {
-                "tsConfig": "packages/cdk/tsconfig.lib.json",
-                "project": "packages/cdk/ng-package.json"
-            }
-        },
         "version": {
             "executor": "@jscutlery/semver:version",
             "options": {

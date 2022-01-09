@@ -1,6 +1,18 @@
 {
     "extends": "@nrwl/workspace/presets/npm.json",
     "npmScope": "angular-ru",
+    "implicitDependencies": {
+        "angular.json": "*",
+        "package.json": {
+            "dependencies": "*",
+            "devDependencies": "*"
+        },
+        ".eslintrc.js": "*",
+        "nx.json": "*",
+        "karma.*.js": "*",
+        "tsconfig.*.json": "*",
+        "tsconfig.json": "*"
+    },
     "tasksRunnerOptions": {
         "default": {
             "runner": "@nrwl/nx-cloud",

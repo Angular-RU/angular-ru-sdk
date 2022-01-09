@@ -12,7 +12,8 @@ jobs:
         uses: ./.github/actions/nodejs
 
       - name: Build packages
-        run: yarn build
+        run: |
+          # yarn build
 
 concurrency:
   group: build-${{ github.head_ref }}

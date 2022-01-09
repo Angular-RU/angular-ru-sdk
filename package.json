@@ -1,5 +1,6 @@
 {
     "name": "@angular-ru/sdk",
+    "version": "0.0.0",
     "private": true,
     "description": "Angular-RU SDK",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk#readme",
@@ -7,10 +8,7 @@
     "repository": "git+https://github.com/Angular-RU/angular-ru-sdk.git",
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
-    "workspaces": [
-        "packages/*",
-        "dev-infra/*"
-    ],
+    "workspaces": ["packages/*", "dev-infra/*"],
     "scripts": {
         "build": "yarn ts-node .scripts/build.ts",
         "clean": "yarn ts-node .scripts/clean.ts",
@@ -24,24 +22,11 @@
         "version": "yarn ts-node .scripts/release-version.ts"
     },
     "lint-staged": {
-        "*.ts": [
-            "yarn prettier --write",
-            "yarn eslint --fix --quiet --ignore-pattern '**/file-suites/**'"
-        ],
-        "*.{html,css,scss,md,js,json}": [
-            "yarn prettier --write"
-        ],
-        "package.json": [
-            "yarn sort-package-json",
-            "yarn prettier --write"
-        ]
+        "*.ts": ["yarn prettier --write", "yarn eslint --fix --quiet --ignore-pattern '**/file-suites/**'"],
+        "*.{html,css,scss,md,js,json}": ["yarn prettier --write"],
+        "package.json": ["yarn sort-package-json", "yarn prettier --write"]
     },
-    "browserslist": [
-        "Chrome >= 61",
-        "Firefox >= 61",
-        "not IE 11",
-        "> 1%"
-    ],
+    "browserslist": ["Chrome >= 61", "Firefox >= 61", "not IE 11", "> 1%"],
     "prettier": "./dev-infra/prettier/prettier.config.js",
     "eslintConfig": {
         "extends": "./dev-infra/eslint-config-enterprise/index.js"
@@ -89,10 +74,7 @@
         "yarn": ">=1.22.11"
     },
     "packagesGraph": {
-        "common": [
-            "packages/cdk",
-            "dev-infra/eslint-plugin-enterprise"
-        ],
+        "common": ["packages/cdk", "dev-infra/eslint-plugin-enterprise"],
         "dependent": [
             "packages/ngxs",
             "dev-infra/commitlint",
@@ -103,6 +85,5 @@
             "dev-infra/renovate",
             "dev-infra/typescript"
         ]
-    },
-    "version": "12.45.3"
+    }
 }

@@ -29,18 +29,18 @@ jobs:
 
       - name: Deploy npm packages
         run: |
-          yarn format
+          #yarn format
 
-          echo "git status"
-          git status
-          echo "------"
+          #echo "git status"
+          #git status
+          #echo "------"
 
-          echo "git add ."
-          git add .
-          echo "------"
+          #echo "git add ."
+          #git add .
+          #echo "------"
 
-          echo "git commit ..."
-          git commit -m "ci: detect uncommitted [ci skip]" --no-verify --no-edit && git push || true
+          #echo "git commit ..."
+          #git commit -m "ci: detect uncommitted [ci skip]" --no-verify --no-edit && git push || true
 
           #echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
           #GH_TOKEN=${{ secrets.ANGULAR_RU_BOT_PAT }} yarn lerna publish

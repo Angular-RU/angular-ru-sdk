@@ -18,7 +18,8 @@ jobs:
         uses: ./.github/actions/nodejs
 
       - name: Build integration apps
-        run: yarn integration
+        run: |
+          # yarn integration
 
 concurrency:
   group: integration-${{ github.head_ref }}

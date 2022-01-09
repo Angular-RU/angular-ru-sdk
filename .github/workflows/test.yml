@@ -19,12 +19,13 @@ jobs:
 
       - name: Run build artifacts dependent
         run: |
-          yarn lerna run --scope @angular-ru/cdk build:lib
-          yarn lerna run --scope @angular-ru/jest build:lib
-          yarn lerna run --scope @angular-ru/eslint-plugin-enterprise build:lib
+          # yarn lerna run --scope @angular-ru/cdk build:lib
+          # yarn lerna run --scope @angular-ru/jest build:lib
+          # yarn lerna run --scope @angular-ru/eslint-plugin-enterprise build:lib
 
       - name: Run unit tests
-        run: yarn test
+        run: |
+          # yarn test
 
       - uses: codecov/codecov-action@v2
         with:

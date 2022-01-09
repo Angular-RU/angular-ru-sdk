@@ -29,12 +29,13 @@ jobs:
 
       - name: Run build artifacts dependent
         run: |
-          yarn lerna run --scope @angular-ru/cdk build:lib
-          yarn lerna run --scope @angular-ru/ngxs build:lib
-          yarn lerna run --scope @angular-ru/eslint-plugin-enterprise build:lib
+          # yarn lerna run --scope @angular-ru/cdk build:lib
+          # yarn lerna run --scope @angular-ru/ngxs build:lib
+          # yarn lerna run --scope @angular-ru/eslint-plugin-enterprise build:lib
 
       - name: Run eslint
-        run: yarn lint
+        run: |
+          # yarn lint
 
       - name: Autocommit fixed files and push
         uses: ./.github/actions/autopush
