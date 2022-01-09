@@ -14,46 +14,20 @@ jobs:
           persist-credentials: false
       - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
 
-      - name: Prepare git
+      - name: Prepare git and npm token
         run: |
           git config --global push.default simple
           git config --global user.name "angular-ru-bot"
           git config --global user.email "angular-ru@yandex.ru"
           git config remote.origin.url https://x-access-token:${{ secrets.ANGULAR_RU_BOT_PAT }}@github.com/$GITHUB_REPOSITORY
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
 
       - name: Setup Node.js and Cache
         uses: ./.github/actions/nodejs
 
-      - name: Setup NPM token
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
-
-      #- name: Build packages
-      #  run: yarn build
-
       - name: Deploy npm packages
         run: |
-          #yarn format
-
-          #echo "git status"
-          #git status
-          #echo "------"
-
-          #echo "git add ."
-
-          #echo "------"
-
-          #echo "git commit ..."
-          #git commit -m "ci: detect uncommitted [ci skip]" --no-verify --no-edit && git push || true
-
-          #echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
-          #GH_TOKEN=${{ secrets.ANGULAR_RU_BOT_PAT }} yarn lerna publish
-
           yarn nx run-many --target=version --all
-
-          yarn format
-          git add .
-          git commit -m "ci: detect uncommitted [ci skip]" --no-verify --no-edit || true
-
           git push --follow-tags origin master
 
 concurrency:

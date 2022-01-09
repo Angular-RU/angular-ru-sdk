@@ -1,5 +1,5 @@
 {
-    "extends": "./dev-infra/typescript/tsconfig.json",
+    "extends": "./libs/typescript/tsconfig.json",
     "ts-node": {
         "compilerOptions": {
             "module": "commonjs"

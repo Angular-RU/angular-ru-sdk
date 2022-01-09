@@ -1,0 +1,24 @@
+{
+    "root": "libs/typescript/",
+    "sourceRoot": "libs/typescript/",
+    "projectType": "library",
+    "targets": {
+        "publish": {
+            "builder": "@nrwl/workspace:run-commands",
+            "options": {
+                "command": "npm publish ./libs/typescript --ignore-scripts"
+            }
+        },
+        "version": {
+            "executor": "@jscutlery/semver:version",
+            "options": {
+                "postTargets": ["ngxs:build", "typescript:publish"],
+                "commitMessageFormat": "chore(${projectName}): release version ${version} [ci skip]",
+                "versionTagPrefix": "@angular-ru/typescript_",
+                "skipProjectChangelog": true,
+                "trackDeps": true,
+                "noVerify": false
+            }
+        }
+    }
+}
