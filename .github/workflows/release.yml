@@ -24,6 +24,9 @@ jobs:
       - name: Setup Node.js and Cache
         uses: ./.github/actions/nodejs
 
+      - name: Setup NPM token
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
+
       #- name: Build packages
       #  run: yarn build
 
@@ -36,7 +39,7 @@ jobs:
           #echo "------"
 
           #echo "git add ."
-          #git add .
+
           #echo "------"
 
           #echo "git commit ..."
@@ -45,8 +48,12 @@ jobs:
           #echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
           #GH_TOKEN=${{ secrets.ANGULAR_RU_BOT_PAT }} yarn lerna publish
 
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
-          yarn nx affected:version
+          yarn nx run-many --target=version --all
+
+          yarn format
+          git add .
+          git commit -m "ci: detect uncommitted [ci skip]" --no-verify --no-edit || true
+
           git push --follow-tags origin master
 
 concurrency:
