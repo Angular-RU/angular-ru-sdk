@@ -29,7 +29,7 @@ runs:
       uses: actions/cache@v2
       with:
         path: ~/.npm
-        key: npm-cache-${{ hashFiles('**/yarn.lock') }}
+        key: npm-cache-${{ hashFiles('yarn.lock') }}
         restore-keys: npm-cache-${{ hashfiles('yarn.lock') }}
 
     - run: yarn install --frozen-lockfile
