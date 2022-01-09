@@ -1,5 +1,5 @@
 {
-    "name": "cdk",
+    "name": "@angular-ru/cdk",
     "version": "12.49.6",
     "description": "Angular-RU package",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/packages/cdk#readme",
