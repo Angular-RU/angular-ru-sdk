@@ -27,7 +27,7 @@ jobs:
 
       - name: Deploy npm packages
         run: |
-          yarn nx run-many --target=version --all
+          yarn nx affected --target=version --all --parallel=false --color=true
           git push --follow-tags origin master
 
 concurrency:

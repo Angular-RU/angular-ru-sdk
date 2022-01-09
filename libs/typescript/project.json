@@ -17,7 +17,7 @@
                 "versionTagPrefix": "@angular-ru/typescript_",
                 "skipProjectChangelog": true,
                 "trackDeps": true,
-                "noVerify": false
+                "noVerify": true
             }
         }
     }
