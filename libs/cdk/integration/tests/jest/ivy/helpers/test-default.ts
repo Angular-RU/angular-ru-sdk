@@ -1,5 +1,14 @@
 /* eslint-disable max-classes-per-file */
-import { ApplicationRef, Component, Directive, Injectable, NgZone, Pipe, PipeTransform } from '@angular/core';
+import {
+    ApplicationRef,
+    ChangeDetectionStrategy,
+    Component,
+    Directive,
+    Injectable,
+    NgZone,
+    Pipe,
+    PipeTransform
+} from '@angular/core';
 
 import { InjectFeatureTestService, InjectNgZone, InjectTestService } from './test-decorators';
 
@@ -17,14 +26,14 @@ export class TestDirective {
     constructor(public ngZone: NgZone) {}
 }
 
-// eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
 @Component({
     selector: 'test-component',
     template: `
         <div test-directive></div>
         <p class="service">{{ testService.testField }}</p>
         <p class="pipe">{{ 'testValue' | test }}</p>
-    `
+    `,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TestComponent {
     @InjectTestService() public testService!: TestService;
@@ -32,11 +41,7 @@ export class TestComponent {
     constructor(public ngZone: NgZone) {}
 }
 
-@Pipe({
-    name: 'test',
-    // eslint-disable-next-line @angular-eslint/no-pipe-impure
-    pure: false
-})
+@Pipe({ name: 'test' })
 export class TestPipe implements PipeTransform {
     @InjectTestService() public testService!: TestService;
 
@@ -56,10 +61,10 @@ export class FeatureTestService {
     constructor(public ngZone: NgZone) {}
 }
 
-// eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
 @Component({
     selector: 'feature-test-component',
-    template: ''
+    template: '',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FeatureTestComponent {
     @InjectFeatureTestService() public featureTestService!: FeatureTestService;

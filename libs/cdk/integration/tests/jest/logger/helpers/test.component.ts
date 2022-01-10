@@ -1,6 +1,6 @@
 // noinspection AngularMissingOrInvalidDeclarationInModule
 
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {
     DebugLog,
     ErrorLog,
@@ -29,10 +29,10 @@ interface HttpDebugInterface {
     errorData: unknown;
 }
 
-// eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
 @Component({
     selector: 'lib-hello-test',
-    template: ''
+    template: '',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MyTestComponent implements OnInit {
     @Logger() public logger!: LoggerService;

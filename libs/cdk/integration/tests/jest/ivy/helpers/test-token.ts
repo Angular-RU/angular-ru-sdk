@@ -1,5 +1,5 @@
 /* eslint-disable max-classes-per-file */
-import { ApplicationRef, Component, Injectable, NgZone } from '@angular/core';
+import { ApplicationRef, ChangeDetectionStrategy, Component, Injectable, NgZone } from '@angular/core';
 
 import { COMPONENT_TOKEN, MODULE_TOKEN, SERVICE_TOKEN } from './injection-tokens';
 import { InjectByToken } from './test-decorators';
@@ -13,7 +13,6 @@ export class TestTokenService {
     constructor(public ngZone: NgZone) {}
 }
 
-// eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
 @Component({
     selector: 'test-token',
     template: '',
@@ -21,7 +20,8 @@ export class TestTokenService {
         TestTokenService,
         { provide: COMPONENT_TOKEN, useValue: 'COMPONENT_TOKEN' },
         { provide: SERVICE_TOKEN, useValue: 'SERVICE_TOKEN' }
-    ]
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TestTokenComponent {
     @InjectByToken(MODULE_TOKEN) public moduleToken!: string;

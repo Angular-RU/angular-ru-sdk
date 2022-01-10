@@ -7,8 +7,8 @@ Custom http client, with the ability to customize requests, auto unsubscribe and
 1. [📖 Changelog](https://github.com/Angular-RU/angular-ru-sdk/blob/master/CHANGELOG.md)
 2. [📦 Advanced](#table-of-contents)
 
-    - [(@)angular-ru/cdk/http/utils](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/http/docs/utils.md)
-    - [(@)angular-ru/cdk/http/decorators](https://github.com/Angular-RU/angular-ru-sdk/blob/master/packages/http/docs/decorators.md)
+    - [(@)angular-ru/cdk/http/utils](https://github.com/Angular-RU/angular-ru-sdk/blob/master/libs/http/docs/utils.md)
+    - [(@)angular-ru/cdk/http/decorators](https://github.com/Angular-RU/angular-ru-sdk/blob/master/libs/http/docs/decorators.md)
 
 #### First step
 

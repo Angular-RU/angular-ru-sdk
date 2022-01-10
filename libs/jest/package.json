@@ -1,0 +1,22 @@
+{
+    "name": "@angular-ru/jest",
+    "version": "12.56.0",
+    "description": "Angular-RU package",
+    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/libs/jest#readme",
+    "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
+    "repository": "git+https://github.com/Angular-RU/angular-ru-sdk.git",
+    "license": "MIT",
+    "author": "angular-ru@yandex.ru",
+    "main": "index.js",
+    "types": "index.d.ts",
+    "dependencies": {
+        "@types/jest": "27.4.0",
+        "jest": "27.4.7",
+        "jest-junit": "13.0.0",
+        "jest-preset-angular": "11.0.1",
+        "ts-jest": "27.1.2"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}

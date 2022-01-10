@@ -20,7 +20,7 @@
         "default": {
             "runner": "@nrwl/nx-cloud",
             "options": {
-                "cacheableOperations": ["build", "test"]
+                "cacheableOperations": ["prebuild", "build", "symlink", "test"]
             }
         }
     }

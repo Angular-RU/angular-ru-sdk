@@ -1,0 +1,19 @@
+{
+    "name": "@angular-ru/prettier",
+    "version": "12.56.0",
+    "description": "Shared Prettier config for Angular projects",
+    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/libs/prettier#readme",
+    "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
+    "repository": "git+https://github.com/Angular-RU/angular-ru-sdk.git",
+    "license": "MIT",
+    "author": "angular-ru@yandex.ru",
+    "main": "prettier.config.js",
+    "dependencies": {
+        "@prettier/plugin-xml": "1.2.0",
+        "prettier": "2.5.1",
+        "prettier-plugin-organize-attributes": "0.0.4"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}

@@ -1,5 +1,5 @@
 /* eslint-disable max-classes-per-file */
-import { ApplicationRef, Component, Directive, Injectable, NgZone } from '@angular/core';
+import { ApplicationRef, ChangeDetectionStrategy, Component, Directive, Injectable, NgZone } from '@angular/core';
 
 import { InjectFeatureTestService, InjectNgZone, InjectTestService } from './test-decorators';
 import { FeatureTestService, TestService } from './test-default';
@@ -17,10 +17,10 @@ export class TestStairsB extends TestStairsADirective {
     @InjectTestService() public testService!: TestService;
 }
 
-// eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
 @Component({
     selector: 'test-stairs-c',
-    template: '{{ ngZone.constructor.name }} {{ testService.testField }} {{ featureTestService.constructor.name }}'
+    template: '{{ ngZone.constructor.name }} {{ testService.testField }} {{ featureTestService.constructor.name }}',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TestStairsComponent extends TestStairsB {
     @InjectFeatureTestService() public featureTestService!: FeatureTestService;
@@ -38,10 +38,10 @@ export abstract class AbstractSuperTestDirective {
     protected constructor(public appRef: ApplicationRef) {}
 }
 
-// eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
 @Component({
     selector: 'extending-test-component',
-    template: ''
+    template: '',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ExtendingTestComponent extends AbstractSuperTestDirective {
     @InjectNgZone() public ngZone!: NgZone;

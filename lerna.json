@@ -1,8 +1,5 @@
 {
-    "packages": [
-        "packages/*",
-        "dev-infra/*"
-    ],
+    "packages": [],
     "stream": true,
     "concurrency": 1,
     "npmClient": "yarn",

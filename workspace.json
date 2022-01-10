@@ -1,8 +1,66 @@
 {
     "version": 2,
     "projects": {
-        "ngxs": "libs/ngxs",
         "cdk": "libs/cdk",
-        "typescript": "libs/typescript"
+        "commitlint": "libs/commitlint",
+        "dev-dependencies": "libs/dev-dependencies",
+        "eslint-config-enterprise": "libs/eslint-config-enterprise",
+        "eslint-plugin-enterprise": "libs/eslint-plugin-enterprise",
+        "jest": "libs/jest",
+        "ngxs": "libs/ngxs",
+        "prettier": "libs/prettier",
+        "renovate": "libs/renovate",
+        "typescript": "libs/typescript",
+        "workspace": {
+            "root": ".",
+            "targets": {
+                "build": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": { "command": "echo \"no side effect for workspace\"" }
+                },
+                "test": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": { "command": "echo \"no side effect for workspace\"" }
+                },
+                "version": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": { "command": "echo \"no side effect for workspace\"" }
+                },
+                "lint": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": {
+                        "command": "eslint . --fix --ignore-pattern '**/file-suites/**'"
+                    }
+                },
+                "symlink:all": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": { "command": "nx run-many --target=symlink --parallel=1 --all" }
+                },
+                "clean": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": {
+                        "parallel": true,
+                        "commands": [
+                            "rm -rf ./dist",
+                            "rm -rf ./coverage",
+                            "rm -rf ./@angular-ru/",
+                            "rm -rf ./node_modules/.cache",
+                            "rm -rf ./apps/**/dist ./apps/**/.cache",
+                            "rm -rf ./libs/**/dist ./libs/**/.cache"
+                        ]
+                    }
+                },
+                "formatting": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": {
+                        "parallel": false,
+                        "commands": [
+                            "yarn sort-package-json package.json libs/*/package.json apps/*/package.json",
+                            "yarn prettier '**/*.{ts,html,css,scss,md,js,json,yml}' --write"
+                        ]
+                    }
+                }
+            }
+        }
     }
 }

@@ -7,15 +7,11 @@
     "repository": "git+https://github.com/Angular-RU/angular-ru-sdk.git",
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
-    "workspaces": ["packages/*", "dev-infra/*"],
+    "workspaces": ["./libs/*"],
     "scripts": {
         "build": "yarn ts-node .scripts/build.ts",
-        "clean": "yarn ts-node .scripts/clean.ts",
-        "format": "yarn ts-node .scripts/format.ts",
         "postinstall": "yarn husky install && yarn ngcc --async",
         "integration": "yarn ts-node .scripts/integration.ts",
-        "lint": "yarn ts-node .scripts/lint.ts",
-        "symlink": "yarn ts-node .scripts/symlink.ts",
         "test": "yarn ts-node .scripts/test.ts",
         "verify:ng": "yarn ts-node .scripts/verify-ng-major.ts",
         "version": "yarn ts-node .scripts/release-version.ts"
@@ -26,9 +22,12 @@
         "package.json": ["yarn sort-package-json", "yarn prettier --write"]
     },
     "browserslist": ["Chrome >= 61", "Firefox >= 61", "not IE 11", "> 1%"],
-    "prettier": "./dev-infra/prettier/prettier.config.js",
+    "prettier": "./libs/prettier/prettier.config.js",
     "eslintConfig": {
-        "extends": "./dev-infra/eslint-config-enterprise/index.js"
+        "extends": "./libs/eslint-config-enterprise/index.js"
+    },
+    "resolutions": {
+        "eslint": "7.32.0"
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "12.2.14",
@@ -71,18 +70,5 @@
         "node": ">=v14.17.6",
         "npm": "Please use yarn instead of NPM to install dependencies",
         "yarn": ">=1.22.11"
-    },
-    "packagesGraph": {
-        "common": ["packages/cdk", "dev-infra/eslint-plugin-enterprise"],
-        "dependent": [
-            "packages/ngxs",
-            "dev-infra/commitlint",
-            "dev-infra/dev-dependencies",
-            "dev-infra/eslint-config-enterprise",
-            "dev-infra/jest",
-            "dev-infra/prettier",
-            "dev-infra/renovate",
-            "dev-infra/typescript"
-        ]
     }
 }

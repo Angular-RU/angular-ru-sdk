@@ -1,0 +1,13 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "baseUrl": "./",
+        "module": "commonjs",
+        "types": ["node"],
+        "typeRoots": ["../../node_modules/@types", "./"],
+        "paths": {
+            "@angular-ru/cdk/*": ["../cdk/*/src/public_api.ts"],
+            "@mock/*": ["integration/tests/helpers/*"]
+        }
+    }
+}

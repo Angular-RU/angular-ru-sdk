@@ -1,13 +1,8 @@
-const { packagesGraph } = require('./package.json');
-
-const scopes = [...packagesGraph.common, ...packagesGraph.dependent].map((dir) => {
-    const packageName = dir.split('/').pop();
-    return `${packageName}`;
-});
+const { projects } = require('./workspace.json');
 
 module.exports = {
-    extends: ['./dev-infra/commitlint/index.js'],
+    extends: ['./libs/commitlint/index.js'],
     rules: {
-        'scope-enum': () => [2, 'always', [...scopes, 'release']]
+        'scope-enum': () => [2, 'always', [...Object.keys(projects), 'release']]
     }
 };

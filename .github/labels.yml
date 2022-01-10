@@ -1,26 +1,26 @@
 'comp: @angular-ru/cdk':
-  - packages/cdk/**/*
+  - libs/cdk/**/*
 
 'comp: @angular-ru/dev-dependencies':
-  - dev-infra/dev-dependencies/**/*
+  - libs/dev-dependencies/**/*
 
 'comp: @angular-ru/commitlint':
-  - dev-infra/commitlint/**/*
+  - libs/commitlint/**/*
 
 'comp: @angular-ru/typescript':
-  - dev-infra/typescript/**/*
+  - libs/typescript/**/*
 
 'comp: @angular-ru/eslint-plugin-enterprise':
-  - dev-infra/eslint-plugin-enterprise/**/*
+  - libs/eslint-plugin-enterprise/**/*
 
 'comp: @angular-ru/eslint-config-enterprise':
-  - dev-infra/eslint-config-enterprise/**/*
+  - libs/eslint-config-enterprise/**/*
 
 'comp: @angular-ru/jest':
-  - dev-infra/jest/**/*
+  - libs/jest/**/*
 
 'comp: @angular-ru/prettier':
-  - dev-infra/prettier/**/*
+  - libs/prettier/**/*
 
 'comp: @angular-ru/renovate':
-  - dev-infra/renovate/**/*
+  - libs/renovate/**/*
