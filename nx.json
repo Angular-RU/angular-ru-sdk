@@ -1,15 +1,18 @@
 {
     "extends": "@nrwl/workspace/presets/npm.json",
     "npmScope": "angular-ru",
+    "affected": { "defaultBase": "origin/master" },
     "implicitDependencies": {
-        "angular.json": "*",
+        "project.json": "*",
         "package.json": {
             "dependencies": "*",
             "devDependencies": "*"
         },
         ".eslintrc.js": "*",
         "nx.json": "*",
+        "jest.*.js": "*",
         "karma.*.js": "*",
+        "workspace.json": "*",
         "tsconfig.*.json": "*",
         "tsconfig.json": "*"
     },
@@ -20,16 +23,5 @@
                 "cacheableOperations": ["build", "test"]
             }
         }
-    },
-    "targetDependencies": {
-        "version": [
-            {
-                "target": "version",
-                "projects": "dependencies"
-            }
-        ]
-    },
-    "affected": {
-        "defaultBase": "origin/master"
     }
 }

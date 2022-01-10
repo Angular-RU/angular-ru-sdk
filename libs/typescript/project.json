@@ -12,7 +12,7 @@
         "version": {
             "executor": "@jscutlery/semver:version",
             "options": {
-                "postTargets": ["${projectName}:publish"],
+                "postTargets": ["typescript:publish"],
                 "commitMessageFormat": "chore(${projectName}): release version ${version} [ci skip]",
                 "versionTagPrefix": "@angular-ru/${projectName}_",
                 "skipProjectChangelog": true,
