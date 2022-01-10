@@ -9,10 +9,10 @@
     "author": "angular-ru@yandex.ru",
     "dependencies": {
         "@jscutlery/semver": "2.17.5",
-        "@nrwl/cli": "13.4.3",
+        "@nrwl/cli": "13.4.4",
         "@nrwl/nx-cloud": "13.0.2",
-        "@nrwl/tao": "13.4.3",
-        "@nrwl/workspace": "13.4.3",
+        "@nrwl/tao": "13.4.4",
+        "@nrwl/workspace": "13.4.4",
         "@types/jasmine": "3.10.3",
         "@types/jasminewd2": "2.0.10",
         "@types/karma": "6.3.2",
