@@ -14,28 +14,6 @@
         "workspace": {
             "root": ".",
             "targets": {
-                "build": {
-                    "executor": "@nrwl/workspace:run-commands",
-                    "options": { "command": "echo \"no side effect for workspace\"" }
-                },
-                "test": {
-                    "executor": "@nrwl/workspace:run-commands",
-                    "options": { "command": "echo \"no side effect for workspace\"" }
-                },
-                "version": {
-                    "executor": "@nrwl/workspace:run-commands",
-                    "options": { "command": "echo \"no side effect for workspace\"" }
-                },
-                "lint": {
-                    "executor": "@nrwl/workspace:run-commands",
-                    "options": {
-                        "command": "eslint . --fix --ignore-pattern '**/file-suites/**'"
-                    }
-                },
-                "symlink:all": {
-                    "executor": "@nrwl/workspace:run-commands",
-                    "options": { "command": "nx run-many --target=symlink --parallel=1 --all" }
-                },
                 "clean": {
                     "executor": "@nrwl/workspace:run-commands",
                     "options": {
@@ -50,7 +28,29 @@
                         ]
                     }
                 },
-                "formatting": {
+                "build": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": { "command": "echo \"no side effect for workspace\"" }
+                },
+                "test": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": { "command": "echo \"no side effect for workspace\"" }
+                },
+                "version": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": { "command": "echo \"no side effect for workspace\"" }
+                },
+                "ln": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": { "command": "nx run-many --target=symlink --parallel=1 --all" }
+                },
+                "eslint": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": {
+                        "command": "eslint . --fix --ignore-pattern '**/file-suites/**'"
+                    }
+                },
+                "prettier": {
                     "executor": "@nrwl/workspace:run-commands",
                     "options": {
                         "parallel": false,
