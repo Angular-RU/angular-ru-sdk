@@ -7,7 +7,9 @@
     "repository": "git+https://github.com/Angular-RU/angular-ru-sdk.git",
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
-    "workspaces": ["./libs/*"],
+    "workspaces": [
+        "./libs/*"
+    ],
     "scripts": {
         "build": "yarn ts-node .scripts/build.ts",
         "postinstall": "yarn husky install && yarn ngcc --async",
@@ -17,16 +19,26 @@
         "version": "yarn ts-node .scripts/release-version.ts"
     },
     "lint-staged": {
-        "*.ts": ["yarn prettier --write", "yarn eslint --fix --quiet --ignore-pattern '**/file-suites/**'"],
-        "*.{html,css,scss,md,js,json}": ["yarn prettier --write"],
-        "package.json": ["yarn sort-package-json", "yarn prettier --write"]
+        "*.ts": [
+            "yarn prettier --write",
+            "yarn eslint --fix --quiet --ignore-pattern '**/file-suites/**'"
+        ],
+        "*.{html,css,scss,md,js,json}": [
+            "yarn prettier --write"
+        ]
     },
-    "browserslist": ["Chrome >= 61", "Firefox >= 61", "not IE 11", "> 1%"],
+    "browserslist": [
+        "Chrome >= 61",
+        "Firefox >= 61",
+        "not IE 11",
+        "> 1%"
+    ],
     "prettier": "./libs/prettier/prettier.config.js",
     "eslintConfig": {
         "extends": "./libs/eslint-config-enterprise/index.js"
     },
     "resolutions": {
+        "colors": "1.4.0",
         "eslint": "7.32.0"
     },
     "devDependencies": {

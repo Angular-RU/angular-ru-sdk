@@ -53,11 +53,7 @@
                 "prettier": {
                     "executor": "@nrwl/workspace:run-commands",
                     "options": {
-                        "parallel": false,
-                        "commands": [
-                            "yarn sort-package-json package.json libs/*/package.json apps/*/package.json",
-                            "yarn prettier '**/*.{ts,html,css,scss,md,js,json,yml}' --write"
-                        ]
+                        "command": "prettier '**/*.{ts,html,css,scss,md,js,json,yml}' --write"
                     }
                 }
             }

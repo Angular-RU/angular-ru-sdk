@@ -26,7 +26,7 @@ jobs:
         uses: ./.github/actions/nodejs
 
       - name: Publish npm libraries
-        run: yarn nx affected --target=version --all --parallel=false --color=true --skip-nx-cache
+        run: yarn nx affected --target=version --all --parallel=false --color=true
 
       - name: Detect uncommitted format changes
         run: |

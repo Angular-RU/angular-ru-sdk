@@ -31,13 +31,13 @@ jobs:
                 --verbose
 
       - name: Run prettier
-        run: nx prettier workspace
+        run: yarn nx prettier workspace
 
       - name: Run build artifacts dependent
-        run: nx build eslint-plugin-enterprise
+        run: yarn nx build eslint-plugin-enterprise
 
       - name: Run eslint
-        run: nx eslint workspace
+        run: yarn nx eslint workspace
 
       - name: Autocommit fixed files and push
         uses: ./.github/actions/autopush

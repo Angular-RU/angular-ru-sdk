@@ -7,7 +7,7 @@ module.exports = {
     singleQuote: true,
     trailingComma: 'none',
     htmlWhitespaceSensitivity: 'ignore',
-    plugins: ['prettier-plugin-organize-attributes', '@prettier/plugin-xml'],
+    plugins: [require.resolve('prettier-plugin-organize-attributes'), require.resolve('@prettier/plugin-xml')],
     bracketSameLine: false,
     bracketSpacing: true,
     arrowParens: 'always',
@@ -37,6 +37,10 @@ module.exports = {
         {
             files: ['*.json', '.prettierrc', '.stylelintrc'],
             options: { parser: 'json' }
+        },
+        {
+            files: ['package.json'],
+            options: { parser: 'json-stringify', plugins: [require.resolve('prettier-plugin-packagejson')] }
         },
         {
             files: ['*.less'],
