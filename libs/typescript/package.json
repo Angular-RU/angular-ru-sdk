@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/typescript",
-    "version": "12.55.0",
+    "version": "12.55.1",
     "description": "Angular-RU package",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/dev-infra/typescript#readme",
     "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
@@ -8,7 +8,10 @@
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "main": "tsconfig.json",
-    "files": ["tsconfig.json", "README.md"],
+    "files": [
+        "tsconfig.json",
+        "README.md"
+    ],
     "publishConfig": {
         "access": "public"
     }
