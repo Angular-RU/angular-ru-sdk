@@ -2032,10 +2032,10 @@
   resolved "https://registry.npmjs.org/@jridgewell/resolve-uri/-/resolve-uri-1.0.0.tgz#3fdf5798f0b49e90155896f6291df186eac06c83"
   integrity sha512-9oLAnygRMi8Q5QkYEU4XWK04B+nuoXoxjRvRxgjuChkLZFBja0YPSgdZ7dZtwhncLBcQe/I/E+fLuk5qxcYVJA==
 
-"@jscutlery/semver@2.17.4", "@jscutlery/semver@^2.17.4":
-  version "2.17.4"
-  resolved "https://registry.npmjs.org/@jscutlery/semver/-/semver-2.17.4.tgz#6dc70281d67edffd1f728d669a730a8ade9ec2d2"
-  integrity sha512-u5Guq7Yrh980yxCtunreqI8kCNhbWuj0PrAWuLW4nUdZCu41NuIsgWT4199cOrFAXi9C/ItZKzHDkvLIa+jSgQ==
+"@jscutlery/semver@2.17.5":
+  version "2.17.5"
+  resolved "https://registry.npmjs.org/@jscutlery/semver/-/semver-2.17.5.tgz#a2293f316804b8560863e57f71e05dbb24a99c92"
+  integrity sha512-fitt2uCp4cNmiSxdBAMgDxo3/QLdcRhWB0EheUrGRCp4kQT35pYOEhY98xZ+zSURvDqGOBl20gxE5rkOn4KX5w==
   dependencies:
     "@nrwl/devkit" "^13.0.2"
     inquirer "^8.2.0"
