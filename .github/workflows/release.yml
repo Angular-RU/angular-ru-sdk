@@ -25,10 +25,17 @@ jobs:
       - name: Setup Node.js and Cache
         uses: ./.github/actions/nodejs
 
-      - name: Deploy npm packages
+      - name: Publish npm libraries
+        run: yarn nx affected --target=version --all --parallel=false --color=true
+
+      - name: Detect uncommitted format changes
         run: |
-          yarn nx affected --target=version --all --parallel=false --color=true
-          git push --follow-tags origin master
+          yarn format
+          git add .
+          git commit -m "ci: detect uncommitted format changes [ci skip]" --no-verify --no-edit || true
+
+      - name: Auto push
+        run: git push --follow-tags origin master
 
 concurrency:
   group: release-${{ github.head_ref }}

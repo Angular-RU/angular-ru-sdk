@@ -8,10 +8,7 @@
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "main": "tsconfig.json",
-    "files": [
-        "tsconfig.json",
-        "README.md"
-    ],
+    "files": ["tsconfig.json", "README.md"],
     "publishConfig": {
         "access": "public"
     }
