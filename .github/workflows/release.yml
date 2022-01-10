@@ -26,16 +26,9 @@ jobs:
         uses: ./.github/actions/nodejs
 
       - name: Publish npm libraries
-        run: yarn nx affected --target=version --all --parallel=false --color=true
-
-      - name: Detect uncommitted format changes
         run: |
-          yarn nx formatting workspace --skip-nx-cache
-          git add .
-          git commit -m "ci: detect uncommitted format changes [ci skip]" --no-verify --no-edit || true
-
-      - name: Auto push
-        run: git push --follow-tags origin master
+          yarn nx run-many --target=version --all --parallel=1
+          git push --follow-tags origin master
 
 concurrency:
   group: release-${{ github.head_ref }}
