@@ -12,19 +12,14 @@
         "version": {
             "executor": "@jscutlery/semver:version",
             "options": {
-                "postTargets": ["ngxs:build", "typescript:publish"],
+                "postTargets": ["${projectName}:publish"],
                 "commitMessageFormat": "chore(${projectName}): release version ${version} [ci skip]",
-                "versionTagPrefix": "@angular-ru/typescript_",
+                "versionTagPrefix": "@angular-ru/${projectName}_",
                 "skipProjectChangelog": true,
                 "trackDeps": true,
                 "noVerify": true
             },
-            "dependsOn": [
-                {
-                    "target": "version",
-                    "projects": "dependencies"
-                }
-            ]
+            "dependsOn": [{ "target": "version", "projects": "dependencies" }]
         }
     }
 }
