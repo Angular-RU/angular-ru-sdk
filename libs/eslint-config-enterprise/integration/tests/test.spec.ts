@@ -1,10 +1,6 @@
 import * as fs from 'fs';
 
 describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
-    function getInfoByReportFile(type: 'bad-file' | 'good-file' | 'file-pattern'): string {
-        return fs.readFileSync(`./out/eslint.${type}.report.txt`).toString();
-    }
-
     it('check failed files', (): void => {
         const bad: string = getInfoByReportFile('bad-file');
 
@@ -140,3 +136,7 @@ describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
         ).toBeTruthy();
     });
 });
+
+function getInfoByReportFile(type: 'bad-file' | 'good-file' | 'file-pattern'): string {
+    return fs.readFileSync(`./out/eslint.${type}.report.txt`).toString();
+}

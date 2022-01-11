@@ -32,7 +32,7 @@ jobs:
       - name: Publish npm libraries
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: yarn nx affected --target=version --all --parallel=1 --color=true --exclude=workspace
+        run: yarn nx run-many --target=version --all --parallel=1 --color=true --exclude=workspace
 
       - name: Update changes in git
         run: git push && git push --tags
