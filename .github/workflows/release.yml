@@ -12,7 +12,7 @@ jobs:
         uses: lewagon/wait-on-check-action@v1.0.0
         with:
           ref: master
-          check-name: 'Run unit tests'
+          check-name: test
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           allowed-conclusions: success
           wait-interval: 20
@@ -21,7 +21,7 @@ jobs:
         uses: lewagon/wait-on-check-action@v1.0.0
         with:
           ref: master
-          check-name: 'Run build packages'
+          check-name: build
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           allowed-conclusions: success
           wait-interval: 20
