@@ -15,7 +15,7 @@ jobs:
           check-name: test
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           allowed-conclusions: success
-          wait-interval: 20
+          wait-interval: 15
 
       - name: Wait for build to succeed
         uses: lewagon/wait-on-check-action@v1.0.0
@@ -24,7 +24,16 @@ jobs:
           check-name: build
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           allowed-conclusions: success
-          wait-interval: 20
+          wait-interval: 15
+
+      - name: Wait for integrations deploy to succeed
+        uses: lewagon/wait-on-check-action@v1.0.0
+        with:
+          ref: master
+          check-name: integrations
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          allowed-conclusions: success
+          wait-interval: 15
 
       - uses: actions/checkout@v2
         with:
@@ -40,13 +49,16 @@ jobs:
       - name: Setup Node.js and Cache
         uses: ./.github/actions/nodejs
 
-      - name: Publish npm libraries
-        run: |
-          npm config set '//registry.npmjs.org/:_authToken' "${{ secrets.NPM_TOKEN }}"
-          yarn nx changelog workspace
-          yarn nx run-many --target=version --all --parallel=1 --color=true --exclude=workspace
+      - name: Provide NPM token
+        run: npm config set '//registry.npmjs.org/:_authToken' "${{ secrets.NPM_TOKEN }}"
 
-      - name: Update changes in git
+      - name: Prepare CHANGELOG.md
+        run: yarn nx changelog workspace
+
+      - name: Publish npm libraries if has changes
+        run: yarn nx run-many --target=version --all --parallel=1 --color=true --exclude=workspace
+
+      - name: Commit and push changes
         run: git push origin && git push origin --tags
 
 concurrency:

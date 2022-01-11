@@ -22,7 +22,7 @@
                         "commands": [
                             "yarn generate-changelog --exclude chore",
                             "git add CHANGELOG.md",
-                            "git commit --no-verify -m 'updated CHANGELOG.md'"
+                            "git commit --no-verify -m 'chore: updated CHANGELOG.md [ci skip]'"
                         ]
                     }
                 },

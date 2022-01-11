@@ -1,8 +1,8 @@
-name: CI
+name: CI Label about changes
 on: [pull_request]
 
 jobs:
-  labeler:
+  label-found-changes:
     if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
     runs-on: ubuntu-20.04
     steps:

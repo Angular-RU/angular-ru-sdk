@@ -1,4 +1,4 @@
-name: Label approved PR
+name: CI Label approved PR
 on: [pull_request]
 
 jobs:

@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  integration:
+  integrations:
     runs-on: ubuntu-20.04
     steps:
       - name: Scan repo for find local actions
@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node.js and Cache
         uses: ./.github/actions/nodejs
 
-      - name: Build integration apps
+      - name: Build integrations apps
         run: |
           # yarn integration
 

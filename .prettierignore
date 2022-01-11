@@ -6,6 +6,5 @@
 **/dist/**
 **/@angular-ru/**
 **/lib/**
-lerna.json
 typescript.bad.ts
 typescript.good.ts
