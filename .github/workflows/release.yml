@@ -1,9 +1,14 @@
 name: CI Release
+#on:
+# workflow_run:
+#  workflows: [autorebase, lint, test, build, integrations, verify-ng]
+#  types: [completed]
+#  branches: [master]
+
 on:
-  workflow_run:
-    workflows: [autorebase, lint, test, build, integrations, verify-ng]
-    types: [completed]
-    branches: [master]
+  push:
+    branches:
+      - master
 
 jobs:
   release:
@@ -16,7 +21,6 @@ jobs:
 
       - name: Prepare git and npm token
         run: |
-          git config --global push.default simple
           git config --global user.name "angular-ru-bot"
           git config --global user.email "angular-ru@yandex.ru"
           git config remote.origin.url https://x-access-token:${{ secrets.ANGULAR_RU_BOT_PAT }}@github.com/$GITHUB_REPOSITORY
