@@ -2,6 +2,7 @@
     "root": "libs/cdk/",
     "sourceRoot": "libs/cdk/",
     "projectType": "library",
+    "tags": ["scope:shared"],
     "targets": {
         "prebuild": {
             "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -40,7 +41,7 @@
             "options": {
                 "postTargets": ["cdk:build", "cdk:publish"],
                 "commitMessageFormat": "chore(${projectName}): release version ${version} [ci skip]",
-                "versionTagPrefix": "@angular-ru/${projectName}_",
+                "versionTagPrefix": "@angular-ru/cdk-",
                 "skipProjectChangelog": true,
                 "skipRootChangelog": true,
                 "baseBranch": "master",

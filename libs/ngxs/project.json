@@ -2,6 +2,7 @@
     "root": "libs/ngxs/",
     "sourceRoot": "libs/ngxs/",
     "projectType": "library",
+    "tags": ["scope:shared"],
     "targets": {
         "build": {
             "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -22,7 +23,7 @@
             "options": {
                 "postTargets": ["ngxs:build", "ngxs:publish"],
                 "commitMessageFormat": "chore(${projectName}): release version ${version} [ci skip]",
-                "versionTagPrefix": "@angular-ru/${projectName}_",
+                "versionTagPrefix": "@angular-ru/ngxs-",
                 "skipProjectChangelog": true,
                 "skipRootChangelog": true,
                 "baseBranch": "master",
