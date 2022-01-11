@@ -29,7 +29,6 @@
                 "commitMessageFormat": "chore(${projectName}): release version ${version} [ci skip]",
                 "versionTagPrefix": "@angular-ru/dev-dependencies-",
                 "skipProjectChangelog": true,
-                "trackDeps": true,
                 "noVerify": true
             },
             "dependsOn": [{ "target": "version", "projects": "dependencies" }]

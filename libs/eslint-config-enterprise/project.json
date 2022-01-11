@@ -31,7 +31,6 @@
                 "commitMessageFormat": "chore(${projectName}): release version ${version} [ci skip]",
                 "versionTagPrefix": "@angular-ru/eslint-config-enterprise-",
                 "skipProjectChangelog": true,
-                "trackDeps": true,
                 "noVerify": true
             },
             "dependsOn": [{ "target": "version", "projects": "dependencies" }]
