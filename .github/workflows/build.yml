@@ -1,8 +1,6 @@
-name: CI
+name: CI Build
 on:
   pull_request:
-    branches:
-      - master
   push:
     branches:
       - master
@@ -18,8 +16,7 @@ jobs:
         uses: ./.github/actions/nodejs
 
       - name: Build packages
-        run: |
-          # yarn build
+        run: yarn nx affected --target=build --all --exclude=workspace
 
 concurrency:
   group: build-${{ github.head_ref }}

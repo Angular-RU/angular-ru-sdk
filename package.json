@@ -11,12 +11,7 @@
         "./libs/*"
     ],
     "scripts": {
-        "build": "yarn ts-node .scripts/build.ts",
-        "postinstall": "yarn husky install && yarn ngcc --async",
-        "integration": "yarn ts-node .scripts/integration.ts",
-        "test": "yarn ts-node .scripts/test.ts",
-        "verify:ng": "yarn ts-node .scripts/verify-ng-major.ts",
-        "version": "yarn ts-node .scripts/release-version.ts"
+        "postinstall": "yarn husky install && yarn ngcc --async"
     },
     "lint-staged": {
         "*.ts": [
@@ -81,6 +76,7 @@
     "engines": {
         "node": ">=v14.17.6",
         "npm": "Please use yarn instead of NPM to install dependencies",
+        "pnpm": "Please use NPM instead of pnpm to install dependencies",
         "yarn": ">=1.22.11"
     }
 }

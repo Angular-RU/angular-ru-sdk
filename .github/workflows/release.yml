@@ -1,7 +1,7 @@
 name: CI Release
 on:
   workflow_run:
-    workflows: [autorebase, lint, test, build, integrations, verify-ng]
+    workflows: ['CI Autorebase', 'CI Build', 'CI Test', 'CI Integrations']
     types: [completed]
     branches: [master]
 
