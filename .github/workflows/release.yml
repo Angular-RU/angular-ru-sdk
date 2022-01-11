@@ -28,6 +28,7 @@ jobs:
       - name: Publish npm libraries
         run: |
           yarn nx run-many --target=version --all --parallel=1
+          git push --tags
           git push --follow-tags origin master
 
 concurrency:
