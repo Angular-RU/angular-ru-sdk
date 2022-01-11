@@ -13,6 +13,7 @@
         "typescript": "libs/typescript",
         "workspace": {
             "root": ".",
+            "tags": ["workspace"],
             "targets": {
                 "clean": {
                     "executor": "@nrwl/workspace:run-commands",

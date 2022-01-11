@@ -20,13 +20,14 @@ jobs:
           git config --global user.name "angular-ru-bot"
           git config --global user.email "angular-ru@yandex.ru"
           git config remote.origin.url https://x-access-token:${{ secrets.ANGULAR_RU_BOT_PAT }}@github.com/$GITHUB_REPOSITORY
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
 
       - name: Setup Node.js and Cache
         uses: ./.github/actions/nodejs
 
       - name: Publish npm libraries
-        run: yarn nx affected --target=version --all --parallel=false --color=true
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: yarn nx affected --target=version --all --parallel=1 --color=true --exclude=workspace
 
       - name: Update changes in git
         run: git push && git push --tags
