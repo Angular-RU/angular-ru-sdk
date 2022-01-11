@@ -1,4 +1,5 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": ["@angular-ru/renovate"]
+    "extends": ["@angular-ru/renovate"],
+    "schedule": ["on the 2nd and 4th day instance on sunday after 9pm"]
 }

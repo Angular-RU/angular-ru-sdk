@@ -1,14 +1,31 @@
 name: CI Release
 on:
-  workflow_run:
-    workflows: ['CI Autorebase', 'CI Build', 'CI Test', 'CI Integrations']
-    types: [completed]
-    branches: [master]
+  push:
+    branches:
+      - master
 
 jobs:
   release:
     runs-on: ubuntu-20.04
     steps:
+      - name: Wait for tests to succeed
+        uses: lewagon/wait-on-check-action@v1.0.0
+        with:
+          ref: ${{ github.ref }}
+          check-name: 'Run unit tests'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          allowed-conclusions: success
+          wait-interval: 10
+
+      - name: Wait for build to succeed
+        uses: lewagon/wait-on-check-action@v1.0.0
+        with:
+          ref: ${{ github.ref }}
+          check-name: 'Run build packages'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          allowed-conclusions: success
+          wait-interval: 10
+
       - uses: actions/checkout@v2
         with:
           fetch-depth: '0'
@@ -26,10 +43,11 @@ jobs:
       - name: Publish npm libraries
         run: |
           npm config set '//registry.npmjs.org/:_authToken' "${{ secrets.NPM_TOKEN }}"
+          yarn nx changelog workspace
           yarn nx run-many --target=version --all --parallel=1 --color=true --exclude=workspace
 
       - name: Update changes in git
-        run: git push && git push --tags
+        run: git push origin && git push origin --tags
 
 concurrency:
   group: release-${{ github.head_ref }}

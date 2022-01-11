@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node.js and Cache
         uses: ./.github/actions/nodejs
 
-      - name: Build packages
+      - name: Run build packages
         run: yarn nx affected --target=build --all --exclude=workspace
 
 concurrency:

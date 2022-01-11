@@ -15,6 +15,17 @@
             "root": ".",
             "tags": ["workspace"],
             "targets": {
+                "changelog": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": {
+                        "parallel": false,
+                        "commands": [
+                            "yarn generate-changelog --exclude chore",
+                            "git add CHANGELOG.md",
+                            "git commit --no-verify -m 'updated CHANGELOG.md'"
+                        ]
+                    }
+                },
                 "clean": {
                     "executor": "@nrwl/workspace:run-commands",
                     "options": {
