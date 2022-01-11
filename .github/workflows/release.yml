@@ -1,8 +1,9 @@
 name: CI Release
 on:
-  push:
-    branches:
-      - master
+  workflow_run:
+    workflows: [autorebase, lint, test, build, integrations, verify-ng]
+    types: [completed]
+    branches: [master]
 
 jobs:
   release:
@@ -12,7 +13,6 @@ jobs:
         with:
           fetch-depth: '0'
           persist-credentials: false
-      - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
 
       - name: Prepare git and npm token
         run: |
@@ -26,7 +26,7 @@ jobs:
         uses: ./.github/actions/nodejs
 
       - name: Publish npm libraries
-        run: yarn nx run-many --target=version --all --parallel=1
+        run: yarn nx affected --target=version --all --parallel=false --color=true
 
       - name: Update changes in git
         run: git push && git push --tags
