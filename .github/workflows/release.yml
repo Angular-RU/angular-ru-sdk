@@ -30,9 +30,9 @@ jobs:
         uses: ./.github/actions/nodejs
 
       - name: Publish npm libraries
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: yarn nx run-many --target=version --all --parallel=1 --color=true --exclude=workspace
+        run: |
+          npm config set '//registry.npmjs.org/:_authToken' "${{ secrets.NPM_TOKEN }}"
+          yarn nx run-many --target=version --all --parallel=1 --color=true --exclude=workspace
 
       - name: Update changes in git
         run: git push && git push --tags
