@@ -26,10 +26,10 @@ jobs:
         uses: ./.github/actions/nodejs
 
       - name: Publish npm libraries
-        run: |
-          yarn nx run-many --target=version --all --parallel=1
-          git push --tags
-          git push --follow-tags origin master
+        run: yarn nx run-many --target=version --all --parallel=1
+
+      - name: Update changes in git
+        run: git push && git push --tags
 
 concurrency:
   group: release-${{ github.head_ref }}
