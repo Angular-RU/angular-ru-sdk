@@ -2,9 +2,9 @@
     "name": "@angular-ru/sdk",
     "private": true,
     "description": "Angular-RU SDK",
-    "homepage": "https://github.com/Angular-RU/angular-ru-sdk#readme",
+    "homepage": "https://github.com/Angular-RU/angular-ru-sdk",
     "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
-    "repository": "git+https://github.com/Angular-RU/angular-ru-sdk.git",
+    "repository": "https://github.com/Angular-RU/angular-ru-sdk",
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "workspaces": [

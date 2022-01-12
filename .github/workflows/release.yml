@@ -58,18 +58,12 @@ jobs:
       - name: Publish npm libraries (optional)
         run: yarn nx run-many --target=version --all --parallel=1 --color=true --exclude=workspace
 
-      - name: Generate CHANGELOG.md by new tag
-        run: |
-          PREV_LAST_TAG="${{ env.PREV_LAST_TAG }}"
-          NEW_LAST_TAG=$(git describe --abbrev=0 --tags)"
+      - name: Set new last tag
+        run: echo "NEW_LAST_TAG=$(git describe --abbrev=0 --tags)" >> "$GITHUB_ENV"
 
-          echo "PREV_LAST_TAG - $PREV_LAST_TAG"
-          echo "NEW_LAST_TAG - $NEW_LAST_TAG"
-
-          if [[ $PREV_LAST_TAG != $NEW_LAST_TAG ]]; then
-            echo "Generated changelog by detect new changes"
-            yarn nx changelog workspace
-          else
+      - name: Generate CHANGELOG.md
+        if: ${{ env.PREV_LAST_TAG != env.NEW_LAST_TAG }}
+        run: yarn nx changelog workspace
 
       - name: Commit and push changes
         run: git push origin && git push origin --tags

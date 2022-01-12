@@ -4,7 +4,7 @@
     "description": "Angular-RU package",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/libs/cdk#readme",
     "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
-    "repository": "git+https://github.com/Angular-RU/angular-ru-sdk.git",
+    "repository": "https://github.com/Angular-RU/angular-ru-sdk",
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "scripts": {
