@@ -16,6 +16,10 @@
         "tsconfig.*.json": "*",
         "tsconfig.json": "*"
     },
+    "workspaceLayout": {
+        "libsDir": "libs",
+        "appsDir": "apps"
+    },
     "tasksRunnerOptions": {
         "default": {
             "runner": "@nrwl/nx-cloud",

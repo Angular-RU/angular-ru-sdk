@@ -16,7 +16,7 @@ jobs:
         uses: ./.github/actions/nodejs
 
       - name: Run build packages
-        run: yarn nx run-many --target=build --all --exclude=workspace
+        run: yarn nx run-many --target=build --all
 
 concurrency:
   group: build-${{ github.head_ref }}

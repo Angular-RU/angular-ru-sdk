@@ -24,14 +24,14 @@ jobs:
                 --to ${{ github.event.pull_request.head.sha }} \
                 --verbose
 
-      - name: Run prettier
-        run: yarn nx prettier workspace
+      - name: Run format
+        run: yarn format
 
       - name: Run build artifacts dependent
         run: yarn nx build eslint-plugin-enterprise
 
-      - name: Run eslint
-        run: yarn nx eslint workspace
+      - name: Run lint
+        run: yarn lint
 
       - name: Autocommit fixed files and push
         uses: ./.github/actions/autopush

@@ -11,9 +11,11 @@
         "./libs/*"
     ],
     "scripts": {
-        "clean": "nx clean workspace",
-        "format": "nx prettier workspace",
-        "postinstall": "yarn husky install && yarn ngcc --async"
+        "clean": "nx clean .platform",
+        "format": "nx format:prettier .platform",
+        "graph": "nx dep-graph",
+        "postinstall": "nx postinstall .platform",
+        "lint": "nx format:eslint .platform"
     },
     "lint-staged": {
         "*.ts": [
