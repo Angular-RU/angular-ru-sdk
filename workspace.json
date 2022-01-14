@@ -20,7 +20,7 @@
                     "options": {
                         "parallel": false,
                         "commands": [
-                            "yarn generate-changelog --exclude chore",
+                            "yarn standard-version",
                             "git add CHANGELOG.md",
                             "git commit --no-verify -m 'chore: updated CHANGELOG.md [ci skip]'"
                         ]

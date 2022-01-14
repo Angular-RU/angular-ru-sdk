@@ -11,6 +11,8 @@
         "./libs/*"
     ],
     "scripts": {
+        "clean": "nx clean workspace",
+        "format": "nx prettier workspace",
         "postinstall": "yarn husky install && yarn ngcc --async"
     },
     "lint-staged": {
@@ -77,5 +79,12 @@
         "npm": "Please use yarn instead of NPM to install dependencies",
         "pnpm": "Please use NPM instead of pnpm to install dependencies",
         "yarn": ">=1.22.11"
+    },
+    "standard-version": {
+        "skip": {
+            "commit": true,
+            "tag": true,
+            "bump": true
+        }
     }
 }
