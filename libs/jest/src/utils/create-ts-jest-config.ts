@@ -5,7 +5,7 @@ import { isNotNil, isTrue } from '@angular-ru/cdk/utils';
 import type { Config } from '@jest/types';
 import * as fs from 'fs';
 import * as path from 'path';
-import * as tsJestUtils from 'ts-jest/utils';
+import * as tsJestUtils from 'ts-jest';
 import { CompilerOptions } from 'typescript';
 
 import {
@@ -48,9 +48,11 @@ export function createTsJestConfig(options: JestConfigOptions): Config.InitialOp
 
     displayName = displayName ?? DEFAULT_DISPLAY_NAME;
 
-    const resolvedTsConfigPath: string = path.isAbsolute(options.tsConfig)
-        ? options.tsConfig
-        : path.resolve(resolvedRootDir, options.tsConfig);
+    const tsConfigPath: string = options.tsConfig.replace('<rootDir>', resolvedRootDir);
+
+    const resolvedTsConfigPath: string = path.isAbsolute(tsConfigPath)
+        ? tsConfigPath
+        : path.resolve(resolvedRootDir, tsConfigPath);
 
     const nonExist: boolean = !fs.existsSync(resolvedTsConfigPath);
 
