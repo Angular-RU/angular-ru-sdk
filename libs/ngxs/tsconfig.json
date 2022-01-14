@@ -5,7 +5,7 @@
             "path": "./tsconfig.lib.json"
         },
         {
-            "path": "./integration/tests/tsconfig.spec.json"
+            "path": "./tsconfig.spec.json"
         },
         {
             "path": "./integration/app/tsconfig.app.json"

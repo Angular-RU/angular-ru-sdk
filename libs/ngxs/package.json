@@ -7,13 +7,6 @@
     "repository": "https://github.com/Angular-RU/angular-ru-sdk",
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
-    "scripts": {
-        "build:app": "yarn ng build ngxs-app",
-        "build:lib": "yarn ng build ngxs-library && cp README.md dist/library",
-        "start": "yarn ng serve ngxs-app --open",
-        "test": "yarn jest --config integration/tests/jest.config.js",
-        "postversion": "yarn npe version \"$(npe version)\" --package=\"$PWD/dist/library/package.json\" || exit 0"
-    },
     "publishConfig": {
         "access": "public"
     }

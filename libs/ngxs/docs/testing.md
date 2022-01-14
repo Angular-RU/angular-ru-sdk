@@ -22,7 +22,7 @@ describe('AppState', () => {
 });
 ```
 
-`ngxsTestingPlatform` - This is an testing platform that allows you to fully test the entire lifecycle of NGXS methods.
+`ngxsTestingPlatform` - This is a testing platform that allows you to fully test the entire lifecycle of NGXS methods.
 
 #### Example where we testing NGXS Lifecycle
 
