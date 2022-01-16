@@ -7,7 +7,7 @@
         "typeRoots": ["../../node_modules/@types", "./"],
         "paths": {
             "@angular-ru/cdk/*": ["../cdk/*/src/public_api.ts"],
-            "@mock/*": ["integration/tests/helpers/*"]
+            "@mock/*": ["./tests/helpers/*"]
         }
     }
 }

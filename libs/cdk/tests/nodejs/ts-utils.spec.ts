@@ -6,7 +6,7 @@ describe('[TEST]: TS Utils', () => {
             /Not found tsconfig file by path/
         );
 
-        expect(exposeTsCompilerOptionsByTsConfig('../../../tsconfig.lib.json', __dirname).paths).toEqual({
+        expect(exposeTsCompilerOptionsByTsConfig('../../tsconfig.lib.json', __dirname).paths).toEqual({
             '@angular-ru/cdk/*': ['dist/library/*']
         });
     });

@@ -5,15 +5,15 @@ import { Any, Fn, Nullable, PlainObject } from '@angular-ru/cdk/typings';
 import { NgxColumnComponent, NgxTableViewChangesService, TableBuilderComponent } from '@angular-ru/cdk/virtual-table';
 import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
 
-import { MapToTableEntriesPipe } from '../../../../../virtual-table/src/pipes/map-to-table-entries.pipe';
-import { TableSelectedItemsPipe } from '../../../../../virtual-table/src/pipes/table-selected-items.pipe';
-import { ContextMenuService } from '../../../../../virtual-table/src/services/context-menu/context-menu.service';
-import { DraggableService } from '../../../../../virtual-table/src/services/draggable/draggable.service';
-import { FilterableService } from '../../../../../virtual-table/src/services/filterable/filterable.service';
-import { ResizableService } from '../../../../../virtual-table/src/services/resizer/resizable.service';
-import { SelectionService } from '../../../../../virtual-table/src/services/selection/selection.service';
-import { SortableService } from '../../../../../virtual-table/src/services/sortable/sortable.service';
-import { TemplateParserService } from '../../../../../virtual-table/src/services/template-parser/template-parser.service';
+import { MapToTableEntriesPipe } from '../../../../virtual-table/src/pipes/map-to-table-entries.pipe';
+import { TableSelectedItemsPipe } from '../../../../virtual-table/src/pipes/table-selected-items.pipe';
+import { ContextMenuService } from '../../../../virtual-table/src/services/context-menu/context-menu.service';
+import { DraggableService } from '../../../../virtual-table/src/services/draggable/draggable.service';
+import { FilterableService } from '../../../../virtual-table/src/services/filterable/filterable.service';
+import { ResizableService } from '../../../../virtual-table/src/services/resizer/resizable.service';
+import { SelectionService } from '../../../../virtual-table/src/services/selection/selection.service';
+import { SortableService } from '../../../../virtual-table/src/services/sortable/sortable.service';
+import { TemplateParserService } from '../../../../virtual-table/src/services/template-parser/template-parser.service';
 
 describe('[TEST]: Lifecycle table', () => {
     let table: TableBuilderComponent<PlainObject>;

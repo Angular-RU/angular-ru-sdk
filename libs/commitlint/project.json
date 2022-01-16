@@ -15,6 +15,7 @@
                     "cp ./libs/commitlint/README.md ./@angular-ru/commitlint"
                 ]
             },
+            "outputs": ["./@angular-ru/commitlint"],
             "dependsOn": [{ "target": "build", "projects": "dependencies" }]
         },
         "publish": {

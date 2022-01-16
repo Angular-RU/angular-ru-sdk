@@ -10,6 +10,7 @@
                 "tsConfig": "libs/ngxs/tsconfig.lib.json",
                 "project": "libs/ngxs/ng-package.json"
             },
+            "outputs": ["./@angular-ru/ngxs"],
             "dependsOn": [{ "target": "build", "projects": "dependencies" }]
         },
         "test": {

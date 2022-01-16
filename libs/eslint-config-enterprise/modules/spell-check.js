@@ -1,6 +1,8 @@
 const { cosmiconfigSync } = require('cosmiconfig');
 
 const baseSkipWords = [
+    'utf-8',
+    'enqueue',
     'dict',
     'aff',
     'hunspellchecker',

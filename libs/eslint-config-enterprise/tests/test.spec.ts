@@ -1,11 +1,12 @@
 import * as fs from 'fs';
+import * as path from 'path';
 
 describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
     it('check failed files', (): void => {
         const bad: string = getInfoByReportFile('bad-file');
 
-        expect(bad.includes('114 problems (114 errors, 0 warnings)')).toBeTruthy();
-        expect(bad.includes('32 errors and 0 warnings potentially fixable with the `--fix` option')).toBeTruthy();
+        expect(bad.includes('111 problems (111 errors, 0 warnings)')).toBeTruthy();
+        expect(bad.includes('29 errors and 0 warnings potentially fixable with the `--fix` option')).toBeTruthy();
         expect(bad.includes(`Run autofix to sort these imports!`)).toBeTruthy();
         expect(bad.includes(`Expected hello to have a type annotation`)).toBeTruthy();
         expect(bad.includes('Missing accessibility modifier on class property hello')).toBeTruthy();
@@ -138,5 +139,5 @@ describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
 });
 
 function getInfoByReportFile(type: 'bad-file' | 'good-file' | 'file-pattern'): string {
-    return fs.readFileSync(`./out/eslint.${type}.report.txt`).toString();
+    return fs.readFileSync(path.resolve(__dirname, `../reports/eslint.${type}.report.txt`)).toString();
 }

@@ -10,10 +10,10 @@ checkIsNodeEnvironment();
 const path: Any = require('path');
 const fs: Any = require('fs');
 
-export function resolveTsConfigPath(tsConfigPath: string): string | never {
+export function resolveTsConfigPath(tsConfigPath: string, relative?: string): string | never {
     let resolvedPath: string = (path.isAbsolute(tsConfigPath) as boolean)
         ? tsConfigPath
-        : path.resolve('.', tsConfigPath);
+        : path.resolve(relative ?? '.', tsConfigPath);
 
     resolvedPath = resolvedPath.endsWith('.json') ? resolvedPath : `${resolvedPath}.json`;
 

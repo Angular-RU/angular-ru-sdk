@@ -15,6 +15,7 @@
                     "cp ./libs/typescript/README.md ./@angular-ru/typescript"
                 ]
             },
+            "outputs": ["./@angular-ru/typescript"],
             "dependsOn": [{ "target": "build", "projects": "dependencies" }]
         },
         "publish": {

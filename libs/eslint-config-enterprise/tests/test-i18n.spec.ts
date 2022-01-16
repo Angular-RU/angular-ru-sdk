@@ -1,8 +1,9 @@
 import * as fs from 'fs';
+import * as path from 'path';
 
 describe('[TEST]: Angular-RU eslint recommendations for i18n', (): void => {
     function getInfoByReportFile(type: 'bad' | 'good'): string {
-        return fs.readFileSync(`./out/eslint.${type}-i18n.report.txt`).toString();
+        return fs.readFileSync(path.resolve(__dirname, `../reports/eslint.${type}-i18n.report.txt`)).toString();
     }
 
     it('check failed files', (): void => {

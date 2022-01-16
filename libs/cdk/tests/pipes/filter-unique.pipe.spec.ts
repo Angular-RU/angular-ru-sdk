@@ -1,4 +1,4 @@
-import { FilterUniquePipe } from '../../../pipes/src/filter-unique/filter-unique.pipe';
+import { FilterUniquePipe } from '../../pipes/src/filter-unique/filter-unique.pipe';
 
 describe('[TEST]: Filter Unique Pipe', (): void => {
     let filterUniquePipe: FilterUniquePipe;

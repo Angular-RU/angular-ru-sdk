@@ -6,4 +6,5 @@ export interface DateShiftDescriptor {
     minutes?: number;
     seconds?: number;
     milliseconds?: number;
+    timeZone?: string;
 }

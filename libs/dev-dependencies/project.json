@@ -14,6 +14,7 @@
                     "cp ./libs/dev-dependencies/README.md ./@angular-ru/dev-dependencies"
                 ]
             },
+            "outputs": ["./@angular-ru/dev-dependencies"],
             "dependsOn": [{ "target": "build", "projects": "dependencies" }]
         },
         "publish": {

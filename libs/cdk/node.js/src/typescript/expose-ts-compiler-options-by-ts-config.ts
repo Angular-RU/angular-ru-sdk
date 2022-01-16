@@ -11,8 +11,8 @@ checkIsNodeEnvironment();
 
 const path: Any = require('path');
 
-export function exposeTsCompilerOptionsByTsConfig(tsConfigPath: string): CompilerOptions {
-    const resolvedPath: string = resolveTsConfigPath(tsConfigPath);
+export function exposeTsCompilerOptionsByTsConfig(tsConfigPath: string, relative?: string): CompilerOptions | never {
+    const resolvedPath: string = resolveTsConfigPath(tsConfigPath, relative);
 
     const tsconfig: Any = require(resolvedPath);
     const compilerOptions: Nullable<CompilerOptions> = tsconfig.compilerOptions;

@@ -19,7 +19,7 @@ jobs:
         run: yarn nx build jest
 
       - name: Run unit tests
-        run: yarn nx run-many --target=test --all
+        run: yarn nx run-many --target=test --all --collect-coverage
 
       - uses: codecov/codecov-action@v2
         with:
@@ -32,6 +32,18 @@ jobs:
           directory: ./coverage/ngxs/
           flags: summary,ngxs
           name: ngxs
+
+      - uses: codecov/codecov-action@v2
+        with:
+          directory: ./coverage/jest/
+          flags: summary,jest
+          name: jest
+
+      - uses: codecov/codecov-action@v2
+        with:
+          directory: ./coverage/eslint-config-enterprise/
+          flags: summary,eslint-config-enterprise
+          name: eslint-config-enterprise
 
 concurrency:
   group: test-${{ github.head_ref }}

@@ -1,12 +1,12 @@
-const createTsJestConfig = require('./dist').createTsJestConfig;
+const { createTsJestConfig } = require('../../@angular-ru/jest');
 
 module.exports = createTsJestConfig({
-    tsConfig: './tsconfig.spec.json',
+    tsConfig: '<rootDir>/tsconfig.spec.json',
     jestConfig: {
-        collectCoverage: true,
-        coverageDirectory: '../../coverage/jest',
-        cacheDirectory: '../../node_modules/.cache/jest',
-        collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
-        testMatch: ['<rootDir>/integration/tests/**/*.spec.ts']
+        rootDir: __dirname,
+        testMatch: ['<rootDir>/tests/**/*.spec.ts'],
+        coverageDirectory: '<rootDir>/../../coverage/jest',
+        cacheDirectory: '<rootDir>/../../node_modules/.cache/jest/jest-lib',
+        collectCoverageFrom: ['<rootDir>/**/*.ts', '!<rootDir>/**/*.spec.ts']
     }
 });

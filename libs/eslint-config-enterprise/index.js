@@ -2,6 +2,7 @@
  * @type {import('eslint').Linter.Config}
  */
 module.exports = {
+    parserOptions: { sourceType: 'module' },
     extends: ['./modules/base.js', './modules/ignore-patterns.js', './modules/spell-check.js'],
     overrides: [
         {

@@ -9,7 +9,7 @@ import {
 import { Any, Nullable, PlainObject } from '@angular-ru/cdk/typings';
 import { TableUpdateSchema } from '@angular-ru/cdk/virtual-table';
 
-import { MocksGenerator } from '../../../../../tests/jest/virtual-table/helpers/utils/mocks-generator';
+import { MocksGenerator } from '../../../../../../tests/virtual-table/helpers/utils/mocks-generator';
 
 declare const hljs: Any;
 

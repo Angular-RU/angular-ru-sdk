@@ -4,7 +4,7 @@ import { Any, Nullable, PlainObject } from '@angular-ru/cdk/typings';
 import { NgxTableViewChangesService, TableUpdateSchema } from '@angular-ru/cdk/virtual-table';
 import { Subscription } from 'rxjs';
 
-import { MocksGenerator } from '../../../../../tests/jest/virtual-table/helpers/utils/mocks-generator';
+import { MocksGenerator } from '../../../../../../tests/virtual-table/helpers/utils/mocks-generator';
 
 declare const hljs: Any;
 

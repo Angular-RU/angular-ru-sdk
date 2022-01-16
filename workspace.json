@@ -31,9 +31,9 @@
                             "yarn prettier --write CHANGELOG.md",
                             "git add CHANGELOG.md",
                             "git commit --no-verify -m 'chore: updated CHANGELOG.md [ci skip]'"
-                        ],
-                        "output": ["./CHANGELOG.md"]
-                    }
+                        ]
+                    },
+                    "outputs": ["./CHANGELOG.md"]
                 },
                 "clean": {
                     "executor": "@nrwl/workspace:run-commands",

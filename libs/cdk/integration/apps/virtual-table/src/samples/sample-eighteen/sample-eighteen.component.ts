@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewEnca
 import { MatDialog } from '@angular/material/dialog';
 import { PlainObject } from '@angular-ru/cdk/typings';
 
-import { MocksGenerator } from '../../../../../tests/jest/virtual-table/helpers/utils/mocks-generator';
+import { MocksGenerator } from '../../../../../../tests/virtual-table/helpers/utils/mocks-generator';
 import { CodeDialogComponent } from '../../shared/dialog/code-dialog.component';
 
 @Component({

@@ -1,9 +1,9 @@
 import { NgZone } from '@angular/core';
 import { Any, PlainObject } from '@angular-ru/cdk/typings';
 
-import { RowId } from '../../../../virtual-table/src/interfaces/table-builder.internal';
-import { SelectionMap } from '../../../../virtual-table/src/services/selection/selection';
-import { SelectionService } from '../../../../virtual-table/src/services/selection/selection.service';
+import { RowId } from '../../../virtual-table/src/interfaces/table-builder.internal';
+import { SelectionMap } from '../../../virtual-table/src/services/selection/selection';
+import { SelectionService } from '../../../virtual-table/src/services/selection/selection.service';
 
 describe('[TEST]: Selection service', () => {
     // @ts-ignore

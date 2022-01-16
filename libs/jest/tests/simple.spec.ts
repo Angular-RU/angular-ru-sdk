@@ -1,6 +1,7 @@
+// @ts-ignore
 import { Hello } from '@mock/hello';
 
-import { createTsJestConfig } from '../../src';
+import { createTsJestConfig } from '../src';
 
 describe('[TEST]: Hello world', () => {
     it('should be', () => {
@@ -35,7 +36,7 @@ describe('[TEST]: Hello world', () => {
             },
             moduleNameMapper: {
                 '^@angular\\-ru/cdk/(.*)$': '<rootDir>/../cdk/$1/src/public_api.ts',
-                '^@mock/(.*)$': '<rootDir>/integration/tests/helpers/$1'
+                '^@mock/(.*)$': '<rootDir>/tests/helpers/$1'
             },
             bail: 1,
             verbose: true,
@@ -48,11 +49,13 @@ describe('[TEST]: Hello world', () => {
             preset: 'jest-preset-angular',
             displayName: 'Hello world',
             rootDir: expect.any(String),
-            maxWorkers: 2,
+            maxWorkers: '50%',
             setupFilesAfterEnv: [],
             maxConcurrency: 2,
             cacheDirectory: '<rootDir>/.cache',
+            collectCoverage: false,
             coverageReporters: ['html', 'lcov', 'json', 'text', 'lcov', 'clover'],
+            reporters: ['default', 'jest-junit'],
             collectCoverageFrom: []
         });
     });

@@ -5,10 +5,10 @@
             "path": "./tsconfig.lib.json"
         },
         {
-            "path": "./integration/tests/jest/tsconfig.jest.json"
+            "path": "./tsconfig.spec.json"
         },
         {
-            "path": "./integration/tests/karma/tsconfig.karma.json"
+            "path": "./tests/karma/tsconfig.karma.json"
         }
     ]
 }

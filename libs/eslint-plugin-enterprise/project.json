@@ -13,7 +13,9 @@
                     "cp ./libs/eslint-plugin-enterprise/package.json ./@angular-ru/eslint-plugin-enterprise",
                     "cp ./libs/eslint-plugin-enterprise/README.md ./@angular-ru/eslint-plugin-enterprise"
                 ]
-            }
+            },
+            "outputs": ["./@angular-ru/eslint-plugin-enterprise"],
+            "dependsOn": [{ "target": "build", "projects": "dependencies" }]
         },
         "symlink": {
             "builder": "@nrwl/workspace:run-commands",
@@ -24,7 +26,7 @@
                     "cd node_modules/@angular-ru/ && rm -rf eslint-plugin-enterprise && ln -s -f ../../@angular-ru/eslint-plugin-enterprise eslint-plugin-enterprise"
                 ]
             },
-            "dependsOn": [{ "target": "prebuild", "projects": "dependencies" }]
+            "dependsOn": [{ "target": "prebuild", "projects": "self" }]
         },
         "build": {
             "builder": "@nrwl/workspace:run-commands",

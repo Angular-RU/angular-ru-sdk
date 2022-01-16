@@ -2,7 +2,7 @@ import { ElementRef, NgZone } from '@angular/core';
 import { fakeAsync, tick } from '@angular/core/testing';
 import { Any, Fn, Nullable, PlainObject } from '@angular-ru/cdk/typings';
 
-import { AutoHeightDirective } from '../../../../virtual-table/src/directives/auto-height.directive';
+import { AutoHeightDirective } from '../../../virtual-table/src/directives/auto-height.directive';
 
 describe('[TEST]: auto height', () => {
     let directive: AutoHeightDirective<PlainObject>;

@@ -17,18 +17,21 @@ Create `jest.config.js`
 const { createTsJestConfig } = require('@angular-ru/jest');
 
 module.exports = createTsJestConfig({
-    tsConfig: './tsconfig.json',
+    tsConfig: '<rootDir>/tsconfig.spec.json',
     jestConfig: {
-        rootDir: '.',
-        displayName: 'My Angular App',
+        rootDir: __dirname, // or another path
         testMatch: ['<rootDir>/tests/**/*.spec.ts'],
-        collectCoverageFrom: ['<rootDir>/src/app/**/*.ts']
+        coverageDirectory: '<rootDir>/coverage/my-app',
+        setupFilesAfterEnv: ['<rootDir>/tests/setup-jest.ts'],
+        modulePathIgnorePatterns: ['<rootDir>/dist/@my-scope'],
+        cacheDirectory: '<rootDir>/node_modules/.cache/jest',
+        collectCoverageFrom: ['<rootDir>/**/*.ts', '!<rootDir>/**/*.spec.ts']
     }
 });
 ```
 
 ```bash
-$ jest --config jest.config.js --coverage
+$ jest --config jest.config.js
 ```
 
 ### FAQ

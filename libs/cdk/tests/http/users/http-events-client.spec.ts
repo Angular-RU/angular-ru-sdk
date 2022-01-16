@@ -13,7 +13,7 @@ import { RestClient } from '@angular-ru/cdk/http/decorators';
 import { DataBeforeRequestOptions, DataHttpInterceptor } from '@angular-ru/cdk/http/typings';
 import { Any, Nullable } from '@angular-ru/cdk/typings';
 
-import { MetaDataRequest } from '../../../../http/typings/src/interfaces/meta-data-request';
+import { MetaDataRequest } from '../../../http/typings/src/interfaces/meta-data-request';
 import { HttpMockInterceptor } from '../helpers/http-mock-interceptor';
 
 describe('[TEST]: HTTP Intercept Client', () => {

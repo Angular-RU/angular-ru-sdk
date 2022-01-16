@@ -16,7 +16,8 @@ export async function decompress(bytes: ArrayBuffer, encoding: EncodingType = En
     // noinspection ES6MissingAwait
     writer.close();
 
-    const arrayBuffer: ArrayBuffer = await new Response(decompressionStream.readable).arrayBuffer();
+    const stream: ReadableStream = decompressionStream.readable;
+    const arrayBuffer: ArrayBuffer = await new Response(stream).arrayBuffer();
 
     return new TextDecoder().decode(arrayBuffer);
 }

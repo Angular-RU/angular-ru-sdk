@@ -15,6 +15,7 @@
                     "cp ./libs/prettier/README.md ./@angular-ru/prettier"
                 ]
             },
+            "outputs": ["./@angular-ru/prettier"],
             "dependsOn": [{ "target": "build", "projects": "dependencies" }]
         },
         "publish": {

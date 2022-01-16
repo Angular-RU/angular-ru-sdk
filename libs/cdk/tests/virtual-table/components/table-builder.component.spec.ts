@@ -12,7 +12,7 @@ import {
 } from '@angular-ru/cdk/virtual-table';
 import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
 
-import { FilterDescriptor } from '../../../../virtual-table/src/services/filterable/filter-descriptor';
+import { FilterDescriptor } from '../../../virtual-table/src/services/filterable/filter-descriptor';
 
 @Component({
     selector: 'app-ngx-table-builder-mock',

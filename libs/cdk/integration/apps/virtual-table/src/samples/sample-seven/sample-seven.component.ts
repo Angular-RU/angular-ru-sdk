@@ -1,7 +1,7 @@
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Any, PlainObject } from '@angular-ru/cdk/typings';
 
-import { MocksGenerator } from '../../../../../tests/jest/virtual-table/helpers/utils/mocks-generator';
+import { MocksGenerator } from '../../../../../../tests/virtual-table/helpers/utils/mocks-generator';
 
 declare const hljs: Any;
 

@@ -40,6 +40,9 @@ global.window.resizeTo = (width: number): void => {
     global.window.dispatchEvent(resizeEvent);
 };
 
+global.TextEncoder = require('util').TextEncoder;
+global.TextDecoder = require('util').TextDecoder;
+
 global.CompressionStream = class {
     constructor() {
         return new TransformStream({

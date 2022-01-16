@@ -4,6 +4,7 @@
 **/dist/**
 **/@angular-ru/**
 **/out/**
+**/reports/**
 **/coverage/**
 **/.cache**/
 **/node_modules**/
