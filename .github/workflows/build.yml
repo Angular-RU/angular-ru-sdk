@@ -16,7 +16,7 @@ jobs:
         uses: ./.github/actions/nodejs
 
       - name: Run build packages
-        run: yarn nx run-many --target=build --all
+        run: yarn nx run-many --target=build --parallel=1 --all
 
 concurrency:
   group: build-${{ github.head_ref }}

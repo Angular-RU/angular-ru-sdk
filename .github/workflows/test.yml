@@ -19,7 +19,7 @@ jobs:
         run: yarn nx build jest
 
       - name: Run unit tests
-        run: yarn nx run-many --target=test --all --collect-coverage
+        run: yarn nx run-many --target=test --parallel=1 --all --collect-coverage
 
       - uses: codecov/codecov-action@v2
         with:
