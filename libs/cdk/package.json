@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/cdk",
-    "version": "12.58.4",
+    "version": "12.58.5",
     "description": "Angular-RU package",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/libs/cdk#readme",
     "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
@@ -17,10 +17,7 @@
         "build:app:6": "yarn ng build tooltip-app",
         "build:app:7": "yarn ng build virtual-table-app",
         "build:lib": "yarn ng build cdk && cp README.md dist/library",
-        "start": "yarn ng serve cdk-app --open",
-        "test": "yarn run-p test:jest test:karma",
-        "test:jest": "yarn jest --config integration/tests/jest/jest.config.js",
-        "test:karma": "export CI=true && yarn ng test stream-app"
+        "start": "yarn ng serve cdk-app --open"
     },
     "publishConfig": {
         "access": "public"
