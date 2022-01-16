@@ -14,8 +14,7 @@
                     "cp ./libs/eslint-plugin-enterprise/README.md ./@angular-ru/eslint-plugin-enterprise"
                 ]
             },
-            "outputs": ["./@angular-ru/eslint-plugin-enterprise"],
-            "dependsOn": [{ "target": "build", "projects": "dependencies" }]
+            "outputs": ["./@angular-ru/eslint-plugin-enterprise"]
         },
         "symlink": {
             "builder": "@nrwl/workspace:run-commands",

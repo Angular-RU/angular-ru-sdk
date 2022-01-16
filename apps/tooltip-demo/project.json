@@ -1,0 +1,55 @@
+{
+    "root": "apps/tooltip-demo/",
+    "sourceRoot": "apps/tooltip-demo/",
+    "projectType": "application",
+    "tags": ["scope:applications"],
+    "targets": {
+        "build": {
+            "builder": "@angular-devkit/build-angular:browser",
+            "options": {
+                "outputPath": "dist/tooltip-demo",
+                "tsConfig": "apps/tooltip-demo/tsconfig.app.json",
+                "main": "apps/tooltip-demo/main.ts",
+                "index": "apps/tooltip-demo/index.html",
+                "assets": ["apps/tooltip-demo/assets"],
+                "polyfills": "apps/tooltip-demo/polyfills.ts",
+                "styles": [".styles/integration-app.style.scss", "apps/tooltip-demo/styles.scss"],
+                "aot": false,
+                "vendorChunk": true,
+                "extractLicenses": false,
+                "buildOptimizer": false,
+                "sourceMap": true,
+                "optimization": false,
+                "namedChunks": true
+            },
+            "configurations": {
+                "production": {
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/tooltip-demo/environments/environment.ts",
+                            "with": "apps/tooltip-demo/environments/environment.prod.ts"
+                        }
+                    ],
+                    "optimization": true,
+                    "outputHashing": "all",
+                    "sourceMap": false,
+                    "namedChunks": false,
+                    "aot": true,
+                    "extractLicenses": true,
+                    "buildOptimizer": true
+                }
+            },
+            "defaultConfiguration": "production",
+            "outputs": ["./dist/tooltip-demo"]
+        },
+        "serve": {
+            "builder": "@angular-devkit/build-angular:dev-server",
+            "options": { "browserTarget": "tooltip-demo:build" },
+            "configurations": {
+                "production": {
+                    "browserTarget": "tooltip-demo:build:production"
+                }
+            }
+        }
+    }
+}

@@ -8,7 +8,7 @@
             "path": "./tsconfig.spec.json"
         },
         {
-            "path": "./integration/app/tsconfig.app.json"
+            "path": "../../apps/ngxs-demo/tsconfig.app.json"
         }
     ]
 }

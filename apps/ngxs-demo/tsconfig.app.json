@@ -1,0 +1,11 @@
+{
+    "extends": "../../libs/ngxs/tsconfig.base.json",
+    "compilerOptions": {
+        "paths": {
+            "@angular-ru/cdk/*": ["../cdk/*/src/public_api.ts"],
+            "@angular-ru/ngxs": ["./src/public_api.ts"],
+            "@angular-ru/ngxs/*": ["./*/src/public_api.ts"]
+        }
+    },
+    "include": ["main.ts", "polyfills.ts"]
+}

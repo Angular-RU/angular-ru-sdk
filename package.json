@@ -72,8 +72,7 @@
     "engines": {
         "node": ">=v14.17.6",
         "npm": "Please use yarn instead of NPM to install dependencies",
-        "pnpm": "Please use NPM instead of pnpm to install dependencies",
-        "yarn": ">=1.22.11"
+        "yarn": ">=1.22.10"
     },
     "standard-version": {
         "skip": {

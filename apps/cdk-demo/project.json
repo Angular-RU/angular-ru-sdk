@@ -1,0 +1,55 @@
+{
+    "root": "apps/cdk-demo/",
+    "sourceRoot": "apps/cdk-demo/",
+    "projectType": "application",
+    "tags": ["scope:applications"],
+    "targets": {
+        "build": {
+            "builder": "@angular-devkit/build-angular:browser",
+            "options": {
+                "outputPath": "dist/cdk-demo",
+                "tsConfig": "apps/cdk-demo/tsconfig.app.json",
+                "main": "apps/cdk-demo/main.ts",
+                "index": "apps/cdk-demo/index.html",
+                "assets": ["apps/cdk-demo/assets"],
+                "polyfills": "apps/cdk-demo/polyfills.ts",
+                "styles": [".styles/integration-app.style.scss", "apps/cdk-demo/styles.scss"],
+                "aot": false,
+                "vendorChunk": true,
+                "extractLicenses": false,
+                "buildOptimizer": false,
+                "sourceMap": true,
+                "optimization": false,
+                "namedChunks": true
+            },
+            "configurations": {
+                "production": {
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/cdk-demo/environments/environment.ts",
+                            "with": "apps/cdk-demo/environments/environment.prod.ts"
+                        }
+                    ],
+                    "optimization": true,
+                    "outputHashing": "all",
+                    "sourceMap": false,
+                    "namedChunks": false,
+                    "aot": true,
+                    "extractLicenses": true,
+                    "buildOptimizer": true
+                }
+            },
+            "defaultConfiguration": "production",
+            "outputs": ["./dist/cdk-demo"]
+        },
+        "serve": {
+            "builder": "@angular-devkit/build-angular:dev-server",
+            "options": { "browserTarget": "cdk-demo:build" },
+            "configurations": {
+                "production": {
+                    "browserTarget": "cdk-demo:build:production"
+                }
+            }
+        }
+    }
+}

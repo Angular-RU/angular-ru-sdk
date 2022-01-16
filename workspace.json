@@ -1,6 +1,14 @@
 {
     "version": 2,
     "projects": {
+        "cdk-demo": "apps/cdk-demo",
+        "excel-demo": "apps/excel-demo",
+        "flex-layout-demo": "apps/flex-layout-demo",
+        "http-demo": "apps/http-demo",
+        "logger-demo": "apps/logger-demo",
+        "tooltip-demo": "apps/tooltip-demo",
+        "virtual-table-demo": "apps/virtual-table-demo",
+        "ngxs-demo": "apps/ngxs-demo",
         "cdk": "libs/cdk",
         "commitlint": "libs/commitlint",
         "dev-dependencies": "libs/dev-dependencies",

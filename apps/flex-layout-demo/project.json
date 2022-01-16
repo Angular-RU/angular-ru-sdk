@@ -1,0 +1,55 @@
+{
+    "root": "apps/flex-layout-demo/",
+    "sourceRoot": "apps/flex-layout-demo/",
+    "projectType": "application",
+    "tags": ["scope:applications"],
+    "targets": {
+        "build": {
+            "builder": "@angular-devkit/build-angular:browser",
+            "options": {
+                "outputPath": "dist/flex-layout-demo",
+                "tsConfig": "apps/flex-layout-demo/tsconfig.app.json",
+                "main": "apps/flex-layout-demo/main.ts",
+                "index": "apps/flex-layout-demo/index.html",
+                "assets": ["apps/flex-layout-demo/assets"],
+                "polyfills": "apps/flex-layout-demo/polyfills.ts",
+                "styles": [".styles/integration-app.style.scss", "apps/flex-layout-demo/styles.scss"],
+                "aot": false,
+                "vendorChunk": true,
+                "extractLicenses": false,
+                "buildOptimizer": false,
+                "sourceMap": true,
+                "optimization": false,
+                "namedChunks": true
+            },
+            "configurations": {
+                "production": {
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/flex-layout-demo/environments/environment.ts",
+                            "with": "apps/flex-layout-demo/environments/environment.prod.ts"
+                        }
+                    ],
+                    "optimization": true,
+                    "outputHashing": "all",
+                    "sourceMap": false,
+                    "namedChunks": false,
+                    "aot": true,
+                    "extractLicenses": true,
+                    "buildOptimizer": true
+                }
+            },
+            "defaultConfiguration": "production",
+            "outputs": ["./dist/flex-layout-demo"]
+        },
+        "serve": {
+            "builder": "@angular-devkit/build-angular:dev-server",
+            "options": { "browserTarget": "flex-layout-demo:build" },
+            "configurations": {
+                "production": {
+                    "browserTarget": "flex-layout-demo:build:production"
+                }
+            }
+        }
+    }
+}

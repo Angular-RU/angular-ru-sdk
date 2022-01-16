@@ -1,0 +1,55 @@
+{
+    "root": "apps/logger-demo/",
+    "sourceRoot": "apps/logger-demo/",
+    "projectType": "application",
+    "tags": ["scope:applications"],
+    "targets": {
+        "build": {
+            "builder": "@angular-devkit/build-angular:browser",
+            "options": {
+                "outputPath": "dist/logger-demo",
+                "tsConfig": "apps/logger-demo/tsconfig.app.json",
+                "main": "apps/logger-demo/main.ts",
+                "index": "apps/logger-demo/index.html",
+                "assets": ["apps/logger-demo/assets"],
+                "polyfills": "apps/logger-demo/polyfills.ts",
+                "styles": [".styles/integration-app.style.scss", "apps/logger-demo/styles.css"],
+                "aot": false,
+                "vendorChunk": true,
+                "extractLicenses": false,
+                "buildOptimizer": false,
+                "sourceMap": true,
+                "optimization": false,
+                "namedChunks": true
+            },
+            "configurations": {
+                "production": {
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/logger-demo/environments/environment.ts",
+                            "with": "apps/logger-demo/environments/environment.prod.ts"
+                        }
+                    ],
+                    "optimization": true,
+                    "outputHashing": "all",
+                    "sourceMap": false,
+                    "namedChunks": false,
+                    "aot": true,
+                    "extractLicenses": true,
+                    "buildOptimizer": true
+                }
+            },
+            "defaultConfiguration": "production",
+            "outputs": ["./dist/logger-demo"]
+        },
+        "serve": {
+            "builder": "@angular-devkit/build-angular:dev-server",
+            "options": { "browserTarget": "logger-demo:build" },
+            "configurations": {
+                "production": {
+                    "browserTarget": "logger-demo:build:production"
+                }
+            }
+        }
+    }
+}

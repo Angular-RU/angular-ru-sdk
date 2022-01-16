@@ -1,0 +1,55 @@
+{
+    "root": "apps/ngxs-demo/",
+    "sourceRoot": "apps/ngxs-demo/",
+    "projectType": "application",
+    "tags": ["scope:applications"],
+    "targets": {
+        "build": {
+            "builder": "@angular-devkit/build-angular:browser",
+            "options": {
+                "outputPath": "dist/ngxs-demo",
+                "tsConfig": "apps/ngxs-demo/tsconfig.app.json",
+                "main": "apps/ngxs-demo/main.ts",
+                "index": "apps/ngxs-demo/index.html",
+                "assets": ["apps/ngxs-demo/assets"],
+                "polyfills": "apps/ngxs-demo/polyfills.ts",
+                "styles": [".styles/integration-app.style.scss", "apps/ngxs-demo/styles.scss"],
+                "aot": false,
+                "vendorChunk": true,
+                "extractLicenses": false,
+                "buildOptimizer": false,
+                "sourceMap": true,
+                "optimization": false,
+                "namedChunks": true
+            },
+            "configurations": {
+                "production": {
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/ngxs-demo/environments/environment.ts",
+                            "with": "apps/ngxs-demo/environments/environment.prod.ts"
+                        }
+                    ],
+                    "optimization": true,
+                    "outputHashing": "all",
+                    "sourceMap": false,
+                    "namedChunks": false,
+                    "aot": true,
+                    "extractLicenses": true,
+                    "buildOptimizer": true
+                }
+            },
+            "defaultConfiguration": "production",
+            "outputs": ["./dist/ngxs-demo"]
+        },
+        "serve": {
+            "builder": "@angular-devkit/build-angular:dev-server",
+            "options": { "browserTarget": "ngxs-demo:build" },
+            "configurations": {
+                "production": {
+                    "browserTarget": "ngxs-demo:build:production"
+                }
+            }
+        }
+    }
+}
