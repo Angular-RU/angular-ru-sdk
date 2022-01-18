@@ -1,5 +1,7 @@
 const { createTsJestConfig } = require('../../@angular-ru/jest');
 
+process.env.TZ = 'UTC';
+
 module.exports = createTsJestConfig({
     tsConfig: '<rootDir>/tsconfig.spec.json',
     jestConfig: {
