@@ -136,6 +136,20 @@ expect(array.filter(byPropertyValue('a', 'title'))).toStrictEqual([
 expect(array.filter(byPropertyValue('b', 1))).toStrictEqual([{ a: 'title', b: 1 }]);
 ```
 
+-   `pick`
+
+```ts
+const array: Array<{ a: string; b: any }> = [
+    { a: 'foo', b: 1 },
+    { a: 'bar', b: { c: 'baz' } }
+];
+
+expect(array.map(pick('a'))).toEqual(['foo', 'bar']);
+expect(array.map(pick('b'))).toEqual([1, { c: 'baz' }]);
+// No pick deep value
+expect(array.map(pick('c'))).toEqual([undefined, undefined]);
+```
+
 -   `hasItems`
 
 ```ts
