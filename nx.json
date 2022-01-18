@@ -27,5 +27,19 @@
                 "cacheableOperations": ["prebuild", "build", "test"]
             }
         }
+    },
+    "targetDependencies": {
+        "prebuild": [
+            {
+                "target": "symlink",
+                "projects": "dependencies"
+            }
+        ],
+        "symlink": [
+            {
+                "target": "prebuild",
+                "projects": "self"
+            }
+        ]
     }
 }

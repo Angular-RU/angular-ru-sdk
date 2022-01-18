@@ -24,16 +24,14 @@
                     "mkdir -p node_modules/@angular-ru/",
                     "cd node_modules/@angular-ru/ && rm -rf eslint-plugin-enterprise && ln -s -f ../../@angular-ru/eslint-plugin-enterprise eslint-plugin-enterprise"
                 ]
-            },
-            "dependsOn": [{ "target": "prebuild", "projects": "self" }]
+            }
         },
         "build": {
             "builder": "@nrwl/workspace:run-commands",
             "options": {
                 "parallel": false,
                 "commands": ["nx prebuild eslint-plugin-enterprise", "nx symlink eslint-plugin-enterprise"]
-            },
-            "dependsOn": [{ "target": "build", "projects": "dependencies" }]
+            }
         },
         "publish": {
             "builder": "@nrwl/workspace:run-commands",
