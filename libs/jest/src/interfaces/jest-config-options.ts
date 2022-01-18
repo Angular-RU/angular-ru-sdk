@@ -23,4 +23,6 @@ export interface JestConfigOptions {
      * https://jestjs.io/docs/en/configuration
      */
     jestConfig?: Partial<Config.InitialOptions>;
+
+    timeZone?: string;
 }

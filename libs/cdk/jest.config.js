@@ -9,5 +9,6 @@ module.exports = createTsJestConfig({
         setupFilesAfterEnv: ['<rootDir>/tests/setup-jest.ts'],
         cacheDirectory: '<rootDir>/../../node_modules/.cache/jest/cdk',
         collectCoverageFrom: ['<rootDir>/**/*.ts', '!<rootDir>/**/*.spec.ts']
-    }
+    },
+    timeZone: 'UTC'
 });
