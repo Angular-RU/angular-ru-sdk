@@ -82,6 +82,10 @@ export function createTsJestConfig(options: JestConfigOptions): Config.InitialOp
         console.log('[DEBUG]: moduleNameMapper: ', stringify(moduleNameMapper), '\n');
     }
 
+    if (isNotNil(options.timeZone)) {
+        process.env.TZ = options.timeZone;
+    }
+
     return {
         ...options.jestConfig,
         rootDir: resolvedRootDir,

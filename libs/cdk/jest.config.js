@@ -1,7 +1,5 @@
 const { createTsJestConfig } = require('../../@angular-ru/jest');
 
-process.env.TZ = 'UTC';
-
 module.exports = createTsJestConfig({
     tsConfig: '<rootDir>/tsconfig.spec.json',
     jestConfig: {
@@ -11,5 +9,6 @@ module.exports = createTsJestConfig({
         setupFilesAfterEnv: ['<rootDir>/tests/setup-jest.ts'],
         cacheDirectory: '<rootDir>/../../node_modules/.cache/jest/cdk',
         collectCoverageFrom: ['<rootDir>/**/*.ts', '!<rootDir>/**/*.spec.ts']
-    }
+    },
+    timeZone: 'UTC'
 });

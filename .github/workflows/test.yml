@@ -44,12 +44,6 @@ jobs:
           flags: summary,jest
           name: jest
 
-      - uses: codecov/codecov-action@v2
-        with:
-          directory: ./coverage/eslint-config-enterprise/
-          flags: summary,eslint-config-enterprise
-          name: eslint-config-enterprise
-
 concurrency:
   group: test-${{ github.head_ref }}
   cancel-in-progress: true

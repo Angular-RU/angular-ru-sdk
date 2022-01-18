@@ -7,7 +7,6 @@ module.exports = createTsJestConfig({
         testMatch: ['<rootDir>/tests/**/*.spec.ts'],
         setupFilesAfterEnv: ['<rootDir>/tests/setup-jest.ts'],
         collectCoverageFrom: ['<rootDir>/**/*.ts'],
-        coverageDirectory: '<rootDir>/../../coverage/eslint-config-enterprise',
         cacheDirectory: '<rootDir>/../../node_modules/.cache/jest/eslint-config-enterprise'
     }
 });

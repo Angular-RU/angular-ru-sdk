@@ -88,7 +88,6 @@
             "options": {
                 "command": "yarn jest --config libs/eslint-config-enterprise/jest.config.js"
             },
-            "outputs": ["coverage/eslint-config-enterprise"],
             "dependsOn": [{ "target": "prepare", "projects": "self" }]
         },
         "publish": {
