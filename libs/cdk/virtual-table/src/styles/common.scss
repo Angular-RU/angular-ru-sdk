@@ -18,7 +18,7 @@
     border: 1px solid var(--ngx-table-border-color);
 
     &--is-rendered .table-grid {
-        overflow: scroll;
+        overflow: auto;
         transition: all 0.2s;
     }
 
