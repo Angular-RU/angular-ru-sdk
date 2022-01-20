@@ -50,20 +50,20 @@ jobs:
         uses: ./.github/actions/nodejs
 
       - name: Provide NPM token
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> .npmrc
+        run: npm config set '//registry.npmjs.org/:_authToken' "${{ secrets.NPM_TOKEN }}"
 
       - name: Set prev last tag
         run: echo "PREV_LAST_TAG=$(git describe --abbrev=0 --tags)" >> "$GITHUB_ENV"
 
       - name: Publish npm libraries (optional)
-        run: node_modules/.bin/nx run-many --target=version --all --parallel=1 --color=true
+        run: npx nx run-many --target=version --all --parallel=1 --color=true
 
       - name: Set new last tag
         run: echo "NEW_LAST_TAG=$(git describe --abbrev=0 --tags)" >> "$GITHUB_ENV"
 
       - name: Generate CHANGELOG.md
         if: ${{ env.PREV_LAST_TAG != env.NEW_LAST_TAG }}
-        run: yarn nx changelog workspace
+        run: npx nx changelog .platform
 
       - name: Commit and push changes
         run: git push origin && git push origin --tags
