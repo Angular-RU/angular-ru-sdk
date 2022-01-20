@@ -652,7 +652,7 @@ module.exports = {
                 '@angular-eslint/prefer-on-push-component-change-detection': 'error',
                 '@angular-eslint/prefer-output-readonly': 'error',
                 '@angular-eslint/relative-url-prefix': 'error',
-                '@angular-eslint/sort-ngmodule-metadata-arrays': 'error',
+                '@angular-eslint/sort-ngmodule-metadata-arrays': 'off',
                 '@angular-eslint/use-component-selector': 'error',
                 '@angular-eslint/use-component-view-encapsulation': 'off',
                 '@angular-eslint/use-injectable-provided-in': 'off',
