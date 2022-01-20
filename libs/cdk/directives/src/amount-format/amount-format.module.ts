@@ -7,8 +7,8 @@ import { AmountOptions } from './amount-options';
 
 @NgModule({
     imports: [CommonModule],
-    exports: [AmountFormatDirective],
-    declarations: [AmountFormatDirective]
+    declarations: [AmountFormatDirective],
+    exports: [AmountFormatDirective]
 })
 export class AmountFormatModule {
     public static forRoot(options: Partial<AmountOptions> = {}): ModuleWithProviders<AmountFormatModule> {
