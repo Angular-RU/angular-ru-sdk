@@ -50,7 +50,9 @@ jobs:
         uses: ./.github/actions/nodejs
 
       - name: Provide NPM token
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
+        run: |
+          echo "registry=https://registry.npmjs.org" >> .npmrc
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> .npmrc
 
       - name: Set prev last tag
         run: echo "PREV_LAST_TAG=$(git describe --abbrev=0 --tags)" >> "$GITHUB_ENV"
