@@ -1,7 +1,7 @@
 # Shareable Configs for Angular projects
 
-[![image](https://badge.fury.io/js/%40angular-ru%2Feslint.svg)](https://badge.fury.io/js/%40angular-ru%2Feslint)
-[![image](https://img.shields.io/npm/dw/@angular-ru/eslint)](https://badge.fury.io/js/%40angular-ru%2Feslint)
+[![image](https://badge.fury.io/js/%40angular-ru%2Feslint-config-enterprise.svg)](https://badge.fury.io/js/%40angular-ru%2Feslint-config-enterprise)
+[![image](https://img.shields.io/npm/dw/@angular-ru/eslint-config-enterprise)](https://badge.fury.io/js/%40angular-ru%2Feslint-config-enterprise)
 
 These rules are the most stringent, which allow you to control all types of data in your project, as well as more
 strictly determine the order of imports.
