@@ -51,21 +51,21 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
     }
 
     // eslint-disable-next-line complexity,max-lines-per-function
-    function isSatisfying(valuesSet: PlainValue[], operand: string, filterType: TableFilterType | string): boolean {
+    function isSatisfying(valuesSet: PlainValue[], operand: PlainValue, filterType: TableFilterType | string): boolean {
         try {
             switch (filterType) {
                 case types.START_WITH:
-                    return valuesSet.map(toLowercase).some(startsWith(operand.toLocaleLowerCase()));
+                    return valuesSet.map(toLowercase).some(startsWith(toLowercase(operand)));
                 case types.END_WITH:
-                    return valuesSet.map(toLowercase).some(endsWith(operand.toLocaleLowerCase()));
+                    return valuesSet.map(toLowercase).some(endsWith(toLowercase(operand)));
                 case types.CONTAINS:
-                    return valuesSet.map(toLowercase).some(includes(operand.toLocaleLowerCase()));
+                    return valuesSet.map(toLowercase).some(includes(toLowercase(operand)));
                 case types.DOES_NOT_CONTAIN:
-                    return valuesSet.map(toLowercase).every(notIncludes(operand.toLocaleLowerCase()));
+                    return valuesSet.map(toLowercase).every(notIncludes(toLowercase(operand)));
                 case types.EQUALS:
-                    return valuesSet.map(toLowercase).includes(operand.toLocaleLowerCase());
+                    return valuesSet.map(toLowercase).includes(toLowercase(operand));
                 case types.DOES_NOT_EQUAL:
-                    return !valuesSet.map(toLowercase).includes(operand.toLocaleLowerCase());
+                    return !valuesSet.map(toLowercase).includes(toLowercase(operand));
                 case types.MORE_THAN:
                 case types.MORE_OR_EQUAL:
                 case types.LESS_THAN:
@@ -99,7 +99,7 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
         return (value: string): boolean => !value.includes(substring);
     }
 
-    function compareNumber(comparing: string, type: NumericFilterTypes): (value: PlainValue) => boolean {
+    function compareNumber(comparing: PlainValue, type: NumericFilterTypes): (value: PlainValue) => boolean {
         const comparingNumber: number = asNumber(comparing);
 
         switch (type) {
@@ -117,7 +117,7 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
         }
     }
 
-    function asNumber(value: string): number {
+    function asNumber(value: PlainValue): number {
         const comparingNumber: number = Number(value);
 
         if (isNaN(comparingNumber)) {
