@@ -208,6 +208,20 @@ describe('[TEST] Table builder', (): void => {
             { id: 4, lastName: null, name: null }
         ]);
 
+        tableBuilderComponent.filterable.setDefinition([{ value: 3, type: TableFilterType.DOES_NOT_EQUAL, key: 'id' }]);
+        await tableBuilderComponent.sortAndFilter();
+
+        expect(tableBuilderComponent.source).toEqual([
+            { id: 1, name: 'Max', lastName: 'Ivanov' },
+            { id: 2, name: 'Ivan', lastName: 'Petrov' },
+            { id: 4, name: null, lastName: null }
+        ]);
+
+        tableBuilderComponent.filterable.setDefinition([{ value: 3, type: TableFilterType.EQUALS, key: 'id' }]);
+        await tableBuilderComponent.sortAndFilter();
+
+        expect(tableBuilderComponent.source).toEqual([{ id: 3, name: 'Petr', lastName: 'Sidorov' }]);
+
         tableBuilderComponent.filterable.setDefinition([{ value: 2, type: TableFilterType.MORE_THAN, key: 'id' }]);
         await tableBuilderComponent.sortAndFilter();
 
