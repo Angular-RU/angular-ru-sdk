@@ -23,8 +23,8 @@ jobs:
 
       - name: Run unit tests
         run:
-          npx nx run-many --target=test --parallel=1 --all --collect-coverage --exclude $(nx affected:apps --base=master
-          --plain)
+          npx nx run-many --target=test --parallel=1 --all --collect-coverage --exclude $(npx nx affected:apps
+          --base=master --plain)
 
       - uses: codecov/codecov-action@v2
         with:

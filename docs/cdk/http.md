@@ -156,7 +156,7 @@ class MyCitiesClient extends DataHttpClient {
 there is almost no limit on the number of requests that can be sent in parallel <br> Note: various browsers have various
 limits for maximum connections per host name (Chrome: 6)
 
-![](docs/cdk/docs/http/limit-concurrency-none.png)
+![](../assets/limit-concurrency-none.png)
 
 but if necessary, you can change it <br> for example, <b>limitConcurrency: 5</b> <br> This mean that maximum of 5
 requests can be executed in parallel. Next one immediately start only if one of the previous requests is completed
@@ -179,4 +179,174 @@ import { DataHttpClientModule } from '@angular-ru/cdk/http';
 export class AppModule {}
 ```
 
-![](docs/cdk/docs/http/limit-concurrency-5.png)
+![](../assets/limit-concurrency-5.png)
+
+#### `@angular-ru/cdk/http/decorators`
+
+-   `@RestClient(url)`
+
+```ts
+@Injectable()
+@RestClient('my-controller-api-path')
+export class ApiEtcClient extends DataHttpClient {}
+```
+
+-   `@BaseUrl(url)`
+
+```ts
+@Injectable()
+@BaseUrl('nginx-path-controller')
+@RestClient('my-controller-api-path')
+export class ApiEtcClient extends DataHttpClient {}
+```
+
+-   `@HostUrl(url)`
+
+```ts
+@Injectable()
+@HostUrl('//no-cors.my-api.com')
+@BaseUrl('nginx-path-controller')
+@RestClient('my-controller-api-path')
+export class ApiEtcClient extends DataHttpClient {}
+```
+
+-   `@Get(url), @Post(url), @Put(url), @Delete(url), @Patch(url)`
+
+```ts
+@Injectable()
+@RestClient('users')
+export class ApiUsersClient extends DataHttpClient {
+    @Get()
+    public getUsersAll(): Observable<User[]> {
+        return this.restTemplate();
+    }
+}
+```
+
+-   `@RequestParam(key)`
+
+```ts
+@Injectable()
+@RestClient('users')
+export class ApiUsersClient extends DataHttpClient {
+    @Get()
+    public getUsersAllByPagination(
+        @RequestParam('size') _pageSize: number,
+        @RequestParam('index') _pageIndex: number
+    ): Observable<User[]> {
+        return this.restTemplate();
+    }
+
+    // ...
+}
+```
+
+-   `@PathVariable(key)`
+
+```ts
+@Injectable()
+@RestClient('users')
+export class ApiUsersClient extends DataHttpClient {
+    @Get('/{id}')
+    public getUserById(@PathVariable('id') _userId: number): Observable<User> {
+        return this.restTemplate();
+    }
+}
+```
+
+-   `@RequestBody()`
+
+```ts
+@Injectable()
+@RestClient('users')
+export class ApiUsersClient extends DataHttpClient {
+    @Post()
+    public createUser(@RequestBody() _body: User): Observable<User> {
+        return this.restTemplate();
+    }
+}
+```
+
+#### `@angular-ru/cdk/http/utils`
+
+-   `isLocalhost`
+
+```ts
+expect(isLocalhost('https://127.0.0.1:4200')).toEqual(true);
+expect(isLocalhost('https://google.com')).toEqual(false);
+```
+
+-   `getPathWithoutQueryParams`
+
+```ts
+expect(getPathWithoutQueryParams('http://hello/world/todo/1/all?pageSize=10&pageIndex=0')).toEqual(
+    'http://hello/world/todo/1/all'
+);
+```
+
+-   `getUrlSegments`
+
+```ts
+expect(getUrlSegments({})).toEqual({ hostUrl: 'http://localhost/', baseUrl: '' });
+expect(getUrlSegments({ hostUrl: 'http://hello_world', baseUrl: 'api' })).toEqual({
+    hostUrl: 'http://hello_world/',
+    baseUrl: '/api/'
+});
+```
+
+-   `isAbsolutePath`
+
+```ts
+expect(isAbsolutePath('/api')).toEqual(false);
+expect(isAbsolutePath('//hello_world')).toEqual(false);
+expect(isAbsolutePath('http://hello_world')).toEqual(true);
+```
+
+-   `replaceDoubleSlash`
+
+```ts
+expect(replaceDoubleSlash('https://a///b//c/d/')).toEqual('https://a/b/c/d/');
+expect(replaceDoubleSlash('////a///b//c/d/')).toEqual('/a/b/c/d/');
+```
+
+-   `replaceLeadingAndTrailingSlashes`
+
+```ts
+expect(replaceLeadingAndTrailingSlashes('/')).toEqual('');
+expect(replaceLeadingAndTrailingSlashes('//')).toEqual('');
+expect(replaceLeadingAndTrailingSlashes('//a///b//c/d/')).toEqual('a/b/c/d');
+```
+
+-   `urlParse`
+
+```ts
+expect(urlParse('////a///b//c/d?quick', getUrlSegments({ hostUrl: 'https://127.0.0.0:8030' }))).toEqual(
+    'https://127.0.0.0:8030/a/b/c/d'
+);
+```
+
+-   `getHttpHeader`
+
+```ts
+const headers: HttpHeaders = getHttpHeader({ a: '1', b: '2' });
+expect(headers.keys()).toEqual(['a', 'b']);
+expect(headers.get('a')).toEqual('1');
+expect(headers.get('b')).toEqual('2');
+```
+
+-   `parseQueryParams`
+
+```ts
+const queryParams: PlainObject = parseQueryParams('/todos/get?pageSize=5&value=2');
+expect(queryParams).toEqual({ pageSize: '5', value: '2' });
+```
+
+-   `getHttpParams`
+
+```ts
+const params: HttpParams = getHttpParams('/todos/get?pageSize=5&value=2', { pageIndex: 0 });
+expect(params.keys()).toEqual(['pageSize', 'value', 'pageIndex']);
+expect(params.get('pageSize')).toEqual('5');
+expect(params.get('value')).toEqual('2');
+expect(params.get('pageIndex')).toEqual(0);
+```
