@@ -13,12 +13,6 @@ jobs:
           fetch-depth: '0'
           persist-credentials: false
 
-      - name: Prepare git and npm token
-        run: |
-          git config --global user.name "angular-ru-bot"
-          git config --global user.email "angular-ru@yandex.ru"
-          git config remote.origin.url https://x-access-token:${{ secrets.ANGULAR_RU_BOT_PAT }}@github.com/$GITHUB_REPOSITORY
-
       - name: Setup Node.js and Cache
         uses: ./.github/actions/nodejs
 
@@ -49,8 +43,12 @@ jobs:
           allowed-conclusions: success
           wait-interval: 15
 
-      - name: Provide NPM token
-        run: npm config set '//registry.npmjs.org/:_authToken' "${{ secrets.NPM_TOKEN }}"
+      - name: Setup GIT username and NPM token
+        run: |
+          git config --global user.name "angular-ru-bot"
+          git config --global user.email "angular-ru@yandex.ru"
+          git config remote.origin.url https://x-access-token:${{ secrets.ANGULAR_RU_BOT_PAT }}@github.com/$GITHUB_REPOSITORY
+          npm config set '//registry.npmjs.org/:_authToken' "${{ secrets.NPM_TOKEN }}"
 
       - name: Set prev last tag
         run: echo "PREV_LAST_TAG=$(git describe --abbrev=0 --tags)" >> "$GITHUB_ENV"
@@ -61,7 +59,7 @@ jobs:
       - name: Set new last tag
         run: echo "NEW_LAST_TAG=$(git describe --abbrev=0 --tags)" >> "$GITHUB_ENV"
 
-      - name: Generate CHANGELOG.md
+      - name: Generate RELEASE_NOTES.md
         if: ${{ env.PREV_LAST_TAG != env.NEW_LAST_TAG }}
         run: |
           PREVIOUS_VERSION=${{ env.PREV_LAST_TAG }}
