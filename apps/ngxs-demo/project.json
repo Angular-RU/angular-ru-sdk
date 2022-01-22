@@ -13,7 +13,7 @@
                 "index": "apps/ngxs-demo/index.html",
                 "assets": ["apps/ngxs-demo/assets"],
                 "polyfills": "apps/ngxs-demo/polyfills.ts",
-                "styles": [".styles/integration-app.style.scss", "apps/ngxs-demo/styles.scss"],
+                "styles": [".global/integration-app.style.scss", "apps/ngxs-demo/styles.scss"],
                 "aot": false,
                 "vendorChunk": true,
                 "extractLicenses": false,

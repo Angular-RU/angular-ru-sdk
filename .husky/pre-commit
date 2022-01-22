@@ -2,7 +2,7 @@
 # shellcheck disable=SC1090
 . "$(dirname "$0")/_/husky.sh"
 
-git update-index --again && yarn lint-staged --allow-empty
+git update-index --again && npx lint-staged --allow-empty
 
 # shellcheck disable=SC2006
 BRANCH=`git rev-parse --abbrev-ref HEAD`

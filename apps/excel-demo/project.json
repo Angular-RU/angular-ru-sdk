@@ -13,7 +13,7 @@
                 "index": "apps/excel-demo/index.html",
                 "assets": ["apps/excel-demo/assets"],
                 "polyfills": "apps/excel-demo/polyfills.ts",
-                "styles": [".styles/integration-app.style.scss", "apps/excel-demo/styles.css"],
+                "styles": [".global/integration-app.style.scss", "apps/excel-demo/styles.css"],
                 "aot": false,
                 "vendorChunk": true,
                 "extractLicenses": false,

@@ -7,18 +7,6 @@
     "repository": "https://github.com/Angular-RU/angular-ru-sdk",
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
-    "scripts": {
-        "build:app": "yarn run-p build:app:* --max-parallel 3",
-        "build:app:1": "yarn ng build cdk-app",
-        "build:app:2": "yarn ng build flex-layout-app",
-        "build:app:3": "yarn ng build http-app",
-        "build:app:4": "yarn ng build logger-app",
-        "build:app:5": "yarn ng build excel-app",
-        "build:app:6": "yarn ng build tooltip-app",
-        "build:app:7": "yarn ng build virtual-table-app",
-        "build:lib": "yarn ng build cdk && cp README.md dist/library",
-        "start": "yarn ng serve cdk-app --open"
-    },
     "publishConfig": {
         "access": "public"
     }

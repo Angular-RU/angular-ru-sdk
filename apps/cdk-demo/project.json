@@ -13,7 +13,7 @@
                 "index": "apps/cdk-demo/index.html",
                 "assets": ["apps/cdk-demo/assets"],
                 "polyfills": "apps/cdk-demo/polyfills.ts",
-                "styles": [".styles/integration-app.style.scss", "apps/cdk-demo/styles.scss"],
+                "styles": [".global/integration-app.style.scss", "apps/cdk-demo/styles.scss"],
                 "aot": false,
                 "vendorChunk": true,
                 "extractLicenses": false,

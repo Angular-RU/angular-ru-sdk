@@ -15,16 +15,12 @@
         },
         "test": {
             "builder": "@nrwl/workspace:run-commands",
-            "options": {
-                "command": "yarn jest --config libs/ngxs/jest.config.js"
-            },
+            "options": { "command": "npx jest --config libs/ngxs/jest.config.js" },
             "outputs": ["coverage/ngxs"]
         },
         "publish": {
             "builder": "@nrwl/workspace:run-commands",
-            "options": {
-                "command": "npm publish ./@angular-ru/ngxs --ignore-scripts"
-            }
+            "options": { "command": "npm publish ./@angular-ru/ngxs --ignore-scripts" }
         },
         "version": {
             "executor": "@jscutlery/semver:version",
@@ -34,6 +30,7 @@
                 "versionTagPrefix": "@angular-ru/ngxs-",
                 "skipProjectChangelog": true,
                 "baseBranch": "master",
+                "trackDeps": true,
                 "noVerify": true
             },
             "dependsOn": [{ "target": "version", "projects": "dependencies" }]

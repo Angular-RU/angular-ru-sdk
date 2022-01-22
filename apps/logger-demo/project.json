@@ -13,7 +13,7 @@
                 "index": "apps/logger-demo/index.html",
                 "assets": ["apps/logger-demo/assets"],
                 "polyfills": "apps/logger-demo/polyfills.ts",
-                "styles": [".styles/integration-app.style.scss", "apps/logger-demo/styles.css"],
+                "styles": [".global/integration-app.style.scss", "apps/logger-demo/styles.css"],
                 "aot": false,
                 "vendorChunk": true,
                 "extractLicenses": false,

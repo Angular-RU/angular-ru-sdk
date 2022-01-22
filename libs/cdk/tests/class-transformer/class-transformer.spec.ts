@@ -16,8 +16,8 @@ import {
     transformToTrim,
     transformToUnix
 } from '@angular-ru/cdk/class-transformer';
-import { Exclude, Expose, plainToClass, Transform, Type } from 'class-transformer';
 import { Nullable } from '@angular-ru/cdk/typings/nullable';
+import { Exclude, Expose, plainToClass, Transform, Type } from 'class-transformer';
 
 describe('[TEST]: Integration with class-transformer', () => {
     @Exclude()

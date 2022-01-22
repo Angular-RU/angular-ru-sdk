@@ -2,61 +2,31 @@
     "root": "libs/jest/",
     "sourceRoot": "libs/jest/",
     "projectType": "library",
-    "tags": ["scope:libs"],
+    "tags": ["scope:libs", "scope:symlinked"],
     "targets": {
-        "prebuild": {
+        "build": {
             "builder": "@nrwl/workspace:run-commands",
             "options": {
                 "parallel": false,
                 "commands": [
                     "tsc -p ./libs/jest/tsconfig.lib.json",
                     "cp ./libs/jest/package.json ./@angular-ru/jest",
-                    "cp ./libs/jest/README.md ./@angular-ru/jest"
-                ]
-            },
-            "outputs": ["./@angular-ru/jest"],
-            "dependsOn": [
-                {
-                    "target": "symlink",
-                    "projects": "dependencies"
-                }
-            ]
-        },
-        "symlink": {
-            "builder": "@nrwl/workspace:run-commands",
-            "options": {
-                "parallel": false,
-                "commands": [
+                    "cp ./libs/jest/README.md ./@angular-ru/jest",
                     "mkdir -p node_modules/@angular-ru/",
                     "cd node_modules/@angular-ru/ && rm -rf jest && ln -s -f ../../@angular-ru/jest jest"
                 ]
             },
-            "dependsOn": [
-                {
-                    "target": "prebuild",
-                    "projects": "self"
-                }
-            ]
-        },
-        "build": {
-            "builder": "@nrwl/workspace:run-commands",
-            "options": {
-                "parallel": false,
-                "commands": ["nx prebuild jest", "nx symlink jest"]
-            }
+            "dependsOn": [{ "target": "build", "projects": "dependencies" }],
+            "outputs": ["./@angular-ru/jest", "node_modules/@angular-ru/jest"]
         },
         "test": {
             "builder": "@nrwl/workspace:run-commands",
-            "options": {
-                "command": "yarn jest --config libs/jest/jest.config.js"
-            },
+            "options": { "command": "npx jest --config libs/jest/jest.config.js" },
             "outputs": ["coverage/jest"]
         },
         "publish": {
             "builder": "@nrwl/workspace:run-commands",
-            "options": {
-                "command": "npm publish ./@angular-ru/jest --ignore-scripts"
-            }
+            "options": { "command": "npm publish ./@angular-ru/jest --ignore-scripts" }
         },
         "version": {
             "executor": "@jscutlery/semver:version",
@@ -65,6 +35,7 @@
                 "commitMessageFormat": "chore(${projectName}): release version ${version} [ci skip]",
                 "versionTagPrefix": "@angular-ru/jest-",
                 "skipProjectChangelog": true,
+                "trackDeps": true,
                 "noVerify": true
             },
             "dependsOn": [{ "target": "version", "projects": "dependencies" }]

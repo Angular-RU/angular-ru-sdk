@@ -11,7 +11,7 @@ $ npm install @angular-ru/cdk
 -   Add styles to `styles.scss` file:
 
 ```scss
-@import '~@angular-ru/cdk/flex-layout/styles';
+@import 'node_modules/@angular-ru/cdk/flex-layout/styles/index';
 
 // ...
 ```

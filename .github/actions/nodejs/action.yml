@@ -5,7 +5,7 @@ inputs:
   node-version:
     description: Node.js version
     required: false
-    default: 16.x
+    default: 16.13.x
 
 runs:
   using: composite
@@ -24,7 +24,7 @@ runs:
           */*/node_modules/
           !node_modules/.cache
           !*/*/node_modules/.cache
-        key: node-modules-cache-${{ hashfiles('yarn.lock') }}
+        key: node-modules-cache-${{ hashfiles('package-lock.json') }}
 
     - name: Restore from cache of builds
       id: build-cache
@@ -34,17 +34,17 @@ runs:
         path: |
           node_modules/.cache
           */*/node_modules/.cache
-        key: builds-cache-${{ hashFiles('yarn.lock') }}-${{ github.ref }}
-        restore-keys: builds-cache-${{ hashFiles('yarn.lock') }}
+        key: builds-cache-${{ hashFiles('package-lock.json') }}-${{ github.ref }}
+        restore-keys: builds-cache-${{ hashFiles('package-lock.json') }}
 
     - name: Restore from global NPM cache
       if: steps.cache-node-modules.outputs.cache-hit != 'true'
       uses: actions/cache@v2
       with:
         path: ~/.npm
-        key: npm-cache-${{ hashFiles('yarn.lock') }}
-        restore-keys: npm-cache-${{ hashfiles('yarn.lock') }}
+        key: npm-cache-${{ hashFiles('package-lock.json') }}
+        restore-keys: npm-cache-${{ hashfiles('package-lock.json') }}
 
-    - run: yarn install --frozen-lockfile
+    - run: npm ci
       if: steps.cache-node-modules.outputs.cache-hit != 'true'
       shell: bash

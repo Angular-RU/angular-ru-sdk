@@ -13,7 +13,7 @@
                 "index": "apps/flex-layout-demo/index.html",
                 "assets": ["apps/flex-layout-demo/assets"],
                 "polyfills": "apps/flex-layout-demo/polyfills.ts",
-                "styles": [".styles/integration-app.style.scss", "apps/flex-layout-demo/styles.scss"],
+                "styles": [".global/integration-app.style.scss", "apps/flex-layout-demo/styles.scss"],
                 "aot": false,
                 "vendorChunk": true,
                 "extractLicenses": false,

@@ -27,21 +27,15 @@
                     "executor": "@nrwl/workspace:run-commands",
                     "options": {
                         "parallel": false,
-                        "commands": ["yarn husky install", "yarn ngcc --async", "yarn nx ln .platform"]
-                    }
-                },
-                "changelog": {
-                    "executor": "@nrwl/workspace:run-commands",
-                    "options": {
-                        "parallel": false,
                         "commands": [
-                            "yarn standard-version",
-                            "yarn prettier --write CHANGELOG.md",
-                            "git add CHANGELOG.md",
-                            "git commit --no-verify -m 'chore: updated CHANGELOG.md [ci skip]'"
+                            "npx husky install",
+                            "npx ngcc --async",
+                            "echo \"Build symlinked libraries:\"",
+                            "nx build cdk",
+                            "nx build jest",
+                            "nx build eslint-plugin-enterprise"
                         ]
-                    },
-                    "outputs": ["./CHANGELOG.md"]
+                    }
                 },
                 "clean": {
                     "executor": "@nrwl/workspace:run-commands",
@@ -57,21 +51,13 @@
                         ]
                     }
                 },
-                "ln": {
-                    "executor": "@nrwl/workspace:run-commands",
-                    "options": { "command": "nx run-many --target=symlink --parallel=1 --all" }
-                },
                 "format:eslint": {
                     "executor": "@nrwl/workspace:run-commands",
-                    "options": {
-                        "command": "eslint . --fix --ignore-pattern '**/file-suites/**'"
-                    }
+                    "options": { "command": "eslint . --fix --ignore-pattern '**/file-suites/**'" }
                 },
                 "format:prettier": {
                     "executor": "@nrwl/workspace:run-commands",
-                    "options": {
-                        "command": "prettier '**/*.{ts,html,css,scss,md,js,json,yml}' --write"
-                    }
+                    "options": { "command": "prettier '**/*.{ts,html,css,scss,md,js,json,yml}' --write" }
                 }
             }
         }

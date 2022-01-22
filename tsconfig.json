@@ -1,12 +1,5 @@
 {
     "extends": "./libs/typescript/tsconfig.json",
-    "ts-node": {
-        "compilerOptions": {
-            "module": "commonjs"
-        }
-    },
-    "compilerOptions": {
-        "types": ["node"],
-        "module": "esnext"
-    }
+    "ts-node": { "compilerOptions": { "module": "commonjs" } },
+    "compilerOptions": { "types": ["node"], "module": "esnext" }
 }

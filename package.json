@@ -1,5 +1,6 @@
 {
     "name": "@angular-ru/sdk",
+    "version": "0.0.0",
     "private": true,
     "description": "Angular-RU SDK",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk",
@@ -17,13 +18,18 @@
         "postinstall": "nx postinstall .platform",
         "lint": "nx format:eslint .platform"
     },
+    "commitlint": {
+        "extends": [
+            "./.global/commitlint.config.js"
+        ]
+    },
     "lint-staged": {
         "*.ts": [
-            "yarn prettier --write",
-            "yarn eslint --fix --quiet --ignore-pattern '**/file-suites/**'"
+            "npx prettier --write",
+            "npx eslint --fix --quiet --ignore-pattern '**/file-suites/**'"
         ],
         "*.{html,css,scss,md,js,json}": [
-            "yarn prettier --write"
+            "npx prettier --write"
         ]
     },
     "browserslist": [
@@ -42,19 +48,19 @@
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "12.2.14",
-        "@angular/animations": "12.2.15",
+        "@angular/animations": "12.2.14",
         "@angular/cdk": "12.2.13",
         "@angular/cli": "12.2.14",
-        "@angular/common": "12.2.15",
-        "@angular/compiler": "12.2.15",
-        "@angular/compiler-cli": "12.2.15",
-        "@angular/core": "12.2.15",
-        "@angular/forms": "12.2.15",
-        "@angular/language-service": "12.2.15",
+        "@angular/common": "12.2.14",
+        "@angular/compiler": "12.2.14",
+        "@angular/compiler-cli": "12.2.14",
+        "@angular/core": "12.2.14",
+        "@angular/forms": "12.2.14",
+        "@angular/language-service": "12.2.14",
         "@angular/material": "12.2.13",
-        "@angular/platform-browser": "12.2.15",
-        "@angular/platform-browser-dynamic": "12.2.15",
-        "@angular/router": "12.2.15",
+        "@angular/platform-browser": "12.2.14",
+        "@angular/platform-browser-dynamic": "12.2.14",
+        "@angular/router": "12.2.14",
         "@ngx-translate/core": "14.0.0",
         "@ngx-translate/http-loader": "7.0.0",
         "@ngxs/logger-plugin": "3.7.3",
@@ -63,16 +69,25 @@
         "ngx-mask": "12.0.0",
         "ngx-toastr": "14.2.1",
         "pretty": "2.0.0",
-        "rxjs": "7.5.2",
+        "rxjs": "7.5.1",
         "tsickle": "0.43.0",
         "tslib": "2.3.1",
         "typescript": "4.4.4",
         "zone.js": "0.11.4"
     },
     "engines": {
-        "node": ">=v14.17.6",
-        "npm": "Please use yarn instead of NPM to install dependencies",
-        "yarn": ">=1.22.10"
+        "node": ">=16.12",
+        "npm": ">=7.1",
+        "yarn": "Please use npm instead of yarn to install dependencies"
+    },
+    "renovate": {
+        "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+        "extends": [
+            "@angular-ru/renovate"
+        ],
+        "schedule": [
+            "on the 2nd and 4th day instance on sunday after 9pm"
+        ]
     },
     "standard-version": {
         "skip": {

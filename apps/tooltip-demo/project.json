@@ -13,7 +13,7 @@
                 "index": "apps/tooltip-demo/index.html",
                 "assets": ["apps/tooltip-demo/assets"],
                 "polyfills": "apps/tooltip-demo/polyfills.ts",
-                "styles": [".styles/integration-app.style.scss", "apps/tooltip-demo/styles.scss"],
+                "styles": [".global/integration-app.style.scss", "apps/tooltip-demo/styles.scss"],
                 "aot": false,
                 "vendorChunk": true,
                 "extractLicenses": false,

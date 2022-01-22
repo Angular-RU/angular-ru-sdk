@@ -63,7 +63,7 @@ jobs:
 
       - name: Generate CHANGELOG.md
         if: ${{ env.PREV_LAST_TAG != env.NEW_LAST_TAG }}
-        run: npx nx changelog .platform
+        run: echo "Generate CHANGELOG.md" # TODO: need fix later
 
       - name: Commit and push changes
         run: git push origin && git push origin --tags

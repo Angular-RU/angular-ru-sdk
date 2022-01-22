@@ -322,7 +322,7 @@ export class AppComponent implements OnInit {
 }
 ```
 
-See more about [Entity API](./state-repository.md)
+See more about [Entity API](docs/ngxs/state-repository.md)
 
 #### Sorting
 

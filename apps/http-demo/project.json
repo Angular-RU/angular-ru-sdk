@@ -13,7 +13,7 @@
                 "index": "apps/http-demo/index.html",
                 "assets": ["apps/http-demo/assets"],
                 "polyfills": "apps/http-demo/polyfills.ts",
-                "styles": [".styles/integration-app.style.scss", "apps/http-demo/styles.scss"],
+                "styles": [".global/integration-app.style.scss", "apps/http-demo/styles.scss"],
                 "aot": false,
                 "vendorChunk": true,
                 "extractLicenses": false,
