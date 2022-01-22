@@ -8,6 +8,20 @@ jobs:
   release:
     runs-on: ubuntu-20.04
     steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+          persist-credentials: false
+
+      - name: Prepare git and npm token
+        run: |
+          git config --global user.name "angular-ru-bot"
+          git config --global user.email "angular-ru@yandex.ru"
+          git config remote.origin.url https://x-access-token:${{ secrets.ANGULAR_RU_BOT_PAT }}@github.com/$GITHUB_REPOSITORY
+
+      - name: Setup Node.js and Cache
+        uses: ./.github/actions/nodejs
+
       - name: Wait for tests to succeed
         uses: lewagon/wait-on-check-action@v1.0.0
         with:
@@ -34,20 +48,6 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           allowed-conclusions: success
           wait-interval: 15
-
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: '0'
-          persist-credentials: false
-
-      - name: Prepare git and npm token
-        run: |
-          git config --global user.name "angular-ru-bot"
-          git config --global user.email "angular-ru@yandex.ru"
-          git config remote.origin.url https://x-access-token:${{ secrets.ANGULAR_RU_BOT_PAT }}@github.com/$GITHUB_REPOSITORY
-
-      - name: Setup Node.js and Cache
-        uses: ./.github/actions/nodejs
 
       - name: Provide NPM token
         run: npm config set '//registry.npmjs.org/:_authToken' "${{ secrets.NPM_TOKEN }}"
