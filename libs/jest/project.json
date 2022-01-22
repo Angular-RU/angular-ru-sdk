@@ -35,7 +35,7 @@
                 "commitMessageFormat": "chore(${projectName}): release version ${version} [ci skip]",
                 "versionTagPrefix": "@angular-ru/jest-",
                 "skipProjectChangelog": true,
-                "trackDeps": true,
+                "trackDeps": false,
                 "noVerify": true
             },
             "dependsOn": [{ "target": "version", "projects": "dependencies" }]

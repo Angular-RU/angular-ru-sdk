@@ -40,7 +40,7 @@
                 "versionTagPrefix": "@angular-ru/cdk-",
                 "skipProjectChangelog": true,
                 "baseBranch": "origin/master",
-                "trackDeps": true,
+                "trackDeps": false,
                 "noVerify": true
             }
         }

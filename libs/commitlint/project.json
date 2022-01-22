@@ -30,7 +30,7 @@
                 "versionTagPrefix": "@angular-ru/commitlint-",
                 "skipProjectChangelog": true,
                 "baseBranch": "origin/master",
-                "trackDeps": true,
+                "trackDeps": false,
                 "noVerify": true
             },
             "dependsOn": [{ "target": "version", "projects": "dependencies" }]
