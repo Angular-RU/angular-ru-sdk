@@ -5,7 +5,7 @@
 -   `based on package "js-big-decimal@1.3.4"`
 -   `https://github.com/royNiladri/js-big-decimal`
 
-```ts
+```typescript
 import { BigDecimal } from '@angular-ru/cdk/big-decimal';
 
 const a: BigDecimal = new BigDecimal('111');

@@ -2,7 +2,7 @@
 
 `app.module.ts`
 
-```ts
+```typescript
 import { NgxsModule } from '@ngxs/store';
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
 
@@ -19,7 +19,7 @@ export class AppModule {}
 
 `count.state.ts`
 
-```ts
+```typescript
 import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
 import { Computed, DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
 import { State } from '@ngxs/store';
@@ -61,7 +61,7 @@ export class CountState extends NgxsDataRepository<CountModel> {
 
 `app.component.ts`
 
-```ts
+```typescript
 ...
 
 @Component({
@@ -94,7 +94,7 @@ export class AppComponent {
 
 `Need provide logger-plugin`
 
-```ts
+```typescript
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 
 @NgModule({
@@ -107,7 +107,7 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 export class AppModule {}
 ```
 
-```ts
+```typescript
 @StateRepository()
 @State<string[]>({
     name: 'todo',

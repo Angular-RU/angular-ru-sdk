@@ -16,7 +16,7 @@ $ npm install @angular-ru/cdk/tooltip
 // ...
 ```
 
-```ts
+```typescript
 import { TooltipModule } from '@angular-ru/cdk/tooltip';
 import { NgModule } from '@angular/core';
 

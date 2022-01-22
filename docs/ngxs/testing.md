@@ -2,7 +2,7 @@
 
 Unit testing is easy with NGXS and NGXS Data plugin. A basic test looks like this:
 
-```ts
+```typescript
 describe('AppState', () => {
     @StateRepository()
     @State({
@@ -26,7 +26,7 @@ describe('AppState', () => {
 
 #### Example where we testing NGXS Lifecycle
 
-```ts
+```typescript
 // ..
 
 describe('[TEST]: Abstract ngxs data repository', () => {

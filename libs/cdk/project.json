@@ -2,9 +2,9 @@
     "root": "libs/cdk/",
     "sourceRoot": "libs/cdk/",
     "projectType": "library",
-    "tags": ["scope:libs", "scope:symlinked"],
+    "tags": ["scope:libs"],
     "targets": {
-        "prebuild": {
+        "build-angular": {
             "builder": "@angular-devkit/build-angular:ng-packagr",
             "options": {
                 "tsConfig": "libs/cdk/tsconfig.lib.json",
@@ -20,7 +20,7 @@
                     "cd node_modules/@angular-ru/ && rm -rf cdk && ln -s -f ../../@angular-ru/cdk cdk"
                 ]
             },
-            "dependsOn": [{ "target": "prebuild", "projects": "self" }],
+            "dependsOn": [{ "target": "build-angular", "projects": "self" }],
             "outputs": ["./@angular-ru/cdk", "node_modules/@angular-ru/cdk"]
         },
         "test": {
@@ -35,15 +35,14 @@
         "version": {
             "executor": "@jscutlery/semver:version",
             "options": {
-                "postTargets": ["cdk:build", "cdk:publish"],
+                "postTargets": ["cdk:build-angular", "cdk:publish"],
                 "commitMessageFormat": "chore(${projectName}): release version ${version} [ci skip]",
                 "versionTagPrefix": "@angular-ru/cdk-",
                 "skipProjectChangelog": true,
-                "baseBranch": "master",
+                "baseBranch": "origin/master",
                 "trackDeps": true,
                 "noVerify": true
-            },
-            "dependsOn": [{ "target": "version", "projects": "dependencies" }]
+            }
         }
     }
 }

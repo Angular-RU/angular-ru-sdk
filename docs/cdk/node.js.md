@@ -28,7 +28,7 @@ tsconfig.spec.json
 }
 ```
 
-```ts
+```typescript
 exposeTsCompilerOptionsByTsConfig('./tsconfig.spec.json');
 
 /*
@@ -52,12 +52,12 @@ exposeTsCompilerOptionsByTsConfig('./tsconfig.spec.json');
 
 when our dir `/home/user/app/name`
 
-```ts
+```typescript
 resolveTsConfigPath('../tsconfig.lib.json'); // /home/user/app/tsconfig.lib.json
 ```
 
 -   checkIsNodeEnvironment
 
-```ts
+```typescript
 checkIsNodeEnvironment(); // true or throw error
 ```

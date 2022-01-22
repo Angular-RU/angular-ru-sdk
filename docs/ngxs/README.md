@@ -57,7 +57,7 @@ Minimal peer dependencies:
 
 `counter.state.ts`
 
-```ts
+```typescript
 import { State, Action, StateContext } from '@ngxs/store';
 
 export class Increment {
@@ -87,7 +87,7 @@ export class CounterState {
 
 `app.component.ts`
 
-```ts
+```typescript
 import { Component } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 
@@ -122,7 +122,7 @@ export class AppComponent {
 
 `counter.state.ts`
 
-```ts
+```typescript
 import { State } from '@ngxs/store';
 import { DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
@@ -146,7 +146,7 @@ export class CounterState extends NgxsDataRepository<number> {
 
 `app.component.ts`
 
-```ts
+```typescript
 import { Component } from '@angular/core';
 
 import { CounterState } from './counter.state';

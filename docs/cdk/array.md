@@ -3,7 +3,7 @@
 -   `updateArray<T extends { id: Any }>(sourceArray: Nullable<T[]>, updatedArray: Nullable<T[]>): T[];`
 -   `updateArray<T>(sourceArray: Nullable<T[]>, updatedArray: Nullable<T[]>, compareFnOrKey: keyof T | CompareFn<T>): T[]`
 
-```ts
+```typescript
 expect(
     updateArray(origin, [
         { id: 3, value: 3 },
@@ -41,7 +41,7 @@ expect(
 
 -   `uniqueArrayOf`
 
-```ts
+```typescript
 expect(
     uniqueArrayOf(
         [
@@ -75,13 +75,13 @@ expect(
 
 -   `unique`
 
-```ts
+```typescript
 expect([a, a, 'a', 13, 13, '13'].filter(unique)).toEqual([a, 'a', 13, '13']);
 ```
 
 -   `partition`
 
-```ts
+```typescript
 const [evens, odds] = partition([0, 1, 2, 3], (e) => e % 2 === 0);
 console.log(evens); // [0, 2]
 console.log(odds); // [1, 3]
@@ -89,7 +89,7 @@ console.log(odds); // [1, 3]
 
 -   `exclude`
 
-```ts
+```typescript
 expect([1, 2, 3, 4].filter(exclude([1, 2, 3]))).toEqual([4]);
 expect([1, 2, 3, 4].filter(exclude(4))).toEqual([1, 2, 3]);
 
@@ -110,7 +110,7 @@ expect([unique, { v: 2 }, { v: 3 }, { v: 4 }].filter(exclude([unique, { v: 2 }])
 
 -   `include`
 
-```ts
+```typescript
 expect([1, 2, 3].filter(include(3))).toEqual([3]);
 expect([1, 2, 3].filter(include([2, 3, 4]))).toEqual([2, 3]);
 expect([{ v: 1 }, { v: 2 }, { v: 3 }].filter(include({ v: 1 }))).toEqual([]);
@@ -120,7 +120,7 @@ expect([unique, { v: 2 }, { v: 3 }].filter(include([unique]))).toEqual([unique])
 
 -   `byPropertyValue`
 
-```ts
+```typescript
 const array: Array<{ a: string; b: number }> = [
     { a: 'title', b: 1 },
     { a: 'title2', b: 2 },
@@ -138,7 +138,7 @@ expect(array.filter(byPropertyValue('b', 1))).toStrictEqual([{ a: 'title', b: 1 
 
 -   `pick`
 
-```ts
+```typescript
 const array: Array<{ a: string; b: any }> = [
     { a: 'foo', b: 1 },
     { a: 'bar', b: { c: 'baz' } }
@@ -152,7 +152,7 @@ expect(array.map(pick('c'))).toEqual([undefined, undefined]);
 
 -   `hasItems`
 
-```ts
+```typescript
 hasNoItem([1]); // true
 hasNoItem([1, 2, 3]); // true
 hasNoItem([]); // false
@@ -162,7 +162,7 @@ hasNoItem(undefined); // false
 
 -   `hasNoItems`
 
-```ts
+```typescript
 hasNoItem([1]); // false
 hasNoItem([1, 2, 3]); // false
 hasNoItem([]); // true
@@ -172,7 +172,7 @@ hasNoItem(undefined); // true
 
 -   `hasOneItem`
 
-```ts
+```typescript
 hasOneItem([1]); // true
 hasOneItem([1, 2, 3]); // false
 hasOneItem([]); // false
@@ -182,7 +182,7 @@ hasOneItem(undefined); // false
 
 -   `hasManyItems`
 
-```ts
+```typescript
 hasManyItems([1]); // false
 hasManyItems([1, 2, 3]); // true
 hasManyItems([]); // false
@@ -192,7 +192,7 @@ hasManyItems(undefined); // false
 
 -   `hasAtMostOneItem`
 
-```ts
+```typescript
 hasAtMostOneItem([1]); // true
 hasAtMostOneItem([1, 2, 3]); // false
 hasAtMostOneItem([]); // true

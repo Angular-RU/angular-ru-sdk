@@ -2,7 +2,7 @@
 
 -   `toTimestamp`
 
-```ts
+```typescript
 import { toTimestamp } from '@angular-ru/cdk/date';
 
 const date: string = toTimestamp('5.07.2019 00:00', 'yyyy-MM-dd HH:mm:ss');
@@ -11,7 +11,7 @@ expect(date).toEqual('2019-07-05 00:00:00');
 
 -   `dateStringToDate`
 
-```ts
+```typescript
 import { dateStringToDate } from '@angular-ru/cdk/date';
 
 const date = '11.12.202018 15:41:37';
@@ -28,7 +28,7 @@ expect(dateStringToDate(date).getFullYear()).toEqual(new Date().getFullYear());
 
 -   `toMilliseconds`
 
-```ts
+```typescript
 import { toMilliseconds } from '@angular-ru/cdk/date';
 
 it(`toMilliseconds`, () => {
@@ -40,14 +40,14 @@ it(`toMilliseconds`, () => {
 
 -   `getToday` - current date from `00:00`
 
-```ts
+```typescript
 getToday(); // type Date -> [12.01.2020 00:00]
 ```
 
 -   `startOfDay`
 -   `endOfDay`
 
-```ts
+```typescript
 import { shiftDate } from '@angular-ru/cdk/date';
 
 const someDate: Date = new Date('2020-01-01, 16:01:00');
@@ -67,7 +67,7 @@ it('should correctly shift date', (): void => {
 });
 ```
 
-```ts
+```typescript
 import { toISOStringWithoutTimezone } from '@angular-ru/cdk/date';
 
 const timezoneOffSet: number = new Date().getTimezoneOffset();

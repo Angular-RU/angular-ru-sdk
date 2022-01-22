@@ -19,7 +19,7 @@ An Entity represents some sort of business data, so Course and Lesson are exampl
 In our code, an entity is defined as a Typescript type definition. For example, in an online course system, the most
 important entities would be Course and Lesson, defined with these two custom object types:
 
-```ts
+```typescript
 export interface Course {
     id: number;
     description: string;
@@ -266,7 +266,7 @@ scratch.
 For example, if we would have to write some type definitions to represent the complete store state, they would look
 something like this:
 
-```ts
+```typescript
 export interface CoursesEntityCollections {
     ids: number[];
     entities: { [key: number]: Course };
@@ -286,7 +286,7 @@ Therefore, we do not duplicate such interfaces, but simply use the ready-made `N
 
 #### Writing states that support the Entity State format
 
-```ts
+```typescript
 @StateRepository()
 @State({
     name: 'courses',
@@ -296,7 +296,7 @@ Therefore, we do not duplicate such interfaces, but simply use the ready-made `N
 export class CoursesEntitiesState extends NgxsDataEntityCollectionsRepository<Course> {}
 ```
 
-```ts
+```typescript
 @StateRepository()
 @State({
     name: 'lessons',
@@ -306,7 +306,7 @@ export class CoursesEntitiesState extends NgxsDataEntityCollectionsRepository<Co
 export class LessonEntitiesState extends NgxsDataEntityCollectionsRepository<Lesson> {}
 ```
 
-```ts
+```typescript
 @Component({
     selector: 'app'
     // ..
@@ -334,7 +334,7 @@ based on an entity key, or a comparer function.
 
 #### Examples sorting
 
-```ts
+```typescript
 interface People {
     id: number;
     name: string;
@@ -360,7 +360,7 @@ class PeopleEntitiesState extends NgxsDataEntityCollectionsRepository<People> {}
 
 ##### Sort by ASC
 
-```ts
+```typescript
 @Component({
     /* */
 })
@@ -389,7 +389,7 @@ export class PeopleComponent implements OnInit {
 
 ##### Sort by DESC
 
-```ts
+```typescript
 @Component({
     /* */
 })
@@ -418,7 +418,7 @@ export class PeopleComponent implements OnInit {
 
 ### Sort by compare function
 
-```ts
+```typescript
 people.sort((a, b) => a.age - b.age);
 ```
 
@@ -426,7 +426,7 @@ people.sort((a, b) => a.age - b.age);
 
 The `entities.sort(comparator?)` method sorts the entities ids by your entity collections state.
 
-```ts
+```typescript
 entities.setComparator(comparator);
 entities.sort();
 // or
@@ -438,7 +438,7 @@ the comparator to leave the collection unsorted, which is more performant during
 
 If you want implement custom sorting, you can override setEntitiesState method:
 
-```ts
+```typescript
 @StateRepository()
 @State({
     name: 'helloWorld',
@@ -462,7 +462,7 @@ class HelloWorldEntitiesState {
 
 By default, the selection is on the `ID` primary key, you can override this behavior:
 
-```ts
+```typescript
 interface Lesson {
     lessonId: number;
     title: string;
@@ -481,7 +481,7 @@ class LessonEntitiesState extends NgxsDataEntityCollectionsRepository<Lesson> {
 
 or
 
-```ts
+```typescript
 @StateRepository()
 @State({
     name: 'lesson',
@@ -501,7 +501,7 @@ Composite key, or composite primary key, refers to cases where more than one col
 of a table. In such cases, all foreign keys will also need to include all the columns in the composite key. Note that
 the columns that make up a composite key can be of different data types.
 
-```ts
+```typescript
 interface StudentEntity {
     groupId: number;
     batchId: number;
@@ -511,7 +511,7 @@ interface StudentEntity {
 }
 ```
 
-```ts
+```typescript
 @StateRepository()
 @State({
     name: 'students',
@@ -525,7 +525,7 @@ class StudentEntitiesState extends NgxsDataEntityCollectionsRepository<StudentEn
 }
 ```
 
-```ts
+```typescript
 @Component({
     /* */
 })
@@ -610,7 +610,7 @@ We get the state in store:
 If you need more than the default reducer properties for your entity collection (e.g. to track loading state), then you
 can extend it like this:
 
-```ts
+```typescript
 interface CourseOptions {
     loading: boolean;
 }
@@ -641,7 +641,7 @@ export class CoursesEntitiesState extends NgxsDataEntityCollectionsRepository<Co
 }
 ```
 
-```ts
+```typescript
 @Component({
     selector: 'app'
     // ..

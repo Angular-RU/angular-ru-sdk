@@ -2,7 +2,7 @@
 
 -   `ControlValueInterceptor`
 
-```ts
+```typescript
 @Directive({
     selector: '[autoSplit]',
     providers: [ControlValueInterceptor]

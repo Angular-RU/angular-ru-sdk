@@ -13,7 +13,7 @@ $ npm install @angular-ru/jest -D
 
 Create `jest.config.js`
 
-```ts
+```typescript
 const { createTsJestConfig } = require('@angular-ru/jest');
 
 module.exports = createTsJestConfig({
@@ -38,7 +38,7 @@ $ jest --config jest.config.js
 
 -   I have `jest-haste-map: Haste module naming collision`
 
-```ts
+```typescript
 module.exports = createTsJestConfig({
     // ...
     jestConfig: {
@@ -50,7 +50,7 @@ module.exports = createTsJestConfig({
 
 -   How can I add setupFilesAfterEnv files?
 
-```ts
+```typescript
 module.exports = createTsJestConfig({
     // ...
     jestConfig: {

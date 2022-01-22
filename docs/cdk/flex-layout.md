@@ -16,7 +16,7 @@ $ npm install @angular-ru/cdk
 // ...
 ```
 
-```ts
+```typescript
 import { FlexLayoutModule } from '@angular-ru/cdk/flex-layout';
 import { NgModule } from '@angular/core';
 

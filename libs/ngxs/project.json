@@ -29,7 +29,7 @@
                 "commitMessageFormat": "chore(${projectName}): release version ${version} [ci skip]",
                 "versionTagPrefix": "@angular-ru/ngxs-",
                 "skipProjectChangelog": true,
-                "baseBranch": "master",
+                "baseBranch": "origin/master",
                 "trackDeps": true,
                 "noVerify": true
             },

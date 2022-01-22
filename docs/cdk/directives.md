@@ -7,7 +7,7 @@
 
     -   `Input() focusDisabled: boolean` - default: `false`
 
-```ts
+```typescript
 import { InitialFocusModule } from '@angular-ru/cdk/directives';
 import { Component, NgModule } from '@angular/core';
 
@@ -28,7 +28,7 @@ export class AppComponent {}
 
 -   `AmountFormatDirective, AmountFormatDirectiveModule`
 
-```ts
+```typescript
 import { AmountFormatDirectiveModule } from '@angular-ru/cdk/directives';
 import { Component, NgModule } from '@angular/core';
 
@@ -49,7 +49,7 @@ export class AppComponent {}
 
 -   `ConvertCaseDirective, ConvertCaseDirectiveModule`
 
-```ts
+```typescript
 import { ConvertCaseDirectiveModule } from '@angular-ru/cdk/directives';
 import { Component, NgModule } from '@angular/core';
 
@@ -70,7 +70,7 @@ export class AppComponent {}
 
 -   `DisableControlDirective, DisableControlDirectiveModule`
 
-```ts
+```typescript
 import { DisableControlDirectiveModule } from '@angular-ru/cdk/directives';
 import { Component, NgModule } from '@angular/core';
 
@@ -91,7 +91,7 @@ export class AppComponent {}
 
 -   `MaxLengthDirective, MaxLengthDirectiveModule`
 
-```ts
+```typescript
 import { MaxLengthDirectiveModule } from '@angular-ru/cdk/directives';
 import { Component, NgModule } from '@angular/core';
 
@@ -117,7 +117,7 @@ API:
 
 -   `@Input('trimDisabled') disabled: boolean` - default: `false`
 
-```ts
+```typescript
 import { TrimInputModule } from '@angular-ru/cdk/directives';
 import { Component, NgModule } from '@angular/core';
 
@@ -138,7 +138,7 @@ export class AppComponent {}
 
 -   `SplitStringDirective, SplitStringModule`
 
-```ts
+```typescript
 import { SplitStringModule, SplitStringOptions } from '@angular-ru/cdk/directives';
 import { Component, NgModule } from '@angular/core';
 
@@ -179,7 +179,7 @@ class TestComponent {
 
 -   `InputFilterDirective, InputFilterModule`
 
-```ts
+```typescript
 import { InputFilterModule, FilterPredicate } from '@angular-ru/cdk/directives';
 import { Component, NgModule } from '@angular/core';
 

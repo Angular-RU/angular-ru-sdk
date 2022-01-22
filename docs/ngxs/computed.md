@@ -4,7 +4,7 @@ Computed values are values that can be derived from the existing state or other 
 very similar to formulas in spreadsheets. Computed values can't be underestimated, as they help you to make your actual
 modifiable state as small as possible. Besides, that they are highly optimized, so use them wherever possible.
 
-```ts
+```typescript
 @StateRepository()
 @State<OrderLineModel>({
     name: 'orderLine',
@@ -28,7 +28,7 @@ won't re-run if none of the data used in the previous computation changed.
 
 ### Using values from other states
 
-```ts
+```typescript
 @StateRepository()
 @State({
     name: 'price',
@@ -80,7 +80,7 @@ class AppComponent {
 
 #### Now `Selector` and `Select` utilities are not needed, you can do it right in the state
 
-```ts
+```typescript
 @StateRepository()
 @State<string[]>({
     name: 'animals',
@@ -113,7 +113,7 @@ return a state stream. Let's say we have 2 states; 'zoos' and 'theme parks'. We 
 the zoos and theme parks for a given city. These are two very distinct state classes that are likely not related in any
 manner. We can use a meta selector to join these two states together like:
 
-```ts
+```typescript
 @StateRepository()
 @State({ name: 'zoo', defaults: [] })
 @Injectable()
@@ -155,7 +155,7 @@ Usage is pretty similar, but you shouldn't forget to unsubscribe from combineLat
 
 If you use any unknown value inside computed fields then they are not tracked:
 
-```ts
+```typescript
 @Injectable()
 class MyFirstCountService {
     private values$: BehaviorSubject<number> = new BehaviorSubject(0);
@@ -210,7 +210,7 @@ When you click the `"Increment firstCount"` button, you will see that the `sum` 
 very simple, caching occurs when any of the states has not changed and the result is still returned from the cache. In
 order to help recalculate the value again, if you need it, you will need to manually update the cache:
 
-```ts
+```typescript
 @Injectable()
 class MyFirstCountService {
     private values$: BehaviorSubject<number> = new BehaviorSubject(0);

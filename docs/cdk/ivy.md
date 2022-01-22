@@ -2,7 +2,7 @@
 
 -   `useInjector` - Access to DI inside decorators by class constructor
 
-```ts
+```typescript
 import { Component, Injector } from '@angular/core';
 import { useInjector } from '@angular-ru/cdk/ivy';
 

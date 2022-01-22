@@ -10,7 +10,7 @@ JavaScript defines two overarching groups of data types:
 
 Let’s contrast the behavior of primitives with references. Let’s declare an object with a couple of properties:
 
-```ts
+```typescript
 const me = {
     name: 'James',
     age: 29
@@ -19,7 +19,7 @@ const me = {
 
 Given that JavaScript objects are mutable, we can change its existing properties and add new ones:
 
-```ts
+```typescript
 me.name = 'Rob';
 me.isTall = true;
 
@@ -29,7 +29,7 @@ console.log(me); // Object { name: "Rob", age: 29, isTall: true };
 Unlike primitives, objects can be directly mutated without being replaced by a new reference. We can prove this by
 sharing a single object across two declarations:
 
-```ts
+```typescript
 const me = {
     name: 'James',
     age: 29
@@ -59,7 +59,7 @@ denote properties as readonly across the entire depth of an object.
 
 #### What are the benefits?
 
-```ts
+```typescript
 @StateRepository()
 @State<string[]>({
     name: 'todo',
@@ -78,7 +78,7 @@ export class TodoState extends NgxsImmutableDataRepository<string[]> {
 Thus, the developer will not be able to make his own mistake. If he mutates the state directly or use mutational
 methods. If you need to use states for set input property:
 
-```ts
+```typescript
 import { Immutable } from '@angular-ru/cdk/typings';
 
 @Component({ .. })
@@ -101,7 +101,7 @@ However, if you really need to cast to mutable, you can do this in several ways:
 
 `Into state`:
 
-```ts
+```typescript
 @StateRepository()
 @State<string[]>({
     name: 'todo',
@@ -116,7 +116,7 @@ export class TodoState extends NgxsImmutableDataRepository<string[]> {
 
 or `Into template` without creating `mutableState$`:
 
-```ts
+```typescript
 import { MutableTypeModule } from '@angular-ru/cdk/pipes';
 
 @NgModule({
@@ -128,7 +128,7 @@ import { MutableTypeModule } from '@angular-ru/cdk/pipes';
 export class AppModuleOrMyLazyModule {}
 ```
 
-```ts
+```typescript
 @Component({ .. })
 class TodoComponent {
     @Input() public data: string[];
@@ -147,7 +147,7 @@ class AppComponent {
 
 To use state operators, you must specify the exact return type:
 
-```ts
+```typescript
 this.ctx.setState(
     patch<Immutable<TodoStateModel>>({
         todos: updateItem<Todo>(index, patch({ completed: (value) => !value }))

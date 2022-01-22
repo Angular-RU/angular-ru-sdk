@@ -1,6 +1,6 @@
 ## (@)Persistence
 
-```ts
+```typescript
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
 import { NGXS_DATA_STORAGE_PLUGIN } from '@angular-ru/ngxs/storage';
 
@@ -11,7 +11,7 @@ import { NGXS_DATA_STORAGE_PLUGIN } from '@angular-ru/ngxs/storage';
 export class AppModule {}
 ```
 
-```ts
+```typescript
 @Persistence()
 @StateRepository()
 @State<string[]>({
@@ -76,7 +76,7 @@ LocalStorage by default.
 If you don't want your value that was received from the storage to be synchronized again with the storage, you can
 disable this step. You will see that lastChanged is not updated again and again when the page reloads.
 
-```ts
+```typescript
 @Persistence({
     fireInit: false,
     existingEngine: localStorage
@@ -94,7 +94,7 @@ export class TodoState extends NgxsDataRepository<string[]> {
 
 ### Time to live (TTL)
 
-```ts
+```typescript
 interface AuthJwtModel {
     accessToken: string | null;
     refreshToken: string | null;
@@ -136,7 +136,7 @@ export class AuthJwtState extends NgxsDataRepository<AuthJwtModel> implements Ng
 
 ### Migration strategy
 
-```ts
+```typescript
 // mock for example
 localStorage.setItem(
     '@ngxs.store.migrate',
@@ -183,7 +183,7 @@ state.getState();
 However, a situation may arise when you need to migrate different data sources. Suppose you had different models for a
 nested state:
 
-```ts
+```typescript
 sessionStorage.setItem(
     '@ngxs.store.deepFilter.myFilter',
     JSON.stringify({
@@ -205,7 +205,7 @@ localStorage.setItem(
 
 And the new model now looks like this:
 
-```ts
+```typescript
 export interface MyFilter {
     phone: string | null;
     cardNumber: string | null;
@@ -224,7 +224,7 @@ export interface NewModel {
 
 In this case, you can define a handler for each:
 
-```ts
+```typescript
 @Persistence([
     {
         version: 2,
@@ -281,7 +281,7 @@ Also, if you want skipping migration for another provider, you can set `skipMigr
 The storage event of the Window interface fires when a storage area (localStorage or sessionStorage) has been modified
 in the context of another document.
 
-```ts
+```typescript
 @Persistence()
 @StateRepository()
 @State({
@@ -297,7 +297,7 @@ class CountState extends NgxsDataRepository<number> implements NgxsDataAfterStor
 }
 ```
 
-```ts
+```typescript
 // emulate storage event
 
 localStorage.setItem(
@@ -317,7 +317,7 @@ will be called.
 
 ### Decode/encode
 
-```ts
+```typescript
 @Persistence({
     existingEngine: localStorage,
     decode: STORAGE_DECODE_TYPE.BASE64
@@ -337,7 +337,7 @@ export class TodoState extends NgxsDataRepository<string[]> {}
 
 By default, key search uses the prefix `@ngxs.store.`, but you can override the prefix:
 
-```ts
+```typescript
 import { NGXS_DATA_STORAGE_PREFIX_TOKEN, NGXS_DATA_STORAGE_PLUGIN } from '@angular-ru/ngxs/storage';
 
 @NgModule({
@@ -349,7 +349,7 @@ export class AppModule {}
 
 ### Use base64 for decode/encode data in storage by default everything
 
-```ts
+```typescript
 import { STORAGE_DECODE_TYPE } from '@angular-ru/ngxs/typings';
 import { NGXS_DATA_STORAGE_DECODE_TYPE_TOKEN, NGXS_DATA_STORAGE_PLUGIN } from '@angular-ru/ngxs/storage';
 
@@ -365,7 +365,7 @@ export class AppModule {}
 In more complex cases, when you need to use other storage, or you want to save part of the state, you can use the
 complex options:
 
-```ts
+```typescript
 export interface ParentCountModel {
     val: number;
     deepCount?: CountModel;
@@ -401,7 +401,7 @@ export class CountState extends NgxsDataRepository<CountModel> {}
 
 ### Global custom storage
 
-```ts
+```typescript
 import { DataStorage } from '@angular-ru/ngxs/typings';
 
 class MyGlobalStorage implements DataStorage {
@@ -422,7 +422,7 @@ class MyState {}
 
 #### Injectable Storage
 
-```ts
+```typescript
 @Persistence({
     useClass: SecureStorageService
 })
@@ -439,7 +439,7 @@ class MyState {}
 export class SecureState extends NgxsDataRepository<SecureModel> {}
 ```
 
-```ts
+```typescript
 import { DataStorage } from '@angular-ru/ngxs/typings';
 
 @Injectable({ provideIn: 'root' })
@@ -465,7 +465,7 @@ export class SecureStorageService implements DataStorage {
 
 ### Not recommended
 
-```ts
+```typescript
 @Persistence([
     {
         path: 'customerFilter.cardNumber',

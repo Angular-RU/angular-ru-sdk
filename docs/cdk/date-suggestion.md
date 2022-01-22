@@ -16,7 +16,7 @@ Default implementation has 8 built-in strategies:
 -   `FIRST_DAY_OF_INTERVAL` — set the beginning and end of the first day from the current interval;
 -   `LAST_180_DAYS_OF_INTERVAL` — set 180 days to the last day from the current interval.
 
-```ts
+```typescript
 import { DateSuggestionModule, DateSuggestionComposer, DefaultDateIntervalSuggestion } from '@angular-ru/cdk/date';
 
 @NgModule({
@@ -58,7 +58,7 @@ export class AppComponent {
 
 You can implement your own strategies and combine them with the default strategies as needed.
 
-```ts
+```typescript
 import {
     DAYS_COUNT,
     DEFAULT_SUGGESTION_STRATEGY_MAP,

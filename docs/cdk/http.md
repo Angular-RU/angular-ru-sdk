@@ -16,7 +16,7 @@ Example, if your API base url placed here `https://my-server.com/api/***` and ha
 
 ![](https://habrastorage.org/webt/af/bg/n9/afbgn985tehybqdpk2gs1ymq9se.jpeg)
 
-```ts
+```typescript
 import { HttpClientModule } from '@angular/common/http';
 import { DataHttpClientModule } from '@angular-ru/cdk/http';
 
@@ -38,7 +38,7 @@ export class AppModule {}
 
 -   `user.interface.ts`
 
-```ts
+```typescript
 export interface User {
     id: number;
     name: string;
@@ -47,7 +47,7 @@ export interface User {
 
 -   `api-users.client.ts`
 
-```ts
+```typescript
 import { Delete, Get, Patch, PathVariable, RequestBody, Put, RestClient } from '@angular-ru/cdk/http/decorators';
 import { DataHttpClient } from '@angular-ru/cdk/http';
 import { Injectable } from '@angular/core';
@@ -90,7 +90,7 @@ export class ApiUsersClient extends DataHttpClient {
 
 -   `app.component.ts`
 
-```ts
+```typescript
 @Component({
     //...
     changeDetection: ChangeDetectionStrategy.OnPush
@@ -113,7 +113,7 @@ export class UsersComponent {
 
 each of these examples works the same
 
-```ts
+```typescript
 @Injectable()
 @RestClient('/cities')
 class MyCitiesClient extends DataHttpClient {
@@ -124,7 +124,7 @@ class MyCitiesClient extends DataHttpClient {
 }
 ```
 
-```ts
+```typescript
 @Injectable()
 @RestClient('/cities')
 class MyCitiesClient extends DataHttpClient {
@@ -135,7 +135,7 @@ class MyCitiesClient extends DataHttpClient {
 }
 ```
 
-```ts
+```typescript
 @Injectable()
 @RestClient('/cities')
 class MyCitiesClient extends DataHttpClient {
@@ -163,7 +163,7 @@ requests can be executed in parallel. Next one immediately start only if one of 
 
 -   `app.module.ts`
 
-```ts
+```typescript
 import { DataHttpClientModule } from '@angular-ru/cdk/http';
 
 @NgModule({
@@ -185,7 +185,7 @@ export class AppModule {}
 
 -   `@RestClient(url)`
 
-```ts
+```typescript
 @Injectable()
 @RestClient('my-controller-api-path')
 export class ApiEtcClient extends DataHttpClient {}
@@ -193,7 +193,7 @@ export class ApiEtcClient extends DataHttpClient {}
 
 -   `@BaseUrl(url)`
 
-```ts
+```typescript
 @Injectable()
 @BaseUrl('nginx-path-controller')
 @RestClient('my-controller-api-path')
@@ -202,7 +202,7 @@ export class ApiEtcClient extends DataHttpClient {}
 
 -   `@HostUrl(url)`
 
-```ts
+```typescript
 @Injectable()
 @HostUrl('//no-cors.my-api.com')
 @BaseUrl('nginx-path-controller')
@@ -212,7 +212,7 @@ export class ApiEtcClient extends DataHttpClient {}
 
 -   `@Get(url), @Post(url), @Put(url), @Delete(url), @Patch(url)`
 
-```ts
+```typescript
 @Injectable()
 @RestClient('users')
 export class ApiUsersClient extends DataHttpClient {
@@ -225,7 +225,7 @@ export class ApiUsersClient extends DataHttpClient {
 
 -   `@RequestParam(key)`
 
-```ts
+```typescript
 @Injectable()
 @RestClient('users')
 export class ApiUsersClient extends DataHttpClient {
@@ -243,7 +243,7 @@ export class ApiUsersClient extends DataHttpClient {
 
 -   `@PathVariable(key)`
 
-```ts
+```typescript
 @Injectable()
 @RestClient('users')
 export class ApiUsersClient extends DataHttpClient {
@@ -256,7 +256,7 @@ export class ApiUsersClient extends DataHttpClient {
 
 -   `@RequestBody()`
 
-```ts
+```typescript
 @Injectable()
 @RestClient('users')
 export class ApiUsersClient extends DataHttpClient {
@@ -271,14 +271,14 @@ export class ApiUsersClient extends DataHttpClient {
 
 -   `isLocalhost`
 
-```ts
+```typescript
 expect(isLocalhost('https://127.0.0.1:4200')).toEqual(true);
 expect(isLocalhost('https://google.com')).toEqual(false);
 ```
 
 -   `getPathWithoutQueryParams`
 
-```ts
+```typescript
 expect(getPathWithoutQueryParams('http://hello/world/todo/1/all?pageSize=10&pageIndex=0')).toEqual(
     'http://hello/world/todo/1/all'
 );
@@ -286,7 +286,7 @@ expect(getPathWithoutQueryParams('http://hello/world/todo/1/all?pageSize=10&page
 
 -   `getUrlSegments`
 
-```ts
+```typescript
 expect(getUrlSegments({})).toEqual({ hostUrl: 'http://localhost/', baseUrl: '' });
 expect(getUrlSegments({ hostUrl: 'http://hello_world', baseUrl: 'api' })).toEqual({
     hostUrl: 'http://hello_world/',
@@ -296,7 +296,7 @@ expect(getUrlSegments({ hostUrl: 'http://hello_world', baseUrl: 'api' })).toEqua
 
 -   `isAbsolutePath`
 
-```ts
+```typescript
 expect(isAbsolutePath('/api')).toEqual(false);
 expect(isAbsolutePath('//hello_world')).toEqual(false);
 expect(isAbsolutePath('http://hello_world')).toEqual(true);
@@ -304,14 +304,14 @@ expect(isAbsolutePath('http://hello_world')).toEqual(true);
 
 -   `replaceDoubleSlash`
 
-```ts
+```typescript
 expect(replaceDoubleSlash('https://a///b//c/d/')).toEqual('https://a/b/c/d/');
 expect(replaceDoubleSlash('////a///b//c/d/')).toEqual('/a/b/c/d/');
 ```
 
 -   `replaceLeadingAndTrailingSlashes`
 
-```ts
+```typescript
 expect(replaceLeadingAndTrailingSlashes('/')).toEqual('');
 expect(replaceLeadingAndTrailingSlashes('//')).toEqual('');
 expect(replaceLeadingAndTrailingSlashes('//a///b//c/d/')).toEqual('a/b/c/d');
@@ -319,7 +319,7 @@ expect(replaceLeadingAndTrailingSlashes('//a///b//c/d/')).toEqual('a/b/c/d');
 
 -   `urlParse`
 
-```ts
+```typescript
 expect(urlParse('////a///b//c/d?quick', getUrlSegments({ hostUrl: 'https://127.0.0.0:8030' }))).toEqual(
     'https://127.0.0.0:8030/a/b/c/d'
 );
@@ -327,7 +327,7 @@ expect(urlParse('////a///b//c/d?quick', getUrlSegments({ hostUrl: 'https://127.0
 
 -   `getHttpHeader`
 
-```ts
+```typescript
 const headers: HttpHeaders = getHttpHeader({ a: '1', b: '2' });
 expect(headers.keys()).toEqual(['a', 'b']);
 expect(headers.get('a')).toEqual('1');
@@ -336,14 +336,14 @@ expect(headers.get('b')).toEqual('2');
 
 -   `parseQueryParams`
 
-```ts
+```typescript
 const queryParams: PlainObject = parseQueryParams('/todos/get?pageSize=5&value=2');
 expect(queryParams).toEqual({ pageSize: '5', value: '2' });
 ```
 
 -   `getHttpParams`
 
-```ts
+```typescript
 const params: HttpParams = getHttpParams('/todos/get?pageSize=5&value=2', { pageIndex: 0 });
 expect(params.keys()).toEqual(['pageSize', 'value', 'pageIndex']);
 expect(params.get('pageSize')).toEqual('5');

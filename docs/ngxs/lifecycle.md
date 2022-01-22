@@ -13,7 +13,7 @@ specific moments:
 
 ### `ngxsDataDoCheck` and `ngxsDataAfterReset`
 
-```ts
+```typescript
 @StateRepository()
 @State<Customer[]>({
     name: 'customers',
@@ -47,7 +47,7 @@ class CustomersStates extends NgxsDataRepository<Customer[]> implements NgxsData
 
 ### `ngxsOnChanges`, `ngxsOnInit` and `ngxsAfterBootstrap`
 
-```ts
+```typescript
 @StateRepository()
 @State({
     name: 'counter',

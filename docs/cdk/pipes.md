@@ -2,7 +2,7 @@
 
 -   `MutableTypePipe, MutableTypePipeModule`
 
-```ts
+```typescript
 import { MutableTypePipeModule } from '@angular-ru/cdk/pipes';
 import { Component, NgModule } from '@angular/core';
 import { Immutable } from '@angular-ru/typings';
@@ -25,7 +25,7 @@ export class AppComponent {
 }
 ```
 
-```ts
+```typescript
 import { Immutable } from '@angular-ru/typings';
 import { MutableTypePipe } from '@angular-ru/cdk/pipes';
 
@@ -40,7 +40,7 @@ expect(mutableObj.a).toEqual('str2');
 
 -   `DeepPathPipe, DeepPathPipeModule`
 
-```ts
+```typescript
 import { DeepPathPipeModule } from '@angular-ru/cdk/pipes';
 import { Component, NgModule } from '@angular/core';
 
@@ -63,7 +63,7 @@ export class AppComponent {
 
 -   `DefaultValuePipe, DefaultValuePipeModule`
 
-```ts
+```typescript
 import { DefaultValuePipeModule } from '@angular-ru/cdk/pipes';
 import { Component, NgModule } from '@angular/core';
 
@@ -86,7 +86,7 @@ export class AppComponent {
 
 -   `IsNotNullPipe, IsNotNullPipeModule`
 
-```ts
+```typescript
 import { IsNotNullPipeModule } from '@angular-ru/cdk/pipes';
 import { Component, NgModule } from '@angular/core';
 
@@ -109,7 +109,7 @@ export class AppComponent {
 
 -   `IsNilPipe, IsNilPipeModule`
 
-```ts
+```typescript
 import { IsNilPipeModule } from '@angular-ru/cdk/pipes';
 import { Component, NgModule } from '@angular/core';
 
@@ -132,7 +132,7 @@ export class AppComponent {
 
 -   `IsObjectPipe, IsObjectPipeModule`
 
-```ts
+```typescript
 import { IsObjectPipeModule } from '@angular-ru/cdk/pipes';
 import { Component, NgModule } from '@angular/core';
 
@@ -155,7 +155,7 @@ export class AppComponent {
 
 -   `DetectBrowserPipe, DetectBrowserPipeModule`
 
-```ts
+```typescript
 import { DetectBrowserPipeModule } from '@angular-ru/cdk/pipes';
 import { Component, NgModule } from '@angular/core';
 
@@ -179,7 +179,7 @@ export class AppComponent {
 
 -   `IsStringPipe, IsStringPipeModule`
 
-```ts
+```typescript
 import { IsStringPipeModule } from '@angular-ru/cdk/pipes';
 import { Component, NgModule } from '@angular/core';
 
@@ -202,7 +202,7 @@ export class AppComponent {
 
 -   `IsArrayPipe, IsArrayPipeModule`
 
-```ts
+```typescript
 import { IsArrayPipeModule } from '@angular-ru/cdk/pipes';
 import { Component, NgModule } from '@angular/core';
 
@@ -225,7 +225,7 @@ export class AppComponent {
 
 -   `ToStringPipe, ToStringPipeModule`
 
-```ts
+```typescript
 import { ToStringPipeModule } from '@angular-ru/cdk/pipes';
 import { Component, NgModule } from '@angular/core';
 
@@ -248,7 +248,7 @@ export class AppComponent {
 
 -   `ToNumberPipe, ToNumberPipeModule`
 
-```ts
+```typescript
 import { ToNumberPipeModule } from '@angular-ru/cdk/pipes';
 import { Component, NgModule } from '@angular/core';
 
@@ -271,7 +271,7 @@ export class AppComponent {
 
 -   `FormatDatePipe, FormatDatePipeModule`
 
-```ts
+```typescript
 import { FormatDatePipeModule } from '@angular-ru/cdk/pipes';
 import { Component, NgModule } from '@angular/core';
 
@@ -294,7 +294,7 @@ export class AppComponent {
 
 -   `SafePipe, SafePipeModule`
 
-```ts
+```typescript
 import { SafePipeModule } from '@angular-ru/cdk/pipes';
 import { Component, NgModule } from '@angular/core';
 
@@ -317,7 +317,7 @@ export class AppComponent {
 
 -   `NumberFormatPipe, NumberFormatPipeModule`
 
-```ts
+```typescript
 import { NumberFormatPipeModule } from '@angular-ru/cdk/pipes';
 import { Component, NgModule } from '@angular/core';
 
@@ -340,7 +340,7 @@ export class AppComponent {
 
 -   `HttpReplacerPipe, HttpReplacerPipeModule`
 
-```ts
+```typescript
 import { HttpReplacerPipeModule } from '@angular-ru/cdk/pipes';
 import { Component, NgModule } from '@angular/core';
 
@@ -363,7 +363,7 @@ export class AppComponent {
 
 -   `TakeFirstItemPipe, TakeFirstItemPipeModule`
 
-```ts
+```typescript
 import { TakeFirstItemPipeModule } from '@angular-ru/cdk/pipes';
 import { Component, NgModule } from '@angular/core';
 
@@ -386,7 +386,7 @@ export class AppComponent {
 
 -   `TakeSecondItemPipe, TakeSecondItemPipeModule`
 
-```ts
+```typescript
 import { TakeSecondItemPipeModule } from '@angular-ru/cdk/pipes';
 import { Component, NgModule } from '@angular/core';
 
@@ -409,7 +409,7 @@ export class AppComponent {
 
 -   `DateToNativePipe, DateToNativePipeModule`
 
-```ts
+```typescript
 import { DateToNativePipeModule } from '@angular-ru/cdk/pipes';
 import { Component, NgModule } from '@angular/core';
 
@@ -432,7 +432,7 @@ export class AppComponent {
 
 -   `EntrySingleSetPipe, EntrySingleSetPipeModule`
 
-```ts
+```typescript
 import { EntrySingleSetPipeModule } from '@angular-ru/cdk/pipes';
 import { Component, NgModule } from '@angular/core';
 
@@ -455,7 +455,7 @@ export class AppComponent {
 
 -   `MarkByFilterPipe, MarkByFilterPipeModuleModule`
 
-```ts
+```typescript
 import { MarkByFilterPipeModule } from '@angular-ru/cdk/pipes';
 import { Component, NgModule } from '@angular/core';
 
@@ -478,7 +478,7 @@ export class AppComponent {
 
 -   `DisplayItemPipe, DisplayItemPipeModule`
 
-```ts
+```typescript
 import { DisplayItemPipeModule } from '@angular-ru/cdk/pipes';
 import { Component, NgModule } from '@angular/core';
 
@@ -501,7 +501,7 @@ export class AppComponent {
 
 -   `ObjectSizePipe, ObjectSizePipeModule`
 
-```ts
+```typescript
 import { ObjectSizePipeModule } from '@angular-ru/cdk/pipes';
 import { Component, NgModule } from '@angular/core';
 
@@ -526,7 +526,7 @@ export class AppComponent {}
 
 -   `MergeCssClassesPipe, MergeCssClassesPipeModule`
 
-```ts
+```typescript
 import { MergeCssClassesPipe } from '@angular-ru/cdk/pipes';
 import { Component, NgModule } from '@angular/core';
 
@@ -559,7 +559,7 @@ export class AppComponent {
 
 -   `JoinPipe, JoinPipeModule`
 
-```ts
+```typescript
 import { JoinPipeModule } from '@angular-ru/cdk/pipes';
 import { Component, NgModule } from '@angular/core';
 
@@ -579,7 +579,7 @@ export class AppModule {}
 export class AppComponent {}
 ```
 
-```ts
+```typescript
 import { JoinPipeModule } from '@angular-ru/cdk/pipes';
 import { Component, NgModule } from '@angular/core';
 
@@ -599,7 +599,7 @@ export class AppModule {}
 export class AppComponent {}
 ```
 
-```ts
+```typescript
 import { JoinPipeModule, JoinMapTransformer } from '@angular-ru/cdk/pipes';
 import { Component, NgModule } from '@angular/core';
 
@@ -627,7 +627,7 @@ export class AppComponent {
 
 -   `BracePipe, BracePipeModule`
 
-```ts
+```typescript
 import { BracePipeModule } from '@angular-ru/cdk/pipes';
 import { Component, NgModule } from '@angular/core';
 
@@ -651,7 +651,7 @@ export class AppComponent {
 
 -   `FilterUniquePipe, FilterUniquePipeModule`
 
-```ts
+```typescript
 import { FilterUniquePipeModule } from '@angular-ru/cdk/pipes';
 import { PlainObject } from '@angular-ru/cdk-typings';
 import { Component, NgModule } from '@angular/core';
@@ -680,7 +680,7 @@ export class AppComponent {
 
 -   `TypeAsPipe, TypeAsPipeModule`
 
-```ts
+```typescript
 import { TypeAs } from '@angular-ru/cdk/pipes';
 
 @NgModule({
@@ -710,7 +710,7 @@ export class AppComponent {
 
 -   `AtPipe, AtPipeModule`
 
-```ts
+```typescript
 import { AtPipeModule } from '@angular-ru/cdk/pipes';
 
 @NgModule({
@@ -736,7 +736,7 @@ export class AppComponent {
 -   `HasItems, HasManyItems, HasNoItems, HasOneItem, HasAtMostOneItem`
 -   `HasItemsModule, HasManyItemsModule, HasNoItemsModule, HasOneItemModule, HasAtMostOneItemModule`
 
-```ts
+```typescript
 import {
     HasItemsModule,
     HasManyItemsModule,
@@ -768,7 +768,7 @@ export class AppComponent {
 
 -   `IncludesPipe, IncludesPipeModule`
 
-```ts
+```typescript
 import { IncludesPipeModule } from '@angular-ru/cdk/pipes';
 
 @NgModule({
@@ -794,7 +794,7 @@ export class AppComponent {
 
 -   `HasPipe, HasPipeModule`
 
-```ts
+```typescript
 import { HasPipeModule } from '@angular-ru/cdk/pipes';
 
 @NgModule({
@@ -820,7 +820,7 @@ export class AppComponent {
 
 -   `CoerceBooleanPipe, CoerceBooleanPipeModule`
 
-```ts
+```typescript
 import { CoerceBooleanPipeModule } from '@angular-ru/cdk/pipes';
 
 @NgModule({
@@ -842,7 +842,7 @@ export class AppComponent {
 
 -   `DeclinationOfNumberPipe, DeclinationOfNumberPipeModule`
 
-```ts
+```typescript
 import { DeclinationOfNumberPipeModule } from '@angular-ru/cdk/pipes';
 
 @NgModule({

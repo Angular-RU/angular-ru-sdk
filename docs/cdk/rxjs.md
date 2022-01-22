@@ -2,7 +2,7 @@
 
 -   `mapToVoid`
 
-```ts
+```typescript
 import { mapToVoid } from '@angular-ru/cdk/rxjs';
 
 of([1, 2, 3])

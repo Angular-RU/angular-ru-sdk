@@ -2,7 +2,7 @@
 
 -   `isNumber`
 
-```ts
+```typescript
 import { isNumber } from '@angular-ru/cdk/number';
 
 expect(isNumber(0)).toEqual(true);
@@ -15,7 +15,7 @@ expect(isNumber(undefined)).toEqual(false);
 
 -   `toNumber`
 
-```ts
+```typescript
 import { toNumber } from '@angular-ru/cdk/number';
 
 expect(toNumber(NaN)).toEqual(NaN);
@@ -54,7 +54,7 @@ expect(toNumber('-10000000000.0009', 'fr')).toEqual(-10000000000.0009);
 
 -   `half`
 
-```ts
+```typescript
 import { half } from '@angular-ru/cdk/number';
 
 expect(half(2)).toEqual(1);
@@ -72,7 +72,7 @@ expect(half('')).toEqual(NaN);
 
 -   `getFractionSeparator`
 
-```ts
+```typescript
 expect(getFractionSeparator('de-DE')).toEqual(',');
 expect(getFractionSeparator('ja-JP')).toEqual('.');
 expect(getFractionSeparator('en-IN')).toEqual('.');
@@ -82,7 +82,7 @@ expect(getFractionSeparator('us')).toEqual('.');
 
 -   `truncated`
 
-```ts
+```typescript
 expect(truncated(35.874993, 0)).toEqual(35);
 expect(truncated(35.874993, 1)).toEqual(35.8);
 expect(truncated(35.874993, 2)).toEqual(35.87);
@@ -92,7 +92,7 @@ expect(truncated(35.874993, 4)).toEqual(35.8749);
 
 -   `gaussRound`
 
-```ts
+```typescript
 expect(gaussRound(2.5)).toEqual(2);
 expect(gaussRound(3.5)).toEqual(4);
 expect(gaussRound(2.57, 1)).toEqual(2.6);
@@ -108,7 +108,7 @@ expect(gaussRound(NaN, 3)).toEqual(NaN);
 
 -   `numberFormat`
 
-```ts
+```typescript
 expect(numberFormat(1500300.5)).toEqual('1 500 300,5');
 expect(numberFormat(1500300.5, { formatOptions: { minimumFractionDigits: 2 } })).toEqual('1 500 300,50');
 expect(numberFormat(1500300, { formatOptions: { style: 'currency', currency: 'EUR' } })).toEqual('1 500 300,00 €');

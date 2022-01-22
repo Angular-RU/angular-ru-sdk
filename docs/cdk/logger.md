@@ -2,7 +2,7 @@
 
 > Lightweight and configurable Angular logger
 
-```ts
+```typescript
 import { LoggerModule } from '@angular-ru/cdk/logger';
 ...
 
@@ -45,7 +45,7 @@ setting of logging levels and convenient work with groups. Among other things, y
 $ npm install @angular-ru/cdk --save
 ```
 
-```ts
+```typescript
 import { LoggerModule } from '@angular-ru/cdk/logger';
 ...
 
@@ -64,7 +64,7 @@ export class AppModule {}
 
 ### Example: basic methods
 
-```ts
+```typescript
 import { LoggerService } from '@angular-ru/cdk/logger';
 
 export class AppComponent implements OnInit {
@@ -86,7 +86,7 @@ export class AppComponent implements OnInit {
 
 -   **Disable trace on console (filter):**
 
-```ts
+```typescript
 import { LoggerService } from '@angular-ru/cdk/logger';
 
 export class AppComponent implements OnInit {
@@ -106,7 +106,7 @@ export class AppComponent implements OnInit {
 
 -   **Logger groups with auto closed (usage callback):**
 
-```ts
+```typescript
 import { LoggerService } from '@angular-ru/cdk/logger';
 
 export class AppComponent implements OnInit {
@@ -142,7 +142,7 @@ export class AppComponent implements OnInit {
 
 -   **Logger nested groups (with pipe):**
 
-```ts
+```typescript
 import { LoggerService } from '@angular-ru/cdk/logger';
 
 export class AppComponent implements OnInit {
@@ -196,7 +196,7 @@ export class AppComponent implements OnInit {
 
 Basic parameterization
 
-```ts
+```typescript
 import { LoggerService } from '@angular-ru/cdk/logger';
 
 export class AppComponent implements OnInit {
@@ -225,7 +225,7 @@ export class AppComponent implements OnInit {
 
 -   **Logger level groups (pretty usage API):**
 
-```ts
+```typescript
 import { LoggerService, LoggerLevel } from '@angular-ru/cdk/logger';
 
 export class AppComponent implements OnInit {
@@ -294,7 +294,7 @@ export class AppComponent implements OnInit {
 
 ### Example: set style line
 
-```ts
+```typescript
 import { LoggerService } from '@angular-ru/cdk/logger';
 
 export class AppComponent implements OnInit {
@@ -317,7 +317,7 @@ export class AppComponent implements OnInit {
 
 ### Example: set global style line
 
-```ts
+```typescript
 import { LoggerService } from '@angular-ru/cdk/logger';
 
 export class AppComponent implements OnInit {
@@ -337,7 +337,7 @@ export class AppComponent implements OnInit {
 
 ### Example: CSS classes
 
-```ts
+```typescript
 import { LoggerModule } from '@angular-ru/cdk/logger';
 
 @NgModule({
@@ -360,7 +360,7 @@ import { LoggerModule } from '@angular-ru/cdk/logger';
 })
 ```
 
-```ts
+```typescript
 import { LoggerService } from '@angular-ru/cdk/logger';
 
 export class AppComponent implements OnInit {
@@ -383,7 +383,7 @@ export class AppModule {}
 
 ### Example: pretty json
 
-```ts
+```typescript
 import { LoggerService } from '@angular-ru/cdk/logger';
 
 export class AppComponent implements OnInit {
@@ -403,7 +403,7 @@ export class AppComponent implements OnInit {
 
 ### Example: decorators
 
-```ts
+```typescript
 import {
     LoggerService,
     Logger,
@@ -441,7 +441,7 @@ export class AppComponent {
 
 ### Example: decorator groups
 
-```ts
+```typescript
 import { LoggerService, Logger, LoggerLevel, Group } from '@angular-ru/cdk/logger';
 
 export class AppComponent {
@@ -463,7 +463,7 @@ export class AppComponent {
 
 ### Example: decorator group with function title
 
-```ts
+```typescript
 import { Log, LogFn, Group } from '@angular-ru/cdk/logger';
 
 export class AppComponent {
@@ -485,7 +485,7 @@ export class AppComponent {
 
 ### Example: timer decorator
 
-```ts
+```typescript
 import { Log, LogFn, TimerLog, LoggerLevel, LoggerService, Logger } from '@angular-ru/cdk/logger';
 export class AppComponent {
     @Log() public log: LogFn;
@@ -509,7 +509,7 @@ export class AppComponent {
 
 ### Example: format output
 
-```ts
+```typescript
 import { LoggerModule, NgModule, FormatOutput } from '@angular-ru/cdk/logger';
 
 @NgModule({
@@ -527,7 +527,7 @@ import { LoggerModule, NgModule, FormatOutput } from '@angular-ru/cdk/logger';
 export class AppModule {}
 ```
 
-```ts
+```typescript
 import { LoggerService, OnInit } from '@angular-ru/cdk/logger';
 
 export class AppComponent implements OnInit {
@@ -547,7 +547,7 @@ export class AppComponent implements OnInit {
 
 ### Example: full configurations
 
-```ts
+```typescript
 import { LoggerModule, NgModule, LoggerLevel } from '@angular-ru/cdk/logger';
 
 @NgModule({
@@ -587,7 +587,7 @@ import { LoggerModule, NgModule, LoggerLevel } from '@angular-ru/cdk/logger';
 export class AppModule {}
 ```
 
-```ts
+```typescript
 import { LoggerService } from '@angular-ru/cdk/logger';
 
 export class AppComponent implements OnInit {

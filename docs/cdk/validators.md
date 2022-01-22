@@ -2,7 +2,7 @@
 
 -   `emptyValidator`
 
-```ts
+```typescript
 import { emptyValidator } from '@angular-ru/cdk/validators';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component } from '@angular/core';
@@ -25,7 +25,7 @@ export class AppComponent {
 
 -   `maxDateValidator, minDateValidator`
 
-```ts
+```typescript
 import { maxDateValidator, maxDateValidator } from '@angular-ru/cdk/validators';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component } from '@angular/core';
@@ -46,7 +46,7 @@ export class AppComponent {
 
 -   `dateMaxIntervalValidator, dateMinIntervalValidator, orderedIntervalValidator`
 
-```ts
+```typescript
 import {
     dateMaxIntervalValidator,
     dateMinIntervalValidator,
@@ -78,7 +78,7 @@ export class AppComponent {
 
 -   `requiredSomeValueByKeysValidator`
 
-```ts
+```typescript
 import { requiredSomeValueByKeysValidator } from '@angular-ru/cdk/validators';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component } from '@angular/core';
@@ -113,7 +113,7 @@ export class AppComponent {
 
 -   `requiredSomeValueValidator`
 
-```ts
+```typescript
 import { requiredSomeValueValidator } from '@angular-ru/cdk/validators';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component } from '@angular/core';
@@ -146,7 +146,7 @@ export class AppComponent {
 
 -   `everyArrayItemValidator`
 
-```ts
+```typescript
 import { everyArrayItemValidator } from '@angular-ru/cdk/validators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
@@ -174,7 +174,7 @@ export class AppComponent {
 
 -   `longValidator`
 
-```ts
+```typescript
 import { longValidator } from '@angular-ru/cdk/validators';
 import { FormControl } from '@angular/forms';
 import { Component } from '@angular/core';

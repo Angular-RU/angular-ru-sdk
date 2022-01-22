@@ -12,7 +12,7 @@ $ npm install --save @angular-ru/cdk
 After a few seconds of waiting, you should be good to go. Let's get to the actual coding! As a first step, let's add the
 Angular table builder module to our app module (src/app.module.ts):
 
-```ts
+```typescript
 import { TableBuilderModule } from '@angular-ru/cdk/virtual-table';
 
 @NgModule({
@@ -28,7 +28,7 @@ export class AppModule {}
 
 Next, let's declare the basic grid configuration. Edit src/app.component.ts:
 
-```ts
+```typescript
 import { Component } from '@angular/core';
 import { MyData } from './my-data.interface';
 
@@ -55,7 +55,7 @@ acts as the core upon which anyone can build their own tailored data-table exper
 
 ### Custom template
 
-```ts
+```typescript
 // app.component.ts
 import { Component } from '@angular/core';
 import { LicenseSample } from './license.interface';
@@ -107,7 +107,7 @@ export class AppComponent {
 
 ### Filtering
 
-```ts
+```typescript
 // app.component.ts
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { LicenseSample } from './license.interface';
@@ -166,7 +166,7 @@ export class AppComponent implements AfterViewInit {
 
 Filtration:
 
-```ts
+```typescript
 this.table.filterable.updateFilterTypeBy(TableFilterType.CONTAINS, 'name');
 this.table.filterable.updateFilterValueBy('11', 'name');
 ```

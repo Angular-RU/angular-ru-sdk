@@ -1,6 +1,6 @@
 ## Extension API
 
-```ts
+```typescript
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
 // ..
 
@@ -20,7 +20,7 @@ export class AppModule {}
 
 `my-extensions.ts` - you can define any providers in your module:
 
-```ts
+```typescript
 import { NgxsDataExtension } from '@angular-ru/ngxs/typings';
 // ..
 

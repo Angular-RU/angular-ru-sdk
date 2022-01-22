@@ -2,7 +2,7 @@
 
 -   `AttributeBoolean`
 
-```ts
+```typescript
 import { AttributeBoolean } from '@angular-ru/cdk/decorators';
 import { InputBoolean } from '@angular-ru/cdk/typings';
 
@@ -67,7 +67,7 @@ class HostComponent {
 
 -   `BoundClass`
 
-```ts
+```typescript
 @Injectable()
 class B {
     public b: string = '2';

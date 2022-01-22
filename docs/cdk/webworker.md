@@ -5,7 +5,7 @@
     generating CAD drawings or doing heavy geometrical calculations, using web workers can help increase your
     application's performance.
 
-```ts
+```typescript
 @Component({
     // ...
     providers: [WebWorkerThreadService]

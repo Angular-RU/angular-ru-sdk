@@ -2,7 +2,7 @@
 
 -   `fadeInLinearAnimation`
 
-```ts
+```typescript
 import { fadeInLinearAnimation } from '@angular-ru/cdk/animations';
 import { Component } from '@angular-ru/core';
 
@@ -20,7 +20,7 @@ export class AppComponent {
 
 -   `fadeInBezierAnimation`
 
-```ts
+```typescript
 import { fadeInBezierAnimation } from '@angular-ru/cdk/animations';
 import { Component } from '@angular-ru/core';
 

@@ -2,7 +2,7 @@
     "root": "libs/jest/",
     "sourceRoot": "libs/jest/",
     "projectType": "library",
-    "tags": ["scope:libs", "scope:symlinked"],
+    "tags": ["scope:libs"],
     "targets": {
         "build": {
             "builder": "@nrwl/workspace:run-commands",

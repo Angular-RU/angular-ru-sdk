@@ -28,7 +28,7 @@
                 "commitMessageFormat": "chore(${projectName}): release version ${version} [ci skip]",
                 "versionTagPrefix": "@angular-ru/dev-dependencies-",
                 "skipProjectChangelog": true,
-                "baseBranch": "master",
+                "baseBranch": "origin/master",
                 "trackDeps": true,
                 "noVerify": true
             },

@@ -2,7 +2,7 @@
 
 -   `improve performance`
 
-```ts
+```typescript
 // polyfills.ts
 import '@angular-ru/cdk/zone.js/unpatch-zone';
 import 'zone.js/dist/zone';

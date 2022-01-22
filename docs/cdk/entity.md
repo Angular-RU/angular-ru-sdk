@@ -2,7 +2,7 @@
 
 -   `createEntityCollections`
 
-```ts
+```typescript
 expect(createEntityCollections()).toEqual({ ids: [], entities: {} });
 
 expect(
@@ -26,7 +26,7 @@ expect(
 
 -   `createIdsMapOf`
 
-```ts
+```typescript
 expect(createEntityCollections()).toEqual({ ids: [], entities: {} });
 
 expect(
@@ -48,7 +48,7 @@ expect(
 });
 ```
 
-```ts
+```typescript
 const result = createIdsMapOf([
     { id: 1, name: 'a' },
     { id: 2, name: 'b' }
@@ -60,7 +60,7 @@ expect(result).toEqual({
 });
 ```
 
-```ts
+```typescript
 interface Currency {
     code: number;
     name: string;

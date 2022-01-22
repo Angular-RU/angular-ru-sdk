@@ -1,6 +1,6 @@
 #### `@angular-ru/cdk/class-transformer`
 
-```ts
+```typescript
 import {
     ONLY_TO_CLASS,
     transformAsPrepareFieldsFromClass,

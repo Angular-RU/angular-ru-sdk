@@ -5,7 +5,7 @@ thought of as a command which should trigger something to happen.
 
 #### Before (origin NGXS behavior)
 
-```ts
+```typescript
 export class AddTodo {
     public static type = '[Add todo]';
     constructor(public payload: string) {}
@@ -24,7 +24,7 @@ export class TodoState extends NgxsDataRepository<string[]> {
 }
 ```
 
-```ts
+```typescript
 @Component({
     selector: 'app',
     template: `
@@ -43,7 +43,7 @@ class AppComponent {
 
 #### After (Data-plugin behavior)
 
-```ts
+```typescript
 @StateRepository()
 @State<string[]>({
     name: 'todo',
@@ -58,7 +58,7 @@ export class TodoState extends NgxsDataRepository<string[]> {
 }
 ```
 
-```ts
+```typescript
 @Component({
     selector: 'app',
     template: `
@@ -75,7 +75,7 @@ The method `todo.add(payload)` is the same as `store.dispatch({ type: '@todo.add
 
 Also you can invoke simple `setState` action:
 
-```ts
+```typescript
 @Component({
     selector: 'app',
     template: `
@@ -100,7 +100,7 @@ What are the benefits?
 
 Bad
 
-```ts
+```typescript
 @StateRepository()
 @State<string[]>({
     name: 'todo',
@@ -118,7 +118,7 @@ export class TodoState extends NgxsDataRepository<string[]> {
 
 Good
 
-```ts
+```typescript
 @StateRepository()
 @State<string[]>({
     name: 'todo',
@@ -137,7 +137,7 @@ export class TodoState extends NgxsDataRepository<string[]> {
 
 Bad
 
-```ts
+```typescript
 @StateRepository()
 @State<string[]>({
     name: 'todo',
@@ -160,7 +160,7 @@ export class TodoState extends NgxsDataRepository<string[]> {
 
 Good
 
-```ts
+```typescript
 @StateRepository()
 @State<string[]>({
     name: 'todo',
@@ -183,7 +183,7 @@ export class TodoState extends NgxsDataRepository<string[]> {
 
 In order to understand the difference, you need to give some examples:
 
-```ts
+```typescript
 @StateRepository()
 @State<string[]>({
     name: 'todo',
@@ -215,7 +215,7 @@ every level.
 However, there is an unpleasant moment here, if you call the context directly, then you may not see anything in the
 devtools, because the context will be called immediately without dispatching states:
 
-```ts
+```typescript
 @StateRepository()
 @State<string[]>({
     name: 'todo',
@@ -245,7 +245,7 @@ class TodoComponent {
 
 Therefore, the context should only be called inside the action.
 
-```ts
+```typescript
 // GOOD
 
 @StateRepository()
@@ -281,7 +281,7 @@ export class TodoState extends NgxsDataRepository<string[]> {
 However, there are very difficult situations in which you yourself need to determine which method should be an action
 and which should not:
 
-```ts
+```typescript
 @StateRepository()
 @State<PersonModel>({
     name: 'person',
@@ -302,7 +302,7 @@ export class PersonState extends NgxsDataRepository<PersonModel> {
 
 In this situation, we have some problem:
 
-```ts
+```typescript
 @Component({
     /* ... */
 })
@@ -325,7 +325,7 @@ completed and we will not get the difference in states in the devtools.
 
 We can try it differently:
 
-```ts
+```typescript
 @StateRepository()
 @State<PersonModel>({
     name: 'person',
@@ -355,7 +355,7 @@ Now everything works, but in this case, we understand that the `getContent` meth
 action, because during its execution the state does not change, the state changes only after the request is completed.
 Therefore, it would be more correct to write such code:
 
-```ts
+```typescript
 @StateRepository()
 @State<PersonModel>({
     name: 'person',
@@ -381,7 +381,7 @@ export class PersonState extends NgxsDataRepository<PersonModel> {
 
 ### `Payload`
 
-```ts
+```typescript
 @StateRepository()
 @State<string[]>({
     name: 'todo',
@@ -405,7 +405,7 @@ By default, all arguments have no name when automatically creating an action.
 If during logging you want to see the payload, then you need to specify which action argument is this payload, using the
 `@Payload()` decorator.
 
-```ts
+```typescript
 @StateRepository()
 @State<string[]>({
     name: 'todo',
@@ -427,7 +427,7 @@ export class TodoState extends NgxsDataRepository<string[]> {
 If you do not want to see the payload, but want to see the name of the arguments normally, you can use the `named`
 decorator.
 
-```ts
+```typescript
 @StateRepository()
 @State<string[]>({
     name: 'todo',
@@ -448,7 +448,7 @@ export class TodoState extends NgxsDataRepository<string[]> {
 
 Decorators can be combined:
 
-```ts
+```typescript
 @StateRepository()
 @State<string[]>({
     name: 'todo',
@@ -476,7 +476,7 @@ via runOutsideAngular and if needed, these tasks can reenter the Angular zone vi
 By default, all action methods are called outside the Angular zone. But if you want to change this, you can define a
 parameter `insideZone`:
 
-```ts
+```typescript
 @StateRepository()
 @State({
     name: 'counter',

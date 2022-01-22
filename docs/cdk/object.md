@@ -2,7 +2,7 @@
 
 -   `sortByAsc`
 
-```ts
+```typescript
 const objectList: A[] = [{ a: 1 }, { a: 3 }, { a: 2 }, { a: -1 }, { a: 0 }];
 
 expect(objectList.slice().sort((a, b) => sortByAsc('a', a, b))).toEqual([
@@ -16,7 +16,7 @@ expect(objectList.slice().sort((a, b) => sortByAsc('a', a, b))).toEqual([
 
 -   `sortByDesc`
 
-```ts
+```typescript
 const objectList: A[] = [{ a: 1 }, { a: 3 }, { a: 2 }, { a: -1 }, { a: 0 }];
 
 expect(objectList.slice().sort((a, b) => sortByDesc('a', a, b))).toEqual([
@@ -30,7 +30,7 @@ expect(objectList.slice().sort((a, b) => sortByDesc('a', a, b))).toEqual([
 
 -   `isObject` - check inheritance of object
 
-```ts
+```typescript
 import { isObject } from '@angular-ru/cdk/object';
 
 class A {}
@@ -58,7 +58,7 @@ expect(isObject(window)).toBe(true);
 
 -   `isPlainObject` - check only literal object (non instance object)
 
-```ts
+```typescript
 import { isPlainObject } from '@angular-ru/cdk/object';
 
 class A {}
@@ -87,7 +87,7 @@ expect(isPlainObject(new (function Foo() {})())).toBe(false);
 -   `isSimpleObject` - check only instance object or literal (non complex structure - Array, DOM, Set, Map, Date, other
     structure)
 
-```ts
+```typescript
 import { isSimpleObject } from '@angular-ru/cdk/object';
 
 class A {}
@@ -115,7 +115,7 @@ expect(isSimpleObject(document.createElement('div'))).toBe(false);
 
 -   `isGetter`
 
-```ts
+```typescript
 import { Any } from '@angular-ru/cdk/typings';
 import { isGetter } from '@angular-ru/cdk/object';
 
@@ -158,7 +158,7 @@ expect(isGetter({ a: 2 }, 'a')).toEqual(false);
 
 -   `isIterable`
 
-```ts
+```typescript
 expect(isIterable([1, 2])).toBe(true);
 expect(isIterable('Some String')).toBe(true);
 expect(isIterable(new Set([1, 2]))).toBe(true);
@@ -189,7 +189,7 @@ expect(isIterable(() => {})).toBe(false);
 
 -   `deepClone`
 
-```ts
+```typescript
 import { deepClone } from '@angular-ru/cdk/object';
 import { Origin } from './origin';
 
@@ -207,7 +207,7 @@ expect(copy.b.c).toEqual(4);
 
 -   `deepFreeze`
 
-```ts
+```typescript
 import { deepFreeze } from '@angular-ru/cdk/object';
 import { Origin } from './origin';
 
@@ -225,7 +225,7 @@ expect(message).toEqual(`Cannot assign to read only property 'c' of object '[obj
 
 -   `replaceWithNull`
 
-```ts
+```typescript
 import { PlainObject } from '@angular-ru/cdk/typings';
 import { replaceWithNull } from '@angular-ru/cdk/object';
 
@@ -252,7 +252,7 @@ expect(replaceWithNull(wrongElem)).toEqual({
 
 -   `clean`
 
-```ts
+```typescript
 import { PlainObject } from '@angular-ru/cdk/typings';
 import { clean } from '@angular-ru/cdk/object';
 
@@ -292,7 +292,7 @@ expect(A).toEqual(B);
 
 -   `getValueByPath`
 
-```ts
+```typescript
 import { PlainObject } from '@angular-ru/cdk/typings';
 import { getValueByPath } from '@angular-ru/cdk/object';
 
@@ -307,7 +307,7 @@ expect(getValueByPath(obj, 'f.0.a.Z', [])).toEqual([]);
 
 -   `checkIsShallowEmpty`
 
-```ts
+```typescript
 import { checkIsShallowEmpty } from '@angular-ru/cdk/object';
 
 expect(checkIsShallowEmpty({ a: 0 })).toEqual(false);
@@ -321,7 +321,7 @@ expect(checkIsShallowEmpty({ a: '', b: undefined, c: NaN, d: '   ' })).toEqual(t
 
 -   `equals, objectToString, flatten, strictEquals, shallowTrimProperties`
 
-```ts
+```typescript
 it('should be object A equals object B', (): void => {
     const A: PlainObject = { a: 1, b: [1, 2] };
     const B: PlainObject = { a: 1, b: [1, 2] };
@@ -449,7 +449,7 @@ it('should be correct deep equals with week type', (): void => {
 
 -   `shallowMapObject`
 
-```ts
+```typescript
 import { shallowMapObject } from '@angular-ru/cdk/object';
 
 const oneTypeObject = { a: 1, b: 3, c: 5 };

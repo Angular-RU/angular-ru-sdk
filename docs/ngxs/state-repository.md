@@ -7,7 +7,7 @@ By default, you can inherit from abstract classes that give you different benefi
 
 -   `NgxsDataRepository<T>` a standard repository class that gives you control over your state.
 
-```ts
+```typescript
 import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
 import { StateRepository } from '@angular-ru/ngxs/decorators';
 
@@ -36,7 +36,7 @@ export class AppState extends NgxsDataRepository<AppModel> {}
     completely deep immutable control over your state and prevents the code from compiling if the user tries to mutate
     something in the state. It is recommended to use it if you understand what immutability of objects is.
 
-```ts
+```typescript
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { StateRepository } from '@angular-ru/ngxs/decorators';
 
@@ -64,7 +64,7 @@ export class AppState extends NgxsImmutableDataRepository<AppModel> {}
 -   `NgxsDataEntityCollectionsRepository<V, K>` a standard repository class for entity which provides an API to
     manipulate and query entity collections.
 
-```ts
+```typescript
 @StateRepository()
 @State({
     name: 'article',
@@ -104,7 +104,7 @@ class ArticleEntitiesState extends NgxsDataEntityCollectionsRepository<Article> 
 
 You can compose multiple stores together using class inheritance. This is quite simple:
 
-```ts
+```typescript
 abstract class CommonCounter extends NgxsDataRepository<number> {
     @DataAction()
     public increment() {
@@ -145,7 +145,7 @@ class AppComponent implements OnInit {
 Now when `A` or `B` is invoked, it will share the actions of the `CommonCounter`. Also, all state options are inherited
 if add `@State` under `CommonCounter`.
 
-```ts
+```typescript
 @State({
     name: 'commonCounter',
     defaults: 0

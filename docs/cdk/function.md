@@ -2,7 +2,7 @@
 
 -   `isFunctionLike(val)`
 
-```ts
+```typescript
 class A {}
 
 console.log(isFunctionLike(() => {})); // true
@@ -12,7 +12,7 @@ console.log(isFunctionLike({ a: 1 })); // false
 
 -   `typeofType`
 
-```ts
+```typescript
 import { typeofType } from '@angular-ru/cdk/function';
 import { Exclude, Expose, Type } from 'class-transform';
 
@@ -26,7 +26,7 @@ export class A {
 
 -   `$args(fnRef)`
 
-```ts
+```typescript
 import { $args } from '@angular-ru/cdk/function';
 
 function hello(name: string, value: number, a?: string[]): string {
@@ -38,7 +38,7 @@ console.log($args(hello)); // ['name', 'value', 'a']
 
 -   `hasConstructor(ref)`
 
-```ts
+```typescript
 class A {}
 function B() {}
 const C: Fn = () => {};

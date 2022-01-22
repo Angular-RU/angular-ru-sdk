@@ -2,7 +2,7 @@
 
 -   `compress, decompress, arrayBufferToBase64, base64ToArrayBuffer`
 
-```ts
+```typescript
 import { compress, arrayBufferToBase64, base64ToArrayBuffer, decompress } from '@angular-ru/cdk/stream';
 
 const base64: string = 'eJzLSM3JyVcozy/KSQEAGgsEXQ==';
@@ -24,7 +24,7 @@ it('decompress', async () => {
 
 -   `toBase64`
 
-```ts
+```typescript
 import { decodeJwt, toBase64 } from '@angular-ru/cdk/stream/jwt';
 
 it('toBase64', () => {
@@ -45,7 +45,7 @@ it('decodeJwt', () => {
 
 -   `encodeUnicodeToBase64, decodeBase64ToUnicode`
 
-```ts
+```typescript
 import { encodeUnicodeToBase64, decodeBase64ToUnicode } from '@angular-ru/cdk/stream';
 
 expect(encodeUnicodeToBase64('abcABC 0123')).toEqual('YWJjQUJDIDAxMjM=');
