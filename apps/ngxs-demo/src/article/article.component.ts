@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Sort } from '@angular/material/sort';
 import { generateUid, isNotNil } from '@angular-ru/cdk/utils';
-import { Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { Observable, of, Subject } from 'rxjs';
+import { filter, takeUntil } from 'rxjs/operators';
 
 import { Article } from './article';
 import { ArticleEntitiesState } from './article-entities.state';
@@ -14,21 +14,32 @@ import { ArticleDialogComponent } from './dialog/article-dialog.component';
     templateUrl: './article.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ArticleComponent {
+export class ArticleComponent implements OnDestroy {
+    private destroy: Subject<void> = new Subject();
+
     constructor(public dialog: MatDialog, public articleEntities: ArticleEntitiesState) {}
 
+    public ngOnDestroy(): void {
+        this.destroy.next();
+        this.destroy.complete();
+    }
+
     public createArticle(): void {
-        this.ensureDialog({ uid: generateUid(), title: '', category: '' }).subscribe((article: Article): void =>
-            this.articleEntities.addOne(article)
-        );
+        this.ensureDialog({ uid: generateUid(), title: '', category: '' })
+            .pipe(
+                filter((article: Article | null): article is Article => Boolean(article)),
+                takeUntil(this.destroy)
+            )
+            .subscribe((article: Article): void => this.articleEntities.addOne(article));
     }
 
     public editById(id: string): void {
-        const entity: Article = this.articleEntities.selectOne(id)!;
-
-        this.ensureDialog(entity).subscribe((article: Article): void =>
-            this.articleEntities.updateOne({ id, changes: article })
-        );
+        this.ensureDialog(this.articleEntities.selectOne(id))
+            .pipe(
+                filter((article: Article | null): article is Article => Boolean(article)),
+                takeUntil(this.destroy)
+            )
+            .subscribe((article: Article): void => this.articleEntities.updateOne({ id, changes: article }));
     }
 
     public deleteById(id: string): void {
@@ -39,7 +50,11 @@ export class ArticleComponent {
         this.articleEntities.sort({ sortBy: event.active as keyof Article, sortByOrder: event.direction });
     }
 
-    private ensureDialog(entity: Article): Observable<Article> {
+    private ensureDialog(entity?: Article): Observable<Article | null> {
+        if (!entity) {
+            return of(null);
+        }
+
         return this.dialog
             .open<ArticleDialogComponent, Article>(ArticleDialogComponent, {
                 width: '300px',

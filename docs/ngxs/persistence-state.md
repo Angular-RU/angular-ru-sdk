@@ -1,4 +1,4 @@
-## (@)Persistence
+## @Persistence
 
 ```typescript
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';

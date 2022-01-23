@@ -1,4 +1,4 @@
-## (@)DataAction
+## @DataAction
 
 `@DataAction()` - This decorator emulates the execution of asynchronous or synchronous actions. Actions can either be
 thought of as a command which should trigger something to happen.

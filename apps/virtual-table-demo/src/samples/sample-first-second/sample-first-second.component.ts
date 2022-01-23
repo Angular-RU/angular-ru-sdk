@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnDestro
 import { MatDialog } from '@angular/material/dialog';
 import { Nullable, PlainObject } from '@angular-ru/cdk/typings';
 import { detectChanges, isNotNil } from '@angular-ru/cdk/utils';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { MocksGenerator } from '../../mocks-generator';
 import { DialogTemplateComponent } from '../../shared/dialog-template/dialog-template.component';
@@ -12,6 +14,7 @@ import { DialogTemplateComponent } from '../../shared/dialog-template/dialog-tem
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SampleFirstSecondComponent implements OnInit, OnDestroy {
+    private destroy: Subject<void> = new Subject();
     private idInterval: Nullable<number> = null;
     public data: PlainObject[] = [];
 
@@ -34,6 +37,8 @@ export class SampleFirstSecondComponent implements OnInit, OnDestroy {
 
     public ngOnDestroy(): void {
         window.clearInterval(this.idInterval!);
+        this.destroy.next();
+        this.destroy.complete();
     }
 
     public add(): void {
@@ -50,6 +55,7 @@ export class SampleFirstSecondComponent implements OnInit, OnDestroy {
             this.dialog
                 .open(DialogTemplateComponent, { data: row, width: '1024px' })
                 .afterClosed()
+                .pipe(takeUntil(this.destroy))
                 .subscribe((data?: PlainObject): void => {
                     if (isNotNil(data)) {
                         this.data = this.data.map(

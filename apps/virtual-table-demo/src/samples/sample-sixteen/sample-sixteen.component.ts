@@ -2,7 +2,8 @@ import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, O
 import { MatDialog } from '@angular/material/dialog';
 import { Any, Nullable, PlainObject } from '@angular-ru/cdk/typings';
 import { NgxTableViewChangesService, TableUpdateSchema } from '@angular-ru/cdk/virtual-table';
-import { Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { MocksGenerator } from '../../mocks-generator';
 
@@ -14,7 +15,7 @@ declare const hljs: Any;
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SampleSixteenComponent implements OnInit, AfterViewInit, OnDestroy {
-    private sub: Nullable<Subscription> = null;
+    private destroy: Subject<void> = new Subject();
     public data: PlainObject[] = [];
     public schema: Nullable<TableUpdateSchema> = null;
     public readonly testName: string = 'test';
@@ -35,7 +36,9 @@ export class SampleSixteenComponent implements OnInit, AfterViewInit, OnDestroy 
             this.cd.detectChanges();
         });
 
-        this.sub = this.tableChanges.events$.subscribe((event: TableUpdateSchema): void => this.save(event));
+        this.tableChanges.events$
+            .pipe(takeUntil(this.destroy))
+            .subscribe((event: TableUpdateSchema): void => this.save(event));
     }
 
     public ngAfterViewInit(): void {
@@ -45,7 +48,8 @@ export class SampleSixteenComponent implements OnInit, AfterViewInit, OnDestroy 
     }
 
     public ngOnDestroy(): void {
-        this.sub?.unsubscribe();
+        this.destroy.next();
+        this.destroy.complete();
     }
 
     private save(event: TableUpdateSchema): void {

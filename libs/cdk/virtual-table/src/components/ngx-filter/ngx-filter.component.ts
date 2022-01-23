@@ -1,6 +1,16 @@
-import { ChangeDetectionStrategy, Component, ContentChild, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ContentChild,
+    Input,
+    OnDestroy,
+    OnInit,
+    ViewEncapsulation
+} from '@angular/core';
 import { fadeInLinearAnimation } from '@angular-ru/cdk/animations';
 import { Nullable } from '@angular-ru/cdk/typings';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { AbstractModalViewLayerDirective } from '../../directives/abstract-modal-view-layer.directive';
 import { NgxFilterDirective } from '../../directives/ngx-filter.directive';
@@ -18,7 +28,11 @@ const FILTER_MIN_TOP_Y: number = 50;
     encapsulation: ViewEncapsulation.None,
     animations: [fadeInLinearAnimation]
 })
-export class NgxFilterComponent<T> extends AbstractModalViewLayerDirective<T, FilterStateEvent> implements OnInit {
+export class NgxFilterComponent<T>
+    extends AbstractModalViewLayerDirective<T, FilterStateEvent>
+    implements OnInit, OnDestroy
+{
+    private destroy: Subject<void> = new Subject();
     @Input() public width: number = FILTER_WIDTH;
     @Input() public height: Nullable<number> = null;
     // eslint-disable-next-line @angular-eslint/no-input-rename
@@ -40,6 +54,12 @@ export class NgxFilterComponent<T> extends AbstractModalViewLayerDirective<T, Fi
     }
 
     public ngOnInit(): void {
-        this.subscription = this.filterable.filterOpenEvents$.subscribe((): void => this.update());
+        this.filterable.filterOpenEvents$.pipe(takeUntil(this.destroy)).subscribe((): void => this.update());
+    }
+
+    public override ngOnDestroy(): void {
+        super.ngOnDestroy();
+        this.destroy.next();
+        this.destroy.complete();
     }
 }

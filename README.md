@@ -1,22 +1,18 @@
 ## Angular-RU SDK
 
+[![gitbook](https://img.shields.io/badge/documentation-gitbook-blue)](https://angular-ru.gitbook.io/sdk/)
+[![LICENSE](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](http://github.com/Angular-RU/angular-ru-sdk/branch/master/LICENSE)
+[![codecov](https://codecov.io/gh/Angular-RU/angular-ru-sdk/branch/master/graph/badge.svg?token=RVJS9HS665)](https://codecov.io/gh/Angular-RU/angular-ru-sdk)
 [![CI Build](https://github.com/Angular-RU/angular-ru-sdk/actions/workflows/build.yml/badge.svg)](https://github.com/Angular-RU/angular-ru-sdk/actions/workflows/build.yml)
+[![Maintainability](https://api.codeclimate.com/v1/badges/23a8c759d0576f6f107d/maintainability)](https://codeclimate.com/github/Angular-RU/angular-ru-sdk/maintainability)
 [![CI Integrations](https://github.com/Angular-RU/angular-ru-sdk/actions/workflows/integrations.yml/badge.svg)](https://github.com/Angular-RU/angular-ru-sdk/actions/workflows/integrations.yml)
 [![CI Lint](https://github.com/Angular-RU/angular-ru-sdk/actions/workflows/lint.yml/badge.svg)](https://github.com/Angular-RU/angular-ru-sdk/actions/workflows/lint.yml)
 [![CI Release](https://github.com/Angular-RU/angular-ru-sdk/actions/workflows/release.yml/badge.svg)](https://github.com/Angular-RU/angular-ru-sdk/actions/workflows/release.yml)
 [![CI Test](https://github.com/Angular-RU/angular-ru-sdk/actions/workflows/test.yml/badge.svg)](https://github.com/Angular-RU/angular-ru-sdk/actions/workflows/test.yml)
-[![Maintainability](https://api.codeclimate.com/v1/badges/23a8c759d0576f6f107d/maintainability)](https://codeclimate.com/github/Angular-RU/angular-ru-sdk/maintainability)
-[![codecov](https://codecov.io/gh/Angular-RU/angular-ru-sdk/branch/master/graph/badge.svg?token=RVJS9HS665)](https://codecov.io/gh/Angular-RU/angular-ru-sdk)
-[![gitbook](https://img.shields.io/badge/documentation-gitbook-blue)](https://angular-ru.gitbook.io/sdk/)
-[![LICENSE](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](http://github.com/Angular-RU/angular-ru-sdk/branch/master/LICENSE)
 
 The Angular-RU Software Development Kit (SDK) is a set of tool chain that implement common interaction patterns whilst
 being un opinionated about their presentation for Angular. It represents an abstraction of the core functionalities
 found in the Angular.
-
-#### Version policy
-
-`X.Y.Z`, where `X` align with Angular version, `Y` align with features and `Z` align with bugfixes.
 
 ---
 
@@ -25,7 +21,7 @@ found in the Angular.
 | **Package**                                                    | **Version**                                                       | **README**                                                                        | **Downloads**                                                                                     |
 | -------------------------------------------------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | [@angular-ru/cdk](https://npmjs.com/package/@angular-ru/cdk)   | ![](https://img.shields.io/npm/v/%40angular-ru%2Fcdk/latest.svg)  | [![](https://img.shields.io/badge/Documentation--green.svg)](docs/cdk/README.md)  | [![](https://img.shields.io/npm/dw/@angular-ru/cdk)](https://npmjs.com/package/@angular-ru/cdk)   |
-| [@angular-ru/ngxs](https://npmjs.com/package/@angular-ru/ngxs) | ![](https://img.shields.io/npm/v/%40angular-ru%2Fngxs/latest.svg) | [![](https://img.shields.io/badge/Documentation--green.svg)](docs/ngxs/README.md) | [![](https://img.shields.io/npm/dw/@angular-ru/ngxs)](https://npmjs.com/package/@angular-ru/ngxs) |
+| [@angular-ru/ngxs](https://npmjs.com/package/@angular-ru/ngxs) | ![](https://img.shields.io/npm/v/%40angular-ru%2Fngxs/latest.svg) | [![](https://img.shields.io/badge/Documentation--green.svg)](docs/ngxs/introduction.md) | [![](https://img.shields.io/npm/dw/@angular-ru/ngxs)](https://npmjs.com/package/@angular-ru/ngxs) |
 
 ---
 

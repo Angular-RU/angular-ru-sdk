@@ -163,17 +163,3 @@ export class AppComponent {
     constructor(counter: CounterState) {}
 }
 ```
-
-## Table of contents:
-
--   [🚀 Quick Start](quick-start.md)
--   [📦 Advanced](#table-of-contents)
-    -   [(@)StateRepository](state-repository.md)
-    -   [(@)DataAction](data-action.md)
-    -   [(@)Computed](computed.md)
-    -   [(@)Persistence](persistence-state.md)
-    -   [Entity state adapter](entity.md)
-    -   [Unit Testing](testing.md)
-    -   [Lifecycle](lifecycle.md)
-    -   [Immutability](immutability.md)
-    -   [Extension API](extension-api.md)

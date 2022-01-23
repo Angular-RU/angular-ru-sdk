@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { ApiClient } from '../../services/clients/api.client';
 
@@ -7,7 +9,9 @@ import { ApiClient } from '../../services/clients/api.client';
     templateUrl: './guide.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GuideComponent implements OnInit {
+export class GuideComponent implements OnInit, OnDestroy {
+    private destroy: Subject<void> = new Subject();
+
     constructor(private readonly apiClient: ApiClient) {}
 
     public ngOnInit(): void {
@@ -16,16 +20,21 @@ export class GuideComponent implements OnInit {
         this.fetchData();
     }
 
+    public ngOnDestroy(): void {
+        this.destroy.next();
+        this.destroy.complete();
+    }
+
     private fetchData(): void {
         // eslint-disable-next-line rxjs/no-ignored-subscribe
-        this.apiClient.posts().subscribe();
+        this.apiClient.posts().pipe(takeUntil(this.destroy)).subscribe();
         // eslint-disable-next-line rxjs/no-ignored-subscribe
-        this.apiClient.comments().subscribe();
+        this.apiClient.comments().pipe(takeUntil(this.destroy)).subscribe();
         // eslint-disable-next-line rxjs/no-ignored-subscribe
-        this.apiClient.albums().subscribe();
+        this.apiClient.albums().pipe(takeUntil(this.destroy)).subscribe();
         // eslint-disable-next-line rxjs/no-ignored-subscribe
-        this.apiClient.todos().subscribe();
+        this.apiClient.todos().pipe(takeUntil(this.destroy)).subscribe();
         // eslint-disable-next-line rxjs/no-ignored-subscribe
-        this.apiClient.users().subscribe();
+        this.apiClient.users().pipe(takeUntil(this.destroy)).subscribe();
     }
 }

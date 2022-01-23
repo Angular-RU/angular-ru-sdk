@@ -1,4 +1,4 @@
-## (@)Computed
+## @Computed
 
 Computed values are values that can be derived from the existing state or other computed values. Conceptually, they are
 very similar to formulas in spreadsheets. Computed values can't be underestimated, as they help you to make your actual

@@ -17,7 +17,8 @@ import {
 import { coerceBoolean } from '@angular-ru/cdk/coercion';
 import { Any, Nullable } from '@angular-ru/cdk/typings';
 import { detectChanges, getBodyRect } from '@angular-ru/cdk/utils';
-import { Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { ContextItemEvent } from '../../../interfaces/table-builder.external';
 import { ContextMenuService } from '../../../services/context-menu/context-menu.service';
@@ -33,7 +34,7 @@ const MENU_WIDTH: number = 300;
     encapsulation: ViewEncapsulation.None
 })
 export class NgxContextMenuItemComponent<T = Any> implements OnInit, OnDestroy {
-    private subscription: Nullable<Subscription> = null;
+    private destroy: Subject<void> = new Subject();
     private taskId: Nullable<number> = null;
     private readonly contextMenu: ContextMenuService<T>;
     private readonly ngZone: NgZone;
@@ -68,12 +69,13 @@ export class NgxContextMenuItemComponent<T = Any> implements OnInit, OnDestroy {
     }
 
     public ngOnInit(): void {
-        this.subscription = this.contextMenu.events$.subscribe((): void => detectChanges(this.cd));
+        this.contextMenu.events$.pipe(takeUntil(this.destroy)).subscribe((): void => detectChanges(this.cd));
     }
 
     public ngOnDestroy(): void {
         this.itemRef = null;
-        this.subscription?.unsubscribe();
+        this.destroy.next();
+        this.destroy.complete();
     }
 
     public calculateSubMenuPosition(ref: HTMLDivElement): void {

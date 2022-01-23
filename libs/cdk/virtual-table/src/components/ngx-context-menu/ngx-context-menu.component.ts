@@ -1,7 +1,9 @@
 /* eslint-disable @angular-eslint/no-input-rename */
-import { ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Nullable } from '@angular-ru/cdk/typings';
 import { detectChanges } from '@angular-ru/cdk/utils';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { AbstractModalViewLayerDirective } from '../../directives/abstract-modal-view-layer.directive';
 import { ContextMenuState } from '../../services/context-menu/context-menu-state';
@@ -19,8 +21,9 @@ const MAX_HEIGHT: number = 400;
 })
 export class NgxContextMenuComponent<T>
     extends AbstractModalViewLayerDirective<T, ContextMenuState<T>>
-    implements OnInit
+    implements OnInit, OnDestroy
 {
+    private destroy: Subject<void> = new Subject();
     @Input() public width: Nullable<number> = SIZE;
     @Input() public height: Nullable<number> = SIZE;
     @Input('max-height') public maxHeight: number = MAX_HEIGHT;
@@ -30,7 +33,13 @@ export class NgxContextMenuComponent<T>
     }
 
     public ngOnInit(): void {
-        this.subscription = this.contextMenu.events$.subscribe((): void => this.update());
+        this.contextMenu.events$.pipe(takeUntil(this.destroy)).subscribe((): void => this.update());
+    }
+
+    public override ngOnDestroy(): void {
+        super.ngOnDestroy();
+        this.destroy.next();
+        this.destroy.complete();
     }
 
     public close(event: MouseEvent): void {

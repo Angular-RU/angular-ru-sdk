@@ -14,7 +14,8 @@ import {
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Any, Nullable, PlainObject } from '@angular-ru/cdk/typings';
 import { detectChanges, isNotNil } from '@angular-ru/cdk/utils';
-import { Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { TABLE_GLOBAL_OPTIONS } from '../../config/table-global-options';
 import { FilterEvent } from '../../services/filterable/filter-event';
@@ -31,7 +32,7 @@ const { TIME_RELOAD }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
     encapsulation: ViewEncapsulation.None
 })
 export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy {
-    private subscription: Nullable<Subscription> = null;
+    private destroy: Subject<void> = new Subject();
     private taskId: Nullable<number> = null;
     private readonly ngZone: NgZone;
     private readonly filterable: FilterableService<T>;
@@ -58,7 +59,7 @@ export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy
     }
 
     public ngOnInit(): void {
-        this.subscription = this.filterable.events$.subscribe((event: FilterEvent): void => {
+        this.filterable.events$.pipe(takeUntil(this.destroy)).subscribe((event: FilterEvent): void => {
             const hasFilter: boolean =
                 isNotNil((this.filterable.definition as Any)[this.key!]) || isNotNil(this.filterable.globalFilterValue);
 
@@ -71,7 +72,8 @@ export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy
     }
 
     public ngOnDestroy(): void {
-        this.subscription?.unsubscribe();
+        this.destroy.next();
+        this.destroy.complete();
     }
 
     private changeSelection(event: FilterEvent): void {
