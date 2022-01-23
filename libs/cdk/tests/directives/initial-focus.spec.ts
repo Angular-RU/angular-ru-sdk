@@ -83,7 +83,7 @@ describe('[TEST]: Initial Focus', function () {
         await fixture.whenStable();
         const inputElements = debugElement
             .queryAll(By.css('input'))
-            .map((element: DebugElement) => element.nativeElement, 'focus');
+            .map((element: DebugElement) => element.nativeElement);
         const spiedFunctions = inputElements.map((element: Any) => jest.spyOn(element, 'focus'));
 
         expect(spiedFunctions[0]).not.toHaveBeenCalled();

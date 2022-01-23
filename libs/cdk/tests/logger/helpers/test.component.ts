@@ -131,9 +131,9 @@ export class MyTestComponent implements OnInit {
 
     private extracted(seconds: number, done: Fn): void {
         // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-        const date: number = new Date().getTime() + seconds * 1000;
+        const date: number = Date.now() + seconds * 1000;
 
-        while (new Date().getTime() <= date) {
+        while (Date.now() <= date) {
             this.doneHeavy = true;
         }
 

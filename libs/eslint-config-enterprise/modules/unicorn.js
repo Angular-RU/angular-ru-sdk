@@ -55,25 +55,26 @@ module.exports = {
                 'unicorn/import-style': 'error',
                 'unicorn/new-for-builtins': 'error',
                 'unicorn/no-array-callback-reference': 'error',
-                // OFF
+                'unicorn/no-array-method-this-argument': 'error',
+                'unicorn/prefer-code-point': 'error',
+                'unicorn/prefer-date-now': 'error',
+                'unicorn/prefer-default-parameters': 'error',
+                // TODO: enable later
                 'unicorn/custom-error-definition': 'off',
                 'unicorn/no-abusive-eslint-disable': 'off',
-                'unicorn/expiring-todo-comments': 'off'
+                'unicorn/expiring-todo-comments': 'off',
+                'unicorn/no-unsafe-regex': 'off',
+                'unicorn/no-lonely-if': 'error',
+                'unicorn/no-keyword-prefix': 'off',
+                'no-nested-ternary': 'off',
+                'unicorn/no-unused-properties': 'off',
+                'unicorn/prefer-at': 'off',
+                'unicorn/prefer-string-replace-all': 'off',
+                'unicorn/prefer-top-level-await': 'off',
+                'unicorn/string-content': 'off',
+                'unicorn/require-post-message-target-origin': 'off'
                 /*
-
-
-
-
-
-
-
-
-
-
-
-
                 'unicorn/no-array-for-each': 'error',
-                'unicorn/no-array-method-this-argument': 'error',
                 'unicorn/no-array-push-push': 'error',
                 'unicorn/no-array-reduce': 'error',
                 'unicorn/no-await-expression-member': 'error',
@@ -84,9 +85,6 @@ module.exports = {
                 'unicorn/no-hex-escape': 'error',
                 'unicorn/no-instanceof-array': 'error',
                 'unicorn/no-invalid-remove-event-listener': 'error',
-                'unicorn/no-keyword-prefix': 'off',
-                'unicorn/no-lonely-if': 'error',
-                'no-nested-ternary': 'off',
                 'unicorn/no-nested-ternary': 'error',
                 'unicorn/no-new-array': 'error',
                 'unicorn/no-new-buffer': 'error',
@@ -97,8 +95,6 @@ module.exports = {
                 'unicorn/no-thenable': 'error',
                 'unicorn/no-this-assignment': 'error',
                 'unicorn/no-unreadable-array-destructuring': 'error',
-                'unicorn/no-unsafe-regex': 'off',
-                'unicorn/no-unused-properties': 'off',
                 'unicorn/no-useless-fallback-in-spread': 'error',
                 'unicorn/no-useless-length-check': 'error',
                 'unicorn/no-useless-promise-resolve-reject': 'error',
@@ -113,10 +109,6 @@ module.exports = {
                 'unicorn/prefer-array-flat-map': 'error',
                 'unicorn/prefer-array-index-of': 'error',
                 'unicorn/prefer-array-some': 'error',
-                'unicorn/prefer-at': 'off',
-                'unicorn/prefer-code-point': 'error',
-                'unicorn/prefer-date-now': 'error',
-                'unicorn/prefer-default-parameters': 'error',
                 'unicorn/prefer-dom-node-append': 'error',
                 'unicorn/prefer-dom-node-dataset': 'error',
                 'unicorn/prefer-dom-node-remove': 'error',
@@ -139,19 +131,15 @@ module.exports = {
                 'unicorn/prefer-regexp-test': 'error',
                 'unicorn/prefer-set-has': 'error',
                 'unicorn/prefer-spread': 'error',
-                'unicorn/prefer-string-replace-all': 'off',
                 'unicorn/prefer-string-slice': 'error',
                 'unicorn/prefer-string-starts-ends-with': 'error',
                 'unicorn/prefer-string-trim-start-end': 'error',
                 'unicorn/prefer-switch': 'error',
                 'unicorn/prefer-ternary': 'error',
-                'unicorn/prefer-top-level-await': 'off',
                 'unicorn/prefer-type-error': 'error',
                 'unicorn/relative-url-style': 'error',
                 'unicorn/require-array-join-separator': 'error',
                 'unicorn/require-number-to-fixed-digits-argument': 'error',
-                'unicorn/require-post-message-target-origin': 'off',
-                'unicorn/string-content': 'off',
                 'unicorn/template-indent': 'warn',
                 'unicorn/throw-new-error': 'error'
                 */
