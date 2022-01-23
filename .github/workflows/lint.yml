@@ -25,13 +25,13 @@ jobs:
                 --verbose
 
       - name: Run format
-        run: npx format
+        run: npm run format
 
       - name: Run build artifacts dependent
         run: npx nx build eslint-plugin-enterprise
 
       - name: Run lint
-        run: npx lint
+        run: npm run lint
 
       - name: Autocommit fixed files and push
         uses: ./.github/actions/autopush

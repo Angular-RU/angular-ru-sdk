@@ -44,8 +44,15 @@ import { SortableService } from './services/sortable/sortable.service';
 import { NgxTableViewChangesService } from './services/table-view-changes/ngx-table-view-changes.service';
 import { TemplateParserService } from './services/template-parser/template-parser.service';
 
-const { TIME_IDLE, TIME_RELOAD, FRAME_TIME, MACRO_TIME, CHANGE_DELAY }: typeof TABLE_GLOBAL_OPTIONS =
-    TABLE_GLOBAL_OPTIONS;
+const {
+    TIME_IDLE,
+    TIME_RELOAD,
+    FRAME_TIME,
+    MACRO_TIME,
+    CHANGE_DELAY,
+    MIN_BUFFER,
+    BUFFER_OFFSET
+}: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
 
 @Component({
     selector: 'ngx-table-builder',
@@ -381,7 +388,7 @@ export class TableBuilderComponent<T>
                 this.tableViewportChecked = true;
                 this.calculateColumnWidthSummary();
                 detectChanges(this.cd);
-            }, TABLE_GLOBAL_OPTIONS.TIME_IDLE);
+            }, TIME_IDLE);
         });
     }
 
@@ -442,11 +449,11 @@ export class TableBuilderComponent<T>
     }
 
     protected needRecalculateBuffer(bufferOffset: number): boolean {
-        return bufferOffset <= TABLE_GLOBAL_OPTIONS.BUFFER_OFFSET && bufferOffset >= 0;
+        return bufferOffset <= BUFFER_OFFSET && bufferOffset >= 0;
     }
 
     protected recalculateStartIndex(start: number): number {
-        const newStart: number = start - TABLE_GLOBAL_OPTIONS.MIN_BUFFER;
+        const newStart: number = start - MIN_BUFFER;
 
         return newStart >= 0 ? newStart : 0;
     }
@@ -460,7 +467,7 @@ export class TableBuilderComponent<T>
     }
 
     protected calculateEndIndex(start: number): number {
-        const end: number = start + this.getVisibleCountItems() + TABLE_GLOBAL_OPTIONS.MIN_BUFFER;
+        const end: number = start + this.getVisibleCountItems() + MIN_BUFFER;
 
         return end > this.sourceRef.length ? this.sourceRef.length : end;
     }

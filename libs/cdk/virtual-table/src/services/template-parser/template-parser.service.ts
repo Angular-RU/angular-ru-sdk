@@ -138,7 +138,23 @@ export class TemplateParserService<T> {
 
     // eslint-disable-next-line complexity,max-lines-per-function
     public compileColumnMetadata(column: NgxColumnComponent<T>): void {
-        const { key, th, td, emptyHead, headTitle }: NgxColumnComponent<T> = column;
+        const {
+            key,
+            th,
+            td,
+            emptyHead,
+            headTitle,
+            verticalLine,
+            customKey,
+            isSortable,
+            isDraggable,
+            isFilterable,
+            stub,
+            cssStyle,
+            width,
+            cssClass,
+            overflowTooltip
+        }: NgxColumnComponent<T> = column;
         const thTemplate: AbstractTemplateCellCommonDirective<T> = th ?? new TemplateHeadThDirective<T>();
         const tdTemplate: AbstractTemplateCellCommonDirective<T> = td ?? new TemplateBodyTdDirective<T>();
         const isEmptyHead: boolean = getValidHtmlBooleanAttribute(emptyHead);
@@ -149,7 +165,7 @@ export class TemplateParserService<T> {
         );
         const stickyLeft: boolean = getValidHtmlBooleanAttribute(column.stickyLeft);
         const stickyRight: boolean = getValidHtmlBooleanAttribute(column.stickyRight);
-        const isCustomKey: boolean = getValidHtmlBooleanAttribute(column.customKey);
+        const isCustomKey: boolean = getValidHtmlBooleanAttribute(customKey);
         const canBeAddDraggable: boolean = !(stickyLeft || stickyRight);
         const isModel: boolean = checkValueIsFilled(this.keyMap[key as string]);
 
@@ -158,31 +174,27 @@ export class TemplateParserService<T> {
             isModel,
             isVisible: true,
             excluded: !checkValueIsFilled(this.allowedKeyMap[key!]),
-            verticalLine: getValidHtmlBooleanAttribute(column.verticalLine),
+            verticalLine: getValidHtmlBooleanAttribute(verticalLine),
             td: TemplateParserService.templateContext(key!, tdTemplate, this.columnOptions!),
             stickyLeft: getValidHtmlBooleanAttribute(column.stickyLeft),
             stickyRight: getValidHtmlBooleanAttribute(column.stickyRight),
             customColumn: isCustomKey,
-            width: fallbackIfEmpty(toNumber(column.width ?? this.columnOptions?.width), null),
-            cssClass: getValidPredicate(column.cssClass, this.columnOptions?.cssClass) ?? [],
-            cssStyle: getValidPredicate(column.cssStyle, this.columnOptions?.cssStyle) ?? [],
-            resizable: getValidHtmlBooleanAttribute(
-                getValidPredicate(column.isDraggable, this.columnOptions?.isDraggable)
-            ),
-            stub: getValidPredicate(this.columnOptions?.stub, column.stub),
-            filterable: getValidHtmlBooleanAttribute(
-                getValidPredicate(column.isFilterable, this.columnOptions?.isFilterable)
-            ),
+            width: fallbackIfEmpty(toNumber(width ?? this.columnOptions?.width), null),
+            cssClass: getValidPredicate(cssClass, this.columnOptions?.cssClass) ?? [],
+            cssStyle: getValidPredicate(cssStyle, this.columnOptions?.cssStyle) ?? [],
+            resizable: getValidHtmlBooleanAttribute(getValidPredicate(isDraggable, this.columnOptions?.isDraggable)),
+            stub: getValidPredicate(this.columnOptions?.stub, stub),
+            filterable: getValidHtmlBooleanAttribute(getValidPredicate(isFilterable, this.columnOptions?.isFilterable)),
             sortable: isModel
-                ? getValidHtmlBooleanAttribute(getValidPredicate(column.isSortable, this.columnOptions?.isSortable))
+                ? getValidHtmlBooleanAttribute(getValidPredicate(isSortable, this.columnOptions?.isSortable))
                 : false,
             draggable: canBeAddDraggable
-                ? getValidHtmlBooleanAttribute(getValidPredicate(column.isDraggable, this.columnOptions?.isDraggable))
+                ? getValidHtmlBooleanAttribute(getValidPredicate(isDraggable, this.columnOptions?.isDraggable))
                 : false,
             overflowTooltip: getValidHtmlBooleanAttribute(
                 getValidPredicate(
                     this.columnOptions?.overflowTooltip,
-                    typeof column.overflowTooltip === 'boolean' ? column.overflowTooltip : !isCustomKey
+                    typeof overflowTooltip === 'boolean' ? overflowTooltip : !isCustomKey
                 )
             ),
             th: {

@@ -59,7 +59,7 @@ import { TemplateParserService } from './services/template-parser/template-parse
 import { SCROLLBAR_SIZE } from './table-builder.properties';
 import { TableSortTypes } from './types/table-sort-types';
 
-const { ROW_HEIGHT, FILTER_DELAY_TIME, TIME_IDLE }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
+const { ROW_HEIGHT, FILTER_DELAY_TIME, TIME_IDLE, TIME_RELOAD }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
 
 @Directive()
 export abstract class AbstractTableBuilderApiDirective<T>
@@ -418,7 +418,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
         this.filterable.changeFilteringStatus();
         this.calculateViewport(true);
         // eslint-disable-next-line no-restricted-properties
-        window.setTimeout((): void => this.app.tick(), TABLE_GLOBAL_OPTIONS.TIME_RELOAD);
+        window.setTimeout((): void => this.app.tick(), TIME_RELOAD);
     }
 
     protected forceCalculateViewport(): void {
