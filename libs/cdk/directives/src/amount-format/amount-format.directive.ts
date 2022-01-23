@@ -32,7 +32,7 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
     private cursorPointer: number = 0;
 
     constructor(
-        private readonly el: ElementRef<HTMLInputElement>,
+        private readonly elementRef: ElementRef<HTMLInputElement>,
         @Inject(AMOUNT_FORMAT_OPTIONS) globalOptions: AmountOptions,
         @Optional() private readonly ngControl?: NgControl,
         @Optional() private readonly ngZone?: NgZone,
@@ -50,7 +50,7 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
     }
 
     public get element(): HTMLInputElement {
-        return this.el.nativeElement;
+        return this.elementRef.nativeElement;
     }
 
     public get amountFormatOptions(): Partial<AmountOptions> {
@@ -307,6 +307,6 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
     }
 
     private setupElementType(): void {
-        this.el.nativeElement.setAttribute('type', 'text');
+        this.elementRef.nativeElement.setAttribute('type', 'text');
     }
 }

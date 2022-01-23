@@ -82,7 +82,7 @@ export abstract class AbstractModalViewLayerDirective<T, K extends PositionState
             } else {
                 height = this.menu.nativeElement.scrollHeight;
             }
-        } catch (e: unknown) {
+        } catch (error: unknown) {
             height = this.height;
         }
 

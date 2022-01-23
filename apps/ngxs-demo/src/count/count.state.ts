@@ -51,11 +51,11 @@ export class CountState extends NgxsImmutableDataRepository<ParentCountModel> {
 
     @Debounce()
     @DataAction()
-    public setDebounceValue(@Payload('val') val: string | number): void {
+    public setDebounceValue(@Payload('val') value: string | number): void {
         this.ctx.setState(
             (state: Immutable<ParentCountModel>): Immutable<ParentCountModel> => ({
                 ...state,
-                val: parseFloat(val as string) || 0
+                val: parseFloat(value as string) || 0
             })
         );
     }

@@ -109,12 +109,12 @@ export class BigDecimal {
             num = num.substring(1);
         }
 
-        let len: number = num.indexOf('.');
+        let numLength: number = num.indexOf('.');
 
-        len = len > 0 ? len : num.length;
-        const temp: string = getTemp(prettyParams, len, num);
+        numLength = numLength > 0 ? numLength : num.length;
+        const temp: string = getTemp(prettyParams, numLength, num);
 
-        return (neg ? '-' : '') + temp + num.substring(len);
+        return (neg ? '-' : '') + temp + num.substring(numLength);
     }
 
     private static validate(inputNum: Any): string {
@@ -210,10 +210,10 @@ function validatePrettyParams(params: PrettyParams): PrettyParams {
     return result;
 }
 
-function getTemp(params: PrettyParams, len: number, num: Any): string {
+function getTemp(params: PrettyParams, length_: number, num: Any): string {
     let temp: string = '';
 
-    for (let i: number = len; i > 0; ) {
+    for (let i: number = length_; i > 0; ) {
         if (i < params.digits) {
             params.digits = i;
             i = 0;
@@ -221,7 +221,10 @@ function getTemp(params: PrettyParams, len: number, num: Any): string {
             i -= params.digits;
         }
 
-        temp = num.substring(i, i + params.digits) + (i < len - params.digits && i >= 0 ? params.separator : '') + temp;
+        temp =
+            num.substring(i, i + params.digits) +
+            (i < length_ - params.digits && i >= 0 ? params.separator : '') +
+            temp;
     }
 
     return temp;

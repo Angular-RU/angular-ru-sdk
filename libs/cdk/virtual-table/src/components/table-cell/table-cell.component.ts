@@ -121,21 +121,21 @@ export class TableCellComponent<T> implements OnDestroy {
             return;
         }
 
-        const elem: HTMLDivElement = document.createElement('div');
+        const divElement: HTMLDivElement = document.createElement('div');
 
-        elem.classList.add(this.overflowSelector);
+        divElement.classList.add(this.overflowSelector);
         const minOffset: number = 15;
         const left: number = event.clientX - minOffset;
         const top: number = event.clientY - minOffset;
 
-        elem.style.cssText = `left: ${left}px; top: ${top}px`;
+        divElement.style.cssText = `left: ${left}px; top: ${top}px`;
 
-        document.body.appendChild(elem);
+        document.body.appendChild(divElement);
         const innerText: string = String(element.innerText || '').trim();
 
         this.overflowContentElem.innerHTML = `<div class="${this.closeButtonSelector}"></div>${innerText}`;
 
-        this.nodeSubscription = fromEvent(elem, 'mouseleave')
+        this.nodeSubscription = fromEvent(divElement, 'mouseleave')
             .pipe(takeUntil(this.destroy))
             .subscribe((): void => this.removeElement());
 

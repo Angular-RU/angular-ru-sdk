@@ -18,8 +18,8 @@ describe('[TEST]: Action decorator', () => {
             @Injectable()
             class InvalidState extends NgxsImmutableDataRepository<string> {
                 @DataAction()
-                public setup(val: string): void {
-                    this.ctx.setState(val);
+                public setup(value: string): void {
+                    this.ctx.setState(value);
                 }
             }
 
@@ -30,8 +30,8 @@ describe('[TEST]: Action decorator', () => {
             const state: InvalidState = TestBed.inject(InvalidState);
 
             state.setState('new value');
-        } catch (e: unknown) {
-            message = (e as Error).message;
+        } catch (error: unknown) {
+            message = (error as Error).message;
         }
 
         expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_STATE_DECORATOR);
@@ -44,8 +44,8 @@ describe('[TEST]: Action decorator', () => {
             @Injectable()
             class InvalidState extends NgxsImmutableDataRepository<string> {
                 @DataAction()
-                public setup(@Payload('val') val: string): void {
-                    this.ctx.setState(val);
+                public setup(@Payload('val') value: string): void {
+                    this.ctx.setState(value);
                 }
             }
 
@@ -56,8 +56,8 @@ describe('[TEST]: Action decorator', () => {
             const state: InvalidState = TestBed.inject(InvalidState);
 
             state.setState('new value');
-        } catch (e: unknown) {
-            message = (e as Error).message;
+        } catch (error: unknown) {
+            message = (error as Error).message;
         }
 
         expect(message).toBe('States must be decorated with @State() decorator');
@@ -83,8 +83,8 @@ describe('[TEST]: Action decorator', () => {
             const state: InvalidState = TestBed.inject(InvalidState);
 
             state.setup();
-        } catch (e: unknown) {
-            message = (e as Error).message;
+        } catch (error: unknown) {
+            message = (error as Error).message;
         }
 
         expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_STATE_DECORATOR);
@@ -111,8 +111,8 @@ describe('[TEST]: Action decorator', () => {
             const state: InvalidState = TestBed.inject(InvalidState);
 
             state.setup();
-        } catch (e: unknown) {
-            message = (e as Error).message;
+        } catch (error: unknown) {
+            message = (error as Error).message;
         }
 
         expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_STATE_DECORATOR);

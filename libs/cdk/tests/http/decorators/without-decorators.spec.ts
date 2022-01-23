@@ -12,7 +12,7 @@ describe('[TEST]: HTTP without decorators for client', () => {
     const MOCK_API: string = 'http://localhost';
     let client: Nullable<ApiUsersClient> = null;
     let httpMock: HttpTestingController;
-    let req: TestRequest;
+    let request: TestRequest;
 
     interface User {
         id: number;
@@ -95,11 +95,11 @@ describe('[TEST]: HTTP without decorators for client', () => {
                 { id: 1, name: 'a' },
                 { id: 2, name: 'b' }
             ]);
-            expect(req.request.method).toBe('GET');
+            expect(request.request.method).toBe('GET');
         });
 
-        req = httpMock.expectOne(`${MOCK_API}/users`);
-        req.flush([
+        request = httpMock.expectOne(`${MOCK_API}/users`);
+        request.flush([
             { id: 1, name: 'a' },
             { id: 2, name: 'b' }
         ]);
@@ -108,11 +108,11 @@ describe('[TEST]: HTTP without decorators for client', () => {
 
         client?.getFirstUser().subscribe((response: User) => {
             expect(response).toEqual({ id: 1, name: 'a' });
-            expect(req.request.method).toBe('GET');
+            expect(request.request.method).toBe('GET');
         });
 
-        req = httpMock.expectOne(`${MOCK_API}/users`);
-        req.flush([
+        request = httpMock.expectOne(`${MOCK_API}/users`);
+        request.flush([
             { id: 1, name: 'a' },
             { id: 2, name: 'b' }
         ]);
@@ -123,21 +123,21 @@ describe('[TEST]: HTTP without decorators for client', () => {
     it('should be correct GET request with path variable', fakeAsync(() => {
         client?.findByIdUser(2).subscribe((response: User) => {
             expect(response).toEqual({ id: 2, name: 'b' });
-            expect(req.request.method).toBe('GET');
+            expect(request.request.method).toBe('GET');
         });
 
-        req = httpMock.expectOne(`${MOCK_API}/users/2`);
-        req.flush({ id: 2, name: 'b' });
+        request = httpMock.expectOne(`${MOCK_API}/users/2`);
+        request.flush({ id: 2, name: 'b' });
 
         tick(100);
 
         client?.findByIdUser(3).subscribe((response: User) => {
             expect(response).toEqual({ id: 3, name: 'c' });
-            expect(req.request.method).toBe('GET');
+            expect(request.request.method).toBe('GET');
         });
 
-        req = httpMock.expectOne(`${MOCK_API}/users/3`);
-        req.flush({ id: 3, name: 'c' });
+        request = httpMock.expectOne(`${MOCK_API}/users/3`);
+        request.flush({ id: 3, name: 'c' });
 
         tick(100);
     }));
@@ -145,80 +145,80 @@ describe('[TEST]: HTTP without decorators for client', () => {
     it('should be correct GET request with path variable without override', fakeAsync(() => {
         client?.findByIdUserWithoutOverride(10, 2).subscribe((response: User) => {
             expect(response).toEqual({ id: 2, name: 'b' });
-            expect(req.request.method).toBe('GET');
+            expect(request.request.method).toBe('GET');
         });
 
-        req = httpMock.expectOne(`${MOCK_API}/users/2`);
-        req.flush({ id: 2, name: 'b' });
+        request = httpMock.expectOne(`${MOCK_API}/users/2`);
+        request.flush({ id: 2, name: 'b' });
 
         tick(100);
 
         client?.findByIdUserWithoutOverride(100, 3).subscribe((response: User) => {
             expect(response).toEqual({ id: 3, name: 'c' });
-            expect(req.request.method).toBe('GET');
+            expect(request.request.method).toBe('GET');
         });
 
-        req = httpMock.expectOne(`${MOCK_API}/users/3`);
-        req.flush({ id: 3, name: 'c' });
+        request = httpMock.expectOne(`${MOCK_API}/users/3`);
+        request.flush({ id: 3, name: 'c' });
 
         tick(100);
     }));
 
     it('should be correct POST request with path variable', fakeAsync(() => {
         client?.createUser(2, { id: 2, name: 'b' }).subscribe((): void => {
-            expect(req.request.body).toEqual({ id: 2, name: 'b' });
-            expect(req.request.method).toBe('POST');
+            expect(request.request.body).toEqual({ id: 2, name: 'b' });
+            expect(request.request.method).toBe('POST');
         });
 
-        req = httpMock.expectOne(`${MOCK_API}/users/2`);
-        req.flush(null);
+        request = httpMock.expectOne(`${MOCK_API}/users/2`);
+        request.flush(null);
 
         tick(100);
     }));
 
     it('should be correct PUT request with path variable', fakeAsync(() => {
         client?.saveUser(1, { id: 1, name: 'a' }).subscribe((): void => {
-            expect(req.request.body).toEqual({ id: 1, name: 'a' });
-            expect(req.request.method).toBe('PUT');
+            expect(request.request.body).toEqual({ id: 1, name: 'a' });
+            expect(request.request.method).toBe('PUT');
         });
 
-        req = httpMock.expectOne(`${MOCK_API}/users/1`);
-        req.flush(null);
+        request = httpMock.expectOne(`${MOCK_API}/users/1`);
+        request.flush(null);
 
         tick(100);
     }));
 
     it('should be correct DELETE request with path variable', fakeAsync(() => {
         client?.deleteByIdUser(3).subscribe((): void => {
-            expect(req.request.method).toBe('DELETE');
+            expect(request.request.method).toBe('DELETE');
         });
 
-        req = httpMock.expectOne(`${MOCK_API}/users/3`);
-        req.flush(null);
+        request = httpMock.expectOne(`${MOCK_API}/users/3`);
+        request.flush(null);
 
         tick(100);
     }));
 
     it('should be correct PATCH request with path variable', fakeAsync(() => {
         client?.mutateUser(4, { name: 'a' }).subscribe((): void => {
-            expect(req.request.body).toEqual({ name: 'a' });
-            expect(req.request.method).toBe('PATCH');
+            expect(request.request.body).toEqual({ name: 'a' });
+            expect(request.request.method).toBe('PATCH');
         });
 
-        req = httpMock.expectOne(`${MOCK_API}/users/4`);
-        req.flush(null);
+        request = httpMock.expectOne(`${MOCK_API}/users/4`);
+        request.flush(null);
 
         tick(100);
     }));
 
     it('should be correct GET request with request params', fakeAsync(() => {
         client?.findAllUsersWithPaginator(4, 5).subscribe((): void => {
-            expect(req.request.params.toString()).toBe('index=4&size=5');
-            expect(req.request.method).toBe('GET');
+            expect(request.request.params.toString()).toBe('index=4&size=5');
+            expect(request.request.method).toBe('GET');
         });
 
-        req = httpMock.expectOne(`${MOCK_API}/users?index=4&size=5`);
-        req.flush(null);
+        request = httpMock.expectOne(`${MOCK_API}/users?index=4&size=5`);
+        request.flush(null);
 
         tick(100);
     }));

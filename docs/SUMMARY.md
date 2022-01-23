@@ -1,7 +1,7 @@
 # Summary
 
 -   Getting Started
-    -   [Why](introduction/why.md)
+    -   [Introduction](README.md)
 -   CDK
     -   [@angular-ru/cdk/typings](cdk/typings.md)
     -   [@angular-ru/cdk/number](cdk/number.md)
@@ -17,7 +17,7 @@
     -   [@angular-ru/cdk/class-transformer](cdk/class-transformer.md)
     -   [@angular-ru/cdk/validators](cdk/validators.md)
     -   [@angular-ru/cdk/directives](cdk/directives.md)
-    -   [@angular-ru/cdk/decorators](cdk/directives.md)
+    -   [@angular-ru/cdk/decorators](cdk/decorators.md)
     -   [@angular-ru/cdk/pipes](cdk/pipes.md)
     -   [@angular-ru/cdk/rxjs](cdk/rxjs.md)
     -   [@angular-ru/cdk/animations](cdk/animations.md)
@@ -32,7 +32,7 @@
     -   [@angular-ru/cdk/virtual-table](cdk/virtual-table.md)
     -   [@angular-ru/cdk/big-decimal](cdk/big-decimal.md)
 -   NGXS
-    -   [Introduction](ngxs/introduction.md)
+    -   [Introduction](ngxs/README.md)
     -   [@StateRepository](ngxs/state-repository.md)
     -   [@DataAction](ngxs/data-action.md)
     -   [@Computed](ngxs/computed.md)

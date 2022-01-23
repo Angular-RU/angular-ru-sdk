@@ -24,8 +24,8 @@ describe('[TEST]: Entity - primary key or unique id', () => {
                 this.addEntityOne({ lessonId: 2, title: 'B' });
             }
 
-            public set(val: EntityCollections<Lesson, string | number>): void {
-                this.setEntitiesState(val);
+            public set(value: EntityCollections<Lesson, string | number>): void {
+                this.setEntitiesState(value);
             }
         }
 

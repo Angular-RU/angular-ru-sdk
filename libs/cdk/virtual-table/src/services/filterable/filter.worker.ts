@@ -1,6 +1,6 @@
 import { Any, Nullable, PlainObject, PlainObjectOf } from '@angular-ru/cdk/typings';
 
-import { FilterGlobalOpts } from './filter-global-opts';
+import { FilterGlobalOptions } from './filter-global-options';
 import { FilterableMessage } from './filterable-message';
 import { TableFilterType } from './table-filter-type';
 
@@ -15,7 +15,7 @@ type PlainValue = Nullable<string | number | boolean>;
 // TODO: should be refactor because duplicate code as sortWorker
 // eslint-disable-next-line sonarjs/cognitive-complexity,max-lines-per-function
 export function filterAllWorker<T>({ source, global, types, columns }: FilterableMessage<T>): T[] {
-    const { value: globalOperand, type: globalFilterType }: FilterGlobalOpts = global;
+    const { value: globalOperand, type: globalFilterType }: FilterGlobalOptions = global;
     let result: T[] = source;
 
     if (isFilled(globalOperand) && isNotNil(globalFilterType)) {

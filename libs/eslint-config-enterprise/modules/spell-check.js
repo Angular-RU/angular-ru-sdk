@@ -4,6 +4,7 @@ const baseSkipWords = [
     'utf-8',
     'enqueue',
     'dict',
+    'esm',
     'aff',
     'hunspellchecker',
     'hunspell',

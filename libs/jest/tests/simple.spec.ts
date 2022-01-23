@@ -1,14 +1,9 @@
-// @ts-ignore
 import { Hello } from '@mock/hello';
 
 import { createTsJestConfig } from '../src';
 
-describe('[TEST]: Hello world', () => {
-    it('should be', () => {
-        expect(1 + 2).toBe(3);
-    });
-
-    it('should be correct resolve paths', () => {
+describe('[TEST]: createTsJestConfig', () => {
+    it('should be correct resolve @mock/* paths', () => {
         expect(Hello.nameClass).toBe('World');
     });
 
@@ -27,6 +22,7 @@ describe('[TEST]: Hello world', () => {
             transform: { '^.+\\.(ts|js|html)$': 'jest-preset-angular' },
             globals: {
                 'ts-jest': {
+                    useESM: true,
                     diagnostics: { ignoreCodes: ['6059'], pretty: true, warnOnly: false },
                     isolatedModules: false,
                     tsconfig: expect.any(String),
@@ -48,10 +44,11 @@ describe('[TEST]: Hello world', () => {
             testPathIgnorePatterns: ['/node_modules/', '/dist/', '/e2e/'],
             preset: 'jest-preset-angular',
             displayName: 'Hello world',
+            extensionsToTreatAsEsm: ['.ts'],
             rootDir: expect.any(String),
-            maxWorkers: '50%',
+            maxWorkers: 1,
             setupFilesAfterEnv: [],
-            maxConcurrency: 2,
+            maxConcurrency: 1,
             cacheDirectory: '<rootDir>/.cache',
             collectCoverage: false,
             coverageReporters: ['html', 'lcov', 'json', 'text', 'lcov', 'clover'],

@@ -57,8 +57,8 @@ describe('[TEST]: Selection service', () => {
 
         try {
             selection.selectRow(data[0], mockPreventDefault as MouseEvent);
-        } catch (e: unknown) {
-            message = (e as Error).message;
+        } catch (error: unknown) {
+            message = (error as Error).message;
         }
 
         expect(message).toContain(`Can't select item, make sure you pass the correct primary key`);

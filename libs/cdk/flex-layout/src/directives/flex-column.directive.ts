@@ -9,13 +9,13 @@ export class FlexColumnDirective extends AbstractFlexLayoutDirective implements 
     // eslint-disable-next-line @angular-eslint/no-input-rename
     @Input('flex-direction') public flexDirection: Nullable<string> = null;
 
-    constructor(protected readonly el: ElementRef) {
+    constructor(protected readonly elementRef: ElementRef) {
         super();
     }
 
     public ngAfterViewInit(): void {
         if (isNotNil(this.flexDirection)) {
-            this.el.nativeElement.style.flexDirection = this.flexDirection;
+            this.elementRef.nativeElement.style.flexDirection = this.flexDirection;
         }
 
         this.classList.add(`flex-column`);

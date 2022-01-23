@@ -9,7 +9,7 @@ import { NgxsRepositoryMeta } from '../common/repository';
 export interface DataStorage<T = string, U = string> {
     getItem(key: string): T;
 
-    setItem(key: string, val: U): void;
+    setItem(key: string, value: U): void;
 
     removeItem(key: string): void;
 

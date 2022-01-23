@@ -73,8 +73,8 @@ describe('[TEST]: Reset', () => {
             class BarState {}
 
             new BarState();
-        } catch (e: unknown) {
-            message = (e as Error).message;
+        } catch (error: unknown) {
+            message = (error as Error).message;
         }
 
         expect(message).toBe('Child states can only be added to an object. Cannot convert String to PlainObject');
@@ -90,8 +90,8 @@ describe('[TEST]: Reset', () => {
             class BarState {}
 
             new BarState();
-        } catch (e: unknown) {
-            message = (e as Error).message;
+        } catch (error: unknown) {
+            message = (error as Error).message;
         }
 
         expect(message).toBe('Child states can only be added to an object. Cannot convert Array to PlainObject');
@@ -107,8 +107,8 @@ describe('[TEST]: Reset', () => {
             class BarState {}
 
             new BarState();
-        } catch (e: unknown) {
-            message = (e as Error).message;
+        } catch (error: unknown) {
+            message = (error as Error).message;
         }
 
         expect(message).toBe('Child states can only be added to an object. Cannot convert null to PlainObject');

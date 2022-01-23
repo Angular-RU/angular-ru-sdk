@@ -67,11 +67,11 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
         }
     ];
 
-    let req0: TestRequest;
-    let req1: TestRequest;
-    let req2: TestRequest;
-    let req3: TestRequest;
-    let req4: TestRequest;
+    let request0: TestRequest;
+    let request1: TestRequest;
+    let request2: TestRequest;
+    let request3: TestRequest;
+    let request4: TestRequest;
 
     @Injectable()
     @RestClient(restClient)
@@ -124,24 +124,24 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
 
         generateRequests(3);
 
-        req0 = httpMock.expectOne(requestList[0]!.url);
+        request0 = httpMock.expectOne(requestList[0]!.url);
         httpMock.expectNone(requestList[1]!.url);
         httpMock.expectNone(requestList[2]!.url);
 
         setTimeout(() => {
-            req0.flush(requestList[0]!.response);
+            request0.flush(requestList[0]!.response);
         }, requestList[0]!.delay);
         tick(requestList[0]!.delay);
 
-        req1 = httpMock.expectOne(requestList[1]!.url);
+        request1 = httpMock.expectOne(requestList[1]!.url);
         setTimeout(() => {
-            req1.flush(requestList[1]!.response);
+            request1.flush(requestList[1]!.response);
         }, requestList[1]!.delay);
         tick(requestList[1]!.delay);
 
-        req2 = httpMock.expectOne(requestList[2]!.url);
+        request2 = httpMock.expectOne(requestList[2]!.url);
         setTimeout(() => {
-            req2.flush(requestList[2]!.response);
+            request2.flush(requestList[2]!.response);
         }, requestList[2]!.delay);
         tick(requestList[2]!.delay);
 
@@ -163,43 +163,43 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
 
         generateRequests(5);
 
-        req0 = httpMock.expectOne(requestList[0]!.url);
-        req1 = httpMock.expectOne(requestList[1]!.url);
-        req2 = httpMock.expectOne(requestList[2]!.url);
+        request0 = httpMock.expectOne(requestList[0]!.url);
+        request1 = httpMock.expectOne(requestList[1]!.url);
+        request2 = httpMock.expectOne(requestList[2]!.url);
         httpMock.expectNone(requestList[3]!.url);
         httpMock.expectNone(requestList[4]!.url);
 
         // noinspection DuplicatedCode
         setTimeout(() => {
-            req0.flush(requestList[0]!.response);
+            request0.flush(requestList[0]!.response);
         }, requestList[0]!.delay);
 
         // noinspection DuplicatedCode
         setTimeout(() => {
-            req1.flush(requestList[1]!.response);
+            request1.flush(requestList[1]!.response);
         }, requestList[1]!.delay);
 
         // noinspection DuplicatedCode
         setTimeout(() => {
-            req2.flush(requestList[2]!.response);
+            request2.flush(requestList[2]!.response);
         }, requestList[2]!.delay);
 
         tick(1100);
 
-        req3 = httpMock.expectOne(requestList[3]!.url);
+        request3 = httpMock.expectOne(requestList[3]!.url);
 
         // noinspection DuplicatedCode
         setTimeout(() => {
-            req3.flush(requestList[3]!.response);
+            request3.flush(requestList[3]!.response);
         }, requestList[3]!.delay);
 
         tick(1100);
 
-        req4 = httpMock.expectOne(requestList[4]!.url);
+        request4 = httpMock.expectOne(requestList[4]!.url);
 
         // noinspection DuplicatedCode
         setTimeout(() => {
-            req4.flush(requestList[4]!.response);
+            request4.flush(requestList[4]!.response);
         }, requestList[4]!.delay);
 
         tick(3000);
@@ -222,35 +222,35 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
 
         generateRequests(5);
 
-        req0 = httpMock.expectOne(requestList[0]!.url);
-        req1 = httpMock.expectOne(requestList[1]!.url);
-        req2 = httpMock.expectOne(requestList[2]!.url);
-        req3 = httpMock.expectOne(requestList[3]!.url);
-        req4 = httpMock.expectOne(requestList[4]!.url);
+        request0 = httpMock.expectOne(requestList[0]!.url);
+        request1 = httpMock.expectOne(requestList[1]!.url);
+        request2 = httpMock.expectOne(requestList[2]!.url);
+        request3 = httpMock.expectOne(requestList[3]!.url);
+        request4 = httpMock.expectOne(requestList[4]!.url);
 
         // noinspection DuplicatedCode
         setTimeout(() => {
-            req0.flush(requestList[0]!.response);
+            request0.flush(requestList[0]!.response);
         }, requestList[0]!.delay);
 
         // noinspection DuplicatedCode
         setTimeout(() => {
-            req1.flush(requestList[1]!.response);
+            request1.flush(requestList[1]!.response);
         }, requestList[1]!.delay);
 
         // noinspection DuplicatedCode
         setTimeout(() => {
-            req2.flush(requestList[2]!.response);
+            request2.flush(requestList[2]!.response);
         }, requestList[2]!.delay);
 
         // noinspection DuplicatedCode
         setTimeout(() => {
-            req3.flush(requestList[3]!.response);
+            request3.flush(requestList[3]!.response);
         }, requestList[3]!.delay);
 
         // noinspection DuplicatedCode
         setTimeout(() => {
-            req4.flush(requestList[4]!.response);
+            request4.flush(requestList[4]!.response);
         }, requestList[4]!.delay);
 
         tick(5100);

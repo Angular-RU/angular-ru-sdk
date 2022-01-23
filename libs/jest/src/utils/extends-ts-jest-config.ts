@@ -22,10 +22,10 @@ export function extendsTsJestConfig({ jestPresetPath, jestConfig }: JestCombiner
     } catch {
         config = jestConfig;
         console.error(
-            '[ERROR]: Your parent module was not found, by default you will get config: ',
+            '[ERROR]: Your parent module was not found, by default you will get config:',
             JSON.stringify(config),
             '\n',
-            'Your path to jest config: ',
+            'Your path to jest config:',
             resolvedJestPresetPath
         );
     }

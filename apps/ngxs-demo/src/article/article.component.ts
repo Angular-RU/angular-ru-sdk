@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Sort } from '@angular/material/sort';
-import { generateUid, isNotNil } from '@angular-ru/cdk/utils';
+import { generateUid, isNil, isNotNil } from '@angular-ru/cdk/utils';
 import { Observable, of, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 
@@ -50,8 +50,8 @@ export class ArticleComponent implements OnDestroy {
         this.articleEntities.sort({ sortBy: event.active as keyof Article, sortByOrder: event.direction });
     }
 
-    private ensureDialog(entity?: Article): Observable<Article | null> {
-        if (!entity) {
+    private ensureDialog(entity?: Article | null): Observable<Article | null> {
+        if (isNil(entity)) {
             return of(null);
         }
 

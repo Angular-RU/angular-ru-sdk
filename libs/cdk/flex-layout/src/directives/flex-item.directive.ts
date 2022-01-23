@@ -8,7 +8,7 @@ export class FlexItemDirective extends AbstractFlexLayoutDirective implements Af
     @Input('flex-wide') public wide: boolean | string = false;
     @Input('flex-equal') public equalWidth: boolean | string = false;
 
-    constructor(protected readonly el: ElementRef) {
+    constructor(protected readonly elementRef: ElementRef) {
         super();
     }
 

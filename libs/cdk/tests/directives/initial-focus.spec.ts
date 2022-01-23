@@ -65,7 +65,7 @@ describe('[TEST]: Initial Focus', function () {
         await fixture.whenStable();
         const spiedFunctions = debugElement
             .queryAll(By.css('input'))
-            .map((el: DebugElement) => jest.spyOn(el.nativeElement, 'focus'));
+            .map((element: DebugElement) => jest.spyOn(element.nativeElement, 'focus'));
 
         expect(spiedFunctions[0]).not.toHaveBeenCalled();
         expect(spiedFunctions[1]).not.toHaveBeenCalled();
@@ -83,8 +83,8 @@ describe('[TEST]: Initial Focus', function () {
         await fixture.whenStable();
         const inputElements = debugElement
             .queryAll(By.css('input'))
-            .map((el: DebugElement) => el.nativeElement, 'focus');
-        const spiedFunctions = inputElements.map((el: Any) => jest.spyOn(el, 'focus'));
+            .map((element: DebugElement) => element.nativeElement, 'focus');
+        const spiedFunctions = inputElements.map((element: Any) => jest.spyOn(element, 'focus'));
 
         expect(spiedFunctions[0]).not.toHaveBeenCalled();
         expect(spiedFunctions[1]).not.toHaveBeenCalled();

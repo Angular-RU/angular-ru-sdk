@@ -5,7 +5,7 @@ import { InvalidStructureDataException } from '../exceptions/invalid-structure-d
 export function parseStorageMeta<T>(value: string | null): StorageMeta<T> | never {
     try {
         return JSON.parse(value!);
-    } catch (e: unknown) {
-        throw new InvalidStructureDataException((e as Error).message);
+    } catch (error: unknown) {
+        throw new InvalidStructureDataException((error as Error).message);
     }
 }

@@ -24,8 +24,8 @@ export abstract class AbstractNgxsDataRepository<T>
     }
 
     @DataAction()
-    public patchState(@Payload('patchValue') val: PatchValue<T>): void {
-        this.ctx.patchState(val);
+    public patchState(@Payload('patchValue') value: PatchValue<T>): void {
+        this.ctx.patchState(value);
     }
 
     @DataAction()

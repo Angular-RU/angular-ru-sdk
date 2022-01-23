@@ -1,5 +1,5 @@
 import { Nullable } from '@angular-ru/cdk/typings';
 
-export function getLastSymbol(val?: Nullable<string>): Nullable<string> {
-    return val?.slice(-1);
+export function getLastSymbol(value?: Nullable<string>): Nullable<string> {
+    return value?.slice(-1);
 }

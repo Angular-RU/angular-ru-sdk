@@ -10,19 +10,19 @@ export const copyBuffer: (str: string) => void = copyString;
 
 export function copyString(str: string): void {
     const firstIndex: number = 0;
-    const el: HTMLTextAreaElement = document.createElement('textarea');
+    const element: HTMLTextAreaElement = document.createElement('textarea');
 
-    el.value = str;
-    el.setAttribute('readonly', '');
-    el.style.position = 'absolute';
-    el.style.left = '-9999px';
-    document.body.appendChild(el);
+    element.value = str;
+    element.setAttribute('readonly', '');
+    element.style.position = 'absolute';
+    element.style.left = '-9999px';
+    document.body.appendChild(element);
     const selected: Range | false =
         document?.getSelection()?.rangeCount > firstIndex ? document?.getSelection().getRangeAt(firstIndex) : false;
 
-    el.select();
+    element.select();
     document.execCommand('copy');
-    document.body.removeChild(el);
+    document.body.removeChild(element);
 
     if (coerceBoolean(selected as Any)) {
         document?.getSelection()?.removeAllRanges();

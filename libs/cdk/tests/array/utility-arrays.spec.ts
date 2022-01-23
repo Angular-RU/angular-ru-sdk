@@ -97,7 +97,7 @@ describe('[TEST]: Array utility', () => {
             [1, 4],
             ['2', { v: 3 }]
         ]);
-        expect(partition([1, 2, 3, 4], (elem: number): boolean => elem % 2 === 0)).toEqual([
+        expect(partition([1, 2, 3, 4], (element: number): boolean => element % 2 === 0)).toEqual([
             [2, 4],
             [1, 3]
         ]);

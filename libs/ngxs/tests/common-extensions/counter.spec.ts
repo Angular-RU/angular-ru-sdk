@@ -44,8 +44,8 @@ describe('[TEST]: CountState', () => {
                 TestBed.configureTestingModule({
                     imports: [NgxsModule.forRoot([CountState])]
                 });
-            } catch (e: unknown) {
-                message = (e as Error).message;
+            } catch (error: unknown) {
+                message = (error as Error).message;
             }
 
             expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_STATE);
@@ -71,8 +71,8 @@ describe('[TEST]: CountState', () => {
 
             try {
                 count.getState();
-            } catch (e: unknown) {
-                message = (e as Error).message;
+            } catch (error: unknown) {
+                message = (error as Error).message;
             }
 
             expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_MODULE_EXCEPTION);
@@ -94,8 +94,8 @@ describe('[TEST]: CountState', () => {
 
             try {
                 count.getState();
-            } catch (e: unknown) {
-                message = (e as Error).message;
+            } catch (error: unknown) {
+                message = (error as Error).message;
             }
 
             expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_STATE_DECORATOR);
@@ -118,8 +118,8 @@ describe('[TEST]: CountState', () => {
 
             try {
                 count.getState();
-            } catch (e: unknown) {
-                message = (e as Error).message;
+            } catch (error: unknown) {
+                message = (error as Error).message;
             }
 
             expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_STATE_DECORATOR);
@@ -128,8 +128,8 @@ describe('[TEST]: CountState', () => {
         it('should be throw when invalid instance', () => {
             try {
                 NgxsDataFactory.getRepositoryByInstance(null);
-            } catch (e: unknown) {
-                message = (e as Error).message;
+            } catch (error: unknown) {
+                message = (error as Error).message;
             }
 
             expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_STATE_DECORATOR);
@@ -156,8 +156,8 @@ describe('[TEST]: CountState', () => {
 
             try {
                 count.incorrect();
-            } catch (e: unknown) {
-                message = (e as Error).message;
+            } catch (error: unknown) {
+                message = (error as Error).message;
             }
 
             expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_STATE_DECORATOR);
@@ -179,8 +179,8 @@ describe('[TEST]: CountState', () => {
                 }
 
                 CountState.incorrect();
-            } catch (e: unknown) {
-                message = (e as Error).message;
+            } catch (error: unknown) {
+                message = (error as Error).message;
             }
 
             expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_STATIC_ACTION);
@@ -199,12 +199,12 @@ describe('[TEST]: CountState', () => {
         @Injectable()
         class CountState extends NgxsImmutableDataRepository<number> {
             @DataAction()
-            public withAction(@Payload('val') val: number): void {
-                this.ctx.setState(val);
+            public withAction(@Payload('val') value: number): void {
+                this.ctx.setState(value);
             }
 
-            public withoutAction(val: number): void {
-                this.ctx.setState(val);
+            public withoutAction(value: number): void {
+                this.ctx.setState(value);
             }
         }
 
@@ -227,9 +227,9 @@ describe('[TEST]: CountState', () => {
         });
 
         it('should be correct works with setState/getState', () => {
-            const val: number[] = [];
+            const nextValue: number[] = [];
 
-            count.state$.subscribe((value: number) => val.push(value));
+            count.state$.subscribe((value: number) => nextValue.push(value));
 
             expect(count.getState()).toBe(0);
             expect(store.snapshot()).toEqual({ count: 0 });
@@ -248,7 +248,7 @@ describe('[TEST]: CountState', () => {
             expect(count.getState()).toBe(0);
             expect(store.snapshot()).toEqual({ count: 0 });
 
-            expect(val).toEqual([0, 10, 0, 1, 0, 1, 0]);
+            expect(nextValue).toEqual([0, 10, 0, 1, 0, 1, 0]);
         });
 
         it('should be correct works with withoutAction/withAction', () => {
@@ -256,7 +256,7 @@ describe('[TEST]: CountState', () => {
 
             actions$
                 .pipe(ofActionDispatched({ type: '@count.withAction(val)' }))
-                .subscribe((val) => dispatched.push(val));
+                .subscribe((value) => dispatched.push(value));
 
             expect(count.getState()).toBe(0);
             expect(store.snapshot()).toEqual({ count: 0 });

@@ -263,13 +263,13 @@ export abstract class AbstractTableBuilderApiDirective<T>
     }
 
     @Input('head-height')
-    public set headHeight(val: string | number) {
-        this._headHeight = parseInt(val as string);
+    public set headHeight(value: string | number) {
+        this._headHeight = parseInt(value as string);
     }
 
     @Input('row-height')
-    public set rowHeight(val: Nullable<string | number>) {
-        this._rowHeight = parseInt((val ?? ROW_HEIGHT) as string);
+    public set rowHeight(value: Nullable<string | number>) {
+        this._rowHeight = parseInt((value ?? ROW_HEIGHT) as string);
     }
 
     private get shouldBeFiltered(): boolean {

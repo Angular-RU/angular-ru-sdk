@@ -16,7 +16,7 @@ describe('[TEST]: HTTP Client', () => {
     const MOCK_API: string = 'http://localhost';
     let client: Nullable<ApiEmitsClient> = null;
     let httpMock: HttpTestingController;
-    let req: TestRequest;
+    let request: TestRequest;
 
     @Injectable()
     @RestClient()
@@ -89,39 +89,39 @@ describe('[TEST]: HTTP Client', () => {
 
     it('gET ({ emitSuccess: false, emitFailure: false })', () => {
         client?.getMethod().subscribe(() => {
-            expect(req.request.method).toBe('GET');
+            expect(request.request.method).toBe('GET');
         });
 
-        req = httpMock.expectOne(`${MOCK_API}/get`);
-        req.flush(null);
+        request = httpMock.expectOne(`${MOCK_API}/get`);
+        request.flush(null);
 
         client?.putMethod().subscribe(() => {
-            expect(req.request.method).toBe('PUT');
+            expect(request.request.method).toBe('PUT');
         });
 
-        req = httpMock.expectOne(`${MOCK_API}/put`);
-        req.flush(null);
+        request = httpMock.expectOne(`${MOCK_API}/put`);
+        request.flush(null);
 
         client?.postMethod().subscribe(() => {
-            expect(req.request.method).toBe('POST');
+            expect(request.request.method).toBe('POST');
         });
 
-        req = httpMock.expectOne(`${MOCK_API}/post`);
-        req.flush(null);
+        request = httpMock.expectOne(`${MOCK_API}/post`);
+        request.flush(null);
 
         client?.patchMethod().subscribe(() => {
-            expect(req.request.method).toBe('PATCH');
+            expect(request.request.method).toBe('PATCH');
         });
 
-        req = httpMock.expectOne(`${MOCK_API}/patch`);
-        req.flush(null);
+        request = httpMock.expectOne(`${MOCK_API}/patch`);
+        request.flush(null);
 
         client?.deleteMethod().subscribe(() => {
-            expect(req.request.method).toBe('DELETE');
+            expect(request.request.method).toBe('DELETE');
         });
 
-        req = httpMock.expectOne(`${MOCK_API}/delete`);
-        req.flush(null);
+        request = httpMock.expectOne(`${MOCK_API}/delete`);
+        request.flush(null);
 
         expect(client?.interceptor?.events).toEqual([
             'GET: /get - { emitSuccess: false, emitFailure: true }',

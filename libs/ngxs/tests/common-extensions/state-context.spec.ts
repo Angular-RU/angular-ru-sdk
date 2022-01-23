@@ -58,8 +58,8 @@ describe('[TEST]: Utils', () => {
             class A {}
 
             buildDefaultsGraph(A);
-        } catch (e: unknown) {
-            message = (e as Error).message;
+        } catch (error: unknown) {
+            message = (error as Error).message;
         }
 
         expect(message).toBe('State name not provided in class');
@@ -100,8 +100,8 @@ describe('[TEST]: Utils', () => {
             class G {}
 
             buildDefaultsGraph(G);
-        } catch (e: unknown) {
-            message = (e as Error).message;
+        } catch (error: unknown) {
+            message = (error as Error).message;
         }
 
         expect(message).toBe('Child states can only be added to an object. Cannot convert Array to PlainObject');

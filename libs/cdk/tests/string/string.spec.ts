@@ -11,16 +11,16 @@ import {
     replaceEveryCommaOnDot,
     splitOnUniqueValues,
     stringify,
-    toStringVal,
+    toStringValue,
     trim
 } from '@angular-ru/cdk/string';
 import { Any } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: String', () => {
     it('toString', () => {
-        expect(toStringVal([1, 2, 3])).toBe('1,2,3');
-        expect(toStringVal([1, 2, 3], {} as Any)).toBe('1,2,3');
-        expect(toStringVal([1, 2, 3], (value: number[]) => value.join('; '))).toBe('1; 2; 3');
+        expect(toStringValue([1, 2, 3])).toBe('1,2,3');
+        expect(toStringValue([1, 2, 3], {} as Any)).toBe('1,2,3');
+        expect(toStringValue([1, 2, 3], (value: number[]) => value.join('; '))).toBe('1; 2; 3');
     });
 
     it('get byte size', () => {

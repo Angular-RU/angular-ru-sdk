@@ -9,7 +9,7 @@ export class FlexBottomIndentDirective extends AbstractFlexLayoutDirective imple
     @HostBinding('style.margin-bottom.px')
     public bottomIndent: Nullable<string | number> = null;
 
-    constructor(protected readonly el: ElementRef) {
+    constructor(protected readonly elementRef: ElementRef) {
         super();
     }
 

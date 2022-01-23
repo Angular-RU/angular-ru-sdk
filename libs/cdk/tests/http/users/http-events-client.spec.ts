@@ -20,7 +20,7 @@ describe('[TEST]: HTTP Intercept Client', () => {
     const MOCK_API: string = 'http://localhost';
     let client: Nullable<ApiEventsClient> = null;
     let httpMock: HttpTestingController;
-    let req: TestRequest;
+    let request: TestRequest;
 
     @Injectable()
     @RestClient()
@@ -68,12 +68,16 @@ describe('[TEST]: HTTP Intercept Client', () => {
             this.events.push(`{onEmitSuccess} response(${meta.url}): ${JSON.stringify(response)}`);
         }
 
-        public onEmitFailure(err: HttpErrorResponse, _options: DataBeforeRequestOptions, meta: MetaDataRequest): void {
-            this.events.push(`{onEmitFailure} error(${meta.url}): ${err.message}`);
+        public onEmitFailure(
+            error: HttpErrorResponse,
+            _options: DataBeforeRequestOptions,
+            meta: MetaDataRequest
+        ): void {
+            this.events.push(`{onEmitFailure} error(${meta.url}): ${error.message}`);
         }
 
-        public onErrorAfterRequest(err: HttpErrorResponse, meta: MetaDataRequest): void {
-            this.events.push(`{onErrorAfterRequest} error(${meta.url}): ${err.message}`);
+        public onErrorAfterRequest(error: HttpErrorResponse, meta: MetaDataRequest): void {
+            this.events.push(`{onErrorAfterRequest} error(${meta.url}): ${error.message}`);
         }
 
         public onFinalizeAfterRequest(meta: MetaDataRequest): void {
@@ -110,11 +114,11 @@ describe('[TEST]: HTTP Intercept Client', () => {
             ?.get('api-get', { queryParams: { value: 1 }, headers: { Authorization: 'token xxx', KeepAlive: 'true' } })
             .subscribe((response: Any[]) => {
                 expect(response).toEqual([{ hello: 'world' }]);
-                expect(req.request.method).toBe('GET');
+                expect(request.request.method).toBe('GET');
             });
 
-        req = httpMock.expectOne(`${MOCK_API}/api-get?value=1`);
-        req.flush([{ hello: 'world' }]);
+        request = httpMock.expectOne(`${MOCK_API}/api-get?value=1`);
+        request.flush([{ hello: 'world' }]);
 
         tick(100);
 
@@ -136,8 +140,8 @@ describe('[TEST]: HTTP Intercept Client', () => {
             }
         });
 
-        req = httpMock.expectOne(`${MOCK_API}/backend/api-post`);
-        req.flush(
+        request = httpMock.expectOne(`${MOCK_API}/backend/api-post`);
+        request.flush(
             { data: null, result: { code: 99, message: 'internal error' } },
             { status: 400, statusText: 'Bad Request' }
         );

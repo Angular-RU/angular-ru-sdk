@@ -2,7 +2,7 @@ import { Any, EmptyValue } from '@angular-ru/cdk/typings';
 
 export function checkValueIsEmpty<T>(value: T | EmptyValue): value is EmptyValue {
     // note: don't use isString for preserve circular dependencies
-    const val: Any = typeof value === 'string' ? value.trim() : value;
+    const nextValue: Any = typeof value === 'string' ? value.trim() : value;
 
-    return [undefined, null, NaN, '', Infinity].includes(val);
+    return [undefined, null, NaN, '', Infinity].includes(nextValue);
 }

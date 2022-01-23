@@ -9,7 +9,7 @@ export class FlexContainerDirective extends AbstractFlexLayoutDirective implemen
     @Input('no-wrap') public noWrap: boolean | string = false;
     @Input('full-width') public fullWidth: boolean | string = false;
 
-    constructor(protected readonly el: ElementRef) {
+    constructor(protected readonly elementRef: ElementRef) {
         super();
     }
 

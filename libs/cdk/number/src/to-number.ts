@@ -24,8 +24,9 @@ export function toNumber(value: Nullable<number | string>, locale: string = 'ru-
 
     const numeral: RegExp = new RegExp(`[${numerals.join('')}]`, 'g');
 
-    const indexes = (decimalVal: string): string =>
-        new Map(numerals.map((dx: unknown, i: number): [unknown, number] => [dx, i])).get(decimalVal)?.toString() ?? '';
+    const indexes = (decimalValue: string): string =>
+        new Map(numerals.map((dx: unknown, i: number): [unknown, number] => [dx, i])).get(decimalValue)?.toString() ??
+        '';
 
     prepared = prepared?.trim().replace(group, '').replace(decimal, '.').replace(numeral, indexes);
 

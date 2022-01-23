@@ -18,7 +18,7 @@ import { CountModel } from './count-model';
 export class CountSubState extends NgxsImmutableDataRepository<CountModel> {
     @Debounce()
     @DataAction()
-    public setDebounceSubValue(@Payload('value') @Named('val') val: number): void {
-        this.ctx.setState({ val });
+    public setDebounceSubValue(@Payload('value') @Named('val') value: number): void {
+        this.ctx.setState({ val: value });
     }
 }

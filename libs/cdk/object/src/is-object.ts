@@ -1,3 +1,3 @@
-export function isObject<T>(obj: T): boolean {
-    return obj === Object(obj);
+export function isObject<T>(object: T): boolean {
+    return object === Object(object);
 }

@@ -22,6 +22,6 @@ function getErrorsForSingleValue(value: Any, validators: ValidatorFn[]): Validat
     return control.errors;
 }
 
-function concatErrors(acc: ValidationErrors, el: ValidationErrors | null): ValidationErrors {
-    return { ...acc, ...el };
+function concatErrors(accumulator: ValidationErrors, element: ValidationErrors | null): ValidationErrors {
+    return { ...accumulator, ...element };
 }

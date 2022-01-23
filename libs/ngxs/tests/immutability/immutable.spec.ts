@@ -55,8 +55,8 @@ describe('[TEST]: Freeze states', () => {
 
         try {
             snapshot[0]!.a!++;
-        } catch (e: unknown) {
-            message = (e as Error).message;
+        } catch (error: unknown) {
+            message = (error as Error).message;
         }
 
         // eslint-disable-next-line @typescript-eslint/quotes
@@ -64,16 +64,16 @@ describe('[TEST]: Freeze states', () => {
 
         try {
             snapshot[0]!.b = 3;
-        } catch (e: unknown) {
-            message = (e as Error).message;
+        } catch (error: unknown) {
+            message = (error as Error).message;
         }
 
         expect('Cannot add property b, object is not extensible').toEqual(message);
 
         try {
             snapshot[1]!.b!++;
-        } catch (e: unknown) {
-            message = (e as Error).message;
+        } catch (error: unknown) {
+            message = (error as Error).message;
         }
 
         // eslint-disable-next-line @typescript-eslint/quotes
@@ -156,8 +156,8 @@ describe('[TEST]: Freeze states', () => {
 
         try {
             (state.getState() as ListModel[]).reverse();
-        } catch (e: unknown) {
-            message = (e as Error).message;
+        } catch (error: unknown) {
+            message = (error as Error).message;
         }
 
         // eslint-disable-next-line @typescript-eslint/quotes

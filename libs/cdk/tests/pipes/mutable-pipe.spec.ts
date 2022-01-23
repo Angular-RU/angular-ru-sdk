@@ -15,12 +15,12 @@ describe('mutable', () => {
     });
 
     it('unwrap immutable type', () => {
-        const obj: Immutable<{ a: string }> = { a: 'str' };
-        const mutableObj = pipe.transform(obj);
+        const object: Immutable<{ a: string }> = { a: 'str' };
+        const mutableObject = pipe.transform(object);
 
-        mutableObj.a = 'str2';
-        expect(obj.a).toBe('str2');
-        expect(mutableObj.a).toBe('str2');
+        mutableObject.a = 'str2';
+        expect(object.a).toBe('str2');
+        expect(mutableObject.a).toBe('str2');
     });
 
     describe('instance', () => {

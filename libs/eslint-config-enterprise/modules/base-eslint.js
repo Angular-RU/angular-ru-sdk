@@ -76,7 +76,7 @@ module.exports = {
                 'no-bitwise': 'off',
                 'no-caller': 'error',
                 'no-cond-assign': 'error',
-                'no-console': ['error', { allow: ['warn', 'error'] }],
+                'no-console': ['error', { allow: ['info', 'warn', 'error'] }],
                 'no-param-reassign': ['error'],
                 'no-constant-condition': 'error',
                 'no-debugger': 'error',

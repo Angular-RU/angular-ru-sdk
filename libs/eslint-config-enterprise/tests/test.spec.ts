@@ -1,18 +1,24 @@
-import * as fs from 'fs';
-import * as path from 'path';
+import * as fs from 'node:fs';
+import { resolve } from 'path';
 
 describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
     it('check failed files', (): void => {
         const bad: string = getInfoByReportFile('bad-file');
 
-        expect(bad.includes('111 problems (111 errors, 0 warnings)')).toBeTruthy();
-        expect(bad.includes('29 errors and 0 warnings potentially fixable with the `--fix` option')).toBeTruthy();
+        expect(bad.includes('115 problems (115 errors, 0 warnings)')).toBeTruthy();
+        expect(bad.includes('32 errors and 0 warnings potentially fixable with the `--fix` option')).toBeTruthy();
         expect(bad.includes(`Run autofix to sort these imports!`)).toBeTruthy();
         expect(bad.includes(`Expected hello to have a type annotation`)).toBeTruthy();
         expect(bad.includes('Missing accessibility modifier on class property hello')).toBeTruthy();
         expect(bad.includes('Unexpected console statement')).toBeTruthy();
+        expect(
+            bad.includes(
+                'Please rename the variable `res`. Suggested names are: `response`, `result`. A more descriptive name will do too'
+            )
+        ).toBeTruthy();
         expect(bad.includes('No magic number: 2')).toBeTruthy();
         expect(bad.includes('No magic number: 5')).toBeTruthy();
+        expect(bad.includes(`'uta' is defined but never used`)).toBeTruthy();
         expect(bad.includes('No magic number: 10')).toBeTruthy();
         expect(bad.includes(`Don't declare non-const enums`)).toBeTruthy();
         expect(
@@ -139,5 +145,5 @@ describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
 });
 
 function getInfoByReportFile(type: 'bad-file' | 'good-file' | 'file-pattern'): string {
-    return fs.readFileSync(path.resolve(__dirname, `../reports/eslint.${type}.report.txt`)).toString();
+    return fs.readFileSync(resolve(__dirname, `../reports/eslint.${type}.report.txt`)).toString();
 }

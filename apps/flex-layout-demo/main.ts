@@ -10,4 +10,4 @@ if (environment.production) {
 
 platformBrowserDynamic()
     .bootstrapModule(AppModule)
-    .catch((err: Error): void => console.error(err));
+    .catch((error: Error): void => console.error(error));

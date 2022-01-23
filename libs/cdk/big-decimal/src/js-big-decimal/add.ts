@@ -48,17 +48,17 @@ export function add(inputA: Any, inputB: Any = '0'): string {
         }
     }
 
-    const res: string = addCore(a, b);
+    const result: string = addCore(a, b);
 
     if (!neg) {
-        return trim(res);
+        return trim(result);
     } else if (neg === EXPONENTIAL_PARTS_LENGTH) {
-        return `-${trim(res)}`;
+        return `-${trim(result)}`;
     } else {
-        if (a.length < res.length) {
-            return trim(res.substring(1));
+        if (a.length < result.length) {
+            return trim(result.substring(1));
         } else {
-            return `-${trim(compliment(res))}`;
+            return `-${trim(compliment(result))}`;
         }
     }
 }

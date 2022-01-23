@@ -59,7 +59,7 @@ export class SampleFirstSecondComponent implements OnInit, OnDestroy {
                 .subscribe((data?: PlainObject): void => {
                     if (isNotNil(data)) {
                         this.data = this.data.map(
-                            (val: PlainObject): PlainObject => (val?.['id'] === data?.['id'] ? { ...data } : val)
+                            (value: PlainObject): PlainObject => (value?.['id'] === data?.['id'] ? { ...data } : value)
                         );
                         detectChanges(this.cd);
                     }

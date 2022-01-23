@@ -14,11 +14,11 @@ export function ensureDataStateContext<U, T extends StateContext<U>>(context: T 
         getState(): U {
             return isDevMode() ? deepFreeze(context.getState()) : context.getState();
         },
-        setState(val: Any): void {
-            context.setState(val);
+        setState(value: Any): void {
+            context.setState(value);
         },
-        patchState(val: Any): void {
-            context.patchState(val);
+        patchState(value: Any): void {
+            context.patchState(value);
         }
     };
 }

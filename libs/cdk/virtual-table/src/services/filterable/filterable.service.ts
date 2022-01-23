@@ -40,7 +40,7 @@ export class FilterableService<T> implements Filterable {
 
     public get filterValueExist(): boolean {
         const keyFilterValues: string = Object.values(this.definition).reduce(
-            (acc: string, next: string): string => acc + next,
+            (accumulator: string, next: string): string => accumulator + next,
             ''
         );
 

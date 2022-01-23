@@ -303,8 +303,8 @@ describe('[TEST]: Object', () => {
 
             try {
                 origin.b.c = 5;
-            } catch (e: unknown) {
-                message = (e as Error).message;
+            } catch (error: unknown) {
+                message = (error as Error).message;
             }
 
             expect(message).toEqual(`Cannot assign to read only property 'c' of object '[object Object]'`);
@@ -312,7 +312,7 @@ describe('[TEST]: Object', () => {
     });
 
     it('should be correct object', (): void => {
-        const wrongElem: PlainObject = {
+        const wrongElement: PlainObject = {
             a: '',
             b: [
                 { c: NaN, d: 1 },
@@ -322,7 +322,7 @@ describe('[TEST]: Object', () => {
             e: Infinity
         };
 
-        expect(replaceWithNull(wrongElem)).toEqual({
+        expect(replaceWithNull(wrongElement)).toEqual({
             a: null,
             b: [
                 { c: null, d: 1 },
@@ -369,18 +369,18 @@ describe('[TEST]: Object', () => {
     });
 
     it('getValueByPath', () => {
-        const obj: PlainObject = { a: 1, f: [{ a: 2 }, { a: 3 }], g: { a: 4 } };
+        const object: PlainObject = { a: 1, f: [{ a: 2 }, { a: 3 }], g: { a: 4 } };
 
         expect(getValueByPath(null, '')).toBeNull();
         expect(getValueByPath({ a: 2 }, '')).toEqual({ a: 2 });
         expect(getValueByPath(null, 'ge')).toBeUndefined();
         expect(getValueByPath(undefined, 'ge')).toBeUndefined();
-        expect(getValueByPath(obj, 'ge')).toBeUndefined();
-        expect(getValueByPath(obj, 'g.a')).toBe(4);
-        expect(getValueByPath(obj, 'f.0')).toEqual({ a: 2 });
-        expect(getValueByPath(obj, 'f.0.a')).toBe(2);
-        expect(getValueByPath(obj, 'abc')).toBeUndefined();
-        expect(getValueByPath(obj, 'f.0.a.Z', [])).toEqual([]);
+        expect(getValueByPath(object, 'ge')).toBeUndefined();
+        expect(getValueByPath(object, 'g.a')).toBe(4);
+        expect(getValueByPath(object, 'f.0')).toEqual({ a: 2 });
+        expect(getValueByPath(object, 'f.0.a')).toBe(2);
+        expect(getValueByPath(object, 'abc')).toBeUndefined();
+        expect(getValueByPath(object, 'f.0.a.Z', [])).toEqual([]);
     });
 
     it('checkIsShallowEmpty', () => {

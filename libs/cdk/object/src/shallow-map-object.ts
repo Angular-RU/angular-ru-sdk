@@ -2,7 +2,7 @@ import { PlainObjectOf } from '@angular-ru/cdk/typings';
 
 export function shallowMapObject<Type, ReturnType>(
     object: PlainObjectOf<Type>,
-    mapper: (obj: Type, key: string) => ReturnType
+    mapper: (object_: Type, key: string) => ReturnType
 ): PlainObjectOf<ReturnType> {
     const result: PlainObjectOf<ReturnType> = {};
 

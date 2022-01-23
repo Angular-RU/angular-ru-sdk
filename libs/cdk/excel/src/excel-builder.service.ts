@@ -43,9 +43,9 @@ export class ExcelBuilderService {
             // eslint-disable-next-line max-lines-per-function,sonarjs/cognitive-complexity
             .run((input: PreparedExcelWorkbook<T>): Blob => {
                 function isEmptyValue(value: Any): value is EmptyValue {
-                    const val: Any = typeof value === 'string' ? value.trim() : value;
+                    const nextValue: Any = typeof value === 'string' ? value.trim() : value;
 
-                    return [undefined, null, NaN, '', Infinity].includes(val);
+                    return [undefined, null, NaN, '', Infinity].includes(nextValue);
                 }
 
                 class ExcelBuilder {

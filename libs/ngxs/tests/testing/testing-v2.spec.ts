@@ -7,7 +7,7 @@ import { NgxsDataAfterReset, NgxsDataDoCheck } from '@angular-ru/ngxs/typings';
 import { NgxsSimpleChange, State, Store } from '@ngxs/store';
 
 describe('[TEST]: Abstract ngxs data repository', () => {
-    let event: string[] = [];
+    let events: string[] = [];
 
     interface Model {
         value: number;
@@ -22,30 +22,30 @@ describe('[TEST]: Abstract ngxs data repository', () => {
     class A extends NgxsDataRepository<Model> implements NgxsDataDoCheck, NgxsDataAfterReset {
         constructor() {
             super();
-            event.push(`create: ${this.name}`);
+            events.push(`create: ${this.name}`);
         }
 
         public override ngxsOnInit(): void {
-            event.push(`ngxsOnInit: ${this.name}`);
+            events.push(`ngxsOnInit: ${this.name}`);
             super.ngxsOnInit();
         }
 
         public override ngxsOnChanges(change: NgxsSimpleChange): void {
-            event.push(`ngxsOnChanges: ${this.name} -> ${JSON.stringify(change)}`);
+            events.push(`ngxsOnChanges: ${this.name} -> ${JSON.stringify(change)}`);
             super.ngxsOnChanges();
         }
 
         public override ngxsAfterBootstrap(): void {
-            event.push(`ngxsAfterBootstrap: ${this.name}`);
+            events.push(`ngxsAfterBootstrap: ${this.name}`);
             super.ngxsAfterBootstrap();
         }
 
         public ngxsDataDoCheck(): void {
-            event.push(`ngxsDataDoCheck: ${this.name}`);
+            events.push(`ngxsDataDoCheck: ${this.name}`);
         }
 
         public ngxsDataAfterReset(): void {
-            event.push(`ngxsDataAfterReset: ${this.name}`);
+            events.push(`ngxsDataAfterReset: ${this.name}`);
         }
     }
 
@@ -58,35 +58,35 @@ describe('[TEST]: Abstract ngxs data repository', () => {
     class B extends NgxsImmutableDataRepository<Model> implements NgxsDataDoCheck, NgxsDataAfterReset {
         constructor() {
             super();
-            event.push(`create: ${this.name}`);
+            events.push(`create: ${this.name}`);
         }
 
         public override ngxsOnInit(): void {
-            event.push(`ngxsOnInit: ${this.name}`);
+            events.push(`ngxsOnInit: ${this.name}`);
             super.ngxsOnInit();
         }
 
         public override ngxsOnChanges(change: NgxsSimpleChange): void {
-            event.push(`ngxsOnChanges: ${this.name} -> ${JSON.stringify(change)}`);
+            events.push(`ngxsOnChanges: ${this.name} -> ${JSON.stringify(change)}`);
             super.ngxsOnChanges();
         }
 
         public override ngxsAfterBootstrap(): void {
-            event.push(`ngxsAfterBootstrap: ${this.name}`);
+            events.push(`ngxsAfterBootstrap: ${this.name}`);
             super.ngxsAfterBootstrap();
         }
 
         public ngxsDataDoCheck(): void {
-            event.push(`ngxsDataDoCheck: ${this.name}`);
+            events.push(`ngxsDataDoCheck: ${this.name}`);
         }
 
         public ngxsDataAfterReset(): void {
-            event.push(`ngxsDataAfterReset: ${this.name}`);
+            events.push(`ngxsDataAfterReset: ${this.name}`);
         }
     }
 
     beforeEach(() => {
-        event = [];
+        events = [];
     });
 
     it(
@@ -97,7 +97,7 @@ describe('[TEST]: Abstract ngxs data repository', () => {
             expect(a.isInitialised).toBe(true);
             expect(a.isBootstrapped).toBe(true);
 
-            a.state$.subscribe((e: Model) => event.push(`state(${a.name}): set value - ${e.value}`));
+            a.state$.subscribe((model: Model) => events.push(`state(${a.name}): set value - ${model.value}`));
 
             expect(a.name).toBe('a');
 
@@ -119,7 +119,7 @@ describe('[TEST]: Abstract ngxs data repository', () => {
 
             expect(a.getState()).toEqual({ value: 10 });
 
-            expect(event).toEqual([
+            expect(events).toEqual([
                 'create: a',
                 'ngxsOnChanges: a -> {"currentValue":{"value":1},"firstChange":true}',
                 'ngxsOnInit: a',
@@ -152,7 +152,9 @@ describe('[TEST]: Abstract ngxs data repository', () => {
             expect(b.isInitialised).toBe(true);
             expect(b.isBootstrapped).toBe(true);
 
-            b.state$.subscribe((e: Immutable<Model>) => event.push(`state(${b.name}): set value - ${e.value}`));
+            b.state$.subscribe((model: Immutable<Model>) =>
+                events.push(`state(${b.name}): set value - ${model.value}`)
+            );
 
             expect(b.name).toBe('b');
 
@@ -174,7 +176,7 @@ describe('[TEST]: Abstract ngxs data repository', () => {
 
             expect(b.getState()).toEqual({ value: 10 });
 
-            expect(event).toEqual([
+            expect(events).toEqual([
                 'create: b',
                 'ngxsOnChanges: b -> {"currentValue":{"value":1},"firstChange":true}',
                 'ngxsOnInit: b',

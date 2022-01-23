@@ -83,7 +83,7 @@ export abstract class AbstractWebsocketClient<K extends string | PlainObject>
         return this.messages$.pipe(
             filter((message: WebsocketMessage<K, T>): boolean => message.type === type),
             map((message: WebsocketMessage<K, T>): T => message.data),
-            catchError((err: unknown): Observable<never> => throwError((): Error => err as Error)),
+            catchError((error: unknown): Observable<never> => throwError((): Error => error as Error)),
             takeUntil(this.destroy$)
         );
     }

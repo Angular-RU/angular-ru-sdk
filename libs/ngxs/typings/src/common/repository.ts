@@ -30,7 +30,7 @@ export interface ImmutableDataRepository<T> {
 
     dispatch(actions: ActionType | ActionType[]): Observable<void>;
 
-    patchState(val: ImmutablePatchValue<T>): void;
+    patchState(value: ImmutablePatchValue<T>): void;
 
     setState(stateValue: ImmutableStateValue<T>): void;
 
@@ -43,9 +43,9 @@ export type ImmutableStateValue<T> = T | Immutable<T> | ((state: Immutable<T>) =
 export interface ImmutableStateContext<T> {
     getState(): Immutable<T>;
 
-    setState(val: ImmutableStateValue<T>): void;
+    setState(value: ImmutableStateValue<T>): void;
 
-    patchState(val: ImmutablePatchValue<T>): void;
+    patchState(value: ImmutablePatchValue<T>): void;
 
     dispatch(actions: ActionType | ActionType[]): Observable<void>;
 }
@@ -60,7 +60,7 @@ export interface DataRepository<T> {
 
     dispatch(actions: ActionType | ActionType[]): Observable<void>;
 
-    patchState(val: PatchValue<T>): void;
+    patchState(value: PatchValue<T>): void;
 
     setState(stateValue: StateValue<T>): void;
 
@@ -73,9 +73,9 @@ export type StateValue<T> = T | Immutable<T> | ((state: T) => T | Immutable<T>);
 export interface DataStateContext<T> {
     getState(): T;
 
-    setState(val: StateValue<T>): void;
+    setState(value: StateValue<T>): void;
 
-    patchState(val: PatchValue<T>): void;
+    patchState(value: PatchValue<T>): void;
 
     dispatch(actions: ActionType | ActionType[]): Observable<void>;
 }

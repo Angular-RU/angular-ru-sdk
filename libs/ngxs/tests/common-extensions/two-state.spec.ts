@@ -38,8 +38,8 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
         @DataAction()
         public asyncSetStateAction(): Observable<number> {
             return this.api.getData().pipe(
-                tap((val: number) => {
-                    this.ctx.setState(val);
+                tap((value: number) => {
+                    this.ctx.setState(value);
                 })
             );
         }
@@ -47,33 +47,33 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
         @DataAction()
         public asyncIncrementAction(): Observable<number> {
             return this.api.getData().pipe(
-                tap((val: number) => {
-                    this.ctx.setState((state: number) => state + val);
+                tap((value: number) => {
+                    this.ctx.setState((state: number) => state + value);
                 }),
                 map(() => this.ctx.getState() + 100)
             );
         }
 
-        public incorrectReturnedValue(val: number): void {
-            this.ctx.setState(val);
+        public incorrectReturnedValue(value: number): void {
+            this.ctx.setState(value);
         }
 
-        public setValue(val: number): void {
-            this.setState(val);
+        public setValue(value: number): void {
+            this.setState(value);
         }
 
         public asyncSetState(): Observable<number> {
             return this.api.getData().pipe(
-                tap((val: number) => {
-                    this.ctx.setState(val);
+                tap((value: number) => {
+                    this.ctx.setState(value);
                 })
             );
         }
 
         public asyncIncrement(): Observable<number> {
             return this.api.getData().pipe(
-                tap((val: number) => {
-                    this.ctx.setState((state: number) => state + val);
+                tap((value: number) => {
+                    this.ctx.setState((state: number) => state + value);
                 }),
                 map(() => this.ctx.getState() + 100)
             );
@@ -92,8 +92,8 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
         }
 
         @DataAction()
-        public add(val: string): TodoState {
-            this.ctx.setState((state) => state.concat(val));
+        public add(value: string): TodoState {
+            this.ctx.setState((state) => state.concat(value));
             this.counter.increment();
 
             return this;
@@ -282,13 +282,13 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
     }));
 
     it('should be correct forkJoin', fakeAsync(() => {
-        let response: [number, number] | [] = [];
+        let responseResult: [number, number] | [] = [];
         let result: [number, number] | [] = [];
 
         // eslint-disable-next-line rxjs/no-ignored-observable
         forkJoin([count.asyncSetStateAction(), count.asyncIncrementAction()]).pipe(
-            tap((val) => {
-                result = val;
+            tap((value) => {
+                result = value;
             })
         );
 
@@ -299,18 +299,18 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
 
         forkJoin([count.asyncSetStateAction(), count.asyncIncrementAction()])
             .pipe(
-                tap((val) => {
-                    result = val;
+                tap((value) => {
+                    result = value;
                 })
             )
-            .subscribe((res) => {
-                response = res;
+            .subscribe((response) => {
+                responseResult = response;
             });
 
         tick(2000);
 
         expect(count.getState()).toBe(40);
         expect(result).toEqual([20, 140]);
-        expect(response).toEqual([20, 140]);
+        expect(responseResult).toEqual([20, 140]);
     }));
 });

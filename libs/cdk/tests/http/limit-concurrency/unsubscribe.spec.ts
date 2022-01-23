@@ -21,7 +21,7 @@ describe('[TEST]: Canceling requests and unsubscribing', () => {
     let httpMock: HttpTestingController;
     const active: TestRequest[] = [];
     const queue: TestRequest[] = [];
-    let req: TestRequest;
+    let request: TestRequest;
 
     @Injectable()
     @RestClient(restClient)
@@ -132,8 +132,8 @@ describe('[TEST]: Canceling requests and unsubscribing', () => {
         component.ngOnInit();
 
         for (let i = 0; i < limitConcurrency; i++) {
-            req = httpMock.expectOne(`${apiUrl}${i}`);
-            active.push(req);
+            request = httpMock.expectOne(`${apiUrl}${i}`);
+            active.push(request);
         }
 
         for (let i = limitConcurrency; i < countRequests; i++) {
@@ -143,8 +143,8 @@ describe('[TEST]: Canceling requests and unsubscribing', () => {
         component.ngOnDestroy();
 
         for (let i = limitConcurrency; i < countRequests; i++) {
-            req = httpMock.expectOne(`${apiUrl}${i}`);
-            queue.push(req);
+            request = httpMock.expectOne(`${apiUrl}${i}`);
+            queue.push(request);
         }
 
         active.forEach((item: TestRequest): void => {

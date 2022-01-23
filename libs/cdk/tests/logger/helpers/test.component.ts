@@ -55,31 +55,31 @@ export class MyTestComponent implements OnInit {
     }
 
     @Group('Test group')
-    public print(val: string): string {
-        this.logger.log(val);
+    public print(value: string): string {
+        this.logger.log(value);
 
-        return val;
+        return value;
     }
 
     @Group('Test group', LoggerLevel.WARN)
-    public printLevel(val: string): string {
-        this.logger.log(val);
+    public printLevel(value: string): string {
+        this.logger.log(value);
 
-        return val;
+        return value;
     }
 
     @GroupCollapsed('Test group-collapsed')
-    public printCollapsed(val: string): string {
-        this.logger.log(val);
+    public printCollapsed(value: string): string {
+        this.logger.log(value);
 
-        return val;
+        return value;
     }
 
     @GroupCollapsed('Test group-collapsed', LoggerLevel.WARN)
-    public printCollapsedLevel(val: string): string {
-        this.logger.log(val);
+    public printCollapsedLevel(value: string): string {
+        this.logger.log(value);
 
-        return val;
+        return value;
     }
 
     @Group('INCREMENT', LoggerLevel.DEBUG)
@@ -131,9 +131,9 @@ export class MyTestComponent implements OnInit {
 
     private extracted(seconds: number, done: Fn): void {
         // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-        const e: number = new Date().getTime() + seconds * 1000;
+        const date: number = new Date().getTime() + seconds * 1000;
 
-        while (new Date().getTime() <= e) {
+        while (new Date().getTime() <= date) {
             this.doneHeavy = true;
         }
 

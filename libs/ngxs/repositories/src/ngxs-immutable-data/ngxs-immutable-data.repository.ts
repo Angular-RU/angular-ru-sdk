@@ -30,8 +30,8 @@ export abstract class AbstractNgxsImmutableDataRepository<T>
     }
 
     @DataAction()
-    public patchState(@Payload('patchValue') val: ImmutablePatchValue<T>): void {
-        this.ctx.patchState(val);
+    public patchState(@Payload('patchValue') value: ImmutablePatchValue<T>): void {
+        this.ctx.patchState(value);
     }
 
     @DataAction()

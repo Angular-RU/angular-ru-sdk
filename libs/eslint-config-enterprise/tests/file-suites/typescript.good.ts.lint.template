@@ -79,6 +79,7 @@ class TestMaxParams {
         public b: number,
         public c: number,
         public d: number,
+        // eslint-disable-next-line unicorn/prevent-abbreviations
         public e: number,
         public f: number
     ) {}
@@ -152,8 +153,8 @@ const fooZ: number[] = [].map((i: number): number => i * i);
 console.error(fooZ);
 
 (function a(variable: string): void {
-    let newVar: string = variable;
+    let newVariable: string = variable;
 
-    newVar = `${newVar} world`;
-    console.error(newVar);
+    newVariable = `${newVariable} world`;
+    console.error(newVariable);
 })('hello');

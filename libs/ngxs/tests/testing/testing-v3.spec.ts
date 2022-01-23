@@ -29,8 +29,8 @@ describe('appState', () => {
             await ngxsTestingPlatform([InvalidState], () => {
                 // ..
             })();
-        } catch (e: unknown) {
-            message = (e as Error).message;
+        } catch (error: unknown) {
+            message = (error as Error).message;
         }
 
         expect(message).toBe('InvalidState class must be decorated with @State() decorator');

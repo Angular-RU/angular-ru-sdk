@@ -9,7 +9,7 @@ import { getClientHeight } from '../operators/get-client-height';
     pure: false
 })
 export class GetClientHeightPipe implements PipeTransform {
-    public transform(elementRefs: Nullable<ElementRef> | Nullable<ElementRef>[]): number {
-        return getClientHeight(elementRefs);
+    public transform(elementReferences: Nullable<ElementRef> | Nullable<ElementRef>[]): number {
+        return getClientHeight(elementReferences);
     }
 }

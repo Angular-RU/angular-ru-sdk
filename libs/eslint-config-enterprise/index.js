@@ -24,6 +24,7 @@ module.exports = {
         './modules/constructor.js',
         './modules/no-cyrillic.js',
         './modules/no-extraneous-class.js',
-        './modules/rxjs-angular.js'
+        './modules/rxjs-angular.js',
+        './modules/unicorn.js'
     ]
 };

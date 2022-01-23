@@ -9,7 +9,8 @@
             "options": {
                 "tsConfig": "libs/cdk/tsconfig.lib.json",
                 "project": "libs/cdk/ng-package.json"
-            }
+            },
+            "outputs": ["./@angular-ru/cdk"]
         },
         "build": {
             "builder": "@nrwl/workspace:run-commands",

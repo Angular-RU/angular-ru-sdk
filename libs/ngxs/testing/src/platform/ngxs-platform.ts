@@ -48,6 +48,7 @@ export function ngxsTestingPlatform<A, B, C, D, E>(
               states?: [StateClass<A>, StateClass<B>, StateClass<C>, StateClass<D>, StateClass<E>];
           })
         | [StateClass<A>, StateClass<B>, StateClass<C>, StateClass<D>, StateClass<E>],
+    // eslint-disable-next-line unicorn/prevent-abbreviations
     fn: (store: Store, a: A, b: B, c: C, d: D, e: E) => Any
 ): TestSpec;
 
@@ -57,6 +58,7 @@ export function ngxsTestingPlatform<A, B, C, D, E, F>(
               states?: [StateClass<A>, StateClass<B>, StateClass<C>, StateClass<D>, StateClass<E>, StateClass<F>];
           })
         | [StateClass<A>, StateClass<B>, StateClass<C>, StateClass<D>, StateClass<E>, StateClass<F>],
+    // eslint-disable-next-line unicorn/prevent-abbreviations
     fn: (store: Store, a: A, b: B, c: C, d: D, e: E, f: F) => Any
 ): TestSpec;
 

@@ -10,7 +10,7 @@ describe('[TEST]: HTTP decorators for client', () => {
     const MOCK_API: string = 'http://localhost';
     let client: Nullable<ApiGithubClient> = null;
     let httpMock: HttpTestingController;
-    let req: TestRequest;
+    let request: TestRequest;
 
     @Injectable()
     @RestClient('hello')
@@ -40,11 +40,11 @@ describe('[TEST]: HTTP decorators for client', () => {
     it('should be correct send GET request', fakeAsync(() => {
         client?.get('api-get').subscribe((response: Any[]) => {
             expect(response).toEqual([{ hello: 'world' }]);
-            expect(req.request.method).toBe('GET');
+            expect(request.request.method).toBe('GET');
         });
 
-        req = httpMock.expectOne(`${MOCK_API}/hello/api-get`);
-        req.flush([{ hello: 'world' }]);
+        request = httpMock.expectOne(`${MOCK_API}/hello/api-get`);
+        request.flush([{ hello: 'world' }]);
 
         tick(100);
     }));

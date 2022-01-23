@@ -82,16 +82,16 @@ export function comparable<T>(target: T | T[] | string, options: ObjectExtraOpti
     return result as T;
 }
 
-export function objectToString<T>(obj: T, options: Partial<ExtraObjectOptions> = {}): string {
-    return JSON.stringify(comparable(obj, options));
+export function objectToString<T>(object: T, options: Partial<ExtraObjectOptions> = {}): string {
+    return JSON.stringify(comparable(object, options));
 }
 
 export function equals<T, K>(a: T, b: K, options: ObjectExtraOptions = {}): boolean {
     return objectToString<T>(a, options) === objectToString<K>(b, options);
 }
 
-export function shallowTrimProperties<T>(obj: PlainObjectOf<Any>): T {
-    return Object.entries(obj).reduce((result: T, [key, value]: [string, Any]): T => {
+export function shallowTrimProperties<T>(object: PlainObjectOf<Any>): T {
+    return Object.entries(object).reduce((result: T, [key, value]: [string, Any]): T => {
         // note: don't use isString for preserve circular dependencies
         (result as Any)[key] = typeof value === 'string' ? value.trim() : value;
 

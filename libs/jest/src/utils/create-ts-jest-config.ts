@@ -3,8 +3,8 @@ import { stringify } from '@angular-ru/cdk/string';
 import { Nullable, PlainObject } from '@angular-ru/cdk/typings';
 import { isNotNil, isTrue } from '@angular-ru/cdk/utils';
 import type { Config } from '@jest/types';
-import * as fs from 'fs';
-import * as path from 'path';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
 import * as tsJestUtils from 'ts-jest';
 import { CompilerOptions } from 'typescript';
 
@@ -72,14 +72,10 @@ export function createTsJestConfig(options: JestConfigOptions): Config.InitialOp
     const moduleNameMapper: Nullable<JestModuleMapper> = options.jestConfig?.moduleNameMapper ?? rootModuleNameMapper;
 
     if (isTrue(options.debug)) {
-        // eslint-disable-next-line
-        console.log('[DEBUG]: rootDir: ', resolvedRootDir);
-        // eslint-disable-next-line
-        console.log('[DEBUG]: tsConfig: ', resolvedTsConfigPath);
-        // eslint-disable-next-line
-        console.log('[DEBUG]: prefix: ', prefix);
-        // eslint-disable-next-line
-        console.log('[DEBUG]: moduleNameMapper: ', stringify(moduleNameMapper), '\n');
+        console.info('[DEBUG]: rootDir:', resolvedRootDir);
+        console.info('[DEBUG]: tsConfig:', resolvedTsConfigPath);
+        console.info('[DEBUG]: prefix:', prefix);
+        console.info('[DEBUG]: moduleNameMapper:', stringify(moduleNameMapper), '\n');
     }
 
     if (isNotNil(options.timeZone)) {
@@ -89,6 +85,7 @@ export function createTsJestConfig(options: JestConfigOptions): Config.InitialOp
     return {
         ...options.jestConfig,
         rootDir: resolvedRootDir,
+        extensionsToTreatAsEsm: ['.ts'],
         displayName: displayName as string,
         cache: options.jestConfig?.cache ?? DEFAULT_CACHE,
         watch: options.jestConfig?.watch ?? DEFAULT_WATCH,
@@ -103,6 +100,7 @@ export function createTsJestConfig(options: JestConfigOptions): Config.InitialOp
 
         globals: options.jestConfig?.globals ?? {
             'ts-jest': {
+                useESM: true,
                 tsconfig: resolvedTsConfigPath,
                 diagnostics: {
                     pretty: true,

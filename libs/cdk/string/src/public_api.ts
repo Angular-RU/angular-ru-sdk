@@ -11,5 +11,5 @@ export { removeNonNumericSymbols } from './remove-non-numeric-symbols';
 export { replaceEveryCommaOnDot } from './replace-every-comma-on-dot';
 export { splitOnUniqueValues } from './split-on-unique-values';
 export { stringify } from './stringify';
-export { toStringVal } from './to-string-val';
+export { toStringValue } from './to-string-value';
 export { trim } from './trim';

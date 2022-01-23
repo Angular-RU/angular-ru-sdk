@@ -47,7 +47,7 @@ export class TooltipDirective implements OnDestroy {
     public uid: string = generateQuickGuid();
 
     constructor(
-        private readonly el: ElementRef,
+        private readonly elementRef: ElementRef,
         private readonly renderer: Renderer2,
         private readonly ngZone: NgZone,
         @Inject(TOOLTIP_OPTIONS_TOKEN)
@@ -148,7 +148,7 @@ export class TooltipDirective implements OnDestroy {
     }
 
     public setPosition(): void {
-        const hostPos: DOMRect = this.el.nativeElement.getBoundingClientRect();
+        const hostPos: DOMRect = this.elementRef.nativeElement.getBoundingClientRect();
         const tooltipPos: Nullable<DOMRect> = this.tooltipDomElement?.getBoundingClientRect();
         const scrollPos: number = TooltipDirective.getScrollPos();
 
@@ -221,13 +221,13 @@ export class TooltipDirective implements OnDestroy {
 
     private connectMouseEvents(): void {
         this.ngZone.runOutsideAngular((): void => {
-            this.el.nativeElement.addEventListener(
+            this.elementRef.nativeElement.addEventListener(
                 'mouseenter',
                 (): void => this.onMouseenterHandler(),
                 this.handlerOptions
             );
 
-            this.el.nativeElement.addEventListener(
+            this.elementRef.nativeElement.addEventListener(
                 'mouseleave',
                 (): void => this.onMouseleaveHandler(),
                 this.handlerOptions
@@ -236,13 +236,13 @@ export class TooltipDirective implements OnDestroy {
     }
 
     private disconnectMouseEvents(): void {
-        this.el.nativeElement.removeEventListener(
+        this.elementRef.nativeElement.removeEventListener(
             'mouseenter',
             (): void => this.onMouseenterHandler(),
             this.handlerOptions
         );
 
-        this.el.nativeElement.removeEventListener(
+        this.elementRef.nativeElement.removeEventListener(
             'mouseleave',
             (): void => this.onMouseleaveHandler(),
             this.handlerOptions
@@ -250,7 +250,7 @@ export class TooltipDirective implements OnDestroy {
     }
 
     private addUidToElement(): void {
-        this.el.nativeElement.setAttribute('data-tooltip-uid', this.uid);
+        this.elementRef.nativeElement.setAttribute('data-tooltip-uid', this.uid);
     }
 
     private addTooltipShowClass(): void {

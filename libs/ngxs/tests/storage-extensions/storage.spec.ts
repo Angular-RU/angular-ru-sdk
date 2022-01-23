@@ -76,8 +76,8 @@ describe('[TEST]: Storage plugin', () => {
                 TestBed.configureTestingModule({
                     imports: [NgxsModule.forRoot([Invalid]), NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)]
                 });
-            } catch (e: unknown) {
-                message = (e as Error).message;
+            } catch (error: unknown) {
+                message = (error as Error).message;
             }
 
             expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_PERSISTENCE_STATE);
@@ -103,8 +103,8 @@ describe('[TEST]: Storage plugin', () => {
                 const state: CustomState = TestBed.inject(CustomState);
 
                 expect(state.getState()).toBeDefined();
-            } catch (e: unknown) {
-                message = (e as Error).message;
+            } catch (error: unknown) {
+                message = (error as Error).message;
             }
 
             expect(message?.includes('No provider for InjectionToken NGXS_DATA_STORAGE_CONTAINER_TOKEN')).toBeTruthy();
@@ -207,7 +207,7 @@ describe('[TEST]: Storage plugin', () => {
                 class B extends NgxsImmutableDataRepository<number> {
                     @DataAction()
                     public increment(): B {
-                        this.ctx.setState((val: Immutable<number>) => val + 1);
+                        this.ctx.setState((value: Immutable<number>) => value + 1);
 
                         return this;
                     }
@@ -770,8 +770,8 @@ describe('[TEST]: Storage plugin', () => {
                 const stateC13: C13 = TestBed.inject<C13>(C13);
 
                 expect(stateC13.getState()).toBe('VALUE');
-            } catch (e: unknown) {
-                message = (e as Error).message;
+            } catch (error: unknown) {
+                message = (error as Error).message;
             }
 
             expect(message).toBe('StorageEngine instance should be implemented by DataStorageEngine interface');
@@ -794,7 +794,7 @@ describe('[TEST]: Storage plugin', () => {
                     return '';
                 }
 
-                public setItem(_key: string, _val: Any): void {
+                public setItem(_key: string, _value: Any): void {
                     // void
                 }
 
@@ -823,8 +823,8 @@ describe('[TEST]: Storage plugin', () => {
                 const stateC14: C14 = TestBed.inject<C14>(C14);
 
                 expect(stateC14.getState()).toBe('VALUE');
-            } catch (e: unknown) {
-                message = (e as Error).message;
+            } catch (error: unknown) {
+                message = (error as Error).message;
             }
 
             expect(message).toEqual(
@@ -999,8 +999,8 @@ describe('[TEST]: Storage plugin', () => {
                     });
                 }
 
-                public setItem(_key: string, val: string): void {
-                    if (JSON.parse(val).data === 'HELLO_WORLD') {
+                public setItem(_key: string, value: string): void {
+                    if (JSON.parse(value).data === 'HELLO_WORLD') {
                         throw new Error('Custom error');
                     }
                 }
@@ -1149,14 +1149,14 @@ describe('[TEST]: Storage plugin', () => {
 
             const events: string[] = [];
 
-            const e1: E1 = TestBed.inject<E1>(E1);
-            const e2: E2 = TestBed.inject<E2>(E2);
+            const model1: E1 = TestBed.inject<E1>(E1);
+            const model2: E2 = TestBed.inject<E2>(E2);
 
-            e1.state$.subscribe((e) => events.push(`e1: ${JSON.stringify(e)}`));
-            e2.state$.subscribe((e) => events.push(`e2: ${JSON.stringify(e)}`));
+            model1.state$.subscribe((event) => events.push(`e1: ${JSON.stringify(event)}`));
+            model2.state$.subscribe((event) => events.push(`e2: ${JSON.stringify(event)}`));
 
-            expect(e1.getState()).toEqual({ a: 1, b: 2 });
-            expect(e2.getState()).toEqual({ a: 3, b: 4 });
+            expect(model1.getState()).toEqual({ a: 1, b: 2 });
+            expect(model2.getState()).toEqual({ a: 3, b: 4 });
 
             expect(events).toEqual(['e1: {"a":1,"b":2}', 'e2: {"a":3,"b":4}']);
 
@@ -1171,8 +1171,8 @@ describe('[TEST]: Storage plugin', () => {
                 })
             );
 
-            expect(e1.getState()).toEqual({ a: 1, b: 2 });
-            expect(e2.getState()).toEqual({ a: 3, b: 4 });
+            expect(model1.getState()).toEqual({ a: 1, b: 2 });
+            expect(model2.getState()).toEqual({ a: 3, b: 4 });
             expect(events).toEqual(['e1: {"a":1,"b":2}', 'e2: {"a":3,"b":4}']);
 
             sessionStorage.setItem(
@@ -1186,8 +1186,8 @@ describe('[TEST]: Storage plugin', () => {
                 })
             );
 
-            expect(e1.getState()).toEqual({ a: 1, b: 2 });
-            expect(e2.getState()).toEqual({ a: 3, b: 4 });
+            expect(model1.getState()).toEqual({ a: 1, b: 2 });
+            expect(model2.getState()).toEqual({ a: 3, b: 4 });
             expect(events).toEqual(['e1: {"a":1,"b":2}', 'e2: {"a":3,"b":4}']);
         });
 
@@ -1254,14 +1254,14 @@ describe('[TEST]: Storage plugin', () => {
 
             const events: string[] = [];
 
-            const e1: E1 = TestBed.inject<E1>(E1);
-            const e2: E2 = TestBed.inject<E2>(E2);
+            const model1: E1 = TestBed.inject<E1>(E1);
+            const model2: E2 = TestBed.inject<E2>(E2);
 
-            e1.state$.subscribe((e) => events.push(`e1: ${JSON.stringify(e)}`));
-            e2.state$.subscribe((e) => events.push(`e2: ${JSON.stringify(e)}`));
+            model1.state$.subscribe((model) => events.push(`e1: ${JSON.stringify(model)}`));
+            model2.state$.subscribe((model) => events.push(`e2: ${JSON.stringify(model)}`));
 
-            expect(e1.getState()).toEqual({ a: 1, b: 2 });
-            expect(e2.getState()).toEqual({ a: 3, b: 4 });
+            expect(model1.getState()).toEqual({ a: 1, b: 2 });
+            expect(model2.getState()).toEqual({ a: 3, b: 4 });
             expect(events).toEqual(['e1: {"a":1,"b":2}', 'e2: {"a":3,"b":4}']);
 
             sessionStorage.setItem(
@@ -1275,8 +1275,8 @@ describe('[TEST]: Storage plugin', () => {
                 })
             );
 
-            expect(e1.getState()).toEqual({ a: 1, b: 2 });
-            expect(e2.getState()).toEqual({ a: 6, b: 4 });
+            expect(model1.getState()).toEqual({ a: 1, b: 2 });
+            expect(model2.getState()).toEqual({ a: 6, b: 4 });
             expect(events).toEqual(['e1: {"a":1,"b":2}', 'e2: {"a":3,"b":4}', 'e2: {"a":6,"b":4}']);
 
             localStorage.setItem(
@@ -1290,8 +1290,8 @@ describe('[TEST]: Storage plugin', () => {
                 })
             );
 
-            expect(e1.getState()).toEqual({ a: 10, b: 2 });
-            expect(e2.getState()).toEqual({ a: 6, b: 4 });
+            expect(model1.getState()).toEqual({ a: 10, b: 2 });
+            expect(model2.getState()).toEqual({ a: 6, b: 4 });
             expect(events).toEqual([
                 'e1: {"a":1,"b":2}',
                 'e2: {"a":3,"b":4}',
@@ -1527,7 +1527,7 @@ describe('[TEST]: Storage plugin', () => {
                 const state: AuthJwtState = TestBed.inject<AuthJwtState>(AuthJwtState);
                 const events: NgxsDataExpiredEvent[] = [];
 
-                state.expired$.subscribe((e) => events.push(e));
+                state.expired$.subscribe((event) => events.push(event));
                 expect(events).toHaveLength(0);
                 expect(state.internalEvents).toHaveLength(0);
 
@@ -1641,7 +1641,7 @@ describe('[TEST]: Storage plugin', () => {
                 const state: AuthJwtState = TestBed.inject<AuthJwtState>(AuthJwtState);
                 const events: NgxsDataExpiredEvent[] = [];
 
-                state.expired$.subscribe((e) => events.push(e));
+                state.expired$.subscribe((event) => events.push(event));
                 expect(events).toHaveLength(0);
                 expect(state.internalEvents).toHaveLength(1);
 
@@ -2099,7 +2099,7 @@ describe('[TEST]: Storage plugin', () => {
             const state: CountState = TestBed.inject<CountState>(CountState);
             const nativeEvents: NgxsDataStorageEvent[] = [];
 
-            state.browserStorageEvents$.subscribe((e) => nativeEvents.push(e));
+            state.browserStorageEvents$.subscribe((event) => nativeEvents.push(event));
 
             expect(state.getState()).toBe(5);
 

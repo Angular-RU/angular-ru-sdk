@@ -22,9 +22,7 @@ jobs:
           npx nx build eslint-plugin-enterprise
 
       - name: Run unit tests
-        run:
-          npx nx run-many --target=test --parallel=1 --all --collect-coverage --exclude $(npx nx affected:apps
-          --base=master --plain)
+        run: npx nx run-many --target=test --all --parallel=1 --collect-coverage
 
       - uses: codecov/codecov-action@v2
         with:

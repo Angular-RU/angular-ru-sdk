@@ -21,7 +21,7 @@ found in the Angular.
 | **Package**                                                    | **Version**                                                       | **README**                                                                        | **Downloads**                                                                                     |
 | -------------------------------------------------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | [@angular-ru/cdk](https://npmjs.com/package/@angular-ru/cdk)   | ![](https://img.shields.io/npm/v/%40angular-ru%2Fcdk/latest.svg)  | [![](https://img.shields.io/badge/Documentation--green.svg)](docs/cdk/README.md)  | [![](https://img.shields.io/npm/dw/@angular-ru/cdk)](https://npmjs.com/package/@angular-ru/cdk)   |
-| [@angular-ru/ngxs](https://npmjs.com/package/@angular-ru/ngxs) | ![](https://img.shields.io/npm/v/%40angular-ru%2Fngxs/latest.svg) | [![](https://img.shields.io/badge/Documentation--green.svg)](docs/ngxs/introduction.md) | [![](https://img.shields.io/npm/dw/@angular-ru/ngxs)](https://npmjs.com/package/@angular-ru/ngxs) |
+| [@angular-ru/ngxs](https://npmjs.com/package/@angular-ru/ngxs) | ![](https://img.shields.io/npm/v/%40angular-ru%2Fngxs/latest.svg) | [![](https://img.shields.io/badge/Documentation--green.svg)](docs/ngxs/README.md) | [![](https://img.shields.io/npm/dw/@angular-ru/ngxs)](https://npmjs.com/package/@angular-ru/ngxs) |
 
 ---
 

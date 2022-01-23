@@ -331,8 +331,8 @@ describe('[TEST]: Check work in groups', () => {
 
             try {
                 logger.info.group('hello world');
-            } catch (e: unknown) {
-                message = (e as Error).message;
+            } catch (error: unknown) {
+                message = (error as Error).message;
             }
 
             expect(message).toBe('logger.info.group is not a function');

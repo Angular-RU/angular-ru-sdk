@@ -1,5 +1,5 @@
 import { Nullable } from '@angular-ru/cdk/typings';
 
-export function replaceEveryCommaOnDot(val?: Nullable<string>): string {
-    return val?.replace(/,/g, '.') ?? '';
+export function replaceEveryCommaOnDot(value?: Nullable<string>): string {
+    return value?.replace(/,/g, '.') ?? '';
 }

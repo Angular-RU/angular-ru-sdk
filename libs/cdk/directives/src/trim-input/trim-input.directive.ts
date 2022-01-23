@@ -11,7 +11,7 @@ export class TrimInputDirective implements OnInit {
 
     @Input('trimDisabled') public disabled: boolean = false;
 
-    constructor(public readonly el: ElementRef, @Optional() private readonly ngControl?: NgControl) {}
+    constructor(public readonly elementRef: ElementRef, @Optional() private readonly ngControl?: NgControl) {}
 
     @Input()
     public set formControlName(name: Nullable<string | number>) {
@@ -39,7 +39,7 @@ export class TrimInputDirective implements OnInit {
             return;
         }
 
-        this.el.nativeElement.value = this.el.nativeElement.value?.toString().trim();
+        this.elementRef.nativeElement.value = this.elementRef.nativeElement.value?.toString().trim();
 
         const control: Nullable<AbstractControl> = this.ngControl?.control?.parent
             ? this.ngControl?.control?.parent?.get(this.name as Any)

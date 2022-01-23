@@ -43,9 +43,9 @@ export class TableClipboardService {
                 // eslint-disable-next-line max-lines-per-function
                 .run((input: PreparedRequest): string => {
                     function isEmptyValue(value: Any): value is EmptyValue {
-                        const val: Any = typeof value === 'string' ? value.trim() : value;
+                        const nextValue: Any = typeof value === 'string' ? value.trim() : value;
 
-                        return [undefined, null, NaN, '', Infinity].includes(val);
+                        return [undefined, null, NaN, '', Infinity].includes(nextValue);
                     }
 
                     function isFilledString(value: Nullable<string>): value is string {
@@ -66,7 +66,7 @@ export class TableClipboardService {
                                 const keys: string[] = Object.keys(firstEntry);
                                 const htmlHeader: string = this.generateHeaderRow(keys);
                                 const htmlBody: string = entities
-                                    .map((obj: PlainObject): string => this.generateBodyRow(obj, keys))
+                                    .map((object: PlainObject): string => this.generateBodyRow(object, keys))
                                     .join('');
 
                                 return `<html><body><table border="1" cellspacing="0"><tbody>${htmlHeader}${htmlBody}</tbody></table></body></html>`;

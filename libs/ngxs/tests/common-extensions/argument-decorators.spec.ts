@@ -44,8 +44,8 @@ describe('[TEST]: Argument decorators', () => {
         @Injectable()
         class B extends NgxsImmutableDataRepository<string> {
             @DataAction()
-            public set(val: string, plus: string = '3'): void {
-                this.ctx.setState(`${val}${plus}`);
+            public set(value: string, plus: string = '3'): void {
+                this.ctx.setState(`${value}${plus}`);
             }
         }
 
@@ -78,8 +78,8 @@ describe('[TEST]: Argument decorators', () => {
         @Injectable()
         class C extends NgxsImmutableDataRepository<string> {
             @DataAction()
-            public set(@Named('val') val: string, @Named('plus') plus: string = '3'): void {
-                this.ctx.setState(`${val}${plus}`);
+            public set(@Named('val') value: string, @Named('plus') plus: string = '3'): void {
+                this.ctx.setState(`${value}${plus}`);
             }
         }
 
@@ -155,8 +155,8 @@ describe('[TEST]: Argument decorators', () => {
             }
 
             new E().setX();
-        } catch (e: unknown) {
-            message = (e as Error).message;
+        } catch (error: unknown) {
+            message = (error as Error).message;
         }
 
         expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_INVALID_PAYLOAD_NAME);
@@ -177,8 +177,8 @@ describe('[TEST]: Argument decorators', () => {
             }
 
             new G().setY();
-        } catch (e: unknown) {
-            message = (e as Error).message;
+        } catch (error: unknown) {
+            message = (error as Error).message;
         }
 
         expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_INVALID_ARG_NAME);
@@ -200,8 +200,8 @@ describe('[TEST]: Argument decorators', () => {
                 }
 
                 new G().setYZ();
-            } catch (e: unknown) {
-                message = (e as Error).message;
+            } catch (error: unknown) {
+                message = (error as Error).message;
             }
 
             expect(message).toEqual(`An argument with the name 'y' already exists in the method 'setYZ'`);
@@ -222,8 +222,8 @@ describe('[TEST]: Argument decorators', () => {
                 }
 
                 new G().setYZ();
-            } catch (e: unknown) {
-                message = (e as Error).message;
+            } catch (error: unknown) {
+                message = (error as Error).message;
             }
 
             expect(message).toEqual(`An argument with the name 'y' already exists in the method 'setYZ'`);
@@ -244,8 +244,8 @@ describe('[TEST]: Argument decorators', () => {
                 }
 
                 new G().setYZ();
-            } catch (e: unknown) {
-                message = (e as Error).message;
+            } catch (error: unknown) {
+                message = (error as Error).message;
             }
 
             expect(message).toEqual(`An argument with the name 'y' already exists in the method 'setYZ'`);

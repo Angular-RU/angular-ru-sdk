@@ -3,18 +3,18 @@ import { isTrue } from '@angular-ru/cdk/utils';
 
 import { isSimpleObject } from './is-simple-object';
 
-export function isGetter(obj: Any, prop: string): boolean {
-    let currentObj: Any = obj;
+export function isGetter(object: Any, prop: string): boolean {
+    let currentObject: Any = object;
     let result: boolean = false;
 
-    if (isSimpleObject(currentObj)) {
-        while (currentObj !== null) {
-            if (isTrue(currentObj?.hasOwnProperty(prop))) {
+    if (isSimpleObject(currentObject)) {
+        while (currentObject !== null) {
+            if (isTrue(currentObject?.hasOwnProperty(prop))) {
                 // eslint-disable-next-line @typescript-eslint/unbound-method
-                result = Boolean(Object.getOwnPropertyDescriptor(currentObj, prop)?.get);
+                result = Boolean(Object.getOwnPropertyDescriptor(currentObject, prop)?.get);
                 break;
             } else {
-                currentObj = Object.getPrototypeOf(currentObj);
+                currentObject = Object.getPrototypeOf(currentObject);
             }
         }
     }

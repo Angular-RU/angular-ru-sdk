@@ -23,9 +23,9 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
     function checkValueIsEmpty(value: Any): boolean {
         // note: don't use isString here
         // noinspection SuspiciousTypeOfGuard
-        const val: string = typeof value === 'string' ? value.trim() : value;
+        const nextValue: string = typeof value === 'string' ? value.trim() : value;
 
-        return [undefined, null, NaN, '', Infinity].includes(val);
+        return [undefined, null, NaN, '', Infinity].includes(nextValue);
     }
 
     class Sortable {

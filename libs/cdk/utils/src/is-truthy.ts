@@ -1,5 +1,5 @@
 import { Any } from '@angular-ru/cdk/typings';
 
-export function isTruthy(val: Any): boolean {
-    return Boolean(val);
+export function isTruthy(value: Any): boolean {
+    return Boolean(value);
 }

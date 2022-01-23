@@ -63,8 +63,8 @@ describe('[TEST]: Observable with computed $a field', () => {
             this.subscribeA$++;
 
             return this.state$.pipe(
-                map((val): string => {
-                    const aX = val.value;
+                map((value): string => {
+                    const aX = value.value;
                     const bX = this._b.snapshot.value;
 
                     return `a(${aX}) + b(${bX}) = ${aX + bX}`;
@@ -108,10 +108,10 @@ describe('[TEST]: Observable with computed $a field', () => {
         expect(b.snapshot).toEqual({ value: 2 });
 
         subResult.push('subscribe ref#1');
-        ref1 = a.a$.subscribe((val) => subResult.push(`ref#1: ${val}`));
+        ref1 = a.a$.subscribe((value) => subResult.push(`ref#1: ${value}`));
 
         subResult.push('subscribe ref#2');
-        ref2 = a.a$.subscribe((val) => subResult.push(`ref#2: ${val}`));
+        ref2 = a.a$.subscribe((value) => subResult.push(`ref#2: ${value}`));
 
         a.increment();
         subResult.push(`a.incremented ${a.value}`);
@@ -123,10 +123,10 @@ describe('[TEST]: Observable with computed $a field', () => {
         expect(b.snapshot).toEqual({ value: 2 });
 
         subResult.push('subscribe ref#3');
-        ref3 = a.a$.subscribe((val) => subResult.push(`ref#3: ${val}`));
+        ref3 = a.a$.subscribe((value) => subResult.push(`ref#3: ${value}`));
 
         subResult.push('subscribe ref#4');
-        ref4 = a.a$.subscribe((val) => subResult.push(`ref#4: ${val}`));
+        ref4 = a.a$.subscribe((value) => subResult.push(`ref#4: ${value}`));
 
         b.increment();
         subResult.push(`b.incremented ${b.value}`);
@@ -150,7 +150,7 @@ describe('[TEST]: Observable with computed $a field', () => {
         subResult.push(`b.incremented ${b.value}`);
 
         subResult.push('subscribe ref#5');
-        ref5 = a.a$.subscribe((val) => subResult.push(`ref#5: ${val}`));
+        ref5 = a.a$.subscribe((value) => subResult.push(`ref#5: ${value}`));
 
         expect(ref1.closed).toBe(true);
         expect(ref2.closed).toBe(true);
@@ -196,10 +196,10 @@ describe('[TEST]: Observable with computed $a field', () => {
         expect(b.snapshot).toEqual({ value: 2 });
 
         subResult.push('subscribe ref#1');
-        ref1 = a.aWithB$.subscribe((val) => subResult.push(`ref#1: ${val}`));
+        ref1 = a.aWithB$.subscribe((value) => subResult.push(`ref#1: ${value}`));
 
         subResult.push('subscribe ref#2');
-        ref2 = a.aWithB$.subscribe((val) => subResult.push(`ref#2: ${val}`));
+        ref2 = a.aWithB$.subscribe((value) => subResult.push(`ref#2: ${value}`));
 
         a.increment();
         subResult.push(`a.incremented ${a.value}`);
@@ -211,10 +211,10 @@ describe('[TEST]: Observable with computed $a field', () => {
         expect(b.snapshot).toEqual({ value: 2 });
 
         subResult.push('subscribe ref#3');
-        ref3 = a.aWithB$.subscribe((val) => subResult.push(`ref#3: ${val}`));
+        ref3 = a.aWithB$.subscribe((value) => subResult.push(`ref#3: ${value}`));
 
         subResult.push('subscribe ref#4');
-        ref4 = a.aWithB$.subscribe((val) => subResult.push(`ref#4: ${val}`));
+        ref4 = a.aWithB$.subscribe((value) => subResult.push(`ref#4: ${value}`));
 
         b.increment();
         subResult.push(`b.incremented ${b.value}`);
@@ -238,7 +238,7 @@ describe('[TEST]: Observable with computed $a field', () => {
         subResult.push(`b.incremented ${b.value}`);
 
         subResult.push('subscribe ref#5');
-        ref5 = a.a$.subscribe((val) => subResult.push(`ref#5: ${val}`));
+        ref5 = a.a$.subscribe((value) => subResult.push(`ref#5: ${value}`));
 
         expect(subResult).toEqual([
             'subscribe ref#1',

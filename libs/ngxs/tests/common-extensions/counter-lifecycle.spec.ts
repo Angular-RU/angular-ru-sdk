@@ -38,8 +38,8 @@ describe('complex lifecycle', () => {
         try {
             TestBed.inject<CountState>(CountState);
             TestBed.inject<Store>(Store);
-        } catch (e: unknown) {
-            message = (e as Error).message;
+        } catch (error: unknown) {
+            message = (error as Error).message;
         }
 
         expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_MODULE_EXCEPTION);

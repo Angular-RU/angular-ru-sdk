@@ -17,7 +17,7 @@ describe('to string pipe', () => {
         expect(pipe.transform([])).toBe('');
         expect(pipe.transform([1, 2])).toBe('1,2');
         expect(pipe.transform({ a: 1, b: 2 })).toBe('[object Object]');
-        expect(pipe.transform({ a: 1, b: 2 }, (obj: { a: number; b: number }) => JSON.stringify(obj))).toBe(
+        expect(pipe.transform({ a: 1, b: 2 }, (value: { a: number; b: number }) => JSON.stringify(value))).toBe(
             '{"a":1,"b":2}'
         );
     });

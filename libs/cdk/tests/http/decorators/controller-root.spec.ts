@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 describe('[TEST]: HTTP decorators for client', () => {
     let client: Nullable<ApiUsersClient> = null;
     let httpMock: HttpTestingController;
-    let req: TestRequest;
+    let request: TestRequest;
 
     @Injectable()
     @HostUrl('https://github.com')
@@ -50,11 +50,11 @@ describe('[TEST]: HTTP decorators for client', () => {
                 { id: 1, name: 'a' },
                 { id: 2, name: 'b' }
             ]);
-            expect(req.request.method).toBe('GET');
+            expect(request.request.method).toBe('GET');
         });
 
-        req = httpMock.expectOne('https://github.com/users-api-balancer/users');
-        req.flush([
+        request = httpMock.expectOne('https://github.com/users-api-balancer/users');
+        request.flush([
             { id: 1, name: 'a' },
             { id: 2, name: 'b' }
         ]);

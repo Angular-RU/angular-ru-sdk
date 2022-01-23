@@ -29,8 +29,8 @@ describe('inheritance', () => {
             TestBed.configureTestingModule({
                 imports: [NgxsModule.forRoot([CountState])]
             });
-        } catch (e: unknown) {
-            message = (e as Error).message;
+        } catch (error: unknown) {
+            message = (error as Error).message;
         }
 
         expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_ACTION);

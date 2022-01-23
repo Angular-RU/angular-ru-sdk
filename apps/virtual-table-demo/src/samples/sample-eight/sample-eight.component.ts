@@ -54,11 +54,11 @@ const COLORS: string[] = [
 ];
 
 function replaceAt(array: Any[], index: number, value: Any): Any[] {
-    const ret: Any[] = array.slice(0);
+    const returnValue: Any[] = array.slice(0);
 
-    ret[index] = value;
+    returnValue[index] = value;
 
-    return ret;
+    return returnValue;
 }
 
 @Component({

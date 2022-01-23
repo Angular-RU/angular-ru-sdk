@@ -29,8 +29,8 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
             });
 
             TestBed.inject(MyAppState);
-        } catch (e: unknown) {
-            message = (e as Error).message;
+        } catch (error: unknown) {
+            message = (error as Error).message;
         }
 
         expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_STATE_DECORATOR);
@@ -58,15 +58,15 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
             });
 
             TestBed.inject(MyState);
-        } catch (e: unknown) {
-            message = (e as Error).message;
+        } catch (error: unknown) {
+            message = (error as Error).message;
         }
 
         expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_MODULE_EXCEPTION);
     });
 
     it('should be return null from state', () => {
-        interface Obj {
+        interface CustomType {
             a: number;
         }
 
@@ -76,9 +76,9 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
             defaults: null
         })
         @Injectable()
-        class MyDataState extends NgxsDataRepository<Obj> {
+        class MyDataState extends NgxsDataRepository<CustomType> {
             @Action({ type: 'myState.set' })
-            public concat({ setState }: StateContext<Obj>): void {
+            public concat({ setState }: StateContext<CustomType>): void {
                 setState({ a: 15 });
             }
         }
@@ -96,7 +96,7 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
         state.setState({ a: 5 });
         expect(state.getState()).toEqual({ a: 5 });
 
-        const immutable: Immutable<Obj> = { a: 10 };
+        const immutable: Immutable<CustomType> = { a: 10 };
 
         state.patchState(immutable);
 
@@ -142,8 +142,8 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
 
         try {
             snapshot[0]!.a!++;
-        } catch (e: unknown) {
-            message = (e as Error).message;
+        } catch (error: unknown) {
+            message = (error as Error).message;
         }
 
         // eslint-disable-next-line @typescript-eslint/quotes
@@ -151,16 +151,16 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
 
         try {
             snapshot[0]!.b = 3;
-        } catch (e: unknown) {
-            message = (e as Error).message;
+        } catch (error: unknown) {
+            message = (error as Error).message;
         }
 
         expect('Cannot add property b, object is not extensible').toEqual(message);
 
         try {
             snapshot[1]!.b!++;
-        } catch (e: unknown) {
-            message = (e as Error).message;
+        } catch (error: unknown) {
+            message = (error as Error).message;
         }
 
         // eslint-disable-next-line @typescript-eslint/quotes
@@ -243,8 +243,8 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
 
         try {
             state.getState().reverse();
-        } catch (e: unknown) {
-            message = (e as Error).message;
+        } catch (error: unknown) {
+            message = (error as Error).message;
         }
 
         // eslint-disable-next-line @typescript-eslint/quotes

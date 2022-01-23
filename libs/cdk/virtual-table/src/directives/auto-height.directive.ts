@@ -117,7 +117,7 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
         if (document.defaultView && isNotNil(document.defaultView.getComputedStyle)) {
             try {
                 strValue = document.defaultView.getComputedStyle(element, '').getPropertyValue(strRule);
-            } catch (e: unknown) {
+            } catch (error: unknown) {
                 strValue = '0px';
             }
         } else if (isNotNil(element.currentStyle)) {

@@ -23,18 +23,18 @@ export class ResizableService {
     }
 
     // eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
-    public resize(event: MouseEvent, column: HTMLElement, mousemove: Fn, mouseup: Fn): void {
+    public resize(mouseEvent: MouseEvent, column: HTMLElement, mousemove: Fn, mouseup: Fn): void {
         this.destroyed$ = new ReplaySubject(1);
-        this.startX = event.pageX;
+        this.startX = mouseEvent.pageX;
         this.startWidth = column.offsetWidth;
 
         fromEvent(document, 'mousemove')
             .pipe(takeUntil(this.destroyed$))
-            .subscribe((e: Event): void => this.computeEvent(e as MouseEvent, mousemove));
+            .subscribe((event: Event): void => this.computeEvent(event as MouseEvent, mousemove));
 
         fromEvent(document, 'mouseup')
             .pipe(takeUntil(this.destroyed$))
-            .subscribe((e: Event): void => this.unsubscribe(e as MouseEvent, mouseup));
+            .subscribe((event: Event): void => this.unsubscribe(event as MouseEvent, mouseup));
     }
 
     private computeEvent(event: MouseEvent, mousemove: Fn): void {

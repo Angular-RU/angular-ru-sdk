@@ -19,8 +19,8 @@ describe('[TEST]: Debounce', () => {
             }
 
             new App().invoke();
-        } catch (e: unknown) {
-            message = (e as Error).message;
+        } catch (error: unknown) {
+            message = (error as Error).message;
         }
 
         expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_MODULE_EXCEPTION);
@@ -47,8 +47,8 @@ describe('[TEST]: Debounce', () => {
 
             @Debounce(50)
             @DataAction()
-            public incrementByValue(val: number): number {
-                this.setState((state: number): number => state + val);
+            public incrementByValue(value: number): number {
+                this.setState((state: number): number => state + value);
 
                 return this.getState();
             }
@@ -98,15 +98,15 @@ describe('[TEST]: Debounce', () => {
 
         expect(state.getState()).toEqual(-1);
 
-        const val1 = state.incrementByValue(6);
-        const val2 = state.incrementByValue(6);
-        const val3 = state.incrementByValue(6);
+        const value1 = state.incrementByValue(6);
+        const value2 = state.incrementByValue(6);
+        const value3 = state.incrementByValue(6);
 
         tick(50);
 
-        expect(val1).toBeUndefined();
-        expect(val2).toBeUndefined();
-        expect(val3).toBeUndefined();
+        expect(value1).toBeUndefined();
+        expect(value2).toBeUndefined();
+        expect(value3).toBeUndefined();
 
         expect(spy).toHaveBeenCalledTimes(1);
         expect(console.warn).toHaveBeenLastCalledWith(NGXS_DATA_EXCEPTIONS.NGXS_DATA_ASYNC_ACTION_RETURN_TYPE, -1);

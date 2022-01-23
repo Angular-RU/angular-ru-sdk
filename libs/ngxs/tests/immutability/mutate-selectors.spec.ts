@@ -29,8 +29,8 @@ describe('mutate', () => {
             });
 
             store = TestBed.inject<Store>(Store);
-        } catch (e: unknown) {
-            message = (e as Error).message;
+        } catch (error: unknown) {
+            message = (error as Error).message;
         }
 
         expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_MODULE_EXCEPTION);
@@ -56,7 +56,7 @@ describe('mutate', () => {
 
         expect(store.snapshot()).toEqual({ todos: [1, 2, 3] });
 
-        let error: string | null = null;
+        let errorResult: string | null = null;
 
         todo.state$.pipe(map((state) => state.concat().reverse())).subscribe((state) => {
             expect(store.snapshot()).toEqual({ todos: [1, 2, 3] });
@@ -67,12 +67,12 @@ describe('mutate', () => {
             next: () => {
                 // ...
             },
-            error: (e: unknown) => {
-                error = (e as Error).message;
+            error: (error: unknown) => {
+                errorResult = (error as Error).message;
             }
         });
 
-        expect(error).toEqual(`Cannot assign to read only property '0' of object '[object Array]'`);
+        expect(errorResult).toEqual(`Cannot assign to read only property '0' of object '[object Array]'`);
         expect(store.snapshot()).toEqual({ todos: [1, 2, 3] });
     });
 
@@ -100,25 +100,25 @@ describe('mutate', () => {
             expect(Object.isFrozen(state)).toBe(true);
         });
 
-        let error: string | null = null;
+        let errorResult: string | null = null;
 
         expect(todo.getState()).toEqual([{ a: 1 }, { a: 2 }]);
         expect(Object.isFrozen(todo.getState())).toBe(true);
 
         try {
             (todo.getState() as A[]).reverse();
-        } catch (e: unknown) {
-            error = (e as Error).message;
+        } catch (error: unknown) {
+            errorResult = (error as Error).message;
         }
 
-        expect(error).toEqual(`Cannot assign to read only property '0' of object '[object Array]'`);
+        expect(errorResult).toEqual(`Cannot assign to read only property '0' of object '[object Array]'`);
 
         try {
             (todo.getState() as A[])[0]!.a++;
-        } catch (e: unknown) {
-            error = (e as Error).message;
+        } catch (error: unknown) {
+            errorResult = (error as Error).message;
         }
 
-        expect(error).toEqual(`Cannot assign to read only property 'a' of object '[object Object]'`);
+        expect(errorResult).toEqual(`Cannot assign to read only property 'a' of object '[object Object]'`);
     });
 });

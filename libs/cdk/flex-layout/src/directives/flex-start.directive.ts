@@ -4,7 +4,7 @@ import { AbstractFlexLayoutDirective } from './abstract-flex-layout.directive';
 
 @Directive({ selector: '[flex-start]' })
 export class FlexStartDirective extends AbstractFlexLayoutDirective implements AfterViewInit {
-    constructor(protected readonly el: ElementRef) {
+    constructor(protected readonly elementRef: ElementRef) {
         super();
     }
 

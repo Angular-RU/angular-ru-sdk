@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ensureRegexp, isRegexpStr } from '@angular-ru/cdk/regexp';
-import { toStringVal } from '@angular-ru/cdk/string';
+import { toStringValue } from '@angular-ru/cdk/string';
 import { Nullable } from '@angular-ru/cdk/typings';
 import { isNotNil } from '@angular-ru/cdk/utils';
 
@@ -17,7 +17,7 @@ export class MarkByFilterPipe implements PipeTransform {
 
     private search(value: Nullable<string>, filter: string, color: string): SafeHtml {
         if (isNotNil(value)) {
-            const highlighted: string = this.highLightingString(toStringVal(value), toStringVal(filter), color);
+            const highlighted: string = this.highLightingString(toStringValue(value), toStringValue(filter), color);
 
             return this.sanitizer.bypassSecurityTrustHtml(highlighted);
         } else {

@@ -40,9 +40,9 @@ export { MapToTableEntriesPipe } from './pipes/map-to-table-entries.pipe';
 // TODO: remove later
 // eslint-disable-next-line deprecation/deprecation
 export { TableSelectedItemsPipe } from './pipes/table-selected-items.pipe';
-export { FilterColumnsOpts } from './services/filterable/filter-columns-opts';
+export { FilterColumnsOptions } from './services/filterable/filter-columns-options';
 export { FilterEvent } from './services/filterable/filter-event';
-export { FilterGlobalOpts } from './services/filterable/filter-global-opts';
+export { FilterGlobalOptions } from './services/filterable/filter-global-options';
 export { FilterStateEvent } from './services/filterable/filter-state-event';
 export { FilterWorkerEvent } from './services/filterable/filter-worker-event';
 export { Filterable } from './services/filterable/filterable';

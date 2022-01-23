@@ -267,7 +267,7 @@ export class TableBuilderComponent<T>
         const [x, , z]: [number, number, number] = transform
             .replace(/translate3d|\(|\)|px/g, '')
             .split(',')
-            .map((val: string): number => parseFloat(val)) as [number, number, number];
+            .map((value: string): number => parseFloat(value)) as [number, number, number];
 
         preview.style.transform = `translate3d(${x}px, ${top}px, ${z}px)`;
     }
