@@ -81,7 +81,7 @@ export class BigDecimal {
         const a: string = BigDecimal.validate(inputA);
 
         if (isNaN(precision)) {
-            throw Error(`Precision is not a num: ${precision}`);
+            throw new Error(`Precision is not a num: ${precision}`);
         }
 
         return roundOff(a, precision, mode);
@@ -146,7 +146,7 @@ export class BigDecimal {
 
     public round(precision: number = 0, mode: RoundingModes = RoundingModes.HALF_EVEN): BigDecimal {
         if (isNaN(precision)) {
-            throw Error(`Precision is not a num: ${precision}`);
+            throw new Error(`Precision is not a num: ${precision}`);
         }
 
         return new BigDecimal(roundOff(this.value, precision, mode));
@@ -204,7 +204,7 @@ function validatePrettyParams(params: PrettyParams): PrettyParams {
         result.digits = DEFAULT_DIGITS;
         result.separator = ',';
     } else if (checkSomeValueIsEmpty(params.digits, params.separator)) {
-        throw Error('Illegal Arguments. Should pass both digits and separator or pass none');
+        throw new Error('Illegal Arguments. Should pass both digits and separator or pass none');
     }
 
     return result;
@@ -272,7 +272,7 @@ function prepareNum(inputNum: Any): Any {
         num = inputNum.toString();
 
         if (isNaN(num)) {
-            throw Error(`Parameter is not a num: ${num}`);
+            throw new Error(`Parameter is not a num: ${num}`);
         }
 
         if (num[0] === '+') {

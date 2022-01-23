@@ -12,7 +12,7 @@ export function ensureQueryParams(
 ): Nullable<PlainObject> {
     const registry: MethodArgsRegistry = ensureMethodArgsRegistry(originalMethod, META_REQUEST_PARAM);
 
-    if (registry.size) {
+    if (registry.size > 0) {
         const newParams: PlainObject = {};
 
         args.forEach((value: Any, index: number): void => {

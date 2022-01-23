@@ -192,7 +192,7 @@ export class ConsoleFake implements Console {
             const property: string = String(entry.splice(0, 1)[0]).trim();
             const options: string = entry.join(':').trim();
 
-            if (property.length) {
+            if (property.length > 0) {
                 result[property] = options;
             }
         });

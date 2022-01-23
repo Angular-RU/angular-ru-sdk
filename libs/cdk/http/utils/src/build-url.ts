@@ -13,7 +13,9 @@ export function buildUrl({ hostUrl, baseUrl, restUrl, pathUrl }: DataUrlPathSegm
     } else {
         const clearPathUrl: string = getPathWithoutQueryParams(pathUrl);
 
-        fullUrl = [hostUrl, baseUrl, restUrl, clearPathUrl].filter(checkValueIsFilled).join('/');
+        fullUrl = [hostUrl, baseUrl, restUrl, clearPathUrl]
+            .filter((element: string): element is string => checkValueIsFilled(element))
+            .join('/');
     }
 
     return replaceDoubleSlash(fullUrl);

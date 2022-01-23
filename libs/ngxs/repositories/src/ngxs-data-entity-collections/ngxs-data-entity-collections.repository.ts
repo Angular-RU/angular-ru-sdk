@@ -238,7 +238,7 @@ export abstract class AbstractNgxsDataEntityCollectionsRepository<
             dictionary[id] = entity;
         }
 
-        if (ids.length) {
+        if (ids.length > 0) {
             this.setEntitiesState({
                 ...state,
                 ids: [...state.ids, ...ids],

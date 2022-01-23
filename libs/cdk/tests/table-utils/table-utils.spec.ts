@@ -38,7 +38,9 @@ describe('[TEST] Table utils', () => {
             { id: 4, firstName: 'antonelli', lastName: undefined, age: 19, nullable: undefined },
             { id: 5, firstName: 'agnesi', lastName: 'hawking', age: 22, nullable: null }
         ]);
-        expect(plain.map(Object.keys)).toEqual(Array(5).fill(['id', 'firstName', 'lastName', 'age', 'nullable']));
+        expect(plain.map((element: PlainObject) => Object.keys(element))).toEqual(
+            new Array(5).fill(['id', 'firstName', 'lastName', 'age', 'nullable'])
+        );
 
         await expect(plainTableComposer.compose([])).resolves.toEqual([]);
     });
@@ -53,7 +55,7 @@ describe('[TEST] Table utils', () => {
             { id: 4, lastName: undefined },
             { id: 5, lastName: 'hawking' }
         ]);
-        expect(plain.map(Object.keys)).toEqual(Array(5).fill(['id', 'lastName']));
+        expect(plain.map((element) => Object.keys(element))).toEqual(new Array(5).fill(['id', 'lastName']));
 
         plain = await plainTableComposer.compose(dataset, { includeKeys: ['firstName', 'id', 'lastName', 'country'] });
         expect(plain).toEqual([
@@ -63,7 +65,9 @@ describe('[TEST] Table utils', () => {
             { firstName: 'antonelli', id: 4, lastName: undefined, country: undefined },
             { firstName: 'agnesi', id: 5, lastName: 'hawking', country: undefined }
         ]);
-        expect(plain.map(Object.keys)).toEqual(Array(5).fill(['firstName', 'id', 'lastName', 'country']));
+        expect(plain.map((element) => Object.keys(element))).toEqual(
+            new Array(5).fill(['firstName', 'id', 'lastName', 'country'])
+        );
     });
 
     it('should correctly plain sets of data with exclude rule', async () => {
@@ -76,7 +80,9 @@ describe('[TEST] Table utils', () => {
             { lastName: undefined, age: 19, nullable: undefined },
             { lastName: 'hawking', age: 22, nullable: null }
         ]);
-        expect(plain.map(Object.keys)).toEqual(Array(5).fill(['lastName', 'age', 'nullable']));
+        expect(plain.map((element) => Object.keys(element))).toEqual(
+            new Array(5).fill(['lastName', 'age', 'nullable'])
+        );
 
         plain = await plainTableComposer.compose(dataset, { excludeKeys: ['age', 'firstName', 'country'] });
         expect(plain).toEqual([
@@ -86,6 +92,6 @@ describe('[TEST] Table utils', () => {
             { id: 4, lastName: undefined, nullable: undefined },
             { id: 5, lastName: 'hawking', nullable: null }
         ]);
-        expect(plain.map(Object.keys)).toEqual(Array(5).fill(['id', 'lastName', 'nullable']));
+        expect(plain.map((element) => Object.keys(element))).toEqual(new Array(5).fill(['id', 'lastName', 'nullable']));
     });
 });

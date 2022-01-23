@@ -47,7 +47,7 @@ function replaceSingle(value: string, unitsMap: UnitsMap): string {
 function replaceByMatch(text: string, pattern: RegExp, unitsMap: UnitsMap): string {
     const match: string = pattern.exec(text)?.[0] ?? '';
     const num: number = convertToNumber(match, unitsMap);
-    const prepared: string = match.replace(RegExp(/\S.*\S/), num.toString());
+    const prepared: string = match.replace(new RegExp(/\S.*\S/), num.toString());
 
     return text.replace(pattern, prepared);
 }

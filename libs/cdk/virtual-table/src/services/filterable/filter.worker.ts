@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/consistent-function-scoping */
 import { Any, Nullable, PlainObject, PlainObjectOf } from '@angular-ru/cdk/typings';
 
 import { FilterGlobalOptions } from './filter-global-options';
@@ -55,17 +56,29 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
         try {
             switch (filterType) {
                 case types.START_WITH:
-                    return valuesSet.map(toLowercase).some(startsWith(toLowercase(operand)));
+                    return valuesSet
+                        .map((element: PlainValue): string => toLowercase(element))
+                        .some(startsWith(toLowercase(operand)));
                 case types.END_WITH:
-                    return valuesSet.map(toLowercase).some(endsWith(toLowercase(operand)));
+                    return valuesSet
+                        .map((element: PlainValue): string => toLowercase(element))
+                        .some(endsWith(toLowercase(operand)));
                 case types.CONTAINS:
-                    return valuesSet.map(toLowercase).some(includes(toLowercase(operand)));
+                    return valuesSet
+                        .map((element: PlainValue): string => toLowercase(element))
+                        .some(includes(toLowercase(operand)));
                 case types.DOES_NOT_CONTAIN:
-                    return valuesSet.map(toLowercase).every(notIncludes(toLowercase(operand)));
+                    return valuesSet
+                        .map((element: PlainValue): string => toLowercase(element))
+                        .every(notIncludes(toLowercase(operand)));
                 case types.EQUALS:
-                    return valuesSet.map(toLowercase).includes(toLowercase(operand));
+                    return valuesSet
+                        .map((element: PlainValue): string => toLowercase(element))
+                        .includes(toLowercase(operand));
                 case types.DOES_NOT_EQUAL:
-                    return !valuesSet.map(toLowercase).includes(toLowercase(operand));
+                    return !valuesSet
+                        .map((element: PlainValue): string => toLowercase(element))
+                        .includes(toLowercase(operand));
                 case types.MORE_THAN:
                 case types.MORE_OR_EQUAL:
                 case types.LESS_THAN:

@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/consistent-function-scoping */
 // eslint-disable-next-line max-classes-per-file
 import { Injectable, Optional } from '@angular/core';
 import { Any, EmptyValue, Nullable, PlainObject } from '@angular-ru/cdk/typings';

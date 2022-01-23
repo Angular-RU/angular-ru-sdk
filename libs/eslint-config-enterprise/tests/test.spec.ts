@@ -1,5 +1,5 @@
 import * as fs from 'node:fs';
-import { resolve } from 'path';
+import * as path from 'node:path';
 
 describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
     it('check failed files', (): void => {
@@ -145,5 +145,5 @@ describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
 });
 
 function getInfoByReportFile(type: 'bad-file' | 'good-file' | 'file-pattern'): string {
-    return fs.readFileSync(resolve(__dirname, `../reports/eslint.${type}.report.txt`)).toString();
+    return fs.readFileSync(path.resolve(__dirname, `../reports/eslint.${type}.report.txt`)).toString();
 }

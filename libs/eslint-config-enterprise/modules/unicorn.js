@@ -38,21 +38,40 @@ module.exports = {
                 ],
                 'unicorn/better-regex': 'error',
                 'unicorn/catch-error-name': 'error',
-                'unicorn/consistent-destructuring': 'error'
-                /*
-                'unicorn/consistent-function-scoping': 'error',
-                'unicorn/custom-error-definition': 'off',
+                'unicorn/consistent-destructuring': 'error',
+                'unicorn/consistent-function-scoping': ['error', { checkArrowFunctions: false }],
                 'unicorn/empty-brace-spaces': 'error',
-                'unicorn/error-message': 'error',
                 'unicorn/escape-case': 'error',
-                'unicorn/expiring-todo-comments': 'error',
+                'unicorn/error-message': 'error',
                 'unicorn/explicit-length-check': 'error',
-                'unicorn/filename-case': 'error',
-                'unicorn/import-index': 'off',
+                'unicorn/filename-case': [
+                    'error',
+                    {
+                        case: 'kebabCase',
+                        ignore: ['^public_api.ts$']
+                    }
+                ],
+                'unicorn/import-index': 'error',
                 'unicorn/import-style': 'error',
                 'unicorn/new-for-builtins': 'error',
-                'unicorn/no-abusive-eslint-disable': 'error',
                 'unicorn/no-array-callback-reference': 'error',
+                // OFF
+                'unicorn/custom-error-definition': 'off',
+                'unicorn/no-abusive-eslint-disable': 'off',
+                'unicorn/expiring-todo-comments': 'off'
+                /*
+
+
+
+
+
+
+
+
+
+
+
+
                 'unicorn/no-array-for-each': 'error',
                 'unicorn/no-array-method-this-argument': 'error',
                 'unicorn/no-array-push-push': 'error',

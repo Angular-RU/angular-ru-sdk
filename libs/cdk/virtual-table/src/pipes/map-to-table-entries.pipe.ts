@@ -35,6 +35,8 @@ export class MapToTableEntriesPipe<T> implements PipeTransform {
             }
         }
 
-        return Array.from(filteredEntriesMap.values()).filter(isNotNil);
+        return Array.from(filteredEntriesMap.values()).filter((element: Nullable<T>): element is T =>
+            isNotNil(element)
+        );
     }
 }

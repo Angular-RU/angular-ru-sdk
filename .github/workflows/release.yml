@@ -65,6 +65,7 @@ jobs:
           PREVIOUS_VERSION=${{ env.PREV_LAST_TAG }}
           VERSION=${{ env.NEW_LAST_TAG }}
           TIMESTAMP=$(date +"%d.%m.%Y %H:%M")
+          CHANGES=$(git log --pretty="- %s" $PREVIOUS_VERSION...$VERSION)
           printf "# 🎁 Release notes (\`$TIMESTAMP\`)\n\n## Changes\n$CHANGES\n\n## Metadata\n\`\`\`\nThis version -------- $VERSION\nPrevious version ---- $PREVIOUS_VERSION\nTotal commits ------- $(echo "$CHANGES" | wc -l)\n\`\`\`\n\n" >> RELEASE_NOTES.md
           npx prettier --write RELEASE_NOTES.md
           git add RELEASE_NOTES.md

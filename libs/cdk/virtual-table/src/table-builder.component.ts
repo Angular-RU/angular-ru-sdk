@@ -808,9 +808,9 @@ export class TableBuilderComponent<T>
                 this.schemaColumns?.columns?.map(
                     (column: DeepPartial<ColumnsSchema>): string => column.key as string
                 ) ?? [];
-        } else if (this.keys.length) {
+        } else if (this.keys.length > 0) {
             generatedList = this.customModelColumnsKeys;
-        } else if (simpleRenderedKeys.size) {
+        } else if (simpleRenderedKeys.size > 0) {
             generatedList = allRenderedKeys;
         } else {
             generatedList = this.modelColumnKeys;
@@ -860,9 +860,10 @@ export class TableBuilderComponent<T>
 
         this.templateParser.keyMap = this.generateColumnsKeyMap(keys);
 
-        this.templateParser.allowedKeyMap = this.keys.length
-            ? this.generateColumnsKeyMap(this.customModelColumnsKeys)
-            : this.generateColumnsKeyMap(this.modelColumnKeys);
+        this.templateParser.allowedKeyMap =
+            this.keys.length > 0
+                ? this.generateColumnsKeyMap(this.customModelColumnsKeys)
+                : this.generateColumnsKeyMap(this.modelColumnKeys);
 
         this.templateParser.parse(this.columnTemplates!);
 

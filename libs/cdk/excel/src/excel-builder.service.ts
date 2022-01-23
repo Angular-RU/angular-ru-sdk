@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/consistent-function-scoping */
 // eslint-disable-next-line max-classes-per-file
 import { Injectable } from '@angular/core';
 import { toFormatDateTime } from '@angular-ru/cdk/date';
@@ -246,7 +247,7 @@ export class ExcelBuilderService {
                     input.preparedTranslatedKeys
                 ).buildWorkbook(input.worksheets);
 
-                const UTF8: string = '\ufeff';
+                const UTF8: string = '\uFEFF';
 
                 return new Blob([UTF8, xmlBookTemplate], { type: 'application/vnd.ms-excel;charset=UTF-8' });
             }, preparedWorkbook)

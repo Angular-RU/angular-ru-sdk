@@ -49,7 +49,7 @@ export class CssFactory {
             }
         });
 
-        const localStyles: string = styles.length ? styles.join('; ') : '';
+        const localStyles: string = styles.length > 0 ? styles.join('; ') : '';
 
         this.lineStyle = `${this.globalStyles}${localStyles}`;
     }

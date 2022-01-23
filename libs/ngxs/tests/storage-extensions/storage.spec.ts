@@ -2239,9 +2239,9 @@ describe('[TEST]: Storage plugin', () => {
                 data: 'eyJwaG9uZSI6IjQ0NDQiLCJjYXJkIjoiNTU1NSJ9'
             });
         });
-
-        function ensureMockStorage<T>(key: string, storage: Storage = localStorage): StorageMeta<T> {
-            return JSON.parse(storage.getItem(key)! ?? '{}');
-        }
     });
 });
+
+function ensureMockStorage<T>(key: string, storage: Storage = localStorage): StorageMeta<T> {
+    return JSON.parse(storage.getItem(key)! ?? '{}');
+}

@@ -29,6 +29,7 @@ describe('[TEST]: Function', () => {
     });
 
     it('$arg', () => {
+        // eslint-disable-next-line unicorn/consistent-function-scoping
         function hello(name: string, value: number, a?: string[]): string {
             return `world${name}${value}${a}`;
         }
@@ -39,6 +40,7 @@ describe('[TEST]: Function', () => {
     it('hasConstructor', () => {
         class A {}
 
+        // eslint-disable-next-line unicorn/consistent-function-scoping
         function B() {
             // ...
         }

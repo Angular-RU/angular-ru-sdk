@@ -7,7 +7,11 @@ export function everyArrayItemValidator(validators: ValidatorFn[]): ValidatorFn 
         if (Array.isArray(control.value)) {
             const errors: ValidationErrors = control.value
                 .map((value: Any): ValidationErrors | null => getErrorsForSingleValue(value, validators))
-                .reduce(concatErrors, {});
+                .reduce(
+                    (accumulator: ValidationErrors, element: ValidationErrors | null): ValidationErrors =>
+                        concatErrors(accumulator, element),
+                    {}
+                );
 
             return checkIsShallowEmpty(errors) ? null : errors;
         }

@@ -79,7 +79,7 @@ export class NgxContextMenuItemComponent<T = Any> implements OnInit, OnDestroy {
     }
 
     public calculateSubMenuPosition(ref: HTMLDivElement): void {
-        const contentExist: boolean = ref.innerHTML.trim().length !== 0;
+        const contentExist: boolean = ref.innerHTML.trim().length > 0;
 
         if (contentExist) {
             this.offsetX = this.clientRect.left! + this.subMenuWidth - MIN_PADDING_CONTEXT_ITEM;

@@ -14,7 +14,7 @@ export function buildDefaultsGraph(stateClasses: DataStateClass): Any {
     const prepared: Any = options.defaults === undefined ? {} : options.defaults;
     const currentDefaults: Any = deepClone(prepared);
 
-    if (children.length) {
+    if (children.length > 0) {
         if (isSimpleObject(currentDefaults)) {
             return buildChildrenGraph(currentDefaults, children);
         } else {

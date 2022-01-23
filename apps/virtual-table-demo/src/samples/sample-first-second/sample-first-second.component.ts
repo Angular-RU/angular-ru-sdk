@@ -71,9 +71,8 @@ export class SampleFirstSecondComponent implements OnInit, OnDestroy {
         const rows: number = 1;
         const cols: number = 10;
 
-        const startIndex: number = this.data.length
-            ? Math.max(...this.data.map((item: PlainObject): number => item?.['id'] ?? 0))
-            : 0;
+        const startIndex: number =
+            this.data.length > 0 ? Math.max(...this.data.map((item: PlainObject): number => item?.['id'] ?? 0)) : 0;
 
         MocksGenerator.generator(rows, cols, startIndex).then((row: PlainObject[]): void => {
             this.data = this.data.concat(row);

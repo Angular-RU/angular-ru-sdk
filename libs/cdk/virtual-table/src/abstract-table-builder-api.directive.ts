@@ -504,7 +504,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
     }
 
     private excluding(keys: string[]): string[] {
-        return this.excludeKeys.length
+        return this.excludeKeys.length > 0
             ? keys.filter(
                   (key: string): boolean =>
                       !this.excludeKeys.some((excludeKey: ExcludePattern<T>): boolean =>

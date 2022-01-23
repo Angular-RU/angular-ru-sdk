@@ -81,7 +81,7 @@ describe('[TEST]: Object', () => {
                     // ...
                 })
             ).toBe(true);
-            // eslint-disable-next-line no-new-wrappers
+            // eslint-disable-next-line no-new-wrappers,unicorn/new-for-builtins
             expect(isObject(new Number(6))).toBe(true);
             expect(isObject(Math)).toBe(true);
             expect(isObject(Object.create(null))).toBe(true);
@@ -117,7 +117,7 @@ describe('[TEST]: Object', () => {
                     // ...
                 })
             ).toBe(false);
-            // eslint-disable-next-line no-new-wrappers
+            // eslint-disable-next-line no-new-wrappers,unicorn/new-for-builtins
             expect(isPlainObject(new Number(6))).toBe(false);
             expect(isPlainObject(Math)).toBe(false);
             expect(isPlainObject(document.createElement('div'))).toBe(false);
@@ -159,7 +159,7 @@ describe('[TEST]: Object', () => {
                     // ...
                 })
             ).toBe(false);
-            // eslint-disable-next-line no-new-wrappers
+            // eslint-disable-next-line no-new-wrappers,unicorn/new-for-builtins
             expect(isSimpleObject(new Number(6))).toBe(false);
             expect(isSimpleObject(Math)).toBe(false);
             expect(isSimpleObject(document.createElement('div'))).toBe(false);
@@ -240,7 +240,7 @@ describe('[TEST]: Object', () => {
             expect(isGetter(undefined, 'a')).toBe(false);
             expect(isGetter(NaN, 'a')).toBe(false);
             expect(isGetter(5, 'a')).toBe(false);
-            // eslint-disable-next-line no-new-wrappers
+            // eslint-disable-next-line no-new-wrappers,unicorn/new-for-builtins
             expect(isGetter(new Number(5), 'a')).toBe(false);
             expect(isGetter(String(5), 'a')).toBe(false);
         });

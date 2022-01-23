@@ -1,7 +1,9 @@
+// noinspection SuspiciousTypeOfGuard
+
 import { hasNoItems } from '@angular-ru/cdk/array';
 import { isFunctionLike } from '@angular-ru/cdk/function';
 
-export type FilterPredicateFn = (char: string) => boolean;
+export type FilterPredicateFn = (char: string, index?: number, self?: string[]) => boolean;
 export type FilterPredicate = string[] | FilterPredicateFn | RegExp;
 
 export function filter(value: string, predicate: FilterPredicate = []): string {
@@ -31,7 +33,9 @@ function filterWithCharacters(value: string, predicate: string[] = []): string {
 }
 
 function filterWithFunction(value: string, predicate: FilterPredicateFn): string {
-    return Array.from(value).filter(predicate).join('');
+    return Array.from(value)
+        .filter((element: string, index: number, array: string[]): boolean => predicate(element, index, array))
+        .join('');
 }
 
 function filterWithRegExp(value: string, predicate: RegExp): string {
