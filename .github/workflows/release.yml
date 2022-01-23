@@ -17,7 +17,7 @@ jobs:
         uses: ./.github/actions/nodejs
 
       - name: Wait for tests to succeed
-        uses: lewagon/wait-on-check-action@v1.0.0
+        uses: lewagon/wait-on-check-action@v1.1.1
         with:
           ref: master
           check-name: test
@@ -26,7 +26,7 @@ jobs:
           wait-interval: 15
 
       - name: Wait for build to succeed
-        uses: lewagon/wait-on-check-action@v1.0.0
+        uses: lewagon/wait-on-check-action@v1.1.1
         with:
           ref: master
           check-name: build
@@ -35,7 +35,7 @@ jobs:
           wait-interval: 15
 
       - name: Wait for integrations deploy to succeed
-        uses: lewagon/wait-on-check-action@v1.0.0
+        uses: lewagon/wait-on-check-action@v1.1.1
         with:
           ref: master
           check-name: integrations
