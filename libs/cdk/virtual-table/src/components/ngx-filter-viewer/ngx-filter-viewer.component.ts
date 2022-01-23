@@ -107,7 +107,7 @@ export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy
         }
 
         let regexp: RegExp;
-        const escapedValue: Nullable<string> = value?.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const escapedValue: Nullable<string> = value?.replace(/[$()*+.?[\\\]^{|}]/g, '\\$&');
 
         if (type === TableFilterType.START_WITH) {
             regexp = new RegExp(`^${escapedValue}`, 'i');

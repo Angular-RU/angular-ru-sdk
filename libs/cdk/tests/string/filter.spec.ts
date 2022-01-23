@@ -75,7 +75,7 @@ describe('[TEST]: Filter', () => {
         it('should use RegExp for filtering text', () => {
             expect(filter('aaabbbccc', /a/)).toBe('a');
             expect(filter('aaabbbccc', /a/g)).toBe('aaa');
-            expect(filter('aaabbbccc', /[a,b]+/)).toBe('aaabbb');
+            expect(filter('aaabbbccc', /[,ab]+/)).toBe('aaabbb');
         });
     });
 });

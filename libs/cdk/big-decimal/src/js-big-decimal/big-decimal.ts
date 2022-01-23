@@ -231,7 +231,7 @@ function getTemp(params: PrettyParams, length_: number, num: Any): string {
 }
 
 function getExponentiation(inputNum: string): string {
-    const numParts: string[] = inputNum.split(/[eE]/);
+    const numParts: string[] = inputNum.split(/[Ee]/);
 
     if (numParts.length !== EXPONENTIAL_PARTS_LENGTH) {
         return inputNum;

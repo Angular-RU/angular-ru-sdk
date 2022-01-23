@@ -24,7 +24,7 @@ describe('[TEST]: JWT', (): void => {
             eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
             eyJleHBpcmVzQXQiOjE1NDE2MjQ0MDAsImdyb3VwcyI6WyJncm91cCJdLCJpc3N1ZXIiOiJpc3N1ZXIiLCJ1c2VyIjoidXNlciJ9.
             0x2qcqp0cis-piHKLS11j_g6E2Sis_regNc0e18AU7Y
-        `.replace(/\n|\t|\s/g, '');
+        `.replace(/\s/g, '');
 
         it('simple example JWT decode', (): void => {
             expect(decodeJwt(token) as PlainObject).toEqual(decodeModel);

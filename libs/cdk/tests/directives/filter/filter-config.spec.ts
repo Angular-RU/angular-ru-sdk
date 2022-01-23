@@ -26,7 +26,7 @@ describe('[TEST]: inputFilter Config', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [ReactiveFormsModule, MatInputModule, InputFilterModule.forRoot({ default: /[0-9]+/ })],
+            imports: [ReactiveFormsModule, MatInputModule, InputFilterModule.forRoot({ default: /\d+/ })],
             providers: [{ provide: MATERIAL_SANITY_CHECKS, useValue: false }],
             declarations: [TestComponent]
         }).compileComponents();

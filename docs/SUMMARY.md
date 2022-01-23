@@ -1,7 +1,7 @@
 # Summary
 
 -   Getting Started
-    -   [Introduction](README.md)
+    -   [Introduction](introduction/intro.md)
 -   CDK
     -   [@angular-ru/cdk/typings](cdk/typings.md)
     -   [@angular-ru/cdk/number](cdk/number.md)

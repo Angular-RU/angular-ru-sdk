@@ -88,7 +88,7 @@ function getCoefficient(unit: string): number {
 }
 
 function getUnitValue(unit: string, unitsMap: UnitsMap): number {
-    const postfix: string = unit.match(/[^0-9]+$/s)?.[0] ?? '';
+    const postfix: string = unit.match(/\D+$/s)?.[0] ?? '';
 
     return unitsMap[postfix] ?? 0;
 }

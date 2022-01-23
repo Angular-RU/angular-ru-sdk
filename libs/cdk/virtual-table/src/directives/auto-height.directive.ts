@@ -121,7 +121,7 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
                 strValue = '0px';
             }
         } else if (isNotNil(element.currentStyle)) {
-            strRule = strRule.replace(/\-(\w)/g, (_: string, p1: string): string => p1.toUpperCase());
+            strRule = strRule.replace(/-(\w)/g, (_: string, p1: string): string => p1.toUpperCase());
             strValue = element.currentStyle[strRule];
         }
 

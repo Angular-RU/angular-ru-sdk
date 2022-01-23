@@ -7,8 +7,8 @@ export function dateStringToDate(date: string | Date): Date {
 
     const firstItem: number = 1;
     const parsedDate: string = (date || '')
-        .replace(/^(\d{1,1})/, '0$1')
-        .replace(/\.(\d{1,1})\./, '.0$1.')
+        .replace(/^(\d)/, '0$1')
+        .replace(/\.(\d)\./, '.0$1.')
         .replace('..', '.01.')
         .replace(/^\./, '01.')
         .replace(/(\d{3})\./g, (str: string): string => str.slice(firstItem))

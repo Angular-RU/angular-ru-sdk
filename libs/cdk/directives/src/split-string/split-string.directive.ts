@@ -11,7 +11,7 @@ import { SplitStringOptions } from './split-string-options';
 })
 export class SplitStringDirective {
     private defaultSplitOptions: SplitStringOptions = {
-        separator: /[,;\n]/g,
+        separator: /[\n,;]/g,
         joinWith: ', '
     };
 

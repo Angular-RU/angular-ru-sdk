@@ -89,7 +89,7 @@ describe('[TEST]: inputFilter Input', function () {
     });
 
     it('should filter input with RegExp', () => {
-        component!.predicate = /[a,b]+/;
+        component!.predicate = /[,ab]+/;
         setValueAndDispatch('aaabbbccc');
         expect(component!.form.value).toEqual({ value: 'aaabbb' });
         expect(debugElement!.nativeElement.value).toBe('aaabbb');
