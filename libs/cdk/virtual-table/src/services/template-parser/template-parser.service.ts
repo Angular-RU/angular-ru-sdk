@@ -105,13 +105,13 @@ export class TemplateParserService<T> {
         this.columnOptions = columnOptions ?? new ColumnOptionsDirective();
     }
 
-    // eslint-disable-next-line max-lines-per-function
+    // eslint-disable-next-line max-lines-per-function,complexity
     public parse(templates?: QueryList<NgxColumnComponent<T>>): void {
         if (isNil(templates)) {
             return;
         }
 
-        templates.forEach((column: NgxColumnComponent<T>): void => {
+        for (const column of templates) {
             const { key, customKey, importantTemplate }: NgxColumnComponent<T> = column;
             const needTemplateCheck: boolean = this.allowedKeyMap[key!] ?? customKey !== false;
 
@@ -127,7 +127,7 @@ export class TemplateParserService<T> {
 
                 this.fullTemplateKeys?.add(key!);
             }
-        });
+        }
     }
 
     public mutateColumnSchema(key: string, partialSchema: Partial<ColumnsSchema>): void {
@@ -219,8 +219,8 @@ export class TemplateParserService<T> {
     }
 
     private updateComputedWithSchema(): void {
-        this.schema?.columns.forEach((column: ColumnsSchema): void => {
+        for (const column of this.schema?.columns ?? []) {
             this.compiledTemplates[column.key!] = column;
-        });
+        }
     }
 }

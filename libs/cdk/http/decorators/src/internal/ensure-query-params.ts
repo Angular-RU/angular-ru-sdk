@@ -15,13 +15,13 @@ export function ensureQueryParams(
     if (registry.size > 0) {
         const newParams: PlainObject = {};
 
-        args.forEach((value: Any, index: number): void => {
+        for (const [index, value] of args.entries()) {
             const key: Nullable<string> = registry.getNameByIndex(index);
 
             if (isNotNil(key)) {
                 newParams[key] = value;
             }
-        });
+        }
 
         return { ...newParams, ...queryParams };
     }

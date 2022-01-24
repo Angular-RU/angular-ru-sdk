@@ -1,9 +1,8 @@
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Any, PlainObject } from '@angular-ru/cdk/typings';
+import { PlainObject } from '@angular-ru/cdk/typings';
 
+import { hlJsCode } from '../../../../../.global/utils/hljs-code';
 import { MocksGenerator } from '../../mocks-generator';
-
-declare const hljs: Any;
 
 @Component({
     selector: 'sample-seven',
@@ -26,9 +25,7 @@ export class SampleSevenComponent implements OnInit, AfterViewInit {
     }
 
     public ngAfterViewInit(): void {
-        document.querySelectorAll('pre code').forEach((block: Any): void => {
-            hljs.highlightBlock(block);
-        });
+        hlJsCode();
     }
 
     public alert(row: PlainObject): void {

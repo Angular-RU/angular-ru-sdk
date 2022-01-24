@@ -1,6 +1,6 @@
 import { Any } from '@angular-ru/cdk/typings';
 
-// eslint-disable-next-line max-lines-per-function
+// eslint-disable-next-line max-lines-per-function,complexity
 export const deepFreeze: (value: Any) => Any = (value: Any): Any => {
     const isObject: boolean = typeof value === 'object' && value !== null;
     const isDate: boolean = value instanceof Date;
@@ -18,7 +18,7 @@ export const deepFreeze: (value: Any) => Any = (value: Any): Any => {
     const hasOwnProp: (v: PropertyKey) => boolean = Object.prototype.hasOwnProperty;
 
     // eslint-disable-next-line complexity
-    Object.getOwnPropertyNames(value).forEach((prop: string): void => {
+    for (const prop of Object.getOwnPropertyNames(value)) {
         if (
             hasOwnProp.call(value, prop) &&
             (oIsFunction ? prop !== 'caller' && prop !== 'callee' && prop !== 'arguments' : true) &&
@@ -28,7 +28,7 @@ export const deepFreeze: (value: Any) => Any = (value: Any): Any => {
         ) {
             deepFreeze(value[prop]);
         }
-    });
+    }
 
     return value;
 };

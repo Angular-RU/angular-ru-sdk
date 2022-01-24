@@ -63,10 +63,10 @@ export class SortableService<T> {
         this.positionMap = {};
 
         if (isNotNil(this.sortChanges)) {
-            Object.entries(this.definition).forEach(([key, ordered]: [string, SortOrderType], index: number): void => {
+            for (const [index, [key, ordered]] of Object.entries(this.definition).entries()) {
                 this.positionMap[key] = index + 1;
                 orderedFields.push({ field: key, order: ordered.toLocaleUpperCase() as OrderedField['order'] });
-            });
+            }
 
             this.sortableCount = orderedFields.length;
             this.sortChanges.emit(orderedFields);

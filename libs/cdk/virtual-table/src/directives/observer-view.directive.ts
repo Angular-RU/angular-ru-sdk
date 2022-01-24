@@ -18,10 +18,10 @@ export class ObserverViewDirective implements AfterViewInit, OnDestroy {
         this.ngZone.runOutsideAngular((): void => {
             this.observer = new IntersectionObserver(
                 (entries: IntersectionObserverEntry[]): void => {
-                    entries.forEach((entry: IntersectionObserverEntry): void => {
+                    for (const entry of entries) {
                         this.ngZone.runOutsideAngular((): void => this.observeChange(entry));
                         this.previousRation = entry.intersectionRatio;
-                    });
+                    }
                 },
                 {
                     root: this.observerRoot ?? null,

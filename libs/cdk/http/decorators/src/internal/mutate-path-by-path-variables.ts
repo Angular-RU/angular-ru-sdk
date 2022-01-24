@@ -34,13 +34,13 @@ export function mutatePathByPathVariables(options: MutatePathByPathVariablesOpti
 
 function mutateMapByMethodArgsRegistry(variableMap: Map<string, Any>, args: Any[], registry: MethodArgsRegistry): void {
     if (registry.size > 0) {
-        args.forEach((value: Any, index: number): void => {
+        for (const [index, value] of args.entries()) {
             const key: Nullable<string> = registry.getNameByIndex(index);
 
             if (isNotNil(key)) {
                 variableMap.set(key, value);
             }
-        });
+        }
     }
 }
 

@@ -148,7 +148,7 @@ export class ExcelBuilderService {
                         let columnsDescriptor: string = '';
                         let columnCells: string = '';
 
-                        keys.forEach((key: string): void => {
+                        for (const key of keys) {
                             const title: string = this.getTranslatedTitle(key, worksheet.prefixKeyForTranslate);
                             const parameters: Nullable<ColumnParameters> = worksheet.columnParameters?.[key];
                             const entriesColumn: string[] = worksheet.flatEntries.map(
@@ -160,7 +160,7 @@ export class ExcelBuilderService {
 
                             columnsDescriptor += `<Column ss:Width="${width}" />`;
                             columnCells += ExcelBuilder.renderCell(title, StyleType.HEAD);
-                        });
+                        }
 
                         return `
                             ${columnsDescriptor}

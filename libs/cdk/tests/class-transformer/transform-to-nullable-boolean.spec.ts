@@ -15,9 +15,9 @@ describe('[TEST] TransformToNullableBoolean', () => {
             { value: '   ' } as TransformFnParams
         ];
 
-        data.forEach((item: TransformFnParams): void => {
+        for (const item of data) {
             expect(transformToNullableBoolean(item)).toBe(true);
-        });
+        }
     });
 
     it('should return false', () => {
@@ -28,9 +28,9 @@ describe('[TEST] TransformToNullableBoolean', () => {
             { value: 0 } as TransformFnParams
         ];
 
-        data.forEach((item: TransformFnParams): void => {
+        for (const item of data) {
             expect(transformToNullableBoolean(item)).toBe(false);
-        });
+        }
     });
 
     it('should return null', () => {
@@ -39,8 +39,8 @@ describe('[TEST] TransformToNullableBoolean', () => {
             { value: undefined } as TransformFnParams
         ];
 
-        data.forEach((item: TransformFnParams): void => {
+        for (const item of data) {
             expect(transformToNullableBoolean(item)).toBeNull();
-        });
+        }
     });
 });

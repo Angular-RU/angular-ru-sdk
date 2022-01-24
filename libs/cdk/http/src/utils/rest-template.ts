@@ -109,9 +109,9 @@ export class RestTemplate<T> {
         let stream$: Observable<T> = this._client.request(options);
 
         if (this.operators.length > 0) {
-            this.operators.forEach((operator: OperatorFunction<T, Any>): void => {
+            for (const operator of this.operators) {
                 stream$ = stream$.pipe(operator);
-            });
+            }
         }
 
         return stream$;

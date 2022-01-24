@@ -1,8 +1,8 @@
 /* eslint-disable spellcheck/spell-checker */
 import { AfterViewInit, ChangeDetectionStrategy, Component } from '@angular/core';
-import { Any, PlainObject } from '@angular-ru/cdk/typings';
+import { PlainObject } from '@angular-ru/cdk/typings';
 
-declare const hljs: Any;
+import { hlJsCode } from '../../../../../.global/utils/hljs-code';
 
 @Component({
     selector: 'guide',
@@ -17,8 +17,6 @@ export class GuideComponent implements AfterViewInit {
     ];
 
     public ngAfterViewInit(): void {
-        document.querySelectorAll('pre code').forEach((block: Any): void => {
-            hljs.highlightBlock(block);
-        });
+        hlJsCode();
     }
 }

@@ -10,9 +10,9 @@ export function registerStorageProviders(options: PersistenceProvider[]): void {
             NGXS_DATA_STORAGE_CONTAINER_TOKEN
         );
 
-        options.forEach((option: PersistenceProvider): void => {
+        for (const option of options) {
             container?.providers.add(option);
-        });
+        }
     } catch {
         throw new Error(NGXS_DATA_EXCEPTIONS.NGXS_PERSISTENCE_CONTAINER);
     }

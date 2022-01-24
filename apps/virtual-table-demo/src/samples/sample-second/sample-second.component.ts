@@ -1,5 +1,6 @@
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
-import { Any } from '@angular-ru/cdk/typings';
+
+import { hlJsCode } from '../../../../../.global/utils/hljs-code';
 
 interface LicenseSample {
     id: number;
@@ -13,8 +14,6 @@ export interface PeriodicElement {
     weight: number;
     symbol: string;
 }
-
-declare const hljs: Any;
 
 @Component({
     selector: 'sample-second',
@@ -61,9 +60,7 @@ export class SampleSecondComponent implements AfterViewInit {
 
     // eslint-disable-next-line max-lines-per-function
     public ngAfterViewInit(): void {
-        document.querySelectorAll('pre code').forEach((block: Any): void => {
-            hljs.highlightBlock(block);
-        });
+        hlJsCode();
 
         // eslint-disable-next-line no-restricted-globals
         setTimeout(

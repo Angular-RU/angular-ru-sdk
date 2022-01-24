@@ -1,9 +1,9 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
-import { Any, PlainObject } from '@angular-ru/cdk/typings';
+import { PlainObject } from '@angular-ru/cdk/typings';
 import { TableEvent } from '@angular-ru/cdk/virtual-table';
 import { ToastrService } from 'ngx-toastr';
 
-declare const hljs: Any;
+import { hlJsCode } from '../../../../../.global/utils/hljs-code';
 
 @Component({
     selector: 'sample-thirteen',
@@ -43,9 +43,7 @@ export class SampleThirteenComponent implements AfterViewInit {
     }
 
     public update(): void {
-        document.querySelectorAll('pre code').forEach((block: Any): void => {
-            hljs.highlightBlock(block);
-        });
+        hlJsCode();
     }
 
     public rowOnClick(event: TableEvent<PlainObject, string>): void {

@@ -56,13 +56,13 @@ export class SelectionService<T> implements OnDestroy {
         if (this.selectionModel.isAll) {
             this.selectionModel.clear();
         } else {
-            rows?.forEach((row: T): void => {
+            for (const row of rows ?? []) {
                 const selected: boolean = this.selectionModel.select(this.getIdByRow(row), row, false);
 
                 if (selected) {
                     selectedSize = (selectedSize ?? 0) + 1;
                 }
-            });
+            }
         }
 
         this.checkIsAllSelected(selectedSize);

@@ -2,7 +2,7 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, Inject } from '@angu
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Any } from '@angular-ru/cdk/typings';
 
-declare const hljs: Any;
+import { hlJsCode } from '../../../../../.global/utils/hljs-code';
 
 @Component({
     selector: 'code-dialog',
@@ -13,9 +13,7 @@ export class CodeDialogComponent implements AfterViewInit {
     constructor(@Inject(MAT_DIALOG_DATA) public data: Any, public dialogRef: MatDialogRef<unknown>) {}
 
     public ngAfterViewInit(): void {
-        document.querySelectorAll('pre code').forEach((block: Any): void => {
-            hljs.highlightBlock(block);
-        });
+        hlJsCode();
     }
 
     public close(): void {

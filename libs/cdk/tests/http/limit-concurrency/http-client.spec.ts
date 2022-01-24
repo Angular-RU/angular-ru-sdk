@@ -105,11 +105,10 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
     }
 
     function generateRequests(limit: number): void {
-        requestList.slice(0, limit).forEach((params: RequestParams): void => {
-            client?.get(params.api).subscribe((response: Any) => {
-                responseOrder.push(response);
-            });
-        });
+        for (const params of requestList.slice(0, limit)) {
+            // eslint-disable-next-line no-loop-func
+            client?.get(params.api).subscribe((response: Any) => responseOrder.push(response));
+        }
     }
 
     it('should throw an error if limitConcurrency = 0', fakeAsync(() => {
@@ -145,9 +144,9 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
         }, requestList[2]!.delay);
         tick(requestList[2]!.delay);
 
-        responseOrder.forEach((item: string, index: number): void => {
+        for (const [index, item] of responseOrder.entries()) {
             expect(item).toEqual(expectOrder[index]);
-        });
+        }
     }));
 
     it('requests must complete in a right order: Limit Concurrency = 3', fakeAsync(() => {
@@ -204,9 +203,9 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
 
         tick(3000);
 
-        responseOrder.forEach((item: string, index: number): void => {
+        for (const [index, item] of responseOrder.entries()) {
             expect(item).toEqual(expectOrder[index]);
-        });
+        }
     }));
 
     it('requests must complete in a right order: Limit Concurrency = 5', fakeAsync(() => {
@@ -255,9 +254,9 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
 
         tick(5100);
 
-        responseOrder.forEach((item: string, index: number): void => {
+        for (const [index, item] of responseOrder.entries()) {
             expect(item).toEqual(expectOrder[index]);
-        });
+        }
     }));
 
     it(`limit concurrency by default should be ${defaultLimit}`, fakeAsync(() => {

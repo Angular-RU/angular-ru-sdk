@@ -18,7 +18,9 @@ export class MapToTableEntriesPipe<T> implements PipeTransform {
     private filterItems(selectedEntries: RowId[]): T[] {
         const filteredEntriesMap: Map<RowId, Nullable<T>> = new Map();
 
-        selectedEntries.forEach((rowId: RowId): void => void filteredEntriesMap.set(rowId, null));
+        for (const rowId of selectedEntries) {
+            void filteredEntriesMap.set(rowId, null);
+        }
 
         let itemsToFindLeft: number = filteredEntriesMap.size;
 

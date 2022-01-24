@@ -1,13 +1,12 @@
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Any, Nullable, PlainObject } from '@angular-ru/cdk/typings';
+import { Nullable, PlainObject } from '@angular-ru/cdk/typings';
 import { NgxTableViewChangesService, TableUpdateSchema } from '@angular-ru/cdk/virtual-table';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
+import { hlJsCode } from '../../../../../.global/utils/hljs-code';
 import { MocksGenerator } from '../../mocks-generator';
-
-declare const hljs: Any;
 
 @Component({
     selector: 'sample-sixteen',
@@ -42,9 +41,7 @@ export class SampleSixteenComponent implements OnInit, AfterViewInit, OnDestroy 
     }
 
     public ngAfterViewInit(): void {
-        document.querySelectorAll('pre code').forEach((block: Any): void => {
-            hljs.highlightBlock(block);
-        });
+        hlJsCode();
     }
 
     public ngOnDestroy(): void {

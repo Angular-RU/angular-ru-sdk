@@ -10,8 +10,10 @@ declare const hljs: Any;
 })
 export class GuideComponent implements AfterViewInit {
     public ngAfterViewInit(): void {
-        document.querySelectorAll('pre code').forEach((block: Any): void => {
+        const list: Element[] = Array.from(document.querySelectorAll('pre code') ?? []);
+
+        for (const block of list) {
             hljs.highlightBlock(block);
-        });
+        }
     }
 }

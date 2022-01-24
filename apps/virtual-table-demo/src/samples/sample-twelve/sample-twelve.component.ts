@@ -6,11 +6,10 @@ import {
     OnInit,
     ViewEncapsulation
 } from '@angular/core';
-import { Any, PlainObject } from '@angular-ru/cdk/typings';
+import { PlainObject } from '@angular-ru/cdk/typings';
 
+import { hlJsCode } from '../../../../../.global/utils/hljs-code';
 import { MocksGenerator } from '../../mocks-generator';
-
-declare const hljs: Any;
 
 @Component({
     selector: 'sample-twelve',
@@ -61,8 +60,6 @@ export class SampleTwelveComponent implements OnInit, AfterViewInit {
     }
 
     public update(): void {
-        document.querySelectorAll('pre code').forEach((block: Any): void => {
-            hljs.highlightBlock(block);
-        });
+        hlJsCode();
     }
 }

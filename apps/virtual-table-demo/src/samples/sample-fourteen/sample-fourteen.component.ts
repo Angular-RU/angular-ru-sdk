@@ -8,13 +8,12 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Any, PlainObject } from '@angular-ru/cdk/typings';
+import { PlainObject } from '@angular-ru/cdk/typings';
 import { TableBuilderComponent, TableFilterType } from '@angular-ru/cdk/virtual-table';
 
+import { hlJsCode } from '../../../../../.global/utils/hljs-code';
 import { MocksGenerator } from '../../mocks-generator';
 import { CodeDialogComponent } from '../../shared/dialog/code-dialog.component';
-
-declare const hljs: Any;
 
 // noinspection CssUnusedSymbol
 @Component({
@@ -57,9 +56,7 @@ export class SampleFourteenComponent implements OnInit, AfterViewInit {
     }
 
     public ngAfterViewInit(): void {
-        document.querySelectorAll('pre code').forEach((block: Any): void => {
-            hljs.highlightBlock(block);
-        });
+        hlJsCode();
     }
 
     public clearFilter(): void {

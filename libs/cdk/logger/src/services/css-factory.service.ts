@@ -41,13 +41,13 @@ export class CssFactory {
         const classList: string[] = cssClassName.split(/\s+/g);
         const styles: string[] = [];
 
-        classList.forEach((className: string): void => {
+        for (const className of classList) {
             const style: Nullable<string> = this.options.cssClassMap[className];
 
             if (isNotNil(style)) {
                 styles.push(style);
             }
-        });
+        }
 
         const localStyles: string = styles.length > 0 ? styles.join('; ') : '';
 

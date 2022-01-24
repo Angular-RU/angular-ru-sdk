@@ -47,7 +47,7 @@ export class PlainTableComposerService {
                                 const depthGraph: PlainObject = {};
                                 const keys: string[] = Object.keys(objectRef);
 
-                                keys.forEach((key: string): void => {
+                                for (const key of keys) {
                                     const path: string = keyPrefix ? `${keyPrefix}.${key}` : key;
 
                                     if (this.passesBlacklist(path)) {
@@ -60,7 +60,7 @@ export class PlainTableComposerService {
                                             depthGraph[path] = objectRef[key];
                                         }
                                     }
-                                });
+                                }
 
                                 return depthGraph;
                             }

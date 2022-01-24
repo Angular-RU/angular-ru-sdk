@@ -23,9 +23,9 @@ export class SelectionMap<T> {
         this.selectedList = Array.from(this.selectionSet.values());
         const newEntries: PlainObjectOf<boolean> = {};
 
-        this.selectedList.forEach((key: RowId): void => {
+        for (const key of this.selectedList) {
             newEntries[key] = true;
-        });
+        }
 
         this.entries = newEntries;
     }

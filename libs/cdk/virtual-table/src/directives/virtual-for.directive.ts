@@ -54,7 +54,9 @@ export class VirtualForDirective<T> implements OnDestroy {
     }
 
     private createNewNodes(indexes: VirtualIndex[]): void {
-        (indexes ?? []).forEach((index: VirtualIndex): void => this.createEmbeddedViewByIndex(index));
+        for (const index of indexes ?? []) {
+            this.createEmbeddedViewByIndex(index);
+        }
     }
 
     private createEmbeddedView(row: T, index: VirtualIndex): void {
@@ -96,9 +98,9 @@ export class VirtualForDirective<T> implements OnDestroy {
             return;
         }
 
-        this.virtualForDiffIndexes?.forEach((index: number): void => {
+        for (const index of this.virtualForDiffIndexes ?? []) {
             this.removeFrameId = window.requestAnimationFrame((): void => this.removeEmbeddedViewByIndex(index));
-        });
+        }
     }
 
     private removeEmbeddedViewByIndex(index: number): void {

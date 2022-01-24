@@ -15,9 +15,9 @@ describe('[TEST] TransformToBoolean', () => {
             { value: '   ' } as TransformFnParams
         ];
 
-        data.forEach((item: TransformFnParams): void => {
+        for (const item of data) {
             expect(transformToBoolean(item)).toBe(true);
-        });
+        }
     });
 
     it('should return false', () => {
@@ -30,8 +30,8 @@ describe('[TEST] TransformToBoolean', () => {
             { value: undefined } as TransformFnParams
         ];
 
-        data.forEach((item: TransformFnParams): void => {
+        for (const item of data) {
             expect(transformToBoolean(item)).toBe(false);
-        });
+        }
     });
 });

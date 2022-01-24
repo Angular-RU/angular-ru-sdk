@@ -5,9 +5,9 @@ export function dynamicActionByType(type: string): Type<Any> {
     return class NgxsDataAction {
         constructor(payload: PlainObjectOf<Any> | null) {
             if (payload) {
-                Object.keys(payload).forEach((key: string): void => {
+                for (const key of Object.keys(payload)) {
                     (this as Any)[key] = payload[key];
-                });
+                }
             }
         }
 

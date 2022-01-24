@@ -90,7 +90,9 @@ export class LoggerService {
 
     public pipe(...pipelines: Pipeline[]): LoggerService {
         if (this.groupFactory.executePipesGroup) {
-            pipelines.forEach((pipeline: Pipeline): unknown => pipeline(this));
+            for (const pipeline of pipelines) {
+                pipeline(this);
+            }
         }
 
         return this;

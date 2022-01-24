@@ -147,11 +147,12 @@ describe('[TEST]: Canceling requests and unsubscribing', () => {
             queue.push(request);
         }
 
-        active.forEach((item: TestRequest): void => {
+        for (const item of active) {
             expect(item.cancelled).toBe(true);
-        });
-        queue.forEach((item: TestRequest): void => {
+        }
+
+        for (const item of queue) {
             expect(item.cancelled).toBe(true);
-        });
+        }
     }));
 });

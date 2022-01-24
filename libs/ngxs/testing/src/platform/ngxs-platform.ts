@@ -87,11 +87,11 @@ export function ngxsTestingPlatform(
                 schemas
             }: PlatformMetadata & { states?: StateClass[] } = ensure(params);
 
-            states?.forEach((state: StateClass): void => {
+            for (const state of states ?? []) {
                 if (isNil(getStateMetadata(state))) {
                     throw new Error(`${state.name} class must be decorated with @State() decorator`);
                 }
-            });
+            }
 
             await TestBed.configureTestingModule({
                 schemas,

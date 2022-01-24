@@ -12,7 +12,9 @@ export function detectChanges(detectorOrDetectors?: DetectorOrDetectors): void {
     }
 
     if (Array.isArray(detectorOrDetectors)) {
-        detectorOrDetectors.forEach((detector: Nullable<ChangeDetectorRef>): void => internalDetectChanges(detector));
+        for (const detector of detectorOrDetectors) {
+            internalDetectChanges(detector);
+        }
     } else if (isNotNil(detectorOrDetectors)) {
         internalDetectChanges(detectorOrDetectors);
     }

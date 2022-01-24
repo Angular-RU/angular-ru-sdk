@@ -11,7 +11,7 @@ import {
 import { Any, Nullable, PlainObject } from '@angular-ru/cdk/typings';
 import { detectChanges } from '@angular-ru/cdk/utils';
 
-declare const hljs: Any;
+import { hlJsCode } from '../../../../../.global/utils/hljs-code';
 
 const NAMES: string[] = [
     'Maia',
@@ -119,9 +119,7 @@ export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     public ngAfterViewInit(): void {
-        document.querySelectorAll('pre code').forEach((block: Any): void => {
-            hljs.highlightBlock(block);
-        });
+        hlJsCode();
     }
 
     // eslint-disable-next-line max-lines-per-function

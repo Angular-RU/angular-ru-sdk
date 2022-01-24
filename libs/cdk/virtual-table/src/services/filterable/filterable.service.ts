@@ -49,10 +49,11 @@ export class FilterableService<T> implements Filterable {
 
     public setDefinition(descriptors: FilterDescriptor[]): void {
         this.clearDefinitions();
-        descriptors.forEach(({ key, value, type }: FilterDescriptor): void => {
+
+        for (const { key, value, type } of descriptors) {
             this.filterTypeDefinition = { ...this.filterTypeDefinition, [key]: type };
             this.definition = { ...this.definition, [key]: value };
-        });
+        }
     }
 
     public updateFilterTypeBy(type: TableFilterType, key?: Nullable<string>): void {

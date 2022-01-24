@@ -1,7 +1,6 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
-import { Any } from '@angular-ru/cdk/typings';
 
-declare const hljs: Any;
+import { hlJsCode } from '../../../../../.global/utils/hljs-code';
 
 @Component({
     selector: 'sample-first',
@@ -12,8 +11,6 @@ declare const hljs: Any;
 })
 export class SampleFirstComponent implements AfterViewInit {
     public ngAfterViewInit(): void {
-        document.querySelectorAll('pre code').forEach((block: Any): void => {
-            hljs.highlightBlock(block);
-        });
+        hlJsCode();
     }
 }

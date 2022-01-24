@@ -1,11 +1,10 @@
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Any, Nullable, PlainObject } from '@angular-ru/cdk/typings';
+import { Nullable, PlainObject } from '@angular-ru/cdk/typings';
 
+import { hlJsCode } from '../../../../../.global/utils/hljs-code';
 import { MocksGenerator } from '../../mocks-generator';
 import { CodeDialogComponent } from '../../shared/dialog/code-dialog.component';
-
-declare const hljs: Any;
 
 @Component({
     selector: 'sample-third',
@@ -33,9 +32,7 @@ export class SampleThirdComponent implements OnInit, AfterViewInit {
     }
 
     public ngAfterViewInit(): void {
-        document.querySelectorAll('pre code').forEach((block: Any): void => {
-            hljs.highlightBlock(block);
-        });
+        hlJsCode();
     }
 
     // eslint-disable-next-line max-lines-per-function

@@ -1,11 +1,10 @@
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Any, PlainObject } from '@angular-ru/cdk/typings';
+import { PlainObject } from '@angular-ru/cdk/typings';
 import { TableUpdateSchema } from '@angular-ru/cdk/virtual-table';
 
+import { hlJsCode } from '../../../../../.global/utils/hljs-code';
 import { MocksGenerator } from '../../mocks-generator';
-
-declare const hljs: Any;
 
 @Component({
     selector: 'sample-fifteen',
@@ -27,9 +26,7 @@ export class SampleFifteenComponent implements OnInit, AfterViewInit {
     }
 
     public ngAfterViewInit(): void {
-        document.querySelectorAll('pre code').forEach((block: Any): void => {
-            hljs.highlightBlock(block);
-        });
+        hlJsCode();
     }
 
     public updatedSchema(event: TableUpdateSchema): void {

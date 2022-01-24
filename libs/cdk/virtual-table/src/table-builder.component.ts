@@ -318,9 +318,9 @@ export class TableBuilderComponent<T>
     public generateColumnsKeyMap(keys: string[]): PlainObjectOf<boolean> {
         const map: PlainObjectOf<boolean> = {};
 
-        keys.forEach((key: string): void => {
+        for (const key of keys) {
             map[key] = true;
-        });
+        }
 
         return map;
     }
@@ -662,10 +662,10 @@ export class TableBuilderComponent<T>
             this.filterable.filterType =
                 this.filterable.filterType ?? this.columnOptions?.filterType ?? TableFilterType.CONTAINS;
 
-            this.modelColumnKeys.forEach((key: string): void => {
+            for (const key of this.modelColumnKeys) {
                 (this.filterable.filterTypeDefinition as Any)[key] =
                     (this.filterable.filterTypeDefinition as Any)[key] ?? this.filterable.filterType;
-            });
+            }
         }
     }
 

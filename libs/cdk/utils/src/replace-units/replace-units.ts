@@ -9,13 +9,13 @@ export function replaceUnits(text: string, unitsMap: UnitsMap): string {
 function parseMultiLineText(text: string, unitsMap: UnitsMap): string {
     const textList: string[] = [];
 
-    text.split('\n').forEach((item: string): void => {
+    for (const item of text.split('\n')) {
         let prepared: string = item;
 
         prepared = replaceMultiple(prepared, unitsMap);
         prepared = replaceSingle(prepared, unitsMap);
         textList.push(prepared);
-    });
+    }
 
     return textList.join('\n');
 }

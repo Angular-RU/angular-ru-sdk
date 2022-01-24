@@ -21,6 +21,23 @@ export class ConsoleFake implements Console {
     private _stack: PlainObject[] = [];
     public Console: Any;
 
+    private static parseCssString(css: string): PlainObject {
+        const result: PlainObject = {};
+        const attributes: string[] = css.split(';');
+
+        for (const attribute of attributes) {
+            const entry: string[] = attribute.split(':');
+            const property: string = String(entry.splice(0, 1)[0]).trim();
+            const options: string = entry.join(':').trim();
+
+            if (property.length > 0) {
+                result[property] = options;
+            }
+        }
+
+        return result;
+    }
+
     public log(...args: string[]): void {
         args.unshift(null!, null!);
         this._stack.push({ [TestLoggerLineType.LOG]: args });
@@ -72,7 +89,7 @@ export class ConsoleFake implements Console {
     public stack(withoutLabel: number = 2): string {
         const history: PlainObject[] = [...this._stack];
 
-        history.forEach((line: PlainObject, index: number): void => {
+        for (const [index, line] of history.entries()) {
             for (const arg in line) {
                 if (line.hasOwnProperty(arg)) {
                     const isArray: boolean = Array.isArray(line[arg]);
@@ -80,7 +97,7 @@ export class ConsoleFake implements Console {
                     history[index] = { [arg]: isArray ? line[arg].slice(withoutLabel) : line[arg] };
                 }
             }
-        });
+        }
 
         return JSON.stringify(history);
     }
@@ -89,13 +106,13 @@ export class ConsoleFake implements Console {
         const stackObject: PlainObject[] = JSON.parse(stack);
         const stackList: PlainObject[] = [];
 
-        stackObject.forEach((line: PlainObject): void => {
+        for (const line of stackObject) {
             for (const levelLog in line) {
                 if (line.hasOwnProperty(levelLog)) {
                     stackList.push(line[levelLog]!);
                 }
             }
-        });
+        }
 
         return stackList;
     }
@@ -104,13 +121,13 @@ export class ConsoleFake implements Console {
         const stackList: PlainObject[] = this.stackList(this.stack(0));
         const stackOptionsList: PlainObject[] = [];
 
-        stackList.forEach((line: PlainObject): void => {
+        for (const line of stackList) {
             stackOptionsList.push({
                 label: String(line[0]).replace('%c', ''),
                 // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-                styles: this.parseCssString(line[usageNext ? 2 : 1]!)
+                styles: ConsoleFake.parseCssString(line[usageNext ? 2 : 1]!)
             });
-        });
+        }
 
         return stackOptionsList;
     }
@@ -181,22 +198,5 @@ export class ConsoleFake implements Console {
 
     public timeLog(): void {
         // noop;
-    }
-
-    private parseCssString(css: string): PlainObject {
-        const result: PlainObject = {};
-        const attributes: string[] = css.split(';');
-
-        attributes.forEach((attribute: string): void => {
-            const entry: string[] = attribute.split(':');
-            const property: string = String(entry.splice(0, 1)[0]).trim();
-            const options: string = entry.join(':').trim();
-
-            if (property.length > 0) {
-                result[property] = options;
-            }
-        });
-
-        return result;
     }
 }

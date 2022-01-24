@@ -59,6 +59,7 @@ module.exports = {
                 'unicorn/prefer-code-point': 'error',
                 'unicorn/prefer-date-now': 'error',
                 'unicorn/prefer-default-parameters': 'error',
+                'unicorn/no-array-for-each': 'error',
                 // TODO: enable later
                 'unicorn/custom-error-definition': 'off',
                 'unicorn/no-abusive-eslint-disable': 'off',
@@ -74,7 +75,7 @@ module.exports = {
                 'unicorn/string-content': 'off',
                 'unicorn/require-post-message-target-origin': 'off'
                 /*
-                'unicorn/no-array-for-each': 'error',
+
                 'unicorn/no-array-push-push': 'error',
                 'unicorn/no-array-reduce': 'error',
                 'unicorn/no-await-expression-member': 'error',

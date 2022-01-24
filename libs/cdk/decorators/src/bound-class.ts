@@ -11,7 +11,7 @@ function boundMethod(target: Any, key: Any, descriptor: Any) {
         throw new TypeError(`@boundMethod decorator can only be applied to methods not: ${typeof fn}`);
     }
 
-    // In IE11 calling Object.defineProperty has a side-effect of evaluating the
+    // In IE11 calling Object.defineProperty has a side effect of evaluating the
     // getter for the property which is being replaced. This causes infinite
     // recursion and an "Out of stack space" error.
     let definingProperty: boolean = false;
@@ -53,7 +53,7 @@ function boundMethod(target: Any, key: Any, descriptor: Any) {
     };
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/explicit-function-return-type,max-lines-per-function
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/explicit-function-return-type,max-lines-per-function,complexity
 export function BoundClass(target: Any) {
     // (Using reflect to get all keys including symbols)
     let keys: Any[];
@@ -70,6 +70,7 @@ export function BoundClass(target: Any) {
         }
     }
 
+    // eslint-disable-next-line unicorn/no-array-for-each
     keys.forEach((key: Any): void => {
         // Ignore special case target method
         if (key === 'constructor') {

@@ -462,9 +462,10 @@ export abstract class AbstractTableBuilderApiDirective<T>
             this.columnFrameId = window.setTimeout((): void => {
                 let width: number = 0;
 
-                this.columnList.forEach((element: ElementRef<HTMLDivElement>): void => {
+                for (const element of this.columnList) {
                     width += element.nativeElement.offsetWidth;
-                });
+                }
+
                 this.columnListWidth = width;
                 this.idleDetectChanges();
             }, TIME_IDLE);
