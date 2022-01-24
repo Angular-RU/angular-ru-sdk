@@ -19,10 +19,12 @@ export function updateArray<T>(
     const newUpdatedArray: T[] = updatedArray?.slice() ?? [];
     const skipIndexes: Set<number> = new Set();
 
+    // eslint-disable-next-line unicorn/no-for-loop
     for (let i: number = 0; i < preparedSourceArray.length; i++) {
         const currentItem: T = preparedSourceArray[i] as T;
         let updated: boolean = false;
 
+        // eslint-disable-next-line unicorn/no-for-loop
         for (let j: number = 0; j < newUpdatedArray.length; j++) {
             if (skipIndexes.has(j)) {
                 continue;

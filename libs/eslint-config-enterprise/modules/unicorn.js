@@ -61,7 +61,13 @@ module.exports = {
                 'unicorn/prefer-default-parameters': 'error',
                 'unicorn/no-array-for-each': 'error',
                 'unicorn/no-array-push-push': 'error',
+                'unicorn/no-await-expression-member': 'error',
+                'unicorn/no-console-spaces': 'error',
+                'unicorn/no-document-cookie': 'error',
+                'unicorn/no-empty-file': 'error',
+                'unicorn/no-for-loop': 'error',
                 // TODO: enable later
+                'unicorn/no-array-reduce': 'off',
                 'unicorn/custom-error-definition': 'off',
                 'unicorn/no-abusive-eslint-disable': 'off',
                 'unicorn/expiring-todo-comments': 'off',
@@ -78,12 +84,12 @@ module.exports = {
                 /*
 
 
-                'unicorn/no-array-reduce': 'error',
-                'unicorn/no-await-expression-member': 'error',
-                'unicorn/no-console-spaces': 'error',
-                'unicorn/no-document-cookie': 'error',
-                'unicorn/no-empty-file': 'error',
-                'unicorn/no-for-loop': 'error',
+
+
+
+
+
+
                 'unicorn/no-hex-escape': 'error',
                 'unicorn/no-instanceof-array': 'error',
                 'unicorn/no-invalid-remove-event-listener': 'error',

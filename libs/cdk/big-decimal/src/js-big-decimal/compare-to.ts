@@ -73,6 +73,7 @@ function compareNumberModules(inputA: string, inputB: string): CompareResult {
         return 0;
     }
 
+    // eslint-disable-next-line unicorn/no-for-loop
     for (let i: number = 0; i < a.length; i++) {
         const compareDigitsResult: CompareResult = compareDigits(a[i] ?? '', b[i] ?? '');
 

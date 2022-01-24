@@ -105,8 +105,8 @@ function compliment(num: string): string {
     const part: Any = num.split('.')[1];
     const ld: number = checkValueIsFilled(part) ? part.length : 0;
 
-    for (let i: number = 0; i < num.length; i++) {
-        s += getPreparedDigit(num[i] ?? '');
+    for (const element of num) {
+        s += getPreparedDigit(element ?? '');
     }
 
     const one: string = ld > 0 ? `0.${new Array(ld).join('0')}1` : '1';

@@ -71,11 +71,11 @@ export class NgxsDataFactory {
         const payload: PlainObjectOf<Any> = {};
         const arrayArgs: Any[] = Array.from(args);
 
-        for (let index: number = 0; index < arrayArgs.length; index++) {
+        for (const [index, arrayArg] of arrayArgs.entries()) {
             const payloadName: PayloadName | null | undefined = registry?.getPayloadTypeByIndex(index);
 
             if (isNotNil(payloadName)) {
-                payload[payloadName] = arrayArgs[index];
+                payload[payloadName] = arrayArg;
             }
         }
 

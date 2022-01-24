@@ -718,12 +718,11 @@ export class TableBuilderComponent<T>
     }
 
     private syncDrawColumns(columnList: string[]): void {
-        for (let index: number = 0; index < columnList.length; index++) {
-            const key: string = columnList[index] as string;
+        for (const [index, key] of columnList.entries()) {
             const schema: Nullable<ColumnsSchema> = this.getCompiledColumnSchema(key, index);
 
             if (isNotNil(schema)) {
-                this.processedColumnList(schema, columnList[index]);
+                this.processedColumnList(schema, key);
             }
         }
     }
@@ -832,11 +831,11 @@ export class TableBuilderComponent<T>
                 isValid = false;
                 console.error(
                     'The table name or version is mismatched by your schema, your schema will be reset.',
-                    'Current name: ',
+                    'Current name:',
                     this.name,
-                    'Current version: ',
+                    'Current version:',
                     this.schemaVersion,
-                    'Schema: ',
+                    'Schema:',
                     this.schemaColumns
                 );
 
