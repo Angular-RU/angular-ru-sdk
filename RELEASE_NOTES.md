@@ -34,3 +34,22 @@ This version -------- @angular-ru/eslint-config-enterprise-12.66.0
 Previous version ---- @angular-ru/eslint-config-enterprise-12.65.0
 Total commits ------- 9
 ```
+
+# 🎁 Release notes (`24.01.2022 22:20`)
+
+## Changes
+
+-   chore(eslint-config-enterprise): release version 12.67.0 [ci skip]
+-   chore(ngxs): release version 12.67.0 [ci skip]
+-   chore(cdk): release version 12.67.0 [ci skip]
+-   feat(eslint-config-enterprise): support no-for-loop
+-   feat(eslint-config-enterprise): support no-array-push-push
+-   chore: updated RELEASE_NOTES.md [ci skip]
+
+## Metadata
+
+```
+This version -------- @angular-ru/eslint-config-enterprise-12.67.0
+Previous version ---- @angular-ru/eslint-config-enterprise-12.66.0
+Total commits ------- 6
+```
