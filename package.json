@@ -42,10 +42,6 @@
     "eslintConfig": {
         "extends": "./libs/eslint-config-enterprise/index.js"
     },
-    "resolutions": {
-        "colors": "1.4.0",
-        "eslint": "7.32.0"
-    },
     "devDependencies": {
         "@angular-devkit/build-angular": "12.2.14",
         "@angular/animations": "12.2.14",
@@ -88,12 +84,5 @@
         "schedule": [
             "on the 2nd and 4th day instance on sunday after 9pm"
         ]
-    },
-    "standard-version": {
-        "skip": {
-            "commit": true,
-            "tag": true,
-            "bump": true
-        }
     }
 }
