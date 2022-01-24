@@ -2,9 +2,6 @@
 
 ## Changes
 
--   chore(eslint-config-enterprise): release version 12.65.0 [ci skip]
--   chore(ngxs): release version 12.65.0 [ci skip]
--   chore(cdk): release version 12.65.0 [ci skip]
 -   feat(eslint-config-enterprise): support new rules
 -   feat(eslint-config-enterprise): add additional
 
