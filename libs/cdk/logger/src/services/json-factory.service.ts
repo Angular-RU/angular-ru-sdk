@@ -31,8 +31,7 @@ export class JsonFactory {
                 style = this._null;
             }
 
-            arr.push(style);
-            arr.push('');
+            arr.push(style, '');
 
             return `%c${match}%c`;
         });
