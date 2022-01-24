@@ -7,7 +7,6 @@
 -   chore(cdk): release version 12.65.0 [ci skip]
 -   feat(eslint-config-enterprise): support new rules
 -   feat(eslint-config-enterprise): add additional
--   chore: updated RELEASE_NOTES.md [ci skip]
 
 ## Metadata
 
