@@ -66,6 +66,8 @@ module.exports = {
                 'unicorn/no-document-cookie': 'error',
                 'unicorn/no-empty-file': 'error',
                 'unicorn/no-for-loop': 'error',
+                'unicorn/no-hex-escape': 'error',
+                'unicorn/no-instanceof-array': 'error',
                 // TODO: enable later
                 'unicorn/no-array-reduce': 'off',
                 'unicorn/custom-error-definition': 'off',
@@ -90,8 +92,8 @@ module.exports = {
 
 
 
-                'unicorn/no-hex-escape': 'error',
-                'unicorn/no-instanceof-array': 'error',
+
+
                 'unicorn/no-invalid-remove-event-listener': 'error',
                 'unicorn/no-nested-ternary': 'error',
                 'unicorn/no-new-array': 'error',
