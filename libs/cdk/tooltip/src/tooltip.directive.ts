@@ -40,14 +40,17 @@ export class TooltipDirective implements OnDestroy {
     private handlerOptions: AddEventListenerOptions = { passive: true };
     private internalTooltipValue: TooltipValue = null;
     private internalContext: TooltipContextValue = null;
+    private mouseenterListener!: EventListenerOrEventListenerObject;
+    private mouseleaveListener!: EventListenerOrEventListenerObject;
     @Input('tooltip-disabled') public tooltipDisabled!: boolean;
     @Input('tooltip-placement') public placement: TooltipPlacement = 'top';
     @Input('tooltip-css-style') public localCssStyle: Nullable<string> = null;
     @Input('tooltip-size') public size: TooltipSize = 'small';
+
     public uid: string = generateQuickGuid();
 
     constructor(
-        private readonly elementRef: ElementRef,
+        private readonly elementRef: ElementRef<HTMLElement>,
         private readonly renderer: Renderer2,
         private readonly ngZone: NgZone,
         @Inject(TOOLTIP_OPTIONS_TOKEN)
@@ -220,33 +223,18 @@ export class TooltipDirective implements OnDestroy {
     }
 
     private connectMouseEvents(): void {
-        this.ngZone.runOutsideAngular((): void => {
-            this.elementRef.nativeElement.addEventListener(
-                'mouseenter',
-                (): void => this.onMouseenterHandler(),
-                this.handlerOptions
-            );
+        this.mouseenterListener = (): void => this.onMouseenterHandler();
+        this.mouseleaveListener = (): void => this.onMouseleaveHandler();
 
-            this.elementRef.nativeElement.addEventListener(
-                'mouseleave',
-                (): void => this.onMouseleaveHandler(),
-                this.handlerOptions
-            );
+        this.ngZone.runOutsideAngular((): void => {
+            this.elementRef.nativeElement.addEventListener('mouseenter', this.mouseenterListener, this.handlerOptions);
+            this.elementRef.nativeElement.addEventListener('mouseleave', this.mouseleaveListener, this.handlerOptions);
         });
     }
 
     private disconnectMouseEvents(): void {
-        this.elementRef.nativeElement.removeEventListener(
-            'mouseenter',
-            (): void => this.onMouseenterHandler(),
-            this.handlerOptions
-        );
-
-        this.elementRef.nativeElement.removeEventListener(
-            'mouseleave',
-            (): void => this.onMouseleaveHandler(),
-            this.handlerOptions
-        );
+        this.elementRef.nativeElement.removeEventListener('mouseenter', this.mouseenterListener, this.handlerOptions);
+        this.elementRef.nativeElement.removeEventListener('mouseleave', this.mouseleaveListener, this.handlerOptions);
     }
 
     private addUidToElement(): void {

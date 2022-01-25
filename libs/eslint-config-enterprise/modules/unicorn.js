@@ -68,6 +68,8 @@ module.exports = {
                 'unicorn/no-for-loop': 'error',
                 'unicorn/no-hex-escape': 'error',
                 'unicorn/no-instanceof-array': 'error',
+                'unicorn/no-invalid-remove-event-listener': 'error',
+                'unicorn/no-nested-ternary': 'error',
                 // TODO: enable later
                 'unicorn/no-array-reduce': 'off',
                 'unicorn/custom-error-definition': 'off',
@@ -94,8 +96,8 @@ module.exports = {
 
 
 
-                'unicorn/no-invalid-remove-event-listener': 'error',
-                'unicorn/no-nested-ternary': 'error',
+
+
                 'unicorn/no-new-array': 'error',
                 'unicorn/no-new-buffer': 'error',
                 'unicorn/no-null': 'error',

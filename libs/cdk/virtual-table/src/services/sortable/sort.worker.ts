@@ -71,7 +71,8 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
                         // eslint-disable-next-line no-nested-ternary
                         keys[key] === OrderType.DESC || keys[key] === -1
                             ? -1
-                            : keys[key] === OrderType.SKIP || keys[key] === 0
+                            : // eslint-disable-next-line unicorn/no-nested-ternary
+                            keys[key] === OrderType.SKIP || keys[key] === 0
                             ? 0
                             : 1;
                 }
