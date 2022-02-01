@@ -53,3 +53,19 @@ This version -------- @angular-ru/eslint-config-enterprise-12.67.0
 Previous version ---- @angular-ru/eslint-config-enterprise-12.66.0
 Total commits ------- 6
 ```
+
+# 🎁 Release notes (`01.02.2022 10:40`)
+
+## Changes
+
+-   chore(cdk): release version 12.68.0 [ci skip]
+-   feat(cdk): table filter type IS_FILLED (#1232)
+-   chore: updated RELEASE_NOTES.md [ci skip]
+
+## Metadata
+
+```
+This version -------- @angular-ru/cdk-12.68.0
+Previous version ---- @angular-ru/eslint-config-enterprise-12.67.0
+Total commits ------- 3
+```
