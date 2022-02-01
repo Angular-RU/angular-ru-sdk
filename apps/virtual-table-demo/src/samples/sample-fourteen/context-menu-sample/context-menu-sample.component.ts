@@ -1,7 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { TableBuilderComponent } from '@angular-ru/cdk/virtual-table';
-
-import { FilterStateEvent } from '../../../../../../libs/cdk/virtual-table/src/services/filterable/filter-state-event';
+import { FilterStateEvent, TableBuilderComponent, TableFilterType } from '@angular-ru/cdk/virtual-table';
 
 @Component({
     selector: 'context-menu-sample',
@@ -11,4 +9,6 @@ import { FilterStateEvent } from '../../../../../../libs/cdk/virtual-table/src/s
 export class ContextMenuSampleComponent<T> {
     @Input() public table!: TableBuilderComponent<T>;
     @Input() public state!: Partial<FilterStateEvent>;
+
+    public TableFilterType: typeof TableFilterType = TableFilterType;
 }

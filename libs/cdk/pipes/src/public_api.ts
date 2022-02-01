@@ -44,6 +44,8 @@ export { IncludesPipe } from './includes/includes.pipe';
 export { IncludesPipeModule } from './includes/includes-pipe.module';
 export { IsArrayPipe } from './is-array/is-array.pipe';
 export { IsArrayPipeModule } from './is-array/is-array-pipe.module';
+export { IsFilledPipe } from './is-filled/is-filled.pipe';
+export { IsFilledPipeModule } from './is-filled/is-filled-pipe.module';
 export { IsNilPipe } from './is-nil/is-nil.pipe';
 export { IsNilPipeModule } from './is-nil/is-nil-pipe.module';
 export { IsNotNullPipe } from './is-not-null/is-not-null.pipe';

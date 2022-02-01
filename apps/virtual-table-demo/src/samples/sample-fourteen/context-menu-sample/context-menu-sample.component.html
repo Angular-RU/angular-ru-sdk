@@ -11,15 +11,30 @@
         </mat-select>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
-        <mat-label>Filter by {{ state.key! | uppercase }}</mat-label>
-        <input
-            matInput
-            name="width"
-            autocomplete="off"
-            [ngModel]="$any(table.filterable.definition)[state.key!]"
-            (ngModelChange)="table.filterable.updateFilterValueBy($event, state.key); table.filter()"
-        />
-        <mat-icon matSuffix>search</mat-icon>
-    </mat-form-field>
+    <mat-button-toggle-group
+        *ngIf="
+            $any(table.filterable.filterTypeDefinition)[state.key!] === TableFilterType.IS_FILLED;
+            else restFilterTypes
+        "
+        [ngModel]="$any(table.filterable.definition)[state.key!]"
+        (ngModelChange)="table.filterable.updateFilterValueBy($event, state.key); table.filter()"
+    >
+        <mat-button-toggle [value]="true">Filled</mat-button-toggle>
+        <mat-button-toggle [value]="false">Empty</mat-button-toggle>
+        <mat-button-toggle value>All</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <ng-template #restFilterTypes>
+        <mat-form-field appearance="outline">
+            <mat-label>Filter by {{ state.key! | uppercase }}</mat-label>
+            <input
+                matInput
+                name="width"
+                autocomplete="off"
+                [ngModel]="$any(table.filterable.definition)[state.key!]"
+                (ngModelChange)="table.filterable.updateFilterValueBy($event, state.key); table.filter()"
+            />
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+    </ng-template>
 </div>

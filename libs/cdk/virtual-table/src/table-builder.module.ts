@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import {
     DeepPathPipeModule,
     DefaultValuePipeModule,
+    IsFilledPipeModule,
     MergeCssClassesPipeModule,
     SafePipeModule
 } from '@angular-ru/cdk/pipes';
@@ -47,7 +48,8 @@ import { TableBuilderComponent } from './table-builder.component';
         DragDropModule,
         MatIconModule,
         MergeCssClassesPipeModule,
-        SafePipeModule
+        SafePipeModule,
+        IsFilledPipeModule
     ],
     declarations: [
         AutoHeightDirective,
