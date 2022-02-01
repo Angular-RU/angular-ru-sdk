@@ -9,5 +9,6 @@ export enum TableFilterType {
     MORE_THAN = 'MORE_THAN',
     MORE_OR_EQUAL = 'MORE_OR_EQUAL',
     LESS_THAN = 'LESS_THAN',
-    LESS_OR_EQUAL = 'LESS_OR_EQUAL'
+    LESS_OR_EQUAL = 'LESS_OR_EQUAL',
+    IS_FILLED = 'IS_FILLED'
 }

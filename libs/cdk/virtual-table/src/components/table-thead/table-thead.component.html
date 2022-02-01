@@ -56,7 +56,7 @@
         <div
             *ngIf="columnSchema?.isModel && columnSchema?.filterable"
             class="table-grid__column--filterable"
-            [class.table-grid__column--filterable--active]="$any(filterableDefinition)[columnSchema?.key!]"
+            [class.table-grid__column--filterable--active]="$any(filterableDefinition)[columnSchema?.key!] | isFilled"
             (click)="columnSchema?.filterable ? openFilter(columnSchema?.key, $event) : null"
         >
             <svg

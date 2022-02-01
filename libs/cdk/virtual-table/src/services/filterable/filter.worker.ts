@@ -11,7 +11,7 @@ type NumericFilterTypes =
     | TableFilterType.LESS_THAN
     | TableFilterType.MORE_THAN;
 
-type PlainValue = Nullable<string | number | boolean>;
+type PlainValue = string | number | boolean;
 
 // TODO: should be refactor because duplicate code as sortWorker
 // eslint-disable-next-line sonarjs/cognitive-complexity,max-lines-per-function
@@ -52,38 +52,48 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
     }
 
     // eslint-disable-next-line complexity,max-lines-per-function
-    function isSatisfying(valuesSet: PlainValue[], operand: PlainValue, filterType: TableFilterType | string): boolean {
+    function isSatisfying(
+        valuesSet: Nullable<PlainValue>[],
+        operand: PlainValue,
+        filterType: TableFilterType | string
+    ): boolean {
         try {
             switch (filterType) {
                 case types.START_WITH:
                     return valuesSet
-                        .map((element: PlainValue): string => toLowercase(element))
+                        .map((element: Nullable<PlainValue>): string => toLowercase(element))
                         .some(startsWith(toLowercase(operand)));
                 case types.END_WITH:
                     return valuesSet
-                        .map((element: PlainValue): string => toLowercase(element))
+                        .map((element: Nullable<PlainValue>): string => toLowercase(element))
                         .some(endsWith(toLowercase(operand)));
                 case types.CONTAINS:
                     return valuesSet
-                        .map((element: PlainValue): string => toLowercase(element))
+                        .map((element: Nullable<PlainValue>): string => toLowercase(element))
                         .some(includes(toLowercase(operand)));
                 case types.DOES_NOT_CONTAIN:
                     return valuesSet
-                        .map((element: PlainValue): string => toLowercase(element))
+                        .map((element: Nullable<PlainValue>): string => toLowercase(element))
                         .every(notIncludes(toLowercase(operand)));
                 case types.EQUALS:
                     return valuesSet
-                        .map((element: PlainValue): string => toLowercase(element))
+                        .map((element: Nullable<PlainValue>): string => toLowercase(element))
                         .includes(toLowercase(operand));
                 case types.DOES_NOT_EQUAL:
                     return !valuesSet
-                        .map((element: PlainValue): string => toLowercase(element))
+                        .map((element: Nullable<PlainValue>): string => toLowercase(element))
                         .includes(toLowercase(operand));
                 case types.MORE_THAN:
                 case types.MORE_OR_EQUAL:
                 case types.LESS_THAN:
                 case types.LESS_OR_EQUAL:
-                    return valuesSet.some(compareNumber(operand, filterType));
+                    return valuesSet
+                        .filter((element: Nullable<PlainValue>): element is PlainValue => isFilled(element))
+                        .some(compareNumber(operand, filterType));
+                case types.IS_FILLED:
+                    return valuesSet
+                        .map((element: Nullable<PlainValue>): element is PlainValue => isFilled(element))
+                        .includes(operand as boolean);
                 default:
                     return true;
             }
@@ -92,7 +102,7 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
         }
     }
 
-    function toLowercase(value: PlainValue): string {
+    function toLowercase(value: Nullable<PlainValue>): string {
         return value?.toString().trim().toLocaleLowerCase() ?? '';
     }
 
@@ -178,11 +188,11 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
         }
     }
 
-    function isPlainValue(value?: Nullable<PlainObject> | PlainValue): value is PlainValue {
+    function isPlainValue(value?: Nullable<PlainObject> | PlainValue): value is Nullable<PlainValue> {
         return isNil(value) || ['number', 'string', 'boolean'].includes(typeof value);
     }
 
-    function isFilled(value?: Nullable<string>): value is string {
+    function isFilled(value?: Nullable<PlainValue>): value is PlainValue {
         return isNotNil(value) && value.toString().length > 0;
     }
 
