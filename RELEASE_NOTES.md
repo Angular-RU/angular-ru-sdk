@@ -94,3 +94,19 @@ This version -------- @angular-ru/eslint-config-enterprise-12.67.1
 Previous version ---- @angular-ru/cdk-12.68.0
 Total commits ------- 12
 ```
+
+# 🎁 Release notes (`13.02.2022 20:18`)
+
+## Changes
+
+-   chore(dev-dependencies): release version 12.64.3 [ci skip]
+-   build: update all dependencies (minor/patch) (#1238)
+-   chore: updated RELEASE_NOTES.md [ci skip]
+
+## Metadata
+
+```
+This version -------- @angular-ru/dev-dependencies-12.64.3
+Previous version ---- @angular-ru/eslint-config-enterprise-12.67.1
+Total commits ------- 3
+```
