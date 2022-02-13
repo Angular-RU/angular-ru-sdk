@@ -69,3 +69,28 @@ This version -------- @angular-ru/cdk-12.68.0
 Previous version ---- @angular-ru/eslint-config-enterprise-12.67.0
 Total commits ------- 3
 ```
+
+# 🎁 Release notes (`13.02.2022 18:41`)
+
+## Changes
+
+-   chore(eslint-config-enterprise): release version 12.67.1 [ci skip]
+-   chore(jest): release version 12.64.2 [ci skip]
+-   chore(prettier): release version 12.64.1 [ci skip]
+-   chore(commitlint): release version 12.64.2 [ci skip]
+-   chore(dev-dependencies): release version 12.64.2 [ci skip]
+-   build: update commitlint dependencies to v16.2.1 (#1239)
+-   build: update dependency prettier-plugin-organize-attributes to v0.0.5 (#1236)
+-   build: update dependency @types/node to v17.0.17 (#1235)
+-   build: update eslint dependencies to v5.11.0 (#1240)
+-   build: update jest dependencies (#1241)
+-   build: update dependency rxjs to v7.5.4 (#1237)
+-   chore: updated RELEASE_NOTES.md [ci skip]
+
+## Metadata
+
+```
+This version -------- @angular-ru/eslint-config-enterprise-12.67.1
+Previous version ---- @angular-ru/cdk-12.68.0
+Total commits ------- 12
+```
