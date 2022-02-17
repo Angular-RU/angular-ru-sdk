@@ -147,6 +147,7 @@ export class TemplateParserService<T> {
             verticalLine,
             customKey,
             isSortable,
+            isResizable,
             isDraggable,
             isFilterable,
             stub,
@@ -186,7 +187,7 @@ export class TemplateParserService<T> {
             cssStyle: getValidPredicate(cssStyle, this.columnOptions?.cssStyle) ?? [],
             resizable:
                 forceModel || isModel
-                    ? getValidHtmlBooleanAttribute(getValidPredicate(isSortable, this.columnOptions?.isSortable))
+                    ? getValidHtmlBooleanAttribute(getValidPredicate(isResizable, this.columnOptions?.isResizable))
                     : false,
             stub: getValidPredicate(this.columnOptions?.stub, stub),
             filterable:
