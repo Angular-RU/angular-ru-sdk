@@ -150,6 +150,7 @@ export class TemplateParserService<T> {
             isResizable,
             isDraggable,
             isFilterable,
+            forceModel,
             stub,
             cssStyle,
             width,
@@ -168,13 +169,12 @@ export class TemplateParserService<T> {
         const stickyRight: boolean = getValidHtmlBooleanAttribute(column.stickyRight);
         const isCustomKey: boolean = getValidHtmlBooleanAttribute(customKey);
         const canBeAddDraggable: boolean = !(stickyLeft || stickyRight);
-        const isModel: boolean = checkValueIsFilled(this.keyMap[key as string]);
-        const forceModel: boolean = getValidHtmlBooleanAttribute(column.forceModel);
+        const isModel: boolean =
+            checkValueIsFilled(this.keyMap[key as string]) || getValidHtmlBooleanAttribute(forceModel);
 
         this.compiledTemplates[key!] = {
             key,
             isModel,
-            forceModel,
             isVisible: true,
             excluded: !checkValueIsFilled(this.allowedKeyMap[key!]),
             verticalLine: getValidHtmlBooleanAttribute(verticalLine),
@@ -185,19 +185,16 @@ export class TemplateParserService<T> {
             width: fallbackIfEmpty(toNumber(width ?? this.columnOptions?.width), null),
             cssClass: getValidPredicate(cssClass, this.columnOptions?.cssClass) ?? [],
             cssStyle: getValidPredicate(cssStyle, this.columnOptions?.cssStyle) ?? [],
-            resizable:
-                forceModel || isModel
-                    ? getValidHtmlBooleanAttribute(getValidPredicate(isResizable, this.columnOptions?.isResizable))
-                    : false,
+            resizable: isModel
+                ? getValidHtmlBooleanAttribute(getValidPredicate(isResizable, this.columnOptions?.isResizable))
+                : false,
             stub: getValidPredicate(this.columnOptions?.stub, stub),
-            filterable:
-                forceModel || isModel
-                    ? getValidHtmlBooleanAttribute(getValidPredicate(isFilterable, this.columnOptions?.isFilterable))
-                    : false,
-            sortable:
-                forceModel || isModel
-                    ? getValidHtmlBooleanAttribute(getValidPredicate(isSortable, this.columnOptions?.isSortable))
-                    : false,
+            filterable: isModel
+                ? getValidHtmlBooleanAttribute(getValidPredicate(isFilterable, this.columnOptions?.isFilterable))
+                : false,
+            sortable: isModel
+                ? getValidHtmlBooleanAttribute(getValidPredicate(isSortable, this.columnOptions?.isSortable))
+                : false,
             draggable: canBeAddDraggable
                 ? getValidHtmlBooleanAttribute(getValidPredicate(isDraggable, this.columnOptions?.isDraggable))
                 : false,
@@ -223,8 +220,7 @@ export class TemplateParserService<T> {
                 key: column.key,
                 width: column.width,
                 isVisible: column.isVisible,
-                isModel: column.isModel,
-                forceModel: column.forceModel
+                isModel: column.isModel
             })
         );
     }

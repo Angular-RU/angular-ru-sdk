@@ -45,7 +45,6 @@ export interface ColumnsSchema<T = Any> {
     draggable: boolean;
     customColumn: boolean;
     verticalLine: boolean;
-    forceModel: boolean;
     isModel: boolean;
     excluded: boolean;
     isVisible: boolean;

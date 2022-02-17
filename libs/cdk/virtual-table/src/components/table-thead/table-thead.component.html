@@ -3,7 +3,7 @@
     [class.table-grid__header-cell--is-clickable]="columnSchema?.sortable"
     [class.table-grid__cell--empty-head]="columnSchema?.th?.emptyHead"
     [class.table-grid__cell--custom-cell]="columnSchema?.customColumn"
-    [class.table-grid__cell--is-model-cell]="columnSchema?.forceModel || columnSchema?.isModel"
+    [class.table-grid__cell--is-model-cell]="columnSchema?.isModel"
     [class.table-grid__cell--text-bold]="columnSchema?.th?.textBold"
     [class.table-grid__cell--resizable]="columnSchema?.resizable"
     [class.table-grid__header-cell--min-width]="columnWidth < limit"
