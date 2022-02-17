@@ -21,6 +21,7 @@ export class ColumnOptionsDirective {
     @Input('is-sortable') public isSortable: Nullable<string | boolean> = null;
     @Input('is-filterable') public isFilterable: Nullable<string | boolean> = null;
     @Input('is-draggable') public isDraggable: Nullable<string | boolean> = null;
+    @Input('force-model') public forceModel: Nullable<boolean> = null;
     @Input('css-class') public cssClass: string[] = [];
     @Input('css-style') public cssStyle: string[] = [];
     @Input() public stub: Nullable<string> = null;
