@@ -110,3 +110,19 @@ This version -------- @angular-ru/dev-dependencies-12.64.3
 Previous version ---- @angular-ru/eslint-config-enterprise-12.67.1
 Total commits ------- 3
 ```
+
+# 🎁 Release notes (`18.02.2022 09:29`)
+
+## Changes
+
+-   chore(cdk): release version 12.69.0 [ci skip]
+-   feat: force-model parameter (#1243)
+-   chore: updated RELEASE_NOTES.md [ci skip]
+
+## Metadata
+
+```
+This version -------- @angular-ru/cdk-12.69.0
+Previous version ---- @angular-ru/dev-dependencies-12.64.3
+Total commits ------- 3
+```
