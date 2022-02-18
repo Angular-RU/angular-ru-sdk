@@ -147,8 +147,10 @@ export class TemplateParserService<T> {
             verticalLine,
             customKey,
             isSortable,
+            isResizable,
             isDraggable,
             isFilterable,
+            forceModel,
             stub,
             cssStyle,
             width,
@@ -167,7 +169,8 @@ export class TemplateParserService<T> {
         const stickyRight: boolean = getValidHtmlBooleanAttribute(column.stickyRight);
         const isCustomKey: boolean = getValidHtmlBooleanAttribute(customKey);
         const canBeAddDraggable: boolean = !(stickyLeft || stickyRight);
-        const isModel: boolean = checkValueIsFilled(this.keyMap[key as string]);
+        const isModel: boolean =
+            checkValueIsFilled(this.keyMap[key as string]) || getValidHtmlBooleanAttribute(forceModel);
 
         this.compiledTemplates[key!] = {
             key,
@@ -182,9 +185,13 @@ export class TemplateParserService<T> {
             width: fallbackIfEmpty(toNumber(width ?? this.columnOptions?.width), null),
             cssClass: getValidPredicate(cssClass, this.columnOptions?.cssClass) ?? [],
             cssStyle: getValidPredicate(cssStyle, this.columnOptions?.cssStyle) ?? [],
-            resizable: getValidHtmlBooleanAttribute(getValidPredicate(isDraggable, this.columnOptions?.isDraggable)),
+            resizable: isModel
+                ? getValidHtmlBooleanAttribute(getValidPredicate(isResizable, this.columnOptions?.isResizable))
+                : false,
             stub: getValidPredicate(this.columnOptions?.stub, stub),
-            filterable: getValidHtmlBooleanAttribute(getValidPredicate(isFilterable, this.columnOptions?.isFilterable)),
+            filterable: isModel
+                ? getValidHtmlBooleanAttribute(getValidPredicate(isFilterable, this.columnOptions?.isFilterable))
+                : false,
             sortable: isModel
                 ? getValidHtmlBooleanAttribute(getValidPredicate(isSortable, this.columnOptions?.isSortable))
                 : false,

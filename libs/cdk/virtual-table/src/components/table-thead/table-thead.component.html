@@ -33,7 +33,7 @@
 
     <div class="table-grid__header-cell-head--settings">
         <div
-            *ngIf="columnSchema?.isModel && columnSchema?.sortable"
+            *ngIf="columnSchema?.sortable"
             class="table-grid__column--sortable"
             [class.table-grid__column--sortable--active]="sortableDefinition[columnSchema?.key!]"
         >
@@ -54,7 +54,7 @@
         </div>
 
         <div
-            *ngIf="columnSchema?.isModel && columnSchema?.filterable"
+            *ngIf="columnSchema?.filterable"
             class="table-grid__column--filterable"
             [class.table-grid__column--filterable--active]="$any(filterableDefinition)[columnSchema?.key!] | isFilled"
             (click)="columnSchema?.filterable ? openFilter(columnSchema?.key, $event) : null"
@@ -75,7 +75,7 @@
         </div>
 
         <div
-            *ngIf="columnSchema?.isModel && columnSchema?.resizable"
+            *ngIf="columnSchema?.resizable"
             class="table-grid__column--resize"
             (mousedown)="resizing.emit({ event: $event, key: columnSchema?.key! })"
             (click)="$event.stopPropagation()"
