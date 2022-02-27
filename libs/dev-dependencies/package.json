@@ -8,7 +8,7 @@
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "dependencies": {
-        "@jscutlery/semver": "2.18.1",
+        "@jscutlery/semver": "2.19.4",
         "@nrwl/cli": "13.4.6",
         "@nrwl/nx-cloud": "13.1.2",
         "@nrwl/tao": "13.4.6",
