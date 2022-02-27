@@ -126,3 +126,19 @@ This version -------- @angular-ru/cdk-12.69.0
 Previous version ---- @angular-ru/dev-dependencies-12.64.3
 Total commits ------- 3
 ```
+
+# 🎁 Release notes (`27.02.2022 21:47`)
+
+## Changes
+
+-   chore(jest): release version 12.64.3 [ci skip]
+-   build: update dependency @types/jest to v27.4.1 (#1244)
+-   chore: updated RELEASE_NOTES.md [ci skip]
+
+## Metadata
+
+```
+This version -------- @angular-ru/jest-12.64.3
+Previous version ---- @angular-ru/cdk-12.69.0
+Total commits ------- 3
+```
