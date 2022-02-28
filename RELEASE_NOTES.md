@@ -158,3 +158,19 @@ This version -------- @angular-ru/dev-dependencies-12.64.4
 Previous version ---- @angular-ru/jest-12.64.3
 Total commits ------- 3
 ```
+
+# 🎁 Release notes (`28.02.2022 02:27`)
+
+## Changes
+
+-   chore(dev-dependencies): release version 12.64.5 [ci skip]
+-   build: update dependency @jscutlery/semver to v2.19.4 (#1246)
+-   chore: updated RELEASE_NOTES.md [ci skip]
+
+## Metadata
+
+```
+This version -------- @angular-ru/dev-dependencies-12.64.5
+Previous version ---- @angular-ru/dev-dependencies-12.64.4
+Total commits ------- 3
+```
