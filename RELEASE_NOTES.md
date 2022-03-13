@@ -174,3 +174,19 @@ This version -------- @angular-ru/dev-dependencies-12.64.5
 Previous version ---- @angular-ru/dev-dependencies-12.64.4
 Total commits ------- 3
 ```
+
+# 🎁 Release notes (`13.03.2022 21:03`)
+
+## Changes
+
+-   chore(prettier): release version 12.64.2 [ci skip]
+-   build: update dependency prettier-plugin-packagejson to v2.2.16 (#1249)
+-   chore: updated RELEASE_NOTES.md [ci skip]
+
+## Metadata
+
+```
+This version -------- @angular-ru/prettier-12.64.2
+Previous version ---- @angular-ru/dev-dependencies-12.64.5
+Total commits ------- 3
+```
