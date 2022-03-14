@@ -190,3 +190,20 @@ This version -------- @angular-ru/prettier-12.64.2
 Previous version ---- @angular-ru/dev-dependencies-12.64.5
 Total commits ------- 3
 ```
+
+# 🎁 Release notes (`14.03.2022 01:02`)
+
+## Changes
+
+-   chore(dev-dependencies): release version 12.64.6 [ci skip]
+-   build: update all dependencies (minor/patch) (#1251)
+-   build: update dependency rxjs to v7.5.5 (#1250)
+-   chore: updated RELEASE_NOTES.md [ci skip]
+
+## Metadata
+
+```
+This version -------- @angular-ru/dev-dependencies-12.64.6
+Previous version ---- @angular-ru/prettier-12.64.2
+Total commits ------- 4
+```
