@@ -207,3 +207,23 @@ This version -------- @angular-ru/dev-dependencies-12.64.6
 Previous version ---- @angular-ru/prettier-12.64.2
 Total commits ------- 4
 ```
+
+# 🎁 Release notes (`27.03.2022 23:11`)
+
+## Changes
+
+-   chore(commitlint): release version 12.64.3 [ci skip]
+-   build: update commitlint dependencies to v16.2.3 (#1254)
+-   build: update dependency highlight.js to v11 (#1207)
+-   build: update actions/checkout action to v3 (#1252)
+-   build: update actions/labeler action to v4 (#1253)
+-   build: update actions/setup-node action to v3 (#1248)
+-   chore: updated RELEASE_NOTES.md [ci skip]
+
+## Metadata
+
+```
+This version -------- @angular-ru/commitlint-12.64.3
+Previous version ---- @angular-ru/dev-dependencies-12.64.6
+Total commits ------- 7
+```
