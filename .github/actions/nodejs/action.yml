@@ -17,7 +17,7 @@ runs:
 
     - name: Restore node_modules from cache
       id: cache-node-modules
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: |
           node_modules
@@ -29,7 +29,7 @@ runs:
     - name: Restore from cache of builds
       id: build-cache
       if: steps.cache-node-modules.outputs.cache-hit == 'true'
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: |
           node_modules/.cache
@@ -39,7 +39,7 @@ runs:
 
     - name: Restore from global NPM cache
       if: steps.cache-node-modules.outputs.cache-hit != 'true'
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ~/.npm
         key: npm-cache-${{ hashFiles('package-lock.json') }}
