@@ -9,7 +9,7 @@
     "author": "angular-ru@yandex.ru",
     "main": "prettier.config.js",
     "dependencies": {
-        "@prettier/plugin-xml": "1.2.0",
+        "@prettier/plugin-xml": "2.0.1",
         "prettier": "2.6.1",
         "prettier-plugin-organize-attributes": "0.0.5",
         "prettier-plugin-packagejson": "2.2.17"
