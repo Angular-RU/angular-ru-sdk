@@ -259,3 +259,19 @@ This version -------- @angular-ru/jest-12.64.4
 Previous version ---- @angular-ru/dev-dependencies-12.64.7
 Total commits ------- 3
 ```
+
+# 🎁 Release notes (`28.03.2022 11:26`)
+
+## Changes
+
+-   chore(prettier): release version 12.64.3 [ci skip]
+-   build: update prettier dependencies (#1258)
+-   chore: updated RELEASE_NOTES.md [ci skip]
+
+## Metadata
+
+```
+This version -------- @angular-ru/prettier-12.64.3
+Previous version ---- @angular-ru/jest-12.64.4
+Total commits ------- 3
+```
