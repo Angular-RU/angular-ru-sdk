@@ -243,3 +243,19 @@ This version -------- @angular-ru/dev-dependencies-12.64.7
 Previous version ---- @angular-ru/commitlint-12.64.3
 Total commits ------- 3
 ```
+
+# 🎁 Release notes (`28.03.2022 05:57`)
+
+## Changes
+
+-   chore(jest): release version 12.64.4 [ci skip]
+-   build: update dependency ts-jest to v27.1.4 (#1256)
+-   chore: updated RELEASE_NOTES.md [ci skip]
+
+## Metadata
+
+```
+This version -------- @angular-ru/jest-12.64.4
+Previous version ---- @angular-ru/dev-dependencies-12.64.7
+Total commits ------- 3
+```
