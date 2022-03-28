@@ -227,3 +227,19 @@ This version -------- @angular-ru/commitlint-12.64.3
 Previous version ---- @angular-ru/dev-dependencies-12.64.6
 Total commits ------- 7
 ```
+
+# 🎁 Release notes (`28.03.2022 03:24`)
+
+## Changes
+
+-   chore(dev-dependencies): release version 12.64.7 [ci skip]
+-   build: update dependency @types/node to v17.0.23 (#1255)
+-   chore: updated RELEASE_NOTES.md [ci skip]
+
+## Metadata
+
+```
+This version -------- @angular-ru/dev-dependencies-12.64.7
+Previous version ---- @angular-ru/commitlint-12.64.3
+Total commits ------- 3
+```
