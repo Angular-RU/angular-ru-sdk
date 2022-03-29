@@ -19,7 +19,7 @@ describe('[TEST]: createTsJestConfig', () => {
                 }
             })
         ).toEqual({
-            transform: { '^.+\\.(ts|js|html)$': 'jest-preset-angular' },
+            transform: { '^.+\\.(ts|js|mjs|html|svg)$': 'jest-preset-angular' },
             globals: {
                 'ts-jest': {
                     useESM: true,
