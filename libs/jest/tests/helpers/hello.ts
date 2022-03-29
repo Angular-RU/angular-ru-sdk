@@ -1,6 +1,5 @@
-import { Any } from '@angular-ru/cdk/typings';
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export class Hello {
     public static readonly nameClass: string = 'World';
-    public static readonly any: Any = 5;
+    public static readonly any: any = 5;
 }

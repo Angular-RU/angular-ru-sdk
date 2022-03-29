@@ -1,7 +1,3 @@
-import { exposeTsCompilerOptionsByTsConfig } from '@angular-ru/cdk/node.js';
-import { stringify } from '@angular-ru/cdk/string';
-import { Nullable, PlainObject } from '@angular-ru/cdk/typings';
-import { isNotNil, isTrue } from '@angular-ru/cdk/utils';
 import type { Config } from '@jest/types';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
@@ -30,20 +26,23 @@ import {
 } from '../constants/configurations';
 import { JestConfigOptions } from '../interfaces/jest-config-options';
 import { JestModuleMapper } from '../interfaces/jest-module-mapper';
+import { exposeTsCompilerOptionsByTsConfig } from './expose-ts-compiler-options-by-ts-config';
 
 // eslint-disable-next-line sonarjs/cognitive-complexity,complexity,max-lines-per-function
 export function createTsJestConfig(options: JestConfigOptions): Config.InitialOptions {
     const rootDir: string = options.jestConfig?.rootDir ?? path.resolve('.');
     const resolvedRootDir: string = path.isAbsolute(rootDir) ? rootDir : path.resolve(rootDir);
     const packageJsonPath: string = path.resolve(rootDir, 'package.json');
-    let displayName: Nullable<string | Config.DisplayName>;
+    let displayName: string | Config.DisplayName | null | undefined;
 
-    if (isNotNil(options.jestConfig?.displayName)) {
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    if (options.jestConfig?.displayName) {
         displayName = options.jestConfig?.displayName ?? DEFAULT_DISPLAY_NAME;
     } else if (fs.existsSync(packageJsonPath)) {
-        const packageJson: PlainObject = JSON.parse(fs.readFileSync(packageJsonPath).toString() ?? '{}');
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const packageJson: any = JSON.parse(fs.readFileSync(packageJsonPath).toString() ?? '{}');
 
-        displayName = packageJson?.['name'];
+        displayName = packageJson?.name;
     }
 
     displayName = displayName ?? DEFAULT_DISPLAY_NAME;
@@ -64,21 +63,23 @@ export function createTsJestConfig(options: JestConfigOptions): Config.InitialOp
 
     const compilerOptions: CompilerOptions = exposeTsCompilerOptionsByTsConfig(resolvedTsConfigPath);
     const prefix: string = `<rootDir>/${compilerOptions?.baseUrl ?? ''}/`.replace(/\.\//g, '/').replace(/\/\/+/g, '/');
-    const rootModuleNameMapper: Nullable<{ [key: string]: string | string[] }> = tsJestUtils.pathsToModuleNameMapper(
-        compilerOptions?.paths ?? {},
-        { prefix }
-    );
+    const rootModuleNameMapper: { [key: string]: string | string[] } | null | undefined =
+        tsJestUtils.pathsToModuleNameMapper(compilerOptions?.paths ?? {}, { prefix });
 
-    const moduleNameMapper: Nullable<JestModuleMapper> = options.jestConfig?.moduleNameMapper ?? rootModuleNameMapper;
+    const moduleNameMapper: JestModuleMapper | undefined | null =
+        options.jestConfig?.moduleNameMapper ?? rootModuleNameMapper;
 
-    if (isTrue(options.debug)) {
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    if (options.debug) {
         console.info('[DEBUG]: rootDir:', resolvedRootDir);
         console.info('[DEBUG]: tsConfig:', resolvedTsConfigPath);
         console.info('[DEBUG]: prefix:', prefix);
-        console.info('[DEBUG]: moduleNameMapper:', stringify(moduleNameMapper), '\n');
+        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+        console.info('[DEBUG]: moduleNameMapper:', String(JSON.stringify(moduleNameMapper, null, 4)).toString(), '\n');
     }
 
-    if (isNotNil(options.timeZone)) {
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    if (options.timeZone) {
         process.env.TZ = options.timeZone;
     }
 
@@ -94,7 +95,7 @@ export function createTsJestConfig(options: JestConfigOptions): Config.InitialOp
         /**
          * A set of global variables that need to be available in all test environments.
          */
-        transform: { '^.+\\.(ts|js|html)$': 'jest-preset-angular' },
+        transform: { '^.+\\.(ts|js|mjs|html|svg)$': 'jest-preset-angular' },
 
         collectCoverage: options.jestConfig?.collectCoverage ?? DEFAULT_COLLECT_COVERAGE,
 
