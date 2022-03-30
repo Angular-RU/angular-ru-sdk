@@ -1,8 +1,7 @@
-import { Component, Injectable, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { deepClone } from '@angular-ru/cdk/object';
 import { Any, Nullable, PlainObject, SortOrderType } from '@angular-ru/cdk/typings';
 import {
     TableBuilderComponent,
@@ -13,6 +12,7 @@ import {
 import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
 
 import { FilterDescriptor } from '../../../virtual-table/src/services/filterable/filter-descriptor';
+import { MockWebWorkerService } from '../helpers/mock-web-worker.service';
 
 @Component({
     selector: 'app-ngx-table-builder-mock',
@@ -42,35 +42,32 @@ class NgxTableBuilderMockComponent {
     public sortTypes: TableSortTypes = null;
 }
 
-@Injectable()
-class MockWebWorkerThreadService {
-    public run<T, K>(workerFunction: (input?: K) => T, data?: K): Promise<T> {
-        return Promise.resolve(workerFunction(deepClone(data)!));
-    }
-}
-
 describe('[TEST] Table builder', (): void => {
     let componentFixture: ComponentFixture<NgxTableBuilderMockComponent>;
     let component: NgxTableBuilderMockComponent;
+    let idleResolveMock: jest.SpyInstance;
 
-    beforeEach((): void => {
-        TestBed.configureTestingModule({
-            declarations: [NgxTableBuilderMockComponent],
+    beforeEach(async (): Promise<void> => {
+        await TestBed.configureTestingModule({
             imports: [TableBuilderModule, NoopAnimationsModule],
+            declarations: [NgxTableBuilderMockComponent],
             providers: [
                 {
                     provide: WebWorkerThreadService,
-                    useClass: MockWebWorkerThreadService
+                    useClass: MockWebWorkerService
                 },
-                { provide: MATERIAL_SANITY_CHECKS, useValue: false }
+                {
+                    provide: MATERIAL_SANITY_CHECKS,
+                    useValue: false
+                }
             ]
         }).compileComponents();
 
         const someSortableService = TestBed.createComponent(TableBuilderComponent).componentInstance.sortable;
 
-        jest.spyOn(someSortableService.constructor.prototype, 'idleResolve').mockImplementation(
-            (resolve: Any, sorted: unknown) => resolve(sorted)
-        );
+        idleResolveMock = jest
+            .spyOn(someSortableService.constructor.prototype, 'idleResolve')
+            .mockImplementation((resolve: Any, sorted: unknown) => resolve(sorted));
 
         componentFixture = TestBed.createComponent(NgxTableBuilderMockComponent);
         component = componentFixture.componentInstance;
@@ -78,9 +75,7 @@ describe('[TEST] Table builder', (): void => {
     });
 
     afterAll((): void => {
-        const someSortableService = TestBed.createComponent(TableBuilderComponent).componentInstance.sortable;
-
-        someSortableService.constructor.prototype.idleResolve.mockRestore();
+        idleResolveMock.mockRestore();
     });
 
     it('should correct sort by input', async (): Promise<void> => {
