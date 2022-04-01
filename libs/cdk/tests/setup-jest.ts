@@ -1,36 +1,36 @@
-/* eslint-disable max-classes-per-file */
-import 'jest-preset-angular/setup-jest';
+/* eslint-disable max-classes-per-file,@typescript-eslint/no-explicit-any,import/first */
+// import 'jest-preset-angular/setup-jest';
+import 'zone.js/fesm2015/zone-testing-bundle.min.js';
 
-import { Any } from '@angular-ru/cdk/typings';
+import { getTestBed } from '@angular/core/testing';
+import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 import { arrayBuffer } from 'node:stream/consumers';
 import { TransformStream } from 'node:stream/web';
 
-declare const jest: Any;
-declare const global: Any;
+declare const jest: any;
+declare const global: any;
 
-const jsdom: Any = require('jsdom');
+const jsdom: any = require('jsdom');
 
-const { JSDOM }: Any = jsdom;
+const { JSDOM }: any = jsdom;
 
-const dom: Any = new JSDOM('<!DOCTYPE html><html><head></head><body></body></html>');
+const dom: any = new JSDOM('<!DOCTYPE html><html><head></head><body></body></html>');
 
-const observe: Any = jest.fn();
-const unobserve: Any = jest.fn();
+const observe: any = jest.fn();
+const unobserve: any = jest.fn();
 
 global.window = dom.window;
 global.document = dom.window.document;
 
 // you can also pass the mock implementation
 // to jest.fn as an argument
-global.window!.IntersectionObserver = jest.fn(
-    (): Any => ({
-        observe,
-        unobserve
-    })
-);
+global.window!.IntersectionObserver = jest.fn((): any => ({
+    observe,
+    unobserve
+}));
 
 // Simulate window resize events
-const resizeEvent: Any = document.createEvent('Event');
+const resizeEvent: any = document.createEvent('Event');
 
 resizeEvent.initEvent('resize', true, true);
 
@@ -76,3 +76,12 @@ global.Response = class {
         return arrayBuffer(this.readable);
     }
 };
+
+global.URL.createObjectURL = jest.fn((blob: Blob): string => `${blob}`);
+global.URL.revokeObjectURL = jest.fn();
+
+// todo get rid of execCommand
+// eslint-disable-next-line deprecation/deprecation
+document.execCommand = jest.fn((): void => void 0);
+
+getTestBed().initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
