@@ -42,7 +42,7 @@ describe('[TEST]: Reset', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([A, B, C, D]), NgxsDataPluginModule.forRoot()]
+            imports: [NgxsModule.forRoot([A, B, C, D], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
         }).compileComponents();
 
         store = TestBed.inject<Store>(Store);

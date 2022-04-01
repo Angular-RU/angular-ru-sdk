@@ -25,13 +25,13 @@ describe('[TEST]: Computed fields', () => {
             }
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([A]), NgxsDataPluginModule.forRoot()]
+                imports: [NgxsModule.forRoot([A], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
             });
         } catch (error: unknown) {
             message = (error as Error).message;
         }
 
-        expect(message).toEqual(
+        expect(message).toBe(
             `${NGXS_DATA_EXCEPTIONS.NGXS_COMPUTED_DECORATOR}\nExample: \n@Computed() get getSnapshot() { \n\t .. \n}`
         );
     });
@@ -52,7 +52,7 @@ describe('[TEST]: Computed fields', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([B]), NgxsDataPluginModule.forRoot()]
+            imports: [NgxsModule.forRoot([B], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
         });
 
         const b: B = TestBed.inject<B>(B); // sequenceId = 0
@@ -123,7 +123,10 @@ describe('[TEST]: Computed fields', () => {
             }
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([OrderLineState]), NgxsDataPluginModule.forRoot()]
+                imports: [
+                    NgxsModule.forRoot([OrderLineState], { developmentMode: true }),
+                    NgxsDataPluginModule.forRoot()
+                ]
             });
 
             const state: OrderLineState = TestBed.inject<OrderLineState>(OrderLineState);
@@ -199,7 +202,10 @@ describe('[TEST]: Computed fields', () => {
             }
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([ImmutableOrderLineState]), NgxsDataPluginModule.forRoot()]
+                imports: [
+                    NgxsModule.forRoot([ImmutableOrderLineState], { developmentMode: true }),
+                    NgxsDataPluginModule.forRoot()
+                ]
             });
 
             const state: ImmutableOrderLineState = TestBed.inject<ImmutableOrderLineState>(ImmutableOrderLineState);
@@ -262,7 +268,7 @@ describe('[TEST]: Computed fields', () => {
         class B extends AbstractCommonCounter {}
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([A, B]), NgxsDataPluginModule.forRoot()]
+            imports: [NgxsModule.forRoot([A, B], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
         });
 
         const store: Store = TestBed.inject<Store>(Store);
@@ -308,7 +314,7 @@ describe('[TEST]: Computed fields', () => {
 
         // noinspection DuplicatedCode
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([A, B]), NgxsDataPluginModule.forRoot()]
+            imports: [NgxsModule.forRoot([A, B], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
         });
 
         const store: Store = TestBed.inject<Store>(Store);
@@ -392,7 +398,7 @@ describe('[TEST]: Computed fields', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([A, B]), NgxsDataPluginModule.forRoot()]
+            imports: [NgxsModule.forRoot([A, B], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
         });
 
         const store: Store = TestBed.inject(Store);
@@ -494,7 +500,10 @@ describe('[TEST]: Computed fields', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([MySecondCountState]), NgxsDataPluginModule.forRoot()],
+            imports: [
+                NgxsModule.forRoot([MySecondCountState], { developmentMode: true }),
+                NgxsDataPluginModule.forRoot()
+            ],
             providers: [MyFirstCountService]
         });
 
@@ -563,7 +572,10 @@ describe('[TEST]: Computed fields', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([MySecondCountState]), NgxsDataPluginModule.forRoot()],
+            imports: [
+                NgxsModule.forRoot([MySecondCountState], { developmentMode: true }),
+                NgxsDataPluginModule.forRoot()
+            ],
             providers: [MyFirstCountService]
         });
 

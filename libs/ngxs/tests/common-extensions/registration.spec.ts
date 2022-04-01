@@ -62,7 +62,10 @@ describe('check correct deep instance', () => {
 
     beforeAll(() => {
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([RegistrationState]), NgxsDataPluginModule.forRoot()],
+            imports: [
+                NgxsModule.forRoot([RegistrationState], { developmentMode: true }),
+                NgxsDataPluginModule.forRoot()
+            ],
             declarations: [AppComponent]
         });
 

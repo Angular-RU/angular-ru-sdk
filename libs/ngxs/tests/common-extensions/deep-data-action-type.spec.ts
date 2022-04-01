@@ -44,7 +44,7 @@ describe('[TEST]: Deep data action type', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([A, B, C]), NgxsDataPluginModule.forRoot()]
+            imports: [NgxsModule.forRoot([A, B, C], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
         });
 
         const stateA: A = TestBed.inject(A);

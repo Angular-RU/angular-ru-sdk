@@ -56,7 +56,11 @@ describe('mutable', () => {
 
         TestBed.configureTestingModule({
             declarations: [AppComponent],
-            imports: [NgxsModule.forRoot([AppState]), NgxsDataPluginModule.forRoot(), MutableTypePipeModule]
+            imports: [
+                NgxsModule.forRoot([AppState], { developmentMode: true }),
+                NgxsDataPluginModule.forRoot(),
+                MutableTypePipeModule
+            ]
         }).compileComponents();
 
         const app = TestBed.createComponent(AppComponent);

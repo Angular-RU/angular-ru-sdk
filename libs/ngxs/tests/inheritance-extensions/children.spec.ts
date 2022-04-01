@@ -95,7 +95,7 @@ describe('check correct deep instance', () => {
         TestBed.configureTestingModule({
             declarations: [AppComponent],
             imports: [
-                NgxsModule.forRoot([AppState, MyChildB, MyChildBa, MyChildBaa, MyChildA]),
+                NgxsModule.forRoot([AppState, MyChildB, MyChildBa, MyChildBaa, MyChildA], { developmentMode: true }),
                 NgxsDataPluginModule.forRoot()
             ]
         }).compileComponents();

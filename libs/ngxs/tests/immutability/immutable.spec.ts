@@ -16,7 +16,7 @@ describe('[TEST]: Freeze states', () => {
         class MyState extends NgxsImmutableDataRepository<string> {}
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([MyState]), NgxsDataPluginModule.forRoot()]
+            imports: [NgxsModule.forRoot([MyState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
         });
 
         const store: Store = TestBed.inject<Store>(Store);
@@ -41,7 +41,7 @@ describe('[TEST]: Freeze states', () => {
         class MyArrState extends NgxsImmutableDataRepository<StateModel[]> {}
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([MyArrState]), NgxsDataPluginModule.forRoot()]
+            imports: [NgxsModule.forRoot([MyArrState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
         });
 
         const store: Store = TestBed.inject<Store>(Store);
@@ -96,7 +96,7 @@ describe('[TEST]: Freeze states', () => {
         class DateState extends NgxsImmutableDataRepository<DateModel> {}
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([DateState]), NgxsDataPluginModule.forRoot()]
+            imports: [NgxsModule.forRoot([DateState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
         });
 
         const store: Store = TestBed.inject<Store>(Store);
@@ -138,7 +138,7 @@ describe('[TEST]: Freeze states', () => {
 
         TestBed.configureTestingModule({
             declarations: [AppComponent],
-            imports: [NgxsModule.forRoot([StateListState]), NgxsDataPluginModule.forRoot()]
+            imports: [NgxsModule.forRoot([StateListState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
         }).compileComponents();
 
         const fixture: ComponentFixture<AppComponent> = TestBed.createComponent(AppComponent);

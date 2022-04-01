@@ -25,7 +25,7 @@ describe('mutate', () => {
             }
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([TodosState])]
+                imports: [NgxsModule.forRoot([TodosState], { developmentMode: true })]
             });
 
             store = TestBed.inject<Store>(Store);
@@ -47,7 +47,7 @@ describe('mutate', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([TodosState]), NgxsDataPluginModule.forRoot()]
+            imports: [NgxsModule.forRoot([TodosState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
         });
 
         store = TestBed.inject<Store>(Store);
@@ -72,7 +72,7 @@ describe('mutate', () => {
             }
         });
 
-        expect(errorResult).toEqual(`Cannot assign to read only property '0' of object '[object Array]'`);
+        expect(errorResult).toBe(`Cannot assign to read only property '0' of object '[object Array]'`);
         expect(store.snapshot()).toEqual({ todos: [1, 2, 3] });
     });
 
@@ -90,7 +90,7 @@ describe('mutate', () => {
         class TodosState extends NgxsImmutableDataRepository<A[]> {}
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([TodosState]), NgxsDataPluginModule.forRoot()]
+            imports: [NgxsModule.forRoot([TodosState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
         });
 
         store = TestBed.inject<Store>(Store);
@@ -111,7 +111,7 @@ describe('mutate', () => {
             errorResult = (error as Error).message;
         }
 
-        expect(errorResult).toEqual(`Cannot assign to read only property '0' of object '[object Array]'`);
+        expect(errorResult).toBe(`Cannot assign to read only property '0' of object '[object Array]'`);
 
         try {
             (todo.getState() as A[])[0]!.a++;
@@ -119,6 +119,6 @@ describe('mutate', () => {
             errorResult = (error as Error).message;
         }
 
-        expect(errorResult).toEqual(`Cannot assign to read only property 'a' of object '[object Object]'`);
+        expect(errorResult).toBe(`Cannot assign to read only property 'a' of object '[object Object]'`);
     });
 });

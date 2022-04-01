@@ -22,7 +22,7 @@ describe('[TEST]: CountState', () => {
         class CountState {}
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([CountState])]
+            imports: [NgxsModule.forRoot([CountState], { developmentMode: true })]
         });
 
         store = TestBed.inject<Store>(Store);
@@ -42,7 +42,7 @@ describe('[TEST]: CountState', () => {
                 class CountState extends NgxsImmutableDataRepository<number> {}
 
                 TestBed.configureTestingModule({
-                    imports: [NgxsModule.forRoot([CountState])]
+                    imports: [NgxsModule.forRoot([CountState], { developmentMode: true })]
                 });
             } catch (error: unknown) {
                 message = (error as Error).message;
@@ -61,7 +61,7 @@ describe('[TEST]: CountState', () => {
             class CountState extends NgxsImmutableDataRepository<number> {}
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([CountState])]
+                imports: [NgxsModule.forRoot([CountState], { developmentMode: true })]
             });
 
             store = TestBed.inject<Store>(Store);
@@ -87,7 +87,7 @@ describe('[TEST]: CountState', () => {
             class CountState extends NgxsImmutableDataRepository<number> {}
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([CountState]), NgxsDataPluginModule.forRoot()]
+                imports: [NgxsModule.forRoot([CountState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
             });
 
             const count: CountState = TestBed.inject<CountState>(CountState);
@@ -110,7 +110,7 @@ describe('[TEST]: CountState', () => {
             class CountState extends NgxsImmutableDataRepository<number> {}
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([]), NgxsDataPluginModule.forRoot()],
+                imports: [NgxsModule.forRoot([], { developmentMode: true }), NgxsDataPluginModule.forRoot()],
                 providers: [CountState]
             });
 
@@ -149,7 +149,7 @@ describe('[TEST]: CountState', () => {
             }
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([CountState])]
+                imports: [NgxsModule.forRoot([CountState], { developmentMode: true })]
             });
 
             const count: CountState = TestBed.inject<CountState>(CountState);
@@ -210,7 +210,7 @@ describe('[TEST]: CountState', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([CountState]), NgxsDataPluginModule.forRoot()]
+                imports: [NgxsModule.forRoot([CountState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
             });
 
             count = TestBed.inject<CountState>(CountState);

@@ -55,7 +55,7 @@ describe('[TEST]: Debounce', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([DebounceState]), NgxsDataPluginModule.forRoot()]
+            imports: [NgxsModule.forRoot([DebounceState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
         });
 
         const state: DebounceState = TestBed.inject<DebounceState>(DebounceState);

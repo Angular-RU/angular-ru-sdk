@@ -29,7 +29,7 @@ describe('complex lifecycle', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([CountState]), NgxsDataPluginModule.forRoot()],
+            imports: [NgxsModule.forRoot([CountState], { developmentMode: true }), NgxsDataPluginModule.forRoot()],
             providers: [MyApiService]
         });
 
@@ -105,7 +105,11 @@ describe('complex lifecycle', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [AppTestModule, NgxsModule.forRoot([CountState]), NgxsDataPluginModule.forRoot()],
+            imports: [
+                AppTestModule,
+                NgxsModule.forRoot([CountState], { developmentMode: true }),
+                NgxsDataPluginModule.forRoot()
+            ],
             providers: [MyApiService]
         });
 
