@@ -247,9 +247,6 @@ describe('[TEST]: Common utils', () => {
 
         beforeEach(() => {
             link = { click: jest.fn() } as unknown as HTMLAnchorElement;
-
-            Object.defineProperty(window.URL, 'createObjectURL', { value: jest.fn((blob: Blob) => `${blob}`) });
-            Object.defineProperty(window.URL, 'revokeObjectURL', { value: jest.fn() });
         });
 
         it('should throw error if both file name and extension not provided', () => {

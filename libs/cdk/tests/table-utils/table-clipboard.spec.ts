@@ -40,7 +40,6 @@ describe('[TEST] Table clipboard service', () => {
             ]
         });
 
-        Object.defineProperty(document, 'execCommand', { value: (): void => void 0 });
         copySpy = jest.spyOn(copyHtmlModule, 'copyHtml');
         tableClipboard = TestBed.inject(TableClipboardService);
     });
