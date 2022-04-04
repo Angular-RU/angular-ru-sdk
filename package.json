@@ -62,7 +62,7 @@
         "@ngxs/logger-plugin": "3.7.3",
         "@ngxs/store": "3.7.3",
         "class-transformer": "0.5.1",
-        "ngx-mask": "12.0.0",
+        "ngx-mask": "13.1.6",
         "ngx-toastr": "14.2.2",
         "pretty": "2.0.0",
         "rxjs": "7.5.5",
