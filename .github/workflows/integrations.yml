@@ -16,7 +16,9 @@ jobs:
         uses: ./.github/actions/nodejs
 
       - name: Build integrations apps
-        run: npx nx run-many --target=build --parallel=1 --all --exclude $(npx nx affected:libs --base=origin/master --plain)
+        run:
+          npx nx run-many --target=build --parallel=1 --all --exclude $(npx nx affected:libs --base=origin/master
+          --plain)
 
 concurrency:
   group: integration-${{ github.head_ref }}
