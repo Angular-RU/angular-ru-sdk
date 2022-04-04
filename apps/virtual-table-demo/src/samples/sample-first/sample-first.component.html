@@ -1,13 +1,21 @@
 <div #header>
     <mat-toolbar class="simple-toolbar">
         <span>Virtual scroll table</span>
-        <mat-spinner *ngIf="loading" strokeWidth="5" class="spinner" [diameter]="30"></mat-spinner>
+        <mat-spinner
+            *ngIf="loading"
+            strokeWidth="5"
+            class="spinner"
+            [diameter]="30"
+        ></mat-spinner>
     </mat-toolbar>
 
     <form>
         <mat-form-field>
             <mat-label>Data size</mat-label>
-            <mat-select [(value)]="dataSize" (selectionChange)="updateTable()">
+            <mat-select
+                [(value)]="dataSize"
+                (selectionChange)="updateTable()"
+            >
                 <mat-option value="10x5">10 x 5</mat-option>
                 <mat-option value="100x20">100 x 20</mat-option>
                 <mat-option value="1000x30">1000 x 30</mat-option>
@@ -19,32 +27,63 @@
         <mat-form-field>
             <mat-label>Table width</mat-label>
             <label>
-                <input matInput name="width" [(ngModel)]="width" />
+                <input
+                    matInput
+                    name="width"
+                    [(ngModel)]="width"
+                />
             </label>
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Table height (px)</mat-label>
             <label>
-                <input matInput name="height" type="number" [(ngModel)]="height" />
+                <input
+                    matInput
+                    name="height"
+                    type="number"
+                    [(ngModel)]="height"
+                />
             </label>
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Table row height</mat-label>
             <label>
-                <input matInput name="rowHeight" type="number" [(ngModel)]="rowHeight" />
+                <input
+                    matInput
+                    name="rowHeight"
+                    type="number"
+                    [(ngModel)]="rowHeight"
+                />
             </label>
         </mat-form-field>
 
-        <mat-checkbox class="regenerate" [ngModelOptions]="{ standalone: true }" [(ngModel)]="regenerate">
+        <mat-checkbox
+            class="regenerate"
+            [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="regenerate"
+        >
             Auto regenerate (15sec)
         </mat-checkbox>
 
-        <button mat-raised-button (click)="showSample()">show code sample</button>
+        <button
+            mat-raised-button
+            (click)="showSample()"
+        >
+            show code sample
+        </button>
     </form>
 </div>
 
-<div class="content-visible" [style.height]="'calc(100% - ' + header.offsetHeight + 'px)'">
-    <ngx-table-builder [source]="simple" [width]="width" [height]="height" [row-height]="rowHeight"></ngx-table-builder>
+<div
+    class="content-visible"
+    [style.height]="'calc(100% - ' + header.offsetHeight + 'px)'"
+>
+    <ngx-table-builder
+        [source]="simple"
+        [width]="width"
+        [height]="height"
+        [row-height]="rowHeight"
+    ></ngx-table-builder>
 </div>

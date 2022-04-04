@@ -42,15 +42,40 @@ describe('[TEST]: Attribute boolean', () => {
         selector: 'host-component',
 
         template: `
-            <child-component #simpleProp prop></child-component>
+            <child-component
+                #simpleProp
+                prop
+            ></child-component>
             <child-component #noProp></child-component>
-            <child-component #emptyStringProp prop=""></child-component>
-            <child-component #filledStringProp prop="val"></child-component>
-            <child-component #falseStringProp prop="false"></child-component>
-            <child-component #dynamicProp [prop]="propValue"></child-component>
-            <child-component #setterProp propWithSetter></child-component>
-            <child-component #hookProp hookProp></child-component>
-            <child-component #dynamicSetterProp [hookProp]="propValue" [propWithSetter]="propValue"></child-component>
+            <child-component
+                #emptyStringProp
+                prop=""
+            ></child-component>
+            <child-component
+                #filledStringProp
+                prop="val"
+            ></child-component>
+            <child-component
+                #falseStringProp
+                prop="false"
+            ></child-component>
+            <child-component
+                #dynamicProp
+                [prop]="propValue"
+            ></child-component>
+            <child-component
+                #setterProp
+                propWithSetter
+            ></child-component>
+            <child-component
+                #hookProp
+                hookProp
+            ></child-component>
+            <child-component
+                #dynamicSetterProp
+                [hookProp]="propValue"
+                [propWithSetter]="propValue"
+            ></child-component>
         `
     })
     class HostComponent {

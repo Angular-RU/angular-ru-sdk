@@ -1,7 +1,11 @@
 <mat-toolbar class="simple-toolbar">
     <span>Example dynamic changes</span>
 
-    <mat-checkbox class="regenerate" [ngModelOptions]="{ standalone: true }" [(ngModel)]="regenerate">
+    <mat-checkbox
+        class="regenerate"
+        [ngModelOptions]="{ standalone: true }"
+        [(ngModel)]="regenerate"
+    >
         Auto regenerate (15sec)
     </mat-checkbox>
 </mat-toolbar>
@@ -12,10 +16,25 @@
     }
 </style>
 
-<ngx-table-builder #table [source]="data" [row-height]="40" [vertical-border]="false">
-    <ngx-column key="active" width="60" sticky vertical-line important-template>
+<ngx-table-builder
+    #table
+    [source]="data"
+    [row-height]="40"
+    [vertical-border]="false"
+>
+    <ngx-column
+        key="active"
+        width="60"
+        sticky
+        vertical-line
+        important-template
+    >
         <ng-template ngx-th></ng-template>
-        <ng-template ngx-td row let-row>
+        <ng-template
+            ngx-td
+            row
+            let-row
+        >
             <div [@.disabled]="true">
                 <mat-checkbox
                     [checked]="$any(row)?.active"
@@ -25,22 +44,54 @@
         </ng-template>
     </ngx-column>
 
-    <ngx-column key="cost" important-template>
-        <ng-template ngx-td row let-row>
+    <ngx-column
+        key="cost"
+        important-template
+    >
+        <ng-template
+            ngx-td
+            row
+            let-row
+        >
             <span [class.cost-disable]="!$any(row)?.active">{{ $any(row)?.cost | currency }}</span>
         </ng-template>
     </ngx-column>
 
-    <ngx-column *ngFor="let key of table.modelColumnKeys" [key]="key">
+    <ngx-column
+        *ngFor="let key of table.modelColumnKeys"
+        [key]="key"
+    >
         <ng-container *ngIf="key === 'symbol'; else other">
-            <ng-template ngx-td let-symbol>{{ symbol }}</ng-template>
+            <ng-template
+                ngx-td
+                let-symbol
+            >
+                {{ symbol }}
+            </ng-template>
         </ng-container>
 
-        <ng-template #other ngx-td let-cell [nowrap]="false">{{ cell }}</ng-template>
+        <ng-template
+            #other
+            ngx-td
+            let-cell
+            [nowrap]="false"
+        >
+            {{ cell }}
+        </ng-template>
     </ngx-column>
 
-    <ngx-column key="symbol-edit" sticky-end vertical-line custom-key important-template>
-        <ng-template ngx-td row let-row>
+    <ngx-column
+        key="symbol-edit"
+        sticky-end
+        vertical-line
+        custom-key
+        important-template
+    >
+        <ng-template
+            ngx-td
+            row
+            let-row
+        >
             <mat-form-field class="example-full-width">
                 <div [@.disabled]="true">
                     <input

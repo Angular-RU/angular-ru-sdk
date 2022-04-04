@@ -5,7 +5,10 @@
     (contextmenu)="close($event)"
 ></div>
 
-<div *ngIf="state?.opened" class="table-grid__context-menu">
+<div
+    *ngIf="state?.opened"
+    class="table-grid__context-menu"
+>
     <div
         #menu
         class="context-menu"

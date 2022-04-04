@@ -16,7 +16,11 @@ describe('[TEST]: Initial Focus', function () {
         selector: 'test',
         template: `
             <form [formGroup]="form">
-                <input #dontWantFocus type="text" formControlName="dontWantFocus" />
+                <input
+                    #dontWantFocus
+                    type="text"
+                    formControlName="dontWantFocus"
+                />
                 <input
                     #wantFocusText
                     type="text"

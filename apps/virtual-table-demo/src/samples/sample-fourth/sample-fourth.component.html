@@ -63,22 +63,43 @@
 
 </code></pre>
 
-        <ngx-table-builder auto-width [source]="data">
-            <ngx-column key="toppings" width="350"></ngx-column>
+        <ngx-table-builder
+            auto-width
+            [source]="data"
+        >
+            <ngx-column
+                key="toppings"
+                width="350"
+            ></ngx-column>
 
             <ngx-column key="prices.small">
                 <ng-template ngx-th>Small</ng-template>
-                <ng-template ngx-td let-cell>{{ cell | currency }}</ng-template>
+                <ng-template
+                    ngx-td
+                    let-cell
+                >
+                    {{ cell | currency }}
+                </ng-template>
             </ngx-column>
 
             <ngx-column key="prices.medium">
                 <ng-template ngx-th>Medium</ng-template>
-                <ng-template ngx-td let-cell>{{ cell | currency }}</ng-template>
+                <ng-template
+                    ngx-td
+                    let-cell
+                >
+                    {{ cell | currency }}
+                </ng-template>
             </ngx-column>
 
             <ngx-column key="prices.large">
                 <ng-template ngx-th>Large</ng-template>
-                <ng-template ngx-td let-cell>{{ cell | currency }}</ng-template>
+                <ng-template
+                    ngx-td
+                    let-cell
+                >
+                    {{ cell | currency }}
+                </ng-template>
             </ngx-column>
         </ngx-table-builder>
     </div>
@@ -88,10 +109,20 @@
 
 <div class="column-samples">
     <div class="column">
-        <ngx-table-builder auto-width [source]="elements">
-            <ngx-column key="date.value" important-template [stub]="null">
+        <ngx-table-builder
+            auto-width
+            [source]="elements"
+        >
+            <ngx-column
+                key="date.value"
+                important-template
+                [stub]="null"
+            >
                 <ng-template ngx-th>Date</ng-template>
-                <ng-template ngx-td let-date>
+                <ng-template
+                    ngx-td
+                    let-date
+                >
                     {{ date | date: 'dd.MM.yyyy HH:mm' }}
                 </ng-template>
             </ngx-column>

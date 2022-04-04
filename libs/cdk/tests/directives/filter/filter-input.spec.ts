@@ -17,7 +17,12 @@ describe('[TEST]: inputFilter Input', function () {
         selector: 'test',
         template: `
             <div [formGroup]="form">
-                <input matInput type="text" formControlName="value" [inputFilter]="predicate" />
+                <input
+                    matInput
+                    type="text"
+                    formControlName="value"
+                    [inputFilter]="predicate"
+                />
             </div>
         `,
         changeDetection: ChangeDetectionStrategy.OnPush

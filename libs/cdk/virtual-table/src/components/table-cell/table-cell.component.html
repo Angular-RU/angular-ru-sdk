@@ -4,7 +4,10 @@
     (mouseenter)="mouseEnterCell(divElement, $event)"
     (mouseleave)="mouseLeaveCell()"
 >
-    <ng-template [ngIf]="columnSchema?.td?.template!" [ngIfElse]="defaultTd">
+    <ng-template
+        [ngIf]="columnSchema?.td?.template!"
+        [ngIfElse]="defaultTd"
+    >
         <ng-template
             [ngTemplateOutlet]="columnSchema?.td?.template!"
             [ngTemplateOutletContext]="{
@@ -18,7 +21,10 @@
         ></ng-template>
     </ng-template>
     <ng-template #defaultTd>
-        <ng-template [ngIf]="isFilterable || enableFiltering" [ngIfElse]="simple">
+        <ng-template
+            [ngIf]="isFilterable || enableFiltering"
+            [ngIfElse]="simple"
+        >
             <ngx-filter-viewer
                 [index]="index"
                 [key]="columnSchema?.key"

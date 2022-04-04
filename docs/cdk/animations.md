@@ -9,7 +9,10 @@ import { Component } from '@angular-ru/core';
 @Component({
     //...
     template: `
-        <div *ngIf="showed" [@fadeInLinear]></div>
+        <div
+            *ngIf="showed"
+            [@fadeInLinear]
+        ></div>
     `,
     animation: [fadeInLinearAnimation]
 })
@@ -27,7 +30,12 @@ import { Component } from '@angular-ru/core';
 @Component({
     //...
     template: `
-        <div *ngFor="let i of [1, 2, 3]" [@fadeInBezier]>{{ i }}</div>
+        <div
+            *ngFor="let i of [1, 2, 3]"
+            [@fadeInBezier]
+        >
+            {{ i }}
+        </div>
     `,
     animation: [fadeInBezierAnimation]
 })

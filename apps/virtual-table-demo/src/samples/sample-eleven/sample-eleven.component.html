@@ -3,7 +3,10 @@
 </mat-toolbar>
 
 <div class="night">
-    <div *ngIf="licences.length" class="column">
+    <div
+        *ngIf="licences.length"
+        class="column"
+    >
         <mat-tab-group (selectedTabChange)="update()">
             <mat-tab label="Custom context menu">
                 <div class="column-samples">
@@ -46,9 +49,16 @@
                     <div class="column">
                         <br />
 
-                        <ngx-table-builder #table1 enable-selection [source]="licences">
+                        <ngx-table-builder
+                            #table1
+                            enable-selection
+                            [source]="licences"
+                        >
                             <ngx-context-menu [height]="null">
-                                <ngx-context-menu-item contextTitle divider>
+                                <ngx-context-menu-item
+                                    contextTitle
+                                    divider
+                                >
                                     <ngx-menu-content
                                         icon="https://angular.io/assets/images/logos/angular/angular.svg"
                                     ></ngx-menu-content>
@@ -77,7 +87,10 @@
                                             "
                                         >
                                             <ngx-menu-content no-margin>{{ column.key }}</ngx-menu-content>
-                                            <ngx-menu-content no-margin align-center>
+                                            <ngx-menu-content
+                                                no-margin
+                                                align-center
+                                            >
                                                 <mat-checkbox
                                                     color="primary"
                                                     [checked]="column.isVisible"
@@ -106,7 +119,10 @@
                                     <ngx-menu-content>Copy in buffer ID</ngx-menu-content>
                                 </ngx-context-menu-item>
 
-                                <ngx-context-menu-item *ngIf="item.state.key === 'price'" #item>
+                                <ngx-context-menu-item
+                                    *ngIf="item.state.key === 'price'"
+                                    #item
+                                >
                                     <ngx-menu-content icon></ngx-menu-content>
                                     <ngx-menu-content>Price: {{ item.state.textContent }}</ngx-menu-content>
                                 </ngx-context-menu-item>
@@ -119,8 +135,16 @@
                                 </ngx-context-menu-item>
                             </ngx-context-menu>
 
-                            <ngx-column key="price" important-template>
-                                <ng-template ngx-td let-value>{{ value | currency }}</ng-template>
+                            <ngx-column
+                                key="price"
+                                important-template
+                            >
+                                <ng-template
+                                    ngx-td
+                                    let-value
+                                >
+                                    {{ value | currency }}
+                                </ng-template>
                             </ngx-column>
                         </ngx-table-builder>
 
@@ -169,20 +193,39 @@
                         [source]="data"
                         (schemaChanges)="updatedSchema($event)"
                     >
-                        <ngx-options is-draggable is-sortable></ngx-options>
+                        <ngx-options
+                            is-draggable
+                            is-sortable
+                        ></ngx-options>
 
-                        <ngx-column key="action" custom-key sticky width="50" [is-draggable]="false">
+                        <ngx-column
+                            key="action"
+                            custom-key
+                            sticky
+                            width="50"
+                            [is-draggable]="false"
+                        >
                             <ng-template ngx-th></ng-template>
-                            <ng-template ngx-td row let-row>
+                            <ng-template
+                                ngx-td
+                                row
+                                let-row
+                            >
                                 <!-- eslint-disable @angular-eslint/template/no-call-expression -->
                                 {{ table2.selectionModel.get($any(row).id) ? 'x' : '-' }}
                             </ng-template>
                         </ngx-column>
 
-                        <ngx-column *ngFor="let key of table2.modelColumnKeys" [key]="key"></ngx-column>
+                        <ngx-column
+                            *ngFor="let key of table2.modelColumnKeys"
+                            [key]="key"
+                        ></ngx-column>
 
                         <ngx-context-menu>
-                            <ngx-context-menu-item contextTitle divider>
+                            <ngx-context-menu-item
+                                contextTitle
+                                divider
+                            >
                                 <ngx-menu-content>Menu {{ table2.selection.selectionModel.size }}</ngx-menu-content>
                             </ngx-context-menu-item>
 
@@ -215,13 +258,22 @@
                                     (onClick)="table2.toggleColumnVisibility(column.key); $event.preventDefault()"
                                 >
                                     <ngx-menu-content no-margin>{{ column.key }}</ngx-menu-content>
-                                    <ngx-menu-content no-margin align-center>
-                                        <mat-checkbox color="primary" [checked]="column.isVisible"></mat-checkbox>
+                                    <ngx-menu-content
+                                        no-margin
+                                        align-center
+                                    >
+                                        <mat-checkbox
+                                            color="primary"
+                                            [checked]="column.isVisible"
+                                        ></mat-checkbox>
                                     </ngx-menu-content>
                                 </ngx-context-menu-item>
                             </ngx-context-menu-item>
 
-                            <ngx-context-menu-item divider (onClick)="table2.resetSchema()">
+                            <ngx-context-menu-item
+                                divider
+                                (onClick)="table2.resetSchema()"
+                            >
                                 <ngx-menu-content>Reset table settings</ngx-menu-content>
                             </ngx-context-menu-item>
 

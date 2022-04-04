@@ -20,7 +20,11 @@ export class AppModule {}
 @Component({
     //...
     template: `
-        <input initialFocus placeholder="hello world" [focusDisabled]="false" />
+        <input
+            initialFocus
+            placeholder="hello world"
+            [focusDisabled]="false"
+        />
     `
 })
 export class AppComponent {}
@@ -41,7 +45,10 @@ export class AppModule {}
 @Component({
     //...
     template: `
-        <input amountFormat value="10000000" />
+        <input
+            amountFormat
+            value="10000000"
+        />
     ` // 1 000 000
 })
 export class AppComponent {}
@@ -62,7 +69,10 @@ export class AppModule {}
 @Component({
     //...
     template: `
-        <input convertCase placeholder="ru" />
+        <input
+            convertCase
+            placeholder="ru"
+        />
     ` // RU
 })
 export class AppComponent {}
@@ -83,7 +93,10 @@ export class AppModule {}
 @Component({
     //...
     template: `
-        <input disableControl formControlName="name" />
+        <input
+            disableControl
+            formControlName="name"
+        />
     ` // disabled = true
 })
 export class AppComponent {}
@@ -104,7 +117,10 @@ export class AppModule {}
 @Component({
     //...
     template: `
-        <input maxLength="3000" placeholder="3001" />
+        <input
+            maxLength="3000"
+            placeholder="3001"
+        />
     ` // empty value
 })
 export class AppComponent {}
@@ -130,7 +146,11 @@ export class AppModule {}
 @Component({
     //...
     template: `
-        <input trimInput placeholder="  Hello  " [trimDisabled]="false" />
+        <input
+            trimInput
+            placeholder="  Hello  "
+            [trimDisabled]="false"
+        />
     ` // 'Hello'
 })
 export class AppComponent {}
@@ -153,7 +173,12 @@ export class AppModule {}
     template: `
         <form [formGroup]="form">
             <input type="text" formControlName="input1" splitString" />
-            <input type="text" formControlName="input2" splitString [splitOptions]="splitStringOptions" />
+            <input
+                type="text"
+                formControlName="input2"
+                splitString
+                [splitOptions]="splitStringOptions"
+            />
         </form>
     `
 })
@@ -193,7 +218,13 @@ export class AppModule {}
     //...
     template: `
         <div [formGroup]="form">
-            <input matInput type="text" formControlName="value" [filterDisabled]="false" [inputFilter]="predicate" />
+            <input
+                matInput
+                type="text"
+                formControlName="value"
+                [filterDisabled]="false"
+                [inputFilter]="predicate"
+            />
         </div>
     `
 })

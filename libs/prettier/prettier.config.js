@@ -13,6 +13,7 @@ module.exports = {
     arrowParens: 'always',
     proseWrap: 'always',
     endOfLine: 'auto',
+    singleAttributePerLine: true,
     attributeGroups: [
         '$ANGULAR_STRUCTURAL_DIRECTIVE',
         '$ANGULAR_ELEMENT_REF',

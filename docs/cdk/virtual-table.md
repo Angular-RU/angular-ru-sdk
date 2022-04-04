@@ -95,12 +95,22 @@ export class AppComponent {
 <ngx-table-builder [source]="licenses">
     <ngx-column key="name">
         <ng-template ngx-th>License</ng-template>
-        <ng-template ngx-td let-name>{{ name | uppercase }}</ng-template>
+        <ng-template
+            ngx-td
+            let-name
+        >
+            {{ name | uppercase }}
+        </ng-template>
     </ngx-column>
 
     <ngx-column key="price">
         <ng-template ngx-th>Cost</ng-template>
-        <ng-template ngx-td let-price>{{ price | currency }}</ng-template>
+        <ng-template
+            ngx-td
+            let-price
+        >
+            {{ price | currency }}
+        </ng-template>
     </ngx-column>
 </ngx-table-builder>
 ```
@@ -151,15 +161,35 @@ export class AppComponent implements AfterViewInit {
 
 ```html
 <!-- app.component.html -->
-<ngx-table-builder #table enable-filtering [source]="licenses">
-    <ngx-column key="name" is-filterable>
+<ngx-table-builder
+    #table
+    enable-filtering
+    [source]="licenses"
+>
+    <ngx-column
+        key="name"
+        is-filterable
+    >
         <ng-template ngx-th>License</ng-template>
-        <ng-template ngx-td let-name>{{ name | uppercase }}</ng-template>
+        <ng-template
+            ngx-td
+            let-name
+        >
+            {{ name | uppercase }}
+        </ng-template>
     </ngx-column>
 
-    <ngx-column key="price" is-filterable>
+    <ngx-column
+        key="price"
+        is-filterable
+    >
         <ng-template ngx-th>Cost</ng-template>
-        <ng-template ngx-td let-price>{{ price | currency }}</ng-template>
+        <ng-template
+            ngx-td
+            let-price
+        >
+            {{ price | currency }}
+        </ng-template>
     </ngx-column>
 </ngx-table-builder>
 ```

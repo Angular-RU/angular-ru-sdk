@@ -13,12 +13,35 @@ describe('sync control value interceptor', () => {
     @Component({
         selector: 'sync-test',
         template: `
-            <input *ngIf="enableControl" #ngModelInputElement trim [autoSplit]="enableAutoSplit" [(ngModel)]="value" />
-            <input #formControlInputElement trim autoSplit [formControl]="formControl" />
+            <input
+                *ngIf="enableControl"
+                #ngModelInputElement
+                trim
+                [autoSplit]="enableAutoSplit"
+                [(ngModel)]="value"
+            />
+            <input
+                #formControlInputElement
+                trim
+                autoSplit
+                [formControl]="formControl"
+            />
             <form [formGroup]="formGroup">
-                <input #formGroupControlA formControlName="controlA" trim autoSplit />
-                <input #formGroupControlB formControlName="controlB" />
-                <input #formGroupControlC formControlName="controlC" trim />
+                <input
+                    #formGroupControlA
+                    formControlName="controlA"
+                    trim
+                    autoSplit
+                />
+                <input
+                    #formGroupControlB
+                    formControlName="controlB"
+                />
+                <input
+                    #formGroupControlC
+                    formControlName="controlC"
+                    trim
+                />
             </form>
         `
     })

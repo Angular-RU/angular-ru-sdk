@@ -2,20 +2,59 @@
     <mat-toolbar class="simple-toolbar">
         <span>Auto push</span>
 
-        <button mat-button class="regenerate" (click)="add()">Add</button>
+        <button
+            mat-button
+            class="regenerate"
+            (click)="add()"
+        >
+            Add
+        </button>
     </mat-toolbar>
 </div>
 
-<ngx-table-builder #table [source]="data">
-    <ngx-column *ngFor="let key of table.modelColumnKeys" [key]="key">
+<ngx-table-builder
+    #table
+    [source]="data"
+>
+    <ngx-column
+        *ngFor="let key of table.modelColumnKeys"
+        [key]="key"
+    >
         <ng-template ngx-th>{{ key }}</ng-template>
-        <ng-template ngx-td let-cell>{{ cell }}</ng-template>
+        <ng-template
+            ngx-td
+            let-cell
+        >
+            {{ cell }}
+        </ng-template>
     </ngx-column>
 
-    <ngx-column custom-key key="action" sticky-end empty-head width="140">
-        <ng-template ngx-td let-row row>
-            <button mat-button class="my-action" (click)="edit(row)"><mat-icon>edit</mat-icon></button>
-            <button mat-button class="my-action" (click)="delete(row)"><mat-icon>delete</mat-icon></button>
+    <ngx-column
+        custom-key
+        key="action"
+        sticky-end
+        empty-head
+        width="140"
+    >
+        <ng-template
+            ngx-td
+            let-row
+            row
+        >
+            <button
+                mat-button
+                class="my-action"
+                (click)="edit(row)"
+            >
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button
+                mat-button
+                class="my-action"
+                (click)="delete(row)"
+            >
+                <mat-icon>delete</mat-icon>
+            </button>
         </ng-template>
     </ngx-column>
 </ngx-table-builder>

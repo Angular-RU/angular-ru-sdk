@@ -1,6 +1,11 @@
 <mat-toolbar class="simple-toolbar">
     <span>Persistent state</span>
-    <button mat-raised-button class="show-simple">show code sample</button>
+    <button
+        mat-raised-button
+        class="show-simple"
+    >
+        show code sample
+    </button>
 </mat-toolbar>
 
 <ngx-table-builder
@@ -12,10 +17,17 @@
     [vertical-border]="false"
     [exclude-keys]="['reverseId']"
 >
-    <ngx-options is-draggable is-filterable is-sortable></ngx-options>
+    <ngx-options
+        is-draggable
+        is-filterable
+        is-sortable
+    ></ngx-options>
 
     <ngx-context-menu>
-        <ngx-context-menu-item contextTitle divider>
+        <ngx-context-menu-item
+            contextTitle
+            divider
+        >
             <ngx-menu-content>Menu</ngx-menu-content>
         </ngx-context-menu-item>
 
@@ -28,13 +40,22 @@
                 (onClick)="table.toggleColumnVisibility(column.key); $event.preventDefault()"
             >
                 <ngx-menu-content no-margin>{{ column.key }}</ngx-menu-content>
-                <ngx-menu-content no-margin align-center>
-                    <mat-checkbox color="primary" [checked]="column.isVisible"></mat-checkbox>
+                <ngx-menu-content
+                    no-margin
+                    align-center
+                >
+                    <mat-checkbox
+                        color="primary"
+                        [checked]="column.isVisible"
+                    ></mat-checkbox>
                 </ngx-menu-content>
             </ngx-context-menu-item>
         </ngx-context-menu-item>
 
-        <ngx-context-menu-item divider (onClick)="table.resetSchema()">
+        <ngx-context-menu-item
+            divider
+            (onClick)="table.resetSchema()"
+        >
             <ngx-menu-content>Reset table settings</ngx-menu-content>
         </ngx-context-menu-item>
     </ngx-context-menu>
@@ -49,12 +70,31 @@
         [is-draggable]="false"
     ></ngx-column>
 
-    <ngx-column key="reverseId" custom-key width="150" vertical-line important-template></ngx-column>
+    <ngx-column
+        key="reverseId"
+        custom-key
+        width="150"
+        vertical-line
+        important-template
+    ></ngx-column>
 
-    <ngx-column *ngFor="let key of table.modelColumnKeys" [key]="key"></ngx-column>
+    <ngx-column
+        *ngFor="let key of table.modelColumnKeys"
+        [key]="key"
+    ></ngx-column>
 
-    <ngx-column key="edit" custom-key width="60" vertical-line sticky-end empty-head>
-        <ng-template ngx-td row>
+    <ngx-column
+        key="edit"
+        custom-key
+        width="60"
+        vertical-line
+        sticky-end
+        empty-head
+    >
+        <ng-template
+            ngx-td
+            row
+        >
             <button mat-button><mat-icon>info</mat-icon></button>
         </ng-template>
     </ngx-column>

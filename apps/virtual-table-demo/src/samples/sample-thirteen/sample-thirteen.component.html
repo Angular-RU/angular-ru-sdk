@@ -76,8 +76,17 @@
         <br />
         <br />
 
-        <ngx-table-builder #tableFirst enable-selection [source]="data">
-            <ngx-column key="selection" sticky width="55" custom-key>
+        <ngx-table-builder
+            #tableFirst
+            enable-selection
+            [source]="data"
+        >
+            <ngx-column
+                key="selection"
+                sticky
+                width="55"
+                custom-key
+            >
                 <ng-template ngx-th>
                     <mat-checkbox
                         [indeterminate]="tableFirst.selectionModel.isIndeterminate"
@@ -85,7 +94,12 @@
                         (change)="tableFirst.selection.toggleAll(data)"
                     ></mat-checkbox>
                 </ng-template>
-                <ng-template ngx-td row let-row (onClick)="$event.preventDefault()">
+                <ng-template
+                    ngx-td
+                    row
+                    let-row
+                    (onClick)="$event.preventDefault()"
+                >
                     <!-- eslint-disable @angular-eslint/template/no-call-expression -->
                     <mat-checkbox
                         [checked]="tableFirst.selectionModel.get($any(row).id)"
@@ -94,8 +108,15 @@
                 </ng-template>
             </ngx-column>
 
-            <ngx-column *ngFor="let key of tableFirst.modelColumnKeys" [key]="key">
-                <ng-template ngx-td let-cell (onClick)="rowOnClick($event)">
+            <ngx-column
+                *ngFor="let key of tableFirst.modelColumnKeys"
+                [key]="key"
+            >
+                <ng-template
+                    ngx-td
+                    let-cell
+                    (onClick)="rowOnClick($event)"
+                >
                     {{ cell }}
                 </ng-template>
             </ngx-column>
@@ -108,8 +129,17 @@
         <br />
         <br />
 
-        <ngx-table-builder #tableSecond enable-selection [source]="data">
-            <ngx-column key="selection" sticky width="55" custom-key>
+        <ngx-table-builder
+            #tableSecond
+            enable-selection
+            [source]="data"
+        >
+            <ngx-column
+                key="selection"
+                sticky
+                width="55"
+                custom-key
+            >
                 <ng-template ngx-th>
                     <mat-checkbox
                         [indeterminate]="tableSecond.selectionModel.isIndeterminate"
@@ -117,7 +147,12 @@
                         (change)="tableSecond.selection.toggleAll(data)"
                     ></mat-checkbox>
                 </ng-template>
-                <ng-template ngx-td row let-row (onClick)="$event.preventDefault()">
+                <ng-template
+                    ngx-td
+                    row
+                    let-row
+                    (onClick)="$event.preventDefault()"
+                >
                     <!-- eslint-disable @angular-eslint/template/no-call-expression -->
                     <mat-checkbox
                         [checked]="tableSecond.selectionModel.get($any(row).id)"
@@ -126,8 +161,15 @@
                 </ng-template>
             </ngx-column>
 
-            <ngx-column *ngFor="let key of tableSecond.modelColumnKeys" [key]="key">
-                <ng-template ngx-td let-cell (dblClick)="rowDblClick($event)">
+            <ngx-column
+                *ngFor="let key of tableSecond.modelColumnKeys"
+                [key]="key"
+            >
+                <ng-template
+                    ngx-td
+                    let-cell
+                    (dblClick)="rowDblClick($event)"
+                >
                     {{ cell }}
                 </ng-template>
             </ngx-column>

@@ -15,7 +15,10 @@ describe('[TEST]: inputFilter Config', () => {
     @Component({
         selector: 'test',
         template: `
-            <input inputFilter [value]="filterValue" />
+            <input
+                inputFilter
+                [value]="filterValue"
+            />
         `,
         changeDetection: ChangeDetectionStrategy.OnPush
     })

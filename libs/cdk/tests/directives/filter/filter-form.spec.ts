@@ -17,9 +17,21 @@ describe('[TEST]: inputFilter Input', function () {
         selector: 'test',
         template: `
             <div [formGroup]="form">
-                <input id="input1" matInput type="text" formControlName="value" [inputFilter]="characters" />
+                <input
+                    id="input1"
+                    matInput
+                    type="text"
+                    formControlName="value"
+                    [inputFilter]="characters"
+                />
             </div>
-            <input id="input2" matInput type="text" [inputFilter]="characters" [(ngModel)]="name" />
+            <input
+                id="input2"
+                matInput
+                type="text"
+                [inputFilter]="characters"
+                [(ngModel)]="name"
+            />
         `,
         changeDetection: ChangeDetectionStrategy.OnPush
     })

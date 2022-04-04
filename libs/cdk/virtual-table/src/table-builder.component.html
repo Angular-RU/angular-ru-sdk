@@ -32,7 +32,12 @@
     [tableViewport]="tableViewport"
     (recalculatedHeight)="recalculateHeight()"
 >
-    <div *ngIf="filteringRun" class="table-grid__root-filtering">filtering...</div>
+    <div
+        *ngIf="filteringRun"
+        class="table-grid__root-filtering"
+    >
+        filtering...
+    </div>
 
     <div
         *ngIf="source?.length === 0 && filterable.filterValueExist"
@@ -40,7 +45,10 @@
         [innerHTML]="ngxEmptyContent?.nativeElement?.innerHTML | safe: 'html'"
     ></div>
 
-    <div #header class="table-grid__header-sticky">
+    <div
+        #header
+        class="table-grid__header-sticky"
+    >
         <ng-content select="ngx-header"></ng-content>
     </div>
     <div
@@ -108,7 +116,10 @@
                     (cdkDragMoved)="cdkDragMoved($event, root)"
                     (observeVisible)="markVisibleColumn(column, $event)"
                 >
-                    <div *ngIf="$any(column)['visible']!" [@fadeInLinear]>
+                    <div
+                        *ngIf="$any(column)['visible']!"
+                        [@fadeInLinear]
+                    >
                         <table-thead
                             cdkDragHandle
                             [column-schema]="schema"
@@ -153,7 +164,11 @@
         </div>
     </div>
 
-    <div *ngIf="footerTemplate && isRendered" #footer class="table-grid__footer-sticky">
+    <div
+        *ngIf="footerTemplate && isRendered"
+        #footer
+        class="table-grid__footer-sticky"
+    >
         <ng-content select="ngx-footer"></ng-content>
     </div>
 </div>

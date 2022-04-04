@@ -1,10 +1,18 @@
 <label>
-    <input placeholder="Price" [ngModel]="price.snapshot" (ngModelChange)="price.setPrice($event)" />
+    <input
+        placeholder="Price"
+        [ngModel]="price.snapshot"
+        (ngModelChange)="price.setPrice($event)"
+    />
 </label>
 <br />
 
 <label>
-    <input placeholder="Amount" [ngModel]="amount.snapshot" (ngModelChange)="amount.setAmount($event)" />
+    <input
+        placeholder="Amount"
+        [ngModel]="amount.snapshot"
+        (ngModelChange)="amount.setAmount($event)"
+    />
 </label>
 
 <p>Sum: {{ amount.sum }}</p>

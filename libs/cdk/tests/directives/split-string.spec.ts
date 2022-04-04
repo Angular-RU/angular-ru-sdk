@@ -30,7 +30,13 @@ describe('[TEST]: Trim Input', function () {
                     [splitOptions]="splitStringOptions"
                 />
             </form>
-            <input #tdfInputElement type="text" splitString [splitOptions]="splitStringOptions" [(ngModel)]="list" />
+            <input
+                #tdfInputElement
+                type="text"
+                splitString
+                [splitOptions]="splitStringOptions"
+                [(ngModel)]="list"
+            />
         `
     })
     class TestComponent {

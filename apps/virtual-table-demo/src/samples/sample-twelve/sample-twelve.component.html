@@ -102,7 +102,13 @@
 <div class="column-samples">
     <div class="column">
         <ngx-table-builder [source]="licences">
-            <ngx-header content-cell align-center bold>License list</ngx-header>
+            <ngx-header
+                content-cell
+                align-center
+                bold
+            >
+                License list
+            </ngx-header>
         </ngx-table-builder>
         <br />
 
@@ -117,7 +123,13 @@
 
     <div class="column">
         <ngx-table-builder [source]="licences">
-            <ngx-footer content-cell align-center bold>Footer</ngx-footer>
+            <ngx-footer
+                content-cell
+                align-center
+                bold
+            >
+                Footer
+            </ngx-footer>
         </ngx-table-builder>
         <br />
 
@@ -134,10 +146,28 @@
 <h3>Header and footer are always sticky position</h3>
 <br />
 
-<ngx-table-builder [source]="data" [height]="500">
-    <ngx-options is-draggable is-sortable></ngx-options>
-    <ngx-header content-cell align-center bold>Header 1</ngx-header>
-    <ngx-footer content-cell align-center bold>Footer 1</ngx-footer>
+<ngx-table-builder
+    [source]="data"
+    [height]="500"
+>
+    <ngx-options
+        is-draggable
+        is-sortable
+    ></ngx-options>
+    <ngx-header
+        content-cell
+        align-center
+        bold
+    >
+        Header 1
+    </ngx-header>
+    <ngx-footer
+        content-cell
+        align-center
+        bold
+    >
+        Footer 1
+    </ngx-footer>
 </ngx-table-builder>
 
 <h3>Table with header can be expandable</h3>
@@ -152,9 +182,22 @@
 </code></pre>
 <br />
 <div style="height: 500px">
-    <ngx-table-builder height="100%" [source]="data">
-        <ngx-options is-draggable is-sortable></ngx-options>
-        <ngx-header content-cell align-center bold expandablePanel>Header 3</ngx-header>
+    <ngx-table-builder
+        height="100%"
+        [source]="data"
+    >
+        <ngx-options
+            is-draggable
+            is-sortable
+        ></ngx-options>
+        <ngx-header
+            content-cell
+            align-center
+            bold
+            expandablePanel
+        >
+            Header 3
+        </ngx-header>
     </ngx-table-builder>
 </div>
 <br />

@@ -65,9 +65,17 @@ class AmountState extends NgxsDataRepository<number> {
 @Component({
     selector: 'app',
     template: `
-        <input placeholder="Price" [ngModel]="price.snapshot" (ngModelChange)="price.setPrice($event)" />
+        <input
+            placeholder="Price"
+            [ngModel]="price.snapshot"
+            (ngModelChange)="price.setPrice($event)"
+        />
         <br />
-        <input placeholder="Amount" [ngModel]="amount.snapshot" (ngModelChange)="amount.setAmount($event)" />
+        <input
+            placeholder="Amount"
+            [ngModel]="amount.snapshot"
+            (ngModelChange)="amount.setAmount($event)"
+        />
         <p>Sum: {{ amount.sum }}</p>
     `
 })

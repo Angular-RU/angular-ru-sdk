@@ -2,31 +2,78 @@
     <h2>Basic</h2>
 
     <div class="wrapper wrapper--4">
-        <div tooltip="Bottom" tooltip-placement="bottom" class="cell">Bottom</div>
-        <div tooltip="Right" tooltip-placement="right" class="cell">Right</div>
-        <div tooltip="Left" tooltip-placement="left" class="cell">Left</div>
-        <div tooltip="Top" tooltip-placement="top" class="cell">Top</div>
+        <div
+            tooltip="Bottom"
+            tooltip-placement="bottom"
+            class="cell"
+        >
+            Bottom
+        </div>
+        <div
+            tooltip="Right"
+            tooltip-placement="right"
+            class="cell"
+        >
+            Right
+        </div>
+        <div
+            tooltip="Left"
+            tooltip-placement="left"
+            class="cell"
+        >
+            Left
+        </div>
+        <div
+            tooltip="Top"
+            tooltip-placement="top"
+            class="cell"
+        >
+            Top
+        </div>
     </div>
 
     <h2>With ng-template</h2>
 
     <div class="wrapper wrapper--4">
-        <div tooltip-placement="bottom" class="cell" [tooltip]="template1" [tooltip-context]="{ name: 'Max' }">
+        <div
+            tooltip-placement="bottom"
+            class="cell"
+            [tooltip]="template1"
+            [tooltip-context]="{ name: 'Max' }"
+        >
             Bottom with HTML
 
-            <ng-template #template1 let-context>
+            <ng-template
+                #template1
+                let-context
+            >
                 <span style="text-decoration: underline; color: yellow">Hello {{ context.name }}</span>
             </ng-template>
         </div>
-        <div tooltip-placement="right" class="cell" [tooltip]="template2" [tooltip-context]="version">
+        <div
+            tooltip-placement="right"
+            class="cell"
+            [tooltip]="template2"
+            [tooltip-context]="version"
+        >
             Right with HTML
 
-            <ng-template #template2 let-version>
-                <img src="assets/img/angular.svg" alt="logo" />
+            <ng-template
+                #template2
+                let-version
+            >
+                <img
+                    src="assets/img/angular.svg"
+                    alt="logo"
+                />
                 Angular {{ version.full }}
             </ng-template>
         </div>
-        <div tooltip-placement="left" class="cell" [tooltip]="template3">
+        <div
+            tooltip-placement="left"
+            class="cell"
+            [tooltip]="template3"
+        >
             Left with HTML
 
             <ng-template #template3>...</ng-template>
@@ -60,7 +107,12 @@
     <h2>Example with remove Nodes</h2>
 
     <div>
-        <cdk-virtual-scroll-viewport minBufferPx="200" maxBufferPx="200" [itemSize]="24" [style.height.px]="200">
+        <cdk-virtual-scroll-viewport
+            minBufferPx="200"
+            maxBufferPx="200"
+            [itemSize]="24"
+            [style.height.px]="200"
+        >
             <ng-container *cdkVirtualFor="let favorite of favorites">
                 <ng-template
                     [ngTemplateOutlet]="virtualRef"
@@ -69,7 +121,10 @@
             </ng-container>
         </cdk-virtual-scroll-viewport>
 
-        <ng-template #virtualRef let-favorite>
+        <ng-template
+            #virtualRef
+            let-favorite
+        >
             <div class="favorite-line">
                 <mat-icon
                     tooltip-placement="right"
@@ -82,14 +137,21 @@
                     star_rate
                 </mat-icon>
 
-                <mat-icon tooltip="remove element" tooltip-placement="right" (click)="remove(favorite)">
+                <mat-icon
+                    tooltip="remove element"
+                    tooltip-placement="right"
+                    (click)="remove(favorite)"
+                >
                     delete
                 </mat-icon>
 
                 {{ favorite.title }}
             </div>
 
-            <ng-template #templateRef let-favorite>
+            <ng-template
+                #templateRef
+                let-favorite
+            >
                 {{ favorite.isMarked ? 'Remove from favorite list' : 'Add to favorite list' }}
             </ng-template>
         </ng-template>

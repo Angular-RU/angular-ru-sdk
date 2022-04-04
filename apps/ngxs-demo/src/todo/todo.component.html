@@ -14,12 +14,18 @@
 PS: TodoState will be persistence in localStorage (ttl: 30sec)
 
 <div class="add-todo">
-    <input #text placeholder="New Todo" />
+    <input
+        #text
+        placeholder="New Todo"
+    />
     <button (click)="todo.addTodo(text.value)">Add</button>
     <button (click)="todo.reset()">Reset</button>
 </div>
 <ul>
-    <li *ngFor="let todoItem of todo.state$ | async; let i = index" class="todo">
+    <li
+        *ngFor="let todoItem of todo.state$ | async; let i = index"
+        class="todo"
+    >
         {{ todoItem }}
         <button (click)="todo.removeTodo(i)">🗑</button>
     </li>

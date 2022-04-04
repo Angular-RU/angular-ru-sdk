@@ -1,7 +1,19 @@
-<div [class.context-menu__content-place]="icon === null" [class.context-menu__icon-place]="icon !== null">
-    <div class="content" [class.align-center]="alignCenter !== null">
-        <ng-template [ngIf]="icon?.length! > 0" [ngIfElse]="content">
-            <img alt="img" [attr.src]="icon" />
+<div
+    [class.context-menu__content-place]="icon === null"
+    [class.context-menu__icon-place]="icon !== null"
+>
+    <div
+        class="content"
+        [class.align-center]="alignCenter !== null"
+    >
+        <ng-template
+            [ngIf]="icon?.length! > 0"
+            [ngIfElse]="content"
+        >
+            <img
+                alt="img"
+                [attr.src]="icon"
+            />
         </ng-template>
         <ng-template #content>
             <ng-content></ng-content>

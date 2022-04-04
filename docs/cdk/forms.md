@@ -26,7 +26,10 @@ export class AutoSplitDirective {
 @Component({
     selector: 'sync-test',
     template: `
-        <input [autoSplit]="enableAutoSplit" [(ngModel)]="value" />
+        <input
+            [autoSplit]="enableAutoSplit"
+            [(ngModel)]="value"
+        />
         <!-- has value 'value1, value2' which is plain string -->
     `
 })

@@ -34,7 +34,12 @@ export class AppModule {}
         <form [formGroup]="form">
             <!-- ... -->
         </form>
-        <button *ngFor="let strategy of strategies" (click)="update(strategy)">{{ strategy }}</button>
+        <button
+            *ngFor="let strategy of strategies"
+            (click)="update(strategy)"
+        >
+            {{ strategy }}
+        </button>
     `
 })
 export class AppComponent {
@@ -118,7 +123,12 @@ export class AppModule {}
         <form [formGroup]="form">
             <!-- ... -->
         </form>
-        <button *ngFor="let strategy of strategies" (click)="update(strategy)">{{ strategy }}</button>
+        <button
+            *ngFor="let strategy of strategies"
+            (click)="update(strategy)"
+        >
+            {{ strategy }}
+        </button>
     `
 })
 export class AppComponent {

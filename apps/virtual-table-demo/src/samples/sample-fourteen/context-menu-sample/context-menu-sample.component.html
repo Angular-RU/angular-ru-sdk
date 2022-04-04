@@ -5,7 +5,10 @@
             [value]="$any(table.filterable.filterTypeDefinition)[state.key!]"
             (valueChange)="table.filterable.updateFilterTypeBy($event, state.key); table.filter()"
         >
-            <mat-option *ngFor="let type of table.filterable.types | keyvalue" [value]="type.value">
+            <mat-option
+                *ngFor="let type of table.filterable.types | keyvalue"
+                [value]="type.value"
+            >
                 {{ type.key }}
             </mat-option>
         </mat-select>

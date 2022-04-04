@@ -3,7 +3,13 @@
         Example resizing
         <span *ngIf="table.isRendered">({{ table.source?.length }}x{{ table.displayedColumns?.length }})</span>
     </span>
-    <button mat-raised-button class="show-simple" (click)="showSample()">show code sample</button>
+    <button
+        mat-raised-button
+        class="show-simple"
+        (click)="showSample()"
+    >
+        show code sample
+    </button>
 </mat-toolbar>
 
 <b>Default col width</b>
@@ -25,7 +31,15 @@
        Also you can customize your columns manually
        <ngx-column key="myKey" [resizable]="true">...</ngx-column>
     -->
-    <ngx-options is-draggable [nowrap]="false"></ngx-options>
+    <ngx-options
+        is-draggable
+        [nowrap]="false"
+    ></ngx-options>
 
-    <ngx-column key="id" width="80" important-template sticky></ngx-column>
+    <ngx-column
+        key="id"
+        width="80"
+        important-template
+        sticky
+    ></ngx-column>
 </ngx-table-builder>

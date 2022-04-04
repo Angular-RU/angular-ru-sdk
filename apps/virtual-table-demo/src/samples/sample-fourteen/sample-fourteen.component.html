@@ -1,18 +1,48 @@
 <mat-toolbar class="simple-toolbar">
     <span>Example filters ({{ table?.size }})</span>
     <div class="show-simple">
-        <button mat-raised-button (click)="filterFromFifth()">filter from fifth</button>
-        <button mat-raised-button (click)="clearFilter()">clear filter</button>
-        <button mat-raised-button (click)="showSample()">show code sample</button>
+        <button
+            mat-raised-button
+            (click)="filterFromFifth()"
+        >
+            filter from fifth
+        </button>
+        <button
+            mat-raised-button
+            (click)="clearFilter()"
+        >
+            clear filter
+        </button>
+        <button
+            mat-raised-button
+            (click)="showSample()"
+        >
+            show code sample
+        </button>
     </div>
 </mat-toolbar>
 
-<ngx-table-builder #table enable-filtering enable-selection class="filter-example" [source]="data" [row-height]="40">
-    <ngx-options is-sortable is-filterable is-draggable is-resizable></ngx-options>
+<ngx-table-builder
+    #table
+    enable-filtering
+    enable-selection
+    class="filter-example"
+    [source]="data"
+    [row-height]="40"
+>
+    <ngx-options
+        is-sortable
+        is-filterable
+        is-draggable
+        is-resizable
+    ></ngx-options>
     <ngx-source-null>Loading...</ngx-source-null>
     <ngx-empty><not-found></not-found></ngx-empty>
 
-    <ngx-header height="65" [css-class]="['my-filter']">
+    <ngx-header
+        height="65"
+        [css-class]="['my-filter']"
+    >
         <div class="filter-form">
             <mat-form-field appearance="outline">
                 <mat-label>Filter</mat-label>
@@ -26,10 +56,19 @@
                 <mat-icon matSuffix>search</mat-icon>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="filter-options">
+            <mat-form-field
+                appearance="outline"
+                class="filter-options"
+            >
                 <mat-label>Find options</mat-label>
-                <mat-select [(value)]="table.filterable.filterType" (valueChange)="table.filter()">
-                    <mat-option *ngFor="let type of table.filterable.types | keyvalue" [value]="type.value">
+                <mat-select
+                    [(value)]="table.filterable.filterType"
+                    (valueChange)="table.filter()"
+                >
+                    <mat-option
+                        *ngFor="let type of table.filterable.types | keyvalue"
+                        [value]="type.value"
+                    >
                         {{ type.key }}
                     </mat-option>
                 </mat-select>
@@ -37,7 +76,12 @@
         </div>
     </ngx-header>
 
-    <ngx-column key="selection" sticky width="55" custom-key>
+    <ngx-column
+        key="selection"
+        sticky
+        width="55"
+        custom-key
+    >
         <ng-template ngx-th>
             <mat-checkbox
                 [indeterminate]="table.selectionModel.isIndeterminate"
@@ -45,7 +89,12 @@
                 (change)="table.selection.toggleAll(data)"
             ></mat-checkbox>
         </ng-template>
-        <ng-template ngx-td row let-row (onClick)="$event.preventDefault()">
+        <ng-template
+            ngx-td
+            row
+            let-row
+            (onClick)="$event.preventDefault()"
+        >
             <!-- eslint-disable @angular-eslint/template/no-call-expression -->
             <mat-checkbox
                 [checked]="table.selectionModel.get($any(row).id)"
@@ -54,22 +103,41 @@
         </ng-template>
     </ngx-column>
 
-    <ngx-column *ngFor="let key of table.modelColumnKeys" [key]="key">
-        <ng-template ngx-td let-cell [nowrap]="false">
+    <ngx-column
+        *ngFor="let key of table.modelColumnKeys"
+        [key]="key"
+    >
+        <ng-template
+            ngx-td
+            let-cell
+            [nowrap]="false"
+        >
             <a onclick="javascript:void(0)">
-                <ngx-filter-viewer [key]="key" [text]="cell"></ngx-filter-viewer>
+                <ngx-filter-viewer
+                    [key]="key"
+                    [text]="cell"
+                ></ngx-filter-viewer>
             </a>
         </ng-template>
     </ngx-column>
 
-    <ngx-column custom-key key="action" sticky-end width="50" empty-head>
+    <ngx-column
+        custom-key
+        key="action"
+        sticky-end
+        width="50"
+        empty-head
+    >
         <ng-template ngx-td>
             <mat-icon>all_inbox</mat-icon>
         </ng-template>
     </ngx-column>
 
     <ngx-filter #filter>
-        <context-menu-sample [state]="filter.state" [table]="table"></context-menu-sample>
+        <context-menu-sample
+            [state]="filter.state"
+            [table]="table"
+        ></context-menu-sample>
     </ngx-filter>
 
     <ngx-footer>

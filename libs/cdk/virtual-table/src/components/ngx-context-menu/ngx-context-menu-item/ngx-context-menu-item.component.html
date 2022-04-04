@@ -26,7 +26,10 @@
                 [style.left.px]="offsetX"
                 [style.top.px]="offsetY"
             >
-                <div #ref class="sub-menu__tree--content">
+                <div
+                    #ref
+                    class="sub-menu__tree--content"
+                >
                     <ng-content select="ngx-context-menu-item"></ng-content>
                 </div>
             </div>

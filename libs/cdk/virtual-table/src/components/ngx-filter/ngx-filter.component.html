@@ -1,6 +1,14 @@
-<div *ngIf="state?.opened" class="table-grid__background-flat" (click)="close()" (contextmenu)="close()"></div>
+<div
+    *ngIf="state?.opened"
+    class="table-grid__background-flat"
+    (click)="close()"
+    (contextmenu)="close()"
+></div>
 
-<div *ngIf="state?.opened" class="table-grid__filter-menu">
+<div
+    *ngIf="state?.opened"
+    class="table-grid__filter-menu"
+>
     <div
         class="filter-menu"
         [ngStyle]="{
@@ -13,7 +21,10 @@
         }"
         (contextmenu)="close()"
     >
-        <div class="table-close__button" (click)="closeFilter()"></div>
+        <div
+            class="table-close__button"
+            (click)="closeFilter()"
+        ></div>
         <ng-content></ng-content>
     </div>
 </div>

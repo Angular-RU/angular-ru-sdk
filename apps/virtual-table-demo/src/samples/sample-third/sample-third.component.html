@@ -4,11 +4,27 @@
         <span *ngIf="table.isRendered">({{ table.source?.length }}x{{ table.displayedColumns?.length }})</span>
         <span style="margin-left: 5px">Selected: {{ table.selection.selectionModel.size }}</span>
     </span>
-    <button mat-raised-button class="show-simple" (click)="showSample()">show code sample</button>
+    <button
+        mat-raised-button
+        class="show-simple"
+        (click)="showSample()"
+    >
+        show code sample
+    </button>
 </mat-toolbar>
 
-<ngx-table-builder #table enable-selection [source]="data" [produce-disable-fn]="disableFn">
-    <ngx-column key="selection" sticky width="55" custom-key>
+<ngx-table-builder
+    #table
+    enable-selection
+    [source]="data"
+    [produce-disable-fn]="disableFn"
+>
+    <ngx-column
+        key="selection"
+        sticky
+        width="55"
+        custom-key
+    >
         <ng-template ngx-th>
             <mat-checkbox
                 [indeterminate]="table.selectionModel.isIndeterminate"
@@ -16,7 +32,12 @@
                 (change)="table.selection.toggleAll(data)"
             ></mat-checkbox>
         </ng-template>
-        <ng-template ngx-td row let-row (onClick)="$event.preventDefault()">
+        <ng-template
+            ngx-td
+            row
+            let-row
+            (onClick)="$event.preventDefault()"
+        >
             <!-- eslint-disable @angular-eslint/template/no-call-expression -->
             <mat-checkbox
                 [checked]="table.selectionModel.get($any(row).id)"
@@ -25,5 +46,8 @@
         </ng-template>
     </ngx-column>
 
-    <ngx-column *ngFor="let key of table.modelColumnKeys" [key]="key"></ngx-column>
+    <ngx-column
+        *ngFor="let key of table.modelColumnKeys"
+        [key]="key"
+    ></ngx-column>
 </ngx-table-builder>

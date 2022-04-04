@@ -17,7 +17,13 @@ describe('[TEST]: Trim Input', function () {
         selector: 'test',
         template: `
             <div [formGroup]="form">
-                <input matInput type="text" trimInput mask="0000-0000-0000-0000" [formControlName]="controlName" />
+                <input
+                    matInput
+                    type="text"
+                    trimInput
+                    mask="0000-0000-0000-0000"
+                    [formControlName]="controlName"
+                />
             </div>
         `,
         changeDetection: ChangeDetectionStrategy.OnPush

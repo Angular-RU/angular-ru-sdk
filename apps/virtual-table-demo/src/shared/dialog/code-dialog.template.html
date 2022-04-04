@@ -1,5 +1,14 @@
 <h3>{{ data.title }}</h3>
-<p *ngIf="data.description" [innerHTML]="data.description"></p>
+<p
+    *ngIf="data.description"
+    [innerHTML]="data.description"
+></p>
 <pre><code class="html">{{ data.code }}</code></pre>
 
-<button mat-button class="dialog-close" (click)="close()">OK</button>
+<button
+    mat-button
+    class="dialog-close"
+    (click)="close()"
+>
+    OK
+</button>

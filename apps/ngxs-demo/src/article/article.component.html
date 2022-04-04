@@ -1,6 +1,16 @@
 <div class="button-actions">
-    <button mat-stroked-button (click)="createArticle()">Add article</button>
-    <button mat-stroked-button (click)="articleEntities.removeAll()">Remove all articles</button>
+    <button
+        mat-stroked-button
+        (click)="createArticle()"
+    >
+        Add article
+    </button>
+    <button
+        mat-stroked-button
+        (click)="articleEntities.removeAll()"
+    >
+        Remove all articles
+    </button>
 </div>
 
 <table
@@ -11,28 +21,84 @@
     (matSortChange)="sortData($event)"
 >
     <ng-container matColumnDef="id">
-        <th *matHeaderCellDef mat-header-cell>UID</th>
-        <td *matCellDef="let id" mat-cell>{{ articleEntities.entities![id]?.uid }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="title">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header>Title</th>
-        <td *matCellDef="let id" mat-cell>{{ articleEntities.entities![id]?.title }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="category">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header>Category</th>
-        <td *matCellDef="let id" mat-cell>{{ articleEntities.entities![id]?.category }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="edit">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header style="width: 70px"></th>
-        <td *matCellDef="let id" mat-cell>
-            <button mat-icon-button (click)="editById(id)"><mat-icon>edit</mat-icon></button>
-            <button mat-icon-button (click)="deleteById(id)"><mat-icon>delete</mat-icon></button>
+        <th
+            *matHeaderCellDef
+            mat-header-cell
+        >
+            UID
+        </th>
+        <td
+            *matCellDef="let id"
+            mat-cell
+        >
+            {{ articleEntities.entities![id]?.uid }}
         </td>
     </ng-container>
 
-    <tr *matHeaderRowDef="['id', 'title', 'category', 'edit']" mat-header-row></tr>
-    <tr *matRowDef="let row; columns: ['id', 'title', 'category', 'edit']" mat-row></tr>
+    <ng-container matColumnDef="title">
+        <th
+            *matHeaderCellDef
+            mat-header-cell
+            mat-sort-header
+        >
+            Title
+        </th>
+        <td
+            *matCellDef="let id"
+            mat-cell
+        >
+            {{ articleEntities.entities![id]?.title }}
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="category">
+        <th
+            *matHeaderCellDef
+            mat-header-cell
+            mat-sort-header
+        >
+            Category
+        </th>
+        <td
+            *matCellDef="let id"
+            mat-cell
+        >
+            {{ articleEntities.entities![id]?.category }}
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+        <th
+            *matHeaderCellDef
+            mat-header-cell
+            mat-sort-header
+            style="width: 70px"
+        ></th>
+        <td
+            *matCellDef="let id"
+            mat-cell
+        >
+            <button
+                mat-icon-button
+                (click)="editById(id)"
+            >
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button
+                mat-icon-button
+                (click)="deleteById(id)"
+            >
+                <mat-icon>delete</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <tr
+        *matHeaderRowDef="['id', 'title', 'category', 'edit']"
+        mat-header-row
+    ></tr>
+    <tr
+        *matRowDef="let row; columns: ['id', 'title', 'category', 'edit']"
+        mat-row
+    ></tr>
 </table>

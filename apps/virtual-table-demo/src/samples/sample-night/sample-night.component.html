@@ -1,16 +1,35 @@
 <mat-toolbar class="simple-toolbar">
     <span>Example table in columns</span>
-    <mat-checkbox style="margin-left: 10px" class="mat-checkbox-flat" [(ngModel)]="nativeScrollbar" (change)="update()">
+    <mat-checkbox
+        style="margin-left: 10px"
+        class="mat-checkbox-flat"
+        [(ngModel)]="nativeScrollbar"
+        (change)="update()"
+    >
         Enable native scrollbar
     </mat-checkbox>
 
-    <button mat-raised-button class="show-simple" (click)="showSample()">show code sample</button>
+    <button
+        mat-raised-button
+        class="show-simple"
+        (click)="showSample()"
+    >
+        show code sample
+    </button>
 </mat-toolbar>
 
 <div id="main-column">
     <div id="widget1">
-        <ngx-table-builder #table1 enable-filtering [source]="dataFirst" [native-scrollbar]="nativeScrollbar">
-            <ngx-header height="65" [css-class]="['my-filter']">
+        <ngx-table-builder
+            #table1
+            enable-filtering
+            [source]="dataFirst"
+            [native-scrollbar]="nativeScrollbar"
+        >
+            <ngx-header
+                height="65"
+                [css-class]="['my-filter']"
+            >
                 <div class="filter-form">
                     <mat-form-field appearance="outline">
                         <mat-label>Filter</mat-label>
@@ -24,10 +43,19 @@
                         <mat-icon matSuffix>search</mat-icon>
                     </mat-form-field>
 
-                    <mat-form-field appearance="outline" class="filter-options">
+                    <mat-form-field
+                        appearance="outline"
+                        class="filter-options"
+                    >
                         <mat-label>Find options</mat-label>
-                        <mat-select [(value)]="table1.filterable.filterType" (valueChange)="table1.filter()">
-                            <mat-option *ngFor="let type of table1.filterable.types | keyvalue" [value]="type.value">
+                        <mat-select
+                            [(value)]="table1.filterable.filterType"
+                            (valueChange)="table1.filter()"
+                        >
+                            <mat-option
+                                *ngFor="let type of table1.filterable.types | keyvalue"
+                                [value]="type.value"
+                            >
                                 {{ type.key }}
                             </mat-option>
                         </mat-select>
@@ -38,14 +66,27 @@
             <ngx-options is-draggable></ngx-options>
             <ngx-column *ngFor="let key of table1.modelColumnKeys">
                 <ng-template ngx-th>{{ key }}</ng-template>
-                <ng-template ngx-td let-cell>{{ cell }}</ng-template>
+                <ng-template
+                    ngx-td
+                    let-cell
+                >
+                    {{ cell }}
+                </ng-template>
             </ngx-column>
         </ngx-table-builder>
     </div>
 
     <div id="widget2">
-        <ngx-table-builder #table2 enable-filtering [source]="dataSecond" [native-scrollbar]="nativeScrollbar">
-            <ngx-header height="65" [css-class]="['my-filter']">
+        <ngx-table-builder
+            #table2
+            enable-filtering
+            [source]="dataSecond"
+            [native-scrollbar]="nativeScrollbar"
+        >
+            <ngx-header
+                height="65"
+                [css-class]="['my-filter']"
+            >
                 <div class="filter-form">
                     <mat-form-field appearance="outline">
                         <mat-label>Filter</mat-label>
@@ -59,10 +100,19 @@
                         <mat-icon matSuffix>search</mat-icon>
                     </mat-form-field>
 
-                    <mat-form-field appearance="outline" class="filter-options">
+                    <mat-form-field
+                        appearance="outline"
+                        class="filter-options"
+                    >
                         <mat-label>Find options</mat-label>
-                        <mat-select [(value)]="table2.filterable.filterType" (valueChange)="table2.filter()">
-                            <mat-option *ngFor="let type of table2.filterable.types | keyvalue" [value]="type.value">
+                        <mat-select
+                            [(value)]="table2.filterable.filterType"
+                            (valueChange)="table2.filter()"
+                        >
+                            <mat-option
+                                *ngFor="let type of table2.filterable.types | keyvalue"
+                                [value]="type.value"
+                            >
                                 {{ type.key }}
                             </mat-option>
                         </mat-select>
@@ -73,7 +123,12 @@
             <ngx-options is-draggable></ngx-options>
             <ngx-column *ngFor="let key of table2.modelColumnKeys">
                 <ng-template ngx-th>{{ key }}</ng-template>
-                <ng-template ngx-td let-cell>{{ cell }}</ng-template>
+                <ng-template
+                    ngx-td
+                    let-cell
+                >
+                    {{ cell }}
+                </ng-template>
             </ngx-column>
         </ngx-table-builder>
     </div>

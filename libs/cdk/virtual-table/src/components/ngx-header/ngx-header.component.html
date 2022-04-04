@@ -6,7 +6,10 @@
     [class.table-grid__table-content-place--bold]="bold !== null"
     [style.height.px]="height"
 >
-    <div [ngClass]="cssClasses" [class.content-box]="contentCell !== null">
+    <div
+        [ngClass]="cssClasses"
+        [class.content-box]="contentCell !== null"
+    >
         <ng-content></ng-content>
     </div>
     <ng-container *ngIf="expandablePanel && !hideToggle">

@@ -116,7 +116,6 @@ expect(isSimpleObject(document.createElement('div'))).toBe(false);
 -   `isGetter`
 
 ```typescript
-
 import { isGetter } from '@angular-ru/cdk/object';
 
 class A {
@@ -356,7 +355,7 @@ it('should be return true for equals primitive types', (): void => {
 
     expect(equals('1' as 1 as any)).toBe(false);
     expect(equals(null!, undefined!)).toBe(false);
-    expect(equals(NaN as undefined!, { deep: true })).toBe(false);
+    expect(equals(NaN as !undefined, { deep: true })).toBe(false);
 });
 
 it('should be a proper comparison with a weak and strict type', (): void => {

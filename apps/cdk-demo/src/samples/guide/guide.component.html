@@ -4,22 +4,39 @@
     <form [formGroup]="amountForm">
         <mat-form-field>
             <mat-label>Amount sum</mat-label>
-            <input matInput placeholder="Sum" formControlName="sum" amountFormat />
+            <input
+                matInput
+                placeholder="Sum"
+                formControlName="sum"
+                amountFormat
+            />
         </mat-form-field>
     </form>
 
     <h3>inputFilter directive</h3>
 
     <h4>default filter (only numbers)</h4>
-    <input inputFilter class="input-filter" [value]="valueNumbers" />
+    <input
+        inputFilter
+        class="input-filter"
+        [value]="valueNumbers"
+    />
     <span>{{ onlyNumbers }}</span>
 
     <h4>simple input</h4>
-    <input class="input-filter" [inputFilter]="filterRegExp" [value]="value" />
+    <input
+        class="input-filter"
+        [inputFilter]="filterRegExp"
+        [value]="value"
+    />
     <span>{{ filterRegExp }}</span>
 
     <h4>with control</h4>
-    <input class="input-filter" [formControl]="filterControl" [inputFilter]="filterRegExp" />
+    <input
+        class="input-filter"
+        [formControl]="filterControl"
+        [inputFilter]="filterRegExp"
+    />
     <span>{{ filterRegExp }}</span>
     <br />
     control: "{{ filterControl.value }}"

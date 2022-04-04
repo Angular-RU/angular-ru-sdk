@@ -71,12 +71,22 @@
         <ngx-table-builder [source]="licenses">
             <ngx-column key="name">
                 <ng-template ngx-th>License</ng-template>
-                <ng-template ngx-td let-name>{{ name | uppercase }}</ng-template>
+                <ng-template
+                    ngx-td
+                    let-name
+                >
+                    {{ name | uppercase }}
+                </ng-template>
             </ngx-column>
 
             <ngx-column key="price">
                 <ng-template ngx-th>Price</ng-template>
-                <ng-template ngx-td let-price>{{ price | currency }}</ng-template>
+                <ng-template
+                    ngx-td
+                    let-price
+                >
+                    {{ price | currency }}
+                </ng-template>
             </ngx-column>
         </ngx-table-builder>
     </div>
@@ -205,13 +215,28 @@
     </div>
 
     <div class="column">
-        <ngx-table-builder [source]="elements" [striped]="false" [keys]="columns">
-            <ngx-column key="name" sticky></ngx-column>
+        <ngx-table-builder
+            [source]="elements"
+            [striped]="false"
+            [keys]="columns"
+        >
+            <ngx-column
+                key="name"
+                sticky
+            ></ngx-column>
 
-            <ngx-column key="status" width="50" sticky-end [css-class]="['status-column']">
+            <ngx-column
+                key="status"
+                width="50"
+                sticky-end
+                [css-class]="['status-column']"
+            >
                 <ng-template ngx-th></ng-template>
                 <ng-template ngx-td>
-                    <button mat-button class="button__done">
+                    <button
+                        mat-button
+                        class="button__done"
+                    >
                         <mat-icon>done</mat-icon>
                     </button>
                 </ng-template>
@@ -239,19 +264,50 @@
 
         <hr />
 
-        <ngx-table-builder row-height="60" [source]="licenses">
-            <ngx-column key="id" width="100" empty-head>
-                <ng-template ngx-td let-id>№{{ id }}</ng-template>
+        <ngx-table-builder
+            row-height="60"
+            [source]="licenses"
+        >
+            <ngx-column
+                key="id"
+                width="100"
+                empty-head
+            >
+                <ng-template
+                    ngx-td
+                    let-id
+                >
+                    №{{ id }}
+                </ng-template>
             </ngx-column>
 
-            <ngx-column key="name" head-title="License name">
-                <ng-template ngx-td let-name>{{ name | uppercase }}</ng-template>
+            <ngx-column
+                key="name"
+                head-title="License name"
+            >
+                <ng-template
+                    ngx-td
+                    let-name
+                >
+                    {{ name | uppercase }}
+                </ng-template>
             </ngx-column>
 
-            <ngx-column key="price" head-title="Cost">
-                <ng-template ngx-td let-price>
+            <ngx-column
+                key="price"
+                head-title="Cost"
+            >
+                <ng-template
+                    ngx-td
+                    let-price
+                >
                     <!-- https://github.com/angular/components/issues/24126 -->
-                    <button mat-button [matMenuTriggerFor]="$any(menu)">{{ price | currency }}</button>
+                    <button
+                        mat-button
+                        [matMenuTriggerFor]="$any(menu)"
+                    >
+                        {{ price | currency }}
+                    </button>
                     <mat-menu #menu="matMenu">
                         <button mat-menu-item>EUR</button>
                         <button mat-menu-item>DOL</button>
@@ -259,7 +315,12 @@
                 </ng-template>
             </ngx-column>
 
-            <ngx-column key="change" width="250" empty-head custom-key>
+            <ngx-column
+                key="change"
+                width="250"
+                empty-head
+                custom-key
+            >
                 <ng-template ngx-td>
                     <mat-form-field>
                         <mat-label>Relative</mat-label>

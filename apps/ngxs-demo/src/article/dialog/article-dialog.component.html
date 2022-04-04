@@ -1,22 +1,44 @@
 <h1 mat-dialog-title>Article</h1>
 
-<div mat-dialog-content [formGroup]="form">
+<div
+    mat-dialog-content
+    [formGroup]="form"
+>
     <div>
         <mat-form-field>
             <mat-label>Article title</mat-label>
-            <input matInput formControlName="title" placeholder="title" />
+            <input
+                matInput
+                formControlName="title"
+                placeholder="title"
+            />
         </mat-form-field>
     </div>
 
     <div>
         <mat-form-field>
             <mat-label>Article category</mat-label>
-            <input matInput formControlName="category" placeholder="category" />
+            <input
+                matInput
+                formControlName="category"
+                placeholder="category"
+            />
         </mat-form-field>
     </div>
 </div>
 
 <div mat-dialog-actions>
-    <button mat-button (click)="cancel()">No Thanks</button>
-    <button mat-button [disabled]="form.invalid" (click)="save()">Save</button>
+    <button
+        mat-button
+        (click)="cancel()"
+    >
+        No Thanks
+    </button>
+    <button
+        mat-button
+        [disabled]="form.invalid"
+        (click)="save()"
+    >
+        Save
+    </button>
 </div>

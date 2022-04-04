@@ -17,7 +17,12 @@ describe('[TEST]: inputFilter Dynamic', function () {
         selector: 'test',
         template: `
             <div [formGroup]="form">
-                <input matInput type="text" [formControl]="control" [inputFilter]="predicate" />
+                <input
+                    matInput
+                    type="text"
+                    [formControl]="control"
+                    [inputFilter]="predicate"
+                />
             </div>
         `,
         changeDetection: ChangeDetectionStrategy.OnPush

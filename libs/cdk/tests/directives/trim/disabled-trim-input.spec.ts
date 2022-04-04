@@ -17,7 +17,13 @@ describe('[TEST]: Disabling trim Input', function () {
         selector: 'test',
         template: `
             <div [formGroup]="form">
-                <input matInput type="text" formControlName="value" trimInput [trimDisabled]="disable" />
+                <input
+                    matInput
+                    type="text"
+                    formControlName="value"
+                    trimInput
+                    [trimDisabled]="disable"
+                />
             </div>
         `,
         changeDetection: ChangeDetectionStrategy.OnPush
