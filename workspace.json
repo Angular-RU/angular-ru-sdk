@@ -53,7 +53,9 @@
                 },
                 "format:eslint": {
                     "executor": "@nrwl/workspace:run-commands",
-                    "options": { "command": "eslint . --fix --ignore-pattern '**/file-suites/**'" }
+                    "options": {
+                        "command": "eslint . --cache-location node_modules/.cache/eslint --debug --fix --ignore-pattern '**/file-suites/**'"
+                    }
                 },
                 "format:prettier": {
                     "executor": "@nrwl/workspace:run-commands",

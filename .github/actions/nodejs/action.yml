@@ -14,6 +14,7 @@ runs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ inputs.node-version }}
+        registry-url: 'https://registry.npmjs.org'
 
     - name: Restore node_modules from cache
       id: cache-node-modules
@@ -22,7 +23,9 @@ runs:
         path: |
           node_modules
           */*/node_modules/
-        key: node-modules-cache-${{ hashfiles('package-lock.json') }}
+          !node_modules/.cache
+          !*/*/node_modules/.cache
+        key: modules-cache__nodejs-${{ inputs.node-version }}__${{ hashfiles('**/package-lock.json') }}
 
     - name: Restore from cache of builds
       id: build-cache
@@ -32,16 +35,16 @@ runs:
         path: |
           node_modules/.cache
           */*/node_modules/.cache
-        key: builds-cache-${{ hashFiles('package-lock.json') }}-${{ github.ref }}
-        restore-keys: builds-cache-${{ hashFiles('package-lock.json') }}
+        key: builds-cache-hash__${{ hashFiles('**/package-lock.json') }}-${{ github.ref }}
+        restore-keys: builds-cache__nodejs-${{ inputs.node-version }}__${{ hashFiles('**/package-lock.json') }}
 
     - name: Restore from global NPM cache
       if: steps.cache-node-modules.outputs.cache-hit != 'true'
       uses: actions/cache@v3
       with:
         path: ~/.npm
-        key: npm-cache-${{ hashFiles('package-lock.json') }}
-        restore-keys: npm-cache-${{ hashfiles('package-lock.json') }}
+        key: npm-cache__nodejs-${{ inputs.node-version }}__${{ hashFiles('**/package-lock.json') }}
+        restore-keys: npm-cache-hash__
 
     - run: npm ci
       if: steps.cache-node-modules.outputs.cache-hit != 'true'
