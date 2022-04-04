@@ -35,6 +35,10 @@ jobs:
 
       - name: Autocommit fixed files and push
         uses: ./.github/actions/autopush
+        with:
+          username: ${{ steps.git-setup.outputs.username }}
+          email: ${{ steps.git-setup.outputs.email }}
+          token: ${{ secrets.ANGULAR_RU_BOT_PAT }}
 
 concurrency:
   group: lint-${{ github.head_ref }}

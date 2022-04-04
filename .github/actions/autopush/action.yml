@@ -6,6 +6,15 @@ inputs:
     description: Commit message
     required: false
     default: 'chore: fix formatting'
+  username:
+    description: Git username
+    required: true
+  token:
+    description: Token
+    required: true
+  email:
+    description: Git user email
+    required: true
 
 runs:
   using: composite
@@ -14,9 +23,9 @@ runs:
       if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
       shell: bash
       run: |
-        git config --global user.name "angular-ru-bot"
-        git config --global user.email "angular-ru@yandex.ru"
-        git config remote.origin.url https://x-access-token:${{ secrets.ANGULAR_RU_BOT_PAT }}@github.com/$GITHUB_REPOSITORY
+        git config --global user.name "${{ inputs.username }}"
+        git config --global user.email "${{ inputs.email }}"
+        git config remote.origin.url https://x-access-token:${{ inputs.token }}@github.com/$GITHUB_REPOSITORY
 
         echo "git status"
         git status
@@ -28,6 +37,6 @@ runs:
 
         echo "git commit ..."
         git commit -m "${{ inputs.commit-message }}" \
-                   --no-verify --no-edit \
-                   --author="${{ inputs.username }} <${{ inputs.email }}>" && \
+             --no-verify --no-edit \
+             --author="${{ inputs.username }} <${{ inputs.email }}>" && \
         git push --force-with-lease || true
