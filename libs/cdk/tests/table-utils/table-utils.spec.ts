@@ -39,7 +39,7 @@ describe('[TEST] Table utils', () => {
             { id: 5, firstName: 'agnesi', lastName: 'hawking', age: 22, nullable: null }
         ]);
         expect(plain.map((element: PlainObject) => Object.keys(element))).toEqual(
-            new Array(5).fill(['id', 'firstName', 'lastName', 'age', 'nullable'])
+            Array.from({ length: 5 }).fill(['id', 'firstName', 'lastName', 'age', 'nullable'])
         );
 
         await expect(plainTableComposer.compose([])).resolves.toEqual([]);
@@ -55,7 +55,9 @@ describe('[TEST] Table utils', () => {
             { id: 4, lastName: undefined },
             { id: 5, lastName: 'hawking' }
         ]);
-        expect(plain.map((element) => Object.keys(element))).toEqual(new Array(5).fill(['id', 'lastName']));
+        expect(plain.map((element) => Object.keys(element))).toEqual(
+            Array.from({ length: 5 }).fill(['id', 'lastName'])
+        );
 
         plain = await plainTableComposer.compose(dataset, { includeKeys: ['firstName', 'id', 'lastName', 'country'] });
         expect(plain).toEqual([
@@ -66,7 +68,7 @@ describe('[TEST] Table utils', () => {
             { firstName: 'agnesi', id: 5, lastName: 'hawking', country: undefined }
         ]);
         expect(plain.map((element) => Object.keys(element))).toEqual(
-            new Array(5).fill(['firstName', 'id', 'lastName', 'country'])
+            Array.from({ length: 5 }).fill(['firstName', 'id', 'lastName', 'country'])
         );
     });
 
@@ -81,7 +83,7 @@ describe('[TEST] Table utils', () => {
             { lastName: 'hawking', age: 22, nullable: null }
         ]);
         expect(plain.map((element) => Object.keys(element))).toEqual(
-            new Array(5).fill(['lastName', 'age', 'nullable'])
+            Array.from({ length: 5 }).fill(['lastName', 'age', 'nullable'])
         );
 
         plain = await plainTableComposer.compose(dataset, { excludeKeys: ['age', 'firstName', 'country'] });
@@ -92,6 +94,8 @@ describe('[TEST] Table utils', () => {
             { id: 4, lastName: undefined, nullable: undefined },
             { id: 5, lastName: 'hawking', nullable: null }
         ]);
-        expect(plain.map((element) => Object.keys(element))).toEqual(new Array(5).fill(['id', 'lastName', 'nullable']));
+        expect(plain.map((element) => Object.keys(element))).toEqual(
+            Array.from({ length: 5 }).fill(['id', 'lastName', 'nullable'])
+        );
     });
 });

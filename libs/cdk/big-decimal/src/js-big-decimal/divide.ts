@@ -44,7 +44,8 @@ export function divide(inputDividend: Any, inputDivisor: Any, inputPrecission: n
 
         if (dl > dividendBeforePoint.length) {
             shift += dl - dividendBeforePoint.length;
-            dividendBeforePoint = dividendBeforePoint + new Array(dl - dividendBeforePoint.length + 1).join('0');
+            dividendBeforePoint =
+                dividendBeforePoint + Array.from({ length: dl - dividendBeforePoint.length + 1 }).join('0');
         }
 
         precission = shift;

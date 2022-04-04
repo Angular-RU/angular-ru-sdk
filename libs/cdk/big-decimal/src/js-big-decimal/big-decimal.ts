@@ -254,7 +254,7 @@ function prepareExponentiation(mantisa: Any, exponent: Any, offset: number): str
     let num: string = '';
 
     if (mantisa.length < exponent) {
-        num = mantisa + new Array(exponent - mantisa.length + 1).join('0');
+        num = mantisa + Array.from({ length: exponent - mantisa.length + 1 }).join('0');
     } else if (mantisa.length >= exponent && exponent > 0) {
         num =
             trim(mantisa.substring(0, exponent)) + (mantisa.length > exponent ? `.${mantisa.substring(exponent)}` : '');

@@ -33,7 +33,7 @@ export class MocksGenerator {
                                 if (cols > 6) {
                                     // eslint-disable-next-line spellcheck/spell-checker
                                     baseRow['About Big Text And More Powerful Label Fugiat Tempor Sunt Nostrud'] =
-                                        new Array(Math.ceil(random(0, 1000)))
+                                        Array.from({ length: Math.ceil(random(0, 1000)) })
                                             .fill(null)
                                             .map((): string => (~~(Math.random() * 36)).toString(36))
                                             .join('');

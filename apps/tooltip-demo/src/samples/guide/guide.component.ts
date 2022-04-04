@@ -14,19 +14,21 @@ interface Favorite {
 export class GuideComponent {
     public version: Version = VERSION;
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers,@typescript-eslint/explicit-function-return-type
-    public favorites: Favorite[] = new Array(10000).fill(0).map(
-        // eslint-disable-next-line @typescript-eslint/typedef
-        (_, i: number): Favorite => ({
-            id: i + 1,
-            title: Math.random()
-                // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-                .toString(36)
-                .replace(/[^a-z]+/g, '')
-                // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-                .substr(0, 5),
-            isMarked: false
-        })
-    );
+    public favorites: Favorite[] = Array.from({ length: 10000 })
+        .fill(0)
+        .map(
+            // eslint-disable-next-line @typescript-eslint/typedef
+            (_, i: number): Favorite => ({
+                id: i + 1,
+                title: Math.random()
+                    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+                    .toString(36)
+                    .replace(/[^a-z]+/g, '')
+                    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+                    .substr(0, 5),
+                isMarked: false
+            })
+        );
 
     constructor(private readonly zone: NgZone, protected readonly cd: ChangeDetectorRef) {}
 
