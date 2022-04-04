@@ -2,7 +2,7 @@ import { Fn } from '@angular-ru/cdk/typings';
 
 import { instanceOfPlainObject } from './internal/instance-of-plain-object';
 
-export function isPlainObject(plainObject: any): boolean {
+export function isPlainObject<T>(plainObject: T): boolean {
     let constructorRef: Fn;
     let prototypeRef: Fn;
 
@@ -12,7 +12,7 @@ export function isPlainObject(plainObject: any): boolean {
 
     // If has modified constructor
     // eslint-disable-next-line prefer-const
-    constructorRef = plainObject.constructor;
+    constructorRef = (plainObject as any)?.constructor;
 
     if (constructorRef === undefined) {
         return true;

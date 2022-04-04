@@ -851,6 +851,7 @@ export class TableBuilderComponent<T>
      * <allowedKeyMap> - possible keys from the model, this must be checked,
      * because users can draw the wrong keys in the template (ngx-column key=invalid)
      */
+    // eslint-disable-next-line complexity
     private parseTemplateKeys(): TemplateKeys {
         const modelKeys: string[] = this.getModelKeys();
         const keys: string[] = hasItems(this.keys)

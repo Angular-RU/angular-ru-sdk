@@ -9,7 +9,7 @@ import { hlJsCode } from '../../../../../.global/utils/hljs-code';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CodeDialogComponent implements AfterViewInit {
-    constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<unknown>) {}
+    constructor(@Inject(MAT_DIALOG_DATA) public data: unknown | any, public dialogRef: MatDialogRef<unknown>) {}
 
     public ngAfterViewInit(): void {
         hlJsCode();

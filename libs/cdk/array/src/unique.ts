@@ -1,3 +1,3 @@
-export function unique(value: any, index: number, self: any[]): boolean {
+export function unique<T>(value: T, index: number, self: any[]): boolean {
     return self.indexOf(value) === index;
 }

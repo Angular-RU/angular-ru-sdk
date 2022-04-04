@@ -1,7 +1,6 @@
 /* eslint-disable deprecation/deprecation */
 import { SchemaMetadata, Type } from '@angular/core';
 import { TestBed, TestModuleMetadata } from '@angular/core/testing';
-
 import { isNil } from '@angular-ru/cdk/utils';
 import { getStateMetadata } from '@angular-ru/ngxs/internals';
 import { Store } from '@ngxs/store';

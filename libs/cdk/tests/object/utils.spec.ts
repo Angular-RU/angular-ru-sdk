@@ -29,14 +29,14 @@ describe('[TEST]: Correct work object utils', (): void => {
     it('should be return true for equals primitive types', (): void => {
         expect(equals(null!, null!)).toBe(true);
         expect(equals(undefined!, undefined!)).toBe(true);
-        expect(equals(NaN as NaN as any)).toBe(true);
-        expect(equals(Infinity as Infinity as any)).toBe(true);
-        expect(equals('' as '' as any)).toBe(true);
-        expect(equals(1 as 1 as any)).toBe(true);
+        expect(equals(NaN as any, NaN as any)).toBe(true);
+        expect(equals(Infinity as any, Infinity as any)).toBe(true);
+        expect(equals('' as any, '' as any)).toBe(true);
+        expect(equals(1 as any, 1 as any)).toBe(true);
 
-        expect(equals('1' as 1 as any)).toBe(false);
+        expect(equals('1' as any, 1 as any)).toBe(false);
         expect(equals(null!, undefined!)).toBe(false);
-        expect(equals(NaN as !undefined, { deep: true })).toBe(false);
+        expect(equals(NaN as any, undefined!, { deep: true })).toBe(false);
     });
 
     it('should be a proper comparison with a weak and strict type', (): void => {

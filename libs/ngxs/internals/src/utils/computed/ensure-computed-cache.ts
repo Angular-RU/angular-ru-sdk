@@ -5,7 +5,7 @@ import { ComputedCacheMap, ComputedOptions } from '@angular-ru/ngxs/typings';
 import { computedKey } from '../common/computed-key';
 import { getComputedCache } from './get-computed-cache';
 
-export function ensureComputedCache(target: any): ComputedCacheMap {
+export function ensureComputedCache(target: unknown | any): ComputedCacheMap {
     const cache: ComputedCacheMap | null = getComputedCache(target);
 
     if (isNil(cache)) {

@@ -18,13 +18,13 @@ export class BigDecimal {
         this.value = BigDecimal.validate(num);
     }
 
-    public static negate(inputNum: any): string {
+    public static negate(inputNum: number | string): string {
         const num: string = BigDecimal.validate(inputNum);
 
         return negate(num);
     }
 
-    public static ceil(inputNum: any): any {
+    public static ceil(inputNum: number | string): any {
         const num: string = BigDecimal.validate(inputNum);
 
         if (num.indexOf('.') === -1) {
@@ -34,49 +34,53 @@ export class BigDecimal {
         return BigDecimal.round(num, 0, RoundingModes.CEILING);
     }
 
-    public static add(inputA: any, inputB?: any): string {
+    public static add(inputA: number | string, inputB: number | string): string {
         const a: string = BigDecimal.validate(inputA);
         const b: string = BigDecimal.validate(inputB);
 
         return add(a, b);
     }
 
-    public static subtract(inputA: any, inputB: any): string {
+    public static subtract(inputA: number | string, inputB: number | string): string {
         const a: string = BigDecimal.validate(inputA);
         const b: string = BigDecimal.validate(inputB);
 
         return subtract(a, b);
     }
 
-    public static multiply(inputA: any, inputB: any): string {
+    public static multiply(inputA: number | string, inputB: number | string): string {
         const a: string = BigDecimal.validate(inputA);
         const b: string = BigDecimal.validate(inputB);
 
         return multiply(a, b);
     }
 
-    public static divide(inputA: any, inputB: any, precision?: any): string {
+    public static divide(inputA: number | string, inputB: number | string, precision: number): string {
         const a: string = BigDecimal.validate(inputA);
         const b: string = BigDecimal.validate(inputB);
 
         return divide(a, b, precision);
     }
 
-    public static modulus(inputA: any, inputB: any): string {
+    public static modulus(inputA: number | string, inputB: number | string): string {
         const a: string = BigDecimal.validate(inputA);
         const b: string = BigDecimal.validate(inputB);
 
         return modulus(a, b);
     }
 
-    public static compareTo(inputA: any, inputB: any): CompareResult {
+    public static compareTo(inputA: number | string, inputB: number | string): CompareResult {
         const a: string = BigDecimal.validate(inputA);
         const b: string = BigDecimal.validate(inputB);
 
         return compareTo(a, b);
     }
 
-    public static round(inputA: any, precision: any = 0, mode: RoundingModes = RoundingModes.HALF_EVEN): any {
+    public static round(
+        inputA: number | string,
+        precision: number = 0,
+        mode: RoundingModes = RoundingModes.HALF_EVEN
+    ): any {
         const a: string = BigDecimal.validate(inputA);
 
         if (isNaN(precision)) {
@@ -86,7 +90,7 @@ export class BigDecimal {
         return roundOff(a, precision, mode);
     }
 
-    public static floor(inputA: any): any {
+    public static floor(inputA: number | string): any {
         const a: string = BigDecimal.validate(inputA);
 
         if (a.indexOf('.') === -1) {
@@ -96,7 +100,7 @@ export class BigDecimal {
         return BigDecimal.round(a, 0, RoundingModes.FLOOR);
     }
 
-    public static getPrettyValue(inputNum: any, digits?: any, separator?: any): string {
+    public static getPrettyValue(inputNum: number | string, digits: number, separator: string): string {
         let num: any = inputNum;
 
         const prettyParams: PrettyParams = validatePrettyParams({ digits, separator });
@@ -116,7 +120,7 @@ export class BigDecimal {
         return (neg ? '-' : '') + temp + num.substring(numLength);
     }
 
-    private static validate(inputNum: any): string {
+    private static validate(inputNum: number | string): string {
         let num: any = prepareNum(inputNum);
 
         const isPoint: boolean = num.startsWith('.');
@@ -139,7 +143,7 @@ export class BigDecimal {
         return this.value;
     }
 
-    public getPrettyValue(digits?: any, separator?: any): string {
+    public getPrettyValue(digits: number, separator: string): string {
         return BigDecimal.getPrettyValue(this.value, digits, separator);
     }
 
@@ -179,7 +183,7 @@ export class BigDecimal {
         return new BigDecimal(multiply(this.value, num.getValue()));
     }
 
-    public divide(num: BigDecimal, precision: any): BigDecimal {
+    public divide(num: BigDecimal, precision: number): BigDecimal {
         return new BigDecimal(divide(this.value, num.getValue(), precision));
     }
 

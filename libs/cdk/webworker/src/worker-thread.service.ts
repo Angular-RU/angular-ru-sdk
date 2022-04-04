@@ -29,7 +29,7 @@ export class WebWorkerThreadService implements WebWorkerThread {
         return this.runUrl(url, data);
     }
 
-    public runUrl(url: string | undefined, data?: any): Promise<any> {
+    public runUrl(url: string | undefined, data?: unknown | any): Promise<any> {
         const worker: Worker = new Worker(url!);
         const promise: Promise<any> = this.createPromiseForWorker(worker, data);
         const promiseCleaner: any = this.createPromiseCleaner(promise);

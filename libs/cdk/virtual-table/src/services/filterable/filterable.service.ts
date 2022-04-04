@@ -62,7 +62,7 @@ export class FilterableService<T> implements Filterable {
         }
     }
 
-    public updateFilterValueBy(value: any, key?: Nullable<string>): void {
+    public updateFilterValueBy(value: unknown | any, key?: Nullable<string>): void {
         if (isNotNil(key)) {
             this.definition = { ...this.definition, [key]: value };
         }

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
 import { StateRepository } from '@angular-ru/ngxs/decorators';
 import { buildDefaultsGraph, ensureStateMetadata, getStateMetadata } from '@angular-ru/ngxs/internals';

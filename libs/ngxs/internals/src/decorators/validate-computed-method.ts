@@ -1,8 +1,7 @@
 import { isGetter } from '@angular-ru/cdk/object';
-
 import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
 
-export function validateComputedMethod(target: any, name: string | symbol): void {
+export function validateComputedMethod(target: unknown | any, name: string | symbol): void {
     const notGetter: boolean = !isGetter(target, name?.toString());
 
     if (notGetter) {

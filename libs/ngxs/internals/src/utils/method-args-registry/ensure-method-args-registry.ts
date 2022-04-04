@@ -5,7 +5,7 @@ import { NGXS_ARGUMENT_REGISTRY_META } from '@angular-ru/ngxs/tokens';
 import { getMethodArgsRegistry } from './get-method-args-registry';
 import { MethodArgsRegistry } from './method-args-registry';
 
-export function ensureMethodArgsRegistry(target: any, propertyKey: any): MethodArgsRegistry {
+export function ensureMethodArgsRegistry(target: unknown | any, propertyKey: unknown | any): MethodArgsRegistry {
     const originMethod: Fn = target[propertyKey];
     const registry: MethodArgsRegistry | undefined = getMethodArgsRegistry(originMethod);
 

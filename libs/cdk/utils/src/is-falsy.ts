@@ -1,5 +1,5 @@
 import { isTruthy } from './is-truthy';
 
-export function isFalsy(value: any): boolean {
+export function isFalsy(value: unknown | any): boolean {
     return !isTruthy(value);
 }

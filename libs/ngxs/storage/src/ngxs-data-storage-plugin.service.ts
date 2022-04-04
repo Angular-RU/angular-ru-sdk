@@ -1,7 +1,6 @@
 import { isPlatformServer } from '@angular/common';
 import { Inject, inject, Injectable, Injector, PLATFORM_ID, ProviderToken, Self } from '@angular/core';
 import { isGetter } from '@angular-ru/cdk/object';
-
 import { checkValueIsFilled, isFalsy, isNotNil, isTruthy } from '@angular-ru/cdk/utils';
 import { STORAGE_INIT_EVENT } from '@angular-ru/ngxs/internals';
 import { NGXS_DATA_STORAGE_EVENT_TYPE } from '@angular-ru/ngxs/tokens';

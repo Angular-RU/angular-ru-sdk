@@ -1,7 +1,6 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { hasItems, hasNoItems } from '@angular-ru/cdk/array';
 import { getValueByPath } from '@angular-ru/cdk/object';
-
 import { checkValueIsFilled } from '@angular-ru/cdk/utils';
 
 import { assertFormGroup } from './utils/assert-form-group';

@@ -1,5 +1,4 @@
 import { EntityCollections, EntityUpdate } from '@angular-ru/cdk/entity';
-
 import { ActionType } from '@ngxs/store';
 import { Observable } from 'rxjs';
 

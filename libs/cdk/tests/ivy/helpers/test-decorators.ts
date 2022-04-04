@@ -30,10 +30,10 @@ export function InjectNgZone(): PropertyDecorator {
     };
 }
 
-export function InjectByToken(token: any): PropertyDecorator {
+export function InjectByToken<K>(token: K): PropertyDecorator {
     return <T extends typeof Object.prototype>(prototypeRef: T, propertyKey: string | symbol): void => {
         useInjector(prototypeRef.constructor, (injector: Injector, instance: any): void => {
-            instance[propertyKey] = injector.get(token as ProviderToken<any>);
+            instance[propertyKey] = injector.get(token as unknown as ProviderToken<any>);
         });
     };
 }

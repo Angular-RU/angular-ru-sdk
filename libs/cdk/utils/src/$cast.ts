@@ -1,3 +1,3 @@
-export function $cast<T>(value: any): T {
+export function $cast<T, K = T>(value: K | any): T {
     return value as T;
 }

@@ -103,14 +103,14 @@ export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
         window.clearInterval(this.idInterval ?? 0);
     }
 
-    public updateRow(row: PlainObject, key: string, value: any): void {
+    public updateRow<T>(row: PlainObject, key: string, value: T): void {
         const newRow: PlainObject = { ...row, [key]: value };
 
         this.data = replaceAt(this.data, this.data.indexOf(row), newRow);
         detectChanges(this.cd);
     }
 
-    public asyncRow(row: PlainObject, key: string, value: any): void {
+    public asyncRow<T>(row: PlainObject, key: string, value: T): void {
         const time: number = 500;
 
         window.clearTimeout(this.timeout ?? 0);

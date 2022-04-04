@@ -1,5 +1,4 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-
 import { isNil } from '@angular-ru/cdk/utils';
 
 import { requiredSomeValueByKeysValidator } from './required-some-value-by-keys.validator';

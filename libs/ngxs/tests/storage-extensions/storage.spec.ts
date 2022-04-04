@@ -33,21 +33,7 @@ import { Subject } from 'rxjs';
 
 describe('[TEST]: Storage plugin', () => {
     let store: Store;
-    let spy: jest.MockInstance<any>;
-
-    function ensureStoragePlugin(): NgxsDataStoragePlugin {
-        const services: any[] = TestBed.inject<any[]>(NGXS_PLUGINS);
-
-        if (services[0] instanceof NgxsDataStoragePlugin) {
-            return services[0];
-        }
-
-        throw new Error('not found plugin');
-    }
-
-    function ensureStorage(storage: Storage): [string, any][] {
-        return Object.entries(storage).map(([key, value]) => [key, JSON.parse(value)]);
-    }
+    let spy: jest.MockInstance<any, any>;
 
     describe('simple API', () => {
         it('should be work with correct providers', () => {
@@ -2290,4 +2276,18 @@ describe('[TEST]: Storage plugin', () => {
 
 function ensureMockStorage<T>(key: string, storage: Storage = localStorage): StorageMeta<T> {
     return JSON.parse(storage.getItem(key)! ?? '{}');
+}
+
+function ensureStoragePlugin(): NgxsDataStoragePlugin {
+    const services: any[] = TestBed.inject<any[]>(NGXS_PLUGINS);
+
+    if (services[0] instanceof NgxsDataStoragePlugin) {
+        return services[0];
+    }
+
+    throw new Error('not found plugin');
+}
+
+function ensureStorage(storage: Storage): [string, any][] {
+    return Object.entries(storage).map(([key, value]) => [key, JSON.parse(value)]);
 }

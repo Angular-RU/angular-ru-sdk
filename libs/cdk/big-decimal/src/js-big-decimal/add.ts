@@ -15,17 +15,17 @@ export function trim(number: string): string {
 }
 
 // eslint-disable-next-line max-lines-per-function, complexity
-export function add(inputA: any, inputB: any = '0'): string {
+export function add(inputA: number | string, inputB: any = '0'): string {
     let a: any = inputA;
     let b: any = inputB;
     let neg: number = 0;
     let ind: number = -1;
 
     // check for negatives
-    if (inputA[0] === '-') {
+    if (inputA.toString()[0] === '-') {
         neg++;
         ind = 1;
-        a = inputA.substring(1);
+        a = inputA.toString().substring(1);
     }
 
     if (inputB[0] === '-') {
@@ -63,9 +63,9 @@ export function add(inputA: any, inputB: any = '0'): string {
 }
 
 // eslint-disable-next-line max-lines-per-function, complexity
-export function pad(inputA: any, inputB: any): [string, string] {
-    const partsA: string[] = inputA.split('.');
-    const partsB: string[] = inputB.split('.');
+export function pad(inputA: string | number, inputB: string | number): [string, string] {
+    const partsA: string[] = inputA.toString().split('.');
+    const partsB: string[] = inputB.toString().split('.');
 
     // pad integral part
     let length1: number = partsA[0]?.length ?? 0;

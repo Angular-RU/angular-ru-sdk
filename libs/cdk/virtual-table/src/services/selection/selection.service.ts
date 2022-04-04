@@ -48,6 +48,7 @@ export class SelectionService<T> implements OnDestroy {
         this.onChanges$.next();
     }
 
+    // eslint-disable-next-line complexity
     public toggleAll(rows: Nullable<T[]>): void {
         let selectedSize: Nullable<number> = null;
 

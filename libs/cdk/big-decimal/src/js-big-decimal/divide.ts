@@ -5,7 +5,11 @@ import { DEFAULT_PRECISSION, PRECISSION_SECOND } from './properties';
 import { roundOff } from './round';
 
 // eslint-disable-next-line max-lines-per-function,complexity,sonarjs/cognitive-complexity
-export function divide(inputDividend: any, inputDivisor: any, inputPrecission: number = DEFAULT_PRECISSION): string {
+export function divide(
+    inputDividend: number | string,
+    inputDivisor: number | string,
+    inputPrecision: number = DEFAULT_PRECISSION
+): string {
     checkDivisionByZero(inputDivisor);
 
     let dividend: string = inputDividend.toString();
@@ -50,7 +54,7 @@ export function divide(inputDividend: any, inputDivisor: any, inputPrecission: n
         quotient = `0.${new Array(shift).join('0')}`;
     }
 
-    while (precission <= inputPrecission + PRECISSION_SECOND) {
+    while (precission <= inputPrecision + PRECISSION_SECOND) {
         let qt: number = 0;
 
         while (parseInt(dividendBeforePoint) >= parseInt(divisor)) {
@@ -80,7 +84,7 @@ export function divide(inputDividend: any, inputDivisor: any, inputPrecission: n
         }
     }
 
-    return (isNegative ? '-' : '') + trim(roundOff(quotient, inputPrecission));
+    return (isNegative ? '-' : '') + trim(roundOff(quotient, inputPrecision));
 }
 
 function parseDividend(inputDividend: string, divisor: string): string {

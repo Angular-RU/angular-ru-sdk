@@ -1,6 +1,5 @@
 import { isDevMode } from '@angular/core';
 import { deepFreeze } from '@angular-ru/cdk/object';
-
 import { isNil, isNotNil } from '@angular-ru/cdk/utils';
 import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
 import { DataStateClass, NgxsRepositoryMeta } from '@angular-ru/ngxs/typings';
