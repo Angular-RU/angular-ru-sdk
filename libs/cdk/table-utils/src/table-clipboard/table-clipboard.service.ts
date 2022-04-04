@@ -1,7 +1,7 @@
 /* eslint-disable unicorn/consistent-function-scoping */
 // eslint-disable-next-line max-classes-per-file
 import { Injectable, Optional } from '@angular/core';
-import { Any, EmptyValue, Nullable, PlainObject } from '@angular-ru/cdk/typings';
+import { EmptyValue, Nullable, PlainObject } from '@angular-ru/cdk/typings';
 import { copyHtml, isNotNil } from '@angular-ru/cdk/utils';
 import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
 import { TranslateService } from '@ngx-translate/core';
@@ -43,8 +43,8 @@ export class TableClipboardService {
             this.webWorker
                 // eslint-disable-next-line max-lines-per-function
                 .run((input: PreparedRequest): string => {
-                    function isEmptyValue(value: Any): value is EmptyValue {
-                        const nextValue: Any = typeof value === 'string' ? value.trim() : value;
+                    function isEmptyValue(value: any): value is EmptyValue {
+                        const nextValue: any = typeof value === 'string' ? value.trim() : value;
 
                         return [undefined, null, NaN, '', Infinity].includes(nextValue);
                     }
@@ -96,8 +96,8 @@ export class TableClipboardService {
                             return `<th>${cellValue}</th>`;
                         }
 
-                        private generateBodyCell(value: Any): string {
-                            const cellValue: Any = isEmptyValue(value) ? this.stub : value;
+                        private generateBodyCell(value: any): string {
+                            const cellValue: any = isEmptyValue(value) ? this.stub : value;
 
                             return `<td>${cellValue}</td>`;
                         }

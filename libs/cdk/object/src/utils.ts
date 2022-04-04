@@ -1,4 +1,4 @@
-import { Any, PlainObject, PlainObjectOf } from '@angular-ru/cdk/typings';
+import { PlainObject, PlainObjectOf } from '@angular-ru/cdk/typings';
 import { checkValueIsEmpty, isTrue } from '@angular-ru/cdk/utils';
 
 import {
@@ -17,7 +17,7 @@ export function unwrap<T>(target: T, options: ObjectExtraOptions): T {
                 deepObjectReduce<T>({
                     key,
                     accumulator,
-                    targetValue: (target as Any)?.[key],
+                    targetValue: (target as any)?.[key],
                     options
                 }),
             {} as T
@@ -90,10 +90,10 @@ export function equals<T, K>(a: T, b: K, options: ObjectExtraOptions = {}): bool
     return objectToString<T>(a, options) === objectToString<K>(b, options);
 }
 
-export function shallowTrimProperties<T>(object: PlainObjectOf<Any>): T {
-    return Object.entries(object).reduce((result: T, [key, value]: [string, Any]): T => {
+export function shallowTrimProperties<T>(object: PlainObjectOf<any>): T {
+    return Object.entries(object).reduce((result: T, [key, value]: [string, any]): T => {
         // note: don't use isString for preserve circular dependencies
-        (result as Any)[key] = typeof value === 'string' ? value.trim() : value;
+        (result as any)[key] = typeof value === 'string' ? value.trim() : value;
 
         return result;
     }, {} as T);

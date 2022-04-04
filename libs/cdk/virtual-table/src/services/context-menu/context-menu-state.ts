@@ -1,9 +1,9 @@
-import { Any, Nullable } from '@angular-ru/cdk/typings';
+import { Nullable } from '@angular-ru/cdk/typings';
 import { isNotNil } from '@angular-ru/cdk/utils';
 
 import { MousePosition } from '../../interfaces/table-builder.internal';
 
-export class ContextMenuState<T = Any, K = Any> {
+export class ContextMenuState<T = any, K = any> {
     public position: MousePosition = { left: null, top: null };
     public opened: boolean = false;
     public key: Nullable<string> = null;

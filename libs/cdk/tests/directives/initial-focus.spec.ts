@@ -4,7 +4,6 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserModule, By } from '@angular/platform-browser';
 import { InitialFocusModule } from '@angular-ru/cdk/directives';
-import { Any } from '@angular-ru/cdk/typings';
 
 jest.useFakeTimers();
 
@@ -84,7 +83,7 @@ describe('[TEST]: Initial Focus', function () {
         const inputElements = debugElement
             .queryAll(By.css('input'))
             .map((element: DebugElement) => element.nativeElement);
-        const spiedFunctions = inputElements.map((element: Any) => jest.spyOn(element, 'focus'));
+        const spiedFunctions = inputElements.map((element: any) => jest.spyOn(element, 'focus'));
 
         expect(spiedFunctions[0]).not.toHaveBeenCalled();
         expect(spiedFunctions[1]).not.toHaveBeenCalled();

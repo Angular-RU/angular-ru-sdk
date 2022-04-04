@@ -8,7 +8,7 @@ import {
     OnDestroy,
     OnInit
 } from '@angular/core';
-import { Any, Nullable, PlainObject } from '@angular-ru/cdk/typings';
+import { Nullable, PlainObject } from '@angular-ru/cdk/typings';
 import { detectChanges } from '@angular-ru/cdk/utils';
 
 import { hlJsCode } from '../../../../../.global/utils/hljs-code';
@@ -53,8 +53,8 @@ const COLORS: string[] = [
     'gray'
 ];
 
-function replaceAt(array: Any[], index: number, value: Any): Any[] {
-    const returnValue: Any[] = array.slice(0);
+function replaceAt(array: any[], index: number, value: any): any[] {
+    const returnValue: any[] = array.slice(0);
 
     returnValue[index] = value;
 
@@ -103,14 +103,14 @@ export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
         window.clearInterval(this.idInterval ?? 0);
     }
 
-    public updateRow(row: PlainObject, key: string, value: Any): void {
+    public updateRow(row: PlainObject, key: string, value: any): void {
         const newRow: PlainObject = { ...row, [key]: value };
 
         this.data = replaceAt(this.data, this.data.indexOf(row), newRow);
         detectChanges(this.cd);
     }
 
-    public asyncRow(row: PlainObject, key: string, value: Any): void {
+    public asyncRow(row: PlainObject, key: string, value: any): void {
         const time: number = 500;
 
         window.clearTimeout(this.timeout ?? 0);
@@ -128,7 +128,7 @@ export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
 
         this.data = new Array(length).fill(0).map(
             // eslint-disable-next-line max-lines-per-function
-            (_: PlainObject, index: number): Any => ({
+            (_: PlainObject, index: number): any => ({
                 id: index,
                 symbol: COLORS[Math.round(Math.random() * (COLORS.length - 1))],
                 item:

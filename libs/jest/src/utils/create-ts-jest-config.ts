@@ -181,7 +181,7 @@ export function createTsJestConfig(options: JestConfigOptions): Config.InitialOp
 
         /**
          * A number limiting the number of tests that are allowed to run at the same time when
-         * using test.concurrent. Any test above this limit will be queued and executed once
+         * using test.concurrent. any test above this limit will be queued and executed once
          * a slot is released.
          */
         maxConcurrency: options?.jestConfig?.maxConcurrency ?? DEFAULT_MAX_CONCURRENCY,
@@ -193,7 +193,7 @@ export function createTsJestConfig(options: JestConfigOptions): Config.InitialOp
 
         /**
          * A list of reporter names that Jest uses when writing coverage reports.
-         * Any istanbul reporter can be used.
+         * any istanbul reporter can be used.
          */
         coverageReporters: options?.jestConfig?.coverageReporters ?? DEFAULT_COVERAGE_REPORTS,
 

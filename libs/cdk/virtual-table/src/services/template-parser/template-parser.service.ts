@@ -1,7 +1,7 @@
 import { Injectable, QueryList } from '@angular/core';
 import { toNumber } from '@angular-ru/cdk/number';
 import { shallowMapObject } from '@angular-ru/cdk/object';
-import { Any, Nullable, PlainObjectOf } from '@angular-ru/cdk/typings';
+import { Nullable, PlainObjectOf } from '@angular-ru/cdk/typings';
 import { checkValueIsFilled, fallbackIfEmpty, isNil, isNotNil, isTrue } from '@angular-ru/cdk/utils';
 
 import { NgxColumnComponent } from '../../components/ngx-column/ngx-column.component';
@@ -132,7 +132,7 @@ export class TemplateParserService<T> {
 
     public mutateColumnSchema(key: string, partialSchema: Partial<ColumnsSchema>): void {
         for (const option of Object.keys(partialSchema)) {
-            (this.compiledTemplates as Any)[key][option] = (partialSchema as Any)[option];
+            (this.compiledTemplates as any)[key][option] = (partialSchema as any)[option];
         }
     }
 

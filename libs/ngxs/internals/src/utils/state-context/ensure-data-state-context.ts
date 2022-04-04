@@ -1,6 +1,6 @@
 import { isDevMode } from '@angular/core';
 import { deepFreeze } from '@angular-ru/cdk/object';
-import { Any } from '@angular-ru/cdk/typings';
+
 import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
 import { StateContext } from '@ngxs/store';
 
@@ -14,10 +14,10 @@ export function ensureDataStateContext<U, T extends StateContext<U>>(context: T 
         getState(): U {
             return isDevMode() ? deepFreeze(context.getState()) : context.getState();
         },
-        setState(value: Any): void {
+        setState(value: any): void {
             context.setState(value);
         },
-        patchState(value: Any): void {
+        patchState(value: any): void {
             context.patchState(value);
         }
     };

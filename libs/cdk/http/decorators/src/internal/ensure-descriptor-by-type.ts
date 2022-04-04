@@ -1,7 +1,7 @@
 import { DataHttpClient, RestTemplate } from '@angular-ru/cdk/http';
 import { EnsureDecoratorOptions } from '@angular-ru/cdk/http/typings';
 import { MethodArgsRegistry } from '@angular-ru/cdk/runtime';
-import { Any, Descriptor, Nullable, PlainObject } from '@angular-ru/cdk/typings';
+import { Descriptor, Nullable, PlainObject } from '@angular-ru/cdk/typings';
 import { isNil, isNotNil } from '@angular-ru/cdk/utils';
 import { Observable } from 'rxjs';
 
@@ -20,14 +20,14 @@ export function ensureDescriptorByType<T>({
     emitOptions
 }: EnsureDecoratorOptions): Descriptor {
     validateMethod(target, descriptor);
-    const originalMethod: Any = descriptor.value;
+    const originalMethod: any = descriptor.value;
 
     // eslint-disable-next-line max-lines-per-function
-    descriptor.value = function (...args: Any[]): Observable<T> {
+    descriptor.value = function (...args: any[]): Observable<T> {
         let newPath: string = path.toString();
         // eslint-disable-next-line @typescript-eslint/no-this-alias
-        const httpClient: DataHttpClient = this as Any;
-        const result: Observable<T> | Any = originalMethod.apply(httpClient, args);
+        const httpClient: DataHttpClient = this as any;
+        const result: Observable<T> | any = originalMethod.apply(httpClient, args);
         let template: Nullable<RestTemplate<T>> = result?.restTemplateRef ?? null;
 
         if (isNotNil(template)) {
@@ -40,9 +40,9 @@ export function ensureDescriptorByType<T>({
 
             const bodyRegistry: MethodArgsRegistry = ensureMethodArgsRegistry(originalMethod, META_REQUEST_BODY);
             const indexBody: Nullable<number> = bodyRegistry.getIndexByKey(KEY_REQUEST_BODY);
-            const body: Any = isNil(indexBody)
+            const body: any = isNil(indexBody)
                 ? template?.options.body
-                : template?.options.body ?? args?.[indexBody as Any];
+                : template?.options.body ?? args?.[indexBody as any];
             const params: Nullable<PlainObject> = ensureQueryParams(
                 template?.options.queryParams,
                 originalMethod,

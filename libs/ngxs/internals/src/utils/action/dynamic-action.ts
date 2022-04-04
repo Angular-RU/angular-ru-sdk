@@ -1,12 +1,12 @@
 import { Type } from '@angular/core';
-import { Any, PlainObjectOf } from '@angular-ru/cdk/typings';
+import { PlainObjectOf } from '@angular-ru/cdk/typings';
 
-export function dynamicActionByType(type: string): Type<Any> {
+export function dynamicActionByType(type: string): Type<any> {
     return class NgxsDataAction {
-        constructor(payload: PlainObjectOf<Any> | null) {
+        constructor(payload: PlainObjectOf<any> | null) {
             if (payload) {
                 for (const key of Object.keys(payload)) {
-                    (this as Any)[key] = payload[key];
+                    (this as any)[key] = payload[key];
                 }
             }
         }

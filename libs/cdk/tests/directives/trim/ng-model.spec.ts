@@ -5,7 +5,7 @@ import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserModule, By } from '@angular/platform-browser';
 import { TrimInputModule } from '@angular-ru/cdk/directives';
-import { Any, Nullable } from '@angular-ru/cdk/typings';
+import { Nullable } from '@angular-ru/cdk/typings';
 import { NgxMaskModule } from 'ngx-mask';
 
 describe('[TEST]: Trim Input', () => {
@@ -21,7 +21,7 @@ describe('[TEST]: Trim Input', () => {
         changeDetection: ChangeDetectionStrategy.OnPush
     })
     class NgModelTestComponent {
-        public value: Any = 1234000022220000;
+        public value: any = 1234000022220000;
     }
 
     beforeEach(async () => {

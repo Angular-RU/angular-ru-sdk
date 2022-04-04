@@ -1,7 +1,6 @@
-import { Any } from '@angular-ru/cdk/typings';
 import { isNil } from '@angular-ru/cdk/utils';
 
-declare const require: Any;
+declare const require: any;
 
 export function checkIsNodeEnvironment(): boolean | never {
     if (isNil(require)) {

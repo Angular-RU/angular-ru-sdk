@@ -1,7 +1,7 @@
 import { isFunctionLike } from '@angular-ru/cdk/function';
-import { Any, CompareFn, Nullable, PrimaryKey } from '@angular-ru/cdk/typings';
+import { CompareFn, Nullable, PrimaryKey } from '@angular-ru/cdk/typings';
 
-export function updateArray<T extends { id?: Any }>(sourceArray: Nullable<T[]>, updatedArray: Nullable<T[]>): T[];
+export function updateArray<T extends { id?: any }>(sourceArray: Nullable<T[]>, updatedArray: Nullable<T[]>): T[];
 export function updateArray<T>(
     sourceArray: Nullable<T[]>,
     updatedArray: Nullable<T[]>,
@@ -36,7 +36,7 @@ export function updateArray<T>(
             if (isFunctionLike<CompareFn<T>>(compareFnOrKey)) {
                 isCompared = compareFnOrKey(currentItem, newItem);
             } else {
-                isCompared = (currentItem as Any)?.[compareFnOrKey] === (newItem as Any)?.[compareFnOrKey];
+                isCompared = (currentItem as any)?.[compareFnOrKey] === (newItem as any)?.[compareFnOrKey];
             }
 
             if (isCompared) {

@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { getValueByPath, isObject } from '@angular-ru/cdk/object';
 import { isString } from '@angular-ru/cdk/string';
-import { Any, Paths } from '@angular-ru/cdk/typings';
+import { Paths } from '@angular-ru/cdk/typings';
 import { checkValueIsEmpty } from '@angular-ru/cdk/utils';
 
 type MaxDepth = 5;
@@ -24,7 +24,7 @@ export class DisplayItemPipe implements PipeTransform {
             throw new Error('attribute "displayKey" can not be empty if input item has "object" type');
         }
 
-        const value: string | Any[] = getValueByPath<T, string>(item, displayKey as string) ?? '';
+        const value: string | any[] = getValueByPath<T, string>(item, displayKey as string) ?? '';
 
         return Array.isArray(value) ? '' : value;
     }

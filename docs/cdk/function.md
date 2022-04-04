@@ -50,8 +50,8 @@ expect(hasConstructor(D)).toEqual(true);
 expect(hasConstructor(String)).toEqual(true);
 
 expect(hasConstructor(C)).toEqual(false);
-expect(hasConstructor({} as Any)).toEqual(false);
-expect(hasConstructor(1 as Any)).toEqual(false);
+expect(hasConstructor({} as any)).toEqual(false);
+expect(hasConstructor(1 as any)).toEqual(false);
 expect(hasConstructor(null)).toEqual(false);
 expect(hasConstructor()).toEqual(false);
 ```

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Any, Nullable } from '@angular-ru/cdk/typings';
+import { Nullable } from '@angular-ru/cdk/typings';
 
 import { LoggerLevel, TimerInfo } from '../interfaces/logger.external';
 import { DEFAULT_METHODS } from '../logger.config';
@@ -33,7 +33,7 @@ export class TimerFactory {
         if (canExecute) {
             const methodName: string = DEFAULT_METHODS[level];
             const time: string = this.ensureTime(info, isMillisecond);
-            const logMethod: (...args: string[]) => void = (logger as Any)[methodName];
+            const logMethod: (...args: string[]) => void = (logger as any)[methodName];
 
             logMethod(`TimerLog: ${info.title}`, `took ${time} to execute`);
         }

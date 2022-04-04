@@ -1,15 +1,15 @@
 import { isFunctionLike } from '@angular-ru/cdk/function';
 import { getValueByPath } from '@angular-ru/cdk/object';
-import { Any, Nullable } from '@angular-ru/cdk/typings';
+import { Nullable } from '@angular-ru/cdk/typings';
 import { isNotNil } from '@angular-ru/cdk/utils';
 
-type TrackBy<T> = (item: T) => Any;
+type TrackBy<T> = (item: T) => any;
 
 export function uniqueArrayOf<T>(list: T[], trackBy: string | TrackBy<T>): T[] {
     const uniqueMap: Map<string, T> = new Map();
 
     for (const item of list) {
-        let trackKey: Nullable<Any>;
+        let trackKey: Nullable<any>;
 
         if (isFunctionLike(trackBy)) {
             trackKey = trackBy(item);

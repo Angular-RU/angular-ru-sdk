@@ -1,6 +1,6 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Any } from '@angular-ru/cdk/typings';
+
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
 import { DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
@@ -14,12 +14,12 @@ describe('check correct deep instance', () => {
 
     interface IFormState {
         dirty?: boolean;
-        model: Any;
+        model: any;
     }
 
     class FormState {
         public dirty?: boolean = false;
-        public model: Any = undefined;
+        public model: any = undefined;
     }
 
     interface IRegistrationStateModel {
@@ -37,10 +37,10 @@ describe('check correct deep instance', () => {
     })
     @Injectable()
     class RegistrationState extends NgxsImmutableDataRepository<IRegistrationStateModel> {
-        @Select((state: Any) => state.registration) public address$!: Observable<IFormState>;
+        @Select((state: any) => state.registration) public address$!: Observable<IFormState>;
 
         @DataAction()
-        public addAddress(address: IFormState): Any {
+        public addAddress(address: IFormState): any {
             return this.ctx.setState(() => ({ address }));
         }
     }
@@ -51,7 +51,7 @@ describe('check correct deep instance', () => {
     })
     class AppComponent implements OnInit {
         public name = 'Angular + NGXS';
-        public result: Any = null;
+        public result: any = null;
 
         constructor(private readonly registration: RegistrationState) {}
 

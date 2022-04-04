@@ -1,4 +1,3 @@
-import { Any } from '@angular-ru/cdk/typings';
 import { checkValueIsEmpty } from '@angular-ru/cdk/utils';
 
 import { add, trim } from './add';
@@ -6,7 +5,7 @@ import { DEFAULT_PRECISSION, PRECISSION_SECOND } from './properties';
 import { roundOff } from './round';
 
 // eslint-disable-next-line max-lines-per-function,complexity,sonarjs/cognitive-complexity
-export function divide(inputDividend: Any, inputDivisor: Any, inputPrecission: number = DEFAULT_PRECISSION): string {
+export function divide(inputDividend: any, inputDivisor: any, inputPrecission: number = DEFAULT_PRECISSION): string {
     checkDivisionByZero(inputDivisor);
 
     let dividend: string = inputDividend.toString();
@@ -122,7 +121,7 @@ function removeTrailingZeros(value: string): string {
     return value.replace(/(\.\d*?[1-9])0+$/g, '$1').replace(/\.0+$/, '');
 }
 
-function checkDivisionByZero(divisor: Any): void {
+function checkDivisionByZero(divisor: any): void {
     if (divisor === 0 || divisor === '0') {
         throw new Error('Cannot divide by 0');
     }

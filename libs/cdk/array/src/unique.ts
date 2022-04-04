@@ -1,5 +1,3 @@
-import { Any } from '@angular-ru/cdk/typings';
-
-export function unique(value: Any, index: number, self: Any[]): boolean {
+export function unique(value: any, index: number, self: any[]): boolean {
     return self.indexOf(value) === index;
 }

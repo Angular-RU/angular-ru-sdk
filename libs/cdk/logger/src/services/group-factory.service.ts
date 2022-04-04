@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { Any, Nullable } from '@angular-ru/cdk/typings';
+import { Nullable } from '@angular-ru/cdk/typings';
 import { isNotNil } from '@angular-ru/cdk/utils';
 
 import { FormatOutput, GroupMethod, LOGGER_OPTIONS, LoggerLevel, Pipeline } from '../interfaces/logger.external';
@@ -75,7 +75,7 @@ export class GroupFactory {
             groupType(`%c${formatLabel}`, formatStyle, title);
 
             if (isNotNil(pipeline)) {
-                const result: Any = pipeline(logger);
+                const result: any = pipeline(logger);
 
                 this.close();
                 pipeLineResult = result;

@@ -1,10 +1,9 @@
 import { unique } from '@angular-ru/cdk/array';
-import { Any } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: unique', () => {
-    const a: Any = {};
-    const b: Any = {};
-    const c: Any = {};
+    const a: any = {};
+    const b: any = {};
+    const c: any = {};
 
     it('should return empty array', () => {
         expect([].filter((element, index, self) => unique(element, index, self))).toEqual([]);

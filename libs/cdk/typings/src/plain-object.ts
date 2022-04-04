@@ -1,3 +1,1 @@
-import { Any } from './any';
-
-export type PlainObject<T = Any> = Record<string, T>;
+export type PlainObject<T = any> = Record<string, T>;

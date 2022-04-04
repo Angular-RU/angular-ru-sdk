@@ -1,6 +1,6 @@
 import { isDevMode } from '@angular/core';
 import { deepFreeze } from '@angular-ru/cdk/object';
-import { Any } from '@angular-ru/cdk/typings';
+
 import { isNil, isNotNil } from '@angular-ru/cdk/utils';
 import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
 import { DataStateClass, NgxsRepositoryMeta } from '@angular-ru/ngxs/typings';
@@ -23,7 +23,7 @@ export function createStateSelector(stateClass: DataStateClass): void {
             state$: {
                 enumerable: true,
                 configurable: true,
-                get(): Observable<Any> {
+                get(): Observable<any> {
                     if (isNotNil(this[selectorId])) {
                         return this[selectorId];
                     } else {
@@ -32,7 +32,7 @@ export function createStateSelector(stateClass: DataStateClass): void {
                         }
 
                         this[selectorId] = NgxsDataInjector.store.select(stateClass).pipe(
-                            map((state: Any): Any => (isDevMode() ? deepFreeze(state) : state)),
+                            map((state: any): any => (isDevMode() ? deepFreeze(state) : state)),
                             shareReplay({ refCount: true, bufferSize: 1 })
                         );
                     }

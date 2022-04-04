@@ -1,4 +1,4 @@
-import { Any, Nullable, PlainObject } from '@angular-ru/cdk/typings';
+import { Nullable, PlainObject } from '@angular-ru/cdk/typings';
 
 export interface DataHeadersParams {
     [key: string]: string | string[];
@@ -6,7 +6,7 @@ export interface DataHeadersParams {
 
 export type DataResponseType = 'arraybuffer' | 'blob' | 'json' | 'text';
 
-export interface DataClientRequestOptions<T extends PlainObject = Any> {
+export interface DataClientRequestOptions<T extends PlainObject = any> {
     /**
      * @description
      * prepare your model before sending on server

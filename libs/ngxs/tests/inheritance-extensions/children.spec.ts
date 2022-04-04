@@ -1,6 +1,6 @@
 import { Component, Injectable, OnDestroy, OnInit } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Any, Immutable } from '@angular-ru/cdk/typings';
+import { Immutable } from '@angular-ru/cdk/typings';
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
 import { StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
@@ -26,8 +26,8 @@ describe('check correct deep instance', () => {
     @Injectable()
     class MyChildBa {
         @Action({ type: 'MyChildBa_ACTION' })
-        public myMutate(ctx: StateContext<Any>): void {
-            ctx.setState((state: Any) => ({ ...state, value: 'NEW_B_A_1' }));
+        public myMutate(ctx: StateContext<any>): void {
+            ctx.setState((state: any) => ({ ...state, value: 'NEW_B_A_1' }));
         }
     }
 
@@ -53,8 +53,8 @@ describe('check correct deep instance', () => {
         children: [MyChildA, MyChildB]
     })
     @Injectable()
-    class AppState extends NgxsImmutableDataRepository<Any> {
-        public initial: Immutable<PlainObjectOf<Any>> = {};
+    class AppState extends NgxsImmutableDataRepository<any> {
+        public initial: Immutable<PlainObjectOf<any>> = {};
 
         public setup(): void {
             this.initial = JSON.parse(JSON.stringify(this.getState()));

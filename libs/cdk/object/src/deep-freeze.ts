@@ -1,7 +1,5 @@
-import { Any } from '@angular-ru/cdk/typings';
-
 // eslint-disable-next-line max-lines-per-function,complexity
-export const deepFreeze: (value: Any) => Any = (value: Any): Any => {
+export const deepFreeze: (value: any) => any = (value: any): any => {
     const isObject: boolean = typeof value === 'object' && value !== null;
     const isDate: boolean = value instanceof Date;
     const skipFreeze: boolean = !isObject || isDate;

@@ -1,6 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
 import { DataClientRequestOptions } from '@angular-ru/cdk/http/typings';
-import { Any } from '@angular-ru/cdk/typings';
 
 import { DATA_CONFIG_SERVICE_TOKEN } from '../tokens/data-config-service.token';
 
@@ -8,14 +7,14 @@ import { DATA_CONFIG_SERVICE_TOKEN } from '../tokens/data-config-service.token';
 export class DataConfiguratorService {
     public config: DataClientRequestOptions;
 
-    constructor(@Inject(DATA_CONFIG_SERVICE_TOKEN) config: Any) {
+    constructor(@Inject(DATA_CONFIG_SERVICE_TOKEN) config: any) {
         this.config = config;
     }
 
     public mergeGlobalOptionsWith(
         local: Partial<DataClientRequestOptions>,
         options: Partial<DataClientRequestOptions>
-    ): Any {
+    ): any {
         return { ...this.config, ...local, ...options };
     }
 }

@@ -1,6 +1,6 @@
 import { HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Any, Fn } from '@angular-ru/cdk/typings';
+import { Fn } from '@angular-ru/cdk/typings';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
@@ -12,7 +12,7 @@ const HTTP_MOCK_DEFAULT_TIMEOUT: number = 500;
 
 @Injectable()
 export class HttpMockInterceptor implements HttpInterceptor {
-    public intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<Any> {
+    public intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<any> {
         return next.handle(request).pipe(
             switchMap(async (value: unknown): Promise<unknown> => {
                 await this.emulateTimeoutIfLongRequest(request);
@@ -22,12 +22,12 @@ export class HttpMockInterceptor implements HttpInterceptor {
         );
     }
 
-    private timeout(ms: number): Promise<Any> {
+    private timeout(ms: number): Promise<any> {
         // eslint-disable-next-line no-restricted-properties
         return new Promise((resolve: Fn): number => window.setTimeout(resolve, ms));
     }
 
-    private async emulateTimeoutIfLongRequest(request: HttpRequest<Any>): Promise<Any> {
+    private async emulateTimeoutIfLongRequest(request: HttpRequest<any>): Promise<any> {
         if (request.urlWithParams.includes(HttpMockRequestId.LONG_REQUEST)) {
             await this.timeout(HTTP_MOCK_DEFAULT_TIMEOUT);
         }

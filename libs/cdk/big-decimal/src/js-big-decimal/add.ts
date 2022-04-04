@@ -1,4 +1,3 @@
-import { Any } from '@angular-ru/cdk/typings';
 import { checkValueIsEmpty, checkValueIsFilled, isNil } from '@angular-ru/cdk/utils';
 
 import { EXPONENTIAL_PARTS_LENGTH, NUMBER_SYSTEM } from './properties';
@@ -16,9 +15,9 @@ export function trim(number: string): string {
 }
 
 // eslint-disable-next-line max-lines-per-function, complexity
-export function add(inputA: Any, inputB: Any = '0'): string {
-    let a: Any = inputA;
-    let b: Any = inputB;
+export function add(inputA: any, inputB: any = '0'): string {
+    let a: any = inputA;
+    let b: any = inputB;
     let neg: number = 0;
     let ind: number = -1;
 
@@ -64,7 +63,7 @@ export function add(inputA: Any, inputB: Any = '0'): string {
 }
 
 // eslint-disable-next-line max-lines-per-function, complexity
-export function pad(inputA: Any, inputB: Any): [string, string] {
+export function pad(inputA: any, inputB: any): [string, string] {
     const partsA: string[] = inputA.split('.');
     const partsB: string[] = inputB.split('.');
 
@@ -102,7 +101,7 @@ export function pad(inputA: Any, inputB: Any): [string, string] {
 
 function compliment(num: string): string {
     let s: string = '';
-    const part: Any = num.split('.')[1];
+    const part: any = num.split('.')[1];
     const ld: number = checkValueIsFilled(part) ? part.length : 0;
 
     for (const element of num) {

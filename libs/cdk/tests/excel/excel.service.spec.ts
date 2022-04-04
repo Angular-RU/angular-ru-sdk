@@ -7,7 +7,7 @@ import {
     ExcelService
 } from '@angular-ru/cdk/excel';
 import { getValueByPath } from '@angular-ru/cdk/object';
-import { Any, Nullable, PlainObject } from '@angular-ru/cdk/typings';
+import { Nullable, PlainObject } from '@angular-ru/cdk/typings';
 import { isNotNil } from '@angular-ru/cdk/utils';
 import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
 import { Observable, of } from 'rxjs';

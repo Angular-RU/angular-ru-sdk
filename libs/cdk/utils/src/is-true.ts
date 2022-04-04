@@ -1,5 +1,3 @@
-import { Any } from '@angular-ru/cdk/typings';
-
-export function isTrue(value: Any): value is true {
+export function isTrue(value: any): value is true {
     return value === true;
 }

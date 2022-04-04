@@ -1,10 +1,10 @@
-import { Any, Fn, Nullable } from '@angular-ru/cdk/typings';
+import { Fn, Nullable } from '@angular-ru/cdk/typings';
 
 /**
  * @internal
  */
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type,max-lines-per-function
-function boundMethod(target: Any, key: Any, descriptor: Any) {
+function boundMethod(target: any, key: any, descriptor: any) {
     let fn: Fn = descriptor.value;
 
     if (typeof fn !== 'function') {
@@ -36,7 +36,7 @@ function boundMethod(target: Any, key: Any, descriptor: Any) {
                 },
 
                 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-                set(value: Any) {
+                set(value: any) {
                     fn = value;
                     delete this[key];
                 }
@@ -47,16 +47,16 @@ function boundMethod(target: Any, key: Any, descriptor: Any) {
         },
 
         // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-        set(value: Any) {
+        set(value: any) {
             fn = value;
         }
     };
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/explicit-function-return-type,max-lines-per-function,complexity
-export function BoundClass(target: Any) {
+export function BoundClass(target: any) {
     // (Using reflect to get all keys including symbols)
-    let keys: Any[];
+    let keys: any[];
 
     // Use Reflect if exists
     if (typeof Reflect !== 'undefined' && typeof Reflect.ownKeys === 'function') {
@@ -71,7 +71,7 @@ export function BoundClass(target: Any) {
     }
 
     // eslint-disable-next-line unicorn/no-array-for-each
-    keys.forEach((key: Any): void => {
+    keys.forEach((key: any): void => {
         // Ignore special case target method
         if (key === 'constructor') {
             return;

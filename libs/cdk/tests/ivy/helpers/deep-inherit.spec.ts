@@ -1,11 +1,10 @@
 import { Component, Directive, Injectable, Injector, NgModule, NgZone, Type } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { useInjector } from '@angular-ru/cdk/ivy';
-import { Any } from '@angular-ru/cdk/typings';
 
 function Injection<T>(classRef: Type<T>): PropertyDecorator {
     return <R extends typeof Object.prototype>(prototypeRef: R, propertyKey: string | symbol): void => {
-        useInjector(prototypeRef.constructor, (injector: Injector, instance: Any): void => {
+        useInjector(prototypeRef.constructor, (injector: Injector, instance: any): void => {
             instance[propertyKey] = injector.get(classRef);
         });
     };
@@ -78,7 +77,7 @@ describe('[TEST] Ivy utils - check deep inheritance', () => {
     });
 
     afterAll((): void => {
-        (console.error as Any).mockRestore();
+        (console.error as any).mockRestore();
     });
 
     /** @description due to test running Angular in JIT mode,

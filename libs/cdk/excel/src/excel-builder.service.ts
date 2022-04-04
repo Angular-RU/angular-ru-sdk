@@ -3,7 +3,7 @@
 import { Injectable } from '@angular/core';
 import { toFormatDateTime } from '@angular-ru/cdk/date';
 import { PlainTableComposerService } from '@angular-ru/cdk/table-utils';
-import { Any, EmptyValue, Nullable, PlainObject } from '@angular-ru/cdk/typings';
+import { EmptyValue, Nullable, PlainObject } from '@angular-ru/cdk/typings';
 import { downloadFile, isNotNil } from '@angular-ru/cdk/utils';
 import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
 
@@ -43,8 +43,8 @@ export class ExcelBuilderService {
         this.webWorker
             // eslint-disable-next-line max-lines-per-function,sonarjs/cognitive-complexity
             .run((input: PreparedExcelWorkbook<T>): Blob => {
-                function isEmptyValue(value: Any): value is EmptyValue {
-                    const nextValue: Any = typeof value === 'string' ? value.trim() : value;
+                function isEmptyValue(value: any): value is EmptyValue {
+                    const nextValue: any = typeof value === 'string' ? value.trim() : value;
 
                     return [undefined, null, NaN, '', Infinity].includes(nextValue);
                 }
@@ -98,9 +98,9 @@ export class ExcelBuilderService {
                             </Workbook>`;
                     }
 
-                    private static renderCell(value: Any, styleId: StyleType): string {
-                        const type: Any = typeof value === 'number' ? 'Number' : 'String';
-                        let cellValue: Any = isEmptyValue(value) ? '-' : value;
+                    private static renderCell(value: any, styleId: StyleType): string {
+                        const type: any = typeof value === 'number' ? 'Number' : 'String';
+                        let cellValue: any = isEmptyValue(value) ? '-' : value;
 
                         if (typeof cellValue === 'string') {
                             cellValue = cellValue.trim();

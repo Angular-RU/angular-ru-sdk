@@ -1,5 +1,5 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { Any } from '@angular-ru/cdk/typings';
+
 import { isNil } from '@angular-ru/cdk/utils';
 
 import { requiredSomeValueByKeysValidator } from './required-some-value-by-keys.validator';
@@ -12,7 +12,7 @@ export function requiredSomeValueValidator<T>(): ValidatorFn {
         assertFormGroup(formGroup, VALIDATOR_TYPE);
         const formGroupValue: T = formGroup.getRawValue();
         const keyList: (keyof T | string)[] = Object.keys(formGroupValue);
-        const error: Any = requiredSomeValueByKeysValidator(keyList)(formGroup);
+        const error: any = requiredSomeValueByKeysValidator(keyList)(formGroup);
 
         return isNil(error) ? null : { [VALIDATOR_TYPE]: true };
     };

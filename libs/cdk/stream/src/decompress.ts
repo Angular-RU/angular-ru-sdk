@@ -1,12 +1,10 @@
-import { Any } from '@angular-ru/cdk/typings';
-
 import { EncodingType } from './encoding-type';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-declare const DecompressionStream: Any;
+declare const DecompressionStream: any;
 
 export async function decompress(bytes: ArrayBuffer, encoding: EncodingType = EncodingType.DEFLATE): Promise<string> {
-    const decompressionStream: Any = new DecompressionStream(encoding);
+    const decompressionStream: any = new DecompressionStream(encoding);
     const writable: WritableStream = decompressionStream.writable;
     const writer: WritableStreamDefaultWriter = writable.getWriter();
 

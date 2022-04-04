@@ -1,5 +1,5 @@
 import { deepClone } from '@angular-ru/cdk/object';
-import { Any } from '@angular-ru/cdk/typings';
+
 import { isNil } from '@angular-ru/cdk/utils';
 import {
     buildDefaultsGraph,
@@ -21,14 +21,14 @@ export function StateRepository(): StateClassDecorator {
         }
 
         createRepositoryMetadata(stateClass, stateMeta);
-        const cloneDefaults: Any = buildDefaultsGraph(stateClass);
+        const cloneDefaults: any = buildDefaultsGraph(stateClass);
 
         defineProperties(stateClass, stateMeta, cloneDefaults);
         createStateSelector(stateClass);
     };
 }
 
-function defineProperties(stateClass: DataStateClass, stateMeta: MetaDataModel, cloneDefaults: Any): void {
+function defineProperties(stateClass: DataStateClass, stateMeta: MetaDataModel, cloneDefaults: any): void {
     Object.defineProperties(stateClass.prototype, {
         name: {
             enumerable: true,
@@ -38,7 +38,7 @@ function defineProperties(stateClass: DataStateClass, stateMeta: MetaDataModel, 
         initialState: {
             enumerable: true,
             configurable: true,
-            get(): Any {
+            get(): any {
                 // preserve mutation
                 return deepClone(cloneDefaults);
             }

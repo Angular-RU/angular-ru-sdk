@@ -1,10 +1,10 @@
-import { Any, PlainObject } from '@angular-ru/cdk/typings';
+import { PlainObject } from '@angular-ru/cdk/typings';
 
 import { IdsMapOf } from '../typings/ids-map-of';
 
 export function createIdsMapOf<T extends PlainObject, K extends keyof T = 'id'>(
     entities: T[],
-    primaryKey: keyof T = 'id' as Any
+    primaryKey: keyof T = 'id' as any
 ): IdsMapOf<T, K> {
     const map: IdsMapOf<T, K> = {} as IdsMapOf<T, K>;
 

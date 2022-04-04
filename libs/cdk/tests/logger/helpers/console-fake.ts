@@ -1,4 +1,4 @@
-import { Any, PlainObject } from '@angular-ru/cdk/typings';
+import { PlainObject } from '@angular-ru/cdk/typings';
 
 export const enum TestLoggerLineType {
     TABLE = 'table',
@@ -19,7 +19,7 @@ export const enum TestLoggerGroupType {
 
 export class ConsoleFake implements Console {
     private _stack: PlainObject[] = [];
-    public Console: Any;
+    public Console: any;
 
     private static parseCssString(css: string): PlainObject {
         const result: PlainObject = {};

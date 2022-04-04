@@ -12,7 +12,7 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { Any, Nullable, PlainObject } from '@angular-ru/cdk/typings';
+import { Nullable, PlainObject } from '@angular-ru/cdk/typings';
 import { detectChanges, isNotNil } from '@angular-ru/cdk/utils';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -61,7 +61,7 @@ export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy
     public ngOnInit(): void {
         this.filterable.events$.pipe(takeUntil(this.destroy$)).subscribe((event: FilterEvent): void => {
             const hasFilter: boolean =
-                isNotNil((this.filterable.definition as Any)[this.key!]) || isNotNil(this.filterable.globalFilterValue);
+                isNotNil((this.filterable.definition as any)[this.key!]) || isNotNil(this.filterable.globalFilterValue);
 
             if (hasFilter) {
                 this.changeSelection(event);
@@ -82,7 +82,7 @@ export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy
             // eslint-disable-next-line no-restricted-properties
             this.taskId = window.setTimeout((): void => {
                 const hasFilter: boolean =
-                    isNotNil(event.value) || isNotNil((this.filterable.definition as Any)[this.key!]);
+                    isNotNil(event.value) || isNotNil((this.filterable.definition as any)[this.key!]);
 
                 if (hasFilter) {
                     this.selected(event);
@@ -97,9 +97,9 @@ export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy
 
     // eslint-disable-next-line max-lines-per-function,complexity
     private selected(event: FilterEvent): void {
-        const value: Nullable<string> = String((this.filterable.definition as Any)[this.key!] ?? event.value);
-        const type: Nullable<string | TableFilterType> = isNotNil((this.filterable.definition as Any)[this.key!])
-            ? (this.filterable.filterTypeDefinition as Any)[this.key!]
+        const value: Nullable<string> = String((this.filterable.definition as any)[this.key!] ?? event.value);
+        const type: Nullable<string | TableFilterType> = isNotNil((this.filterable.definition as any)[this.key!])
+            ? (this.filterable.filterTypeDefinition as any)[this.key!]
             : event.type;
 
         if (IGNORE_FILTER_TYPES.includes(type as TableFilterType)) {

@@ -116,7 +116,7 @@ expect(isSimpleObject(document.createElement('div'))).toBe(false);
 -   `isGetter`
 
 ```typescript
-import { Any } from '@angular-ru/cdk/typings';
+
 import { isGetter } from '@angular-ru/cdk/object';
 
 class A {
@@ -145,7 +145,7 @@ expect(
     isGetter(
         {
             _a: null,
-            set a(value: Any) {
+            set a(value: any) {
                 this._a = value;
             }
         },
@@ -349,14 +349,14 @@ it('should be not equals A and B when deep comparison unsorted keys', (): void =
 it('should be return true for equals primitive types', (): void => {
     expect(equals(null!, null!)).toBe(true);
     expect(equals(undefined!, undefined!)).toBe(true);
-    expect(equals(NaN as Any, NaN as Any)).toBe(true);
-    expect(equals(Infinity as Any, Infinity as Any)).toBe(true);
-    expect(equals('' as Any, '' as Any)).toBe(true);
-    expect(equals(1 as Any, 1 as Any)).toBe(true);
+    expect(equals(NaN as NaN as any)).toBe(true);
+    expect(equals(Infinity as Infinity as any)).toBe(true);
+    expect(equals('' as '' as any)).toBe(true);
+    expect(equals(1 as 1 as any)).toBe(true);
 
-    expect(equals('1' as Any, 1 as Any)).toBe(false);
+    expect(equals('1' as 1 as any)).toBe(false);
     expect(equals(null!, undefined!)).toBe(false);
-    expect(equals(NaN as Any, undefined!, { deep: true })).toBe(false);
+    expect(equals(NaN as undefined!, { deep: true })).toBe(false);
 });
 
 it('should be a proper comparison with a weak and strict type', (): void => {
@@ -365,8 +365,8 @@ it('should be a proper comparison with a weak and strict type', (): void => {
 });
 
 it('should be correct work objectToString', (): void => {
-    expect(objectToString(1 as Any)).toBe('1');
-    expect(objectToString('1' as Any)).toBe('"1"');
+    expect(objectToString(1 as any)).toBe('1');
+    expect(objectToString('1' as any)).toBe('"1"');
     expect(objectToString(null!)).toBe('null');
     expect(objectToString(undefined!)).toBe(undefined);
 

@@ -7,7 +7,7 @@ import {
     toTimestamp,
     toUnix
 } from '@angular-ru/cdk/date';
-import { Any, Nullable } from '@angular-ru/cdk/typings';
+import { Nullable } from '@angular-ru/cdk/typings';
 
 const isoFormat: string = 'yyyy-MM-dd HH:mm:ss';
 
@@ -33,8 +33,8 @@ describe('[TEST]: Date', (): void => {
             expect(toISOString(new Date(0))).toBe('1970-01-01T00:00:00.000Z');
             expect(toISOString('  ')).toBe('');
             expect(toISOString('')).toBe('');
-            expect(toISOString(undefined as Any)).toBe('');
-            expect(toISOString(null as Any)).toBe('');
+            expect(toISOString(undefined as any)).toBe('');
+            expect(toISOString(null as any)).toBe('');
             expect(toISOString('abcde')).toBe('');
         });
 

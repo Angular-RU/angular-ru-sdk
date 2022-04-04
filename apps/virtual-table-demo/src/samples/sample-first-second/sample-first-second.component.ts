@@ -7,7 +7,6 @@ import { takeUntil } from 'rxjs/operators';
 
 import { MocksGenerator } from '../../mocks-generator';
 import { DialogTemplateComponent } from '../../shared/dialog-template/dialog-template.component';
-import { Any } from '../../../../../libs/cdk/typings/src/any';
 
 @Component({
     selector: 'sample-first-second',
@@ -61,7 +60,7 @@ export class SampleFirstSecondComponent implements OnInit, OnDestroy {
                     if (isNotNil(data)) {
                         this.data = this.data.map(
                             (value: PlainObject): PlainObject =>
-                                (value as Any)?.id === (data as Any)?.id ? { ...data } : value
+                                (value as any)?.id === (data as any)?.id ? { ...data } : value
                         );
                         detectChanges(this.cd);
                     }
@@ -75,7 +74,7 @@ export class SampleFirstSecondComponent implements OnInit, OnDestroy {
 
         const startIndex: number =
             this.data.length > 0
-                ? Math.max(...this.data.map((item: PlainObject): number => (item as Any)?.id ?? 0))
+                ? Math.max(...this.data.map((item: PlainObject): number => (item as any)?.id ?? 0))
                 : 0;
 
         MocksGenerator.generator(rows, cols, startIndex).then((row: PlainObject[]): void => {

@@ -1,6 +1,5 @@
 import { ModuleWithProviders, NgModule, Type } from '@angular/core';
 import { DataClientRequestOptions } from '@angular-ru/cdk/http/typings';
-import { Any } from '@angular-ru/cdk/typings';
 
 import { DATA_REQUEST_OPTIONS_CONFIG } from './configs/data-request-options.config';
 import { DataConfiguratorService } from './services/data-configurator.service';
@@ -12,7 +11,7 @@ import { DATA_HTTP_CLIENT_INTERCEPTOR } from './tokens/data-http-client-intercep
 
 @NgModule()
 export class DataHttpClientModule {
-    public static forRoot<K = Any>(
+    public static forRoot<K = any>(
         clients: Type<unknown>[] = [],
         options: Partial<DataClientRequestOptions<K>> = {}
     ): ModuleWithProviders<DataHttpClientModule> {

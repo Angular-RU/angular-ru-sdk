@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Any, PlainObject } from '@angular-ru/cdk/typings';
+import { PlainObject } from '@angular-ru/cdk/typings';
 import { TableBuilderComponent, TableBuilderModule } from '@angular-ru/cdk/virtual-table';
 import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
 
@@ -44,7 +44,7 @@ describe('[TEST] Table builder', (): void => {
 
         idleResolve = jest
             .spyOn(someSortableService.constructor.prototype, 'idleResolve')
-            .mockImplementation((resolve: Any, sorted: unknown) => resolve(sorted));
+            .mockImplementation((resolve: any, sorted: unknown) => resolve(sorted));
 
         componentFixture = TestBed.createComponent(SelectionMockComponent);
         component = componentFixture.componentInstance;

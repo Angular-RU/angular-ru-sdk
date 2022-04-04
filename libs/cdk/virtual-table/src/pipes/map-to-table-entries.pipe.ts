@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Any, Nullable } from '@angular-ru/cdk/typings';
+import { Nullable } from '@angular-ru/cdk/typings';
 import { isNotNil } from '@angular-ru/cdk/utils';
 
 import { RowId } from '../interfaces/table-builder.internal';
@@ -25,7 +25,7 @@ export class MapToTableEntriesPipe<T> implements PipeTransform {
         let itemsToFindLeft: number = filteredEntriesMap.size;
 
         for (const item of this.table.originalSourceRef) {
-            const rowId: RowId = (item as Any)[this.table.primaryKey];
+            const rowId: RowId = (item as any)[this.table.primaryKey];
 
             if (selectedEntries.includes(rowId)) {
                 filteredEntriesMap.set(rowId, item);

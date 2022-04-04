@@ -1,4 +1,3 @@
-import { Any } from '@angular-ru/cdk/typings';
 import { isFalsy, isNotNil, isTruthy } from '@angular-ru/cdk/utils';
 import { NgxsDataMigrateStorage, PullFromStorageInfo, PullFromStorageOptions } from '@angular-ru/ngxs/typings';
 
@@ -55,7 +54,7 @@ function ensureInfoByVersionMismatch<T>(
     const { meta, provider }: PullFromStorageOptions<T> = options;
 
     if (canBeOverrideFromStorage && meta.version !== provider.version) {
-        const instance: NgxsDataMigrateStorage | undefined = provider.stateInstance as Any as NgxsDataMigrateStorage;
+        const instance: NgxsDataMigrateStorage | undefined = provider.stateInstance as any as NgxsDataMigrateStorage;
         const tryMigrate: boolean =
             // eslint-disable-next-line @typescript-eslint/unbound-method
             isFalsy(provider.skipMigrate) && (isTruthy(instance?.ngxsDataStorageMigrate) || isTruthy(provider.migrate));

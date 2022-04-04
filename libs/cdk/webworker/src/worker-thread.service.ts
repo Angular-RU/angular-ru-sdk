@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Any, Fn, Nullable } from '@angular-ru/cdk/typings';
+import { Fn, Nullable } from '@angular-ru/cdk/typings';
 import { isNotNil } from '@angular-ru/cdk/utils';
 
 import { WebWorkerThread } from './worker-thread';
@@ -7,7 +7,7 @@ import { WebWorkerThread } from './worker-thread';
 @Injectable()
 export class WebWorkerThreadService implements WebWorkerThread {
     private readonly workerFunctionToUrlMap: WeakMap<Fn, string> = new WeakMap();
-    private readonly promiseToWorkerMap: WeakMap<Promise<Any>, Worker> = new WeakMap();
+    private readonly promiseToWorkerMap: WeakMap<Promise<any>, Worker> = new WeakMap();
 
     private static createWorkerUrl(resolve: Fn): string {
         const resolveString: string = resolve.toString();
@@ -29,10 +29,10 @@ export class WebWorkerThreadService implements WebWorkerThread {
         return this.runUrl(url, data);
     }
 
-    public runUrl(url: string | undefined, data?: Any): Promise<Any> {
+    public runUrl(url: string | undefined, data?: any): Promise<any> {
         const worker: Worker = new Worker(url!);
-        const promise: Promise<Any> = this.createPromiseForWorker(worker, data);
-        const promiseCleaner: Any = this.createPromiseCleaner(promise);
+        const promise: Promise<any> = this.createPromiseForWorker(worker, data);
+        const promiseCleaner: any = this.createPromiseCleaner(promise);
 
         this.promiseToWorkerMap.set(promise, worker);
 
@@ -45,11 +45,11 @@ export class WebWorkerThreadService implements WebWorkerThread {
         return this.removePromise(promise);
     }
 
-    public getWorker(promise: Promise<Any>): Nullable<Worker> {
+    public getWorker(promise: Promise<any>): Nullable<Worker> {
         return this.promiseToWorkerMap.get(promise);
     }
 
-    private createPromiseForWorker<T>(worker: Worker, data: Any): Promise<T> {
+    private createPromiseForWorker<T>(worker: Worker, data: any): Promise<T> {
         return new Promise<T>((resolve: Fn, reject: Fn): void => {
             worker.addEventListener('message', (event: MessageEvent): boolean => resolve(event.data));
             worker.addEventListener('error', reject);
@@ -69,7 +69,7 @@ export class WebWorkerThreadService implements WebWorkerThread {
         return this.workerFunctionToUrlMap.get(fn);
     }
 
-    private createPromiseCleaner<T>(promise: Promise<T>): (input: Any) => T {
+    private createPromiseCleaner<T>(promise: Promise<T>): (input: any) => T {
         return (event: T): T => {
             this.removePromise(promise);
 

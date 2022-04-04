@@ -4,7 +4,7 @@ import {
     EmitOptions,
     RequestType
 } from '@angular-ru/cdk/http/typings';
-import { Any, Nullable, PlainObject } from '@angular-ru/cdk/typings';
+import { Nullable, PlainObject } from '@angular-ru/cdk/typings';
 import { isNil, isTrue } from '@angular-ru/cdk/utils';
 import { Observable, OperatorFunction } from 'rxjs';
 
@@ -13,7 +13,7 @@ import { DataHttpClient } from '../services/data-http.client';
 export class RestTemplate<T> {
     private markAsRequest: boolean = false;
     private _client: Nullable<DataHttpClient> = null;
-    protected operators: OperatorFunction<T, Any>[] = [];
+    protected operators: OperatorFunction<T, any>[] = [];
     public path!: string;
     public methodType!: RequestType;
 
@@ -71,14 +71,14 @@ export class RestTemplate<T> {
         // eslint-disable-next-line @typescript-eslint/no-this-alias
         const that: RestTemplate<T> = this;
 
-        const fakeProxy: Any = {
+        const fakeProxy: any = {
             restTemplateRef: that,
-            pipe(...operators: OperatorFunction<T, Any>[]): Observable<T> {
+            pipe(...operators: OperatorFunction<T, any>[]): Observable<T> {
                 that.operators.push(...operators);
 
                 return fakeProxy;
             },
-            subscribe: (): Any => {
+            subscribe: (): any => {
                 if (!that.markAsRequest) {
                     throw new Error(
                         'You cannot invoke observable outside data request context. \n' +

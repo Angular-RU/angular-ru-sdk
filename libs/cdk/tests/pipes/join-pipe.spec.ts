@@ -1,11 +1,10 @@
 import { JoinPipe } from '@angular-ru/cdk/pipes';
-import { Any } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: Join Pipe', () => {
     it('only separator', () => {
-        expect(new JoinPipe().transform('' as Any)).toBe('');
-        expect(new JoinPipe().transform(' ' as Any)).toBe('');
-        expect(new JoinPipe().transform(Infinity as Any)).toBe('');
+        expect(new JoinPipe().transform('' as any)).toBe('');
+        expect(new JoinPipe().transform(' ' as any)).toBe('');
+        expect(new JoinPipe().transform(Infinity as any)).toBe('');
         expect(new JoinPipe().transform(undefined)).toBe('');
         expect(new JoinPipe().transform(null)).toBe('');
         expect(new JoinPipe().transform([])).toBe('');

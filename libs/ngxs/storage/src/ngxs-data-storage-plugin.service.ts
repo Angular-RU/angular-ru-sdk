@@ -1,7 +1,7 @@
 import { isPlatformServer } from '@angular/common';
 import { Inject, inject, Injectable, Injector, PLATFORM_ID, ProviderToken, Self } from '@angular/core';
 import { isGetter } from '@angular-ru/cdk/object';
-import { Any } from '@angular-ru/cdk/typings';
+
 import { checkValueIsFilled, isFalsy, isNotNil, isTruthy } from '@angular-ru/cdk/utils';
 import { STORAGE_INIT_EVENT } from '@angular-ru/ngxs/internals';
 import { NGXS_DATA_STORAGE_EVENT_TYPE } from '@angular-ru/ngxs/tokens';
@@ -108,7 +108,7 @@ export class NgxsDataStoragePlugin implements NgxsPlugin, DataStoragePlugin {
         const { action, provider, key, value }: GlobalStorageOptionsHandler = options;
 
         if (isTruthy(info.rehydrateIn) && isTruthy(isStorageEvent(action))) {
-            const instance: NgxsDataAfterStorageEvent = provider.stateInstance as Any as NgxsDataAfterStorageEvent;
+            const instance: NgxsDataAfterStorageEvent = provider.stateInstance as any as NgxsDataAfterStorageEvent;
             const event: NgxsDataStorageEvent = { key, value, data, provider };
 
             instance?.browserStorageEvents$.next(event);
@@ -124,7 +124,7 @@ export class NgxsDataStoragePlugin implements NgxsPlugin, DataStoragePlugin {
         if (isFalsy(provider.stateInstance)) {
             try {
                 provider.stateInstance =
-                    NgxsDataStoragePlugin.injector?.get(provider.stateClassRef as ProviderToken<Any>, null) ??
+                    NgxsDataStoragePlugin.injector?.get(provider.stateClassRef as ProviderToken<any>, null) ??
                     inject(provider.stateClassRef!);
             } catch {}
         }
@@ -170,7 +170,7 @@ export class NgxsDataStoragePlugin implements NgxsPlugin, DataStoragePlugin {
 
         if (isTruthy(existTtl(provider))) {
             const engine: ExistingStorageEngine = exposeEngine(provider, NgxsDataStoragePlugin.injector!);
-            const expiry: Date = new Date(Date.now() + parseInt(provider.ttl as Any));
+            const expiry: Date = new Date(Date.now() + parseInt(provider.ttl as any));
 
             createTtlInterval({ provider, expiry, map: this.ttlListeners, engine });
             meta.expiry = expiry.toISOString();
@@ -199,8 +199,8 @@ export class NgxsDataStoragePlugin implements NgxsPlugin, DataStoragePlugin {
 
     private pushStateToStorage(states: PlainObject, nextState: PlainObject, meta: PullStorageMeta): void {
         for (const [provider] of this.entries) {
-            const prevData: Any = getValue(states, ensurePath(provider));
-            const newData: Any = getValue(nextState, ensurePath(provider));
+            const prevData: any = getValue(states, ensurePath(provider));
+            const newData: any = getValue(nextState, ensurePath(provider));
             const canBeInitFire: boolean = isTruthy(provider.fireInit) && meta.init;
 
             if (prevData !== newData || canBeInitFire) {
@@ -208,7 +208,7 @@ export class NgxsDataStoragePlugin implements NgxsPlugin, DataStoragePlugin {
                 const key: string = ensureKey(provider);
 
                 try {
-                    const data: Any = this.serialize(newData, provider);
+                    const data: any = this.serialize(newData, provider);
 
                     engine.setItem(key, data);
                     this.keys.set(key);

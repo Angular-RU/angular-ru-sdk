@@ -11,7 +11,7 @@ import {
 } from '@angular-ru/cdk/http';
 import { RestClient } from '@angular-ru/cdk/http/decorators';
 import { DataBeforeRequestOptions, DataHttpInterceptor } from '@angular-ru/cdk/http/typings';
-import { Any, Nullable } from '@angular-ru/cdk/typings';
+import { Nullable } from '@angular-ru/cdk/typings';
 
 import { MetaDataRequest } from '../../../http/typings/src/interfaces/meta-data-request';
 import { HttpMockInterceptor } from '../helpers/http-mock-interceptor';
@@ -60,7 +60,7 @@ describe('[TEST]: HTTP Intercept Client', () => {
             return body;
         }
 
-        public onTapAfterRequest(response: Any[], meta: MetaDataRequest): void {
+        public onTapAfterRequest(response: any[], meta: MetaDataRequest): void {
             this.events.push(`{onTapAfterRequest} response(${meta.url}): ${JSON.stringify(response)}`);
         }
 
@@ -112,7 +112,7 @@ describe('[TEST]: HTTP Intercept Client', () => {
     it('should be correct GET intercept', fakeAsync(() => {
         client
             ?.get('api-get', { queryParams: { value: 1 }, headers: { Authorization: 'token xxx', KeepAlive: 'true' } })
-            .subscribe((response: Any[]) => {
+            .subscribe((response: any[]) => {
                 expect(response).toEqual([{ hello: 'world' }]);
                 expect(request.request.method).toBe('GET');
             });

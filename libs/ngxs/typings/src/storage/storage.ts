@@ -1,5 +1,5 @@
 import { Type } from '@angular/core';
-import { Any, Nullable, PlainObject } from '@angular-ru/cdk/typings';
+import { Nullable, PlainObject } from '@angular-ru/cdk/typings';
 import { ActionType, Store } from '@ngxs/store';
 import { StateClass } from '@ngxs/store/internals';
 import { Subject, Subscription } from 'rxjs';
@@ -111,7 +111,7 @@ interface CommonPersistenceProvider {
     skipMigrate?: boolean;
 }
 
-export type MigrateFn<T = Any, R = Any> = ((defaults: T, storage: R) => T) | undefined;
+export type MigrateFn<T = any, R = any> = ((defaults: T, storage: R) => T) | undefined;
 
 export type ExistingStorageEngine = DataStorage | Storage;
 
@@ -152,7 +152,7 @@ export interface DataStoragePlugin {
     readonly providers: Set<PersistenceProvider>;
     readonly entries: IterableIterator<[PersistenceProvider, PersistenceProvider]>;
 
-    serialize(data: Any, provider: PersistenceProvider): string;
+    serialize(data: any, provider: PersistenceProvider): string;
 
     deserialize<T>(meta: StorageMeta<T>, value: string | null, provider: PersistenceProvider): StorageData<T>;
 
@@ -185,12 +185,12 @@ export interface NgxsDataMigrateStorage<T = unknown, R = unknown> {
     ngxsDataStorageMigrate?(defaults: T, storage: R): T;
 }
 
-export interface NgxsDataAfterStorageEvent<T = Any> {
+export interface NgxsDataAfterStorageEvent<T = any> {
     browserStorageEvents$: Subject<NgxsDataStorageEvent<T>>;
     ngxsDataAfterStorageEvent?(event: NgxsDataStorageEvent<T>): void;
 }
 
-export interface NgxsDataStorageEvent<T = Any> {
+export interface NgxsDataStorageEvent<T = any> {
     provider: PersistenceProvider;
     value: string | null;
     data: T | null;

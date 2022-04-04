@@ -1,10 +1,9 @@
-import { Any } from '@angular-ru/cdk/typings';
 import { isTrue } from '@angular-ru/cdk/utils';
 
 import { isSimpleObject } from './is-simple-object';
 
-export function isGetter(object: Any, prop: string): boolean {
-    let currentObject: Any = object;
+export function isGetter(object: any, prop: string): boolean {
+    let currentObject: any = object;
     let result: boolean = false;
 
     if (isSimpleObject(currentObject)) {

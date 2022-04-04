@@ -1,5 +1,5 @@
 import { EmbeddedViewRef, EventEmitter, TemplateRef } from '@angular/core';
-import { Any, DeepPartial, Nullable, PlainObject } from '@angular-ru/cdk/typings';
+import { DeepPartial, Nullable, PlainObject } from '@angular-ru/cdk/typings';
 
 import { TableBrowserEvent } from './table-builder.internal';
 
@@ -11,7 +11,7 @@ export enum ImplicitContext {
 
 export type TableClickEventEmitter<T, K> = Nullable<EventEmitter<TableEvent<T, K>>>;
 
-export interface TableCellOptions<T = Any> {
+export interface TableCellOptions<T = any> {
     class: Nullable<string | string[] | PlainObject>;
     textBold: boolean;
     nowrap: boolean;
@@ -21,8 +21,8 @@ export interface TableCellOptions<T = Any> {
     height: Nullable<number>;
     template?: Nullable<TemplateRef<T>>;
     context: ImplicitContext;
-    onClick: EventEmitter<Any>;
-    dblClick: EventEmitter<Any>;
+    onClick: EventEmitter<any>;
+    dblClick: EventEmitter<any>;
 }
 
 export interface TableHeadCellOptions {
@@ -30,7 +30,7 @@ export interface TableHeadCellOptions {
     emptyHead: boolean;
 }
 
-export interface ColumnsSchema<T = Any> {
+export interface ColumnsSchema<T = any> {
     key: Nullable<string>;
     td: TableCellOptions<T>;
     th: TableCellOptions<T> & TableHeadCellOptions;

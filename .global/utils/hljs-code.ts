@@ -1,6 +1,4 @@
-import { Any } from '@angular-ru/cdk/typings';
-
-declare const hljs: Any;
+declare const hljs: any;
 
 export function hlJsCode(): void {
     const list: Element[] = Array.from(document.querySelectorAll('pre code') ?? []);

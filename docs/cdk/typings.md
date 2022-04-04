@@ -9,14 +9,6 @@ class MyComponent {
 }
 ```
 
--   `Any` - alias for `any` type
-
-```typescript
-let a: Any = 5;
-a = {};
-b = null;
-```
-
 -   `Timestamp` - alias for timestamp type.
 
 ```typescript

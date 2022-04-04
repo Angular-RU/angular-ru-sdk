@@ -1,6 +1,4 @@
-import { Any } from '@angular-ru/cdk/typings';
-
-export interface ControlValueInterceptorDescriptor<ModelValue = Any, ViewValue = ModelValue> {
+export interface ControlValueInterceptorDescriptor<ModelValue = any, ViewValue = ModelValue> {
     toViewValue?: (modelValue: ModelValue) => ViewValue;
     toModelValue?: (viewValue: ViewValue) => ModelValue;
 }

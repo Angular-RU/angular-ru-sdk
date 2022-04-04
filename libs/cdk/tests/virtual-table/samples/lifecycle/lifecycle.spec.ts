@@ -1,7 +1,7 @@
 import { ApplicationRef, ChangeDetectorRef, ElementRef, NgZone, QueryList, SimpleChanges } from '@angular/core';
 import { fakeAsync, tick } from '@angular/core/testing';
 import { deepClone } from '@angular-ru/cdk/object';
-import { Any, Fn, Nullable, PlainObject } from '@angular-ru/cdk/typings';
+import { Fn, Nullable, PlainObject } from '@angular-ru/cdk/typings';
 import { NgxColumnComponent, NgxTableViewChangesService, TableBuilderComponent } from '@angular-ru/cdk/virtual-table';
 import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
 
@@ -34,8 +34,8 @@ describe('[TEST]: Lifecycle table', () => {
         }
     };
     const mockNgZone: Partial<NgZone> = {
-        run: (callback: Fn): Any => callback(),
-        runOutsideAngular: (callback: Fn): Any => callback()
+        run: (callback: Fn): any => callback(),
+        runOutsideAngular: (callback: Fn): any => callback()
     };
     const webWorker: Partial<WebWorkerThreadService> = {
         run<T, K>(workerFunction: (input: K) => T, data?: K): Promise<T> {
@@ -81,7 +81,7 @@ describe('[TEST]: Lifecycle table', () => {
 
         table = new TableBuilderComponent(mockChangeDetector as ChangeDetectorRef, {
             // eslint-disable-next-line complexity
-            get(token: Any): Any {
+            get(token: any): any {
                 switch (token) {
                     case SelectionService:
                         return new SelectionService(zone);
@@ -99,7 +99,7 @@ describe('[TEST]: Lifecycle table', () => {
                         return app;
                     case FilterableService:
                         return new FilterableService({
-                            get(_token: Any): Any {
+                            get(_token: any): any {
                                 // eslint-disable-next-line sonarjs/no-nested-switch
                                 switch (_token) {
                                     case ApplicationRef:

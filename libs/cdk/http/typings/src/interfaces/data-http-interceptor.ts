@@ -1,12 +1,12 @@
 import { HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Any, PlainObject } from '@angular-ru/cdk/typings';
+import { PlainObject } from '@angular-ru/cdk/typings';
 import { Observable, Subject } from 'rxjs';
 
 import { DataBeforeRequestOptions } from './data-before-request-options';
 import { DataHttpFailureEvent, DataHttpSuccessEvent } from './data-http-client-events';
 import { MetaDataRequest } from './meta-data-request';
 
-export interface DataHttpInterceptor<K extends PlainObject = Any> {
+export interface DataHttpInterceptor<K extends PlainObject = any> {
     success$?: Subject<DataHttpSuccessEvent<K>>;
     errors$?: Subject<DataHttpFailureEvent<K>>;
     onBeforeRequest?(options: DataBeforeRequestOptions<K>): void;

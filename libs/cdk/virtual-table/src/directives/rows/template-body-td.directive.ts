@@ -1,5 +1,5 @@
 import { Directive, Input, Optional, TemplateRef } from '@angular/core';
-import { Any, Nullable } from '@angular-ru/cdk/typings';
+import { Nullable } from '@angular-ru/cdk/typings';
 
 import { AbstractTemplateCellCommonDirective } from './abstract-template-cell-common.directive';
 
@@ -8,7 +8,7 @@ export class TemplateBodyTdDirective<T> extends AbstractTemplateCellCommonDirect
     // eslint-disable-next-line @angular-eslint/no-input-rename
     @Input('ngx-td') public override type: Nullable<string> = null;
 
-    constructor(@Optional() public override template?: TemplateRef<Any>) {
+    constructor(@Optional() public override template?: TemplateRef<any>) {
         super(template);
     }
 }

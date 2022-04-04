@@ -1,8 +1,8 @@
-import { Any, Fn } from '@angular-ru/cdk/typings';
+import { Fn } from '@angular-ru/cdk/typings';
 
 import { instanceOfPlainObject } from './internal/instance-of-plain-object';
 
-export function isPlainObject(plainObject: Any): boolean {
+export function isPlainObject(plainObject: any): boolean {
     let constructorRef: Fn;
     let prototypeRef: Fn;
 

@@ -1,7 +1,7 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { hasItems, hasNoItems } from '@angular-ru/cdk/array';
 import { getValueByPath } from '@angular-ru/cdk/object';
-import { Any } from '@angular-ru/cdk/typings';
+
 import { checkValueIsFilled } from '@angular-ru/cdk/utils';
 
 import { assertFormGroup } from './utils/assert-form-group';
@@ -20,7 +20,7 @@ export function requiredSomeValueByKeysValidator<T>(keyList: (keyof T | string)[
         let result: ValidationErrors | null = { [VALIDATOR_TYPE]: true };
 
         for (const key of keyList) {
-            const value: Any = getValueByPath<T>(formGroupValue, key as string);
+            const value: any = getValueByPath<T>(formGroupValue, key as string);
 
             if (formValueIsFilled(value)) {
                 result = null;
@@ -32,6 +32,6 @@ export function requiredSomeValueByKeysValidator<T>(keyList: (keyof T | string)[
     };
 }
 
-function formValueIsFilled(value: Any): boolean {
+function formValueIsFilled(value: any): boolean {
     return Array.isArray(value) ? hasItems(value) : checkValueIsFilled(value);
 }

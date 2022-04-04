@@ -1,6 +1,6 @@
-import { Any, Fn } from '@angular-ru/cdk/typings';
+import { Fn } from '@angular-ru/cdk/typings';
 
-export function validateMethod(target: Fn, descriptor: TypedPropertyDescriptor<Any>): void {
+export function validateMethod(target: Fn, descriptor: TypedPropertyDescriptor<any>): void {
     const isStaticMethod: boolean = target.hasOwnProperty('prototype');
 
     if (isStaticMethod) {

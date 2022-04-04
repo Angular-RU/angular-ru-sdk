@@ -1,5 +1,5 @@
 import { LimitConcurrencyService } from '@angular-ru/cdk/http';
-import { Any } from '@angular-ru/cdk/typings';
+
 import { merge } from 'rxjs';
 import { TestScheduler } from 'rxjs/testing';
 
@@ -7,7 +7,7 @@ describe('[TEST]: HTTP limit concurrency service with Marble', () => {
     let service: LimitConcurrencyService;
     let testScheduler: TestScheduler;
 
-    const TEST_DATA: Any = {
+    const TEST_DATA: any = {
         a: 'AAA',
         b: 'BBB',
         c: 'CCC',

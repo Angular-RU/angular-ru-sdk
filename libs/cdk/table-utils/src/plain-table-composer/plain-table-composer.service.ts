@@ -1,6 +1,6 @@
 // eslint-disable-next-line max-classes-per-file
 import { Injectable } from '@angular/core';
-import { Any, Nullable, PlainObject } from '@angular-ru/cdk/typings';
+import { Nullable, PlainObject } from '@angular-ru/cdk/typings';
 import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
 
 import { InputDescriptor } from './interfaces/input-descriptor';
@@ -29,7 +29,7 @@ export class PlainTableComposerService {
 
                             constructor(private readonly rules: Nullable<RulesDescriptor>) {}
 
-                            private static isObject(value: Any): value is PlainObject {
+                            private static isObject(value: any): value is PlainObject {
                                 return typeof value === 'object' && value !== null;
                             }
 

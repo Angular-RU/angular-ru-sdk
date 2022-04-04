@@ -1,5 +1,5 @@
 import { equals, flatten, objectToString, shallowTrimProperties, strictEquals } from '@angular-ru/cdk/object';
-import { Any, PlainObject } from '@angular-ru/cdk/typings';
+import { PlainObject } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: Correct work object utils', (): void => {
     it('should be object A equals object B', (): void => {
@@ -29,14 +29,14 @@ describe('[TEST]: Correct work object utils', (): void => {
     it('should be return true for equals primitive types', (): void => {
         expect(equals(null!, null!)).toBe(true);
         expect(equals(undefined!, undefined!)).toBe(true);
-        expect(equals(NaN as Any, NaN as Any)).toBe(true);
-        expect(equals(Infinity as Any, Infinity as Any)).toBe(true);
-        expect(equals('' as Any, '' as Any)).toBe(true);
-        expect(equals(1 as Any, 1 as Any)).toBe(true);
+        expect(equals(NaN as NaN as any)).toBe(true);
+        expect(equals(Infinity as Infinity as any)).toBe(true);
+        expect(equals('' as '' as any)).toBe(true);
+        expect(equals(1 as 1 as any)).toBe(true);
 
-        expect(equals('1' as Any, 1 as Any)).toBe(false);
+        expect(equals('1' as 1 as any)).toBe(false);
         expect(equals(null!, undefined!)).toBe(false);
-        expect(equals(NaN as Any, undefined!, { deep: true })).toBe(false);
+        expect(equals(NaN as !undefined, { deep: true })).toBe(false);
     });
 
     it('should be a proper comparison with a weak and strict type', (): void => {
@@ -45,8 +45,8 @@ describe('[TEST]: Correct work object utils', (): void => {
     });
 
     it('should be correct work objectToString', (): void => {
-        expect(objectToString(1 as Any)).toBe('1');
-        expect(objectToString('1' as Any)).toBe('"1"');
+        expect(objectToString(1 as any)).toBe('1');
+        expect(objectToString('1' as any)).toBe('"1"');
         expect(objectToString(null!)).toBe('null');
         expect(objectToString(undefined!)).toBeUndefined();
 

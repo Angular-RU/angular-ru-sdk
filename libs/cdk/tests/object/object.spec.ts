@@ -16,7 +16,7 @@ import {
     sortByAsc,
     sortByDesc
 } from '@angular-ru/cdk/object';
-import { Any, Nullable, PlainObject } from '@angular-ru/cdk/typings';
+import { Nullable, PlainObject } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: Object', () => {
     interface A {
@@ -194,7 +194,7 @@ describe('[TEST]: Object', () => {
                 isGetter(
                     {
                         _a: null,
-                        set a(value: Any) {
+                        set a(value: any) {
                             this._a = value;
                         }
                     },

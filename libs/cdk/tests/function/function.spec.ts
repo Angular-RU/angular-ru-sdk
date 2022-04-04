@@ -1,5 +1,5 @@
 import { $args, hasConstructor, isFunctionLike } from '@angular-ru/cdk/function';
-import { Any, Fn, KeyboardKeys } from '@angular-ru/cdk/typings';
+import { Fn, KeyboardKeys } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: Function', () => {
     it('is function', () => {
@@ -57,8 +57,8 @@ describe('[TEST]: Function', () => {
         expect(hasConstructor(String)).toBe(true);
 
         expect(hasConstructor(C)).toBe(false);
-        expect(hasConstructor({} as Any)).toBe(false);
-        expect(hasConstructor(1 as Any)).toBe(false);
+        expect(hasConstructor({} as any)).toBe(false);
+        expect(hasConstructor(1 as any)).toBe(false);
         expect(hasConstructor(null)).toBe(false);
         expect(hasConstructor()).toBe(false);
     });

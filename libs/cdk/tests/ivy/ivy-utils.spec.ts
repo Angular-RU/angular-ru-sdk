@@ -1,7 +1,6 @@
 import { ApplicationRef, DebugElement, NgZone } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Any } from '@angular-ru/cdk/typings';
 
 import { TestModule } from './helpers/test.module';
 import {
@@ -26,7 +25,7 @@ describe('[TEST]: Ivy utils', (): void => {
     });
 
     afterAll((): void => {
-        (console.error as Any).mockRestore();
+        (console.error as any).mockRestore();
     });
 
     /** @description due to test running Angular in JIT mode,

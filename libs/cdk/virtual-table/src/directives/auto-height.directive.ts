@@ -10,7 +10,7 @@ import {
     Output,
     SimpleChanges
 } from '@angular/core';
-import { Any, Nullable } from '@angular-ru/cdk/typings';
+import { Nullable } from '@angular-ru/cdk/typings';
 import { checkValueIsFilled, isNotNil, isTrue } from '@angular-ru/cdk/utils';
 import { fromEvent, Subject } from 'rxjs';
 import { delay, takeUntil } from 'rxjs/operators';
@@ -110,7 +110,7 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
         return this.autoHeight.footerHeight ?? 0;
     }
 
-    private static getStyle(element: Element | Any, strCssRule: string): string {
+    private static getStyle(element: Element | any, strCssRule: string): string {
         let strValue: string = '';
         let strRule: string = strCssRule;
 

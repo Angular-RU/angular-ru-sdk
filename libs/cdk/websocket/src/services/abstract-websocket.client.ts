@@ -1,5 +1,5 @@
 import { Injectable, NgZone, OnDestroy } from '@angular/core';
-import { Any, Nullable, PlainObject } from '@angular-ru/cdk/typings';
+import { Nullable, PlainObject } from '@angular-ru/cdk/typings';
 import { isFalsy, tryParseJson } from '@angular-ru/cdk/utils';
 import { Observable, ReplaySubject, Subject, Subscription, throwError } from 'rxjs';
 import { catchError, filter, map, take, takeUntil } from 'rxjs/operators';
@@ -19,10 +19,10 @@ export abstract class AbstractWebsocketClient<K extends string | PlainObject>
     implements WebsocketHandler<K>, OnDestroy
 {
     private connected: boolean = false;
-    private socket$: Nullable<WebSocketSubject<WebsocketMessage<K, Any>>>;
+    private socket$: Nullable<WebSocketSubject<WebsocketMessage<K, any>>>;
     private socketSubscription: Nullable<Subscription>;
     private handlerPath: Nullable<string>;
-    protected readonly messages$: Subject<WebsocketMessage<K, Any>> = new Subject();
+    protected readonly messages$: Subject<WebsocketMessage<K, any>> = new Subject();
     public connected$: ReplaySubject<Event> = new ReplaySubject(Number.POSITIVE_INFINITY);
     public disconnected$: ReplaySubject<Event> = new ReplaySubject(Number.POSITIVE_INFINITY);
     public destroy$: Subject<boolean> = new Subject<boolean>();
@@ -41,18 +41,18 @@ export abstract class AbstractWebsocketClient<K extends string | PlainObject>
         return `${this.baseUrl}${this.handlerPath}`;
     }
 
-    private get webSocketSubjectConfig(): WebSocketSubjectConfig<Any> {
+    private get webSocketSubjectConfig(): WebSocketSubjectConfig<any> {
         return {
             openObserver: { next: (event: Event): void => this.onOpenObserver(event) },
             closeObserver: { next: (event: Event): void => this.onCloseObserver(event) },
-            serializer: (message: Any): WebSocketMessage => this.serialize(message),
-            deserializer: (event: MessageEvent): Any => this.deserialize(event),
+            serializer: (message: any): WebSocketMessage => this.serialize(message),
+            deserializer: (event: MessageEvent): any => this.deserialize(event),
             url: this.connectionPath,
             binaryType: this.wsConfig.binaryType
         };
     }
 
-    private static isArrayBuffer(value: Any): value is ArrayBuffer | Blob {
+    private static isArrayBuffer(value: any): value is ArrayBuffer | Blob {
         return value instanceof ArrayBuffer || value instanceof Blob;
     }
 
@@ -100,7 +100,7 @@ export abstract class AbstractWebsocketClient<K extends string | PlainObject>
         this.disconnect();
     }
 
-    protected serialize(message: WebsocketMessage<K, Any>): WebSocketMessage {
+    protected serialize(message: WebsocketMessage<K, any>): WebSocketMessage {
         switch (message.type) {
             case BINARY:
             case PLAIN_TEXT:
@@ -110,11 +110,11 @@ export abstract class AbstractWebsocketClient<K extends string | PlainObject>
         }
     }
 
-    protected deserialize({ data }: MessageEvent): WebsocketMessage<Any, Any> {
+    protected deserialize({ data }: MessageEvent): WebsocketMessage<any, any> {
         if (AbstractWebsocketClient.isArrayBuffer(data)) {
             return { type: BINARY, data };
         } else {
-            return tryParseJson<WebsocketMessage<Any, Any>>(data) ?? { type: PLAIN_TEXT, data };
+            return tryParseJson<WebsocketMessage<any, any>>(data) ?? { type: PLAIN_TEXT, data };
         }
     }
 
@@ -133,7 +133,7 @@ export abstract class AbstractWebsocketClient<K extends string | PlainObject>
     private _connect(): void {
         this.socket$ = webSocket(this.webSocketSubjectConfig);
         this.socketSubscription = this.socket$.pipe(takeUntil(this.destroy$)).subscribe({
-            next: (message: WebsocketMessage<K, Any>): void => {
+            next: (message: WebsocketMessage<K, any>): void => {
                 window.requestAnimationFrame((): void => this.messages$.next(message));
             },
             error: (): void => this.reconnect()

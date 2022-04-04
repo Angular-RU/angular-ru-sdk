@@ -1,4 +1,4 @@
-import { Any, Nullable } from '@angular-ru/cdk/typings';
+import { Nullable } from '@angular-ru/cdk/typings';
 
 export class SelectionRange {
     public start: Nullable<number> = null;
@@ -19,7 +19,7 @@ export class SelectionRange {
 
     public sortKeys(): SelectionRange {
         const [start, end]: Nullable<number>[] = [this.start, this.end].sort(
-            (a: Nullable<number>, b: Nullable<number>): Any => (a ?? 0) - (b ?? 0)
+            (a: Nullable<number>, b: Nullable<number>): any => (a ?? 0) - (b ?? 0)
         );
 
         this.start = start;

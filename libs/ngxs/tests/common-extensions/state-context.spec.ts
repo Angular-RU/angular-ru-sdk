@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { Any } from '@angular-ru/cdk/typings';
+
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
 import { StateRepository } from '@angular-ru/ngxs/decorators';
 import { buildDefaultsGraph, ensureStateMetadata, getStateMetadata } from '@angular-ru/ngxs/internals';
@@ -148,9 +148,9 @@ describe('[TEST]: Utils', () => {
         expect(
             meta.makeRootSelector!({
                 getSelectorOptions(localOptions?: SharedSelectorOptions): SharedSelectorOptions {
-                    return localOptions as Any;
+                    return localOptions as any;
                 },
-                getStateGetter(_key: Any): (state: Any) => Any {
+                getStateGetter(_key: any): (state: any) => any {
                     // selector
                     return (state) => state;
                 }
@@ -188,11 +188,11 @@ describe('[TEST]: Utils', () => {
         expect(
             meta.makeRootSelector!({
                 getSelectorOptions(localOptions?: SharedSelectorOptions): SharedSelectorOptions {
-                    return localOptions as Any;
+                    return localOptions as any;
                 },
-                getStateGetter(key: Any): (state: Any) => Any {
+                getStateGetter(key: any): (state: any) => any {
                     // selector
-                    return (_state: Any) => _state[key];
+                    return (_state: any) => _state[key];
                 }
             })(store.snapshot())
         ).toEqual([1, 2, 3]);

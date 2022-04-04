@@ -1,5 +1,3 @@
-import { Any } from '@angular-ru/cdk/typings';
-
-export function $cast<T>(value: Any): T {
+export function $cast<T>(value: any): T {
     return value as T;
 }

@@ -1,4 +1,3 @@
-import { Any } from '@angular-ru/cdk/typings';
 import { isNotNil } from '@angular-ru/cdk/utils';
 import { NgxsDataInjector } from '@angular-ru/ngxs/internals';
 import { NgxsDataAfterExpired, NgxsDataExpiredEvent, TtLCreatorOptions } from '@angular-ru/ngxs/typings';
@@ -12,7 +11,7 @@ export function firedStateWhenExpired(key: string, options: TtLCreatorOptions): 
         timestamp: new Date(Date.now()).toISOString()
     };
 
-    const instance: NgxsDataAfterExpired | undefined = provider.stateInstance as Any as NgxsDataAfterExpired;
+    const instance: NgxsDataAfterExpired | undefined = provider.stateInstance as any as NgxsDataAfterExpired;
 
     instance?.expired$?.next(event);
 

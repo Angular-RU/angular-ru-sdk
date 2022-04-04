@@ -9,7 +9,7 @@ import {
     ɵɵdirectiveInject as directiveInject
 } from '@angular/core';
 import { isString } from '@angular-ru/cdk/string';
-import { Any, Nullable } from '@angular-ru/cdk/typings';
+import { Nullable } from '@angular-ru/cdk/typings';
 import { isNil, isNotNil, isTrue } from '@angular-ru/cdk/utils';
 
 // eslint-disable-next-line spellcheck/spell-checker
@@ -37,7 +37,7 @@ function wrapFactory<T>(
     constructor: typeof Object.constructor,
     effectFunction: (injector: Injector, instance: T) => void
 ): void {
-    const definition: Nullable<Any> = getOwnDefinitionOfClass(constructor);
+    const definition: Nullable<any> = getOwnDefinitionOfClass(constructor);
 
     if (isNil(definition)) {
         throw new Error('Class with useInjector in decorator must be Injectable');
@@ -53,11 +53,11 @@ function wrapFactory<T>(
     insertPatcher(constructor, effectFunction);
 }
 
-function generateFactoryWrapper<T>(constructor: Any, definition: Any): (...args: Any[]) => T {
-    const ngFactory: (...args: Any[]) => T = definition.factory ?? getNgFactoryOfClass(constructor);
+function generateFactoryWrapper<T>(constructor: any, definition: any): (...args: any[]) => T {
+    const ngFactory: (...args: any[]) => T = definition.factory ?? getNgFactoryOfClass(constructor);
 
-    return function (...args: Any[]): T {
-        const instance: Any = ngFactory(...args);
+    return function (...args: any[]): T {
+        const instance: any = ngFactory(...args);
         const patch: Nullable<PatchFunction<T>> = getPatcherOfClass(constructor);
 
         if (isNotNil(patch)) {
@@ -70,7 +70,7 @@ function generateFactoryWrapper<T>(constructor: Any, definition: Any): (...args:
     };
 }
 
-function insertFactoryWrapper<T>(constructor: Any, factory: (...args: Any[]) => T): void {
+function insertFactoryWrapper<T>(constructor: any, factory: (...args: any[]) => T): void {
     Object.defineProperty(constructor, NG_FACTORY_DEF, {
         configurable: true,
         writable: true,
@@ -78,7 +78,7 @@ function insertFactoryWrapper<T>(constructor: Any, factory: (...args: Any[]) => 
     });
 }
 
-function insertPatcher<T>(constructor: Any, effectFunction: (injector: Injector, instance: T) => void): void {
+function insertPatcher<T>(constructor: any, effectFunction: (injector: Injector, instance: T) => void): void {
     const previousPatcher: Nullable<PatchFunction<T>> = getPatcherOfClass(constructor);
 
     /**
@@ -102,7 +102,7 @@ function insertPatcher<T>(constructor: Any, effectFunction: (injector: Injector,
     });
 }
 
-function getOwnDefinitionOfClass(constructor: Any): Nullable<Any> {
+function getOwnDefinitionOfClass(constructor: any): Nullable<any> {
     const definedProperty: Nullable<string> = [
         NG_COMP_DEF, // for component
         NG_DIR_REF, //  for directive
@@ -114,7 +114,7 @@ function getOwnDefinitionOfClass(constructor: Any): Nullable<Any> {
     return isString(definedProperty) ? constructor[definedProperty] : undefined;
 }
 
-function getNgFactoryOfClass<T>(constructor: Any): Nullable<(...args: Any[]) => T> {
+function getNgFactoryOfClass<T>(constructor: any): Nullable<(...args: any[]) => T> {
     if (isTrue(constructor?.hasOwnProperty(NG_FACTORY_DEF))) {
         return constructor[NG_FACTORY_DEF];
     } else {
@@ -122,7 +122,7 @@ function getNgFactoryOfClass<T>(constructor: Any): Nullable<(...args: Any[]) => 
     }
 }
 
-function getPatcherOfClass<T>(constructor: Any): Nullable<PatchFunction<T>> {
+function getPatcherOfClass<T>(constructor: any): Nullable<PatchFunction<T>> {
     if (isTrue(constructor?.hasOwnProperty(PATCHER_KEY))) {
         return constructor[PATCHER_KEY];
     } else {

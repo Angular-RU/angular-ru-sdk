@@ -15,7 +15,7 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { coerceBoolean } from '@angular-ru/cdk/coercion';
-import { Any, Nullable } from '@angular-ru/cdk/typings';
+import { Nullable } from '@angular-ru/cdk/typings';
 import { detectChanges, getBodyRect } from '@angular-ru/cdk/utils';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -33,7 +33,7 @@ const MENU_WIDTH: number = 300;
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })
-export class NgxContextMenuItemComponent<T = Any> implements OnInit, OnDestroy {
+export class NgxContextMenuItemComponent<T = any> implements OnInit, OnDestroy {
     private destroy$: Subject<void> = new Subject();
     private taskId: Nullable<number> = null;
     private readonly contextMenu: ContextMenuService<T>;

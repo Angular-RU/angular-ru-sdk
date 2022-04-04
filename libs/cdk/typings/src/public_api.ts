@@ -1,4 +1,3 @@
-export { Any } from './any';
 export { Arguments } from './arguments';
 export { NonEmptyArray } from './array-types';
 export { ClassDescriptor } from './class-descriptor';

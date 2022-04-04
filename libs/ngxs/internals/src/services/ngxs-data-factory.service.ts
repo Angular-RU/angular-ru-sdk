@@ -1,5 +1,5 @@
 import { Injectable, Type } from '@angular/core';
-import { Any, PlainObjectOf } from '@angular-ru/cdk/typings';
+import { PlainObjectOf } from '@angular-ru/cdk/typings';
 import { isNil, isNotNil } from '@angular-ru/cdk/utils';
 import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
 import {
@@ -45,7 +45,7 @@ export class NgxsDataFactory {
         return cachedMeta;
     }
 
-    public static getRepositoryByInstance(target: DataStateClass | Any): NgxsRepositoryMeta | never {
+    public static getRepositoryByInstance(target: DataStateClass | any): NgxsRepositoryMeta | never {
         const stateClass: DataStateClass = NgxsDataFactory.getStateClassByInstance(target);
         const repository: NgxsRepositoryMeta | null = getRepository(stateClass) ?? null;
 
@@ -56,20 +56,20 @@ export class NgxsDataFactory {
         return repository;
     }
 
-    public static getStateClassByInstance(target: DataStateClass | Any): DataStateClass {
+    public static getStateClassByInstance(target: DataStateClass | any): DataStateClass {
         return (target ?? {}).constructor;
     }
 
-    public static clearMetaByInstance(target: DataStateClass | Any): void {
+    public static clearMetaByInstance(target: DataStateClass | any): void {
         const repository: NgxsRepositoryMeta = NgxsDataFactory.getRepositoryByInstance(target);
 
         repository.stateMeta!.actions = {};
         repository.operations = {};
     }
 
-    public static createPayload(args: Any[], registry?: MethodArgsRegistry): PlainObjectOf<Any> | null {
-        const payload: PlainObjectOf<Any> = {};
-        const arrayArgs: Any[] = Array.from(args);
+    public static createPayload(args: any[], registry?: MethodArgsRegistry): PlainObjectOf<any> | null {
+        const payload: PlainObjectOf<any> = {};
+        const arrayArgs: any[] = Array.from(args);
 
         for (const [index, arrayArg] of arrayArgs.entries()) {
             const payloadName: PayloadName | null | undefined = registry?.getPayloadTypeByIndex(index);
@@ -82,9 +82,9 @@ export class NgxsDataFactory {
         return Object.keys(payload).length > 0 ? payload : null;
     }
 
-    public static createAction(operation: NgxsDataOperation, args: Any[], registry?: MethodArgsRegistry): ActionEvent {
-        const payload: PlainObjectOf<Any> | null = NgxsDataFactory.createPayload(args, registry);
-        const dynamicActionByTypeFactory: Type<Any> = dynamicActionByType(operation.type);
+    public static createAction(operation: NgxsDataOperation, args: any[], registry?: MethodArgsRegistry): ActionEvent {
+        const payload: PlainObjectOf<any> | null = NgxsDataFactory.createPayload(args, registry);
+        const dynamicActionByTypeFactory: Type<any> = dynamicActionByType(operation.type);
 
         return new dynamicActionByTypeFactory(payload);
     }

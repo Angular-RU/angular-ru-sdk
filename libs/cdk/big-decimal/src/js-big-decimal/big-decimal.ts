@@ -1,4 +1,3 @@
-import { Any } from '@angular-ru/cdk/typings';
 import { checkEveryValueIsEmpty, checkSomeValueIsEmpty, checkValueIsFilled } from '@angular-ru/cdk/utils';
 
 import { add, trim } from './add';
@@ -19,13 +18,13 @@ export class BigDecimal {
         this.value = BigDecimal.validate(num);
     }
 
-    public static negate(inputNum: Any): string {
+    public static negate(inputNum: any): string {
         const num: string = BigDecimal.validate(inputNum);
 
         return negate(num);
     }
 
-    public static ceil(inputNum: Any): Any {
+    public static ceil(inputNum: any): any {
         const num: string = BigDecimal.validate(inputNum);
 
         if (num.indexOf('.') === -1) {
@@ -35,49 +34,49 @@ export class BigDecimal {
         return BigDecimal.round(num, 0, RoundingModes.CEILING);
     }
 
-    public static add(inputA: Any, inputB?: Any): string {
+    public static add(inputA: any, inputB?: any): string {
         const a: string = BigDecimal.validate(inputA);
         const b: string = BigDecimal.validate(inputB);
 
         return add(a, b);
     }
 
-    public static subtract(inputA: Any, inputB: Any): string {
+    public static subtract(inputA: any, inputB: any): string {
         const a: string = BigDecimal.validate(inputA);
         const b: string = BigDecimal.validate(inputB);
 
         return subtract(a, b);
     }
 
-    public static multiply(inputA: Any, inputB: Any): string {
+    public static multiply(inputA: any, inputB: any): string {
         const a: string = BigDecimal.validate(inputA);
         const b: string = BigDecimal.validate(inputB);
 
         return multiply(a, b);
     }
 
-    public static divide(inputA: Any, inputB: Any, precision?: Any): string {
+    public static divide(inputA: any, inputB: any, precision?: any): string {
         const a: string = BigDecimal.validate(inputA);
         const b: string = BigDecimal.validate(inputB);
 
         return divide(a, b, precision);
     }
 
-    public static modulus(inputA: Any, inputB: Any): string {
+    public static modulus(inputA: any, inputB: any): string {
         const a: string = BigDecimal.validate(inputA);
         const b: string = BigDecimal.validate(inputB);
 
         return modulus(a, b);
     }
 
-    public static compareTo(inputA: Any, inputB: Any): CompareResult {
+    public static compareTo(inputA: any, inputB: any): CompareResult {
         const a: string = BigDecimal.validate(inputA);
         const b: string = BigDecimal.validate(inputB);
 
         return compareTo(a, b);
     }
 
-    public static round(inputA: Any, precision: Any = 0, mode: RoundingModes = RoundingModes.HALF_EVEN): Any {
+    public static round(inputA: any, precision: any = 0, mode: RoundingModes = RoundingModes.HALF_EVEN): any {
         const a: string = BigDecimal.validate(inputA);
 
         if (isNaN(precision)) {
@@ -87,7 +86,7 @@ export class BigDecimal {
         return roundOff(a, precision, mode);
     }
 
-    public static floor(inputA: Any): Any {
+    public static floor(inputA: any): any {
         const a: string = BigDecimal.validate(inputA);
 
         if (a.indexOf('.') === -1) {
@@ -97,8 +96,8 @@ export class BigDecimal {
         return BigDecimal.round(a, 0, RoundingModes.FLOOR);
     }
 
-    public static getPrettyValue(inputNum: Any, digits?: Any, separator?: Any): string {
-        let num: Any = inputNum;
+    public static getPrettyValue(inputNum: any, digits?: any, separator?: any): string {
+        let num: any = inputNum;
 
         const prettyParams: PrettyParams = validatePrettyParams({ digits, separator });
 
@@ -117,8 +116,8 @@ export class BigDecimal {
         return (neg ? '-' : '') + temp + num.substring(numLength);
     }
 
-    private static validate(inputNum: Any): string {
-        let num: Any = prepareNum(inputNum);
+    private static validate(inputNum: any): string {
+        let num: any = prepareNum(inputNum);
 
         const isPoint: boolean = num.startsWith('.');
         const isDashPoint: boolean = num.startsWith('-.');
@@ -140,7 +139,7 @@ export class BigDecimal {
         return this.value;
     }
 
-    public getPrettyValue(digits?: Any, separator?: Any): string {
+    public getPrettyValue(digits?: any, separator?: any): string {
         return BigDecimal.getPrettyValue(this.value, digits, separator);
     }
 
@@ -180,7 +179,7 @@ export class BigDecimal {
         return new BigDecimal(multiply(this.value, num.getValue()));
     }
 
-    public divide(num: BigDecimal, precision: Any): BigDecimal {
+    public divide(num: BigDecimal, precision: any): BigDecimal {
         return new BigDecimal(divide(this.value, num.getValue(), precision));
     }
 
@@ -210,7 +209,7 @@ function validatePrettyParams(params: PrettyParams): PrettyParams {
     return result;
 }
 
-function getTemp(params: PrettyParams, length_: number, num: Any): string {
+function getTemp(params: PrettyParams, length_: number, num: any): string {
     let temp: string = '';
 
     for (let i: number = length_; i > 0; ) {
@@ -237,8 +236,8 @@ function getExponentiation(inputNum: string): string {
         return inputNum;
     }
 
-    let mantisa: Any = trim(numParts[0] ?? '');
-    let exponent: Any = numParts[1] ?? '';
+    let mantisa: any = trim(numParts[0] ?? '');
+    let exponent: any = numParts[1] ?? '';
     let offset: number = 0;
 
     if (mantisa.indexOf('.') >= 0) {
@@ -250,7 +249,7 @@ function getExponentiation(inputNum: string): string {
     return prepareExponentiation(mantisa, exponent, offset);
 }
 
-function prepareExponentiation(mantisa: Any, exponent: Any, offset: number): string {
+function prepareExponentiation(mantisa: any, exponent: any, offset: number): string {
     let num: string = '';
 
     if (mantisa.length < exponent) {
@@ -265,8 +264,8 @@ function prepareExponentiation(mantisa: Any, exponent: Any, offset: number): str
     return num;
 }
 
-function prepareNum(inputNum: Any): Any {
-    let num: Any = inputNum;
+function prepareNum(inputNum: any): any {
+    let num: any = inputNum;
 
     if (checkValueIsFilled(inputNum)) {
         num = inputNum.toString();

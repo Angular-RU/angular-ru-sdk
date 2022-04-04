@@ -4,7 +4,7 @@ import { Component, Injectable } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { DataHttpClient, DataHttpClientModule } from '@angular-ru/cdk/http';
 import { RestClient } from '@angular-ru/cdk/http/decorators';
-import { Any, Nullable } from '@angular-ru/cdk/typings';
+import { Nullable } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: HTTP decorators for client', () => {
     const MOCK_API: string = 'http://localhost';
@@ -38,7 +38,7 @@ describe('[TEST]: HTTP decorators for client', () => {
     afterEach(() => httpMock.verify());
 
     it('should be correct send GET request', fakeAsync(() => {
-        client?.get('api-get').subscribe((response: Any[]) => {
+        client?.get('api-get').subscribe((response: any[]) => {
             expect(response).toEqual([{ hello: 'world' }]);
             expect(request.request.method).toBe('GET');
         });

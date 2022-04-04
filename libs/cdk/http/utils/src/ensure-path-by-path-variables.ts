@@ -1,6 +1,4 @@
-import { Any } from '@angular-ru/cdk/typings';
-
-export function ensurePathByPathVariables(path: string, map: Map<string, Any>): string {
+export function ensurePathByPathVariables(path: string, map: Map<string, any>): string {
     let newPath: string = path.toString();
     const parsedUrls: string[] = newPath.match(/{(.*?)}/g) ?? [];
 

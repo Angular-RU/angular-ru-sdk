@@ -1,7 +1,6 @@
-import { Any } from '@angular-ru/cdk/typings';
 import { isObservable } from 'rxjs';
 
-export function itObservable(value: Any): boolean {
+export function itObservable(value: any): boolean {
     let observable: boolean = false;
 
     if (isObservable(value)) {

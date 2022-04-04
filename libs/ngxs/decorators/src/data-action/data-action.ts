@@ -1,5 +1,5 @@
 import { $args } from '@angular-ru/cdk/function';
-import { Any, Descriptor, PlainObjectOf } from '@angular-ru/cdk/typings';
+import { Descriptor, PlainObjectOf } from '@angular-ru/cdk/typings';
 import { isNil, isNotNil, isTrue } from '@angular-ru/cdk/utils';
 import {
     actionNameCreator,
@@ -28,15 +28,15 @@ import { REPOSITORY_ACTION_OPTIONS } from './data-action.config';
 // eslint-disable-next-line max-lines-per-function
 export function DataAction(options: RepositoryActionOptions = REPOSITORY_ACTION_OPTIONS): MethodDecorator {
     // eslint-disable-next-line max-lines-per-function,sonarjs/cognitive-complexity
-    return (target: Any, name: string | symbol, descriptor: Descriptor): Descriptor => {
+    return (target: any, name: string | symbol, descriptor: Descriptor): Descriptor => {
         validateAction(target, descriptor);
 
-        const originalMethod: Any = descriptor.value;
+        const originalMethod: any = descriptor.value;
         const key: string = name.toString();
 
         // eslint-disable-next-line max-lines-per-function
-        descriptor.value = function (...args: Any[]): DispatchedResult {
-            const instance: ImmutableDataRepository<Any> = this as Any as ImmutableDataRepository<Any>;
+        descriptor.value = function (...args: any[]): DispatchedResult {
+            const instance: ImmutableDataRepository<any> = this as any as ImmutableDataRepository<any>;
 
             let result: DispatchedResult = null;
             const repository: NgxsRepositoryMeta = NgxsDataFactory.getRepositoryByInstance(instance);
@@ -82,11 +82,11 @@ export function DataAction(options: RepositoryActionOptions = REPOSITORY_ACTION_
 
                 // Note: store.dispatch automatically subscribes, but we don't need it
                 // We want to subscribe ourselves manually
-                return isObservable(result) ? of(null).pipe(map((): Any => result)) : result;
+                return isObservable(result) ? of(null).pipe(map((): any => result)) : result;
             };
 
             const event: ActionEvent = NgxsDataFactory.createAction(operation, args, registry);
-            const dispatcher$: Observable<Any> = NgxsDataInjector.store!.dispatch(event);
+            const dispatcher$: Observable<any> = NgxsDataInjector.store!.dispatch(event);
 
             if (isObservable(result)) {
                 return combineStream(dispatcher$, result);

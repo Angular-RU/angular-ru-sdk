@@ -1,8 +1,8 @@
 import { ControlValueAccessor } from '@angular/forms';
-import { Any } from '@angular-ru/cdk/typings';
+
 import { Observable, Subject } from 'rxjs';
 
-export class ControlValueAccessorPatcher<ModelValue = Any, ViewValue = ModelValue> {
+export class ControlValueAccessorPatcher<ModelValue = any, ViewValue = ModelValue> {
     private readonly onViewValueChangedSubject$: Subject<ViewValue> = new Subject<ViewValue>();
     private readonly onModelValueChangedSubject$: Subject<ModelValue> = new Subject<ModelValue>();
     private writeViewValueFunction!: (viewValue: ViewValue) => void;

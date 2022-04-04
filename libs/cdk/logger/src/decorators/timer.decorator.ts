@@ -1,4 +1,4 @@
-import { Any, Fn, Nullable } from '@angular-ru/cdk/typings';
+import { Fn, Nullable } from '@angular-ru/cdk/typings';
 
 import { LoggerLevel, TimerInfo, TimerLevels } from '../interfaces/logger.external';
 import { LoggerInjector } from '../logger.injector';
@@ -13,12 +13,12 @@ export function TimerLog(
     return function (
         _target: unknown,
         _key: string | symbol,
-        descriptor: TypedPropertyDescriptor<Any>
-    ): TypedPropertyDescriptor<Any> {
+        descriptor: TypedPropertyDescriptor<any>
+    ): TypedPropertyDescriptor<any> {
         let result: PropertyDescriptor;
         const method: Fn = descriptor.value;
 
-        descriptor.value = function (...args: Any[]): PropertyDescriptor {
+        descriptor.value = function (...args: any[]): PropertyDescriptor {
             const info: Nullable<TimerInfo> = LoggerInjector.getInjector()
                 .get<LoggerService>(LoggerService)
                 .startTime(title, level);

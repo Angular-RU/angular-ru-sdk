@@ -1,4 +1,4 @@
-import { Any, PlainObjectOf } from '@angular-ru/cdk/typings';
+import { PlainObjectOf } from '@angular-ru/cdk/typings';
 import { ActionOptions, ActionType } from '@ngxs/store';
 
 /**
@@ -11,7 +11,7 @@ export interface RepositoryActionOptions extends ActionOptions {
 /**
  * @publicApi
  */
-export type ActionEvent = (ActionType & { payload: PlainObjectOf<Any> }) | ActionType;
+export type ActionEvent = (ActionType & { payload: PlainObjectOf<any> }) | ActionType;
 
 export type ActionName = string;
 export type PayloadName = string;

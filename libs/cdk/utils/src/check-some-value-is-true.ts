@@ -1,7 +1,5 @@
-import { Any } from '@angular-ru/cdk/typings';
-
 import { isTrue } from './is-true';
 
-export function checkSomeValueIsTrue(...values: Any[]): boolean {
-    return values.some((element: Any): element is boolean => isTrue(element));
+export function checkSomeValueIsTrue(...values: any[]): boolean {
+    return values.some((element: any): element is boolean => isTrue(element));
 }

@@ -1,5 +1,3 @@
-import { Any } from '@angular-ru/cdk/typings';
-
-export function isNumber(value: Any): value is number {
+export function isNumber(value: any): value is number {
     return typeof value === 'number';
 }

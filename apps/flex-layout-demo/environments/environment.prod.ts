@@ -1,6 +1,4 @@
-import { Any } from '@angular-ru/cdk/typings';
-
-export const environment: Any = {
+export const environment: any = {
     production: true,
     useConfig: true
 };

@@ -10,7 +10,7 @@ import { UserService } from './test.service.ts';
 
 function Username(): PropertyDecorator {
     return <T extends typeof Object.prototype>(prototypeRef: T, propertyKey: string | symbol): void => {
-        useInjector(prototypeRef.constructor, (injector: Injector, instance: Any): void => {
+        useInjector(prototypeRef.constructor, (injector: Injector, instance: any): void => {
             const userService: UserService = injector.get(UserService);
             instance[propertyKey] = userService.username;
         });

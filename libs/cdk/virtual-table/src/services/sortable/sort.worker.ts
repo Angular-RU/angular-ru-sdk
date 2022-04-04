@@ -1,4 +1,4 @@
-import { Any, Nullable, PlainObject, PlainObjectOf } from '@angular-ru/cdk/typings';
+import { Nullable, PlainObject, PlainObjectOf } from '@angular-ru/cdk/typings';
 
 import { SortableMessage } from './sortable-message';
 
@@ -17,12 +17,12 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
             ? path
                   .split('.')
                   // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-                  .reduce((value: Nullable<PlainObject>, key: string): Any => value && value[key], object)
+                  .reduce((value: Nullable<PlainObject>, key: string): any => value && value[key], object)
             : object;
     }
 
     // eslint-disable-next-line unicorn/consistent-function-scoping
-    function checkValueIsEmpty(value: Any): boolean {
+    function checkValueIsEmpty(value: any): boolean {
         // note: don't use isString here
         // noinspection SuspiciousTypeOfGuard
         const nextValue: string = typeof value === 'string' ? value.trim() : value;
@@ -31,7 +31,7 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
     }
 
     class Sortable {
-        public static sortByKeys(data: T[], keys: PlainObjectOf<OrderType>): Any[] {
+        public static sortByKeys(data: T[], keys: PlainObjectOf<OrderType>): any[] {
             const countKeys: number = Object.keys(keys).length;
 
             if (!countKeys) {
@@ -40,10 +40,10 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
 
             const matches: PlainObjectOf<number> = Sortable.getMatchesKeys(keys);
 
-            return data.sort((a: unknown, b: unknown): Any => Sortable.multiSort(a, b, matches));
+            return data.sort((a: unknown, b: unknown): any => Sortable.multiSort(a, b, matches));
         }
 
-        private static multiSort(a: unknown, b: unknown, matches: PlainObjectOf<number>): Any {
+        private static multiSort(a: unknown, b: unknown, matches: PlainObjectOf<number>): any {
             const countKeys: number = Object.keys(matches).length;
             let sorted: number = 0;
             let ix: number = 0;
@@ -84,15 +84,15 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
         }
 
         // eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
-        private static deepSort(key: string, leftHand: Any, rightHand: Any, depth: Nullable<number>): number {
-            const a: Any = getValueByPath(leftHand, key);
-            const b: Any = getValueByPath(rightHand, key);
+        private static deepSort(key: string, leftHand: any, rightHand: any, depth: Nullable<number>): number {
+            const a: any = getValueByPath(leftHand, key);
+            const b: any = getValueByPath(rightHand, key);
 
             return Sortable.shallowSort(a, b, depth);
         }
 
-        private static shallowSort(a: Any, b: Any, depth?: Nullable<number>): number {
-            let newB: Any = b;
+        private static shallowSort(a: any, b: any, depth?: Nullable<number>): number {
+            let newB: any = b;
             // eslint-disable-next-line no-negated-condition
             const currentDepth: Nullable<number> = depth !== null ? depth : 1;
 

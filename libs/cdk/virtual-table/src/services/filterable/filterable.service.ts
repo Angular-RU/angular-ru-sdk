@@ -1,7 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import { checkIsShallowEmpty } from '@angular-ru/cdk/object';
 import { isString } from '@angular-ru/cdk/string';
-import { Any, Nullable } from '@angular-ru/cdk/typings';
+import { Nullable } from '@angular-ru/cdk/typings';
 import { isNotNil } from '@angular-ru/cdk/utils';
 import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
 import { ReplaySubject, Subject } from 'rxjs';
@@ -19,9 +19,9 @@ import { TableFilterType } from './table-filter-type';
 export class FilterableService<T> implements Filterable {
     private previousFiltering: boolean = false;
     private readonly thread: WebWorkerThreadService;
-    public types: ReadonlyMap<unknown, unknown> = TableFilterType as Any as ReadonlyMap<unknown, unknown>;
-    public definition: ReadonlyMap<unknown, unknown> = {} as Any as ReadonlyMap<unknown, unknown>;
-    public filterTypeDefinition: ReadonlyMap<unknown, TableFilterType> = {} as Any;
+    public types: ReadonlyMap<unknown, unknown> = TableFilterType as any as ReadonlyMap<unknown, unknown>;
+    public definition: ReadonlyMap<unknown, unknown> = {} as any as ReadonlyMap<unknown, unknown>;
+    public filterTypeDefinition: ReadonlyMap<unknown, TableFilterType> = {} as any;
     public readonly filterOpenEvents$: Subject<void> = new Subject();
     public readonly events$: Subject<FilterEvent> = new ReplaySubject(Number.POSITIVE_INFINITY);
     public readonly resetEvents$: Subject<void> = new Subject<void>();
@@ -62,7 +62,7 @@ export class FilterableService<T> implements Filterable {
         }
     }
 
-    public updateFilterValueBy(value: Any, key?: Nullable<string>): void {
+    public updateFilterValueBy(value: any, key?: Nullable<string>): void {
         if (isNotNil(key)) {
             this.definition = { ...this.definition, [key]: value };
         }
@@ -111,8 +111,8 @@ export class FilterableService<T> implements Filterable {
                     types: TableFilterType,
                     global: { value, type },
                     columns: {
-                        values: this.definition as Any,
-                        types: this.filterTypeDefinition as Any,
+                        values: this.definition as any,
+                        types: this.filterTypeDefinition as any,
                         isEmpty: checkIsShallowEmpty(this.definition)
                     }
                 };
@@ -130,7 +130,7 @@ export class FilterableService<T> implements Filterable {
     }
 
     private clearDefinitions(): void {
-        this.filterTypeDefinition = {} as Any;
-        this.definition = {} as Any;
+        this.filterTypeDefinition = {} as any;
+        this.definition = {} as any;
     }
 }

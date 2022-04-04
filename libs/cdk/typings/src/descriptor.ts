@@ -1,3 +1,1 @@
-import { Any } from './any';
-
-export type Descriptor = TypedPropertyDescriptor<Any>;
+export type Descriptor = TypedPropertyDescriptor<any>;

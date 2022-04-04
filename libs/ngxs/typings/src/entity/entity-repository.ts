@@ -1,9 +1,9 @@
 import { EntityCollections, EntityUpdate } from '@angular-ru/cdk/entity';
-import { Any } from '@angular-ru/cdk/typings';
+
 import { ActionType } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
-export interface EntityRepository<V, K extends string | number, C = Record<string, Any>> {
+export interface EntityRepository<V, K extends string | number, C = Record<string, any>> {
     name: string;
     initialState: EntityCollections<V, K, C>;
     state$: Observable<EntityCollections<V, K, C>>;

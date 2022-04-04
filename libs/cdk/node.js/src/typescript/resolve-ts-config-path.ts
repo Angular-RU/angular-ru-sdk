@@ -1,14 +1,13 @@
-import { Any } from '@angular-ru/cdk/typings';
 import { isFalse } from '@angular-ru/cdk/utils';
 
 import { checkIsNodeEnvironment } from '../node/check-is-node-environment';
 
-declare const require: Any;
+declare const require: any;
 
 checkIsNodeEnvironment();
 
-const path: Any = require('path');
-const fs: Any = require('fs');
+const path: any = require('path');
+const fs: any = require('fs');
 
 export function resolveTsConfigPath(tsConfigPath: string, relative?: string): string | never {
     let resolvedPath: string = (path.isAbsolute(tsConfigPath) as boolean)

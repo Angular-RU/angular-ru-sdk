@@ -1,4 +1,4 @@
-import { Any, Fn } from '@angular-ru/cdk/typings';
+import { Fn } from '@angular-ru/cdk/typings';
 
 import { GroupLevel, LoggerLevel } from '../../interfaces/logger.external';
 import { groupDecoratorFactory } from './group.common';
@@ -7,12 +7,12 @@ export function GroupCollapsed(title: string | Fn, level: LoggerLevel = LoggerLe
     return function (
         _target: unknown,
         _key: string | symbol,
-        descriptor: TypedPropertyDescriptor<Any>
-    ): TypedPropertyDescriptor<Any> {
+        descriptor: TypedPropertyDescriptor<any>
+    ): TypedPropertyDescriptor<any> {
         const method: Fn = descriptor.value;
 
-        descriptor.value = function (...args: Any[]): unknown {
-            return groupDecoratorFactory(level, GroupLevel.GROUP_COLLAPSED, method, title, args, this as Any);
+        descriptor.value = function (...args: any[]): unknown {
+            return groupDecoratorFactory(level, GroupLevel.GROUP_COLLAPSED, method, title, args, this as any);
         };
 
         return descriptor;

@@ -1,6 +1,6 @@
 /* eslint-disable @angular-eslint/no-input-rename */
 import { Directive, EventEmitter, Input, Optional, Output, TemplateRef } from '@angular/core';
-import { Any, Nullable, PlainObject } from '@angular-ru/cdk/typings';
+import { Nullable, PlainObject } from '@angular-ru/cdk/typings';
 
 import { TableEvent } from '../../interfaces/table-builder.external';
 
@@ -15,8 +15,8 @@ export abstract class AbstractTemplateCellCommonDirective<T> {
     @Input('ng-class') public cssClasses: Nullable<string | string[] | PlainObject> = null;
     // TODO: should be rename (breaking changes)
     // eslint-disable-next-line @angular-eslint/no-output-on-prefix
-    @Output() public readonly onClick: EventEmitter<TableEvent<T | Any, Any>> = new EventEmitter();
-    @Output() public readonly dblClick: EventEmitter<TableEvent<T | Any, Any>> = new EventEmitter();
+    @Output() public readonly onClick: EventEmitter<TableEvent<T | any, any>> = new EventEmitter();
+    @Output() public readonly dblClick: EventEmitter<TableEvent<T | any, any>> = new EventEmitter();
     public type: Nullable<string> = null;
 
     protected constructor(@Optional() public template?: TemplateRef<unknown>) {}

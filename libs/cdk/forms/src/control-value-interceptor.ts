@@ -2,7 +2,7 @@ import { Inject, Injectable, OnDestroy, Self } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { exclude } from '@angular-ru/cdk/array';
 import { isFunctionLike } from '@angular-ru/cdk/function';
-import { Any } from '@angular-ru/cdk/typings';
+
 import { Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
@@ -13,7 +13,7 @@ import { ControlValueInterceptorDescriptor } from './control-value-interceptor-d
 export class ControlValueInterceptor<ModelValue = unknown, ViewValue = ModelValue> implements OnDestroy {
     private onDestroy$: Subject<void> = new Subject<void>();
     private readonly interceptor?: ControlValueAccessorPatcher<ModelValue, ViewValue>;
-    private controlValueOperators: ControlValueInterceptorDescriptor<Any, Any>[] = [];
+    private controlValueOperators: ControlValueInterceptorDescriptor<any>[] = [];
 
     constructor(@Inject(NG_VALUE_ACCESSOR) @Self() accessors: ControlValueAccessor[]) {
         const [accessor]: ControlValueAccessor[] = accessors;
@@ -31,20 +31,20 @@ export class ControlValueInterceptor<ModelValue = unknown, ViewValue = ModelValu
         this.onDestroy$.complete();
     }
 
-    public attach<MediatorModelValue = Any, MediatorViewValue = MediatorModelValue>(
+    public attach<MediatorModelValue = any, MediatorViewValue = MediatorModelValue>(
         descriptor: ControlValueInterceptorDescriptor<MediatorModelValue, MediatorViewValue>
     ): void {
         this.controlValueOperators = this.controlValueOperators.concat(descriptor);
     }
 
-    public detach<MediatorModelValue = Any, MediatorViewValue = MediatorModelValue>(
+    public detach<MediatorModelValue = any, MediatorViewValue = MediatorModelValue>(
         descriptor: ControlValueInterceptorDescriptor<MediatorModelValue, MediatorViewValue>
     ): void {
         this.controlValueOperators = this.controlValueOperators.filter(exclude(descriptor));
     }
 
     private toModelValue(viewValue: ViewValue): ModelValue {
-        let value: Any = viewValue;
+        let value: any = viewValue;
 
         for (const operator of this.controlValueOperators) {
             value = isFunctionLike(operator.toModelValue) ? operator.toModelValue(value) : value;
@@ -54,7 +54,7 @@ export class ControlValueInterceptor<ModelValue = unknown, ViewValue = ModelValu
     }
 
     private toViewValue(modelValue: ModelValue): ViewValue {
-        let value: Any = modelValue;
+        let value: any = modelValue;
 
         for (const operator of this.controlValueOperators) {
             value = isFunctionLike(operator.toViewValue) ? operator.toViewValue(value) : value;

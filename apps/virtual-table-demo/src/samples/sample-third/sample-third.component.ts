@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { Nullable, PlainObject } from '@angular-ru/cdk/typings';
 
 import { hlJsCode } from '../../../../../.global/utils/hljs-code';
-import { Any } from '../../../../../libs/cdk/typings/src/any';
 import { MocksGenerator } from '../../mocks-generator';
 import { CodeDialogComponent } from '../../shared/dialog/code-dialog.component';
 
@@ -29,7 +28,7 @@ export class SampleThirdComponent implements OnInit, AfterViewInit {
 
     public disableFn(item: Nullable<PlainObject>): boolean {
         // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-        return ((item as Any)?.id ?? 0) % 5 === 0;
+        return ((item as any)?.id ?? 0) % 5 === 0;
     }
 
     public ngAfterViewInit(): void {

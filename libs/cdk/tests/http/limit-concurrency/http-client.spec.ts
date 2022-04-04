@@ -5,7 +5,6 @@ import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { DataHttpClient, DataHttpClientModule } from '@angular-ru/cdk/http';
 import { RestClient } from '@angular-ru/cdk/http/decorators';
 import { Nullable } from '@angular-ru/cdk/typings';
-import { Any } from '@angular-ru/cdk/typings/any';
 
 describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
     const mockApi: string = 'http://localhost';
@@ -92,7 +91,7 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
     });
 
     function configureTestingModule(limitConcurrency?: number): HttpServices {
-        const options: Any = limitConcurrency != null || limitConcurrency === 0 ? { limitConcurrency } : {};
+        const options: any = limitConcurrency != null || limitConcurrency === 0 ? { limitConcurrency } : {};
 
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule, DataHttpClientModule.forRoot([MyClient], options)]
@@ -107,7 +106,7 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
     function generateRequests(limit: number): void {
         for (const params of requestList.slice(0, limit)) {
             // eslint-disable-next-line no-loop-func
-            client?.get(params.api).subscribe((response: Any) => responseOrder.push(response));
+            client?.get(params.api).subscribe((response: any) => responseOrder.push(response));
         }
     }
 

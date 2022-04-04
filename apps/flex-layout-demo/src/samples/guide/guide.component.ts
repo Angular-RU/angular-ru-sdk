@@ -1,7 +1,6 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component } from '@angular/core';
-import { Any } from '@angular-ru/cdk/typings';
 
-declare const hljs: Any;
+declare const hljs: any;
 
 @Component({
     selector: 'guide',

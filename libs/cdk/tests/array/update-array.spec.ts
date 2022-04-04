@@ -1,5 +1,5 @@
 import { updateArray } from '@angular-ru/cdk/array';
-import { Any, Nullable } from '@angular-ru/cdk/typings';
+import { Nullable } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: Array', () => {
     interface Value {
@@ -76,7 +76,7 @@ describe('[TEST]: Array', () => {
         });
 
         it('should update one item with one single', () => {
-            expect(updateArray<Value>(origin, [{ value: 5 } as Any])).toEqual(origin);
+            expect(updateArray<Value>(origin, [{ value: 5 } as any])).toEqual(origin);
         });
     });
 

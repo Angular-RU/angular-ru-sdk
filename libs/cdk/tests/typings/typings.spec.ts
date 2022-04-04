@@ -1,9 +1,9 @@
-import { Any, DeepKeyOfList, KeyOfList, Leaves, Paths } from '@angular-ru/cdk/typings';
+import { DeepKeyOfList, KeyOfList, Leaves, Paths } from '@angular-ru/cdk/typings';
 
 describe('[TEST]: Common types', () => {
     it('any: sample duck typing', () => {
-        const a: Any = 5;
-        const b: Any = '8';
+        const a: any = 5;
+        const b: any = '8';
 
         // Duck typing
         expect(parseInt(a + b)).toBe(58);

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Any, PlainObjectOf } from '@angular-ru/cdk/typings';
+import { PlainObjectOf } from '@angular-ru/cdk/typings';
 import { isNotNil } from '@angular-ru/cdk/utils';
 
 import { TableBuilderComponent } from '../table-builder.component';
@@ -19,7 +19,7 @@ export class TableSelectedItemsPipe<T> implements PipeTransform {
         const entries: PlainObjectOf<boolean> = selectedEntries ?? this.table.selectionEntries;
 
         return this.table.originalSourceRef.filter((item: T): boolean =>
-            isNotNil(entries[(item as Any)[this.table.primaryKey]])
+            isNotNil(entries[(item as any)[this.table.primaryKey]])
         );
     }
 }

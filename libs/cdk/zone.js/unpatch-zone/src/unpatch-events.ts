@@ -1,10 +1,9 @@
-import { Any } from '@angular-ru/cdk/typings';
 import { isNotNil } from '@angular-ru/cdk/utils';
 
 // eslint-disable-next-line max-lines-per-function
 export function unpatchEvents(): void {
     if (typeof window !== 'undefined') {
-        const windowInstance: Window & Any = window as Any;
+        const windowInstance: Window & any = window as any;
 
         if (isNotNil(windowInstance.Zone)) {
             throw new Error('You must import `@angular-ru/cdk/zone.js/unpatch-events` before importing rxjs');
@@ -25,7 +24,7 @@ export function unpatchEvents(): void {
         ];
 
         // black list scroll event handler for onProp
-        const targets: Any[] = [window, Document, HTMLBodyElement, HTMLElement, document.body, WebSocket];
+        const targets: any[] = [window, Document, HTMLBodyElement, HTMLElement, document.body, WebSocket];
 
         windowInstance.__Zone_ignore_on_properties = [];
 

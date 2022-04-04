@@ -1,6 +1,6 @@
 #### `@angular-ru/cdk/array`
 
--   `updateArray<T extends { id: Any }>(sourceArray: Nullable<T[]>, updatedArray: Nullable<T[]>): T[];`
+-   `updateArray<T extends { id: any }>(sourceArray: Nullable<T[]>, updatedArray: Nullable<T[]>): T[];`
 -   `updateArray<T>(sourceArray: Nullable<T[]>, updatedArray: Nullable<T[]>, compareFnOrKey: keyof T | CompareFn<T>): T[]`
 
 ```typescript

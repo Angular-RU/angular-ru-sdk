@@ -1,5 +1,4 @@
 import { coerceBoolean } from '@angular-ru/cdk/coercion';
-import { Any } from '@angular-ru/cdk/typings';
 
 describe('[TEST] Coercion', () => {
     it('coerceBoolean returned true', () => {
@@ -10,8 +9,8 @@ describe('[TEST] Coercion', () => {
         expect(coerceBoolean('12312s')).toBe(true);
         expect(coerceBoolean('0')).toBe(true);
         expect(coerceBoolean(1)).toBe(true);
-        expect(coerceBoolean({} as Any)).toBe(true);
-        expect(coerceBoolean([] as Any)).toBe(true);
+        expect(coerceBoolean({} as any)).toBe(true);
+        expect(coerceBoolean([] as any)).toBe(true);
     });
 
     it('coerceBoolean returned false', () => {

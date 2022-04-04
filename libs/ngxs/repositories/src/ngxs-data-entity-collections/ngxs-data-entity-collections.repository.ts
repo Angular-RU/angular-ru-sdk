@@ -10,7 +10,7 @@ import {
     KeysDictionary
 } from '@angular-ru/cdk/entity';
 import { sortByAsc, sortByDesc } from '@angular-ru/cdk/object';
-import { Any, PrimaryKey, SortOrderType } from '@angular-ru/cdk/typings';
+import { PrimaryKey, SortOrderType } from '@angular-ru/cdk/typings';
 import { isNil } from '@angular-ru/cdk/utils';
 import { Computed, DataAction, Payload } from '@angular-ru/ngxs/decorators';
 import { ensureDataStateContext, ensureSnapshot } from '@angular-ru/ngxs/internals';
@@ -26,7 +26,7 @@ import { AbstractRepository } from '../common/abstract-repository';
 export abstract class AbstractNgxsDataEntityCollectionsRepository<
         V,
         K extends number | string = EntityIdType,
-        C = Record<string, Any>
+        C = Record<string, any>
     >
     extends AbstractRepository<EntityCollections<V, K, C>>
     implements EntityRepository<V, K, C>
@@ -194,7 +194,7 @@ export abstract class AbstractNgxsDataEntityCollectionsRepository<
     }
 
     public selectId(entity: V): K {
-        return (entity as Any)?.[this.primaryKey];
+        return (entity as any)?.[this.primaryKey];
     }
 
     public selectOne(id: K): V | null {

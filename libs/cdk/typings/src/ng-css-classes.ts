@@ -1,3 +1,1 @@
-import { Any } from './any';
-
-export type NgCssClasses = string | string[] | Set<string> | { [cssClass: string]: Any };
+export type NgCssClasses = string | string[] | Set<string> | { [cssClass: string]: any };

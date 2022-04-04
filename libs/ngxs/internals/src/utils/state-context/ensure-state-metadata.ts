@@ -1,4 +1,3 @@
-import { Any } from '@angular-ru/cdk/typings';
 import { isFalsy } from '@angular-ru/cdk/utils';
 import { NGXS_META_KEY } from '@angular-ru/ngxs/tokens';
 import { DataStateClass } from '@angular-ru/ngxs/typings';
@@ -13,7 +12,7 @@ export function ensureStateMetadata(target: DataStateClass): MetaDataModel {
             actions: {},
             defaults: {},
             path: null,
-            makeRootSelector(context: RuntimeSelectorContext): Any {
+            makeRootSelector(context: RuntimeSelectorContext): any {
                 return context.getStateGetter(defaultMetadata.name);
             },
             children: []

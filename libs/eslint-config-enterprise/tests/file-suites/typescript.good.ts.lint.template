@@ -1,7 +1,7 @@
 /* eslint-disable max-classes-per-file */
 import { ChangeDetectionStrategy, Component, EventEmitter, Injectable, Input, OnInit, Output } from '@angular/core';
 import { BaseUrl, RequestBody, RestClient } from '@angular-ru/cdk/http/decorators';
-import { Any } from '@angular-ru/cdk/typings';
+
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
@@ -95,11 +95,11 @@ console.log(t.a);
 @RestClient()
 @Injectable()
 class HttpClient {
-    public invoke1(@RequestBody() _request: Any): void {
+    public invoke1(@RequestBody() _request: any): void {
         // ...
     }
 
-    public invoke2(@RequestBody() request: Any): void {
+    public invoke2(@RequestBody() request: any): void {
         console.error(request);
     }
 }
@@ -116,11 +116,11 @@ class HttpClient {
 // @ts-ignore
 // eslint-disable-next-line @typescript-eslint/no-unused-vars,no-unused-vars
 class GoodComponent implements OnInit {
-    @Input() public a: Any;
-    @Input() public _a: Any;
-    @Input() public b: Any;
-    @Output() public readonly e!: EventEmitter<Any>;
-    @Output('_e') public readonly _e!: EventEmitter<Any>;
+    @Input() public a: any;
+    @Input() public _a: any;
+    @Input() public b: any;
+    @Output() public readonly e!: EventEmitter<any>;
+    @Output('_e') public readonly _e!: EventEmitter<any>;
 
     constructor(private readonly api: HttpClient) {}
 
@@ -134,7 +134,7 @@ const foo = (): number => 0;
 
 console.error(foo);
 
-const arrowFn = () => (): Any => ({});
+const arrowFn = () => (): any => ({});
 
 console.error(arrowFn);
 

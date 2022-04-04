@@ -1,4 +1,4 @@
-import { Any, Nullable, PlainObject } from '@angular-ru/cdk/typings';
+import { Nullable, PlainObject } from '@angular-ru/cdk/typings';
 
 // eslint-disable-next-line complexity
 export function pathsOfObject<T extends PlainObject>(
@@ -11,7 +11,7 @@ export function pathsOfObject<T extends PlainObject>(
             continue;
         }
 
-        const element: Any = value[key];
+        const element: any = value[key];
         const isObjectValue: boolean = typeof element === 'object' && element !== null && !Array.isArray(element);
         // note: don't use isString for preserve circular dependencies
         const implicitKey: string = typeof parentKey === 'string' ? `${parentKey}.${key}` : key;

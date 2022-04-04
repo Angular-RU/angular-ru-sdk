@@ -1,11 +1,11 @@
-import { Any, Fn } from '@angular-ru/cdk/typings';
+import { Fn } from '@angular-ru/cdk/typings';
 import { isNil } from '@angular-ru/cdk/utils';
 import { NGXS_ARGUMENT_REGISTRY_META } from '@angular-ru/ngxs/tokens';
 
 import { getMethodArgsRegistry } from './get-method-args-registry';
 import { MethodArgsRegistry } from './method-args-registry';
 
-export function ensureMethodArgsRegistry(target: Any, propertyKey: Any): MethodArgsRegistry {
+export function ensureMethodArgsRegistry(target: any, propertyKey: any): MethodArgsRegistry {
     const originMethod: Fn = target[propertyKey];
     const registry: MethodArgsRegistry | undefined = getMethodArgsRegistry(originMethod);
 

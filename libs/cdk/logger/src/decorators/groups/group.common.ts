@@ -1,6 +1,6 @@
 import { Type } from '@angular/core';
 import { isString } from '@angular-ru/cdk/string';
-import { Any, Fn } from '@angular-ru/cdk/typings';
+import { Fn } from '@angular-ru/cdk/typings';
 
 import { GroupLevel, GroupMethod, LoggerLevel } from '../../interfaces/logger.external';
 import { LoggerInjector } from '../../logger.injector';
@@ -13,7 +13,7 @@ export function groupDecoratorFactory(
     groupType: GroupLevel,
     method: Fn,
     title: string | Fn<string>,
-    args: Any[],
+    args: any[],
     target: Type<unknown>
 ): unknown {
     const logger: LoggerService = LoggerInjector.getInjector().get<LoggerService>(LoggerService);

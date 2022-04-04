@@ -1,5 +1,5 @@
 import { NgZone } from '@angular/core';
-import { Any, PlainObject } from '@angular-ru/cdk/typings';
+import { PlainObject } from '@angular-ru/cdk/typings';
 
 import { RowId } from '../../../virtual-table/src/interfaces/table-builder.internal';
 import { SelectionMap } from '../../../virtual-table/src/services/selection/selection';
@@ -12,7 +12,7 @@ describe('[TEST]: Selection service', () => {
     let listenKeyup: boolean = false;
 
     const mockNgZone: Partial<NgZone> = {
-        runOutsideAngular: (fn: Any): Any => fn()
+        runOutsideAngular: (fn: any): any => fn()
     };
 
     const mockPreventDefault: Partial<MouseEvent> = {
@@ -28,7 +28,7 @@ describe('[TEST]: Selection service', () => {
         { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' }
     ];
 
-    jest.spyOn(window as Any, 'addEventListener').mockImplementation((...args: unknown[]): void => {
+    jest.spyOn(window as 'addEventListener').mockImplementation((...args: unknown[]): void => {
         if (args[0] === 'keydown') {
             listenKeydown = true;
         } else if (args[0] === 'keyup') {
@@ -36,7 +36,7 @@ describe('[TEST]: Selection service', () => {
         }
     });
 
-    jest.spyOn(window as Any, 'removeEventListener').mockImplementation((...args: unknown[]): void => {
+    jest.spyOn(window as 'removeEventListener').mockImplementation((...args: unknown[]): void => {
         if (args[0] === 'keydown') {
             listenKeydown = false;
         } else if (args[0] === 'keyup') {

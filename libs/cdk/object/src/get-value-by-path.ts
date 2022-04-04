@@ -1,4 +1,4 @@
-import { Any, Nullable } from '@angular-ru/cdk/typings';
+import { Nullable } from '@angular-ru/cdk/typings';
 import { isNotNil } from '@angular-ru/cdk/utils';
 
 // eslint-disable-next-line complexity
@@ -8,10 +8,10 @@ export function getValueByPath<T = unknown, K = T>(
     fallback: Nullable<K> = undefined
 ): Nullable<K> {
     if ((path?.length ?? 0) < 1) {
-        return object as Any as K;
+        return object as any as K;
     }
 
-    let result: K = object as Any as K;
+    let result: K = object as any as K;
 
     const parts: string[] = path?.split('.') ?? [];
     let index: number = 0;
@@ -19,7 +19,7 @@ export function getValueByPath<T = unknown, K = T>(
     for (; isNotNil(result) && index < parts.length; ++index) {
         const localIndex: string = parts?.[index] as string;
 
-        result = (result as Any)?.[localIndex];
+        result = (result as any)?.[localIndex];
     }
 
     return result ?? fallback;

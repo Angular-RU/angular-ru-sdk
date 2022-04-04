@@ -1,9 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Any } from '@angular-ru/cdk/typings';
 
 @Pipe({ name: 'typeAs' })
 export class TypeAsPipe implements PipeTransform {
-    public transform<T>(value: Any, _typedValue: T): T {
+    public transform<T>(value: any, _typedValue: T): T {
         return value as T;
     }
 }

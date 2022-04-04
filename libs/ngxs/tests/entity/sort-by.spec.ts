@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { createEntityCollections } from '@angular-ru/cdk/entity';
-import { Any, SortOrderType } from '@angular-ru/cdk/typings';
+import { SortOrderType } from '@angular-ru/cdk/typings';
 import { StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsDataEntityCollectionsRepository } from '@angular-ru/ngxs/repositories';
 import { ngxsTestingPlatform } from '@angular-ru/ngxs/testing';
 import { State } from '@ngxs/store';
 
 describe('sort by entities', () => {
-    let spy: jest.MockInstance<Any, Any>;
+    let spy: jest.MockInstance<any>;
 
     interface People {
         id: number;

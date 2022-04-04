@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Any, Immutable } from '@angular-ru/cdk/typings';
+import { Immutable } from '@angular-ru/cdk/typings';
 import { Computed, DataAction, Payload } from '@angular-ru/ngxs/decorators';
 import { ensureDataStateContext, ensureSnapshot } from '@angular-ru/ngxs/internals';
 import {
@@ -26,7 +26,7 @@ export abstract class AbstractNgxsImmutableDataRepository<T>
     }
 
     protected get ctx(): ImmutableStateContext<T> {
-        return ensureDataStateContext<T, Any>(this.context);
+        return ensureDataStateContext<T, any>(this.context);
     }
 
     @DataAction()

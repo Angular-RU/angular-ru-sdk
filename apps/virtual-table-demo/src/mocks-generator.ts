@@ -1,13 +1,13 @@
 /* eslint-disable no-magic-numbers,@typescript-eslint/no-magic-numbers,max-classes-per-file */
-import { Any, PlainObject } from '@angular-ru/cdk/typings';
+import { PlainObject } from '@angular-ru/cdk/typings';
 import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
 
 export class MocksGenerator {
     // eslint-disable-next-line max-lines-per-function
     public static generator(rowsNumber: number, colsNumber: number, startIndex: number = 0): Promise<PlainObject[]> {
-        return new WebWorkerThreadService().run<PlainObject[], Any>(
+        return new WebWorkerThreadService().run<PlainObject[], any>(
             // eslint-disable-next-line max-lines-per-function
-            (data: Any): PlainObject[] => {
+            (data: any): PlainObject[] => {
                 class FakeGenerator {
                     // eslint-disable-next-line max-lines-per-function
                     public static generateTable(rows: number, cols: number, start: number): PlainObject[] {

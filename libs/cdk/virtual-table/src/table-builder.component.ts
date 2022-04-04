@@ -22,7 +22,7 @@ import {
 import { fadeInLinearAnimation } from '@angular-ru/cdk/animations';
 import { hasItems } from '@angular-ru/cdk/array';
 import { coerceBoolean } from '@angular-ru/cdk/coercion';
-import { Any, DeepPartial, Nullable, PlainObjectOf, SortOrderType } from '@angular-ru/cdk/typings';
+import { DeepPartial, Nullable, PlainObjectOf, SortOrderType } from '@angular-ru/cdk/typings';
 import { checkValueIsFilled, detectChanges, isFalse, isFalsy, isNil, isNotNil } from '@angular-ru/cdk/utils';
 import { EMPTY, fromEvent, Observable, Subject } from 'rxjs';
 import { catchError, takeUntil } from 'rxjs/operators';
@@ -240,7 +240,7 @@ export class TableBuilderComponent<T>
     }
 
     public markVisibleColumn(column: HTMLDivElement, visible: boolean): void {
-        (column as Any).visible = visible;
+        (column as any).visible = visible;
         this.idleDetectChanges();
     }
 
@@ -417,7 +417,7 @@ export class TableBuilderComponent<T>
         detectChanges(this.cd);
     }
 
-    public filterBySubstring(substring: Nullable<Any>): void {
+    public filterBySubstring(substring: Nullable<any>): void {
         this.filterable.filterValue = substring?.toString();
         this.filter();
     }
@@ -663,8 +663,8 @@ export class TableBuilderComponent<T>
                 this.filterable.filterType ?? this.columnOptions?.filterType ?? TableFilterType.CONTAINS;
 
             for (const key of this.modelColumnKeys) {
-                (this.filterable.filterTypeDefinition as Any)[key] =
-                    (this.filterable.filterTypeDefinition as Any)[key] ?? this.filterable.filterType;
+                (this.filterable.filterTypeDefinition as any)[key] =
+                    (this.filterable.filterTypeDefinition as any)[key] ?? this.filterable.filterType;
             }
         }
     }
@@ -728,7 +728,7 @@ export class TableBuilderComponent<T>
     }
 
     private getCustomColumnSchemaByIndex(index: number): Partial<ColumnsSchema> {
-        return this.schemaColumns?.columns?.[index] ?? ({} as Any);
+        return this.schemaColumns?.columns?.[index] ?? ({} as any);
     }
 
     /**
@@ -761,7 +761,7 @@ export class TableBuilderComponent<T>
      * @param key - column name
      */
     private processedColumnList(schema: ColumnsSchema, key: Nullable<string>): void {
-        const hasSchema: boolean = checkValueIsFilled((this.templateParser.schema ?? schema) as Any);
+        const hasSchema: boolean = checkValueIsFilled((this.templateParser.schema ?? schema) as any);
 
         if (hasSchema) {
             const compiledSchema: Nullable<ColumnsSchema> = this.templateParser.compiledTemplates[key as string];

@@ -59,9 +59,9 @@ class ChildComponent {
 })
 class HostComponent {
     public falseString: string = 'false';
-    public someAnotherTruthy: Any = {};
+    public someAnotherTruthy: any = {};
     public emptyString: string = '';
-    public someAnotherFalsy: Any = null;
+    public someAnotherFalsy: any = null;
 }
 ```
 

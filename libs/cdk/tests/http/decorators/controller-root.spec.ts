@@ -4,7 +4,7 @@ import { Component, Injectable } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { DataHttpClient, DataHttpClientModule } from '@angular-ru/cdk/http';
 import { BaseUrl, Get, HostUrl, RestClient } from '@angular-ru/cdk/http/decorators';
-import { Any, Nullable } from '@angular-ru/cdk/typings';
+import { Nullable } from '@angular-ru/cdk/typings';
 import { Observable } from 'rxjs';
 
 describe('[TEST]: HTTP decorators for client', () => {
@@ -18,7 +18,7 @@ describe('[TEST]: HTTP decorators for client', () => {
     @RestClient('users')
     class ApiUsersClient extends DataHttpClient {
         @Get('/')
-        public findAllUsers(): Observable<Any[]> {
+        public findAllUsers(): Observable<any[]> {
             return this.restTemplate();
         }
     }
@@ -45,7 +45,7 @@ describe('[TEST]: HTTP decorators for client', () => {
     afterEach(() => httpMock.verify());
 
     it('should be correct send GET request with decorator', fakeAsync(() => {
-        client?.findAllUsers().subscribe((response: Any[]) => {
+        client?.findAllUsers().subscribe((response: any[]) => {
             expect(response).toEqual([
                 { id: 1, name: 'a' },
                 { id: 2, name: 'b' }

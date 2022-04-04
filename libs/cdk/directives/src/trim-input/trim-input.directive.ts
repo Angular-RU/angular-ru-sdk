@@ -1,13 +1,13 @@
 import { Directive, ElementRef, HostListener, Input, OnInit, Optional } from '@angular/core';
 import { AbstractControl, NgControl } from '@angular/forms';
-import { Any, Nullable } from '@angular-ru/cdk/typings';
+import { Nullable } from '@angular-ru/cdk/typings';
 import { isNotNil } from '@angular-ru/cdk/utils';
 
 @Directive({ selector: '[trimInput]' })
 export class TrimInputDirective implements OnInit {
     private declare name: string;
     private declare previousName: string;
-    private previousValue: Any;
+    private previousValue: any;
 
     @Input() public trimDisabled: boolean = false;
 

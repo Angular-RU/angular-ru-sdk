@@ -1,3 +1,1 @@
-import { Any } from './any';
-
-export type Fn<T = Any, U = Any> = (...args: U[]) => T;
+export type Fn<T = any, U = any> = (...args: U[]) => T;

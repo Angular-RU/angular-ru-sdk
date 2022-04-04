@@ -1,5 +1,5 @@
 import { Injectable, NgZone, OnDestroy } from '@angular/core';
-import { Any, Fn, Nullable, PlainObjectOf, PrimaryKey } from '@angular-ru/cdk/typings';
+import { Fn, Nullable, PlainObjectOf, PrimaryKey } from '@angular-ru/cdk/typings';
 import { checkValueIsEmpty, isNil } from '@angular-ru/cdk/utils';
 import { Subject } from 'rxjs';
 
@@ -93,7 +93,7 @@ export class SelectionService<T> implements OnDestroy {
         const rows: T[] = this.rows ?? [];
         const { shiftKey, ctrlKey }: MouseEvent = event;
         const index: number = rows.findIndex(
-            (item: T): boolean => ((item as Any) ?? ({} as T))[this.primaryKey] === (row ?? {})[this.primaryKey]
+            (item: T): boolean => ((item as any) ?? ({} as T))[this.primaryKey] === (row ?? {})[this.primaryKey]
         );
 
         if (shiftKey) {
@@ -108,7 +108,7 @@ export class SelectionService<T> implements OnDestroy {
     }
 
     public getIdByRow(row?: Nullable<T>): RowId {
-        const id: RowId = ((row as Any) ?? {})[this.primaryKey];
+        const id: RowId = ((row as any) ?? {})[this.primaryKey];
 
         if (checkValueIsEmpty(id)) {
             throw new Error(

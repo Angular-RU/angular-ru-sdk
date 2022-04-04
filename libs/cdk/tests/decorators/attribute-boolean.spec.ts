@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AttributeBoolean } from '@angular-ru/cdk/decorators';
-import { Any, InputBoolean } from '@angular-ru/cdk/typings';
+import { InputBoolean } from '@angular-ru/cdk/typings';
 import { isNotNil } from '@angular-ru/cdk/utils';
 
 describe('[TEST]: Attribute boolean', () => {
@@ -63,7 +63,7 @@ describe('[TEST]: Attribute boolean', () => {
         @ViewChild('setterProp') public declare setterPropRef: ChildComponent;
         @ViewChild('hookProp') public declare hookPropRef: ChildComponent;
         @ViewChild('dynamicSetterProp') public declare dynamicSetterPropRef: ChildComponent;
-        public propValue: Any = false;
+        public propValue: any = false;
     }
 
     beforeEach(() => {

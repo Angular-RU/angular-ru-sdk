@@ -1,7 +1,7 @@
 /* eslint-disable deprecation/deprecation */
 import { SchemaMetadata, Type } from '@angular/core';
 import { TestBed, TestModuleMetadata } from '@angular/core/testing';
-import { Any } from '@angular-ru/cdk/typings';
+
 import { isNil } from '@angular-ru/cdk/utils';
 import { getStateMetadata } from '@angular-ru/ngxs/internals';
 import { Store } from '@ngxs/store';
@@ -21,26 +21,26 @@ export type PlatformMetadata = Required<Omit<TestModuleMetadata, 'teardown'>> | 
 
 export function ngxsTestingPlatform<A>(
     params: (PlatformMetadata & { states?: [StateClass<A>] }) | [StateClass<A>],
-    fn: (store: Store, a: A) => Any
+    fn: (store: Store, a: A) => any
 ): TestSpec;
 
 export function ngxsTestingPlatform<A, B>(
     params: (PlatformMetadata & { states?: [StateClass<A>, StateClass<B>] }) | [StateClass<A>, StateClass<B>],
-    fn: (store: Store, a: A, b: B) => Any
+    fn: (store: Store, a: A, b: B) => any
 ): TestSpec;
 
 export function ngxsTestingPlatform<A, B, C>(
     params:
         | (PlatformMetadata & { states?: [StateClass<A>, StateClass<B>, StateClass<C>] })
         | [StateClass<A>, StateClass<B>, StateClass<C>],
-    fn: (store: Store, a: A, b: B, c: C) => Any
+    fn: (store: Store, a: A, b: B, c: C) => any
 ): TestSpec;
 
 export function ngxsTestingPlatform<A, B, C, D>(
     params:
         | (PlatformMetadata & { states?: [StateClass<A>, StateClass<B>, StateClass<C>, StateClass<D>] })
         | [StateClass<A>, StateClass<B>, StateClass<C>, StateClass<D>],
-    fn: (store: Store, a: A, b: B, c: C, d: D) => Any
+    fn: (store: Store, a: A, b: B, c: C, d: D) => any
 ): TestSpec;
 
 export function ngxsTestingPlatform<A, B, C, D, E>(
@@ -50,7 +50,7 @@ export function ngxsTestingPlatform<A, B, C, D, E>(
           })
         | [StateClass<A>, StateClass<B>, StateClass<C>, StateClass<D>, StateClass<E>],
     // eslint-disable-next-line unicorn/prevent-abbreviations
-    fn: (store: Store, a: A, b: B, c: C, d: D, e: E) => Any
+    fn: (store: Store, a: A, b: B, c: C, d: D, e: E) => any
 ): TestSpec;
 
 export function ngxsTestingPlatform<A, B, C, D, E, F>(
@@ -60,12 +60,12 @@ export function ngxsTestingPlatform<A, B, C, D, E, F>(
           })
         | [StateClass<A>, StateClass<B>, StateClass<C>, StateClass<D>, StateClass<E>, StateClass<F>],
     // eslint-disable-next-line unicorn/prevent-abbreviations
-    fn: (store: Store, a: A, b: B, c: C, d: D, e: E, f: F) => Any
+    fn: (store: Store, a: A, b: B, c: C, d: D, e: E, f: F) => any
 ): TestSpec;
 
 export function ngxsTestingPlatform(
     params: PlatformMetadata & { states?: StateClass[] },
-    fn: (store: Store, ...states: StateClass[]) => Any
+    fn: (store: Store, ...states: StateClass[]) => any
 ): TestSpec;
 
 /**
@@ -74,10 +74,10 @@ export function ngxsTestingPlatform(
 // eslint-disable-next-line max-lines-per-function
 export function ngxsTestingPlatform(
     params: (PlatformMetadata & { states?: StateClass[] }) | StateClass[],
-    fn: (store: Store, ...states: StateClass[]) => Any
+    fn: (store: Store, ...states: StateClass[]) => any
 ): TestSpec {
     // eslint-disable-next-line max-lines-per-function
-    return async function testWithNgxsTestingPlatform(this: Any): Promise<void> {
+    return async function testWithNgxsTestingPlatform(this: any): Promise<void> {
         try {
             const {
                 states,
@@ -123,8 +123,8 @@ function ensure(
     let providers: Type<unknown>[] = [];
     let declarations: Type<unknown>[] = [];
     let imports: Type<unknown>[] = [];
-    let schemas: (SchemaMetadata | Any[])[] = [];
-    let aotSummaries: () => Any[] = (): Any[] => [];
+    let schemas: (SchemaMetadata | any[])[] = [];
+    let aotSummaries: () => any[] = (): any[] => [];
 
     if (Array.isArray(options)) {
         states = options;
@@ -134,7 +134,7 @@ function ensure(
         declarations = options.declarations ?? [];
         imports = options.imports ?? [];
         schemas = options.schemas ?? [];
-        aotSummaries = options.aotSummaries ?? ((): Any[] => []);
+        aotSummaries = options.aotSummaries ?? ((): any[] => []);
     }
 
     return { states, imports, providers, aotSummaries, declarations, schemas };

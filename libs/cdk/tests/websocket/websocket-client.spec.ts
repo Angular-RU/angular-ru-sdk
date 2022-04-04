@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { Any } from '@angular-ru/cdk/typings';
+
 import {
     AbstractWebsocketClient,
     BINARY,
@@ -10,22 +10,22 @@ import {
 } from '@angular-ru/cdk/websocket';
 
 @Injectable()
-class WebsocketSimpleParseClient extends AbstractWebsocketClient<Any> {
+class WebsocketSimpleParseClient extends AbstractWebsocketClient<any> {
     public get baseUrl(): string {
         return 'ws://';
     }
 
-    protected override serialize(message: Any): string {
+    protected override serialize(message: any): string {
         return JSON.stringify(message);
     }
 
-    protected override deserialize(messageEvent: MessageEvent): WebsocketMessage<Any, Any> {
+    protected override deserialize(messageEvent: MessageEvent): WebsocketMessage<any> {
         return JSON.parse(messageEvent.data);
     }
 }
 
 @Injectable()
-class WebsocketSerializeClient extends AbstractWebsocketClient<Any> {
+class WebsocketSerializeClient extends AbstractWebsocketClient<any> {
     public get baseUrl(): string {
         return 'ws://';
     }
@@ -39,7 +39,7 @@ describe('[TEST] Websocket client', (): void => {
             return 0;
         });
 
-        jest.spyOn(window, 'setTimeout').mockImplementation((callback: Any): NodeJS.Timeout => {
+        jest.spyOn(window, 'setTimeout').mockImplementation((callback: any): NodeJS.Timeout => {
             callback(0);
 
             return 0 as unknown as NodeJS.Timeout;
@@ -60,11 +60,11 @@ describe('[TEST] Websocket client', (): void => {
 
         client.on<string>('message').subscribe(observer);
 
-        const spyReconnect: jest.SpyInstance = jest.spyOn(client as Any, 'reconnect');
+        const spyReconnect: jest.SpyInstance = jest.spyOn(client as 'reconnect');
 
         client.connect('null');
 
-        let nativeSocket: WebSocket = (client as Any).socket$._socket;
+        let nativeSocket: WebSocket = (client as any).socket$._socket;
         const spyClose: jest.SpyInstance = jest.spyOn(nativeSocket, 'close');
 
         expect(nativeSocket).toBeInstanceOf(WebSocket);
@@ -91,8 +91,8 @@ describe('[TEST] Websocket client', (): void => {
         expect(spyClose).toHaveBeenCalledTimes(1);
 
         // checking if there is a new connection
-        expect((client as Any).socket$._socket).not.toBe(nativeSocket);
-        nativeSocket = (client as Any).socket$._socket;
+        expect((client as any).socket$._socket).not.toBe(nativeSocket);
+        nativeSocket = (client as any).socket$._socket;
         expect(nativeSocket).toBeInstanceOf(WebSocket);
         nativeSocket.dispatchEvent(new MessageEvent('open'));
 
@@ -120,11 +120,11 @@ describe('[TEST] Websocket client', (): void => {
         client.on<string>(PLAIN_TEXT).subscribe(plainTextObserver);
         client.on<string>(BINARY).subscribe(binaryObserver);
 
-        const spyReconnect: jest.SpyInstance = jest.spyOn(client as Any, 'reconnect');
+        const spyReconnect: jest.SpyInstance = jest.spyOn(client as 'reconnect');
 
         client.connect('null');
 
-        const nativeSocket: WebSocket = (client as Any).socket$._socket;
+        const nativeSocket: WebSocket = (client as any).socket$._socket;
         const spyClose: jest.SpyInstance = jest.spyOn(nativeSocket, 'close');
         const spySend: jest.SpyInstance = jest.spyOn(nativeSocket, 'send').mockImplementation((): void => {
             // ...

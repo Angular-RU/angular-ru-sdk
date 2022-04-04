@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Any, Fn, Nullable } from '@angular-ru/cdk/typings';
+import { Fn, Nullable } from '@angular-ru/cdk/typings';
 import { isNotNil } from '@angular-ru/cdk/utils';
 import { fromEvent, ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -17,8 +17,8 @@ export class ResizableService {
     private static clearSelection(): void {
         if (isNotNil(window.getSelection)) {
             window.getSelection()?.removeAllRanges();
-        } else if (isNotNil((document as Any).selection)) {
-            (document as Any).selection?.empty();
+        } else if (isNotNil((document as any).selection)) {
+            (document as any).selection?.empty();
         }
     }
 

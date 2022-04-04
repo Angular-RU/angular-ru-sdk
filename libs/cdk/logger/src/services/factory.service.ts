@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { Any, Arguments, PlainObject } from '@angular-ru/cdk/typings';
+import { Arguments, PlainObject } from '@angular-ru/cdk/typings';
 
 import {
     ConsoleOperation as Operation,
@@ -33,7 +33,7 @@ export class LoggerFactory {
 
         const operation: Operation =
             this.console.minLevel <= level
-                ? (this.console.instance as Any)[methodName].bind(...args)
+                ? (this.console.instance as any)[methodName].bind(...args)
                 : this.console.noop;
 
         const pipeOperation: PipeOperation = this.options.useLevelGroup

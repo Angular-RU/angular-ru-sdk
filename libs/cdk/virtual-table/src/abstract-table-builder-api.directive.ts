@@ -24,7 +24,7 @@ import {
 } from '@angular/core';
 import { coerceBoolean } from '@angular-ru/cdk/coercion';
 import { pathsOfObject } from '@angular-ru/cdk/object';
-import { Any, DeepPartial, Fn, Nullable, PlainObjectOf, PrimaryKey } from '@angular-ru/cdk/typings';
+import { DeepPartial, Fn, Nullable, PlainObjectOf, PrimaryKey } from '@angular-ru/cdk/typings';
 import { detectChanges, isNotNil, isTrue } from '@angular-ru/cdk/utils';
 
 import { NgxColumnComponent } from './components/ngx-column/ngx-column.component';
@@ -409,7 +409,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
 
     public getSelectedItems(): T[] {
         return this.sourceRef.filter((item: T): boolean =>
-            isNotNil(this.selectionModel.entries[(item as Any)[this.primaryKey]])
+            isNotNil(this.selectionModel.entries[(item as any)[this.primaryKey]])
         );
     }
 

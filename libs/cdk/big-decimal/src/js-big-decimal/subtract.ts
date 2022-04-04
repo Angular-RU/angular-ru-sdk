@@ -1,8 +1,6 @@
-import { Any } from '@angular-ru/cdk/typings';
-
 import { add } from './add';
 
-export function subtract(number1: Any, number2: Any): string {
+export function subtract(number1: any, number2: any): string {
     const a: string = number1.toString();
     let b: string = number2.toString();
 

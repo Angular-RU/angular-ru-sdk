@@ -1,6 +1,6 @@
 import { Component, Injectable } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Any, Immutable } from '@angular-ru/cdk/typings';
+import { Immutable } from '@angular-ru/cdk/typings';
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
 import { StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
@@ -17,7 +17,7 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
                 defaults: 1
             })
             @Injectable()
-            class MyAppState extends NgxsDataRepository<Any> {
+            class MyAppState extends NgxsDataRepository<any> {
                 constructor() {
                     super();
                     this.ctx.getState();
@@ -46,7 +46,7 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
                 defaults: 1
             })
             @Injectable()
-            class MyState extends NgxsDataRepository<Any> {
+            class MyState extends NgxsDataRepository<any> {
                 constructor() {
                     super();
                     this.ctx.getState();

@@ -1,5 +1,5 @@
 /* eslint-disable unicorn/consistent-function-scoping */
-import { Any, Nullable, PlainObject, PlainObjectOf } from '@angular-ru/cdk/typings';
+import { Nullable, PlainObject, PlainObjectOf } from '@angular-ru/cdk/typings';
 
 import { FilterGlobalOptions } from './filter-global-options';
 import { FilterableMessage } from './filterable-message';
@@ -167,7 +167,7 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
             .split('.')
             .reduce(
                 (tempValue: Nullable<PlainObject | PlainValue>, key: string): Nullable<PlainObject | PlainValue> =>
-                    (tempValue as Any)?.[key],
+                    (tempValue as any)?.[key],
                 object
             );
     }

@@ -5,7 +5,7 @@ import { Component, Injectable } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { DataHttpClient, DataHttpClientModule } from '@angular-ru/cdk/http';
 import { RestClient } from '@angular-ru/cdk/http/decorators';
-import { Any, Nullable, PlainObject, PlainObjectOf } from '@angular-ru/cdk/typings';
+import { Nullable, PlainObject, PlainObjectOf } from '@angular-ru/cdk/typings';
 
 import { HttpMockInterceptor } from '../helpers/http-mock-interceptor';
 
@@ -16,11 +16,11 @@ describe('[TEST]: HTTP Client', () => {
     let client: Nullable<ApiUsersClient> = null;
     let httpMock: HttpTestingController;
     let request: TestRequest;
-    let responseResult: Any = null;
-    let requestBody: Any = null;
+    let responseResult: any = null;
+    let requestBody: any = null;
     let requestKeys: string[] = [];
-    let responseType: Any = null;
-    let requestMethod: Any = null;
+    let responseType: any = null;
+    let requestMethod: any = null;
 
     @Injectable()
     @RestClient()

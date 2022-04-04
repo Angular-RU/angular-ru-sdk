@@ -9,7 +9,7 @@ import {
 } from '@angular-ru/cdk/http/typings';
 import { getHttpHeader, getHttpParams } from '@angular-ru/cdk/http/utils';
 import { replaceWithNull } from '@angular-ru/cdk/object';
-import { Any } from '@angular-ru/cdk/typings';
+
 import { isTrue } from '@angular-ru/cdk/utils';
 import { Observable } from 'rxjs';
 
@@ -33,30 +33,31 @@ export abstract class AbstractHttpClient<K = unknown> {
         protected http: HttpClient,
         protected configurator: DataConfiguratorService,
         protected limitConcurrency: LimitConcurrencyService,
-        @Inject(DATA_HTTP_CLIENT_INTERCEPTOR) _interceptor: Any
+        // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+        @Inject(DATA_HTTP_CLIENT_INTERCEPTOR) _interceptor: any
     ) {
         this.interceptor = _interceptor;
     }
 
-    public abstract request<T = Any, R = T>(options: DataBeforeRequestOptions): Observable<R>;
+    public abstract request<T = any, R = T>(options: DataBeforeRequestOptions): Observable<R>;
 
-    public get<T = Any, R = T>(path: string, options: Partial<DataClientRequestOptions> = {}): Observable<R> {
+    public get<T = any, R = T>(path: string, options: Partial<DataClientRequestOptions> = {}): Observable<R> {
         return this.request<T, R>(this.createRequestOptions({ method: RequestType.GET, path, options }));
     }
 
-    public post<T = Any, R = T>(path: string, options: Partial<DataClientRequestOptions> = {}): Observable<R> {
+    public post<T = any, R = T>(path: string, options: Partial<DataClientRequestOptions> = {}): Observable<R> {
         return this.request<T, R>(this.createRequestOptions({ method: RequestType.POST, path, options }));
     }
 
-    public put<T = Any, R = T>(path: string, options: Partial<DataClientRequestOptions> = {}): Observable<R> {
+    public put<T = any, R = T>(path: string, options: Partial<DataClientRequestOptions> = {}): Observable<R> {
         return this.request<T, R>(this.createRequestOptions({ method: RequestType.PUT, path, options }));
     }
 
-    public patch<T = Any, R = T>(path: string, options: Partial<DataClientRequestOptions> = {}): Observable<R> {
+    public patch<T = any, R = T>(path: string, options: Partial<DataClientRequestOptions> = {}): Observable<R> {
         return this.request<T, R>(this.createRequestOptions({ method: RequestType.PATCH, path, options }));
     }
 
-    public delete<T = Any, R = T>(path: string, options: Partial<DataClientRequestOptions> = {}): Observable<R> {
+    public delete<T = any, R = T>(path: string, options: Partial<DataClientRequestOptions> = {}): Observable<R> {
         return this.request<T, R>(this.createRequestOptions({ method: RequestType.DELETE, path, options }));
     }
 

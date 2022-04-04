@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { Any } from '@angular-ru/cdk/typings';
+
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
 import { DataAction, Payload, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
@@ -70,7 +70,7 @@ describe('[TEST]: Deep data action type', () => {
             prop: undefined
         });
 
-        const actions: Any[] = [];
+        const actions: any[] = [];
         const actions$: Actions = TestBed.inject(Actions);
 
         actions$.pipe(take(6)).subscribe((action) => actions.push(action));

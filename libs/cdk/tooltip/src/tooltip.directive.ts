@@ -11,7 +11,7 @@ import {
     TemplateRef
 } from '@angular/core';
 import { generateQuickGuid } from '@angular-ru/cdk/string';
-import { Any, Nullable } from '@angular-ru/cdk/typings';
+import { Nullable } from '@angular-ru/cdk/typings';
 import { checkValueIsEmpty, isFalsy, isNotNil } from '@angular-ru/cdk/utils';
 import { fromEvent, Subscription } from 'rxjs';
 
@@ -281,7 +281,7 @@ export class TooltipDirective implements OnDestroy {
         const content: HTMLDivElement = document.createElement('div');
 
         if (this.internalTooltipValue instanceof TemplateRef) {
-            const view: EmbeddedViewRef<Any> = this.internalTooltipValue.createEmbeddedView({
+            const view: EmbeddedViewRef<any> = this.internalTooltipValue.createEmbeddedView({
                 $implicit: this.internalContext
             });
 

@@ -1,6 +1,6 @@
 import { Injectable, PLATFORM_ID } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { Any, Immutable } from '@angular-ru/cdk/typings';
+import { Immutable } from '@angular-ru/cdk/typings';
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
 import { DataAction, Persistence, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsDataRepository, NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
@@ -33,10 +33,10 @@ import { Subject } from 'rxjs';
 
 describe('[TEST]: Storage plugin', () => {
     let store: Store;
-    let spy: jest.MockInstance<Any, Any>;
+    let spy: jest.MockInstance<any>;
 
     function ensureStoragePlugin(): NgxsDataStoragePlugin {
-        const services: Any[] = TestBed.inject<Any[]>(NGXS_PLUGINS);
+        const services: any[] = TestBed.inject<any[]>(NGXS_PLUGINS);
 
         if (services[0] instanceof NgxsDataStoragePlugin) {
             return services[0];
@@ -45,7 +45,7 @@ describe('[TEST]: Storage plugin', () => {
         throw new Error('not found plugin');
     }
 
-    function ensureStorage(storage: Storage): [string, Any][] {
+    function ensureStorage(storage: Storage): [string, any][] {
         return Object.entries(storage).map(([key, value]) => [key, JSON.parse(value)]);
     }
 
@@ -812,7 +812,7 @@ describe('[TEST]: Storage plugin', () => {
                     return '';
                 }
 
-                public setItem(_key: string, _value: Any): void {
+                public setItem(_key: string, _value: any): void {
                     // void
                 }
 
@@ -1968,7 +1968,7 @@ describe('[TEST]: Storage plugin', () => {
                 class DeepFilterState extends NgxsDataRepository<NewModel> implements NgxsDataMigrateStorage {
                     public invoker: number = 0;
 
-                    public ngxsDataStorageMigrate(defaults: Any, _storage: Any): Any {
+                    public ngxsDataStorageMigrate(defaults: any, _storage: any): any {
                         this.invoker++;
 
                         return defaults;
@@ -2070,7 +2070,7 @@ describe('[TEST]: Storage plugin', () => {
                 class DeepFilterState extends NgxsDataRepository<NewModel> implements NgxsDataMigrateStorage {
                     public invoker: number = 0;
 
-                    public ngxsDataStorageMigrate(defaults: Any, _storage: Any): Any {
+                    public ngxsDataStorageMigrate(defaults: any, _storage: any): any {
                         this.invoker++;
 
                         return defaults;
