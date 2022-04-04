@@ -54,7 +54,7 @@
                 "format:eslint": {
                     "executor": "@nrwl/workspace:run-commands",
                     "options": {
-                        "command": "eslint . --cache-location node_modules/.cache/eslint --debug --fix --ignore-pattern '**/file-suites/**'"
+                        "command": "eslint . --cache-location node_modules/.cache/eslint --fix --ignore-pattern '**/file-suites/**'"
                     }
                 },
                 "format:prettier": {
