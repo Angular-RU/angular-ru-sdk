@@ -24,7 +24,7 @@ runs:
           */*/node_modules/
           !node_modules/.cache
           !*/*/node_modules/.cache
-        key: node-modules-cache-${{ hashfiles('package-lock.json') }}
+        key: node-modules-cache-new-one-${{ hashfiles('package-lock.json') }}
 
     - name: Restore from cache of builds
       id: build-cache
