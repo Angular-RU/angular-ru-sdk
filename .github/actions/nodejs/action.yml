@@ -25,6 +25,7 @@ runs:
           */*/node_modules/
           !node_modules/.cache
           !*/*/node_modules/.cache
+          !.angular
         key: modules-cache__nodejs-${{ inputs.node-version }}__${{ hashfiles('**/package-lock.json') }}
 
     - name: Restore from cache of builds
@@ -33,6 +34,7 @@ runs:
       uses: actions/cache@v3
       with:
         path: |
+          .angular
           node_modules/.cache
           */*/node_modules/.cache
         key: builds-cache-hash__${{ hashFiles('**/package-lock.json') }}-${{ github.ref }}
