@@ -86,18 +86,6 @@ module.exports = {
                 'unicorn/string-content': 'off',
                 'unicorn/require-post-message-target-origin': 'off'
                 /*
-
-
-
-
-
-
-
-
-
-
-
-
                 'unicorn/no-new-array': 'error',
                 'unicorn/no-new-buffer': 'error',
                 'unicorn/no-null': 'error',

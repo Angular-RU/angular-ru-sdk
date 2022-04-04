@@ -11,15 +11,17 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
         SKIP = 'skip'
     }
 
+    // eslint-disable-next-line unicorn/consistent-function-scoping
     function getValueByPath(object: PlainObject, path: string): Nullable<PlainObject> {
         return path
             ? path
                   .split('.')
                   // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-                  .reduce((value: Nullable<PlainObject>, key: string): Any => value && (value as Any)[key], object)
+                  .reduce((value: Nullable<PlainObject>, key: string): Any => value && value[key], object)
             : object;
     }
 
+    // eslint-disable-next-line unicorn/consistent-function-scoping
     function checkValueIsEmpty(value: Any): boolean {
         // note: don't use isString here
         // noinspection SuspiciousTypeOfGuard
@@ -100,7 +102,8 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
                 return 0;
             }
 
-            return a > newB ? currentDepth! : -1 * currentDepth!;
+            // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+            return a! > newB! ? currentDepth! : -1 * currentDepth!;
         }
 
         private static observeKey(keys: PlainObjectOf<number>, count: number): Nullable<string> {
@@ -121,5 +124,5 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
         }
     }
 
-    return Sortable.sortByKeys(message.source, message.definition as Any);
+    return Sortable.sortByKeys(message.source, message.definition as unknown as PlainObjectOf<OrderType>);
 }

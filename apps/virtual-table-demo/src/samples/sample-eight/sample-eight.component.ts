@@ -100,7 +100,7 @@ export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     public ngOnDestroy(): void {
-        window.clearInterval(this.idInterval!);
+        window.clearInterval(this.idInterval ?? 0);
     }
 
     public updateRow(row: PlainObject, key: string, value: Any): void {
@@ -113,7 +113,7 @@ export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
     public asyncRow(row: PlainObject, key: string, value: Any): void {
         const time: number = 500;
 
-        window.clearTimeout(this.timeout!);
+        window.clearTimeout(this.timeout ?? 0);
         // eslint-disable-next-line no-restricted-properties
         this.timeout = window.setTimeout((): void => this.updateRow(row, key, value), time);
     }

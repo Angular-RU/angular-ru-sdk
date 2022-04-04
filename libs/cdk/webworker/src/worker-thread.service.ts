@@ -24,13 +24,13 @@ export class WebWorkerThreadService implements WebWorkerThread {
     }
 
     public run<T, K>(workerFunction: (input: K) => T, data?: K): Promise<T> {
-        const url: Nullable<string> = this.getOrCreateWorkerUrl(workerFunction);
+        const url: string | undefined = this.getOrCreateWorkerUrl(workerFunction);
 
-        return this.runUrl(url!, data);
+        return this.runUrl(url, data);
     }
 
-    public runUrl(url: string, data?: Any): Promise<Any> {
-        const worker: Worker = new Worker(url);
+    public runUrl(url: string | undefined, data?: Any): Promise<Any> {
+        const worker: Worker = new Worker(url!);
         const promise: Promise<Any> = this.createPromiseForWorker(worker, data);
         const promiseCleaner: Any = this.createPromiseCleaner(promise);
 
@@ -57,7 +57,7 @@ export class WebWorkerThreadService implements WebWorkerThread {
         });
     }
 
-    private getOrCreateWorkerUrl(fn: Fn): Nullable<string> {
+    private getOrCreateWorkerUrl(fn: Fn): string | undefined {
         if (!this.workerFunctionToUrlMap.has(fn)) {
             const url: string = WebWorkerThreadService.createWorkerUrl(fn);
 
@@ -81,7 +81,7 @@ export class WebWorkerThreadService implements WebWorkerThread {
         const worker: Nullable<Worker> = this.promiseToWorkerMap.get(promise);
 
         if (isNotNil(worker)) {
-            worker.terminate();
+            worker?.terminate();
         }
 
         this.promiseToWorkerMap.delete(promise);

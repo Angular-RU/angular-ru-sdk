@@ -23,14 +23,12 @@
             "root": "./",
             "tags": ["scope:ignore"],
             "targets": {
-                "postinstall": {
+                "prebuild": {
                     "executor": "@nrwl/workspace:run-commands",
                     "options": {
                         "parallel": false,
                         "commands": [
-                            "npx husky install",
-                            "npx ngcc --async",
-                            "echo \"Build symlinked libraries:\"",
+                            "echo \"Prebuild core libraries:\"",
                             "nx build cdk",
                             "nx build jest",
                             "nx build eslint-plugin-enterprise"
@@ -53,8 +51,12 @@
                 },
                 "format:eslint": {
                     "executor": "@nrwl/workspace:run-commands",
+                    "dependsOn": [{ "target": "build", "projects": "dependencies" }],
                     "options": {
-                        "command": "eslint . --cache --cache-location ./node_modules/.cache/eslint --fix --ignore-pattern '**/file-suites/**'"
+                        "commands": [
+                            "nx postinstall .platform",
+                            "eslint . --cache --cache-location ./node_modules/.cache/eslint --fix --ignore-pattern '**/file-suites/**'"
+                        ]
                     }
                 },
                 "format:prettier": {

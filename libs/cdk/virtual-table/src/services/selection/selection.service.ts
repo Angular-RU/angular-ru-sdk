@@ -51,7 +51,7 @@ export class SelectionService<T> implements OnDestroy {
     public toggleAll(rows: Nullable<T[]>): void {
         let selectedSize: Nullable<number> = null;
 
-        window.clearInterval(this.selectionTaskIdle!);
+        window.clearInterval(this.selectionTaskIdle ?? 0);
 
         if (this.selectionModel.isAll) {
             this.selectionModel.clear();
@@ -79,7 +79,7 @@ export class SelectionService<T> implements OnDestroy {
             return;
         }
 
-        this.ngZone.runOutsideAngular((): void => window.clearInterval(this.selectionTaskIdle!));
+        this.ngZone.runOutsideAngular((): void => window.clearInterval(this.selectionTaskIdle ?? 0));
         this.selectionModel.toggle(this.getIdByRow(row), row, true);
         this.onChanges$.next();
         this.checkIsAllSelected();
@@ -93,8 +93,7 @@ export class SelectionService<T> implements OnDestroy {
         const rows: T[] = this.rows ?? [];
         const { shiftKey, ctrlKey }: MouseEvent = event;
         const index: number = rows.findIndex(
-            (item: T): boolean =>
-                ((item as Any) ?? ({} as T))[this.primaryKey] === ((row as Any) ?? {})[this.primaryKey]
+            (item: T): boolean => ((item as Any) ?? ({} as T))[this.primaryKey] === (row ?? {})[this.primaryKey]
         );
 
         if (shiftKey) {

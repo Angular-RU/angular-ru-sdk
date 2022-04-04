@@ -41,7 +41,7 @@ export function orderedIntervalValidator({ dateFromKey, dateToKey }: DateInterva
             return null;
         }
 
-        return from! > to! ? { [validatorType]: true } : null;
+        return (from ?? 0) > (to ?? 0) ? ({ [validatorType]: true } as ValidationErrors) : null;
     };
 }
 

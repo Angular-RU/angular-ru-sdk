@@ -78,7 +78,7 @@ module.exports = {
                     }
                 ],
                 '@typescript-eslint/no-empty-interface': 'error',
-                '@typescript-eslint/no-explicit-any': 'error',
+                '@typescript-eslint/no-explicit-any': 'off', // don't use, is redundant
                 '@typescript-eslint/no-inferrable-types': 'off',
                 '@typescript-eslint/no-magic-numbers': [
                     'error',

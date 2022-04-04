@@ -334,7 +334,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
 
     public filter(after?: Fn): void {
         this.ngZone.runOutsideAngular((): void => {
-            window.clearInterval(this.filterIdTask!);
+            window.clearInterval(this.filterIdTask ?? 0);
             this.filteringRun = true;
             detectChanges(this.cd);
             // eslint-disable-next-line no-restricted-properties
@@ -390,7 +390,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
             const updateSchema: TableUpdateSchema = {
                 columns,
                 generalTableSettings,
-                name: this.name!,
+                name: this.name,
                 version: this.schemaVersion
             };
 
@@ -402,7 +402,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
 
     public idleDetectChanges(): void {
         this.ngZone.runOutsideAngular((): void => {
-            window.cancelAnimationFrame(this.idleDetectChangesId!);
+            window.cancelAnimationFrame(this.idleDetectChangesId ?? 0);
             this.idleDetectChangesId = window.requestAnimationFrame((): void => detectChanges(this.cd));
         });
     }
@@ -422,7 +422,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
     }
 
     protected forceCalculateViewport(): void {
-        this.updateViewportInfo(this.viewPortInfo.startIndex!, this.viewPortInfo.endIndex!);
+        this.updateViewportInfo(this.viewPortInfo.startIndex ?? 0, this.viewPortInfo.endIndex ?? 0);
     }
 
     /**
@@ -457,7 +457,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
         }
 
         this.ngZone.runOutsideAngular((): void => {
-            clearInterval(this.columnFrameId!);
+            clearInterval(this.columnFrameId ?? 0);
             // eslint-disable-next-line no-restricted-properties
             this.columnFrameId = window.setTimeout((): void => {
                 let width: number = 0;

@@ -1,5 +1,4 @@
 import { isSimpleObject } from '@angular-ru/cdk/object';
-import { Any } from '@angular-ru/cdk/typings';
 import { checkValueIsEmpty } from '@angular-ru/cdk/utils';
 import { PersistenceProvider, STORAGE_DECODE_TYPE, StorageData, StorageMeta } from '@angular-ru/ngxs/typings';
 
@@ -31,9 +30,9 @@ export function deserializeByStorageMeta<T>(
 }
 
 function versionIsInvalid<T>(meta: StorageMeta<T>): boolean {
-    const version: number = parseFloat(meta.version as Any);
+    const version: number = parseFloat(meta.version.toString());
 
-    return isNaN(version) || version < 1 || parseInt(meta.version as Any) !== version;
+    return isNaN(version) || version < 1 || parseInt(meta.version.toString()) !== version;
 }
 
 function missingDataKey<T>(meta: StorageMeta<T>): boolean {

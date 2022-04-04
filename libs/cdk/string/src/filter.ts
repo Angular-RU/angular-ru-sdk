@@ -6,7 +6,7 @@ import { isFunctionLike } from '@angular-ru/cdk/function';
 export type FilterPredicateFn = (char: string, index?: number, self?: string[]) => boolean;
 export type FilterPredicate = string[] | FilterPredicateFn | RegExp;
 
-export function filter(value: string, predicate: FilterPredicate = []): string {
+export function filter(value: string, predicate: FilterPredicate | '' = []): string {
     if (Array.isArray(predicate)) {
         return filterWithCharacters(value, predicate);
     }

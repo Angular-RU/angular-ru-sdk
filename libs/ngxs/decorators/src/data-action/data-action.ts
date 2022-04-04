@@ -71,7 +71,7 @@ export function DataAction(options: RepositoryActionOptions = REPOSITORY_ACTION_
             const stateInstance: DataStateClass = mapped.instance;
 
             // Note: invoke only after store.dispatch(...)
-            (stateInstance as Any)[operation.type] = (): Any => {
+            (stateInstance as any)[operation.type] = (): any => {
                 if (isTrue(options.insideZone)) {
                     NgxsDataInjector.ngZone?.run((): void => {
                         result = originalMethod.apply(instance, args);

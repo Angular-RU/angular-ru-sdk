@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Any, Immutable } from '@angular-ru/cdk/typings';
+import { Immutable } from '@angular-ru/cdk/typings';
 import { StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsDataRepository, NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { ngxsTestingPlatform } from '@angular-ru/ngxs/testing';
@@ -161,7 +161,7 @@ describe('[TEST]: Abstract ngxs data repository', () => {
             b.setState({ value: 2 });
             expect(b.getState()).toEqual({ value: 2 });
 
-            (b.initialState as Any).value = 5; // not affected
+            b.initialState.value = 5; // not affected
             b.reset();
 
             expect(b.getState()).toEqual({ value: 1 });

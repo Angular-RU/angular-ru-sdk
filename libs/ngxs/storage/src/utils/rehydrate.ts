@@ -19,8 +19,8 @@ export function rehydrate<T>(params: RehydrateInfoOptions<T>): RehydrateInfo {
     const prevData: T = getValue(states, path);
 
     if (isTruthy(info.versionMismatch)) {
-        const stateInstance: Any = provider.stateInstance as Any;
-        const instance: NgxsDataMigrateStorage = stateInstance as NgxsDataMigrateStorage;
+        const stateInstance: Any = provider.stateInstance;
+        const instance: NgxsDataMigrateStorage = stateInstance;
         const migrateFn: MigrateFn = provider.migrate ?? instance.ngxsDataStorageMigrate?.bind(provider.stateInstance);
         const newMigrationData: PlainObject = migrateFn?.(prevData, data);
 

@@ -5,8 +5,8 @@ import { isNotNil } from '@angular-ru/cdk/utils';
 
 @Directive({ selector: '[trimInput]' })
 export class TrimInputDirective implements OnInit {
-    private name: Nullable<string | number>;
-    private previousName: Nullable<string | number>;
+    private declare name: string;
+    private declare previousName: string;
     private previousValue: Any;
 
     @Input() public trimDisabled: boolean = false;
@@ -14,8 +14,8 @@ export class TrimInputDirective implements OnInit {
     constructor(public readonly elementRef: ElementRef, @Optional() private readonly ngControl?: NgControl) {}
 
     @Input()
-    public set formControlName(name: Nullable<string | number>) {
-        this.previousValue = this.ngControl?.control?.parent?.get(this.name as Any)?.value;
+    public set formControlName(name: string) {
+        this.previousValue = this.ngControl?.control?.parent?.get(this.name)?.value;
         this.previousName = this.name;
         this.name = name;
     }
@@ -42,8 +42,8 @@ export class TrimInputDirective implements OnInit {
         this.elementRef.nativeElement.value = this.elementRef.nativeElement.value?.toString().trim();
 
         const control: Nullable<AbstractControl> = this.ngControl?.control?.parent
-            ? this.ngControl?.control?.parent?.get(this.name as Any)
-            : this.ngControl?.control?.get(this.name as Any);
+            ? this.ngControl?.control?.parent?.get(this.name)
+            : this.ngControl?.control?.get(this.name);
 
         if (isNotNil(control)) {
             const modelValue: string = (this.ngControl?.value ?? control?.value)?.toString().trim();
@@ -52,7 +52,7 @@ export class TrimInputDirective implements OnInit {
                 this.ngControl?.control?.setValue(modelValue, { emitEvent: false });
             } else {
                 control?.setValue(modelValue, { emitEvent: false });
-                control?.parent?.get(this.previousName as Any)?.setValue(this.previousValue, { emitEvent: false });
+                control?.parent?.get(this.previousName)?.setValue(this.previousValue, { emitEvent: false });
             }
         }
     }

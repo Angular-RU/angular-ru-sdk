@@ -88,7 +88,7 @@ export class TableTbodyComponent<T> {
 
     // eslint-disable-next-line max-params,max-params-no-constructor/max-params-no-constructor
     public handleDblClick<K>(row: T, key: string, event: MouseEvent, emitter?: TableClickEventEmitter<T, K>): void {
-        window.clearInterval(this.selection.selectionTaskIdle!);
+        window.clearInterval(this.selection.selectionTaskIdle ?? 0);
         this.handleEventEmitter(row, key, event, emitter);
     }
 
@@ -113,7 +113,7 @@ export class TableTbodyComponent<T> {
             event: $event,
             value: getValueByPath(item, key),
             preventDefault: (): void => {
-                window.clearInterval(this.selection.selectionTaskIdle!);
+                window.clearInterval(this.selection.selectionTaskIdle ?? 0);
             }
         };
     }
@@ -136,6 +136,6 @@ export class TableTbodyComponent<T> {
     }
 
     private checkSelectedItem(row: T): boolean {
-        return this.selection.selectionModel.get((row as Any)[this.primaryKey!]);
+        return this.selection.selectionModel.get((row as Any)[this.primaryKey!]) ?? false;
     }
 }

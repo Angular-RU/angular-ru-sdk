@@ -286,10 +286,10 @@ export class TableBuilderComponent<T>
     }
 
     public ngOnDestroy(): void {
-        window.clearTimeout(this.timeoutScrolledId!);
-        window.clearTimeout(this.timeoutViewCheckedId!);
-        window.clearTimeout(this.timeoutCheckedTaskId!);
-        window.cancelAnimationFrame(this.frameCalculateViewportId!);
+        window.clearTimeout(this.timeoutScrolledId ?? 0);
+        window.clearTimeout(this.timeoutViewCheckedId ?? 0);
+        window.clearTimeout(this.timeoutCheckedTaskId ?? 0);
+        window.cancelAnimationFrame(this.frameCalculateViewportId ?? 0);
         this.templateParser.schema = null;
         this._destroy$.next(true);
 
@@ -463,7 +463,7 @@ export class TableBuilderComponent<T>
 
         return isDownMoved
             ? (this.viewPortInfo.endIndex ?? end) - lastVisibleIndex
-            : start - this.viewPortInfo.startIndex!;
+            : start - (this.viewPortInfo.startIndex ?? 0);
     }
 
     protected calculateEndIndex(start: number): number {
@@ -477,7 +477,7 @@ export class TableBuilderComponent<T>
     }
 
     protected isDownMoved(): boolean {
-        return this.scrollOffsetTop > this.viewPortInfo.prevScrollOffsetTop!;
+        return this.scrollOffsetTop > (this.viewPortInfo.prevScrollOffsetTop ?? 0);
     }
 
     protected updateViewportInfo(start: number, end: number): void {
@@ -516,7 +516,7 @@ export class TableBuilderComponent<T>
     }
 
     private setSortTypes(): void {
-        this.sortable.setDefinition({ ...(this.sortTypes as PlainObjectOf<SortOrderType>) });
+        this.sortable.setDefinition({ ...this.sortTypes } as PlainObjectOf<SortOrderType>);
 
         if (this.sourceExists) {
             this.sortAndFilter().then((): void => this.reCheckDefinitions());
@@ -598,9 +598,9 @@ export class TableBuilderComponent<T>
 
     private cancelScrolling(): void {
         this.viewPortInfo.isScrolling = true;
-        window.cancelAnimationFrame(this.frameCalculateViewportId!);
+        window.cancelAnimationFrame(this.frameCalculateViewportId ?? 0);
         this.ngZone.runOutsideAngular((): void => {
-            window.clearTimeout(this.timeoutScrolledId!);
+            window.clearTimeout(this.timeoutScrolledId ?? 0);
             // eslint-disable-next-line no-restricted-properties
             this.timeoutScrolledId = window.setTimeout((): void => {
                 this.viewPortInfo.isScrolling = false;
@@ -687,14 +687,14 @@ export class TableBuilderComponent<T>
 
     private tryRefreshViewModelBySelection(): void {
         this.ngZone.runOutsideAngular((): void => {
-            window.cancelAnimationFrame(this.selectionUpdateTaskId!);
+            window.cancelAnimationFrame(this.selectionUpdateTaskId ?? 0);
             this.selectionUpdateTaskId = window.requestAnimationFrame((): void => this.app.tick());
         });
     }
 
     private viewForceRefresh(): void {
         this.ngZone.runOutsideAngular((): void => {
-            window.clearTimeout(this.timeoutCheckedTaskId!);
+            window.clearTimeout(this.timeoutCheckedTaskId ?? 0);
             // eslint-disable-next-line no-restricted-properties
             this.timeoutCheckedTaskId = window.setTimeout((): void => {
                 this.forcedRefresh = true;
@@ -798,7 +798,7 @@ export class TableBuilderComponent<T>
     private generateDisplayedColumns(): string[] {
         let generatedList: string[];
 
-        this.templateParser.initialSchema(this.columnOptions!);
+        this.templateParser.initialSchema(this.columnOptions);
         const { simpleRenderedKeys, allRenderedKeys }: TemplateKeys = this.parseTemplateKeys();
         const isValid: boolean = this.validationSchemaColumnsAndResetIfInvalid();
 
@@ -864,12 +864,12 @@ export class TableBuilderComponent<T>
                 ? this.generateColumnsKeyMap(this.customModelColumnsKeys)
                 : this.generateColumnsKeyMap(this.modelColumnKeys);
 
-        this.templateParser.parse(this.columnTemplates!);
+        this.templateParser.parse(this.columnTemplates);
 
         return {
-            allRenderedKeys: Array.from(this.templateParser.fullTemplateKeys!),
-            overridingRenderedKeys: this.templateParser.overrideTemplateKeys!,
-            simpleRenderedKeys: this.templateParser.templateKeys!
+            allRenderedKeys: Array.from(this.templateParser.fullTemplateKeys ?? []) ?? new Set(),
+            overridingRenderedKeys: this.templateParser.overrideTemplateKeys ?? new Set(),
+            simpleRenderedKeys: this.templateParser.templateKeys ?? new Set()
         };
     }
 

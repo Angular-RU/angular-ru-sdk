@@ -42,7 +42,7 @@ export class SampleFirstComponent implements OnInit, OnDestroy {
     }
 
     public ngOnDestroy(): void {
-        window.clearInterval(this.idInterval!);
+        window.clearInterval(this.idInterval ?? 0);
     }
 
     // eslint-disable-next-line max-lines-per-function

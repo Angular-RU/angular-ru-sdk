@@ -25,7 +25,8 @@ export function ensureDescriptorByType<T>({
     // eslint-disable-next-line max-lines-per-function
     descriptor.value = function (...args: Any[]): Observable<T> {
         let newPath: string = path.toString();
-        const httpClient: DataHttpClient = this as Any as DataHttpClient;
+        // eslint-disable-next-line @typescript-eslint/no-this-alias
+        const httpClient: DataHttpClient = this as Any;
         const result: Observable<T> | Any = originalMethod.apply(httpClient, args);
         let template: Nullable<RestTemplate<T>> = result?.restTemplateRef ?? null;
 
@@ -39,7 +40,9 @@ export function ensureDescriptorByType<T>({
 
             const bodyRegistry: MethodArgsRegistry = ensureMethodArgsRegistry(originalMethod, META_REQUEST_BODY);
             const indexBody: Nullable<number> = bodyRegistry.getIndexByKey(KEY_REQUEST_BODY);
-            const body: Any = isNil(indexBody) ? template?.options.body : template?.options.body ?? args?.[indexBody];
+            const body: Any = isNil(indexBody)
+                ? template?.options.body
+                : template?.options.body ?? args?.[indexBody as Any];
             const params: Nullable<PlainObject> = ensureQueryParams(
                 template?.options.queryParams,
                 originalMethod,

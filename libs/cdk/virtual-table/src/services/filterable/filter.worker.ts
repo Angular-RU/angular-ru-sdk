@@ -193,7 +193,8 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
     }
 
     function isFilled(value?: Nullable<PlainValue>): value is PlainValue {
-        return isNotNil(value) && value.toString().length > 0;
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+        return isNotNil(value) && (value as PlainValue)?.toString().length > 0;
     }
 
     function isNil(value: Nullable<unknown>): value is null | undefined {

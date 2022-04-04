@@ -28,7 +28,9 @@ jobs:
         run: npm run format
 
       - name: Run build artifacts dependent
-        run: npx nx build eslint-plugin-enterprise
+        run: |
+          npx nx prebuild .platform
+          npx nx build eslint-plugin-enterprise
 
       - name: Run lint
         run: npm run lint

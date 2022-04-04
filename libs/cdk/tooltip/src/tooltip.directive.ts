@@ -30,11 +30,11 @@ export class TooltipDirective implements OnDestroy {
     private readonly delta: number = 2;
     private readonly layoutMinDuration: number = 100;
     private tooltipDomElement: Nullable<HTMLElement> = null;
-    private timeoutId: Nullable<number> = null;
-    private frameId: Nullable<number> = null;
-    private createLayoutId: Nullable<number> = null;
-    private hideId: Nullable<number> = null;
-    private mouseLeaveTooltipId: Nullable<number> = null;
+    private timeoutId?: number;
+    private frameId?: number;
+    private createLayoutId?: number;
+    private hideId?: number;
+    private mouseLeaveTooltipId?: number;
     private tooltipMouseenter: Nullable<Subscription> = null;
     private tooltipMouseleave: Nullable<Subscription> = null;
     private handlerOptions: AddEventListenerOptions = { passive: true };
@@ -125,7 +125,7 @@ export class TooltipDirective implements OnDestroy {
 
     public hideTooltip(): void {
         this.ngZone.runOutsideAngular((): void => {
-            window.clearTimeout(this.hideId!);
+            window.clearTimeout(this.hideId);
             // eslint-disable-next-line no-restricted-properties
             this.hideId = window.setTimeout((): void => {
                 this.removeTooltipShowClass();
@@ -199,7 +199,7 @@ export class TooltipDirective implements OnDestroy {
             const contentDomElement: Nullable<HTMLElement> = this.createTooltipContent();
 
             if (isNotNil(contentDomElement)) {
-                const childElements: HTMLCollection = this.tooltipDomElement.children;
+                const childElements: HTMLCollection | never[] = this.tooltipDomElement?.children ?? [];
 
                 for (const child of Array.from(childElements)) {
                     this.renderer.removeChild(this.tooltipDomElement, child);
@@ -254,19 +254,19 @@ export class TooltipDirective implements OnDestroy {
     }
 
     private tooltipListenOnHoverEvent(): void {
-        window.clearTimeout(this.mouseLeaveTooltipId!);
+        window.clearTimeout(this.mouseLeaveTooltipId);
 
         if (isNotNil(this.tooltipDomElement)) {
             this.tooltipMouseenter?.unsubscribe();
             this.tooltipMouseleave?.unsubscribe();
 
-            this.tooltipMouseenter = fromEvent(this.tooltipDomElement, 'mouseenter').subscribe((): void => {
-                window.clearTimeout(this.hideId!);
-                window.clearTimeout(this.mouseLeaveTooltipId!);
+            this.tooltipMouseenter = fromEvent(this.tooltipDomElement ?? [], 'mouseenter').subscribe((): void => {
+                window.clearTimeout(this.hideId);
+                window.clearTimeout(this.mouseLeaveTooltipId);
             });
 
-            this.tooltipMouseleave = fromEvent(this.tooltipDomElement, 'mouseleave').subscribe((): void => {
-                window.clearTimeout(this.mouseLeaveTooltipId!);
+            this.tooltipMouseleave = fromEvent(this.tooltipDomElement ?? [], 'mouseleave').subscribe((): void => {
+                window.clearTimeout(this.mouseLeaveTooltipId);
                 // eslint-disable-next-line no-restricted-properties
                 this.mouseLeaveTooltipId = window.setTimeout(
                     (): void => this.hideTooltip(),
@@ -276,6 +276,7 @@ export class TooltipDirective implements OnDestroy {
         }
     }
 
+    // eslint-disable-next-line complexity
     private createTooltipContent(): Nullable<HTMLDivElement> {
         const content: HTMLDivElement = document.createElement('div');
 
@@ -289,7 +290,7 @@ export class TooltipDirective implements OnDestroy {
         } else if (checkValueIsEmpty(this.internalTooltipValue)) {
             return null;
         } else if (isNotNil(this.internalTooltipValue)) {
-            const value: string = this.internalTooltipValue?.toString();
+            const value: string = this.internalTooltipValue?.toString() ?? '';
 
             content.innerHTML = this.interceptor.instant?.(value) ?? value;
         }
@@ -314,11 +315,11 @@ export class TooltipDirective implements OnDestroy {
     }
 
     private destroyAllTimeouts(): void {
-        window.clearTimeout(this.frameId!);
-        window.clearTimeout(this.createLayoutId!);
-        window.clearTimeout(this.mouseLeaveTooltipId!);
-        window.clearTimeout(this.timeoutId!);
-        window.clearTimeout(this.hideId!);
+        window.clearTimeout(this.frameId);
+        window.clearTimeout(this.createLayoutId);
+        window.clearTimeout(this.mouseLeaveTooltipId);
+        window.clearTimeout(this.timeoutId);
+        window.clearTimeout(this.hideId);
     }
 
     private removeOldNodes(): void {

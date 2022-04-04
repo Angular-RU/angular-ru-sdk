@@ -59,8 +59,8 @@ export class TableCellComponent<T> implements OnDestroy {
     }
 
     public ngOnDestroy(): void {
-        window.clearTimeout(this.timeoutOverflowId!);
-        window.clearTimeout(this.timeoutShowedFrameId!);
+        window.clearTimeout(this.timeoutOverflowId ?? 0);
+        window.clearTimeout(this.timeoutShowedFrameId ?? 0);
         this.destroy$.next();
         this.destroy$.complete();
     }
@@ -78,7 +78,7 @@ export class TableCellComponent<T> implements OnDestroy {
             return;
         }
 
-        window.clearInterval(this.timeoutShowedFrameId!);
+        window.clearInterval(this.timeoutShowedFrameId ?? 0);
     }
 
     public $castKey(key: Nullable<string>): keyof T {
@@ -95,7 +95,7 @@ export class TableCellComponent<T> implements OnDestroy {
     }
 
     private detectCheckOverflow(element: HTMLDivElement, event: MouseEvent): void {
-        window.clearInterval(this.timeoutShowedFrameId!);
+        window.clearInterval(this.timeoutShowedFrameId ?? 0);
         this.ngZone.runOutsideAngular((): void => {
             // eslint-disable-next-line no-restricted-properties
             this.timeoutShowedFrameId = window.setTimeout((): void => {

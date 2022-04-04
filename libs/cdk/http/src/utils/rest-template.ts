@@ -96,7 +96,7 @@ export class RestTemplate<T> {
 
         if (isNil(this._client)) {
             throw new Error('Not found http client');
-        } else if (isNil((this._client as Any)?.[this.methodType])) {
+        } else if (isNil(this._client?.[this.methodType])) {
             throw new Error(`Method ${this.methodType} not supported`);
         }
 

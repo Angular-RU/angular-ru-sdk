@@ -39,19 +39,19 @@ describe('[TEST]: Trim Input', () => {
 
     it('correct sync modelView with ngModel', () => {
         expect(component?.value).toBe(1234000022220000);
-        expect(debugElement!.nativeElement.value).toBe('1234-0000-2222-0000');
+        expect(debugElement.nativeElement.value).toBe('1234-0000-2222-0000');
 
-        debugElement!.nativeElement.value = '\t  1234000033330000   ';
-        debugElement!.triggerEventHandler('input', {
-            target: debugElement!.nativeElement
+        debugElement.nativeElement.value = '\t  1234000033330000   ';
+        debugElement.triggerEventHandler('input', {
+            target: debugElement.nativeElement
         });
-        debugElement!.triggerEventHandler('blur', {
-            target: debugElement!.nativeElement
+        debugElement.triggerEventHandler('blur', {
+            target: debugElement.nativeElement
         });
 
-        fixture!.detectChanges();
+        fixture.detectChanges();
 
         expect(component?.value).toBe(1234000033330000);
-        expect(debugElement!.nativeElement.value).toBe('1234-0000-3333-0000');
+        expect(debugElement.nativeElement.value).toBe('1234-0000-3333-0000');
     });
 });

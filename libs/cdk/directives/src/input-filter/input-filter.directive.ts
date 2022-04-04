@@ -13,7 +13,7 @@ import { InputFilterConfig } from './input-filter.config';
 })
 export class InputFilterDirective {
     private manualEvent: Nullable<InputEvent> = null;
-    @Input() public inputFilter: Nullable<FilterPredicate | ''> = null;
+    @Input() public declare inputFilter: FilterPredicate | '';
     @Input() public filterDisabled: boolean = false;
 
     constructor(
@@ -29,7 +29,7 @@ export class InputFilterDirective {
             return;
         }
 
-        const predicate: FilterPredicate = this.getPredicate();
+        const predicate: FilterPredicate | '' = this.getPredicate();
         const baseValue: string = this.elementRef.nativeElement.value;
         const preparedValue: string = filter(baseValue, predicate);
 
@@ -42,14 +42,11 @@ export class InputFilterDirective {
         this.elementRef.nativeElement.dispatchEvent(this.manualEvent);
     }
 
-    private getPredicate(): FilterPredicate {
+    private getPredicate(): FilterPredicate | '' {
         const isInputPredicate: boolean = Array.isArray(this.inputFilter)
             ? hasItems(this.inputFilter)
             : checkValueIsFilled(this.inputFilter);
-        const predicate: Nullable<FilterPredicate | ''> = isInputPredicate
-            ? this.inputFilter
-            : this.config?.default ?? [];
 
-        return predicate as FilterPredicate;
+        return isInputPredicate ? this.inputFilter : this.config?.default ?? [];
     }
 }

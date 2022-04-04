@@ -6,6 +6,6 @@ export class MutableTypePipe implements PipeTransform {
     public transform<T>(value: Nullable<Immutable<T>>): Mutable<T>;
     public transform<T>(value: Nullable<T>): T;
     public transform<T>(value: Nullable<Immutable<T> | T>): T {
-        return value as Mutable<T> as T;
+        return value as T;
     }
 }

@@ -86,7 +86,7 @@ export class NgxsDataFactory {
         const payload: PlainObjectOf<Any> | null = NgxsDataFactory.createPayload(args, registry);
         const dynamicActionByTypeFactory: Type<Any> = dynamicActionByType(operation.type);
 
-        return new dynamicActionByTypeFactory(payload) as ActionEvent;
+        return new dynamicActionByTypeFactory(payload);
     }
 
     private static ensureMeta(stateMeta: MetaDataModel): MappedStore | null | undefined {

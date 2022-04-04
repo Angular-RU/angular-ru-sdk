@@ -9,8 +9,8 @@ export class VirtualForDirective<T> implements OnDestroy {
     private cache: Map<number, InternalVirtualRef<T>> = new Map();
     private _source: T[] = [];
     private _indexes: VirtualIndex[] = [];
-    private removeFrameId: Nullable<number> = null;
-    private initFrameId: Nullable<number> = null;
+    private removeFrameId?: number;
+    private initFrameId?: number;
     private dirty: boolean = false;
     @Input() public virtualForDiffIndexes?: Nullable<number[]>;
 
@@ -48,8 +48,8 @@ export class VirtualForDirective<T> implements OnDestroy {
     }
 
     public ngOnDestroy(): void {
-        window.cancelAnimationFrame(this.initFrameId!);
-        window.cancelAnimationFrame(this.removeFrameId!);
+        window.cancelAnimationFrame(this.initFrameId ?? 0);
+        window.cancelAnimationFrame(this.removeFrameId ?? 0);
         this.view.clear();
     }
 

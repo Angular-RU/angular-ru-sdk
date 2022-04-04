@@ -31,7 +31,7 @@ export function createStateSelector(stateClass: DataStateClass): void {
                             throw new Error(NGXS_DATA_EXCEPTIONS.NGXS_DATA_MODULE_EXCEPTION);
                         }
 
-                        this[selectorId] = NgxsDataInjector.store.select(stateClass as Any).pipe(
+                        this[selectorId] = NgxsDataInjector.store.select(stateClass).pipe(
                             map((state: Any): Any => (isDevMode() ? deepFreeze(state) : state)),
                             shareReplay({ refCount: true, bufferSize: 1 })
                         );

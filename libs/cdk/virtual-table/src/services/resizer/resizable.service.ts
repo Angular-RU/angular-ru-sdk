@@ -39,7 +39,7 @@ export class ResizableService {
 
     private computeEvent(event: MouseEvent, mousemove: Fn): void {
         ResizableService.clearSelection();
-        const width: number = this.startWidth! + (event.pageX - this.startX!);
+        const width: number = (this.startWidth ?? 0) + (event.pageX - (this.startX ?? 0));
 
         if (width >= COLUMN_RESIZE_MIN_WIDTH) {
             mousemove(width);

@@ -61,7 +61,7 @@ export class TemplateParserService<T> {
             height: cell.height,
             onClick: cell.onClick,
             dblClick: cell.dblClick,
-            useDeepPath: key.includes('.'),
+            useDeepPath: key?.includes('.'),
             context: getValidHtmlBooleanAttribute(cell.row) ? ImplicitContext.ROW : ImplicitContext.CELL,
             nowrap: getValidHtmlBooleanAttribute(getValidPredicate(options.nowrap, cell.nowrap))
         };
@@ -95,7 +95,7 @@ export class TemplateParserService<T> {
         this.updateComputedWithSchema();
     }
 
-    public initialSchema(columnOptions: ColumnOptionsDirective): void {
+    public initialSchema(columnOptions: Nullable<ColumnOptionsDirective>): void {
         this.schema = this.schema ?? new SchemaBuilder();
         this.schema.columns = [];
         this.compiledTemplates = {};
@@ -106,12 +106,12 @@ export class TemplateParserService<T> {
     }
 
     // eslint-disable-next-line max-lines-per-function,complexity
-    public parse(templates?: QueryList<NgxColumnComponent<T>>): void {
+    public parse(templates?: QueryList<NgxColumnComponent<T>> | null): void {
         if (isNil(templates)) {
             return;
         }
 
-        for (const column of templates) {
+        for (const column of templates ?? []) {
             const { key, customKey, importantTemplate }: NgxColumnComponent<T> = column;
             const needTemplateCheck: boolean = this.allowedKeyMap[key!] ?? customKey !== false;
 
@@ -132,7 +132,7 @@ export class TemplateParserService<T> {
 
     public mutateColumnSchema(key: string, partialSchema: Partial<ColumnsSchema>): void {
         for (const option of Object.keys(partialSchema)) {
-            (this.compiledTemplates[key] as Any)[option] = (partialSchema as Any)[option];
+            (this.compiledTemplates as Any)[key][option] = (partialSchema as Any)[option];
         }
     }
 
@@ -161,7 +161,7 @@ export class TemplateParserService<T> {
         const tdTemplate: AbstractTemplateCellCommonDirective<T> = td ?? new TemplateBodyTdDirective<T>();
         const isEmptyHead: boolean = getValidHtmlBooleanAttribute(emptyHead);
         const thOptions: TableCellOptions = TemplateParserService.templateContext(
-            key!,
+            key ?? '',
             thTemplate,
             this.columnOptions!
         );

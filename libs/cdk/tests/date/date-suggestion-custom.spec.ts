@@ -25,7 +25,7 @@ describe('[TEST]: Trim Input', () => {
             providers: [{ provide: MATERIAL_SANITY_CHECKS, useValue: false }]
         }).compileComponents();
 
-        composer = TestBed.inject(DateSuggestionComposer) as DateSuggestionComposer<ExtendedDateIntervalSuggestion>;
+        composer = TestBed.inject(DateSuggestionComposer);
         form = new FormGroup({
             [descriptor.dateFromKey]: new FormControl(startOfDay(shiftDate({ days: -1 }))),
             [descriptor.dateToKey]: new FormControl(endOfDay())

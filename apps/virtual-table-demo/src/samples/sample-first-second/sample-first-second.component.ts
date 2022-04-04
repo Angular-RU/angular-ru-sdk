@@ -7,6 +7,7 @@ import { takeUntil } from 'rxjs/operators';
 
 import { MocksGenerator } from '../../mocks-generator';
 import { DialogTemplateComponent } from '../../shared/dialog-template/dialog-template.component';
+import { Any } from '../../../../../libs/cdk/typings/src/any';
 
 @Component({
     selector: 'sample-first-second',
@@ -36,7 +37,7 @@ export class SampleFirstSecondComponent implements OnInit, OnDestroy {
     }
 
     public ngOnDestroy(): void {
-        window.clearInterval(this.idInterval!);
+        window.clearInterval(this.idInterval ?? 0);
         this.destroy$.next();
         this.destroy$.complete();
     }
@@ -59,7 +60,8 @@ export class SampleFirstSecondComponent implements OnInit, OnDestroy {
                 .subscribe((data?: PlainObject): void => {
                     if (isNotNil(data)) {
                         this.data = this.data.map(
-                            (value: PlainObject): PlainObject => (value?.['id'] === data?.['id'] ? { ...data } : value)
+                            (value: PlainObject): PlainObject =>
+                                (value as Any)?.id === (data as Any)?.id ? { ...data } : value
                         );
                         detectChanges(this.cd);
                     }
@@ -72,7 +74,9 @@ export class SampleFirstSecondComponent implements OnInit, OnDestroy {
         const cols: number = 10;
 
         const startIndex: number =
-            this.data.length > 0 ? Math.max(...this.data.map((item: PlainObject): number => item?.['id'] ?? 0)) : 0;
+            this.data.length > 0
+                ? Math.max(...this.data.map((item: PlainObject): number => (item as Any)?.id ?? 0))
+                : 0;
 
         MocksGenerator.generator(rows, cols, startIndex).then((row: PlainObject[]): void => {
             this.data = this.data.concat(row);

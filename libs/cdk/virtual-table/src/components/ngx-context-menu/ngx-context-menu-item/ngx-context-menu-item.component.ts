@@ -91,13 +91,13 @@ export class NgxContextMenuItemComponent<T = Any> implements OnInit, OnDestroy {
     }
 
     public overflowX(): number {
-        const overflowX: number = this.subMenuWidth + this.offsetX! - (getBodyRect()?.width ?? 0);
+        const overflowX: number = this.subMenuWidth + (this.offsetX ?? 0) - (getBodyRect()?.width ?? 0);
 
         return overflowX > 0 ? overflowX + SCROLLBAR_SIZE : 0;
     }
 
     public overflowY(ref: HTMLDivElement): number {
-        const overflowY: number = ref.offsetHeight + this.offsetY! - (getBodyRect()?.height ?? 0);
+        const overflowY: number = ref.offsetHeight + (this.offsetY ?? 0) - (getBodyRect()?.height ?? 0);
 
         return overflowY > 0 ? overflowY + SCROLLBAR_SIZE : 0;
     }
@@ -111,7 +111,7 @@ export class NgxContextMenuItemComponent<T = Any> implements OnInit, OnDestroy {
 
         this.onClick.emit({
             preventDefault: (): void => {
-                window.clearTimeout(this.taskId!);
+                window.clearTimeout(this.taskId ?? 0);
             }
         });
 
@@ -127,7 +127,7 @@ export class NgxContextMenuItemComponent<T = Any> implements OnInit, OnDestroy {
 
     private deferUpdateView(): void {
         this.ngZone.runOutsideAngular((): void => {
-            window.clearInterval(this.taskId!);
+            window.clearInterval(this.taskId ?? 0);
             // eslint-disable-next-line no-restricted-properties
             this.taskId = window.setTimeout((): void => detectChanges(this.cd));
         });
