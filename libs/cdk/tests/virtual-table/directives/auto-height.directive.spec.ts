@@ -88,7 +88,7 @@ describe('[TEST]: auto height', () => {
         directive.recalculateTableSize();
         tick(100);
 
-        expect(style).toEqual(`display: block; height: calc(59px)`); // 45px + 12px + 2px boarding (scrollbar height)
+        expect(style).toBe(`display: block; height: calc(59px)`); // 45px + 12px + 2px boarding (scrollbar height)
     }));
 
     it('should be correct calculate auto height when columnHeight = 2000px', fakeAsync(() => {
@@ -97,29 +97,29 @@ describe('[TEST]: auto height', () => {
         directive.recalculateTableSize();
         tick(100);
 
-        expect(style).toEqual(`display: block; height: calc(980px - 0px - 0px - 14px)`);
+        expect(style).toBe(`display: block; height: calc(980px - 0px - 0px - 14px)`);
     }));
 
     it('should be correct hide height not in viewport', () => {
         directive.autoHeight = { detect: true, inViewport: false };
         directive.calculateHeight();
-        expect(style).toEqual(``);
+        expect(style).toBe(``);
 
         directive.autoHeight = { detect: false, rootHeight: '200px', inViewport: false, sourceLength: 1 };
         directive.calculateHeight();
-        expect(style).toEqual(``);
+        expect(style).toBe(``);
     });
 
     it('should be correct calculate custom height', () => {
         directive.autoHeight = { detect: true, rootHeight: '500px', inViewport: true, sourceLength: 1 };
         directive.calculateHeight();
-        expect(style).toEqual(`display: block; height: 500px`);
+        expect(style).toBe(`display: block; height: 500px`);
     });
 
     it('should be correct empty style when autoHeight not called', () => {
         directive.autoHeight = { detect: false, rootHeight: null, inViewport: true, sourceLength: 1 };
         directive.calculateHeight();
-        expect(style).toEqual(``);
+        expect(style).toBe(``);
     });
 
     it('should be correct recalculate height', fakeAsync(() => {
@@ -128,6 +128,6 @@ describe('[TEST]: auto height', () => {
         directive.recalculateTableSize();
         tick(100);
 
-        expect(style).toEqual(`display: block; height: 200px`);
+        expect(style).toBe(`display: block; height: 200px`);
     }));
 });

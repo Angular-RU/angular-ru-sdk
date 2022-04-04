@@ -15,20 +15,20 @@ import { ArticleDialogComponent } from './dialog/article-dialog.component';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ArticleComponent implements OnDestroy {
-    private destroy: Subject<void> = new Subject();
+    private destroy$: Subject<void> = new Subject();
 
     constructor(public dialog: MatDialog, public articleEntities: ArticleEntitiesState) {}
 
     public ngOnDestroy(): void {
-        this.destroy.next();
-        this.destroy.complete();
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 
     public createArticle(): void {
         this.ensureDialog({ uid: generateUid(), title: '', category: '' })
             .pipe(
                 filter((article: Article | null): article is Article => Boolean(article)),
-                takeUntil(this.destroy)
+                takeUntil(this.destroy$)
             )
             .subscribe((article: Article): void => this.articleEntities.addOne(article));
     }
@@ -37,7 +37,7 @@ export class ArticleComponent implements OnDestroy {
         this.ensureDialog(this.articleEntities.selectOne(id))
             .pipe(
                 filter((article: Article | null): article is Article => Boolean(article)),
-                takeUntil(this.destroy)
+                takeUntil(this.destroy$)
             )
             .subscribe((article: Article): void => this.articleEntities.updateOne({ id, changes: article }));
     }

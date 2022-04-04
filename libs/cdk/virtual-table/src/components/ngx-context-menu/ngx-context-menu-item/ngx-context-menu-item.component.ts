@@ -34,7 +34,7 @@ const MENU_WIDTH: number = 300;
     encapsulation: ViewEncapsulation.None
 })
 export class NgxContextMenuItemComponent<T = Any> implements OnInit, OnDestroy {
-    private destroy: Subject<void> = new Subject();
+    private destroy$: Subject<void> = new Subject();
     private taskId: Nullable<number> = null;
     private readonly contextMenu: ContextMenuService<T>;
     private readonly ngZone: NgZone;
@@ -69,13 +69,13 @@ export class NgxContextMenuItemComponent<T = Any> implements OnInit, OnDestroy {
     }
 
     public ngOnInit(): void {
-        this.contextMenu.events$.pipe(takeUntil(this.destroy)).subscribe((): void => detectChanges(this.cd));
+        this.contextMenu.events$.pipe(takeUntil(this.destroy$)).subscribe((): void => detectChanges(this.cd));
     }
 
     public ngOnDestroy(): void {
         this.itemRef = null;
-        this.destroy.next();
-        this.destroy.complete();
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 
     public calculateSubMenuPosition(ref: HTMLDivElement): void {

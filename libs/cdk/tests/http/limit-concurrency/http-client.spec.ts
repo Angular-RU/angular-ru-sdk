@@ -270,7 +270,7 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
         for (let i = 0; i < defaultLimit; i++) {
             const result = httpMock.expectOne(`${apiUrl}-${i}`);
 
-            expect(result.request.url).toEqual(`${apiUrl}-${i}`);
+            expect(result.request.url).toBe(`${apiUrl}-${i}`);
         }
 
         for (let i = defaultLimit; i < defaultLimit + exceedTheLimit; i++) {
@@ -289,7 +289,7 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
         for (let i = 0; i < defaultLimit + exceedTheLimit; i++) {
             const result = httpMock.expectOne(`${apiUrl}-${i}`);
 
-            expect(result.request.url).toEqual(`${apiUrl}-${i}`);
+            expect(result.request.url).toBe(`${apiUrl}-${i}`);
         }
     }));
 });

@@ -14,7 +14,7 @@ import { MocksGenerator } from '../../mocks-generator';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SampleSixteenComponent implements OnInit, AfterViewInit, OnDestroy {
-    private destroy: Subject<void> = new Subject();
+    private destroy$: Subject<void> = new Subject();
     public data: PlainObject[] = [];
     public schema: Nullable<TableUpdateSchema> = null;
     public readonly testName: string = 'test';
@@ -36,7 +36,7 @@ export class SampleSixteenComponent implements OnInit, AfterViewInit, OnDestroy 
         });
 
         this.tableChanges.events$
-            .pipe(takeUntil(this.destroy))
+            .pipe(takeUntil(this.destroy$))
             .subscribe((event: TableUpdateSchema): void => this.save(event));
     }
 
@@ -45,8 +45,8 @@ export class SampleSixteenComponent implements OnInit, AfterViewInit, OnDestroy 
     }
 
     public ngOnDestroy(): void {
-        this.destroy.next();
-        this.destroy.complete();
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 
     private save(event: TableUpdateSchema): void {

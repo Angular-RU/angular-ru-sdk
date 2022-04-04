@@ -170,6 +170,6 @@ describe('[TEST]: Execute method by Level', () => {
         // eslint-disable-next-line @typescript-eslint/unbound-method
         const { pipe }: LoggerService = logger;
 
-        expect(pipe() === logger).toBe(true);
+        expect(pipe() === logger).toBeTruthy();
     });
 });

@@ -30,7 +30,7 @@ describe('[TEST]: String', () => {
     });
 
     it('stringify', () => {
-        expect(stringify({ a: 1, b: { c: 2 } })).toEqual(
+        expect(stringify({ a: 1, b: { c: 2 } })).toBe(
             `{
     "a": 1,
     "b": {
@@ -78,7 +78,7 @@ describe('[TEST]: String', () => {
     });
 
     it('generateQuickGuid', () => {
-        expect(generateQuickGuid().length > 0).toBe(true);
+        expect(generateQuickGuid().length).toBeGreaterThan(0);
     });
 
     it('is string', () => {

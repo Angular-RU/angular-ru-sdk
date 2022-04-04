@@ -32,7 +32,7 @@ export class NgxFilterComponent<T>
     extends AbstractModalViewLayerDirective<T, FilterStateEvent>
     implements OnInit, OnDestroy
 {
-    private destroy: Subject<void> = new Subject();
+    private destroy$: Subject<void> = new Subject();
     @Input() public width: number = FILTER_WIDTH;
     @Input() public height: Nullable<number> = null;
     // eslint-disable-next-line @angular-eslint/no-input-rename
@@ -54,12 +54,12 @@ export class NgxFilterComponent<T>
     }
 
     public ngOnInit(): void {
-        this.filterable.filterOpenEvents$.pipe(takeUntil(this.destroy)).subscribe((): void => this.update());
+        this.filterable.filterOpenEvents$.pipe(takeUntil(this.destroy$)).subscribe((): void => this.update());
     }
 
     public override ngOnDestroy(): void {
         super.ngOnDestroy();
-        this.destroy.next();
-        this.destroy.complete();
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 }

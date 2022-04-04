@@ -32,7 +32,7 @@ const { TIME_RELOAD }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
     encapsulation: ViewEncapsulation.None
 })
 export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy {
-    private destroy: Subject<void> = new Subject();
+    private destroy$: Subject<void> = new Subject();
     private taskId: Nullable<number> = null;
     private readonly ngZone: NgZone;
     private readonly filterable: FilterableService<T>;
@@ -59,7 +59,7 @@ export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy
     }
 
     public ngOnInit(): void {
-        this.filterable.events$.pipe(takeUntil(this.destroy)).subscribe((event: FilterEvent): void => {
+        this.filterable.events$.pipe(takeUntil(this.destroy$)).subscribe((event: FilterEvent): void => {
             const hasFilter: boolean =
                 isNotNil((this.filterable.definition as Any)[this.key!]) || isNotNil(this.filterable.globalFilterValue);
 
@@ -72,8 +72,8 @@ export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy
     }
 
     public ngOnDestroy(): void {
-        this.destroy.next();
-        this.destroy.complete();
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 
     private changeSelection(event: FilterEvent): void {
