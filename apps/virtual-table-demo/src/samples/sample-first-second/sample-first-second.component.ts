@@ -14,7 +14,7 @@ import { DialogTemplateComponent } from '../../shared/dialog-template/dialog-tem
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SampleFirstSecondComponent implements OnInit, OnDestroy {
-    private destroy: Subject<void> = new Subject();
+    private destroy$: Subject<void> = new Subject();
     private idInterval: Nullable<number> = null;
     public data: PlainObject[] = [];
 
@@ -37,8 +37,8 @@ export class SampleFirstSecondComponent implements OnInit, OnDestroy {
 
     public ngOnDestroy(): void {
         window.clearInterval(this.idInterval!);
-        this.destroy.next();
-        this.destroy.complete();
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 
     public add(): void {
@@ -55,7 +55,7 @@ export class SampleFirstSecondComponent implements OnInit, OnDestroy {
             this.dialog
                 .open(DialogTemplateComponent, { data: row, width: '1024px' })
                 .afterClosed()
-                .pipe(takeUntil(this.destroy))
+                .pipe(takeUntil(this.destroy$))
                 .subscribe((data?: PlainObject): void => {
                     if (isNotNil(data)) {
                         this.data = this.data.map(

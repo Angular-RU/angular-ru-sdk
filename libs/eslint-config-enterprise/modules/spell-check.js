@@ -48,6 +48,7 @@ const baseSkipWords = [
     'mousemove',
     'mouseover',
     'mouseleave',
+    'mjs',
     'dragover',
     'mouseout',
     'cdk',

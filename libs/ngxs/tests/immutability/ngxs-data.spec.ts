@@ -25,7 +25,7 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
             }
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([MyAppState]), NgxsDataPluginModule.forRoot()]
+                imports: [NgxsModule.forRoot([MyAppState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
             });
 
             TestBed.inject(MyAppState);
@@ -54,7 +54,7 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
             }
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([MyState]), NgxsDataPluginModule.forRoot()]
+                imports: [NgxsModule.forRoot([MyState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
             });
 
             TestBed.inject(MyState);
@@ -84,7 +84,7 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([MyDataState]), NgxsDataPluginModule.forRoot()]
+            imports: [NgxsModule.forRoot([MyDataState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
         });
 
         const store: Store = TestBed.inject<Store>(Store);
@@ -127,7 +127,7 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
         class MyDataArrState extends NgxsDataRepository<StateModel[]> {}
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([MyDataArrState]), NgxsDataPluginModule.forRoot()]
+            imports: [NgxsModule.forRoot([MyDataArrState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
         });
 
         const store: Store = TestBed.inject<Store>(Store);
@@ -183,7 +183,7 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
         class MyDateState extends NgxsDataRepository<DateModel> {}
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([MyDateState]), NgxsDataPluginModule.forRoot()]
+            imports: [NgxsModule.forRoot([MyDateState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
         });
 
         const store: Store = TestBed.inject<Store>(Store);
@@ -225,7 +225,10 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
 
         TestBed.configureTestingModule({
             declarations: [AppComponent],
-            imports: [NgxsModule.forRoot([StateDataListState]), NgxsDataPluginModule.forRoot()]
+            imports: [
+                NgxsModule.forRoot([StateDataListState], { developmentMode: true }),
+                NgxsDataPluginModule.forRoot()
+            ]
         }).compileComponents();
 
         const fixture: ComponentFixture<AppComponent> = TestBed.createComponent(AppComponent);

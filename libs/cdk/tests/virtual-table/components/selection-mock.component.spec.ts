@@ -28,6 +28,7 @@ class SelectionMockComponent {
 describe('[TEST] Table builder', (): void => {
     let componentFixture: ComponentFixture<SelectionMockComponent>;
     let component: SelectionMockComponent;
+    let idleResolve: jest.SpyInstance;
 
     beforeEach((): void => {
         TestBed.configureTestingModule({
@@ -41,18 +42,16 @@ describe('[TEST] Table builder', (): void => {
 
         const someSortableService = TestBed.createComponent(TableBuilderComponent).componentInstance.sortable;
 
-        jest.spyOn(someSortableService.constructor.prototype, 'idleResolve').mockImplementation(
-            (resolve: Any, sorted: unknown) => resolve(sorted)
-        );
+        idleResolve = jest
+            .spyOn(someSortableService.constructor.prototype, 'idleResolve')
+            .mockImplementation((resolve: Any, sorted: unknown) => resolve(sorted));
 
         componentFixture = TestBed.createComponent(SelectionMockComponent);
         component = componentFixture.componentInstance;
     });
 
     afterAll((): void => {
-        const someSortableService = TestBed.createComponent(TableBuilderComponent).componentInstance.sortable;
-
-        someSortableService.constructor.prototype.idleResolve.mockRestore();
+        idleResolve.mockRestore();
     });
 
     it('should be correct select items from 1..2 by shift key', async () => {

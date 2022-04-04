@@ -14,7 +14,6 @@ module.exports = {
         './modules/rxjs.js',
         './modules/prettier.js',
         './modules/sonar.js',
-        './modules/decorator.js',
         './modules/member-ordering.js',
         './modules/html.js',
         './modules/angular-eslint.js',

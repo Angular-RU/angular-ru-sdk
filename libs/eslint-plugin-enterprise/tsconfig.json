@@ -5,10 +5,7 @@
         "outDir": "../../@angular-ru/eslint-plugin-enterprise",
         "module": "commonjs",
         "types": ["node"],
-        "typeRoots": ["../../node_modules/@types", "./"],
-        "paths": {
-            "@angular-ru/cdk/*": ["../../@angular-ru/cdk/*"]
-        }
+        "typeRoots": ["../../node_modules/@types", "./"]
     },
     "include": ["./src"],
     "exclude": ["integration"],

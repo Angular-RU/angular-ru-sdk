@@ -12,12 +12,12 @@ describe('brace pipe', () => {
     it('should correct wrap input string with braces', () => {
         const inputString: string = 'input';
 
-        expect(pipe.transform(inputString)).toEqual(`(${inputString})`);
+        expect(pipe.transform(inputString)).toBe(`(${inputString})`);
     });
 
     it('should correct wrap input number with braces', () => {
         const inputNumber: number = 42;
 
-        expect(pipe.transform(inputNumber)).toEqual(`(${inputNumber})`);
+        expect(pipe.transform(inputNumber)).toBe(`(${inputNumber})`);
     });
 });

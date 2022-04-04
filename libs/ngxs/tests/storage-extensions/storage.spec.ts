@@ -52,7 +52,10 @@ describe('[TEST]: Storage plugin', () => {
     describe('simple API', () => {
         it('should be work with correct providers', () => {
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([]), NgxsDataPluginModule.forRoot([NGXS_DATA_STORAGE_PLUGIN])]
+                imports: [
+                    NgxsModule.forRoot([], { developmentMode: true }),
+                    NgxsDataPluginModule.forRoot([NGXS_DATA_STORAGE_PLUGIN])
+                ]
             });
 
             store = TestBed.inject<Store>(Store);
@@ -61,7 +64,7 @@ describe('[TEST]: Storage plugin', () => {
             // noinspection SuspiciousTypeOfGuard
             expect(plugin instanceof NgxsDataStoragePlugin).toBe(true);
             expect(plugin.platformId).toBe('browser');
-            expect(plugin.store === store).toBe(true);
+            expect(plugin.store === store).toBeTruthy();
         });
 
         it('@Persistence should be add before decorator @State and @StateRepository', () => {
@@ -74,7 +77,10 @@ describe('[TEST]: Storage plugin', () => {
                 class Invalid extends NgxsImmutableDataRepository<string> {}
 
                 TestBed.configureTestingModule({
-                    imports: [NgxsModule.forRoot([Invalid]), NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)]
+                    imports: [
+                        NgxsModule.forRoot([Invalid], { developmentMode: true }),
+                        NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)
+                    ]
                 });
             } catch (error: unknown) {
                 message = (error as Error).message;
@@ -92,7 +98,7 @@ describe('[TEST]: Storage plugin', () => {
 
             TestBed.configureTestingModule({
                 imports: [
-                    NgxsModule.forRoot([CustomState]),
+                    NgxsModule.forRoot([CustomState], { developmentMode: true }),
                     NgxsDataPluginModule.forRoot([NGXS_DATA_STORAGE_EXTENSION])
                 ]
             });
@@ -128,7 +134,7 @@ describe('[TEST]: Storage plugin', () => {
 
                 TestBed.configureTestingModule({
                     imports: [
-                        NgxsModule.forRoot([A]),
+                        NgxsModule.forRoot([A], { developmentMode: true }),
                         NgxsDataPluginModule.forRoot([NGXS_DATA_STORAGE_EXTENSION, NGXS_DATA_STORAGE_CONTAINER])
                     ]
                 });
@@ -215,7 +221,7 @@ describe('[TEST]: Storage plugin', () => {
 
                 TestBed.configureTestingModule({
                     imports: [
-                        NgxsModule.forRoot([B]),
+                        NgxsModule.forRoot([B], { developmentMode: true }),
                         NgxsDataPluginModule.forRoot([NGXS_DATA_STORAGE_EXTENSION, NGXS_DATA_STORAGE_CONTAINER])
                     ]
                 }).compileComponents();
@@ -311,7 +317,7 @@ describe('[TEST]: Storage plugin', () => {
 
             TestBed.configureTestingModule({
                 imports: [
-                    NgxsModule.forRoot([C]),
+                    NgxsModule.forRoot([C], { developmentMode: true }),
                     NgxsDataPluginModule.forRoot([NGXS_DATA_STORAGE_EXTENSION, NGXS_DATA_STORAGE_CONTAINER])
                 ]
             });
@@ -346,7 +352,7 @@ describe('[TEST]: Storage plugin', () => {
 
             TestBed.configureTestingModule({
                 imports: [
-                    NgxsModule.forRoot([C1]),
+                    NgxsModule.forRoot([C1], { developmentMode: true }),
                     NgxsDataPluginModule.forRoot([NGXS_DATA_STORAGE_EXTENSION, NGXS_DATA_STORAGE_CONTAINER])
                 ]
             });
@@ -381,7 +387,7 @@ describe('[TEST]: Storage plugin', () => {
 
             TestBed.configureTestingModule({
                 imports: [
-                    NgxsModule.forRoot([C2]),
+                    NgxsModule.forRoot([C2], { developmentMode: true }),
                     NgxsDataPluginModule.forRoot([NGXS_DATA_STORAGE_EXTENSION, NGXS_DATA_STORAGE_CONTAINER])
                 ]
             });
@@ -410,7 +416,7 @@ describe('[TEST]: Storage plugin', () => {
 
             TestBed.configureTestingModule({
                 imports: [
-                    NgxsModule.forRoot([C3]),
+                    NgxsModule.forRoot([C3], { developmentMode: true }),
                     NgxsDataPluginModule.forRoot([NGXS_DATA_STORAGE_EXTENSION, NGXS_DATA_STORAGE_CONTAINER])
                 ]
             });
@@ -442,7 +448,7 @@ describe('[TEST]: Storage plugin', () => {
 
             TestBed.configureTestingModule({
                 imports: [
-                    NgxsModule.forRoot([C4]),
+                    NgxsModule.forRoot([C4], { developmentMode: true }),
                     NgxsDataPluginModule.forRoot([NGXS_DATA_STORAGE_EXTENSION, NGXS_DATA_STORAGE_CONTAINER])
                 ]
             });
@@ -474,7 +480,7 @@ describe('[TEST]: Storage plugin', () => {
 
             TestBed.configureTestingModule({
                 imports: [
-                    NgxsModule.forRoot([C5]),
+                    NgxsModule.forRoot([C5], { developmentMode: true }),
                     NgxsDataPluginModule.forRoot([NGXS_DATA_STORAGE_EXTENSION, NGXS_DATA_STORAGE_CONTAINER])
                 ]
             });
@@ -503,7 +509,10 @@ describe('[TEST]: Storage plugin', () => {
             class C6 extends NgxsImmutableDataRepository<string> {}
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([C6]), NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)],
+                imports: [
+                    NgxsModule.forRoot([C6], { developmentMode: true }),
+                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)
+                ],
                 providers: [{ provide: NGXS_DATA_STORAGE_PREFIX_TOKEN, useValue: '@myCompany.store.' }]
             });
 
@@ -547,7 +556,10 @@ describe('[TEST]: Storage plugin', () => {
             class C9 extends NgxsImmutableDataRepository<string> {}
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([C7, C8, C9]), NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)]
+                imports: [
+                    NgxsModule.forRoot([C7, C8, C9], { developmentMode: true }),
+                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)
+                ]
             });
 
             const stateC7: C7 = TestBed.inject<C7>(C7);
@@ -652,7 +664,10 @@ describe('[TEST]: Storage plugin', () => {
             class C12 extends NgxsImmutableDataRepository<string> {}
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([C10, C11, C12]), NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)]
+                imports: [
+                    NgxsModule.forRoot([C10, C11, C12], { developmentMode: true }),
+                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)
+                ]
             });
 
             const stateC10: C10 = TestBed.inject<C10>(C10);
@@ -761,7 +776,10 @@ describe('[TEST]: Storage plugin', () => {
             class C13 extends NgxsImmutableDataRepository<string> {}
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([C13]), NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)]
+                imports: [
+                    NgxsModule.forRoot([C13], { developmentMode: true }),
+                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)
+                ]
             });
 
             let message: string | null = null;
@@ -814,7 +832,10 @@ describe('[TEST]: Storage plugin', () => {
             class C14 extends NgxsImmutableDataRepository<string> {}
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([C14]), NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)]
+                imports: [
+                    NgxsModule.forRoot([C14], { developmentMode: true }),
+                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)
+                ]
             });
 
             let message: string | null = null;
@@ -847,7 +868,7 @@ describe('[TEST]: Storage plugin', () => {
 
             TestBed.configureTestingModule({
                 imports: [
-                    NgxsModule.forRoot([C15]),
+                    NgxsModule.forRoot([C15], { developmentMode: true }),
                     NgxsDataPluginModule.forRoot([NGXS_DATA_STORAGE_EXTENSION, NGXS_DATA_STORAGE_CONTAINER])
                 ]
             });
@@ -919,7 +940,7 @@ describe('[TEST]: Storage plugin', () => {
 
             TestBed.configureTestingModule({
                 imports: [
-                    NgxsModule.forRoot([C16]),
+                    NgxsModule.forRoot([C16], { developmentMode: true }),
                     NgxsDataPluginModule.forRoot([NGXS_DATA_STORAGE_EXTENSION, NGXS_DATA_STORAGE_CONTAINER])
                 ],
                 providers: [{ provide: PLATFORM_ID, useValue: 'server' }]
@@ -1021,7 +1042,10 @@ describe('[TEST]: Storage plugin', () => {
             class C17 extends NgxsImmutableDataRepository<string> {}
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([C17]), NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)],
+                imports: [
+                    NgxsModule.forRoot([C17], { developmentMode: true }),
+                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)
+                ],
                 providers: [MyInvalidStorage]
             });
 
@@ -1066,7 +1090,10 @@ describe('[TEST]: Storage plugin', () => {
             class D2 extends NgxsDataRepository<string> {}
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([D1, D2]), NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)]
+                imports: [
+                    NgxsModule.forRoot([D1, D2], { developmentMode: true }),
+                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)
+                ]
             });
 
             const events: string[] = [];
@@ -1144,7 +1171,10 @@ describe('[TEST]: Storage plugin', () => {
             class E2 extends NgxsDataRepository<EModel> {}
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([E1, E2]), NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)]
+                imports: [
+                    NgxsModule.forRoot([E1, E2], { developmentMode: true }),
+                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)
+                ]
             });
 
             const events: string[] = [];
@@ -1249,7 +1279,10 @@ describe('[TEST]: Storage plugin', () => {
 
             // noinspection DuplicatedCode
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([E1, E2]), NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)]
+                imports: [
+                    NgxsModule.forRoot([E1, E2], { developmentMode: true }),
+                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)
+                ]
             });
 
             const events: string[] = [];
@@ -1320,7 +1353,10 @@ describe('[TEST]: Storage plugin', () => {
 
                 // noinspection DuplicatedCode
                 TestBed.configureTestingModule({
-                    imports: [NgxsModule.forRoot([FireState]), NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)]
+                    imports: [
+                        NgxsModule.forRoot([FireState], { developmentMode: true }),
+                        NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)
+                    ]
                 });
 
                 const fire: FireState = TestBed.inject<FireState>(FireState);
@@ -1352,7 +1388,10 @@ describe('[TEST]: Storage plugin', () => {
 
                 // noinspection DuplicatedCode
                 TestBed.configureTestingModule({
-                    imports: [NgxsModule.forRoot([Fire2State]), NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)]
+                    imports: [
+                        NgxsModule.forRoot([Fire2State], { developmentMode: true }),
+                        NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)
+                    ]
                 });
 
                 const fire: Fire2State = TestBed.inject<Fire2State>(Fire2State);
@@ -1389,7 +1428,7 @@ describe('[TEST]: Storage plugin', () => {
 
                 TestBed.configureTestingModule({
                     imports: [
-                        NgxsModule.forRoot([StorageState]),
+                        NgxsModule.forRoot([StorageState], { developmentMode: true }),
                         NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)
                     ]
                 });
@@ -1416,7 +1455,7 @@ describe('[TEST]: Storage plugin', () => {
 
                 TestBed.configureTestingModule({
                     imports: [
-                        NgxsModule.forRoot([StorageState]),
+                        NgxsModule.forRoot([StorageState], { developmentMode: true }),
                         NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)
                     ]
                 });
@@ -1444,7 +1483,7 @@ describe('[TEST]: Storage plugin', () => {
 
                 TestBed.configureTestingModule({
                     imports: [
-                        NgxsModule.forRoot([RehydrateState]),
+                        NgxsModule.forRoot([RehydrateState], { developmentMode: true }),
                         NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)
                     ]
                 });
@@ -1471,7 +1510,7 @@ describe('[TEST]: Storage plugin', () => {
 
                 TestBed.configureTestingModule({
                     imports: [
-                        NgxsModule.forRoot([RehydrateState]),
+                        NgxsModule.forRoot([RehydrateState], { developmentMode: true }),
                         NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)
                     ]
                 });
@@ -1519,7 +1558,7 @@ describe('[TEST]: Storage plugin', () => {
 
                 TestBed.configureTestingModule({
                     imports: [
-                        NgxsModule.forRoot([AuthJwtState]),
+                        NgxsModule.forRoot([AuthJwtState], { developmentMode: true }),
                         NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)
                     ]
                 });
@@ -1633,7 +1672,7 @@ describe('[TEST]: Storage plugin', () => {
 
                 TestBed.configureTestingModule({
                     imports: [
-                        NgxsModule.forRoot([AuthJwtState]),
+                        NgxsModule.forRoot([AuthJwtState], { developmentMode: true }),
                         NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)
                     ]
                 });
@@ -1778,7 +1817,7 @@ describe('[TEST]: Storage plugin', () => {
 
                 TestBed.configureTestingModule({
                     imports: [
-                        NgxsModule.forRoot([MigrateV1toV2State]),
+                        NgxsModule.forRoot([MigrateV1toV2State], { developmentMode: true }),
                         NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)
                     ]
                 });
@@ -1840,7 +1879,7 @@ describe('[TEST]: Storage plugin', () => {
 
                 TestBed.configureTestingModule({
                     imports: [
-                        NgxsModule.forRoot([MigrateV1toV2State]),
+                        NgxsModule.forRoot([MigrateV1toV2State], { developmentMode: true }),
                         NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)
                     ]
                 });
@@ -1938,7 +1977,7 @@ describe('[TEST]: Storage plugin', () => {
 
                 TestBed.configureTestingModule({
                     imports: [
-                        NgxsModule.forRoot([DeepFilterState]),
+                        NgxsModule.forRoot([DeepFilterState], { developmentMode: true }),
                         NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)
                     ]
                 });
@@ -2040,7 +2079,7 @@ describe('[TEST]: Storage plugin', () => {
 
                 TestBed.configureTestingModule({
                     imports: [
-                        NgxsModule.forRoot([DeepFilterState]),
+                        NgxsModule.forRoot([DeepFilterState], { developmentMode: true }),
                         NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)
                     ]
                 });
@@ -2087,13 +2126,17 @@ describe('[TEST]: Storage plugin', () => {
             @Injectable()
             class CountState extends NgxsDataRepository<number> implements NgxsDataAfterStorageEvent {
                 public events: NgxsDataStorageEvent[] = [];
+
                 public ngxsDataAfterStorageEvent(event: NgxsDataStorageEvent) {
                     this.events.push(event);
                 }
             }
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([CountState]), NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)]
+                imports: [
+                    NgxsModule.forRoot([CountState], { developmentMode: true }),
+                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)
+                ]
             });
 
             const state: CountState = TestBed.inject<CountState>(CountState);
@@ -2193,7 +2236,10 @@ describe('[TEST]: Storage plugin', () => {
             class FilterState extends NgxsDataRepository<FilterModel> {}
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([FilterState]), NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)],
+                imports: [
+                    NgxsModule.forRoot([FilterState], { developmentMode: true }),
+                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)
+                ],
                 providers: [{ provide: NGXS_DATA_STORAGE_DECODE_TYPE_TOKEN, useValue: STORAGE_DECODE_TYPE.BASE64 }]
             });
 

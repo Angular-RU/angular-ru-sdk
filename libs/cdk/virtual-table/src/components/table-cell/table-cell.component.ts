@@ -26,7 +26,7 @@ const TIME_IDLE: number = 1500;
     encapsulation: ViewEncapsulation.None
 })
 export class TableCellComponent<T> implements OnDestroy {
-    private destroy: Subject<void> = new Subject();
+    private destroy$: Subject<void> = new Subject();
     private readonly closeButtonSelector: string = 'table-close__button';
     private readonly overflowSelector: string = 'table-grid__cell-overflow-content';
     private readonly timeIdle: number = TIME_IDLE;
@@ -61,8 +61,8 @@ export class TableCellComponent<T> implements OnDestroy {
     public ngOnDestroy(): void {
         window.clearTimeout(this.timeoutOverflowId!);
         window.clearTimeout(this.timeoutShowedFrameId!);
-        this.destroy.next();
-        this.destroy.complete();
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 
     public mouseEnterCell(element: HTMLDivElement, event: MouseEvent): void {
@@ -136,11 +136,11 @@ export class TableCellComponent<T> implements OnDestroy {
         this.overflowContentElem.innerHTML = `<div class="${this.closeButtonSelector}"></div>${innerText}`;
 
         this.nodeSubscription = fromEvent(divElement, 'mouseleave')
-            .pipe(takeUntil(this.destroy))
+            .pipe(takeUntil(this.destroy$))
             .subscribe((): void => this.removeElement());
 
         this.closeElemSub = fromEvent(this.overflowCloseElem, 'click')
-            .pipe(takeUntil(this.destroy))
+            .pipe(takeUntil(this.destroy$))
             .subscribe((): void => this.removeElement());
 
         this.ngZone.runOutsideAngular((): void => {

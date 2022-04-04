@@ -6,7 +6,6 @@
 **/out/**
 **/reports/**
 **/coverage/**
-**/.cache**/
 **/node_modules**/
 
 # for ts lint testing
@@ -18,3 +17,6 @@
 # reports
 junit.xml
 
+# cache
+.angular
+**/.cache**/

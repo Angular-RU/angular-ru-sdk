@@ -2,10 +2,6 @@
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
         "types": ["jest", "node"],
-        "preserveConstEnums": true,
-        "paths": {
-            "@angular-ru/cdk/*": ["../cdk/dist/library/*"],
-            "@angular-ru/cdk/http/*": ["../http/dist/library/*"]
-        }
+        "preserveConstEnums": true
     }
 }

@@ -24,7 +24,7 @@ describe('[TEST]: Action decorator', () => {
             }
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([InvalidState]), NgxsDataPluginModule.forRoot()]
+                imports: [NgxsModule.forRoot([InvalidState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
             });
 
             const state: InvalidState = TestBed.inject(InvalidState);
@@ -50,7 +50,7 @@ describe('[TEST]: Action decorator', () => {
             }
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([InvalidState]), NgxsDataPluginModule.forRoot()]
+                imports: [NgxsModule.forRoot([InvalidState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
             });
 
             const state: InvalidState = TestBed.inject(InvalidState);
@@ -77,7 +77,7 @@ describe('[TEST]: Action decorator', () => {
             }
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([InvalidState]), NgxsDataPluginModule.forRoot()]
+                imports: [NgxsModule.forRoot([InvalidState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
             });
 
             const state: InvalidState = TestBed.inject(InvalidState);
@@ -104,7 +104,7 @@ describe('[TEST]: Action decorator', () => {
             }
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([]), NgxsDataPluginModule.forRoot()],
+                imports: [NgxsModule.forRoot([], { developmentMode: true }), NgxsDataPluginModule.forRoot()],
                 providers: [InvalidState]
             });
 
@@ -130,7 +130,7 @@ describe('[TEST]: Action decorator', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([A]), NgxsDataPluginModule.forRoot()]
+            imports: [NgxsModule.forRoot([A], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
         });
 
         const stateA: A = TestBed.inject(A);
@@ -247,9 +247,9 @@ describe('[TEST]: Action decorator', () => {
         let stateB: B;
         let stateC: C;
 
-        beforeAll(() => {
+        beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([A, B, C]), NgxsDataPluginModule.forRoot()]
+                imports: [NgxsModule.forRoot([A, B, C], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
             });
 
             stateA = TestBed.inject(A);

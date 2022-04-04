@@ -89,7 +89,7 @@ describe('[TEST]: Observable with computed $a field', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([A, B]), NgxsDataPluginModule.forRoot()]
+            imports: [NgxsModule.forRoot([A, B], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
         });
 
         a = TestBed.inject(A);

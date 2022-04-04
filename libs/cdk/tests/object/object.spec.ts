@@ -307,7 +307,7 @@ describe('[TEST]: Object', () => {
                 message = (error as Error).message;
             }
 
-            expect(message).toEqual(`Cannot assign to read only property 'c' of object '[object Object]'`);
+            expect(message).toBe(`Cannot assign to read only property 'c' of object '[object Object]'`);
         });
     });
 

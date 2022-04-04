@@ -1,3 +1,4 @@
+/* eslint-disable deprecation/deprecation */
 import { SchemaMetadata, Type } from '@angular/core';
 import { TestBed, TestModuleMetadata } from '@angular/core/testing';
 import { Any } from '@angular-ru/cdk/typings';
@@ -118,7 +119,7 @@ export function ngxsTestingPlatform(
 function ensure(
     options: (TestModuleMetadata & { states?: StateClass[] }) | StateClass[]
 ): Required<Omit<TestModuleMetadata, 'teardown'>> & { states?: StateClass[] } {
-    let states: StateClass[] = [];
+    let states: StateClass[];
     let providers: Type<unknown>[] = [];
     let declarations: Type<unknown>[] = [];
     let imports: Type<unknown>[] = [];

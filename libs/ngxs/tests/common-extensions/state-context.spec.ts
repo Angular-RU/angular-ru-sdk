@@ -117,7 +117,7 @@ describe('[TEST]: Utils', () => {
         class MyState extends NgxsImmutableDataRepository<string> {}
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([MyState]), NgxsDataPluginModule.forRoot()]
+            imports: [NgxsModule.forRoot([MyState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
         });
 
         const state: MyState = TestBed.inject(MyState);
@@ -168,7 +168,7 @@ describe('[TEST]: Utils', () => {
         class AppState extends NgxsImmutableDataRepository<number> {}
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([AppState]), NgxsDataPluginModule.forRoot()]
+            imports: [NgxsModule.forRoot([AppState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
         });
 
         const state: AppState = TestBed.inject(AppState);

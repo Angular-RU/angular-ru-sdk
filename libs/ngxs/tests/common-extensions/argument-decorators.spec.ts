@@ -16,7 +16,7 @@ describe('[TEST]: Argument decorators', () => {
         class A extends NgxsImmutableDataRepository<string> {}
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([A]), NgxsDataPluginModule.forRoot()]
+            imports: [NgxsModule.forRoot([A], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
         });
 
         const a: A = TestBed.inject<A>(A);
@@ -50,7 +50,7 @@ describe('[TEST]: Argument decorators', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([B]), NgxsDataPluginModule.forRoot()]
+            imports: [NgxsModule.forRoot([B], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
         });
 
         const b: B = TestBed.inject<B>(B);
@@ -84,7 +84,7 @@ describe('[TEST]: Argument decorators', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([C]), NgxsDataPluginModule.forRoot()]
+            imports: [NgxsModule.forRoot([C], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
         });
 
         const c: C = TestBed.inject<C>(C);
@@ -118,7 +118,7 @@ describe('[TEST]: Argument decorators', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([D]), NgxsDataPluginModule.forRoot()]
+            imports: [NgxsModule.forRoot([D], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
         });
 
         const d: D = TestBed.inject<D>(D);
@@ -204,7 +204,7 @@ describe('[TEST]: Argument decorators', () => {
                 message = (error as Error).message;
             }
 
-            expect(message).toEqual(`An argument with the name 'y' already exists in the method 'setYZ'`);
+            expect(message).toBe(`An argument with the name 'y' already exists in the method 'setYZ'`);
         });
 
         it('should be duplicate payload name', () => {
@@ -226,7 +226,7 @@ describe('[TEST]: Argument decorators', () => {
                 message = (error as Error).message;
             }
 
-            expect(message).toEqual(`An argument with the name 'y' already exists in the method 'setYZ'`);
+            expect(message).toBe(`An argument with the name 'y' already exists in the method 'setYZ'`);
         });
 
         it('should be duplicate payload name as argument name', () => {
@@ -248,7 +248,7 @@ describe('[TEST]: Argument decorators', () => {
                 message = (error as Error).message;
             }
 
-            expect(message).toEqual(`An argument with the name 'y' already exists in the method 'setYZ'`);
+            expect(message).toBe(`An argument with the name 'y' already exists in the method 'setYZ'`);
         });
     });
 });

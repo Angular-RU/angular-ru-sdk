@@ -27,7 +27,7 @@ describe('inheritance', () => {
             class CountState extends AbstractCountRepo {}
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([CountState])]
+                imports: [NgxsModule.forRoot([CountState], { developmentMode: true })]
             });
         } catch (error: unknown) {
             message = (error as Error).message;
@@ -86,7 +86,10 @@ describe('inheritance', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([TodoState]), NgxsDataPluginModule.forRoot([NGXS_DATA_STORAGE_PLUGIN])]
+            imports: [
+                NgxsModule.forRoot([TodoState], { developmentMode: true }),
+                NgxsDataPluginModule.forRoot([NGXS_DATA_STORAGE_PLUGIN])
+            ]
         });
 
         const store: Store = TestBed.inject<Store>(Store);
@@ -117,7 +120,7 @@ describe('inheritance', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([CountState]), NgxsDataPluginModule.forRoot()]
+            imports: [NgxsModule.forRoot([CountState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
         });
 
         const store: Store = TestBed.inject<Store>(Store);

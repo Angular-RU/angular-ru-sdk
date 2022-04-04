@@ -27,6 +27,8 @@ module.exports = {
                 'jest/no-hooks': 'off',
                 'jest/unbound-method': 'off',
                 'jest/prefer-expect-assertions': 'off',
+                'jest/no-conditional-in-test': 'off',
+                'jest/require-hook': 'off',
 
                 // mocha
                 'mocha/no-mocha-arrows': 'off',

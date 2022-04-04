@@ -102,7 +102,10 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([CountState, TodoState]), NgxsDataPluginModule.forRoot()],
+            imports: [
+                NgxsModule.forRoot([CountState, TodoState], { developmentMode: true }),
+                NgxsDataPluginModule.forRoot()
+            ],
             providers: [ApiService]
         });
 
