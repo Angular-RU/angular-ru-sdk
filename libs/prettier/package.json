@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/prettier",
-    "version": "12.64.3",
+    "version": "12.64.4",
     "description": "Shared Prettier config for Angular projects",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/libs/prettier#readme",
     "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
@@ -9,7 +9,7 @@
     "author": "angular-ru@yandex.ru",
     "main": "prettier.config.js",
     "dependencies": {
-        "@prettier/plugin-xml": "1.2.0",
+        "@prettier/plugin-xml": "2.0.1",
         "prettier": "2.6.1",
         "prettier-plugin-organize-attributes": "0.0.5",
         "prettier-plugin-packagejson": "2.2.17"

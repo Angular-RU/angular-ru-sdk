@@ -275,3 +275,21 @@ This version -------- @angular-ru/prettier-12.64.3
 Previous version ---- @angular-ru/jest-12.64.4
 Total commits ------- 3
 ```
+
+# 🎁 Release notes (`04.04.2022 10:14`)
+
+## Changes
+
+-   chore(prettier): release version 12.64.4 [ci skip]
+-   build: update dependency @prettier/plugin-xml to v2 (#1260)
+-   build: update actions/cache action to v3 (#1259)
+-   build: update peter-evans/rebase action to v2 (#1261)
+-   chore: updated RELEASE_NOTES.md [ci skip]
+
+## Metadata
+
+```
+This version -------- @angular-ru/prettier-12.64.4
+Previous version ---- @angular-ru/prettier-12.64.3
+Total commits ------- 5
+```
