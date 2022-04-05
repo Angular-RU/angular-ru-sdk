@@ -21,15 +21,14 @@
         "typescript": "libs/typescript",
         ".platform": {
             "root": "./",
+            "tags": ["scope:ignore"],
             "targets": {
                 "prebuild": {
                     "executor": "@nrwl/workspace:run-commands",
                     "options": {
                         "parallel": false,
                         "commands": [
-                            "npx husky install",
-                            "npx ngcc --async",
-                            "echo \"Build symlinked libraries:\"",
+                            "echo \"Prebuild core libraries:\"",
                             "nx build cdk",
                             "nx build jest",
                             "nx build eslint-plugin-enterprise"
@@ -58,9 +57,7 @@
                 },
                 "format:prettier": {
                     "executor": "@nrwl/workspace:run-commands",
-                    "options": {
-                        "command": "prettier '**/*.{ts,html,css,scss,md,js,json,yml}' --write"
-                    }
+                    "options": { "command": "prettier '**/*.{ts,html,css,scss,md,js,json,yml}' --write" }
                 }
             }
         }

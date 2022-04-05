@@ -2,6 +2,7 @@
     "root": "libs/cdk/",
     "sourceRoot": "libs/cdk/",
     "projectType": "library",
+    "tags": ["scope:libs"],
     "targets": {
         "build": {
             "builder": "@angular-devkit/build-angular:ng-packagr",

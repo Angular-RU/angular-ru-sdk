@@ -2,6 +2,7 @@
     "root": "apps/tooltip-demo/",
     "sourceRoot": "apps/tooltip-demo/",
     "projectType": "application",
+    "tags": ["scope:applications"],
     "targets": {
         "build": {
             "builder": "@angular-devkit/build-angular:browser",

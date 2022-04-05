@@ -2,6 +2,7 @@
     "root": "apps/virtual-table-demo/",
     "sourceRoot": "apps/virtual-table-demo/",
     "projectType": "application",
+    "tags": ["scope:applications"],
     "targets": {
         "build": {
             "builder": "@angular-devkit/build-angular:browser",

@@ -15,7 +15,7 @@
         "clean": "nx clean .platform",
         "format": "nx format:prettier .platform",
         "graph": "nx dep-graph",
-        "postinstall": "nx prebuild .platform",
+        "postinstall": "npx husky install && npx ngcc --async",
         "lint": "nx format:eslint .platform"
     },
     "commitlint": {

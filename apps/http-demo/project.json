@@ -2,6 +2,7 @@
     "root": "apps/http-demo/",
     "sourceRoot": "apps/http-demo/",
     "projectType": "application",
+    "tags": ["scope:applications"],
     "targets": {
         "build": {
             "builder": "@angular-devkit/build-angular:browser",

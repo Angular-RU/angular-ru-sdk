@@ -2,6 +2,7 @@
     "root": "apps/cdk-demo/",
     "sourceRoot": "apps/cdk-demo/",
     "projectType": "application",
+    "tags": ["scope:applications"],
     "targets": {
         "build": {
             "builder": "@angular-devkit/build-angular:browser",
