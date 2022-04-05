@@ -15,10 +15,14 @@ jobs:
       - name: Setup Node.js and Cache
         uses: ./.github/actions/nodejs
 
+      - run: | # todo fix later
+          npx nx build cdk
+          npx nx build ngxs
+          npx nx build jest
+
       - name: Run build packages
         run:
-          npx nx run-many --target=build --parallel=1 --all --exclude $(npx nx affected:apps --base=origin/master
-          --plain)
+          npx nx run-many --target=build --parallel=1 --all --exclude $(npx nx affected:apps --base=origin/master --plain)
 
 concurrency:
   group: build-${{ github.head_ref }}

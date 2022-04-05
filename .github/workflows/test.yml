@@ -16,7 +16,7 @@ jobs:
         uses: ./.github/actions/nodejs
 
       - name: Run build artifacts dependent
-        run: |
+        run: | # todo fix later
           npx nx build cdk
           npx nx build ngxs
           npx nx build jest

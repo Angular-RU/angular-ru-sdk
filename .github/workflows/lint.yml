@@ -27,6 +27,10 @@ jobs:
       - name: Run format
         run: npm run format
 
+      - run: | # todo fix later
+          npx nx build cdk
+          npx nx build ngxs
+
       - name: Run build artifacts dependent
         run: |
           npx nx build eslint-plugin-enterprise
