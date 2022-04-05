@@ -8,6 +8,7 @@
             "options": {
                 "parallel": false,
                 "commands": [
+                    "rm -rf  ./node_modules/@angular-ru/eslint-config-enterprise",
                     "mkdir -p ./node_modules/@angular-ru/eslint-config-enterprise",
                     "cp ./libs/eslint-config-enterprise/index.js ./node_modules/@angular-ru/eslint-config-enterprise",
                     "cp -R ./libs/eslint-config-enterprise/modules ./node_modules/@angular-ru/eslint-config-enterprise/modules",

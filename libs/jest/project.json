@@ -8,6 +8,7 @@
             "options": {
                 "parallel": false,
                 "commands": [
+                    "rm -rf  ./node_modules/@angular-ru/jest",
                     "mkdir -p ./node_modules/@angular-ru/jest",
                     "tsc -p ./libs/jest/tsconfig.lib.json",
                     "cp ./libs/jest/package.json ./node_modules/@angular-ru/jest",

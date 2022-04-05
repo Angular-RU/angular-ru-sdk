@@ -8,6 +8,7 @@
             "options": {
                 "parallel": false,
                 "commands": [
+                    "rm -rf  ./node_modules/@angular-ru/prettier",
                     "mkdir -p ./node_modules/@angular-ru/prettier",
                     "cp ./libs/prettier/prettier.config.js ./node_modules/@angular-ru/prettier",
                     "cp ./libs/prettier/package.json ./node_modules/@angular-ru/prettier",

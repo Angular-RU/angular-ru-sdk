@@ -8,6 +8,7 @@
             "options": {
                 "parallel": false,
                 "commands": [
+                    "rm -rf  ./node_modules/@angular-ru/commitlint",
                     "mkdir -p ./node_modules/@angular-ru/commitlint",
                     "cp ./libs/commitlint/index.js ./node_modules/@angular-ru/commitlint",
                     "cp ./libs/commitlint/package.json ./node_modules/@angular-ru/commitlint",
