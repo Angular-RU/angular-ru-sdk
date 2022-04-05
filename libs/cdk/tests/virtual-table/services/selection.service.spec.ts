@@ -28,7 +28,7 @@ describe('[TEST]: Selection service', () => {
         { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' }
     ];
 
-    jest.spyOn(window as 'addEventListener').mockImplementation((...args: unknown[]): void => {
+    jest.spyOn(window, 'addEventListener').mockImplementation((...args: unknown[]): void => {
         if (args[0] === 'keydown') {
             listenKeydown = true;
         } else if (args[0] === 'keyup') {
@@ -36,7 +36,7 @@ describe('[TEST]: Selection service', () => {
         }
     });
 
-    jest.spyOn(window as 'removeEventListener').mockImplementation((...args: unknown[]): void => {
+    jest.spyOn(window, 'removeEventListener').mockImplementation((...args: unknown[]): void => {
         if (args[0] === 'keydown') {
             listenKeydown = false;
         } else if (args[0] === 'keyup') {

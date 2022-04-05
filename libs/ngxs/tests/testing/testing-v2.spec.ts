@@ -161,7 +161,7 @@ describe('[TEST]: Abstract ngxs data repository', () => {
             b.setState({ value: 2 });
             expect(b.getState()).toEqual({ value: 2 });
 
-            b.initialState.value = 5; // not affected
+            (b.initialState as any).value = 5; // not affected
             b.reset();
 
             expect(b.getState()).toEqual({ value: 1 });

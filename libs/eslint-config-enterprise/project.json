@@ -2,21 +2,20 @@
     "root": "libs/eslint-config-enterprise/",
     "sourceRoot": "libs/eslint-plugin-enterprise/",
     "projectType": "library",
-    "tags": ["scope:libs"],
     "targets": {
         "build": {
             "builder": "@nrwl/workspace:run-commands",
             "options": {
                 "parallel": false,
                 "commands": [
-                    "mkdir -p ./@angular-ru/eslint-config-enterprise",
-                    "cp ./libs/eslint-config-enterprise/index.js ./@angular-ru/eslint-config-enterprise",
-                    "cp -R ./libs/eslint-config-enterprise/modules ./@angular-ru/eslint-config-enterprise/modules",
-                    "cp ./libs/eslint-config-enterprise/package.json ./@angular-ru/eslint-config-enterprise",
-                    "cp ./libs/eslint-config-enterprise/README.md ./@angular-ru/eslint-config-enterprise"
+                    "mkdir -p ./node_modules/@angular-ru/eslint-config-enterprise",
+                    "cp ./libs/eslint-config-enterprise/index.js ./node_modules/@angular-ru/eslint-config-enterprise",
+                    "cp -R ./libs/eslint-config-enterprise/modules ./node_modules/@angular-ru/eslint-config-enterprise/modules",
+                    "cp ./libs/eslint-config-enterprise/package.json ./node_modules/@angular-ru/eslint-config-enterprise",
+                    "cp ./libs/eslint-config-enterprise/README.md ./node_modules/@angular-ru/eslint-config-enterprise"
                 ]
             },
-            "outputs": ["./@angular-ru/eslint-config-enterprise"],
+            "outputs": ["./node_modules/@angular-ru/eslint-config-enterprise"],
             "dependsOn": [{ "target": "build", "projects": "dependencies" }]
         },
         "clean": {
@@ -90,7 +89,7 @@
         },
         "publish": {
             "builder": "@nrwl/workspace:run-commands",
-            "options": { "command": "npm publish ./@angular-ru/eslint-config-enterprise --ignore-scripts" }
+            "options": { "command": "npm publish ./node_modules/@angular-ru/eslint-config-enterprise --ignore-scripts" }
         },
         "version": {
             "executor": "@jscutlery/semver:version",

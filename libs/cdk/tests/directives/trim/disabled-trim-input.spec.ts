@@ -57,23 +57,23 @@ describe('[TEST]: Disabling trim Input', function () {
 
     it('do not trim when disabled', async () => {
         expect(component?.form.value).toEqual({ value: 'nothing special' });
-        expect(debugElement.nativeElement.value).toBe('nothing special');
+        expect(debugElement?.nativeElement.value).toBe('nothing special');
 
         const notFormatted = '\t  something special    ';
 
-        debugElement.nativeElement.value = notFormatted;
-        debugElement.triggerEventHandler('input', {
+        debugElement!.nativeElement.value = notFormatted;
+        debugElement?.triggerEventHandler('input', {
             target: debugElement.nativeElement
         });
-        debugElement.triggerEventHandler('blur', {
-            target: debugElement.nativeElement
+        debugElement?.triggerEventHandler('blur', {
+            target: debugElement?.nativeElement
         });
         await fixture?.whenStable();
 
-        expect(component.form.pristine).toBe(false);
-        expect(component.form.dirty).toBe(true);
+        expect(component?.form.pristine).toBe(false);
+        expect(component?.form.dirty).toBe(true);
 
-        expect(debugElement.nativeElement.value).toBe(notFormatted);
+        expect(debugElement?.nativeElement.value).toBe(notFormatted);
         expect(component?.form.value).toEqual({ value: notFormatted });
     });
 });

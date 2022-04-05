@@ -4,5 +4,5 @@
         "entryFile": "./src/public_api.ts",
         "flatModuleFile": "angular-ru-ngxs"
     },
-    "dest": "../../@angular-ru/ngxs"
+    "dest": "../../node_modules/@angular-ru/ngxs"
 }

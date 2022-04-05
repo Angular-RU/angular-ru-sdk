@@ -21,7 +21,6 @@
         "typescript": "libs/typescript",
         ".platform": {
             "root": "./",
-            "tags": ["scope:ignore"],
             "targets": {
                 "prebuild": {
                     "executor": "@nrwl/workspace:run-commands",
@@ -42,7 +41,7 @@
                         "commands": [
                             "rm -rf ./dist",
                             "rm -rf ./coverage",
-                            "rm -rf ./@angular-ru/",
+                            "rm -rf ./node_modules/@angular-ru",
                             "rm -rf ./node_modules/.cache",
                             "rm -rf ./apps/**/dist ./apps/**/.cache",
                             "rm -rf ./libs/**/dist ./libs/**/.cache"

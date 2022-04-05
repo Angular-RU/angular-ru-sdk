@@ -18,7 +18,7 @@ class WebsocketSimpleParseClient extends AbstractWebsocketClient<any> {
         return JSON.stringify(message);
     }
 
-    protected override deserialize(messageEvent: MessageEvent): WebsocketMessage<any> {
+    protected override deserialize(messageEvent: MessageEvent): WebsocketMessage<any, any> {
         return JSON.parse(messageEvent.data);
     }
 }
@@ -59,7 +59,7 @@ describe('[TEST] Websocket client', (): void => {
 
         client.on<string>('message').subscribe(observer);
 
-        const spyReconnect: jest.SpyInstance = jest.spyOn(client as 'reconnect');
+        const spyReconnect: jest.SpyInstance = jest.spyOn(client, 'reconnect' as any);
 
         client.connect('null');
 
@@ -119,7 +119,7 @@ describe('[TEST] Websocket client', (): void => {
         client.on<string>(PLAIN_TEXT).subscribe(plainTextObserver);
         client.on<string>(BINARY).subscribe(binaryObserver);
 
-        const spyReconnect: jest.SpyInstance = jest.spyOn(client as 'reconnect');
+        const spyReconnect: jest.SpyInstance = jest.spyOn(client, 'reconnect' as any);
 
         client.connect('null');
 

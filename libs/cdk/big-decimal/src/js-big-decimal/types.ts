@@ -1,6 +1,6 @@
 export interface PrettyParams {
-    separator: string;
-    digits: number;
+    separator?: string;
+    digits?: number;
 }
 
 export interface CalculateResult {

@@ -2,7 +2,6 @@
     "root": "apps/flex-layout-demo/",
     "sourceRoot": "apps/flex-layout-demo/",
     "projectType": "application",
-    "tags": ["scope:applications"],
     "targets": {
         "build": {
             "builder": "@angular-devkit/build-angular:browser",

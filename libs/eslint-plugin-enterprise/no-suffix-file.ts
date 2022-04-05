@@ -1,10 +1,17 @@
 import { Rule } from 'eslint';
 import * as ESTree from 'estree';
 
-import { fileEndsWith } from '../../utils/file-ends-with';
-import { getOptions } from '../../utils/get-options';
-import { NoSuffixFileOptions } from './no-suffix-file-options';
-import { NO_SUFFIX_SCHEMA } from './no-suffix-schema';
+interface NoSuffixFileOptions {
+    fileEndsWithList: string[];
+}
+
+const NO_SUFFIX_SCHEMA: Rule.RuleMetaData['schema'] = [
+    {
+        type: 'object',
+        additionalProperties: false,
+        properties: { fileEndsWithList: { type: 'array' } }
+    }
+];
 
 export function noSuffixFile(): Rule.RuleModule {
     return {
@@ -22,4 +29,14 @@ export function noSuffixFile(): Rule.RuleModule {
             }
         })
     };
+}
+
+function getOptions<T>(context: Rule.RuleContext): T {
+    return context.options[0] as T;
+}
+
+function fileEndsWith(context: Rule.RuleContext, suffix: string): boolean {
+    const name: string = require('path').basename(context.getFilename());
+
+    return name.endsWith(suffix);
 }

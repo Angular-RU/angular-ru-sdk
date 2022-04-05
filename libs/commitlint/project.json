@@ -2,25 +2,24 @@
     "root": "libs/commitlint/",
     "sourceRoot": "libs/commitlint/",
     "projectType": "library",
-    "tags": ["scope:libs"],
     "targets": {
         "build": {
             "builder": "@nrwl/workspace:run-commands",
             "options": {
                 "parallel": false,
                 "commands": [
-                    "mkdir -p ./@angular-ru/commitlint",
-                    "cp ./libs/commitlint/index.js ./@angular-ru/commitlint",
-                    "cp ./libs/commitlint/package.json ./@angular-ru/commitlint",
-                    "cp ./libs/commitlint/README.md ./@angular-ru/commitlint"
+                    "mkdir -p ./node_modules/@angular-ru/commitlint",
+                    "cp ./libs/commitlint/index.js ./node_modules/@angular-ru/commitlint",
+                    "cp ./libs/commitlint/package.json ./node_modules/@angular-ru/commitlint",
+                    "cp ./libs/commitlint/README.md ./node_modules/@angular-ru/commitlint"
                 ]
             },
-            "outputs": ["./@angular-ru/commitlint"],
+            "outputs": ["./node_modules/@angular-ru/commitlint"],
             "dependsOn": [{ "target": "build", "projects": "dependencies" }]
         },
         "publish": {
             "builder": "@nrwl/workspace:run-commands",
-            "options": { "command": "npm publish ./@angular-ru/commitlint --ignore-scripts" }
+            "options": { "command": "npm publish ./node_modules/@angular-ru/commitlint --ignore-scripts" }
         },
         "version": {
             "executor": "@jscutlery/semver:version",

@@ -2,26 +2,23 @@
     "root": "libs/eslint-plugin-enterprise/",
     "sourceRoot": "libs/eslint-plugin-enterprise/",
     "projectType": "library",
-    "tags": ["scope:libs"],
     "targets": {
         "build": {
             "builder": "@nrwl/workspace:run-commands",
             "options": {
                 "parallel": false,
                 "commands": [
+                    "mkdir -p ./node_modules/@angular-ru/eslint-plugin-enterprise",
                     "tsc -p ./libs/eslint-plugin-enterprise/tsconfig.json",
-                    "cp ./libs/eslint-plugin-enterprise/package.json ./@angular-ru/eslint-plugin-enterprise",
-                    "cp ./libs/eslint-plugin-enterprise/README.md ./@angular-ru/eslint-plugin-enterprise",
-                    "mkdir -p node_modules/@angular-ru/",
-                    "cd node_modules/@angular-ru/ && rm -rf eslint-plugin-enterprise && ln -s -f ../../@angular-ru/eslint-plugin-enterprise eslint-plugin-enterprise"
+                    "cp ./libs/eslint-plugin-enterprise/package.json ./node_modules/@angular-ru/eslint-plugin-enterprise",
+                    "cp ./libs/eslint-plugin-enterprise/README.md ./node_modules/@angular-ru/eslint-plugin-enterprise"
                 ]
             },
-            "dependsOn": [{ "target": "build", "projects": "dependencies" }],
-            "outputs": ["./@angular-ru/eslint-plugin-enterprise", "node_modules/@angular-ru/eslint-plugin-enterprise"]
+            "outputs": ["./node_modules/@angular-ru/eslint-plugin-enterprise"]
         },
         "publish": {
             "builder": "@nrwl/workspace:run-commands",
-            "options": { "command": "npm publish ./@angular-ru/eslint-plugin-enterprise --ignore-scripts" }
+            "options": { "command": "npm publish ./node_modules/@angular-ru/eslint-plugin-enterprise --ignore-scripts" }
         },
         "version": {
             "executor": "@jscutlery/semver:version",

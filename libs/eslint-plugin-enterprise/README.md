@@ -14,11 +14,10 @@ $ npm install @angular-ru/eslint-plugin-enterprise -D
 
 Add to your `.eslintrc.json`:
 
-```js
+```json
 {
     "plugins": ["@angular-ru/eslint-plugin-enterprise"],
     "rules": {
-        // by default
         "@angular-ru/enterprise/no-suffix-file": [
             "error",
             {

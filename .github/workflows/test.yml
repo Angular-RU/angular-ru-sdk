@@ -15,11 +15,10 @@ jobs:
       - name: Setup Node.js and Cache
         uses: ./.github/actions/nodejs
 
-      - name: Run build artifacts dependent
-        run: |
+      - run: | # todo fix later
           npx nx build cdk
+          npx nx build ngxs
           npx nx build jest
-          npx nx build eslint-plugin-enterprise
 
       - name: Run unit tests
         run: npx nx run-many --target=test --all --parallel=1 --collect-coverage

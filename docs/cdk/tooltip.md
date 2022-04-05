@@ -11,7 +11,7 @@ $ npm install @angular-ru/cdk/tooltip
 -   Add styles to `styles.scss` file:
 
 ```scss
-@import 'node_modules/@angular-ru/cdk/tooltip/styles/index';
+@import './node_modules/@angular-ru/cdk/tooltip/styles/index';
 
 // ...
 ```

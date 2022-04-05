@@ -48,7 +48,7 @@ describe('[TEST] Excel service', () => {
             ]
         });
         excelService = TestBed.inject(ExcelService);
-        downloadSpy = jest.spyOn(excelService.builder.constructor, 'downloadWorkbook');
+        downloadSpy = jest.spyOn((excelService as any)?.builder?.constructor, 'downloadWorkbook');
         downloadSpy.mockImplementation(() => {
             /* noop*/
         });

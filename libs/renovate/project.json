@@ -2,24 +2,23 @@
     "root": "libs/renovate/",
     "sourceRoot": "libs/renovate/",
     "projectType": "library",
-    "tags": ["scope:libs"],
     "targets": {
         "build": {
             "builder": "@nrwl/workspace:run-commands",
             "options": {
                 "parallel": false,
                 "commands": [
-                    "mkdir -p ./@angular-ru/renovate",
-                    "cp ./libs/renovate/package.json ./@angular-ru/renovate",
-                    "cp ./libs/renovate/README.md ./@angular-ru/renovate"
+                    "mkdir -p ./node_modules/@angular-ru/renovate",
+                    "cp ./libs/renovate/package.json ./node_modules/@angular-ru/renovate",
+                    "cp ./libs/renovate/README.md ./node_modules/@angular-ru/renovate"
                 ]
             },
-            "outputs": ["./@angular-ru/renovate"],
+            "outputs": ["./node_modules/@angular-ru/renovate"],
             "dependsOn": [{ "target": "build", "projects": "dependencies" }]
         },
         "publish": {
             "builder": "@nrwl/workspace:run-commands",
-            "options": { "command": "npm publish ./@angular-ru/renovate --ignore-scripts" }
+            "options": { "command": "npm publish ./node_modules/@angular-ru/renovate --ignore-scripts" }
         },
         "version": {
             "executor": "@jscutlery/semver:version",

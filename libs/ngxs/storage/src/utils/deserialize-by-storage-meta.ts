@@ -30,9 +30,9 @@ export function deserializeByStorageMeta<T>(
 }
 
 function versionIsInvalid<T>(meta: StorageMeta<T>): boolean {
-    const version: number = parseFloat(meta.version.toString());
+    const version: number = parseFloat(meta.version?.toString() ?? '');
 
-    return isNaN(version) || version < 1 || parseInt(meta.version.toString()) !== version;
+    return isNaN(version) || version < 1 || parseInt(meta.version?.toString()) !== version;
 }
 
 function missingDataKey<T>(meta: StorageMeta<T>): boolean {

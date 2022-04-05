@@ -65,7 +65,7 @@ describe('[TEST]: Lifecycle table', () => {
     ];
 
     beforeEach(() => {
-        const worker: WebWorkerThreadService = webWorker;
+        const worker: WebWorkerThreadService = webWorker as WebWorkerThreadService;
         const zone: NgZone = mockNgZone as NgZone;
         const app: ApplicationRef = appRef as ApplicationRef;
         const view: NgxTableViewChangesService = new NgxTableViewChangesService();

@@ -22,7 +22,7 @@ export class GuideComponent {
                 // eslint-disable-next-line @typescript-eslint/no-magic-numbers
                 .toString(36)
                 .replace(/[^a-z]+/g, '')
-                // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+                // eslint-disable-next-line @typescript-eslint/no-magic-numbers,deprecation/deprecation
                 .substr(0, 5),
             isMarked: false
         })

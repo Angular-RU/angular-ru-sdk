@@ -1,7 +1,6 @@
 /* eslint-disable max-classes-per-file */
 import { ChangeDetectionStrategy, Component, EventEmitter, Injectable, Input, OnInit, Output } from '@angular/core';
 import { BaseUrl, RequestBody, RestClient } from '@angular-ru/cdk/http/decorators';
-
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 

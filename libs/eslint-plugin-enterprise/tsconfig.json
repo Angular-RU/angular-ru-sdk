@@ -2,12 +2,10 @@
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "baseUrl": "./",
-        "outDir": "../../@angular-ru/eslint-plugin-enterprise",
+        "outDir": "../../node_modules/@angular-ru/eslint-plugin-enterprise",
         "module": "commonjs",
         "types": ["node"],
         "typeRoots": ["../../node_modules/@types", "./"]
     },
-    "include": ["./src"],
-    "exclude": ["integration"],
-    "files": ["./src/index.ts"]
+    "files": ["./index.ts"]
 }

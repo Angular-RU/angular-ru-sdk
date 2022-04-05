@@ -45,7 +45,9 @@ function compareIfBothNegative(inputA: string, inputB: string): Nullable<Compare
         return null;
     }
 
+    // eslint-disable-next-line deprecation/deprecation
     const a: string = inputA.substr(1);
+    // eslint-disable-next-line deprecation/deprecation
     const b: string = inputB.substr(1);
 
     const compareModulesResult: CompareResult = compareNumberModules(a, b);

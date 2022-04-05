@@ -7,7 +7,7 @@ import { ngxsTestingPlatform } from '@angular-ru/ngxs/testing';
 import { State } from '@ngxs/store';
 
 describe('sort by entities', () => {
-    let spy: jest.MockInstance<any>;
+    let spy: jest.MockInstance<any, any>;
 
     interface People {
         id: number;

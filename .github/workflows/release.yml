@@ -16,33 +16,6 @@ jobs:
       - name: Setup Node.js and Cache
         uses: ./.github/actions/nodejs
 
-      - name: Wait for tests to succeed
-        uses: lewagon/wait-on-check-action@v1.1.1
-        with:
-          ref: master
-          check-name: test
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          allowed-conclusions: success
-          wait-interval: 15
-
-      - name: Wait for build to succeed
-        uses: lewagon/wait-on-check-action@v1.1.1
-        with:
-          ref: master
-          check-name: build
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          allowed-conclusions: success
-          wait-interval: 15
-
-      - name: Wait for integrations deploy to succeed
-        uses: lewagon/wait-on-check-action@v1.1.1
-        with:
-          ref: master
-          check-name: integrations
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          allowed-conclusions: success
-          wait-interval: 15
-
       - name: Setup GIT username and NPM token
         run: |
           git config --global user.name "angular-ru-bot"
@@ -52,6 +25,11 @@ jobs:
 
       - name: Set prev last tag
         run: echo "PREV_LAST_TAG=$(git describe --abbrev=0 --tags)" >> "$GITHUB_ENV"
+
+      - run: | # todo fix later
+          npx nx build cdk
+          npx nx build ngxs
+          npx nx run-many --target=build --parallel=1 --all --exclude $(npx nx affected:apps --base=origin/master --plain)
 
       - name: Publish npm libraries (optional)
         run: npx nx run-many --target=version --all --parallel=1 --color=true

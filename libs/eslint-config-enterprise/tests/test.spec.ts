@@ -5,8 +5,8 @@ describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
     it('check failed files', (): void => {
         const bad: string = getInfoByReportFile('bad-file');
 
-        expect(bad.includes('122 problems (122 errors, 0 warnings)')).toBeTruthy();
-        expect(bad.includes('32 errors and 0 warnings potentially fixable with the `--fix` option')).toBeTruthy();
+        expect(bad.includes('121 problems (121 errors, 0 warnings)')).toBeTruthy();
+        expect(bad.includes('31 errors and 0 warnings potentially fixable with the `--fix` option')).toBeTruthy();
         expect(bad.includes(`Run autofix to sort these imports!`)).toBeTruthy();
         expect(bad.includes(`Expected hello to have a type annotation`)).toBeTruthy();
         expect(bad.includes('Missing accessibility modifier on class property hello')).toBeTruthy();
@@ -61,7 +61,6 @@ describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
         expect(bad.includes('Use `@Output` rather than the `outputs` metadata property')).toBeTruthy();
         expect(bad.includes(`Lifecycle interface 'OnInit' should be implemented for method 'ngOnInit'`)).toBeTruthy();
         expect(bad.includes('Pipes should implement `PipeTransform` interface')).toBeTruthy();
-        expect(bad.includes('Unexpected any. Specify a different type')).toBeTruthy();
         expect(bad.includes(`'otherComplexFunction' is defined but never used`)).toBeTruthy();
         expect(
             bad.includes(`Remove this conditional structure or edit its code blocks so that they're not all the same`)

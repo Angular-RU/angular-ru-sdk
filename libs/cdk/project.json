@@ -2,27 +2,14 @@
     "root": "libs/cdk/",
     "sourceRoot": "libs/cdk/",
     "projectType": "library",
-    "tags": ["scope:libs"],
     "targets": {
-        "build-angular": {
+        "build": {
             "builder": "@angular-devkit/build-angular:ng-packagr",
             "options": {
                 "tsConfig": "libs/cdk/tsconfig.lib.json",
                 "project": "libs/cdk/ng-package.json"
             },
-            "outputs": ["./@angular-ru/cdk"]
-        },
-        "build": {
-            "builder": "@nrwl/workspace:run-commands",
-            "options": {
-                "parallel": false,
-                "commands": [
-                    "mkdir -p node_modules/@angular-ru/",
-                    "cd node_modules/@angular-ru/ && rm -rf cdk && ln -s -f ../../@angular-ru/cdk cdk"
-                ]
-            },
-            "dependsOn": [{ "target": "build-angular", "projects": "self" }],
-            "outputs": ["./@angular-ru/cdk", "node_modules/@angular-ru/cdk"]
+            "outputs": ["./node_modules/@angular-ru/cdk"]
         },
         "test": {
             "builder": "@nrwl/workspace:run-commands",
@@ -31,7 +18,7 @@
         },
         "publish": {
             "builder": "@nrwl/workspace:run-commands",
-            "options": { "command": "npm publish ./@angular-ru/cdk --ignore-scripts" }
+            "options": { "command": "npm publish ./node_modules/@angular-ru/cdk --ignore-scripts" }
         },
         "version": {
             "executor": "@jscutlery/semver:version",

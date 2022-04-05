@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { By } from '@angular/platform-browser';
 import { InputFilterModule } from '@angular-ru/cdk/directives';
 import { Nullable } from '@angular-ru/cdk/typings';
+import { isNotNil } from '@angular-ru/cdk/utils';
 
 describe('[TEST]: inputFilter Config', () => {
     let fixture: Nullable<ComponentFixture<TestComponent>> = null;
@@ -59,15 +60,19 @@ describe('[TEST]: inputFilter Config', () => {
 
     function setValueAndDispatch(value: string) {
         localDetectChanges();
-        debugElement = fixture.debugElement.query(By.css('input'));
-        debugElement.nativeElement.value = value;
-        debugElement.triggerEventHandler('input', {
-            target: debugElement.nativeElement
+        debugElement = fixture?.debugElement.query(By.css('input'));
+
+        if (isNotNil(debugElement)) {
+            debugElement.nativeElement.value = value;
+        }
+
+        debugElement?.triggerEventHandler('input', {
+            target: debugElement?.nativeElement
         });
         localDetectChanges();
     }
 
     function localDetectChanges() {
-        fixture.componentInstance.cd.detectChanges();
+        fixture?.componentInstance.cd.detectChanges();
     }
 });

@@ -2,7 +2,7 @@
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
         "paths": {
-            "@angular-ru/cdk/*": ["dist/library/*"]
+            "@angular-ru/cdk/*": ["./cdk/*/public_api.ts"]
         }
     }
 }

@@ -17,10 +17,12 @@ export function modulus(inputDividend: number | string, inputDivisor: number | s
 
     if (dividend[0] === '-') {
         sign = '-';
+        // eslint-disable-next-line deprecation/deprecation
         dividend = dividend.substr(1);
     }
 
     if (divisor[0] === '-') {
+        // eslint-disable-next-line deprecation/deprecation
         divisor = divisor.substr(1);
     }
 

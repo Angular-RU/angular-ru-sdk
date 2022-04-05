@@ -34,7 +34,7 @@ export class BigDecimal {
         return BigDecimal.round(num, 0, RoundingModes.CEILING);
     }
 
-    public static add(inputA: number | string, inputB: number | string): string {
+    public static add(inputA: number | string, inputB?: number | string): string {
         const a: string = BigDecimal.validate(inputA);
         const b: string = BigDecimal.validate(inputB);
 
@@ -55,7 +55,7 @@ export class BigDecimal {
         return multiply(a, b);
     }
 
-    public static divide(inputA: number | string, inputB: number | string, precision: number): string {
+    public static divide(inputA: number | string, inputB: number | string, precision?: number): string {
         const a: string = BigDecimal.validate(inputA);
         const b: string = BigDecimal.validate(inputB);
 
@@ -100,10 +100,10 @@ export class BigDecimal {
         return BigDecimal.round(a, 0, RoundingModes.FLOOR);
     }
 
-    public static getPrettyValue(inputNum: number | string, digits: number, separator: string): string {
+    public static getPrettyValue(inputNum?: number | string, digits?: number, separator?: string): string {
         let num: any = inputNum;
 
-        const prettyParams: PrettyParams = validatePrettyParams({ digits, separator });
+        const prettyParams: PrettyParams = validatePrettyParams({ digits, separator } as PrettyParams);
 
         num = BigDecimal.validate(num);
         const neg: boolean = num.charAt(0) === '-';
@@ -120,7 +120,7 @@ export class BigDecimal {
         return (neg ? '-' : '') + temp + num.substring(numLength);
     }
 
-    private static validate(inputNum: number | string): string {
+    private static validate(inputNum?: number | string): string {
         let num: any = prepareNum(inputNum);
 
         const isPoint: boolean = num.startsWith('.');
@@ -143,7 +143,7 @@ export class BigDecimal {
         return this.value;
     }
 
-    public getPrettyValue(digits: number, separator: string): string {
+    public getPrettyValue(digits?: number, separator?: string): string {
         return BigDecimal.getPrettyValue(this.value, digits, separator);
     }
 
@@ -217,16 +217,16 @@ function getTemp(params: PrettyParams, length_: number, num: any): string {
     let temp: string = '';
 
     for (let i: number = length_; i > 0; ) {
-        if (i < params.digits) {
+        if (i < (params?.digits as any)) {
             params.digits = i;
             i = 0;
         } else {
-            i -= params.digits;
+            i -= params?.digits as any;
         }
 
         temp =
-            num.substring(i, i + params.digits) +
-            (i < length_ - params.digits && i >= 0 ? params.separator : '') +
+            num.substring(i, i + (params?.digits as any)) +
+            (i < length_ - (params?.digits as any) && i >= 0 ? params.separator : '') +
             temp;
     }
 
@@ -268,13 +268,13 @@ function prepareExponentiation(mantisa: any, exponent: any, offset: number): str
     return num;
 }
 
-function prepareNum(inputNum: any): any {
-    let num: any = inputNum;
+function prepareNum(inputNum?: string | number): any {
+    let num: string | number | undefined = inputNum;
 
     if (checkValueIsFilled(inputNum)) {
         num = inputNum.toString();
 
-        if (isNaN(num)) {
+        if (isNaN(num as unknown as number)) {
             throw new Error(`Parameter is not a num: ${num}`);
         }
 

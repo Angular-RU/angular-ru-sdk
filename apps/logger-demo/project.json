@@ -2,7 +2,6 @@
     "root": "apps/logger-demo/",
     "sourceRoot": "apps/logger-demo/",
     "projectType": "application",
-    "tags": ["scope:applications"],
     "targets": {
         "build": {
             "builder": "@angular-devkit/build-angular:browser",

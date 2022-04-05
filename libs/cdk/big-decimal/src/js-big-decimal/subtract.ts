@@ -13,6 +13,7 @@ export function negate(number: string): string {
     let result: string = '';
 
     if (number[0] === '-') {
+        // eslint-disable-next-line deprecation/deprecation
         result = number.substr(1);
     } else {
         result = `-${number}`;

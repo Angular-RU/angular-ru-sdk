@@ -56,13 +56,13 @@ describe('[TEST]: Trim Input', function () {
 
     it('correct sync modelView with model', async () => {
         expect(component?.form.value).toEqual({ value: '1234000012340000' });
-        expect(debugElement.nativeElement.value).toBe('1234-0000-1234-0000');
+        expect(debugElement?.nativeElement.value).toBe('1234-0000-1234-0000');
 
-        debugElement.nativeElement.value = '\t  1234000012340000   ';
-        debugElement.triggerEventHandler('input', {
+        debugElement!.nativeElement.value = '\t  1234000012340000   ';
+        debugElement?.triggerEventHandler('input', {
             target: debugElement.nativeElement
         });
-        debugElement.triggerEventHandler('blur', {
+        debugElement?.triggerEventHandler('blur', {
             target: debugElement.nativeElement
         });
 
@@ -70,10 +70,10 @@ describe('[TEST]: Trim Input', function () {
 
         fixture?.detectChanges();
 
-        expect(component.form.pristine).toBe(false);
-        expect(component.form.dirty).toBe(true);
+        expect(component?.form.pristine).toBe(false);
+        expect(component?.form.dirty).toBe(true);
 
         expect(component?.form.value).toEqual({ value: '1234000012340000' });
-        expect(debugElement.nativeElement.value).toBe('1234-0000-1234-0000');
+        expect(debugElement?.nativeElement.value).toBe('1234-0000-1234-0000');
     });
 });

@@ -64,8 +64,8 @@ describe('[TEST]: inputFilter Input', function () {
     it('correct sync modelView with model', async () => {
         expect(component?.form.value).toEqual({ value: 'aaaKKK' });
 
-        debugElement1.nativeElement.value = 'bbbOOO';
-        debugElement1.triggerEventHandler('input', {
+        debugElement1!.nativeElement.value = 'bbbOOO';
+        debugElement1?.triggerEventHandler('input', {
             target: debugElement1.nativeElement
         });
 
@@ -73,19 +73,19 @@ describe('[TEST]: inputFilter Input', function () {
 
         fixture?.detectChanges();
 
-        expect(component.form.pristine).toBe(false);
-        expect(component.form.dirty).toBe(true);
+        expect(component?.form.pristine).toBe(false);
+        expect(component?.form.dirty).toBe(true);
 
         expect(component?.form.value).toEqual({ value: 'bbb' });
-        expect(debugElement1.nativeElement.value).toBe('bbb');
+        expect(debugElement1?.nativeElement.value).toBe('bbb');
     });
 
     it('correct sync modelView with ngModel', async () => {
         expect(component?.name).toBe('aaaKKK');
-        expect(debugElement2.nativeElement.value).toBe('aaaKKK');
+        expect(debugElement2?.nativeElement.value).toBe('aaaKKK');
 
-        debugElement2.nativeElement.value = 'bbbOOO';
-        debugElement2.triggerEventHandler('input', {
+        debugElement2!.nativeElement.value = 'bbbOOO';
+        debugElement2?.triggerEventHandler('input', {
             target: debugElement2.nativeElement
         });
 
@@ -94,16 +94,16 @@ describe('[TEST]: inputFilter Input', function () {
         fixture?.detectChanges();
 
         expect(component?.name).toBe('bbb');
-        expect(debugElement2.nativeElement.value).toBe('bbb');
+        expect(debugElement2?.nativeElement.value).toBe('bbb');
     });
 
     it('should trigger "input" event only once', () => {
         let count: number = 0;
 
-        debugElement2.nativeElement.addEventListener('input', () => ++count);
-        debugElement2.nativeElement.value = 'bbbOOO';
-        debugElement2.triggerEventHandler('input', {
-            target: debugElement2.nativeElement
+        debugElement2?.nativeElement.addEventListener('input', () => ++count);
+        debugElement2!.nativeElement.value = 'bbbOOO';
+        debugElement2?.triggerEventHandler('input', {
+            target: debugElement2?.nativeElement
         });
         expect(count).toBe(1);
     });

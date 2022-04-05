@@ -5,5 +5,5 @@
         "flatModuleFile": "angular-ru-cdk"
     },
     "assets": ["./flex-layout/styles", "./tooltip/styles"],
-    "dest": "../../@angular-ru/cdk"
+    "dest": "../../node_modules/@angular-ru/cdk"
 }

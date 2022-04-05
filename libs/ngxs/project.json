@@ -2,7 +2,6 @@
     "root": "libs/ngxs/",
     "sourceRoot": "libs/ngxs/",
     "projectType": "library",
-    "tags": ["scope:libs"],
     "targets": {
         "build": {
             "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -10,7 +9,7 @@
                 "tsConfig": "libs/ngxs/tsconfig.lib.json",
                 "project": "libs/ngxs/ng-package.json"
             },
-            "outputs": ["./@angular-ru/ngxs"],
+            "outputs": ["./node_modules/@angular-ru/ngxs"],
             "dependsOn": [{ "target": "build", "projects": "dependencies" }]
         },
         "test": {
@@ -20,7 +19,7 @@
         },
         "publish": {
             "builder": "@nrwl/workspace:run-commands",
-            "options": { "command": "npm publish ./@angular-ru/ngxs --ignore-scripts" }
+            "options": { "command": "npm publish ./node_modules/@angular-ru/ngxs --ignore-scripts" }
         },
         "version": {
             "executor": "@jscutlery/semver:version",

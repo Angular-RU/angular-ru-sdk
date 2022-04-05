@@ -7,7 +7,7 @@ describe('[TEST]: TS Utils', () => {
         );
 
         expect(exposeTsCompilerOptionsByTsConfig('../../tsconfig.lib.json', __dirname).paths).toEqual({
-            '@angular-ru/cdk/*': ['dist/library/*']
+            '@angular-ru/cdk/*': ['./cdk/*/public_api.ts']
         });
     });
 });
