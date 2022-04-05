@@ -15,7 +15,8 @@ jobs:
       - name: Setup Node.js and Cache
         uses: ./.github/actions/nodejs
 
-      - run: | # todo fix later
+      - name: Run build artifacts dependent
+        run: |
           npx nx build cdk
           npx nx build ngxs
           npx nx build jest

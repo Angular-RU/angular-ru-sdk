@@ -27,7 +27,9 @@
                     "options": {
                         "parallel": false,
                         "commands": [
-                            "echo \"Prebuild core libraries:\"",
+                            "npx husky install",
+                            "npx ngcc --async",
+                            "echo \"Build symlinked libraries:\"",
                             "nx build cdk",
                             "nx build jest",
                             "nx build eslint-plugin-enterprise"
@@ -56,7 +58,9 @@
                 },
                 "format:prettier": {
                     "executor": "@nrwl/workspace:run-commands",
-                    "options": { "command": "prettier '**/*.{ts,html,css,scss,md,js,json,yml}' --write" }
+                    "options": {
+                        "command": "prettier '**/*.{ts,html,css,scss,md,js,json,yml}' --write"
+                    }
                 }
             }
         }
