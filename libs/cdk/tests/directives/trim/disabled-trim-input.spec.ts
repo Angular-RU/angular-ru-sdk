@@ -6,7 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { BrowserModule, By } from '@angular/platform-browser';
 import { TrimInputModule } from '@angular-ru/cdk/directives';
 import { Nullable } from '@angular-ru/cdk/typings';
-import { NgxMaskModule } from 'ngx-mask';
+import { NgxMaskModule } from 'ngx-mask/ngx-mask';
 
 describe('[TEST]: Disabling trim Input', function () {
     let fixture: Nullable<ComponentFixture<TestComponent>> = null;
