@@ -80,8 +80,7 @@
                     {
                         "command": "find -L libs/eslint-config-enterprise/tests/file-suites -name '*ts' -exec bash -c 'rm $0' {} \\;",
                         "forwardAllArgs": false
-                    },
-                    "cat ./libs/eslint-config-enterprise/reports/eslint.bad-file.report.txt"
+                    }
                 ]
             }
         },
