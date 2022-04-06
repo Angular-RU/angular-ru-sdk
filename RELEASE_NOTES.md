@@ -293,3 +293,39 @@ This version -------- @angular-ru/prettier-12.64.4
 Previous version ---- @angular-ru/prettier-12.64.3
 Total commits ------- 5
 ```
+
+# 🎁 Release notes (`06.04.2022 11:50`)
+
+## Changes
+
+-   chore(ngxs): release version 13.0.0 [ci skip]
+-   chore(cdk): release version 13.0.0 [ci skip]
+-   chore(jest): release version 13.0.0 [ci skip]
+-   chore(renovate): release version 13.0.0 [ci skip]
+-   chore(prettier): release version 13.0.0 [ci skip]
+-   chore(typescript): release version 13.0.0 [ci skip]
+-   chore(commitlint): release version 13.0.0 [ci skip]
+-   chore(dev-dependencies): release version 13.0.0 [ci skip]
+-   chore(eslint-plugin-enterprise): release version 13.0.0 [ci skip]
+-   chore(eslint-config-enterprise): release version 13.0.0 [ci skip]
+-   BREAKING CHANGE: Angular 13
+-   feat: publishing fix (#1265)
+-   fix-for-release (#1264)
+-   feat: upgrade packages
+-   ci: fix eslint
+-   feat: upgrade prettier
+-   feat: remove `Any`
+-   fix: problem with TypeScript
+-   ci: bump versions
+-   feat(eslint-config-enterprise): support no-invalid-remove-event-listener
+-   feat(eslint-config-enterprise): support no-instanceof-array
+-   feat: support Angular 13
+-   chore: updated RELEASE_NOTES.md [ci skip]
+
+## Metadata
+
+```
+This version -------- @angular-ru/ngxs-13.0.0
+Previous version ---- @angular-ru/prettier-12.64.4
+Total commits ------- 23
+```
