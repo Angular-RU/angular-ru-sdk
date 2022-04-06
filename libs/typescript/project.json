@@ -2,12 +2,14 @@
     "root": "libs/typescript/",
     "sourceRoot": "libs/typescript/",
     "projectType": "library",
+    "tags": ["scope:libs"],
     "targets": {
         "build": {
             "builder": "@nrwl/workspace:run-commands",
             "options": {
                 "parallel": false,
                 "commands": [
+                    "rm -rf  ./node_modules/@angular-ru/typescript",
                     "mkdir -p ./node_modules/@angular-ru/typescript",
                     "cp ./libs/typescript/tsconfig.json ./node_modules/@angular-ru/typescript",
                     "cp ./libs/typescript/package.json ./node_modules/@angular-ru/typescript",

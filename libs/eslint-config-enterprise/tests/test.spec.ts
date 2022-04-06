@@ -5,6 +5,9 @@ describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
     it('check failed files', (): void => {
         const bad: string = getInfoByReportFile('bad-file');
 
+        // eslint-disable-next-line no-console
+        console.log(bad);
+
         expect(bad.includes('121 problems (121 errors, 0 warnings)')).toBeTruthy();
         expect(bad.includes('31 errors and 0 warnings potentially fixable with the `--fix` option')).toBeTruthy();
         expect(bad.includes(`Run autofix to sort these imports!`)).toBeTruthy();
@@ -126,6 +129,9 @@ describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
 
     it('check file pattern in directories', () => {
         const filePattern: string = getInfoByReportFile('file-pattern');
+
+        // eslint-disable-next-line no-console
+        console.log(filePattern);
 
         expect(filePattern.includes('4 problems (4 errors, 0 warnings)')).toBeTruthy();
         expect(

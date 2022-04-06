@@ -1,10 +1,7 @@
 {
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
-        "outDir": "../../node_modules/@angular-ru/jest",
-        "paths": {
-            "@angular-ru/cdk/*": ["../../node_modules/@angular-ru/cdk/*"]
-        }
+        "outDir": "../../node_modules/@angular-ru/jest"
     },
     "include": ["./src"],
     "exclude": ["integration"],

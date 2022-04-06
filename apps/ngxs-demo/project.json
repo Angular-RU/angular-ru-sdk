@@ -2,6 +2,7 @@
     "root": "apps/ngxs-demo/",
     "sourceRoot": "apps/ngxs-demo/",
     "projectType": "application",
+    "tags": ["scope:applications"],
     "targets": {
         "build": {
             "builder": "@angular-devkit/build-angular:browser",

@@ -2,6 +2,7 @@
     "root": "apps/excel-demo/",
     "sourceRoot": "apps/excel-demo/",
     "projectType": "application",
+    "tags": ["scope:applications"],
     "targets": {
         "build": {
             "builder": "@angular-devkit/build-angular:browser",

@@ -2,12 +2,14 @@
     "root": "libs/dev-dependencies/",
     "sourceRoot": "libs/dev-dependencies/",
     "projectType": "library",
+    "tags": ["scope:libs"],
     "targets": {
         "build": {
             "builder": "@nrwl/workspace:run-commands",
             "options": {
                 "parallel": false,
                 "commands": [
+                    "rm -rf  ./node_modules/@angular-ru/dev-dependencies",
                     "mkdir -p ./node_modules/@angular-ru/dev-dependencies",
                     "cp ./libs/dev-dependencies/package.json ./node_modules/@angular-ru/dev-dependencies",
                     "cp ./libs/dev-dependencies/README.md ./node_modules/@angular-ru/dev-dependencies"

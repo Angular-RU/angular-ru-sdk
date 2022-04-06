@@ -21,6 +21,7 @@
         "typescript": "libs/typescript",
         ".platform": {
             "root": "./",
+            "tags": ["scope:ignore"],
             "targets": {
                 "prebuild": {
                     "executor": "@nrwl/workspace:run-commands",
