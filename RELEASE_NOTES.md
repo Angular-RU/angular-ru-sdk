@@ -329,3 +329,19 @@ This version -------- @angular-ru/ngxs-13.0.0
 Previous version ---- @angular-ru/prettier-12.64.4
 Total commits ------- 23
 ```
+
+# 🎁 Release notes (`06.04.2022 13:59`)
+
+## Changes
+
+-   chore(eslint-config-enterprise): release version 13.0.1 [ci skip]
+-   build: update dependency eslint-plugin-import to v2.26.0 (#1247)
+-   chore: updated RELEASE_NOTES.md [ci skip]
+
+## Metadata
+
+```
+This version -------- @angular-ru/eslint-config-enterprise-13.0.1
+Previous version ---- @angular-ru/ngxs-13.0.0
+Total commits ------- 3
+```
