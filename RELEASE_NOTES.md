@@ -345,3 +345,19 @@ This version -------- @angular-ru/eslint-config-enterprise-13.0.1
 Previous version ---- @angular-ru/ngxs-13.0.0
 Total commits ------- 3
 ```
+
+# 🎁 Release notes (`07.04.2022 17:03`)
+
+## Changes
+
+-   chore(eslint-config-enterprise): release version 13.0.2 [ci skip]
+-   build: update dependency eslint-plugin-mocha to v10 (#1025)
+-   chore: updated RELEASE_NOTES.md [ci skip]
+
+## Metadata
+
+```
+This version -------- @angular-ru/eslint-config-enterprise-13.0.2
+Previous version ---- @angular-ru/eslint-config-enterprise-13.0.1
+Total commits ------- 3
+```
