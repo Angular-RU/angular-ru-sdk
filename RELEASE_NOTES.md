@@ -379,3 +379,21 @@ This version -------- @angular-ru/jest-13.0.1
 Previous version ---- @angular-ru/eslint-config-enterprise-13.0.2
 Total commits ------- 5
 ```
+
+# 🎁 Release notes (`10.04.2022 21:05`)
+
+## Changes
+
+-   chore(eslint-config-enterprise): release version 13.0.4 [ci skip]
+-   build: update angular dependencies to v13.3.2 (#1234)
+-   build: update dependency eslint-plugin-jsdoc to v39 (#1272)
+-   build: update codecov/codecov-action action to v3 (#1271)
+-   chore: updated RELEASE_NOTES.md [ci skip]
+
+## Metadata
+
+```
+This version -------- @angular-ru/eslint-config-enterprise-13.0.4
+Previous version ---- @angular-ru/jest-13.0.1
+Total commits ------- 5
+```
