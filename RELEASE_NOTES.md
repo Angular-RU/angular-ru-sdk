@@ -361,3 +361,21 @@ This version -------- @angular-ru/eslint-config-enterprise-13.0.2
 Previous version ---- @angular-ru/eslint-config-enterprise-13.0.1
 Total commits ------- 3
 ```
+
+# 🎁 Release notes (`10.04.2022 20:33`)
+
+## Changes
+
+-   chore(jest): release version 13.0.1 [ci skip]
+-   chore(eslint-config-enterprise): release version 13.0.3 [ci skip]
+-   build: update eslint dependencies (#1270)
+-   build: update dependency jest-junit to v13.1.0 (#1269)
+-   chore: updated RELEASE_NOTES.md [ci skip]
+
+## Metadata
+
+```
+This version -------- @angular-ru/jest-13.0.1
+Previous version ---- @angular-ru/eslint-config-enterprise-13.0.2
+Total commits ------- 5
+```
