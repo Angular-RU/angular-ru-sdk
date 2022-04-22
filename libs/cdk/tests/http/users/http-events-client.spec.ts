@@ -123,10 +123,10 @@ describe('[TEST]: HTTP Intercept Client', () => {
         tick(100);
 
         expect(client?.interceptor?.events).toEqual([
-            '{onBeforeRequest} GET request: /api-get',
             '{onInterceptBodyPayload} body: null',
             '{onInterceptHttpHeaders} headers keys[]: Authorization,KeepAlive',
             '{onInterceptHttpParams} httpParams: value=1',
+            '{onBeforeRequest} GET request: /api-get',
             '{onTapAfterRequest} response(http://localhost/api-get): [{"hello":"world"}]',
             '{onFinalizeAfterRequest} get - http://localhost/api-get'
         ]);
@@ -149,10 +149,10 @@ describe('[TEST]: HTTP Intercept Client', () => {
         tick(100);
 
         expect(client?.interceptor?.events).toEqual([
-            '{onBeforeRequest} POST request: /api-post',
             '{onInterceptBodyPayload} body: {"b":2,"c":3}',
             '{onInterceptHttpHeaders} headers keys[]: ',
             '{onInterceptHttpParams} httpParams: ',
+            '{onBeforeRequest} POST request: /api-post',
             '{onEmitFailure} error(http://localhost/backend/api-post): Http failure response for http://localhost/backend/api-post: 400 Bad Request',
             '{onErrorAfterRequest} error(http://localhost/backend/api-post): Http failure response for http://localhost/backend/api-post: 400 Bad Request',
             '{onFinalizeAfterRequest} post - http://localhost/backend/api-post'
