@@ -10,7 +10,7 @@ import {
 } from '@angular-ru/cdk/http/typings';
 import { buildUrl, makeUrlSegments } from '@angular-ru/cdk/http/utils';
 import { isNil, isTrue } from '@angular-ru/cdk/utils';
-import { Observable, throwError } from 'rxjs';
+import { Observable, Subscriber, Subscription, throwError } from 'rxjs';
 import { catchError, finalize, take, tap } from 'rxjs/operators';
 
 import { DATA_HTTP_CLIENT_INTERCEPTOR } from '../tokens/data-http-client-interceptor.token';
@@ -35,7 +35,6 @@ export class DataHttpClient<K = unknown> extends AbstractHttpClient<K> {
             throw new Error(`You must use the @RestClient('controller') decorator for work correctly`);
         }
 
-        this.interceptor.onBeforeRequest?.(options);
         const meta: MetaDataRequest = this.createMetaDataRequest(options);
         const observable$: Observable<R> = this.http.request(options.method, meta.url, meta.requestOptions);
         const queueRequest$: Observable<R> = this.limitConcurrency.add<R>(
@@ -43,7 +42,11 @@ export class DataHttpClient<K = unknown> extends AbstractHttpClient<K> {
             options.clientOptions.limitConcurrency
         );
 
-        return this.wrapHttpRequestWithMeta<T, R>(meta, options, queueRequest$);
+        return new Observable<R>((subscriber: Subscriber<R>): Subscription => {
+            this.interceptor.onBeforeRequest?.(options);
+
+            return this.wrapHttpRequestWithMeta(meta, options, queueRequest$).subscribe(subscriber);
+        });
     }
 
     protected restTemplate<T>(options?: Partial<DataClientRequestOptions>): Observable<T> {
