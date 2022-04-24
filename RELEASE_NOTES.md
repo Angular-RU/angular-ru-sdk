@@ -397,3 +397,19 @@ This version -------- @angular-ru/eslint-config-enterprise-13.0.4
 Previous version ---- @angular-ru/jest-13.0.1
 Total commits ------- 5
 ```
+
+# 🎁 Release notes (`24.04.2022 14:36`)
+
+## Changes
+
+-   chore(cdk): release version 13.0.1 [ci skip]
+-   fix(cdk): call onBeforeRequest after request is subscribed (#1266)
+-   chore: updated RELEASE_NOTES.md [ci skip]
+
+## Metadata
+
+```
+This version -------- @angular-ru/cdk-13.0.1
+Previous version ---- @angular-ru/eslint-config-enterprise-13.0.4
+Total commits ------- 3
+```
