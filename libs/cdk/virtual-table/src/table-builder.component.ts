@@ -469,7 +469,7 @@ export class TableBuilderComponent<T>
     protected calculateEndIndex(start: number): number {
         const end: number = start + this.getVisibleCountItems() + MIN_BUFFER;
 
-        return end > this.sourceRef.length ? this.sourceRef.length : end;
+        return !this.isVirtualTable || end > this.sourceRef.length ? this.sourceRef.length : end;
     }
 
     protected ignoreCalculate(): boolean {
