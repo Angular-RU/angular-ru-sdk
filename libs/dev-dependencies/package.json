@@ -10,6 +10,7 @@
     "dependencies": {
         "@jscutlery/semver": "2.23.4",
         "@nrwl/cli": "13.4.6",
+        "@nrwl/devkit": "13.4.6",
         "@nrwl/nx-cloud": "13.1.6",
         "@nrwl/tao": "13.4.6",
         "@nrwl/workspace": "13.4.6",
