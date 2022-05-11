@@ -106,6 +106,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
     @Input('row-css-classes') public rowCssClasses: PlainObjectOf<string[]> = {};
     @Input('schema-columns') public schemaColumns: Nullable<TableUpdateSchema> = null;
     @Input('schema-version') public schemaVersion: number = 1;
+    @Input('is-virtual-table') public isVirtualTable: boolean = true;
     @Output() public readonly afterRendered: EventEmitter<boolean> = new EventEmitter();
     @Output() public readonly schemaChanges: EventEmitter<TableUpdateSchema> = new EventEmitter();
     // TODO: should be rename (breaking changes)
