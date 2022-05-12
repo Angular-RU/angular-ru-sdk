@@ -413,3 +413,32 @@ This version -------- @angular-ru/cdk-13.0.1
 Previous version ---- @angular-ru/eslint-config-enterprise-13.0.4
 Total commits ------- 3
 ```
+
+# 🎁 Release notes (`12.05.2022 14:20`)
+
+## Changes
+
+-   chore(cdk): release version 13.1.0 [ci skip]
+-   chore(jest): release version 13.0.2 [ci skip]
+-   chore(prettier): release version 13.0.1 [ci skip]
+-   chore(commitlint): release version 13.0.1 [ci skip]
+-   chore(dev-dependencies): release version 13.0.1 [ci skip]
+-   chore(eslint-config-enterprise): release version 13.0.5 [ci skip]
+-   build: change package-lock (#1283)
+-   build: added @nrwl/devkit for build (#1282)
+-   feat: added virtual table feature to be used as non-virtual (#1281)
+-   build: update typescript dependencies (#1278)
+-   build: update jest dependencies (#1277)
+-   build: update eslint dependencies (#1276)
+-   build: update dependency @types/node to v17.0.31 (#1275)
+-   build: update commitlint dependencies to v16.2.4 (#1274)
+-   build: update all dependencies (minor/patch) (#1257)
+-   chore: updated RELEASE_NOTES.md [ci skip]
+
+## Metadata
+
+```
+This version -------- @angular-ru/cdk-13.1.0
+Previous version ---- @angular-ru/cdk-13.0.1
+Total commits ------- 16
+```
