@@ -618,7 +618,7 @@ export class TableBuilderComponent<T>
     }
 
     private getOffsetVisibleStartIndex(): number {
-        return Math.ceil(this.scrollOffsetTop / this.clientRowHeight);
+        return this.isVirtualTable ? Math.ceil(this.scrollOffsetTop / this.clientRowHeight) : 0;
     }
 
     private preSortAndFilterTable(): void {
