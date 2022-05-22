@@ -1,19 +1,19 @@
 {
-  "name": "@angular-ru/commitlint",
-  "version": "13.0.3",
-  "description": "Shared commit lint config for Angular projects",
-  "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/libs/commitlint#readme",
-  "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
-  "repository": "https://github.com/Angular-RU/angular-ru-sdk",
-  "license": "MIT",
-  "author": "angular-ru@yandex.ru",
-  "main": "index.js",
-  "dependencies": {
-    "@commitlint/cli": "17.0.0",
-    "@commitlint/config-angular": "17.0.0",
-    "@commitlint/config-conventional": "17.0.0"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@angular-ru/commitlint",
+    "version": "13.0.3",
+    "description": "Shared commit lint config for Angular projects",
+    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/libs/commitlint#readme",
+    "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
+    "repository": "https://github.com/Angular-RU/angular-ru-sdk",
+    "license": "MIT",
+    "author": "angular-ru@yandex.ru",
+    "main": "index.js",
+    "dependencies": {
+        "@commitlint/cli": "17.0.0",
+        "@commitlint/config-angular": "17.0.0",
+        "@commitlint/config-conventional": "17.0.0"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }
