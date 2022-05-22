@@ -1,13 +1,13 @@
 {
-  "name": "@angular-ru/cdk",
-  "version": "13.1.2",
-  "description": "Angular-RU package",
-  "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/libs/cdk#readme",
-  "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
-  "repository": "https://github.com/Angular-RU/angular-ru-sdk",
-  "license": "MIT",
-  "author": "angular-ru@yandex.ru",
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@angular-ru/cdk",
+    "version": "13.1.2",
+    "description": "Angular-RU package",
+    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/libs/cdk#readme",
+    "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
+    "repository": "https://github.com/Angular-RU/angular-ru-sdk",
+    "license": "MIT",
+    "author": "angular-ru@yandex.ru",
+    "publishConfig": {
+        "access": "public"
+    }
 }
