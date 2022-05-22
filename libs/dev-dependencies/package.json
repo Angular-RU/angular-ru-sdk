@@ -18,7 +18,7 @@
     "husky": "7.0.4",
     "lint-staged": "12.4.1",
     "ng-packagr": "13.3.0",
-    "ts-node": "10.7.0"
+    "ts-node": "10.8.0"
   },
   "publishConfig": {
     "access": "public"
