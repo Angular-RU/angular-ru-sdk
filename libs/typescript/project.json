@@ -9,11 +9,11 @@
             "options": {
                 "parallel": false,
                 "commands": [
-                    "rm -rf  ./node_modules/@angular-ru/typescript",
-                    "mkdir -p ./node_modules/@angular-ru/typescript",
-                    "cp ./libs/typescript/tsconfig.json ./node_modules/@angular-ru/typescript",
-                    "cp ./libs/typescript/package.json ./node_modules/@angular-ru/typescript",
-                    "cp ./libs/typescript/README.md ./node_modules/@angular-ru/typescript"
+                    "rimraf  ./node_modules/@angular-ru/typescript",
+                    "make-dir ./node_modules/@angular-ru/typescript",
+                    "cpy ./libs/typescript/tsconfig.json ./node_modules/@angular-ru/typescript",
+                    "cpy ./libs/typescript/package.json ./node_modules/@angular-ru/typescript",
+                    "cpy ./libs/typescript/README.md ./node_modules/@angular-ru/typescript"
                 ]
             },
             "outputs": ["./node_modules/@angular-ru/typescript"],

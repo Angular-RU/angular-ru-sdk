@@ -40,12 +40,12 @@
                     "options": {
                         "parallel": true,
                         "commands": [
-                            "rm -rf ./dist",
-                            "rm -rf ./coverage",
-                            "rm -rf ./node_modules/@angular-ru",
-                            "rm -rf ./node_modules/.cache",
-                            "rm -rf ./apps/**/dist ./apps/**/.cache",
-                            "rm -rf ./libs/**/dist ./libs/**/.cache"
+                            "rimraf ./dist",
+                            "rimraf ./coverage",
+                            "rimraf ./node_modules/@angular-ru",
+                            "rimraf ./node_modules/.cache",
+                            "rimraf ./apps/**/dist ./apps/**/.cache",
+                            "rimraf ./libs/**/dist ./libs/**/.cache"
                         ]
                     }
                 },

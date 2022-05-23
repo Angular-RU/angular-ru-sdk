@@ -9,10 +9,10 @@
             "options": {
                 "parallel": false,
                 "commands": [
-                    "rm -rf  ./node_modules/@angular-ru/renovate",
-                    "mkdir -p ./node_modules/@angular-ru/renovate",
-                    "cp ./libs/renovate/package.json ./node_modules/@angular-ru/renovate",
-                    "cp ./libs/renovate/README.md ./node_modules/@angular-ru/renovate"
+                    "rimraf  ./node_modules/@angular-ru/renovate",
+                    "make-dir ./node_modules/@angular-ru/renovate",
+                    "cpy ./libs/renovate/package.json ./node_modules/@angular-ru/renovate",
+                    "cpy ./libs/renovate/README.md ./node_modules/@angular-ru/renovate"
                 ]
             },
             "outputs": ["./node_modules/@angular-ru/renovate"],
