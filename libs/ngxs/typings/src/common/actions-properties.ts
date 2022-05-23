@@ -6,6 +6,7 @@ import { ActionOptions, ActionType } from '@ngxs/store';
  */
 export interface RepositoryActionOptions extends ActionOptions {
     insideZone?: boolean;
+    subscribeRequired?: boolean;
 }
 
 /**

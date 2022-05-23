@@ -9,11 +9,11 @@
             "options": {
                 "parallel": false,
                 "commands": [
-                    "rm -rf  ./node_modules/@angular-ru/eslint-plugin-enterprise",
-                    "mkdir -p ./node_modules/@angular-ru/eslint-plugin-enterprise",
+                    "rimraf ./node_modules/@angular-ru/eslint-plugin-enterprise",
+                    "make-dir ./node_modules/@angular-ru/eslint-plugin-enterprise",
                     "tsc -p ./libs/eslint-plugin-enterprise/tsconfig.json",
-                    "cp ./libs/eslint-plugin-enterprise/package.json ./node_modules/@angular-ru/eslint-plugin-enterprise",
-                    "cp ./libs/eslint-plugin-enterprise/README.md ./node_modules/@angular-ru/eslint-plugin-enterprise"
+                    "cpy ./libs/eslint-plugin-enterprise/package.json ./node_modules/@angular-ru/eslint-plugin-enterprise",
+                    "cpy ./libs/eslint-plugin-enterprise/README.md ./node_modules/@angular-ru/eslint-plugin-enterprise"
                 ]
             },
             "outputs": ["./node_modules/@angular-ru/eslint-plugin-enterprise"]

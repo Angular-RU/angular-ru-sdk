@@ -491,3 +491,57 @@ class CounterState extends NgxsDataRepository<number> {
     }
 }
 ```
+
+### Use `@DataAction` without subscription
+
+With Data-plugin in case, `@DataAction` returns an Observable, you have to subscribe to the `@DataAction` function
+to fire an action itself. Without a subscribe, action will not be fired, and you will not see updates in the store.
+This can be confusing and unexpected for developers that are used to pure NGXS. Also, it can provide issues while
+integrating Data-plugin into the projects that were developed a long time without it.
+
+To achieve an origin behavior of Actions you can pass option `subscribeRequired` with `false` value to the `@DataAction`
+decorator.
+
+```typescript
+@StateRepository()
+@State<PersonModel>({
+    name: 'person',
+    defaults: { title: null!, description: null! }
+})
+@Injectable()
+export class PersonState extends NgxsImmutableDataRepository<PersonModel> {
+    constructor(private readonly personService: PersonService) {
+        super();
+    }
+
+    // Note: Also can be configured globally by providing custom NGXS_DATA_CONFIG
+    @DataAction({ subscribeRequired: false })
+    public getContent(): Observable<PersonModel> {
+        return this.personService.fetchAll().pipe(tap((content: PersonModel): void => this.setState(content)));
+    }
+}
+```
+
+The same behavior can be achieved globally for all `@DataAction` in the app by providing a global config property.
+
+```typescript
+@NgModule({
+    declarations: [AppComponent],
+    imports: [
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgxsModule.forRoot([], {
+            developmentMode: !environment.production,
+            executionStrategy: NoopNgxsExecutionStrategy
+        }),
+        NgxsLoggerPluginModule.forRoot(),
+        NgxsDataPluginModule.forRoot([NGXS_DATA_STORAGE_EXTENSION, NGXS_DATA_STORAGE_CONTAINER])
+    ],
+    providers: [{ provide: NGXS_DATA_CONFIG, useValue: { dataActionSubscribeRequired: false } }],
+    bootstrap: [AppComponent]
+})
+export class AppModule {}
+```
