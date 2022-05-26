@@ -2,7 +2,7 @@ module.exports = {
     username: 'renovate',
     gitAuthor: 'Renovate Bot <bot@renovateapp.com>',
     platform: 'github',
-    includeForks: true,
+    includeForks: false,
     repositories: ['angular-ru/angular-ru-sdk'],
     enabled: true,
     automerge: true,
