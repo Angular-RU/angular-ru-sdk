@@ -1,11 +1,12 @@
 module.exports = {
     branchPrefix: 'renovate/',
-    dryRun: true,
+    dryRun: false,
     username: 'renovate',
     gitAuthor: 'Renovate Bot <bot@renovateapp.com>',
     onboarding: false,
     platform: 'github',
     includeForks: true,
+    automerge: true,
     repositories: ['angular-ru/angular-ru-sdk'],
     packageRules: [
         {
