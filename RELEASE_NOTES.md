@@ -505,3 +505,23 @@ This version -------- @angular-ru/cdk-13.1.3
 Previous version ---- @angular-ru/cdk-13.1.2
 Total commits ------- 8
 ```
+
+# 🎁 Release notes (`26.05.2022 20:56`)
+
+## Changes
+
+-   chore(renovate): release version 13.0.1 [ci skip]
+-   ci: add renovate
+-   ci: add renovate
+-   ci: add renovate
+-   ci: add renovate
+-   ci: add renovate
+-   chore: updated RELEASE_NOTES.md [ci skip]
+
+## Metadata
+
+```
+This version -------- @angular-ru/renovate-13.0.1
+Previous version ---- @angular-ru/cdk-13.1.3
+Total commits ------- 7
+```
