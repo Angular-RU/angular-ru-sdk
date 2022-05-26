@@ -17,3 +17,7 @@ jobs:
           token: ${{ secrets.ANGULAR_RU_BOT_PAT }}
         env:
           LOG_LEVEL: 'debug'
+
+concurrency:
+  group: renovate-${{ github.head_ref }}
+  cancel-in-progress: true
