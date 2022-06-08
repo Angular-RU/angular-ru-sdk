@@ -17,11 +17,6 @@ jobs:
       - name: Setup Node.js and Cache
         uses: ./.github/actions/nodejs
 
-      - name: Run commitlint
-        run: |
-          npx commitlint \
-                --verbose
-
       - name: Run format
         run: npm run format
 
