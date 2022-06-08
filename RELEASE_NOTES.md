@@ -484,3 +484,44 @@ This version -------- @angular-ru/cdk-13.1.2
 Previous version ---- @angular-ru/cdk-13.1.1
 Total commits ------- 8
 ```
+
+# 🎁 Release notes (`26.05.2022 20:08`)
+
+## Changes
+
+-   chore(cdk): release version 13.1.3 [ci skip]
+-   chore(jest): release version 13.0.5 [ci skip]
+-   chore(prettier): release version 13.0.4 [ci skip]
+-   chore(commitlint): release version 13.0.4 [ci skip]
+-   chore(dev-dependencies): release version 13.0.4 [ci skip]
+-   chore(eslint-config-enterprise): release version 13.0.8 [ci skip]
+-   build: update dependency husky to v8 (#1293)
+-   chore: updated RELEASE_NOTES.md [ci skip]
+
+## Metadata
+
+```
+This version -------- @angular-ru/cdk-13.1.3
+Previous version ---- @angular-ru/cdk-13.1.2
+Total commits ------- 8
+```
+
+# 🎁 Release notes (`26.05.2022 20:56`)
+
+## Changes
+
+-   chore(renovate): release version 13.0.1 [ci skip]
+-   ci: add renovate
+-   ci: add renovate
+-   ci: add renovate
+-   ci: add renovate
+-   ci: add renovate
+-   chore: updated RELEASE_NOTES.md [ci skip]
+
+## Metadata
+
+```
+This version -------- @angular-ru/renovate-13.0.1
+Previous version ---- @angular-ru/cdk-13.1.3
+Total commits ------- 7
+```
