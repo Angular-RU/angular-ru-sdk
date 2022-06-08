@@ -11,6 +11,7 @@ export class NgxsDataInjector {
     public static context: any | null = null;
     public static factory: any | null = null;
     public static ngZone: NgZone | null = null;
+    public static injector: Injector | null = null;
 
     constructor(
         injector: Injector,
@@ -22,5 +23,6 @@ export class NgxsDataInjector {
         NgxsDataInjector.factory = stateFactory;
         NgxsDataInjector.context = stateContextFactory;
         NgxsDataInjector.computed = injector.get<NgxsDataSequence>(NgxsDataSequence);
+        NgxsDataInjector.injector = injector;
     }
 }

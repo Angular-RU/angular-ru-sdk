@@ -12,7 +12,6 @@ import {
     NgxsDataInjector,
     validateAction
 } from '@angular-ru/ngxs/internals';
-import { NgxsDataStoragePlugin } from '@angular-ru/ngxs/storage';
 import {
     ActionEvent,
     DataStateClass,
@@ -107,14 +106,14 @@ export function DataAction(options: RepositoryActionOptions = {}): MethodDecorat
 }
 
 function mergeConfig(options: RepositoryActionOptions): RepositoryActionOptions {
-    const globalConfig: NgxsDataConfig | undefined = NgxsDataStoragePlugin?.injector?.get(
+    const globalConfig: NgxsDataConfig | undefined = NgxsDataInjector?.injector?.get(
         NGXS_DATA_CONFIG,
         undefined,
         InjectFlags.Optional
     );
     const mergedOptions: RepositoryActionOptions = { ...REPOSITORY_ACTION_OPTIONS };
 
-    if (isNotNil(globalConfig) && globalConfig.dataActionSubscribeRequired !== undefined) {
+    if (isNotNil(globalConfig) && globalConfig?.dataActionSubscribeRequired !== undefined) {
         mergedOptions.subscribeRequired = globalConfig.dataActionSubscribeRequired;
     }
 
