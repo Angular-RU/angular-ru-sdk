@@ -1,6 +1,6 @@
 {
   "name": "@angular-ru/prettier",
-  "version": "13.0.3",
+  "version": "13.0.4",
   "description": "Shared Prettier config for Angular projects",
   "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/libs/prettier#readme",
   "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",

@@ -1,6 +1,6 @@
 {
   "name": "@angular-ru/commitlint",
-  "version": "13.0.3",
+  "version": "13.0.4",
   "description": "Shared commit lint config for Angular projects",
   "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/libs/commitlint#readme",
   "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",

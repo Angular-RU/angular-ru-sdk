@@ -75,14 +75,5 @@
         "node": ">=16.12",
         "npm": ">=7.1",
         "yarn": "Please use npm instead of yarn to install dependencies"
-    },
-    "renovate": {
-        "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-        "extends": [
-            "@angular-ru/renovate"
-        ],
-        "schedule": [
-            "on the 2nd and 4th day instance on sunday after 9pm"
-        ]
     }
 }
