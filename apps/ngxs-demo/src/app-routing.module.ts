@@ -24,6 +24,10 @@ import { RouterModule } from '@angular/router';
                     loadChildren: () => import('./person/person.module').then((m) => m.PersonModule)
                 },
                 {
+                    path: 'user',
+                    loadChildren: () => import('./user/user.module').then((m) => m.UserModule)
+                },
+                {
                     path: 'amount',
                     loadChildren: () => import('./amount/amount.module').then((m) => m.AmountModule)
                 },

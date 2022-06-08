@@ -9,11 +9,11 @@
             "options": {
                 "parallel": false,
                 "commands": [
-                    "rm -rf  ./node_modules/@angular-ru/jest",
-                    "mkdir -p ./node_modules/@angular-ru/jest",
+                    "rimraf  ./node_modules/@angular-ru/jest",
+                    "make-dir ./node_modules/@angular-ru/jest",
                     "tsc -p ./libs/jest/tsconfig.lib.json",
-                    "cp ./libs/jest/package.json ./node_modules/@angular-ru/jest",
-                    "cp ./libs/jest/README.md ./node_modules/@angular-ru/jest"
+                    "cpy ./libs/jest/package.json ./node_modules/@angular-ru/jest",
+                    "cpy ./libs/jest/README.md ./node_modules/@angular-ru/jest"
                 ]
             },
             "dependsOn": [{ "target": "build", "projects": "dependencies" }],

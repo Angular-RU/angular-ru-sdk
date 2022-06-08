@@ -9,12 +9,12 @@
             "options": {
                 "parallel": false,
                 "commands": [
-                    "rm -rf  ./node_modules/@angular-ru/eslint-config-enterprise",
-                    "mkdir -p ./node_modules/@angular-ru/eslint-config-enterprise",
-                    "cp ./libs/eslint-config-enterprise/index.js ./node_modules/@angular-ru/eslint-config-enterprise",
-                    "cp -R ./libs/eslint-config-enterprise/modules ./node_modules/@angular-ru/eslint-config-enterprise/modules",
-                    "cp ./libs/eslint-config-enterprise/package.json ./node_modules/@angular-ru/eslint-config-enterprise",
-                    "cp ./libs/eslint-config-enterprise/README.md ./node_modules/@angular-ru/eslint-config-enterprise"
+                    "rimraf ./node_modules/@angular-ru/eslint-config-enterprise",
+                    "make-dir ./node_modules/@angular-ru/eslint-config-enterprise",
+                    "cpy ./libs/eslint-config-enterprise/index.js ./node_modules/@angular-ru/eslint-config-enterprise",
+                    "cpy ./libs/eslint-config-enterprise/modules ./node_modules/@angular-ru/eslint-config-enterprise/modules",
+                    "cpy ./libs/eslint-config-enterprise/package.json ./node_modules/@angular-ru/eslint-config-enterprise",
+                    "cpy ./libs/eslint-config-enterprise/README.md ./node_modules/@angular-ru/eslint-config-enterprise"
                 ]
             },
             "outputs": ["./node_modules/@angular-ru/eslint-config-enterprise"],
@@ -26,7 +26,7 @@
                 "parallel": false,
                 "commands": [
                     {
-                        "command": "rm -rf libs/eslint-config-enterprise/reports && mkdir -p libs/eslint-config-enterprise/reports",
+                        "command": "rimraf libs/eslint-config-enterprise/reports && make-dir libs/eslint-config-enterprise/reports",
                         "forwardAllArgs": false
                     },
                     {

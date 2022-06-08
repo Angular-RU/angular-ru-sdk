@@ -9,10 +9,10 @@
             "options": {
                 "parallel": false,
                 "commands": [
-                    "rm -rf  ./node_modules/@angular-ru/dev-dependencies",
-                    "mkdir -p ./node_modules/@angular-ru/dev-dependencies",
-                    "cp ./libs/dev-dependencies/package.json ./node_modules/@angular-ru/dev-dependencies",
-                    "cp ./libs/dev-dependencies/README.md ./node_modules/@angular-ru/dev-dependencies"
+                    "rimraf  ./node_modules/@angular-ru/dev-dependencies",
+                    "make-dir ./node_modules/@angular-ru/dev-dependencies",
+                    "cpy ./libs/dev-dependencies/package.json ./node_modules/@angular-ru/dev-dependencies",
+                    "cpy ./libs/dev-dependencies/README.md ./node_modules/@angular-ru/dev-dependencies"
                 ]
             },
             "outputs": ["./node_modules/@angular-ru/dev-dependencies"],
