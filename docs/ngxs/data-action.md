@@ -494,10 +494,10 @@ class CounterState extends NgxsDataRepository<number> {
 
 ### Use `@DataAction` without subscription
 
-With Data-plugin in case, `@DataAction` returns an Observable, you have to subscribe to the `@DataAction` function
-to fire an action itself. Without a subscribe, action will not be fired, and you will not see updates in the store.
-This can be confusing and unexpected for developers that are used to pure NGXS. Also, it can provide issues while
-integrating Data-plugin into the projects that were developed a long time without it.
+With Data-plugin in case, `@DataAction` returns an Observable, you have to subscribe to the `@DataAction` function to
+fire an action itself. Without a subscribe, action will not be fired, and you will not see updates in the store. This
+can be confusing and unexpected for developers that are used to pure NGXS. Also, it can provide issues while integrating
+Data-plugin into the projects that were developed a long time without it.
 
 To achieve an origin behavior of Actions you can pass option `subscribeRequired` with `false` value to the `@DataAction`
 decorator.
