@@ -1,0 +1,67 @@
+<div
+    flex-container
+    class="ngx-settings__container"
+>
+    <form
+        flex-column
+        [formGroup]="form"
+    >
+        <mat-slide-toggle
+            [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="isScaleSettingsEnabled"
+        >
+            Scale settings
+        </mat-slide-toggle>
+        <div *ngIf="isScaleSettingsEnabled">
+            <p>
+                Row
+                <mat-button-toggle-group formControlName="customRowsOption">
+                    <mat-button-toggle value="narrow">Narrow</mat-button-toggle>
+                    <mat-button-toggle value="auto">Auto</mat-button-toggle>
+                    <mat-button-toggle value="custom">Custom</mat-button-toggle>
+                </mat-button-toggle-group>
+            </p>
+            <mat-slider
+                *ngIf="isCustomFontSizeSliderEnabled"
+                required
+                thumbLabel
+                step="2"
+                min="20"
+                max="42"
+                value="20"
+                formControlName="fontSize"
+            ></mat-slider>
+        </div>
+        <mat-slide-toggle formControlName="checkeredLine">Сheckered line selection</mat-slide-toggle>
+        <mat-slide-toggle formControlName="hideEmptyColumnAndRows">Hide empty columns and rows</mat-slide-toggle>
+        <div
+            cdkDropList
+            class="ngx-settings__column-list"
+            (cdkDropListDropped)="changeSchema($event)"
+        >
+            <div
+                *ngFor="let column of table.columnSchema"
+                cdkDrag
+                class="ngx-settings__column-list-item"
+            >
+                {{ column.key }}
+                <mat-slide-toggle
+                    [checked]="column.isVisible"
+                    (change)="table?.toggleColumnVisibility(column.key)"
+                ></mat-slide-toggle>
+            </div>
+        </div>
+
+        <div
+            flex-container
+            flex-end
+        >
+            <button
+                mat-button
+                (click)="table.resetSchema()"
+            >
+                <mat-label>Reset</mat-label>
+            </button>
+        </div>
+    </form>
+</div>

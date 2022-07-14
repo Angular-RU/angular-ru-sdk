@@ -9,6 +9,7 @@ export { NgxFilterViewerComponent } from './components/ngx-filter-viewer/ngx-fil
 export { NgxFooterComponent } from './components/ngx-footer/ngx-footer.component';
 export { NgxHeaderComponent } from './components/ngx-header/ngx-header.component';
 export { NgxOptionsComponent } from './components/ngx-options/ngx-options.component';
+export { NgxSettingsComponent } from './components/ngx-settings/ngx-settings.component';
 export { NgxSourceNullComponent } from './components/ngx-source-null/ngx-source-null.component';
 export { AbstractModalViewLayerDirective } from './directives/abstract-modal-view-layer.directive';
 export { ColumnOptionsDirective } from './directives/column-options.directive';

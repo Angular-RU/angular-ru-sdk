@@ -34,6 +34,7 @@ import { NgxFilterComponent } from './components/ngx-filter/ngx-filter.component
 import { NgxFooterComponent } from './components/ngx-footer/ngx-footer.component';
 import { NgxHeaderComponent } from './components/ngx-header/ngx-header.component';
 import { NgxOptionsComponent } from './components/ngx-options/ngx-options.component';
+import { NgxSettingsComponent } from './components/ngx-settings/ngx-settings.component';
 import { TABLE_GLOBAL_OPTIONS } from './config/table-global-options';
 import {
     ColumnsSchema,
@@ -114,6 +115,9 @@ export abstract class AbstractTableBuilderApiDirective<T>
     @Output() public readonly onChanges: EventEmitter<Nullable<T[]>> = new EventEmitter();
     @Output() public readonly sortChanges: EventEmitter<OrderedField[]> = new EventEmitter();
     @ContentChild(NgxOptionsComponent, { static: false }) public columnOptions: Nullable<NgxOptionsComponent> = null;
+
+    @ContentChild(NgxSettingsComponent, { static: false }) public tableSettings: Nullable<NgxSettingsComponent<T>> =
+        null;
 
     @ContentChildren(NgxColumnComponent) public columnTemplates: Nullable<QueryList<NgxColumnComponent<T>>> = null;
 

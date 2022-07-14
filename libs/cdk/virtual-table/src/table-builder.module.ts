@@ -1,7 +1,13 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSliderModule } from '@angular/material/slider';
 import {
     DeepPathPipeModule,
     DefaultValuePipeModule,
@@ -11,6 +17,7 @@ import {
 } from '@angular-ru/cdk/pipes';
 import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
 
+import { FlexLayoutModule } from '../../flex-layout/src/flex-layout.module';
 import { DragIconComponent } from './components/drag-icon/drag-icon.component';
 import { NgxColumnComponent } from './components/ngx-column/ngx-column.component';
 import { NgxContextMenuComponent } from './components/ngx-context-menu/ngx-context-menu.component';
@@ -23,6 +30,7 @@ import { NgxFilterViewerComponent } from './components/ngx-filter-viewer/ngx-fil
 import { NgxFooterComponent } from './components/ngx-footer/ngx-footer.component';
 import { NgxHeaderComponent } from './components/ngx-header/ngx-header.component';
 import { NgxOptionsComponent } from './components/ngx-options/ngx-options.component';
+import { NgxSettingsComponent } from './components/ngx-settings/ngx-settings.component';
 import { NgxSourceNullComponent } from './components/ngx-source-null/ngx-source-null.component';
 import { TableCellComponent } from './components/table-cell/table-cell.component';
 import { TableTbodyComponent } from './components/table-tbody/table-tbody.component';
@@ -49,7 +57,15 @@ import { TableBuilderComponent } from './table-builder.component';
         MatIconModule,
         MergeCssClassesPipeModule,
         SafePipeModule,
-        IsFilledPipeModule
+        IsFilledPipeModule,
+        MatSlideToggleModule,
+        ReactiveFormsModule,
+        FormsModule,
+        MatButtonToggleModule,
+        MatSliderModule,
+        MatFormFieldModule,
+        FlexLayoutModule,
+        MatButtonModule
     ],
     declarations: [
         AutoHeightDirective,
@@ -70,6 +86,7 @@ import { TableBuilderComponent } from './table-builder.component';
         NgxHeaderComponent,
         NgxMenuContentComponent,
         NgxOptionsComponent,
+        NgxSettingsComponent,
         NgxSourceNullComponent,
         ObserverViewDirective,
         TableBuilderComponent,
@@ -97,6 +114,7 @@ import { TableBuilderComponent } from './table-builder.component';
         NgxHeaderComponent,
         NgxMenuContentComponent,
         NgxOptionsComponent,
+        NgxSettingsComponent,
         NgxSourceNullComponent,
         TableBuilderComponent,
         // eslint-disable-next-line deprecation/deprecation
