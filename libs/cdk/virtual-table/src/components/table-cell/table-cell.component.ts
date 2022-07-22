@@ -74,10 +74,11 @@ export class TableCellComponent<T> implements OnDestroy {
     }
 
     public mouseLeaveCell(): void {
-        if (this.disableTooltip) {
+        if (isTrue(this.columnSchema?.overflowTooltip)) {
             return;
         }
 
+        this.removeElement();
         window.clearInterval(this.timeoutShowedFrameId ?? 0);
     }
 
