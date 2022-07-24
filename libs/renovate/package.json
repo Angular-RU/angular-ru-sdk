@@ -1,223 +1,223 @@
 {
-    "name": "@angular-ru/renovate",
-    "version": "13.1.0",
-    "description": "Shared Renovate config for Angular projects",
-    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/libs/renovate#readme",
-    "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
-    "repository": "https://github.com/Angular-RU/angular-ru-sdk",
-    "license": "MIT",
-    "author": "angular-ru@yandex.ru",
-    "publishConfig": {
-        "access": "public"
-    },
-    "renovate-config": {
-        "default": {
-            "enabled": true,
-            "automerge": true,
-            "pinVersions": true,
-            "rangeStrategy": "bump",
-            "branchPrefix": "renovate/",
-            "timezone": "Europe/Moscow",
-            "masterIssueApproval": false,
-            "separateMajorMinor": true,
-            "separateMinorPatch": false,
-            "semanticCommits": true,
-            "dependencyDashboard": false,
-            "dependencyDashboardApproval": false,
-            "semanticPrefix": "build",
-            "rebaseWhen": "auto",
-            "labels": [
-                "renovate"
+  "name": "@angular-ru/renovate",
+  "version": "13.1.0",
+  "description": "Shared Renovate config for Angular projects",
+  "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/libs/renovate#readme",
+  "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
+  "repository": "https://github.com/Angular-RU/angular-ru-sdk",
+  "license": "MIT",
+  "author": "angular-ru@yandex.ru",
+  "publishConfig": {
+    "access": "public"
+  },
+  "renovate-config": {
+    "default": {
+      "enabled": true,
+      "automerge": true,
+      "pinVersions": true,
+      "rangeStrategy": "bump",
+      "branchPrefix": "renovate/",
+      "timezone": "Europe/Moscow",
+      "masterIssueApproval": false,
+      "separateMajorMinor": true,
+      "separateMinorPatch": false,
+      "semanticCommits": true,
+      "dependencyDashboard": false,
+      "dependencyDashboardApproval": false,
+      "semanticPrefix": "build",
+      "rebaseWhen": "auto",
+      "labels": [
+        "renovate"
+      ],
+      "baseBranches": [
+        "master"
+      ],
+      "digest": {
+        "enabled": false
+      },
+      "pinDigests": false,
+      "includePaths": [
+        "package.json",
+        "**/package.json",
+        "!node_modules/**"
+      ],
+      "packageRules": [
+        {
+          "matchUpdateTypes": [
+            "minor",
+            "patch"
+          ],
+          "matchPackagePatterns": [
+            "*"
+          ],
+          "groupName": "all dependencies (minor/patch)",
+          "groupSlug": "all-minor-patch"
+        },
+        {
+          "matchUpdateTypes": [
+            "major"
+          ],
+          "labels": [
+            "renovate",
+            "major"
+          ],
+          "automerge": false
+        },
+        {
+          "matchUpdateTypes": [
+            "minor",
+            "patch"
+          ],
+          "labels": [
+            "renovate",
+            "minor/patch"
+          ],
+          "automerge": true
+        },
+        {
+          "depTypeList": [
+            "engines",
+            "peerDependencies"
+          ],
+          "enabled": false
+        },
+        {
+          "matchPackagePatterns": [
+            "^rxjs.*"
+          ],
+          "groupSlug": "rxjs",
+          "groupName": "rxjs dependencies"
+        },
+        {
+          "matchPackagePatterns": [
+            "^prettier"
+          ],
+          "groupSlug": "prettier",
+          "groupName": "prettier dependencies"
+        },
+        {
+          "matchPackagePatterns": [
+            "^@angular/.*",
+            "^@angular-ru/.*",
+            "^@angular-devkit/.*",
+            "^@schematics/.*",
+            "^@angular/cdk$",
+            "^@angular/cli$",
+            "^@angular/cdk-experimental$",
+            "^@angular/flex-layout$",
+            "^@angular/material$",
+            "^@angular-builders/.*",
+            "^ng-packagr$",
+            "^zone.js"
+          ],
+          "groupSlug": "angular",
+          "groupName": "angular dependencies",
+          "postUpgradeTasks": {
+            "commands": [
+              "ng update {{{depName}}} --from={{{fromVersion}}} --to={{{toVersion}}} --migrateOnly --allowDirty --force"
             ],
-            "baseBranches": [
-                "master"
-            ],
-            "digest": {
-                "enabled": false
-            },
-            "pinDigests": false,
-            "includePaths": [
-                "package.json",
-                "**/package.json",
-                "!node_modules/**"
-            ],
-            "packageRules": [
-                {
-                    "matchUpdateTypes": [
-                        "minor",
-                        "patch"
-                    ],
-                    "matchPackagePatterns": [
-                        "*"
-                    ],
-                    "groupName": "all dependencies (minor/patch)",
-                    "groupSlug": "all-minor-patch"
-                },
-                {
-                    "matchUpdateTypes": [
-                        "major"
-                    ],
-                    "labels": [
-                        "renovate",
-                        "major"
-                    ],
-                    "automerge": false
-                },
-                {
-                    "matchUpdateTypes": [
-                        "minor",
-                        "patch"
-                    ],
-                    "labels": [
-                        "renovate",
-                        "minor/patch"
-                    ],
-                    "automerge": true
-                },
-                {
-                    "depTypeList": [
-                        "engines",
-                        "peerDependencies"
-                    ],
-                    "enabled": false
-                },
-                {
-                    "matchPackagePatterns": [
-                        "^rxjs.*"
-                    ],
-                    "groupSlug": "rxjs",
-                    "groupName": "rxjs dependencies"
-                },
-                {
-                    "matchPackagePatterns": [
-                        "^prettier"
-                    ],
-                    "groupSlug": "prettier",
-                    "groupName": "prettier dependencies"
-                },
-                {
-                    "matchPackagePatterns": [
-                        "^@angular/.*",
-                        "^@angular-ru/.*",
-                        "^@angular-devkit/.*",
-                        "^@schematics/.*",
-                        "^@angular/cdk$",
-                        "^@angular/cli$",
-                        "^@angular/cdk-experimental$",
-                        "^@angular/flex-layout$",
-                        "^@angular/material$",
-                        "^@angular-builders/.*",
-                        "^ng-packagr$",
-                        "^zone.js"
-                    ],
-                    "groupSlug": "angular",
-                    "groupName": "angular dependencies",
-                    "postUpgradeTasks": {
-                        "commands": [
-                            "ng update {{{depName}}} --from={{{fromVersion}}} --to={{{toVersion}}} --migrateOnly --allowDirty --force"
-                        ],
-                        "fileFilters": [
-                            "**/**"
-                        ]
-                    }
-                },
-                {
-                    "matchPackagePatterns": [
-                        "^class-transformer$"
-                    ],
-                    "groupSlug": "class-transformer",
-                    "groupName": "class-transformer dependencies"
-                },
-                {
-                    "matchPackagePatterns": [
-                        "^@nrwl/.*"
-                    ],
-                    "groupSlug": "nrwl",
-                    "groupName": "nrwl dependencies"
-                },
-                {
-                    "matchPackagePatterns": [
-                        "^@commitlint/.*"
-                    ],
-                    "groupSlug": "commitlint",
-                    "groupName": "commitlint dependencies"
-                },
-                {
-                    "matchPackagePatterns": [
-                        "^@sentry/.*"
-                    ],
-                    "groupSlug": "sentry",
-                    "groupName": "sentry dependencies"
-                },
-                {
-                    "matchPackagePatterns": [
-                        "^@ngx-translate/.*"
-                    ],
-                    "groupSlug": "ngx-translate",
-                    "groupName": "ngx-translate dependencies"
-                },
-                {
-                    "matchPackagePatterns": [
-                        "^@ngxs/.*",
-                        "^@ngxs-labs/.*"
-                    ],
-                    "groupSlug": "ngxs",
-                    "groupName": "ngxs dependencies"
-                },
-                {
-                    "matchPackagePatterns": [
-                        "^@types/eslint$",
-                        "^@angular-eslint/.*",
-                        "^@angular-ru/eslint.*",
-                        "^@typescript-eslint/.*",
-                        "^eslint.*"
-                    ],
-                    "groupSlug": "eslint",
-                    "groupName": "eslint dependencies"
-                },
-                {
-                    "matchPackagePatterns": [
-                        "^@types/jest$",
-                        "^jest.*",
-                        "^ts-jest$",
-                        "^jest-preset-angular$"
-                    ],
-                    "groupSlug": "jest",
-                    "groupName": "jest dependencies"
-                },
-                {
-                    "matchPackagePatterns": [
-                        "@types/karma.*",
-                        "^karma.*"
-                    ],
-                    "groupSlug": "karma",
-                    "groupName": "karma dependencies"
-                },
-                {
-                    "matchPackagePatterns": [
-                        "@types/jasmine",
-                        "@types/jasmine*",
-                        "^jasmine.*"
-                    ],
-                    "groupSlug": "jasmine",
-                    "groupName": "jasmine dependencies"
-                },
-                {
-                    "matchPackagePatterns": [
-                        "@types/node"
-                    ],
-                    "groupSlug": "nodejs",
-                    "groupName": "nodejs dependencies"
-                },
-                {
-                    "matchPackagePatterns": [
-                        "^typescript",
-                        "^tslib"
-                    ],
-                    "groupSlug": "typescript",
-                    "groupName": "typescript dependencies"
-                }
+            "fileFilters": [
+              "**/**"
             ]
+          }
+        },
+        {
+          "matchPackagePatterns": [
+            "^class-transformer$"
+          ],
+          "groupSlug": "class-transformer",
+          "groupName": "class-transformer dependencies"
+        },
+        {
+          "matchPackagePatterns": [
+            "^@nrwl/.*"
+          ],
+          "groupSlug": "nrwl",
+          "groupName": "nrwl dependencies"
+        },
+        {
+          "matchPackagePatterns": [
+            "^@commitlint/.*"
+          ],
+          "groupSlug": "commitlint",
+          "groupName": "commitlint dependencies"
+        },
+        {
+          "matchPackagePatterns": [
+            "^@sentry/.*"
+          ],
+          "groupSlug": "sentry",
+          "groupName": "sentry dependencies"
+        },
+        {
+          "matchPackagePatterns": [
+            "^@ngx-translate/.*"
+          ],
+          "groupSlug": "ngx-translate",
+          "groupName": "ngx-translate dependencies"
+        },
+        {
+          "matchPackagePatterns": [
+            "^@ngxs/.*",
+            "^@ngxs-labs/.*"
+          ],
+          "groupSlug": "ngxs",
+          "groupName": "ngxs dependencies"
+        },
+        {
+          "matchPackagePatterns": [
+            "^@types/eslint$",
+            "^@angular-eslint/.*",
+            "^@angular-ru/eslint.*",
+            "^@typescript-eslint/.*",
+            "^eslint.*"
+          ],
+          "groupSlug": "eslint",
+          "groupName": "eslint dependencies"
+        },
+        {
+          "matchPackagePatterns": [
+            "^@types/jest$",
+            "^jest.*",
+            "^ts-jest$",
+            "^jest-preset-angular$"
+          ],
+          "groupSlug": "jest",
+          "groupName": "jest dependencies"
+        },
+        {
+          "matchPackagePatterns": [
+            "@types/karma.*",
+            "^karma.*"
+          ],
+          "groupSlug": "karma",
+          "groupName": "karma dependencies"
+        },
+        {
+          "matchPackagePatterns": [
+            "@types/jasmine",
+            "@types/jasmine*",
+            "^jasmine.*"
+          ],
+          "groupSlug": "jasmine",
+          "groupName": "jasmine dependencies"
+        },
+        {
+          "matchPackagePatterns": [
+            "@types/node"
+          ],
+          "groupSlug": "nodejs",
+          "groupName": "nodejs dependencies"
+        },
+        {
+          "matchPackagePatterns": [
+            "^typescript",
+            "^tslib"
+          ],
+          "groupSlug": "typescript",
+          "groupName": "typescript dependencies"
         }
+      ]
     }
+  }
 }
