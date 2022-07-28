@@ -12,8 +12,8 @@
                     "rimraf  ./node_modules/@angular-ru/jest",
                     "make-dir ./node_modules/@angular-ru/jest",
                     "tsc -p ./libs/jest/tsconfig.lib.json",
-                    "cpy ./libs/jest/package.json ./node_modules/@angular-ru/jest",
-                    "cpy ./libs/jest/README.md ./node_modules/@angular-ru/jest"
+                    "cpy ./libs/jest/package.json ./node_modules/@angular-ru/jest --flat",
+                    "cpy ./libs/jest/README.md ./node_modules/@angular-ru/jest --flat"
                 ]
             },
             "dependsOn": [{ "target": "build", "projects": "dependencies" }],

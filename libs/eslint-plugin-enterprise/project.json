@@ -12,8 +12,8 @@
                     "rimraf ./node_modules/@angular-ru/eslint-plugin-enterprise",
                     "make-dir ./node_modules/@angular-ru/eslint-plugin-enterprise",
                     "tsc -p ./libs/eslint-plugin-enterprise/tsconfig.json",
-                    "cpy ./libs/eslint-plugin-enterprise/package.json ./node_modules/@angular-ru/eslint-plugin-enterprise",
-                    "cpy ./libs/eslint-plugin-enterprise/README.md ./node_modules/@angular-ru/eslint-plugin-enterprise"
+                    "cpy ./libs/eslint-plugin-enterprise/package.json ./node_modules/@angular-ru/eslint-plugin-enterprise --flat",
+                    "cpy ./libs/eslint-plugin-enterprise/README.md ./node_modules/@angular-ru/eslint-plugin-enterprise --flat"
                 ]
             },
             "outputs": ["./node_modules/@angular-ru/eslint-plugin-enterprise"]
