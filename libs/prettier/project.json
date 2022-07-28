@@ -11,9 +11,9 @@
                 "commands": [
                     "rimraf  ./node_modules/@angular-ru/prettier",
                     "make-dir ./node_modules/@angular-ru/prettier",
-                    "cpy ./libs/prettier/prettier.config.js ./node_modules/@angular-ru/prettier",
-                    "cpy ./libs/prettier/package.json ./node_modules/@angular-ru/prettier",
-                    "cpy ./libs/prettier/README.md ./node_modules/@angular-ru/prettier"
+                    "cpy ./libs/prettier/prettier.config.js ./node_modules/@angular-ru/prettier --flat",
+                    "cpy ./libs/prettier/package.json ./node_modules/@angular-ru/prettier --flat",
+                    "cpy ./libs/prettier/README.md ./node_modules/@angular-ru/prettier --flat"
                 ]
             },
             "outputs": ["./node_modules/@angular-ru/prettier"],

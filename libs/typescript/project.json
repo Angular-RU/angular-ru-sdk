@@ -11,9 +11,9 @@
                 "commands": [
                     "rimraf  ./node_modules/@angular-ru/typescript",
                     "make-dir ./node_modules/@angular-ru/typescript",
-                    "cpy ./libs/typescript/tsconfig.json ./node_modules/@angular-ru/typescript",
-                    "cpy ./libs/typescript/package.json ./node_modules/@angular-ru/typescript",
-                    "cpy ./libs/typescript/README.md ./node_modules/@angular-ru/typescript"
+                    "cpy ./libs/typescript/tsconfig.json ./node_modules/@angular-ru/typescript --flat",
+                    "cpy ./libs/typescript/package.json ./node_modules/@angular-ru/typescript --flat",
+                    "cpy ./libs/typescript/README.md ./node_modules/@angular-ru/typescript --flat"
                 ]
             },
             "outputs": ["./node_modules/@angular-ru/typescript"],

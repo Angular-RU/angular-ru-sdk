@@ -11,8 +11,8 @@
                 "commands": [
                     "rimraf  ./node_modules/@angular-ru/dev-dependencies",
                     "make-dir ./node_modules/@angular-ru/dev-dependencies",
-                    "cpy ./libs/dev-dependencies/package.json ./node_modules/@angular-ru/dev-dependencies",
-                    "cpy ./libs/dev-dependencies/README.md ./node_modules/@angular-ru/dev-dependencies"
+                    "cpy ./libs/dev-dependencies/package.json ./node_modules/@angular-ru/dev-dependencies --flat",
+                    "cpy ./libs/dev-dependencies/README.md ./node_modules/@angular-ru/dev-dependencies --flat"
                 ]
             },
             "outputs": ["./node_modules/@angular-ru/dev-dependencies"],

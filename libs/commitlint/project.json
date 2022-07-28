@@ -11,9 +11,9 @@
                 "commands": [
                     "rimraf  ./node_modules/@angular-ru/commitlint",
                     "make-dir ./node_modules/@angular-ru/commitlint",
-                    "cpy ./libs/commitlint/index.js ./node_modules/@angular-ru/commitlint",
-                    "cpy ./libs/commitlint/package.json ./node_modules/@angular-ru/commitlint",
-                    "cpy ./libs/commitlint/README.md ./node_modules/@angular-ru/commitlint"
+                    "cpy ./libs/commitlint/index.js ./node_modules/@angular-ru/commitlint --flat",
+                    "cpy ./libs/commitlint/package.json ./node_modules/@angular-ru/commitlint --flat",
+                    "cpy ./libs/commitlint/README.md ./node_modules/@angular-ru/commitlint --flat"
                 ]
             },
             "outputs": ["./node_modules/@angular-ru/commitlint"],
