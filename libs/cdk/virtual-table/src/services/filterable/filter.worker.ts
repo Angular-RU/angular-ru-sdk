@@ -71,6 +71,16 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
                     return valuesSet
                         .map((element: Nullable<PlainValue>): string => toLowercase(element))
                         .some(includes(toLowercase(operand)));
+                case types.CONTAINS_ONE_OF_VALUES: {
+                    const operandsToContain: string[] = String(operand)
+                        .split(',')
+                        .map((value: string): string => value.trim())
+                        .map((value: string): string => toLowercase(value));
+
+                    return valuesSet
+                        .map((element: Nullable<PlainValue>): string => toLowercase(element))
+                        .some(includesOneOf(operandsToContain));
+                }
                 case types.DOES_NOT_CONTAIN:
                     return valuesSet
                         .map((element: Nullable<PlainValue>): string => toLowercase(element))
@@ -116,6 +126,10 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
 
     function includes(substring: string): (value: string) => boolean {
         return (value: string): boolean => value.includes(substring);
+    }
+
+    function includesOneOf(subStrings: string[]): (value: string) => boolean {
+        return (value: string): boolean => subStrings.some((substring: string): boolean => value.includes(substring));
     }
 
     function notIncludes(substring: string): (value: string) => boolean {
