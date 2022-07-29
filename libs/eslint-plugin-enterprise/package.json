@@ -1,15 +1,15 @@
 {
-    "name": "@angular-ru/eslint-plugin-enterprise",
-    "version": "13.12.0",
-    "description": "Angular-RU package",
-    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/libs/eslint-plugin-file-pattern#readme",
-    "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
-    "repository": "https://github.com/Angular-RU/angular-ru-sdk",
-    "license": "MIT",
-    "author": "angular-ru@yandex.ru",
-    "main": "index.js",
-    "types": "index.d.ts",
-    "publishConfig": {
-        "access": "public"
-    }
+  "name": "@angular-ru/eslint-plugin-enterprise",
+  "version": "13.1.1",
+  "description": "Angular-RU package",
+  "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/libs/eslint-plugin-file-pattern#readme",
+  "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
+  "repository": "https://github.com/Angular-RU/angular-ru-sdk",
+  "license": "MIT",
+  "author": "angular-ru@yandex.ru",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  }
 }
