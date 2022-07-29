@@ -525,3 +525,27 @@ This version -------- @angular-ru/renovate-13.0.1
 Previous version ---- @angular-ru/cdk-13.1.3
 Total commits ------- 7
 ```
+
+# 🎁 Release notes (`29.07.2022 08:23`)
+
+## Changes
+
+-   chore(ngxs): release version 13.1.1 [ci skip]
+-   chore(cdk): release version 13.2.2 [ci skip]
+-   chore(jest): release version 13.1.1 [ci skip]
+-   chore(renovate): release version 13.1.1 [ci skip]
+-   chore(prettier): release version 13.1.1 [ci skip]
+-   chore(typescript): release version 13.1.1 [ci skip]
+-   chore(commitlint): release version 13.1.1 [ci skip]
+-   chore(dev-dependencies): release version 13.1.1 [ci skip]
+-   chore(eslint-plugin-enterprise): release version 13.1.1 [ci skip]
+-   chore(eslint-config-enterprise): release version 13.1.1 [ci skip]
+-   fix: filter descriptor to contain one of several values (#1324)
+
+## Metadata
+
+```
+This version -------- @angular-ru/ngxs-13.1.1
+Previous version ---- @angular-ru/cdk-13.2.1
+Total commits ------- 11
+```
