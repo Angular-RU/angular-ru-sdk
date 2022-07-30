@@ -1,14 +1,14 @@
 {
-  "name": "@angular-ru/typescript",
-  "version": "13.1.1",
-  "description": "Angular-RU package",
-  "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/libs/typescript#readme",
-  "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
-  "repository": "https://github.com/Angular-RU/angular-ru-sdk",
-  "license": "MIT",
-  "author": "angular-ru@yandex.ru",
-  "main": "tsconfig.json",
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@angular-ru/typescript",
+    "version": "13.1.1",
+    "description": "Angular-RU package",
+    "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/libs/typescript#readme",
+    "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
+    "repository": "https://github.com/Angular-RU/angular-ru-sdk",
+    "license": "MIT",
+    "author": "angular-ru@yandex.ru",
+    "main": "tsconfig.json",
+    "publishConfig": {
+        "access": "public"
+    }
 }
