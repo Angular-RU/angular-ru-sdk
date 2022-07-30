@@ -18,7 +18,6 @@ jobs:
         with:
           token: ${{ secrets.ANGULAR_RU_BOT_PAT }}
           base: master
-          include-labels: 'ready to merge'
 
 concurrency:
   group: autorebase-${{ github.head_ref }}
