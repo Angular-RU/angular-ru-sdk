@@ -1,5 +1,6 @@
 /* eslint-disable unicorn/consistent-function-scoping */
 import { Nullable, PlainObject, PlainObjectOf } from '@angular-ru/cdk/typings';
+import { checkValueIsFilled } from '@angular-ru/cdk/utils';
 
 import { FilterGlobalOptions } from './filter-global-options';
 import { FilterableMessage } from './filterable-message';
@@ -75,6 +76,7 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
                     const operandsToContain: string[] = String(operand)
                         .split(',')
                         .map((value: string): string => value.trim())
+                        .filter((value: string): boolean => checkValueIsFilled(value))
                         .map((value: string): string => toLowercase(value));
 
                     return valuesSet

@@ -186,6 +186,13 @@ describe('[TEST] Table builder', (): void => {
         ]);
 
         tableBuilderComponent.filterable.setDefinition([
+            { value: 'iv , ', type: TableFilterType.CONTAINS_ONE_OF_VALUES, key: 'lastName' }
+        ]);
+        await tableBuilderComponent.sortAndFilter();
+
+        expect(tableBuilderComponent.source).toEqual([{ id: 1, name: 'Max', lastName: 'Ivanov' }]);
+
+        tableBuilderComponent.filterable.setDefinition([
             { value: 'i', type: TableFilterType.DOES_NOT_CONTAIN, key: 'lastName' }
         ]);
         await tableBuilderComponent.sortAndFilter();
