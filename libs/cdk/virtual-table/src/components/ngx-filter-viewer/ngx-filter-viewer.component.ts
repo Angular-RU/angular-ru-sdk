@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Nullable, PlainObject } from '@angular-ru/cdk/typings';
-import { detectChanges, isNotNil } from '@angular-ru/cdk/utils';
+import { checkValueIsFilled, detectChanges, isNotNil } from '@angular-ru/cdk/utils';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -115,6 +115,13 @@ export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy
             regexp = new RegExp(`${escapedValue}$`, 'i');
         } else if (type === TableFilterType.EQUALS) {
             regexp = new RegExp(`^${escapedValue}$`, 'i');
+        } else if (type === TableFilterType.CONTAINS_ONE_OF_VALUES) {
+            const values: string[] = escapedValue
+                .split(',')
+                .filter((currentValue: string): boolean => checkValueIsFilled(currentValue))
+                .map((currentValue: string): string => currentValue.trim());
+
+            regexp = new RegExp(`(${values.join('|')})`, 'i');
         } else {
             regexp = new RegExp(`${escapedValue}`, 'ig');
         }
