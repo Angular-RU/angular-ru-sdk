@@ -30,6 +30,7 @@ import {
 } from '@angular-ru/ngxs/typings';
 import { Actions, NGXS_PLUGINS, NgxsModule, ofActionDispatched, ofActionSuccessful, State, Store } from '@ngxs/store';
 import { Subject } from 'rxjs';
+import { STORAGE_INITIALIZER } from "@angular-ru/ngxs/internals";
 
 describe('[TEST]: Storage plugin', () => {
     let store: Store;
@@ -104,7 +105,8 @@ describe('[TEST]: Storage plugin', () => {
     });
 
     describe('native (LocalStorage, SessionStorage)', () => {
-        afterEach(() => {
+        beforeEach(() => {
+            STORAGE_INITIALIZER.reset();
             localStorage.clear();
             sessionStorage.clear();
             spy?.mockClear();

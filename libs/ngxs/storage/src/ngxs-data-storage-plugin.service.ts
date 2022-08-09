@@ -2,7 +2,7 @@ import { isPlatformServer } from '@angular/common';
 import { Inject, inject, Injectable, Injector, PLATFORM_ID, ProviderToken, Self } from '@angular/core';
 import { isGetter } from '@angular-ru/cdk/object';
 import { checkValueIsFilled, isFalsy, isNotNil, isTruthy } from '@angular-ru/cdk/utils';
-import { STORAGE_INIT_EVENT } from '@angular-ru/ngxs/internals';
+import { STORAGE_INITIALIZER } from '@angular-ru/ngxs/internals';
 import { NGXS_DATA_STORAGE_EVENT_TYPE } from '@angular-ru/ngxs/tokens';
 import {
     CheckExpiredInitOptions,
@@ -22,7 +22,7 @@ import {
 } from '@angular-ru/ngxs/typings';
 import { ActionType, getValue, NgxsNextPluginFn, NgxsPlugin, Store } from '@ngxs/store';
 import { PlainObject } from '@ngxs/store/internals';
-import { fromEvent, ReplaySubject, Subscription } from 'rxjs';
+import { fromEvent, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { NGXS_DATA_STORAGE_CONTAINER_TOKEN } from './tokens/storage-container-token';
@@ -50,7 +50,7 @@ export class NgxsDataStoragePlugin implements NgxsPlugin, DataStoragePlugin {
 
     constructor(@Inject(PLATFORM_ID) public readonly platformId: string, @Self() injector: Injector) {
         NgxsDataStoragePlugin.injector = injector;
-        STORAGE_INIT_EVENT.events$.next();
+        STORAGE_INITIALIZER.init();
         this.listenWindowEvents();
     }
 
@@ -186,16 +186,6 @@ export class NgxsDataStoragePlugin implements NgxsPlugin, DataStoragePlugin {
         return deserializeByStorageMeta(meta, value, provider);
     }
 
-    public destroyOldTasks(): void {
-        if (isTruthy(STORAGE_INIT_EVENT.firstInitialized)) {
-            STORAGE_INIT_EVENT.events$.complete();
-            STORAGE_INIT_EVENT.events$ = new ReplaySubject<void>(1);
-        }
-
-        NgxsDataStoragePlugin.eventsSubscriptions?.unsubscribe();
-        NgxsDataStoragePlugin.ttlListeners = new WeakMap();
-    }
-
     private pushStateToStorage(states: PlainObject, nextState: PlainObject, meta: PullStorageMeta): void {
         for (const [provider] of this.entries) {
             const prevData: any = getValue(states, ensurePath(provider));
@@ -292,8 +282,7 @@ export class NgxsDataStoragePlugin implements NgxsPlugin, DataStoragePlugin {
             return;
         }
 
-        this.destroyOldTasks();
-
+        NgxsDataStoragePlugin.eventsSubscriptions?.unsubscribe();
         NgxsDataStoragePlugin.eventsSubscriptions = fromEvent<StorageEvent>(window, 'storage').subscribe(
             (event: StorageEvent): void => {
                 const keyUsageInStore: boolean = checkValueIsFilled(event.key) && this.keys.has(event.key);

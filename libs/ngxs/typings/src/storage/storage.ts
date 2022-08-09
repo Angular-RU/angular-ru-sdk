@@ -155,8 +155,6 @@ export interface DataStoragePlugin {
     serialize(data: any, provider: PersistenceProvider): string;
 
     deserialize<T>(meta: StorageMeta<T>, value: string | null, provider: PersistenceProvider): StorageData<T>;
-
-    destroyOldTasks(): void;
 }
 
 export type StorageData<T> = T | string | null;
