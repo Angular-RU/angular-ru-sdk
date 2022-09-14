@@ -9,7 +9,7 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { Nullable } from '@angular-ru/cdk/typings';
-import { isNotNil, isTrue } from '@angular-ru/cdk/utils';
+import { isFalse, isNotNil, isTrue } from '@angular-ru/cdk/utils';
 import { fromEvent, Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -54,11 +54,8 @@ export class TableCellComponent<T> implements OnDestroy {
         return document.querySelector(`.${this.closeButtonSelector}`) as HTMLDivElement;
     }
 
-    private get disableTooltip(): boolean {
-        return isTrue(this.viewportInfo?.isScrolling) ?? isTrue(this.columnSchema?.overflowTooltip);
-    }
-
     public ngOnDestroy(): void {
+        this.removeElement();
         window.clearTimeout(this.timeoutOverflowId ?? 0);
         window.clearTimeout(this.timeoutShowedFrameId ?? 0);
         this.destroy$.next();
@@ -66,7 +63,7 @@ export class TableCellComponent<T> implements OnDestroy {
     }
 
     public mouseEnterCell(element: HTMLDivElement, event: MouseEvent): void {
-        if (this.disableTooltip) {
+        if (isFalse(this.columnSchema?.overflowTooltip) || isTrue(this.viewportInfo?.isScrolling)) {
             return;
         }
 
@@ -74,7 +71,7 @@ export class TableCellComponent<T> implements OnDestroy {
     }
 
     public mouseLeaveCell(): void {
-        if (isTrue(this.columnSchema?.overflowTooltip)) {
+        if (isFalse(this.columnSchema?.overflowTooltip)) {
             return;
         }
 
