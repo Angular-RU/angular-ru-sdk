@@ -128,11 +128,11 @@
                 }
 
                 &__asc {
-                    transform: rotate(180deg);
+                    transform: rotate(0deg);
                 }
 
                 &__desc {
-                    transform: rotate(0deg);
+                    transform: rotate(180deg);
                 }
 
                 &-number {
