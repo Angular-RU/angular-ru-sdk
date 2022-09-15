@@ -26,7 +26,7 @@
         "version": {
             "executor": "@jscutlery/semver:version",
             "options": {
-                "postTargets": ["commitlint:build", "commitlint:publish"],
+                "postTargets": ["commitlint:publish"],
                 "commitMessageFormat": "chore(${projectName}): release version ${version} [ci skip]",
                 "versionTagPrefix": "@angular-ru/commitlint-",
                 "skipProjectChangelog": true,

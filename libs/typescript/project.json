@@ -26,7 +26,7 @@
         "version": {
             "executor": "@jscutlery/semver:version",
             "options": {
-                "postTargets": ["typescript:build", "typescript:publish"],
+                "postTargets": ["typescript:publish"],
                 "commitMessageFormat": "chore(${projectName}): release version ${version} [ci skip]",
                 "versionTagPrefix": "@angular-ru/typescript-",
                 "skipProjectChangelog": true,
