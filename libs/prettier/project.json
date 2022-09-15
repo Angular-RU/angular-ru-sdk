@@ -26,7 +26,7 @@
         "version": {
             "executor": "@jscutlery/semver:version",
             "options": {
-                "postTargets": ["prettier:build", "prettier:publish"],
+                "postTargets": ["prettier:publish"],
                 "commitMessageFormat": "chore(${projectName}): release version ${version} [ci skip]",
                 "versionTagPrefix": "@angular-ru/prettier-",
                 "skipProjectChangelog": true,

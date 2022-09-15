@@ -25,7 +25,7 @@
         "version": {
             "executor": "@jscutlery/semver:version",
             "options": {
-                "postTargets": ["renovate:build", "renovate:publish"],
+                "postTargets": ["renovate:publish"],
                 "commitMessageFormat": "chore(${projectName}): release version ${version} [ci skip]",
                 "versionTagPrefix": "@angular-ru/renovate-",
                 "skipProjectChangelog": true,

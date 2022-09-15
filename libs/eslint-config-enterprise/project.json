@@ -96,7 +96,7 @@
         "version": {
             "executor": "@jscutlery/semver:version",
             "options": {
-                "postTargets": ["eslint-config-enterprise:build", "eslint-config-enterprise:publish"],
+                "postTargets": ["eslint-config-enterprise:publish"],
                 "commitMessageFormat": "chore(${projectName}): release version ${version} [ci skip]",
                 "versionTagPrefix": "@angular-ru/eslint-config-enterprise-",
                 "skipProjectChangelog": true,

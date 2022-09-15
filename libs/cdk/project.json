@@ -24,7 +24,7 @@
         "version": {
             "executor": "@jscutlery/semver:version",
             "options": {
-                "postTargets": ["cdk:build", "cdk:publish"],
+                "postTargets": ["cdk:publish"],
                 "commitMessageFormat": "chore(${projectName}): release version ${version} [ci skip]",
                 "versionTagPrefix": "@angular-ru/cdk-",
                 "skipProjectChangelog": true,
