@@ -1,6 +1,5 @@
 /* eslint-disable unicorn/consistent-function-scoping */
 import { Nullable, PlainObject, PlainObjectOf } from '@angular-ru/cdk/typings';
-import { checkValueIsFilled } from '@angular-ru/cdk/utils';
 
 import { FilterGlobalOptions } from './filter-global-options';
 import { FilterableMessage } from './filterable-message';
@@ -136,6 +135,10 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
 
     function notIncludes(substring: string): (value: string) => boolean {
         return (value: string): boolean => !value.includes(substring);
+    }
+
+    function checkValueIsFilled(value: string): boolean {
+        return value.length > 0;
     }
 
     function compareNumber(comparing: PlainValue, type: NumericFilterTypes): (value: PlainValue) => boolean {

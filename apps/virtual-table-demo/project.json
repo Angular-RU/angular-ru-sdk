@@ -23,6 +23,14 @@
                 "namedChunks": true
             },
             "configurations": {
+                "development": {
+                    "buildOptimizer": false,
+                    "optimization": false,
+                    "vendorChunk": true,
+                    "extractLicenses": false,
+                    "sourceMap": true,
+                    "namedChunks": true
+                },
                 "production": {
                     "fileReplacements": [
                         {
@@ -48,6 +56,9 @@
             "configurations": {
                 "production": {
                     "browserTarget": "virtual-table-demo:build:production"
+                },
+                "development": {
+                    "browserTarget": "virtual-table-demo:build:development"
                 }
             }
         }
