@@ -2,7 +2,7 @@
     #divElement
     class="table-grid__cell--inner-content"
     (mouseenter)="mouseEnterCell(divElement, $event)"
-    (mouseleave)="mouseLeaveCell()"
+    (mouseleave)="mouseLeaveCell($event)"
 >
     <ng-template
         [ngIf]="columnSchema?.td?.template!"
