@@ -70,8 +70,10 @@ export class TableCellComponent<T> implements OnDestroy {
         this.detectCheckOverflow(element, event);
     }
 
-    public mouseLeaveCell(): void {
-        if (isFalse(this.columnSchema?.overflowTooltip)) {
+    public mouseLeaveCell(event: MouseEvent): void {
+        const isTooltipAsRelatedTarget: boolean = event.relatedTarget === this.overflowContentElem;
+
+        if (isFalse(this.columnSchema?.overflowTooltip) || isTrue(isTooltipAsRelatedTarget)) {
             return;
         }
 
