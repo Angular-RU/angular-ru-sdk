@@ -3,7 +3,7 @@ export { validateComputedMethod } from './decorators/validate-computed-method';
 export { NgxsDataSequence } from './services/ngxs-data-computed-stream.service';
 export { NgxsDataFactory } from './services/ngxs-data-factory.service';
 export { NgxsDataInjector } from './services/ngxs-data-injector.service';
-export { STORAGE_INIT_EVENT } from './storage/init-storage';
+export { STORAGE_INITIALIZER } from './storage/init-storage';
 export { actionNameCreator } from './utils/action/action-name-creator';
 export { dynamicActionByType } from './utils/action/dynamic-action';
 export { buildDefaultsGraph } from './utils/common/build-defaults-graph';

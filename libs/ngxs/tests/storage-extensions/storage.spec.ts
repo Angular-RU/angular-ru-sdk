@@ -1,4 +1,4 @@
-import { Injectable, PLATFORM_ID } from '@angular/core';
+import {createNgModuleRef, Injectable, Injector, NgModule, PLATFORM_ID} from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { Immutable } from '@angular-ru/cdk/typings';
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
@@ -30,6 +30,7 @@ import {
 } from '@angular-ru/ngxs/typings';
 import { Actions, NGXS_PLUGINS, NgxsModule, ofActionDispatched, ofActionSuccessful, State, Store } from '@ngxs/store';
 import { Subject } from 'rxjs';
+import { STORAGE_INITIALIZER } from "@angular-ru/ngxs/internals";
 
 describe('[TEST]: Storage plugin', () => {
     let store: Store;
@@ -104,7 +105,8 @@ describe('[TEST]: Storage plugin', () => {
     });
 
     describe('native (LocalStorage, SessionStorage)', () => {
-        afterEach(() => {
+        beforeEach(() => {
+            STORAGE_INITIALIZER.reset();
             localStorage.clear();
             sessionStorage.clear();
             spy?.mockClear();
@@ -2269,6 +2271,103 @@ describe('[TEST]: Storage plugin', () => {
                 version: 1,
                 lastChanged: expect.any(String),
                 data: 'eyJwaG9uZSI6IjQ0NDQiLCJjYXJkIjoiNTU1NSJ9'
+            });
+        });
+
+        it('should be correct read in feature modules', (done: () => void) => {
+            localStorage.setItem(
+                '@ngxs.store.b',
+                JSON.stringify({lastChanged: '2020-01-01T12:00:00.000Z', version: 1, data: 'cached value'})
+            );
+
+            @Persistence()
+            @StateRepository()
+            @State({name: 'a'})
+            @Injectable()
+            class StateA extends NgxsImmutableDataRepository<string> {}
+
+            TestBed.configureTestingModule({
+                imports: [
+                    NgxsModule.forRoot([StateA], {developmentMode: true}),
+                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
+                ],
+            })
+
+            const container: StorageContainer = TestBed.inject(NGXS_DATA_STORAGE_CONTAINER_TOKEN);
+
+            expect(container.getProvidedKeys()).toEqual(['@ngxs.store.a']);
+
+            setTimeout(() => {
+                @Persistence()
+                @StateRepository()
+                @State({name: 'b', defaults: 'default value'})
+                @Injectable()
+                class StateB extends NgxsImmutableDataRepository<string> {}
+
+                @NgModule({
+                    imports: [
+                        NgxsModule.forFeature([StateB])
+                    ]
+                })
+                class FeatureModule {}
+
+                expect(() => TestBed.inject(StateB)).toThrowError(Error);
+
+                const moduleRef = createNgModuleRef(FeatureModule, TestBed.inject(Injector));
+                const state = moduleRef.injector.get(StateB);
+
+                expect(container.getProvidedKeys()).toEqual(['@ngxs.store.a', '@ngxs.store.b']);
+                expect(state.getState()).toBe('cached value');
+
+                done();
+            });
+        });
+
+        it('should be correct written in feature modules', (done: () => void) => {
+            @Persistence()
+            @StateRepository()
+            @State({name: 'a'})
+            @Injectable()
+            class StateA extends NgxsImmutableDataRepository<string> {}
+
+            TestBed.configureTestingModule({
+                imports: [
+                    NgxsModule.forRoot([StateA], {developmentMode: true}),
+                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
+                ],
+            })
+
+            const container: StorageContainer = TestBed.inject(NGXS_DATA_STORAGE_CONTAINER_TOKEN);
+
+            expect(container.getProvidedKeys()).toEqual(['@ngxs.store.a']);
+
+            setTimeout(() => {
+                @Persistence()
+                @StateRepository()
+                @State({name: 'b', defaults: 'default value'})
+                @Injectable()
+                class StateB extends NgxsImmutableDataRepository<string> {}
+
+                @NgModule({
+                    imports: [
+                        NgxsModule.forFeature([StateB])
+                    ]
+                })
+                class FeatureModule {}
+
+                expect(() => TestBed.inject(StateB)).toThrowError(Error);
+
+                const moduleRef = createNgModuleRef(FeatureModule, TestBed.inject(Injector));
+                const state = moduleRef.injector.get(StateB);
+
+                expect(container.getProvidedKeys()).toEqual(['@ngxs.store.a', '@ngxs.store.b']);
+                expect(state.getState()).toBe('default value');
+
+                state.setState('new value');
+                expect(state.getState()).toBe('new value');
+                expect(ensureMockStorage('@ngxs.store.b').data).toBe('new value');
+
+                done();
             });
         });
     });

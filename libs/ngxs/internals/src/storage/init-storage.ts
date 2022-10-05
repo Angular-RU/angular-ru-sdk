@@ -1,6 +1,21 @@
 import { ReplaySubject } from 'rxjs';
+import { first } from "rxjs/operators";
 
-export const STORAGE_INIT_EVENT: { firstInitialized: boolean; events$: ReplaySubject<void> } = {
-    firstInitialized: false,
-    events$: new ReplaySubject<void>(1)
-};
+class StorageInitializer {
+    private subject = new ReplaySubject<void>(1);
+
+    init() {
+        this.subject.next();
+    }
+
+    onInit(callback: () => void) {
+        this.subject.pipe(first()).subscribe(callback);
+    }
+
+    reset() {
+        this.subject.complete();
+        this.subject = new ReplaySubject<void>(1);
+    }
+}
+
+export const STORAGE_INITIALIZER = new StorageInitializer();
