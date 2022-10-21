@@ -187,6 +187,12 @@ export class TableBuilderComponent<T>
         }
     }
 
+    public openContextMenuWithKey($event: Event, key: Nullable<string>): void {
+        if (isNotNil(this.contextMenuTemplate)) {
+            this.contextMenu.openContextMenu($event as MouseEvent, key);
+        }
+    }
+
     public checkSourceIsNull(): boolean {
         // eslint-disable-next-line
         return !('length' in (this.source || {}));
