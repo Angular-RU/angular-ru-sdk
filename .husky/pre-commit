@@ -3,13 +3,3 @@
 . "$(dirname "$0")/_/husky.sh"
 
 git update-index --again && npx lint-staged --allow-empty
-
-# shellcheck disable=SC2006
-BRANCH=`git rev-parse --abbrev-ref HEAD`
-PROTECTED_BRANCHES="^(master|develop)"
-
-# shellcheck disable=SC2039
-if [[ "$BRANCH" =~ $PROTECTED_BRANCHES ]]
-then
-  echo -e "\n🚫 Cannot push to remote $BRANCH branch, please create your own branch and use PR." && exit 1
-fi
