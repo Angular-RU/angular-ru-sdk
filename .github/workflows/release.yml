@@ -27,10 +27,12 @@ jobs:
         run: npx nx run-many --target=build --parallel
 
       - name: Lerna version
+        if: always()
         run: npx lerna version
 
       - name: Publish
-        run: npx run-many --target=publish
+        if: always()
+        run: npx nx run-many --target=publish
 
 concurrency:
   group: release-${{ github.head_ref }}
