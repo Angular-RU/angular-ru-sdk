@@ -29,26 +29,10 @@ jobs:
       - run: npx nx run-many --target=build --parallel=1 --all --exclude $(npx nx affected:apps --base=origin/master --plain)
 
       - name: Publish npm libraries (optional)
-        run: npx lerna version
+        run: npx lerna version --no-verify
 
-      - name: Set new last tag
-        run: echo "NEW_LAST_TAG=$(git describe --abbrev=0 --tags)" >> "$GITHUB_ENV"
-
-      - name: Generate RELEASE_NOTES.md
-        if: ${{ env.PREV_LAST_TAG != env.NEW_LAST_TAG }}
-        run: |
-          PREVIOUS_VERSION=${{ env.PREV_LAST_TAG }}
-          VERSION=${{ env.NEW_LAST_TAG }}
-          TIMESTAMP=$(date +"%d.%m.%Y %H:%M")
-          CHANGES=$(git log --pretty="- %s" $PREVIOUS_VERSION...$VERSION)
-          printf "# 🎁 Release notes (\`$TIMESTAMP\`)\n\n## Changes\n$CHANGES\n\n## Metadata\n\`\`\`\nThis version -------- $VERSION\nPrevious version ---- $PREVIOUS_VERSION\nTotal commits ------- $(echo "$CHANGES" | wc -l)\n\`\`\`\n\n" >> RELEASE_NOTES.md
-          npx prettier --write RELEASE_NOTES.md
-          git add RELEASE_NOTES.md
-          git commit --no-verify -m 'chore: updated RELEASE_NOTES.md [ci skip]'
-
-      - name: Commit and push changes
-        if: always()
-        run: git push origin && git push origin --tags
+      - name: Publish
+        run: npx run-many --target=publish
 
 concurrency:
   group: release-${{ github.head_ref }}

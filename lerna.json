@@ -3,7 +3,7 @@
     "stream": true,
     "concurrency": 1,
     "npmClient": "npm",
-    "changelog": false,
+    "changelog": true,
     "useWorkspaces": true,
     "version": "independent",
     "command": {
