@@ -16,6 +16,7 @@
                     "cpy ./libs/eslint-plugin-enterprise/README.md ./node_modules/@angular-ru/eslint-plugin-enterprise --flat"
                 ]
             },
+            "dependsOn": [{ "projects": "dependencies", "target": "build" }],
             "outputs": ["./node_modules/@angular-ru/eslint-plugin-enterprise"]
         },
         "publish": {

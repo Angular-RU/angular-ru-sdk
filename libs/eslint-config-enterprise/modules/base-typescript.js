@@ -21,7 +21,7 @@ module.exports = {
                 '@typescript-eslint/no-implicit-any-catch': 'error',
                 '@typescript-eslint/no-dynamic-delete': 'off',
                 '@typescript-eslint/dot-notation': 'error',
-                '@typescript-eslint/strict-boolean-expressions': 'error',
+                '@typescript-eslint/strict-boolean-expressions': 'off',
                 '@typescript-eslint/no-invalid-this': ['error'],
                 '@typescript-eslint/adjacent-overload-signatures': 'error',
                 '@typescript-eslint/array-type': 'error',
@@ -160,7 +160,7 @@ module.exports = {
                     }
                 ],
                 '@typescript-eslint/unified-signatures': 'error',
-                '@typescript-eslint/no-unnecessary-type-assertion': 'error'
+                '@typescript-eslint/no-unnecessary-type-assertion': 'off'
             }
         }
     ]

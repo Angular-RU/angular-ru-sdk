@@ -1,8 +1,9 @@
-import {createNgModuleRef, Injectable, Injector, NgModule, PLATFORM_ID} from '@angular/core';
+import { createNgModuleRef, Injectable, Injector, NgModule, PLATFORM_ID } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { Immutable } from '@angular-ru/cdk/typings';
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
 import { DataAction, Persistence, StateRepository } from '@angular-ru/ngxs/decorators';
+import { STORAGE_INITIALIZER } from '@angular-ru/ngxs/internals';
 import { NgxsDataRepository, NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import {
     NGXS_DATA_STORAGE_CONTAINER,
@@ -30,7 +31,6 @@ import {
 } from '@angular-ru/ngxs/typings';
 import { Actions, NGXS_PLUGINS, NgxsModule, ofActionDispatched, ofActionSuccessful, State, Store } from '@ngxs/store';
 import { Subject } from 'rxjs';
-import { STORAGE_INITIALIZER } from "@angular-ru/ngxs/internals";
 
 describe('[TEST]: Storage plugin', () => {
     let store: Store;
@@ -2274,44 +2274,44 @@ describe('[TEST]: Storage plugin', () => {
             });
         });
 
+        // eslint-disable-next-line jest/no-done-callback
         it('should be correct read in feature modules', (done: () => void) => {
             localStorage.setItem(
                 '@ngxs.store.b',
-                JSON.stringify({lastChanged: '2020-01-01T12:00:00.000Z', version: 1, data: 'cached value'})
+                JSON.stringify({ lastChanged: '2020-01-01T12:00:00.000Z', version: 1, data: 'cached value' })
             );
 
             @Persistence()
             @StateRepository()
-            @State({name: 'a'})
+            @State({ name: 'a' })
             @Injectable()
             class StateA extends NgxsImmutableDataRepository<string> {}
 
             TestBed.configureTestingModule({
                 imports: [
-                    NgxsModule.forRoot([StateA], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
-                ],
-            })
+                    NgxsModule.forRoot([StateA], { developmentMode: true }),
+                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)
+                ]
+            });
 
             const container: StorageContainer = TestBed.inject(NGXS_DATA_STORAGE_CONTAINER_TOKEN);
 
             expect(container.getProvidedKeys()).toEqual(['@ngxs.store.a']);
 
+            // eslint-disable-next-line no-restricted-globals
             setTimeout(() => {
                 @Persistence()
                 @StateRepository()
-                @State({name: 'b', defaults: 'default value'})
+                @State({ name: 'b', defaults: 'default value' })
                 @Injectable()
                 class StateB extends NgxsImmutableDataRepository<string> {}
 
                 @NgModule({
-                    imports: [
-                        NgxsModule.forFeature([StateB])
-                    ]
+                    imports: [NgxsModule.forFeature([StateB])]
                 })
                 class FeatureModule {}
 
-                expect(() => TestBed.inject(StateB)).toThrowError(Error);
+                expect(() => TestBed.inject(StateB)).toThrow(Error);
 
                 const moduleRef = createNgModuleRef(FeatureModule, TestBed.inject(Injector));
                 const state = moduleRef.injector.get(StateB);
@@ -2323,39 +2323,39 @@ describe('[TEST]: Storage plugin', () => {
             });
         });
 
+        // eslint-disable-next-line jest/no-done-callback
         it('should be correct written in feature modules', (done: () => void) => {
             @Persistence()
             @StateRepository()
-            @State({name: 'a'})
+            @State({ name: 'a' })
             @Injectable()
             class StateA extends NgxsImmutableDataRepository<string> {}
 
             TestBed.configureTestingModule({
                 imports: [
-                    NgxsModule.forRoot([StateA], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
-                ],
-            })
+                    NgxsModule.forRoot([StateA], { developmentMode: true }),
+                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)
+                ]
+            });
 
             const container: StorageContainer = TestBed.inject(NGXS_DATA_STORAGE_CONTAINER_TOKEN);
 
             expect(container.getProvidedKeys()).toEqual(['@ngxs.store.a']);
 
+            // eslint-disable-next-line no-restricted-globals
             setTimeout(() => {
                 @Persistence()
                 @StateRepository()
-                @State({name: 'b', defaults: 'default value'})
+                @State({ name: 'b', defaults: 'default value' })
                 @Injectable()
                 class StateB extends NgxsImmutableDataRepository<string> {}
 
                 @NgModule({
-                    imports: [
-                        NgxsModule.forFeature([StateB])
-                    ]
+                    imports: [NgxsModule.forFeature([StateB])]
                 })
                 class FeatureModule {}
 
-                expect(() => TestBed.inject(StateB)).toThrowError(Error);
+                expect(() => TestBed.inject(StateB)).toThrow(Error);
 
                 const moduleRef = createNgModuleRef(FeatureModule, TestBed.inject(Injector));
                 const state = moduleRef.injector.get(StateB);

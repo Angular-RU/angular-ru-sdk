@@ -24,6 +24,7 @@
         "default": {
             "runner": "@nrwl/nx-cloud",
             "options": {
+                "parallel": 1,
                 "cacheableOperations": ["build-angular", "build", "test"]
             }
         }

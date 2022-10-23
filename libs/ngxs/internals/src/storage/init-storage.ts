@@ -1,21 +1,22 @@
 import { ReplaySubject } from 'rxjs';
-import { first } from "rxjs/operators";
+import { first } from 'rxjs/operators';
 
 class StorageInitializer {
-    private subject = new ReplaySubject<void>(1);
+    // eslint-disable-next-line rxjs/finnish
+    private subject: ReplaySubject<void> = new ReplaySubject<void>(1);
 
-    init() {
+    public init(): void {
         this.subject.next();
     }
 
-    onInit(callback: () => void) {
+    public onInit(callback: () => void): void {
         this.subject.pipe(first()).subscribe(callback);
     }
 
-    reset() {
+    public reset(): void {
         this.subject.complete();
         this.subject = new ReplaySubject<void>(1);
     }
 }
 
-export const STORAGE_INITIALIZER = new StorageInitializer();
+export const STORAGE_INITIALIZER: StorageInitializer = new StorageInitializer();

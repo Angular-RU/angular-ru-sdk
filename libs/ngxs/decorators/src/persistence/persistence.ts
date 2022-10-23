@@ -15,9 +15,10 @@ export function Persistence(options?: ProviderOptions): any {
             throw new Error(NGXS_DATA_EXCEPTIONS.NGXS_PERSISTENCE_STATE);
         }
 
-        STORAGE_INITIALIZER.onInit(() => {
+        STORAGE_INITIALIZER.onInit((): void => {
             const providers: PersistenceProvider[] = ensureProviders(repositoryMeta, stateClass, options);
+
             registerStorageProviders(providers);
-        })
+        });
     };
 }
