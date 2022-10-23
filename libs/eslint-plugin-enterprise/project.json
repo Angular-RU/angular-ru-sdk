@@ -22,19 +22,6 @@
         "publish": {
             "builder": "@nrwl/workspace:run-commands",
             "options": { "command": "npm publish ./node_modules/@angular-ru/eslint-plugin-enterprise --ignore-scripts" }
-        },
-        "version": {
-            "executor": "@jscutlery/semver:version",
-            "options": {
-                "postTargets": ["eslint-plugin-enterprise:publish"],
-                "commitMessageFormat": "chore(${projectName}): release version ${version} [ci skip]",
-                "versionTagPrefix": "@angular-ru/eslint-plugin-enterprise-",
-                "skipProjectChangelog": true,
-                "baseBranch": "origin/master",
-                "trackDeps": false,
-                "noVerify": true
-            },
-            "dependsOn": [{ "target": "version", "projects": "dependencies" }]
         }
     }
 }

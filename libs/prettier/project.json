@@ -22,19 +22,6 @@
         "publish": {
             "builder": "@nrwl/workspace:run-commands",
             "options": { "command": "npm publish ./node_modules/@angular-ru/prettier --ignore-scripts" }
-        },
-        "version": {
-            "executor": "@jscutlery/semver:version",
-            "options": {
-                "postTargets": ["prettier:publish"],
-                "commitMessageFormat": "chore(${projectName}): release version ${version} [ci skip]",
-                "versionTagPrefix": "@angular-ru/prettier-",
-                "skipProjectChangelog": true,
-                "baseBranch": "origin/master",
-                "trackDeps": false,
-                "noVerify": true
-            },
-            "dependsOn": [{ "target": "version", "projects": "dependencies" }]
         }
     }
 }

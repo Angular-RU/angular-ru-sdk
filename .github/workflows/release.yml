@@ -26,13 +26,10 @@ jobs:
       - name: Set prev last tag
         run: echo "PREV_LAST_TAG=$(git describe --abbrev=0 --tags)" >> "$GITHUB_ENV"
 
-      - run: | # todo fix later
-          npx nx build cdk
-          npx nx build ngxs
-          npx nx run-many --target=build --parallel=1 --all --exclude $(npx nx affected:apps --base=origin/master --plain)
+      - run: npx nx run-many --target=build --parallel=1 --all --exclude $(npx nx affected:apps --base=origin/master --plain)
 
       - name: Publish npm libraries (optional)
-        run: npx nx run-many --target=version  --all --allowEmptyRelease --parallel=1 --color=true
+        run: npx lerna version
 
       - name: Set new last tag
         run: echo "NEW_LAST_TAG=$(git describe --abbrev=0 --tags)" >> "$GITHUB_ENV"
