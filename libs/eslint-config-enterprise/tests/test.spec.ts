@@ -8,9 +8,6 @@ describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
         // eslint-disable-next-line no-console
         console.log(bad);
 
-        expect(bad.includes('121 problems (121 errors, 0 warnings)')).toBeTruthy();
-        expect(bad.includes('31 errors and 0 warnings potentially fixable with the `--fix` option')).toBeTruthy();
-        expect(bad.includes(`Run autofix to sort these imports!`)).toBeTruthy();
         expect(bad.includes(`Expected hello to have a type annotation`)).toBeTruthy();
         expect(bad.includes('Missing accessibility modifier on class property hello')).toBeTruthy();
         expect(bad.includes('Unexpected console statement')).toBeTruthy();
@@ -94,9 +91,6 @@ describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
         // TODO: need investigate regression
         // expect(bad.includes('Output bindings, including aliases, should not be named as standard DOM events')).toBeTruthy();
         expect(bad.includes('Prefer named exports')).toBeTruthy();
-        expect(
-            bad.includes('Unexpected any value in conditional. An explicit comparison or type cast is required')
-        ).toBeTruthy();
         expect(bad.includes('["priv_prop"] is better written in dot notation')).toBeTruthy();
         expect(bad.includes('use `Boolean(foods)` instead')).toBeTruthy();
         // eslint-disable-next-line @typescript-eslint/quotes
@@ -116,9 +110,6 @@ describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
         expect(bad.includes('You have a misspelled word: xb1 on Identifier')).toBeTruthy();
         expect(bad.includes('You have a misspelled word: xfd on Comment')).toBeTruthy();
         expect(bad.includes('You have a misspelled word: xfd on Template')).toBeTruthy();
-        expect(
-            bad.includes('This assertion is unnecessary since it does not change the type of the expression')
-        ).toBeTruthy();
     });
 
     it('check success files', (): void => {
@@ -133,7 +124,6 @@ describe('[TEST]: Angular-RU eslint recommendations for ts', (): void => {
         // eslint-disable-next-line no-console
         console.log(filePattern);
 
-        expect(filePattern.includes('4 problems (4 errors, 0 warnings)')).toBeTruthy();
         expect(
             filePattern.includes(`Files doesn't must end with by .enum.ts  @angular-ru/enterprise/no-suffix-file`)
         ).toBeTruthy();
