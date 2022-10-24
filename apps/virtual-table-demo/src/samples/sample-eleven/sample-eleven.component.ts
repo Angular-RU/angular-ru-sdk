@@ -102,4 +102,8 @@ export class SampleElevenComponent implements OnInit, AfterViewInit {
         // eslint-disable-next-line no-console
         console.log('Update schema', event); // NOSONAR
     }
+
+    public showColumnName(columnName: Nullable<string>): void {
+        window.alert(columnName);
+    }
 }

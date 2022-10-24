@@ -1,5 +1,13 @@
 /* eslint-disable @angular-eslint/no-input-rename */
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    HostListener,
+    Input,
+    Output,
+    ViewEncapsulation
+} from '@angular/core';
 import { fadeInLinearAnimation } from '@angular-ru/cdk/animations';
 import { Nullable, PlainObjectOf, SortOrderType } from '@angular-ru/cdk/typings';
 import { isNotNil, isTrue } from '@angular-ru/cdk/utils';
@@ -29,10 +37,16 @@ export class TableTheadComponent<T> {
     @Input('column-schema') public columnSchema: Nullable<ColumnsSchema> = null;
     @Output() public readonly resizing: EventEmitter<ResizeEvent> = new EventEmitter();
     @Output() public readonly sortByKey: EventEmitter<string> = new EventEmitter();
+    @Output() public readonly openContextMenu: EventEmitter<MouseEvent> = new EventEmitter();
     public orderType: typeof SortOrderType = SortOrderType;
     public limit: number = OVERLOAD_WIDTH_TABLE_HEAD_CELL;
 
     constructor(protected readonly filterable: FilterableService<T>) {}
+
+    @HostListener('contextmenu', ['$event'])
+    public openContextMenuHandler($event: MouseEvent): void {
+        this.openContextMenu.emit($event);
+    }
 
     public sortIfEnabled(): void {
         const key: Nullable<string> = this.columnSchema?.key;

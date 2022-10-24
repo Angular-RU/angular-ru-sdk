@@ -111,6 +111,15 @@
                                 </ngx-context-menu-item>
 
                                 <ngx-context-menu-item
+                                    #item
+                                    divider
+                                    (onClick)="showColumnName(item.state.key)"
+                                >
+                                    <ngx-menu-content icon></ngx-menu-content>
+                                    <ngx-menu-content>Show column name</ngx-menu-content>
+                                </ngx-context-menu-item>
+
+                                <ngx-context-menu-item
                                     *ngIf="item.state.key === 'id'"
                                     #item
                                     (onClick)="copyId(item.state.value)"

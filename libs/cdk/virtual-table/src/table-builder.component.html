@@ -134,6 +134,7 @@
                             (resizing)="resizeColumn($event, column)"
                             (sortByKey)="sortByKey($event)"
                             (mouseenter)="enableDragging(schema.key)"
+                            (openContextMenu)="openContextMenuWithKey($event, schema.key)"
                         ></table-thead>
 
                         <table-tbody
