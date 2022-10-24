@@ -19,7 +19,7 @@
         },
         "publish": {
             "builder": "@nrwl/workspace:run-commands",
-            "options": { "command": "npm publish ./node_modules/@angular-ru/cdk --ignore-scripts" }
+            "options": { "command": "npm publish ./node_modules/@angular-ru/cdk --ignore-scripts || echo \"already published\"" }
         }
     }
 }
