@@ -63,7 +63,7 @@
         "@ngxs/store": "3.7.3",
         "class-transformer": "0.5.1",
         "cpy-cli": "4.1.0",
-        "lerna": "^5.6.2",
+        "lerna": "^6.0.1",
         "make-dir-cli": "3.0.0",
         "ngx-mask": "13.1.12",
         "ngx-toastr": "14.3.0",
