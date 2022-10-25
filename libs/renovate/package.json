@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/renovate",
-    "version": "14.0.1",
+    "version": "14.0.2",
     "description": "Shared Renovate config for Angular projects",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/libs/renovate#readme",
     "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",

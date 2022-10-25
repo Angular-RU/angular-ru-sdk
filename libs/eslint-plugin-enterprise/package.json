@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/eslint-plugin-enterprise",
-    "version": "14.0.1",
+    "version": "14.0.2",
     "description": "Angular-RU package",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/libs/eslint-plugin-file-pattern#readme",
     "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
