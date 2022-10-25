@@ -91,7 +91,9 @@
         },
         "publish": {
             "builder": "@nrwl/workspace:run-commands",
-            "options": { "command": "npm publish ./node_modules/@angular-ru/eslint-config-enterprise --ignore-scripts || echo \"already published\"" }
+            "options": {
+                "command": "npm publish ./node_modules/@angular-ru/eslint-config-enterprise --ignore-scripts || echo \"already published\""
+            }
         }
     }
 }
