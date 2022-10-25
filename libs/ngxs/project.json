@@ -20,7 +20,9 @@
         },
         "publish": {
             "builder": "@nrwl/workspace:run-commands",
-            "options": { "command": "npm publish ./node_modules/@angular-ru/ngxs --ignore-scripts || echo \"already published\"" }
+            "options": {
+                "command": "npm publish ./node_modules/@angular-ru/ngxs --ignore-scripts || echo \"already published\""
+            }
         }
     }
 }
