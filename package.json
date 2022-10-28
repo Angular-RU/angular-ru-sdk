@@ -66,7 +66,7 @@
         "lerna": "^6.0.1",
         "make-dir-cli": "3.0.0",
         "ngx-mask": "13.1.12",
-        "ngx-toastr": "14.3.0",
+        "ngx-toastr": "15.2.1",
         "pretty": "2.0.0",
         "rimraf": "3.0.2",
         "rxjs": "7.5.6",
