@@ -103,6 +103,15 @@
         </ng-template>
     </ngx-column>
 
+    <ngx-column key="someDate">
+        <ng-template
+            ngx-td
+            let-cell
+        >
+            {{ cell | date }}
+        </ng-template>
+    </ngx-column>
+
     <ngx-column
         *ngFor="let key of table.modelColumnKeys"
         [key]="key"

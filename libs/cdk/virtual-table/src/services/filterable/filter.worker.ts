@@ -13,6 +13,8 @@ type NumericFilterTypes =
 
 type PlainValue = string | number | boolean;
 
+const INTERVAL_ARRAY_SIZE: number = 2;
+
 // TODO: should be refactor because duplicate code as sortWorker
 // eslint-disable-next-line sonarjs/cognitive-complexity,max-lines-per-function
 export function filterAllWorker<T>({ source, global, types, columns }: FilterableMessage<T>): T[] {
@@ -101,6 +103,16 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
                     return valuesSet
                         .filter((element: Nullable<PlainValue>): element is PlainValue => isFilled(element))
                         .some(compareNumber(operand, filterType));
+                case types.INTERVAL: {
+                    const operandsArray: [PlainValue, PlainValue] = (Array.isArray(operand) &&
+                    operand.length === INTERVAL_ARRAY_SIZE
+                        ? operand
+                        : [null, null]) as any as [PlainValue, PlainValue];
+
+                    return valuesSet
+                        .filter((element: Nullable<PlainValue>): element is PlainValue => isFilled(element))
+                        .some(isInInterval(operandsArray));
+                }
                 case types.IS_FILLED:
                     return valuesSet
                         .map((element: Nullable<PlainValue>): element is PlainValue => isFilled(element))
@@ -139,6 +151,10 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
 
     function checkValueIsFilled(value: string): boolean {
         return value.length > 0;
+    }
+
+    function isInInterval(comparing: [PlainValue, PlainValue]): (value: PlainValue) => boolean {
+        return (value: PlainValue): boolean => comparing[0] <= value && value <= comparing[1];
     }
 
     function compareNumber(comparing: PlainValue, type: NumericFilterTypes): (value: PlainValue) => boolean {

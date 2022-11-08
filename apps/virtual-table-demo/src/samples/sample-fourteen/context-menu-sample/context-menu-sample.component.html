@@ -3,7 +3,7 @@
         <mat-label>Find options</mat-label>
         <mat-select
             [value]="$any(table.filterable.filterTypeDefinition)[state.key!]"
-            (valueChange)="table.filterable.updateFilterTypeBy($event, state.key); table.filter()"
+            (valueChange)="updateFilterType($event)"
         >
             <mat-option
                 *ngFor="let type of table.filterable.types | keyvalue"
@@ -13,22 +13,50 @@
             </mat-option>
         </mat-select>
     </mat-form-field>
+    <ng-container [ngSwitch]="$any(table.filterable.filterTypeDefinition)[state.key!]">
+        <mat-button-toggle-group
+            *ngSwitchCase="TableFilterType.IS_FILLED"
+            [ngModel]="$any(table.filterable.definition)[state.key!]"
+            (ngModelChange)="table.filterable.updateFilterValueBy($event, state.key); table.filter()"
+        >
+            <mat-button-toggle [value]="true">Filled</mat-button-toggle>
+            <mat-button-toggle [value]="false">Empty</mat-button-toggle>
+            <mat-button-toggle value>All</mat-button-toggle>
+        </mat-button-toggle-group>
 
-    <mat-button-toggle-group
-        *ngIf="
-            $any(table.filterable.filterTypeDefinition)[state.key!] === TableFilterType.IS_FILLED;
-            else restFilterTypes
-        "
-        [ngModel]="$any(table.filterable.definition)[state.key!]"
-        (ngModelChange)="table.filterable.updateFilterValueBy($event, state.key); table.filter()"
-    >
-        <mat-button-toggle [value]="true">Filled</mat-button-toggle>
-        <mat-button-toggle [value]="false">Empty</mat-button-toggle>
-        <mat-button-toggle value>All</mat-button-toggle>
-    </mat-button-toggle-group>
+        <mat-form-field
+            *ngSwitchCase="TableFilterType.INTERVAL"
+            appearance="outline"
+            formType="daterange"
+        >
+            <mat-date-range-input [rangePicker]="picker">
+                <input
+                    matStartDate
+                    placeholder="start"
+                    [(ngModel)]="dateRange[0]"
+                    (ngModelChange)="changeDateRange()"
+                />
+                <input
+                    matEndDate
+                    placeholder="end"
+                    [(ngModel)]="dateRange[1]"
+                    (ngModelChange)="changeDateRange()"
+                />
+            </mat-date-range-input>
+            <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-date-range-picker
+                #picker
+                dateEndOfDay
+            ></mat-date-range-picker>
+        </mat-form-field>
 
-    <ng-template #restFilterTypes>
-        <mat-form-field appearance="outline">
+        <mat-form-field
+            *ngSwitchDefault
+            appearance="outline"
+        >
             <mat-label>Filter by {{ state.key! | uppercase }}</mat-label>
             <input
                 matInput
@@ -39,5 +67,5 @@
             />
             <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
-    </ng-template>
+    </ng-container>
 </div>
