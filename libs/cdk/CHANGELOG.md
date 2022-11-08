@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.1.0](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.0.3...@angular-ru/cdk@14.1.0) (2022-11-08)
+
+### Features
+
+-   add interval filter virtual table ([#1369](https://github.com/Angular-RU/angular-ru-sdk/issues/1369))
+    ([9ac8108](https://github.com/Angular-RU/angular-ru-sdk/commit/9ac8108b4d64abe659caea2a425db0c421223803))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [14.0.3](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.0.2...@angular-ru/cdk@14.0.3) (2022-10-25)
 
 **Note:** Version bump only for package @angular-ru/cdk
