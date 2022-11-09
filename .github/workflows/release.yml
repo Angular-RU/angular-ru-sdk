@@ -23,12 +23,12 @@ jobs:
           git config remote.origin.url https://x-access-token:${{ secrets.ANGULAR_RU_BOT_PAT }}@github.com/$GITHUB_REPOSITORY
           npm config set '//registry.npmjs.org/:_authToken' "${{ secrets.NPM_TOKEN }}"
 
-      - name: Build libraries
-        run: npx nx run-many --target=build --parallel
-
       - name: Lerna version
         if: always()
         run: npx lerna version
+
+      - name: Build libraries
+        run: npx nx run-many --target=build --parallel
 
       - name: Publish
         if: always()
