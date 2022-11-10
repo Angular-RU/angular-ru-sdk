@@ -133,8 +133,17 @@ export class ExcelBuilderService {
                         const xmlColumns: string = this.generateColumnsDescriptor(worksheet);
                         const xmlBodyRows: string = this.generateBodyRows(worksheet.flatEntries);
 
+                        const MAX_WORKSHEET_NAME_LENGTH: number = 31;
+                        const DEFAULT_WORKSHEET_NAME: string = 'Table';
+                        let worksheetName: string =
+                            worksheet.worksheetName?.match(/[\p{Alpha}\p{Nd}]+/gu)?.join(' ') ?? DEFAULT_WORKSHEET_NAME;
+
+                        if (worksheetName.length > MAX_WORKSHEET_NAME_LENGTH) {
+                            worksheetName = worksheetName.replace(/\s/g, '').slice(0, MAX_WORKSHEET_NAME_LENGTH);
+                        }
+
                         return `
-                        <Worksheet ss:Name="${worksheet.worksheetName}">
+                        <Worksheet ss:Name="${worksheetName}">
                             <Table ss:DefaultColumnWidth="${minColumnWidth}" ss:DefaultRowHeight="${rowHeight}">
                                 ${xmlColumns}
                                 ${xmlBodyRows}
