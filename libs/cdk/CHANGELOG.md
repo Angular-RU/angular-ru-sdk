@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.1.1](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.1.0...@angular-ru/cdk@14.1.1) (2022-11-10)
+
+### Bug Fixes
+
+-   fix worksheet name in excel builder service ([#1371](https://github.com/Angular-RU/angular-ru-sdk/issues/1371))
+    ([949da5c](https://github.com/Angular-RU/angular-ru-sdk/commit/949da5cad0a7893334e2aabb713bcbdac0decaf5))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [14.1.0](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.0.3...@angular-ru/cdk@14.1.0) (2022-11-08)
 
 ### Features
