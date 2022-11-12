@@ -179,6 +179,11 @@ export abstract class AbstractNgxsDataEntityCollectionsRepository<
         this.setEntitiesState(this.getState());
     }
 
+    @DataAction()
+    public patchState(@Payload('patchValue') value: Partial<EntityCollections<V, K, C>>): void {
+        this.ctx.patchState(value);
+    }
+
     public setComparator(comparator: EntityComparator<V> | null): this {
         this.comparator = comparator;
 
@@ -350,7 +355,7 @@ export abstract class AbstractNgxsDataEntityCollectionsRepository<
     protected setEntitiesState(state: EntityCollections<V, K, C>): void {
         const ids: K[] = this.sortKeysByComparator(state.ids, state.entities);
 
-        this.ctx.setState({ ...state, ids, entities: state.entities });
+        this.ctx.patchState({ ...state, ids, entities: state.entities });
     }
 
     protected sortKeysByComparator(originalIds: K[], entities: EntityDictionary<K, V>): K[] {
