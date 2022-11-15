@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.1.2](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.1.1...@angular-ru/cdk@14.1.2) (2022-11-15)
+
+### Bug Fixes
+
+-   move const to inside in filter worker function ([#1372](https://github.com/Angular-RU/angular-ru-sdk/issues/1372))
+    ([a110dd3](https://github.com/Angular-RU/angular-ru-sdk/commit/a110dd3acc58a3991a1aa11e1926276f811977be))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [14.1.1](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.1.0...@angular-ru/cdk@14.1.1) (2022-11-10)
 
 ### Bug Fixes
