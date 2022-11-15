@@ -13,11 +13,10 @@ type NumericFilterTypes =
 
 type PlainValue = string | number | boolean;
 
-const INTERVAL_ARRAY_SIZE: number = 2;
-
 // TODO: should be refactor because duplicate code as sortWorker
 // eslint-disable-next-line sonarjs/cognitive-complexity,max-lines-per-function
 export function filterAllWorker<T>({ source, global, types, columns }: FilterableMessage<T>): T[] {
+    const INTERVAL_ARRAY_SIZE: number = 2;
     const { value: globalOperand, type: globalFilterType }: FilterGlobalOptions = global;
     let result: T[] = source;
 
