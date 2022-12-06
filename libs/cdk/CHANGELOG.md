@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.2.0](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.1.2...@angular-ru/cdk@14.2.0) (2022-12-06)
+
+### Features
+
+-   add filter for equals dates without time ([#1376](https://github.com/Angular-RU/angular-ru-sdk/issues/1376))
+    ([93bb457](https://github.com/Angular-RU/angular-ru-sdk/commit/93bb457160d5b60527d4ec70d27babc7d44a4ef3))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [14.1.2](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.1.1...@angular-ru/cdk@14.1.2) (2022-11-15)
 
 ### Bug Fixes
