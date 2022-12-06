@@ -29,7 +29,7 @@
             appearance="outline"
             formType="daterange"
         >
-            <mat-date-range-input [rangePicker]="picker">
+            <mat-date-range-input [rangePicker]="rangePicker">
                 <input
                     matStartDate
                     placeholder="start"
@@ -45,12 +45,30 @@
             </mat-date-range-input>
             <mat-datepicker-toggle
                 matSuffix
-                [for]="picker"
+                [for]="rangePicker"
             ></mat-datepicker-toggle>
             <mat-date-range-picker
-                #picker
+                #rangePicker
                 dateEndOfDay
             ></mat-date-range-picker>
+        </mat-form-field>
+
+        <mat-form-field
+            *ngSwitchCase="TableFilterType.EQUALS_DATES_WITHOUT_TIME"
+            appearance="outline"
+            class="date-picker"
+        >
+            <input
+                matInput
+                [matDatepicker]="picker"
+                [ngModel]="$any(table.filterable.definition)[state.key!]"
+                (ngModelChange)="table.filterable.updateFilterValueBy($event, state.key); table.filter()"
+            />
+            <mat-datepicker-toggle
+                matIconSuffix
+                [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field
