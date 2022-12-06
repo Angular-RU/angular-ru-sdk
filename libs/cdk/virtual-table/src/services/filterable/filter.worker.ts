@@ -91,6 +91,23 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
                     return valuesSet
                         .map((element: Nullable<PlainValue>): string => toLowercase(element))
                         .includes(toLowercase(operand));
+                case types.EQUALS_DATES_WITHOUT_TIME: {
+                    if (
+                        typeof operand === 'number' ||
+                        typeof operand === 'string' ||
+                        (operand as any) instanceof Date
+                    ) {
+                        return valuesSet
+                            .filter(
+                                (element: Nullable<PlainValue>): element is number | string =>
+                                    typeof element === 'number' || typeof element === 'string'
+                            )
+                            .map((element: number | string): number => toDateWithoutTime(element).getTime())
+                            .includes(toDateWithoutTime(operand as any).getTime());
+                    } else {
+                        return false;
+                    }
+                }
                 case types.DOES_NOT_EQUAL:
                     return !valuesSet
                         .map((element: Nullable<PlainValue>): string => toLowercase(element))
@@ -122,6 +139,14 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
         } catch {
             return false;
         }
+    }
+
+    function toDateWithoutTime(value: string | number | Date): Date {
+        const date: Date = value instanceof Date ? value : new Date(value);
+
+        date.setHours(0, 0, 0, 0);
+
+        return date;
     }
 
     function toLowercase(value: Nullable<PlainValue>): string {

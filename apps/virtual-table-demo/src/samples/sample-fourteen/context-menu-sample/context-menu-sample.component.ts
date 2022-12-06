@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
 import { FilterStateEvent, TableBuilderComponent, TableFilterType } from '@angular-ru/cdk/virtual-table';
 
 import { Nullable } from '../../../../../../libs/cdk/typings/src/public_api';
@@ -6,7 +6,15 @@ import { Nullable } from '../../../../../../libs/cdk/typings/src/public_api';
 @Component({
     selector: 'context-menu-sample',
     templateUrl: './context-menu-sample.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    styles: [
+        `
+            .date-picker .mat-form-field-infix {
+                display: inline-flex;
+            }
+        `
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None
 })
 export class ContextMenuSampleComponent<T> {
     @Input() public table!: TableBuilderComponent<T>;
