@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.2.1](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.2.0...@angular-ru/cdk@14.2.1) (2022-12-07)
+
+### Bug Fixes
+
+-   send next message in websocket client synchronously bypass requestAnimationFrame
+    ([#1377](https://github.com/Angular-RU/angular-ru-sdk/issues/1377))
+    ([d34d631](https://github.com/Angular-RU/angular-ru-sdk/commit/d34d631a6f2c7250789c1a6f02e6e9b79bfbca27))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [14.2.0](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.1.2...@angular-ru/cdk@14.2.0) (2022-12-06)
 
 ### Features
