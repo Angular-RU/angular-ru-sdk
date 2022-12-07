@@ -133,9 +133,7 @@ export abstract class AbstractWebsocketClient<K extends string | PlainObject>
     private _connect(): void {
         this.socket$ = webSocket(this.webSocketSubjectConfig);
         this.socketSubscription = this.socket$.pipe(takeUntil(this.destroy$)).subscribe({
-            next: (message: WebsocketMessage<K, any>): void => {
-                window.requestAnimationFrame((): void => this.messages$.next(message));
-            },
+            next: (message: WebsocketMessage<K, any>): void => this.messages$.next(message),
             error: (): void => this.reconnect()
         });
     }
