@@ -4,4 +4,5 @@ import { ColumnWidth } from './column-width';
 
 export interface ColumnParameters {
     width?: Nullable<number | ColumnWidth>;
+    excelType?: Nullable<string>;
 }

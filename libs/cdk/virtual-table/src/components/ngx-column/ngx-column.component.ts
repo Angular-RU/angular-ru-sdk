@@ -24,6 +24,7 @@ export class NgxColumnComponent<T> extends ColumnOptionsDirective {
     @Input('important-template') public importantTemplate: string | boolean = false;
     @Input('force-model') public forceModel: Nullable<string | boolean> = null;
     @Input('overflow-tooltip') public override overflowTooltip: Nullable<boolean> = null;
+    @Input('excel-type') public excelType: Nullable<string> = null;
     @ContentChild(TemplateHeadThDirective, { static: false }) public th!: TemplateHeadThDirective<T>;
     @ContentChild(TemplateBodyTdDirective, { static: false }) public td!: TemplateBodyTdDirective<T>;
 
