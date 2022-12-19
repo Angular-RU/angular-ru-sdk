@@ -50,6 +50,7 @@ export interface ColumnsSchema<T = any> {
     isVisible: boolean;
     overflowTooltip: boolean;
     stub?: Nullable<string>;
+    excelType: Nullable<string>;
 }
 
 export interface TableUpdateSchema {

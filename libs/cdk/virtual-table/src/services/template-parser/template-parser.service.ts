@@ -155,7 +155,8 @@ export class TemplateParserService<T> {
             cssStyle,
             width,
             cssClass,
-            overflowTooltip
+            overflowTooltip,
+            excelType
         }: NgxColumnComponent<T> = column;
         const thTemplate: AbstractTemplateCellCommonDirective<T> = th ?? new TemplateHeadThDirective<T>();
         const tdTemplate: AbstractTemplateCellCommonDirective<T> = td ?? new TemplateBodyTdDirective<T>();
@@ -209,7 +210,8 @@ export class TemplateParserService<T> {
                 headTitle,
                 emptyHead: isEmptyHead,
                 template: isEmptyHead ? null : thOptions.template
-            }
+            },
+            excelType
         };
     }
 
@@ -220,7 +222,8 @@ export class TemplateParserService<T> {
                 key: column.key,
                 width: column.width,
                 isVisible: column.isVisible,
-                isModel: column.isModel
+                isModel: column.isModel,
+                excelType: column.excelType
             })
         );
     }

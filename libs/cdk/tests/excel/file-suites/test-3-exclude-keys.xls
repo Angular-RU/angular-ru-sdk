@@ -33,6 +33,17 @@
                 <Border ss:Position="Left" ss:Color="#000000" ss:LineStyle="Continuous" ss:Weight="1"/>
             </Borders>
         </Style>
+        <Style ss:ID="CellDateStyle">
+            <NumberFormat ss:Format="dd.mm.yyyy"/>
+            <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="0" />
+            <Font ss:Bold="0" ss:FontName="Arial" />
+            <Borders>
+                <Border ss:Position="Top" ss:Color="#000000" ss:LineStyle="Continuous" ss:Weight="1"/>
+                <Border ss:Position="Bottom" ss:Color="#000000" ss:LineStyle="Continuous" ss:Weight="1"/>
+                <Border ss:Position="Right" ss:Color="#000000" ss:LineStyle="Continuous" ss:Weight="1"/>
+                <Border ss:Position="Left" ss:Color="#000000" ss:LineStyle="Continuous" ss:Weight="1"/>
+            </Borders>
+        </Style>
     </Styles>
     <Worksheet ss:Name="UNKNOWN WORKSHEET NAME">
         <Table ss:DefaultColumnWidth="150" ss:DefaultRowHeight="40">

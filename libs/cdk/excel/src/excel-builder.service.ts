@@ -9,6 +9,7 @@ import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
 
 import { ColumnParameters } from './domain/column-parameters';
 import { ColumnWidth } from './domain/column-width';
+import { ExcelType } from './domain/excel-type';
 import { ExcelWorkbook } from './domain/excel-workbook';
 import { ExcelWorksheet } from './domain/excel-worksheet';
 import { PreparedExcelWorkbook, WidthOfSymbols } from './domain/prepared-excel-workbook';
@@ -25,7 +26,8 @@ interface StyleSizes {
 const enum StyleType {
     HEAD = 'HeadCellStyle',
     BODY = 'BodyCellStyle',
-    BIG_DATA = 'CellBigDataStyle'
+    BIG_DATA = 'CellBigDataStyle',
+    DATE = 'CellDateStyle'
 }
 
 @Injectable()
@@ -75,6 +77,12 @@ export class ExcelBuilderService {
                                 <Font ss:Bold="0" ss:FontName="Arial" />
                                 ${ExcelBuilder.commonBorderStyles}
                             </Style>
+                            <Style ss:ID="${StyleType.DATE}">
+                                <NumberFormat ss:Format="dd\.mm\.yyyy"/>
+                                <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="0" />
+                                <Font ss:Bold="0" ss:FontName="Arial" />
+                                ${ExcelBuilder.commonBorderStyles}
+                            </Style>
                         </Styles>`;
 
                     constructor(
@@ -98,8 +106,12 @@ export class ExcelBuilderService {
                             </Workbook>`;
                     }
 
-                    private static renderCell(value: any, styleId: StyleType): string {
-                        const type: any = typeof value === 'number' ? 'Number' : 'String';
+                    private static renderCell(value: any, styleId: StyleType, cellType?: Nullable<ExcelType>): string {
+                        const type: string =
+                            isNotNil(cellType) && ExcelBuilder.isCellTypeCompatibleWithValue(value, cellType)
+                                ? cellType
+                                : ExcelBuilder.getCellType(value);
+
                         let cellValue: any = isEmptyValue(value) ? '-' : value;
 
                         if (typeof cellValue === 'string') {
@@ -107,7 +119,27 @@ export class ExcelBuilderService {
                             cellValue = cellValue.replace(/[<>]/g, '');
                         }
 
-                        return `<Cell ss:StyleID="${styleId}"><Data ss:Type="${type}">${cellValue}</Data></Cell>`;
+                        return `<Cell ss:StyleID="${
+                            type === 'DateTime' ? StyleType.DATE : styleId
+                        }"><Data ss:Type="${type}">${cellValue}</Data></Cell>`;
+                    }
+
+                    private static isCellTypeCompatibleWithValue(value: any, cellType: Nullable<ExcelType>): boolean {
+                        if (cellType === 'DateTime') {
+                            return !isNaN(Date.parse(value));
+                        }
+
+                        return true;
+                    }
+
+                    private static getCellType(value: any): ExcelType {
+                        if (value instanceof Date) {
+                            return 'DateTime';
+                        } else if (typeof value === 'number') {
+                            return 'Number';
+                        } else {
+                            return 'String';
+                        }
                     }
 
                     private static isFilled(value: Nullable<string>): value is string {
@@ -131,7 +163,7 @@ export class ExcelBuilderService {
                     private generateWorksheet(worksheet: PreparedExcelWorksheet<T>): string {
                         const { minColumnWidth, rowHeight }: StyleSizes = this.sizes;
                         const xmlColumns: string = this.generateColumnsDescriptor(worksheet);
-                        const xmlBodyRows: string = this.generateBodyRows(worksheet.flatEntries);
+                        const xmlBodyRows: string = this.generateBodyRows(worksheet);
 
                         const MAX_WORKSHEET_NAME_LENGTH: number = 31;
                         const DEFAULT_WORKSHEET_NAME: string = 'Table';
@@ -223,10 +255,10 @@ export class ExcelBuilderService {
                         return this.flattenTranslatedKeys[translatePath] ?? key;
                     }
 
-                    private generateBodyRows(entries: PlainObject[]): string {
+                    private generateBodyRows(worksheet: PreparedExcelWorksheet<T>): string {
                         const { rowHeight }: StyleSizes = this.sizes;
-                        const xmlRows: string[] = entries.map((cell: PlainObject): string => {
-                            const xmlCells: string = this.generateCells(cell);
+                        const xmlRows: string[] = worksheet.flatEntries.map((cell: PlainObject): string => {
+                            const xmlCells: string = this.generateCells(cell, worksheet);
 
                             return `<Row ss:Height="${rowHeight}">${xmlCells}</Row>`;
                         });
@@ -234,17 +266,18 @@ export class ExcelBuilderService {
                         return xmlRows.join('');
                     }
 
-                    private generateCells(flatCell: PlainObject): string {
+                    private generateCells(flatCell: PlainObject, worksheet: PreparedExcelWorksheet<T>): string {
                         const { fontWidth, minColumnWidth }: StyleSizes = this.sizes;
                         const keys: string[] = Object.keys(flatCell);
 
                         const xmlCells: string[] = keys.map((key: string): string => {
+                            const parameters: Nullable<ColumnParameters> = worksheet.columnParameters?.[key];
                             const value: string = flatCell[key];
                             const symbolCount: number = String(value).length;
                             const overflow: boolean = symbolCount * fontWidth >= minColumnWidth;
                             const localStyleId: StyleType = overflow ? StyleType.BIG_DATA : StyleType.BODY;
 
-                            return ExcelBuilder.renderCell(value, localStyleId);
+                            return ExcelBuilder.renderCell(value, localStyleId, parameters?.excelType);
                         });
 
                         return xmlCells.join('');
