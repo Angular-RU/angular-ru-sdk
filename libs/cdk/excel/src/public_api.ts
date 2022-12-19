@@ -2,6 +2,7 @@ export { ColumnParameters } from './domain/column-parameters';
 export { ColumnWidth } from './domain/column-width';
 export { EntriesKeys } from './domain/entries-keys';
 export { ExcelBuilderTextColumnInterceptor } from './domain/excel-builder-text-column-interceptor';
+export { ExcelType } from './domain/excel-type';
 export { ExcelWorkbook } from './domain/excel-workbook';
 export { ExcelWorksheet } from './domain/excel-worksheet';
 export { ExportExcelByEntries } from './domain/export-excel-by-entries';
