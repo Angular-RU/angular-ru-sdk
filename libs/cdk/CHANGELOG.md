@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.3.0](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.2.1...@angular-ru/cdk@14.3.0) (2022-12-19)
+
+### Features
+
+-   add datetime column excel export to table ([#1379](https://github.com/Angular-RU/angular-ru-sdk/issues/1379))
+    ([64d82b3](https://github.com/Angular-RU/angular-ru-sdk/commit/64d82b36cd5ad6827dd8cf7f6006548eac8aa8f0))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [14.2.1](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.2.0...@angular-ru/cdk@14.2.1) (2022-12-07)
 
 ### Bug Fixes
