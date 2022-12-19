@@ -22,6 +22,8 @@ interface StyleSizes {
     rowHeight: number;
 }
 
+type ExcelType = 'Number' | 'String' | 'DateTime';
+
 const enum StyleType {
     HEAD = 'HeadCellStyle',
     BODY = 'BodyCellStyle',
@@ -105,7 +107,7 @@ export class ExcelBuilderService {
                             </Workbook>`;
                     }
 
-                    private static renderCell(value: any, styleId: StyleType, cellType?: Nullable<string>): string {
+                    private static renderCell(value: any, styleId: StyleType, cellType?: Nullable<ExcelType>): string {
                         const type: string =
                             isNotNil(cellType) && ExcelBuilder.isCellTypeCompatibleWithValue(value, cellType)
                                 ? cellType
@@ -123,7 +125,7 @@ export class ExcelBuilderService {
                         }"><Data ss:Type="${type}">${cellValue}</Data></Cell>`;
                     }
 
-                    private static isCellTypeCompatibleWithValue(value: any, cellType: Nullable<string>): boolean {
+                    private static isCellTypeCompatibleWithValue(value: any, cellType: Nullable<ExcelType>): boolean {
                         if (cellType === 'DateTime') {
                             return !isNaN(Date.parse(value));
                         }
@@ -131,7 +133,7 @@ export class ExcelBuilderService {
                         return true;
                     }
 
-                    private static getCellType(value: any): string {
+                    private static getCellType(value: any): ExcelType {
                         if (value instanceof Date) {
                             return 'DateTime';
                         } else if (typeof value === 'number') {
@@ -276,7 +278,11 @@ export class ExcelBuilderService {
                             const overflow: boolean = symbolCount * fontWidth >= minColumnWidth;
                             const localStyleId: StyleType = overflow ? StyleType.BIG_DATA : StyleType.BODY;
 
-                            return ExcelBuilder.renderCell(value, localStyleId, parameters?.excelType);
+                            return ExcelBuilder.renderCell(
+                                value,
+                                localStyleId,
+                                parameters?.excelType as Nullable<ExcelType>
+                            );
                         });
 
                         return xmlCells.join('');
