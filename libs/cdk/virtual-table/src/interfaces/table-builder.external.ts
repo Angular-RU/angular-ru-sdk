@@ -1,4 +1,5 @@
 import { EmbeddedViewRef, EventEmitter, TemplateRef } from '@angular/core';
+import { ExcelType } from '@angular-ru/cdk/excel';
 import { DeepPartial, Nullable, PlainObject } from '@angular-ru/cdk/typings';
 
 import { TableBrowserEvent } from './table-builder.internal';
@@ -50,7 +51,7 @@ export interface ColumnsSchema<T = any> {
     isVisible: boolean;
     overflowTooltip: boolean;
     stub?: Nullable<string>;
-    excelType: Nullable<string>;
+    excelType: Nullable<ExcelType>;
 }
 
 export interface TableUpdateSchema {
