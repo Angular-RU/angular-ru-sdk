@@ -9,6 +9,7 @@ import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
 
 import { ColumnParameters } from './domain/column-parameters';
 import { ColumnWidth } from './domain/column-width';
+import { ExcelType } from './domain/excel-type';
 import { ExcelWorkbook } from './domain/excel-workbook';
 import { ExcelWorksheet } from './domain/excel-worksheet';
 import { PreparedExcelWorkbook, WidthOfSymbols } from './domain/prepared-excel-workbook';
@@ -21,8 +22,6 @@ interface StyleSizes {
     minColumnWidth: number;
     rowHeight: number;
 }
-
-type ExcelType = 'Number' | 'String' | 'DateTime';
 
 const enum StyleType {
     HEAD = 'HeadCellStyle',
@@ -278,11 +277,7 @@ export class ExcelBuilderService {
                             const overflow: boolean = symbolCount * fontWidth >= minColumnWidth;
                             const localStyleId: StyleType = overflow ? StyleType.BIG_DATA : StyleType.BODY;
 
-                            return ExcelBuilder.renderCell(
-                                value,
-                                localStyleId,
-                                parameters?.excelType as Nullable<ExcelType>
-                            );
+                            return ExcelBuilder.renderCell(value, localStyleId, parameters?.excelType);
                         });
 
                         return xmlCells.join('');
