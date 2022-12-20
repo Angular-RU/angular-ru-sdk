@@ -108,7 +108,7 @@ export class ExcelBuilderService {
 
                     private static renderCell(value: any, styleId: StyleType, cellType?: Nullable<ExcelType>): string {
                         const type: string =
-                            isNotNil(cellType) && ExcelBuilder.isCellTypeCompatibleWithValue(value, cellType)
+                            cellType != null && ExcelBuilder.isCellTypeCompatibleWithValue(value, cellType)
                                 ? cellType
                                 : ExcelBuilder.getCellType(value);
 
