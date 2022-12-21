@@ -22,6 +22,8 @@ jobs:
           git config --global user.email "angular-ru@yandex.ru"
           git config remote.origin.url https://x-access-token:${{ secrets.ANGULAR_RU_BOT_PAT }}@github.com/$GITHUB_REPOSITORY
           npm config set '//registry.npmjs.org/:_authToken' "${{ secrets.NPM_TOKEN }}"
+          NPM_WHOAMI_OUTPUT=$(npm whoami)
+          echo "::debug::npm whoami: ${NPM_WHOAMI_OUTPUT}"
 
       - name: Lerna version
         if: always()
