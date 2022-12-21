@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.4.0](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.3.0...@angular-ru/cdk@14.4.0) (2022-12-21)
+
+### Bug Fixes
+
+-   remove usage of imported function in webworker ([#1381](https://github.com/Angular-RU/angular-ru-sdk/issues/1381))
+    ([428e853](https://github.com/Angular-RU/angular-ru-sdk/commit/428e853427cd57f4882a97b5e23058c1efc15e94))
+
+### Features
+
+-   add excel type to column schema ([#1380](https://github.com/Angular-RU/angular-ru-sdk/issues/1380))
+    ([109e395](https://github.com/Angular-RU/angular-ru-sdk/commit/109e3951445e1137c9a32bfa9f2d263e03366be5))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [14.3.0](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.2.1...@angular-ru/cdk@14.3.0) (2022-12-19)
 
 ### Features
