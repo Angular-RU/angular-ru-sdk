@@ -46,6 +46,7 @@ export { FilterGlobalOptions } from './services/filterable/filter-global-options
 export { FilterStateEvent } from './services/filterable/filter-state-event';
 export { FilterWorkerEvent } from './services/filterable/filter-worker-event';
 export { Filterable } from './services/filterable/filterable';
+export { FilterableService } from './services/filterable/filterable.service';
 export { FilterableMessage } from './services/filterable/filterable-message';
 export { TableFilterType } from './services/filterable/table-filter-type';
 export { SelectionService } from './services/selection/selection.service';

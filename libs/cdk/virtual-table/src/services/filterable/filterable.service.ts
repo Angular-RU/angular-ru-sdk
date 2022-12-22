@@ -106,16 +106,7 @@ export class FilterableService<T> implements Filterable {
         return new Promise(
             // eslint-disable-next-line max-lines-per-function
             (resolve: (value: FilterWorkerEvent<T>) => void): void => {
-                const message: FilterableMessage<T> = {
-                    source,
-                    types: TableFilterType,
-                    global: { value, type },
-                    columns: {
-                        values: this.definition as any,
-                        types: this.filterTypeDefinition as any,
-                        isEmpty: checkIsShallowEmpty(this.definition)
-                    }
-                };
+                const message: FilterableMessage<T> = this.getFilterableMessage(source);
 
                 this.thread.run<T[], FilterableMessage<T>>(filterAllWorker, message).then((sorted: T[]): void => {
                     resolve({
@@ -127,6 +118,29 @@ export class FilterableService<T> implements Filterable {
                 });
             }
         );
+    }
+
+    public filterOutsideWorker(source: T[]): T[] {
+        const message: FilterableMessage<T> = this.getFilterableMessage(source);
+
+        return filterAllWorker(message);
+    }
+
+    private getFilterableMessage(source: T[]): FilterableMessage<T> {
+        const type: Nullable<string | TableFilterType> = this.filterType;
+        const value: Nullable<string> = isString(this.globalFilterValue) ? String(this.globalFilterValue).trim() : null;
+        const message: FilterableMessage<T> = {
+            source,
+            types: TableFilterType,
+            global: { value, type },
+            columns: {
+                values: this.definition as any,
+                types: this.filterTypeDefinition as any,
+                isEmpty: checkIsShallowEmpty(this.definition)
+            }
+        };
+
+        return message;
     }
 
     private clearDefinitions(): void {
