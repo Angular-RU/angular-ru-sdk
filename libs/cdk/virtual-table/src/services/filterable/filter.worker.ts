@@ -17,6 +17,7 @@ type PlainValue = string | number | boolean;
 // eslint-disable-next-line sonarjs/cognitive-complexity,max-lines-per-function
 export function filterAllWorker<T>({ source, global, types, columns }: FilterableMessage<T>): T[] {
     const INTERVAL_ARRAY_SIZE: number = 2;
+    const PLAIN_TYPES: string[] = ['number', 'string', 'boolean'];
     const { value: globalOperand, type: globalFilterType }: FilterGlobalOptions = global;
     let result: T[] = source;
 
@@ -34,6 +35,7 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
         return isSatisfying(Object.values(flattenedItem), operand, filterType);
     }
 
+    // eslint-disable-next-line complexity
     function filterColumnsSeparately(item: T): boolean {
         for (const fieldKey of Object.keys(columns.values)) {
             const fieldValue: Nullable<PlainObject | PlainValue> = getValueByPath(item, fieldKey);
@@ -41,7 +43,11 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
             const fieldFilterType: Nullable<TableFilterType> = columns.types[fieldKey];
 
             if (isPlainValue(fieldValue) && isFilled(fieldOperand) && isNotNil(fieldFilterType)) {
-                const satisfies: boolean = isSatisfying([fieldValue], fieldOperand, fieldFilterType);
+                const satisfies: boolean = isSatisfying(
+                    Array.isArray(fieldValue) ? fieldValue : [fieldValue],
+                    fieldOperand,
+                    fieldFilterType
+                );
 
                 if (!satisfies) {
                     return false;
@@ -248,7 +254,19 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
     }
 
     function isPlainValue(value?: Nullable<PlainObject> | PlainValue): value is Nullable<PlainValue> {
-        return isNil(value) || ['number', 'string', 'boolean'].includes(typeof value);
+        if (isNil(value)) {
+            return true;
+        }
+
+        if (PLAIN_TYPES.includes(typeof value)) {
+            return true;
+        }
+
+        if (Array.isArray(value) && value.every((element: unknown): boolean => PLAIN_TYPES.includes(typeof element))) {
+            return true;
+        }
+
+        return false;
     }
 
     function isFilled(value?: Nullable<PlainValue>): value is PlainValue {
