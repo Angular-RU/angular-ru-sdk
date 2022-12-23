@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.0.5](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/eslint-config-enterprise@14.0.4...@angular-ru/eslint-config-enterprise@14.0.5) (2022-12-23)
+
+### Bug Fixes
+
+-   update eslint-plugin-mocha to version 10.1.0 ([#1385](https://github.com/Angular-RU/angular-ru-sdk/issues/1385))
+    ([2ab9f3e](https://github.com/Angular-RU/angular-ru-sdk/commit/2ab9f3e8f9f6f1c819360a567f45dfa668f9e790))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [14.0.4](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/eslint-config-enterprise@14.0.3...@angular-ru/eslint-config-enterprise@14.0.4) (2022-11-22)
 
 **Note:** Version bump only for package @angular-ru/eslint-config-enterprise
