@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.6.0](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.5.1...@angular-ru/cdk@14.6.0) (2022-12-23)
+
+### Features
+
+-   support for array values in filter and add it to public api
+    ([#1384](https://github.com/Angular-RU/angular-ru-sdk/issues/1384))
+    ([19c99ab](https://github.com/Angular-RU/angular-ru-sdk/commit/19c99abf0ef05643f3723cad4bea690151c7c49e))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [14.5.1](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.4.0...@angular-ru/cdk@14.5.1) (2022-12-21)
 
 **Note:** Version bump only for package @angular-ru/cdk
