@@ -17,7 +17,7 @@ type PlainValue = string | number | boolean;
 // eslint-disable-next-line sonarjs/cognitive-complexity,max-lines-per-function
 export function filterAllWorker<T>({ source, global, types, columns }: FilterableMessage<T>): T[] {
     const INTERVAL_ARRAY_SIZE: number = 2;
-    const PLAIN_TYPES: string[] = ['number', 'string', 'boolean'];
+    const PLAIN_TYPES: Set<string> = new Set(['number', 'string', 'boolean']);
     const { value: globalOperand, type: globalFilterType }: FilterGlobalOptions = global;
     let result: T[] = source;
 
@@ -254,19 +254,11 @@ export function filterAllWorker<T>({ source, global, types, columns }: Filterabl
     }
 
     function isPlainValue(value?: Nullable<PlainObject> | PlainValue): value is Nullable<PlainValue> {
-        if (isNil(value)) {
-            return true;
-        }
-
-        if (PLAIN_TYPES.includes(typeof value)) {
-            return true;
-        }
-
-        if (Array.isArray(value) && value.every((element: unknown): boolean => PLAIN_TYPES.includes(typeof element))) {
-            return true;
-        }
-
-        return false;
+        return (
+            isNil(value) ||
+            PLAIN_TYPES.has(typeof value) ||
+            (Array.isArray(value) && value.every((element: unknown): boolean => PLAIN_TYPES.has(typeof element)))
+        );
     }
 
     function isFilled(value?: Nullable<PlainValue>): value is PlainValue {
