@@ -1,6 +1,7 @@
 {
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
+        "preserveConstEnums": true,
         "paths": {
             "@angular-ru/cdk/*": ["./cdk/*/public_api.ts"]
         }
