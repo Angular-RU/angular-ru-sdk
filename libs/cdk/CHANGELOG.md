@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.8.0](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.7.0...@angular-ru/cdk@14.8.0) (2023-01-05)
+
+### Features
+
+-   enable preserveConstEnums for buildable libs ([#1387](https://github.com/Angular-RU/angular-ru-sdk/issues/1387))
+    ([#1389](https://github.com/Angular-RU/angular-ru-sdk/issues/1389))
+    ([3370fc9](https://github.com/Angular-RU/angular-ru-sdk/commit/3370fc964ae520d0a50c048c590a0d5ec09a7979))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [14.7.0](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.6.0...@angular-ru/cdk@14.7.0) (2022-12-26)
 
 ### Features

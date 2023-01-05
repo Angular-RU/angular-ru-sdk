@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.1.0](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/ngxs@14.0.3...@angular-ru/ngxs@14.1.0) (2023-01-05)
+
+### Features
+
+-   enable preserveConstEnums for buildable libs ([#1387](https://github.com/Angular-RU/angular-ru-sdk/issues/1387))
+    ([#1389](https://github.com/Angular-RU/angular-ru-sdk/issues/1389))
+    ([3370fc9](https://github.com/Angular-RU/angular-ru-sdk/commit/3370fc964ae520d0a50c048c590a0d5ec09a7979))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [14.0.3](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/ngxs@14.0.2...@angular-ru/ngxs@14.0.3) (2022-11-12)
 
 **Note:** Version bump only for package @angular-ru/ngxs
