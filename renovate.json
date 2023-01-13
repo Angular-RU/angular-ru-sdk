@@ -7,8 +7,8 @@
     "branchPrefix": "renovate/",
     "timezone": "Europe/Moscow",
     "masterIssueApproval": false,
-    "separateMajorMinor": true,
-    "separateMinorPatch": false,
+    "separateMajorMinor": false,
+    "separateMinorPatch": true,
     "semanticCommits": "enabled",
     "dependencyDashboard": false,
     "dependencyDashboardApproval": false,
@@ -21,6 +21,7 @@
     },
     "pinDigests": false,
     "includePaths": ["package.json", "**/package.json", "!node_modules/**"],
+    "ignoreDeps": ["ngx-mask"],
     "packageRules": [
         {
             "matchUpdateTypes": ["minor", "patch"],

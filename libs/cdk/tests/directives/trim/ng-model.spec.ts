@@ -7,7 +7,7 @@ import { BrowserModule, By } from '@angular/platform-browser';
 import { TrimInputModule } from '@angular-ru/cdk/directives';
 import { Nullable } from '@angular-ru/cdk/typings';
 import { isNotNil } from '@angular-ru/cdk/utils';
-import { NgxMaskModule } from 'ngx-mask/ngx-mask';
+import { NgxMaskModule } from 'ngx-mask';
 
 describe('[TEST]: Trim Input', () => {
     let fixture: Nullable<ComponentFixture<NgModelTestComponent>> = null;

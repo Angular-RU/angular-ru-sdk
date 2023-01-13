@@ -5,7 +5,6 @@
         "preserveConstEnums": true,
         "paths": {
             "@angular-ru/cdk/*": ["./*/src/public_api"],
-            "ngx-mask": ["../../node_modules/ngx-mask/fesm2015/ngx-mask.mjs"]
         }
     },
     "include": ["**/*.spec.ts", "**/*.d.ts"]
