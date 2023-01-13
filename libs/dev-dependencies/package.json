@@ -9,7 +9,7 @@
     "author": "angular-ru@yandex.ru",
     "dependencies": {
         "@nrwl/cli": "14.8.6",
-        "@nrwl/devkit": "15.3.0",
+        "@nrwl/devkit": "15.5.0",
         "@nrwl/nx-cloud": "14.7.0",
         "@nrwl/tao": "14.8.6",
         "@nrwl/workspace": "14.8.6",
