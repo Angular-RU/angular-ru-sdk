@@ -53,7 +53,7 @@ export class AppModule {}
 @Component({
     //...
     template: `
-        {{ data | deepPath: 'a.b.c' }}
+        {{ data | deepPath : 'a.b.c' }}
     ` // view: 'hello'
 })
 export class AppComponent {
@@ -76,7 +76,7 @@ export class AppModule {}
 @Component({
     //...
     template: `
-        {{ data | defaultValue: '-' }}
+        {{ data | defaultValue : '-' }}
     ` // view: '-'
 })
 export class AppComponent {
@@ -307,7 +307,7 @@ export class AppModule {}
 @Component({
     //...
     template: `
-        <div [innerHTML]="data | safe: 'html'"></div>
+        <div [innerHTML]="data | safe : 'html'"></div>
     `
 })
 export class AppComponent {
@@ -445,7 +445,7 @@ export class AppModule {}
 @Component({
     //...
     template: `
-        {{ 'a' | entrySingleSet: setList }}
+        {{ 'a' | entrySingleSet : setList }}
     ` // true
 })
 export class AppComponent {
@@ -468,7 +468,7 @@ export class AppModule {}
 @Component({
     //...
     template: `
-        {{ 'hello word' | markByFilter: filter }}
+        {{ 'hello word' | markByFilter : filter }}
     ` // hello <span style="background: #ffdd2d">world</span>
 })
 export class AppComponent {
@@ -491,7 +491,7 @@ export class AppModule {}
 @Component({
     // ...
     template: `
-        {{ entity | displayItem: 'value.name' }}
+        {{ entity | displayItem : 'value.name' }}
     ` // A
 })
 export class AppComponent {
@@ -539,7 +539,7 @@ export class AppModule {}
 @Component({
     //...
     template: `
-        <div [ngClass]="'some-class' | mergeCssClasses: ['class-a', 'class-b']:{ enabled: isEnabled }">
+        <div [ngClass]="'some-class' | mergeCssClasses : ['class-a', 'class-b'] : { enabled: isEnabled }">
             <!--
             result:
             {
@@ -592,7 +592,7 @@ export class AppModule {}
 @Component({
     //...
     template: `
-        <p [innerHTML]="[1, 2] | join: { separator: '<br>' }"></p>
+        <p [innerHTML]="[1, 2] | join : { separator: '<br>' }"></p>
         <!-- result html: 1<br>2 -->
     `
 })
@@ -614,7 +614,7 @@ export class AppModule {}
     template: `
         <p
             [innerHTML]="
-                [{ a: 1 }, { a: 2 }, { a: 3 }, { a: 4 }] | join: { separator: '::', mapTransformer: transformer }
+                [{ a: 1 }, { a: 2 }, { a: 3 }, { a: 4 }] | join : { separator: '::', mapTransformer: transformer }
             "
         ></p>
         <!-- result html: 1 :: 10 :: 11 :: 100 -->
@@ -665,7 +665,7 @@ export class AppModule {}
 @Component({
     //...
     template: `
-        <pre>{{ objects | filterUnique: 'name' | json }}</pre>
+        <pre>{{ objects | filterUnique : 'name' | json }}</pre>
         <!-- [{ name: 'a'}, { name: 'b'}] -->
 
         <pre>{{ numbers | filterUnique | json }}</pre>
@@ -694,7 +694,7 @@ type SomeType = { a: number };
 @Component({
     //...
     template: `
-        <p *ngIf="notTyped | typeAs: typeSample as typed">
+        <p *ngIf="notTyped | typeAs : typeSample as typed">
             {{ typed.a }}
             <!-- OK -->
             {{ typed.b }}
@@ -722,9 +722,9 @@ export class AppModule {}
 @Component({
     //...
     template: `
-        <p>{{ someArray | at: 0 }}</p>
+        <p>{{ someArray | at : 0 }}</p>
         <!-- "first" -->
-        <p>{{ someArray | at: -1 }}</p>
+        <p>{{ someArray | at : -1 }}</p>
         <!-- "last" -->
     `
 })
@@ -780,8 +780,8 @@ export class AppModule {}
 @Component({
     //...
     template: `
-        <p *ngIf="someArray | includes: 'first'">first</p>
-        <p *ngIf="someArray | includes: 'fourth'">
+        <p *ngIf="someArray | includes : 'first'">first</p>
+        <p *ngIf="someArray | includes : 'fourth'">
             <!-- this will not appear -->
             fourth
         </p>
@@ -806,8 +806,8 @@ export class AppModule {}
 @Component({
     //...
     template: `
-        <p *ngIf="someSet | has: 'first'">first</p>
-        <p *ngIf="someSet | has: 'fourth'">
+        <p *ngIf="someSet | has : 'first'">first</p>
+        <p *ngIf="someSet | has : 'fourth'">
             <!-- this will not appear -->
             fourth
         </p>
@@ -854,7 +854,7 @@ export class AppModule {}
 @Component({
     //...
     template: `
-        {{ numberVal | declinationOfNumber: ['арбуз', 'арбуза', 'арбузов'] }}
+        {{ numberVal | declinationOfNumber : ['арбуз', 'арбуза', 'арбузов'] }}
     `
 })
 export class AppComponent {
