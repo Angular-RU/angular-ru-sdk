@@ -5,5 +5,8 @@
         "paths": {
             "@angular-ru/cdk/*": ["./cdk/*/public_api.ts"]
         }
+    },
+    "angularCompilerOptions": {
+        "compilationMode": "partial"
     }
 }
