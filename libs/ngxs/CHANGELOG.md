@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.1.1](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/ngxs@14.1.0...@angular-ru/ngxs@14.1.1) (2023-01-16)
+
+### Bug Fixes
+
+-   use compilationMode `partial` for libraries [#1409](https://github.com/Angular-RU/angular-ru-sdk/issues/1409)
+    ([#1410](https://github.com/Angular-RU/angular-ru-sdk/issues/1410))
+    ([178c7b4](https://github.com/Angular-RU/angular-ru-sdk/commit/178c7b4bdca2c9bedc0a43d446deb08e468da542))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [14.1.0](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/ngxs@14.0.3...@angular-ru/ngxs@14.1.0) (2023-01-05)
 
 ### Features

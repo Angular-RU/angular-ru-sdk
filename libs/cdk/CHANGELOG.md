@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.9.0](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.8.0...@angular-ru/cdk@14.9.0) (2023-01-16)
+
+### Bug Fixes
+
+-   use compilationMode `partial` for libraries [#1409](https://github.com/Angular-RU/angular-ru-sdk/issues/1409)
+    ([#1410](https://github.com/Angular-RU/angular-ru-sdk/issues/1410))
+    ([178c7b4](https://github.com/Angular-RU/angular-ru-sdk/commit/178c7b4bdca2c9bedc0a43d446deb08e468da542))
+
+### Features
+
+-   upgrade ngx-mask
+    ([e6e9db3](https://github.com/Angular-RU/angular-ru-sdk/commit/e6e9db3bfc0a3c5ab5868d4f947719be0afabb66))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [14.8.0](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.7.0...@angular-ru/cdk@14.8.0) (2023-01-05)
 
 ### Features
