@@ -78,7 +78,7 @@ inject(A);
 ```typescript
 @Component({
     template: `
-        <ng-container *ngFor="let item of data | keyvalue: compare"></ng-container>
+        <ng-container *ngFor="let item of data | keyvalue : compare"></ng-container>
     `
 })
 export class MyComponent {
