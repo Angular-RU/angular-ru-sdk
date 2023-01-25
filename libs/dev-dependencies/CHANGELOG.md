@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.0.5](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/dev-dependencies@14.0.4...@angular-ru/dev-dependencies@14.0.5) (2023-01-25)
+
+### Bug Fixes
+
+-   downgrade @nrwl/devkit to version 15.3.0
+    ([c225500](https://github.com/Angular-RU/angular-ru-sdk/commit/c2255000ad452889f7e3722b063458c1d66f8eb7))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [14.0.4](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/dev-dependencies@14.0.3...@angular-ru/dev-dependencies@14.0.4) (2022-12-07)
 
 **Note:** Version bump only for package @angular-ru/dev-dependencies
