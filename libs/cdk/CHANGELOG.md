@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.9.2](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.9.1...@angular-ru/cdk@14.9.2) (2023-01-26)
+
+### Bug Fixes
+
+-   make selection in table work on command key on Mac
+    ([#1411](https://github.com/Angular-RU/angular-ru-sdk/issues/1411))
+    ([4f40339](https://github.com/Angular-RU/angular-ru-sdk/commit/4f4033988c6dd85704caad7ba16d6f3f65a2c42d))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [14.9.1](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.9.0...@angular-ru/cdk@14.9.1) (2023-01-25)
 
 **Note:** Version bump only for package @angular-ru/cdk
