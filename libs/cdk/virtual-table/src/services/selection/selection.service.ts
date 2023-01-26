@@ -1,6 +1,6 @@
 import { Injectable, NgZone, OnDestroy } from '@angular/core';
 import { Fn, Nullable, PlainObjectOf, PrimaryKey } from '@angular-ru/cdk/typings';
-import { checkValueIsEmpty, isNil } from '@angular-ru/cdk/utils';
+import { checkValueIsEmpty, isMacOS, isNil } from '@angular-ru/cdk/utils';
 import { Subject } from 'rxjs';
 
 import { ProduceDisableFn } from '../../interfaces/table-builder.external';
@@ -92,14 +92,14 @@ export class SelectionService<T> implements OnDestroy {
         }
 
         const rows: T[] = this.rows ?? [];
-        const { shiftKey, ctrlKey }: MouseEvent = event;
+        const { shiftKey, ctrlKey, metaKey }: MouseEvent = event;
         const index: number = rows.findIndex(
             (item: T): boolean => ((item as any) ?? ({} as T))[this.primaryKey] === (row ?? {})[this.primaryKey]
         );
 
         if (shiftKey) {
             this.multipleSelectByShiftKeydown(index);
-        } else if (ctrlKey) {
+        } else if (isMacOS() ? metaKey : ctrlKey) {
             this.multipleSelectByCtrlKeydown(row, index);
         } else {
             this.singleSelect(row, index);

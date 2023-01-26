@@ -23,6 +23,7 @@ export { isBoolean } from './is-boolean';
 export { isFalse } from './is-false';
 export { isFalsy } from './is-falsy';
 export { isIE } from './is-ie';
+export { isMacOS } from './is-mac-os';
 export { isNil } from './is-nil';
 export { isNotNil } from './is-not-nil';
 export { isTrue } from './is-true';
