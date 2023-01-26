@@ -15,6 +15,7 @@ import {
     fallbackIfEmpty,
     isBoolean,
     isIE,
+    isMacOS,
     isNil,
     isNotNil,
     parseXmlFromString,
@@ -130,6 +131,11 @@ describe('[TEST]: Common utils', () => {
 
     it('checkSomeValueIsEmpty should return true for a set of empty values', () =>
         expect(checkSomeValueIsEmpty('', undefined, null)).toBe(true));
+
+    it('isMacOS should return true if user agent shows that user has MacOS and false if otherwise', () => {
+        expect(isMacOS({ userAgent: `Mac` } as unknown as Navigator)).toBeTruthy();
+        expect(isMacOS({ userAgent: `Linux` } as unknown as Navigator)).toBeFalsy();
+    });
 
     describe('[TEST]: checkSomeValueIsTrue', () => {
         it('should return true if any item has value: "true"', () => {
