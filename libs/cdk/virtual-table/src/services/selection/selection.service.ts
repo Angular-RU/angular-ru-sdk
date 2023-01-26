@@ -1,9 +1,8 @@
 import { Injectable, NgZone, OnDestroy } from '@angular/core';
 import { Fn, Nullable, PlainObjectOf, PrimaryKey } from '@angular-ru/cdk/typings';
-import { checkValueIsEmpty, isNil } from '@angular-ru/cdk/utils';
+import { checkValueIsEmpty, isMacOS, isNil } from '@angular-ru/cdk/utils';
 import { Subject } from 'rxjs';
 
-import { isMacOS } from '../../../../utils/src/is-mac-os';
 import { ProduceDisableFn } from '../../interfaces/table-builder.external';
 import { KeyType, RowId, SelectionStatus } from '../../interfaces/table-builder.internal';
 import { SelectionMap } from './selection';
