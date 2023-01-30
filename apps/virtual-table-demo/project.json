@@ -60,7 +60,8 @@
                 "development": {
                     "browserTarget": "virtual-table-demo:build:development"
                 }
-            }
+            },
+            "defaultConfiguration": "development"
         }
     }
 }
