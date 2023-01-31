@@ -14,7 +14,7 @@
             *ngIf="item"
             #parent
             class="table-grid__cell table-grid__cell--body"
-            [ngClass]="columnSchema?.td?.class | mergeCssClasses: rowCssClasses[item[primaryKey!]]"
+            [ngClass]="columnSchema?.td?.class | mergeCssClasses : rowCssClasses[item[primaryKey!]]"
             [ngStyle]="columnSchema?.td?.style || []"
             [style.transform]="'translateY(' + virtualIndex.offsetTop + 'px)'"
             [style.min-height.px]="columnSchema?.td?.height || clientRowHeight"
@@ -25,7 +25,7 @@
             [class.table-grid__cell--enable-selection]="enableSelection"
             [class.table-grid__cell--selected]="selectionEntries[item[primaryKey!]]"
             [class.table-grid__cell--text-bold]="columnSchema?.td?.textBold"
-            [class.table-grid__cell--disable]="item | disableRow: produceDisableFn"
+            [class.table-grid__cell--disable]="item | disableRow : produceDisableFn"
             (selectstart)="(canSelectTextInTable)"
             (contextmenu)="openContextMenu($event, columnSchema?.key, item)"
             (click)="handleOnClick(item, columnSchema?.key!, $event, columnSchema?.td?.onClick)"

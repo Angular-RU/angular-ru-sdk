@@ -14,8 +14,8 @@
                 $implicit:
                     columnSchema?.td?.context === contextType.CELL
                         ? columnSchema?.td?.useDeepPath && !disableDeepPath
-                            ? (item | deepPath: columnSchema?.key:columnSchema?.stub)
-                            : (item![$castKey(columnSchema?.key)] | defaultValue: columnSchema?.stub)
+                            ? (item | deepPath : columnSchema?.key : columnSchema?.stub)
+                            : (item![$castKey(columnSchema?.key)] | defaultValue : columnSchema?.stub)
                         : item
             }"
         ></ng-template>
@@ -30,16 +30,16 @@
                 [key]="columnSchema?.key"
                 [text]="
                     columnSchema?.td?.useDeepPath && !disableDeepPath
-                        ? (item | deepPath: columnSchema?.key:columnSchema?.stub)
-                        : (item![$castKey(columnSchema?.key)] | defaultValue: columnSchema?.stub)
+                        ? (item | deepPath : columnSchema?.key : columnSchema?.stub)
+                        : (item![$castKey(columnSchema?.key)] | defaultValue : columnSchema?.stub)
                 "
             ></ngx-filter-viewer>
         </ng-template>
         <ng-template #simple>
             {{
                 columnSchema?.td?.useDeepPath && !disableDeepPath
-                    ? (item | deepPath: columnSchema?.key:columnSchema?.stub)
-                    : (item![$castKey(columnSchema?.key)] | defaultValue: columnSchema?.stub)
+                    ? (item | deepPath : columnSchema?.key : columnSchema?.stub)
+                    : (item![$castKey(columnSchema?.key)] | defaultValue : columnSchema?.stub)
             }}
         </ng-template>
     </ng-template>
