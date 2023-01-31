@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.10.0](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.9.2...@angular-ru/cdk@14.10.0) (2023-01-31)
+
+### Features
+
+-   make it possible to use column headers with dots ([#1424](https://github.com/Angular-RU/angular-ru-sdk/issues/1424))
+    ([2444504](https://github.com/Angular-RU/angular-ru-sdk/commit/24445047bc72dff1264034bb11f2742ebc81ec0a))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [14.9.2](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.9.1...@angular-ru/cdk@14.9.2) (2023-01-26)
 
 ### Bug Fixes
