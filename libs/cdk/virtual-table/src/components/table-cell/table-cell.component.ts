@@ -42,6 +42,7 @@ export class TableCellComponent<T> implements OnDestroy {
     @Input('column-schema') public columnSchema: Nullable<ColumnsSchema> = null;
     @Input('enable-filtering') public enableFiltering: boolean = false;
     @Input('viewport-info') public viewportInfo: Nullable<ViewPortInfo> = null;
+    @Input('disable-deep-path') public disableDeepPath: boolean = false;
     public contextType: typeof ImplicitContext = ImplicitContext;
 
     constructor(public readonly cd: ChangeDetectorRef, private readonly ngZone: NgZone) {}

@@ -13,7 +13,7 @@
             [ngTemplateOutletContext]="{
                 $implicit:
                     columnSchema?.td?.context === contextType.CELL
-                        ? columnSchema?.td?.useDeepPath
+                        ? columnSchema?.td?.useDeepPath && !disableDeepPath
                             ? (item | deepPath : columnSchema?.key : columnSchema?.stub)
                             : (item![$castKey(columnSchema?.key)] | defaultValue : columnSchema?.stub)
                         : item
@@ -29,7 +29,7 @@
                 [index]="index"
                 [key]="columnSchema?.key"
                 [text]="
-                    columnSchema?.td?.useDeepPath
+                    columnSchema?.td?.useDeepPath && !disableDeepPath
                         ? (item | deepPath : columnSchema?.key : columnSchema?.stub)
                         : (item![$castKey(columnSchema?.key)] | defaultValue : columnSchema?.stub)
                 "
@@ -37,7 +37,7 @@
         </ng-template>
         <ng-template #simple>
             {{
-                columnSchema?.td?.useDeepPath
+                columnSchema?.td?.useDeepPath && !disableDeepPath
                     ? (item | deepPath : columnSchema?.key : columnSchema?.stub)
                     : (item![$castKey(columnSchema?.key)] | defaultValue : columnSchema?.stub)
             }}

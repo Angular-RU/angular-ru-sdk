@@ -102,6 +102,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
     @Input('vertical-border') public verticalBorder: boolean = true;
     @Input('enable-selection') public enableSelection: boolean | string = false;
     @Input('enable-filtering') public enableFiltering: boolean | string = false;
+    @Input('disable-deep-path') public disableDeepPath: boolean = false;
     @Input('produce-disable-fn') public produceDisableFn: ProduceDisableFn<T> = null;
     @Input('row-css-classes') public rowCssClasses: PlainObjectOf<string[]> = {};
     @Input('schema-columns') public schemaColumns: Nullable<TableUpdateSchema> = null;

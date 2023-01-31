@@ -49,6 +49,7 @@ export class TableTbodyComponent<T> {
     @Input('virtual-indexes') public virtualIndexes: VirtualIndex[] = [];
     @Input('enable-selection') public enableSelection: boolean = false;
     @Input('enable-filtering') public enableFiltering: boolean = false;
+    @Input('disable-deep-path') public disableDeepPath: boolean = false;
     @Input('table-viewport') public tableViewport: Nullable<HTMLElement> = null;
     @Input('column-virtual-height') public columnVirtualHeight: Nullable<number> = null;
     @Input('selection-entries') public selectionEntries: PlainObjectOf<boolean> = {};
