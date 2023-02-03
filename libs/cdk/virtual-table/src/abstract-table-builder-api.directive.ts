@@ -83,7 +83,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
     private _headHeight: Nullable<number> = null;
     private _rowHeight: Nullable<number> = null;
     protected originalSource: Nullable<T[]> = null;
-    protected renderedCountKeys: Nullable<number> = null;
+    protected renderedKeys: string[] = [];
     protected isDragMoving: boolean = false;
     @Input() public height: Nullable<string | number> = null;
     @Input() public width: Nullable<string | number> = null;
@@ -430,8 +430,8 @@ export abstract class AbstractTableBuilderApiDirective<T>
      * @description: returns the number of keys in the model
      * @example: <table-builder [source]=[{ id: 1, name: 'hello' }, ...] /> a value of 2 will be returned
      */
-    protected getCountKeys(): number {
-        return Object.keys(this.firstItem).length;
+    protected getKeys(): string[] {
+        return Object.keys(this.firstItem);
     }
 
     /**

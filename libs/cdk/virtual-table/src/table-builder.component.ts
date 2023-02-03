@@ -20,7 +20,7 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { fadeInLinearAnimation } from '@angular-ru/cdk/animations';
-import { hasItems } from '@angular-ru/cdk/array';
+import { hasItems, include } from '@angular-ru/cdk/array';
 import { coerceBoolean } from '@angular-ru/cdk/coercion';
 import { DeepPartial, Nullable, PlainObjectOf, SortOrderType } from '@angular-ru/cdk/typings';
 import { checkValueIsFilled, detectChanges, isFalse, isFalsy, isNil, isNotNil } from '@angular-ru/cdk/utils';
@@ -176,10 +176,6 @@ export class TableBuilderComponent<T>
         return this.scrollContainer.nativeElement.scrollTop;
     }
 
-    private get nonIdenticalStructure(): boolean {
-        return this.sourceExists && this.getCountKeys() !== this.renderedCountKeys;
-    }
-
     @HostListener('contextmenu', ['$event'])
     public openContextMenu($event: MouseEvent): void {
         if (isNotNil(this.contextMenuTemplate)) {
@@ -213,7 +209,7 @@ export class TableBuilderComponent<T>
             this.sortable.setSkipSort(this.isSkippedInternalSort);
         }
 
-        if (this.nonIdenticalStructure) {
+        if (this.checkIfKeysAreDifferent()) {
             this.preRenderTable();
         } else if (TableSimpleChanges.SOURCE_KEY in changes && this.isRendered) {
             this.preSortAndFilterTable();
@@ -542,6 +538,13 @@ export class TableBuilderComponent<T>
             .subscribe((): void => this.calculateColumnWidthSummary());
     }
 
+    private checkIfKeysAreDifferent(): boolean {
+        return (
+            this.sourceExists &&
+            (this.getKeys().length !== this.renderedKeys.length || !this.renderedKeys.every(include(this.getKeys())))
+        );
+    }
+
     private createDiffIndexes(): void {
         this.viewPortInfo.diffIndexes = this.viewPortInfo.oldIndexes
             ? this.viewPortInfo.oldIndexes.filter((index: number): boolean =>
@@ -637,7 +640,7 @@ export class TableBuilderComponent<T>
 
     private preRenderTable(): void {
         this.tableViewportChecked = false;
-        this.renderedCountKeys = this.getCountKeys();
+        this.renderedKeys = this.getKeys();
         this.customModelColumnsKeys = this.generateCustomModelColumnsKeys();
         this.modelColumnKeys = this.generateModelColumnKeys();
         this.setSource(this.source);
