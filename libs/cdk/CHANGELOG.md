@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.10.1](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.10.0...@angular-ru/cdk@14.10.1) (2023-02-03)
+
+### Bug Fixes
+
+-   make table rerender when table keys change ([#1425](https://github.com/Angular-RU/angular-ru-sdk/issues/1425))
+    ([04974fb](https://github.com/Angular-RU/angular-ru-sdk/commit/04974fb50184ca9d3e39800320ef14dda7ea2c57))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [14.10.0](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.9.2...@angular-ru/cdk@14.10.0) (2023-01-31)
 
 ### Features
