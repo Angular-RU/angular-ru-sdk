@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.0.7](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/eslint-config-enterprise@14.0.6...@angular-ru/eslint-config-enterprise@14.0.7) (2023-02-24)
+
+### Bug Fixes
+
+-   **eslint-config-enterprise:** update eslint-plugin-html
+    ([#1440](https://github.com/Angular-RU/angular-ru-sdk/issues/1440))
+    ([d471521](https://github.com/Angular-RU/angular-ru-sdk/commit/d4715213a0440835ff3b638f33b857f76c3fda6e))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [14.0.6](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/eslint-config-enterprise@14.0.5...@angular-ru/eslint-config-enterprise@14.0.6) (2023-01-25)
 
 **Note:** Version bump only for package @angular-ru/eslint-config-enterprise
