@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.0.8](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/prettier@14.0.7...@angular-ru/prettier@14.0.8) (2023-03-21)
+
+**Note:** Version bump only for package @angular-ru/prettier
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [14.0.7](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/prettier@14.0.6...@angular-ru/prettier@14.0.7) (2023-02-25)
 
 **Note:** Version bump only for package @angular-ru/prettier
