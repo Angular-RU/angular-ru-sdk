@@ -32,6 +32,6 @@ jobs:
           MERGE_LABELS: automerge
           UPDATE_METHOD: rebase
           MERGE_METHOD: rebase
-          BASE_BRANCHES: main
+          BASE_BRANCHES: master
           MERGE_FORKS: false
           MERGE_RETRIES: 3
