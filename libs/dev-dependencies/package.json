@@ -16,7 +16,7 @@
         "@types/node": "18.14.1",
         "husky": "8.0.3",
         "lint-staged": "13.1.2",
-        "ng-packagr": "13.3.0",
+        "ng-packagr": "15.2.2",
         "ts-node": "10.9.1"
     },
     "publishConfig": {
