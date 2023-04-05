@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
 import { Computed, DataAction, Payload } from '@angular-ru/ngxs/decorators';
 import { ensureDataStateContext, ensureSnapshot } from '@angular-ru/ngxs/internals';
-import { DataRepository, DataStateContext, PatchValue, StateValue } from '@angular-ru/ngxs/typings';
+import { DataRepository, DataStateContext, PatchValue } from '@angular-ru/ngxs/typings';
+import { Injectable } from '@angular/core';
 import { ActionType, StateContext } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
@@ -29,7 +29,7 @@ export abstract class AbstractNgxsDataRepository<T>
     }
 
     @DataAction()
-    public setState(@Payload('stateValue') stateValue: StateValue<T>): void {
+    public setState(@Payload('stateValue') stateValue: T): void {
         this.ctx.setState(stateValue);
     }
 
