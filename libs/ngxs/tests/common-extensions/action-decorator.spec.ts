@@ -60,7 +60,7 @@ describe('[TEST]: Action decorator', () => {
             message = (error as Error).message;
         }
 
-        expect(message).toBe('States must be decorated with @State() decorator');
+        expect(message).toBe('States must be decorated with @State() decorator, but "InvalidState" isn\'t.');
     });
 
     it(`don't should be working without provided meta information`, () => {
