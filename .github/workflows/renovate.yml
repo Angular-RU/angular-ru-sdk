@@ -11,7 +11,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3.5.0
       - name: Self-hosted Renovate
-        uses: renovatebot/github-action@v36.0.1
+        uses: renovatebot/github-action@v36.0.2
         with:
           configurationFile: libs/renovate/renovate.js
           token: ${{ secrets.ANGULAR_RU_BOT_PAT }}
