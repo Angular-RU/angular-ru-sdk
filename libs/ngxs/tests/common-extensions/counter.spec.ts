@@ -252,7 +252,7 @@ describe('[TEST]: CountState', () => {
         });
 
         it('should be correct works with withoutAction/withAction', () => {
-            const dispatched: number[] = [];
+            const dispatched: { type: string }[] = [];
 
             actions$
                 .pipe(ofActionDispatched({ type: '@count.withAction(val)' }))
