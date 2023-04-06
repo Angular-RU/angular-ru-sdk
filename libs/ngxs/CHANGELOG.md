@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.1.2](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/ngxs@14.1.1...@angular-ru/ngxs@14.1.2) (2023-04-06)
+
+### Bug Fixes
+
+-   **ngxs:** upgrade to NGXS 3.8 ([#1460](https://github.com/Angular-RU/angular-ru-sdk/issues/1460))
+    ([87be6b9](https://github.com/Angular-RU/angular-ru-sdk/commit/87be6b9cc0ba376aa2469c37fbacd2ba4f7c004d))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [14.1.1](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/ngxs@14.1.0...@angular-ru/ngxs@14.1.1) (2023-01-16)
 
 ### Bug Fixes
