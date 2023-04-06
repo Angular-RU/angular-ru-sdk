@@ -1,6 +1,9 @@
 import { Inject, Injectable, Injector, NgZone } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { ɵNGXS_STATE_CONTEXT_FACTORY, ɵNGXS_STATE_FACTORY } from '@ngxs/store/internals';
+import {
+    ɵNGXS_STATE_CONTEXT_FACTORY as NGXS_STATE_CONTEXT_FACTORY,
+    ɵNGXS_STATE_FACTORY as NGXS_STATE_FACTORY
+} from '@ngxs/store/internals';
 
 import { NgxsDataSequence } from './ngxs-data-computed-stream.service';
 
@@ -15,8 +18,8 @@ export class NgxsDataInjector {
 
     constructor(
         injector: Injector,
-        @Inject(ɵNGXS_STATE_FACTORY) stateFactory: unknown | any,
-        @Inject(ɵNGXS_STATE_CONTEXT_FACTORY) stateContextFactory: unknown | any
+        @Inject(NGXS_STATE_FACTORY) stateFactory: unknown | any,
+        @Inject(NGXS_STATE_CONTEXT_FACTORY) stateContextFactory: unknown | any
     ) {
         NgxsDataInjector.store = injector.get<Store>(Store);
         NgxsDataInjector.ngZone = injector.get<NgZone>(NgZone);
