@@ -1,6 +1,9 @@
 import { Inject, Injectable, Injector, NgZone } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { NGXS_STATE_CONTEXT_FACTORY, NGXS_STATE_FACTORY } from '@ngxs/store/internals';
+import {
+    ɵNGXS_STATE_CONTEXT_FACTORY as NGXS_STATE_CONTEXT_FACTORY,
+    ɵNGXS_STATE_FACTORY as NGXS_STATE_FACTORY
+} from '@ngxs/store/internals';
 
 import { NgxsDataSequence } from './ngxs-data-computed-stream.service';
 

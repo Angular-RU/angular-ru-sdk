@@ -207,7 +207,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
 
         expect(result).toBeNull();
         expect(finalized).toBeNull();
-        expect(count.getState()).toBe(0);
+        expect(count.getState()).toBe(20);
 
         // eslint-disable-next-line rxjs/no-ignored-observable
         count.asyncSetStateAction();
@@ -220,7 +220,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
 
         expect(result).toBeNull();
         expect(finalized).toBeNull();
-        expect(count.getState()).toBe(0);
+        expect(count.getState()).toBe(20);
 
         count
             .asyncSetStateAction()
@@ -279,9 +279,9 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
 
         tick(2000);
 
-        expect(result).toBe(120);
+        expect(result).toBe(140);
         expect(finalized).toBe(true);
-        expect(count.getState()).toBe(20);
+        expect(count.getState()).toBe(40);
     }));
 
     it('should be correct forkJoin', fakeAsync(() => {
@@ -297,7 +297,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
 
         tick(2000);
 
-        expect(count.getState()).toBe(0);
+        expect(count.getState()).toBe(40);
         expect(result).toEqual([]);
 
         forkJoin([count.asyncSetStateAction(), count.asyncIncrementAction()])
