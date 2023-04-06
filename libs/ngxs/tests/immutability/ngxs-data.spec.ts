@@ -253,9 +253,9 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
         // eslint-disable-next-line @typescript-eslint/quotes
         expect(message).toBe("Cannot assign to read only property '0' of object '[object Array]'");
 
-        const immutable: Immutable<ListModel[]> = [{ a: 5, b: 7 }];
+        const list: ListModel[] = [{ a: 5, b: 7 }];
 
-        state.setState(immutable);
+        state.setState(list);
 
         expect(state.getState()).toEqual([{ a: 5, b: 7 }]);
     });

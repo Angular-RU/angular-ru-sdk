@@ -141,6 +141,8 @@ describe('[TEST]: Abstract ngxs data repository', () => {
                 'ngxsOnChanges: a -> {"previousValue":{"value":5},"currentValue":{"value":1},"firstChange":false}',
                 'state(a): set value - 1',
                 'ngxsDataAfterReset: a',
+                'ngxsOnChanges: a -> {"previousValue":{"value":1},"currentValue":{"value":10},"firstChange":false}',
+                'ngxsDataDoCheck: a',
                 'state(a): set value - 10'
             ]);
         })
@@ -198,6 +200,8 @@ describe('[TEST]: Abstract ngxs data repository', () => {
                 'ngxsOnChanges: b -> {"previousValue":{"value":5},"currentValue":{"value":1},"firstChange":false}',
                 'state(b): set value - 1',
                 'ngxsDataAfterReset: b',
+                'ngxsOnChanges: b -> {"previousValue":{"value":1},"currentValue":{"value":10},"firstChange":false}',
+                'ngxsDataDoCheck: b',
                 'state(b): set value - 10'
             ]);
         })
