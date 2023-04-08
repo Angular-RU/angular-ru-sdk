@@ -1,7 +1,7 @@
+import { Injectable } from '@angular/core';
 import { Computed, DataAction, Payload } from '@angular-ru/ngxs/decorators';
 import { ensureDataStateContext, ensureSnapshot } from '@angular-ru/ngxs/internals';
 import { DataRepository, DataStateContext, PatchValue } from '@angular-ru/ngxs/typings';
-import { Injectable } from '@angular/core';
 import { ActionType, StateContext } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
