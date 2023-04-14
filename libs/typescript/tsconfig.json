@@ -48,7 +48,6 @@
         "strictBindCallApply": true,
         "strictPropertyInitialization": true,
         "noStrictGenericChecks": false,
-        "preserveConstEnums": false,
         "noUnusedParameters": true,
         "noUnusedLocals": true,
         "noUncheckedIndexedAccess": true,
