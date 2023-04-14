@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.0.3](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/typescript@14.0.2...@angular-ru/typescript@14.0.3) (2023-04-14)
+
+### Bug Fixes
+
+-   remove preserveConstEnums property
+    ([c0154ba](https://github.com/Angular-RU/angular-ru-sdk/commit/c0154ba3d60e592c9da8d6cb6aa3a9b77cca593c))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [14.0.2](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/typescript@14.0.1...@angular-ru/typescript@14.0.2) (2022-10-25)
 
 **Note:** Version bump only for package @angular-ru/typescript
