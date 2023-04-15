@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.0.7](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/commitlint@14.0.6...@angular-ru/commitlint@14.0.7) (2023-04-15)
+
+**Note:** Version bump only for package @angular-ru/commitlint
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [14.0.6](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/commitlint@14.0.5...@angular-ru/commitlint@14.0.6) (2023-04-14)
 
 **Note:** Version bump only for package @angular-ru/commitlint
