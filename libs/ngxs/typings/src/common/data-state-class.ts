@@ -13,7 +13,7 @@ export interface DataStateClass<T = any, U = any> extends StateClassInternal<T, 
 export type StateClassDecorator = (stateClass: DataStateClass) => void;
 
 export type StateArgumentDecorator = (
-    stateClass: DataStateClass,
+    stateClass: Object,
     propertyKey: string | symbol,
     parameterIndex: number
 ) => void;
