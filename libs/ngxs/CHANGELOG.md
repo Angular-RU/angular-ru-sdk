@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.1.4](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/ngxs@14.1.3...@angular-ru/ngxs@14.1.4) (2023-05-17)
+
+### Bug Fixes
+
+-   **ngxs:** use object for data state type agument ([#1489](https://github.com/Angular-RU/angular-ru-sdk/issues/1489))
+    ([ebfc83d](https://github.com/Angular-RU/angular-ru-sdk/commit/ebfc83de45922eed863978496c3bd29606e1e0f9))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [14.1.3](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/ngxs@14.1.2...@angular-ru/ngxs@14.1.3) (2023-04-08)
 
 **Note:** Version bump only for package @angular-ru/ngxs
