@@ -25,7 +25,7 @@ found in the Angular.
 
 ---
 
-### Infrastructure
+### Infra
 
 #### Sharable configs
 
