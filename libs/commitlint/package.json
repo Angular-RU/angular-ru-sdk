@@ -9,9 +9,9 @@
     "author": "angular-ru@yandex.ru",
     "main": "index.js",
     "dependencies": {
-        "@commitlint/cli": "17.6.1",
-        "@commitlint/config-angular": "17.6.1",
-        "@commitlint/config-conventional": "17.6.1"
+        "@commitlint/cli": "17.7.1",
+        "@commitlint/config-angular": "17.7.0",
+        "@commitlint/config-conventional": "17.7.0"
     },
     "publishConfig": {
         "access": "public"
