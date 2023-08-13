@@ -62,7 +62,7 @@
         "@ngxs/logger-plugin": "3.8.1",
         "@ngxs/store": "3.8.1",
         "class-transformer": "0.5.1",
-        "cpy-cli": "4.2.0",
+        "cpy-cli": "5.0.0",
         "lerna": "^6.6.1",
         "make-dir-cli": "3.1.0",
         "ngx-mask": "14.2.4",
