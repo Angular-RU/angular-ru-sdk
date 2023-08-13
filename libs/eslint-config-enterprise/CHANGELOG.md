@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.0.14](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/eslint-config-enterprise@14.0.13...@angular-ru/eslint-config-enterprise@14.0.14) (2023-08-13)
+
+**Note:** Version bump only for package @angular-ru/eslint-config-enterprise
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [14.0.13](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/eslint-config-enterprise@14.0.12...@angular-ru/eslint-config-enterprise@14.0.13) (2023-08-10)
 
 **Note:** Version bump only for package @angular-ru/eslint-config-enterprise
