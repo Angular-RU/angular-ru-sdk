@@ -1,0 +1,29 @@
+{
+    "root": "libs/type-declarations/",
+    "sourceRoot": "libs/type-declarations/",
+    "projectType": "library",
+    "tags": ["scope:libs"],
+    "targets": {
+        "build": {
+            "builder": "@nrwl/workspace:run-commands",
+            "options": {
+                "parallel": false,
+                "commands": [
+                    "rimraf  ./node_modules/@angular-ru/type-declarations",
+                    "make-dir ./node_modules/@angular-ru/type-declarations",
+                    "cpy ./libs/type-declarations/index.d.ts ./node_modules/@angular-ru/type-declarations --flat",
+                    "cpy ./libs/type-declarations/package.json ./node_modules/@angular-ru/type-declarations --flat",
+                    "cpy ./libs/type-declarations/README.md ./node_modules/@angular-ru/type-declarations --flat"
+                ]
+            },
+            "outputs": ["./node_modules/@angular-ru/type-declarations"],
+            "dependsOn": [{ "target": "build", "projects": "dependencies" }]
+        },
+        "publish": {
+            "builder": "@nrwl/workspace:run-commands",
+            "options": {
+                "command": "npm publish ./node_modules/@angular-ru/type-declarations --ignore-scripts || echo \"already published\""
+            }
+        }
+    }
+}

@@ -1,5 +1,3 @@
-import { Nullable } from '@angular-ru/cdk/typings';
-
 import { isNil } from './is-nil';
 import { isNotNil } from './is-not-nil';
 
@@ -17,13 +15,13 @@ export function copyHtml(plainHtml: string): void {
 
     range.selectNode(element);
 
-    const selection: Nullable<Selection> = window.getSelection();
+    const selection: Selection | nil = window.getSelection();
 
     if (isNil(selection)) {
         throw new Error('Selection is not supported by this browser');
     }
 
-    const previousRange: Nullable<Range> = selection.rangeCount > 0 ? selection.getRangeAt(0) : null;
+    const previousRange: Range | nil = selection.rangeCount > 0 ? selection.getRangeAt(0) : null;
 
     selection.removeAllRanges();
     selection.addRange(range);

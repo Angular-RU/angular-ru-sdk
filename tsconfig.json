@@ -1,5 +1,5 @@
 {
     "extends": "./libs/typescript/tsconfig.json",
     "ts-node": { "compilerOptions": { "module": "commonjs" } },
-    "compilerOptions": { "types": ["node"], "module": "esnext" }
+    "compilerOptions": { "types": ["node", "../@angular-ru/type-declarations"], "module": "esnext" }
 }

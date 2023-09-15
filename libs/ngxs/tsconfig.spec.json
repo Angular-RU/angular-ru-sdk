@@ -2,7 +2,7 @@
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
         "baseUrl": "./",
-        "types": ["jest", "node"],
+        "types": ["jest", "node", "../@angular-ru/type-declarations"],
         "preserveConstEnums": true,
         "paths": {
             "@angular-ru/cdk/*": ["../cdk/*/src/public_api.ts"],
