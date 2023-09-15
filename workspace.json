@@ -19,6 +19,7 @@
         "prettier": "libs/prettier",
         "renovate": "libs/renovate",
         "typescript": "libs/typescript",
+        "type-declarations": "libs/type-declarations",
         ".platform": {
             "root": "./",
             "tags": ["scope:ignore"],

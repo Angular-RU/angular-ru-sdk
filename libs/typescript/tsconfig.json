@@ -65,7 +65,7 @@
         "lib": ["esnext", "dom"],
         "module": "esnext",
         "target": "es2015",
-        "types": [],
+        "types": ["../@angular-ru/type-declarations"],
         "forceConsistentCasingInFileNames": true,
         "allowSyntheticDefaultImports": true
     },
