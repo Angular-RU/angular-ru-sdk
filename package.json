@@ -12,11 +12,11 @@
         "./libs/*"
     ],
     "scripts": {
-        "clean": "nx clean .platform",
-        "format": "nx format:prettier .platform",
-        "graph": "nx dep-graph",
+        "clean": "npx nx clean .platform",
+        "format": "npx nx format:prettier .platform",
+        "graph": "npx nx dep-graph",
         "postinstall": "npx husky install && npx ngcc --async",
-        "lint": "nx format:eslint .platform"
+        "lint": "npx nx format:eslint .platform"
     },
     "commitlint": {
         "extends": [
