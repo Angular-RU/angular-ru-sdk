@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.0.20](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/dev-dependencies@14.0.19...@angular-ru/dev-dependencies@14.0.20) (2023-09-15)
+
+### Bug Fixes
+
+-   change lerna and nx versions for compatibility
+    ([6b0e158](https://github.com/Angular-RU/angular-ru-sdk/commit/6b0e158953b56f648f177b58b4eaf1f378629a61))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [14.0.19](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/dev-dependencies@14.0.18...@angular-ru/dev-dependencies@14.0.19) (2023-08-12)
 
 **Note:** Version bump only for package @angular-ru/dev-dependencies

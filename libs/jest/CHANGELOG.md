@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.1.0](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/jest@14.0.2...@angular-ru/jest@14.1.0) (2023-09-15)
+
+### Features
+
+-   add `type-declarations` lib with `nil` type ([#1487](https://github.com/Angular-RU/angular-ru-sdk/issues/1487))
+    ([#1505](https://github.com/Angular-RU/angular-ru-sdk/issues/1505))
+    ([86e0eda](https://github.com/Angular-RU/angular-ru-sdk/commit/86e0edad0e95f087ab9f19af4ef8c264fbd08e5d))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [14.0.2](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/jest@14.0.1...@angular-ru/jest@14.0.2) (2022-10-25)
 
 **Note:** Version bump only for package @angular-ru/jest

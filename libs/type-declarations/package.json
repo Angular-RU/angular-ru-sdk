@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/type-declarations",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "Additional utility type declarations to improve development experience",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/libs/type-declarations#readme",
     "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
