@@ -1,11 +1,11 @@
 {
-    "packages": [],
+    "$schema": "./node_modules/lerna/schemas/lerna-schema.json",
     "stream": true,
     "concurrency": 1,
     "npmClient": "npm",
     "changelog": true,
-    "useWorkspaces": true,
     "version": "independent",
+    "useWorkspaces": true,
     "command": {
         "version": {
             "allowBranch": "master",
