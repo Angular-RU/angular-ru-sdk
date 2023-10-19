@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.0.15](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/eslint-config-enterprise@14.0.14...@angular-ru/eslint-config-enterprise@14.0.15) (2023-10-19)
+
+### Bug Fixes
+
+-   remove private-abstract token from member ordering rule in eslint
+    ([#1510](https://github.com/Angular-RU/angular-ru-sdk/issues/1510))
+    ([809cff1](https://github.com/Angular-RU/angular-ru-sdk/commit/809cff167857becd9d7f53cd2d8806022b78cb37))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [14.0.14](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/eslint-config-enterprise@14.0.13...@angular-ru/eslint-config-enterprise@14.0.14) (2023-08-13)
 
 **Note:** Version bump only for package @angular-ru/eslint-config-enterprise
