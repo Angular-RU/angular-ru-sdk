@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.0.22](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/dev-dependencies@14.0.21...@angular-ru/dev-dependencies@14.0.22) (2023-10-19)
+
+**Note:** Version bump only for package @angular-ru/dev-dependencies
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [14.0.21](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/dev-dependencies@14.0.20...@angular-ru/dev-dependencies@14.0.21) (2023-10-18)
 
 **Note:** Version bump only for package @angular-ru/dev-dependencies
