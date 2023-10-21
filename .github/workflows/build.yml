@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Scan repo for find local actions
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js and Cache
         uses: ./.github/actions/nodejs
