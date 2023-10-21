@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.11.1](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.11.0...@angular-ru/cdk@14.11.1) (2023-10-21)
+
+### Bug Fixes
+
+-   some editings
+    ([8b69118](https://github.com/Angular-RU/angular-ru-sdk/commit/8b69118d1adebbb8f81a67b02a92ad6cb13813d0))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [14.11.0](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.10.1...@angular-ru/cdk@14.11.0) (2023-09-15)
 
 ### Features
