@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
-import { MatInputModule } from '@angular/material/input';
 import { BrowserModule, By } from '@angular/platform-browser';
 import { TrimInputModule } from '@angular-ru/cdk/directives';
 import { Nullable } from '@angular-ru/cdk/typings';
@@ -37,16 +35,8 @@ describe('[TEST]: Disabling trim Input', function () {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [
-                BrowserModule,
-                ReactiveFormsModule,
-                FormsModule,
-                MatInputModule,
-                TrimInputModule,
-                NgxMaskModule.forRoot()
-            ],
-            declarations: [TestComponent],
-            providers: [{ provide: MATERIAL_SANITY_CHECKS, useValue: false }]
+            imports: [BrowserModule, ReactiveFormsModule, FormsModule, TrimInputModule, NgxMaskModule.forRoot()],
+            declarations: [TestComponent]
         }).compileComponents();
 
         fixture = TestBed.createComponent(TestComponent);

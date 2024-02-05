@@ -1,7 +1,6 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import {
     DeepPathPipeModule,
     DefaultValuePipeModule,
@@ -46,7 +45,6 @@ import { TableBuilderComponent } from './table-builder.component';
         DeepPathPipeModule,
         DefaultValuePipeModule,
         DragDropModule,
-        MatIconModule,
         MergeCssClassesPipeModule,
         SafePipeModule,
         IsFilledPipeModule

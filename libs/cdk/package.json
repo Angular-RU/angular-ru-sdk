@@ -1,12 +1,19 @@
 {
     "name": "@angular-ru/cdk",
-    "version": "14.11.2",
+    "version": "15.0.0",
     "description": "Angular-RU package",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/libs/cdk#readme",
     "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
     "repository": "https://github.com/Angular-RU/angular-ru-sdk",
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
+    "peerDependencies": {
+        "@angular/cdk": ">=13.0.0",
+        "@angular/common": ">=13.0.0",
+        "@angular/core": ">=13.0.0",
+        "@angular/forms": ">=13.0.0",
+        "@angular/router": ">=13.0.0"
+    },
     "publishConfig": {
         "access": "public"
     }

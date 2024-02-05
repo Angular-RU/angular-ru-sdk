@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
-import { MatInputModule } from '@angular/material/input';
 import { By } from '@angular/platform-browser';
 import { InputFilterModule } from '@angular-ru/cdk/directives';
 import { Nullable } from '@angular-ru/cdk/typings';
@@ -30,8 +28,7 @@ describe('[TEST]: inputFilter Config', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [ReactiveFormsModule, MatInputModule, InputFilterModule.forRoot({ default: /\d+/ })],
-            providers: [{ provide: MATERIAL_SANITY_CHECKS, useValue: false }],
+            imports: [ReactiveFormsModule, InputFilterModule.forRoot({ default: /\d+/ })],
             declarations: [TestComponent]
         }).compileComponents();
     });

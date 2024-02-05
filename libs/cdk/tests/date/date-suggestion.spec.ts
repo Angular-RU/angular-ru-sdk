@@ -1,12 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup } from '@angular/forms';
-import { DateAdapter, MATERIAL_SANITY_CHECKS, NativeDateModule } from '@angular/material/core';
 import {
     DateSuggestionComposer,
     DateSuggestionModule,
+    DayOfWeek,
     DEFAULT_SUGGESTION_STRATEGY_MAP,
     DefaultDateIntervalSuggestion,
     endOfDay,
+    FIRST_DAY_OF_WEEK,
     shiftDate,
     startOfDay
 } from '@angular-ru/cdk/date';
@@ -19,19 +20,20 @@ describe('[TEST]: Trim Input', () => {
 
     const mockToday: Date = new Date('28 Apr 2021 12:00:00');
     const mockFirstWeekdays = [
-        { firstDayOfWeekNumber: 0, firstDayOfWeek: new Date('25 Apr 2021 12:00:00') },
-        { firstDayOfWeekNumber: 1, firstDayOfWeek: new Date('26 Apr 2021 12:00:00') },
-        { firstDayOfWeekNumber: 2, firstDayOfWeek: new Date('27 Apr 2021 12:00:00') },
-        { firstDayOfWeekNumber: 3, firstDayOfWeek: new Date('28 Apr 2021 12:00:00') },
-        { firstDayOfWeekNumber: 4, firstDayOfWeek: new Date('22 Apr 2021 12:00:00') },
-        { firstDayOfWeekNumber: 5, firstDayOfWeek: new Date('23 Apr 2021 12:00:00') },
-        { firstDayOfWeekNumber: 6, firstDayOfWeek: new Date('24 Apr 2021 12:00:00') }
+        { firstDayOfWeekNumber: DayOfWeek.Sunday, firstDayOfWeek: new Date('25 Apr 2021 12:00:00') },
+        { firstDayOfWeekNumber: DayOfWeek.Monday, firstDayOfWeek: new Date('26 Apr 2021 12:00:00') },
+        { firstDayOfWeekNumber: DayOfWeek.Tuesday, firstDayOfWeek: new Date('27 Apr 2021 12:00:00') },
+        { firstDayOfWeekNumber: DayOfWeek.Wednesday, firstDayOfWeek: new Date('28 Apr 2021 12:00:00') },
+        { firstDayOfWeekNumber: DayOfWeek.Thursday, firstDayOfWeek: new Date('22 Apr 2021 12:00:00') },
+        { firstDayOfWeekNumber: DayOfWeek.Friday, firstDayOfWeek: new Date('23 Apr 2021 12:00:00') },
+        { firstDayOfWeekNumber: DayOfWeek.Saturday, firstDayOfWeek: new Date('24 Apr 2021 12:00:00') }
     ];
+    const firstDayOfWeekFactory = jest.fn();
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [DateSuggestionModule.forRoot(), NativeDateModule],
-            providers: [{ provide: MATERIAL_SANITY_CHECKS, useValue: false }]
+            imports: [DateSuggestionModule.forRoot()],
+            providers: [{ provide: FIRST_DAY_OF_WEEK, useFactory: firstDayOfWeekFactory }]
         }).compileComponents();
 
         composer = TestBed.inject(DateSuggestionComposer);
@@ -106,10 +108,8 @@ describe('[TEST]: Trim Input', () => {
     it.each(mockFirstWeekdays)(
         'set calendar week as interval (first day of week is %s)',
         ({ firstDayOfWeekNumber, firstDayOfWeek }) => {
-            const dateAdapter: DateAdapter<unknown> = TestBed.inject(DateAdapter);
-
             // mocking locale day of week
-            jest.spyOn(dateAdapter, 'getFirstDayOfWeek').mockImplementation(() => firstDayOfWeekNumber);
+            firstDayOfWeekFactory.mockImplementation(() => firstDayOfWeekNumber);
 
             // mocking today's week day
             jest.useFakeTimers('modern');
@@ -122,7 +122,7 @@ describe('[TEST]: Trim Input', () => {
                 dateFrom: startOfDay(firstDayOfWeek),
                 dateTo: endOfDay(mockToday)
             });
-            expect(form.getRawValue().dateFrom.getDay()).toBe(dateAdapter.getFirstDayOfWeek());
+            expect(form.getRawValue().dateFrom.getDay()).toBe(firstDayOfWeekNumber);
         }
     );
 });

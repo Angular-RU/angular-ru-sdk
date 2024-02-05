@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
-import { MatInputModule } from '@angular/material/input';
 import { BrowserModule, By } from '@angular/platform-browser';
 import { TrimInputModule } from '@angular-ru/cdk/directives';
 import { Nullable } from '@angular-ru/cdk/typings';
@@ -33,8 +31,7 @@ describe('[TEST]: Trim Input', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [BrowserModule, FormsModule, MatInputModule, TrimInputModule, NgxMaskModule.forRoot()],
-            providers: [{ provide: MATERIAL_SANITY_CHECKS, useValue: false }],
+            imports: [BrowserModule, FormsModule, TrimInputModule, NgxMaskModule.forRoot()],
             declarations: [NgModelTestComponent]
         }).compileComponents();
 
