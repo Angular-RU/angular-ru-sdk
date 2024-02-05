@@ -1,6 +1,5 @@
 import { AfterViewInit, Directive, ElementRef, HostListener, Input, Optional } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import { MatInput } from '@angular/material/input';
 import { toStringValue } from '@angular-ru/cdk/string';
 
 @Directive({ selector: '[convertCase]' })
@@ -10,7 +9,7 @@ export class ConvertCaseDirective implements AfterViewInit {
 
     constructor(private readonly elementRef: ElementRef, @Optional() private readonly ngControl?: NgControl) {}
 
-    private get element(): MatInput {
+    private get element(): HTMLInputElement {
         return this.elementRef.nativeElement;
     }
 
