@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Nullable, PlainObject, SortOrderType } from '@angular-ru/cdk/typings';
 import {
@@ -55,10 +54,6 @@ describe('[TEST] Table builder', (): void => {
                 {
                     provide: WebWorkerThreadService,
                     useClass: MockWebWorkerService
-                },
-                {
-                    provide: MATERIAL_SANITY_CHECKS,
-                    useValue: false
                 }
             ]
         }).compileComponents();

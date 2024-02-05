@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { PlainObject } from '@angular-ru/cdk/typings';
 import { TableBuilderComponent, TableBuilderModule } from '@angular-ru/cdk/virtual-table';
@@ -37,10 +36,7 @@ describe('[TEST] Table builder', (): void => {
         TestBed.configureTestingModule({
             declarations: [SelectionMockComponent],
             imports: [TableBuilderModule, NoopAnimationsModule],
-            providers: [
-                { provide: WebWorkerThreadService, useClass: MockWebWorkerService },
-                { provide: MATERIAL_SANITY_CHECKS, useValue: false }
-            ]
+            providers: [{ provide: WebWorkerThreadService, useClass: MockWebWorkerService }]
         }).compileComponents();
 
         const someSortableService = TestBed.createComponent(TableBuilderComponent).componentInstance.sortable;

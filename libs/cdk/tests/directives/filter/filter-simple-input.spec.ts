@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
-import { MatInputModule } from '@angular/material/input';
 import { By } from '@angular/platform-browser';
 import { InputFilterModule } from '@angular-ru/cdk/directives';
 import { REG_EXP_NO_CYRILLIC } from '@angular-ru/cdk/regexp';
@@ -37,8 +35,7 @@ describe('[TEST]: inputFilter Simple Input', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [ReactiveFormsModule, MatInputModule, InputFilterModule.forRoot({ default: REG_EXP_NO_CYRILLIC })],
-            providers: [{ provide: MATERIAL_SANITY_CHECKS, useValue: false }],
+            imports: [ReactiveFormsModule, InputFilterModule.forRoot({ default: REG_EXP_NO_CYRILLIC })],
             declarations: [TestComponent]
         }).compileComponents();
 

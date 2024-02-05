@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 import { DeepPathPipe, MutableTypePipe, MutableTypePipeModule } from '@angular-ru/cdk/pipes';
 import { Immutable, Nullable, PlainObject } from '@angular-ru/cdk/typings';
 
@@ -8,8 +7,7 @@ describe('mutable', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [MutableTypePipeModule],
-            providers: [{ provide: MATERIAL_SANITY_CHECKS, useValue: false }]
+            imports: [MutableTypePipeModule]
         }).compileComponents();
         pipe = TestBed.inject(MutableTypePipe);
     });
