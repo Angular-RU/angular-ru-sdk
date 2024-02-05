@@ -13,6 +13,7 @@ export { DateSuggestionLastDaysOfIntervalStrategy } from './date-suggestion/stra
 export { DateSuggestionLastFewDaysStrategy } from './date-suggestion/strategies/date-suggestion-last-few-days.strategy';
 export { DateSuggestionSomeDayAgoStrategy } from './date-suggestion/strategies/date-suggestion-some-day-ago.strategy';
 export { DAYS_COUNT } from './date-suggestion/tokens/days-count';
+export { DayOfWeek, FIRST_DAY_OF_WEEK } from './date-suggestion/tokens/first-day-of-week';
 export { SUGGESTION_STRATEGY_MAP } from './date-suggestion/tokens/suggestion-strategy-map';
 export { endOfDay } from './end-of-day';
 export { getToday } from './get-today';
