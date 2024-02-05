@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.0.1](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.11.2...@angular-ru/cdk@15.0.1) (2024-02-05)
+
+**Note:** Version bump only for package @angular-ru/cdk
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [14.11.2](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.11.1...@angular-ru/cdk@14.11.2) (2023-10-21)
 
 ### Bug Fixes
