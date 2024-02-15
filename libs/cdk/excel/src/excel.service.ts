@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { exclude } from '@angular-ru/cdk/array';
 import { Nullable, PlainObject } from '@angular-ru/cdk/typings';
-import { firstValueFrom, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { EntriesKeys } from './domain/entries-keys';
 import { ExcelBuilderTextColumnInterceptor } from './domain/excel-builder-text-column-interceptor';
@@ -19,16 +19,16 @@ export class ExcelService {
     ) {}
 
     public exportExcel<T>(workbook: Partial<ExcelWorkbook<T>>): void {
-        firstValueFrom(
-            this.getTranslatedColumn()
-            // eslint-disable-next-line rxjs/no-topromise
-        ).then(async (translatedKeys: Nullable<PlainObject>): Promise<void> => {
-            await this.builder.exportExcelByWorkbook({
-                filename: this.interceptFilename<T>(workbook),
-                worksheets: this.interceptWorksheets<T>(workbook),
-                translatedKeys: translatedKeys ?? workbook.translatedKeys ?? {}
+        this.getTranslatedColumn()
+            // eslint-disable-next-line rxjs/no-topromise, deprecation/deprecation
+            .toPromise()
+            .then(async (translatedKeys: Nullable<PlainObject>): Promise<void> => {
+                await this.builder.exportExcelByWorkbook({
+                    filename: this.interceptFilename<T>(workbook),
+                    worksheets: this.interceptWorksheets<T>(workbook),
+                    translatedKeys: translatedKeys ?? workbook.translatedKeys ?? {}
+                });
             });
-        });
     }
 
     private interceptFilename<T>(workbook: Partial<ExcelWorkbook<T>>): string {
