@@ -5,7 +5,7 @@ import { EmptyValue, Nullable, PlainObject } from '@angular-ru/cdk/typings';
 import { copyHtml, isNotNil } from '@angular-ru/cdk/utils';
 import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
 import { TranslateService } from '@ngx-translate/core';
-import { firstValueFrom, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { RulesDescriptor } from '../plain-table-composer/interfaces/rules-descriptor';
 import { PlainTableComposerService } from '../plain-table-composer/plain-table-composer.service';
@@ -123,8 +123,11 @@ export class TableClipboardService {
         const lang: Nullable<string> = this.translate.currentLang ?? this.translate.defaultLang;
         const translationMap$: Observable<PlainObject> = isNotNil(lang) ? this.translate.getTranslation(lang) : of({});
 
-        return firstValueFrom(translationMap$).then(
-            (map: PlainObject): PlainObject => this.plainTableComposer.composeSingle(map)
+        return (
+            translationMap$
+                // eslint-disable-next-line rxjs/no-topromise, deprecation/deprecation
+                .toPromise()
+                .then((map: PlainObject | nil): PlainObject => this.plainTableComposer.composeSingle(map!))
         );
     }
 }
