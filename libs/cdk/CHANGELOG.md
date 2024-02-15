@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.1.0](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@15.0.1...@angular-ru/cdk@15.1.0) (2024-02-15)
+
+### Features
+
+-   do not use rxjs >= 7 exclusive feature to not break backward co…
+    ([#1521](https://github.com/Angular-RU/angular-ru-sdk/issues/1521))
+    ([b058fd7](https://github.com/Angular-RU/angular-ru-sdk/commit/b058fd77ea9846403c562890eec9f6115e963265))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [15.0.1](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@14.11.2...@angular-ru/cdk@15.0.1) (2024-02-05)
 
 **Note:** Version bump only for package @angular-ru/cdk
