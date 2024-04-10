@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.2.0](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@15.1.0...@angular-ru/cdk@15.2.0) (2024-04-10)
+
+### Features
+
+-   allow to provide HttpParams in DataClientRequestOptions
+    ([#1522](https://github.com/Angular-RU/angular-ru-sdk/issues/1522))
+    ([#1523](https://github.com/Angular-RU/angular-ru-sdk/issues/1523))
+    ([487c5c2](https://github.com/Angular-RU/angular-ru-sdk/commit/487c5c21ff0116c3e004bbebc85694425ca9ba8b))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [15.1.0](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/cdk@15.0.1...@angular-ru/cdk@15.1.0) (2024-02-15)
 
 ### Features
