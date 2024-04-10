@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Nullable, PlainObject } from '@angular-ru/cdk/typings';
 
 export interface DataHeadersParams {
@@ -36,7 +37,7 @@ export interface DataClientRequestOptions<T extends PlainObject = any> {
      * @description
      * query params for request
      */
-    queryParams: Nullable<PlainObject>;
+    queryParams: Nullable<PlainObject> | HttpParams;
 
     /**
      * @description
