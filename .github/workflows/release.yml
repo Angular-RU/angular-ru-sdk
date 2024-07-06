@@ -1,41 +1,31 @@
-name: CI Release
+name: ⚠️ Release
 on:
+  workflow_dispatch:
   push:
-    branches:
-      - master
+    branches: [master]
+    paths:
+      - 'projects/**'
 
 jobs:
-  release:
-    runs-on: ubuntu-22.04
+  run-release:
+    name: Release
+    if: "!contains(github.event.head_commit.message, 'chore(release)')"
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.ANGULAR_RU_BOT_PAT }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: taiga-family/ci/actions/setup/checkout@v1.65.1
         with:
-          fetch-depth: '0'
-          persist-credentials: false
+          fetch-depth: 0
+          token: ${{ secrets.ANGULAR_RU_BOT_PAT }}
+      - uses: taiga-family/ci/actions/setup/node@v1.65.1
+      - uses: taiga-family/ci/actions/setup/config/git@v1.65.1
+        with:
+          token: ${{ secrets.ANGULAR_RU_BOT_PAT }}
+      - uses: taiga-family/ci/actions/setup/config/npm@v1.65.1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
 
-      - name: Setup Node.js and Cache
-        uses: ./.github/actions/nodejs
-
-      - name: Setup GIT username and NPM token
-        run: |
-          git config --global user.name "angular-ru-bot"
-          git config --global user.email "angular-ru@yandex.ru"
-          git config remote.origin.url https://x-access-token:${{ secrets.ANGULAR_RU_BOT_PAT }}@github.com/$GITHUB_REPOSITORY
-          npm config set '//registry.npmjs.org/:_authToken' "${{ secrets.NPM_TOKEN }}"
-          NPM_WHOAMI_OUTPUT=$(npm whoami)
-          echo "::debug::npm whoami: ${NPM_WHOAMI_OUTPUT}"
-
-      - name: Lerna version
-        if: always()
-        run: npx lerna version
-
-      - name: Build libraries
-        run: npx nx run-many --target=build --parallel
-
-      - name: Publish
-        if: always()
-        run: npx nx run-many --target=publish
-
-concurrency:
-  group: release-${{ github.head_ref }}
-  cancel-in-progress: true
+      - run: npx release-it --increment --ci
+        env:
+          GITHUB_TOKEN: ${{ secrets.ANGULAR_RU_BOT_PAT }}
