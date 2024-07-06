@@ -45,7 +45,7 @@ jobs:
                 npx release-it --preRelease=alpha --ci
             fi
           else
-              npx release-it --increment --ci
+              npx release-it minor --increment --ci
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.ANGULAR_RU_BOT_PAT }}
