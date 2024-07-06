@@ -1,10 +1,21 @@
 name: ⚠️ Release
 on:
   workflow_dispatch:
-  push:
-    branches: [master]
-    paths:
-      - 'projects/**'
+    inputs:
+      forcePush:
+        type: boolean
+        required: false
+        description: --force-publish package
+      mode:
+        type: choice
+        description: force package to be versioned (depend --force-publish)
+        required: false
+        default: minor
+        options:
+          - patch
+          - minor
+          - major
+          - prerelease
 
 jobs:
   run-release:
@@ -26,6 +37,17 @@ jobs:
         with:
           token: ${{ secrets.NPM_TOKEN }}
 
-      - run: npx release-it --increment --ci
+      - run: |
+          if [[ "${{ github.event.inputs.forcePush }}" == "true" ]]; then
+
+            if [[ "${{ github.event.inputs.mode }}" != "prerelease" ]]; then
+              npx release-it "${{ github.event.inputs.mode }}" --increment --ci
+            else
+                npx release-it --preRelease=alpha --ci
+            fi
+
+          else
+              npx release-it --increment --ci
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.ANGULAR_RU_BOT_PAT }}
