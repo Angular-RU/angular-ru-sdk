@@ -39,13 +39,11 @@ jobs:
 
       - run: |
           if [[ "${{ github.event.inputs.forcePush }}" == "true" ]]; then
-
             if [[ "${{ github.event.inputs.mode }}" != "prerelease" ]]; then
               npx release-it "${{ github.event.inputs.mode }}" --increment --ci
             else
                 npx release-it --preRelease=alpha --ci
             fi
-
           else
               npx release-it --increment --ci
           fi
