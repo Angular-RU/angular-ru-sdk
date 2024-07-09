@@ -1,4 +1,4 @@
-import { PlainObject } from '@angular-ru/cdk/typings';
+import {PlainObject} from '@angular-ru/cdk/typings';
 
 export const enum TestLoggerLineType {
     TABLE = 'table',
@@ -8,13 +8,13 @@ export const enum TestLoggerLineType {
     DEBUG = 'info',
     INFO = 'info',
     WARN = 'warn',
-    ERROR = 'error'
+    ERROR = 'error',
 }
 
 export const enum TestLoggerGroupType {
     GROUP_OPEN = 'group_open',
     GROUP_COLLAPSED_OPEN = 'group_collapsed_open',
-    GROUP_END = 'group_end'
+    GROUP_END = 'group_end',
 }
 
 export class ConsoleFake implements Console {
@@ -40,45 +40,45 @@ export class ConsoleFake implements Console {
 
     public log(...args: string[]): void {
         args.unshift(null!, null!);
-        this._stack.push({ [TestLoggerLineType.LOG]: args });
+        this._stack.push({[TestLoggerLineType.LOG]: args});
     }
 
     public debug(...args: string[]): void {
-        this._stack.push({ [TestLoggerLineType.TRACE_OR_DEBUG]: args });
+        this._stack.push({[TestLoggerLineType.TRACE_OR_DEBUG]: args});
     }
 
     public info(...args: string[]): void {
-        this._stack.push({ [TestLoggerLineType.INFO]: args });
+        this._stack.push({[TestLoggerLineType.INFO]: args});
     }
 
     public assert(condition: boolean, output: string): void {
         if (!condition) {
-            this._stack.push({ [TestLoggerLineType.ASSERT]: [output] });
+            this._stack.push({[TestLoggerLineType.ASSERT]: [output]});
         }
     }
 
     public table(data: unknown): void {
-        this._stack.push({ [TestLoggerLineType.TABLE]: [data] });
+        this._stack.push({[TestLoggerLineType.TABLE]: [data]});
     }
 
     public warn(...args: string[]): void {
-        this._stack.push({ [TestLoggerLineType.WARN]: args });
+        this._stack.push({[TestLoggerLineType.WARN]: args});
     }
 
     public error(...args: string[]): void {
-        this._stack.push({ [TestLoggerLineType.ERROR]: args });
+        this._stack.push({[TestLoggerLineType.ERROR]: args});
     }
 
     public group(...args: string[]): void {
-        this._stack.push({ [TestLoggerGroupType.GROUP_OPEN]: args });
+        this._stack.push({[TestLoggerGroupType.GROUP_OPEN]: args});
     }
 
     public groupCollapsed(...args: string[]): void {
-        this._stack.push({ [TestLoggerGroupType.GROUP_COLLAPSED_OPEN]: args });
+        this._stack.push({[TestLoggerGroupType.GROUP_COLLAPSED_OPEN]: args});
     }
 
     public groupEnd(): void {
-        this._stack.push({ [TestLoggerGroupType.GROUP_END]: [] });
+        this._stack.push({[TestLoggerGroupType.GROUP_END]: []});
     }
 
     public createStack(...args: PlainObject[]): string {
@@ -94,7 +94,9 @@ export class ConsoleFake implements Console {
                 if (line.hasOwnProperty(arg)) {
                     const isArray: boolean = Array.isArray(line[arg]);
 
-                    history[index] = { [arg]: isArray ? line[arg].slice(withoutLabel) : line[arg] };
+                    history[index] = {
+                        [arg]: isArray ? line[arg].slice(withoutLabel) : line[arg],
+                    };
                 }
             }
         }
@@ -125,7 +127,7 @@ export class ConsoleFake implements Console {
             stackOptionsList.push({
                 label: String(line[0]).replace('%c', ''),
                 // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-                styles: ConsoleFake.parseCssString(line[usageNext ? 2 : 1]!)
+                styles: ConsoleFake.parseCssString(line[usageNext ? 2 : 1]!),
             });
         }
 

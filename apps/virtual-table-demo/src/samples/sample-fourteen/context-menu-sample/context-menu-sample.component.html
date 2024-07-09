@@ -77,9 +77,9 @@
         >
             <mat-label>Filter by {{ state.key! | uppercase }}</mat-label>
             <input
+                autocomplete="off"
                 matInput
                 name="width"
-                autocomplete="off"
                 [ngModel]="$any(table.filterable.definition)[state.key!]"
                 (ngModelChange)="table.filterable.updateFilterValueBy($event, state.key); table.filter()"
             />

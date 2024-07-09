@@ -6,12 +6,12 @@ import {
     Component,
     NgZone,
     OnDestroy,
-    OnInit
+    OnInit,
 } from '@angular/core';
-import { Nullable, PlainObject } from '@angular-ru/cdk/typings';
-import { detectChanges } from '@angular-ru/cdk/utils';
+import {Nullable, PlainObject} from '@angular-ru/cdk/typings';
+import {detectChanges} from '@angular-ru/cdk/utils';
 
-import { hlJsCode } from '../../../../../.global/utils/hljs-code';
+import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 
 const NAMES: string[] = [
     'Maia',
@@ -32,7 +32,7 @@ const NAMES: string[] = [
     'Arthur',
     'Mia',
     'Thomas',
-    'Elizabeth'
+    'Elizabeth',
 ];
 
 const COLORS: string[] = [
@@ -50,7 +50,7 @@ const COLORS: string[] = [
     'blue',
     'navy',
     'black',
-    'gray'
+    'gray',
 ];
 
 function replaceAt(array: any[], index: number, value: any): any[] {
@@ -72,9 +72,9 @@ function replaceAt(array: any[], index: number, value: any): any[] {
                 color: red;
                 text-decoration: line-through;
             }
-        `
+        `,
     ],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
     private idInterval: Nullable<number> = null;
@@ -82,7 +82,10 @@ export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
     public data: PlainObject[] = [];
     public regenerate: boolean = false;
 
-    constructor(private readonly cd: ChangeDetectorRef, private readonly ngZone: NgZone) {}
+    constructor(
+        private readonly cd: ChangeDetectorRef,
+        private readonly ngZone: NgZone,
+    ) {}
 
     public ngOnInit(): void {
         this.updateTable();
@@ -104,7 +107,7 @@ export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     public updateRow<T>(row: PlainObject, key: string, value: T): void {
-        const newRow: PlainObject = { ...row, [key]: value };
+        const newRow: PlainObject = {...row, [key]: value};
 
         this.data = replaceAt(this.data, this.data.indexOf(row), newRow);
         detectChanges(this.cd);
@@ -115,7 +118,10 @@ export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
 
         window.clearTimeout(this.timeout ?? 0);
         // eslint-disable-next-line no-restricted-properties
-        this.timeout = window.setTimeout((): void => this.updateRow(row, key, value), time);
+        this.timeout = window.setTimeout(
+            (): void => this.updateRow(row, key, value),
+            time,
+        );
     }
 
     public ngAfterViewInit(): void {
@@ -161,9 +167,9 @@ export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
                     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
                     fluent: `Spanish${Math.round(Math.random() * 100).toString()}`,
                     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-                    intermediate: `Chinese${Math.round(Math.random() * 100).toString()}`
-                }
-            })
+                    intermediate: `Chinese${Math.round(Math.random() * 100).toString()}`,
+                },
+            }),
         );
     }
 }

@@ -1,19 +1,31 @@
-import { actionNameCreator, MethodArgsRegistry } from '@angular-ru/ngxs/internals';
+import {actionNameCreator, MethodArgsRegistry} from '@angular-ru/ngxs/internals';
 
 describe('[TEST]: actionNameCreator', () => {
     it('should be correct', () => {
-        expect(actionNameCreator({ statePath: 'A', methodName: 'a', argumentsNames: [] })).toBe('@A.a()');
+        expect(
+            actionNameCreator({statePath: 'A', methodName: 'a', argumentsNames: []}),
+        ).toBe('@A.a()');
 
-        expect(actionNameCreator({ statePath: 'A', methodName: 'a', argumentsNames: ['x', 'y', 'z'] })).toBe(
-            '@A.a($arg0, $arg1, $arg2)'
-        );
+        expect(
+            actionNameCreator({
+                statePath: 'A',
+                methodName: 'a',
+                argumentsNames: ['x', 'y', 'z'],
+            }),
+        ).toBe('@A.a($arg0, $arg1, $arg2)');
     });
 
     it('should be correct create nested statePath', () => {
-        expect(actionNameCreator({ statePath: 'A.B.C', methodName: 'a', argumentsNames: [] })).toBe('@A/B/C.a()');
-        expect(actionNameCreator({ statePath: 'A.B', methodName: 'a', argumentsNames: ['x', 'y', 'z'] })).toBe(
-            '@A/B.a($arg0, $arg1, $arg2)'
-        );
+        expect(
+            actionNameCreator({statePath: 'A.B.C', methodName: 'a', argumentsNames: []}),
+        ).toBe('@A/B/C.a()');
+        expect(
+            actionNameCreator({
+                statePath: 'A.B',
+                methodName: 'a',
+                argumentsNames: ['x', 'y', 'z'],
+            }),
+        ).toBe('@A/B.a($arg0, $arg1, $arg2)');
     });
 
     it('should be correct create payload type by payload and name', () => {
@@ -27,8 +39,8 @@ describe('[TEST]: actionNameCreator', () => {
                 statePath: 'A',
                 methodName: 'a',
                 argumentsNames: ['x', 'y', 'z'],
-                argumentRegistry: registry
-            })
+                argumentRegistry: registry,
+            }),
         ).toBe('@A.a(X, $arg1, Z)');
     });
 
@@ -44,8 +56,8 @@ describe('[TEST]: actionNameCreator', () => {
                 statePath: 'A',
                 methodName: 'a',
                 argumentsNames: ['x', 'y', 'z'],
-                argumentRegistry: registry
-            })
+                argumentRegistry: registry,
+            }),
         ).toBe('@A.a(_X_, $arg1, Z)');
     });
 });

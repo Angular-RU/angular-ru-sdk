@@ -23,21 +23,21 @@ setting of logging levels and convenient work with groups. Among other things, y
 
 ## Table of contents
 
--   [Logging](#)
-    -   [Basic usage API `trace`, `debug`, `info`, `warn`, `error`](#example-basic-methods)
-    -   [Groups, `groupCollapsed`, `collapsible`](#example-groups)
-    -   [Nested groups (usage pipe method)](#example-nested-groups)
-    -   [Set logging level (worked in single or groups)](#example-set-minimal-logging-level)
-    -   [Customization style line](#example-set-style-line)
-    -   [Customization global style line](#example-set-global-style-line)
-    -   [Add css classes](#example-css-classes)
-    -   [Output pretty json `stringify`](#example-pretty-json)
-    -   [Basic decorators](#example-decorators)
-    -   [Decorator groups](#example-decorator-groups)
-    -   [Decorator groups with function title](#example-decorator-group-with-function-title)
-    -   [Configuration `Angular Logger`](#example-full-configurations)
+- [Logging](#)
+  - [Basic usage API `trace`, `debug`, `info`, `warn`, `error`](#example-basic-methods)
+  - [Groups, `groupCollapsed`, `collapsible`](#example-groups)
+  - [Nested groups (usage pipe method)](#example-nested-groups)
+  - [Set logging level (worked in single or groups)](#example-set-minimal-logging-level)
+  - [Customization style line](#example-set-style-line)
+  - [Customization global style line](#example-set-global-style-line)
+  - [Add css classes](#example-css-classes)
+  - [Output pretty json `stringify`](#example-pretty-json)
+  - [Basic decorators](#example-decorators)
+  - [Decorator groups](#example-decorator-groups)
+  - [Decorator groups with function title](#example-decorator-group-with-function-title)
+  - [Configuration `Angular Logger`](#example-full-configurations)
 
-*   [Todo](#todo)
+* [Todo](#todo)
 
 ## Logging
 
@@ -65,74 +65,74 @@ export class AppModule {}
 ### Example: basic methods
 
 ```typescript
-import { LoggerService } from '@angular-ru/cdk/logger';
+import {LoggerService} from '@angular-ru/cdk/logger';
 
 export class AppComponent implements OnInit {
-    constructor(private readonly logger: LoggerService) {}
+  constructor(private readonly logger: LoggerService) {}
 
-    public ngOnInit(): void {
-        this.logger.trace('trace is worked', 1, { a: 1 });
-        this.logger.debug('debug is worked', 2, {});
-        this.logger.info('info is worked', 3, Object);
-        this.logger.warn('warn is worked', 4, String);
-        this.logger.error('error is worked', 5, (2.55).toFixed());
-    }
+  public ngOnInit(): void {
+    this.logger.trace('trace is worked', 1, {a: 1});
+    this.logger.debug('debug is worked', 2, {});
+    this.logger.info('info is worked', 3, Object);
+    this.logger.warn('warn is worked', 4, String);
+    this.logger.error('error is worked', 5, (2.55).toFixed());
+  }
 }
 ```
 
--   **Default level: All**
+- **Default level: All**
 
 ![](https://habrastorage.org/webt/0u/yj/1t/0uyj1tli-mzh0cor1cg4jwphsdk.png)
 
--   **Disable trace on console (filter):**
+- **Disable trace on console (filter):**
 
 ```typescript
-import { LoggerService } from '@angular-ru/cdk/logger';
+import {LoggerService} from '@angular-ru/cdk/logger';
 
 export class AppComponent implements OnInit {
-    constructor(private readonly logger: LoggerService) {}
+  constructor(private readonly logger: LoggerService) {}
 
-    public ngOnInit(): void {
-        this.logger.group('Show trace in opened group', ({ trace }: LoggerService): void => {
-            for (let i: number = 0; i < 20; i++) {
-                trace('trace is worked', i);
-            }
-        });
-    }
+  public ngOnInit(): void {
+    this.logger.group('Show trace in opened group', ({trace}: LoggerService): void => {
+      for (let i: number = 0; i < 20; i++) {
+        trace('trace is worked', i);
+      }
+    });
+  }
 }
 ```
 
 ### Example: groups
 
--   **Logger groups with auto closed (usage callback):**
+- **Logger groups with auto closed (usage callback):**
 
 ```typescript
-import { LoggerService } from '@angular-ru/cdk/logger';
+import {LoggerService} from '@angular-ru/cdk/logger';
 
 export class AppComponent implements OnInit {
-    constructor(private readonly logger: LoggerService) {}
+  constructor(private readonly logger: LoggerService) {}
 
-    public ngOnInit(): void {
-        this.logger.groupCollapsed('EXAMPLE 2: show stack', () => {
-            this.logger.trace('trace is worked', 1, { a: 1 });
-            this.logger.debug('debug is worked', 2, console);
-            this.logger.info('info is worked', 3, Object);
-            this.logger.warn('warn is worked', 4, String);
-            this.logger.error('error is worked', 5, (2.55).toFixed());
-        });
+  public ngOnInit(): void {
+    this.logger.groupCollapsed('EXAMPLE 2: show stack', () => {
+      this.logger.trace('trace is worked', 1, {a: 1});
+      this.logger.debug('debug is worked', 2, console);
+      this.logger.info('info is worked', 3, Object);
+      this.logger.warn('warn is worked', 4, String);
+      this.logger.error('error is worked', 5, (2.55).toFixed());
+    });
 
-        this.logger.group('Show trace in opened group', ({ trace }: LoggerService): void => {
-            for (let i: number = 0; i < 20; i++) {
-                trace('trace is worked', i);
-            }
-        });
+    this.logger.group('Show trace in opened group', ({trace}: LoggerService): void => {
+      for (let i: number = 0; i < 20; i++) {
+        trace('trace is worked', i);
+      }
+    });
 
-        this.logger.groupCollapsed('Show trace in collapsed group', ({ debug }: LoggerService): void => {
-            for (let i: number = 0; i < 15; i++) {
-                debug('debug is worked', i);
-            }
-        });
-    }
+    this.logger.groupCollapsed('Show trace in collapsed group', ({debug}: LoggerService): void => {
+      for (let i: number = 0; i < 15; i++) {
+        debug('debug is worked', i);
+      }
+    });
+  }
 }
 ```
 
@@ -140,53 +140,53 @@ export class AppComponent implements OnInit {
 
 ### Example: nested groups
 
--   **Logger nested groups (with pipe):**
+- **Logger nested groups (with pipe):**
 
 ```typescript
-import { LoggerService } from '@angular-ru/cdk/logger';
+import {LoggerService} from '@angular-ru/cdk/logger';
 
 export class AppComponent implements OnInit {
-    constructor(private readonly logger: LoggerService) {}
+  constructor(private readonly logger: LoggerService) {}
 
-    public ngOnInit(): void {
-        this.logger
-            .groupCollapsed('GROUP TEST')
-            .pipe(({ trace, debug, info, warn, error }: LoggerService) => {
-                trace('trace is worked');
-                debug('debug is worked');
-                info('info is worked');
-                warn('warn is worked');
-                error('error is worked');
-            })
-            .close();
+  public ngOnInit(): void {
+    this.logger
+      .groupCollapsed('GROUP TEST')
+      .pipe(({trace, debug, info, warn, error}: LoggerService) => {
+        trace('trace is worked');
+        debug('debug is worked');
+        info('info is worked');
+        warn('warn is worked');
+        error('error is worked');
+      })
+      .close();
 
-        this.logger
-            .group('A')
-            .pipe(
-                ({ trace }: LoggerService) => trace('trace is worked'),
-                ({ debug }: LoggerService) => debug('debug is worked'),
-                ({ info }: LoggerService) => info('info is worked'),
-                ({ warn }: LoggerService) => warn('warn is worked'),
-                ({ error }: LoggerService) => error('error is worked')
-            )
-            .groupCollapsed('B')
-            .pipe(
-                ({ trace }: LoggerService) => trace('trace is worked'),
-                ({ debug }: LoggerService) => debug('debug is worked'),
-                ({ info }: LoggerService) => info('info is worked'),
-                ({ warn }: LoggerService) => warn('warn is worked'),
-                ({ error }: LoggerService) => error('error is worked')
-            )
-            .group('C')
-            .pipe(
-                ({ trace }: LoggerService) => trace('trace is worked'),
-                ({ debug }: LoggerService) => debug('debug is worked'),
-                ({ info }: LoggerService) => info('info is worked'),
-                ({ warn }: LoggerService) => warn('warn is worked'),
-                ({ error }: LoggerService) => error('error is worked')
-            )
-            .closeAll();
-    }
+    this.logger
+      .group('A')
+      .pipe(
+        ({trace}: LoggerService) => trace('trace is worked'),
+        ({debug}: LoggerService) => debug('debug is worked'),
+        ({info}: LoggerService) => info('info is worked'),
+        ({warn}: LoggerService) => warn('warn is worked'),
+        ({error}: LoggerService) => error('error is worked'),
+      )
+      .groupCollapsed('B')
+      .pipe(
+        ({trace}: LoggerService) => trace('trace is worked'),
+        ({debug}: LoggerService) => debug('debug is worked'),
+        ({info}: LoggerService) => info('info is worked'),
+        ({warn}: LoggerService) => warn('warn is worked'),
+        ({error}: LoggerService) => error('error is worked'),
+      )
+      .group('C')
+      .pipe(
+        ({trace}: LoggerService) => trace('trace is worked'),
+        ({debug}: LoggerService) => debug('debug is worked'),
+        ({info}: LoggerService) => info('info is worked'),
+        ({warn}: LoggerService) => warn('warn is worked'),
+        ({error}: LoggerService) => error('error is worked'),
+      )
+      .closeAll();
+  }
 }
 ```
 
@@ -197,96 +197,96 @@ export class AppComponent implements OnInit {
 Basic parameterization
 
 ```typescript
-import { LoggerService } from '@angular-ru/cdk/logger';
+import {LoggerService} from '@angular-ru/cdk/logger';
 
 export class AppComponent implements OnInit {
-    constructor(private readonly logger: LoggerService) {}
+  constructor(private readonly logger: LoggerService) {}
 
-    public ngOnInit(): void {
-        this.logger.trace('trace is worked', 1, { a: 1 });
-        this.logger.debug('debug is worked', 2, console);
-        this.logger.info('info is worked', 3, Object);
-        this.logger.warn('warn is worked', 4, String);
-        this.logger.error('error is worked', 5, (2.55).toFixed());
+  public ngOnInit(): void {
+    this.logger.trace('trace is worked', 1, {a: 1});
+    this.logger.debug('debug is worked', 2, console);
+    this.logger.info('info is worked', 3, Object);
+    this.logger.warn('warn is worked', 4, String);
+    this.logger.error('error is worked', 5, (2.55).toFixed());
 
-        this.logger.level = LoggerLevel.INFO;
-        this.logger.log('Set new logger level');
+    this.logger.level = LoggerLevel.INFO;
+    this.logger.log('Set new logger level');
 
-        this.logger.trace('trace is worked', 1, { a: 1 });
-        this.logger.debug('debug is worked', 2, console);
-        this.logger.info('info is worked', 3, Object);
-        this.logger.warn('warn is worked', 4, String);
-        this.logger.error('error is worked', 5, (2.55).toFixed());
-    }
+    this.logger.trace('trace is worked', 1, {a: 1});
+    this.logger.debug('debug is worked', 2, console);
+    this.logger.info('info is worked', 3, Object);
+    this.logger.warn('warn is worked', 4, String);
+    this.logger.error('error is worked', 5, (2.55).toFixed());
+  }
 }
 ```
 
 ![](https://habrastorage.org/webt/0r/ya/xn/0ryaxnmaedlbc14imvodsezq4lg.png)
 
--   **Logger level groups (pretty usage API):**
+- **Logger level groups (pretty usage API):**
 
 ```typescript
-import { LoggerService, LoggerLevel } from '@angular-ru/cdk/logger';
+import {LoggerService, LoggerLevel} from '@angular-ru/cdk/logger';
 
 export class AppComponent implements OnInit {
-    constructor(private readonly logger: LoggerService) {}
+  constructor(private readonly logger: LoggerService) {}
 
-    public ngOnInit(): void {
-        this.logger.level = LoggerLevel.INFO;
+  public ngOnInit(): void {
+    this.logger.level = LoggerLevel.INFO;
 
-        this.logger.trace
-            .group('A')
-            .pipe(
-                ({ trace }: LoggerService) => trace('trace is worked'),
-                ({ debug }: LoggerService) => debug('debug is worked'),
-                ({ info }: LoggerService) => info('info is worked'),
-                ({ warn }: LoggerService) => warn('warn is worked'),
-                ({ error }: LoggerService) => error('error is worked')
-            )
-            .close()
+    this.logger.trace
+      .group('A')
+      .pipe(
+        ({trace}: LoggerService) => trace('trace is worked'),
+        ({debug}: LoggerService) => debug('debug is worked'),
+        ({info}: LoggerService) => info('info is worked'),
+        ({warn}: LoggerService) => warn('warn is worked'),
+        ({error}: LoggerService) => error('error is worked'),
+      )
+      .close()
 
-            .debug.group('B')
-            .pipe(
-                ({ trace }: LoggerService) => trace('trace is worked'),
-                ({ debug }: LoggerService) => debug('debug is worked'),
-                ({ info }: LoggerService) => info('info is worked'),
-                ({ warn }: LoggerService) => warn('warn is worked'),
-                ({ error }: LoggerService) => error('error is worked')
-            )
-            .close()
+      .debug.group('B')
+      .pipe(
+        ({trace}: LoggerService) => trace('trace is worked'),
+        ({debug}: LoggerService) => debug('debug is worked'),
+        ({info}: LoggerService) => info('info is worked'),
+        ({warn}: LoggerService) => warn('warn is worked'),
+        ({error}: LoggerService) => error('error is worked'),
+      )
+      .close()
 
-            .info.group('C')
-            .pipe(
-                ({ trace }: LoggerService) => trace('trace is worked'),
-                ({ debug }: LoggerService) => debug('debug is worked'),
-                ({ info }: LoggerService) => info('info is worked'),
-                ({ warn }: LoggerService) => warn('warn is worked'),
-                ({ error }: LoggerService) => error('error is worked')
-            )
-            .close()
+      .info.group('C')
+      .pipe(
+        ({trace}: LoggerService) => trace('trace is worked'),
+        ({debug}: LoggerService) => debug('debug is worked'),
+        ({info}: LoggerService) => info('info is worked'),
+        ({warn}: LoggerService) => warn('warn is worked'),
+        ({error}: LoggerService) => error('error is worked'),
+      )
+      .close()
 
-            .warn.group('D')
-            .pipe(
-                ({ trace }: LoggerService) => trace('trace is worked'),
-                ({ debug }: LoggerService) => debug('debug is worked'),
-                ({ info }: LoggerService) => info('info is worked'),
-                ({ warn }: LoggerService) => warn('warn is worked'),
-                ({ error }: LoggerService) => error('error is worked')
-            )
-            .close()
+      .warn.group('D')
+      .pipe(
+        ({trace}: LoggerService) => trace('trace is worked'),
+        ({debug}: LoggerService) => debug('debug is worked'),
+        ({info}: LoggerService) => info('info is worked'),
+        ({warn}: LoggerService) => warn('warn is worked'),
+        ({error}: LoggerService) => error('error is worked'),
+      )
+      .close()
 
-            .error.group('E')
-            .pipe(
-                ({ trace }: LoggerService) => trace('trace is worked'),
-                ({ debug }: LoggerService) => debug('debug is worked'),
-                ({ info }: LoggerService) => info('info is worked'),
-                ({ warn }: LoggerService) => warn('warn is worked'),
-                ({ error }: LoggerService) => error('error is worked')
-            )
-            .close();
+      .error.group('E')
+      .pipe(
+        ({trace}: LoggerService) => trace('trace is worked'),
+        ({debug}: LoggerService) => debug('debug is worked'),
+        ({info}: LoggerService) => info('info is worked'),
+        ({warn}: LoggerService) => warn('warn is worked'),
+        ({error}: LoggerService) => error('error is worked'),
+      )
+      .close();
 
-        this.logger.level = LoggerLevel.ALL;
-    }
+    this.logger.level = LoggerLevel.ALL;
+  }
 }
 ```
 
@@ -295,21 +295,21 @@ export class AppComponent implements OnInit {
 ### Example: set style line
 
 ```typescript
-import { LoggerService } from '@angular-ru/cdk/logger';
+import {LoggerService} from '@angular-ru/cdk/logger';
 
 export class AppComponent implements OnInit {
-    constructor(private readonly logger: LoggerService) {}
+  constructor(private readonly logger: LoggerService) {}
 
-    public ngOnInit(): void {
-        this.logger.clear();
+  public ngOnInit(): void {
+    this.logger.clear();
 
-        this.logger.css('text-transform: uppercase; font-weight: bold').debug('window current ', window);
-        this.logger.css('color: red; text-decoration: underline; font-weight: bold').info('It is awesome logger');
-        this.logger.debug({ a: 1 });
+    this.logger.css('text-transform: uppercase; font-weight: bold').debug('window current ', window);
+    this.logger.css('color: red; text-decoration: underline; font-weight: bold').info('It is awesome logger');
+    this.logger.debug({a: 1});
 
-        this.logger.warn(setStyle);
-        this.logger.info('For global configuration, use the constructor parameters');
-    }
+    this.logger.warn(setStyle);
+    this.logger.info('For global configuration, use the constructor parameters');
+  }
 }
 ```
 
@@ -318,18 +318,18 @@ export class AppComponent implements OnInit {
 ### Example: set global style line
 
 ```typescript
-import { LoggerService } from '@angular-ru/cdk/logger';
+import {LoggerService} from '@angular-ru/cdk/logger';
 
 export class AppComponent implements OnInit {
-    constructor(private readonly logger: LoggerService) {}
+  constructor(private readonly logger: LoggerService) {}
 
-    public ngOnInit(): void {
-        this.logger.clear();
+  public ngOnInit(): void {
+    this.logger.clear();
 
-        this.logger.css('font-weight: normal; text-decoration: none; font-style: italic').info(3.14);
-        this.logger.css('font-weight: normal;').info(3.14);
-        this.logger.warn('global format with style!');
-    }
+    this.logger.css('font-weight: normal; text-decoration: none; font-style: italic').info(3.14);
+    this.logger.css('font-weight: normal;').info(3.14);
+    this.logger.warn('global format with style!');
+  }
 }
 ```
 
@@ -361,20 +361,20 @@ import { LoggerModule } from '@angular-ru/cdk/logger';
 ```
 
 ```typescript
-import { LoggerService } from '@angular-ru/cdk/logger';
+import {LoggerService} from '@angular-ru/cdk/logger';
 
 export class AppComponent implements OnInit {
-    constructor(private readonly logger: LoggerService) {}
+  constructor(private readonly logger: LoggerService) {}
 
-    public ngOnInit(): void {
-        this.logger.cssClass('bold line-through').log('JavaScript sucks', 'JavaScript is the best');
+  public ngOnInit(): void {
+    this.logger.cssClass('bold line-through').log('JavaScript sucks', 'JavaScript is the best');
 
-        this.logger
-            .cssClass('code-sandbox')
-            .log('\n   @Component({ .. })' + '\n   export class AppComponent { .. }    \n\n');
+    this.logger
+      .cssClass('code-sandbox')
+      .log('\n   @Component({ .. })' + '\n   export class AppComponent { .. }    \n\n');
 
-        this.logger.cssClass('bold line-through').debug('JavaScript sucks', 'JavaScript is the best');
-    }
+    this.logger.cssClass('bold line-through').debug('JavaScript sucks', 'JavaScript is the best');
+  }
 }
 export class AppModule {}
 ```
@@ -384,18 +384,18 @@ export class AppModule {}
 ### Example: pretty json
 
 ```typescript
-import { LoggerService } from '@angular-ru/cdk/logger';
+import {LoggerService} from '@angular-ru/cdk/logger';
 
 export class AppComponent implements OnInit {
-    constructor(private readonly logger: LoggerService) {}
+  constructor(private readonly logger: LoggerService) {}
 
-    public ngOnInit(): void {
-        // default browser print json
-        this.logger.debug('Classic output json', jsonExample);
+  public ngOnInit(): void {
+    // default browser print json
+    this.logger.debug('Classic output json', jsonExample);
 
-        // for pretty json usage logger.log method
-        this.logger.log(...this.logger.prettyJSON(jsonExample));
-    }
+    // for pretty json usage logger.log method
+    this.logger.log(...this.logger.prettyJSON(jsonExample));
+  }
 }
 ```
 
@@ -405,35 +405,35 @@ export class AppComponent implements OnInit {
 
 ```typescript
 import {
-    LoggerService,
-    Logger,
-    DebugLog,
-    TraceLog,
-    InfoLog,
-    WarnLog,
-    ErrorLog,
-    Log,
-    LogFn
+  LoggerService,
+  Logger,
+  DebugLog,
+  TraceLog,
+  InfoLog,
+  WarnLog,
+  ErrorLog,
+  Log,
+  LogFn,
 } from '@angular-ru/cdk/logger';
 
 export class AppComponent {
-    @Logger() public logger: LoggerService;
-    @TraceLog() public trace: LogFn;
-    @DebugLog() public debug: LogFn;
-    @InfoLog() public info: LogFn;
-    @ErrorLog() public error: LogFn;
-    @WarnLog() public warn: LogFn;
-    @Log() public log: LogFn;
+  @Logger() public logger: LoggerService;
+  @TraceLog() public trace: LogFn;
+  @DebugLog() public debug: LogFn;
+  @InfoLog() public info: LogFn;
+  @ErrorLog() public error: LogFn;
+  @WarnLog() public warn: LogFn;
+  @Log() public log: LogFn;
 
-    public showExample(): void {
-        this.logger.clear();
-        this.logger.log('log is worked');
-        this.trace('trace is worked', 1, { a: 1 });
-        this.debug('debug is worked', 2, console);
-        this.info('info is worked', 3, Object);
-        this.warn('warn is worked', 4, String);
-        this.error('error is worked', 5, (2.55).toFixed());
-    }
+  public showExample(): void {
+    this.logger.clear();
+    this.logger.log('log is worked');
+    this.trace('trace is worked', 1, {a: 1});
+    this.debug('debug is worked', 2, console);
+    this.info('info is worked', 3, Object);
+    this.warn('warn is worked', 4, String);
+    this.error('error is worked', 5, (2.55).toFixed());
+  }
 }
 ```
 
@@ -442,20 +442,20 @@ export class AppComponent {
 ### Example: decorator groups
 
 ```typescript
-import { LoggerService, Logger, LoggerLevel, Group } from '@angular-ru/cdk/logger';
+import {LoggerService, Logger, LoggerLevel, Group} from '@angular-ru/cdk/logger';
 
 export class AppComponent {
-    @Logger() public logger: LoggerService;
+  @Logger() public logger: LoggerService;
 
-    @Group('test title', LoggerLevel.WARN)
-    private helloWorld(name: string): string {
-        this.logger.log('log only in group', name);
-        return 'hello world';
-    }
+  @Group('test title', LoggerLevel.WARN)
+  private helloWorld(name: string): string {
+    this.logger.log('log only in group', name);
+    return 'hello world';
+  }
 
-    public showExample11(): void {
-        this.logger.log(this.helloWorld('Hello'));
-    }
+  public showExample11(): void {
+    this.logger.log(this.helloWorld('Hello'));
+  }
 }
 ```
 
@@ -464,20 +464,20 @@ export class AppComponent {
 ### Example: decorator group with function title
 
 ```typescript
-import { Log, LogFn, Group } from '@angular-ru/cdk/logger';
+import {Log, LogFn, Group} from '@angular-ru/cdk/logger';
 
 export class AppComponent {
-    @Log() public log: LogFn;
+  @Log() public log: LogFn;
 
-    @Group((name: string) => `Test group with ${name}`)
-    public method(name: string): string {
-        this.log('group is worked');
-        return name;
-    }
+  @Group((name: string) => `Test group with ${name}`)
+  public method(name: string): string {
+    this.log('group is worked');
+    return name;
+  }
 
-    public showExample(): void {
-        this.method('hello world');
-    }
+  public showExample(): void {
+    this.method('hello world');
+  }
 }
 ```
 
@@ -486,22 +486,22 @@ export class AppComponent {
 ### Example: timer decorator
 
 ```typescript
-import { Log, LogFn, TimerLog, LoggerLevel, LoggerService, Logger } from '@angular-ru/cdk/logger';
+import {Log, LogFn, TimerLog, LoggerLevel, LoggerService, Logger} from '@angular-ru/cdk/logger';
 export class AppComponent {
-    @Log() public log: LogFn;
-    @Logger() public logger: LoggerService;
+  @Log() public log: LogFn;
+  @Logger() public logger: LoggerService;
 
-    @TimerLog('Test timer')
-    public showExample(): void {
-        this.logger.clear();
-        this.log('test log');
-    }
+  @TimerLog('Test timer')
+  public showExample(): void {
+    this.logger.clear();
+    this.log('test log');
+  }
 
-    @TimerLog('Advanced timer', LoggerLevel.WARN, false)
-    public showExample(): void {
-        this.logger.clear();
-        this.log('Advanced test log');
-    }
+  @TimerLog('Advanced timer', LoggerLevel.WARN, false)
+  public showExample(): void {
+    this.logger.clear();
+    this.log('Advanced test log');
+  }
 }
 ```
 
@@ -510,36 +510,36 @@ export class AppComponent {
 ### Example: format output
 
 ```typescript
-import { LoggerModule, NgModule, FormatOutput } from '@angular-ru/cdk/logger';
+import {LoggerModule, NgModule, FormatOutput} from '@angular-ru/cdk/logger';
 
 @NgModule({
-    //..
-    imports: [
-        LoggerModule.forRoot({
-            format(label: string, labelStyle: string): FormatOutput {
-                const date = new Date().toLocaleString('ru-RU').replace(',', '');
-                const customLabel: string = `${date} ${label}`;
-                return { label: customLabel, style: labelStyle };
-            }
-        })
-    ]
+  //..
+  imports: [
+    LoggerModule.forRoot({
+      format(label: string, labelStyle: string): FormatOutput {
+        const date = new Date().toLocaleString('ru-RU').replace(',', '');
+        const customLabel: string = `${date} ${label}`;
+        return {label: customLabel, style: labelStyle};
+      },
+    }),
+  ],
 })
 export class AppModule {}
 ```
 
 ```typescript
-import { LoggerService, OnInit } from '@angular-ru/cdk/logger';
+import {LoggerService, OnInit} from '@angular-ru/cdk/logger';
 
 export class AppComponent implements OnInit {
-    constructor(private readonly logger: LoggerService) {}
+  constructor(private readonly logger: LoggerService) {}
 
-    public ngOnInit(): void {
-        this.logger.trace('trace is worked', 1, { a: 1 });
-        this.logger.debug('debug is worked', 2, {});
-        this.logger.info('info is worked', 3, Object);
-        this.logger.warn('warn is worked', 4, String);
-        this.logger.error('error is worked', 5, (2.55).toFixed());
-    }
+  public ngOnInit(): void {
+    this.logger.trace('trace is worked', 1, {a: 1});
+    this.logger.debug('debug is worked', 2, {});
+    this.logger.info('info is worked', 3, Object);
+    this.logger.warn('warn is worked', 4, String);
+    this.logger.error('error is worked', 5, (2.55).toFixed());
+  }
 }
 ```
 
@@ -548,41 +548,41 @@ export class AppComponent implements OnInit {
 ### Example: full configurations
 
 ```typescript
-import { LoggerModule, NgModule, LoggerLevel } from '@angular-ru/cdk/logger';
+import {LoggerModule, NgModule, LoggerLevel} from '@angular-ru/cdk/logger';
 
 @NgModule({
-    // ..
-    imports: [
-        LoggerModule.forRoot({
-            useLevelGroup: true,
-            globalLineStyle: 'color: red; text-decoration: underline; font-weight: bold; font-size: 15px',
-            cssClassMap: {
-                bold: 'font-weight: bold',
-                'line-through': 'text-decoration: line-through',
-                'code-sandbox': `
+  // ..
+  imports: [
+    LoggerModule.forRoot({
+      useLevelGroup: true,
+      globalLineStyle: 'color: red; text-decoration: underline; font-weight: bold; font-size: 15px',
+      cssClassMap: {
+        bold: 'font-weight: bold',
+        'line-through': 'text-decoration: line-through',
+        'code-sandbox': `
                   color: #666;
                   background: #f4f4f4;
                   border-left: 3px solid #f36d33;
                   font-family: monospace;
-                  font-size: 15px;`
-            },
-            labelNames: {
-                [LoggerLevel.TRACE]: '[trace]',
-                [LoggerLevel.DEBUG]: '[debug]',
-                [LoggerLevel.INFO]: '[info]',
-                [LoggerLevel.WARN]: '[warn]',
-                [LoggerLevel.ERROR]: '[error]'
-            },
-            labelColors: {
-                [LoggerLevel.TRACE]: 'violet',
-                [LoggerLevel.DEBUG]: 'black',
-                [LoggerLevel.INFO]: 'tomato',
-                [LoggerLevel.WARN]: 'green',
-                [LoggerLevel.ERROR]: 'cyan'
-            }
-        })
-    ]
-    // ..
+                  font-size: 15px;`,
+      },
+      labelNames: {
+        [LoggerLevel.TRACE]: '[trace]',
+        [LoggerLevel.DEBUG]: '[debug]',
+        [LoggerLevel.INFO]: '[info]',
+        [LoggerLevel.WARN]: '[warn]',
+        [LoggerLevel.ERROR]: '[error]',
+      },
+      labelColors: {
+        [LoggerLevel.TRACE]: 'violet',
+        [LoggerLevel.DEBUG]: 'black',
+        [LoggerLevel.INFO]: 'tomato',
+        [LoggerLevel.WARN]: 'green',
+        [LoggerLevel.ERROR]: 'cyan',
+      },
+    }),
+  ],
+  // ..
 })
 export class AppModule {}
 ```
@@ -610,20 +610,20 @@ export class AppComponent implements OnInit {
 
 ## Todo
 
--   [x] Override console
--   [x] Logger method (trace, debug, info, warning, error)
--   [x] Logger group + groupCollapsible (pipes)
--   [x] Logger pretty write object
--   [x] Set style by css
--   [x] Logger level groups (trace, debug, info, warn, error)
--   [x] Clipboard data
--   [x] Set global style
--   [x] Added css classes
--   [x] Dependency Injection for Angular
--   [x] Switch enable/disable default console output
--   [x] Decorators
--   [x] Timers (decorator)
--   [x] Format output console
+- [x] Override console
+- [x] Logger method (trace, debug, info, warning, error)
+- [x] Logger group + groupCollapsible (pipes)
+- [x] Logger pretty write object
+- [x] Set style by css
+- [x] Logger level groups (trace, debug, info, warn, error)
+- [x] Clipboard data
+- [x] Set global style
+- [x] Added css classes
+- [x] Dependency Injection for Angular
+- [x] Switch enable/disable default console output
+- [x] Decorators
+- [x] Timers (decorator)
+- [x] Format output console
 
 ## Authors
 

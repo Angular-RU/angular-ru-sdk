@@ -1,4 +1,4 @@
-import { HttpHeaders, HttpParams } from '@angular/common/http';
+import {HttpHeaders, HttpParams} from '@angular/common/http';
 import {
     buildUrl,
     ensurePathByPathVariables,
@@ -10,9 +10,9 @@ import {
     makeUrlSegments,
     parseQueryParams,
     replaceDoubleSlash,
-    replaceLeadingAndTrailingSlashes
+    replaceLeadingAndTrailingSlashes,
 } from '@angular-ru/cdk/http/utils';
-import { PlainObject } from '@angular-ru/cdk/typings';
+import {PlainObject} from '@angular-ru/cdk/typings';
 
 describe('[TEST]: http utils', () => {
     it('isLocalhost', () => {
@@ -24,13 +24,23 @@ describe('[TEST]: http utils', () => {
     });
 
     it('getPathWithoutQueryParams', () => {
-        expect(getPathWithoutQueryParams('http://hello/world/todo/1/all')).toBe('http://hello/world/todo/1/all');
-        expect(getPathWithoutQueryParams('http://hello/world/todo/1/all/')).toBe('http://hello/world/todo/1/all/');
-        expect(getPathWithoutQueryParams('http://hello/world/todo/1/all?')).toBe('http://hello/world/todo/1/all');
-        expect(getPathWithoutQueryParams('http://hello/world/todo/1/all/?')).toBe('http://hello/world/todo/1/all/');
-        expect(getPathWithoutQueryParams('http://hello/world/todo/1/all?pageSize=10&pageIndex=0')).toBe(
-            'http://hello/world/todo/1/all'
+        expect(getPathWithoutQueryParams('http://hello/world/todo/1/all')).toBe(
+            'http://hello/world/todo/1/all',
         );
+        expect(getPathWithoutQueryParams('http://hello/world/todo/1/all/')).toBe(
+            'http://hello/world/todo/1/all/',
+        );
+        expect(getPathWithoutQueryParams('http://hello/world/todo/1/all?')).toBe(
+            'http://hello/world/todo/1/all',
+        );
+        expect(getPathWithoutQueryParams('http://hello/world/todo/1/all/?')).toBe(
+            'http://hello/world/todo/1/all/',
+        );
+        expect(
+            getPathWithoutQueryParams(
+                'http://hello/world/todo/1/all?pageSize=10&pageIndex=0',
+            ),
+        ).toBe('http://hello/world/todo/1/all');
     });
 
     it('getUrlSegments', () => {
@@ -38,50 +48,50 @@ describe('[TEST]: http utils', () => {
             hostUrl: 'http://localhost',
             baseUrl: '',
             restUrl: '',
-            pathUrl: ''
+            pathUrl: '',
         });
 
         expect(
             makeUrlSegments({
                 hostUrl: 'http://hello_world',
-                baseUrl: 'api'
-            })
+                baseUrl: 'api',
+            }),
         ).toEqual({
             hostUrl: 'http://hello_world',
             baseUrl: 'api',
             restUrl: '',
-            pathUrl: ''
+            pathUrl: '',
         });
 
         expect(
             makeUrlSegments(
                 {
                     hostUrl: 'http://hello_world',
-                    baseUrl: 'api'
+                    baseUrl: 'api',
                 },
-                'auth'
-            )
+                'auth',
+            ),
         ).toEqual({
             hostUrl: 'http://hello_world',
             baseUrl: 'api',
             restUrl: 'auth',
-            pathUrl: ''
+            pathUrl: '',
         });
 
         expect(
             makeUrlSegments(
                 {
                     hostUrl: 'http://hello_world',
-                    baseUrl: 'api'
+                    baseUrl: 'api',
                 },
                 'user',
-                'update'
-            )
+                'update',
+            ),
         ).toEqual({
             hostUrl: 'http://hello_world',
             baseUrl: 'api',
             restUrl: 'user',
-            pathUrl: 'update'
+            pathUrl: 'update',
         });
     });
 
@@ -97,19 +107,27 @@ describe('[TEST]: http utils', () => {
     });
 
     it('buildUrl', () => {
-        expect(buildUrl(makeUrlSegments({}, '////a///b//c/d/'))).toBe('http://localhost/a/b/c/d');
-        expect(buildUrl(makeUrlSegments({ baseUrl: 'api-backend' }, '////a///b//c/d'))).toBe(
-            'http://localhost/api-backend/a/b/c/d'
+        expect(buildUrl(makeUrlSegments({}, '////a///b//c/d/'))).toBe(
+            'http://localhost/a/b/c/d',
         );
+        expect(
+            buildUrl(makeUrlSegments({baseUrl: 'api-backend'}, '////a///b//c/d')),
+        ).toBe('http://localhost/api-backend/a/b/c/d');
 
-        expect(buildUrl(makeUrlSegments({ hostUrl: 'https://127.0.0.0:8030' }, '', '////a///b//c/d?quick'))).toBe(
-            'https://127.0.0.0:8030/a/b/c/d'
-        );
+        expect(
+            buildUrl(
+                makeUrlSegments(
+                    {hostUrl: 'https://127.0.0.0:8030'},
+                    '',
+                    '////a///b//c/d?quick',
+                ),
+            ),
+        ).toBe('https://127.0.0.0:8030/a/b/c/d');
     });
 
     describe('getHttpHeader', () => {
         it('case #1', () => {
-            const headers: HttpHeaders = getHttpHeader({ a: '1', b: '2' });
+            const headers: HttpHeaders = getHttpHeader({a: '1', b: '2'});
 
             expect(headers.keys()).toEqual(['a', 'b']);
             expect(headers.get('a')).toBe('1');
@@ -117,7 +135,9 @@ describe('[TEST]: http utils', () => {
         });
 
         it('case #2', () => {
-            const params: HttpParams = getHttpParams('/todos/get?pageSize=5&value=2', { pageIndex: 0 });
+            const params: HttpParams = getHttpParams('/todos/get?pageSize=5&value=2', {
+                pageIndex: 0,
+            });
 
             expect(params.keys()).toEqual(['pageSize', 'value', 'pageIndex']);
             expect(params.get('pageSize')).toBe('5');
@@ -127,9 +147,11 @@ describe('[TEST]: http utils', () => {
     });
 
     it('parseQueryParams', () => {
-        const queryParams: PlainObject = parseQueryParams('/todos/get?pageSize=5&value=2');
+        const queryParams: PlainObject = parseQueryParams(
+            '/todos/get?pageSize=5&value=2',
+        );
 
-        expect(queryParams).toEqual({ pageSize: '5', value: '2' });
+        expect(queryParams).toEqual({pageSize: '5', value: '2'});
     });
 
     it('ensurePathByPathVariables', () => {
@@ -139,7 +161,9 @@ describe('[TEST]: http utils', () => {
         map.set('newId', 6);
 
         expect(ensurePathByPathVariables(`/a/{newId}/b/{id}/d`, map)).toBe('/a/6/b/5/d');
-        expect(ensurePathByPathVariables(`/a/{invalidName}`, map)).toBe('/a/{invalidName}');
+        expect(ensurePathByPathVariables(`/a/{invalidName}`, map)).toBe(
+            '/a/{invalidName}',
+        );
     });
 
     describe('removeLeadingAndTrailingSlashes', () => {
@@ -156,7 +180,9 @@ describe('[TEST]: http utils', () => {
         });
 
         it('case #4', () => {
-            expect(replaceLeadingAndTrailingSlashes('//ad/example///')).toBe('ad/example');
+            expect(replaceLeadingAndTrailingSlashes('//ad/example///')).toBe(
+                'ad/example',
+            );
         });
     });
 });

@@ -2,17 +2,20 @@
 // import 'jest-preset-angular/setup-jest';
 import 'zone.js/fesm2015/zone-testing-bundle.min.js';
 
-import { getTestBed } from '@angular/core/testing';
-import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
-import { arrayBuffer } from 'node:stream/consumers';
-import { TransformStream } from 'node:stream/web';
+import {getTestBed} from '@angular/core/testing';
+import {
+    BrowserDynamicTestingModule,
+    platformBrowserDynamicTesting,
+} from '@angular/platform-browser-dynamic/testing';
+import {arrayBuffer} from 'node:stream/consumers';
+import {TransformStream} from 'node:stream/web';
 
 declare const jest: any;
 declare const global: any;
 
 const jsdom: any = require('jsdom');
 
-const { JSDOM }: any = jsdom;
+const {JSDOM}: any = jsdom;
 
 const dom: any = new JSDOM('<!DOCTYPE html><html><head></head><body></body></html>');
 
@@ -26,7 +29,7 @@ global.document = dom.window.document;
 // to jest.fn as an argument
 global.window!.IntersectionObserver = jest.fn((): any => ({
     observe,
-    unobserve
+    unobserve,
 }));
 
 // Simulate window resize events
@@ -46,12 +49,15 @@ global.TextDecoder = require('util').TextDecoder;
 global.CompressionStream = class {
     constructor() {
         return new TransformStream({
-            transform(chunk: Uint8Array, controller: TransformStreamDefaultController): void {
+            transform(
+                chunk: Uint8Array,
+                controller: TransformStreamDefaultController,
+            ): void {
                 controller.enqueue(chunk);
             },
             flush(controller: TransformStreamDefaultController): void {
                 controller.terminate();
-            }
+            },
         });
     }
 };
@@ -59,12 +65,15 @@ global.CompressionStream = class {
 global.DecompressionStream = class {
     constructor() {
         return new TransformStream({
-            transform(chunk: ArrayBuffer, controller: TransformStreamDefaultController): void {
+            transform(
+                chunk: ArrayBuffer,
+                controller: TransformStreamDefaultController,
+            ): void {
                 controller.enqueue(chunk);
             },
             flush(controller: TransformStreamDefaultController): void {
                 controller.terminate();
-            }
+            },
         });
     }
 };
@@ -84,4 +93,7 @@ global.URL.revokeObjectURL = jest.fn();
 // eslint-disable-next-line deprecation/deprecation
 document.execCommand = jest.fn((): void => void 0);
 
-getTestBed().initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
+getTestBed().initTestEnvironment(
+    BrowserDynamicTestingModule,
+    platformBrowserDynamicTesting(),
+);

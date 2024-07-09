@@ -1,7 +1,7 @@
 <mat-toolbar class="simple-toolbar">
     <span>
         Example resizing
-        <span *ngIf="table.isRendered">({{ table.source?.length }}x{{ table.displayedColumns?.length }})</span>
+        <span *ngIf="table.isRendered">({{ table.source?.length }}x{{ table.displayedColumns.length }})</span>
     </span>
     <button
         mat-raised-button
@@ -19,9 +19,9 @@
 
 <ngx-table-builder
     #table
-    [source]="data"
-    [row-height]="55"
     [exclude-keys]="['guid']"
+    [row-height]="55"
+    [source]="data"
     [vertical-border]="false"
     (schemaChanges)="updatedSchema($event)"
 >
@@ -37,9 +37,9 @@
     ></ngx-options>
 
     <ngx-column
-        key="id"
-        width="80"
         important-template
+        key="id"
         sticky
+        width="80"
     ></ngx-column>
 </ngx-table-builder>

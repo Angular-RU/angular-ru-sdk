@@ -1,4 +1,4 @@
-import { DeepKeyOfList, KeyOfList, Leaves, Paths } from '@angular-ru/cdk/typings';
+import {DeepKeyOfList, KeyOfList, Leaves, Paths} from '@angular-ru/cdk/typings';
 
 describe('[TEST]: Common types', () => {
     it('any: sample duck typing', () => {
@@ -27,7 +27,7 @@ describe('[TEST]: Common types', () => {
     it('deep keyof', () => {
         class B {
             public c: string = '';
-            public etc: { f: string } = { f: '' };
+            public etc: {f: string} = {f: ''};
         }
 
         class A {
@@ -43,7 +43,7 @@ describe('[TEST]: Common types', () => {
     it('leaves', () => {
         class B {
             public c: string = '';
-            public etc: { f: string } = { f: '' };
+            public etc: {f: string} = {f: ''};
         }
 
         class A {
@@ -59,7 +59,7 @@ describe('[TEST]: Common types', () => {
     it('paths', () => {
         class B {
             public c: string = '';
-            public etc: { f: string } = { f: '' };
+            public etc: {f: string} = {f: ''};
         }
 
         class A {

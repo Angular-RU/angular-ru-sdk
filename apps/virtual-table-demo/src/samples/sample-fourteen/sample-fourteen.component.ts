@@ -5,15 +5,15 @@ import {
     Component,
     OnInit,
     ViewChild,
-    ViewEncapsulation
+    ViewEncapsulation,
 } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { PlainObject } from '@angular-ru/cdk/typings';
-import { TableBuilderComponent, TableFilterType } from '@angular-ru/cdk/virtual-table';
+import {MatDialog} from '@angular/material/dialog';
+import {PlainObject} from '@angular-ru/cdk/typings';
+import {TableBuilderComponent, TableFilterType} from '@angular-ru/cdk/virtual-table';
 
-import { hlJsCode } from '../../../../../.global/utils/hljs-code';
-import { MocksGenerator } from '../../mocks-generator';
-import { CodeDialogComponent } from '../../shared/dialog/code-dialog.component';
+import {hlJsCode} from '../../../../../.global/utils/hljs-code';
+import {MocksGenerator} from '../../mocks-generator';
+import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
 
 // noinspection CssUnusedSymbol
 @Component({
@@ -34,16 +34,20 @@ import { CodeDialogComponent } from '../../shared/dialog/code-dialog.component';
                 min-height: 50px;
                 max-height: 50px;
             }
-        `
+        `,
     ],
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SampleFourteenComponent implements OnInit, AfterViewInit {
-    @ViewChild('table', { static: false }) public table!: TableBuilderComponent<PlainObject>;
+    @ViewChild('table', {static: false})
+    public table!: TableBuilderComponent<PlainObject>;
 
     public data: PlainObject[] = [];
-    constructor(public readonly dialog: MatDialog, private readonly cd: ChangeDetectorRef) {}
+    constructor(
+        public readonly dialog: MatDialog,
+        private readonly cd: ChangeDetectorRef,
+    ) {}
 
     public ngOnInit(): void {
         const rows: number = 10000;
@@ -64,7 +68,9 @@ export class SampleFourteenComponent implements OnInit, AfterViewInit {
     }
 
     public filterFromFifth(): void {
-        this.table.filterable.setDefinition([{ key: 'id', type: TableFilterType.MORE_OR_EQUAL, value: 5 }]);
+        this.table.filterable.setDefinition([
+            {key: 'id', type: TableFilterType.MORE_OR_EQUAL, value: 5},
+        ]);
         this.table.filter();
     }
 
@@ -104,10 +110,10 @@ export class SampleFourteenComponent implements OnInit, AfterViewInit {
             </mat-form-field>
         </div>
     </ngx-filter>
-                    `
+                    `,
             },
             height: '650px',
-            width: '900px'
+            width: '900px',
         });
     }
 }

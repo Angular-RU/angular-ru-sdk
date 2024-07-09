@@ -8,13 +8,13 @@
     <div class="column">
         <pre><code class="javascript">
   // app.component.ts
-  import &#123; Component } from "@angular/core";
-  import &#123; LicenseSample } from "./license.interface";
+  import &#123; Component &#125; from "&#64;angular/core";
+  import &#123; LicenseSample &#125; from "./license.interface";
 
-  @Component(&#123;
+  &#64;Component(&#123;
     selector: 'app',
     templateUrl: './app.component.html'
-  })
+  &#125;)
   export class AppComponent &#123;
 
     public licenses: LicenseSample[] = [
@@ -22,25 +22,25 @@
         id: 1,
         name: 'single',
         price: 29.3
-      },
+      &#125;,
       &#123;
         id: 2,
         name: 'developer',
         price: 49.8
-      },
+      &#125;,
       &#123;
         id: 3,
         name: 'premium',
         price: 99.5
-      },
+      &#125;,
       &#123;
         id: 4,
         name: 'enterprise',
         price: 199
-      }
+      &#125;
     ];
 
-  }
+  &#125;
 
 </code></pre>
     </div>
@@ -53,7 +53,7 @@
       &lt;ngx-column key="name">
           &lt;ng-template ngx-th>License&lt;/ng-template>
           &lt;ng-template ngx-td let-name>
-            &#123;&#123; name | uppercase }}
+            &#123;&#123; name | uppercase &#125;&#125;
           &lt;/ng-template>
       &lt;/ngx-column>
 
@@ -72,8 +72,8 @@
             <ngx-column key="name">
                 <ng-template ngx-th>License</ng-template>
                 <ng-template
-                    ngx-td
                     let-name
+                    ngx-td
                 >
                     {{ name | uppercase }}
                 </ng-template>
@@ -82,8 +82,8 @@
             <ngx-column key="price">
                 <ng-template ngx-th>Price</ng-template>
                 <ng-template
-                    ngx-td
                     let-price
+                    ngx-td
                 >
                     {{ price | currency }}
                 </ng-template>
@@ -98,16 +98,16 @@
     <div class="column">
         <pre><code class="javascript">
   // app.component.ts
-  import &#123; Component } from "@angular/core";
+  import &#123; Component &#125; from "&#64;angular/core";
 
   export interface PeriodicElement &#123;
       name: string;
       position: number;
       weight: number;
       symbol: string;
-  }
+  &#125;
 
-  @Component(&#123;
+  &#64;Component(&#123;
     selector: 'app',
     templateUrl: './app.component.html',
     styles: [
@@ -116,18 +116,18 @@
         .status-column .table-grid__cell &#123;
           padding: 0;
           color: green;
-        }
+        &#125;
 
          // Reset CSS for default mat-button style
         .button__done[mat-button] &#123;
           padding: 0;
           min-width: 100%;
-        }
+        &#125;
       `
     ],
     // Use to disable CSS Encapsulation for this component
     encapsulation: ViewEncapsulation.None,
-  })
+  &#125;)
   export class AppComponent &#123;
     public columns: string[] = [
       'name', 'position', 'weight', 'symbol',
@@ -135,18 +135,18 @@
     ];
 
     public data: PeriodicElement[] = [
-      &#123; position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-      &#123; position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-      &#123; position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-      &#123; position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-      &#123; position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-      &#123; position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-      &#123; position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-      &#123; position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-      &#123; position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-      &#123; position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
+      &#123; position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' &#125;,
+      &#123; position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' &#125;,
+      &#123; position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' &#125;,
+      &#123; position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' &#125;,
+      &#123; position: 5, name: 'Boron', weight: 10.811, symbol: 'B' &#125;,
+      &#123; position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' &#125;,
+      &#123; position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' &#125;,
+      &#123; position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' &#125;,
+      &#123; position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' &#125;,
+      &#123; position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' &#125;,
     ];
-  }
+  &#125;
 
 
 </code></pre>
@@ -216,9 +216,9 @@
 
     <div class="column">
         <ngx-table-builder
+            [keys]="columns"
             [source]="elements"
             [striped]="false"
-            [keys]="columns"
         >
             <ngx-column
                 key="name"
@@ -227,8 +227,8 @@
 
             <ngx-column
                 key="status"
-                width="50"
                 sticky-end
+                width="50"
                 [css-class]="['status-column']"
             >
                 <ng-template ngx-th></ng-template>
@@ -269,37 +269,37 @@
             [source]="licenses"
         >
             <ngx-column
+                empty-head
                 key="id"
                 width="100"
-                empty-head
             >
                 <ng-template
-                    ngx-td
                     let-id
+                    ngx-td
                 >
                     №{{ id }}
                 </ng-template>
             </ngx-column>
 
             <ngx-column
-                key="name"
                 head-title="License name"
+                key="name"
             >
                 <ng-template
-                    ngx-td
                     let-name
+                    ngx-td
                 >
                     {{ name | uppercase }}
                 </ng-template>
             </ngx-column>
 
             <ngx-column
-                key="price"
                 head-title="Cost"
+                key="price"
             >
                 <ng-template
-                    ngx-td
                     let-price
+                    ngx-td
                 >
                     <!-- https://github.com/angular/components/issues/24126 -->
                     <button
@@ -316,10 +316,10 @@
             </ngx-column>
 
             <ngx-column
+                custom-key
+                empty-head
                 key="change"
                 width="250"
-                empty-head
-                custom-key
             >
                 <ng-template ngx-td>
                     <mat-form-field>

@@ -1,11 +1,11 @@
-import { Component, Injectable } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
-import { MutableTypePipe, MutableTypePipeModule } from '@angular-ru/cdk/pipes';
-import { Immutable } from '@angular-ru/cdk/typings';
-import { NgxsDataPluginModule } from '@angular-ru/ngxs';
-import { StateRepository } from '@angular-ru/ngxs/decorators';
-import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
-import { NgxsModule, State } from '@ngxs/store';
+import {Component, Injectable} from '@angular/core';
+import {TestBed} from '@angular/core/testing';
+import {MutableTypePipe, MutableTypePipeModule} from '@angular-ru/cdk/pipes';
+import {Immutable} from '@angular-ru/cdk/typings';
+import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {StateRepository} from '@angular-ru/ngxs/decorators';
+import {NgxsImmutableDataRepository} from '@angular-ru/ngxs/repositories';
+import {NgxsModule, State} from '@ngxs/store';
 
 describe('mutable', () => {
     interface A {
@@ -14,17 +14,17 @@ describe('mutable', () => {
     }
 
     it('immutable<A> to A', () => {
-        const a: Immutable<A> = { a: 1, b: 2 };
+        const a: Immutable<A> = {a: 1, b: 2};
         const mutableA = new MutableTypePipe().transform(a);
 
         mutableA.b++;
-        expect(a).toEqual({ a: 1, b: 3 });
+        expect(a).toEqual({a: 1, b: 3});
     });
 
     it('immutable<A>[] to A[]', () => {
         const arr: Immutable<A[]> = [
-            { a: 1, b: 2 },
-            { a: 2, b: 3 }
+            {a: 1, b: 2},
+            {a: 2, b: 3},
         ];
 
         const mutableArr = new MutableTypePipe().transform(arr);
@@ -33,23 +33,23 @@ describe('mutable', () => {
         mutableArr[1]!.b++;
 
         expect(mutableArr).toEqual([
-            { a: 2, b: 2 },
-            { a: 2, b: 4 }
+            {a: 2, b: 2},
+            {a: 2, b: 4},
         ]);
 
         expect(mutableArr.reverse()).toEqual([
-            { a: 2, b: 4 },
-            { a: 2, b: 2 }
+            {a: 2, b: 4},
+            {a: 2, b: 2},
         ]);
     });
 
     it('should be correct work pipe in template', () => {
         @StateRepository()
-        @State({ name: 'app', defaults: 0 })
+        @State({name: 'app', defaults: 0})
         @Injectable()
         class AppState extends NgxsImmutableDataRepository<number> {}
 
-        @Component({ selector: 'app', template: '{{ appState.state$ | async | mutable }}' })
+        @Component({selector: 'app', template: '{{ appState.state$ | async | mutable }}'})
         class AppComponent {
             constructor(public appState: AppState) {}
         }
@@ -57,10 +57,10 @@ describe('mutable', () => {
         TestBed.configureTestingModule({
             declarations: [AppComponent],
             imports: [
-                NgxsModule.forRoot([AppState], { developmentMode: true }),
+                NgxsModule.forRoot([AppState], {developmentMode: true}),
                 NgxsDataPluginModule.forRoot(),
-                MutableTypePipeModule
-            ]
+                MutableTypePipeModule,
+            ],
         }).compileComponents();
 
         const app = TestBed.createComponent(AppComponent);

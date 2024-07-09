@@ -1,4 +1,4 @@
-import { DEFAULT_UNITS_MAP, replaceUnits, UnitsMap } from '@angular-ru/cdk/utils';
+import {DEFAULT_UNITS_MAP, replaceUnits, UnitsMap} from '@angular-ru/cdk/utils';
 
 describe('[TEST]: replaceUnits', () => {
     describe('default', () => {
@@ -16,7 +16,7 @@ describe('[TEST]: replaceUnits', () => {
             s: 1,
             m: 60,
             h: 3600,
-            decimal: 10
+            decimal: 10,
         };
 
         it('should be able to use different prefixes', () => {
@@ -45,9 +45,9 @@ describe('[TEST]: replaceUnits', () => {
             expect(replaceUnits('  1m  ', UNITS_MAP)).toBe('  60  ');
             expect(replaceUnits('   1m   1m   1m   ', UNITS_MAP)).toBe('   180   ');
             expect(replaceUnits('   1.5h 2m   ', UNITS_MAP)).toBe('   5520   ');
-            expect(replaceUnits('   2h   2m   aaa   2m   bbb   5decimal   1h   ', UNITS_MAP)).toBe(
-                '   7320   aaa   120   bbb   3650   '
-            );
+            expect(
+                replaceUnits('   2h   2m   aaa   2m   bbb   5decimal   1h   ', UNITS_MAP),
+            ).toBe('   7320   aaa   120   bbb   3650   ');
         });
 
         it('should keep as it is', () => {
@@ -61,7 +61,7 @@ describe('[TEST]: replaceUnits', () => {
             expect(replaceUnits('m', UNITS_MAP)).toBe('m');
             expect(replaceUnits('1,5m', UNITS_MAP)).toBe('1,5m');
             expect(replaceUnits('a b c 1 2 3', UNITS_MAP)).toBe('a b c 1 2 3');
-            expect(replaceUnits('1m', { notExists: 13 })).toBe('1m');
+            expect(replaceUnits('1m', {notExists: 13})).toBe('1m');
         });
 
         it('should calculate units', () => {
@@ -86,7 +86,9 @@ describe('[TEST]: replaceUnits', () => {
             expect(replaceUnits('1m\n2m', UNITS_MAP)).toBe('60\n120');
             expect(replaceUnits('1m\n2m\n3m', UNITS_MAP)).toBe('60\n120\n180');
             expect(replaceUnits('aaa 1m\n2m bbb', UNITS_MAP)).toBe('aaa 60\n120 bbb');
-            expect(replaceUnits('   1m   \n   2m   ', UNITS_MAP)).toBe('   60   \n   120   ');
+            expect(replaceUnits('   1m   \n   2m   ', UNITS_MAP)).toBe(
+                '   60   \n   120   ',
+            );
             expect(replaceUnits('1h 1m\n2h 2m', UNITS_MAP)).toBe('3660\n7320');
         });
     });

@@ -1,11 +1,11 @@
 {
-    "root": "apps/virtual-table-demo/",
+    "name": "virtual-table-demo",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "apps/virtual-table-demo/",
     "projectType": "application",
-    "tags": ["scope:applications"],
     "targets": {
         "build": {
-            "builder": "@angular-devkit/build-angular:browser",
+            "executor": "@angular-devkit/build-angular:browser",
             "options": {
                 "outputPath": "dist/virtual-table-demo",
                 "tsConfig": "apps/virtual-table-demo/tsconfig.app.json",
@@ -13,7 +13,7 @@
                 "index": "apps/virtual-table-demo/index.html",
                 "assets": ["apps/virtual-table-demo/assets"],
                 "polyfills": "apps/virtual-table-demo/polyfills.ts",
-                "styles": [".global/integration-app.style.scss", "apps/virtual-table-demo/styles.scss"],
+                "styles": [".global/integration-app.style.scss",  "node_modules/ngx-toastr/toastr.css","apps/virtual-table-demo/styles.scss"],
                 "aot": false,
                 "vendorChunk": true,
                 "extractLicenses": false,
@@ -23,14 +23,6 @@
                 "namedChunks": true
             },
             "configurations": {
-                "development": {
-                    "buildOptimizer": false,
-                    "optimization": false,
-                    "vendorChunk": true,
-                    "extractLicenses": false,
-                    "sourceMap": true,
-                    "namedChunks": true
-                },
                 "production": {
                     "fileReplacements": [
                         {
@@ -45,20 +37,31 @@
                     "aot": true,
                     "extractLicenses": true,
                     "buildOptimizer": true
+                },
+                "development": {
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/flex-layout-demo/environments/environment.ts",
+                            "with": "apps/flex-layout-demo/environments/environment.prod.ts"
+                        }
+                    ],
+                    "optimization": false
                 }
             },
             "defaultConfiguration": "production",
-            "outputs": ["./dist/virtual-table-demo"]
+            "outputs": ["{projectRoot}/dist/virtual-table-demo"]
         },
         "serve": {
-            "builder": "@angular-devkit/build-angular:dev-server",
-            "options": { "browserTarget": "virtual-table-demo:build" },
+            "executor": "@angular-devkit/build-angular:dev-server",
+            "options": {
+                "buildTarget": "virtual-table-demo:build"
+            },
             "configurations": {
                 "production": {
-                    "browserTarget": "virtual-table-demo:build:production"
+                    "buildTarget": "virtual-table-demo:build:production"
                 },
                 "development": {
-                    "browserTarget": "virtual-table-demo:build:development"
+                    "buildTarget": "virtual-table-demo:build:development"
                 }
             },
             "defaultConfiguration": "development"

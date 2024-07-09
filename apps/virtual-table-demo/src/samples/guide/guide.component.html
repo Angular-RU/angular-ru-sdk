@@ -11,7 +11,7 @@
     </p>
 
     <pre><code class="plaintext">
-  $ npm install --save @angular-ru/cdk/virtual-table
+  $ npm install --save &#64;angular-ru/cdk/virtual-table
 
 </code></pre>
 
@@ -35,9 +35,9 @@
     </p>
 
     <pre><code class="javascript" ngNonBindable>
-    import &#123; TableBuilderModule &#125; from '@angular-ru/cdk/virtual-table';
+    import &#123; TableBuilderModule &#125; from '&#64;angular-ru/cdk/virtual-table';
 
-    @NgModule(&#123;
+    &#64;NgModule(&#123;
        imports: [
           TableBuilderModule.forRoot()
        ],
@@ -49,20 +49,20 @@
     <p>Next, let's declare the basic grid configuration. Edit src/app.component.ts:</p>
 
     <pre><code class="typescript">
-    import &#123; Component } from '@angular/core';
-    import &#123; MyData } from './my-data.interface';
+    import &#123; Component &#125; from '&#64;angular/core';
+    import &#123; MyData &#125; from './my-data.interface';
 
-    @Component(&#123;
+    &#64;Component(&#123;
       selector: 'app-root',
       template: `&lt;ngx-table-builder [source]="data"&gt;&lt;/ngx-table-builder&gt;`
-    })
+    &#125;)
     export class AppComponent &#123;
       public data: MyData[] = [
-          &#123; make: 'Toyota', model: 'Celica', price: 35000 },
-          &#123; make: 'Ford', model: 'Mondeo', price: 32000 },
-          &#123; make: 'Porsche', model: 'Boxter', price: 72000 }
+          &#123; make: 'Toyota', model: 'Celica', price: 35000 &#125;,
+          &#123; make: 'Ford', model: 'Mondeo', price: 32000 &#125;,
+          &#123; make: 'Porsche', model: 'Boxter', price: 72000 &#125;
       ];
-    }
+    &#125;
     </code></pre>
 
     <ngx-table-builder [source]="rowData"></ngx-table-builder>
@@ -76,8 +76,8 @@
     <div class="guide">
         <h2>Rendering pipeline</h2>
         <img
-            src="assets/img/pipeline.png"
             alt=""
+            src="assets/img/pipeline.png"
         />
     </div>
 </div>

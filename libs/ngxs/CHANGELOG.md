@@ -7,8 +7,8 @@ All notable changes to this project will be documented in this file. See
 
 ### Bug Fixes
 
--   some edits to force version update and release ([#1513](https://github.com/Angular-RU/angular-ru-sdk/issues/1513))
-    ([d6dc030](https://github.com/Angular-RU/angular-ru-sdk/commit/d6dc030afa41da972e2d6a8399dd1e4f09deaeec))
+- some edits to force version update and release ([#1513](https://github.com/Angular-RU/angular-ru-sdk/issues/1513))
+  ([d6dc030](https://github.com/Angular-RU/angular-ru-sdk/commit/d6dc030afa41da972e2d6a8399dd1e4f09deaeec))
 
 # Change Log
 
@@ -19,8 +19,8 @@ All notable changes to this project will be documented in this file. See
 
 ### Bug Fixes
 
--   some editings
-    ([8b69118](https://github.com/Angular-RU/angular-ru-sdk/commit/8b69118d1adebbb8f81a67b02a92ad6cb13813d0))
+- some editings
+  ([8b69118](https://github.com/Angular-RU/angular-ru-sdk/commit/8b69118d1adebbb8f81a67b02a92ad6cb13813d0))
 
 # Change Log
 
@@ -31,9 +31,9 @@ All notable changes to this project will be documented in this file. See
 
 ### Features
 
--   add `type-declarations` lib with `nil` type ([#1487](https://github.com/Angular-RU/angular-ru-sdk/issues/1487))
-    ([#1505](https://github.com/Angular-RU/angular-ru-sdk/issues/1505))
-    ([86e0eda](https://github.com/Angular-RU/angular-ru-sdk/commit/86e0edad0e95f087ab9f19af4ef8c264fbd08e5d))
+- add `type-declarations` lib with `nil` type ([#1487](https://github.com/Angular-RU/angular-ru-sdk/issues/1487))
+  ([#1505](https://github.com/Angular-RU/angular-ru-sdk/issues/1505))
+  ([86e0eda](https://github.com/Angular-RU/angular-ru-sdk/commit/86e0edad0e95f087ab9f19af4ef8c264fbd08e5d))
 
 # Change Log
 
@@ -44,8 +44,8 @@ All notable changes to this project will be documented in this file. See
 
 ### Bug Fixes
 
--   **ngxs:** use object for data state type agument ([#1489](https://github.com/Angular-RU/angular-ru-sdk/issues/1489))
-    ([ebfc83d](https://github.com/Angular-RU/angular-ru-sdk/commit/ebfc83de45922eed863978496c3bd29606e1e0f9))
+- **ngxs:** use object for data state type agument ([#1489](https://github.com/Angular-RU/angular-ru-sdk/issues/1489))
+  ([ebfc83d](https://github.com/Angular-RU/angular-ru-sdk/commit/ebfc83de45922eed863978496c3bd29606e1e0f9))
 
 # Change Log
 
@@ -65,8 +65,8 @@ All notable changes to this project will be documented in this file. See
 
 ### Bug Fixes
 
--   **ngxs:** upgrade to NGXS 3.8 ([#1460](https://github.com/Angular-RU/angular-ru-sdk/issues/1460))
-    ([87be6b9](https://github.com/Angular-RU/angular-ru-sdk/commit/87be6b9cc0ba376aa2469c37fbacd2ba4f7c004d))
+- **ngxs:** upgrade to NGXS 3.8 ([#1460](https://github.com/Angular-RU/angular-ru-sdk/issues/1460))
+  ([87be6b9](https://github.com/Angular-RU/angular-ru-sdk/commit/87be6b9cc0ba376aa2469c37fbacd2ba4f7c004d))
 
 # Change Log
 
@@ -77,9 +77,9 @@ All notable changes to this project will be documented in this file. See
 
 ### Bug Fixes
 
--   use compilationMode `partial` for libraries [#1409](https://github.com/Angular-RU/angular-ru-sdk/issues/1409)
-    ([#1410](https://github.com/Angular-RU/angular-ru-sdk/issues/1410))
-    ([178c7b4](https://github.com/Angular-RU/angular-ru-sdk/commit/178c7b4bdca2c9bedc0a43d446deb08e468da542))
+- use compilationMode `partial` for libraries [#1409](https://github.com/Angular-RU/angular-ru-sdk/issues/1409)
+  ([#1410](https://github.com/Angular-RU/angular-ru-sdk/issues/1410))
+  ([178c7b4](https://github.com/Angular-RU/angular-ru-sdk/commit/178c7b4bdca2c9bedc0a43d446deb08e468da542))
 
 # Change Log
 
@@ -90,9 +90,9 @@ All notable changes to this project will be documented in this file. See
 
 ### Features
 
--   enable preserveConstEnums for buildable libs ([#1387](https://github.com/Angular-RU/angular-ru-sdk/issues/1387))
-    ([#1389](https://github.com/Angular-RU/angular-ru-sdk/issues/1389))
-    ([3370fc9](https://github.com/Angular-RU/angular-ru-sdk/commit/3370fc964ae520d0a50c048c590a0d5ec09a7979))
+- enable preserveConstEnums for buildable libs ([#1387](https://github.com/Angular-RU/angular-ru-sdk/issues/1387))
+  ([#1389](https://github.com/Angular-RU/angular-ru-sdk/issues/1389))
+  ([3370fc9](https://github.com/Angular-RU/angular-ru-sdk/commit/3370fc964ae520d0a50c048c590a0d5ec09a7979))
 
 # Change Log
 
@@ -130,49 +130,48 @@ All notable changes to this project will be documented in this file. See
 
 ### Bug Fixes
 
--   bump versions
-    ([ce34128](https://github.com/Angular-RU/angular-ru-sdk/commit/ce34128f57fb319486395d7a75a8672bc880b2af))
--   persistence decorator in feature module fixed ([#1349](https://github.com/Angular-RU/angular-ru-sdk/issues/1349))
-    ([07fa0bc](https://github.com/Angular-RU/angular-ru-sdk/commit/07fa0bc732a2a945dcfd16f98521891fc969b0ac))
--   problem with TypeScript
-    ([226314e](https://github.com/Angular-RU/angular-ru-sdk/commit/226314e9b998e03d76ab8ae23ff60cd9f5b766a7))
--   virtual-table cell disable remove element when tooltip as related target
-    ([#1356](https://github.com/Angular-RU/angular-ru-sdk/issues/1356))
-    ([7238828](https://github.com/Angular-RU/angular-ru-sdk/commit/72388282d421d60ded8c4dbd1629b1f259df2187))
+- bump versions
+  ([ce34128](https://github.com/Angular-RU/angular-ru-sdk/commit/ce34128f57fb319486395d7a75a8672bc880b2af))
+- persistence decorator in feature module fixed ([#1349](https://github.com/Angular-RU/angular-ru-sdk/issues/1349))
+  ([07fa0bc](https://github.com/Angular-RU/angular-ru-sdk/commit/07fa0bc732a2a945dcfd16f98521891fc969b0ac))
+- problem with TypeScript
+  ([226314e](https://github.com/Angular-RU/angular-ru-sdk/commit/226314e9b998e03d76ab8ae23ff60cd9f5b766a7))
+- virtual-table cell disable remove element when tooltip as related target
+  ([#1356](https://github.com/Angular-RU/angular-ru-sdk/issues/1356))
+  ([7238828](https://github.com/Angular-RU/angular-ru-sdk/commit/72388282d421d60ded8c4dbd1629b1f259df2187))
 
--   BREAKING CHANGE: Angular 13
-    ([8a30087](https://github.com/Angular-RU/angular-ru-sdk/commit/8a300878fb400dc613ca5f6d1c23a96f9c4b6714))
+- BREAKING CHANGE: Angular 13
+  ([8a30087](https://github.com/Angular-RU/angular-ru-sdk/commit/8a300878fb400dc613ca5f6d1c23a96f9c4b6714))
 
 ### Features
 
--   **eslint-config-enterprise:** add additional
-    ([e463cb9](https://github.com/Angular-RU/angular-ru-sdk/commit/e463cb9b3827f63c6fc6685e182c02b9aa84e3d9))
--   **eslint-config-enterprise:** add consistent-destructuring
-    ([82059ec](https://github.com/Angular-RU/angular-ru-sdk/commit/82059ec775e2cc87f84d245d04f3ebfc6feb69dd))
--   **eslint-config-enterprise:** add unicorn plugin
-    ([127a8ee](https://github.com/Angular-RU/angular-ru-sdk/commit/127a8eee1b6b3a8d263bc0b5c7b11df77ffd0064))
--   **eslint-config-enterprise:** support no-array-for-each
-    ([d4a0040](https://github.com/Angular-RU/angular-ru-sdk/commit/d4a0040f6c2945fae353a7e6e17cbfb8bf6788be))
--   **eslint-config-enterprise:** support no-array-push-push
-    ([d1a7cf9](https://github.com/Angular-RU/angular-ru-sdk/commit/d1a7cf9afe91d0806c7fb44181977d30554661ed))
--   **eslint-config-enterprise:** support no-for-loop
-    ([92767ed](https://github.com/Angular-RU/angular-ru-sdk/commit/92767edccf7cf7e049ad2177f09251367f010ffa))
--   move to libs directory
-    ([00bfd25](https://github.com/Angular-RU/angular-ru-sdk/commit/00bfd257dc6e17d3c228ae71a1d7e141eb30ab59))
--   **ngxs:** data-actions without subscription requirement
-    ([#1294](https://github.com/Angular-RU/angular-ru-sdk/issues/1294))
-    ([3241591](https://github.com/Angular-RU/angular-ru-sdk/commit/32415910fdcdc7d51e67bdb8783d6ebe6618a2ee))
--   remove `Any`
-    ([767ef80](https://github.com/Angular-RU/angular-ru-sdk/commit/767ef80c3171d8235ceb8548b38323b74eacdcb2))
--   remove support karma runner
-    ([9d8c1a0](https://github.com/Angular-RU/angular-ru-sdk/commit/9d8c1a0a9931b1e87c9a3dbb72e994d80b19dd7a))
--   support Angular 13
-    ([cb92903](https://github.com/Angular-RU/angular-ru-sdk/commit/cb92903279e612557bbd6df98e9c7d722a10ccdd))
--   upgrade packages
-    ([c6634d7](https://github.com/Angular-RU/angular-ru-sdk/commit/c6634d7d324284f06a4e6cb539aea15d70f4731c))
+- **eslint-config-enterprise:** add additional
+  ([e463cb9](https://github.com/Angular-RU/angular-ru-sdk/commit/e463cb9b3827f63c6fc6685e182c02b9aa84e3d9))
+- **eslint-config-enterprise:** add consistent-destructuring
+  ([82059ec](https://github.com/Angular-RU/angular-ru-sdk/commit/82059ec775e2cc87f84d245d04f3ebfc6feb69dd))
+- **eslint-config-enterprise:** add unicorn plugin
+  ([127a8ee](https://github.com/Angular-RU/angular-ru-sdk/commit/127a8eee1b6b3a8d263bc0b5c7b11df77ffd0064))
+- **eslint-config-enterprise:** support no-array-for-each
+  ([d4a0040](https://github.com/Angular-RU/angular-ru-sdk/commit/d4a0040f6c2945fae353a7e6e17cbfb8bf6788be))
+- **eslint-config-enterprise:** support no-array-push-push
+  ([d1a7cf9](https://github.com/Angular-RU/angular-ru-sdk/commit/d1a7cf9afe91d0806c7fb44181977d30554661ed))
+- **eslint-config-enterprise:** support no-for-loop
+  ([92767ed](https://github.com/Angular-RU/angular-ru-sdk/commit/92767edccf7cf7e049ad2177f09251367f010ffa))
+- move to libs directory
+  ([00bfd25](https://github.com/Angular-RU/angular-ru-sdk/commit/00bfd257dc6e17d3c228ae71a1d7e141eb30ab59))
+- **ngxs:** data-actions without subscription requirement
+  ([#1294](https://github.com/Angular-RU/angular-ru-sdk/issues/1294))
+  ([3241591](https://github.com/Angular-RU/angular-ru-sdk/commit/32415910fdcdc7d51e67bdb8783d6ebe6618a2ee))
+- remove `Any` ([767ef80](https://github.com/Angular-RU/angular-ru-sdk/commit/767ef80c3171d8235ceb8548b38323b74eacdcb2))
+- remove support karma runner
+  ([9d8c1a0](https://github.com/Angular-RU/angular-ru-sdk/commit/9d8c1a0a9931b1e87c9a3dbb72e994d80b19dd7a))
+- support Angular 13
+  ([cb92903](https://github.com/Angular-RU/angular-ru-sdk/commit/cb92903279e612557bbd6df98e9c7d722a10ccdd))
+- upgrade packages
+  ([c6634d7](https://github.com/Angular-RU/angular-ru-sdk/commit/c6634d7d324284f06a4e6cb539aea15d70f4731c))
 
 ### BREAKING CHANGES
 
--   Angular 13 BREAKING CHANGES: Angular 13
+- Angular 13 BREAKING CHANGES: Angular 13
 
 Co-authored-by: s.nedobuga <s.nedobuga@tinkoff.ru>

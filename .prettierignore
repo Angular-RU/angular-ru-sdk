@@ -10,3 +10,6 @@ typescript.bad.ts
 typescript.good.ts
 package-lock.json
 .angular
+
+/.nx/cache
+/.nx/workspace-data

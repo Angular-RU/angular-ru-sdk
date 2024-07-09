@@ -1,6 +1,6 @@
-import { NgEnvironment } from '@angular-ru/cdk/typings';
+import {NgEnvironment} from '@angular-ru/cdk/typings';
 
-export const environment: NgEnvironment & { useConfig: boolean } = {
+export const environment: NgEnvironment & {useConfig: boolean} = {
     production: false,
-    useConfig: true
+    useConfig: true,
 };

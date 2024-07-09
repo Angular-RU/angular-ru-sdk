@@ -1,6 +1,6 @@
 // noinspection AngularMissingOrInvalidDeclarationInModule
 
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {
     DebugLog,
     ErrorLog,
@@ -15,10 +15,10 @@ import {
     TimerInfo,
     TimerLog,
     TraceLog,
-    WarnLog
+    WarnLog,
 } from '@angular-ru/cdk/logger';
-import { Fn, Nullable } from '@angular-ru/cdk/typings';
-import { isNotNil } from '@angular-ru/cdk/utils';
+import {Fn, Nullable} from '@angular-ru/cdk/typings';
+import {isNotNil} from '@angular-ru/cdk/utils';
 
 interface HttpDebugInterface {
     method: string;
@@ -32,7 +32,7 @@ interface HttpDebugInterface {
 @Component({
     selector: 'lib-hello-test',
     template: '',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MyTestComponent implements OnInit {
     @Logger() public logger!: LoggerService;
@@ -48,7 +48,11 @@ export class MyTestComponent implements OnInit {
     public doneHeavy: boolean = false;
     public name: string = 'MockLoggerComponent';
 
-    public static getUrlInfo({ method, url, queryParams }: Partial<HttpDebugInterface>): string {
+    public static getUrlInfo({
+        method,
+        url,
+        queryParams,
+    }: Partial<HttpDebugInterface>): string {
         const params: string = isNotNil(queryParams) ? `?${queryParams}` : '';
 
         return `[${method}] - ${url}${params}`;
@@ -95,7 +99,9 @@ export class MyTestComponent implements OnInit {
         return name;
     }
 
-    @Group((options: Partial<HttpDebugInterface>): string => MyTestComponent.getUrlInfo(options))
+    @Group((options: Partial<HttpDebugInterface>): string =>
+        MyTestComponent.getUrlInfo(options),
+    )
     public hello(name: string): string {
         this.logger.log('group is worked');
 

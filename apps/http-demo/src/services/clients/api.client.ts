@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { DataHttpClient } from '@angular-ru/cdk/http';
-import { Get, RestClient } from '@angular-ru/cdk/http/decorators';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {DataHttpClient} from '@angular-ru/cdk/http';
+import {Get, RestClient} from '@angular-ru/cdk/http/decorators';
+import {Observable} from 'rxjs';
 
 @Injectable()
 @RestClient('')

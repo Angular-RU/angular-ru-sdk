@@ -1,11 +1,13 @@
-import { TestBed } from '@angular/core/testing';
-import { DateToNativePipe, DateToNativePipeModule } from '@angular-ru/cdk/pipes';
+import {TestBed} from '@angular/core/testing';
+import {DateToNativePipe, DateToNativePipeModule} from '@angular-ru/cdk/pipes';
 
 describe('date to native pipe', () => {
     let pipe: DateToNativePipe;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({ imports: [DateToNativePipeModule] }).compileComponents();
+        TestBed.configureTestingModule({
+            imports: [DateToNativePipeModule],
+        }).compileComponents();
         pipe = TestBed.inject(DateToNativePipe);
     });
 

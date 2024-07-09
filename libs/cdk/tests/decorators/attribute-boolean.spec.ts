@@ -1,9 +1,9 @@
-import { CommonModule } from '@angular/common';
-import { Component, Input, ViewChild } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AttributeBoolean } from '@angular-ru/cdk/decorators';
-import { InputBoolean } from '@angular-ru/cdk/typings';
-import { isNotNil } from '@angular-ru/cdk/utils';
+import {CommonModule} from '@angular/common';
+import {Component, Input, ViewChild} from '@angular/core';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {AttributeBoolean} from '@angular-ru/cdk/decorators';
+import {InputBoolean} from '@angular-ru/cdk/typings';
+import {isNotNil} from '@angular-ru/cdk/utils';
 
 describe('[TEST]: Attribute boolean', () => {
     let hostFixture: ComponentFixture<HostComponent>;
@@ -11,7 +11,7 @@ describe('[TEST]: Attribute boolean', () => {
 
     @Component({
         selector: 'child-component',
-        template: ''
+        template: '',
     })
     class ChildComponent {
         @Input()
@@ -22,7 +22,9 @@ describe('[TEST]: Attribute boolean', () => {
         public _propWithSetter?: string;
 
         public get propWithSetter(): InputBoolean {
-            return isNotNil(this._propWithSetter) ? `${this._propWithSetter} - from getter` : undefined;
+            return isNotNil(this._propWithSetter)
+                ? `${this._propWithSetter} - from getter`
+                : undefined;
         }
 
         @Input()
@@ -76,7 +78,7 @@ describe('[TEST]: Attribute boolean', () => {
                 [hookProp]="propValue"
                 [propWithSetter]="propValue"
             ></child-component>
-        `
+        `,
     })
     class HostComponent {
         @ViewChild('simpleProp') public declare simplePropRef: ChildComponent;
@@ -87,14 +89,15 @@ describe('[TEST]: Attribute boolean', () => {
         @ViewChild('dynamicProp') public declare dynamicPropRef: ChildComponent;
         @ViewChild('setterProp') public declare setterPropRef: ChildComponent;
         @ViewChild('hookProp') public declare hookPropRef: ChildComponent;
-        @ViewChild('dynamicSetterProp') public declare dynamicSetterPropRef: ChildComponent;
+        @ViewChild('dynamicSetterProp')
+        public declare dynamicSetterPropRef: ChildComponent;
         public propValue: any = false;
     }
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [CommonModule],
-            declarations: [HostComponent, ChildComponent]
+            declarations: [HostComponent, ChildComponent],
         }).compileComponents();
         hostFixture = TestBed.createComponent(HostComponent);
         host = hostFixture.componentInstance;
@@ -110,12 +113,25 @@ describe('[TEST]: Attribute boolean', () => {
         expect(host.filledStringPropRef.prop).toBe(true);
         expect(host.falseStringPropRef.prop).toBe(false);
         expect(host.setterPropRef._propWithSetter).toBe('propWithSetter: true');
-        expect(host.setterPropRef.propWithSetter).toBe('propWithSetter: true - from getter');
+        expect(host.setterPropRef.propWithSetter).toBe(
+            'propWithSetter: true - from getter',
+        );
         expect(host.setterPropRef.prop).toBe(false);
         expect(host.hookPropRef.hookCalls).toEqual([true]);
 
         const inputs = [false, true, '', ' ', 'val', 'false', {}, 0, undefined, null];
-        const expectingValues = [false, true, true, true, true, false, true, false, false, false];
+        const expectingValues = [
+            false,
+            true,
+            true,
+            true,
+            true,
+            false,
+            true,
+            false,
+            false,
+            false,
+        ];
         const receivedValues: InputBoolean[] = inputs.map((input) => {
             host.propValue = input;
             hostFixture.detectChanges();
@@ -126,6 +142,8 @@ describe('[TEST]: Attribute boolean', () => {
         expect(expectingValues).toEqual(receivedValues);
         expect(expectingValues).toEqual(host.dynamicSetterPropRef.hookCalls);
         expect(host.dynamicSetterPropRef._propWithSetter).toBe('propWithSetter: false');
-        expect(host.dynamicSetterPropRef.propWithSetter).toBe('propWithSetter: false - from getter');
+        expect(host.dynamicSetterPropRef.propWithSetter).toBe(
+            'propWithSetter: false - from getter',
+        );
     });
 });

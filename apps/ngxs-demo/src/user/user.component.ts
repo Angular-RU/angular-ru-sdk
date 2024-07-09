@@ -1,14 +1,14 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Select } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {Select} from '@ngxs/store';
+import {Observable} from 'rxjs';
 
-import { UserState } from './user.state';
-import { UserModel } from './user-model';
+import {UserState} from './user.state';
+import {UserModel} from './user-model';
 
 @Component({
     selector: 'user',
     templateUrl: './user.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserComponent {
     @Select(UserState.getEntity)

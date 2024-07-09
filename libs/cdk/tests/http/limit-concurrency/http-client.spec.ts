@@ -1,10 +1,14 @@
 /* eslint-disable no-restricted-globals */
-import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
-import { Injectable } from '@angular/core';
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { DataHttpClient, DataHttpClientModule } from '@angular-ru/cdk/http';
-import { RestClient } from '@angular-ru/cdk/http/decorators';
-import { Nullable } from '@angular-ru/cdk/typings';
+import {
+    HttpClientTestingModule,
+    HttpTestingController,
+    TestRequest,
+} from '@angular/common/http/testing';
+import {Injectable} from '@angular/core';
+import {fakeAsync, TestBed, tick} from '@angular/core/testing';
+import {DataHttpClient, DataHttpClientModule} from '@angular-ru/cdk/http';
+import {RestClient} from '@angular-ru/cdk/http/decorators';
+import {Nullable} from '@angular-ru/cdk/typings';
 
 describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
     const mockApi: string = 'http://localhost';
@@ -38,32 +42,32 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
             api: api0,
             url: `${baseUrl}/${api0}`,
             delay: 5000,
-            response: api0
+            response: api0,
         },
         {
             api: api1,
             url: `${baseUrl}/${api1}`,
             delay: 1000,
-            response: api1
+            response: api1,
         },
         {
             api: api2,
             url: `${baseUrl}/${api2}`,
             delay: 3000,
-            response: api2
+            response: api2,
         },
         {
             api: api3,
             url: `${baseUrl}/${api3}`,
             delay: 1000,
-            response: api3
+            response: api3,
         },
         {
             api: api4,
             url: `${baseUrl}/${api4}`,
             delay: 2000,
-            response: api4
-        }
+            response: api4,
+        },
     ];
 
     let request0: TestRequest;
@@ -91,34 +95,46 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
     });
 
     function configureTestingModule(limitConcurrency?: number): HttpServices {
-        const options: any = limitConcurrency != null || limitConcurrency === 0 ? { limitConcurrency } : {};
+        const options: any =
+            limitConcurrency != null || limitConcurrency === 0 ? {limitConcurrency} : {};
 
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule, DataHttpClientModule.forRoot([MyClient], options)]
+            imports: [
+                HttpClientTestingModule,
+                DataHttpClientModule.forRoot([MyClient], options),
+            ],
         });
 
         return {
             client: TestBed.inject(MyClient),
-            httpMock: TestBed.inject(HttpTestingController)
+            httpMock: TestBed.inject(HttpTestingController),
         };
     }
 
     function generateRequests(limit: number): void {
         for (const params of requestList.slice(0, limit)) {
             // eslint-disable-next-line no-loop-func
-            client?.get(params.api).subscribe((response: any) => responseOrder.push(response));
+            client
+                ?.get(params.api)
+                .subscribe((response: any) => responseOrder.push(response));
         }
     }
 
     it('should throw an error if limitConcurrency = 0', fakeAsync(() => {
-        ({ client, httpMock } = configureTestingModule(0));
-        expect(() => generateRequests(3)).toThrow(new Error('Limit concurrency should be more than 0'));
+        ({client, httpMock} = configureTestingModule(0));
+        expect(() => generateRequests(3)).toThrow(
+            new Error('Limit concurrency should be more than 0'),
+        );
     }));
 
     it('requests must complete in a right order: Limit Concurrency = 1', fakeAsync(() => {
-        ({ client, httpMock } = configureTestingModule(1));
+        ({client, httpMock} = configureTestingModule(1));
 
-        expectOrder = [requestList[0]!.response, requestList[1]!.response, requestList[2]!.response];
+        expectOrder = [
+            requestList[0]!.response,
+            requestList[1]!.response,
+            requestList[2]!.response,
+        ];
 
         generateRequests(3);
 
@@ -149,14 +165,14 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
     }));
 
     it('requests must complete in a right order: Limit Concurrency = 3', fakeAsync(() => {
-        ({ client, httpMock } = configureTestingModule(3));
+        ({client, httpMock} = configureTestingModule(3));
 
         expectOrder = [
             requestList[1]!.response,
             requestList[3]!.response,
             requestList[2]!.response,
             requestList[4]!.response,
-            requestList[0]!.response
+            requestList[0]!.response,
         ];
 
         generateRequests(5);
@@ -208,14 +224,14 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
     }));
 
     it('requests must complete in a right order: Limit Concurrency = 5', fakeAsync(() => {
-        ({ client, httpMock } = configureTestingModule(5));
+        ({client, httpMock} = configureTestingModule(5));
 
         expectOrder = [
             requestList[1]!.response,
             requestList[3]!.response,
             requestList[4]!.response,
             requestList[2]!.response,
-            requestList[0]!.response
+            requestList[0]!.response,
         ];
 
         generateRequests(5);
@@ -259,7 +275,7 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
     }));
 
     it(`limit concurrency by default should be ${defaultLimit}`, fakeAsync(() => {
-        ({ client, httpMock } = configureTestingModule());
+        ({client, httpMock} = configureTestingModule());
 
         for (let i = 0; i < defaultLimit + exceedTheLimit; i++) {
             // eslint-disable-next-line rxjs/no-ignored-subscribe
@@ -278,7 +294,7 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
     }));
 
     it(`should be no limits if LimitConcurrency is Infinity`, fakeAsync(() => {
-        ({ client, httpMock } = configureTestingModule(Infinity));
+        ({client, httpMock} = configureTestingModule(Infinity));
 
         for (let i = 0; i < defaultLimit + exceedTheLimit; i++) {
             // eslint-disable-next-line rxjs/no-ignored-subscribe

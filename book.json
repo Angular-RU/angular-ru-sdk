@@ -1,9 +1,0 @@
-{
-    "title": "Angular-RU SDK",
-    "root": "./docs",
-    "plugins": ["highlight", "github", "include-codeblock", "versions", "anchors", "youtube"],
-    "pluginsConfig": {
-        "versions": { "type": "branches" },
-        "github": { "url": "https://github.com/angular-ru/angular-ru-sdk/" }
-    }
-}

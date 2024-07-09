@@ -1,10 +1,10 @@
-import { Component, Injectable, OnInit } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NgxsDataPluginModule } from '@angular-ru/ngxs';
-import { DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
-import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
-import { NgxsModule, Select, State, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import {Component, Injectable, OnInit} from '@angular/core';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {DataAction, StateRepository} from '@angular-ru/ngxs/decorators';
+import {NgxsImmutableDataRepository} from '@angular-ru/ngxs/repositories';
+import {NgxsModule, Select, State, Store} from '@ngxs/store';
+import {Observable} from 'rxjs';
 
 describe('check correct deep instance', () => {
     let component: AppComponent;
@@ -32,21 +32,22 @@ describe('check correct deep instance', () => {
     @StateRepository()
     @State<IRegistrationStateModel>({
         name: 'registration',
-        defaults: new RegistrationStateModel()
+        defaults: new RegistrationStateModel(),
     })
     @Injectable()
     class RegistrationState extends NgxsImmutableDataRepository<IRegistrationStateModel> {
-        @Select((state: any) => state.registration) public address$!: Observable<IFormState>;
+        @Select((state: any) => state.registration)
+        public address$!: Observable<IFormState>;
 
         @DataAction()
         public addAddress(address: IFormState): any {
-            return this.ctx.setState(() => ({ address }));
+            return this.ctx.setState(() => ({address}));
         }
     }
 
     @Component({
         selector: 'my-app',
-        template: ''
+        template: '',
     })
     class AppComponent implements OnInit {
         public name = 'Angular + NGXS';
@@ -55,17 +56,20 @@ describe('check correct deep instance', () => {
         constructor(private readonly registration: RegistrationState) {}
 
         public ngOnInit() {
-            this.result = this.registration.addAddress({ dirty: true, model: { hello: 'world' } });
+            this.result = this.registration.addAddress({
+                dirty: true,
+                model: {hello: 'world'},
+            });
         }
     }
 
     beforeAll(() => {
         TestBed.configureTestingModule({
             imports: [
-                NgxsModule.forRoot([RegistrationState], { developmentMode: true }),
-                NgxsDataPluginModule.forRoot()
+                NgxsModule.forRoot([RegistrationState], {developmentMode: true}),
+                NgxsDataPluginModule.forRoot(),
             ],
-            declarations: [AppComponent]
+            declarations: [AppComponent],
         });
 
         fixture = TestBed.createComponent(AppComponent);
@@ -75,11 +79,13 @@ describe('check correct deep instance', () => {
 
     it('should be correct ngOnInit', () => {
         expect(component.name).toBe('Angular + NGXS');
-        expect(store.snapshot()).toEqual({ registration: { address: { dirty: false } } });
+        expect(store.snapshot()).toEqual({registration: {address: {dirty: false}}});
 
         component.ngOnInit();
 
-        expect(store.snapshot()).toEqual({ registration: { address: { dirty: true, model: { hello: 'world' } } } });
+        expect(store.snapshot()).toEqual({
+            registration: {address: {dirty: true, model: {hello: 'world'}}},
+        });
         expect(component.result).toBeUndefined();
     });
 });

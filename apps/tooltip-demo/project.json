@@ -1,11 +1,11 @@
 {
-    "root": "apps/tooltip-demo/",
+    "name": "tooltip-demo",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "apps/tooltip-demo/",
     "projectType": "application",
-    "tags": ["scope:applications"],
     "targets": {
         "build": {
-            "builder": "@angular-devkit/build-angular:browser",
+            "executor": "@angular-devkit/build-angular:browser",
             "options": {
                 "outputPath": "dist/tooltip-demo",
                 "tsConfig": "apps/tooltip-demo/tsconfig.app.json",
@@ -37,17 +37,31 @@
                     "aot": true,
                     "extractLicenses": true,
                     "buildOptimizer": true
+                },
+                "development": {
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/flex-layout-demo/environments/environment.ts",
+                            "with": "apps/flex-layout-demo/environments/environment.prod.ts"
+                        }
+                    ],
+                    "optimization": false
                 }
             },
             "defaultConfiguration": "production",
-            "outputs": ["./dist/tooltip-demo"]
+            "outputs": ["{projectRoot}/dist/tooltip-demo"]
         },
         "serve": {
-            "builder": "@angular-devkit/build-angular:dev-server",
-            "options": { "browserTarget": "tooltip-demo:build" },
+            "executor": "@angular-devkit/build-angular:dev-server",
+            "options": {
+                "buildTarget": "tooltip-demo:build"
+            },
             "configurations": {
                 "production": {
-                    "browserTarget": "tooltip-demo:build:production"
+                    "buildTarget": "tooltip-demo:build:production"
+                },
+                "development": {
+                    "buildTarget": "development-demo:build:production"
                 }
             },
             "defaultConfiguration": "development"

@@ -1,0 +1,46 @@
+<div
+    #divElement
+    class="table-grid__cell--inner-content"
+    (mouseenter)="mouseEnterCell(divElement, $event)"
+    (mouseleave)="mouseLeaveCell($event)"
+>
+    <ng-template
+        [ngIf]="columnSchema?.td?.template!"
+        [ngIfElse]="defaultTd"
+    >
+        <ng-template
+            [ngTemplateOutlet]="columnSchema?.td?.template!"
+            [ngTemplateOutletContext]="{
+                $implicit:
+                    columnSchema?.td?.context === contextType.CELL
+                        ? columnSchema?.td?.useDeepPath && !disableDeepPath
+                            ? (item | deepPath: columnSchema?.key : columnSchema?.stub)
+                            : (item![$castKey(columnSchema?.key)] | defaultValue: columnSchema?.stub)
+                        : item,
+            }"
+        ></ng-template>
+    </ng-template>
+    <ng-template #defaultTd>
+        <ng-template
+            [ngIf]="isFilterable || enableFiltering"
+            [ngIfElse]="simple"
+        >
+            <ngx-filter-viewer
+                [index]="index"
+                [key]="columnSchema?.key"
+                [text]="
+                    columnSchema?.td?.useDeepPath && !disableDeepPath
+                        ? $any(item | deepPath: columnSchema?.key : columnSchema?.stub)
+                        : $any(item![$castKey(columnSchema?.key)] | defaultValue: columnSchema?.stub)
+                "
+            ></ngx-filter-viewer>
+        </ng-template>
+        <ng-template #simple>
+            {{
+                columnSchema?.td?.useDeepPath && !disableDeepPath
+                    ? (item | deepPath: columnSchema?.key : columnSchema?.stub)
+                    : (item![$castKey(columnSchema?.key)] | defaultValue: columnSchema?.stub)
+            }}
+        </ng-template>
+    </ng-template>
+</div>

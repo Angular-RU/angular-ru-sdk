@@ -1,8 +1,8 @@
-import { Component, DebugElement, Input } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule, By } from '@angular/platform-browser';
-import { InitialFocusModule } from '@angular-ru/cdk/directives';
+import {Component, DebugElement, Input} from '@angular/core';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {BrowserModule, By} from '@angular/platform-browser';
+import {InitialFocusModule} from '@angular-ru/cdk/directives';
 
 jest.useFakeTimers();
 
@@ -17,25 +17,25 @@ describe('[TEST]: Initial Focus', function () {
             <form [formGroup]="form">
                 <input
                     #dontWantFocus
-                    type="text"
                     formControlName="dontWantFocus"
+                    type="text"
                 />
                 <input
                     #wantFocusText
-                    type="text"
-                    initialFocus
                     formControlName="wantFocusText"
+                    initialFocus
+                    type="text"
                     [focusDisabled]="disableFocusText"
                 />
                 <input
                     #wantFocusNumber
-                    type="number"
-                    initialFocus
                     formControlName="wantFocusNumber"
+                    initialFocus
+                    type="number"
                     [focusDisabled]="disableFocusNumberDo"
                 />
             </form>
-        `
+        `,
     })
     class TestComponent {
         @Input() public disableFocusText = true;
@@ -44,7 +44,7 @@ describe('[TEST]: Initial Focus', function () {
         public form = this.fb.group({
             dontWantFocus: 'don not want to be focused',
             wantFocusText: 'wanna be focused',
-            wantFocusNumber: 7
+            wantFocusNumber: 7,
         });
 
         constructor(private readonly fb: FormBuilder) {}
@@ -53,7 +53,12 @@ describe('[TEST]: Initial Focus', function () {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [TestComponent],
-            imports: [BrowserModule, ReactiveFormsModule, FormsModule, InitialFocusModule]
+            imports: [
+                BrowserModule,
+                ReactiveFormsModule,
+                FormsModule,
+                InitialFocusModule,
+            ],
         }).compileComponents();
 
         fixture = TestBed.createComponent(TestComponent);
@@ -86,18 +91,26 @@ describe('[TEST]: Initial Focus', function () {
         const inputElements = debugElement
             .queryAll(By.css('input'))
             .map((element: DebugElement) => element.nativeElement);
-        const spiedFunctions = inputElements.map((element: any) => jest.spyOn(element, 'focus'));
+        const spiedFunctions = inputElements.map((element: any) =>
+            jest.spyOn(element, 'focus'),
+        );
 
         expect(spiedFunctions[0]).not.toHaveBeenCalled();
         expect(spiedFunctions[1]).not.toHaveBeenCalled();
         expect(spiedFunctions[2]).not.toHaveBeenCalled();
-        expect((inputElements[2] as HTMLInputElement).className).not.toContain('initial-focus');
+        expect((inputElements[2] as HTMLInputElement).className).not.toContain(
+            'initial-focus',
+        );
         expect(component.form?.value?.wantFocusText).toBe('wanna be focused');
         jest.runOnlyPendingTimers();
         expect(spiedFunctions[0]).not.toHaveBeenCalled();
         expect(spiedFunctions[1]).not.toHaveBeenCalled();
-        expect((inputElements[1] as HTMLInputElement).className).not.toContain('initial-focus');
+        expect((inputElements[1] as HTMLInputElement).className).not.toContain(
+            'initial-focus',
+        );
         expect(spiedFunctions[2]).toHaveBeenCalledTimes(1);
-        expect((inputElements[2] as HTMLInputElement).className).toContain('initial-focus');
+        expect((inputElements[2] as HTMLInputElement).className).toContain(
+            'initial-focus',
+        );
     });
 });

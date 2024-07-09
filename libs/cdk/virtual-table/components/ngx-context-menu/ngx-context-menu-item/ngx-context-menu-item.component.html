@@ -1,0 +1,42 @@
+<ng-template [ngIf]="visible">
+    <div
+        #item
+        class="context-menu__item"
+        [class.context-menu__item--disable]="disable"
+        [class.context-menu__title]="contextTitle !== null"
+        (click)="emitClick($event)"
+        (mouseenter)="calculateSubMenuPosition(ref)"
+    >
+        <ng-content select="ngx-menu-content"></ng-content>
+
+        <!-- eslint-disable @angular-eslint/template/no-call-expression -->
+        <div
+            class="context-menu__sub-menu-place"
+            [class.context-menu__sub-hidden]="ref.innerHTML.trim().length === 0 || disableSubMenu !== false"
+        >
+            <img
+                alt="arrow"
+                src='data:image/svg+xml;utf8,<svg height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M17.17 32.92l9.17-9.17-9.17-9.17 2.83-2.83 12 12-12 12z"/><path d="M0-.25h48v48h-48z" fill="none"/></svg>'
+                class="sub-menu__arrow-icon"
+            />
+
+            <div
+                class="sub-menu__tree"
+                [style.left.px]="offsetX"
+                [style.top.px]="offsetY"
+                [style.width.px]="subMenuWidth"
+            >
+                <div
+                    #ref
+                    class="sub-menu__tree--content"
+                >
+                    <ng-content select="ngx-context-menu-item"></ng-content>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-template [ngIf]="divider !== false">
+        <ngx-context-menu-divider></ngx-context-menu-divider>
+    </ng-template>
+</ng-template>

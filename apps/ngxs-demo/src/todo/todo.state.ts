@@ -1,28 +1,33 @@
-import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Immutable } from '@angular-ru/cdk/typings';
-import { DataAction, Payload, Persistence, StateRepository } from '@angular-ru/ngxs/decorators';
-import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
+import {Injectable} from '@angular/core';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {Immutable} from '@angular-ru/cdk/typings';
+import {
+    DataAction,
+    Payload,
+    Persistence,
+    StateRepository,
+} from '@angular-ru/ngxs/decorators';
+import {NgxsImmutableDataRepository} from '@angular-ru/ngxs/repositories';
 import {
     NgxsDataAfterExpired,
     NgxsDataAfterStorageEvent,
     NgxsDataExpiredEvent,
     NgxsDataStorageEvent,
-    PersistenceProvider
+    PersistenceProvider,
 } from '@angular-ru/ngxs/typings';
-import { State } from '@ngxs/store';
-import { Subject } from 'rxjs';
+import {State} from '@ngxs/store';
+import {Subject} from 'rxjs';
 
 @Persistence({
     ttlDelay: 5000,
     fireInit: false,
     ttl: 30000, // 30 * 1000 = 30sec,
-    existingEngine: localStorage
+    existingEngine: localStorage,
 })
 @StateRepository()
 @State<string[]>({
     name: 'todo',
-    defaults: []
+    defaults: [],
 })
 @Injectable()
 export class TodoState
@@ -38,7 +43,9 @@ export class TodoState
     @DataAction()
     public addTodo(@Payload('todo') todo: string): void {
         if (todo) {
-            this.ctx.setState((state: Immutable<string[]>): Immutable<string[]> => state.concat(todo));
+            this.ctx.setState(
+                (state: Immutable<string[]>): Immutable<string[]> => state.concat(todo),
+            );
         }
     }
 
@@ -46,15 +53,18 @@ export class TodoState
     public removeTodo(@Payload('idx') idx: number): void {
         this.ctx.setState(
             (state: Immutable<string[]>): Immutable<string[]> =>
-                state.filter((_: string, index: number): boolean => index !== idx)
+                state.filter((_: string, index: number): boolean => index !== idx),
         );
     }
 
-    public ngxsDataAfterExpired(event: NgxsDataExpiredEvent, _provider: PersistenceProvider): void {
+    public ngxsDataAfterExpired(
+        event: NgxsDataExpiredEvent,
+        _provider: PersistenceProvider,
+    ): void {
         this.snackBar.open('Expired', event.key, {
             duration: 5000,
             verticalPosition: 'top',
-            horizontalPosition: 'right'
+            horizontalPosition: 'right',
         });
     }
 

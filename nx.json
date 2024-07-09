@@ -1,32 +1,60 @@
 {
-    "extends": "@nrwl/workspace/presets/npm.json",
-    "npmScope": "angular-ru",
-    "affected": { "defaultBase": "origin/master" },
-    "implicitDependencies": {
-        "project.json": "*",
-        "package.json": {
-            "dependencies": "*",
-            "devDependencies": "*"
-        },
-        ".eslintrc.js": "*",
-        "nx.json": "*",
-        "jest.*.js": "*",
-        "karma.*.js": "*",
-        "workspace.json": "*",
-        "tsconfig.*.json": "*",
-        "tsconfig.json": "*"
+  "parallel": 1,
+  "implicitDependencies": {
+    "project.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
     },
-    "workspaceLayout": {
-        "libsDir": "libs",
-        "appsDir": "apps"
+    ".eslintrc.js": "*",
+    "nx.json": "*",
+    "jest.*.js": "*",
+    "karma.*.js": "*",
+    "workspace.json": "*",
+    "tsconfig.*.json": "*",
+    "tsconfig.json": "*"
+  },
+  "namedInputs": {
+    "sharedGlobals": [
+      "{workspaceRoot}/nx.json",
+      "{workspaceRoot}/package-lock.json",
+      "{workspaceRoot}/tsconfig.*.json",
+      "{workspaceRoot}/tsconfig.json",
+      "{workspaceRoot}/scripts/**/*",
+      "{workspaceRoot}/*.yml",
+      "{workspaceRoot}/*.md"
+    ],
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
+    "production": [
+      "default"
+    ]
+  },
+  "targetDefaults": {
+    "build": {
+      "inputs": [
+        "default",
+        "^default"
+      ],
+      "cache": true
     },
-    "tasksRunnerOptions": {
-        "default": {
-            "runner": "@nrwl/nx-cloud",
-            "options": {
-                "parallel": 1,
-                "cacheableOperations": ["build-angular", "build", "test"]
-            }
-        }
+    "test": {
+      "inputs": [
+        "default",
+        "production",
+        "^production",
+        "{workspaceRoot}/setup-jest.ts",
+        "{workspaceRoot}/jest.config.ts"
+      ],
+      "cache": true
     }
+  },
+  "workspaceLayout": {
+    "libsDir": "libs",
+    "appsDir": "apps"
+  },
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "defaultBase": "origin/main"
 }

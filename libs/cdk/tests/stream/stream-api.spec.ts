@@ -4,7 +4,7 @@ import {
     compress,
     decodeBase64ToUnicode,
     decompress,
-    encodeUnicodeToBase64
+    encodeUnicodeToBase64,
 } from '@angular-ru/cdk/stream';
 
 describe('[TEST]: Stream API', () => {

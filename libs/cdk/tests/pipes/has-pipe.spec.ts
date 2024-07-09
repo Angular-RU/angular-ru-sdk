@@ -1,11 +1,11 @@
-import { TestBed } from '@angular/core/testing';
-import { HasPipe, HasPipeModule } from '@angular-ru/cdk/pipes';
+import {TestBed} from '@angular/core/testing';
+import {HasPipe, HasPipeModule} from '@angular-ru/cdk/pipes';
 
 describe('[TEST]: has-pipe accessibility', () => {
     let pipe: HasPipe;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({ imports: [HasPipeModule] }).compileComponents();
+        TestBed.configureTestingModule({imports: [HasPipeModule]}).compileComponents();
         pipe = TestBed.inject(HasPipe);
     });
 

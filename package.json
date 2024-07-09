@@ -1,85 +1,82 @@
 {
-    "name": "@angular-ru/sdk",
-    "version": "0.0.0",
-    "private": true,
-    "description": "Angular-RU SDK",
-    "homepage": "https://github.com/Angular-RU/angular-ru-sdk",
-    "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
-    "repository": "https://github.com/Angular-RU/angular-ru-sdk",
-    "license": "MIT",
-    "author": "angular-ru@yandex.ru",
-    "workspaces": [
-        "./libs/*"
+  "name": "sdk",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Angular-RU SDK",
+  "homepage": "https://github.com/Angular-RU/angular-ru-sdk",
+  "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
+  "repository": "https://github.com/Angular-RU/angular-ru-sdk",
+  "license": "MIT",
+  "author": "angular-ru@yandex.ru",
+  "workspaces": [
+    "./libs/*"
+  ],
+  "scripts": {
+    "postinstall": "npx husky install",
+    "prettier": "prettier !package-lock.json . --ignore-path .gitignore"
+  },
+  "commitlint": {
+    "extends": [
+      "./.global/commitlint.config.js"
+    ]
+  },
+  "lint-staged": {
+    "*.ts": [
+      "npx prettier --write",
+      "npx eslint --fix --quiet --ignore-pattern '**/file-suites/**'"
     ],
-    "scripts": {
-        "clean": "npx nx clean .platform",
-        "format": "npx nx format:prettier .platform",
-        "graph": "npx nx dep-graph",
-        "postinstall": "npx husky install && npx ngcc --async",
-        "lint": "npx nx format:eslint .platform"
-    },
-    "commitlint": {
-        "extends": [
-            "./.global/commitlint.config.js"
-        ]
-    },
-    "lint-staged": {
-        "*.ts": [
-            "npx prettier --write",
-            "npx eslint --fix --quiet --ignore-pattern '**/file-suites/**'"
-        ],
-        "*.{html,css,scss,md,js,json}": [
-            "npx prettier --write"
-        ]
-    },
-    "browserslist": [
-        "Chrome >= 61",
-        "Firefox >= 61",
-        "not IE 11",
-        "> 1%"
-    ],
-    "prettier": "./libs/prettier/prettier.config.js",
-    "eslintConfig": {
-        "extends": "./libs/eslint-config-enterprise/index.js"
-    },
-    "devDependencies": {
-        "@angular-devkit/build-angular": "13.3.2",
-        "@angular/animations": "13.3.2",
-        "@angular/cdk": "13.3.2",
-        "@angular/cli": "13.3.2",
-        "@angular/common": "13.3.2",
-        "@angular/compiler": "13.3.2",
-        "@angular/compiler-cli": "13.3.2",
-        "@angular/core": "13.3.2",
-        "@angular/forms": "13.3.2",
-        "@angular/language-service": "13.3.2",
-        "@angular/material": "13.3.2",
-        "@angular/platform-browser": "13.3.2",
-        "@angular/platform-browser-dynamic": "13.3.2",
-        "@angular/router": "13.3.2",
-        "@ngx-translate/core": "14.0.0",
-        "@ngx-translate/http-loader": "7.0.0",
-        "@ngxs/logger-plugin": "3.8.1",
-        "@ngxs/store": "3.8.1",
-        "@release-it-plugins/workspaces": "4.2.0",
-        "@release-it/conventional-changelog": "8.0.1",
-        "class-transformer": "0.5.1",
-        "cpy-cli": "5.0.0",
-        "make-dir-cli": "3.1.0",
-        "ngx-mask": "14.2.4",
-        "ngx-toastr": "14.3.0",
-        "pretty": "2.0.0",
-        "release-it": "17.4.1",
-        "rimraf": "5.0.5",
-        "rxjs": "7.8.1",
-        "tsickle": "0.46.3",
-        "tslib": "2.4.1",
-        "typescript": "4.6.4",
-        "zone.js": "0.11.5"
-    },
-    "engines": {
-        "node": ">=16.12",
-        "npm": ">=7.1",
-        "yarn": "Please use npm instead of yarn to install dependencies"
-    }
+    "*.{html,css,scss,md,js,json}": [
+      "npx prettier --write"
+    ]
+  },
+  "browserslist": [
+    "Chrome >= 61",
+    "Firefox >= 61",
+    "not IE 11",
+    "> 1%"
+  ],
+  "prettier": "@taiga-ui/prettier-config",
+  "eslintConfig": {
+    "extends": [],
+    "rules": {}
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "18.0.7",
+    "@angular/animations": "18.0.6",
+    "@angular/cdk": "18.0.6",
+    "@angular/cli": "18.0.7",
+    "@angular/common": "18.0.6",
+    "@angular/compiler": "18.0.6",
+    "@angular/compiler-cli": "18.0.6",
+    "@angular/core": "18.0.6",
+    "@angular/forms": "18.0.6",
+    "@angular/language-service": "18.0.6",
+    "@angular/material": "18.0.6",
+    "@angular/platform-browser": "18.0.6",
+    "@angular/platform-browser-dynamic": "18.0.6",
+    "@angular/router": "18.0.6",
+    "@ngx-translate/core": "15.0.0",
+    "@ngx-translate/http-loader": "8.0.0",
+    "@ngxs/logger-plugin": "18.0.0",
+    "@nx/workspace": "19.4.1",
+    "@release-it-plugins/workspaces": "4.2.0",
+    "@release-it/conventional-changelog": "8.0.1",
+    "@taiga-ui/prettier-config": "^0.113.5",
+    "@taiga-ui/tsconfig": "0.113.5",
+    "@types/node": "20.14.10",
+    "class-transformer": "0.5.1",
+    "husky": "8.0.3",
+    "lint-staged": "13.2.3",
+    "ng-packagr": "18.0.0",
+    "ngx-mask": "17.1.1",
+    "ngx-toastr": "19.0.0",
+    "nx": "19.4.1",
+    "prettier": "3.3.2",
+    "release-it": "17.4.1",
+    "rxjs": "7.8.1",
+    "ts-node": "10.9.2",
+    "tslib": "2.6.3",
+    "typescript": "5.4.5",
+    "zone.js": "0.14.7"
+  }
 }

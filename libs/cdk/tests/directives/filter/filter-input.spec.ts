@@ -1,11 +1,16 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { By } from '@angular/platform-browser';
-import { InputFilterModule } from '@angular-ru/cdk/directives';
-import { FilterPredicate } from '@angular-ru/cdk/string';
-import { Nullable } from '@angular-ru/cdk/typings';
-import { isNotNil } from '@angular-ru/cdk/utils';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    DebugElement,
+} from '@angular/core';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
+import {By} from '@angular/platform-browser';
+import {InputFilterModule} from '@angular-ru/cdk/directives';
+import {FilterPredicate} from '@angular-ru/cdk/string';
+import {Nullable} from '@angular-ru/cdk/typings';
+import {isNotNil} from '@angular-ru/cdk/utils';
 
 describe('[TEST]: inputFilter Input', function () {
     let fixture: Nullable<ComponentFixture<TestComponent>> = null;
@@ -17,27 +22,30 @@ describe('[TEST]: inputFilter Input', function () {
         template: `
             <div [formGroup]="form">
                 <input
+                    formControlName="value"
                     matInput
                     type="text"
-                    formControlName="value"
                     [inputFilter]="predicate"
                 />
             </div>
         `,
-        changeDetection: ChangeDetectionStrategy.OnPush
+        changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class TestComponent {
         // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
-        public form = this.fb.group({ value: 'abcД' });
+        public form = this.fb.group({value: 'abcД'});
         public predicate: FilterPredicate = ['a', 'b', 'c', ' '];
 
-        constructor(public readonly cd: ChangeDetectorRef, private readonly fb: FormBuilder) {}
+        constructor(
+            public readonly cd: ChangeDetectorRef,
+            private readonly fb: FormBuilder,
+        ) {}
     }
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [ReactiveFormsModule, InputFilterModule],
-            declarations: [TestComponent]
+            declarations: [TestComponent],
         }).compileComponents();
 
         fixture = TestBed.createComponent(TestComponent);
@@ -59,7 +67,7 @@ describe('[TEST]: inputFilter Input', function () {
         }
 
         debugElement?.triggerEventHandler('input', {
-            target: debugElement?.nativeElement
+            target: debugElement?.nativeElement,
         });
 
         localDetectChanges();
@@ -71,7 +79,7 @@ describe('[TEST]: inputFilter Input', function () {
 
     it('should correct sync modelView with model', async () => {
         // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
-        expect(component?.form.value).toEqual({ value: 'abcД' });
+        expect(component?.form.value).toEqual({value: 'abcД'});
 
         if (isNotNil(debugElement)) {
             // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
@@ -79,7 +87,7 @@ describe('[TEST]: inputFilter Input', function () {
         }
 
         debugElement?.triggerEventHandler('input', {
-            target: debugElement.nativeElement
+            target: debugElement.nativeElement,
         });
 
         fixture?.whenStable();
@@ -88,28 +96,28 @@ describe('[TEST]: inputFilter Input', function () {
         expect(component?.form.pristine).toBe(false);
         expect(component?.form.dirty).toBe(true);
 
-        expect(component?.form.value).toEqual({ value: 'ab c ' });
+        expect(component?.form.value).toEqual({value: 'ab c '});
         expect(debugElement?.nativeElement.value).toBe('ab c ');
     });
 
     it('should filter input with characters', () => {
         component!.predicate = ['a', 'b'];
         setValueAndDispatch('aaabbbccc');
-        expect(component?.form.value).toEqual({ value: 'aaabbb' });
+        expect(component?.form.value).toEqual({value: 'aaabbb'});
         expect(debugElement?.nativeElement.value).toBe('aaabbb');
     });
 
     it('should filter input with RegExp', () => {
         component!.predicate = /[,ab]+/;
         setValueAndDispatch('aaabbbccc');
-        expect(component?.form.value).toEqual({ value: 'aaabbb' });
+        expect(component?.form.value).toEqual({value: 'aaabbb'});
         expect(debugElement?.nativeElement.value).toBe('aaabbb');
     });
 
     it('should filter input with custom function', () => {
         component!.predicate = (item: string): boolean => item === 'a' || item === 'b';
         setValueAndDispatch('aaabbbccc');
-        expect(component?.form.value).toEqual({ value: 'aaabbb' });
+        expect(component?.form.value).toEqual({value: 'aaabbb'});
         expect(debugElement?.nativeElement.value).toBe('aaabbb');
     });
 });

@@ -2,8 +2,8 @@
 
 ##### Decorators helpers
 
--   `MethodArgsRegistry`
+- `MethodArgsRegistry`
 
 ##### Exceptions
 
--   `InvalidArgsNamesException`
+- `InvalidArgsNamesException`

@@ -1,6 +1,6 @@
 /* eslint-disable spellcheck/spell-checker */
-import { AbstractControl, FormControl, FormGroup, ValidatorFn } from '@angular/forms';
-import { requiredSomeValueValidator } from '@angular-ru/cdk/validators';
+import {AbstractControl, FormControl, FormGroup, ValidatorFn} from '@angular/forms';
+import {requiredSomeValueValidator} from '@angular-ru/cdk/validators';
 
 describe('[TEST]: requiredSomeValueValidator', () => {
     let form: FormGroup;
@@ -10,9 +10,9 @@ describe('[TEST]: requiredSomeValueValidator', () => {
             {
                 aaa: new FormControl(),
                 bbb: new FormControl(),
-                ccc: new FormControl()
+                ccc: new FormControl(),
             },
-            { validators: [requiredSomeValueValidator()] }
+            {validators: [requiredSomeValueValidator()]},
         );
     });
 
@@ -20,7 +20,9 @@ describe('[TEST]: requiredSomeValueValidator', () => {
         const control: AbstractControl = new FormControl();
         const validator: ValidatorFn = requiredSomeValueValidator();
 
-        expect(() => validator(control))?.toThrow(new Error('requiredSomeValue must be used on form group'));
+        expect(() => validator(control))?.toThrow(
+            new Error('requiredSomeValue must be used on form group'),
+        );
     });
 
     // TODO: refactor duplicate tests
@@ -28,23 +30,23 @@ describe('[TEST]: requiredSomeValueValidator', () => {
         form.controls?.['aaa']?.setValue(undefined);
         form.controls?.['bbb']?.setValue(null);
         form.controls?.['ccc']?.setValue(NaN);
-        expect(form.errors).toEqual({ requiredSomeValue: true });
+        expect(form.errors).toEqual({requiredSomeValue: true});
     });
 
     it('should return error if all controls with no values: "", "null", Infinity', () => {
         form.controls?.['aaa']?.setValue('');
         form.controls?.['bbb']?.setValue(null);
         form.controls?.['ccc']?.setValue(Infinity);
-        expect(form.errors).toEqual({ requiredSomeValue: true });
+        expect(form.errors).toEqual({requiredSomeValue: true});
     });
 
     it('should return error if all controls with no values: []', () => {
         form.controls?.['aaa']?.setValue([]);
-        expect(form.errors).toEqual({ requiredSomeValue: true });
+        expect(form.errors).toEqual({requiredSomeValue: true});
     });
 
     it('should return error if all controls with no values', () => {
-        expect(form.errors).toEqual({ requiredSomeValue: true });
+        expect(form.errors).toEqual({requiredSomeValue: true});
     });
 
     it('should be valid if there is only one value with type number', () => {

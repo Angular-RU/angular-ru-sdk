@@ -1,4 +1,4 @@
-import { ensureRegexp, isRegexpStr, matchedByRegExp } from '@angular-ru/cdk/regexp';
+import {ensureRegexp, isRegexpStr, matchedByRegExp} from '@angular-ru/cdk/regexp';
 
 describe('[TEST]: Regexp utils', () => {
     it('ensureRegexp', () => {

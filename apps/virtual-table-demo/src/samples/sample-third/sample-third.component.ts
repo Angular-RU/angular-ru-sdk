@@ -1,29 +1,40 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Nullable, PlainObject } from '@angular-ru/cdk/typings';
+import {
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    OnInit,
+} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {Nullable, PlainObject} from '@angular-ru/cdk/typings';
 
-import { hlJsCode } from '../../../../../.global/utils/hljs-code';
-import { MocksGenerator } from '../../mocks-generator';
-import { CodeDialogComponent } from '../../shared/dialog/code-dialog.component';
+import {hlJsCode} from '../../../../../.global/utils/hljs-code';
+import {MocksGenerator} from '../../mocks-generator';
+import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
 
 @Component({
     selector: 'sample-third',
     templateUrl: './sample-third.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SampleThirdComponent implements OnInit, AfterViewInit {
     public data: PlainObject[] = [];
 
-    constructor(public readonly dialog: MatDialog, private readonly cd: ChangeDetectorRef) {}
+    constructor(
+        public readonly dialog: MatDialog,
+        private readonly cd: ChangeDetectorRef,
+    ) {}
 
     public ngOnInit(): void {
         const rowNumber: number = 1000;
         const colsNumber: number = 59;
 
-        MocksGenerator.generator(rowNumber, colsNumber).then((data: PlainObject[]): void => {
-            this.data = data;
-            this.cd.detectChanges();
-        });
+        MocksGenerator.generator(rowNumber, colsNumber).then(
+            (data: PlainObject[]): void => {
+                this.data = data;
+                this.cd.detectChanges();
+            },
+        );
     }
 
     public disableFn(item: Nullable<PlainObject>): boolean {
@@ -69,10 +80,10 @@ export class SampleThirdComponent implements OnInit, AfterViewInit {
        -->
     </ngx-column>
 </ngx-table-builder>
-                    `
+                    `,
             },
             height: '650px',
-            width: '900px'
+            width: '900px',
         });
     }
 }

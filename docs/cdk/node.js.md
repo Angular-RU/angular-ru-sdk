@@ -1,19 +1,19 @@
 #### `@angular-ru/cdk/nodejs`
 
--   `exposeTsCompilerOptionsByTsConfig`
+- `exposeTsCompilerOptionsByTsConfig`
 
 tsconfig.json
 
 ```json
 {
-    "compilerOptions": {
-        "baseUrl": "./",
-        "module": "esnext",
-        "target": "es2015",
-        "paths": {
-            "@angular-ru/cdk/*": ["./dist/library/*"]
-        }
+  "compilerOptions": {
+    "baseUrl": "./",
+    "module": "esnext",
+    "target": "es2015",
+    "paths": {
+      "@angular-ru/cdk/*": ["./dist/library/*"]
     }
+  }
 }
 ```
 
@@ -21,10 +21,10 @@ tsconfig.spec.json
 
 ```json
 {
-    "extends": "./tsconfig.json",
-    "compilerOptions": {
-        "module": "commonjs"
-    }
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs"
+  }
 }
 ```
 
@@ -48,7 +48,7 @@ exposeTsCompilerOptionsByTsConfig('./tsconfig.spec.json');
  */
 ```
 
--   resolveTsConfigPath
+- resolveTsConfigPath
 
 when our dir `/home/user/app/name`
 
@@ -56,7 +56,7 @@ when our dir `/home/user/app/name`
 resolveTsConfigPath('../tsconfig.lib.json'); // /home/user/app/tsconfig.lib.json
 ```
 
--   checkIsNodeEnvironment
+- checkIsNodeEnvironment
 
 ```typescript
 checkIsNodeEnvironment(); // true or throw error

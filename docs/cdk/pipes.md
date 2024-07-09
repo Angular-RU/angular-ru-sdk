@@ -1,35 +1,35 @@
 #### `@angular-ru/cdk/pipes`
 
--   `MutableTypePipe, MutableTypePipeModule`
+- `MutableTypePipe, MutableTypePipeModule`
 
 ```typescript
-import { MutableTypePipeModule } from '@angular-ru/cdk/pipes';
-import { Component, NgModule } from '@angular/core';
-import { Immutable } from '@angular-ru/typings';
-import { Data } from './data';
+import {MutableTypePipeModule} from '@angular-ru/cdk/pipes';
+import {Component, NgModule} from '@angular/core';
+import {Immutable} from '@angular-ru/typings';
+import {Data} from './data';
 
 @NgModule({
-    // ..
-    imports: [MutableTypePipeModule]
+  // ..
+  imports: [MutableTypePipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        <data [list]="data | mutable"></data>
-    `
+  //...
+  template: `
+    <data [list]="data | mutable"></data>
+  `,
 })
 export class AppComponent {
-    public data: Immutable<Data[]> = [];
+  public data: Immutable<Data[]> = [];
 }
 ```
 
 ```typescript
-import { Immutable } from '@angular-ru/typings';
-import { MutableTypePipe } from '@angular-ru/cdk/pipes';
+import {Immutable} from '@angular-ru/typings';
+import {MutableTypePipe} from '@angular-ru/cdk/pipes';
 
-const obj: Immutable<{ a: string }> = { a: 'str' };
+const obj: Immutable<{a: string}> = {a: 'str'};
 const mutableObj = new MutableTypePipe().transform(obj); // return { a: string }
 
 mutableObj.a = 'str2';
@@ -38,509 +38,509 @@ expect(obj.a).toEqual('str2');
 expect(mutableObj.a).toEqual('str2');
 ```
 
--   `DeepPathPipe, DeepPathPipeModule`
+- `DeepPathPipe, DeepPathPipeModule`
 
 ```typescript
-import { DeepPathPipeModule } from '@angular-ru/cdk/pipes';
-import { Component, NgModule } from '@angular/core';
+import {DeepPathPipeModule} from '@angular-ru/cdk/pipes';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [DeepPathPipeModule]
+  // ..
+  imports: [DeepPathPipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        {{ data | deepPath : 'a.b.c' }}
-    ` // view: 'hello'
+  //...
+  template: `
+    {{ data | deepPath: 'a.b.c' }}
+  `, // view: 'hello'
 })
 export class AppComponent {
-    public data = { a: { b: { c: 'hello' } } };
+  public data = {a: {b: {c: 'hello'}}};
 }
 ```
 
--   `DefaultValuePipe, DefaultValuePipeModule`
+- `DefaultValuePipe, DefaultValuePipeModule`
 
 ```typescript
-import { DefaultValuePipeModule } from '@angular-ru/cdk/pipes';
-import { Component, NgModule } from '@angular/core';
+import {DefaultValuePipeModule} from '@angular-ru/cdk/pipes';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [DefaultValuePipeModule]
+  // ..
+  imports: [DefaultValuePipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        {{ data | defaultValue : '-' }}
-    ` // view: '-'
+  //...
+  template: `
+    {{ data | defaultValue: '-' }}
+  `, // view: '-'
 })
 export class AppComponent {
-    public data = null;
+  public data = null;
 }
 ```
 
--   `IsNotNullPipe, IsNotNullPipeModule`
+- `IsNotNullPipe, IsNotNullPipeModule`
 
 ```typescript
-import { IsNotNullPipeModule } from '@angular-ru/cdk/pipes';
-import { Component, NgModule } from '@angular/core';
+import {IsNotNullPipeModule} from '@angular-ru/cdk/pipes';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [IsNotNullPipeModule]
+  // ..
+  imports: [IsNotNullPipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        {{ data | isNotNull }}
-    ` // false
+  //...
+  template: `
+    {{ data | isNotNull }}
+  `, // false
 })
 export class AppComponent {
-    public data = null;
+  public data = null;
 }
 ```
 
--   `IsNilPipe, IsNilPipeModule`
+- `IsNilPipe, IsNilPipeModule`
 
 ```typescript
-import { IsNilPipeModule } from '@angular-ru/cdk/pipes';
-import { Component, NgModule } from '@angular/core';
+import {IsNilPipeModule} from '@angular-ru/cdk/pipes';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [IsNilPipeModule]
+  // ..
+  imports: [IsNilPipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        {{ data | isNil }}
-    ` // true
+  //...
+  template: `
+    {{ data | isNil }}
+  `, // true
 })
 export class AppComponent {
-    public data = null;
+  public data = null;
 }
 ```
 
--   `IsObjectPipe, IsObjectPipeModule`
+- `IsObjectPipe, IsObjectPipeModule`
 
 ```typescript
-import { IsObjectPipeModule } from '@angular-ru/cdk/pipes';
-import { Component, NgModule } from '@angular/core';
+import {IsObjectPipeModule} from '@angular-ru/cdk/pipes';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [IsObjectPipeModule]
+  // ..
+  imports: [IsObjectPipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        {{ data | isObject }}
-    ` // true
+  //...
+  template: `
+    {{ data | isObject }}
+  `, // true
 })
 export class AppComponent {
-    public data = {};
+  public data = {};
 }
 ```
 
--   `DetectBrowserPipe, DetectBrowserPipeModule`
+- `DetectBrowserPipe, DetectBrowserPipeModule`
 
 ```typescript
-import { DetectBrowserPipeModule } from '@angular-ru/cdk/pipes';
-import { Component, NgModule } from '@angular/core';
+import {DetectBrowserPipeModule} from '@angular-ru/cdk/pipes';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [DetectBrowserPipeModule]
+  // ..
+  imports: [DetectBrowserPipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        {{ browser | detectBrowser }}
-    ` // Chrome 84
+  //...
+  template: `
+    {{ browser | detectBrowser }}
+  `, // Chrome 84
 })
 export class AppComponent {
-    public browser =
-        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36';
+  public browser =
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36';
 }
 ```
 
--   `IsStringPipe, IsStringPipeModule`
+- `IsStringPipe, IsStringPipeModule`
 
 ```typescript
-import { IsStringPipeModule } from '@angular-ru/cdk/pipes';
-import { Component, NgModule } from '@angular/core';
+import {IsStringPipeModule} from '@angular-ru/cdk/pipes';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [IsStringPipeModule]
+  // ..
+  imports: [IsStringPipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        {{ data | isString }}
-    ` // true
+  //...
+  template: `
+    {{ data | isString }}
+  `, // true
 })
 export class AppComponent {
-    public data = 'hello world';
+  public data = 'hello world';
 }
 ```
 
--   `IsArrayPipe, IsArrayPipeModule`
+- `IsArrayPipe, IsArrayPipeModule`
 
 ```typescript
-import { IsArrayPipeModule } from '@angular-ru/cdk/pipes';
-import { Component, NgModule } from '@angular/core';
+import {IsArrayPipeModule} from '@angular-ru/cdk/pipes';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [IsArrayPipeModule]
+  // ..
+  imports: [IsArrayPipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        {{ data | isArray }}
-    ` // true
+  //...
+  template: `
+    {{ data | isArray }}
+  `, // true
 })
 export class AppComponent {
-    public data = [];
+  public data = [];
 }
 ```
 
--   `ToStringPipe, ToStringPipeModule`
+- `ToStringPipe, ToStringPipeModule`
 
 ```typescript
-import { ToStringPipeModule } from '@angular-ru/cdk/pipes';
-import { Component, NgModule } from '@angular/core';
+import {ToStringPipeModule} from '@angular-ru/cdk/pipes';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [ToStringPipeModule]
+  // ..
+  imports: [ToStringPipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        {{ data | toString }}
-    ` // "1,2"
+  //...
+  template: `
+    {{ data | toString }}
+  `, // "1,2"
 })
 export class AppComponent {
-    public data = [1, 2];
+  public data = [1, 2];
 }
 ```
 
--   `ToNumberPipe, ToNumberPipeModule`
+- `ToNumberPipe, ToNumberPipeModule`
 
 ```typescript
-import { ToNumberPipeModule } from '@angular-ru/cdk/pipes';
-import { Component, NgModule } from '@angular/core';
+import {ToNumberPipeModule} from '@angular-ru/cdk/pipes';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [ToNumberPipeModule]
+  // ..
+  imports: [ToNumberPipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        {{ data | toNumber }}
-    ` // 12
+  //...
+  template: `
+    {{ data | toNumber }}
+  `, // 12
 })
 export class AppComponent {
-    public data = '12';
+  public data = '12';
 }
 ```
 
--   `FormatDatePipe, FormatDatePipeModule`
+- `FormatDatePipe, FormatDatePipeModule`
 
 ```typescript
-import { FormatDatePipeModule } from '@angular-ru/cdk/pipes';
-import { Component, NgModule } from '@angular/core';
+import {FormatDatePipeModule} from '@angular-ru/cdk/pipes';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [FormatDatePipeModule]
+  // ..
+  imports: [FormatDatePipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        {{ data | formatDate }}
-    ` // 11.12.2018
+  //...
+  template: `
+    {{ data | formatDate }}
+  `, // 11.12.2018
 })
 export class AppComponent {
-    public data = 1544532097434;
+  public data = 1544532097434;
 }
 ```
 
--   `SafePipe, SafePipeModule`
+- `SafePipe, SafePipeModule`
 
 ```typescript
-import { SafePipeModule } from '@angular-ru/cdk/pipes';
-import { Component, NgModule } from '@angular/core';
+import {SafePipeModule} from '@angular-ru/cdk/pipes';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [SafePipeModule]
+  // ..
+  imports: [SafePipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        <div [innerHTML]="data | safe : 'html'"></div>
-    `
+  //...
+  template: `
+    <div [innerHTML]="data | safe: 'html'"></div>
+  `,
 })
 export class AppComponent {
-    public data = '<p>Hello world</p>';
+  public data = '<p>Hello world</p>';
 }
 ```
 
--   `NumberFormatPipe, NumberFormatPipeModule`
+- `NumberFormatPipe, NumberFormatPipeModule`
 
 ```typescript
-import { NumberFormatPipeModule } from '@angular-ru/cdk/pipes';
-import { Component, NgModule } from '@angular/core';
+import {NumberFormatPipeModule} from '@angular-ru/cdk/pipes';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [NumberFormatPipeModule]
+  // ..
+  imports: [NumberFormatPipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        {{ data | numberFormat }}
-    ` // 1 500 300,5
+  //...
+  template: `
+    {{ data | numberFormat }}
+  `, // 1 500 300,5
 })
 export class AppComponent {
-    public data = 1500300.5;
+  public data = 1500300.5;
 }
 ```
 
--   `HttpReplacerPipe, HttpReplacerPipeModule`
+- `HttpReplacerPipe, HttpReplacerPipeModule`
 
 ```typescript
-import { HttpReplacerPipeModule } from '@angular-ru/cdk/pipes';
-import { Component, NgModule } from '@angular/core';
+import {HttpReplacerPipeModule} from '@angular-ru/cdk/pipes';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [HttpReplacerPipeModule]
+  // ..
+  imports: [HttpReplacerPipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        {{ data | httpReplacer }}
-    ` // hello.com/new
+  //...
+  template: `
+    {{ data | httpReplacer }}
+  `, // hello.com/new
 })
 export class AppComponent {
-    public data = 'https://www.hello.com/new/index.php';
+  public data = 'https://www.hello.com/new/index.php';
 }
 ```
 
--   `TakeFirstItemPipe, TakeFirstItemPipeModule`
+- `TakeFirstItemPipe, TakeFirstItemPipeModule`
 
 ```typescript
-import { TakeFirstItemPipeModule } from '@angular-ru/cdk/pipes';
-import { Component, NgModule } from '@angular/core';
+import {TakeFirstItemPipeModule} from '@angular-ru/cdk/pipes';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [TakeFirstItemPipeModule]
+  // ..
+  imports: [TakeFirstItemPipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        {{ data | takeFirstItem }}
-    ` // 1
+  //...
+  template: `
+    {{ data | takeFirstItem }}
+  `, // 1
 })
 export class AppComponent {
-    public data = [1, 2];
+  public data = [1, 2];
 }
 ```
 
--   `TakeSecondItemPipe, TakeSecondItemPipeModule`
+- `TakeSecondItemPipe, TakeSecondItemPipeModule`
 
 ```typescript
-import { TakeSecondItemPipeModule } from '@angular-ru/cdk/pipes';
-import { Component, NgModule } from '@angular/core';
+import {TakeSecondItemPipeModule} from '@angular-ru/cdk/pipes';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [TakeSecondItemPipeModule]
+  // ..
+  imports: [TakeSecondItemPipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        {{ data | takeSecondItem }}
-    ` // 2
+  //...
+  template: `
+    {{ data | takeSecondItem }}
+  `, // 2
 })
 export class AppComponent {
-    public data = [1, 2];
+  public data = [1, 2];
 }
 ```
 
--   `DateToNativePipe, DateToNativePipeModule`
+- `DateToNativePipe, DateToNativePipeModule`
 
 ```typescript
-import { DateToNativePipeModule } from '@angular-ru/cdk/pipes';
-import { Component, NgModule } from '@angular/core';
+import {DateToNativePipeModule} from '@angular-ru/cdk/pipes';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [DateToNativePipeModule]
+  // ..
+  imports: [DateToNativePipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        {{ data | dateNative }}
-    ` // Date(type)
+  //...
+  template: `
+    {{ data | dateNative }}
+  `, // Date(type)
 })
 export class AppComponent {
-    public data = '27.02.2019 14:25';
+  public data = '27.02.2019 14:25';
 }
 ```
 
--   `EntrySingleSetPipe, EntrySingleSetPipeModule`
+- `EntrySingleSetPipe, EntrySingleSetPipeModule`
 
 ```typescript
-import { EntrySingleSetPipeModule } from '@angular-ru/cdk/pipes';
-import { Component, NgModule } from '@angular/core';
+import {EntrySingleSetPipeModule} from '@angular-ru/cdk/pipes';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [EntrySingleSetPipeModule]
+  // ..
+  imports: [EntrySingleSetPipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        {{ 'a' | entrySingleSet : setList }}
-    ` // true
+  //...
+  template: `
+    {{ 'a' | entrySingleSet: setList }}
+  `, // true
 })
 export class AppComponent {
-    public setList = new Set(['a']);
+  public setList = new Set(['a']);
 }
 ```
 
--   `MarkByFilterPipe, MarkByFilterPipeModuleModule`
+- `MarkByFilterPipe, MarkByFilterPipeModuleModule`
 
 ```typescript
-import { MarkByFilterPipeModule } from '@angular-ru/cdk/pipes';
-import { Component, NgModule } from '@angular/core';
+import {MarkByFilterPipeModule} from '@angular-ru/cdk/pipes';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [MarkByFilterPipeModule]
+  // ..
+  imports: [MarkByFilterPipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        {{ 'hello word' | markByFilter : filter }}
-    ` // hello <span style="background: #ffdd2d">world</span>
+  //...
+  template: `
+    {{ 'hello word' | markByFilter: filter }}
+  `, // hello <span style="background: #ffdd2d">world</span>
 })
 export class AppComponent {
-    public filter = 'world';
+  public filter = 'world';
 }
 ```
 
--   `DisplayItemPipe, DisplayItemPipeModule`
+- `DisplayItemPipe, DisplayItemPipeModule`
 
 ```typescript
-import { DisplayItemPipeModule } from '@angular-ru/cdk/pipes';
-import { Component, NgModule } from '@angular/core';
+import {DisplayItemPipeModule} from '@angular-ru/cdk/pipes';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ...
-    imports: [DisplayItemPipeModule]
+  // ...
+  imports: [DisplayItemPipeModule],
 })
 export class AppModule {}
 
 @Component({
-    // ...
-    template: `
-        {{ entity | displayItem : 'value.name' }}
-    ` // A
+  // ...
+  template: `
+    {{ entity | displayItem: 'value.name' }}
+  `, // A
 })
 export class AppComponent {
-    public entity = { value: { name: 'A' } };
+  public entity = {value: {name: 'A'}};
 }
 ```
 
--   `ObjectSizePipe, ObjectSizePipeModule`
+- `ObjectSizePipe, ObjectSizePipeModule`
 
 ```typescript
-import { ObjectSizePipeModule } from '@angular-ru/cdk/pipes';
-import { Component, NgModule } from '@angular/core';
+import {ObjectSizePipeModule} from '@angular-ru/cdk/pipes';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [ObjectSizePipeModule]
+  // ..
+  imports: [ObjectSizePipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        <!-- result: 2 -->
-        {{ [{ a: 1 }, { a: 2 }] | objectSize }}
+  //...
+  template: `
+    <!-- result: 2 -->
+    {{ [{a: 1}, {a: 2}] | objectSize }}
 
-        <!-- result: 3 -->
-        {{ { a: 1, b: 2, c: 3 } | objectSize }}
-    `
+    <!-- result: 3 -->
+    {{ {a: 1, b: 2, c: 3} | objectSize }}
+  `,
 })
 export class AppComponent {}
 ```
 
--   `MergeCssClassesPipe, MergeCssClassesPipeModule`
+- `MergeCssClassesPipe, MergeCssClassesPipeModule`
 
 ```typescript
-import { MergeCssClassesPipe } from '@angular-ru/cdk/pipes';
-import { Component, NgModule } from '@angular/core';
+import {MergeCssClassesPipe} from '@angular-ru/cdk/pipes';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [MergeCssClassesPipe]
+  // ..
+  imports: [MergeCssClassesPipe],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        <div [ngClass]="'some-class' | mergeCssClasses : ['class-a', 'class-b'] : { enabled: isEnabled }">
-            <!--
+  //...
+  template: `
+    <div [ngClass]="'some-class' | mergeCssClasses: ['class-a', 'class-b'] : {enabled: isEnabled}">
+      <!--
             result:
             {
                 'some-class': true,
@@ -549,315 +549,311 @@ export class AppModule {}
                 enabled: false
             }
             -->
-        </div>
-    `
+    </div>
+  `,
 })
 export class AppComponent {
-    public isEnabled = false;
+  public isEnabled = false;
 }
 ```
 
--   `JoinPipe, JoinPipeModule`
+- `JoinPipe, JoinPipeModule`
 
 ```typescript
-import { JoinPipeModule } from '@angular-ru/cdk/pipes';
-import { Component, NgModule } from '@angular/core';
+import {JoinPipeModule} from '@angular-ru/cdk/pipes';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [JoinPipeModule]
+  // ..
+  imports: [JoinPipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        {{ [1, 2] | join }}
-        <!-- result: 1,2 -->
-    `
+  //...
+  template: `
+    {{ [1, 2] | join }}
+    <!-- result: 1,2 -->
+  `,
 })
 export class AppComponent {}
 ```
 
 ```typescript
-import { JoinPipeModule } from '@angular-ru/cdk/pipes';
-import { Component, NgModule } from '@angular/core';
+import {JoinPipeModule} from '@angular-ru/cdk/pipes';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [JoinPipeModule]
+  // ..
+  imports: [JoinPipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        <p [innerHTML]="[1, 2] | join : { separator: '<br>' }"></p>
-        <!-- result html: 1<br>2 -->
-    `
+  //...
+  template: `
+    <p [innerHTML]="[1, 2] | join: {separator: '<br>'}"></p>
+    <!-- result html: 1<br>2 -->
+  `,
 })
 export class AppComponent {}
 ```
 
 ```typescript
-import { JoinPipeModule, JoinMapTransformer } from '@angular-ru/cdk/pipes';
-import { Component, NgModule } from '@angular/core';
+import {JoinPipeModule, JoinMapTransformer} from '@angular-ru/cdk/pipes';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [JoinPipeModule]
+  // ..
+  imports: [JoinPipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        <p
-            [innerHTML]="
-                [{ a: 1 }, { a: 2 }, { a: 3 }, { a: 4 }] | join : { separator: '::', mapTransformer: transformer }
-            "
-        ></p>
-        <!-- result html: 1 :: 10 :: 11 :: 100 -->
-    `
+  //...
+  template: `
+    <p [innerHTML]="[{a: 1}, {a: 2}, {a: 3}, {a: 4}] | join: {separator: '::', mapTransformer: transformer}"></p>
+    <!-- result html: 1 :: 10 :: 11 :: 100 -->
+  `,
 })
 export class AppComponent {
-    public transformer: JoinMapTransformer<{ a: number }> = (item: { a: number }): string => item.a.toString(2);
+  public transformer: JoinMapTransformer<{a: number}> = (item: {a: number}): string => item.a.toString(2);
 }
 ```
 
--   `BracePipe, BracePipeModule`
+- `BracePipe, BracePipeModule`
 
 ```typescript
-import { BracePipeModule } from '@angular-ru/cdk/pipes';
-import { Component, NgModule } from '@angular/core';
+import {BracePipeModule} from '@angular-ru/cdk/pipes';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [BracePipeModule]
+  // ..
+  imports: [BracePipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        <span>Edit selected records {{ count | brace }}</span>
-        <!--Edit selected records (42)-->
-    `
+  //...
+  template: `
+    <span>Edit selected records {{ count | brace }}</span>
+    <!--Edit selected records (42)-->
+  `,
 })
 export class AppComponent {
-    public count: number = 42;
+  public count: number = 42;
 }
 ```
 
--   `FilterUniquePipe, FilterUniquePipeModule`
+- `FilterUniquePipe, FilterUniquePipeModule`
 
 ```typescript
-import { FilterUniquePipeModule } from '@angular-ru/cdk/pipes';
-import { PlainObject } from '@angular-ru/cdk-typings';
-import { Component, NgModule } from '@angular/core';
+import {FilterUniquePipeModule} from '@angular-ru/cdk/pipes';
+import {PlainObject} from '@angular-ru/cdk-typings';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [FilterUniquePipeModule]
+  // ..
+  imports: [FilterUniquePipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        <pre>{{ objects | filterUnique : 'name' | json }}</pre>
-        <!-- [{ name: 'a'}, { name: 'b'}] -->
+  //...
+  template: `
+    <pre>{{ objects | filterUnique: 'name' | json }}</pre>
+    <!-- [{ name: 'a'}, { name: 'b'}] -->
 
-        <pre>{{ numbers | filterUnique | json }}</pre>
-        <!-- [1, 2, 3, 4, 5] -->
-    `
+    <pre>{{ numbers | filterUnique | json }}</pre>
+    <!-- [1, 2, 3, 4, 5] -->
+  `,
 })
 export class AppComponent {
-    public objects: PlainObject = [{ name: 'a' }, { name: 'a' }, { name: 'b' }];
-    public numbers: number[] = [1, 2, 3, 4, 5, 5, 4];
+  public objects: PlainObject = [{name: 'a'}, {name: 'a'}, {name: 'b'}];
+  public numbers: number[] = [1, 2, 3, 4, 5, 5, 4];
 }
 ```
 
--   `TypeAsPipe, TypeAsPipeModule`
+- `TypeAsPipe, TypeAsPipeModule`
 
 ```typescript
-import { TypeAs } from '@angular-ru/cdk/pipes';
+import {TypeAs} from '@angular-ru/cdk/pipes';
 
 @NgModule({
-    // ..
-    imports: [TypeAsPipeModule]
+  // ..
+  imports: [TypeAsPipeModule],
 })
 export class AppModule {}
 
-type SomeType = { a: number };
+type SomeType = {a: number};
 
 @Component({
-    //...
-    template: `
-        <p *ngIf="notTyped | typeAs : typeSample as typed">
-            {{ typed.a }}
-            <!-- OK -->
-            {{ typed.b }}
-            <!-- Error: Property 'b' does not exist on type 'SomeType' -->
-        </p>
-    `
+  //...
+  template: `
+    <p *ngIf="notTyped | typeAs: typeSample as typed">
+      {{ typed.a }}
+      <!-- OK -->
+      {{ typed.b }}
+      <!-- Error: Property 'b' does not exist on type 'SomeType' -->
+    </p>
+  `,
 })
 export class AppComponent {
-    public notTyped: any = { a: 1 };
-    public typeSample!: SomeType;
+  public notTyped: any = {a: 1};
+  public typeSample!: SomeType;
 }
 ```
 
--   `AtPipe, AtPipeModule`
+- `AtPipe, AtPipeModule`
 
 ```typescript
-import { AtPipeModule } from '@angular-ru/cdk/pipes';
+import {AtPipeModule} from '@angular-ru/cdk/pipes';
 
 @NgModule({
-    // ..
-    imports: [AtPipeModule]
+  // ..
+  imports: [AtPipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        <p>{{ someArray | at : 0 }}</p>
-        <!-- "first" -->
-        <p>{{ someArray | at : -1 }}</p>
-        <!-- "last" -->
-    `
+  //...
+  template: `
+    <p>{{ someArray | at: 0 }}</p>
+    <!-- "first" -->
+    <p>{{ someArray | at: -1 }}</p>
+    <!-- "last" -->
+  `,
 })
 export class AppComponent {
-    public someArray = ['first', 'second', 'third', 'last'];
+  public someArray = ['first', 'second', 'third', 'last'];
 }
 ```
 
--   `HasItems, HasManyItems, HasNoItems, HasOneItem, HasAtMostOneItem`
--   `HasItemsModule, HasManyItemsModule, HasNoItemsModule, HasOneItemModule, HasAtMostOneItemModule`
+- `HasItems, HasManyItems, HasNoItems, HasOneItem, HasAtMostOneItem`
+- `HasItemsModule, HasManyItemsModule, HasNoItemsModule, HasOneItemModule, HasAtMostOneItemModule`
 
 ```typescript
 import {
-    HasItemsModule,
-    HasManyItemsModule,
-    HasNoItemsModule,
-    HasOneItemModule,
-    HasAtMostOneItemModule
+  HasItemsModule,
+  HasManyItemsModule,
+  HasNoItemsModule,
+  HasOneItemModule,
+  HasAtMostOneItemModule,
 } from '@angular-ru/cdk/pipes';
 
 @NgModule({
-    // ..
-    imports: [HasItemsModule, HasManyItemsModule, HasNoItemsModule, HasOneItemModule, HasAtMostOneItemModule]
+  // ..
+  imports: [HasItemsModule, HasManyItemsModule, HasNoItemsModule, HasOneItemModule, HasAtMostOneItemModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        <pre *ngIf="someArray | hasItems"><!-- true --></pre>
-        <pre *ngIf="someArray | hasManyItems"><!-- false --></pre>
-        <pre *ngIf="someArray | hasNoItems"><!-- false --></pre>
-        <pre *ngIf="someArray | hasOneItem"><!-- true --></pre>
-        <pre *ngIf="someArray | hasAtMostOneItem"><!-- true --></pre>
-    `
+  //...
+  template: `
+    <pre *ngIf="someArray | hasItems"><!-- true --></pre>
+    <pre *ngIf="someArray | hasManyItems"><!-- false --></pre>
+    <pre *ngIf="someArray | hasNoItems"><!-- false --></pre>
+    <pre *ngIf="someArray | hasOneItem"><!-- true --></pre>
+    <pre *ngIf="someArray | hasAtMostOneItem"><!-- true --></pre>
+  `,
 })
 export class AppComponent {
-    public someArray: number[] = [1];
+  public someArray: number[] = [1];
 }
 ```
 
--   `IncludesPipe, IncludesPipeModule`
+- `IncludesPipe, IncludesPipeModule`
 
 ```typescript
-import { IncludesPipeModule } from '@angular-ru/cdk/pipes';
+import {IncludesPipeModule} from '@angular-ru/cdk/pipes';
 
 @NgModule({
-    // ..
-    imports: [IncludesPipeModule]
+  // ..
+  imports: [IncludesPipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        <p *ngIf="someArray | includes : 'first'">first</p>
-        <p *ngIf="someArray | includes : 'fourth'">
-            <!-- this will not appear -->
-            fourth
-        </p>
-    `
+  //...
+  template: `
+    <p *ngIf="someArray | includes: 'first'">first</p>
+    <p *ngIf="someArray | includes: 'fourth'">
+      <!-- this will not appear -->
+      fourth
+    </p>
+  `,
 })
 export class AppComponent {
-    public someArray = ['first', 'second', 'third', 'last'];
+  public someArray = ['first', 'second', 'third', 'last'];
 }
 ```
 
--   `HasPipe, HasPipeModule`
+- `HasPipe, HasPipeModule`
 
 ```typescript
-import { HasPipeModule } from '@angular-ru/cdk/pipes';
+import {HasPipeModule} from '@angular-ru/cdk/pipes';
 
 @NgModule({
-    // ..
-    imports: [HasPipeModule]
+  // ..
+  imports: [HasPipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        <p *ngIf="someSet | has : 'first'">first</p>
-        <p *ngIf="someSet | has : 'fourth'">
-            <!-- this will not appear -->
-            fourth
-        </p>
-    `
+  //...
+  template: `
+    <p *ngIf="someSet | has: 'first'">first</p>
+    <p *ngIf="someSet | has: 'fourth'">
+      <!-- this will not appear -->
+      fourth
+    </p>
+  `,
 })
 export class AppComponent {
-    public someSet = new Set(['first', 'second', 'third', 'last']);
+  public someSet = new Set(['first', 'second', 'third', 'last']);
 }
 ```
 
--   `CoerceBooleanPipe, CoerceBooleanPipeModule`
+- `CoerceBooleanPipe, CoerceBooleanPipeModule`
 
 ```typescript
-import { CoerceBooleanPipeModule } from '@angular-ru/cdk/pipes';
+import {CoerceBooleanPipeModule} from '@angular-ru/cdk/pipes';
 
 @NgModule({
-    // ..
-    imports: [CoerceBooleanPipeModule]
+  // ..
+  imports: [CoerceBooleanPipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
+  //...
+  template: `
         <mat-select [multiple]="multiple | coerceBoolean">first</p>
-    `
+    `,
 })
 export class AppComponent {
-    @Input() public multiple?: string | number | boolean;
+  @Input() public multiple?: string | number | boolean;
 }
 ```
 
--   `DeclinationOfNumberPipe, DeclinationOfNumberPipeModule`
+- `DeclinationOfNumberPipe, DeclinationOfNumberPipeModule`
 
 ```typescript
-import { DeclinationOfNumberPipeModule } from '@angular-ru/cdk/pipes';
+import {DeclinationOfNumberPipeModule} from '@angular-ru/cdk/pipes';
 
 @NgModule({
-    // ..
-    imports: [DeclinationOfNumberPipeModule]
+  // ..
+  imports: [DeclinationOfNumberPipeModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        {{ numberVal | declinationOfNumber : ['арбуз', 'арбуза', 'арбузов'] }}
-    `
+  //...
+  template: `
+    {{ numberVal | declinationOfNumber: ['арбуз', 'арбуза', 'арбузов'] }}
+  `,
 })
 export class AppComponent {
-    @Input() public numberVal: number;
+  @Input() public numberVal: number;
 }
 ```

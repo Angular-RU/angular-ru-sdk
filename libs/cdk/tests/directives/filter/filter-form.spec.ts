@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { By } from '@angular/platform-browser';
-import { InputFilterModule } from '@angular-ru/cdk/directives';
-import { Nullable } from '@angular-ru/cdk/typings';
+import {ChangeDetectionStrategy, Component, DebugElement} from '@angular/core';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {By} from '@angular/platform-browser';
+import {InputFilterModule} from '@angular-ru/cdk/directives';
+import {Nullable} from '@angular-ru/cdk/typings';
 
 describe('[TEST]: inputFilter Input', function () {
     let fixture: Nullable<ComponentFixture<TestComponent>> = null;
@@ -17,9 +17,9 @@ describe('[TEST]: inputFilter Input', function () {
             <div [formGroup]="form">
                 <input
                     id="input1"
+                    formControlName="value"
                     matInput
                     type="text"
-                    formControlName="value"
                     [inputFilter]="characters"
                 />
             </div>
@@ -31,10 +31,10 @@ describe('[TEST]: inputFilter Input', function () {
                 [(ngModel)]="name"
             />
         `,
-        changeDetection: ChangeDetectionStrategy.OnPush
+        changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class TestComponent {
-        public form = this.fb.group({ value: 'aaaKKK' });
+        public form = this.fb.group({value: 'aaaKKK'});
         public characters = ['a', 'b', 'c'];
         public name: string = 'aaaKKK';
 
@@ -44,7 +44,7 @@ describe('[TEST]: inputFilter Input', function () {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [ReactiveFormsModule, InputFilterModule, FormsModule],
-            declarations: [TestComponent]
+            declarations: [TestComponent],
         }).compileComponents();
 
         fixture = TestBed.createComponent(TestComponent);
@@ -59,11 +59,11 @@ describe('[TEST]: inputFilter Input', function () {
     });
 
     it('correct sync modelView with model', async () => {
-        expect(component?.form.value).toEqual({ value: 'aaaKKK' });
+        expect(component?.form.value).toEqual({value: 'aaaKKK'});
 
         debugElement1!.nativeElement.value = 'bbbOOO';
         debugElement1?.triggerEventHandler('input', {
-            target: debugElement1.nativeElement
+            target: debugElement1.nativeElement,
         });
 
         await fixture?.whenStable();
@@ -73,7 +73,7 @@ describe('[TEST]: inputFilter Input', function () {
         expect(component?.form.pristine).toBe(false);
         expect(component?.form.dirty).toBe(true);
 
-        expect(component?.form.value).toEqual({ value: 'bbb' });
+        expect(component?.form.value).toEqual({value: 'bbb'});
         expect(debugElement1?.nativeElement.value).toBe('bbb');
     });
 
@@ -83,7 +83,7 @@ describe('[TEST]: inputFilter Input', function () {
 
         debugElement2!.nativeElement.value = 'bbbOOO';
         debugElement2?.triggerEventHandler('input', {
-            target: debugElement2.nativeElement
+            target: debugElement2.nativeElement,
         });
 
         await fixture?.whenStable();
@@ -100,7 +100,7 @@ describe('[TEST]: inputFilter Input', function () {
         debugElement2?.nativeElement.addEventListener('input', () => ++count);
         debugElement2!.nativeElement.value = 'bbbOOO';
         debugElement2?.triggerEventHandler('input', {
-            target: debugElement2?.nativeElement
+            target: debugElement2?.nativeElement,
         });
         expect(count).toBe(1);
     });

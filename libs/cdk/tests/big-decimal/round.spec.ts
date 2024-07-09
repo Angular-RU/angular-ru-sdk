@@ -1,4 +1,4 @@
-import { BigDecimal, RoundingModes } from '@angular-ru/cdk/big-decimal';
+import {BigDecimal, RoundingModes} from '@angular-ru/cdk/big-decimal';
 
 describe('[TEST]: BigDecimal - round', () => {
     it('should return integer unchanged', () => {
@@ -247,7 +247,9 @@ describe('[TEST]: BigDecimal - round', () => {
         });
 
         it('should round(-597.998, 2, HALF_UP) = -598.00', () => {
-            expect(BigDecimal.round('-597.998', 2, RoundingModes.HALF_UP)).toBe('-598.00');
+            expect(BigDecimal.round('-597.998', 2, RoundingModes.HALF_UP)).toBe(
+                '-598.00',
+            );
         });
     });
 

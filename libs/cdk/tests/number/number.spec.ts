@@ -5,7 +5,7 @@ import {
     isNumber,
     numberFormat,
     toNumber,
-    truncated
+    truncated,
 } from '@angular-ru/cdk/number';
 
 describe('[TEST]: Number', () => {
@@ -33,7 +33,9 @@ describe('[TEST]: Number', () => {
             expect(toNumber('1123123,123')).toBe(1123123.123);
             expect(toNumber('0,1')).toBe(0.1);
             expect(toNumber('1 000 000')).toBe(1000000);
-            expect(toNumber('1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16')).toBe(1.2345678910111212e22);
+            expect(toNumber('1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16')).toBe(
+                1.2345678910111212e22,
+            );
         });
 
         it('correct from custom locale to number', () => {
@@ -110,15 +112,21 @@ describe('[TEST]: Number', () => {
 
     it('numberFormat', () => {
         expect(numberFormat(1500300.5)).toBe('1 500 300,5');
-        expect(numberFormat(1500300.5, { formatOptions: { minimumFractionDigits: 2 } })).toBe('1 500 300,50');
-        expect(numberFormat(1500300, { formatOptions: { style: 'currency', currency: 'EUR' } })).toBe('1 500 300,00 €');
+        expect(numberFormat(1500300.5, {formatOptions: {minimumFractionDigits: 2}})).toBe(
+            '1 500 300,50',
+        );
+        expect(
+            numberFormat(1500300, {formatOptions: {style: 'currency', currency: 'EUR'}}),
+        ).toBe('1 500 300,00 €');
         expect(
             numberFormat(1500300, {
                 locales: 'en-US',
-                formatOptions: { style: 'currency', currency: 'rub', useGrouping: false }
-            })
+                formatOptions: {style: 'currency', currency: 'rub', useGrouping: false},
+            }),
         ).toBe('RUB 1500300.00');
-        expect(numberFormat(1500300, { formatOptions: { maximumFractionDigits: 0 } })).toBe('1 500 300');
+        expect(numberFormat(1500300, {formatOptions: {maximumFractionDigits: 0}})).toBe(
+            '1 500 300',
+        );
         expect(numberFormat(null)).toBe('');
         expect(numberFormat(undefined)).toBe('');
         expect(numberFormat()).toBe('');

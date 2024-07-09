@@ -10,7 +10,7 @@
         </button>
         <mat-checkbox
             class="regenerate"
-            [ngModelOptions]="{ standalone: true }"
+            [ngModelOptions]="{standalone: true}"
             [(ngModel)]="skipSort"
         >
             Skip internal sort
@@ -27,9 +27,9 @@
 </mat-toolbar>
 
 <ngx-table-builder
-    [source]="data"
     [skip-sort]="skipSort"
-    [sort-types]="sortByIdDirection ? { id: 'asc' } : { id: 'desc' }"
+    [sort-types]="sortByIdDirection ? {id: 'asc'} : {id: 'desc'}"
+    [source]="data"
     (sortChanges)="sortChanges($event)"
 >
     <ngx-empty>No data</ngx-empty>

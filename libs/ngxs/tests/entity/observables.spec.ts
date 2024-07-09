@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { createEntityCollections } from '@angular-ru/cdk/entity';
-import { StateRepository } from '@angular-ru/ngxs/decorators';
-import { NgxsDataEntityCollectionsRepository } from '@angular-ru/ngxs/repositories';
-import { ngxsTestingPlatform } from '@angular-ru/ngxs/testing';
-import { State } from '@ngxs/store';
+import {Injectable} from '@angular/core';
+import {createEntityCollections} from '@angular-ru/cdk/entity';
+import {StateRepository} from '@angular-ru/ngxs/decorators';
+import {NgxsDataEntityCollectionsRepository} from '@angular-ru/ngxs/repositories';
+import {ngxsTestingPlatform} from '@angular-ru/ngxs/testing';
+import {State} from '@ngxs/store';
 
 describe('[TEST]: Entity observables', () => {
     describe('entityArray$', () => {
@@ -15,10 +15,13 @@ describe('[TEST]: Entity observables', () => {
         @StateRepository()
         @State({
             name: 'student',
-            defaults: createEntityCollections()
+            defaults: createEntityCollections(),
         })
         @Injectable()
-        class StudentEntitiesState extends NgxsDataEntityCollectionsRepository<StudentEntity, string> {}
+        class StudentEntitiesState extends NgxsDataEntityCollectionsRepository<
+            StudentEntity,
+            string
+        > {}
 
         it(
             'correct create entity arrays',
@@ -32,34 +35,34 @@ describe('[TEST]: Entity observables', () => {
                 studentEntities.setAll([
                     {
                         id: 1,
-                        name: 'Maxim'
+                        name: 'Maxim',
                     },
                     {
                         id: 2,
-                        name: 'Ivan'
+                        name: 'Ivan',
                     },
                     {
                         id: 3,
-                        name: 'Nikola'
+                        name: 'Nikola',
                     },
                     {
                         id: 4,
-                        name: 'Petr'
-                    }
+                        name: 'Petr',
+                    },
                 ]);
 
                 studentEntities.reset();
 
                 studentEntities.addOne({
                     id: 1,
-                    name: 'Maxim'
+                    name: 'Maxim',
                 });
 
                 studentEntities.removeAll();
 
                 const entity: StudentEntity = {
                     id: 4,
-                    name: 'Mark'
+                    name: 'Mark',
                 };
 
                 studentEntities.upsertOne(entity);
@@ -71,38 +74,38 @@ describe('[TEST]: Entity observables', () => {
                     [
                         {
                             id: 1,
-                            name: 'Maxim'
+                            name: 'Maxim',
                         },
                         {
                             id: 2,
-                            name: 'Ivan'
+                            name: 'Ivan',
                         },
                         {
                             id: 3,
-                            name: 'Nikola'
+                            name: 'Nikola',
                         },
                         {
                             id: 4,
-                            name: 'Petr'
-                        }
+                            name: 'Petr',
+                        },
                     ],
                     [],
                     [
                         {
                             id: 1,
-                            name: 'Maxim'
-                        }
+                            name: 'Maxim',
+                        },
                     ],
                     [],
                     [
                         {
                             id: 4,
-                            name: 'Mark'
-                        }
+                            name: 'Mark',
+                        },
                     ],
-                    []
+                    [],
                 ]);
-            })
+            }),
         );
     });
 });

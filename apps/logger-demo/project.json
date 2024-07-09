@@ -1,11 +1,11 @@
 {
-    "root": "apps/logger-demo/",
+    "name": "logger-demo",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "apps/logger-demo/",
     "projectType": "application",
-    "tags": ["scope:applications"],
     "targets": {
         "build": {
-            "builder": "@angular-devkit/build-angular:browser",
+            "executor": "@angular-devkit/build-angular:browser",
             "options": {
                 "outputPath": "dist/logger-demo",
                 "tsConfig": "apps/logger-demo/tsconfig.app.json",
@@ -37,17 +37,31 @@
                     "aot": true,
                     "extractLicenses": true,
                     "buildOptimizer": true
+                },
+                "development": {
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/flex-layout-demo/environments/environment.ts",
+                            "with": "apps/flex-layout-demo/environments/environment.prod.ts"
+                        }
+                    ],
+                    "optimization": false
                 }
             },
             "defaultConfiguration": "production",
-            "outputs": ["./dist/logger-demo"]
+            "outputs": ["{projectRoot}/dist/logger-demo"]
         },
         "serve": {
-            "builder": "@angular-devkit/build-angular:dev-server",
-            "options": { "browserTarget": "logger-demo:build" },
+            "executor": "@angular-devkit/build-angular:dev-server",
+            "options": {
+                "buildTarget": "logger-demo:build"
+            },
             "configurations": {
                 "production": {
-                    "browserTarget": "logger-demo:build:production"
+                    "buildTarget": "logger-demo:build:production"
+                },
+                "development": {
+                    "buildTarget": "logger-demo:build:development"
                 }
             },
             "defaultConfiguration": "development"

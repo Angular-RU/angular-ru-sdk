@@ -1,7 +1,7 @@
-import { TestBed } from '@angular/core/testing';
-import { LoggerModule, LoggerService } from '@angular-ru/cdk/logger';
+import {TestBed} from '@angular/core/testing';
+import {LoggerModule, LoggerService} from '@angular-ru/cdk/logger';
 
-import { ConsoleFake, TestLoggerLineType } from './helpers/console-fake';
+import {ConsoleFake, TestLoggerLineType} from './helpers/console-fake';
 
 describe('[TEST]: Check JSON', () => {
     let logger: LoggerService;
@@ -9,7 +9,7 @@ describe('[TEST]: Check JSON', () => {
 
     beforeAll(() => {
         TestBed.configureTestingModule({
-            imports: [LoggerModule.forRoot({ instance: fakeConsole })]
+            imports: [LoggerModule.forRoot({instance: fakeConsole})],
         });
 
         logger = TestBed.inject(LoggerService);
@@ -17,7 +17,7 @@ describe('[TEST]: Check JSON', () => {
 
     it('should be pretty json', () => {
         logger.clear();
-        logger.log(logger.prettyJSON({ a: true, b: [1, 2], c: 'test string', d: null }));
+        logger.log(logger.prettyJSON({a: true, b: [1, 2], c: 'test string', d: null}));
 
         expect(fakeConsole.stack()).toEqual(
             fakeConsole.createStack({
@@ -41,10 +41,10 @@ describe('[TEST]: Check JSON', () => {
                         'color:red',
                         '',
                         'color:magenta',
-                        ''
-                    ]
-                ]
-            })
+                        '',
+                    ],
+                ],
+            }),
         );
     });
 });

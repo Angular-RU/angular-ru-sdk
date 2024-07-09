@@ -1,11 +1,11 @@
-import { HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Fn } from '@angular-ru/cdk/typings';
-import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import {HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Fn} from '@angular-ru/cdk/typings';
+import {Observable} from 'rxjs';
+import {switchMap} from 'rxjs/operators';
 
 export const enum HttpMockRequestId {
-    LONG_REQUEST = 'long-request'
+    LONG_REQUEST = 'long-request',
 }
 
 const HTTP_MOCK_DEFAULT_TIMEOUT: number = 500;
@@ -18,7 +18,7 @@ export class HttpMockInterceptor implements HttpInterceptor {
                 await this.emulateTimeoutIfLongRequest(request);
 
                 return value;
-            })
+            }),
         );
     }
 

@@ -1,5 +1,5 @@
 /* eslint-disable jest/no-conditional-expect,jest/no-if */
-import { toISOStringWithoutTimezone } from '@angular-ru/cdk/date';
+import {toISOStringWithoutTimezone} from '@angular-ru/cdk/date';
 
 describe('[TEST]: toISOStringWithoutTimezone', (): void => {
     const timezoneOffSet: number = new Date().getTimezoneOffset();

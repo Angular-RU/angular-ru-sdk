@@ -3,16 +3,16 @@
 `app.module.ts`
 
 ```typescript
-import { NgxsModule } from '@ngxs/store';
-import { NgxsDataPluginModule } from '@angular-ru/ngxs';
+import {NgxsModule} from '@ngxs/store';
+import {NgxsDataPluginModule} from '@angular-ru/ngxs';
 
 @NgModule({
-    imports: [
-        // ..
-        NgxsModule.forRoot([AppState]),
-        NgxsDataPluginModule.forRoot()
-    ]
+  imports: [
     // ..
+    NgxsModule.forRoot([AppState]),
+    NgxsDataPluginModule.forRoot(),
+  ],
+  // ..
 })
 export class AppModule {}
 ```
@@ -20,42 +20,42 @@ export class AppModule {}
 `count.state.ts`
 
 ```typescript
-import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
-import { Computed, DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
-import { State } from '@ngxs/store';
+import {NgxsDataRepository} from '@angular-ru/ngxs/repositories';
+import {Computed, DataAction, StateRepository} from '@angular-ru/ngxs/decorators';
+import {State} from '@ngxs/store';
 // ..
 
 export interface CountModel {
-    val: number;
+  val: number;
 }
 
 @StateRepository()
 @State({
-    name: 'count',
-    defaults: { val: 0 }
+  name: 'count',
+  defaults: {val: 0},
 })
 @Injectable()
 export class CountState extends NgxsDataRepository<CountModel> {
-    @Computed()
-    public get values$() {
-        return this.state$.pipe(map((state) => state.countSub));
-    }
+  @Computed()
+  public get values$() {
+    return this.state$.pipe(map((state) => state.countSub));
+  }
 
-    @DataAction()
-    public increment(): void {
-        this.ctx.setState((state) => ({ val: state.val + 1 }));
-    }
+  @DataAction()
+  public increment(): void {
+    this.ctx.setState((state) => ({val: state.val + 1}));
+  }
 
-    @DataAction()
-    public decrement(): void {
-        this.ctx.setState((state) => ({ val: state.val - 1 }));
-    }
+  @DataAction()
+  public decrement(): void {
+    this.ctx.setState((state) => ({val: state.val - 1}));
+  }
 
-    @Debounce()
-    @DataAction()
-    public setValueFromInput(@Payload('value') val: string | number): void {
-        this.ctx.setState({ val: parseFloat(val) || 0 });
-    }
+  @Debounce()
+  @DataAction()
+  public setValueFromInput(@Payload('value') val: string | number): void {
+    this.ctx.setState({val: parseFloat(val) || 0});
+  }
 }
 ```
 
@@ -95,14 +95,14 @@ export class AppComponent {
 `Need provide logger-plugin`
 
 ```typescript
-import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
 
 @NgModule({
-    imports: [
-        // ..
-        NgxsLoggerPluginModule.forRoot()
-    ]
+  imports: [
     // ..
+    NgxsLoggerPluginModule.forRoot(),
+  ],
+  // ..
 })
 export class AppModule {}
 ```
@@ -110,22 +110,22 @@ export class AppModule {}
 ```typescript
 @StateRepository()
 @State<string[]>({
-    name: 'todo',
-    defaults: []
+  name: 'todo',
+  defaults: [],
 })
 @Injectable()
 export class TodoState extends NgxsDataRepository<string[]> {
-    @DataAction()
-    public addTodo(@Payload('todo') todo: string): void {
-        if (todo) {
-            this.ctx.setState((state) => state.concat(todo));
-        }
+  @DataAction()
+  public addTodo(@Payload('todo') todo: string): void {
+    if (todo) {
+      this.ctx.setState((state) => state.concat(todo));
     }
+  }
 
-    @DataAction()
-    public removeTodo(@Payload('idx') idx: number): void {
-        this.ctx.setState((state) => state.filter((_: string, index: number): boolean => index !== idx));
-    }
+  @DataAction()
+  public removeTodo(@Payload('idx') idx: number): void {
+    this.ctx.setState((state) => state.filter((_: string, index: number): boolean => index !== idx));
+  }
 }
 ```
 

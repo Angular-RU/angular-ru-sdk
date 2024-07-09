@@ -8,7 +8,7 @@ You can use our flex directives instead of writing css rules in every component.
 $ npm install @angular-ru/cdk
 ```
 
--   Add styles to `styles.scss` file:
+- Add styles to `styles.scss` file:
 
 ```scss
 @import './node_modules/@angular-ru/cdk/flex-layout/styles/index';
@@ -17,14 +17,14 @@ $ npm install @angular-ru/cdk
 ```
 
 ```typescript
-import { FlexLayoutModule } from '@angular-ru/cdk/flex-layout';
-import { NgModule } from '@angular/core';
+import {FlexLayoutModule} from '@angular-ru/cdk/flex-layout';
+import {NgModule} from '@angular/core';
 
 @NgModule({
-    imports: [
-        // ...
-        FlexLayoutModule
-    ]
+  imports: [
+    // ...
+    FlexLayoutModule,
+  ],
 })
 export class AppModule {}
 ```

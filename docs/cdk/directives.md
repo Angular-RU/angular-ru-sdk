@@ -1,176 +1,176 @@
 #### `@angular-ru/cdk/directives`
 
--   `InitialFocusDirective, InitialFocusModule`
--   Selector: `initialFocus`
+- `InitialFocusDirective, InitialFocusModule`
+- Selector: `initialFocus`
 
--   API:
+- API:
 
-    -   `Input() focusDisabled: boolean` - default: `false`
+  - `Input() focusDisabled: boolean` - default: `false`
 
 ```typescript
-import { InitialFocusModule } from '@angular-ru/cdk/directives';
-import { Component, NgModule } from '@angular/core';
+import {InitialFocusModule} from '@angular-ru/cdk/directives';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [InitialFocusModule]
+  // ..
+  imports: [InitialFocusModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        <input
-            initialFocus
-            placeholder="hello world"
-            [focusDisabled]="false"
-        />
-    `
+  //...
+  template: `
+    <input
+      [focusDisabled]="false"
+      initialFocus
+      placeholder="hello world"
+    />
+  `,
 })
 export class AppComponent {}
 ```
 
--   `AmountFormatDirective, AmountFormatDirectiveModule`
+- `AmountFormatDirective, AmountFormatDirectiveModule`
 
 ```typescript
-import { AmountFormatDirectiveModule } from '@angular-ru/cdk/directives';
-import { Component, NgModule } from '@angular/core';
+import {AmountFormatDirectiveModule} from '@angular-ru/cdk/directives';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [AmountFormatDirectiveModule]
+  // ..
+  imports: [AmountFormatDirectiveModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        <input
-            amountFormat
-            value="10000000"
-        />
-    ` // 1 000 000
+  //...
+  template: `
+    <input
+      amountFormat
+      value="10000000"
+    />
+  `, // 1 000 000
 })
 export class AppComponent {}
 ```
 
--   `ConvertCaseDirective, ConvertCaseDirectiveModule`
+- `ConvertCaseDirective, ConvertCaseDirectiveModule`
 
 ```typescript
-import { ConvertCaseDirectiveModule } from '@angular-ru/cdk/directives';
-import { Component, NgModule } from '@angular/core';
+import {ConvertCaseDirectiveModule} from '@angular-ru/cdk/directives';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [ConvertCaseDirectiveModule]
+  // ..
+  imports: [ConvertCaseDirectiveModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        <input
-            convertCase
-            placeholder="ru"
-        />
-    ` // RU
+  //...
+  template: `
+    <input
+      convertCase
+      placeholder="ru"
+    />
+  `, // RU
 })
 export class AppComponent {}
 ```
 
--   `DisableControlDirective, DisableControlDirectiveModule`
+- `DisableControlDirective, DisableControlDirectiveModule`
 
 ```typescript
-import { DisableControlDirectiveModule } from '@angular-ru/cdk/directives';
-import { Component, NgModule } from '@angular/core';
+import {DisableControlDirectiveModule} from '@angular-ru/cdk/directives';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [DisableControlDirectiveModule]
+  // ..
+  imports: [DisableControlDirectiveModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        <input
-            disableControl
-            formControlName="name"
-        />
-    ` // disabled = true
+  //...
+  template: `
+    <input
+      disableControl
+      formControlName="name"
+    />
+  `, // disabled = true
 })
 export class AppComponent {}
 ```
 
--   `MaxLengthDirective, MaxLengthDirectiveModule`
+- `MaxLengthDirective, MaxLengthDirectiveModule`
 
 ```typescript
-import { MaxLengthDirectiveModule } from '@angular-ru/cdk/directives';
-import { Component, NgModule } from '@angular/core';
+import {MaxLengthDirectiveModule} from '@angular-ru/cdk/directives';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [MaxLengthDirectiveModule]
+  // ..
+  imports: [MaxLengthDirectiveModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        <input
-            maxLength="3000"
-            placeholder="3001"
-        />
-    ` // empty value
+  //...
+  template: `
+    <input
+      maxLength="3000"
+      placeholder="3001"
+    />
+  `, // empty value
 })
 export class AppComponent {}
 ```
 
--   `TrimInputDirective, TrimInputModule`
--   Selector: `trimInput`
+- `TrimInputDirective, TrimInputModule`
+- Selector: `trimInput`
 
 API:
 
--   `@Input('trimDisabled') disabled: boolean` - default: `false`
+- `@Input('trimDisabled') disabled: boolean` - default: `false`
 
 ```typescript
-import { TrimInputModule } from '@angular-ru/cdk/directives';
-import { Component, NgModule } from '@angular/core';
+import {TrimInputModule} from '@angular-ru/cdk/directives';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [TrimInputModule]
+  // ..
+  imports: [TrimInputModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        <input
-            trimInput
-            placeholder="  Hello  "
-            [trimDisabled]="false"
-        />
-    ` // 'Hello'
+  //...
+  template: `
+    <input
+      [trimDisabled]="false"
+      trimInput
+      placeholder="  Hello  "
+    />
+  `, // 'Hello'
 })
 export class AppComponent {}
 ```
 
--   `SplitStringDirective, SplitStringModule`
+- `SplitStringDirective, SplitStringModule`
 
 ```typescript
-import { SplitStringModule, SplitStringOptions } from '@angular-ru/cdk/directives';
-import { Component, NgModule } from '@angular/core';
+import {SplitStringModule, SplitStringOptions} from '@angular-ru/cdk/directives';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [SplitStringModule]
+  // ..
+  imports: [SplitStringModule],
 })
 export class AppModule {}
 
 @Component({
-    selector: 'test',
-    template: `
+  selector: 'test',
+  template: `
         <form [formGroup]="form">
             <input type="text" formControlName="input1" splitString" />
             <input
@@ -180,61 +180,61 @@ export class AppModule {}
                 [splitOptions]="splitStringOptions"
             />
         </form>
-    `
+    `,
 })
 class TestComponent {
-    public splitStringOptions?: Partial<SplitStringOptions> = { separator: /[,;\n+]/g, joinWith: ' + ' };
-    public form = this.fb.group({
-        input1: ['one', 'two'],
-        input2: ['three', 'four']
-    });
-    /**
-     * Native input1 value will be joined by default by comma ('one, two')
-     * and will be automatically splitted
-     * by default separator while user is typing.
-     * Default separator is /[,;\n]/g (comma, semicolon, line break)
-     *
-     * Native input2 value will be joined with ' + ' ('three + four')
-     * and will be splitted by specified separator /[,;\n+]/g
-     */
+  public splitStringOptions?: Partial<SplitStringOptions> = {separator: /[,;\n+]/g, joinWith: ' + '};
+  public form = this.fb.group({
+    input1: ['one', 'two'],
+    input2: ['three', 'four'],
+  });
+  /**
+   * Native input1 value will be joined by default by comma ('one, two')
+   * and will be automatically splitted
+   * by default separator while user is typing.
+   * Default separator is /[,;\n]/g (comma, semicolon, line break)
+   *
+   * Native input2 value will be joined with ' + ' ('three + four')
+   * and will be splitted by specified separator /[,;\n+]/g
+   */
 
-    constructor(private readonly fb: FormBuilder) {}
+  constructor(private readonly fb: FormBuilder) {}
 }
 ```
 
--   `InputFilterDirective, InputFilterModule`
+- `InputFilterDirective, InputFilterModule`
 
 ```typescript
-import { InputFilterModule, FilterPredicate } from '@angular-ru/cdk/directives';
-import { Component, NgModule } from '@angular/core';
+import {InputFilterModule, FilterPredicate} from '@angular-ru/cdk/directives';
+import {Component, NgModule} from '@angular/core';
 
 @NgModule({
-    // ..
-    imports: [InputFilterModule]
+  // ..
+  imports: [InputFilterModule],
 })
 export class AppModule {}
 
 @Component({
-    //...
-    template: `
-        <div [formGroup]="form">
-            <input
-                matInput
-                type="text"
-                formControlName="value"
-                [filterDisabled]="false"
-                [inputFilter]="predicate"
-            />
-        </div>
-    `
+  //...
+  template: `
+    <div [formGroup]="form">
+      <input
+        [filterDisabled]="false"
+        [inputFilter]="predicate"
+        matInput
+        type="text"
+        formControlName="value"
+      />
+    </div>
+  `,
 })
 export class AppComponent {
-    public predicate: FilterPredicate;
+  public predicate: FilterPredicate;
 
-    constructor() {
-        this.predicate = ['a', 'b', 'c'];
-        this.predicate = /[a,b]+/;
-        this.predicate = (item: string): boolean => item === 'a' || item === 'b';
-    }
+  constructor() {
+    this.predicate = ['a', 'b', 'c'];
+    this.predicate = /[a,b]+/;
+    this.predicate = (item: string): boolean => item === 'a' || item === 'b';
+  }
 }
 ```

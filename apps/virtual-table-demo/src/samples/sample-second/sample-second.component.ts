@@ -1,6 +1,12 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    ViewEncapsulation,
+} from '@angular/core';
 
-import { hlJsCode } from '../../../../../.global/utils/hljs-code';
+import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 
 interface LicenseSample {
     id: number;
@@ -32,28 +38,37 @@ export interface PeriodicElement {
                 padding: 0;
                 min-width: 100%;
             }
-        `
+        `,
     ],
     // Use to disable CSS Encapsulation for this component
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SampleSecondComponent implements AfterViewInit {
     public licenses: LicenseSample[] = [];
 
-    public columns: string[] = ['name', 'position', 'weight', 'symbol', 'position', 'weight', 'symbol', 'status'];
+    public columns: string[] = [
+        'name',
+        'position',
+        'weight',
+        'symbol',
+        'position',
+        'weight',
+        'symbol',
+        'status',
+    ];
     // noinspection DuplicatedCode
     public elements: PeriodicElement[] = [
-        { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-        { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-        { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-        { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-        { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-        { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-        { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-        { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-        { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-        { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' }
+        {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
+        {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
+        {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
+        {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
+        {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
+        {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
+        {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
+        {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
+        {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
+        {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
     ];
 
     constructor(public readonly cd: ChangeDetectorRef) {}
@@ -70,27 +85,27 @@ export class SampleSecondComponent implements AfterViewInit {
                     {
                         id: 1,
                         name: 'single',
-                        price: 29.3
+                        price: 29.3,
                     },
                     {
                         id: 2,
                         name: 'developer',
-                        price: 49.8
+                        price: 49.8,
                     },
                     {
                         id: 3,
                         name: 'premium',
-                        price: 99.5
+                        price: 99.5,
                     },
                     {
                         id: 4,
                         name: 'enterprise',
-                        price: 199
-                    }
+                        price: 199,
+                    },
                 ];
 
                 this.cd.detectChanges();
-            }
+            },
         );
     }
 }

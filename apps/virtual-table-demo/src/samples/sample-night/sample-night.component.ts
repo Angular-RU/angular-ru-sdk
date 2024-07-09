@@ -5,19 +5,19 @@ import {
     Component,
     Injector,
     NgZone,
-    OnInit
+    OnInit,
 } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { PlainObject } from '@angular-ru/cdk/typings';
+import {MatDialog} from '@angular/material/dialog';
+import {PlainObject} from '@angular-ru/cdk/typings';
 
-import { hlJsCode } from '../../../../../.global/utils/hljs-code';
-import { MocksGenerator } from '../../mocks-generator';
-import { CodeDialogComponent } from '../../shared/dialog/code-dialog.component';
+import {hlJsCode} from '../../../../../.global/utils/hljs-code';
+import {MocksGenerator} from '../../mocks-generator';
+import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
 
 @Component({
     selector: 'sample-night',
     templateUrl: './sample-night.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SampleNightComponent implements OnInit, AfterViewInit {
     private readonly ngZone: NgZone;
@@ -26,7 +26,10 @@ export class SampleNightComponent implements OnInit, AfterViewInit {
     public nativeScrollbar: boolean = false;
     public readonly dialog: MatDialog;
 
-    constructor(private readonly cd: ChangeDetectorRef, injector: Injector) {
+    constructor(
+        private readonly cd: ChangeDetectorRef,
+        injector: Injector,
+    ) {
         this.dialog = injector.get<MatDialog>(MatDialog);
         this.ngZone = injector.get<NgZone>(NgZone);
     }
@@ -38,13 +41,14 @@ export class SampleNightComponent implements OnInit, AfterViewInit {
         const rows2: number = 10000;
         const cols2: number = 30;
 
-        Promise.all([MocksGenerator.generator(rows1, cols1), MocksGenerator.generator(rows2, cols2)]).then(
-            ([first, second]: [PlainObject[], PlainObject[]]): void => {
-                this.dataFirst = first;
-                this.dataSecond = second;
-                this.cd.detectChanges();
-            }
-        );
+        Promise.all([
+            MocksGenerator.generator(rows1, cols1),
+            MocksGenerator.generator(rows2, cols2),
+        ]).then(([first, second]: [PlainObject[], PlainObject[]]): void => {
+            this.dataFirst = first;
+            this.dataSecond = second;
+            this.cd.detectChanges();
+        });
     }
 
     public ngAfterViewInit(): void {
@@ -93,10 +97,10 @@ export class SampleNightComponent implements OnInit, AfterViewInit {
     </div>
 </div>
 
-                    `
+                    `,
             },
             height: '750px',
-            width: '700px'
+            width: '700px',
         });
     }
 }

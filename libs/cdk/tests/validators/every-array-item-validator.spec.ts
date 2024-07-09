@@ -1,5 +1,10 @@
-import { AbstractControl, FormControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { everyArrayItemValidator } from '@angular-ru/cdk/validators';
+import {
+    AbstractControl,
+    FormControl,
+    ValidationErrors,
+    ValidatorFn,
+} from '@angular/forms';
+import {everyArrayItemValidator} from '@angular-ru/cdk/validators';
 
 describe('[TEST]: #everyArrayItemValidator', (): void => {
     let validatorMock: jest.MockedFunction<ValidatorFn>;
@@ -21,7 +26,9 @@ describe('[TEST]: #everyArrayItemValidator', (): void => {
     });
 
     it('should call every validator for item', (): void => {
-        expectedControl.setValidators(everyArrayItemValidator([validatorMock, secondValidatorMock]));
+        expectedControl.setValidators(
+            everyArrayItemValidator([validatorMock, secondValidatorMock]),
+        );
 
         expectedControl.setValue(['st1']);
 
@@ -40,20 +47,22 @@ describe('[TEST]: #everyArrayItemValidator', (): void => {
 
     it('should return all errors', (): void => {
         validatorMock.mockImplementation((): ValidationErrors | null => ({
-            firstError: 'firstError'
+            firstError: 'firstError',
         }));
 
         secondValidatorMock.mockImplementation((): ValidationErrors | null => ({
-            secondError: 'secondError'
+            secondError: 'secondError',
         }));
 
-        expectedControl.setValidators(everyArrayItemValidator([validatorMock, secondValidatorMock]));
+        expectedControl.setValidators(
+            everyArrayItemValidator([validatorMock, secondValidatorMock]),
+        );
 
         expectedControl.setValue(['st1']);
 
         expect(expectedControl.errors).toEqual({
             firstError: 'firstError',
-            secondError: 'secondError'
+            secondError: 'secondError',
         });
     });
 });

@@ -6,13 +6,13 @@
     <div class="column">
         <pre><code class="javascript">
   // app.component.ts
-  import &#123; Component } from "@angular/core";
-  import &#123; Pizza } from "./pizza.interface";
+  import &#123; Component &#125; from "&#64;angular/core";
+  import &#123; Pizza &#125; from "./pizza.interface";
 
-  @Component(&#123;
+  &#64;Component(&#123;
     selector: 'app',
     templateUrl: './app.component.html'
-  })
+  &#123;)
   export class AppComponent &#123;
 
     public pizzas: Pizza[] = [
@@ -22,19 +22,19 @@
               small: '5.00',
               medium: '6.00',
               large: '7.00'
-            }
-        },
+            &#125;
+        &#125;,
         &#123;
             toppings: ['tomato sauce', 'mozzarella cheese', 'ham'],
             prices: &#123;
               small: '6.50',
               medium: '7.50',
               large: '8.50'
-            }
-        }
+            &#123;
+        &#123;
     ];
 
-  }
+  &#123;
 
 </code></pre>
     </div>
@@ -75,8 +75,8 @@
             <ngx-column key="prices.small">
                 <ng-template ngx-th>Small</ng-template>
                 <ng-template
-                    ngx-td
                     let-cell
+                    ngx-td
                 >
                     {{ cell | currency }}
                 </ng-template>
@@ -85,8 +85,8 @@
             <ngx-column key="prices.medium">
                 <ng-template ngx-th>Medium</ng-template>
                 <ng-template
-                    ngx-td
                     let-cell
+                    ngx-td
                 >
                     {{ cell | currency }}
                 </ng-template>
@@ -95,8 +95,8 @@
             <ngx-column key="prices.large">
                 <ng-template ngx-th>Large</ng-template>
                 <ng-template
-                    ngx-td
                     let-cell
+                    ngx-td
                 >
                     {{ cell | currency }}
                 </ng-template>
@@ -114,16 +114,16 @@
             [source]="elements"
         >
             <ngx-column
-                key="date.value"
                 important-template
+                key="date.value"
                 [stub]="null"
             >
                 <ng-template ngx-th>Date</ng-template>
                 <ng-template
-                    ngx-td
                     let-date
+                    ngx-td
                 >
-                    {{ date | date : 'dd.MM.yyyy HH:mm' }}
+                    {{ date | date: 'dd.MM.yyyy HH:mm' }}
                 </ng-template>
             </ngx-column>
         </ngx-table-builder>
@@ -137,7 +137,7 @@
      &lt;ngx-column key="date.value" important-template [stub]="null">
         &lt;ng-template ngx-th>Date&lt;/ng-template>
         &lt;ng-template ngx-td let-date>
-          &#123;&#123; date | date: 'dd.MM.yyyy HH:mm' }}
+          &#123;&#123; date | date: 'dd.MM.yyyy HH:mm' &#125;&#125;
         &lt;/ng-template>
      &lt;/ngx-column>
    &lt;/ngx-table-builder>
@@ -153,21 +153,21 @@
     <div class="column">
         <pre><code class="javascript" ngNonBindable>
   // app.component.ts
-  import &#123; Component } from "@angular/core";
-  import &#123; Elements } from "./elements.interface";
+  import &#123; Component &#125; from "&#64;angular/core";
+  import &#123; Elements &#125; from "./elements.interface";
 
-  @Component(&#123;
+  &#64;Component(&#123;
     selector: 'app',
     templateUrl: './app.component.html'
-  })
+  &#123;)
   export class AppComponent &#123;
     public data: Elements[] = [
-     &#123; position: null, name: 'Hydrogen', date: &#123; value: NaN }, symbol: 'H', status: true },
-     &#123; position: 2, name: '', date: &#123; value: new Date() }, symbol: undefined, status: false },
-     &#123; position: 3, name: 'Lithium', date: &#123; value: Infinity }, symbol: 'Li', status: true },
-     &#123; position: 4, name: 'Beryllium', date: &#123; value: 0 }, symbol: '    ', status: false }
+     &#123; position: null, name: 'Hydrogen', date: &#123; value: NaN &#125;, symbol: 'H', status: true &#125;,
+     &#123; position: 2, name: '', date: &#123; value: new Date() &#125;, symbol: undefined, status: false &#125;,
+     &#123; position: 3, name: 'Lithium', date: &#123; value: Infinity &#125;, symbol: 'Li', status: true &#125;,
+     &#123; position: 4, name: 'Beryllium', date: &#123; value: 0 &#125;, symbol: '    ', status: false &#125;
     ];
-  }
+  &#125;
 
 </code></pre>
 

@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
-import { PersonModel } from './person-model';
+import {PersonModel} from './person-model';
 
 @Injectable()
 export class PersonService {
@@ -11,7 +11,7 @@ export class PersonService {
 
     public fetchAll(): Observable<PersonModel> {
         return this.httpService
-            .get<{ data: PersonModel }>('./app/json/person.json')
-            .pipe(map((response: { data: PersonModel }): PersonModel => response.data));
+            .get<{data: PersonModel}>('./app/json/person.json')
+            .pipe(map((response: {data: PersonModel}): PersonModel => response.data));
     }
 }

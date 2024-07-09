@@ -5,9 +5,9 @@ import {
     toMilliseconds,
     toPrettyFormat,
     toTimestamp,
-    toUnix
+    toUnix,
 } from '@angular-ru/cdk/date';
-import { Nullable } from '@angular-ru/cdk/typings';
+import {Nullable} from '@angular-ru/cdk/typings';
 
 const isoFormat: string = 'yyyy-MM-dd HH:mm:ss';
 
@@ -17,14 +17,14 @@ describe('[TEST]: Date', (): void => {
 
         expect(
             toFormatDateTime(dateTime, {
-                timezone: '+0300'
-            })
+                timezone: '+0300',
+            }),
         ).toBe('11.12.2018 15:41:37');
         expect(
             toFormatDateTime(dateTime, {
                 format: 'HH:mm dd.MM.yyyy',
-                timezone: '+0300'
-            })
+                timezone: '+0300',
+            }),
         ).toBe('15:41 11.12.2018');
     });
 
@@ -126,8 +126,8 @@ describe('[TEST]: Date', (): void => {
             expect(
                 toFormatDateTime(1544532097434, {
                     format: 'HH:mm dd.MM.yyyy',
-                    timezone: '+0300'
-                })
+                    timezone: '+0300',
+                }),
             ).toBe('15:41 11.12.2018');
         });
     });

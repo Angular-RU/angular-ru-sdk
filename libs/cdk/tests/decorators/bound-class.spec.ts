@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
-import { BoundClass } from '@angular-ru/cdk/decorators';
+import {Injectable} from '@angular/core';
+import {TestBed} from '@angular/core/testing';
+import {BoundClass} from '@angular-ru/cdk/decorators';
 
 describe('@BoundClass', () => {
     it('auto bind methods', () => {
@@ -21,15 +21,15 @@ describe('@BoundClass', () => {
             }
         }
 
-        TestBed.configureTestingModule({ providers: [A, B] });
+        TestBed.configureTestingModule({providers: [A, B]});
 
         const a = TestBed.inject(A);
 
         // eslint-disable-next-line @typescript-eslint/unbound-method
-        const { getA } = a;
+        const {getA} = a;
 
-        expect(a).toEqual({ a: '1', b: { b: '2' } });
-        expect(getA()).toEqual({ a: '1', b: { b: '2' } });
+        expect(a).toEqual({a: '1', b: {b: '2'}});
+        expect(getA()).toEqual({a: '1', b: {b: '2'}});
         expect(getA() === a).toBeTruthy();
     });
 });

@@ -1,11 +1,11 @@
-import { TestBed } from '@angular/core/testing';
-import { AtPipe, AtPipeModule } from '@angular-ru/cdk/pipes';
+import {TestBed} from '@angular/core/testing';
+import {AtPipe, AtPipeModule} from '@angular-ru/cdk/pipes';
 
 describe('deep path', () => {
     let pipe: AtPipe;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({ imports: [AtPipeModule] }).compileComponents();
+        TestBed.configureTestingModule({imports: [AtPipeModule]}).compileComponents();
         pipe = TestBed.inject(AtPipe);
     });
 

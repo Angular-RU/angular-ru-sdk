@@ -1,7 +1,7 @@
-import { Component, Injectable, InjectFlags } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
-import { directiveInject, inject } from '@angular-ru/cdk/ivy';
-import { Nullable } from '@angular-ru/cdk/typings';
+import {Component, Injectable, InjectFlags} from '@angular/core';
+import {TestBed} from '@angular/core/testing';
+import {directiveInject, inject} from '@angular-ru/cdk/ivy';
+import {Nullable} from '@angular-ru/cdk/typings';
 
 describe('[TEST]: injection utils', () => {
     describe('directiveInject', () => {
@@ -13,7 +13,7 @@ describe('[TEST]: injection utils', () => {
         @Component({
             selector: 'ctx',
             template: '',
-            providers: [Service]
+            providers: [Service],
         })
         class CtxComponent {
             public service: Service;
@@ -24,7 +24,9 @@ describe('[TEST]: injection utils', () => {
         }
 
         it('should be correct provide nested service by directiveInject', async () => {
-            await TestBed.configureTestingModule({ declarations: [CtxComponent] }).compileComponents();
+            await TestBed.configureTestingModule({
+                declarations: [CtxComponent],
+            }).compileComponents();
             const fixture = TestBed.createComponent(CtxComponent);
 
             expect(fixture.componentInstance.service.hello).toBe('world');
@@ -47,7 +49,7 @@ describe('[TEST]: injection utils', () => {
         }
 
         it('should be correct provide nested service by inject', () => {
-            TestBed.configureTestingModule({ providers: [Service, B] });
+            TestBed.configureTestingModule({providers: [Service, B]});
             const service = TestBed.inject(Service);
 
             expect(service.b.world).toBe('hello');
@@ -72,7 +74,7 @@ describe('[TEST]: injection utils', () => {
 
             const service = new Service();
 
-            expect(service).toEqual({ b: null });
+            expect(service).toEqual({b: null});
         });
 
         it('directiveInject Service', () => {
@@ -84,7 +86,7 @@ describe('[TEST]: injection utils', () => {
             @Component({
                 selector: 'ctx',
                 template: '',
-                providers: [Service]
+                providers: [Service],
             })
             class CtxComponent {
                 public service: Nullable<Service>;
@@ -96,7 +98,7 @@ describe('[TEST]: injection utils', () => {
 
             const service = new CtxComponent();
 
-            expect(service).toEqual({ service: null });
+            expect(service).toEqual({service: null});
         });
     });
 });

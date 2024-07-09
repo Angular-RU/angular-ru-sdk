@@ -1,10 +1,13 @@
-import { Injectable } from '@angular/core';
-import { Immutable } from '@angular-ru/cdk/typings';
-import { StateRepository } from '@angular-ru/ngxs/decorators';
-import { NgxsDataRepository, NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
-import { ngxsTestingPlatform } from '@angular-ru/ngxs/testing';
-import { NgxsDataAfterReset, NgxsDataDoCheck } from '@angular-ru/ngxs/typings';
-import { NgxsSimpleChange, State, Store } from '@ngxs/store';
+import {Injectable} from '@angular/core';
+import {Immutable} from '@angular-ru/cdk/typings';
+import {StateRepository} from '@angular-ru/ngxs/decorators';
+import {
+    NgxsDataRepository,
+    NgxsImmutableDataRepository,
+} from '@angular-ru/ngxs/repositories';
+import {ngxsTestingPlatform} from '@angular-ru/ngxs/testing';
+import {NgxsDataAfterReset, NgxsDataDoCheck} from '@angular-ru/ngxs/typings';
+import {NgxsSimpleChange, State, Store} from '@ngxs/store';
 
 describe('[TEST]: Abstract ngxs data repository', () => {
     let events: string[] = [];
@@ -16,10 +19,13 @@ describe('[TEST]: Abstract ngxs data repository', () => {
     @StateRepository()
     @State({
         name: 'a',
-        defaults: { value: 1 }
+        defaults: {value: 1},
     })
     @Injectable()
-    class A extends NgxsDataRepository<Model> implements NgxsDataDoCheck, NgxsDataAfterReset {
+    class A
+        extends NgxsDataRepository<Model>
+        implements NgxsDataDoCheck, NgxsDataAfterReset
+    {
         constructor() {
             super();
             events.push(`create: ${this.name}`);
@@ -52,10 +58,13 @@ describe('[TEST]: Abstract ngxs data repository', () => {
     @StateRepository()
     @State({
         name: 'b',
-        defaults: { value: 1 }
+        defaults: {value: 1},
     })
     @Injectable()
-    class B extends NgxsImmutableDataRepository<Model> implements NgxsDataDoCheck, NgxsDataAfterReset {
+    class B
+        extends NgxsImmutableDataRepository<Model>
+        implements NgxsDataDoCheck, NgxsDataAfterReset
+    {
         constructor() {
             super();
             events.push(`create: ${this.name}`);
@@ -92,32 +101,34 @@ describe('[TEST]: Abstract ngxs data repository', () => {
     it(
         'should be ngxs data repository',
         ngxsTestingPlatform([A], (store: Store, a: A) => {
-            expect(store.snapshot()).toStrictEqual({ a: { value: 1 } });
+            expect(store.snapshot()).toStrictEqual({a: {value: 1}});
 
             expect(a.isInitialised).toBe(true);
             expect(a.isBootstrapped).toBe(true);
 
-            a.state$.subscribe((model: Model) => events.push(`state(${a.name}): set value - ${model.value}`));
+            a.state$.subscribe((model: Model) =>
+                events.push(`state(${a.name}): set value - ${model.value}`),
+            );
 
             expect(a.name).toBe('a');
 
-            a.setState({ value: 2 });
-            expect(a.getState()).toStrictEqual({ value: 2 });
+            a.setState({value: 2});
+            expect(a.getState()).toStrictEqual({value: 2});
 
             a.initialState.value = 5; // not affected
             a.reset();
 
-            expect(a.getState()).toStrictEqual({ value: 1 });
+            expect(a.getState()).toStrictEqual({value: 1});
 
-            a.setState({ value: 3 });
-            a.setState({ value: 4 });
-            a.setState({ value: 5 });
+            a.setState({value: 3});
+            a.setState({value: 4});
+            a.setState({value: 5});
 
             a.reset();
 
-            store.reset({ a: { value: 10 } });
+            store.reset({a: {value: 10}});
 
-            expect(a.getState()).toEqual({ value: 10 });
+            expect(a.getState()).toEqual({value: 10});
 
             expect(events).toEqual([
                 'create: a',
@@ -143,40 +154,40 @@ describe('[TEST]: Abstract ngxs data repository', () => {
                 'ngxsDataAfterReset: a',
                 'ngxsOnChanges: a -> {"previousValue":{"value":1},"currentValue":{"value":10},"firstChange":false}',
                 'ngxsDataDoCheck: a',
-                'state(a): set value - 10'
+                'state(a): set value - 10',
             ]);
-        })
+        }),
     );
 
     it(
         'should be ngxs data immutable repository',
-        ngxsTestingPlatform({ states: [B] }, (store: Store, b: B) => {
+        ngxsTestingPlatform({states: [B]}, (store: Store, b: B) => {
             expect(b.isInitialised).toBe(true);
             expect(b.isBootstrapped).toBe(true);
 
             b.state$.subscribe((model: Immutable<Model>) =>
-                events.push(`state(${b.name}): set value - ${model.value}`)
+                events.push(`state(${b.name}): set value - ${model.value}`),
             );
 
             expect(b.name).toBe('b');
 
-            b.setState({ value: 2 });
-            expect(b.getState()).toEqual({ value: 2 });
+            b.setState({value: 2});
+            expect(b.getState()).toEqual({value: 2});
 
             (b.initialState as any).value = 5; // not affected
             b.reset();
 
-            expect(b.getState()).toEqual({ value: 1 });
+            expect(b.getState()).toEqual({value: 1});
 
-            b.setState({ value: 3 });
-            b.setState({ value: 4 });
-            b.setState({ value: 5 });
+            b.setState({value: 3});
+            b.setState({value: 4});
+            b.setState({value: 5});
 
             b.reset();
 
-            store.reset({ b: { value: 10 } });
+            store.reset({b: {value: 10}});
 
-            expect(b.getState()).toEqual({ value: 10 });
+            expect(b.getState()).toEqual({value: 10});
 
             expect(events).toEqual([
                 'create: b',
@@ -202,8 +213,8 @@ describe('[TEST]: Abstract ngxs data repository', () => {
                 'ngxsDataAfterReset: b',
                 'ngxsOnChanges: b -> {"previousValue":{"value":1},"currentValue":{"value":10},"firstChange":false}',
                 'ngxsDataDoCheck: b',
-                'state(b): set value - 10'
+                'state(b): set value - 10',
             ]);
-        })
+        }),
     );
 });

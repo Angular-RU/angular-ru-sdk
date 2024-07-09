@@ -1,9 +1,14 @@
-import { TestBed } from '@angular/core/testing';
-import { FormatOutput, LoggerLevel, LoggerModule, LoggerService } from '@angular-ru/cdk/logger';
-import { PlainObject } from '@angular-ru/cdk/typings';
+import {TestBed} from '@angular/core/testing';
+import {
+    FormatOutput,
+    LoggerLevel,
+    LoggerModule,
+    LoggerService,
+} from '@angular-ru/cdk/logger';
+import {PlainObject} from '@angular-ru/cdk/typings';
 
-import { ConsoleFake } from './helpers/console-fake';
-import { CUSTOM_COLORS, CUSTOM_LABELS } from './helpers/custom-colors';
+import {ConsoleFake} from './helpers/console-fake';
+import {CUSTOM_COLORS, CUSTOM_LABELS} from './helpers/custom-colors';
 
 describe('[TEST]: Check global style', () => {
     let logger: LoggerService;
@@ -25,22 +30,22 @@ describe('[TEST]: Check global style', () => {
                         [LoggerLevel.DEBUG]: CUSTOM_LABELS.DEBUG,
                         [LoggerLevel.INFO]: CUSTOM_LABELS.INFO,
                         [LoggerLevel.WARN]: CUSTOM_LABELS.WARN,
-                        [LoggerLevel.ERROR]: CUSTOM_LABELS.ERROR
+                        [LoggerLevel.ERROR]: CUSTOM_LABELS.ERROR,
                     },
                     labelColors: {
                         [LoggerLevel.TRACE]: CUSTOM_COLORS.TRACE,
                         [LoggerLevel.DEBUG]: CUSTOM_COLORS.DEBUG,
                         [LoggerLevel.INFO]: CUSTOM_COLORS.INFO,
                         [LoggerLevel.WARN]: CUSTOM_COLORS.WARN,
-                        [LoggerLevel.ERROR]: CUSTOM_COLORS.ERROR
+                        [LoggerLevel.ERROR]: CUSTOM_COLORS.ERROR,
                     },
                     format(label: string, labelStyle: string): FormatOutput {
                         const customLabel: string = `${label}`;
 
-                        return { label: customLabel, style: labelStyle };
-                    }
-                })
-            ]
+                        return {label: customLabel, style: labelStyle};
+                    },
+                }),
+            ],
         });
 
         logger = TestBed.inject(LoggerService);
@@ -55,7 +60,7 @@ describe('[TEST]: Check global style', () => {
 
         const traceLine: number = 0;
 
-        logger.trace(traceIsWork, 1, { a: 1 });
+        logger.trace(traceIsWork, 1, {a: 1});
 
         const debugLine: number = 1;
 
@@ -75,11 +80,11 @@ describe('[TEST]: Check global style', () => {
 
         const stackOptionsList: PlainObject = fakeConsole.stackOptionsList();
 
-        const { label: traceLabel }: PlainObject = stackOptionsList[traceLine];
-        const { label: debugLabel }: PlainObject = stackOptionsList[debugLine];
-        const { label: infoLabel }: PlainObject = stackOptionsList[infoLine];
-        const { label: warnLabel }: PlainObject = stackOptionsList[warnLine];
-        const { label: errorLabel }: PlainObject = stackOptionsList[errorLine];
+        const {label: traceLabel}: PlainObject = stackOptionsList[traceLine];
+        const {label: debugLabel}: PlainObject = stackOptionsList[debugLine];
+        const {label: infoLabel}: PlainObject = stackOptionsList[infoLine];
+        const {label: warnLabel}: PlainObject = stackOptionsList[warnLine];
+        const {label: errorLabel}: PlainObject = stackOptionsList[errorLine];
 
         expect(traceLabel).toEqual(CUSTOM_LABELS.TRACE);
         expect(debugLabel).toEqual(CUSTOM_LABELS.DEBUG);
@@ -93,7 +98,7 @@ describe('[TEST]: Check global style', () => {
 
         const traceLine: number = 0;
 
-        logger.trace(traceIsWork, 1, { a: 1 });
+        logger.trace(traceIsWork, 1, {a: 1});
 
         const debugLine: number = 1;
 
@@ -113,11 +118,11 @@ describe('[TEST]: Check global style', () => {
 
         const stackOptionsList: PlainObject = fakeConsole.stackOptionsList();
 
-        const { styles: traceStyle }: PlainObject = stackOptionsList[traceLine];
-        const { styles: debugStyle }: PlainObject = stackOptionsList[debugLine];
-        const { styles: infoStyle }: PlainObject = stackOptionsList[infoLine];
-        const { styles: warnStyle }: PlainObject = stackOptionsList[warnLine];
-        const { styles: errorStyle }: PlainObject = stackOptionsList[errorLine];
+        const {styles: traceStyle}: PlainObject = stackOptionsList[traceLine];
+        const {styles: debugStyle}: PlainObject = stackOptionsList[debugLine];
+        const {styles: infoStyle}: PlainObject = stackOptionsList[infoLine];
+        const {styles: warnStyle}: PlainObject = stackOptionsList[warnLine];
+        const {styles: errorStyle}: PlainObject = stackOptionsList[errorLine];
 
         expect(traceStyle.color).toEqual(CUSTOM_COLORS.TRACE);
         expect(debugStyle.color).toEqual(CUSTOM_COLORS.DEBUG);
@@ -132,12 +137,12 @@ describe('[TEST]: Check global style', () => {
             [LoggerLevel.DEBUG]: CUSTOM_LABELS.DEBUG,
             [LoggerLevel.INFO]: CUSTOM_LABELS.INFO,
             [LoggerLevel.WARN]: CUSTOM_LABELS.WARN,
-            [LoggerLevel.ERROR]: CUSTOM_LABELS.ERROR
+            [LoggerLevel.ERROR]: CUSTOM_LABELS.ERROR,
         });
 
         const traceLine: number = 0;
 
-        logger.trace(traceIsWork, 1, { a: 1 });
+        logger.trace(traceIsWork, 1, {a: 1});
 
         const debugLine: number = 1;
 
@@ -157,11 +162,11 @@ describe('[TEST]: Check global style', () => {
 
         const stackOptionsList: PlainObject = fakeConsole.stackOptionsList();
 
-        const { label: traceLabel }: PlainObject = stackOptionsList[traceLine];
-        const { label: debugLabel }: PlainObject = stackOptionsList[debugLine];
-        const { label: infoLabel }: PlainObject = stackOptionsList[infoLine];
-        const { label: warnLabel }: PlainObject = stackOptionsList[warnLine];
-        const { label: errorLabel }: PlainObject = stackOptionsList[errorLine];
+        const {label: traceLabel}: PlainObject = stackOptionsList[traceLine];
+        const {label: debugLabel}: PlainObject = stackOptionsList[debugLine];
+        const {label: infoLabel}: PlainObject = stackOptionsList[infoLine];
+        const {label: warnLabel}: PlainObject = stackOptionsList[warnLine];
+        const {label: errorLabel}: PlainObject = stackOptionsList[errorLine];
 
         expect(traceLabel).toEqual(CUSTOM_LABELS.TRACE);
         expect(debugLabel).toEqual(CUSTOM_LABELS.DEBUG);
@@ -179,12 +184,12 @@ describe('[TEST]: Check global style', () => {
             [LoggerLevel.DEBUG]: CUSTOM_COLORS.DEBUG,
             [LoggerLevel.INFO]: CUSTOM_COLORS.INFO,
             [LoggerLevel.WARN]: CUSTOM_COLORS.WARN,
-            [LoggerLevel.ERROR]: CUSTOM_COLORS.ERROR
+            [LoggerLevel.ERROR]: CUSTOM_COLORS.ERROR,
         });
 
         const traceLine: number = 0;
 
-        logger.trace(traceIsWork, 1, { a: 1 });
+        logger.trace(traceIsWork, 1, {a: 1});
 
         const debugLine: number = 1;
 
@@ -204,11 +209,11 @@ describe('[TEST]: Check global style', () => {
 
         const stackOptionsList: PlainObject = fakeConsole.stackOptionsList();
 
-        const { styles: traceStyle }: PlainObject = stackOptionsList[traceLine];
-        const { styles: debugStyle }: PlainObject = stackOptionsList[debugLine];
-        const { styles: infoStyle }: PlainObject = stackOptionsList[infoLine];
-        const { styles: warnStyle }: PlainObject = stackOptionsList[warnLine];
-        const { styles: errorStyle }: PlainObject = stackOptionsList[errorLine];
+        const {styles: traceStyle}: PlainObject = stackOptionsList[traceLine];
+        const {styles: debugStyle}: PlainObject = stackOptionsList[debugLine];
+        const {styles: infoStyle}: PlainObject = stackOptionsList[infoLine];
+        const {styles: warnStyle}: PlainObject = stackOptionsList[warnLine];
+        const {styles: errorStyle}: PlainObject = stackOptionsList[errorLine];
 
         expect(traceStyle.color).toEqual(CUSTOM_COLORS.TRACE);
         expect(debugStyle.color).toEqual(CUSTOM_COLORS.DEBUG);

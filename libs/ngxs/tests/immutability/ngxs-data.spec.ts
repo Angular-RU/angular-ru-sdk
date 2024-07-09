@@ -1,11 +1,11 @@
-import { Component, Injectable } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Immutable } from '@angular-ru/cdk/typings';
-import { NgxsDataPluginModule } from '@angular-ru/ngxs';
-import { StateRepository } from '@angular-ru/ngxs/decorators';
-import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
-import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
-import { Action, NgxsModule, State, StateContext, Store } from '@ngxs/store';
+import {Component, Injectable} from '@angular/core';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {Immutable} from '@angular-ru/cdk/typings';
+import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {StateRepository} from '@angular-ru/ngxs/decorators';
+import {NgxsDataRepository} from '@angular-ru/ngxs/repositories';
+import {NGXS_DATA_EXCEPTIONS} from '@angular-ru/ngxs/tokens';
+import {Action, NgxsModule, State, StateContext, Store} from '@ngxs/store';
 
 describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
     it('should be throw exception when forgot add StateRepository', () => {
@@ -14,7 +14,7 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
         try {
             @State({
                 name: 'myState',
-                defaults: 1
+                defaults: 1,
             })
             @Injectable()
             class MyAppState extends NgxsDataRepository<any> {
@@ -25,7 +25,10 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
             }
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([MyAppState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
+                imports: [
+                    NgxsModule.forRoot([MyAppState], {developmentMode: true}),
+                    NgxsDataPluginModule.forRoot(),
+                ],
             });
 
             TestBed.inject(MyAppState);
@@ -43,7 +46,7 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
             @StateRepository()
             @State({
                 name: 'myState',
-                defaults: 1
+                defaults: 1,
             })
             @Injectable()
             class MyState extends NgxsDataRepository<any> {
@@ -54,7 +57,10 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
             }
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([MyState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
+                imports: [
+                    NgxsModule.forRoot([MyState], {developmentMode: true}),
+                    NgxsDataPluginModule.forRoot(),
+                ],
             });
 
             TestBed.inject(MyState);
@@ -73,43 +79,46 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
         @StateRepository()
         @State({
             name: 'myState',
-            defaults: null
+            defaults: null,
         })
         @Injectable()
         class MyDataState extends NgxsDataRepository<CustomType> {
-            @Action({ type: 'myState.set' })
-            public concat({ setState }: StateContext<CustomType>): void {
-                setState({ a: 15 });
+            @Action({type: 'myState.set'})
+            public concat({setState}: StateContext<CustomType>): void {
+                setState({a: 15});
             }
         }
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([MyDataState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
+            imports: [
+                NgxsModule.forRoot([MyDataState], {developmentMode: true}),
+                NgxsDataPluginModule.forRoot(),
+            ],
         });
 
         const store: Store = TestBed.inject<Store>(Store);
         const state: MyDataState = TestBed.inject<MyDataState>(MyDataState);
 
-        expect(store.snapshot()).toEqual({ myState: null });
+        expect(store.snapshot()).toEqual({myState: null});
         expect(state.getState()).toBeNull();
 
-        state.setState({ a: 5 });
-        expect(state.getState()).toEqual({ a: 5 });
+        state.setState({a: 5});
+        expect(state.getState()).toEqual({a: 5});
 
-        const immutable: Immutable<CustomType> = { a: 10 };
+        const immutable: Immutable<CustomType> = {a: 10};
 
         state.patchState(immutable);
 
-        expect(state.getState()).toEqual({ a: 10 });
+        expect(state.getState()).toEqual({a: 10});
 
         state.reset();
 
         expect(state.getState()).toBeNull();
 
         // eslint-disable-next-line rxjs/no-ignored-observable
-        state.dispatch({ type: 'myState.set' });
+        state.dispatch({type: 'myState.set'});
 
-        expect(state.getState()).toEqual({ a: 15 });
+        expect(state.getState()).toEqual({a: 15});
     });
 
     it('should be return array from state', () => {
@@ -121,20 +130,23 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
         @StateRepository()
         @State<StateModel[]>({
             name: 'myArrState',
-            defaults: [{ a: 1 }, { b: 3 }]
+            defaults: [{a: 1}, {b: 3}],
         })
         @Injectable()
         class MyDataArrState extends NgxsDataRepository<StateModel[]> {}
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([MyDataArrState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
+            imports: [
+                NgxsModule.forRoot([MyDataArrState], {developmentMode: true}),
+                NgxsDataPluginModule.forRoot(),
+            ],
         });
 
         const store: Store = TestBed.inject<Store>(Store);
         const state: MyDataArrState = TestBed.inject<MyDataArrState>(MyDataArrState);
 
-        expect(store.snapshot()).toEqual({ myArrState: [{ a: 1 }, { b: 3 }] });
-        expect(state.getState()).toEqual([{ a: 1 }, { b: 3 }]);
+        expect(store.snapshot()).toEqual({myArrState: [{a: 1}, {b: 3}]});
+        expect(state.getState()).toEqual([{a: 1}, {b: 3}]);
 
         const snapshot: StateModel[] = state.getState();
         // noinspection DuplicatedCode
@@ -147,7 +159,9 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
         }
 
         // eslint-disable-next-line @typescript-eslint/quotes
-        expect(`Cannot assign to read only property 'a' of object '[object Object]'`).toEqual(message);
+        expect(
+            `Cannot assign to read only property 'a' of object '[object Object]'`,
+        ).toEqual(message);
 
         try {
             snapshot[0]!.b = 3;
@@ -164,7 +178,9 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
         }
 
         // eslint-disable-next-line @typescript-eslint/quotes
-        expect(`Cannot assign to read only property 'b' of object '[object Object]'`).toEqual(message);
+        expect(
+            `Cannot assign to read only property 'b' of object '[object Object]'`,
+        ).toEqual(message);
     });
 
     it('should be return date from state', () => {
@@ -176,14 +192,17 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
         @State<DateModel>({
             name: 'dateState',
             defaults: {
-                date: new Date('01.06.1994')
-            }
+                date: new Date('01.06.1994'),
+            },
         })
         @Injectable()
         class MyDateState extends NgxsDataRepository<DateModel> {}
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([MyDateState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
+            imports: [
+                NgxsModule.forRoot([MyDateState], {developmentMode: true}),
+                NgxsDataPluginModule.forRoot(),
+            ],
         });
 
         const store: Store = TestBed.inject<Store>(Store);
@@ -191,11 +210,11 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
 
         expect(store.snapshot()).toEqual({
             dateState: {
-                date: new Date('01.06.1994')
-            }
+                date: new Date('01.06.1994'),
+            },
         });
         expect(state.getState()).toEqual({
-            date: new Date('01.06.1994')
+            date: new Date('01.06.1994'),
         });
 
         expect(state.getState().date.getFullYear()).toBe(1994);
@@ -211,14 +230,14 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
         @State<ListModel[]>({
             name: 'stateList',
             defaults: [
-                { a: 1, b: 2 },
-                { a: 3, b: 4 }
-            ]
+                {a: 1, b: 2},
+                {a: 3, b: 4},
+            ],
         })
         @Injectable()
         class StateDataListState extends NgxsDataRepository<ListModel[]> {}
 
-        @Component({ selector: 'app', template: '{{ app.state$ | async | json }}' })
+        @Component({selector: 'app', template: '{{ app.state$ | async | json }}'})
         class AppComponent {
             constructor(public app: StateDataListState) {}
         }
@@ -226,18 +245,19 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
         TestBed.configureTestingModule({
             declarations: [AppComponent],
             imports: [
-                NgxsModule.forRoot([StateDataListState], { developmentMode: true }),
-                NgxsDataPluginModule.forRoot()
-            ]
+                NgxsModule.forRoot([StateDataListState], {developmentMode: true}),
+                NgxsDataPluginModule.forRoot(),
+            ],
         }).compileComponents();
 
-        const fixture: ComponentFixture<AppComponent> = TestBed.createComponent(AppComponent);
+        const fixture: ComponentFixture<AppComponent> =
+            TestBed.createComponent(AppComponent);
 
         fixture.autoDetectChanges();
 
         expect(JSON.parse(fixture.nativeElement.innerHTML)).toEqual([
-            { a: 1, b: 2 },
-            { a: 3, b: 4 }
+            {a: 1, b: 2},
+            {a: 3, b: 4},
         ]);
 
         const state: StateDataListState = fixture.componentInstance.app;
@@ -251,12 +271,14 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
         }
 
         // eslint-disable-next-line @typescript-eslint/quotes
-        expect(message).toBe("Cannot assign to read only property '0' of object '[object Array]'");
+        expect(message).toBe(
+            "Cannot assign to read only property '0' of object '[object Array]'",
+        );
 
-        const list: ListModel[] = [{ a: 5, b: 7 }];
+        const list: ListModel[] = [{a: 5, b: 7}];
 
         state.setState(list);
 
-        expect(state.getState()).toEqual([{ a: 5, b: 7 }]);
+        expect(state.getState()).toEqual([{a: 5, b: 7}]);
     });
 });

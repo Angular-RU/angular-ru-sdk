@@ -1,4 +1,4 @@
-const { createTsJestConfig } = require('../../node_modules/@angular-ru/jest');
+const {createTsJestConfig} = require('../../node_modules/@angular-ru/jest');
 
 module.exports = createTsJestConfig({
     tsConfig: '<rootDir>/tsconfig.spec.json',
@@ -9,6 +9,6 @@ module.exports = createTsJestConfig({
         setupFilesAfterEnv: ['<rootDir>/tests/setup-jest.ts'],
         modulePathIgnorePatterns: ['<rootDir>/../../@angular-ru'],
         cacheDirectory: '<rootDir>/../../node_modules/.cache/jest/ngxs',
-        collectCoverageFrom: ['<rootDir>/**/*.ts', '!<rootDir>/**/*.spec.ts']
-    }
+        collectCoverageFrom: ['<rootDir>/**/*.ts', '!<rootDir>/**/*.spec.ts'],
+    },
 });

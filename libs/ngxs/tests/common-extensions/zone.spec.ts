@@ -1,14 +1,14 @@
-import { Injectable, NgZone } from '@angular/core';
-import { DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
-import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
-import { ngxsTestingPlatform } from '@angular-ru/ngxs/testing';
-import { State } from '@ngxs/store';
+import {Injectable, NgZone} from '@angular/core';
+import {DataAction, StateRepository} from '@angular-ru/ngxs/decorators';
+import {NgxsDataRepository} from '@angular-ru/ngxs/repositories';
+import {ngxsTestingPlatform} from '@angular-ru/ngxs/testing';
+import {State} from '@ngxs/store';
 
 describe('[TEST]: Zone', () => {
     @StateRepository()
     @State({
         name: 'counter',
-        defaults: 0
+        defaults: 0,
     })
     @Injectable()
     class CounterState extends NgxsDataRepository<number> {
@@ -20,7 +20,7 @@ describe('[TEST]: Zone', () => {
             return this._increment();
         }
 
-        @DataAction({ insideZone: true })
+        @DataAction({insideZone: true})
         public incrementInZone(): number {
             return this._increment();
         }
@@ -64,6 +64,6 @@ describe('[TEST]: Zone', () => {
             expect(state.outside).toBe(2);
             expect(state.inside).toBe(1);
             expect(state.getState()).toBe(3);
-        })
+        }),
     );
 });

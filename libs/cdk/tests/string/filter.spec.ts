@@ -1,4 +1,4 @@
-import { filter } from '@angular-ru/cdk/string';
+import {filter} from '@angular-ru/cdk/string';
 
 describe('[TEST]: Filter', () => {
     describe('no predicate', () => {
@@ -55,18 +55,31 @@ describe('[TEST]: Filter', () => {
         });
 
         it('should filter text with this characters: a, c', () => {
-            expect(filter('aaabbbccc', (item: string): boolean => item === 'a' || item === 'c')).toBe('aaaccc');
+            expect(
+                filter(
+                    'aaabbbccc',
+                    (item: string): boolean => item === 'a' || item === 'c',
+                ),
+            ).toBe('aaaccc');
         });
 
         it('should remove spaces', () => {
-            expect(filter('a b c', (item: string): boolean => item === 'a' || item === 'b' || item === 'c')).toBe(
-                'abc'
-            );
+            expect(
+                filter(
+                    'a b c',
+                    (item: string): boolean =>
+                        item === 'a' || item === 'b' || item === 'c',
+                ),
+            ).toBe('abc');
         });
 
         it('should not remove spaces', () => {
             expect(
-                filter('a b c', (item: string): boolean => item === 'a' || item === 'b' || item === 'c' || item === ' ')
+                filter(
+                    'a b c',
+                    (item: string): boolean =>
+                        item === 'a' || item === 'b' || item === 'c' || item === ' ',
+                ),
             ).toBe('a b c');
         });
     });

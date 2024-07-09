@@ -35,21 +35,21 @@ of actions, dispatchers, and selectors for each entity type.
 
 Benefits:
 
--   Angular-way (`State as a Service`)
--   Snapshot's from state out-of-the-box (`@Computed()`)
--   Support debounce for throttling dispatch (`@Debounce()`)
--   Simple manipulation with data from states (`NgxsDataRepository<T>`)
--   Automatic type inference from selection data stream (`myState.state$`)
--   Immutable state context out-of-the-box (`NgxsImmutableDataRepository<T>`)
--   Entity adapter out-of-the-box (`NgxsDataEntityCollectionsRepository<V, K>`)
--   Simple API for testing states (`ngxsTestingPlatform([A], (store: Store, a: A) => {...})`)
--   Persistence state out-of-the-box in sessionStorage, localStorage, custom (`@Persistence()`)
--   Automatic action naming by service methods for improved debugging (`@DataAction(), @Payload(), @Named()`)
+- Angular-way (`State as a Service`)
+- Snapshot's from state out-of-the-box (`@Computed()`)
+- Support debounce for throttling dispatch (`@Debounce()`)
+- Simple manipulation with data from states (`NgxsDataRepository<T>`)
+- Automatic type inference from selection data stream (`myState.state$`)
+- Immutable state context out-of-the-box (`NgxsImmutableDataRepository<T>`)
+- Entity adapter out-of-the-box (`NgxsDataEntityCollectionsRepository<V, K>`)
+- Simple API for testing states (`ngxsTestingPlatform([A], (store: Store, a: A) => {...})`)
+- Persistence state out-of-the-box in sessionStorage, localStorage, custom (`@Persistence()`)
+- Automatic action naming by service methods for improved debugging (`@DataAction(), @Payload(), @Named()`)
 
 Minimal peer dependencies:
 
--   Require minimal `@ngxs/store v3.6.2`
--   Require minimal `TypeScript v3.7.2`
+- Require minimal `@ngxs/store v3.6.2`
+- Require minimal `TypeScript v3.7.2`
 
 ### Simple example
 
@@ -58,63 +58,63 @@ Minimal peer dependencies:
 `counter.state.ts`
 
 ```typescript
-import { State, Action, StateContext } from '@ngxs/store';
+import {State, Action, StateContext} from '@ngxs/store';
 
 export class Increment {
-    static readonly type = '[Counter] Increment';
+  static readonly type = '[Counter] Increment';
 }
 
 export class Decrement {
-    static readonly type = '[Counter] Decrement';
+  static readonly type = '[Counter] Decrement';
 }
 
 @State<number>({
-    name: 'counter',
-    defaults: 0
+  name: 'counter',
+  defaults: 0,
 })
 export class CounterState {
-    @Action(Increment)
-    increment(ctx: StateContext<number>) {
-        ctx.setState(ctx.getState() + 1);
-    }
+  @Action(Increment)
+  increment(ctx: StateContext<number>) {
+    ctx.setState(ctx.getState() + 1);
+  }
 
-    @Action(Decrement)
-    decrement(ctx: StateContext<number>) {
-        ctx.setState(ctx.getState() - 1);
-    }
+  @Action(Decrement)
+  decrement(ctx: StateContext<number>) {
+    ctx.setState(ctx.getState() - 1);
+  }
 }
 ```
 
 `app.component.ts`
 
 ```typescript
-import { Component } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
+import {Component} from '@angular/core';
+import {Select, Store} from '@ngxs/store';
 
-import { CounterState, Increment, Decrement } from './counter.state';
+import {CounterState, Increment, Decrement} from './counter.state';
 
 @Component({
-    selector: 'app-root',
-    template: `
-        <ng-container *ngIf="counter$ | async as counter">
-            <h1>{{ counter }}</h1>
-        </ng-container>
+  selector: 'app-root',
+  template: `
+    <ng-container *ngIf="counter$ | async as counter">
+      <h1>{{ counter }}</h1>
+    </ng-container>
 
-        <button (click)="increment()">Increment</button>
-        <button (click)="decrement()">Decrement</button>
-    `
+    <button (click)="increment()">Increment</button>
+    <button (click)="decrement()">Decrement</button>
+  `,
 })
 export class AppComponent {
-    @Select(CounterState) counter$: Observable<number>;
-    constructor(private store: Store) {}
+  @Select(CounterState) counter$: Observable<number>;
+  constructor(private store: Store) {}
 
-    increment() {
-        this.store.dispatch(new Increment());
-    }
+  increment() {
+    this.store.dispatch(new Increment());
+  }
 
-    decrement() {
-        this.store.dispatch(new Decrement());
-    }
+  decrement() {
+    this.store.dispatch(new Decrement());
+  }
 }
 ```
 
@@ -123,43 +123,43 @@ export class AppComponent {
 `counter.state.ts`
 
 ```typescript
-import { State } from '@ngxs/store';
-import { DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
-import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
+import {State} from '@ngxs/store';
+import {DataAction, StateRepository} from '@angular-ru/ngxs/decorators';
+import {NgxsDataRepository} from '@angular-ru/ngxs/repositories';
 
 @StateRepository()
 @State<number>({
-    name: 'counter',
-    defaults: 0
+  name: 'counter',
+  defaults: 0,
 })
 @Injectable()
 export class CounterState extends NgxsDataRepository<number> {
-    @DataAction() increment() {
-        this.ctx.setState((state) => ++state);
-    }
+  @DataAction() increment() {
+    this.ctx.setState((state) => ++state);
+  }
 
-    @DataAction() decrement() {
-        this.ctx.setState((state) => --state);
-    }
+  @DataAction() decrement() {
+    this.ctx.setState((state) => --state);
+  }
 }
 ```
 
 `app.component.ts`
 
 ```typescript
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
-import { CounterState } from './counter.state';
+import {CounterState} from './counter.state';
 
 @Component({
-    selector: 'app-root',
-    template: `
-        <h1>{{ counter.snapshot }}</h1>
-        <button (click)="counter.increment()">Increment</button>
-        <button (click)="counter.decrement()">Decrement</button>
-    `
+  selector: 'app-root',
+  template: `
+    <h1>{{ counter.snapshot }}</h1>
+    <button (click)="counter.increment()">Increment</button>
+    <button (click)="counter.decrement()">Decrement</button>
+  `,
 })
 export class AppComponent {
-    constructor(counter: CounterState) {}
+  constructor(counter: CounterState) {}
 }
 ```

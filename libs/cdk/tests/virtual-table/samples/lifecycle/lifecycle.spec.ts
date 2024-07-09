@@ -1,19 +1,30 @@
-import { ApplicationRef, ChangeDetectorRef, ElementRef, NgZone, QueryList, SimpleChanges } from '@angular/core';
-import { fakeAsync, tick } from '@angular/core/testing';
-import { deepClone } from '@angular-ru/cdk/object';
-import { Fn, Nullable, PlainObject } from '@angular-ru/cdk/typings';
-import { NgxColumnComponent, NgxTableViewChangesService, TableBuilderComponent } from '@angular-ru/cdk/virtual-table';
-import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
+import {
+    ApplicationRef,
+    ChangeDetectorRef,
+    ElementRef,
+    NgZone,
+    QueryList,
+    SimpleChanges,
+} from '@angular/core';
+import {fakeAsync, tick} from '@angular/core/testing';
+import {deepClone} from '@angular-ru/cdk/object';
+import {Fn, Nullable, PlainObject} from '@angular-ru/cdk/typings';
+import {
+    NgxColumnComponent,
+    NgxTableViewChangesService,
+    TableBuilderComponent,
+} from '@angular-ru/cdk/virtual-table';
+import {WebWorkerThreadService} from '@angular-ru/cdk/webworker';
 
-import { MapToTableEntriesPipe } from '../../../../virtual-table/src/pipes/map-to-table-entries.pipe';
-import { TableSelectedItemsPipe } from '../../../../virtual-table/src/pipes/table-selected-items.pipe';
-import { ContextMenuService } from '../../../../virtual-table/src/services/context-menu/context-menu.service';
-import { DraggableService } from '../../../../virtual-table/src/services/draggable/draggable.service';
-import { FilterableService } from '../../../../virtual-table/src/services/filterable/filterable.service';
-import { ResizableService } from '../../../../virtual-table/src/services/resizer/resizable.service';
-import { SelectionService } from '../../../../virtual-table/src/services/selection/selection.service';
-import { SortableService } from '../../../../virtual-table/src/services/sortable/sortable.service';
-import { TemplateParserService } from '../../../../virtual-table/src/services/template-parser/template-parser.service';
+import {MapToTableEntriesPipe} from '../../../../virtual-table/pipes/map-to-table-entries.pipe';
+import {TableSelectedItemsPipe} from '../../../../virtual-table/pipes/table-selected-items.pipe';
+import {ContextMenuService} from '../../../../virtual-table/services/context-menu/context-menu.service';
+import {DraggableService} from '../../../../virtual-table/services/draggable/draggable.service';
+import {FilterableService} from '../../../../virtual-table/services/filterable/filterable.service';
+import {ResizableService} from '../../../../virtual-table/services/resizer/resizable.service';
+import {SelectionService} from '../../../../virtual-table/services/selection/selection.service';
+import {SortableService} from '../../../../virtual-table/services/sortable/sortable.service';
+import {TemplateParserService} from '../../../../virtual-table/services/template-parser/template-parser.service';
 
 describe('[TEST]: Lifecycle table', () => {
     let table: TableBuilderComponent<PlainObject>;
@@ -25,22 +36,22 @@ describe('[TEST]: Lifecycle table', () => {
     const mockChangeDetector: Partial<ChangeDetectorRef> = {
         detectChanges: (): void => {
             // ...
-        }
+        },
     };
 
     const appRef: Partial<ApplicationRef> = {
         tick: (): void => {
             // ...
-        }
+        },
     };
     const mockNgZone: Partial<NgZone> = {
         run: (callback: Fn): any => callback(),
-        runOutsideAngular: (callback: Fn): any => callback()
+        runOutsideAngular: (callback: Fn): any => callback(),
     };
     const webWorker: Partial<WebWorkerThreadService> = {
         run<T, K>(workerFunction: (input: K) => T, data?: K): Promise<T> {
             return Promise.resolve(workerFunction(data!));
-        }
+        },
     };
 
     interface PeriodicElement {
@@ -52,16 +63,16 @@ describe('[TEST]: Lifecycle table', () => {
 
     // noinspection DuplicatedCode
     const data: PeriodicElement[] = [
-        { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-        { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-        { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-        { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-        { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-        { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-        { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-        { position: 8, name: null, weight: 15.9994, symbol: 'O' },
-        { position: 9, name: null, weight: 18.9984, symbol: 'F' },
-        { position: 10, name: null, weight: 20.1797, symbol: 'Ne' }
+        {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
+        {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
+        {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
+        {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
+        {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
+        {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
+        {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
+        {position: 8, name: null, weight: 15.9994, symbol: 'O'},
+        {position: 9, name: null, weight: 18.9984, symbol: 'F'},
+        {position: 10, name: null, weight: 20.1797, symbol: 'Ne'},
     ];
 
     beforeEach(() => {
@@ -109,21 +120,21 @@ describe('[TEST]: Lifecycle table', () => {
                                     case NgZone:
                                         return zone;
                                 }
-                            }
+                            },
                         });
                     case DraggableService:
                         return draggable;
                     case NgxTableViewChangesService:
                         return view;
                 }
-            }
+            },
         });
 
         const element: HTMLElement = document.createElement('div') as HTMLElement;
 
-        Object.defineProperty(element, 'offsetHeight', { value: 900 });
+        Object.defineProperty(element, 'offsetHeight', {value: 900});
 
-        table.scrollContainer = { nativeElement: element };
+        table.scrollContainer = {nativeElement: element};
         table.primaryKey = 'position';
         changes = {};
 
@@ -134,21 +145,21 @@ describe('[TEST]: Lifecycle table', () => {
         table.setSource(deepClone(data));
 
         // eslint-disable-next-line deprecation/deprecation
-        expect(new TableSelectedItemsPipe(table).transform({ 1: true, 2: true })).toEqual([
-            { position: 1, name: 'Hydrogen', symbol: 'H', weight: 1.0079 },
-            { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' }
+        expect(new TableSelectedItemsPipe(table).transform({1: true, 2: true})).toEqual([
+            {position: 1, name: 'Hydrogen', symbol: 'H', weight: 1.0079},
+            {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
         ]);
 
         // expect MapToTableEntriesPipe pipe works
         expect(new MapToTableEntriesPipe(table).transform([1, 2])).toEqual([
-            { position: 1, name: 'Hydrogen', symbol: 'H', weight: 1.0079 },
-            { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' }
+            {position: 1, name: 'Hydrogen', symbol: 'H', weight: 1.0079},
+            {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
         ]);
 
         // expect MapToTableEntriesPipe pipe works with another ordering
         expect(new MapToTableEntriesPipe(table).transform([2, 1])).toEqual([
-            { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-            { position: 1, name: 'Hydrogen', symbol: 'H', weight: 1.0079 }
+            {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
+            {position: 1, name: 'Hydrogen', symbol: 'H', weight: 1.0079},
         ]);
 
         // enable and check filter
@@ -156,18 +167,25 @@ describe('[TEST]: Lifecycle table', () => {
         table.filterable.filterValue = 'Hydrogen';
         table.filterable.filterType = 'START_WITH';
         await table.sortAndFilter();
-        expect(table.source).toEqual([{ name: 'Hydrogen', position: 1, symbol: 'H', weight: 1.0079 }]);
+        expect(table.source).toEqual([
+            {name: 'Hydrogen', position: 1, symbol: 'H', weight: 1.0079},
+        ]);
 
         // expect selection pipe works even with filtered values
         // eslint-disable-next-line deprecation/deprecation
         expect(new TableSelectedItemsPipe(table).transform({})).toEqual([]);
         // eslint-disable-next-line deprecation/deprecation
-        expect(new TableSelectedItemsPipe(table).transform({ 1: true, 2: true })).toEqual([
-            { position: 1, name: 'Hydrogen', symbol: 'H', weight: 1.0079 },
-            { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' }
+        expect(new TableSelectedItemsPipe(table).transform({1: true, 2: true})).toEqual([
+            {position: 1, name: 'Hydrogen', symbol: 'H', weight: 1.0079},
+            {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
         ]);
 
-        expect(table.lastItem).toEqual({ position: 1, name: 'Hydrogen', symbol: 'H', weight: 1.0079 });
+        expect(table.lastItem).toEqual({
+            position: 1,
+            name: 'Hydrogen',
+            symbol: 'H',
+            weight: 1.0079,
+        });
 
         // reset filter
         table.enableFiltering = true;
@@ -176,7 +194,12 @@ describe('[TEST]: Lifecycle table', () => {
         await table.sortAndFilter();
         expect(table.source).toEqual(data);
 
-        expect(table.lastItem).toEqual({ position: 10, name: null, weight: 20.1797, symbol: 'Ne' });
+        expect(table.lastItem).toEqual({
+            position: 10,
+            name: null,
+            weight: 20.1797,
+            symbol: 'Ne',
+        });
     });
 
     it('should be unchecked state before ngOnChange', () => {

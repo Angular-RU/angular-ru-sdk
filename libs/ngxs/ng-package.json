@@ -1,8 +1,8 @@
 {
     "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+    "dest": "../../dist/ngxs",
     "lib": {
-        "entryFile": "./src/public_api.ts",
+        "entryFile": "./index.ts",
         "flatModuleFile": "angular-ru-ngxs"
-    },
-    "dest": "../../node_modules/@angular-ru/ngxs"
+    }
 }

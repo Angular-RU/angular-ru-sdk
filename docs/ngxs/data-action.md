@@ -7,37 +7,37 @@ thought of as a command which should trigger something to happen.
 
 ```typescript
 export class AddTodo {
-    public static type = '[Add todo]';
-    constructor(public payload: string) {}
+  public static type = '[Add todo]';
+  constructor(public payload: string) {}
 }
 
 @State<string[]>({
-    name: 'todo',
-    defaults: []
+  name: 'todo',
+  defaults: [],
 })
 @Injectable()
 export class TodoState extends NgxsDataRepository<string[]> {
-    @Action(AddTodo)
-    public add({ setState }: StateContext<string[]>, { payload }: AddTodo): void {
-        setState((state) => state.concat(payload));
-    }
+  @Action(AddTodo)
+  public add({setState}: StateContext<string[]>, {payload}: AddTodo): void {
+    setState((state) => state.concat(payload));
+  }
 }
 ```
 
 ```typescript
 @Component({
-    selector: 'app',
-    template: `
-        <input #inputElement />
-        <button (click)="addTodo(inputElement.value)">Add todo</button>
-    `
+  selector: 'app',
+  template: `
+    <input #inputElement />
+    <button (click)="addTodo(inputElement.value)">Add todo</button>
+  `,
 })
 class AppComponent {
-    constructor(private store: Store) {}
+  constructor(private store: Store) {}
 
-    public addTodo(value: string): void {
-        this.store.dispatch(new AddTodo(value));
-    }
+  public addTodo(value: string): void {
+    this.store.dispatch(new AddTodo(value));
+  }
 }
 ```
 
@@ -46,28 +46,28 @@ class AppComponent {
 ```typescript
 @StateRepository()
 @State<string[]>({
-    name: 'todo',
-    defaults: []
+  name: 'todo',
+  defaults: [],
 })
 @Injectable()
 export class TodoState extends NgxsDataRepository<string[]> {
-    @DataAction()
-    public add(@Payload('todo') todo: string): void {
-        this.ctx.setState((state) => state.concat(todo));
-    }
+  @DataAction()
+  public add(@Payload('todo') todo: string): void {
+    this.ctx.setState((state) => state.concat(todo));
+  }
 }
 ```
 
 ```typescript
 @Component({
-    selector: 'app',
-    template: `
-        <input #inputElement />
-        <button (click)="todo.add(inputElement.value)">Add todo</button>
-    `
+  selector: 'app',
+  template: `
+    <input #inputElement />
+    <button (click)="todo.add(inputElement.value)">Add todo</button>
+  `,
 })
 class AppComponent {
-    constructor(private todo: TodoState) {}
+  constructor(private todo: TodoState) {}
 }
 ```
 
@@ -77,14 +77,14 @@ Also you can invoke simple `setState` action:
 
 ```typescript
 @Component({
-    selector: 'app',
-    template: `
-        <input #inputElement />
-        <button (click)="todo.setState(inputElement.value)">Add todo</button>
-    `
+  selector: 'app',
+  template: `
+    <input #inputElement />
+    <button (click)="todo.setState(inputElement.value)">Add todo</button>
+  `,
 })
 class AppComponent {
-    constructor(private todo: TodoState) {}
+  constructor(private todo: TodoState) {}
 }
 ```
 
@@ -92,9 +92,9 @@ The method `todo.setState(payload)` is the same as `store.dispatch({ type: '@tod
 
 What are the benefits?
 
--   No need to create action classes
--   Typing improvements for state context
--   Explicit interaction with states
+- No need to create action classes
+- Typing improvements for state context
+- Explicit interaction with states
 
 ### Don't use nested actions
 
@@ -103,16 +103,16 @@ Bad
 ```typescript
 @StateRepository()
 @State<string[]>({
-    name: 'todo',
-    defaults: []
+  name: 'todo',
+  defaults: [],
 })
 @Injectable()
 export class TodoState extends NgxsDataRepository<string[]> {
-    @DataAction()
-    public add(@Payload('todo') todo: string): void {
-        // bad (action in action)
-        this.setState((state) => state.concat(todo));
-    }
+  @DataAction()
+  public add(@Payload('todo') todo: string): void {
+    // bad (action in action)
+    this.setState((state) => state.concat(todo));
+  }
 }
 ```
 
@@ -121,15 +121,15 @@ Good
 ```typescript
 @StateRepository()
 @State<string[]>({
-    name: 'todo',
-    defaults: []
+  name: 'todo',
+  defaults: [],
 })
 @Injectable()
 export class TodoState extends NgxsDataRepository<string[]> {
-    @DataAction()
-    public add(@Payload('todo') todo: string): void {
-        this.ctx.setState((state) => state.concat(todo));
-    }
+  @DataAction()
+  public add(@Payload('todo') todo: string): void {
+    this.ctx.setState((state) => state.concat(todo));
+  }
 }
 ```
 
@@ -140,21 +140,21 @@ Bad
 ```typescript
 @StateRepository()
 @State<string[]>({
-    name: 'todo',
-    defaults: []
+  name: 'todo',
+  defaults: [],
 })
 @Injectable()
 export class TodoState extends NgxsDataRepository<string[]> {
-    @DataAction()
-    public add(@Payload('todo') todo: string): void {
-        // bad (action in action)
-        this.concat(todo);
-    }
+  @DataAction()
+  public add(@Payload('todo') todo: string): void {
+    // bad (action in action)
+    this.concat(todo);
+  }
 
-    @DataAction()
-    private concat(@Payload('todo') todo: string): void {
-        this.ctx.setState((state) => state.concat(todo));
-    }
+  @DataAction()
+  private concat(@Payload('todo') todo: string): void {
+    this.ctx.setState((state) => state.concat(todo));
+  }
 }
 ```
 
@@ -163,19 +163,19 @@ Good
 ```typescript
 @StateRepository()
 @State<string[]>({
-    name: 'todo',
-    defaults: []
+  name: 'todo',
+  defaults: [],
 })
 @Injectable()
 export class TodoState extends NgxsDataRepository<string[]> {
-    @DataAction()
-    public add(@Payload('todo') todo: string): void {
-        this.concat(todo);
-    }
+  @DataAction()
+  public add(@Payload('todo') todo: string): void {
+    this.concat(todo);
+  }
 
-    private concat(todo: string): void {
-        this.ctx.setState((state) => state.concat(todo));
-    }
+  private concat(todo: string): void {
+    this.ctx.setState((state) => state.concat(todo));
+  }
 }
 ```
 
@@ -186,21 +186,21 @@ In order to understand the difference, you need to give some examples:
 ```typescript
 @StateRepository()
 @State<string[]>({
-    name: 'todo',
-    defaults: []
+  name: 'todo',
+  defaults: [],
 })
 @Injectable()
 export class TodoState extends NgxsDataRepository<string[]> {}
 
 @Component({
-    /* ... */
+  /* ... */
 })
 class TodoComponent {
-    constructor(private todoState: TodoState) {}
+  constructor(private todoState: TodoState) {}
 
-    public addTodo(todo: string): void {
-        this.todoState.setState(todo);
-    }
+  public addTodo(todo: string): void {
+    this.todoState.setState(todo);
+  }
 }
 ```
 
@@ -218,28 +218,28 @@ devtools, because the context will be called immediately without dispatching sta
 ```typescript
 @StateRepository()
 @State<string[]>({
-    name: 'todo',
-    defaults: []
+  name: 'todo',
+  defaults: [],
 })
 @Injectable()
 export class TodoState extends NgxsDataRepository<string[]> {
-    public addTodo(todo: string): void {
-        this.ctx.setState(todo);
-    }
+  public addTodo(todo: string): void {
+    this.ctx.setState(todo);
+  }
 }
 
 @Component({
-    /* ... */
+  /* ... */
 })
 class TodoComponent {
-    constructor(private todoState: TodoState) {}
+  constructor(private todoState: TodoState) {}
 
-    public addTodo(todo: string): void {
-        // When you make a call, the state will be changed directly,
-        // without notifying the NGXS lifecycle services
-        // This is a bad approach!
-        this.todoState.addTodo(todo);
-    }
+  public addTodo(todo: string): void {
+    // When you make a call, the state will be changed directly,
+    // without notifying the NGXS lifecycle services
+    // This is a bad approach!
+    this.todoState.addTodo(todo);
+  }
 }
 ```
 
@@ -250,31 +250,31 @@ Therefore, the context should only be called inside the action.
 
 @StateRepository()
 @State<string[]>({
-    name: 'todo',
-    defaults: []
+  name: 'todo',
+  defaults: [],
 })
 @Injectable()
 export class TodoState extends NgxsDataRepository<string[]> {
-    @DataAction()
-    public addTodo(@Payload('todo') todo: string): void {
-        // call context from under the action
-        this.ctx.setState(todo);
-    }
+  @DataAction()
+  public addTodo(@Payload('todo') todo: string): void {
+    // call context from under the action
+    this.ctx.setState(todo);
+  }
 }
 
 // GOOD
 
 @StateRepository()
 @State<string[]>({
-    name: 'todo',
-    defaults: []
+  name: 'todo',
+  defaults: [],
 })
 @Injectable()
 export class TodoState extends NgxsDataRepository<string[]> {
-    public addTodo(@Payload('todo') todo: string): void {
-        // call context inside another action
-        this.setState(todo);
-    }
+  public addTodo(@Payload('todo') todo: string): void {
+    // call context inside another action
+    this.setState(todo);
+  }
 }
 ```
 
@@ -284,19 +284,19 @@ and which should not:
 ```typescript
 @StateRepository()
 @State<PersonModel>({
-    name: 'person',
-    defaults: { title: null, description: null }
+  name: 'person',
+  defaults: {title: null, description: null},
 })
 @Injectable()
 export class PersonState extends NgxsDataRepository<PersonModel> {
-    constructor(private readonly personService: PersonService) {
-        super();
-    }
+  constructor(private readonly personService: PersonService) {
+    super();
+  }
 
-    @DataAction()
-    public getContent(): Observable<PersonModel> {
-        return this.personService.fetchAll().pipe(tap((content: PersonModel): void => this.ctx.setState(content)));
-    }
+  @DataAction()
+  public getContent(): Observable<PersonModel> {
+    return this.personService.fetchAll().pipe(tap((content: PersonModel): void => this.ctx.setState(content)));
+  }
 }
 ```
 
@@ -304,14 +304,14 @@ In this situation, we have some problem:
 
 ```typescript
 @Component({
-    /* ... */
+  /* ... */
 })
 class PersonComponent implements OnInit {
-    constructor(private personState: PersonState) {}
+  constructor(private personState: PersonState) {}
 
-    public ngOnInit(): void {
-        this.personState.getContent().subscribe(() => console.log('loaded'));
-    }
+  public ngOnInit(): void {
+    this.personState.getContent().subscribe(() => console.log('loaded'));
+  }
 }
 ```
 
@@ -328,24 +328,24 @@ We can try it differently:
 ```typescript
 @StateRepository()
 @State<PersonModel>({
-    name: 'person',
-    defaults: { title: null, description: null }
+  name: 'person',
+  defaults: {title: null, description: null},
 })
 @Injectable()
 export class PersonState extends NgxsDataRepository<PersonModel> {
-    constructor(private readonly personService: PersonService) {
-        super();
-    }
+  constructor(private readonly personService: PersonService) {
+    super();
+  }
 
-    @DataAction()
-    public getContent(): Observable<PersonModel> {
-        return this.personService.fetchAll().pipe(
-            tap((content: PersonModel): void => {
-                // use setState instead ctx.setState
-                this.setState(content);
-            })
-        );
-    }
+  @DataAction()
+  public getContent(): Observable<PersonModel> {
+    return this.personService.fetchAll().pipe(
+      tap((content: PersonModel): void => {
+        // use setState instead ctx.setState
+        this.setState(content);
+      }),
+    );
+  }
 }
 ```
 
@@ -358,22 +358,22 @@ Therefore, it would be more correct to write such code:
 ```typescript
 @StateRepository()
 @State<PersonModel>({
-    name: 'person',
-    defaults: { title: null, description: null }
+  name: 'person',
+  defaults: {title: null, description: null},
 })
 @Injectable()
 export class PersonState extends NgxsDataRepository<PersonModel> {
-    constructor(private readonly personService: PersonService) {
-        super();
-    }
+  constructor(private readonly personService: PersonService) {
+    super();
+  }
 
-    public getContent(): Observable<PersonModel> {
-        return this.personService.fetchAll().pipe(
-            tap((content: PersonModel): void => {
-                this.setState(content);
-            })
-        );
-    }
+  public getContent(): Observable<PersonModel> {
+    return this.personService.fetchAll().pipe(
+      tap((content: PersonModel): void => {
+        this.setState(content);
+      }),
+    );
+  }
 }
 ```
 
@@ -384,17 +384,17 @@ export class PersonState extends NgxsDataRepository<PersonModel> {
 ```typescript
 @StateRepository()
 @State<string[]>({
-    name: 'todo',
-    defaults: []
+  name: 'todo',
+  defaults: [],
 })
 @Injectable()
 export class TodoState extends NgxsDataRepository<string[]> {
-    @DataAction()
-    public addTodo(@Payload('todo') todo: string): void {
-        if (todo) {
-            this.ctx.setState((state: string[]) => state.concat(todo));
-        }
+  @DataAction()
+  public addTodo(@Payload('todo') todo: string): void {
+    if (todo) {
+      this.ctx.setState((state: string[]) => state.concat(todo));
     }
+  }
 }
 ```
 
@@ -408,17 +408,17 @@ If during logging you want to see the payload, then you need to specify which ac
 ```typescript
 @StateRepository()
 @State<string[]>({
-    name: 'todo',
-    defaults: []
+  name: 'todo',
+  defaults: [],
 })
 @Injectable()
 export class TodoState extends NgxsDataRepository<string[]> {
-    @DataAction()
-    public addTodo(@Payload('todo') todo: string): void {
-        if (todo) {
-            this.ctx.setState((state: string[]) => state.concat(todo));
-        }
+  @DataAction()
+  public addTodo(@Payload('todo') todo: string): void {
+    if (todo) {
+      this.ctx.setState((state: string[]) => state.concat(todo));
     }
+  }
 }
 ```
 
@@ -430,17 +430,17 @@ decorator.
 ```typescript
 @StateRepository()
 @State<string[]>({
-    name: 'todo',
-    defaults: []
+  name: 'todo',
+  defaults: [],
 })
 @Injectable()
 export class TodoState extends NgxsDataRepository<string[]> {
-    @DataAction()
-    public addTodo(@Named('x') todo: string): void {
-        if (todo) {
-            this.ctx.setState((state: string[]) => state.concat(todo));
-        }
+  @DataAction()
+  public addTodo(@Named('x') todo: string): void {
+    if (todo) {
+      this.ctx.setState((state: string[]) => state.concat(todo));
     }
+  }
 }
 ```
 
@@ -451,17 +451,17 @@ Decorators can be combined:
 ```typescript
 @StateRepository()
 @State<string[]>({
-    name: 'todo',
-    defaults: []
+  name: 'todo',
+  defaults: [],
 })
 @Injectable()
 export class TodoState extends NgxsDataRepository<string[]> {
-    @DataAction()
-    public addTodo(@Payload('TODO') @Named('x') todo: string): void {
-        if (todo) {
-            this.ctx.setState((state: string[]) => state.concat(todo));
-        }
+  @DataAction()
+  public addTodo(@Payload('TODO') @Named('x') todo: string): void {
+    if (todo) {
+      this.ctx.setState((state: string[]) => state.concat(todo));
     }
+  }
 }
 ```
 
@@ -479,16 +479,16 @@ parameter `insideZone`:
 ```typescript
 @StateRepository()
 @State({
-    name: 'counter',
-    defaults: 0
+  name: 'counter',
+  defaults: 0,
 })
 @Injectable()
 class CounterState extends NgxsDataRepository<number> {
-    @DataAction({ insideZone: true })
-    public incrementInZone(): void {
-        console.log('expect is in Angular Zone', NgZone.isInAngularZone());
-        this.ctx.setState((state) => ++state);
-    }
+  @DataAction({insideZone: true})
+  public incrementInZone(): void {
+    console.log('expect is in Angular Zone', NgZone.isInAngularZone());
+    this.ctx.setState((state) => ++state);
+  }
 }
 ```
 
@@ -505,20 +505,20 @@ decorator.
 ```typescript
 @StateRepository()
 @State<PersonModel>({
-    name: 'person',
-    defaults: { title: null!, description: null! }
+  name: 'person',
+  defaults: {title: null!, description: null!},
 })
 @Injectable()
 export class PersonState extends NgxsImmutableDataRepository<PersonModel> {
-    constructor(private readonly personService: PersonService) {
-        super();
-    }
+  constructor(private readonly personService: PersonService) {
+    super();
+  }
 
-    // Note: Also can be configured globally by providing custom NGXS_DATA_CONFIG
-    @DataAction({ subscribeRequired: false })
-    public getContent(): Observable<PersonModel> {
-        return this.personService.fetchAll().pipe(tap((content: PersonModel): void => this.setState(content)));
-    }
+  // Note: Also can be configured globally by providing custom NGXS_DATA_CONFIG
+  @DataAction({subscribeRequired: false})
+  public getContent(): Observable<PersonModel> {
+    return this.personService.fetchAll().pipe(tap((content: PersonModel): void => this.setState(content)));
+  }
 }
 ```
 
@@ -526,22 +526,22 @@ The same behavior can be achieved globally for all `@DataAction` in the app by p
 
 ```typescript
 @NgModule({
-    declarations: [AppComponent],
-    imports: [
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        BrowserModule,
-        FormsModule,
-        ReactiveFormsModule,
-        NgxsModule.forRoot([], {
-            developmentMode: !environment.production,
-            executionStrategy: NoopNgxsExecutionStrategy
-        }),
-        NgxsLoggerPluginModule.forRoot(),
-        NgxsDataPluginModule.forRoot([NGXS_DATA_STORAGE_EXTENSION, NGXS_DATA_STORAGE_CONTAINER])
-    ],
-    providers: [{ provide: NGXS_DATA_CONFIG, useValue: { dataActionSubscribeRequired: false } }],
-    bootstrap: [AppComponent]
+  declarations: [AppComponent],
+  imports: [
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxsModule.forRoot([], {
+      developmentMode: !environment.production,
+      executionStrategy: NoopNgxsExecutionStrategy,
+    }),
+    NgxsLoggerPluginModule.forRoot(),
+    NgxsDataPluginModule.forRoot([NGXS_DATA_STORAGE_EXTENSION, NGXS_DATA_STORAGE_CONTAINER]),
+  ],
+  providers: [{provide: NGXS_DATA_CONFIG, useValue: {dataActionSubscribeRequired: false}}],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
 ```

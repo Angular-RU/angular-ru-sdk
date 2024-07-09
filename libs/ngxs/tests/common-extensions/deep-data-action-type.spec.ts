@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { NgxsDataPluginModule } from '@angular-ru/ngxs';
-import { DataAction, Payload, StateRepository } from '@angular-ru/ngxs/decorators';
-import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
-import { Actions, NgxsModule, State } from '@ngxs/store';
-import { take } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {fakeAsync, TestBed, tick} from '@angular/core/testing';
+import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {DataAction, Payload, StateRepository} from '@angular-ru/ngxs/decorators';
+import {NgxsDataRepository} from '@angular-ru/ngxs/repositories';
+import {Actions, NgxsModule, State} from '@ngxs/store';
+import {take} from 'rxjs/operators';
 
 describe('[TEST]: Deep data action type', () => {
     afterEach(() => {
@@ -13,37 +13,40 @@ describe('[TEST]: Deep data action type', () => {
 
     it('should use deeply nested @DataAction() names', fakeAsync(() => {
         @StateRepository()
-        @State({ name: 'c', defaults: { prop: undefined } })
+        @State({name: 'c', defaults: {prop: undefined}})
         @Injectable()
-        class C extends NgxsDataRepository<{ prop: string }> {
+        class C extends NgxsDataRepository<{prop: string}> {
             @DataAction()
             public setProp(@Payload('prop') prop: string) {
-                this.ctx.setState({ prop });
+                this.ctx.setState({prop});
             }
         }
 
         @StateRepository()
-        @State({ name: 'b', defaults: { prop: undefined }, children: [C] })
+        @State({name: 'b', defaults: {prop: undefined}, children: [C]})
         @Injectable()
-        class B extends NgxsDataRepository<{ prop: string }> {
+        class B extends NgxsDataRepository<{prop: string}> {
             @DataAction()
             public setProp(@Payload('prop') prop: string) {
-                this.ctx.setState({ prop });
+                this.ctx.setState({prop});
             }
         }
 
         @StateRepository()
-        @State({ name: 'a', defaults: { prop: undefined }, children: [B] })
+        @State({name: 'a', defaults: {prop: undefined}, children: [B]})
         @Injectable()
-        class A extends NgxsDataRepository<{ prop: string }> {
+        class A extends NgxsDataRepository<{prop: string}> {
             @DataAction()
             public setProp(@Payload('prop') prop: string) {
-                this.ctx.setState({ prop });
+                this.ctx.setState({prop});
             }
         }
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([A, B, C], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
+            imports: [
+                NgxsModule.forRoot([A, B, C], {developmentMode: true}),
+                NgxsDataPluginModule.forRoot(),
+            ],
         });
 
         const stateA: A = TestBed.inject(A);
@@ -52,21 +55,21 @@ describe('[TEST]: Deep data action type', () => {
             prop: undefined,
             b: {
                 prop: undefined,
-                c: { prop: undefined }
-            }
+                c: {prop: undefined},
+            },
         });
 
         const stateB: B = TestBed.inject(B);
 
         expect(stateB.getState()).toEqual({
             prop: undefined,
-            c: { prop: undefined }
+            c: {prop: undefined},
         });
 
         const stateC: C = TestBed.inject(C);
 
         expect(stateC.getState()).toEqual({
-            prop: undefined
+            prop: undefined,
         });
 
         const actions: any[] = [];
@@ -88,8 +91,8 @@ describe('[TEST]: Deep data action type', () => {
             prop: 'A',
             b: {
                 prop: 'B',
-                c: { prop: 'C' }
-            }
+                c: {prop: 'C'},
+            },
         });
     }));
 });

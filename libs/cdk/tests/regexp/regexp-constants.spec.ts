@@ -3,7 +3,7 @@ import {
     REG_EXP_DIGITS_SEPARATED_BY_COMMA,
     REG_EXP_NO_CYRILLIC,
     REG_EXP_NUMBER,
-    REG_EXP_STRICT_NAME
+    REG_EXP_STRICT_NAME,
 } from '@angular-ru/cdk/regexp';
 
 describe('[TEST]: Regexp constants', () => {

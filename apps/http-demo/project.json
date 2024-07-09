@@ -1,11 +1,11 @@
 {
-    "root": "apps/http-demo/",
+    "name": "http-demo-demo",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "apps/http-demo/",
     "projectType": "application",
-    "tags": ["scope:applications"],
     "targets": {
         "build": {
-            "builder": "@angular-devkit/build-angular:browser",
+            "executor": "@angular-devkit/build-angular:browser",
             "options": {
                 "outputPath": "dist/http-demo",
                 "tsConfig": "apps/http-demo/tsconfig.app.json",
@@ -37,17 +37,31 @@
                     "aot": true,
                     "extractLicenses": true,
                     "buildOptimizer": true
+                },
+                "development": {
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/flex-layout-demo/environments/environment.ts",
+                            "with": "apps/flex-layout-demo/environments/environment.prod.ts"
+                        }
+                    ],
+                    "optimization": false
                 }
             },
             "defaultConfiguration": "production",
-            "outputs": ["./dist/http-demo"]
+            "outputs": ["{projectRoot}/dist/http-demo"]
         },
         "serve": {
-            "builder": "@angular-devkit/build-angular:dev-server",
-            "options": { "browserTarget": "http-demo:build" },
+            "executor": "@angular-devkit/build-angular:dev-server",
+            "options": {
+                "buildTarget": "http-demo:build"
+            },
             "configurations": {
                 "production": {
-                    "browserTarget": "http-demo:build:production"
+                    "buildTarget": "http-demo:build:production"
+                },
+                "development": {
+                    "buildTarget": "http-demo:build:development"
                 }
             },
             "defaultConfiguration": "development"

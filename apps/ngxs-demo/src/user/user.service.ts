@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { delay, map } from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {delay, map} from 'rxjs/operators';
 
-import { UserModel } from './user-model';
+import {UserModel} from './user-model';
 
 @Injectable()
 export class UserService {
@@ -11,9 +11,9 @@ export class UserService {
     constructor(private readonly httpService: HttpClient) {}
 
     public loadUser(): Observable<UserModel> {
-        return this.httpService.get<{ data: UserModel }>('/assets/user.json').pipe(
+        return this.httpService.get<{data: UserModel}>('/assets/user.json').pipe(
             delay(this.SIMULATE_REQUEST_DELAY),
-            map((response: { data: UserModel }): UserModel => response.data)
+            map((response: {data: UserModel}): UserModel => response.data),
         );
     }
 }

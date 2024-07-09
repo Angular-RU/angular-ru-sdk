@@ -1,12 +1,12 @@
 /* eslint-disable spellcheck/spell-checker */
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
-import { ExcelService } from '@angular-ru/cdk/excel';
-import { TranslateService } from '@ngx-translate/core';
+import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
+import {ExcelService} from '@angular-ru/cdk/excel';
+import {TranslateService} from '@ngx-translate/core';
 
 interface A {
     id: string;
     name: string;
-    info: { value: number; other: number };
+    info: {value: number; other: number};
     description: string;
     excluded: string;
 }
@@ -16,27 +16,37 @@ interface A {
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent {
     public data: A[] = [
         {
             id: 'id',
             name: 'Maria',
-            info: { value: 1, other: 2 },
+            info: {value: 1, other: 2},
             excluded: 'excluded',
-            description: 'Fugiat tempor sunt nostrud ad fugiat. Laboris velit duis incididunt culpa'
-        }
+            description:
+                'Fugiat tempor sunt nostrud ad fugiat. Laboris velit duis incididunt culpa',
+        },
     ];
 
-    constructor(protected excel: ExcelService, private readonly translate: TranslateService) {
+    constructor(
+        protected excel: ExcelService,
+        private readonly translate: TranslateService,
+    ) {
         this.translate.setDefaultLang('ru');
     }
 
     public exportExcel(): void {
         this.excel.exportExcel({
             filename: 'My excel file',
-            worksheets: [{ entries: this.data, worksheetName: 'worksheet name', excludeKeys: ['excluded'] }]
+            worksheets: [
+                {
+                    entries: this.data,
+                    worksheetName: 'worksheet name',
+                    excludeKeys: ['excluded'],
+                },
+            ],
         });
     }
 
@@ -49,9 +59,9 @@ export class AppComponent {
                     prefixKeyForTranslate: 'APP_KEYS.MODELS',
                     worksheetName: 'APP_KEYS.WORKSHEET_NAME',
                     keys: ['info.value', 'description', 'name'],
-                    excludeKeys: ['description']
-                }
-            ]
+                    excludeKeys: ['description'],
+                },
+            ],
         });
     }
 }

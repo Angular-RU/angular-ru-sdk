@@ -1,4 +1,4 @@
 {
-    "extends": "../../libs/cdk/tsconfig.base.json",
+    "extends": "../../tsconfig.json",
     "include": ["main.ts", "polyfills.ts"]
 }

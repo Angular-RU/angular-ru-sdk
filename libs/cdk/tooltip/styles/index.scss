@@ -16,7 +16,10 @@
     opacity: 0;
     transform: translate3d(0, 0, 0);
     will-change: transition;
-    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease,
+        transform 0.3s cubic-bezier(0.71, 1.7, 0.77, 1.24);
     z-index: 10000;
     background: var(--tooltip-color);
     color: #fff;

@@ -1,5 +1,5 @@
-import { LoggerInjector, LoggerService } from '@angular-ru/cdk/logger';
-import { Nullable } from '@angular-ru/cdk/typings';
+import {LoggerInjector, LoggerService} from '@angular-ru/cdk/logger';
+import {Nullable} from '@angular-ru/cdk/typings';
 
 describe('[TEST]: Check injector error', () => {
     it('should return error', (): void => {

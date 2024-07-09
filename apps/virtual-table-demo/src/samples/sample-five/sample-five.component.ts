@@ -1,20 +1,29 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { PlainObject } from '@angular-ru/cdk/typings';
-import { TableUpdateSchema } from '@angular-ru/cdk/virtual-table';
+import {
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    OnInit,
+} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {PlainObject} from '@angular-ru/cdk/typings';
+import {TableUpdateSchema} from '@angular-ru/cdk/virtual-table';
 
-import { hlJsCode } from '../../../../../.global/utils/hljs-code';
-import { MocksGenerator } from '../../mocks-generator';
-import { CodeDialogComponent } from '../../shared/dialog/code-dialog.component';
+import {hlJsCode} from '../../../../../.global/utils/hljs-code';
+import {MocksGenerator} from '../../mocks-generator';
+import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
 
 @Component({
     selector: 'sample-five',
     templateUrl: './sample-five.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SampleFiveComponent implements OnInit, AfterViewInit {
     public data: PlainObject[] = [];
-    constructor(public readonly dialog: MatDialog, private readonly cd: ChangeDetectorRef) {}
+    constructor(
+        public readonly dialog: MatDialog,
+        private readonly cd: ChangeDetectorRef,
+    ) {}
 
     public ngOnInit(): void {
         const rows: number = 1000;
@@ -46,10 +55,10 @@ export class SampleFiveComponent implements OnInit, AfterViewInit {
     <ngx-options is-draggable></ngx-options>
 </ngx-table-builder>
 
-                `
+                `,
             },
             height: '350px',
-            width: '700px'
+            width: '700px',
         });
     }
 

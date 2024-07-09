@@ -1,7 +1,7 @@
-import { TestBed } from '@angular/core/testing';
-import { LoggerLevel, LoggerModule, LoggerService } from '@angular-ru/cdk/logger';
+import {TestBed} from '@angular/core/testing';
+import {LoggerLevel, LoggerModule, LoggerService} from '@angular-ru/cdk/logger';
 
-import { ConsoleFake, TestLoggerLineType } from './helpers/console-fake';
+import {ConsoleFake, TestLoggerLineType} from './helpers/console-fake';
 
 describe('[TEST]: Check style', () => {
     describe('case #1', () => {
@@ -18,10 +18,10 @@ describe('[TEST]: Check style', () => {
                         cssClassMap: {
                             'class-1': 'font-weight: bold',
                             'class-2': 'text-decoration: line-through',
-                            'class-3': 'color: #666'
-                        }
-                    })
-                ]
+                            'class-3': 'color: #666',
+                        },
+                    }),
+                ],
             });
 
             logger = TestBed.inject(LoggerService);
@@ -32,15 +32,17 @@ describe('[TEST]: Check style', () => {
         it(`set style another console line`, () => {
             logger.level = LoggerLevel.ALL;
 
-            logger.css('color: red; text-decoration: underline; font-weight: bold').info(`It's awesome`);
+            logger
+                .css('color: red; text-decoration: underline; font-weight: bold')
+                .info(`It's awesome`);
 
             expect(fakeConsole.stack()).toEqual(
                 fakeConsole.createStack({
                     [TestLoggerLineType.INFO]: [
                         'color: red; text-decoration: underline; font-weight: bold;',
-                        `It's awesome`
-                    ]
-                })
+                        `It's awesome`,
+                    ],
+                }),
             );
         });
 
@@ -49,15 +51,24 @@ describe('[TEST]: Check style', () => {
 
             expect(fakeConsole.stack()).toEqual(
                 fakeConsole.createStack({
-                    [TestLoggerLineType.LOG]: ['%c%s', 'font-weight: bold; color: #666;', 'Hello world']
-                })
+                    [TestLoggerLineType.LOG]: [
+                        '%c%s',
+                        'font-weight: bold; color: #666;',
+                        'Hello world',
+                    ],
+                }),
             );
 
             logger.clear();
 
             logger.cssClass('class-2').debug('Test 2');
             expect(fakeConsole.stack()).toEqual(
-                fakeConsole.createStack({ [TestLoggerLineType.DEBUG]: ['text-decoration: line-through;', 'Test 2'] })
+                fakeConsole.createStack({
+                    [TestLoggerLineType.DEBUG]: [
+                        'text-decoration: line-through;',
+                        'Test 2',
+                    ],
+                }),
             );
         });
 
@@ -73,10 +84,12 @@ describe('[TEST]: Check style', () => {
         });
 
         it('get current line style', () => {
-            logger.css('text-transform: uppercase, font-weight: bold, font-size: 12px, margin: 10px, padding: 10px');
+            logger.css(
+                'text-transform: uppercase, font-weight: bold, font-size: 12px, margin: 10px, padding: 10px',
+            );
 
             expect(logger.getCurrentLineStyle()).toBe(
-                'text-transform: uppercase, font-weight: bold, font-size: 12px, margin: 10px, padding: 10px;'
+                'text-transform: uppercase, font-weight: bold, font-size: 12px, margin: 10px, padding: 10px;',
             );
         });
 
@@ -97,9 +110,10 @@ describe('[TEST]: Check style', () => {
                 imports: [
                     LoggerModule.forRoot({
                         instance: fakeConsole,
-                        globalLineStyle: 'color: violet; font-weight: bold; font-size: 12px'
-                    })
-                ]
+                        globalLineStyle:
+                            'color: violet; font-weight: bold; font-size: 12px',
+                    }),
+                ],
             });
 
             logger = TestBed.inject(LoggerService);
@@ -110,14 +124,14 @@ describe('[TEST]: Check style', () => {
         it('should use global styles', () => {
             logger.log(testString);
             expect(fakeConsole.stack()).toBe(
-                '[{"log":["%c%s","color: violet; font-weight: bold; font-size: 12px;","test string"]}]'
+                '[{"log":["%c%s","color: violet; font-weight: bold; font-size: 12px;","test string"]}]',
             );
         });
 
         it('should use global styles and work with empty css', () => {
             logger.css('').log(testString);
             expect(fakeConsole.stack()).toBe(
-                '[{"log":["%c%s","color: violet; font-weight: bold; font-size: 12px;","test string"]}]'
+                '[{"log":["%c%s","color: violet; font-weight: bold; font-size: 12px;","test string"]}]',
             );
         });
     });

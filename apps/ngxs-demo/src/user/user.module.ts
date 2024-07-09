@@ -1,12 +1,12 @@
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { NgxsModule } from '@ngxs/store';
+import {CommonModule} from '@angular/common';
+import {HttpClientModule} from '@angular/common/http';
+import {NgModule} from '@angular/core';
+import {RouterModule} from '@angular/router';
+import {NgxsModule} from '@ngxs/store';
 
-import { UserComponent } from './user.component';
-import { UserService } from './user.service';
-import { UserState } from './user.state';
+import {UserComponent} from './user.component';
+import {UserService} from './user.service';
+import {UserState} from './user.state';
 
 @NgModule({
     declarations: [UserComponent],
@@ -17,10 +17,10 @@ import { UserState } from './user.state';
         RouterModule.forChild([
             {
                 path: '',
-                component: UserComponent
-            }
-        ])
+                component: UserComponent,
+            },
+        ]),
     ],
-    providers: [UserService]
+    providers: [UserService],
 })
 export class UserModule {}

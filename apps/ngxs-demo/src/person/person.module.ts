@@ -1,13 +1,13 @@
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { NgxsModule } from '@ngxs/store';
+import {CommonModule} from '@angular/common';
+import {HttpClientModule} from '@angular/common/http';
+import {NgModule} from '@angular/core';
+import {RouterModule} from '@angular/router';
+import {NgxsModule} from '@ngxs/store';
 
-import { PersonComponent } from './person.component';
-import { PersonResolver } from './person.resolver';
-import { PersonService } from './person.service';
-import { PersonState } from './person.state';
+import {PersonComponent} from './person.component';
+import {PersonResolver} from './person.resolver';
+import {PersonService} from './person.service';
+import {PersonState} from './person.state';
 
 @NgModule({
     declarations: [PersonComponent],
@@ -20,11 +20,11 @@ import { PersonState } from './person.state';
                 path: '',
                 component: PersonComponent,
                 resolve: {
-                    content: PersonResolver
-                }
-            }
-        ])
+                    content: PersonResolver,
+                },
+            },
+        ]),
     ],
-    providers: [PersonResolver, PersonService]
+    providers: [PersonResolver, PersonService],
 })
 export class PersonModule {}

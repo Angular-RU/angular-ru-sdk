@@ -23,8 +23,8 @@
         <ngx-table-builder
             #table1
             enable-filtering
-            [source]="dataFirst"
             [native-scrollbar]="nativeScrollbar"
+            [source]="dataFirst"
         >
             <ngx-header
                 height="65"
@@ -34,9 +34,9 @@
                     <mat-form-field appearance="outline">
                         <mat-label>Filter</mat-label>
                         <input
+                            autocomplete="off"
                             matInput
                             name="width"
-                            autocomplete="off"
                             [(ngModel)]="table1.filterable.filterValue"
                             (ngModelChange)="table1.filter()"
                         />
@@ -67,8 +67,8 @@
             <ngx-column *ngFor="let key of table1.modelColumnKeys">
                 <ng-template ngx-th>{{ key }}</ng-template>
                 <ng-template
-                    ngx-td
                     let-cell
+                    ngx-td
                 >
                     {{ cell }}
                 </ng-template>
@@ -80,8 +80,8 @@
         <ngx-table-builder
             #table2
             enable-filtering
-            [source]="dataSecond"
             [native-scrollbar]="nativeScrollbar"
+            [source]="dataSecond"
         >
             <ngx-header
                 height="65"
@@ -91,9 +91,9 @@
                     <mat-form-field appearance="outline">
                         <mat-label>Filter</mat-label>
                         <input
+                            autocomplete="off"
                             matInput
                             name="width"
-                            autocomplete="off"
                             [(ngModel)]="table2.filterable.filterValue"
                             (ngModelChange)="table2.filter()"
                         />
@@ -124,8 +124,8 @@
             <ngx-column *ngFor="let key of table2.modelColumnKeys">
                 <ng-template ngx-th>{{ key }}</ng-template>
                 <ng-template
-                    ngx-td
                     let-cell
+                    ngx-td
                 >
                     {{ cell }}
                 </ng-template>

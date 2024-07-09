@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 interface LicenseSample {
     id: number;
@@ -15,8 +15,8 @@ interface LicenseSample {
             <ngx-column key="name">
                 <ng-template ngx-th>License</ng-template>
                 <ng-template
-                    ngx-td
                     let-name
+                    ngx-td
                 >
                     {{ name | uppercase }}
                 </ng-template>
@@ -25,37 +25,37 @@ interface LicenseSample {
             <ngx-column key="price">
                 <ng-template ngx-th>Cost</ng-template>
                 <ng-template
-                    ngx-td
                     let-price
+                    ngx-td
                 >
                     {{ price | currency }}
                 </ng-template>
             </ngx-column>
         </ngx-table-builder>
     `,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TemplateMockComponent {
     public licenses: LicenseSample[] = [
         {
             id: 1,
             name: 'single',
-            price: 29.3
+            price: 29.3,
         },
         {
             id: 2,
             name: 'developer',
-            price: 49.8
+            price: 49.8,
         },
         {
             id: 3,
             name: 'premium',
-            price: 99.5
+            price: 99.5,
         },
         {
             id: 4,
             name: 'enterprise',
-            price: 199
-        }
+            price: 199,
+        },
     ];
 }

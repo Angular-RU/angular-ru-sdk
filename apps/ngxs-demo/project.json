@@ -1,11 +1,11 @@
 {
-    "root": "apps/ngxs-demo/",
+    "name": "ngxs-demo",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "apps/ngxs-demo/",
     "projectType": "application",
-    "tags": ["scope:applications"],
     "targets": {
         "build": {
-            "builder": "@angular-devkit/build-angular:browser",
+            "executor": "@angular-devkit/build-angular:browser",
             "options": {
                 "outputPath": "dist/ngxs-demo",
                 "tsConfig": "apps/ngxs-demo/tsconfig.app.json",
@@ -37,17 +37,31 @@
                     "aot": true,
                     "extractLicenses": true,
                     "buildOptimizer": true
+                },
+                "development": {
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/flex-layout-demo/environments/environment.ts",
+                            "with": "apps/flex-layout-demo/environments/environment.prod.ts"
+                        }
+                    ],
+                    "optimization": false
                 }
             },
             "defaultConfiguration": "production",
-            "outputs": ["./dist/ngxs-demo"]
+            "outputs": ["{projectRoot}/dist/ngxs-demo"]
         },
         "serve": {
-            "builder": "@angular-devkit/build-angular:dev-server",
-            "options": { "browserTarget": "ngxs-demo:build" },
+            "executor": "@angular-devkit/build-angular:dev-server",
+            "options": {
+                "buildTarget": "ngxs-demo:build"
+            },
             "configurations": {
                 "production": {
-                    "browserTarget": "ngxs-demo:build:production"
+                    "buildTarget": "ngxs-demo:build:production"
+                },
+                "development": {
+                    "buildTarget": "ngxs-demo:build:development"
                 }
             },
             "defaultConfiguration": "development"

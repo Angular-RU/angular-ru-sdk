@@ -1,4 +1,4 @@
-import { isNil } from '@angular-ru/cdk/utils';
+import {isNil} from '@angular-ru/cdk/utils';
 import fs from 'fs';
 import path from 'path';
 
@@ -17,7 +17,9 @@ export function readFromBlob(blob?: Blob): Promise<string> {
 
 export function fileSuitesReader(base: string): (...filePath: string[]) => string {
     return function (...filePath: string[]): string {
-        return minify(fs.readFileSync(path.join(base, 'file-suites', ...filePath)).toString());
+        return minify(
+            fs.readFileSync(path.join(base, 'file-suites', ...filePath)).toString(),
+        );
     };
 }
 

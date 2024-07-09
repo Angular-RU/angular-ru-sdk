@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { createEntityCollections } from '@angular-ru/cdk/entity';
-import { SortOrderType } from '@angular-ru/cdk/typings';
-import { StateRepository } from '@angular-ru/ngxs/decorators';
-import { NgxsDataEntityCollectionsRepository } from '@angular-ru/ngxs/repositories';
-import { ngxsTestingPlatform } from '@angular-ru/ngxs/testing';
-import { State } from '@ngxs/store';
+import {Injectable} from '@angular/core';
+import {createEntityCollections} from '@angular-ru/cdk/entity';
+import {SortOrderType} from '@angular-ru/cdk/typings';
+import {StateRepository} from '@angular-ru/ngxs/decorators';
+import {NgxsDataEntityCollectionsRepository} from '@angular-ru/ngxs/repositories';
+import {ngxsTestingPlatform} from '@angular-ru/ngxs/testing';
+import {State} from '@ngxs/store';
 
 describe('sort by entities', () => {
     let spy: jest.MockInstance<any, any>;
@@ -18,16 +18,16 @@ describe('sort by entities', () => {
     const defaults = createEntityCollections<People>({
         ids: [1, 2, 3, 4, 5],
         entities: {
-            1: { id: 1, name: 'Max', age: 25 },
-            2: { id: 2, name: 'Ivan', age: 15 },
-            3: { id: 3, name: 'Roger', age: 35 },
-            4: { id: 4, name: 'Petr', age: 40 },
-            5: { id: 5, name: 'Anton', age: 12 }
-        }
+            1: {id: 1, name: 'Max', age: 25},
+            2: {id: 2, name: 'Ivan', age: 15},
+            3: {id: 3, name: 'Roger', age: 35},
+            4: {id: 4, name: 'Petr', age: 40},
+            5: {id: 5, name: 'Anton', age: 12},
+        },
     });
 
     @StateRepository()
-    @State({ name: 'people', defaults })
+    @State({name: 'people', defaults})
     @Injectable()
     class PeopleEntitiesState extends NgxsDataEntityCollectionsRepository<People> {}
 
@@ -41,30 +41,32 @@ describe('sort by entities', () => {
             expect(people.getState()).toEqual({
                 ids: [1, 2, 3, 4, 5],
                 entities: {
-                    1: { id: 1, name: 'Max', age: 25 },
-                    2: { id: 2, name: 'Ivan', age: 15 },
-                    3: { id: 3, name: 'Roger', age: 35 },
-                    4: { id: 4, name: 'Petr', age: 40 },
-                    5: { id: 5, name: 'Anton', age: 12 }
-                }
+                    1: {id: 1, name: 'Max', age: 25},
+                    2: {id: 2, name: 'Ivan', age: 15},
+                    3: {id: 3, name: 'Roger', age: 35},
+                    4: {id: 4, name: 'Petr', age: 40},
+                    5: {id: 5, name: 'Anton', age: 12},
+                },
             });
 
             people.sort();
             expect(spy).toHaveBeenCalledTimes(1);
 
-            expect(console.warn).toHaveBeenLastCalledWith('You must set the compare function before sorting.');
+            expect(console.warn).toHaveBeenLastCalledWith(
+                'You must set the compare function before sorting.',
+            );
 
             expect(people.getState()).toEqual({
                 ids: [1, 2, 3, 4, 5],
                 entities: {
-                    1: { id: 1, name: 'Max', age: 25 },
-                    2: { id: 2, name: 'Ivan', age: 15 },
-                    3: { id: 3, name: 'Roger', age: 35 },
-                    4: { id: 4, name: 'Petr', age: 40 },
-                    5: { id: 5, name: 'Anton', age: 12 }
-                }
+                    1: {id: 1, name: 'Max', age: 25},
+                    2: {id: 2, name: 'Ivan', age: 15},
+                    3: {id: 3, name: 'Roger', age: 35},
+                    4: {id: 4, name: 'Petr', age: 40},
+                    5: {id: 5, name: 'Anton', age: 12},
+                },
             });
-        })
+        }),
     );
 
     it(
@@ -73,97 +75,97 @@ describe('sort by entities', () => {
             expect(people.getState()).toEqual({
                 ids: [1, 2, 3, 4, 5],
                 entities: {
-                    1: { id: 1, name: 'Max', age: 25 },
-                    2: { id: 2, name: 'Ivan', age: 15 },
-                    3: { id: 3, name: 'Roger', age: 35 },
-                    4: { id: 4, name: 'Petr', age: 40 },
-                    5: { id: 5, name: 'Anton', age: 12 }
-                }
+                    1: {id: 1, name: 'Max', age: 25},
+                    2: {id: 2, name: 'Ivan', age: 15},
+                    3: {id: 3, name: 'Roger', age: 35},
+                    4: {id: 4, name: 'Petr', age: 40},
+                    5: {id: 5, name: 'Anton', age: 12},
+                },
             });
 
             people
                 .setComparator({
                     sortBy: 'age',
-                    sortByOrder: SortOrderType.ASC
+                    sortByOrder: SortOrderType.ASC,
                 })
                 .sort();
 
             expect(people.getState()).toEqual({
                 ids: [5, 2, 1, 3, 4],
                 entities: {
-                    1: { id: 1, name: 'Max', age: 25 },
-                    2: { id: 2, name: 'Ivan', age: 15 },
-                    3: { id: 3, name: 'Roger', age: 35 },
-                    4: { id: 4, name: 'Petr', age: 40 },
-                    5: { id: 5, name: 'Anton', age: 12 }
-                }
+                    1: {id: 1, name: 'Max', age: 25},
+                    2: {id: 2, name: 'Ivan', age: 15},
+                    3: {id: 3, name: 'Roger', age: 35},
+                    4: {id: 4, name: 'Petr', age: 40},
+                    5: {id: 5, name: 'Anton', age: 12},
+                },
             });
 
             expect(people.selectAll()).toEqual([
-                { id: 5, name: 'Anton', age: 12 },
-                { id: 2, name: 'Ivan', age: 15 },
-                { id: 1, name: 'Max', age: 25 },
-                { id: 3, name: 'Roger', age: 35 },
-                { id: 4, name: 'Petr', age: 40 }
+                {id: 5, name: 'Anton', age: 12},
+                {id: 2, name: 'Ivan', age: 15},
+                {id: 1, name: 'Max', age: 25},
+                {id: 3, name: 'Roger', age: 35},
+                {id: 4, name: 'Petr', age: 40},
             ]);
 
             people.sort({
                 sortBy: 'age',
-                sortByOrder: SortOrderType.DESC
+                sortByOrder: SortOrderType.DESC,
             });
 
             expect(people.getState()).toEqual({
                 ids: [4, 3, 1, 2, 5],
                 entities: {
-                    1: { id: 1, name: 'Max', age: 25 },
-                    2: { id: 2, name: 'Ivan', age: 15 },
-                    3: { id: 3, name: 'Roger', age: 35 },
-                    4: { id: 4, name: 'Petr', age: 40 },
-                    5: { id: 5, name: 'Anton', age: 12 }
-                }
+                    1: {id: 1, name: 'Max', age: 25},
+                    2: {id: 2, name: 'Ivan', age: 15},
+                    3: {id: 3, name: 'Roger', age: 35},
+                    4: {id: 4, name: 'Petr', age: 40},
+                    5: {id: 5, name: 'Anton', age: 12},
+                },
             });
 
             expect(people.selectAll()).toEqual([
-                { id: 4, name: 'Petr', age: 40 },
-                { id: 3, name: 'Roger', age: 35 },
-                { id: 1, name: 'Max', age: 25 },
-                { id: 2, name: 'Ivan', age: 15 },
-                { id: 5, name: 'Anton', age: 12 }
+                {id: 4, name: 'Petr', age: 40},
+                {id: 3, name: 'Roger', age: 35},
+                {id: 1, name: 'Max', age: 25},
+                {id: 2, name: 'Ivan', age: 15},
+                {id: 5, name: 'Anton', age: 12},
             ]);
 
-            people.addOne({ id: 6, name: 'Georg', age: 70 });
-            people.addOne({ id: 7, name: 'Leon', age: 11 });
-            people.addOne({ id: 8, name: 'Mark', age: 18 });
+            people.addOne({id: 6, name: 'Georg', age: 70});
+            people.addOne({id: 7, name: 'Leon', age: 11});
+            people.addOne({id: 8, name: 'Mark', age: 18});
 
             expect(people.selectAll()).toEqual([
-                { id: 6, name: 'Georg', age: 70 },
-                { id: 4, name: 'Petr', age: 40 },
-                { id: 3, name: 'Roger', age: 35 },
-                { id: 1, name: 'Max', age: 25 },
-                { id: 8, name: 'Mark', age: 18 },
-                { id: 2, name: 'Ivan', age: 15 },
-                { id: 5, name: 'Anton', age: 12 },
-                { id: 7, name: 'Leon', age: 11 }
+                {id: 6, name: 'Georg', age: 70},
+                {id: 4, name: 'Petr', age: 40},
+                {id: 3, name: 'Roger', age: 35},
+                {id: 1, name: 'Max', age: 25},
+                {id: 8, name: 'Mark', age: 18},
+                {id: 2, name: 'Ivan', age: 15},
+                {id: 5, name: 'Anton', age: 12},
+                {id: 7, name: 'Leon', age: 11},
             ]);
 
             people.upsertMany([
-                { id: 8, name: 'Mark', age: 38 },
-                { id: 3, name: 'Roger', age: 5 },
-                { id: 9, name: 'Nikita', age: 90 }
+                {id: 8, name: 'Mark', age: 38},
+                {id: 3, name: 'Roger', age: 5},
+                {id: 9, name: 'Nikita', age: 90},
             ]);
 
             expect(people.selectAll()).toEqual([
-                { id: 9, name: 'Nikita', age: 90 },
-                { id: 6, name: 'Georg', age: 70 },
-                { id: 4, name: 'Petr', age: 40 },
-                { id: 8, name: 'Mark', age: 38 },
-                { id: 1, name: 'Max', age: 25 },
-                { id: 2, name: 'Ivan', age: 15 },
-                { id: 5, name: 'Anton', age: 12 },
-                { id: 7, name: 'Leon', age: 11 },
-                { id: 3, name: 'Roger', age: 5 }
+                {id: 9, name: 'Nikita', age: 90},
+                {id: 6, name: 'Georg', age: 70},
+                {id: 4, name: 'Petr', age: 40},
+                {id: 8, name: 'Mark', age: 38},
+                {id: 1, name: 'Max', age: 25},
+                {id: 2, name: 'Ivan', age: 15},
+                {id: 5, name: 'Anton', age: 12},
+                {id: 7, name: 'Leon', age: 11},
+                {id: 3, name: 'Roger', age: 5},
             ]);
-        })
+        }),
     );
 
     it(
@@ -172,12 +174,12 @@ describe('sort by entities', () => {
             expect(people.getState()).toEqual({
                 ids: [1, 2, 3, 4, 5],
                 entities: {
-                    1: { id: 1, name: 'Max', age: 25 },
-                    2: { id: 2, name: 'Ivan', age: 15 },
-                    3: { id: 3, name: 'Roger', age: 35 },
-                    4: { id: 4, name: 'Petr', age: 40 },
-                    5: { id: 5, name: 'Anton', age: 12 }
-                }
+                    1: {id: 1, name: 'Max', age: 25},
+                    2: {id: 2, name: 'Ivan', age: 15},
+                    3: {id: 3, name: 'Roger', age: 35},
+                    4: {id: 4, name: 'Petr', age: 40},
+                    5: {id: 5, name: 'Anton', age: 12},
+                },
             });
 
             people.sort((a: People, b: People) => a.age - b.age);
@@ -185,43 +187,43 @@ describe('sort by entities', () => {
             expect(people.getState()).toEqual({
                 ids: [5, 2, 1, 3, 4],
                 entities: {
-                    1: { id: 1, name: 'Max', age: 25 },
-                    2: { id: 2, name: 'Ivan', age: 15 },
-                    3: { id: 3, name: 'Roger', age: 35 },
-                    4: { id: 4, name: 'Petr', age: 40 },
-                    5: { id: 5, name: 'Anton', age: 12 }
-                }
+                    1: {id: 1, name: 'Max', age: 25},
+                    2: {id: 2, name: 'Ivan', age: 15},
+                    3: {id: 3, name: 'Roger', age: 35},
+                    4: {id: 4, name: 'Petr', age: 40},
+                    5: {id: 5, name: 'Anton', age: 12},
+                },
             });
 
             expect(people.selectAll()).toEqual([
-                { id: 5, name: 'Anton', age: 12 },
-                { id: 2, name: 'Ivan', age: 15 },
-                { id: 1, name: 'Max', age: 25 },
-                { id: 3, name: 'Roger', age: 35 },
-                { id: 4, name: 'Petr', age: 40 }
+                {id: 5, name: 'Anton', age: 12},
+                {id: 2, name: 'Ivan', age: 15},
+                {id: 1, name: 'Max', age: 25},
+                {id: 3, name: 'Roger', age: 35},
+                {id: 4, name: 'Petr', age: 40},
             ]);
 
             people.sort((a: People, b: People) => b.age - a.age);
 
             expect(people.selectAll()).toEqual([
-                { id: 4, name: 'Petr', age: 40 },
-                { id: 3, name: 'Roger', age: 35 },
-                { id: 1, name: 'Max', age: 25 },
-                { id: 2, name: 'Ivan', age: 15 },
-                { id: 5, name: 'Anton', age: 12 }
+                {id: 4, name: 'Petr', age: 40},
+                {id: 3, name: 'Roger', age: 35},
+                {id: 1, name: 'Max', age: 25},
+                {id: 2, name: 'Ivan', age: 15},
+                {id: 5, name: 'Anton', age: 12},
             ]);
 
             expect(people.getState()).toEqual({
                 ids: [4, 3, 1, 2, 5],
                 entities: {
-                    1: { id: 1, name: 'Max', age: 25 },
-                    2: { id: 2, name: 'Ivan', age: 15 },
-                    3: { id: 3, name: 'Roger', age: 35 },
-                    4: { id: 4, name: 'Petr', age: 40 },
-                    5: { id: 5, name: 'Anton', age: 12 }
-                }
+                    1: {id: 1, name: 'Max', age: 25},
+                    2: {id: 2, name: 'Ivan', age: 15},
+                    3: {id: 3, name: 'Roger', age: 35},
+                    4: {id: 4, name: 'Petr', age: 40},
+                    5: {id: 5, name: 'Anton', age: 12},
+                },
             });
-        })
+        }),
     );
 
     it(
@@ -230,27 +232,29 @@ describe('sort by entities', () => {
             spy = jest.spyOn(console, 'warn').mockImplementation();
 
             expect(people.selectAll()).toEqual([
-                { id: 1, name: 'Max', age: 25 },
-                { id: 2, name: 'Ivan', age: 15 },
-                { id: 3, name: 'Roger', age: 35 },
-                { id: 4, name: 'Petr', age: 40 },
-                { id: 5, name: 'Anton', age: 12 }
+                {id: 1, name: 'Max', age: 25},
+                {id: 2, name: 'Ivan', age: 15},
+                {id: 3, name: 'Roger', age: 35},
+                {id: 4, name: 'Petr', age: 40},
+                {id: 5, name: 'Anton', age: 12},
             ]);
 
-            people.setComparator({ sortBy: 'age', sortByOrder: '' });
+            people.setComparator({sortBy: 'age', sortByOrder: ''});
             people.sort();
 
             expect(people.selectAll()).toEqual([
-                { id: 1, name: 'Max', age: 25 },
-                { id: 2, name: 'Ivan', age: 15 },
-                { id: 3, name: 'Roger', age: 35 },
-                { id: 4, name: 'Petr', age: 40 },
-                { id: 5, name: 'Anton', age: 12 }
+                {id: 1, name: 'Max', age: 25},
+                {id: 2, name: 'Ivan', age: 15},
+                {id: 3, name: 'Roger', age: 35},
+                {id: 4, name: 'Petr', age: 40},
+                {id: 5, name: 'Anton', age: 12},
             ]);
 
             expect(spy).toHaveBeenCalledTimes(1);
 
-            expect(console.warn).toHaveBeenLastCalledWith('Invalid --> { sortByOrder: "" } not supported!');
-        })
+            expect(console.warn).toHaveBeenLastCalledWith(
+                'Invalid --> { sortByOrder: "" } not supported!',
+            );
+        }),
     );
 });

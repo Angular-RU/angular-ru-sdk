@@ -1,4 +1,4 @@
-import { ChangeDetectorRef } from '@angular/core';
+import {ChangeDetectorRef} from '@angular/core';
 import {
     $any,
     $cast,
@@ -20,9 +20,9 @@ import {
     isNotNil,
     parseXmlFromString,
     serializeXmlToString,
-    tryParseJson
+    tryParseJson,
 } from '@angular-ru/cdk/utils';
-import { FileToDownloadInfo } from '@angular-ru/cdk/utils/download-file';
+import {FileToDownloadInfo} from '@angular-ru/cdk/utils/download-file';
 
 describe('[TEST]: Common utils', () => {
     it('$any/$cast', () => {
@@ -72,7 +72,7 @@ describe('[TEST]: Common utils', () => {
         const cd: ChangeDetectorRef = {
             detectChanges() {
                 count++;
-            }
+            },
         } as ChangeDetectorRef;
 
         detectChanges();
@@ -133,8 +133,8 @@ describe('[TEST]: Common utils', () => {
         expect(checkSomeValueIsEmpty('', undefined, null)).toBe(true));
 
     it('isMacOS should return true if user agent shows that user has MacOS and false if otherwise', () => {
-        expect(isMacOS({ userAgent: `Mac` } as unknown as Navigator)).toBeTruthy();
-        expect(isMacOS({ userAgent: `Linux` } as unknown as Navigator)).toBeFalsy();
+        expect(isMacOS({userAgent: `Mac`} as unknown as Navigator)).toBeTruthy();
+        expect(isMacOS({userAgent: `Linux`} as unknown as Navigator)).toBeFalsy();
     });
 
     describe('[TEST]: checkSomeValueIsTrue', () => {
@@ -248,21 +248,23 @@ describe('[TEST]: Common utils', () => {
         const file: FileToDownloadInfo = {
             blob: new Blob(['text-file']),
             name: 'text',
-            extension: 'txt'
+            extension: 'txt',
         };
 
         beforeEach(() => {
-            link = { click: jest.fn() } as unknown as HTMLAnchorElement;
+            link = {click: jest.fn()} as unknown as HTMLAnchorElement;
         });
 
         it('should throw error if both file name and extension not provided', () => {
             const invalidFile: FileToDownloadInfo = {
                 blob: new Blob(),
                 name: null,
-                extension: null
+                extension: null,
             };
 
-            expect(() => downloadFile(invalidFile)).toThrow('File name or file extension must be provided');
+            expect(() => downloadFile(invalidFile)).toThrow(
+                'File name or file extension must be provided',
+            );
         });
 
         it('should create objectUrl from input blob', () => {
@@ -284,7 +286,7 @@ describe('[TEST]: Common utils', () => {
 
             downloadFile({
                 blob: new Blob(['text-file']),
-                name: 'text'
+                name: 'text',
             });
 
             expect(link.download).toBe('text');
@@ -295,7 +297,7 @@ describe('[TEST]: Common utils', () => {
 
             downloadFile({
                 blob: new Blob(['text-file']),
-                extension: 'txt'
+                extension: 'txt',
             });
 
             expect(link.download).toBe('txt');
@@ -317,23 +319,23 @@ describe('[TEST]: Common utils', () => {
 
         it('should try parse JSON', () => {
             expect(tryParseJson('{}')).toEqual({});
-            expect(tryParseJson('{ "a": 1 }')).toEqual({ a: 1 });
+            expect(tryParseJson('{ "a": 1 }')).toEqual({a: 1});
             expect(tryParseJson('"text"')).toBe('text');
             expect(tryParseJson('null')).toBeNull();
             expect(tryParseJson('true')).toBe(true);
             expect(tryParseJson('[ 1, { "a": 1, "b": "b" }, true, null, "b" ]')).toEqual([
                 1,
-                { a: 1, b: 'b' },
+                {a: 1, b: 'b'},
                 true,
                 null,
-                'b'
+                'b',
             ]);
             expect(tryParseJson('qwerty')).toBeUndefined();
             expect(tryParseJson('{ a: 1 }')).toBeUndefined();
 
             const plain: string = '{ checked: true }';
 
-            expect(tryParseJson<{ checked: boolean }>(plain)?.checked ?? false).toBe(false);
+            expect(tryParseJson<{checked: boolean}>(plain)?.checked ?? false).toBe(false);
         });
 
         it('isBoolean should return true if boolean value is provided and false in opposite case', () => {

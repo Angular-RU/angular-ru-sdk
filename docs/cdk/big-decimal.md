@@ -1,12 +1,12 @@
 #### `@angular-ru/cdk/big-decimal`
 
--   `BigDecimal`
+- `BigDecimal`
 
--   `based on package "js-big-decimal@1.3.4"`
--   `https://github.com/royNiladri/js-big-decimal`
+- `based on package "js-big-decimal@1.3.4"`
+- `https://github.com/royNiladri/js-big-decimal`
 
 ```typescript
-import { BigDecimal } from '@angular-ru/cdk/big-decimal';
+import {BigDecimal} from '@angular-ru/cdk/big-decimal';
 
 const a: BigDecimal = new BigDecimal('111');
 const b: BigDecimal = new BigDecimal('222');

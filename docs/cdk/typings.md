@@ -1,15 +1,15 @@
 #### `@angular-ru/cdk/typings`
 
--   `Nullable`
+- `Nullable`
 
 ```typescript
 @Component({})
 class MyComponent {
-    @Input() public list: Nullable<string[]>; // equals ~ @Input() public list: string[] | null | undefined;
+  @Input() public list: Nullable<string[]>; // equals ~ @Input() public list: string[] | null | undefined;
 }
 ```
 
--   `Timestamp` - alias for timestamp type.
+- `Timestamp` - alias for timestamp type.
 
 ```typescript
 let time: Timestamp = new Date().toISOString();
@@ -17,53 +17,53 @@ let time: Timestamp = new Date().toISOString();
 time = new Date().getTime();
 ```
 
--   `NonEmptyArray`
+- `NonEmptyArray`
 
 ```typescript
-import { NonEmptyArray } from '@angular-ru/cdk/typings';
+import {NonEmptyArray} from '@angular-ru/cdk/typings';
 
 export function assertIsEmptyList(arr: string[]): asserts arr is NonEmptyArray<string> {
-    if (!Array.isArray(arr) || arr.length === 0) {
-        throw new EmptyArrayList();
-    }
+  if (!Array.isArray(arr) || arr.length === 0) {
+    throw new EmptyArrayList();
+  }
 }
 ```
 
--   `PlainObject`, `PlainObjectOf<T>`
+- `PlainObject`, `PlainObjectOf<T>`
 
 ```typescript
-const a: PlainObject = { a: 1, b: '2' };
-const b: PlainObjectOf<number> = { a: 1, b: 2 };
+const a: PlainObject = {a: 1, b: '2'};
+const b: PlainObjectOf<number> = {a: 1, b: 2};
 ```
 
--   `Fn<T, U>`
+- `Fn<T, U>`
 
 ```typescript
 const fn1: Fn = () => {};
 const fn2: Fn = function (val: string) {};
 ```
 
--   `DeepPartial<T>`
+- `DeepPartial<T>`
 
 ```typescript
 const myWindow: DeepPartial<Window> = {};
 console.log(myWindow?.navigator?.userAgent);
 ```
 
--   `PrimaryKey`
+- `PrimaryKey`
 
 ```typescript
 const idKey: string = PrimaryKey.ID;
 ```
 
--   `Immutable<T>, Mutable<T>`
+- `Immutable<T>, Mutable<T>`
 
 ```typescript
 const obj: Immutable<PlainObject> = {};
 obj['a'] = 5; // TS: Index signature in type 'Immutable<PlainObject>' only permits reading
 ```
 
--   `ClassType`
+- `ClassType`
 
 ```typescript
 function inject(typeRef: ClassType) {}
@@ -73,21 +73,21 @@ class A {}
 inject(A);
 ```
 
--   `KeyValueComparator`
+- `KeyValueComparator`
 
 ```typescript
 @Component({
-    template: `
-        <ng-container *ngFor="let item of data | keyvalue : compare"></ng-container>
-    `
+  template: `
+    <ng-container *ngFor="let item of data | keyvalue: compare"></ng-container>
+  `,
 })
 export class MyComponent {
-    public compare: KeyValueComparator = compareKeys;
-    // ..
+  public compare: KeyValueComparator = compareKeys;
+  // ..
 }
 ```
 
--   `Couple<T>`
+- `Couple<T>`
 
 ```typescript
 let operands: Couple<number> = [1, 2];
@@ -97,52 +97,52 @@ let numbers: Couple<number> = [1, 2, 3];
 //                            ~~~~~~~~~
 ```
 
--   `KeyOfList<T>`
+- `KeyOfList<T>`
 
 ```typescript
 class B {
-    c: string = '';
+  c: string = '';
 }
 
 class A {
-    a: string = '';
-    b: B = new B();
+  a: string = '';
+  b: B = new B();
 }
 
 const keys: KeyOfList<A> = ['a', 'b']; // output keys
 ```
 
--   `DeepKeyOfList<T>`
+- `DeepKeyOfList<T>`
 
 ```typescript
 class B {
-    c: string = '';
-    etc: { f: string } = { f: '' };
+  c: string = '';
+  etc: {f: string} = {f: ''};
 }
 
 class A {
-    a: string = '';
-    b: B = new B();
+  a: string = '';
+  b: B = new B();
 }
 
 const keys: DeepKeyOfList<A> = ['a', 'b.c', 'b.etc.f']; // output keys
 ```
 
--   `Leaves<T>`
+- `Leaves<T>`
 
 `Leaves<T>[] === DeepKeyOfList<T>`
 
--   `Paths<T>`
+- `Paths<T>`
 
 ```typescript
 class B {
-    c: string = '';
-    etc: { f: string } = { f: '' };
+  c: string = '';
+  etc: {f: string} = {f: ''};
 }
 
 class A {
-    a: string = '';
-    b: B = new B();
+  a: string = '';
+  b: B = new B();
 }
 
 const paths: Paths<A>[] = ['a', 'b', 'b.c', 'b.etc', 'b.etc.f']; // output keys
@@ -154,40 +154,40 @@ also, you can:
 const etc: Paths<A['b']['etc']> = 'f';
 ```
 
--   `KeysOfType<T, Type>`
+- `KeysOfType<T, Type>`
 
 ```typescript
 interface SomeInterface {
-    someNumber: number;
-    someString: string;
-    someStringArray: string[];
-    someAnotherNumber: number;
+  someNumber: number;
+  someString: string;
+  someStringArray: string[];
+  someAnotherNumber: number;
 }
 
 type SomeStringNumberKeys = KeysOfType<SomeInterface, string | number>;
 // SomeStringNumberKeys === 'someNumber' | 'someString' | 'someAnotherNumber'
 ```
 
--   `NgCssClasses`
+- `NgCssClasses`
 
 ```typescript
-const myClasses: NgCssClasses = { 'block__element--modificator': true };
+const myClasses: NgCssClasses = {'block__element--modificator': true};
 ```
 
--   `DateIntervalDescriptor`
+- `DateIntervalDescriptor`
 
 ```typescript
-const descriptor: DateIntervalDescriptor = { dateFromKey: 'dateFrom', dateToKey: 'dateTo' };
+const descriptor: DateIntervalDescriptor = {dateFromKey: 'dateFrom', dateToKey: 'dateTo'};
 const updatedDate = makeSomeOperations(dateFormGroup, descriptor);
 
 function makeSomeOperations(form: FormGroup, descriptor: DateIntervalDescriptor) {
-    const fromControl: FormControl = form.get(descriptor.dateFromKey) as FormControl;
-    const toControl: FormControl = form.get(descriptor.dateFromKey) as FormControl;
-    // ...
+  const fromControl: FormControl = form.get(descriptor.dateFromKey) as FormControl;
+  const toControl: FormControl = form.get(descriptor.dateFromKey) as FormControl;
+  // ...
 }
 ```
 
--   `Tuple`
+- `Tuple`
 
 ```typescript
 type NumberCouple = Tuple<number, 2>; // [number, number]
@@ -196,7 +196,7 @@ type BracedString = Tuple<string>; // [string]
 type NumberCouple = Tuple<string, 0>; // []
 ```
 
--   `InfiniteTuple`
+- `InfiniteTuple`
 
 ```typescript
 type CoupleAndMaybeSomeNumbers = InfiniteTuple<number, 2>; // [number, number, ...number]
@@ -205,7 +205,7 @@ type AtLeastOneLine = InfiniteTuple<string>; // [string, ...string]
 type SomeLines = InfiniteTuple<string, 0>; // string[]
 ```
 
--   `LastOfTuple`
+- `LastOfTuple`
 
 ```typescript
 type Number = LastOfTuple<[number]>; // number
@@ -215,7 +215,7 @@ type StringOrNumber = LastOfTuple<[string, ...number[]]>; // string | number
 type Nothing = LastOfTuple<[]>; // undefined
 ```
 
--   `TupleItem`
+- `TupleItem`
 
 ```typescript
 type Number = TupleItem<[number], 0>; // number

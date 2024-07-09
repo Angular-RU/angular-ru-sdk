@@ -1,11 +1,11 @@
 {
-    "root": "apps/cdk-demo/",
+    "name": "cdk-demo",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "apps/cdk-demo/",
     "projectType": "application",
-    "tags": ["scope:applications"],
     "targets": {
         "build": {
-            "builder": "@angular-devkit/build-angular:browser",
+            "executor": "@angular-devkit/build-angular:browser",
             "options": {
                 "outputPath": "dist/cdk-demo",
                 "tsConfig": "apps/cdk-demo/tsconfig.app.json",
@@ -37,17 +37,33 @@
                     "aot": true,
                     "extractLicenses": true,
                     "buildOptimizer": true
+                },
+                "development": {
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/cdk-demo/environments/environment.ts",
+                            "with": "apps/cdk-demo/environments/environment.prod.ts"
+                        }
+                    ],
+                    "optimization": false,
+                    "outputHashing": "all",
+                    "aot": true
                 }
             },
             "defaultConfiguration": "production",
-            "outputs": ["./dist/cdk-demo"]
+            "outputs": ["{projectRoot}/dist/cdk-demo"]
         },
         "serve": {
-            "builder": "@angular-devkit/build-angular:dev-server",
-            "options": { "browserTarget": "cdk-demo:build" },
+            "executor": "@angular-devkit/build-angular:dev-server",
+            "options": {
+                "buildTarget": "cdk-demo:build"
+            },
             "configurations": {
                 "production": {
-                    "browserTarget": "cdk-demo:build:production"
+                    "buildTarget": "cdk-demo:build:production"
+                },
+                "development": {
+                    "buildTarget": "cdk-demo:build:development"
                 }
             },
             "defaultConfiguration": "development"

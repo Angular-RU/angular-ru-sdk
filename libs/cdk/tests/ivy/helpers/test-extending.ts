@@ -1,12 +1,23 @@
 /* eslint-disable max-classes-per-file */
-import { ApplicationRef, ChangeDetectionStrategy, Component, Directive, Injectable, NgZone } from '@angular/core';
+import {
+    ApplicationRef,
+    ChangeDetectionStrategy,
+    Component,
+    Directive,
+    Injectable,
+    NgZone,
+} from '@angular/core';
 
-import { InjectFeatureTestService, InjectNgZone, InjectTestService } from './test-decorators';
-import { FeatureTestService, TestService } from './test-default';
+import {
+    InjectFeatureTestService,
+    InjectNgZone,
+    InjectTestService,
+} from './test-decorators';
+import {FeatureTestService, TestService} from './test-default';
 
 // noinspection AngularMissingOrInvalidDeclarationInModule
 @Directive({
-    selector: '[test-stairs-a]'
+    selector: '[test-stairs-a]',
 })
 export class TestStairsADirective {
     @InjectNgZone() public ngZone!: NgZone;
@@ -19,15 +30,16 @@ export class TestStairsB extends TestStairsADirective {
 
 @Component({
     selector: 'test-stairs-c',
-    template: '{{ ngZone.constructor.name }} {{ testService.testField }} {{ featureTestService.constructor.name }}',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    template:
+        '{{ ngZone.constructor.name }} {{ testService.testField }} {{ featureTestService.constructor.name }}',
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TestStairsComponent extends TestStairsB {
     @InjectFeatureTestService() public featureTestService!: FeatureTestService;
 }
 
 @Directive({
-    selector: '[super-test-directive]'
+    selector: '[super-test-directive]',
 })
 export abstract class AbstractSuperTestDirective {
     public abstract ngZone: NgZone;
@@ -41,7 +53,7 @@ export abstract class AbstractSuperTestDirective {
 @Component({
     selector: 'extending-test-component',
     template: '',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExtendingTestComponent extends AbstractSuperTestDirective {
     @InjectNgZone() public ngZone!: NgZone;

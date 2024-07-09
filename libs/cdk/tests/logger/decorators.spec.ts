@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { LoggerLevel, LoggerModule, LoggerService } from '@angular-ru/cdk/logger';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {LoggerLevel, LoggerModule, LoggerService} from '@angular-ru/cdk/logger';
 
-import { ConsoleFake, TestLoggerLineType } from './helpers/console-fake';
-import { MyTestComponent } from './helpers/test.component';
+import {ConsoleFake, TestLoggerLineType} from './helpers/console-fake';
+import {MyTestComponent} from './helpers/test.component';
 
 describe('[TEST]: Decorator API', () => {
     let logger: LoggerService;
@@ -21,8 +21,8 @@ describe('[TEST]: Decorator API', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [LoggerModule.forRoot({ instance: fakeConsole })],
-            declarations: [MyTestComponent]
+            imports: [LoggerModule.forRoot({instance: fakeConsole})],
+            declarations: [MyTestComponent],
         }).compileComponents();
 
         fixture = TestBed.createComponent(MyTestComponent);
@@ -33,7 +33,9 @@ describe('[TEST]: Decorator API', () => {
 
     it('logger decorator should correct work', () => {
         component.logger.log('Hello world');
-        expect(fakeConsole.stack()).toEqual(fakeConsole.createStack({ [TestLoggerLineType.LOG]: ['Hello world'] }));
+        expect(fakeConsole.stack()).toEqual(
+            fakeConsole.createStack({[TestLoggerLineType.LOG]: ['Hello world']}),
+        );
     });
 
     it('group decorator should correct work', () => {
@@ -41,7 +43,11 @@ describe('[TEST]: Decorator API', () => {
 
         expect(result).toEqual(groupIsWork);
         expect(fakeConsole.stack()).toEqual(
-            fakeConsole.createStack({ group_open: ['Test group'] }, { log: ['group is worked'] }, { group_end: [] })
+            fakeConsole.createStack(
+                {group_open: ['Test group']},
+                {log: ['group is worked']},
+                {group_end: []},
+            ),
         );
     });
 
@@ -50,7 +56,11 @@ describe('[TEST]: Decorator API', () => {
 
         expect(result).toEqual(groupIsWork);
         expect(fakeConsole.stack()).toEqual(
-            fakeConsole.createStack({ group_open: ['Test group'] }, { log: [groupIsWork] }, { group_end: [] })
+            fakeConsole.createStack(
+                {group_open: ['Test group']},
+                {log: [groupIsWork]},
+                {group_end: []},
+            ),
         );
     });
 
@@ -60,10 +70,10 @@ describe('[TEST]: Decorator API', () => {
         expect(result).toEqual(groupCollapsedIsWork);
         expect(fakeConsole.stack()).toEqual(
             fakeConsole.createStack(
-                { group_collapsed_open: ['Test group-collapsed'] },
-                { log: [groupCollapsedIsWork] },
-                { group_end: [] }
-            )
+                {group_collapsed_open: ['Test group-collapsed']},
+                {log: [groupCollapsedIsWork]},
+                {group_end: []},
+            ),
         );
     });
 
@@ -73,10 +83,10 @@ describe('[TEST]: Decorator API', () => {
         expect(result).toEqual(groupCollapsedIsWork);
         expect(fakeConsole.stack()).toEqual(
             fakeConsole.createStack(
-                { group_collapsed_open: ['Test group-collapsed'] },
-                { log: [groupCollapsedIsWork] },
-                { group_end: [] }
-            )
+                {group_collapsed_open: ['Test group-collapsed']},
+                {log: [groupCollapsedIsWork]},
+                {group_end: []},
+            ),
         );
     });
 
@@ -89,13 +99,13 @@ describe('[TEST]: Decorator API', () => {
         component.warn(warnIsWork);
         expect(fakeConsole.stack()).toEqual(
             fakeConsole.createStack(
-                { [TestLoggerLineType.LOG]: [logIsWork] },
-                { [TestLoggerLineType.TRACE_OR_DEBUG]: [traceIsWork] },
-                { [TestLoggerLineType.DEBUG]: [debugIsWork] },
-                { [TestLoggerLineType.INFO]: [infoIsWork] },
-                { [TestLoggerLineType.ERROR]: [errorIsWork] },
-                { [TestLoggerLineType.WARN]: [warnIsWork] }
-            )
+                {[TestLoggerLineType.LOG]: [logIsWork]},
+                {[TestLoggerLineType.TRACE_OR_DEBUG]: [traceIsWork]},
+                {[TestLoggerLineType.DEBUG]: [debugIsWork]},
+                {[TestLoggerLineType.INFO]: [infoIsWork]},
+                {[TestLoggerLineType.ERROR]: [errorIsWork]},
+                {[TestLoggerLineType.WARN]: [warnIsWork]},
+            ),
         );
     });
 
@@ -112,10 +122,10 @@ describe('[TEST]: Decorator API', () => {
 
         expect(fakeConsole.stack()).toEqual(
             fakeConsole.createStack(
-                { group_open: ['Test group with hello world'] },
-                { log: [groupIsWork] },
-                { group_end: [] }
-            )
+                {group_open: ['Test group with hello world']},
+                {log: [groupIsWork]},
+                {group_end: []},
+            ),
         );
     });
 
@@ -135,7 +145,9 @@ describe('[TEST]: Decorator API', () => {
         new Promise((done) => {
             component.longQueryBySecond(3, done);
             expect(fakeConsole.stack()).toEqual(
-                fakeConsole.createStack({ info: ['TimerLog: longQueryBySecond', 'took 3s to execute'] })
+                fakeConsole.createStack({
+                    info: ['TimerLog: longQueryBySecond', 'took 3s to execute'],
+                }),
             );
         }));
 

@@ -13,13 +13,13 @@ After a few seconds of waiting, you should be good to go. Let's get to the actua
 Angular table builder module to our app module (src/app.module.ts):
 
 ```typescript
-import { TableBuilderModule } from '@angular-ru/cdk/virtual-table';
+import {TableBuilderModule} from '@angular-ru/cdk/virtual-table';
 
 @NgModule({
-    imports: [
-        // ...
-        TableBuilderModule.forRoot()
-    ]
+  imports: [
+    // ...
+    TableBuilderModule.forRoot(),
+  ],
 })
 export class AppModule {}
 ```
@@ -29,21 +29,21 @@ export class AppModule {}
 Next, let's declare the basic grid configuration. Edit src/app.component.ts:
 
 ```typescript
-import { Component } from '@angular/core';
-import { MyData } from './my-data.interface';
+import {Component} from '@angular/core';
+import {MyData} from './my-data.interface';
 
 @Component({
-    selector: 'app-root',
-    template: `
-        <ngx-table-builder [source]="data"></ngx-table-builder>
-    `
+  selector: 'app-root',
+  template: `
+    <ngx-table-builder [source]="data"></ngx-table-builder>
+  `,
 })
 export class AppComponent {
-    public data: MyData[] = [
-        { make: 'Toyota', model: 'Celica', price: 35000 },
-        { make: 'Ford', model: 'Mondeo', price: 32000 },
-        { make: 'Porsche', model: 'Boxter', price: 72000 }
-    ];
+  public data: MyData[] = [
+    {make: 'Toyota', model: 'Celica', price: 35000},
+    {make: 'Ford', model: 'Mondeo', price: 32000},
+    {make: 'Porsche', model: 'Boxter', price: 72000},
+  ];
 }
 ```
 
@@ -57,61 +57,61 @@ acts as the core upon which anyone can build their own tailored data-table exper
 
 ```typescript
 // app.component.ts
-import { Component } from '@angular/core';
-import { LicenseSample } from './license.interface';
+import {Component} from '@angular/core';
+import {LicenseSample} from './license.interface';
 
 @Component({
-    selector: 'app',
-    templateUrl: './app.component.html'
+  selector: 'app',
+  templateUrl: './app.component.html',
 })
 export class AppComponent {
-    public licenses: LicenseSample[] = [
-        {
-            id: 1,
-            name: 'single',
-            price: 29.3
-        },
-        {
-            id: 2,
-            name: 'developer',
-            price: 49.8
-        },
-        {
-            id: 3,
-            name: 'premium',
-            price: 99.5
-        },
-        {
-            id: 4,
-            name: 'enterprise',
-            price: 199
-        }
-    ];
+  public licenses: LicenseSample[] = [
+    {
+      id: 1,
+      name: 'single',
+      price: 29.3,
+    },
+    {
+      id: 2,
+      name: 'developer',
+      price: 49.8,
+    },
+    {
+      id: 3,
+      name: 'premium',
+      price: 99.5,
+    },
+    {
+      id: 4,
+      name: 'enterprise',
+      price: 199,
+    },
+  ];
 }
 ```
 
 ```html
 <!-- app.component.html -->
 <ngx-table-builder [source]="licenses">
-    <ngx-column key="name">
-        <ng-template ngx-th>License</ng-template>
-        <ng-template
-            ngx-td
-            let-name
-        >
-            {{ name | uppercase }}
-        </ng-template>
-    </ngx-column>
+  <ngx-column key="name">
+    <ng-template ngx-th>License</ng-template>
+    <ng-template
+      ngx-td
+      let-name
+    >
+      {{ name | uppercase }}
+    </ng-template>
+  </ngx-column>
 
-    <ngx-column key="price">
-        <ng-template ngx-th>Cost</ng-template>
-        <ng-template
-            ngx-td
-            let-price
-        >
-            {{ price | currency }}
-        </ng-template>
-    </ngx-column>
+  <ngx-column key="price">
+    <ng-template ngx-th>Cost</ng-template>
+    <ng-template
+      ngx-td
+      let-price
+    >
+      {{ price | currency }}
+    </ng-template>
+  </ngx-column>
 </ngx-table-builder>
 ```
 
@@ -119,78 +119,78 @@ export class AppComponent {
 
 ```typescript
 // app.component.ts
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { LicenseSample } from './license.interface';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {LicenseSample} from './license.interface';
 
 @Component({
-    selector: 'app',
-    templateUrl: './app.component.html'
+  selector: 'app',
+  templateUrl: './app.component.html',
 })
 export class AppComponent implements AfterViewInit {
-    @ViewChild('table') table;
+  @ViewChild('table') table;
 
-    public licenses: LicenseSample[] = [
-        {
-            id: 1,
-            name: 'single111',
-            price: 29.3
-        },
-        {
-            id: 2,
-            name: 'developer123',
-            price: 49.8
-        },
-        {
-            id: 3,
-            name: 'beginner211',
-            price: 99.5
-        },
-        {
-            id: 4,
-            name: 'enterprise321',
-            price: 199
-        }
-    ];
+  public licenses: LicenseSample[] = [
+    {
+      id: 1,
+      name: 'single111',
+      price: 29.3,
+    },
+    {
+      id: 2,
+      name: 'developer123',
+      price: 49.8,
+    },
+    {
+      id: 3,
+      name: 'beginner211',
+      price: 99.5,
+    },
+    {
+      id: 4,
+      name: 'enterprise321',
+      price: 199,
+    },
+  ];
 
-    ngAfterViewInit() {
-        this.table.filterable.updateFilterTypeBy(TableFilterType.CONTAINS, 'er');
-        this.table.filterable.updateFilterValueBy('11', 'name');
-    }
+  ngAfterViewInit() {
+    this.table.filterable.updateFilterTypeBy(TableFilterType.CONTAINS, 'er');
+    this.table.filterable.updateFilterValueBy('11', 'name');
+  }
 }
 ```
 
 ```html
 <!-- app.component.html -->
 <ngx-table-builder
-    #table
-    enable-filtering
-    [source]="licenses"
+  #table
+  enable-filtering
+  [source]="licenses"
 >
-    <ngx-column
-        key="name"
-        is-filterable
+  <ngx-column
+    key="name"
+    is-filterable
+  >
+    <ng-template ngx-th>License</ng-template>
+    <ng-template
+      ngx-td
+      let-name
     >
-        <ng-template ngx-th>License</ng-template>
-        <ng-template
-            ngx-td
-            let-name
-        >
-            {{ name | uppercase }}
-        </ng-template>
-    </ngx-column>
+      {{ name | uppercase }}
+    </ng-template>
+  </ngx-column>
 
-    <ngx-column
-        key="price"
-        is-filterable
+  <ngx-column
+    key="price"
+    is-filterable
+  >
+    <ng-template ngx-th>Cost</ng-template>
+    <ng-template
+      ngx-td
+      let-price
     >
-        <ng-template ngx-th>Cost</ng-template>
-        <ng-template
-            ngx-td
-            let-price
-        >
-            {{ price | currency }}
-        </ng-template>
-    </ngx-column>
+      {{ price | currency }}
+    </ng-template>
+  </ngx-column>
 </ngx-table-builder>
 ```
 
@@ -223,11 +223,11 @@ provide like this:
 
 ```html
 <ngx-table-builder>
-    ...
-    <ngx-filter>
-        <your-custom-filter></your-custom-filter>
-    </ngx-filter>
-    ...
+  ...
+  <ngx-filter>
+    <your-custom-filter></your-custom-filter>
+  </ngx-filter>
+  ...
 </ngx-table-builder>
 ```
 
@@ -238,13 +238,13 @@ table builder will not filter source by its own rules, so you can handle it on y
 
 ### TODO:
 
--   [x] Simple use and setup;
--   [x] Virtual scroll (horizontal, vertical);
--   [x] Auto calculate height;
--   [x] Customisable Appearance;
--   [x] State Persistence;
--   [x] Filtering;
--   [x] Resizing;
--   [x] Sorting;
--   [x] Selection;
--   [x] Context menu;
+- [x] Simple use and setup;
+- [x] Virtual scroll (horizontal, vertical);
+- [x] Auto calculate height;
+- [x] Customisable Appearance;
+- [x] State Persistence;
+- [x] Filtering;
+- [x] Resizing;
+- [x] Sorting;
+- [x] Selection;
+- [x] Context menu;

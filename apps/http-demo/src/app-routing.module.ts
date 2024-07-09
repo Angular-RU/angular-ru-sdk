@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
     imports: [
@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
                 {
                     path: '',
                     pathMatch: 'full',
-                    redirectTo: 'samples'
+                    redirectTo: 'samples',
                 },
                 {
                     path: 'samples',
@@ -17,18 +17,21 @@ import { RouterModule } from '@angular/router';
                         {
                             path: '',
                             pathMatch: 'full',
-                            redirectTo: 'guide'
+                            redirectTo: 'guide',
                         },
                         {
                             path: 'guide',
-                            loadChildren: () => import('./samples/guide/guide.module').then((m) => m.GuideModule)
-                        }
-                    ]
-                }
+                            loadChildren: () =>
+                                import('./samples/guide/guide.module').then(
+                                    (m) => m.GuideModule,
+                                ),
+                        },
+                    ],
+                },
             ],
-            { useHash: true, scrollPositionRestoration: 'enabled' }
-        )
+            {useHash: true, scrollPositionRestoration: 'enabled'},
+        ),
     ],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
 export class AppRoutingModule {}

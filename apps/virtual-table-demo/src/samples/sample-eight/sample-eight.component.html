@@ -3,7 +3,7 @@
 
     <mat-checkbox
         class="regenerate"
-        [ngModelOptions]="{ standalone: true }"
+        [ngModelOptions]="{standalone: true}"
         [(ngModel)]="regenerate"
     >
         Auto regenerate (15sec)
@@ -18,22 +18,22 @@
 
 <ngx-table-builder
     #table
-    [source]="data"
     [row-height]="40"
+    [source]="data"
     [vertical-border]="false"
 >
     <ngx-column
+        important-template
         key="active"
-        width="60"
         sticky
         vertical-line
-        important-template
+        width="60"
     >
         <ng-template ngx-th></ng-template>
         <ng-template
+            let-row
             ngx-td
             row
-            let-row
         >
             <div [@.disabled]="true">
                 <mat-checkbox
@@ -45,13 +45,13 @@
     </ngx-column>
 
     <ngx-column
-        key="cost"
         important-template
+        key="cost"
     >
         <ng-template
+            let-row
             ngx-td
             row
-            let-row
         >
             <span [class.cost-disable]="!$any(row)?.active">{{ $any(row)?.cost | currency }}</span>
         </ng-template>
@@ -63,8 +63,8 @@
     >
         <ng-container *ngIf="key === 'symbol'; else other">
             <ng-template
-                ngx-td
                 let-symbol
+                ngx-td
             >
                 {{ symbol }}
             </ng-template>
@@ -72,8 +72,8 @@
 
         <ng-template
             #other
-            ngx-td
             let-cell
+            ngx-td
             [nowrap]="false"
         >
             {{ cell }}
@@ -81,16 +81,16 @@
     </ngx-column>
 
     <ngx-column
+        custom-key
+        important-template
         key="symbol-edit"
         sticky-end
         vertical-line
-        custom-key
-        important-template
     >
         <ng-template
+            let-row
             ngx-td
             row
-            let-row
         >
             <mat-form-field class="example-full-width">
                 <div [@.disabled]="true">

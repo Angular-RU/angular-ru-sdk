@@ -1,11 +1,11 @@
 {
-    "root": "apps/flex-layout-demo/",
+    "name": "flex-layout-demo",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "apps/flex-layout-demo/",
     "projectType": "application",
-    "tags": ["scope:applications"],
     "targets": {
         "build": {
-            "builder": "@angular-devkit/build-angular:browser",
+            "executor": "@angular-devkit/build-angular:browser",
             "options": {
                 "outputPath": "dist/flex-layout-demo",
                 "tsConfig": "apps/flex-layout-demo/tsconfig.app.json",
@@ -37,17 +37,31 @@
                     "aot": true,
                     "extractLicenses": true,
                     "buildOptimizer": true
+                },
+                "development": {
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/flex-layout-demo/environments/environment.ts",
+                            "with": "apps/flex-layout-demo/environments/environment.prod.ts"
+                        }
+                    ],
+                    "optimization": false
                 }
             },
             "defaultConfiguration": "production",
-            "outputs": ["./dist/flex-layout-demo"]
+            "outputs": ["{projectRoot}/dist/flex-layout-demo"]
         },
         "serve": {
-            "builder": "@angular-devkit/build-angular:dev-server",
-            "options": { "browserTarget": "flex-layout-demo:build" },
+            "executor": "@angular-devkit/build-angular:dev-server",
+            "options": {
+                "buildTarget": "flex-layout-demo:build"
+            },
             "configurations": {
                 "production": {
-                    "browserTarget": "flex-layout-demo:build:production"
+                    "buildTarget": "flex-layout-demo:build:production"
+                },
+                "development": {
+                    "buildTarget": "flex-layout-demo:build:development"
                 }
             },
             "defaultConfiguration": "development"

@@ -1,6 +1,6 @@
 #### `@angular-ru/cdk/zone.js`
 
--   `improve performance`
+- `improve performance`
 
 ```typescript
 // polyfills.ts

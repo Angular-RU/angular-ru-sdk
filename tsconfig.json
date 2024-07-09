@@ -1,5 +1,21 @@
 {
-    "extends": "./libs/typescript/tsconfig.json",
-    "ts-node": { "compilerOptions": { "module": "commonjs" } },
-    "compilerOptions": { "types": ["node", "../@angular-ru/type-declarations"], "module": "esnext" }
+    "extends": "@taiga-ui/tsconfig",
+    "ts-node": {
+        "compilerOptions": {
+            "module": "commonjs"
+        }
+    },
+    "compilerOptions": {
+        "baseUrl": "./",
+        "target": "esnext",
+        "module": "esnext",
+        "lib": ["esnext", "dom"],
+        "types": [],
+        "paths": {
+            "@angular-ru/cdk": ["./libs/cdk"],
+            "@angular-ru/cdk/*": ["./libs/cdk/*"],
+            "@angular-ru/ngxs": ["./libs/ngxs"],
+            "@angular-ru/ngxs/*": ["./libs/ngxs/*"]
+        }
+    }
 }

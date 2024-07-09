@@ -12,14 +12,16 @@ import {
     splitOnUniqueValues,
     stringify,
     toStringValue,
-    trim
+    trim,
 } from '@angular-ru/cdk/string';
 
 describe('[TEST]: String', () => {
     it('toString', () => {
         expect(toStringValue([1, 2, 3])).toBe('1,2,3');
         expect(toStringValue([1, 2, 3], {} as any)).toBe('1,2,3');
-        expect(toStringValue([1, 2, 3], (value: number[]) => value.join('; '))).toBe('1; 2; 3');
+        expect(toStringValue([1, 2, 3], (value: number[]) => value.join('; '))).toBe(
+            '1; 2; 3',
+        );
     });
 
     it('get byte size', () => {
@@ -29,13 +31,13 @@ describe('[TEST]: String', () => {
     });
 
     it('stringify', () => {
-        expect(stringify({ a: 1, b: { c: 2 } })).toBe(
+        expect(stringify({a: 1, b: {c: 2}})).toBe(
             `{
     "a": 1,
     "b": {
         "c": 2
     }
-}`
+}`,
         );
 
         expect(stringify(1)).toBe('1');
@@ -58,10 +60,14 @@ describe('[TEST]: String', () => {
             '5.6',
             '6',
             '-52',
-            '0'
+            '0',
         ]);
 
-        expect(splitOnUniqueValues('1 - 2 - 3 - 3 - 2 - 1', /-/g)).toEqual(['1', '2', '3']);
+        expect(splitOnUniqueValues('1 - 2 - 3 - 3 - 2 - 1', /-/g)).toEqual([
+            '1',
+            '2',
+            '3',
+        ]);
 
         expect(
             splitOnUniqueValues(`
@@ -72,7 +78,7 @@ describe('[TEST]: String', () => {
 
    3
 
-`)
+`),
         ).toEqual(['1', '2', '3']);
     });
 
@@ -126,7 +132,9 @@ describe('[TEST]: String', () => {
     });
 
     it('removeNonNumericSymbols', () => {
-        expect(removeNonNumericSymbols('Tsgqw__-123,525.asdasd!~s . adqasllZ*a')).toBe('-123,525..');
+        expect(removeNonNumericSymbols('Tsgqw__-123,525.asdasd!~s . adqasllZ*a')).toBe(
+            '-123,525..',
+        );
         expect(removeNonNumericSymbols('1 2 3')).toBe('123');
         expect(removeNonNumericSymbols(null)).toBe('');
         expect(removeNonNumericSymbols()).toBe('');

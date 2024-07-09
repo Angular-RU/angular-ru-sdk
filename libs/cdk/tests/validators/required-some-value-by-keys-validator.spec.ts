@@ -1,6 +1,6 @@
 /* eslint-disable spellcheck/spell-checker */
-import { AbstractControl, FormControl, FormGroup, ValidatorFn } from '@angular/forms';
-import { requiredSomeValueByKeysValidator } from '@angular-ru/cdk/validators';
+import {AbstractControl, FormControl, FormGroup, ValidatorFn} from '@angular/forms';
+import {requiredSomeValueByKeysValidator} from '@angular-ru/cdk/validators';
 
 describe('[TEST]: requiredSomeValueByKeysValidator', () => {
     let form: FormGroup;
@@ -11,17 +11,23 @@ describe('[TEST]: requiredSomeValueByKeysValidator', () => {
                 {
                     aaa: new FormControl(),
                     bbb: new FormControl(),
-                    ccc: new FormControl()
+                    ccc: new FormControl(),
                 },
-                { validators: [requiredSomeValueByKeysValidator(['aaa', 'bbb', 'ccc'])] }
+                {validators: [requiredSomeValueByKeysValidator(['aaa', 'bbb', 'ccc'])]},
             );
         });
 
         it('should return error if control is not part of FormGroup', () => {
             const control: AbstractControl = new FormControl();
-            const validator: ValidatorFn = requiredSomeValueByKeysValidator(['aaa', 'bbb', 'ccc']);
+            const validator: ValidatorFn = requiredSomeValueByKeysValidator([
+                'aaa',
+                'bbb',
+                'ccc',
+            ]);
 
-            expect(() => validator(control))?.toThrow(new Error('requiredSomeValueByKeys must be used on form group'));
+            expect(() => validator(control))?.toThrow(
+                new Error('requiredSomeValueByKeys must be used on form group'),
+            );
         });
 
         // noinspection DuplicatedCode
@@ -29,23 +35,23 @@ describe('[TEST]: requiredSomeValueByKeysValidator', () => {
             form.controls?.['aaa']?.setValue(undefined);
             form.controls?.['bbb']?.setValue(null);
             form.controls?.['ccc']?.setValue(NaN);
-            expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
+            expect(form.errors).toEqual({requiredSomeValueByKeys: true});
         });
 
         it('should return error if all controls with no values: "", "null", Infinity', () => {
             form.controls?.['aaa']?.setValue('');
             form.controls?.['bbb']?.setValue(null);
             form.controls?.['ccc']?.setValue(Infinity);
-            expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
+            expect(form.errors).toEqual({requiredSomeValueByKeys: true});
         });
 
         it('should return error if all controls with no values: []', () => {
             form.controls?.['aaa']?.setValue([]);
-            expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
+            expect(form.errors).toEqual({requiredSomeValueByKeys: true});
         });
 
         it('should return error if all controls with no values', () => {
-            expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
+            expect(form.errors).toEqual({requiredSomeValueByKeys: true});
         });
 
         it('should be valid if there is only one value with type number', () => {
@@ -71,12 +77,15 @@ describe('[TEST]: requiredSomeValueByKeysValidator', () => {
         });
 
         it('should be valid if there is null as a parameter', () => {
-            form = new FormGroup({}, { validators: [requiredSomeValueByKeysValidator()] });
+            form = new FormGroup({}, {validators: [requiredSomeValueByKeysValidator()]});
             expect(form.valid).toBe(true);
         });
 
         it('should be valid if there is empty list as a parameter', () => {
-            form = new FormGroup({}, { validators: [requiredSomeValueByKeysValidator([])] });
+            form = new FormGroup(
+                {},
+                {validators: [requiredSomeValueByKeysValidator([])]},
+            );
             expect(form.valid).toBe(true);
         });
     });
@@ -87,15 +96,15 @@ describe('[TEST]: requiredSomeValueByKeysValidator', () => {
             form = new FormGroup(
                 {
                     ddd: new FormGroup({
-                        eee: new FormControl()
-                    })
+                        eee: new FormControl(),
+                    }),
                 },
-                { validators: [requiredSomeValueByKeysValidator(['ddd.eee'])] }
+                {validators: [requiredSomeValueByKeysValidator(['ddd.eee'])]},
             );
         });
 
         it('should return error if nested control has no value', () => {
-            expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
+            expect(form.errors).toEqual({requiredSomeValueByKeys: true});
         });
 
         it('should be valid if nested control has a value', () => {
@@ -112,17 +121,17 @@ describe('[TEST]: requiredSomeValueByKeysValidator', () => {
                 {
                     aaa: new FormGroup({
                         bbb: new FormGroup({
-                            ccc: new FormControl()
-                        })
-                    })
+                            ccc: new FormControl(),
+                        }),
+                    }),
                 },
-                { validators: [requiredSomeValueByKeysValidator(['aaa.bbb.ccc'])] }
+                {validators: [requiredSomeValueByKeysValidator(['aaa.bbb.ccc'])]},
             );
         });
 
         // noinspection DuplicatedCode
         it('should return error if nested control has no value', () => {
-            expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
+            expect(form.errors).toEqual({requiredSomeValueByKeys: true});
         });
 
         it('should be valid if nested control has a value', () => {
@@ -139,18 +148,18 @@ describe('[TEST]: requiredSomeValueByKeysValidator', () => {
                 {
                     aaa: new FormGroup({
                         bbb: new FormGroup({
-                            ccc: new FormControl()
-                        })
+                            ccc: new FormControl(),
+                        }),
                     }),
-                    ddd: new FormControl()
+                    ddd: new FormControl(),
                 },
-                { validators: [requiredSomeValueByKeysValidator(['aaa.bbb.ccc', 'ddd'])] }
+                {validators: [requiredSomeValueByKeysValidator(['aaa.bbb.ccc', 'ddd'])]},
             );
         });
 
         // noinspection DuplicatedCode
         it('should return error if nested control has no value', () => {
-            expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
+            expect(form.errors).toEqual({requiredSomeValueByKeys: true});
         });
 
         it('should be valid if nested control has a value', () => {
@@ -189,15 +198,15 @@ describe('[TEST]: requiredSomeValueByKeysValidator', () => {
             form = new FormGroup(
                 {
                     ddd: new FormGroup({
-                        eee: new FormControl()
-                    })
+                        eee: new FormControl(),
+                    }),
                 },
-                { validators: [requiredSomeValueByKeysValidator(['ddd.eee'])] }
+                {validators: [requiredSomeValueByKeysValidator(['ddd.eee'])]},
             );
         });
 
         it('should return error if nested control has no value', () => {
-            expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
+            expect(form.errors).toEqual({requiredSomeValueByKeys: true});
         });
 
         it('should be valid if nested control has a value', () => {
@@ -214,17 +223,17 @@ describe('[TEST]: requiredSomeValueByKeysValidator', () => {
                 {
                     aaa: new FormGroup({
                         bbb: new FormGroup({
-                            ccc: new FormControl()
-                        })
-                    })
+                            ccc: new FormControl(),
+                        }),
+                    }),
                 },
-                { validators: [requiredSomeValueByKeysValidator(['aaa.bbb.ccc'])] }
+                {validators: [requiredSomeValueByKeysValidator(['aaa.bbb.ccc'])]},
             );
         });
 
         // noinspection DuplicatedCode
         it('should return error if nested control has no value', () => {
-            expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
+            expect(form.errors).toEqual({requiredSomeValueByKeys: true});
         });
 
         // noinspection DuplicatedCode
@@ -242,17 +251,17 @@ describe('[TEST]: requiredSomeValueByKeysValidator', () => {
                 {
                     aaa: new FormGroup({
                         bbb: new FormGroup({
-                            ccc: new FormControl()
-                        })
+                            ccc: new FormControl(),
+                        }),
                     }),
-                    ddd: new FormControl()
+                    ddd: new FormControl(),
                 },
-                { validators: [requiredSomeValueByKeysValidator(['aaa.bbb.ccc', 'ddd'])] }
+                {validators: [requiredSomeValueByKeysValidator(['aaa.bbb.ccc', 'ddd'])]},
             );
         });
 
         it('should return error if nested control has no value', () => {
-            expect(form.errors).toEqual({ requiredSomeValueByKeys: true });
+            expect(form.errors).toEqual({requiredSomeValueByKeys: true});
         });
 
         it('should be valid if nested control has a value', () => {

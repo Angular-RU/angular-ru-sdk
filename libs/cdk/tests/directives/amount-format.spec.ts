@@ -1,15 +1,21 @@
-import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder, FormGroup, FormsModule, NgControl, ReactiveFormsModule } from '@angular/forms';
-import { By } from '@angular/platform-browser';
+import {CommonModule} from '@angular/common';
+import {Component, ElementRef, ViewChild} from '@angular/core';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {
+    FormBuilder,
+    FormGroup,
+    FormsModule,
+    NgControl,
+    ReactiveFormsModule,
+} from '@angular/forms';
+import {By} from '@angular/platform-browser';
 import {
     AmountFormatDirective,
     AmountFormatModule,
     AmountOptions,
-    DEFAULT_AMOUNT_OPTIONS
+    DEFAULT_AMOUNT_OPTIONS,
 } from '@angular-ru/cdk/directives';
-import { Nullable } from '@angular-ru/cdk/typings';
+import {Nullable} from '@angular-ru/cdk/typings';
 
 describe('[TEST]: Amount format directive', () => {
     describe('expect without component', () => {
@@ -26,8 +32,8 @@ describe('[TEST]: Amount format directive', () => {
                     value: '',
                     setSelectionRange() {
                         // ...
-                    }
-                }
+                    },
+                },
             };
 
             control = {
@@ -35,11 +41,15 @@ describe('[TEST]: Amount format directive', () => {
                 reset(value?: string | number): void {
                     // @ts-ignore
                     control.value = ngModelValue = value;
-                }
+                },
             };
 
             // MOCK
-            directive = new AmountFormatDirective(element as ElementRef, DEFAULT_AMOUNT_OPTIONS, control as NgControl);
+            directive = new AmountFormatDirective(
+                element as ElementRef,
+                DEFAULT_AMOUNT_OPTIONS,
+                control as NgControl,
+            );
         });
 
         describe('ru-RU', () => {
@@ -118,7 +128,10 @@ describe('[TEST]: Amount format directive', () => {
 
             describe('only integer by ru-RU', () => {
                 beforeEach(() => {
-                    directive.amountFormatOptions = { lang: 'ru-RU', formatOptions: { maximumFractionDigits: 0 } };
+                    directive.amountFormatOptions = {
+                        lang: 'ru-RU',
+                        formatOptions: {maximumFractionDigits: 0},
+                    };
                 });
 
                 it('convert `15000` to `15 000` for view value', () => {
@@ -175,7 +188,7 @@ describe('[TEST]: Amount format directive', () => {
         describe('en-EU', () => {
             beforeEach(() => {
                 // noinspection UnnecessaryLocalVariableJS
-                const options: AmountOptions = { lang: 'en-EU' };
+                const options: AmountOptions = {lang: 'en-EU'};
 
                 directive.amountFormatOptions = options;
             });
@@ -260,7 +273,10 @@ describe('[TEST]: Amount format directive', () => {
 
             describe('only integer en-EU', () => {
                 beforeEach(() => {
-                    directive.amountFormatOptions = { lang: 'en-EU', formatOptions: { maximumFractionDigits: 0 } };
+                    directive.amountFormatOptions = {
+                        lang: 'en-EU',
+                        formatOptions: {maximumFractionDigits: 0},
+                    };
                 });
 
                 it('convert `16000` to `16,000` for view value', () => {
@@ -317,7 +333,7 @@ describe('[TEST]: Amount format directive', () => {
         describe('de-DE', () => {
             beforeEach(() => {
                 // noinspection UnnecessaryLocalVariableJS
-                const options: AmountOptions = { lang: 'de-DE' };
+                const options: AmountOptions = {lang: 'de-DE'};
 
                 directive.amountFormatOptions = options;
             });
@@ -402,7 +418,10 @@ describe('[TEST]: Amount format directive', () => {
 
             describe('only integer de-DE', () => {
                 beforeEach(() => {
-                    directive.amountFormatOptions = { lang: 'de-DE', formatOptions: { maximumFractionDigits: 0 } };
+                    directive.amountFormatOptions = {
+                        lang: 'de-DE',
+                        formatOptions: {maximumFractionDigits: 0},
+                    };
                 });
 
                 it('convert `15000` to `15.000` for view value', () => {
@@ -459,7 +478,7 @@ describe('[TEST]: Amount format directive', () => {
         describe('ja-JP', () => {
             beforeEach(() => {
                 // noinspection UnnecessaryLocalVariableJS
-                const options: AmountOptions = { lang: 'ja-JP' };
+                const options: AmountOptions = {lang: 'ja-JP'};
 
                 directive.amountFormatOptions = options;
             });
@@ -544,7 +563,10 @@ describe('[TEST]: Amount format directive', () => {
 
             describe('only integer ja-JP', () => {
                 beforeEach(() => {
-                    directive.amountFormatOptions = { lang: 'ja-JP', formatOptions: { maximumFractionDigits: 0 } };
+                    directive.amountFormatOptions = {
+                        lang: 'ja-JP',
+                        formatOptions: {maximumFractionDigits: 0},
+                    };
                 });
 
                 it('convert `15000` to `15,000` for view value', () => {
@@ -609,23 +631,23 @@ describe('[TEST]: Amount format directive', () => {
                 expect(ngModelValue).toBeNull();
 
                 // EN
-                directive.amountFormatOptions = { lang: 'en-EU' };
+                directive.amountFormatOptions = {lang: 'en-EU'};
                 expect(element.nativeElement!.value).toBe('');
                 expect(ngModelValue).toBeNull();
 
                 // DE
-                directive.amountFormatOptions = { lang: 'de-DE' };
+                directive.amountFormatOptions = {lang: 'de-DE'};
                 expect(element.nativeElement!.value).toBe('');
                 expect(ngModelValue).toBeNull();
 
                 // JP
-                directive.amountFormatOptions = { lang: 'ja-JP' };
+                directive.amountFormatOptions = {lang: 'ja-JP'};
                 expect(element.nativeElement!.value).toBe('');
                 expect(ngModelValue).toBeNull();
 
                 // RU
                 element.nativeElement!.value = '';
-                directive.amountFormatOptions = { lang: 'ru-RU' };
+                directive.amountFormatOptions = {lang: 'ru-RU'};
                 expect(element.nativeElement!.value).toBe('');
                 expect(ngModelValue).toBeNull();
             });
@@ -641,17 +663,17 @@ describe('[TEST]: Amount format directive', () => {
                 expect(ngModelValue).toEqual(-500000.05);
 
                 // EN
-                directive.amountFormatOptions = { lang: 'en-EU' };
+                directive.amountFormatOptions = {lang: 'en-EU'};
                 expect(element.nativeElement!.value).toBe('-500,000.05');
                 expect(ngModelValue).toEqual(-500000.05);
 
                 // DE
-                directive.amountFormatOptions = { lang: 'de-DE' };
+                directive.amountFormatOptions = {lang: 'de-DE'};
                 expect(element.nativeElement!.value).toBe('-500.000,05');
                 expect(ngModelValue).toEqual(-500000.05);
 
                 // JP
-                directive.amountFormatOptions = { lang: 'ja-JP' };
+                directive.amountFormatOptions = {lang: 'ja-JP'};
                 expect(element.nativeElement!.value).toBe('-500,000.05');
                 expect(ngModelValue).toEqual(-500000.05);
             });
@@ -664,7 +686,10 @@ describe('[TEST]: Amount format directive', () => {
                 expect(ngModelValue).toEqual(-600000.051);
 
                 // EN
-                directive.amountFormatOptions = { lang: 'en-EU', formatOptions: { maximumFractionDigits: 0 } };
+                directive.amountFormatOptions = {
+                    lang: 'en-EU',
+                    formatOptions: {maximumFractionDigits: 0},
+                };
                 expect(element.nativeElement!.value).toBe('-600,000');
                 expect(ngModelValue).toEqual(-600000);
 
@@ -694,13 +719,13 @@ describe('[TEST]: Amount format directive', () => {
                         formControlName="amount"
                     />
                 </form>
-            `
+            `,
         })
         class HelloWorldComponent {
             @ViewChild(AmountFormatDirective) public directive!: AmountFormatDirective;
 
             public form: FormGroup = this.fb.group({
-                amount: this.fb.control('INVALID_VALUE')
+                amount: this.fb.control('INVALID_VALUE'),
             });
 
             constructor(private readonly fb: FormBuilder) {}
@@ -718,7 +743,11 @@ describe('[TEST]: Amount format directive', () => {
             return fixture?.debugElement.query(By.css('input'));
         }
 
-        function setInputViewValue(value: string, type: 'push' | 'reset' = 'reset', emitBlur: boolean = true): void {
+        function setInputViewValue(
+            value: string,
+            type: 'push' | 'reset' = 'reset',
+            emitBlur: boolean = true,
+        ): void {
             const input = getInputRef();
 
             if (input) {
@@ -726,7 +755,9 @@ describe('[TEST]: Amount format directive', () => {
                     input.nativeElement.value = value;
                 } else {
                     const current: string = input.nativeElement.value;
-                    const position: number = input.nativeElement.selectionEnd ?? input.nativeElement.value.length;
+                    const position: number =
+                        input.nativeElement.selectionEnd ??
+                        input.nativeElement.value.length;
 
                     input.nativeElement.value = `${current.slice(0, position)}${value}${current.slice(position)}`;
                     const newPosition = position + 1;
@@ -763,7 +794,12 @@ describe('[TEST]: Amount format directive', () => {
         beforeEach(() => {
             TestBed.configureTestingModule({
                 declarations: [HelloWorldComponent],
-                imports: [AmountFormatModule.forRoot(), CommonModule, FormsModule, ReactiveFormsModule]
+                imports: [
+                    AmountFormatModule.forRoot(),
+                    CommonModule,
+                    FormsModule,
+                    ReactiveFormsModule,
+                ],
             });
 
             fixture = TestBed.createComponent(HelloWorldComponent);

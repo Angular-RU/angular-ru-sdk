@@ -1,13 +1,13 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
+import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
-import { ApiClient } from '../../services/clients/api.client';
+import {ApiClient} from '../../services/clients/api.client';
 
 @Component({
     selector: 'guide',
     templateUrl: './guide.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GuideComponent implements OnInit, OnDestroy {
     private destroy$: Subject<void> = new Subject();

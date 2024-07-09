@@ -1,6 +1,6 @@
-import { AbstractControl, FormControl, FormGroup, ValidatorFn } from '@angular/forms';
-import { toUtc } from '@angular-ru/cdk/date';
-import { orderedIntervalValidator } from '@angular-ru/cdk/validators';
+import {AbstractControl, FormControl, FormGroup, ValidatorFn} from '@angular/forms';
+import {toUtc} from '@angular-ru/cdk/date';
+import {orderedIntervalValidator} from '@angular-ru/cdk/validators';
 
 describe('ordered interval validator', () => {
     let form: FormGroup;
@@ -9,9 +9,9 @@ describe('ordered interval validator', () => {
         form = new FormGroup(
             {
                 dateFrom: new FormControl(toUtc()),
-                dateTo: new FormControl(toUtc())
+                dateTo: new FormControl(toUtc()),
             },
-            [orderedIntervalValidator({ dateToKey: 'dateTo', dateFromKey: 'dateFrom' })]
+            [orderedIntervalValidator({dateToKey: 'dateTo', dateFromKey: 'dateFrom'})],
         );
     });
 
@@ -20,7 +20,7 @@ describe('ordered interval validator', () => {
     });
 
     it('should be valid if "from < to"', () => {
-        form.controls?.['dateFrom']?.setValue(toUtc({ month: new Date().getMonth() - 1 }));
+        form.controls?.['dateFrom']?.setValue(toUtc({month: new Date().getMonth() - 1}));
         expect(form.valid).toBe(true);
     });
 
@@ -41,14 +41,19 @@ describe('ordered interval validator', () => {
     });
 
     it('should return error if "from > to"', () => {
-        form.controls?.['dateFrom']?.setValue(toUtc({ month: new Date().getMonth() + 1 }));
-        expect(form.errors).toEqual({ orderedInterval: true });
+        form.controls?.['dateFrom']?.setValue(toUtc({month: new Date().getMonth() + 1}));
+        expect(form.errors).toEqual({orderedInterval: true});
     });
 
     it('should return error if control is not part of FormGroup', () => {
         const control: AbstractControl = new FormControl();
-        const validator: ValidatorFn = orderedIntervalValidator({ dateToKey: 'dateTo', dateFromKey: 'dateFrom' });
+        const validator: ValidatorFn = orderedIntervalValidator({
+            dateToKey: 'dateTo',
+            dateFromKey: 'dateFrom',
+        });
 
-        expect(() => validator(control)).toThrow(new Error('DateIntervalValidator must be used on form group'));
+        expect(() => validator(control)).toThrow(
+            new Error('DateIntervalValidator must be used on form group'),
+        );
     });
 });

@@ -1,4 +1,4 @@
-import { BigDecimal } from '@angular-ru/cdk/big-decimal';
+import {BigDecimal} from '@angular-ru/cdk/big-decimal';
 
 describe('[TEST]: BigDecimal - main', () => {
     it('should be defined', () => {
@@ -181,11 +181,15 @@ describe('[TEST]: BigDecimal - main', () => {
         });
 
         it('should transform 1567866522.26567 to 1,567,866,522.26567 if pretty is called without arguments using static method', () => {
-            expect(BigDecimal.getPrettyValue('1567866522.26567')).toBe('1,567,866,522.26567');
+            expect(BigDecimal.getPrettyValue('1567866522.26567')).toBe(
+                '1,567,866,522.26567',
+            );
         });
 
         it('should transform 1234567890123456 to 1234-5678-9012-3456 if pretty is called with 4, -  using static method', () => {
-            expect(BigDecimal.getPrettyValue('1234567890123456', 4, '-')).toBe('1234-5678-9012-3456');
+            expect(BigDecimal.getPrettyValue('1234567890123456', 4, '-')).toBe(
+                '1234-5678-9012-3456',
+            );
         });
 
         it('should transform -12.69 to -12.69', () => {
@@ -215,9 +219,9 @@ describe('[TEST]: BigDecimal - main', () => {
         });
 
         it('should produce -23.678-67.34=-91.018 using static method', () => {
-            expect(new BigDecimal('-23.678').add(new BigDecimal('-67.34')).getValue()).toBe(
-                new BigDecimal('-91.018').getValue()
-            );
+            expect(
+                new BigDecimal('-23.678').add(new BigDecimal('-67.34')).getValue(),
+            ).toBe(new BigDecimal('-91.018').getValue());
         });
 
         it('should produce -23.678=-23.678', () => {
@@ -253,38 +257,56 @@ describe('[TEST]: BigDecimal - main', () => {
 
     describe('multiply', () => {
         it('should: -12 * 0 = 0', () => {
-            expect(new BigDecimal('-12').multiply(new BigDecimal('0')).getValue()).toBe('0');
+            expect(new BigDecimal('-12').multiply(new BigDecimal('0')).getValue()).toBe(
+                '0',
+            );
         });
 
         it('should: 12 * -0 = 0', () => {
-            expect(new BigDecimal('12').multiply(new BigDecimal('-0')).getValue()).toBe('0');
+            expect(new BigDecimal('12').multiply(new BigDecimal('-0')).getValue()).toBe(
+                '0',
+            );
         });
 
         it('should: -12 * -0 = 0', () => {
-            expect(new BigDecimal('-12').multiply(new BigDecimal('-0')).getValue()).toBe('0');
+            expect(new BigDecimal('-12').multiply(new BigDecimal('-0')).getValue()).toBe(
+                '0',
+            );
         });
         it('should: -0.0000005 * 13 = -0.0000065', () => {
-            expect(new BigDecimal('-0.0000005').multiply(new BigDecimal('13')).getValue()).toBe('-0.0000065');
+            expect(
+                new BigDecimal('-0.0000005').multiply(new BigDecimal('13')).getValue(),
+            ).toBe('-0.0000065');
         });
 
         it('should: 12 * 13 = 156', () => {
-            expect(new BigDecimal('12').multiply(new BigDecimal('13')).getValue()).toBe('156');
+            expect(new BigDecimal('12').multiply(new BigDecimal('13')).getValue()).toBe(
+                '156',
+            );
         });
 
         it('should: 13 * 130 = 1690', () => {
-            expect(new BigDecimal('13').multiply(new BigDecimal('130')).getValue()).toBe('1690');
+            expect(new BigDecimal('13').multiply(new BigDecimal('130')).getValue()).toBe(
+                '1690',
+            );
         });
 
         it('should: 0.13 * 0.00130 = 0.000169', () => {
-            expect(new BigDecimal('0.13').multiply(new BigDecimal('0.00130')).getValue()).toBe('0.000169');
+            expect(
+                new BigDecimal('0.13').multiply(new BigDecimal('0.00130')).getValue(),
+            ).toBe('0.000169');
         });
 
         it('should: 0.5 * 0.2 = 0.1', () => {
-            expect(new BigDecimal('0.5').multiply(new BigDecimal('0.2')).getValue()).toBe('0.1');
+            expect(new BigDecimal('0.5').multiply(new BigDecimal('0.2')).getValue()).toBe(
+                '0.1',
+            );
         });
 
         it('should: -0.13 * 0.00130 = -0.000169', () => {
-            expect(new BigDecimal('-0.13').multiply(new BigDecimal('0.00130')).getValue()).toBe('-0.000169');
+            expect(
+                new BigDecimal('-0.13').multiply(new BigDecimal('0.00130')).getValue(),
+            ).toBe('-0.000169');
         });
 
         it('should: 13.0 * 0.00130 = 0.000169', () => {
@@ -292,11 +314,15 @@ describe('[TEST]: BigDecimal - main', () => {
         });
 
         it('should: -0.05 * -0.02 = 0.001', () => {
-            expect(new BigDecimal('-0.05').multiply(new BigDecimal('-0.02')).getValue()).toBe('0.001');
+            expect(
+                new BigDecimal('-0.05').multiply(new BigDecimal('-0.02')).getValue(),
+            ).toBe('0.001');
         });
 
         it('should: .05 * .02 = 0.001', () => {
-            expect(new BigDecimal('.05').multiply(new BigDecimal('.02')).getValue()).toBe('0.001');
+            expect(new BigDecimal('.05').multiply(new BigDecimal('.02')).getValue()).toBe(
+                '0.001',
+            );
         });
     });
 
@@ -310,33 +336,47 @@ describe('[TEST]: BigDecimal - main', () => {
         });
 
         it('should: 24 / 120 = 0.2', () => {
-            expect(new BigDecimal('24').divide(new BigDecimal('120'), 2).getValue()).toBe('0.20');
+            expect(new BigDecimal('24').divide(new BigDecimal('120'), 2).getValue()).toBe(
+                '0.20',
+            );
         });
     });
 
     describe('subtract', () => {
         it('should: -12 - 0 = -12', () => {
-            expect(new BigDecimal('-12').subtract(new BigDecimal('0')).getValue()).toBe('-12');
+            expect(new BigDecimal('-12').subtract(new BigDecimal('0')).getValue()).toBe(
+                '-12',
+            );
         });
 
         it('should: 0 - 12 = -12', () => {
-            expect(new BigDecimal('0').subtract(new BigDecimal('12')).getValue()).toBe('-12');
+            expect(new BigDecimal('0').subtract(new BigDecimal('12')).getValue()).toBe(
+                '-12',
+            );
         });
 
         it('should: 12 - 12 = 0', () => {
-            expect(new BigDecimal('12').subtract(new BigDecimal('12')).getValue()).toBe('0');
+            expect(new BigDecimal('12').subtract(new BigDecimal('12')).getValue()).toBe(
+                '0',
+            );
         });
 
         it('should: -12 - 12 = -24', () => {
-            expect(new BigDecimal('-12').subtract(new BigDecimal('12')).getValue()).toBe('-24');
+            expect(new BigDecimal('-12').subtract(new BigDecimal('12')).getValue()).toBe(
+                '-24',
+            );
         });
 
         it('should: 12 - -12 = 24', () => {
-            expect(new BigDecimal('12').subtract(new BigDecimal('-12')).getValue()).toBe('24');
+            expect(new BigDecimal('12').subtract(new BigDecimal('-12')).getValue()).toBe(
+                '24',
+            );
         });
 
         it('should: 12 - -12.0 = 24', () => {
-            expect(new BigDecimal('12').subtract(new BigDecimal('-12.0')).getValue()).toBe('24.0');
+            expect(
+                new BigDecimal('12').subtract(new BigDecimal('-12.0')).getValue(),
+            ).toBe('24.0');
         });
     });
 });

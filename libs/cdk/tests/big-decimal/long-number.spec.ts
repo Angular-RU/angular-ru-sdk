@@ -1,4 +1,4 @@
-import { BigDecimal } from '@angular-ru/cdk/big-decimal';
+import {BigDecimal} from '@angular-ru/cdk/big-decimal';
 
 describe('[TEST]: BigDecimal - long number', () => {
     it('should be defined', () => {

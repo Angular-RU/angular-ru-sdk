@@ -1,0 +1,15 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "preserveConstEnums": true,
+        "paths": {
+            "@angular-ru/cdk": ["./dist/cdk"],
+            "@angular-ru/cdk/*": ["./dist/cdk/*"],
+            "@angular-ru/ngxs": ["./dist/ngxs"],
+            "@angular-ru/ngxs/*": ["./dist/ngxs/*"]
+        }
+    },
+    "angularCompilerOptions": {
+        "compilationMode": "partial"
+    }
+}

@@ -1,4 +1,4 @@
-import { checkIsNodeEnvironment } from '@angular-ru/cdk/node.js';
+import {checkIsNodeEnvironment} from '@angular-ru/cdk/node.js';
 
 describe('[TEST] Node.js utils', () => {
     it('checkIsNodeEnvironment', () => {

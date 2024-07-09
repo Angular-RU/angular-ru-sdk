@@ -1,13 +1,13 @@
-import { pick } from '@angular-ru/cdk/array';
+import {pick} from '@angular-ru/cdk/array';
 
 interface MockObject {
     name: string;
     age: number;
-    place: { home: string };
+    place: {home: string};
 }
 
 describe('[TEST]: pick', (): void => {
-    const objectMock: MockObject = { name: 'Mike', age: 20, place: { home: 'sweet home' } };
+    const objectMock: MockObject = {name: 'Mike', age: 20, place: {home: 'sweet home'}};
     const arrMock: MockObject[] = [objectMock];
 
     it('should return value by key', (): void => {
@@ -15,7 +15,7 @@ describe('[TEST]: pick', (): void => {
         const objectKey: keyof MockObject = 'place';
 
         expect(arrMock.map(pick(primitiveKey))).toEqual(['Mike']);
-        expect(arrMock.map(pick(objectKey))).toEqual([{ home: 'sweet home' }]);
+        expect(arrMock.map(pick(objectKey))).toEqual([{home: 'sweet home'}]);
     });
 
     it('no pick values by deep keys', (): void => {

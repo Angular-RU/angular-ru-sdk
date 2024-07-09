@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, VERSION, Version } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    NgZone,
+    VERSION,
+    Version,
+} from '@angular/core';
 
 interface Favorite {
     id: number;
@@ -9,7 +16,7 @@ interface Favorite {
 @Component({
     selector: 'guide',
     templateUrl: './guide.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GuideComponent {
     public version: Version = VERSION;
@@ -24,11 +31,14 @@ export class GuideComponent {
                 .replace(/[^a-z]+/g, '')
                 // eslint-disable-next-line @typescript-eslint/no-magic-numbers,deprecation/deprecation
                 .substr(0, 5),
-            isMarked: false
-        })
+            isMarked: false,
+        }),
     );
 
-    constructor(private readonly zone: NgZone, protected readonly cd: ChangeDetectorRef) {}
+    constructor(
+        private readonly zone: NgZone,
+        protected readonly cd: ChangeDetectorRef,
+    ) {}
 
     public markFavorite(favorite: Favorite): void {
         this.zone.runOutsideAngular((): void => {
@@ -36,7 +46,7 @@ export class GuideComponent {
             setTimeout((): void => {
                 this.favorites = this.favorites.map((item: Favorite): Favorite => {
                     if (favorite.id === item.id) {
-                        return { ...favorite, isMarked: !favorite.isMarked };
+                        return {...favorite, isMarked: !favorite.isMarked};
                     }
 
                     return item;
@@ -51,7 +61,9 @@ export class GuideComponent {
         this.zone.runOutsideAngular((): void => {
             // eslint-disable-next-line no-restricted-globals
             setTimeout((): void => {
-                this.favorites = this.favorites.filter((item: Favorite): boolean => item.id !== favorite.id);
+                this.favorites = this.favorites.filter(
+                    (item: Favorite): boolean => item.id !== favorite.id,
+                );
                 this.cd.detectChanges();
                 // eslint-disable-next-line @typescript-eslint/no-magic-numbers
             }, 100);

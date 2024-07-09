@@ -1,17 +1,20 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatListModule } from '@angular/material/list';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router';
-import { EXCEL_BUILDER_NGX_TRANSLATE_FALLBACK_PROVIDER, ExcelBuilderModule } from '@angular-ru/cdk/excel';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {NgModule} from '@angular/core';
+import {MatButtonModule} from '@angular/material/button';
+import {MatListModule} from '@angular/material/list';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {RouterModule} from '@angular/router';
+import {
+    EXCEL_BUILDER_NGX_TRANSLATE_FALLBACK_PROVIDER,
+    ExcelBuilderModule,
+} from '@angular-ru/cdk/excel';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
 
 // ts-prune-ignore-next
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
@@ -33,12 +36,12 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
             loader: {
                 deps: [HttpClient],
                 provide: TranslateLoader,
-                useFactory: createTranslateLoader
-            }
+                useFactory: createTranslateLoader,
+            },
         }),
         RouterModule.forRoot([]),
-        ExcelBuilderModule.forRoot()
+        ExcelBuilderModule.forRoot(),
     ],
-    providers: [EXCEL_BUILDER_NGX_TRANSLATE_FALLBACK_PROVIDER]
+    providers: [EXCEL_BUILDER_NGX_TRANSLATE_FALLBACK_PROVIDER],
 })
 export class AppModule {}

@@ -1,10 +1,15 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
-import { By } from '@angular/platform-browser';
-import { InputFilterModule } from '@angular-ru/cdk/directives';
-import { Nullable } from '@angular-ru/cdk/typings';
-import { isNotNil } from '@angular-ru/cdk/utils';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    DebugElement,
+} from '@angular/core';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {ReactiveFormsModule} from '@angular/forms';
+import {By} from '@angular/platform-browser';
+import {InputFilterModule} from '@angular-ru/cdk/directives';
+import {Nullable} from '@angular-ru/cdk/typings';
+import {isNotNil} from '@angular-ru/cdk/utils';
 
 describe('[TEST]: inputFilter Config', () => {
     let fixture: Nullable<ComponentFixture<TestComponent>> = null;
@@ -19,7 +24,7 @@ describe('[TEST]: inputFilter Config', () => {
                 [value]="filterValue"
             />
         `,
-        changeDetection: ChangeDetectionStrategy.OnPush
+        changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class TestComponent {
         public filterValue: string = '';
@@ -28,8 +33,8 @@ describe('[TEST]: inputFilter Config', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [ReactiveFormsModule, InputFilterModule.forRoot({ default: /\d+/ })],
-            declarations: [TestComponent]
+            imports: [ReactiveFormsModule, InputFilterModule.forRoot({default: /\d+/})],
+            declarations: [TestComponent],
         }).compileComponents();
     });
 
@@ -64,7 +69,7 @@ describe('[TEST]: inputFilter Config', () => {
         }
 
         debugElement?.triggerEventHandler('input', {
-            target: debugElement?.nativeElement
+            target: debugElement?.nativeElement,
         });
         localDetectChanges();
     }

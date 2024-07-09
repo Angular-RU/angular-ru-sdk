@@ -1,13 +1,19 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { PlainObject } from '@angular-ru/cdk/typings';
+import {
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    OnInit,
+} from '@angular/core';
+import {PlainObject} from '@angular-ru/cdk/typings';
 
-import { hlJsCode } from '../../../../../.global/utils/hljs-code';
-import { MocksGenerator } from '../../mocks-generator';
+import {hlJsCode} from '../../../../../.global/utils/hljs-code';
+import {MocksGenerator} from '../../mocks-generator';
 
 @Component({
     selector: 'sample-seven',
     templateUrl: './sample-seven.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SampleSevenComponent implements OnInit, AfterViewInit {
     public data: PlainObject[] = [];

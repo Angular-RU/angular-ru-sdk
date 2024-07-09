@@ -1,9 +1,14 @@
-import { Injectable } from '@angular/core';
-import { createEntityCollections, EntityCollections, EntityDictionary, EntityIdType } from '@angular-ru/cdk/entity';
-import { StateRepository } from '@angular-ru/ngxs/decorators';
-import { NgxsDataEntityCollectionsRepository } from '@angular-ru/ngxs/repositories';
-import { ngxsTestingPlatform } from '@angular-ru/ngxs/testing';
-import { Action, State } from '@ngxs/store';
+import {Injectable} from '@angular/core';
+import {
+    createEntityCollections,
+    EntityCollections,
+    EntityDictionary,
+    EntityIdType,
+} from '@angular-ru/cdk/entity';
+import {StateRepository} from '@angular-ru/ngxs/decorators';
+import {NgxsDataEntityCollectionsRepository} from '@angular-ru/ngxs/repositories';
+import {ngxsTestingPlatform} from '@angular-ru/ngxs/testing';
+import {Action, State} from '@ngxs/store';
 
 describe('[TEST]: Entity - primary key or unique id', () => {
     interface Lesson {
@@ -15,13 +20,13 @@ describe('[TEST]: Entity - primary key or unique id', () => {
         @StateRepository()
         @State({
             name: 'lesson',
-            defaults: createEntityCollections()
+            defaults: createEntityCollections(),
         })
         @Injectable()
         class LessonEntitiesState extends NgxsDataEntityCollectionsRepository<Lesson> {
-            @Action({ type: 'preparedLesson' })
+            @Action({type: 'preparedLesson'})
             public preparedLesson() {
-                this.addEntityOne({ lessonId: 2, title: 'B' });
+                this.addEntityOne({lessonId: 2, title: 'B'});
             }
 
             public set(value: EntityCollections<Lesson, string | number>): void {
@@ -32,39 +37,39 @@ describe('[TEST]: Entity - primary key or unique id', () => {
         it(
             `the entity passed to the 'selectId' implementation returned undefined`,
             ngxsTestingPlatform([LessonEntitiesState], (_store, lesson) => {
-                expect(lesson.getState()).toEqual({ ids: [], entities: {} });
+                expect(lesson.getState()).toEqual({ids: [], entities: {}});
 
                 const spy = jest.spyOn(console, 'warn').mockImplementation();
 
-                lesson.setAll([{ lessonId: 1, title: 'A' }]);
+                lesson.setAll([{lessonId: 1, title: 'A'}]);
 
                 expect(spy).toHaveBeenCalledTimes(1);
                 expect(console.warn).toHaveBeenLastCalledWith(
                     `The entity passed to the 'selectId' implementation returned undefined.`,
                     `You should probably provide your own 'selectId' implementation.`,
                     'The entity that was passed:',
-                    { lessonId: 1, title: 'A' },
-                    'The current `selectId` implementation: (entity: V): K => entity.id'
+                    {lessonId: 1, title: 'A'},
+                    'The current `selectId` implementation: (entity: V): K => entity.id',
                 );
 
                 expect(lesson.selectId(null!)).toBeUndefined();
 
                 expect(lesson.getState()).toEqual({
                     ids: [undefined],
-                    entities: { undefined: { lessonId: 1, title: 'A' } }
+                    entities: {undefined: {lessonId: 1, title: 'A'}},
                 });
 
                 lesson.set(createEntityCollections());
-                expect(lesson.getState()).toEqual({ ids: [], entities: {} });
+                expect(lesson.getState()).toEqual({ids: [], entities: {}});
 
                 // eslint-disable-next-line rxjs/no-ignored-observable
-                lesson.dispatch({ type: 'preparedLesson' });
+                lesson.dispatch({type: 'preparedLesson'});
 
                 expect(lesson.getState()).toEqual({
                     ids: [undefined],
-                    entities: { undefined: { lessonId: 2, title: 'B' } }
+                    entities: {undefined: {lessonId: 2, title: 'B'}},
                 });
-            })
+            }),
         );
     });
 
@@ -72,7 +77,7 @@ describe('[TEST]: Entity - primary key or unique id', () => {
         @StateRepository()
         @State({
             name: 'lesson',
-            defaults: createEntityCollections()
+            defaults: createEntityCollections(),
         })
         @Injectable()
         class LessonEntitiesState extends NgxsDataEntityCollectionsRepository<Lesson> {
@@ -82,21 +87,21 @@ describe('[TEST]: Entity - primary key or unique id', () => {
         it(
             'correct expose lesson id',
             ngxsTestingPlatform([LessonEntitiesState], (_store, lesson) => {
-                expect(lesson.getState()).toEqual({ ids: [], entities: {} });
+                expect(lesson.getState()).toEqual({ids: [], entities: {}});
 
                 lesson.setAll([
-                    { lessonId: 1, title: 'A' },
-                    { lessonId: 2, title: 'B' }
+                    {lessonId: 1, title: 'A'},
+                    {lessonId: 2, title: 'B'},
                 ]);
 
                 expect(lesson.getState()).toEqual({
                     ids: [1, 2],
                     entities: {
-                        1: { lessonId: 1, title: 'A' },
-                        2: { lessonId: 2, title: 'B' }
-                    }
+                        1: {lessonId: 1, title: 'A'},
+                        2: {lessonId: 2, title: 'B'},
+                    },
                 });
-            })
+            }),
         );
     });
 
@@ -104,7 +109,7 @@ describe('[TEST]: Entity - primary key or unique id', () => {
         @StateRepository()
         @State({
             name: 'lesson',
-            defaults: createEntityCollections()
+            defaults: createEntityCollections(),
         })
         @Injectable()
         class LessonEntitiesState extends NgxsDataEntityCollectionsRepository<Lesson> {
@@ -116,88 +121,88 @@ describe('[TEST]: Entity - primary key or unique id', () => {
         it(
             'correct expose lesson id with override selectId',
             ngxsTestingPlatform([LessonEntitiesState], (_store, lesson) => {
-                expect(lesson.getState()).toEqual({ ids: [], entities: {} });
+                expect(lesson.getState()).toEqual({ids: [], entities: {}});
 
                 lesson.setAll([
-                    { lessonId: 1, title: 'A' },
-                    { lessonId: 2, title: 'B' },
-                    { lessonId: 3, title: 'C' }
+                    {lessonId: 1, title: 'A'},
+                    {lessonId: 2, title: 'B'},
+                    {lessonId: 3, title: 'C'},
                 ]);
 
                 expect(lesson.getState()).toEqual({
                     ids: [1, 2, 3],
                     entities: {
-                        1: { lessonId: 1, title: 'A' },
-                        2: { lessonId: 2, title: 'B' },
-                        3: { lessonId: 3, title: 'C' }
-                    }
+                        1: {lessonId: 1, title: 'A'},
+                        2: {lessonId: 2, title: 'B'},
+                        3: {lessonId: 3, title: 'C'},
+                    },
                 });
 
                 lesson.removeByEntities([
-                    { lessonId: 1, title: 'A' },
-                    { lessonId: 2, title: 'B' },
-                    { lessonId: 3, title: 'C' }
+                    {lessonId: 1, title: 'A'},
+                    {lessonId: 2, title: 'B'},
+                    {lessonId: 3, title: 'C'},
                 ]);
 
-                expect(lesson.getState()).toEqual({ ids: [], entities: {} });
+                expect(lesson.getState()).toEqual({ids: [], entities: {}});
 
-                lesson.updateOne({ id: 1, changes: { lessonId: 1, title: 'A' } });
-                expect(lesson.getState()).toEqual({ ids: [], entities: {} });
+                lesson.updateOne({id: 1, changes: {lessonId: 1, title: 'A'}});
+                expect(lesson.getState()).toEqual({ids: [], entities: {}});
 
                 lesson.upsertMany([
-                    { lessonId: 1, title: 'A' },
-                    { lessonId: 2, title: 'B' },
-                    { lessonId: 3, title: 'C' }
+                    {lessonId: 1, title: 'A'},
+                    {lessonId: 2, title: 'B'},
+                    {lessonId: 3, title: 'C'},
                 ]);
 
                 expect(lesson.getState()).toEqual({
                     ids: [1, 2, 3],
                     entities: {
-                        1: { lessonId: 1, title: 'A' },
-                        2: { lessonId: 2, title: 'B' },
-                        3: { lessonId: 3, title: 'C' }
-                    }
+                        1: {lessonId: 1, title: 'A'},
+                        2: {lessonId: 2, title: 'B'},
+                        3: {lessonId: 3, title: 'C'},
+                    },
                 });
 
                 lesson.updateMany([
-                    { id: 1, changes: { title: 'A*' } },
-                    { id: 3, changes: { title: 'C*' } },
-                    { id: 4, changes: { title: 'G*' } }
+                    {id: 1, changes: {title: 'A*'}},
+                    {id: 3, changes: {title: 'C*'}},
+                    {id: 4, changes: {title: 'G*'}},
                 ]);
 
                 expect(lesson.getState()).toEqual({
                     ids: [1, 2, 3],
                     entities: {
-                        1: { lessonId: 1, title: 'A*' },
-                        2: { lessonId: 2, title: 'B' },
-                        3: { lessonId: 3, title: 'C*' }
-                    }
+                        1: {lessonId: 1, title: 'A*'},
+                        2: {lessonId: 2, title: 'B'},
+                        3: {lessonId: 3, title: 'C*'},
+                    },
                 });
 
-                lesson.upsertOne({ lessonId: 0, title: 'R' });
+                lesson.upsertOne({lessonId: 0, title: 'R'});
 
                 expect(lesson.getState()).toEqual({
                     ids: [1, 2, 3, 0],
                     entities: {
-                        1: { lessonId: 1, title: 'A*' },
-                        2: { lessonId: 2, title: 'B' },
-                        3: { lessonId: 3, title: 'C*' },
-                        0: { lessonId: 0, title: 'R' }
-                    }
+                        1: {lessonId: 1, title: 'A*'},
+                        2: {lessonId: 2, title: 'B'},
+                        3: {lessonId: 3, title: 'C*'},
+                        0: {lessonId: 0, title: 'R'},
+                    },
                 });
 
-                lesson.updateOne({ id: 0, changes: { title: 'R*' } });
+                lesson.updateOne({id: 0, changes: {title: 'R*'}});
 
                 expect(lesson.getState()).toEqual({
                     ids: [1, 2, 3, 0],
                     entities: {
-                        0: { lessonId: 0, title: 'R*' },
-                        1: { lessonId: 1, title: 'A*' },
-                        2: { lessonId: 2, title: 'B' },
-                        3: { lessonId: 3, title: 'C*' }
-                    }
+                        0: {lessonId: 0, title: 'R*'},
+                        1: {lessonId: 1, title: 'A*'},
+                        2: {lessonId: 2, title: 'B'},
+                        3: {lessonId: 3, title: 'C*'},
+                    },
                 });
-            })
+            }),
         );
     });
 
@@ -213,9 +218,12 @@ describe('[TEST]: Entity - primary key or unique id', () => {
         @StateRepository()
         @State({
             name: 'student',
-            defaults: createEntityCollections()
+            defaults: createEntityCollections(),
         })
-        class StudentEntitiesState extends NgxsDataEntityCollectionsRepository<StudentEntity, string> {
+        class StudentEntitiesState extends NgxsDataEntityCollectionsRepository<
+            StudentEntity,
+            string
+        > {
             public override selectId(entity: StudentEntity): string {
                 return `${entity.groupId}_${entity.batchId}`;
             }
@@ -235,7 +243,7 @@ describe('[TEST]: Entity - primary key or unique id', () => {
                     entityEvents.push(entities);
                 });
 
-                expect(studentEntities.getState()).toEqual({ ids: [], entities: {} });
+                expect(studentEntities.getState()).toEqual({ids: [], entities: {}});
 
                 studentEntities.setAll([
                     {
@@ -243,29 +251,29 @@ describe('[TEST]: Entity - primary key or unique id', () => {
                         batchId: 1,
                         name: 'Maxim',
                         course: 'Super A',
-                        dateOfBirth: new Date(1994, 5, 1)
+                        dateOfBirth: new Date(1994, 5, 1),
                     },
                     {
                         groupId: 1,
                         batchId: 2,
                         name: 'Ivan',
                         course: 'Super A',
-                        dateOfBirth: new Date(1993, 5, 12)
+                        dateOfBirth: new Date(1993, 5, 12),
                     },
                     {
                         groupId: 2,
                         batchId: 1,
                         name: 'Nikola',
                         course: 'Super B',
-                        dateOfBirth: new Date(1997, 7, 11)
+                        dateOfBirth: new Date(1997, 7, 11),
                     },
                     {
                         groupId: 2,
                         batchId: 2,
                         name: 'Petr',
                         course: 'Super C',
-                        dateOfBirth: new Date(1994, 3, 11)
-                    }
+                        dateOfBirth: new Date(1994, 3, 11),
+                    },
                 ]);
 
                 expect(studentEntities.getState()).toEqual({
@@ -276,42 +284,42 @@ describe('[TEST]: Entity - primary key or unique id', () => {
                             batchId: 1,
                             name: 'Maxim',
                             course: 'Super A',
-                            dateOfBirth: expect.any(Date)
+                            dateOfBirth: expect.any(Date),
                         },
                         '1_2': {
                             groupId: 1,
                             batchId: 2,
                             name: 'Ivan',
                             course: 'Super A',
-                            dateOfBirth: expect.any(Date)
+                            dateOfBirth: expect.any(Date),
                         },
                         '2_1': {
                             groupId: 2,
                             batchId: 1,
                             name: 'Nikola',
                             course: 'Super B',
-                            dateOfBirth: expect.any(Date)
+                            dateOfBirth: expect.any(Date),
                         },
                         '2_2': {
                             groupId: 2,
                             batchId: 2,
                             name: 'Petr',
                             course: 'Super C',
-                            dateOfBirth: expect.any(Date)
-                        }
-                    }
+                            dateOfBirth: expect.any(Date),
+                        },
+                    },
                 });
 
                 studentEntities.reset();
 
-                expect(studentEntities.getState()).toEqual({ ids: [], entities: {} });
+                expect(studentEntities.getState()).toEqual({ids: [], entities: {}});
 
                 studentEntities.addOne({
                     groupId: 1,
                     batchId: 1,
                     name: 'Maxim',
                     course: 'Super A',
-                    dateOfBirth: new Date(1994, 5, 1)
+                    dateOfBirth: new Date(1994, 5, 1),
                 });
 
                 expect(studentEntities.ids).toEqual(['1_1']);
@@ -321,8 +329,8 @@ describe('[TEST]: Entity - primary key or unique id', () => {
                         batchId: 1,
                         name: 'Maxim',
                         course: 'Super A',
-                        dateOfBirth: expect.any(Date)
-                    }
+                        dateOfBirth: expect.any(Date),
+                    },
                 });
 
                 studentEntities.removeAll();
@@ -335,7 +343,7 @@ describe('[TEST]: Entity - primary key or unique id', () => {
                     batchId: 1,
                     name: 'Mark',
                     course: 'Super D',
-                    dateOfBirth: new Date(1972, 5, 1)
+                    dateOfBirth: new Date(1972, 5, 1),
                 };
 
                 studentEntities.upsertOne(entity);
@@ -348,9 +356,9 @@ describe('[TEST]: Entity - primary key or unique id', () => {
                             batchId: 1,
                             name: 'Mark',
                             course: 'Super D',
-                            dateOfBirth: expect.any(Date)
-                        }
-                    }
+                            dateOfBirth: expect.any(Date),
+                        },
+                    },
                 });
 
                 expect(studentEntities.selectOne('4_1')).toEqual({
@@ -358,7 +366,7 @@ describe('[TEST]: Entity - primary key or unique id', () => {
                     batchId: 1,
                     name: 'Mark',
                     course: 'Super D',
-                    dateOfBirth: expect.any(Date)
+                    dateOfBirth: expect.any(Date),
                 });
 
                 expect(studentEntities.selectOne('4_6')).toBeNull();
@@ -369,14 +377,22 @@ describe('[TEST]: Entity - primary key or unique id', () => {
                         batchId: 1,
                         name: 'Mark',
                         course: 'Super D',
-                        dateOfBirth: expect.any(Date)
-                    }
+                        dateOfBirth: expect.any(Date),
+                    },
                 ]);
 
                 studentEntities.removeByEntity(entity);
                 expect(studentEntities.selectAll()).toEqual([]);
 
-                expect(idEvents).toEqual([[], ['1_1', '1_2', '2_1', '2_2'], [], ['1_1'], [], ['4_1'], []]);
+                expect(idEvents).toEqual([
+                    [],
+                    ['1_1', '1_2', '2_1', '2_2'],
+                    [],
+                    ['1_1'],
+                    [],
+                    ['4_1'],
+                    [],
+                ]);
 
                 expect(entityEvents).toEqual([
                     {},
@@ -386,29 +402,29 @@ describe('[TEST]: Entity - primary key or unique id', () => {
                             batchId: 1,
                             name: 'Maxim',
                             course: 'Super A',
-                            dateOfBirth: expect.any(Date)
+                            dateOfBirth: expect.any(Date),
                         },
                         '1_2': {
                             groupId: 1,
                             batchId: 2,
                             name: 'Ivan',
                             course: 'Super A',
-                            dateOfBirth: expect.any(Date)
+                            dateOfBirth: expect.any(Date),
                         },
                         '2_1': {
                             groupId: 2,
                             batchId: 1,
                             name: 'Nikola',
                             course: 'Super B',
-                            dateOfBirth: expect.any(Date)
+                            dateOfBirth: expect.any(Date),
                         },
                         '2_2': {
                             groupId: 2,
                             batchId: 2,
                             name: 'Petr',
                             course: 'Super C',
-                            dateOfBirth: expect.any(Date)
-                        }
+                            dateOfBirth: expect.any(Date),
+                        },
                     },
                     {},
                     {
@@ -417,8 +433,8 @@ describe('[TEST]: Entity - primary key or unique id', () => {
                             batchId: 1,
                             name: 'Maxim',
                             course: 'Super A',
-                            dateOfBirth: expect.any(Date)
-                        }
+                            dateOfBirth: expect.any(Date),
+                        },
                     },
                     {},
                     {
@@ -427,12 +443,12 @@ describe('[TEST]: Entity - primary key or unique id', () => {
                             batchId: 1,
                             name: 'Mark',
                             course: 'Super D',
-                            dateOfBirth: expect.any(Date)
-                        }
+                            dateOfBirth: expect.any(Date),
+                        },
                     },
-                    {}
+                    {},
                 ]);
-            })
+            }),
         );
     });
 });

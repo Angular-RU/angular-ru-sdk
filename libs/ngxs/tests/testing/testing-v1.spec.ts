@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
-import { DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
-import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
-import { NgxsDataTestingModule } from '@angular-ru/ngxs/testing';
-import { NgxsDataAfterReset, NgxsDataDoCheck } from '@angular-ru/ngxs/typings';
-import { State } from '@ngxs/store';
+import {Injectable} from '@angular/core';
+import {TestBed} from '@angular/core/testing';
+import {DataAction, StateRepository} from '@angular-ru/ngxs/decorators';
+import {NgxsDataRepository} from '@angular-ru/ngxs/repositories';
+import {NgxsDataTestingModule} from '@angular-ru/ngxs/testing';
+import {NgxsDataAfterReset, NgxsDataDoCheck} from '@angular-ru/ngxs/typings';
+import {State} from '@ngxs/store';
 
 describe('[TEST]: NgxsTestingModule', () => {
     describe('appState', () => {
@@ -13,10 +13,13 @@ describe('[TEST]: NgxsTestingModule', () => {
         @StateRepository()
         @State({
             name: 'app',
-            defaults: 0
+            defaults: 0,
         })
         @Injectable()
-        class AppState extends NgxsDataRepository<number> implements NgxsDataDoCheck, NgxsDataAfterReset {
+        class AppState
+            extends NgxsDataRepository<number>
+            implements NgxsDataDoCheck, NgxsDataAfterReset
+        {
             @DataAction()
             public increment(): void {
                 this.ctx.setState((state: number) => state + 1);
@@ -49,7 +52,7 @@ describe('[TEST]: NgxsTestingModule', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [NgxsDataTestingModule.forRoot([AppState])]
+                imports: [NgxsDataTestingModule.forRoot([AppState])],
             });
         });
 
@@ -91,7 +94,7 @@ describe('[TEST]: NgxsTestingModule', () => {
                 'app::ngxsOnChanges',
                 'app::increment',
                 'app::ngxsOnChanges',
-                'app::ngxsDataAfterReset'
+                'app::ngxsDataAfterReset',
             ]);
         });
     });

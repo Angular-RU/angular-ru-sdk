@@ -1,11 +1,13 @@
-import { TestBed } from '@angular/core/testing';
-import { IsStringPipe, IsStringPipeModule } from '@angular-ru/cdk/pipes';
+import {TestBed} from '@angular/core/testing';
+import {IsStringPipe, IsStringPipeModule} from '@angular-ru/cdk/pipes';
 
 describe('is string pipe', () => {
     let pipe: IsStringPipe;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({ imports: [IsStringPipeModule] }).compileComponents();
+        TestBed.configureTestingModule({
+            imports: [IsStringPipeModule],
+        }).compileComponents();
         pipe = TestBed.inject(IsStringPipe);
     });
 

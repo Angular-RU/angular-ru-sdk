@@ -1,11 +1,11 @@
 {
-    "root": "apps/excel-demo/",
+    "name": "excel-demo",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "apps/excel-demo/",
     "projectType": "application",
-    "tags": ["scope:applications"],
     "targets": {
         "build": {
-            "builder": "@angular-devkit/build-angular:browser",
+            "executor": "@angular-devkit/build-angular:browser",
             "options": {
                 "outputPath": "dist/excel-demo",
                 "tsConfig": "apps/excel-demo/tsconfig.app.json",
@@ -37,17 +37,32 @@
                     "aot": true,
                     "extractLicenses": true,
                     "buildOptimizer": true
+                },
+                "development": {
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/excel-demo/environments/environment.ts",
+                            "with": "apps/excel-demo/environments/environment.prod.ts"
+                        }
+                    ],
+                    "optimization": false,
+                    "aot": true
                 }
             },
             "defaultConfiguration": "production",
-            "outputs": ["./dist/excel-demo"]
+            "outputs": ["{projectRoot}/dist/excel-demo"]
         },
         "serve": {
-            "builder": "@angular-devkit/build-angular:dev-server",
-            "options": { "browserTarget": "excel-demo:build" },
+            "executor": "@angular-devkit/build-angular:dev-server",
+            "options": {
+                "buildTarget": "excel-demo:build"
+            },
             "configurations": {
                 "production": {
-                    "browserTarget": "excel-demo:build:production"
+                    "buildTarget": "excel-demo:build:production"
+                },
+                "development": {
+                    "buildTarget": "excel-demo:build:development"
                 }
             },
             "defaultConfiguration": "development"

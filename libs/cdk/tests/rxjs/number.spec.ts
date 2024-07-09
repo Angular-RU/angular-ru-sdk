@@ -1,5 +1,5 @@
-import { mapToVoid } from '@angular-ru/cdk/rxjs';
-import { of } from 'rxjs';
+import {mapToVoid} from '@angular-ru/cdk/rxjs';
+import {of} from 'rxjs';
 
 describe('[TEST]: RxJS', () => {
     it('mapToVoid', () => {

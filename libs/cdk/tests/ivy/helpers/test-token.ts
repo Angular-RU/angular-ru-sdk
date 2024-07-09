@@ -1,8 +1,14 @@
 /* eslint-disable max-classes-per-file */
-import { ApplicationRef, ChangeDetectionStrategy, Component, Injectable, NgZone } from '@angular/core';
+import {
+    ApplicationRef,
+    ChangeDetectionStrategy,
+    Component,
+    Injectable,
+    NgZone,
+} from '@angular/core';
 
-import { COMPONENT_TOKEN, MODULE_TOKEN, SERVICE_TOKEN } from './injection-tokens';
-import { InjectByToken } from './test-decorators';
+import {COMPONENT_TOKEN, MODULE_TOKEN, SERVICE_TOKEN} from './injection-tokens';
+import {InjectByToken} from './test-decorators';
 
 @Injectable()
 export class TestTokenService {
@@ -18,10 +24,10 @@ export class TestTokenService {
     template: '',
     providers: [
         TestTokenService,
-        { provide: COMPONENT_TOKEN, useValue: 'COMPONENT_TOKEN' },
-        { provide: SERVICE_TOKEN, useValue: 'SERVICE_TOKEN' }
+        {provide: COMPONENT_TOKEN, useValue: 'COMPONENT_TOKEN'},
+        {provide: SERVICE_TOKEN, useValue: 'SERVICE_TOKEN'},
     ],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TestTokenComponent {
     @InjectByToken(MODULE_TOKEN) public moduleToken!: string;

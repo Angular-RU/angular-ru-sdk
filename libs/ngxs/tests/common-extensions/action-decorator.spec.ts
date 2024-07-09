@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
-import { NgxsDataPluginModule } from '@angular-ru/ngxs';
-import { DataAction, Payload, StateRepository } from '@angular-ru/ngxs/decorators';
-import { getRepository } from '@angular-ru/ngxs/internals';
-import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
-import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
-import { NgxsModule, State } from '@ngxs/store';
+import {Injectable} from '@angular/core';
+import {TestBed} from '@angular/core/testing';
+import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {DataAction, Payload, StateRepository} from '@angular-ru/ngxs/decorators';
+import {getRepository} from '@angular-ru/ngxs/internals';
+import {NgxsImmutableDataRepository} from '@angular-ru/ngxs/repositories';
+import {NGXS_DATA_EXCEPTIONS} from '@angular-ru/ngxs/tokens';
+import {NgxsModule, State} from '@ngxs/store';
 
 describe('[TEST]: Action decorator', () => {
     afterEach(() => TestBed.resetTestingModule());
@@ -14,7 +14,7 @@ describe('[TEST]: Action decorator', () => {
         let message: string | null = null;
 
         try {
-            @State({ name: 'custom', defaults: 'hello world' })
+            @State({name: 'custom', defaults: 'hello world'})
             @Injectable()
             class InvalidState extends NgxsImmutableDataRepository<string> {
                 @DataAction()
@@ -24,7 +24,10 @@ describe('[TEST]: Action decorator', () => {
             }
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([InvalidState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
+                imports: [
+                    NgxsModule.forRoot([InvalidState], {developmentMode: true}),
+                    NgxsDataPluginModule.forRoot(),
+                ],
             });
 
             const state: InvalidState = TestBed.inject(InvalidState);
@@ -50,7 +53,10 @@ describe('[TEST]: Action decorator', () => {
             }
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([InvalidState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
+                imports: [
+                    NgxsModule.forRoot([InvalidState], {developmentMode: true}),
+                    NgxsDataPluginModule.forRoot(),
+                ],
             });
 
             const state: InvalidState = TestBed.inject(InvalidState);
@@ -60,14 +66,16 @@ describe('[TEST]: Action decorator', () => {
             message = (error as Error).message;
         }
 
-        expect(message).toBe('States must be decorated with @State() decorator, but "InvalidState" isn\'t.');
+        expect(message).toBe(
+            'States must be decorated with @State() decorator, but "InvalidState" isn\'t.',
+        );
     });
 
     it(`don't should be working without provided meta information`, () => {
         let message: string | null = null;
 
         try {
-            @State({ name: 'custom', defaults: 'hello world' })
+            @State({name: 'custom', defaults: 'hello world'})
             @Injectable()
             class InvalidState {
                 @DataAction()
@@ -77,7 +85,10 @@ describe('[TEST]: Action decorator', () => {
             }
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([InvalidState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
+                imports: [
+                    NgxsModule.forRoot([InvalidState], {developmentMode: true}),
+                    NgxsDataPluginModule.forRoot(),
+                ],
             });
 
             const state: InvalidState = TestBed.inject(InvalidState);
@@ -94,7 +105,7 @@ describe('[TEST]: Action decorator', () => {
         let message: string | null = null;
 
         try {
-            @State({ name: 'custom', defaults: 'hello world' })
+            @State({name: 'custom', defaults: 'hello world'})
             @Injectable()
             class InvalidState {
                 @DataAction()
@@ -104,8 +115,11 @@ describe('[TEST]: Action decorator', () => {
             }
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([], { developmentMode: true }), NgxsDataPluginModule.forRoot()],
-                providers: [InvalidState]
+                imports: [
+                    NgxsModule.forRoot([], {developmentMode: true}),
+                    NgxsDataPluginModule.forRoot(),
+                ],
+                providers: [InvalidState],
             });
 
             const state: InvalidState = TestBed.inject(InvalidState);
@@ -120,7 +134,7 @@ describe('[TEST]: Action decorator', () => {
 
     it('should be correct mutate metadata', () => {
         @StateRepository()
-        @State({ name: 'a', defaults: 'a' })
+        @State({name: 'a', defaults: 'a'})
         @Injectable()
         class A extends NgxsImmutableDataRepository<string> {
             @DataAction()
@@ -130,7 +144,10 @@ describe('[TEST]: Action decorator', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([A], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
+            imports: [
+                NgxsModule.forRoot([A], {developmentMode: true}),
+                NgxsDataPluginModule.forRoot(),
+            ],
         });
 
         const stateA: A = TestBed.inject(A);
@@ -142,10 +159,10 @@ describe('[TEST]: Action decorator', () => {
                 defaults: 'a',
                 path: 'a',
                 makeRootSelector: expect.any(Function),
-                children: undefined
+                children: undefined,
             },
             stateClass: A,
-            operations: {}
+            operations: {},
         });
 
         expect(stateA.setup()).toBe('a');
@@ -157,28 +174,28 @@ describe('[TEST]: Action decorator', () => {
                     '@a.setup()': [
                         {
                             type: '@a.setup()',
-                            options: { cancelUncompleted: true },
-                            fn: '@a.setup()'
-                        }
-                    ]
+                            options: {cancelUncompleted: true},
+                            fn: '@a.setup()',
+                        },
+                    ],
                 },
                 makeRootSelector: expect.any(Function),
                 defaults: 'a',
-                path: 'a'
+                path: 'a',
             },
             stateClass: A,
             operations: {
                 setup: {
                     type: '@a.setup()',
-                    options: { cancelUncompleted: true }
-                }
-            }
+                    options: {cancelUncompleted: true},
+                },
+            },
         });
     });
 
     describe('complex inheritance', () => {
         @StateRepository()
-        @State({ name: 'a', defaults: 'a' })
+        @State({name: 'a', defaults: 'a'})
         @Injectable()
         class A extends NgxsImmutableDataRepository<string> {
             // noinspection JSUnusedGlobalSymbols
@@ -198,14 +215,16 @@ describe('[TEST]: Action decorator', () => {
 
             // noinspection JSUnusedGlobalSymbols
             public withValueSetStateAsMethod(name: string): string {
-                this.setState(`new value as method - ${this.word} - ${this.name} - ${name}`);
+                this.setState(
+                    `new value as method - ${this.word} - ${this.name} - ${name}`,
+                );
 
                 return this.getState();
             }
         }
 
         @StateRepository()
-        @State({ name: 'b', defaults: 'b' })
+        @State({name: 'b', defaults: 'b'})
         @Injectable()
         class B extends A {
             @DataAction()
@@ -225,7 +244,7 @@ describe('[TEST]: Action decorator', () => {
         }
 
         @StateRepository()
-        @State({ name: 'c', defaults: 'c' })
+        @State({name: 'c', defaults: 'c'})
         @Injectable()
         class C extends B {
             @DataAction()
@@ -249,7 +268,10 @@ describe('[TEST]: Action decorator', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([A, B, C], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
+                imports: [
+                    NgxsModule.forRoot([A, B, C], {developmentMode: true}),
+                    NgxsDataPluginModule.forRoot(),
+                ],
             });
 
             stateA = TestBed.inject(A);
@@ -264,10 +286,10 @@ describe('[TEST]: Action decorator', () => {
                     actions: {},
                     defaults: 'a',
                     makeRootSelector: expect.any(Function),
-                    path: 'a'
+                    path: 'a',
                 },
                 operations: {},
-                stateClass: A
+                stateClass: A,
             });
 
             expect(getRepository(B)).toEqual({
@@ -276,10 +298,10 @@ describe('[TEST]: Action decorator', () => {
                     actions: {},
                     defaults: 'b',
                     makeRootSelector: expect.any(Function),
-                    path: 'b'
+                    path: 'b',
                 },
                 operations: {},
-                stateClass: B
+                stateClass: B,
             });
 
             expect(getRepository(C)).toEqual({
@@ -288,10 +310,10 @@ describe('[TEST]: Action decorator', () => {
                     actions: {},
                     defaults: 'c',
                     makeRootSelector: expect.any(Function),
-                    path: 'c'
+                    path: 'c',
                 },
                 operations: {},
-                stateClass: C
+                stateClass: C,
             });
         });
 
@@ -307,22 +329,22 @@ describe('[TEST]: Action decorator', () => {
                         '@a.a()': [
                             {
                                 type: '@a.a()',
-                                options: { cancelUncompleted: true },
-                                fn: '@a.a()'
-                            }
-                        ]
+                                options: {cancelUncompleted: true},
+                                fn: '@a.a()',
+                            },
+                        ],
                     },
                     makeRootSelector: expect.any(Function),
                     defaults: 'a',
-                    path: 'a'
+                    path: 'a',
                 },
                 stateClass: A,
                 operations: {
                     a: {
                         type: '@a.a()',
-                        options: { cancelUncompleted: true }
-                    }
-                }
+                        options: {cancelUncompleted: true},
+                    },
+                },
             });
 
             expect(getRepository(B)).toEqual({
@@ -332,22 +354,22 @@ describe('[TEST]: Action decorator', () => {
                         '@b.a()': [
                             {
                                 type: '@b.a()',
-                                options: { cancelUncompleted: true },
-                                fn: '@b.a()'
-                            }
-                        ]
+                                options: {cancelUncompleted: true},
+                                fn: '@b.a()',
+                            },
+                        ],
                     },
                     makeRootSelector: expect.any(Function),
                     defaults: 'b',
-                    path: 'b'
+                    path: 'b',
                 },
                 stateClass: B,
                 operations: {
                     a: {
                         type: '@b.a()',
-                        options: { cancelUncompleted: true }
-                    }
-                }
+                        options: {cancelUncompleted: true},
+                    },
+                },
             });
 
             expect(getRepository(C)).toEqual({
@@ -357,22 +379,22 @@ describe('[TEST]: Action decorator', () => {
                         '@c.a()': [
                             {
                                 type: '@c.a()',
-                                options: { cancelUncompleted: true },
-                                fn: '@c.a()'
-                            }
-                        ]
+                                options: {cancelUncompleted: true},
+                                fn: '@c.a()',
+                            },
+                        ],
                     },
                     makeRootSelector: expect.any(Function),
                     defaults: 'c',
-                    path: 'c'
+                    path: 'c',
                 },
                 stateClass: C,
                 operations: {
                     a: {
                         type: '@c.a()',
-                        options: { cancelUncompleted: true }
-                    }
-                }
+                        options: {cancelUncompleted: true},
+                    },
+                },
             });
         });
 
@@ -394,7 +416,9 @@ describe('[TEST]: Action decorator', () => {
             expect(stateA.getState()).toBe('new value - hello - a - LEONARD');
             stateA.reset();
             expect(stateA.getState()).toBe('a');
-            expect(stateA.withValueSetStateAsMethod('LEONARD')).toBe('new value as method - hello - a - LEONARD');
+            expect(stateA.withValueSetStateAsMethod('LEONARD')).toBe(
+                'new value as method - hello - a - LEONARD',
+            );
             expect(stateA.getState()).toBe('new value as method - hello - a - LEONARD');
 
             // B
@@ -402,7 +426,9 @@ describe('[TEST]: Action decorator', () => {
             expect(stateB.getState()).toBe('new value - hello - b - SHELDON');
             stateB.reset();
             expect(stateB.getState()).toBe('b');
-            expect(stateB.withValueSetStateAsMethod('SHELDON')).toBe('new value as method - hello - b - SHELDON');
+            expect(stateB.withValueSetStateAsMethod('SHELDON')).toBe(
+                'new value as method - hello - b - SHELDON',
+            );
             expect(stateB.getState()).toBe('new value as method - hello - b - SHELDON');
 
             // C
@@ -410,7 +436,9 @@ describe('[TEST]: Action decorator', () => {
             expect(stateC.getState()).toBe('new value - hello - c - HOWARD');
             stateC.reset();
             expect(stateC.getState()).toBe('c');
-            expect(stateC.withValueSetStateAsMethod('HOWARD')).toBe('new value as method - hello - c - HOWARD');
+            expect(stateC.withValueSetStateAsMethod('HOWARD')).toBe(
+                'new value as method - hello - c - HOWARD',
+            );
             expect(stateC.getState()).toBe('new value as method - hello - c - HOWARD');
 
             expect(getRepository(A)).toEqual({
@@ -420,55 +448,55 @@ describe('[TEST]: Action decorator', () => {
                         '@a.withValueSetStateAsAction(name)': [
                             {
                                 type: '@a.withValueSetStateAsAction(name)',
-                                options: { cancelUncompleted: true },
-                                fn: '@a.withValueSetStateAsAction(name)'
-                            }
+                                options: {cancelUncompleted: true},
+                                fn: '@a.withValueSetStateAsAction(name)',
+                            },
                         ],
                         '@a.a()': [
                             {
                                 type: '@a.a()',
-                                options: { cancelUncompleted: true },
-                                fn: '@a.a()'
-                            }
+                                options: {cancelUncompleted: true},
+                                fn: '@a.a()',
+                            },
                         ],
                         '@a.setState(stateValue)': [
                             {
                                 type: '@a.setState(stateValue)',
-                                options: { cancelUncompleted: true },
-                                fn: '@a.setState(stateValue)'
-                            }
+                                options: {cancelUncompleted: true},
+                                fn: '@a.setState(stateValue)',
+                            },
                         ],
                         '@a.reset()': [
                             {
                                 type: '@a.reset()',
-                                options: { cancelUncompleted: true },
-                                fn: '@a.reset()'
-                            }
-                        ]
+                                options: {cancelUncompleted: true},
+                                fn: '@a.reset()',
+                            },
+                        ],
                     },
                     makeRootSelector: expect.any(Function),
                     defaults: 'a',
-                    path: 'a'
+                    path: 'a',
                 },
                 stateClass: A,
                 operations: {
                     withValueSetStateAsAction: {
                         type: '@a.withValueSetStateAsAction(name)',
-                        options: { cancelUncompleted: true }
+                        options: {cancelUncompleted: true},
                     },
                     setState: {
                         type: '@a.setState(stateValue)',
-                        options: { cancelUncompleted: true }
+                        options: {cancelUncompleted: true},
                     },
                     a: {
                         type: '@a.a()',
-                        options: { cancelUncompleted: true }
+                        options: {cancelUncompleted: true},
                     },
                     reset: {
                         type: '@a.reset()',
-                        options: { cancelUncompleted: true }
-                    }
-                }
+                        options: {cancelUncompleted: true},
+                    },
+                },
             });
 
             expect(getRepository(B)).toEqual({
@@ -478,55 +506,55 @@ describe('[TEST]: Action decorator', () => {
                         '@b.withValueSetStateAsAction(name)': [
                             {
                                 type: '@b.withValueSetStateAsAction(name)',
-                                options: { cancelUncompleted: true },
-                                fn: '@b.withValueSetStateAsAction(name)'
-                            }
+                                options: {cancelUncompleted: true},
+                                fn: '@b.withValueSetStateAsAction(name)',
+                            },
                         ],
                         '@b.setState(stateValue)': [
                             {
                                 type: '@b.setState(stateValue)',
-                                options: { cancelUncompleted: true },
-                                fn: '@b.setState(stateValue)'
-                            }
+                                options: {cancelUncompleted: true},
+                                fn: '@b.setState(stateValue)',
+                            },
                         ],
                         '@b.a()': [
                             {
                                 type: '@b.a()',
-                                options: { cancelUncompleted: true },
-                                fn: '@b.a()'
-                            }
+                                options: {cancelUncompleted: true},
+                                fn: '@b.a()',
+                            },
                         ],
                         '@b.reset()': [
                             {
                                 type: '@b.reset()',
-                                options: { cancelUncompleted: true },
-                                fn: '@b.reset()'
-                            }
-                        ]
+                                options: {cancelUncompleted: true},
+                                fn: '@b.reset()',
+                            },
+                        ],
                     },
                     makeRootSelector: expect.any(Function),
                     defaults: 'b',
-                    path: 'b'
+                    path: 'b',
                 },
                 stateClass: B,
                 operations: {
                     withValueSetStateAsAction: {
                         type: '@b.withValueSetStateAsAction(name)',
-                        options: { cancelUncompleted: true }
+                        options: {cancelUncompleted: true},
                     },
                     setState: {
                         type: '@b.setState(stateValue)',
-                        options: { cancelUncompleted: true }
+                        options: {cancelUncompleted: true},
                     },
                     a: {
                         type: '@b.a()',
-                        options: { cancelUncompleted: true }
+                        options: {cancelUncompleted: true},
                     },
                     reset: {
                         type: '@b.reset()',
-                        options: { cancelUncompleted: true }
-                    }
-                }
+                        options: {cancelUncompleted: true},
+                    },
+                },
             });
 
             expect(getRepository(C)).toEqual({
@@ -536,59 +564,59 @@ describe('[TEST]: Action decorator', () => {
                         '@c.withValueSetStateAsAction(name)': [
                             {
                                 type: '@c.withValueSetStateAsAction(name)',
-                                options: { cancelUncompleted: true },
-                                fn: '@c.withValueSetStateAsAction(name)'
-                            }
+                                options: {cancelUncompleted: true},
+                                fn: '@c.withValueSetStateAsAction(name)',
+                            },
                         ],
                         '@c.setState(stateValue)': [
                             {
                                 type: '@c.setState(stateValue)',
-                                options: { cancelUncompleted: true },
-                                fn: '@c.setState(stateValue)'
-                            }
+                                options: {cancelUncompleted: true},
+                                fn: '@c.setState(stateValue)',
+                            },
                         ],
                         '@c.a()': [
                             {
                                 type: '@c.a()',
-                                options: { cancelUncompleted: true },
-                                fn: '@c.a()'
-                            }
+                                options: {cancelUncompleted: true},
+                                fn: '@c.a()',
+                            },
                         ],
                         '@c.reset()': [
                             {
                                 type: '@c.reset()',
-                                options: { cancelUncompleted: true },
-                                fn: '@c.reset()'
-                            }
-                        ]
+                                options: {cancelUncompleted: true},
+                                fn: '@c.reset()',
+                            },
+                        ],
                     },
                     makeRootSelector: expect.any(Function),
                     defaults: 'c',
-                    path: 'c'
+                    path: 'c',
                 },
                 stateClass: C,
                 operations: {
                     withValueSetStateAsAction: {
                         type: '@c.withValueSetStateAsAction(name)',
                         options: {
-                            cancelUncompleted: true
-                        }
+                            cancelUncompleted: true,
+                        },
                     },
                     setState: {
                         type: '@c.setState(stateValue)',
                         options: {
-                            cancelUncompleted: true
-                        }
+                            cancelUncompleted: true,
+                        },
                     },
                     a: {
                         type: '@c.a()',
-                        options: { cancelUncompleted: true }
+                        options: {cancelUncompleted: true},
                     },
                     reset: {
                         type: '@c.reset()',
-                        options: { cancelUncompleted: true }
-                    }
-                }
+                        options: {cancelUncompleted: true},
+                    },
+                },
             });
         });
     });

@@ -1,16 +1,23 @@
-import { CommonModule } from '@angular/common';
-import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
-import { Component, Injectable } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
+import {CommonModule} from '@angular/common';
+import {
+    HttpClientTestingModule,
+    HttpTestingController,
+    TestRequest,
+} from '@angular/common/http/testing';
+import {Component, Injectable} from '@angular/core';
+import {TestBed} from '@angular/core/testing';
 import {
     DATA_HTTP_CLIENT_INTERCEPTOR,
     DataHttpClient,
     DataHttpClientModule,
-    DefaultHttpClientInterceptor
+    DefaultHttpClientInterceptor,
 } from '@angular-ru/cdk/http';
-import { Delete, Get, Patch, Post, Put, RestClient } from '@angular-ru/cdk/http/decorators';
-import { DataBeforeRequestOptions, DataHttpInterceptor } from '@angular-ru/cdk/http/typings';
-import { Nullable } from '@angular-ru/cdk/typings';
+import {Delete, Get, Patch, Post, Put, RestClient} from '@angular-ru/cdk/http/decorators';
+import {
+    DataBeforeRequestOptions,
+    DataHttpInterceptor,
+} from '@angular-ru/cdk/http/typings';
+import {Nullable} from '@angular-ru/cdk/typings';
 
 describe('[TEST]: HTTP Client', () => {
     const MOCK_API: string = 'http://localhost';
@@ -48,21 +55,28 @@ describe('[TEST]: HTTP Client', () => {
     }
 
     @Injectable()
-    class MyInterceptor extends DefaultHttpClientInterceptor implements DataHttpInterceptor {
+    class MyInterceptor
+        extends DefaultHttpClientInterceptor
+        implements DataHttpInterceptor
+    {
         public events: string[] = [];
 
-        public onBeforeRequest({ method, path, clientOptions }: DataBeforeRequestOptions): void {
+        public onBeforeRequest({
+            method,
+            path,
+            clientOptions,
+        }: DataBeforeRequestOptions): void {
             this.events.push(
                 `${method.toUpperCase()}: /${path} - { emitSuccess: ${clientOptions.emitSuccess}, emitFailure: ${
                     clientOptions.emitFailure
-                } }`
+                } }`,
             );
         }
     }
 
     @Component({
         selector: 'any',
-        template: ''
+        template: '',
     })
     class AnyComponent {
         constructor(public readonly api: ApiEmitsClient) {}
@@ -73,11 +87,15 @@ describe('[TEST]: HTTP Client', () => {
             providers: [
                 {
                     provide: DATA_HTTP_CLIENT_INTERCEPTOR,
-                    useClass: MyInterceptor
-                }
+                    useClass: MyInterceptor,
+                },
             ],
             declarations: [AnyComponent],
-            imports: [CommonModule, HttpClientTestingModule, DataHttpClientModule.forRoot([ApiEmitsClient], {})]
+            imports: [
+                CommonModule,
+                HttpClientTestingModule,
+                DataHttpClientModule.forRoot([ApiEmitsClient], {}),
+            ],
         });
 
         TestBed.compileComponents();
@@ -128,7 +146,7 @@ describe('[TEST]: HTTP Client', () => {
             'PUT: /put - { emitSuccess: true, emitFailure: true }',
             'POST: /post - { emitSuccess: true, emitFailure: true }',
             'PATCH: /patch - { emitSuccess: true, emitFailure: true }',
-            'DELETE: /delete - { emitSuccess: true, emitFailure: true }'
+            'DELETE: /delete - { emitSuccess: true, emitFailure: true }',
         ]);
     });
 });

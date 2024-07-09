@@ -1,0 +1,178 @@
+@import 'variables';
+@import 'common';
+
+.table-grid {
+    &__column {
+        height: 100%;
+        flex: 1 1 auto;
+        box-sizing: border-box;
+
+        &--virtual {
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        // preserve cdk handle
+        touch-action: initial !important;
+        -webkit-user-drag: initial !important;
+        -webkit-tap-highlight-color: initial !important;
+        user-select: initial !important;
+
+        &--sticky-left,
+        &--sticky-right {
+            position: sticky;
+            background: var(--ngx-table-background-color);
+            z-index: 100;
+        }
+
+        &--sticky-left {
+            left: 0;
+        }
+
+        &--sticky-right {
+            right: 0;
+        }
+
+        &--selected-all {
+            background: var(--ngx-table-cell-selected-background);
+        }
+
+        &--default-width:not(&--auto-width-reset-default-with) {
+            min-width: var(--ngx-table-cell-default-width);
+        }
+
+        &--is-draggable,
+        &--is-sortable,
+        &--is {
+            table-thead,
+            .table-grid__header-cell--content {
+                cursor: pointer;
+            }
+        }
+
+        &--resize {
+            height: 100%;
+            width: 10px;
+            position: absolute;
+            background: transparent;
+            cursor: ew-resize;
+            right: 0;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &--line {
+                height: 75%;
+                width: 2px;
+                vertical-align: middle;
+                background: var(--ngx-table-cell-border-color);
+                display: flex;
+            }
+        }
+
+        &:last-child .table-grid__column--resize {
+            display: none;
+        }
+
+        &--vertical-line {
+            border-right: 1px solid var(--ngx-table-cell-border-color);
+        }
+
+        &--vertical-line:last-child {
+            border-left: 1px solid var(--ngx-table-cell-border-color);
+            border-right: none;
+        }
+
+        &--vertical-line:nth-last-child(2) {
+            border-right: none;
+        }
+
+        &--sortable,
+        &--draggable,
+        &--filterable {
+            width: 20px;
+            height: 18px;
+            opacity: 0.2;
+            font-size: 12px;
+            cursor: pointer;
+            position: relative;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &--active {
+                opacity: 1;
+            }
+
+            &:hover {
+                opacity: 0.5;
+            }
+        }
+
+        &--sortable {
+            display: none;
+
+            &--active {
+                display: flex;
+            }
+
+            .table-grid-icon--sortable {
+                transition: transform 0.4s;
+
+                &__asc,
+                &__desc {
+                    display: block;
+                }
+
+                &__asc {
+                    transform: rotate(0deg);
+                }
+
+                &__desc {
+                    transform: rotate(180deg);
+                }
+
+                &-number {
+                    position: absolute;
+                    font-size: 8px;
+                    font-weight: normal;
+                    right: 0;
+                    top: 0;
+                }
+            }
+        }
+
+        &--filter-enable {
+            display: table-cell;
+        }
+
+        &--draggable {
+            opacity: 0;
+        }
+
+        &--draggable {
+            &-active {
+                opacity: 0.8;
+            }
+        }
+
+        &--filterable {
+            transform: rotate(0deg);
+        }
+    }
+}
+
+//noinspection ALL
+.table-grid__column--sortable:not(.table-grid__column--sortable-active):hover,
+.table-grid__cell--content-sortable:hover
+    + .table-grid__header-cell-head--settings
+    .table-grid__column--sortable:not(.table-grid__column--sortable-active) {
+    opacity: 0.5;
+}
+
+.table-grid__column--vertical-line .table-grid__column--resize--line {
+    display: none;
+}

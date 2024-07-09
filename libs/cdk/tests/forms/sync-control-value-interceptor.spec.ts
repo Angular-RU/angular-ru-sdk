@@ -1,10 +1,10 @@
-import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ControlValueInterceptor } from '@angular-ru/cdk/forms';
+import {CommonModule} from '@angular/common';
+import {Component, ElementRef, ViewChild} from '@angular/core';
+import {ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ControlValueInterceptor} from '@angular-ru/cdk/forms';
 
-import { AutoSplitDirective, TrimDirective } from './helpers/sync-control-directives';
+import {AutoSplitDirective, TrimDirective} from './helpers/sync-control-directives';
 
 describe('sync control value interceptor', () => {
     let fixture: ComponentFixture<SyncInterceptorTestComponent>;
@@ -22,16 +22,16 @@ describe('sync control value interceptor', () => {
             />
             <input
                 #formControlInputElement
-                trim
                 autoSplit
+                trim
                 [formControl]="formControl"
             />
             <form [formGroup]="formGroup">
                 <input
                     #formGroupControlA
+                    autoSplit
                     formControlName="controlA"
                     trim
-                    autoSplit
                 />
                 <input
                     #formGroupControlB
@@ -43,15 +43,20 @@ describe('sync control value interceptor', () => {
                     trim
                 />
             </form>
-        `
+        `,
     })
     class SyncInterceptorTestComponent {
-        @ViewChild('ngModelInputElement') public readonly inputElementRef!: ElementRef<HTMLInputElement>;
-        @ViewChild('formControlInputElement') public readonly formControlInputElementRef!: ElementRef<HTMLInputElement>;
-        @ViewChild('formGroupControlA') public readonly formGroupControlARef!: ElementRef<HTMLInputElement>;
-        @ViewChild('formGroupControlB') public readonly formGroupControlBRef!: ElementRef<HTMLInputElement>;
-        @ViewChild('formGroupControlC') public readonly formGroupControlCRef!: ElementRef<HTMLInputElement>;
-        @ViewChild('ngModelInputElement', { read: ControlValueInterceptor })
+        @ViewChild('ngModelInputElement')
+        public readonly inputElementRef!: ElementRef<HTMLInputElement>;
+        @ViewChild('formControlInputElement')
+        public readonly formControlInputElementRef!: ElementRef<HTMLInputElement>;
+        @ViewChild('formGroupControlA')
+        public readonly formGroupControlARef!: ElementRef<HTMLInputElement>;
+        @ViewChild('formGroupControlB')
+        public readonly formGroupControlBRef!: ElementRef<HTMLInputElement>;
+        @ViewChild('formGroupControlC')
+        public readonly formGroupControlCRef!: ElementRef<HTMLInputElement>;
+        @ViewChild('ngModelInputElement', {read: ControlValueInterceptor})
         public interceptor!: ControlValueInterceptor;
 
         public enableAutoSplit: boolean = true;
@@ -60,16 +65,24 @@ describe('sync control value interceptor', () => {
         public value: string[] = ['value1', 'value2'];
         public formControl = new FormControl(['valueA', 'valueB']);
         public formGroup = new FormGroup({
-            controlA: new FormControl(['control_valueA', 'control_valueB', 'control_valueC']),
+            controlA: new FormControl([
+                'control_valueA',
+                'control_valueB',
+                'control_valueC',
+            ]),
             controlB: new FormControl('text, control'),
-            controlC: new FormControl('text_c, control_c')
+            controlC: new FormControl('text_c, control_c'),
         });
     }
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [TrimDirective, AutoSplitDirective, SyncInterceptorTestComponent],
-            imports: [CommonModule, FormsModule, ReactiveFormsModule]
+            declarations: [
+                TrimDirective,
+                AutoSplitDirective,
+                SyncInterceptorTestComponent,
+            ],
+            imports: [CommonModule, FormsModule, ReactiveFormsModule],
         }).compileComponents();
         fixture = TestBed.createComponent(SyncInterceptorTestComponent);
         component = fixture.componentInstance;
@@ -111,26 +124,38 @@ describe('sync control value interceptor', () => {
     }));
 
     it('should trim and split view value on Reactive FormControl', fakeAsync(async () => {
-        expect(component.formControlInputElementRef.nativeElement.value).toBe('valueA, valueB');
-        component.formControlInputElementRef.nativeElement.value = '    valueC,valueD    ';
+        expect(component.formControlInputElementRef.nativeElement.value).toBe(
+            'valueA, valueB',
+        );
+        component.formControlInputElementRef.nativeElement.value =
+            '    valueC,valueD    ';
 
-        component.formControlInputElementRef.nativeElement.dispatchEvent(new Event('input'));
+        component.formControlInputElementRef.nativeElement.dispatchEvent(
+            new Event('input'),
+        );
         expect(component.formControl.value).toEqual(['valueC', 'valueD']);
 
         // check on blur
-        expect(component.formControlInputElementRef.nativeElement.value).toBe('    valueC,valueD    ');
-        component.formControlInputElementRef.nativeElement.dispatchEvent(new Event('blur'));
-        expect(component.formControlInputElementRef.nativeElement.value).toBe('valueC,valueD');
+        expect(component.formControlInputElementRef.nativeElement.value).toBe(
+            '    valueC,valueD    ',
+        );
+        component.formControlInputElementRef.nativeElement.dispatchEvent(
+            new Event('blur'),
+        );
+        expect(component.formControlInputElementRef.nativeElement.value).toBe(
+            'valueC,valueD',
+        );
         expect(component.formControl.value).toEqual(['valueC', 'valueD']);
     }));
 
     it('should trim and split view value on Reactive FormGroup', fakeAsync(async () => {
         expect(component.formGroupControlARef.nativeElement.value).toBe(
-            'control_valueA, control_valueB, control_valueC'
+            'control_valueA, control_valueB, control_valueC',
         );
         expect(component.formGroupControlBRef.nativeElement.value).toBe('text, control');
 
-        component.formGroupControlARef.nativeElement.value = '    control_valueD,control_valueE,control_valueF    ';
+        component.formGroupControlARef.nativeElement.value =
+            '    control_valueD,control_valueE,control_valueF    ';
         component.formGroupControlARef.nativeElement.dispatchEvent(new Event('input'));
 
         component.formGroupControlBRef.nativeElement.value = '   text2, control2   ';
@@ -142,7 +167,7 @@ describe('sync control value interceptor', () => {
         expect(component.formGroup.value).toEqual({
             controlA: ['control_valueD', 'control_valueE', 'control_valueF'],
             controlB: '   text2, control2   ',
-            controlC: 'text_c1, control_c2'
+            controlC: 'text_c1, control_c2',
         });
     }));
 
@@ -167,9 +192,14 @@ describe('sync control value interceptor', () => {
         expect(component.value).toBe('    value3,value4    ');
 
         // another value interceptor still works
-        expect(component.formControlInputElementRef.nativeElement.value).toBe('valueA, valueB');
-        component.formControlInputElementRef.nativeElement.value = '    valueC,valueD    ';
-        component.formControlInputElementRef.nativeElement.dispatchEvent(new Event('input'));
+        expect(component.formControlInputElementRef.nativeElement.value).toBe(
+            'valueA, valueB',
+        );
+        component.formControlInputElementRef.nativeElement.value =
+            '    valueC,valueD    ';
+        component.formControlInputElementRef.nativeElement.dispatchEvent(
+            new Event('input'),
+        );
         expect(component.formControl.value).toEqual(['valueC', 'valueD']);
     });
 });

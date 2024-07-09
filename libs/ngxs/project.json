@@ -1,25 +1,32 @@
 {
-    "root": "libs/ngxs/",
+    "name": "ngxs",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "libs/ngxs/",
     "projectType": "library",
-    "tags": ["scope:libs"],
     "targets": {
         "build": {
-            "builder": "@angular-devkit/build-angular:ng-packagr",
+            "executor": "@angular-devkit/build-angular:ng-packagr",
             "options": {
-                "tsConfig": "libs/ngxs/tsconfig.lib.json",
+                "tsConfig": "tsconfig.lib.json",
                 "project": "libs/ngxs/ng-package.json"
             },
-            "outputs": ["./node_modules/@angular-ru/ngxs"],
-            "dependsOn": [{ "target": "build", "projects": "dependencies" }]
+            "outputs": ["{projectRoot}/dist/ngxs"],
+            "dependsOn": [
+                {
+                    "target": "build",
+                    "dependencies": true
+                }
+            ]
         },
         "test": {
-            "builder": "@nrwl/workspace:run-commands",
-            "options": { "command": "npx jest --config libs/ngxs/jest.config.js" },
-            "outputs": ["coverage/ngxs"]
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "npx jest --config libs/ngxs/jest.config.js"
+            },
+            "outputs": ["{workspaceRoot}/coverage/ngxs"]
         },
         "publish": {
-            "builder": "@nrwl/workspace:run-commands",
+            "executor": "nx:run-commands",
             "options": {
                 "command": "npm publish ./node_modules/@angular-ru/ngxs --ignore-scripts || echo \"already published\""
             }

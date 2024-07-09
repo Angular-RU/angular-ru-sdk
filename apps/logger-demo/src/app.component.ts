@@ -11,16 +11,16 @@ import {
     LoggerService,
     TimerLog,
     TraceLog,
-    WarnLog
+    WarnLog,
 } from '@angular-ru/cdk/logger';
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent {
     @Logger() public loggerInjection!: LoggerService;
@@ -42,7 +42,7 @@ export class AppComponent {
     public exampleBasicMethods(): void {
         this.logger.clear();
         this.log('log is worked');
-        this.trace(this.traceIsWork, 1, { a: 1 });
+        this.trace(this.traceIsWork, 1, {a: 1});
         this.debug(this.debugIsWork, 2, console);
         this.info(this.infoIsWork, 3, Object);
         this.warn(this.warnIsWork, 4, String);
@@ -53,25 +53,31 @@ export class AppComponent {
         this.logger.clear();
 
         this.logger.groupCollapsed('EXAMPLE 2: show stack', () => {
-            this.trace(this.traceIsWork, 1, { a: 1 });
+            this.trace(this.traceIsWork, 1, {a: 1});
             this.debug(this.debugIsWork, 2, console);
             this.info(this.infoIsWork, 3, Object);
             this.warn(this.warnIsWork, 4, String);
             this.error(this.errorIsWork, 5, (2.55).toFixed());
         });
 
-        this.logger.group('Show trace in opened group', ({ trace }: LoggerService): void => {
-            for (let i: number = 0; i < 20; i++) {
-                trace(this.traceIsWork, i);
-            }
-        });
+        this.logger.group(
+            'Show trace in opened group',
+            ({trace}: LoggerService): void => {
+                for (let i: number = 0; i < 20; i++) {
+                    trace(this.traceIsWork, i);
+                }
+            },
+        );
 
         this.logger
-            .groupCollapsed('Show trace in collapsed group', ({ debug }: LoggerService): void => {
-                for (let i: number = 0; i < 15; i++) {
-                    debug(this.traceIsWork, i);
-                }
-            })
+            .groupCollapsed(
+                'Show trace in collapsed group',
+                ({debug}: LoggerService): void => {
+                    for (let i: number = 0; i < 15; i++) {
+                        debug(this.traceIsWork, i);
+                    }
+                },
+            )
             .closeAll();
     }
 
@@ -80,7 +86,7 @@ export class AppComponent {
 
         this.logger
             .groupCollapsed('GROUP TEST')
-            .pipe(({ trace, debug, info, warn, error }: LoggerService) => {
+            .pipe(({trace, debug, info, warn, error}: LoggerService) => {
                 trace(this.traceIsWork);
                 debug(this.debugIsWork);
                 info(this.infoIsWork);
@@ -92,27 +98,27 @@ export class AppComponent {
         this.logger
             .group('A')
             .pipe(
-                ({ trace }: LoggerService) => trace(this.traceIsWork),
-                ({ debug }: LoggerService) => debug(this.debugIsWork),
-                ({ info }: LoggerService) => info(this.infoIsWork),
-                ({ warn }: LoggerService) => warn(this.warnIsWork),
-                ({ error }: LoggerService) => error(this.errorIsWork)
+                ({trace}: LoggerService) => trace(this.traceIsWork),
+                ({debug}: LoggerService) => debug(this.debugIsWork),
+                ({info}: LoggerService) => info(this.infoIsWork),
+                ({warn}: LoggerService) => warn(this.warnIsWork),
+                ({error}: LoggerService) => error(this.errorIsWork),
             )
             .groupCollapsed('B')
             .pipe(
-                ({ trace }: LoggerService) => trace(this.traceIsWork),
-                ({ debug }: LoggerService) => debug(this.debugIsWork),
-                ({ info }: LoggerService) => info(this.infoIsWork),
-                ({ warn }: LoggerService) => warn(this.warnIsWork),
-                ({ error }: LoggerService) => error(this.errorIsWork)
+                ({trace}: LoggerService) => trace(this.traceIsWork),
+                ({debug}: LoggerService) => debug(this.debugIsWork),
+                ({info}: LoggerService) => info(this.infoIsWork),
+                ({warn}: LoggerService) => warn(this.warnIsWork),
+                ({error}: LoggerService) => error(this.errorIsWork),
             )
             .group('C')
             .pipe(
-                ({ trace }: LoggerService) => trace(this.traceIsWork),
-                ({ debug }: LoggerService) => debug(this.debugIsWork),
-                ({ info }: LoggerService) => info(this.infoIsWork),
-                ({ warn }: LoggerService) => warn(this.warnIsWork),
-                ({ error }: LoggerService) => error(this.errorIsWork)
+                ({trace}: LoggerService) => trace(this.traceIsWork),
+                ({debug}: LoggerService) => debug(this.debugIsWork),
+                ({info}: LoggerService) => info(this.infoIsWork),
+                ({warn}: LoggerService) => warn(this.warnIsWork),
+                ({error}: LoggerService) => error(this.errorIsWork),
             )
             .closeAll();
     }
@@ -134,10 +140,14 @@ export class AppComponent {
     public exampleSetStyleLine(): void {
         this.logger.clear();
 
-        this.logger.css('text-transform: uppercase; font-weight: bold').debug('window current ', window);
+        this.logger
+            .css('text-transform: uppercase; font-weight: bold')
+            .debug('window current ', window);
 
-        this.logger.css('color: red; text-decoration: underline; font-weight: bold').info('It is awesome logger');
-        this.debug({ a: 1 });
+        this.logger
+            .css('color: red; text-decoration: underline; font-weight: bold')
+            .info('It is awesome logger');
+        this.debug({a: 1});
 
         this.warn('logger.css(...) does not define a global format!');
         this.info('For global configuration, use the constructor parameters');
@@ -148,7 +158,7 @@ export class AppComponent {
 
         const jsonExample: object = {
             id: 1,
-            hello: 'world'
+            hello: 'world',
         };
 
         this.debug('Classic output json', jsonExample);
@@ -163,51 +173,51 @@ export class AppComponent {
         this.trace
             .group('A')
             .pipe(
-                ({ trace }: LoggerService) => trace(this.traceIsWork),
-                ({ debug }: LoggerService) => debug(this.debugIsWork),
-                ({ info }: LoggerService) => info(this.infoIsWork),
-                ({ warn }: LoggerService) => warn(this.warnIsWork),
-                ({ error }: LoggerService) => error(this.errorIsWork)
+                ({trace}: LoggerService) => trace(this.traceIsWork),
+                ({debug}: LoggerService) => debug(this.debugIsWork),
+                ({info}: LoggerService) => info(this.infoIsWork),
+                ({warn}: LoggerService) => warn(this.warnIsWork),
+                ({error}: LoggerService) => error(this.errorIsWork),
             )
             .close()
 
             .debug.group('B')
             .pipe(
-                ({ trace }: LoggerService) => trace(this.traceIsWork),
-                ({ debug }: LoggerService) => debug(this.debugIsWork),
-                ({ info }: LoggerService) => info(this.infoIsWork),
-                ({ warn }: LoggerService) => warn(this.warnIsWork),
-                ({ error }: LoggerService) => error(this.errorIsWork)
+                ({trace}: LoggerService) => trace(this.traceIsWork),
+                ({debug}: LoggerService) => debug(this.debugIsWork),
+                ({info}: LoggerService) => info(this.infoIsWork),
+                ({warn}: LoggerService) => warn(this.warnIsWork),
+                ({error}: LoggerService) => error(this.errorIsWork),
             )
             .close()
 
             .info.group('C')
             .pipe(
-                ({ trace }: LoggerService) => trace(this.traceIsWork),
-                ({ debug }: LoggerService) => debug(this.debugIsWork),
-                ({ info }: LoggerService) => info(this.infoIsWork),
-                ({ warn }: LoggerService) => warn(this.warnIsWork),
-                ({ error }: LoggerService) => error(this.errorIsWork)
+                ({trace}: LoggerService) => trace(this.traceIsWork),
+                ({debug}: LoggerService) => debug(this.debugIsWork),
+                ({info}: LoggerService) => info(this.infoIsWork),
+                ({warn}: LoggerService) => warn(this.warnIsWork),
+                ({error}: LoggerService) => error(this.errorIsWork),
             )
             .close()
 
             .warn.group('D')
             .pipe(
-                ({ trace }: LoggerService) => trace(this.traceIsWork),
-                ({ debug }: LoggerService) => debug(this.debugIsWork),
-                ({ info }: LoggerService) => info(this.infoIsWork),
-                ({ warn }: LoggerService) => warn(this.warnIsWork),
-                ({ error }: LoggerService) => error(this.errorIsWork)
+                ({trace}: LoggerService) => trace(this.traceIsWork),
+                ({debug}: LoggerService) => debug(this.debugIsWork),
+                ({info}: LoggerService) => info(this.infoIsWork),
+                ({warn}: LoggerService) => warn(this.warnIsWork),
+                ({error}: LoggerService) => error(this.errorIsWork),
             )
             .close()
 
             .error.group('E')
             .pipe(
-                ({ trace }: LoggerService) => trace(this.traceIsWork),
-                ({ debug }: LoggerService) => debug(this.debugIsWork),
-                ({ info }: LoggerService) => info(this.infoIsWork),
-                ({ warn }: LoggerService) => warn(this.warnIsWork),
-                ({ error }: LoggerService) => error(this.errorIsWork)
+                ({trace}: LoggerService) => trace(this.traceIsWork),
+                ({debug}: LoggerService) => debug(this.debugIsWork),
+                ({info}: LoggerService) => info(this.infoIsWork),
+                ({warn}: LoggerService) => warn(this.warnIsWork),
+                ({error}: LoggerService) => error(this.errorIsWork),
             )
             .close();
 
@@ -217,7 +227,9 @@ export class AppComponent {
     public exampleSetGlobalStyleLine(): void {
         this.logger.clear();
 
-        this.logger.css('font-weight: normal; text-decoration: none; font-style: italic;').info(3.14);
+        this.logger
+            .css('font-weight: normal; text-decoration: none; font-style: italic;')
+            .info(3.14);
         this.logger.css('font-weight: normal;').info(3.14);
         this.warn('global format with style!');
     }
@@ -225,13 +237,20 @@ export class AppComponent {
     public exampleCssClasses(): void {
         this.logger.clear();
 
-        this.logger.cssClass('bold line-through').log('JavaScript sucks', 'JavaScript is the best');
+        this.logger
+            .cssClass('bold line-through')
+            .log('JavaScript sucks', 'JavaScript is the best');
 
         this.logger
             .cssClass('code-sandbox')
-            .log('\n   @Component({ .. })' + '\n   export class AppComponent { .. }    \n\n');
+            .log(
+                '\n   @Component({ .. })' +
+                    '\n   export class AppComponent { .. }    \n\n',
+            );
 
-        this.logger.cssClass('bold line-through').debug('JavaScript sucks', 'JavaScript is the best');
+        this.logger
+            .cssClass('bold line-through')
+            .debug('JavaScript sucks', 'JavaScript is the best');
 
         this.logger.level = LoggerLevel.INFO;
     }

@@ -1,4 +1,4 @@
-import { checkEveryValueIsFilled } from '@angular-ru/cdk/utils';
+import {checkEveryValueIsFilled} from '@angular-ru/cdk/utils';
 
 describe('[TEST]: checkEveryValueIsFilled', () => {
     it('should return true if all values is filled', () => {

@@ -2,9 +2,9 @@
 
 JavaScript defines two overarching groups of data types:
 
--   `Primitives`: low-level values that are immutable (e.g. strings, numbers, booleans etc.)
--   `References`: collections of properties, representing identifiable heap memory, that are mutable (e.g. objects,
-    arrays, Map etc.)
+- `Primitives`: low-level values that are immutable (e.g. strings, numbers, booleans etc.)
+- `References`: collections of properties, representing identifiable heap memory, that are mutable (e.g. objects,
+  arrays, Map etc.)
 
 #### Mutable References
 
@@ -12,8 +12,8 @@ Let’s contrast the behavior of primitives with references. Let’s declare an 
 
 ```typescript
 const me = {
-    name: 'James',
-    age: 29
+  name: 'James',
+  age: 29,
 };
 ```
 
@@ -31,8 +31,8 @@ sharing a single object across two declarations:
 
 ```typescript
 const me = {
-    name: 'James',
-    age: 29
+  name: 'James',
+  age: 29,
 };
 
 const rob = me;
@@ -117,13 +117,13 @@ export class TodoState extends NgxsImmutableDataRepository<string[]> {
 or `Into template` without creating `mutableState$`:
 
 ```typescript
-import { MutableTypeModule } from '@angular-ru/cdk/pipes';
+import {MutableTypeModule} from '@angular-ru/cdk/pipes';
 
 @NgModule({
-    imports: [
-        // ..
-        MutableTypeModule
-    ]
+  imports: [
+    // ..
+    MutableTypeModule,
+  ],
 })
 export class AppModuleOrMyLazyModule {}
 ```
@@ -149,8 +149,8 @@ To use state operators, you must specify the exact return type:
 
 ```typescript
 this.ctx.setState(
-    patch<Immutable<TodoStateModel>>({
-        todos: updateItem<Todo>(index, patch({ completed: (value) => !value }))
-    })
+  patch<Immutable<TodoStateModel>>({
+    todos: updateItem<Todo>(index, patch({completed: (value) => !value})),
+  }),
 );
 ```

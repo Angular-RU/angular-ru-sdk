@@ -38,8 +38,8 @@
         <div
             tooltip-placement="bottom"
             class="cell"
+            [tooltip-context]="{name: 'Max'}"
             [tooltip]="template1"
-            [tooltip-context]="{ name: 'Max' }"
         >
             Bottom with HTML
 
@@ -53,8 +53,8 @@
         <div
             tooltip-placement="right"
             class="cell"
-            [tooltip]="template2"
             [tooltip-context]="version"
+            [tooltip]="template2"
         >
             Right with HTML
 
@@ -63,8 +63,8 @@
                 let-version
             >
                 <img
-                    src="assets/img/angular.svg"
                     alt="logo"
+                    src="assets/img/angular.svg"
                 />
                 Angular {{ version.full }}
             </ng-template>
@@ -79,9 +79,9 @@
             <ng-template #template3>...</ng-template>
         </div>
         <div
-            tooltip-size="medium"
-            tooltip-placement="top"
             tooltip-css-style="height: 100px; overflow: auto"
+            tooltip-placement="top"
+            tooltip-size="medium"
             class="cell"
             [tooltip]="template4"
         >
@@ -108,15 +108,15 @@
 
     <div>
         <cdk-virtual-scroll-viewport
-            minBufferPx="200"
             maxBufferPx="200"
+            minBufferPx="200"
             [itemSize]="24"
             [style.height.px]="200"
         >
             <ng-container *cdkVirtualFor="let favorite of favorites">
                 <ng-template
                     [ngTemplateOutlet]="virtualRef"
-                    [ngTemplateOutletContext]="{ $implicit: favorite }"
+                    [ngTemplateOutletContext]="{$implicit: favorite}"
                 ></ng-template>
             </ng-container>
         </cdk-virtual-scroll-viewport>
@@ -129,9 +129,9 @@
                 <mat-icon
                     tooltip-placement="right"
                     class="favorite-line--icon"
-                    [tooltip]="templateRef"
-                    [tooltip-context]="favorite"
                     [class.favorite-line--is-favorite]="favorite.isMarked"
+                    [tooltip-context]="favorite"
+                    [tooltip]="templateRef"
                     (click)="markFavorite(favorite)"
                 >
                     star_rate

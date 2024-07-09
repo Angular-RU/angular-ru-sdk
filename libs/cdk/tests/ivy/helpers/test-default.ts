@@ -7,10 +7,14 @@ import {
     Injectable,
     NgZone,
     Pipe,
-    PipeTransform
+    PipeTransform,
 } from '@angular/core';
 
-import { InjectFeatureTestService, InjectNgZone, InjectTestService } from './test-decorators';
+import {
+    InjectFeatureTestService,
+    InjectNgZone,
+    InjectTestService,
+} from './test-decorators';
 
 @Injectable()
 export class TestService {
@@ -18,7 +22,7 @@ export class TestService {
 }
 
 @Directive({
-    selector: '[test-directive]'
+    selector: '[test-directive]',
 })
 export class TestDirective {
     @InjectTestService() public testService!: TestService;
@@ -33,7 +37,7 @@ export class TestDirective {
         <p class="service">{{ testService.testField }}</p>
         <p class="pipe">{{ 'testValue' | test }}</p>
     `,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TestComponent {
     @InjectTestService() public testService!: TestService;
@@ -41,7 +45,7 @@ export class TestComponent {
     constructor(public ngZone: NgZone) {}
 }
 
-@Pipe({ name: 'test' })
+@Pipe({name: 'test'})
 export class TestPipe implements PipeTransform {
     @InjectTestService() public testService!: TestService;
 
@@ -64,7 +68,7 @@ export class FeatureTestService {
 @Component({
     selector: 'feature-test-component',
     template: '',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FeatureTestComponent {
     @InjectFeatureTestService() public featureTestService!: FeatureTestService;

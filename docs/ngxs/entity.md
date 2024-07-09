@@ -2,17 +2,17 @@
 
 Entity provides an API to manipulate and query entity collections:
 
--   Provides performant CRUD operations for managing entity collections;
--   Extensible type-safe adapters for selecting entity information;
--   Entity promotes the use of plain JavaScript objects when managing collections. ES6 class instances will be;
-    transformed into plain JavaScript objects when entities are managed in a collection.
+- Provides performant CRUD operations for managing entity collections;
+- Extensible type-safe adapters for selecting entity information;
+- Entity promotes the use of plain JavaScript objects when managing collections. ES6 class instances will be;
+  transformed into plain JavaScript objects when entities are managed in a collection.
 
 #### What is an Entity?
 
 In NGXS, we store different types of state in the store, and this typically includes:
 
--   business data, such as for example Courses or Lessons, in the case of an online course platform;
--   some UI state, such as for example UI user preferences.
+- business data, such as for example Courses or Lessons, in the case of an online course platform;
+- some UI state, such as for example UI user preferences.
 
 An Entity represents some sort of business data, so Course and Lesson are examples of entity types.
 
@@ -21,24 +21,24 @@ important entities would be Course and Lesson, defined with these two custom obj
 
 ```typescript
 export interface Course {
-    id: number;
-    description: string;
-    iconUrl?: string;
-    courseListIcon?: string;
-    longDescription?: string;
-    category: string;
-    seqNo: number;
-    lessonsCount?: number;
-    promo?: boolean;
+  id: number;
+  description: string;
+  iconUrl?: string;
+  courseListIcon?: string;
+  longDescription?: string;
+  category: string;
+  seqNo: number;
+  lessonsCount?: number;
+  promo?: boolean;
 }
 
 export interface Lesson {
-    id: number;
-    description: string;
-    duration: string;
-    seqNo: number;
-    courseId?: number;
-    videoId?: string;
+  id: number;
+  description: string;
+  duration: string;
+  seqNo: number;
+  courseId?: number;
+  videoId?: string;
 }
 ```
 
@@ -58,42 +58,42 @@ The complete store state would then look something like this:
 
 ```json5
 {
-    courses: [
-        {
-            id: 0,
-            description: 'Angular NGXS Course',
-            category: 'BEGINNER',
-            seqNo: 1
-        },
-        {
-            id: 1,
-            description: 'Angular for Beginners',
-            category: 'BEGINNER',
-            seqNo: 2
-        },
-        {
-            id: 2,
-            description: 'Angular Security Course - Web Security Fundamentals',
-            category: 'ADVANCED',
-            seqNo: 3
-        }
-    ],
-    lessons: [
-        {
-            id: 1,
-            description: 'Angular Tutorial For Beginners - Build Your First App - Hello World Step By Step',
-            duration: '4:17',
-            seqNo: 1,
-            courseId: 1
-        },
-        {
-            id: 2,
-            description: 'Building Your First  Component - Component Composition',
-            duration: '2:07',
-            seqNo: 2,
-            courseId: 1
-        }
-    ]
+  courses: [
+    {
+      id: 0,
+      description: 'Angular NGXS Course',
+      category: 'BEGINNER',
+      seqNo: 1,
+    },
+    {
+      id: 1,
+      description: 'Angular for Beginners',
+      category: 'BEGINNER',
+      seqNo: 2,
+    },
+    {
+      id: 2,
+      description: 'Angular Security Course - Web Security Fundamentals',
+      category: 'ADVANCED',
+      seqNo: 3,
+    },
+  ],
+  lessons: [
+    {
+      id: 1,
+      description: 'Angular Tutorial For Beginners - Build Your First App - Hello World Step By Step',
+      duration: '4:17',
+      seqNo: 1,
+      courseId: 1,
+    },
+    {
+      id: 2,
+      description: 'Building Your First  Component - Component Composition',
+      duration: '2:07',
+      seqNo: 2,
+      courseId: 1,
+    },
+  ],
 }
 ```
 
@@ -102,15 +102,15 @@ The complete store state would then look something like this:
 Storing entities in the store in the form of an array is the first thing that comes to mind, but that approach can cause
 several potential problems:
 
--   if we want to look up a course based on it's known id, we would have to loop through the whole collection, which
-    could be inefficient for very large collections (500-1000K+);
+- if we want to look up a course based on it's known id, we would have to loop through the whole collection, which could
+  be inefficient for very large collections (500-1000K+);
 
--   more than that, by using an array we could accidentally store different versions of the same course (with the same
-    id) in the array;
+- more than that, by using an array we could accidentally store different versions of the same course (with the same id)
+  in the array;
 
--   For example, take the simple case of adding a new entity to the collection. We would be reimplementing several times
-    the exact same logic for adding a new entity to the collection and reordering the array in order to obtain a certain
-    custom sort order.
+- For example, take the simple case of adding a new entity to the collection. We would be reimplementing several times
+  the exact same logic for adding a new entity to the collection and reordering the array in order to obtain a certain
+  custom sort order.
 
 As we can see, the format under which we store our entities in the store has a big impact on our applications. Let's
 then try to find out what would be the ideal format for storing entities in the store.
@@ -268,13 +268,13 @@ something like this:
 
 ```typescript
 export interface CoursesEntityCollections {
-    ids: number[];
-    entities: { [key: number]: Course };
+  ids: number[];
+  entities: {[key: number]: Course};
 }
 
 export interface LessonsEntityCollections {
-    ids: number[];
-    entities: { [key: number]: Lesson };
+  ids: number[];
+  entities: {[key: number]: Lesson};
 }
 ```
 
@@ -289,8 +289,8 @@ Therefore, we do not duplicate such interfaces, but simply use the ready-made `N
 ```typescript
 @StateRepository()
 @State({
-    name: 'courses',
-    defaults: createEntityCollections()
+  name: 'courses',
+  defaults: createEntityCollections(),
 })
 @Injectable()
 export class CoursesEntitiesState extends NgxsDataEntityCollectionsRepository<Course> {}
@@ -299,8 +299,8 @@ export class CoursesEntitiesState extends NgxsDataEntityCollectionsRepository<Co
 ```typescript
 @StateRepository()
 @State({
-    name: 'lessons',
-    defaults: createEntityCollections()
+  name: 'lessons',
+  defaults: createEntityCollections(),
 })
 @Injectable()
 export class LessonEntitiesState extends NgxsDataEntityCollectionsRepository<Lesson> {}
@@ -308,17 +308,20 @@ export class LessonEntitiesState extends NgxsDataEntityCollectionsRepository<Les
 
 ```typescript
 @Component({
-    selector: 'app'
-    // ..
+  selector: 'app',
+  // ..
 })
 export class AppComponent implements OnInit {
-    constructor(private courses: CoursesEntitiesState, private api: ApiCoursesService) {}
+  constructor(
+    private courses: CoursesEntitiesState,
+    private api: ApiCoursesService,
+  ) {}
 
-    public ngOnInit(): void {
-        this.api.getCourses().subscribe((courses: Course[]) => {
-            this.courses.setAll(courses);
-        });
-    }
+  public ngOnInit(): void {
+    this.api.getCourses().subscribe((courses: Course[]) => {
+      this.courses.setAll(courses);
+    });
+  }
 }
 ```
 
@@ -336,24 +339,24 @@ based on an entity key, or a comparer function.
 
 ```typescript
 interface People {
-    id: number;
-    name: string;
-    age: number;
+  id: number;
+  name: string;
+  age: number;
 }
 
 const defaults = createEntityCollections<People>({
-    ids: [1, 2, 3, 4, 5],
-    entities: {
-        1: { id: 1, name: 'Max', age: 25 },
-        2: { id: 2, name: 'Ivan', age: 15 },
-        3: { id: 3, name: 'Roger', age: 35 },
-        4: { id: 4, name: 'Petr', age: 40 },
-        5: { id: 5, name: 'Anton', age: 12 }
-    }
+  ids: [1, 2, 3, 4, 5],
+  entities: {
+    1: {id: 1, name: 'Max', age: 25},
+    2: {id: 2, name: 'Ivan', age: 15},
+    3: {id: 3, name: 'Roger', age: 35},
+    4: {id: 4, name: 'Petr', age: 40},
+    5: {id: 5, name: 'Anton', age: 12},
+  },
 });
 
 @StateRepository()
-@State({ name: 'people', defaults })
+@State({name: 'people', defaults})
 @Injectable()
 class PeopleEntitiesState extends NgxsDataEntityCollectionsRepository<People> {}
 ```
@@ -362,19 +365,19 @@ class PeopleEntitiesState extends NgxsDataEntityCollectionsRepository<People> {}
 
 ```typescript
 @Component({
-    /* */
+  /* */
 })
 export class PeopleComponent implements OnInit {
-    constructor(private peopleEntities: PeopleEntitiesState) {}
+  constructor(private peopleEntities: PeopleEntitiesState) {}
 
-    public ngOnInit(): void {
-        this.peopleEntities.sort({
-            sortBy: 'age',
-            sortByOrder: EntitySortByOrder.ASC
-        });
+  public ngOnInit(): void {
+    this.peopleEntities.sort({
+      sortBy: 'age',
+      sortByOrder: EntitySortByOrder.ASC,
+    });
 
-        console.log(this.peopleEntities.selectAll());
-        /**
+    console.log(this.peopleEntities.selectAll());
+    /**
         [
             { id: 5, name: 'Anton', age: 12 },
             { id: 2, name: 'Ivan', age: 15 },
@@ -383,7 +386,7 @@ export class PeopleComponent implements OnInit {
             { id: 4, name: 'Petr', age: 40 }
         ]
         */
-    }
+  }
 }
 ```
 
@@ -391,19 +394,19 @@ export class PeopleComponent implements OnInit {
 
 ```typescript
 @Component({
-    /* */
+  /* */
 })
 export class PeopleComponent implements OnInit {
-    constructor(private peopleEntities: PeopleEntitiesState) {}
+  constructor(private peopleEntities: PeopleEntitiesState) {}
 
-    public ngOnInit(): void {
-        this.peopleEntities.sort({
-            sortBy: 'age',
-            sortByOrder: EntitySortByOrder.DESC
-        });
+  public ngOnInit(): void {
+    this.peopleEntities.sort({
+      sortBy: 'age',
+      sortByOrder: EntitySortByOrder.DESC,
+    });
 
-        console.log(this.peopleEntities.selectAll());
-        /**
+    console.log(this.peopleEntities.selectAll());
+    /**
         [
             { id: 4, name: 'Petr', age: 40 },
             { id: 3, name: 'Roger', age: 35 },
@@ -412,7 +415,7 @@ export class PeopleComponent implements OnInit {
             { id: 5, name: 'Anton', age: 12 }
         ]
         */
-    }
+  }
 }
 ```
 
@@ -441,20 +444,20 @@ If you want implement custom sorting, you can override setEntitiesState method:
 ```typescript
 @StateRepository()
 @State({
-    name: 'helloWorld',
-    defaults: createEntityCollections()
+  name: 'helloWorld',
+  defaults: createEntityCollections(),
 })
 @Injectable()
 class HelloWorldEntitiesState {
-    // override default setEntitiesState
-    protected setEntitiesState(state: NgxsEntityCollections<V, K>): void {
-        const ids: K[] = this.customSorting(state.ids, state.entities);
-        this.ctx.setState({ ids, entities: state.entities });
-    }
+  // override default setEntitiesState
+  protected setEntitiesState(state: NgxsEntityCollections<V, K>): void {
+    const ids: K[] = this.customSorting(state.ids, state.entities);
+    this.ctx.setState({ids, entities: state.entities});
+  }
 
-    private customSorting(originIds: K[], entities: EntityDictionary<K, V>): K[] {
-        // ..., where we use options from `this.comparator`
-    }
+  private customSorting(originIds: K[], entities: EntityDictionary<K, V>): K[] {
+    // ..., where we use options from `this.comparator`
+  }
 }
 ```
 
@@ -464,18 +467,18 @@ By default, the selection is on the `ID` primary key, you can override this beha
 
 ```typescript
 interface Lesson {
-    lessonId: number;
-    title: string;
+  lessonId: number;
+  title: string;
 }
 
 @StateRepository()
 @State({
-    name: 'lesson',
-    defaults: createEntityCollections()
+  name: 'lesson',
+  defaults: createEntityCollections(),
 })
 @Injectable()
 class LessonEntitiesState extends NgxsDataEntityCollectionsRepository<Lesson> {
-    public primaryKey: string = 'lessonId';
+  public primaryKey: string = 'lessonId';
 }
 ```
 
@@ -484,14 +487,14 @@ or
 ```typescript
 @StateRepository()
 @State({
-    name: 'lesson',
-    defaults: createEntityCollections()
+  name: 'lesson',
+  defaults: createEntityCollections(),
 })
 @Injectable()
 class LessonEntitiesState extends NgxsDataEntityCollectionsRepository<Lesson> {
-    public selectId(entity: Lesson): EntityIdType {
-        return entity.lessonId;
-    }
+  public selectId(entity: Lesson): EntityIdType {
+    return entity.lessonId;
+  }
 }
 ```
 
@@ -503,67 +506,67 @@ the columns that make up a composite key can be of different data types.
 
 ```typescript
 interface StudentEntity {
-    groupId: number;
-    batchId: number;
-    name: string;
-    course: string;
-    dateOfBirth: Date;
+  groupId: number;
+  batchId: number;
+  name: string;
+  course: string;
+  dateOfBirth: Date;
 }
 ```
 
 ```typescript
 @StateRepository()
 @State({
-    name: 'students',
-    defaults: createEntityCollections()
+  name: 'students',
+  defaults: createEntityCollections(),
 })
 @Injectable()
 class StudentEntitiesState extends NgxsDataEntityCollectionsRepository<StudentEntity, string> {
-    public selectId(entity: StudentEntity): string {
-        return `${entity.groupId}_${entity.batchId}`;
-    }
+  public selectId(entity: StudentEntity): string {
+    return `${entity.groupId}_${entity.batchId}`;
+  }
 }
 ```
 
 ```typescript
 @Component({
-    /* */
+  /* */
 })
 export class StudentsComponent implements OnInit {
-    constructor(private studentEntities: StudentEntitiesState) {}
+  constructor(private studentEntities: StudentEntitiesState) {}
 
-    public ngOnInit(): void {
-        this.studentEntities.setAll([
-            {
-                groupId: 1,
-                batchId: 1,
-                name: 'Maxim',
-                course: 'Super A',
-                dateOfBirth: new Date(1994, 5, 1)
-            },
-            {
-                groupId: 1,
-                batchId: 2,
-                name: 'Ivan',
-                course: 'Super A',
-                dateOfBirth: new Date(1993, 5, 12)
-            },
-            {
-                groupId: 2,
-                batchId: 1,
-                name: 'Nikola',
-                course: 'Super B',
-                dateOfBirth: new Date(1997, 7, 11)
-            },
-            {
-                groupId: 2,
-                batchId: 2,
-                name: 'Petr',
-                course: 'Super C',
-                dateOfBirth: new Date(1994, 3, 11)
-            }
-        ]);
-    }
+  public ngOnInit(): void {
+    this.studentEntities.setAll([
+      {
+        groupId: 1,
+        batchId: 1,
+        name: 'Maxim',
+        course: 'Super A',
+        dateOfBirth: new Date(1994, 5, 1),
+      },
+      {
+        groupId: 1,
+        batchId: 2,
+        name: 'Ivan',
+        course: 'Super A',
+        dateOfBirth: new Date(1993, 5, 12),
+      },
+      {
+        groupId: 2,
+        batchId: 1,
+        name: 'Nikola',
+        course: 'Super B',
+        dateOfBirth: new Date(1997, 7, 11),
+      },
+      {
+        groupId: 2,
+        batchId: 2,
+        name: 'Petr',
+        course: 'Super C',
+        dateOfBirth: new Date(1994, 3, 11),
+      },
+    ]);
+  }
 }
 ```
 
@@ -571,37 +574,37 @@ We get the state in store:
 
 ```json5
 {
-    ids: ['1_1', '1_2', '2_1', '2_2'],
-    entities: {
-        '1_1': {
-            groupId: 1,
-            batchId: 1,
-            name: 'Maxim',
-            course: 'Super A',
-            dateOfBirth: '1994-05-31T20:00:00.000Z'
-        },
-        '1_2': {
-            groupId: 1,
-            batchId: 2,
-            name: 'Ivan',
-            course: 'Super A',
-            dateOfBirth: '1993-06-11T20:00:00.000Z'
-        },
-        '2_1': {
-            groupId: 2,
-            batchId: 1,
-            name: 'Nikola',
-            course: 'Super B',
-            dateOfBirth: '1997-08-10T20:00:00.000Z'
-        },
-        '2_2': {
-            groupId: 2,
-            batchId: 2,
-            name: 'Petr',
-            course: 'Super C',
-            dateOfBirth: '1994-04-10T20:00:00.000Z'
-        }
-    }
+  ids: ['1_1', '1_2', '2_1', '2_2'],
+  entities: {
+    '1_1': {
+      groupId: 1,
+      batchId: 1,
+      name: 'Maxim',
+      course: 'Super A',
+      dateOfBirth: '1994-05-31T20:00:00.000Z',
+    },
+    '1_2': {
+      groupId: 1,
+      batchId: 2,
+      name: 'Ivan',
+      course: 'Super A',
+      dateOfBirth: '1993-06-11T20:00:00.000Z',
+    },
+    '2_1': {
+      groupId: 2,
+      batchId: 1,
+      name: 'Nikola',
+      course: 'Super B',
+      dateOfBirth: '1997-08-10T20:00:00.000Z',
+    },
+    '2_2': {
+      groupId: 2,
+      batchId: 2,
+      name: 'Petr',
+      course: 'Super C',
+      dateOfBirth: '1994-04-10T20:00:00.000Z',
+    },
+  },
 }
 ```
 
@@ -612,51 +615,54 @@ can extend it like this:
 
 ```typescript
 interface CourseOptions {
-    loading: boolean;
+  loading: boolean;
 }
 
 @StateRepository()
 @State({
-    name: 'courses',
-    defaults: {
-        ...createEntityCollections(),
-        loading: false
-    }
+  name: 'courses',
+  defaults: {
+    ...createEntityCollections(),
+    loading: false,
+  },
 })
 @Injectable()
 export class CoursesEntitiesState extends NgxsDataEntityCollectionsRepository<Course, EntityIdType, CourseOptions> {
-    @Computed()
-    public get loading(): boolean {
-        return this.snapshot.loading;
-    }
+  @Computed()
+  public get loading(): boolean {
+    return this.snapshot.loading;
+  }
 
-    @DataAction()
-    public setLoading(@Payload('loading') loading: boolean): void {
-        const state = this.getState();
-        this.setEntitiesState({
-            ...state,
-            loading
-        });
-    }
+  @DataAction()
+  public setLoading(@Payload('loading') loading: boolean): void {
+    const state = this.getState();
+    this.setEntitiesState({
+      ...state,
+      loading,
+    });
+  }
 }
 ```
 
 ```typescript
 @Component({
-    selector: 'app'
-    // ..
+  selector: 'app',
+  // ..
 })
 export class AppComponent implements OnInit {
-    constructor(private courses: CoursesEntitiesState, private api: ApiCoursesService) {}
+  constructor(
+    private courses: CoursesEntitiesState,
+    private api: ApiCoursesService,
+  ) {}
 
-    public ngOnInit(): void {
-        this.courses.setLoading(true);
-        this.api
-            .getCourses()
-            .pipe(finalize(() => this.courses.setLoading(false)))
-            .subscribe((courses: Course[]) => {
-                this.courses.setAll(courses);
-            });
-    }
+  public ngOnInit(): void {
+    this.courses.setLoading(true);
+    this.api
+      .getCourses()
+      .pipe(finalize(() => this.courses.setLoading(false)))
+      .subscribe((courses: Course[]) => {
+        this.courses.setAll(courses);
+      });
+  }
 }
 ```

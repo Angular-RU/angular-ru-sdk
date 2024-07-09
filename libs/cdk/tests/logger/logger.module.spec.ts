@@ -1,8 +1,8 @@
-import { TestBed } from '@angular/core/testing';
-import { LoggerLevel, LoggerModule, LoggerService } from '@angular-ru/cdk/logger';
-import { PlainObject } from '@angular-ru/cdk/typings';
+import {TestBed} from '@angular/core/testing';
+import {LoggerLevel, LoggerModule, LoggerService} from '@angular-ru/cdk/logger';
+import {PlainObject} from '@angular-ru/cdk/typings';
 
-import { ConsoleFake, TestLoggerLineType } from './helpers/console-fake';
+import {ConsoleFake, TestLoggerLineType} from './helpers/console-fake';
 
 describe('[TEST]: Execute method by Level', () => {
     let logger: LoggerService;
@@ -17,7 +17,7 @@ describe('[TEST]: Execute method by Level', () => {
 
     beforeAll(() => {
         TestBed.configureTestingModule({
-            imports: [LoggerModule.forRoot({ instance: fakeConsole })]
+            imports: [LoggerModule.forRoot({instance: fakeConsole})],
         });
 
         logger = TestBed.inject(LoggerService);
@@ -29,7 +29,7 @@ describe('[TEST]: Execute method by Level', () => {
         logger.level = LoggerLevel.TRACE;
 
         logger.log(customLogOutput);
-        logger.trace(traceIsWork, 1, { a: 1 });
+        logger.trace(traceIsWork, 1, {a: 1});
         logger.debug(debugIsWork, 2, {});
         logger.info(infoIsWork, 3, Object);
         logger.warn(warnIsWork, 4, String);
@@ -37,13 +37,13 @@ describe('[TEST]: Execute method by Level', () => {
 
         expect(fakeConsole.stack()).toEqual(
             fakeConsole.createStack(
-                { [TestLoggerLineType.LOG]: [customLogOutput] },
-                { [TestLoggerLineType.TRACE_OR_DEBUG]: [traceIsWork, 1, { a: 1 }] },
-                { [TestLoggerLineType.DEBUG]: [debugIsWork, 2, {}] },
-                { [TestLoggerLineType.INFO]: [infoIsWork, 3, Object] },
-                { [TestLoggerLineType.WARN]: [warnIsWork, 4, String] },
-                { [TestLoggerLineType.ERROR]: [errorIsWork, 5, (2.55).toFixed()] }
-            )
+                {[TestLoggerLineType.LOG]: [customLogOutput]},
+                {[TestLoggerLineType.TRACE_OR_DEBUG]: [traceIsWork, 1, {a: 1}]},
+                {[TestLoggerLineType.DEBUG]: [debugIsWork, 2, {}]},
+                {[TestLoggerLineType.INFO]: [infoIsWork, 3, Object]},
+                {[TestLoggerLineType.WARN]: [warnIsWork, 4, String]},
+                {[TestLoggerLineType.ERROR]: [errorIsWork, 5, (2.55).toFixed()]},
+            ),
         );
     });
 
@@ -51,20 +51,20 @@ describe('[TEST]: Execute method by Level', () => {
         logger.level = LoggerLevel.DEBUG;
 
         logger.log(customLogOutput);
-        logger.trace(traceIsWork, 1, { a: 1 });
-        logger.debug(debugIsWork, 2, { b: 2 });
+        logger.trace(traceIsWork, 1, {a: 1});
+        logger.debug(debugIsWork, 2, {b: 2});
         logger.info(infoIsWork, 3, Object);
         logger.warn(warnIsWork, 4, String);
         logger.error(errorIsWork, 5, (2.55).toFixed());
 
         expect(fakeConsole.stack()).toEqual(
             fakeConsole.createStack(
-                { [TestLoggerLineType.LOG]: [customLogOutput] },
-                { [TestLoggerLineType.DEBUG]: [debugIsWork, 2, { b: 2 }] },
-                { [TestLoggerLineType.INFO]: [infoIsWork, 3, Object] },
-                { [TestLoggerLineType.WARN]: [warnIsWork, 4, String] },
-                { [TestLoggerLineType.ERROR]: [errorIsWork, 5, (2.55).toFixed()] }
-            )
+                {[TestLoggerLineType.LOG]: [customLogOutput]},
+                {[TestLoggerLineType.DEBUG]: [debugIsWork, 2, {b: 2}]},
+                {[TestLoggerLineType.INFO]: [infoIsWork, 3, Object]},
+                {[TestLoggerLineType.WARN]: [warnIsWork, 4, String]},
+                {[TestLoggerLineType.ERROR]: [errorIsWork, 5, (2.55).toFixed()]},
+            ),
         );
     });
 
@@ -72,7 +72,7 @@ describe('[TEST]: Execute method by Level', () => {
         logger.level = LoggerLevel.INFO;
 
         logger.log(customLogOutput);
-        logger.trace(traceIsWork, 1, { a: 1 });
+        logger.trace(traceIsWork, 1, {a: 1});
         logger.debug(debugIsWork, 2, console);
         logger.info(infoIsWork, 3, Object);
         logger.warn(warnIsWork, 4, String);
@@ -80,11 +80,11 @@ describe('[TEST]: Execute method by Level', () => {
 
         expect(fakeConsole.stack()).toEqual(
             fakeConsole.createStack(
-                { [TestLoggerLineType.LOG]: [customLogOutput] },
-                { [TestLoggerLineType.INFO]: [infoIsWork, 3, Object] },
-                { [TestLoggerLineType.WARN]: [warnIsWork, 4, String] },
-                { [TestLoggerLineType.ERROR]: [errorIsWork, 5, (2.55).toFixed()] }
-            )
+                {[TestLoggerLineType.LOG]: [customLogOutput]},
+                {[TestLoggerLineType.INFO]: [infoIsWork, 3, Object]},
+                {[TestLoggerLineType.WARN]: [warnIsWork, 4, String]},
+                {[TestLoggerLineType.ERROR]: [errorIsWork, 5, (2.55).toFixed()]},
+            ),
         );
     });
 
@@ -92,7 +92,7 @@ describe('[TEST]: Execute method by Level', () => {
         logger.level = LoggerLevel.WARN;
 
         logger.log(customLogOutput);
-        logger.trace(traceIsWork, 1, { a: 1 });
+        logger.trace(traceIsWork, 1, {a: 1});
         logger.debug(debugIsWork, 2, console);
         logger.info(infoIsWork, 3, Object);
         logger.warn(warnIsWork, 4, String);
@@ -100,9 +100,9 @@ describe('[TEST]: Execute method by Level', () => {
 
         expect(fakeConsole.stack()).toEqual(
             fakeConsole.createStack(
-                { [TestLoggerLineType.WARN]: [warnIsWork, 4, String] },
-                { [TestLoggerLineType.ERROR]: [errorIsWork, 5, (2.55).toFixed()] }
-            )
+                {[TestLoggerLineType.WARN]: [warnIsWork, 4, String]},
+                {[TestLoggerLineType.ERROR]: [errorIsWork, 5, (2.55).toFixed()]},
+            ),
         );
     });
 
@@ -110,14 +110,16 @@ describe('[TEST]: Execute method by Level', () => {
         logger.level = LoggerLevel.ERROR;
 
         logger.log(customLogOutput);
-        logger.trace(traceIsWork, 1, { a: 1 });
+        logger.trace(traceIsWork, 1, {a: 1});
         logger.debug(debugIsWork, 2, console);
         logger.info(infoIsWork, 3, Object);
         logger.warn(warnIsWork, 4, String);
         logger.error(errorIsWork, 5, (2.55).toFixed());
 
         expect(fakeConsole.stack()).toEqual(
-            fakeConsole.createStack({ [TestLoggerLineType.ERROR]: ['error is worked', 5, (2.55).toFixed()] })
+            fakeConsole.createStack({
+                [TestLoggerLineType.ERROR]: ['error is worked', 5, (2.55).toFixed()],
+            }),
         );
     });
 
@@ -125,7 +127,7 @@ describe('[TEST]: Execute method by Level', () => {
         logger.level = LoggerLevel.OFF;
 
         logger.log(customLogOutput);
-        logger.trace(traceIsWork, 1, { a: 1 });
+        logger.trace(traceIsWork, 1, {a: 1});
         logger.debug(debugIsWork, 2, console);
         logger.info(infoIsWork, 3, Object);
         logger.warn(warnIsWork, 4, String);
@@ -147,7 +149,9 @@ describe('[TEST]: Execute method by Level', () => {
     it(`assert: 5 is not grater than 6`, () => {
         logger.assert(5 > 6, '5 is not grater than 6');
         expect(fakeConsole.stack(0)).toEqual(
-            fakeConsole.createStack({ [TestLoggerLineType.ASSERT]: [`5 is not grater than 6`] })
+            fakeConsole.createStack({
+                [TestLoggerLineType.ASSERT]: [`5 is not grater than 6`],
+            }),
         );
     });
 
@@ -158,17 +162,19 @@ describe('[TEST]: Execute method by Level', () => {
 
     it(`table`, () => {
         const data: PlainObject = [
-            { name: 'Yusuf', age: 26 },
-            { age: 34, name: 'Chen' }
+            {name: 'Yusuf', age: 26},
+            {age: 34, name: 'Chen'},
         ];
 
         logger.table(data);
-        expect(fakeConsole.stack(0)).toEqual(fakeConsole.createStack({ [TestLoggerLineType.TABLE]: [data] }));
+        expect(fakeConsole.stack(0)).toEqual(
+            fakeConsole.createStack({[TestLoggerLineType.TABLE]: [data]}),
+        );
     });
 
     it('should be equals reference context (this)', () => {
         // eslint-disable-next-line @typescript-eslint/unbound-method
-        const { pipe }: LoggerService = logger;
+        const {pipe}: LoggerService = logger;
 
         expect(pipe() === logger).toBeTruthy();
     });

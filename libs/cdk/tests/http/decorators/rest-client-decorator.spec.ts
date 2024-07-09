@@ -1,10 +1,14 @@
-import { CommonModule } from '@angular/common';
-import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
-import { Component, Injectable } from '@angular/core';
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { DataHttpClient, DataHttpClientModule } from '@angular-ru/cdk/http';
-import { RestClient } from '@angular-ru/cdk/http/decorators';
-import { Nullable } from '@angular-ru/cdk/typings';
+import {CommonModule} from '@angular/common';
+import {
+    HttpClientTestingModule,
+    HttpTestingController,
+    TestRequest,
+} from '@angular/common/http/testing';
+import {Component, Injectable} from '@angular/core';
+import {fakeAsync, TestBed, tick} from '@angular/core/testing';
+import {DataHttpClient, DataHttpClientModule} from '@angular-ru/cdk/http';
+import {RestClient} from '@angular-ru/cdk/http/decorators';
+import {Nullable} from '@angular-ru/cdk/typings';
 
 describe('[TEST]: HTTP decorators for client', () => {
     const MOCK_API: string = 'http://localhost';
@@ -18,7 +22,7 @@ describe('[TEST]: HTTP decorators for client', () => {
 
     @Component({
         selector: 'events',
-        template: ''
+        template: '',
     })
     class GithubComponent {
         constructor(public readonly api: ApiGithubClient) {}
@@ -27,7 +31,11 @@ describe('[TEST]: HTTP decorators for client', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [GithubComponent],
-            imports: [CommonModule, HttpClientTestingModule, DataHttpClientModule.forRoot([ApiGithubClient])]
+            imports: [
+                CommonModule,
+                HttpClientTestingModule,
+                DataHttpClientModule.forRoot([ApiGithubClient]),
+            ],
         });
 
         TestBed.compileComponents();
@@ -39,12 +47,12 @@ describe('[TEST]: HTTP decorators for client', () => {
 
     it('should be correct send GET request', fakeAsync(() => {
         client?.get('api-get').subscribe((response: any[]) => {
-            expect(response).toEqual([{ hello: 'world' }]);
+            expect(response).toEqual([{hello: 'world'}]);
             expect(request.request.method).toBe('GET');
         });
 
         request = httpMock.expectOne(`${MOCK_API}/hello/api-get`);
-        request.flush([{ hello: 'world' }]);
+        request.flush([{hello: 'world'}]);
 
         tick(100);
     }));

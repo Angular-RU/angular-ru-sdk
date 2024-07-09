@@ -1,4 +1,4 @@
-import { GetFreeSizePipe } from '../../../virtual-table/src/pipes/get-free-size.pipe';
+import {GetFreeSizePipe} from '../../../virtual-table/pipes/get-free-size.pipe';
 
 describe('[TEST] getFreeSizePipe', () => {
     const pipe = new GetFreeSizePipe();

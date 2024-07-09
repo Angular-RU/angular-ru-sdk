@@ -4,13 +4,13 @@ import {
     ChangeDetectorRef,
     Component,
     OnInit,
-    ViewEncapsulation
+    ViewEncapsulation,
 } from '@angular/core';
-import { Nullable, PlainObject } from '@angular-ru/cdk/typings';
-import { TableUpdateSchema } from '@angular-ru/cdk/virtual-table';
+import {Nullable, PlainObject} from '@angular-ru/cdk/typings';
+import {TableUpdateSchema} from '@angular-ru/cdk/virtual-table';
 
-import { hlJsCode } from '../../../../../.global/utils/hljs-code';
-import { MocksGenerator } from '../../mocks-generator';
+import {hlJsCode} from '../../../../../.global/utils/hljs-code';
+import {MocksGenerator} from '../../mocks-generator';
 
 @Component({
     selector: 'sample-eleven',
@@ -37,8 +37,8 @@ import { MocksGenerator } from '../../mocks-generator';
                 overflow: visible;
                 max-width: 100%;
             }
-        `
-    ]
+        `,
+    ],
 })
 export class SampleElevenComponent implements OnInit, AfterViewInit {
     public data: PlainObject[] = [];
@@ -47,23 +47,23 @@ export class SampleElevenComponent implements OnInit, AfterViewInit {
         {
             id: 1,
             name: 'single',
-            price: 29.3
+            price: 29.3,
         },
         {
             id: 2,
             name: 'developer',
-            price: 49.8
+            price: 49.8,
         },
         {
             id: 3,
             name: 'premium',
-            price: 99.5
+            price: 99.5,
         },
         {
             id: 4,
             name: 'enterprise',
-            price: 199
-        }
+            price: 199,
+        },
     ];
 
     constructor(private readonly cd: ChangeDetectorRef) {}

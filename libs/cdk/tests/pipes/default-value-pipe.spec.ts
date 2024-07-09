@@ -1,12 +1,14 @@
-import { TestBed } from '@angular/core/testing';
-import { DefaultValuePipe, DefaultValuePipeModule } from '@angular-ru/cdk/pipes';
-import { Nullable } from '@angular-ru/cdk/typings';
+import {TestBed} from '@angular/core/testing';
+import {DefaultValuePipe, DefaultValuePipeModule} from '@angular-ru/cdk/pipes';
+import {Nullable} from '@angular-ru/cdk/typings';
 
 describe('default value', () => {
     let pipe: DefaultValuePipe;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({ imports: [DefaultValuePipeModule] }).compileComponents();
+        TestBed.configureTestingModule({
+            imports: [DefaultValuePipeModule],
+        }).compileComponents();
         pipe = TestBed.inject(DefaultValuePipe);
     });
 

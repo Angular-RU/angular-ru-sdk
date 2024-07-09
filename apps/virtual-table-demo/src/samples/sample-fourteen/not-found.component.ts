@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 
 @Component({
     selector: 'not-found',
@@ -6,6 +6,6 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
         <b>Not found</b>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
 })
 export class NotFoundComponent {}

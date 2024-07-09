@@ -1,12 +1,16 @@
-import { CommonModule } from '@angular/common';
-import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
-import { Component, Injectable, OnDestroy, OnInit } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
-import { DataHttpClient, DataHttpClientModule } from '@angular-ru/cdk/http';
-import { Get, RestClient } from '@angular-ru/cdk/http/decorators';
-import { Nullable } from '@angular-ru/cdk/typings';
-import { Observable, Subject } from 'rxjs';
-import { delay, takeUntil } from 'rxjs/operators';
+import {CommonModule} from '@angular/common';
+import {
+    HttpClientTestingModule,
+    HttpTestingController,
+    TestRequest,
+} from '@angular/common/http/testing';
+import {Component, Injectable, OnDestroy, OnInit} from '@angular/core';
+import {ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
+import {DataHttpClient, DataHttpClientModule} from '@angular-ru/cdk/http';
+import {Get, RestClient} from '@angular-ru/cdk/http/decorators';
+import {Nullable} from '@angular-ru/cdk/typings';
+import {Observable, Subject} from 'rxjs';
+import {delay, takeUntil} from 'rxjs/operators';
 
 describe('[TEST]: Canceling requests and unsubscribing', () => {
     const mockApi: string = 'http://localhost';
@@ -73,7 +77,7 @@ describe('[TEST]: Canceling requests and unsubscribing', () => {
 
     @Component({
         selector: '',
-        template: ''
+        template: '',
     })
     class TestComponent implements OnInit, OnDestroy {
         private destroy$: Subject<boolean> = new Subject<boolean>();
@@ -117,8 +121,8 @@ describe('[TEST]: Canceling requests and unsubscribing', () => {
             imports: [
                 CommonModule,
                 HttpClientTestingModule,
-                DataHttpClientModule.forRoot([ApiClient], { limitConcurrency })
-            ]
+                DataHttpClientModule.forRoot([ApiClient], {limitConcurrency}),
+            ],
         });
 
         fixture = TestBed.createComponent(TestComponent);

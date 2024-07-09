@@ -1,11 +1,13 @@
-import { TestBed } from '@angular/core/testing';
-import { ToStringPipe, ToStringPipeModule } from '@angular-ru/cdk/pipes';
+import {TestBed} from '@angular/core/testing';
+import {ToStringPipe, ToStringPipeModule} from '@angular-ru/cdk/pipes';
 
 describe('to string pipe', () => {
     let pipe: ToStringPipe;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({ imports: [ToStringPipeModule] }).compileComponents();
+        TestBed.configureTestingModule({
+            imports: [ToStringPipeModule],
+        }).compileComponents();
         pipe = TestBed.inject(ToStringPipe);
     });
 
@@ -16,9 +18,11 @@ describe('to string pipe', () => {
         expect(pipe.transform('  ')).toBe('  ');
         expect(pipe.transform([])).toBe('');
         expect(pipe.transform([1, 2])).toBe('1,2');
-        expect(pipe.transform({ a: 1, b: 2 })).toBe('[object Object]');
-        expect(pipe.transform({ a: 1, b: 2 }, (value: { a: number; b: number }) => JSON.stringify(value))).toBe(
-            '{"a":1,"b":2}'
-        );
+        expect(pipe.transform({a: 1, b: 2})).toBe('[object Object]');
+        expect(
+            pipe.transform({a: 1, b: 2}, (value: {a: number; b: number}) =>
+                JSON.stringify(value),
+            ),
+        ).toBe('{"a":1,"b":2}');
     });
 });

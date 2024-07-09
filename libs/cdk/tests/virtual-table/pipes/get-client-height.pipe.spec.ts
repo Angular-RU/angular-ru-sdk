@@ -1,6 +1,6 @@
-import { Nullable } from '@angular-ru/cdk/typings';
+import {Nullable} from '@angular-ru/cdk/typings';
 
-import { GetClientHeightPipe } from '../../../virtual-table/src/pipes/get-client-height.pipe';
+import {GetClientHeightPipe} from '../../../virtual-table/pipes/get-client-height.pipe';
 
 class MockElementRef<T = unknown> {
     public nativeElement: Nullable<T>;
@@ -12,18 +12,20 @@ class MockElementRef<T = unknown> {
 
 describe('[TEST] get client height pipe', () => {
     const getClientHeightPipe: GetClientHeightPipe = new GetClientHeightPipe();
-    const elRef1: Nullable<MockElementRef> = new MockElementRef({ clientHeight: 30 });
-    const elRef2: Nullable<MockElementRef> = new MockElementRef({ clientHeight: null });
-    const elRef3: Nullable<MockElementRef> = new MockElementRef({ clientHeight: undefined });
+    const elRef1: Nullable<MockElementRef> = new MockElementRef({clientHeight: 30});
+    const elRef2: Nullable<MockElementRef> = new MockElementRef({clientHeight: null});
+    const elRef3: Nullable<MockElementRef> = new MockElementRef({
+        clientHeight: undefined,
+    });
     const elRef4: Nullable<MockElementRef> = new MockElementRef({});
     const elRef5: Nullable<MockElementRef> = new MockElementRef(undefined);
     const elRef6: Nullable<MockElementRef> = new MockElementRef(null);
     const elRef7: Nullable<MockElementRef> = null;
     const elRefs: Nullable<MockElementRef>[] = [
-        new MockElementRef({ clientHeight: 20 }),
+        new MockElementRef({clientHeight: 20}),
         new MockElementRef({}),
         null,
-        new MockElementRef({ clientHeight: 30 })
+        new MockElementRef({clientHeight: 30}),
     ];
 
     it('should be correct calculate client height when clientHeight = 30', () => {

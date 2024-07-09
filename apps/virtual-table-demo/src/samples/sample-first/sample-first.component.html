@@ -61,7 +61,7 @@
 
         <mat-checkbox
             class="regenerate"
-            [ngModelOptions]="{ standalone: true }"
+            [ngModelOptions]="{standalone: true}"
             [(ngModel)]="regenerate"
         >
             Auto regenerate (15sec)
@@ -81,9 +81,9 @@
     [style.height]="'calc(100% - ' + header.offsetHeight + 'px)'"
 >
     <ngx-table-builder
-        [source]="simple"
-        [width]="width"
         [height]="height"
         [row-height]="rowHeight"
+        [source]="simple"
+        [width]="width"
     ></ngx-table-builder>
 </div>

@@ -10,21 +10,21 @@
             [vertical-border]="false"
         >
             <ngx-column
-                key="action-start"
                 custom-key
-                vertical-line
+                key="action-start"
                 sticky
+                vertical-line
                 width="100"
             >
                 <ng-template ngx-th></ng-template>
                 <ng-template
+                    let-row
                     ngx-td
                     row
-                    let-row
                 >
                     <button
-                        mat-button
                         color="primary"
+                        mat-button
                         (click)="alert(row)"
                     >
                         show (A)
@@ -38,29 +38,29 @@
             >
                 <ng-template ngx-th>{{ key }}</ng-template>
                 <ng-template
-                    ngx-td
                     let-cell
+                    ngx-td
                 >
                     {{ cell }}
                 </ng-template>
             </ngx-column>
 
             <ngx-column
-                key="action-end"
                 custom-key
-                vertical-line
+                key="action-end"
                 sticky-end
+                vertical-line
                 width="100"
             >
                 <ng-template ngx-th></ng-template>
                 <ng-template
+                    let-row
                     ngx-td
                     row
-                    let-row
                 >
                     <button
-                        mat-button
                         color="primary"
+                        mat-button
                         (click)="alert(row)"
                     >
                         show (B)
@@ -81,29 +81,29 @@
             >
                 <ng-template ngx-th>{{ key }}</ng-template>
                 <ng-template
-                    ngx-td
                     let-cell
+                    ngx-td
                 >
                     {{ cell }}
                 </ng-template>
             </ngx-column>
 
             <ngx-column
-                key="edit"
                 custom-key
+                key="edit"
                 sticky-end
-                width="80"
                 vertical-line
+                width="80"
             >
                 <ng-template ngx-th></ng-template>
                 <ng-template
+                    let-row
                     ngx-td
                     row
-                    let-row
                 >
                     <button
-                        mat-button
                         color="primary"
+                        mat-button
                         (click)="alert(row)"
                     >
                         show
@@ -120,8 +120,8 @@
             <ngx-column key="id">
                 <ng-template ngx-th>{{ 'ID' }}</ng-template>
                 <ng-template
-                    ngx-td
                     let-id
+                    ngx-td
                 >
                     {{ id }}
                 </ng-template>
@@ -130,8 +130,8 @@
             <ngx-column key="name">
                 <ng-template ngx-th>{{ 'NAME' }}</ng-template>
                 <ng-template
-                    ngx-td
                     let-name
+                    ngx-td
                 >
                     {{ name }}
                 </ng-template>
@@ -140,29 +140,29 @@
             <ngx-column key="description">
                 <ng-template ngx-th>{{ 'DESCRIPTION' }}</ng-template>
                 <ng-template
-                    ngx-td
                     let-description
+                    ngx-td
                 >
                     {{ description }}
                 </ng-template>
             </ngx-column>
 
             <ngx-column
-                key="edit"
                 custom-key
-                width="200"
+                key="edit"
                 vertical-line
+                width="200"
             >
                 <ng-template ngx-th></ng-template>
                 <ng-template
+                    let-row
                     ngx-td
                     row
-                    let-row
                 >
                     <div class="table-edit-property__right-column">
                         <button
-                            mat-button
                             color="primary"
+                            mat-button
                             (click)="alert(row)"
                         >
                             show
@@ -179,21 +179,21 @@
             [vertical-border]="false"
         >
             <ngx-column
-                key="action"
                 custom-key
-                vertical-line
+                key="action"
                 sticky
+                vertical-line
                 width="80"
             >
                 <ng-template ngx-th></ng-template>
                 <ng-template
+                    let-row
                     ngx-td
                     row
-                    let-row
                 >
                     <button
-                        mat-button
                         color="primary"
+                        mat-button
                         (click)="alert(row)"
                     >
                         show
@@ -207,8 +207,8 @@
             >
                 <ng-template ngx-th>{{ key }}</ng-template>
                 <ng-template
-                    ngx-td
                     let-cell
+                    ngx-td
                 >
                     {{ cell }}
                 </ng-template>

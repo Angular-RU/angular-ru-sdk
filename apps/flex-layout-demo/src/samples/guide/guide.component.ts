@@ -1,11 +1,11 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component } from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component} from '@angular/core';
 
 declare const hljs: any;
 
 @Component({
     selector: 'guide',
     templateUrl: './guide.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GuideComponent implements AfterViewInit {
     public ngAfterViewInit(): void {

@@ -22,8 +22,8 @@
     >
         <ng-template ngx-th>{{ key }}</ng-template>
         <ng-template
-            ngx-td
             let-cell
+            ngx-td
         >
             {{ cell }}
         </ng-template>
@@ -31,14 +31,14 @@
 
     <ngx-column
         custom-key
+        empty-head
         key="action"
         sticky-end
-        empty-head
         width="140"
     >
         <ng-template
-            ngx-td
             let-row
+            ngx-td
             row
         >
             <button

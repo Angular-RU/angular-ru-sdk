@@ -1,19 +1,28 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { PlainObject } from '@angular-ru/cdk/typings';
-import { TableUpdateSchema } from '@angular-ru/cdk/virtual-table';
+import {
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    OnInit,
+} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {PlainObject} from '@angular-ru/cdk/typings';
+import {TableUpdateSchema} from '@angular-ru/cdk/virtual-table';
 
-import { hlJsCode } from '../../../../../.global/utils/hljs-code';
-import { MocksGenerator } from '../../mocks-generator';
+import {hlJsCode} from '../../../../../.global/utils/hljs-code';
+import {MocksGenerator} from '../../mocks-generator';
 
 @Component({
     selector: 'sample-fifteen',
     templateUrl: './sample-fifteen.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SampleFifteenComponent implements OnInit, AfterViewInit {
     public data: PlainObject[] = [];
-    constructor(public readonly dialog: MatDialog, private readonly cd: ChangeDetectorRef) {}
+    constructor(
+        public readonly dialog: MatDialog,
+        private readonly cd: ChangeDetectorRef,
+    ) {}
 
     public ngOnInit(): void {
         const rows: number = 10000;

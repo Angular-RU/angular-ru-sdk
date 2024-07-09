@@ -1,19 +1,24 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 import {
     ColumnWidth,
     EXCEL_BUILDER_INTERCEPTOR_TOKEN,
     ExcelBuilderModule,
     ExcelBuilderTextColumnInterceptor,
-    ExcelService
+    ExcelService,
 } from '@angular-ru/cdk/excel';
-import { getValueByPath } from '@angular-ru/cdk/object';
-import { Nullable, PlainObject } from '@angular-ru/cdk/typings';
-import { isNotNil } from '@angular-ru/cdk/utils';
-import { WebWorkerThreadService } from '@angular-ru/cdk/webworker';
-import { Observable, of } from 'rxjs';
+import {getValueByPath} from '@angular-ru/cdk/object';
+import {Nullable, PlainObject} from '@angular-ru/cdk/typings';
+import {isNotNil} from '@angular-ru/cdk/utils';
+import {WebWorkerThreadService} from '@angular-ru/cdk/webworker';
+import {Observable, of} from 'rxjs';
 
-import { fileSuitesReader, readFromBlob } from '../helpers/file-utils';
-import { dataset, datasetNested, datasetTranslated, translationMap } from '../helpers/table-mock-data';
+import {fileSuitesReader, readFromBlob} from '../helpers/file-utils';
+import {
+    dataset,
+    datasetNested,
+    datasetTranslated,
+    translationMap,
+} from '../helpers/table-mock-data';
 
 describe('[TEST] Excel service', () => {
     let excelService: ExcelService;
@@ -24,7 +29,7 @@ describe('[TEST] Excel service', () => {
     const mockWebWorker: Partial<WebWorkerThreadService> = {
         run<T, K>(workerFunction: (input: K) => T, data?: K): Promise<T> {
             return Promise.resolve(workerFunction(data!));
-        }
+        },
     };
 
     class TranslateMock implements ExcelBuilderTextColumnInterceptor {
@@ -43,12 +48,15 @@ describe('[TEST] Excel service', () => {
         TestBed.configureTestingModule({
             imports: [ExcelBuilderModule.forRoot()],
             providers: [
-                { provide: WebWorkerThreadService, useValue: mockWebWorker },
-                { provide: EXCEL_BUILDER_INTERCEPTOR_TOKEN, useClass: TranslateMock }
-            ]
+                {provide: WebWorkerThreadService, useValue: mockWebWorker},
+                {provide: EXCEL_BUILDER_INTERCEPTOR_TOKEN, useClass: TranslateMock},
+            ],
         });
         excelService = TestBed.inject(ExcelService);
-        downloadSpy = jest.spyOn((excelService as any)?.builder?.constructor, 'downloadWorkbook');
+        downloadSpy = jest.spyOn(
+            (excelService as any)?.builder?.constructor,
+            'downloadWorkbook',
+        );
         downloadSpy.mockImplementation(() => {
             /* noop*/
         });
@@ -61,7 +69,7 @@ describe('[TEST] Excel service', () => {
     it('should correctly convert to excel xml', async () => {
         excelService.exportExcel({
             filename: 'simple',
-            worksheets: [{ entries: dataset }]
+            worksheets: [{entries: dataset}],
         });
         // eslint-disable-next-line no-restricted-globals
         await new Promise((resolve) => setTimeout(resolve));
@@ -74,7 +82,7 @@ describe('[TEST] Excel service', () => {
     it('should correctly convert to excel xml by keys', async () => {
         excelService.exportExcel({
             filename: 'by-keys',
-            worksheets: [{ entries: dataset, keys: ['id', 'lastName', 'falseField'] }]
+            worksheets: [{entries: dataset, keys: ['id', 'lastName', 'falseField']}],
         });
         // eslint-disable-next-line no-restricted-globals
         await new Promise((resolve) => setTimeout(resolve));
@@ -90,15 +98,17 @@ describe('[TEST] Excel service', () => {
             worksheets: [
                 {
                     entries: dataset,
-                    excludeKeys: ['firstName', 'falseField']
-                }
-            ]
+                    excludeKeys: ['firstName', 'falseField'],
+                },
+            ],
         });
         // eslint-disable-next-line no-restricted-globals
         await new Promise((resolve) => setTimeout(resolve));
         const [blob, filename] = downloadSpy.mock.calls[0];
 
-        await expect(readFromBlob(blob)).resolves.toBe(readFile('test-3-exclude-keys.xls'));
+        await expect(readFromBlob(blob)).resolves.toBe(
+            readFile('test-3-exclude-keys.xls'),
+        );
         expect(filename).toBe('exclude-keys');
     });
 
@@ -110,13 +120,13 @@ describe('[TEST] Excel service', () => {
                     entries: datasetNested,
                     excludeKeys: ['firstName', 'locale.code'],
                     columnParameters: {
-                        falseField: { width: 1000 },
-                        lastName: { width: ColumnWidth.MAX_WIDTH },
-                        'locale.lang': { width: 50 },
-                        'locale.country': { width: 70 }
-                    }
-                }
-            ]
+                        falseField: {width: 1000},
+                        lastName: {width: ColumnWidth.MAX_WIDTH},
+                        'locale.lang': {width: 50},
+                        'locale.country': {width: 70},
+                    },
+                },
+            ],
         });
         // eslint-disable-next-line no-restricted-globals
         await new Promise((resolve) => setTimeout(resolve));
@@ -134,10 +144,10 @@ describe('[TEST] Excel service', () => {
                     entries: datasetTranslated,
                     prefixKeyForTranslate: 'model',
                     columnParameters: {
-                        name: { width: ColumnWidth.MAX_WIDTH }
-                    }
-                }
-            ]
+                        name: {width: ColumnWidth.MAX_WIDTH},
+                    },
+                },
+            ],
         });
         // eslint-disable-next-line no-restricted-globals
         await new Promise((resolve) => setTimeout(resolve));
@@ -155,22 +165,24 @@ describe('[TEST] Excel service', () => {
                     {
                         entries: datasetNested,
                         columnParameters: {
-                            id: { width: ColumnWidth.MAX_WIDTH },
-                            firstName: { width: ColumnWidth.MAX_WIDTH },
-                            lastName: { width: ColumnWidth.MAX_WIDTH },
-                            age: { width: ColumnWidth.MAX_WIDTH },
-                            'locale.code': { width: ColumnWidth.MAX_WIDTH },
-                            'locale.lang': { width: ColumnWidth.MAX_WIDTH },
-                            'locale.country': { width: ColumnWidth.MAX_WIDTH }
-                        }
-                    }
-                ]
+                            id: {width: ColumnWidth.MAX_WIDTH},
+                            firstName: {width: ColumnWidth.MAX_WIDTH},
+                            lastName: {width: ColumnWidth.MAX_WIDTH},
+                            age: {width: ColumnWidth.MAX_WIDTH},
+                            'locale.code': {width: ColumnWidth.MAX_WIDTH},
+                            'locale.lang': {width: ColumnWidth.MAX_WIDTH},
+                            'locale.country': {width: ColumnWidth.MAX_WIDTH},
+                        },
+                    },
+                ],
             });
             // eslint-disable-next-line no-restricted-globals
             await new Promise((resolve) => setTimeout(resolve));
             const [blob, filename] = downloadSpy.mock.calls[0];
 
-            await expect(readFromBlob(blob)).resolves.toBe(readFile('test-6-auto-width.xls'));
+            await expect(readFromBlob(blob)).resolves.toBe(
+                readFile('test-6-auto-width.xls'),
+            );
             expect(filename).toBe('auto-width');
         });
 
@@ -182,19 +194,21 @@ describe('[TEST] Excel service', () => {
                         entries: datasetTranslated,
                         prefixKeyForTranslate: 'model',
                         columnParameters: {
-                            uid: { width: ColumnWidth.MAX_WIDTH },
-                            name: { width: ColumnWidth.MAX_WIDTH },
-                            'appearance.color': { width: ColumnWidth.MAX_WIDTH },
-                            'appearance.shape': { width: ColumnWidth.MAX_WIDTH }
-                        }
-                    }
-                ]
+                            uid: {width: ColumnWidth.MAX_WIDTH},
+                            name: {width: ColumnWidth.MAX_WIDTH},
+                            'appearance.color': {width: ColumnWidth.MAX_WIDTH},
+                            'appearance.shape': {width: ColumnWidth.MAX_WIDTH},
+                        },
+                    },
+                ],
             });
             // eslint-disable-next-line no-restricted-globals
             await new Promise((resolve) => setTimeout(resolve));
             const [blob, filename] = downloadSpy.mock.calls[0];
 
-            await expect(readFromBlob(blob)).resolves.toBe(readFile('test-7-auto-width-translate.xls'));
+            await expect(readFromBlob(blob)).resolves.toBe(
+                readFile('test-7-auto-width-translate.xls'),
+            );
             expect(filename).toBe('auto-width-translate');
         });
 
@@ -205,19 +219,21 @@ describe('[TEST] Excel service', () => {
                     {
                         entries: datasetNested,
                         columnParameters: {
-                            id: { width: 50 }
+                            id: {width: 50},
                         },
                         generalColumnParameters: {
-                            width: ColumnWidth.MAX_WIDTH
-                        }
-                    }
-                ]
+                            width: ColumnWidth.MAX_WIDTH,
+                        },
+                    },
+                ],
             });
             // eslint-disable-next-line no-restricted-globals
             await new Promise((resolve) => setTimeout(resolve));
             const [blob, filename] = downloadSpy.mock.calls[0];
 
-            await expect(readFromBlob(blob)).resolves.toBe(readFile('test-8-auto-width.xls'));
+            await expect(readFromBlob(blob)).resolves.toBe(
+                readFile('test-8-auto-width.xls'),
+            );
             expect(filename).toBe('auto-width');
         });
     });

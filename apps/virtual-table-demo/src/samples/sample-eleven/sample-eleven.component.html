@@ -88,8 +88,8 @@
                                         >
                                             <ngx-menu-content no-margin>{{ column.key }}</ngx-menu-content>
                                             <ngx-menu-content
-                                                no-margin
                                                 align-center
+                                                no-margin
                                             >
                                                 <mat-checkbox
                                                     color="primary"
@@ -145,12 +145,12 @@
                             </ngx-context-menu>
 
                             <ngx-column
-                                key="price"
                                 important-template
+                                key="price"
                             >
                                 <ng-template
-                                    ngx-td
                                     let-value
+                                    ngx-td
                                 >
                                     {{ value | currency }}
                                 </ng-template>
@@ -162,30 +162,30 @@
 
                         <pre><code class="javascript">
   // app.component.ts
-  import &#123; Component } from "@angular/core";
-  import &#123; Data } from "./data.interface";
+  import &#123; Component &#125; from "&#64;angular/core";
+  import &#123; Data &#125; from "./data.interface";
 
-  @Component(&#123;
+  &#64;Component(&#123;
     selector: 'app',
     templateUrl: './app.component.html'
-  })
+  &#125;)
   export class AppComponent &#123;
 
     public data: Data[] = [ .. ];
 
     public exportExcel(data: Data[]): void &#123;
         window.alert('export excel - ' + JSON.stringify(data));
-    }
+    &#125;
 
     public showLine(key: string, item: Data): void &#123;
         window.alert('key - ' + key + ' item - ' + JSON.stringify(item));
-    }
+    &#125;
 
     public copyId(id: string): void &#123;
         window.alert('Copy on buffer - ' + id);
-    }
+    &#125;
 
-  }
+  &#125;
 
 </code></pre>
                     </div>
@@ -197,8 +197,8 @@
                 <div>
                     <ngx-table-builder
                         #table2
-                        height="500"
                         enable-selection
+                        height="500"
                         [source]="data"
                         (schemaChanges)="updatedSchema($event)"
                     >
@@ -208,17 +208,17 @@
                         ></ngx-options>
 
                         <ngx-column
-                            key="action"
                             custom-key
+                            key="action"
                             sticky
                             width="50"
                             [is-draggable]="false"
                         >
                             <ng-template ngx-th></ng-template>
                             <ng-template
+                                let-row
                                 ngx-td
                                 row
-                                let-row
                             >
                                 <!-- eslint-disable @angular-eslint/template/no-call-expression -->
                                 {{ table2.selectionModel.get($any(row).id) ? 'x' : '-' }}
@@ -268,8 +268,8 @@
                                 >
                                     <ngx-menu-content no-margin>{{ column.key }}</ngx-menu-content>
                                     <ngx-menu-content
-                                        no-margin
                                         align-center
+                                        no-margin
                                     >
                                         <mat-checkbox
                                             color="primary"
@@ -343,7 +343,7 @@
     &lt;ngx-column key="action" custom-key sticky [resizable]="false" [width]="50">
         &lt;ng-template ngx-th>&lt;/ng-template>
         &lt;ng-template ngx-td row let-row>
-            &#123;&#123; table.selectionModel.get($any(row).id) ? 'x' : '-' }}
+            &#123;&#123; table.selectionModel.get($any(row).id) ? 'x' : '-' &#125;&#125;
         &lt;/ng-template>
     &lt;/ngx-column>
 
@@ -354,16 +354,16 @@
                         <br />
                         <pre><code class="javascript">
   // my-menu.component.ts
-  import &#123; TableBuilderComponent } from "@angular-ru/cdk/virtual-table";
-  import &#123; Component } from "@angular/core";
+  import &#123; TableBuilderComponent &#125; from "&#64;angular-ru/cdk/virtual-table";
+  import &#123; Component &#125; from "&#64;angular/core";
 
-  @Component(&#123;
+  &#64;Component(&#123;
     selector: 'my-menu',
     templateUrl: './my-menu.component.html'
-  })
+  &#125;)
   export class MyMenuComponent &#123;
-    @Input() public table: TableBuilderComponent;
-  }
+    &#64;Input() public table: TableBuilderComponent;
+  &#125;
 
 </code></pre>
                     </div>
@@ -390,7 +390,7 @@
           (onClick)="table.toggleColumnVisibility(column.key); $events.preventDefault()"
           [visible]="column.isModel"
       >
-          &lt;ngx-menu-content no-margin>&#123;&#123; column.key }}&lt;/ngx-menu-content>
+          &lt;ngx-menu-content no-margin>&#123;&#123; column.key &#125;&#125;&lt;/ngx-menu-content>
           &lt;ngx-menu-content no-margin align-center>
               &lt;mat-checkbox
                   color="primary"

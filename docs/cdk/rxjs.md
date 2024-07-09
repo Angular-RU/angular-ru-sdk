@@ -1,13 +1,13 @@
 #### `@angular-ru/cdk/rxjs`
 
--   `mapToVoid`
+- `mapToVoid`
 
 ```typescript
-import { mapToVoid } from '@angular-ru/cdk/rxjs';
+import {mapToVoid} from '@angular-ru/cdk/rxjs';
 
 of([1, 2, 3])
-    .pipe(mapToVoid())
-    .subscribe((result) => {
-        console.log(result); // undefined
-    });
+  .pipe(mapToVoid())
+  .subscribe((result) => {
+    console.log(result); // undefined
+  });
 ```

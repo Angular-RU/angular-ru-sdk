@@ -1,7 +1,12 @@
-import { TestBed } from '@angular/core/testing';
-import { ConsoleService, LoggerLevel, LoggerModule, LoggerService } from '@angular-ru/cdk/logger';
+import {TestBed} from '@angular/core/testing';
+import {
+    ConsoleService,
+    LoggerLevel,
+    LoggerModule,
+    LoggerService,
+} from '@angular-ru/cdk/logger';
 
-import { ConsoleFake } from './helpers/console-fake';
+import {ConsoleFake} from './helpers/console-fake';
 
 describe('[TEST]: ConsoleService', () => {
     describe('case #1', () => {
@@ -12,9 +17,9 @@ describe('[TEST]: ConsoleService', () => {
             TestBed.configureTestingModule({
                 imports: [
                     LoggerModule.forRoot({
-                        instance: fakeConsole
-                    })
-                ]
+                        instance: fakeConsole,
+                    }),
+                ],
             });
 
             consoleInternal = TestBed.inject(ConsoleService);
@@ -33,7 +38,7 @@ describe('[TEST]: ConsoleService', () => {
 
             beforeAll(() => {
                 TestBed.configureTestingModule({
-                    imports: [LoggerModule.forRoot()]
+                    imports: [LoggerModule.forRoot()],
                 });
 
                 logger = TestBed.inject(LoggerService);

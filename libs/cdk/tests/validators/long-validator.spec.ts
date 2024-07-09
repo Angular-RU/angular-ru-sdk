@@ -1,5 +1,5 @@
-import { FormControl } from '@angular/forms';
-import { longValidator } from '@angular-ru/cdk/validators';
+import {FormControl} from '@angular/forms';
+import {longValidator} from '@angular-ru/cdk/validators';
 
 describe('[TEST]: longValidator', () => {
     const control: FormControl = new FormControl(null, longValidator());

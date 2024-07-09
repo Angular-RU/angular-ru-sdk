@@ -4,7 +4,7 @@ export enum CUSTOM_COLORS {
     DEBUG = 'CornflowerBlue',
     INFO = 'DarkGreen',
     WARN = 'Coral',
-    ERROR = 'Crimson'
+    ERROR = 'Crimson',
 }
 
 // eslint-disable-next-line no-restricted-syntax,@typescript-eslint/naming-convention
@@ -13,5 +13,5 @@ export enum CUSTOM_LABELS {
     DEBUG = 'debug:',
     INFO = 'info:',
     WARN = 'warning:',
-    ERROR = 'error:'
+    ERROR = 'error:',
 }

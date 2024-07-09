@@ -1,9 +1,0 @@
-{
-    "extends": "./tsconfig.base.json",
-    "compilerOptions": {
-        "outDir": "../../node_modules/@angular-ru/jest"
-    },
-    "include": ["./src"],
-    "exclude": ["integration"],
-    "files": ["./src/index.ts"]
-}

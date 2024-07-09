@@ -1,4 +1,4 @@
-import { coerceBoolean } from '@angular-ru/cdk/coercion';
+import {coerceBoolean} from '@angular-ru/cdk/coercion';
 
 describe('[TEST] Coercion', () => {
     it('coerceBoolean returned true', () => {

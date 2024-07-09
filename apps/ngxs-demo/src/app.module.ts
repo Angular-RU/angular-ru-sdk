@@ -1,15 +1,18 @@
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgxsDataPluginModule } from '@angular-ru/ngxs';
-import { NGXS_DATA_STORAGE_CONTAINER, NGXS_DATA_STORAGE_EXTENSION } from '@angular-ru/ngxs/storage';
-import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
-import { NgxsModule, NoopNgxsExecutionStrategy } from '@ngxs/store';
+import {NgModule} from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {
+    NGXS_DATA_STORAGE_CONTAINER,
+    NGXS_DATA_STORAGE_EXTENSION,
+} from '@angular-ru/ngxs/storage';
+import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
+import {NgxsModule, NoopNgxsExecutionStrategy} from '@ngxs/store';
 
-import { environment } from '../environments/environment';
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
+import {environment} from '../environments/environment';
+import {AppComponent} from './app.component';
+import {AppRoutingModule} from './app-routing.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -21,12 +24,15 @@ import { AppRoutingModule } from './app-routing.module';
         ReactiveFormsModule,
         NgxsModule.forRoot([], {
             developmentMode: !environment.production,
-            executionStrategy: NoopNgxsExecutionStrategy
+            executionStrategy: NoopNgxsExecutionStrategy,
         }),
         NgxsLoggerPluginModule.forRoot(),
-        NgxsDataPluginModule.forRoot([NGXS_DATA_STORAGE_EXTENSION, NGXS_DATA_STORAGE_CONTAINER])
+        NgxsDataPluginModule.forRoot([
+            NGXS_DATA_STORAGE_EXTENSION,
+            NGXS_DATA_STORAGE_CONTAINER,
+        ]),
     ],
     providers: [],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

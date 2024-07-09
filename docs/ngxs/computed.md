@@ -7,18 +7,18 @@ modifiable state as small as possible. Besides, that they are highly optimized, 
 ```typescript
 @StateRepository()
 @State<OrderLineModel>({
-    name: 'orderLine',
-    defaults: {
-        price: 0,
-        amount: 1
-    }
+  name: 'orderLine',
+  defaults: {
+    price: 0,
+    amount: 1,
+  },
 })
 @Injectable()
 class OrderLineState extends NgxsDataRepository<OrderLineModel> {
-    @Computed()
-    public get total(): number {
-        return this.snapshot.price * this.snapshot.amount;
-    }
+  @Computed()
+  public get total(): number {
+    return this.snapshot.price * this.snapshot.amount;
+  }
 }
 ```
 
@@ -31,56 +31,59 @@ won't re-run if none of the data used in the previous computation changed.
 ```typescript
 @StateRepository()
 @State({
-    name: 'price',
-    defaults: 10
+  name: 'price',
+  defaults: 10,
 })
 @Injectable()
 class PriceState extends NgxsDataRepository<number> {
-    public setPrice(value: string): void {
-        this.setState(parseFloat(value));
-    }
+  public setPrice(value: string): void {
+    this.setState(parseFloat(value));
+  }
 }
 
 @StateRepository()
 @State({
-    name: 'amount',
-    defaults: 20
+  name: 'amount',
+  defaults: 20,
 })
 @Injectable()
 class AmountState extends NgxsDataRepository<number> {
-    constructor(private readonly price: PriceState) {
-        super();
-    }
+  constructor(private readonly price: PriceState) {
+    super();
+  }
 
-    @Computed()
-    public get sum(): number {
-        return this.snapshot + this.price.snapshot;
-    }
+  @Computed()
+  public get sum(): number {
+    return this.snapshot + this.price.snapshot;
+  }
 
-    public setAmount(value: string): void {
-        this.setState(parseFloat(value));
-    }
+  public setAmount(value: string): void {
+    this.setState(parseFloat(value));
+  }
 }
 
 @Component({
-    selector: 'app',
-    template: `
-        <input
-            placeholder="Price"
-            [ngModel]="price.snapshot"
-            (ngModelChange)="price.setPrice($event)"
-        />
-        <br />
-        <input
-            placeholder="Amount"
-            [ngModel]="amount.snapshot"
-            (ngModelChange)="amount.setAmount($event)"
-        />
-        <p>Sum: {{ amount.sum }}</p>
-    `
+  selector: 'app',
+  template: `
+    <input
+      [ngModel]="price.snapshot"
+      (ngModelChange)="price.setPrice($event)"
+      placeholder="Price"
+    />
+    <br />
+    <input
+      [ngModel]="amount.snapshot"
+      (ngModelChange)="amount.setAmount($event)"
+      placeholder="Amount"
+    />
+    <p>Sum: {{ amount.sum }}</p>
+  `,
 })
 class AppComponent {
-    constructor(public price: PriceState, public amount: AmountState) {}
+  constructor(
+    public price: PriceState,
+    public amount: AmountState,
+  ) {}
 }
 ```
 
@@ -91,25 +94,25 @@ class AppComponent {
 ```typescript
 @StateRepository()
 @State<string[]>({
-    name: 'animals',
-    defaults: ['panda', 'horse', 'bee']
+  name: 'animals',
+  defaults: ['panda', 'horse', 'bee'],
 })
 @Injectable()
 export class ZooState extends NgxsDataRepository<string[]> {
-    @Computed()
-    public get pandas(): string[] {
-        return this.snapshot.filter((animal) => animal === 'panda');
-    }
+  @Computed()
+  public get pandas(): string[] {
+    return this.snapshot.filter((animal) => animal === 'panda');
+  }
 
-    @Computed()
-    public get horses(): string[] {
-        return this.snapshot.filter((animal) => animal === 'horse');
-    }
+  @Computed()
+  public get horses(): string[] {
+    return this.snapshot.filter((animal) => animal === 'horse');
+  }
 
-    @Computed()
-    public get bees(): string[] {
-        return this.snapshot.filter((animal) => animal === 'bee');
-    }
+  @Computed()
+  public get bees(): string[] {
+    return this.snapshot.filter((animal) => animal === 'bee');
+  }
 }
 ```
 
@@ -123,29 +126,32 @@ manner. We can use a meta selector to join these two states together like:
 
 ```typescript
 @StateRepository()
-@State({ name: 'zoo', defaults: [] })
+@State({name: 'zoo', defaults: []})
 @Injectable()
 export class ZooState extends NgxsDataRepository<string[]> {}
 
 @StateRepository()
-@State({ name: 'themePark', defaults: [] })
+@State({name: 'themePark', defaults: []})
 @Injectable()
 export class ThemeParkState extends NgxsDataRepository<string[]> {}
 
 @StateRepository()
-@State({ name: 'city', defaults: [] })
+@State({name: 'city', defaults: []})
 @Injectable()
 export class CityState extends NgxsDataRepository<string[]> {
-    constructor(private zoo: ZooState, private themePark: ThemeParkState) {
-        super();
-    }
+  constructor(
+    private zoo: ZooState,
+    private themePark: ThemeParkState,
+  ) {
+    super();
+  }
 
-    @Computed()
-    public get zooThemeParks(): Observable<string[]> {
-        return combineLatest([this.zoo.state$, this.themePark.state$]).pipe(
-            map(([zoo, themeParks]) => [...zoo, ...themeParks])
-        );
-    }
+  @Computed()
+  public get zooThemeParks(): Observable<string[]> {
+    return combineLatest([this.zoo.state$, this.themePark.state$]).pipe(
+      map(([zoo, themeParks]) => [...zoo, ...themeParks]),
+    );
+  }
 }
 ```
 
@@ -166,51 +172,54 @@ If you use any unknown value inside computed fields then they are not tracked:
 ```typescript
 @Injectable()
 class MyFirstCountService {
-    private values$: BehaviorSubject<number> = new BehaviorSubject(0);
+  private values$: BehaviorSubject<number> = new BehaviorSubject(0);
 
-    public increment(): void {
-        this.values$.next(this.getValue() + 1);
-    }
+  public increment(): void {
+    this.values$.next(this.getValue() + 1);
+  }
 
-    public getValue(): number {
-        return this.values$.getValue();
-    }
+  public getValue(): number {
+    return this.values$.getValue();
+  }
 }
 
 @StateRepository()
 @State({
-    name: 'count',
-    defaults: 0
+  name: 'count',
+  defaults: 0,
 })
 @Injectable()
 class MySecondCountState extends NgxsDataRepository<number> {
-    constructor(private readonly first: MyFirstCountService) {
-        super();
-    }
+  constructor(private readonly first: MyFirstCountService) {
+    super();
+  }
 
-    @Computed()
-    public get sum(): number {
-        return this.snapshot + this.first.getValue();
-    }
+  @Computed()
+  public get sum(): number {
+    return this.snapshot + this.first.getValue();
+  }
 
-    @DataAction()
-    public increment(): void {
-        this.ctx.setState((state: number) => ++state);
-    }
+  @DataAction()
+  public increment(): void {
+    this.ctx.setState((state: number) => ++state);
+  }
 }
 
 @Component({
-    selector: 'app',
-    template: `
-        <button (click)="firstCount.increment()">Increment firstCount</button>
-        <br />
-        <button (click)="secondCount.increment()">Increment secondCount</button>
+  selector: 'app',
+  template: `
+    <button (click)="firstCount.increment()">Increment firstCount</button>
+    <br />
+    <button (click)="secondCount.increment()">Increment secondCount</button>
 
-        <p>Sum: {{ secondCount.sum }}</p>
-    `
+    <p>Sum: {{ secondCount.sum }}</p>
+  `,
 })
 class AppComponent {
-    constructor(public firstCount: MyFirstCountService, public secondCount: MySecondCountState) {}
+  constructor(
+    public firstCount: MyFirstCountService,
+    public secondCount: MySecondCountState,
+  ) {}
 }
 ```
 
@@ -221,18 +230,18 @@ order to help recalculate the value again, if you need it, you will need to manu
 ```typescript
 @Injectable()
 class MyFirstCountService {
-    private values$: BehaviorSubject<number> = new BehaviorSubject(0);
+  private values$: BehaviorSubject<number> = new BehaviorSubject(0);
 
-    constructor(private readonly sequence: NgxsDataSequence) {}
+  constructor(private readonly sequence: NgxsDataSequence) {}
 
-    public increment(): void {
-        this.values$.next(this.getValue() + 1);
-        this.sequence.updateSequence();
-    }
+  public increment(): void {
+    this.values$.next(this.getValue() + 1);
+    this.sequence.updateSequence();
+  }
 
-    public getValue(): number {
-        this.values$.getValue();
-    }
+  public getValue(): number {
+    this.values$.getValue();
+  }
 }
 ```
 

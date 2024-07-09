@@ -1,7 +1,7 @@
 <mat-toolbar class="simple-toolbar">
     <span>
         Example selection
-        <span *ngIf="table.isRendered">({{ table.source?.length }}x{{ table.displayedColumns?.length }})</span>
+        <span *ngIf="table.isRendered">({{ table.source?.length }}x{{ table.displayedColumns.length }})</span>
         <span style="margin-left: 5px">Selected: {{ table.selection.selectionModel.size }}</span>
     </span>
     <button
@@ -16,26 +16,26 @@
 <ngx-table-builder
     #table
     enable-selection
-    [source]="data"
     [produce-disable-fn]="disableFn"
+    [source]="data"
 >
     <ngx-column
+        custom-key
         key="selection"
         sticky
         width="55"
-        custom-key
     >
         <ng-template ngx-th>
             <mat-checkbox
-                [indeterminate]="table.selectionModel.isIndeterminate"
                 [checked]="table.selectionModel.isAll"
+                [indeterminate]="table.selectionModel.isIndeterminate"
                 (change)="table.selection.toggleAll(data)"
             ></mat-checkbox>
         </ng-template>
         <ng-template
+            let-row
             ngx-td
             row
-            let-row
             (onClick)="$event.preventDefault()"
         >
             <!-- eslint-disable @angular-eslint/template/no-call-expression -->

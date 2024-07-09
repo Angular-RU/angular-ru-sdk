@@ -1,26 +1,28 @@
 {
-    "root": "libs/cdk/",
+    "name": "cdk",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "libs/cdk/",
     "projectType": "library",
-    "tags": ["scope:libs"],
     "targets": {
         "build": {
-            "builder": "@angular-devkit/build-angular:ng-packagr",
+            "executor": "@angular-devkit/build-angular:ng-packagr",
             "options": {
-                "tsConfig": "libs/cdk/tsconfig.lib.json",
+                "tsConfig": "tsconfig.lib.json",
                 "project": "libs/cdk/ng-package.json"
             },
-            "outputs": ["./node_modules/@angular-ru/cdk"]
+            "outputs": ["{projectRoot}/dist/cdk"]
         },
         "test": {
-            "builder": "@nrwl/workspace:run-commands",
-            "options": { "command": "npx jest --config libs/cdk/jest.config.js" },
-            "outputs": ["coverage/cdk"]
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "npx jest --config libs/cdk/jest.config.js"
+            },
+            "outputs": ["{workspaceRoot}/coverage/cdk"]
         },
         "publish": {
-            "builder": "@nrwl/workspace:run-commands",
+            "executor": "nx:run-commands",
             "options": {
-                "command": "npm publish ./node_modules/@angular-ru/cdk --ignore-scripts || echo \"already published\""
+                "command": "npm publish ./dist/cdk --ignore-scripts || echo \"already published\""
             }
         }
     }

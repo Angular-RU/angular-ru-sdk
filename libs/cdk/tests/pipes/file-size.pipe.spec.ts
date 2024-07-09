@@ -1,4 +1,4 @@
-import { FileSizePipe } from '@angular-ru/cdk/pipes';
+import {FileSizePipe} from '@angular-ru/cdk/pipes';
 
 describe('[TEST]: File Size Pipe', (): void => {
     let fileSizePipe: FileSizePipe;

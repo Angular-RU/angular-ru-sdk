@@ -16,32 +16,32 @@ specific moments:
 ```typescript
 @StateRepository()
 @State<Customer[]>({
-    name: 'customers',
-    defaults: []
+  name: 'customers',
+  defaults: [],
 })
 @Injectable()
 class CustomersStates extends NgxsDataRepository<Customer[]> implements NgxsDataDoCheck, NgxsDataAfterReset {
-    private subscription: Subscription;
+  private subscription: Subscription;
 
-    constructor(private customer: CustomerService) {
-        super();
-    }
+  constructor(private customer: CustomerService) {
+    super();
+  }
 
-    /**
-     * @description:
-     * This method guarantees that it will be called after the application is rendered
-     * and all services of the Angular are loaded, so you can subscribe to the necessary
-     * data streams (any observables) in this method and unsubscribe later in the method `ngxsDataAfterReset`
-     */
-    public ngxsDataDoCheck(): void {
-        console.log(this.isInitialised); // true
-        console.log(this.isBootstrapped); // true
-        this.subscription = this.customer.events.subscribe((e) => console.log(e));
-    }
+  /**
+   * @description:
+   * This method guarantees that it will be called after the application is rendered
+   * and all services of the Angular are loaded, so you can subscribe to the necessary
+   * data streams (any observables) in this method and unsubscribe later in the method `ngxsDataAfterReset`
+   */
+  public ngxsDataDoCheck(): void {
+    console.log(this.isInitialised); // true
+    console.log(this.isBootstrapped); // true
+    this.subscription = this.customer.events.subscribe((e) => console.log(e));
+  }
 
-    public ngxsDataAfterReset(): void {
-        this.subscription?.unsubscribe();
-    }
+  public ngxsDataAfterReset(): void {
+    this.subscription?.unsubscribe();
+  }
 }
 ```
 
@@ -50,24 +50,24 @@ class CustomersStates extends NgxsDataRepository<Customer[]> implements NgxsData
 ```typescript
 @StateRepository()
 @State({
-    name: 'counter',
-    defaults: 0
+  name: 'counter',
+  defaults: 0,
 })
 @Injectable()
 class CounterState extends NgxsDataRepository<number> implements NgxsOnChanges, NgxsOnInit, NgxsAfterBootstrap {
-    public ngxsOnChanges(): void {
-        super.ngxsOnChanges(); // be sure to call the parent method
-        // your logic
-    }
+  public ngxsOnChanges(): void {
+    super.ngxsOnChanges(); // be sure to call the parent method
+    // your logic
+  }
 
-    public ngxsOnInit(): void {
-        super.ngxsOnInit(); // be sure to call the parent method
-        // your logic
-    }
+  public ngxsOnInit(): void {
+    super.ngxsOnInit(); // be sure to call the parent method
+    // your logic
+  }
 
-    public ngxsAfterBootstrap(): void {
-        super.ngxsAfterBootstrap(); // be sure to call the parent method
-        // your logic
-    }
+  public ngxsAfterBootstrap(): void {
+    super.ngxsAfterBootstrap(); // be sure to call the parent method
+    // your logic
+  }
 }
 ```

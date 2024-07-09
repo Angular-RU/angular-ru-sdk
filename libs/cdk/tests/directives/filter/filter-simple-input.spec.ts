@@ -1,12 +1,18 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DebugElement, Input } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
-import { By } from '@angular/platform-browser';
-import { InputFilterModule } from '@angular-ru/cdk/directives';
-import { REG_EXP_NO_CYRILLIC } from '@angular-ru/cdk/regexp';
-import { FilterPredicate } from '@angular-ru/cdk/string';
-import { Nullable } from '@angular-ru/cdk/typings';
-import { isNotNil } from '@angular-ru/cdk/utils';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    DebugElement,
+    Input,
+} from '@angular/core';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {ReactiveFormsModule} from '@angular/forms';
+import {By} from '@angular/platform-browser';
+import {InputFilterModule} from '@angular-ru/cdk/directives';
+import {REG_EXP_NO_CYRILLIC} from '@angular-ru/cdk/regexp';
+import {FilterPredicate} from '@angular-ru/cdk/string';
+import {Nullable} from '@angular-ru/cdk/typings';
+import {isNotNil} from '@angular-ru/cdk/utils';
 
 describe('[TEST]: inputFilter Simple Input', () => {
     let fixture: Nullable<ComponentFixture<TestComponent>> = null;
@@ -17,12 +23,12 @@ describe('[TEST]: inputFilter Simple Input', () => {
         selector: 'test',
         template: `
             <input
-                [value]="filterValue"
-                [inputFilter]="predicate"
                 [filterDisabled]="disableFilter"
+                [inputFilter]="predicate"
+                [value]="filterValue"
             />
         `,
-        changeDetection: ChangeDetectionStrategy.OnPush
+        changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class TestComponent {
         @Input() public disableFilter: boolean = false;
@@ -35,8 +41,11 @@ describe('[TEST]: inputFilter Simple Input', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [ReactiveFormsModule, InputFilterModule.forRoot({ default: REG_EXP_NO_CYRILLIC })],
-            declarations: [TestComponent]
+            imports: [
+                ReactiveFormsModule,
+                InputFilterModule.forRoot({default: REG_EXP_NO_CYRILLIC}),
+            ],
+            declarations: [TestComponent],
         }).compileComponents();
 
         fixture = TestBed.createComponent(TestComponent);
@@ -58,7 +67,7 @@ describe('[TEST]: inputFilter Simple Input', () => {
         }
 
         debugElement?.triggerEventHandler('input', {
-            target: debugElement?.nativeElement
+            target: debugElement?.nativeElement,
         });
 
         localDetectChanges();
@@ -78,7 +87,7 @@ describe('[TEST]: inputFilter Simple Input', () => {
         }
 
         debugElement?.triggerEventHandler('input', {
-            target: debugElement.nativeElement
+            target: debugElement.nativeElement,
         });
 
         await fixture?.whenStable();

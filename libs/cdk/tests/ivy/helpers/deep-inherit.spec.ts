@@ -1,12 +1,26 @@
-import { Component, Directive, Injectable, Injector, NgModule, NgZone, Type } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { useInjector } from '@angular-ru/cdk/ivy';
+import {
+    Component,
+    Directive,
+    Injectable,
+    Injector,
+    NgModule,
+    NgZone,
+    Type,
+} from '@angular/core';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {useInjector} from '@angular-ru/cdk/ivy';
 
 function Injection<T>(classRef: Type<T>): PropertyDecorator {
-    return <R extends typeof Object.prototype>(prototypeRef: R, propertyKey: string | symbol): void => {
-        useInjector(prototypeRef.constructor, (injector: Injector, instance: any): void => {
-            instance[propertyKey] = injector.get(classRef);
-        });
+    return <R extends typeof Object.prototype>(
+        prototypeRef: R,
+        propertyKey: string | symbol,
+    ): void => {
+        useInjector(
+            prototypeRef.constructor,
+            (injector: Injector, instance: any): void => {
+                instance[propertyKey] = injector.get(classRef);
+            },
+        );
     };
 }
 
@@ -53,7 +67,7 @@ class C extends B {}
     selector: 'test-component',
     template: `
         <p class="service">{{ world() }}</p>
-    `
+    `,
 })
 class MockComponent extends C {
     @Injection(MockService) public testService!: MockService;
@@ -62,7 +76,7 @@ class MockComponent extends C {
 
 @NgModule({
     declarations: [MockComponent],
-    providers: [MockService]
+    providers: [MockService],
 })
 class TestModule {}
 
@@ -72,7 +86,7 @@ describe('[TEST] Ivy utils - check deep inheritance', () => {
     jest.spyOn(console, 'error').mockImplementation();
 
     beforeEach((): void => {
-        TestBed.configureTestingModule({ imports: [TestModule] });
+        TestBed.configureTestingModule({imports: [TestModule]});
         componentFixture = TestBed.createComponent(MockComponent);
     });
 
@@ -87,9 +101,9 @@ describe('[TEST] Ivy utils - check deep inheritance', () => {
         const component: MockComponent = componentFixture.componentInstance;
 
         expect(component.ngZone.constructor).toBe(NgZone);
-        expect(component.anotherService1).toEqual({ testField: 'test' });
-        expect(component.anotherService2).toEqual({ testField: 'test' });
-        expect(component.anotherService3).toEqual({ testField: 'test' });
+        expect(component.anotherService1).toEqual({testField: 'test'});
+        expect(component.anotherService2).toEqual({testField: 'test'});
+        expect(component.anotherService3).toEqual({testField: 'test'});
         expect(component.hello()).toBe('test');
         expect(component.world()).toBe('test__hello__');
 

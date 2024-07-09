@@ -27,14 +27,14 @@
     enable-filtering
     enable-selection
     class="filter-example"
-    [source]="data"
     [row-height]="40"
+    [source]="data"
 >
     <ngx-options
-        is-sortable
-        is-filterable
         is-draggable
+        is-filterable
         is-resizable
+        is-sortable
     ></ngx-options>
     <ngx-source-null>Loading...</ngx-source-null>
     <ngx-empty><not-found></not-found></ngx-empty>
@@ -47,9 +47,9 @@
             <mat-form-field appearance="outline">
                 <mat-label>Filter</mat-label>
                 <input
+                    autocomplete="off"
                     matInput
                     name="width"
-                    autocomplete="off"
                     [(ngModel)]="table.filterable.filterValue"
                     (ngModelChange)="table.filter()"
                 />
@@ -77,22 +77,22 @@
     </ngx-header>
 
     <ngx-column
+        custom-key
         key="selection"
         sticky
         width="55"
-        custom-key
     >
         <ng-template ngx-th>
             <mat-checkbox
-                [indeterminate]="table.selectionModel.isIndeterminate"
                 [checked]="table.selectionModel.isAll"
+                [indeterminate]="table.selectionModel.isIndeterminate"
                 (change)="table.selection.toggleAll(data)"
             ></mat-checkbox>
         </ng-template>
         <ng-template
+            let-row
             ngx-td
             row
-            let-row
             (onClick)="$event.preventDefault()"
         >
             <!-- eslint-disable @angular-eslint/template/no-call-expression -->
@@ -105,10 +105,10 @@
 
     <ngx-column key="someDate">
         <ng-template
-            ngx-td
             let-cell
+            ngx-td
         >
-            {{ cell | date : 'dd.MM.yyyy HH:mm:ss' }}
+            {{ cell | date: 'dd.MM.yyyy HH:mm:ss' }}
         </ng-template>
     </ngx-column>
 
@@ -117,8 +117,8 @@
         [key]="key"
     >
         <ng-template
-            ngx-td
             let-cell
+            ngx-td
             [nowrap]="false"
         >
             <a onclick="javascript:void(0)">
@@ -132,10 +132,10 @@
 
     <ngx-column
         custom-key
+        empty-head
         key="action"
         sticky-end
         width="50"
-        empty-head
     >
         <ng-template ngx-td>
             <mat-icon>all_inbox</mat-icon>

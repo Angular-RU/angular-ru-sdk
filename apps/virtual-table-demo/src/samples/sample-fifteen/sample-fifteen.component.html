@@ -9,8 +9,8 @@
 </mat-toolbar>
 
 <ngx-table-builder
-    [source]="data"
     [row-height]="40"
+    [source]="data"
     (schemaChanges)="updatedSchema($event)"
 >
     <ngx-options is-draggable></ngx-options>

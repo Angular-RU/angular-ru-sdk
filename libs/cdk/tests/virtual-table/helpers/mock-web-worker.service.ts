@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { deepClone } from '@angular-ru/cdk/object';
+import {Injectable} from '@angular/core';
+import {deepClone} from '@angular-ru/cdk/object';
 
 @Injectable()
 export class MockWebWorkerService {

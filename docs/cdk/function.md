@@ -1,42 +1,42 @@
 #### `@angular-ru/cdk/function`
 
--   `isFunctionLike(val)`
+- `isFunctionLike(val)`
 
 ```typescript
 class A {}
 
 console.log(isFunctionLike(() => {})); // true
 console.log(isFunctionLike(A)); // true
-console.log(isFunctionLike({ a: 1 })); // false
+console.log(isFunctionLike({a: 1})); // false
 ```
 
--   `typeofType`
+- `typeofType`
 
 ```typescript
-import { typeofType } from '@angular-ru/cdk/function';
-import { Exclude, Expose, Type } from 'class-transform';
+import {typeofType} from '@angular-ru/cdk/function';
+import {Exclude, Expose, Type} from 'class-transform';
 
-import { B } from './b';
+import {B} from './b';
 
 @Exclude()
 export class A {
-    @Expose() @Type(typeofType(B)) public b: B;
+  @Expose() @Type(typeofType(B)) public b: B;
 }
 ```
 
--   `$args(fnRef)`
+- `$args(fnRef)`
 
 ```typescript
-import { $args } from '@angular-ru/cdk/function';
+import {$args} from '@angular-ru/cdk/function';
 
 function hello(name: string, value: number, a?: string[]): string {
-    return 'world' + name + value + a;
+  return 'world' + name + value + a;
 }
 
 console.log($args(hello)); // ['name', 'value', 'a']
 ```
 
--   `hasConstructor(ref)`
+- `hasConstructor(ref)`
 
 ```typescript
 class A {}

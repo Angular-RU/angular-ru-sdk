@@ -10,12 +10,12 @@
 
 <ngx-table-builder
     #table
-    [source]="data"
-    [name]="testName"
-    [schema-version]="1"
-    [schema-columns]="schema"
-    [vertical-border]="false"
     [exclude-keys]="['reverseId']"
+    [name]="testName"
+    [schema-columns]="schema"
+    [schema-version]="1"
+    [source]="data"
+    [vertical-border]="false"
 >
     <ngx-options
         is-draggable
@@ -41,8 +41,8 @@
             >
                 <ngx-menu-content no-margin>{{ column.key }}</ngx-menu-content>
                 <ngx-menu-content
-                    no-margin
                     align-center
+                    no-margin
                 >
                     <mat-checkbox
                         color="primary"
@@ -61,21 +61,21 @@
     </ngx-context-menu>
 
     <ngx-column
+        custom-key
+        important-template
         key="id"
         sticky
-        custom-key
-        width="100"
         vertical-line
-        important-template
+        width="100"
         [is-draggable]="false"
     ></ngx-column>
 
     <ngx-column
-        key="reverseId"
         custom-key
-        width="150"
-        vertical-line
         important-template
+        key="reverseId"
+        vertical-line
+        width="150"
     ></ngx-column>
 
     <ngx-column
@@ -84,12 +84,12 @@
     ></ngx-column>
 
     <ngx-column
-        key="edit"
         custom-key
-        width="60"
-        vertical-line
-        sticky-end
         empty-head
+        key="edit"
+        sticky-end
+        vertical-line
+        width="60"
     >
         <ng-template
             ngx-td

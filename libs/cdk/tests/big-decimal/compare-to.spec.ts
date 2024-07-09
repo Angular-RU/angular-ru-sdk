@@ -1,4 +1,4 @@
-import { BigDecimal } from '@angular-ru/cdk/big-decimal';
+import {BigDecimal} from '@angular-ru/cdk/big-decimal';
 
 describe('[TEST]: BigDecimal - compareTo', () => {
     it('should be defined', () => {

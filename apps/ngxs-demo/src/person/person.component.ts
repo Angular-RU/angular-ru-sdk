@@ -1,11 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 
-import { PersonState } from './person.state';
+import {PersonState} from './person.state';
 
 @Component({
     selector: 'person',
     templateUrl: './person.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PersonComponent {
     constructor(public person: PersonState) {}

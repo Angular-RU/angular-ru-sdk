@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { NgxsDataPluginModule } from '@angular-ru/ngxs';
-import { DataAction, Debounce, StateRepository } from '@angular-ru/ngxs/decorators';
-import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
-import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
-import { NgxsModule, State } from '@ngxs/store';
+import {Injectable} from '@angular/core';
+import {fakeAsync, TestBed, tick} from '@angular/core/testing';
+import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {DataAction, Debounce, StateRepository} from '@angular-ru/ngxs/decorators';
+import {NgxsImmutableDataRepository} from '@angular-ru/ngxs/repositories';
+import {NGXS_DATA_EXCEPTIONS} from '@angular-ru/ngxs/tokens';
+import {NgxsModule, State} from '@ngxs/store';
 
 describe('[TEST]: Debounce', () => {
     it('should be check ngZone', () => {
@@ -30,7 +30,7 @@ describe('[TEST]: Debounce', () => {
         const spy = jest.spyOn(console, 'warn').mockImplementation();
 
         @StateRepository()
-        @State({ name: 'count', defaults: 0 })
+        @State({name: 'count', defaults: 0})
         @Injectable()
         class DebounceState extends NgxsImmutableDataRepository<number> {
             @Debounce()
@@ -55,7 +55,10 @@ describe('[TEST]: Debounce', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([DebounceState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
+            imports: [
+                NgxsModule.forRoot([DebounceState], {developmentMode: true}),
+                NgxsDataPluginModule.forRoot(),
+            ],
         });
 
         const state: DebounceState = TestBed.inject<DebounceState>(DebounceState);
@@ -109,6 +112,9 @@ describe('[TEST]: Debounce', () => {
         expect(value3).toBeUndefined();
 
         expect(spy).toHaveBeenCalledTimes(1);
-        expect(console.warn).toHaveBeenLastCalledWith(NGXS_DATA_EXCEPTIONS.NGXS_DATA_ASYNC_ACTION_RETURN_TYPE, -1);
+        expect(console.warn).toHaveBeenLastCalledWith(
+            NGXS_DATA_EXCEPTIONS.NGXS_DATA_ASYNC_ACTION_RETURN_TYPE,
+            -1,
+        );
     }));
 });

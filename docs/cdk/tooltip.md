@@ -8,7 +8,7 @@ Demo: https://angular-ru.github.io/angular-ru-tooltip-example-app/
 $ npm install @angular-ru/cdk/tooltip
 ```
 
--   Add styles to `styles.scss` file:
+- Add styles to `styles.scss` file:
 
 ```scss
 @import './node_modules/@angular-ru/cdk/tooltip/styles/index';
@@ -17,14 +17,14 @@ $ npm install @angular-ru/cdk/tooltip
 ```
 
 ```typescript
-import { TooltipModule } from '@angular-ru/cdk/tooltip';
-import { NgModule } from '@angular/core';
+import {TooltipModule} from '@angular-ru/cdk/tooltip';
+import {NgModule} from '@angular/core';
 
 @NgModule({
-    imports: [
-        // ...
-        TooltipModule.forRoot()
-    ]
+  imports: [
+    // ...
+    TooltipModule.forRoot(),
+  ],
 })
 export class AppModule {}
 ```
@@ -33,28 +33,28 @@ export class AppModule {}
 
 ```html
 <div
-    tooltip="Bottom"
-    tooltip-placement="bottom"
+  tooltip="Bottom"
+  tooltip-placement="bottom"
 >
-    Bottom
+  Bottom
 </div>
 <div
-    tooltip="Right"
-    tooltip-placement="right"
+  tooltip="Right"
+  tooltip-placement="right"
 >
-    Right
+  Right
 </div>
 <div
-    tooltip="Left"
-    tooltip-placement="left"
+  tooltip="Left"
+  tooltip-placement="left"
 >
-    Left
+  Left
 </div>
 <div
-    tooltip="Top"
-    tooltip-placement="top"
+  tooltip="Top"
+  tooltip-placement="top"
 >
-    Top
+  Top
 </div>
 ```
 
@@ -64,17 +64,17 @@ The value of option `'[tooltip-placement]'` by default is `'top'`.
 
 ```html
 <div
-    tooltip-placement="bottom"
-    [tooltip]="tooltipTemplate"
-    [tooltip-context]="{ name: 'Max' }"
+  tooltip-placement="bottom"
+  [tooltip]="tooltipTemplate"
+  [tooltip-context]="{ name: 'Max' }"
 >
-    Bottom with HTML
+  Bottom with HTML
 </div>
 
 <ng-template
-    #tooltipTemplate
-    let-context
+  #tooltipTemplate
+  let-context
 >
-    <span style="text-decoration: underline; color: yellow">Hello {{ context.name }}</span>
+  <span style="text-decoration: underline; color: yellow">Hello {{ context.name }}</span>
 </ng-template>
 ```

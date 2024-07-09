@@ -1,12 +1,15 @@
-import { Injectable } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
-import { Immutable } from '@angular-ru/cdk/typings';
-import { NgxsDataPluginModule } from '@angular-ru/ngxs';
-import { DataAction, Persistence, StateRepository } from '@angular-ru/ngxs/decorators';
-import { NgxsDataRepository, NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
-import { NGXS_DATA_STORAGE_PLUGIN } from '@angular-ru/ngxs/storage';
-import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
-import { NgxsModule, Selector, State, Store } from '@ngxs/store';
+import {Injectable} from '@angular/core';
+import {TestBed} from '@angular/core/testing';
+import {Immutable} from '@angular-ru/cdk/typings';
+import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {DataAction, Persistence, StateRepository} from '@angular-ru/ngxs/decorators';
+import {
+    NgxsDataRepository,
+    NgxsImmutableDataRepository,
+} from '@angular-ru/ngxs/repositories';
+import {NGXS_DATA_STORAGE_PLUGIN} from '@angular-ru/ngxs/storage';
+import {NGXS_DATA_EXCEPTIONS} from '@angular-ru/ngxs/tokens';
+import {NgxsModule, Selector, State, Store} from '@ngxs/store';
 
 describe('inheritance', () => {
     it('should be throw', () => {
@@ -22,12 +25,12 @@ describe('inheritance', () => {
             @StateRepository()
             @State({
                 name: 'count',
-                defaults: 0
+                defaults: 0,
             })
             class CountState extends AbstractCountRepo {}
 
             TestBed.configureTestingModule({
-                imports: [NgxsModule.forRoot([CountState], { developmentMode: true })]
+                imports: [NgxsModule.forRoot([CountState], {developmentMode: true})],
             });
         } catch (error: unknown) {
             message = (error as Error).message;
@@ -37,7 +40,7 @@ describe('inheritance', () => {
     });
 
     it('should be correct work with Persistence, StateRepository, Selector decorators', () => {
-        @Injectable({ providedIn: 'root' })
+        @Injectable({providedIn: 'root'})
         class TodoApiService {}
 
         interface Todo {
@@ -56,8 +59,8 @@ describe('inheritance', () => {
         @Persistence([
             {
                 path: 'todos',
-                existingEngine: localStorage
-            }
+                existingEngine: localStorage,
+            },
         ])
         @StateRepository()
         @State<TodoStateModel>({
@@ -65,8 +68,8 @@ describe('inheritance', () => {
             defaults: {
                 todos: [],
                 loaded: false,
-                selectedTodo: null
-            }
+                selectedTodo: null,
+            },
         })
         @Injectable()
         class TodoState extends NgxsDataRepository<TodoStateModel> {
@@ -87,14 +90,16 @@ describe('inheritance', () => {
 
         TestBed.configureTestingModule({
             imports: [
-                NgxsModule.forRoot([TodoState], { developmentMode: true }),
-                NgxsDataPluginModule.forRoot([NGXS_DATA_STORAGE_PLUGIN])
-            ]
+                NgxsModule.forRoot([TodoState], {developmentMode: true}),
+                NgxsDataPluginModule.forRoot([NGXS_DATA_STORAGE_PLUGIN]),
+            ],
         });
 
         const store: Store = TestBed.inject<Store>(Store);
 
-        expect(store.snapshot()).toEqual({ todos: { todos: [], loaded: false, selectedTodo: null } });
+        expect(store.snapshot()).toEqual({
+            todos: {todos: [], loaded: false, selectedTodo: null},
+        });
         expect(store.selectSnapshot(TodoState.todos)).toEqual([]);
     });
 
@@ -110,7 +115,7 @@ describe('inheritance', () => {
         @StateRepository()
         @State({
             name: 'count',
-            defaults: 0
+            defaults: 0,
         })
         class CountState extends AbstractCountRepo {
             @DataAction()
@@ -120,20 +125,23 @@ describe('inheritance', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([CountState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
+            imports: [
+                NgxsModule.forRoot([CountState], {developmentMode: true}),
+                NgxsDataPluginModule.forRoot(),
+            ],
         });
 
         const store: Store = TestBed.inject<Store>(Store);
         const count: CountState = TestBed.inject<CountState>(CountState);
 
-        expect(store.snapshot()).toEqual({ count: 0 });
+        expect(store.snapshot()).toEqual({count: 0});
         expect(count.getState()).toBe(0);
 
         count.increment();
         count.decrement();
         count.increment();
 
-        expect(store.snapshot()).toEqual({ count: 1 });
+        expect(store.snapshot()).toEqual({count: 1});
         expect(count.getState()).toBe(1);
     });
 });

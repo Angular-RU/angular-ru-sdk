@@ -1,11 +1,13 @@
-import { TestBed } from '@angular/core/testing';
-import { IncludesPipe, IncludesPipeModule } from '@angular-ru/cdk/pipes';
+import {TestBed} from '@angular/core/testing';
+import {IncludesPipe, IncludesPipeModule} from '@angular-ru/cdk/pipes';
 
 describe('[TEST]: includes-pipe accessibility', () => {
     let pipe: IncludesPipe;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({ imports: [IncludesPipeModule] }).compileComponents();
+        TestBed.configureTestingModule({
+            imports: [IncludesPipeModule],
+        }).compileComponents();
         pipe = TestBed.inject(IncludesPipe);
     });
 

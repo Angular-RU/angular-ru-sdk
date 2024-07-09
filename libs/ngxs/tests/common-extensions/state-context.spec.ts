@@ -1,12 +1,16 @@
-import { Injectable } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
-import { NgxsDataPluginModule } from '@angular-ru/ngxs';
-import { StateRepository } from '@angular-ru/ngxs/decorators';
-import { buildDefaultsGraph, ensureStateMetadata, getStateMetadata } from '@angular-ru/ngxs/internals';
-import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
-import { NgxsModule, State, Store } from '@ngxs/store';
-import { MetaDataModel, SharedSelectorOptions } from '@ngxs/store/src/internal/internals';
-import { isObservable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {TestBed} from '@angular/core/testing';
+import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {StateRepository} from '@angular-ru/ngxs/decorators';
+import {
+    buildDefaultsGraph,
+    ensureStateMetadata,
+    getStateMetadata,
+} from '@angular-ru/ngxs/internals';
+import {NgxsImmutableDataRepository} from '@angular-ru/ngxs/repositories';
+import {NgxsModule, State, Store} from '@ngxs/store';
+import {MetaDataModel, SharedSelectorOptions} from '@ngxs/store/src/internal/internals';
+import {isObservable} from 'rxjs';
 
 describe('[TEST]: Utils', () => {
     it('build-defaults-graph', () => {
@@ -14,7 +18,7 @@ describe('[TEST]: Utils', () => {
 
         expect(buildDefaultsGraph(ClassicClass)).toEqual({});
 
-        @State({ name: 'helloState' })
+        @State({name: 'helloState'})
         @Injectable()
         class HelloState {}
 
@@ -23,23 +27,26 @@ describe('[TEST]: Utils', () => {
         @State({
             name: 'worldState',
             defaults: {
-                hello: { world: true }
-            }
+                hello: {world: true},
+            },
         })
         @Injectable()
         class WorldState {}
 
-        expect(buildDefaultsGraph(WorldState)).toEqual({ hello: { world: true } });
+        expect(buildDefaultsGraph(WorldState)).toEqual({hello: {world: true}});
 
         @State({
             name: 'coolState',
-            defaults: { cool: 'yep' },
-            children: [WorldState]
+            defaults: {cool: 'yep'},
+            children: [WorldState],
         })
         @Injectable()
         class CoolState {}
 
-        expect(buildDefaultsGraph(CoolState)).toEqual({ cool: 'yep', worldState: { hello: { world: true } } });
+        expect(buildDefaultsGraph(CoolState)).toEqual({
+            cool: 'yep',
+            worldState: {hello: {world: true}},
+        });
 
         let message: string | null = null;
 
@@ -51,7 +58,7 @@ describe('[TEST]: Utils', () => {
             @State({
                 name: 'a',
                 defaults: {},
-                children: [B, C]
+                children: [B, C],
             })
             @Injectable()
             class A {}
@@ -65,14 +72,14 @@ describe('[TEST]: Utils', () => {
 
         @State({
             name: 'f',
-            defaults: []
+            defaults: [],
         })
         @Injectable()
         class F {}
 
         @State({
             name: 'e',
-            defaults: []
+            defaults: [],
         })
         @Injectable()
         class E {}
@@ -80,12 +87,12 @@ describe('[TEST]: Utils', () => {
         @State({
             name: 'd',
             defaults: {},
-            children: [E, F]
+            children: [E, F],
         })
         @Injectable()
         class D {}
 
-        expect(buildDefaultsGraph(D)).toEqual({ e: [], f: [] });
+        expect(buildDefaultsGraph(D)).toEqual({e: [], f: []});
 
         message = null;
 
@@ -93,7 +100,7 @@ describe('[TEST]: Utils', () => {
             @State({
                 name: 'G',
                 defaults: [],
-                children: [E, F]
+                children: [E, F],
             })
             @Injectable()
             class G {}
@@ -103,20 +110,25 @@ describe('[TEST]: Utils', () => {
             message = (error as Error).message;
         }
 
-        expect(message).toBe('Child states can only be added to an object. Cannot convert Array to PlainObject');
+        expect(message).toBe(
+            'Child states can only be added to an object. Cannot convert Array to PlainObject',
+        );
     });
 
     it('should be create singleton context', () => {
         @StateRepository()
         @State({
             name: 'myState',
-            defaults: 'any'
+            defaults: 'any',
         })
         @Injectable()
         class MyState extends NgxsImmutableDataRepository<string> {}
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([MyState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
+            imports: [
+                NgxsModule.forRoot([MyState], {developmentMode: true}),
+                NgxsDataPluginModule.forRoot(),
+            ],
         });
 
         const state: MyState = TestBed.inject(MyState);
@@ -127,7 +139,7 @@ describe('[TEST]: Utils', () => {
         new MyState().setState('hello');
 
         expect(state.getState()).toBe('hello');
-        expect(store.snapshot()).toEqual({ myState: 'hello' });
+        expect(store.snapshot()).toEqual({myState: 'hello'});
     });
 
     it('should be correct ensure state metadata', () => {
@@ -141,33 +153,38 @@ describe('[TEST]: Utils', () => {
             defaults: {},
             path: null,
             makeRootSelector: expect.any(Function),
-            children: []
+            children: [],
         });
 
         expect(
             meta.makeRootSelector!({
-                getSelectorOptions(localOptions?: SharedSelectorOptions): SharedSelectorOptions {
+                getSelectorOptions(
+                    localOptions?: SharedSelectorOptions,
+                ): SharedSelectorOptions {
                     return localOptions as any;
                 },
                 getStateGetter(_key: any): (state: any) => any {
                     // selector
                     return (state) => state;
-                }
-            })({ hello: 'world' })
-        ).toEqual({ hello: 'world' });
+                },
+            })({hello: 'world'}),
+        ).toEqual({hello: 'world'});
     });
 
     it('should be correct get state metadata', () => {
         @StateRepository()
         @State({
             name: 'app',
-            defaults: [1, 2, 3]
+            defaults: [1, 2, 3],
         })
         @Injectable()
         class AppState extends NgxsImmutableDataRepository<number> {}
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([AppState], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
+            imports: [
+                NgxsModule.forRoot([AppState], {developmentMode: true}),
+                NgxsDataPluginModule.forRoot(),
+            ],
         });
 
         const state: AppState = TestBed.inject(AppState);
@@ -181,19 +198,21 @@ describe('[TEST]: Utils', () => {
             defaults: [1, 2, 3],
             path: 'app',
             makeRootSelector: expect.any(Function),
-            children: undefined
+            children: undefined,
         });
 
         expect(
             meta.makeRootSelector!({
-                getSelectorOptions(localOptions?: SharedSelectorOptions): SharedSelectorOptions {
+                getSelectorOptions(
+                    localOptions?: SharedSelectorOptions,
+                ): SharedSelectorOptions {
                     return localOptions as any;
                 },
                 getStateGetter(key: any): (state: any) => any {
                     // selector
                     return (_state: any) => _state[key];
-                }
-            })(store.snapshot())
+                },
+            })(store.snapshot()),
         ).toEqual([1, 2, 3]);
     });
 });

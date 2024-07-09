@@ -1,4 +1,4 @@
-import { generateUid } from '@angular-ru/cdk/utils';
+import {generateUid} from '@angular-ru/cdk/utils';
 
 describe('[TEST]: Entity uuidv4', () => {
     it('should be correct generate uui', () => {
@@ -10,7 +10,7 @@ describe('[TEST]: Entity uuidv4', () => {
             expect.any(String),
             expect.any(String),
             expect.any(String),
-            expect.any(String)
+            expect.any(String),
         ]);
     });
 });

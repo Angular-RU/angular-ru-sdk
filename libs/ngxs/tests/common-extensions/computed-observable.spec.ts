@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
-import { NgxsDataPluginModule } from '@angular-ru/ngxs';
-import { Computed, DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
-import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
-import { NgxsModule, State } from '@ngxs/store';
-import { combineLatest, Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {TestBed} from '@angular/core/testing';
+import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {Computed, DataAction, StateRepository} from '@angular-ru/ngxs/decorators';
+import {NgxsDataRepository} from '@angular-ru/ngxs/repositories';
+import {NgxsModule, State} from '@ngxs/store';
+import {combineLatest, Observable, Subscription} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 describe('[TEST]: Observable with computed $a field', () => {
     let a: A;
@@ -24,7 +24,7 @@ describe('[TEST]: Observable with computed $a field', () => {
     @StateRepository()
     @State<Model>({
         name: 'b',
-        defaults: { value: 2 }
+        defaults: {value: 2},
     })
     @Injectable()
     class B extends NgxsDataRepository<Model> {
@@ -35,14 +35,14 @@ describe('[TEST]: Observable with computed $a field', () => {
 
         @DataAction()
         public increment(): void {
-            this.ctx.setState((state: Model) => ({ value: state.value + 1 }));
+            this.ctx.setState((state: Model) => ({value: state.value + 1}));
         }
     }
 
     @StateRepository()
     @State<Model>({
         name: 'a',
-        defaults: { value: 1 }
+        defaults: {value: 1},
     })
     @Injectable()
     class A extends NgxsDataRepository<Model> {
@@ -68,7 +68,7 @@ describe('[TEST]: Observable with computed $a field', () => {
                     const bX = this._b.snapshot.value;
 
                     return `a(${aX}) + b(${bX}) = ${aX + bX}`;
-                })
+                }),
             );
         }
 
@@ -76,20 +76,29 @@ describe('[TEST]: Observable with computed $a field', () => {
         public get aWithB$(): Observable<string> {
             this.subscribeA$_$B++;
 
-            return combineLatest([this.state$, this._b.state$] as Observable<Model>[]).pipe(
-                map(([_a, _b]): string => `a(${_a?.value}) + b(${_b?.value}) = ${(_a?.value ?? 0) + (_b?.value ?? 0)}`)
+            return combineLatest([
+                this.state$,
+                this._b.state$,
+            ] as Observable<Model>[]).pipe(
+                map(
+                    ([_a, _b]): string =>
+                        `a(${_a?.value}) + b(${_b?.value}) = ${(_a?.value ?? 0) + (_b?.value ?? 0)}`,
+                ),
             );
         }
 
         @DataAction()
         public increment(): void {
-            this.ctx.setState((state: Model) => ({ value: state.value + 1 }));
+            this.ctx.setState((state: Model) => ({value: state.value + 1}));
         }
     }
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([A, B], { developmentMode: true }), NgxsDataPluginModule.forRoot()]
+            imports: [
+                NgxsModule.forRoot([A, B], {developmentMode: true}),
+                NgxsDataPluginModule.forRoot(),
+            ],
         });
 
         a = TestBed.inject(A);
@@ -104,8 +113,8 @@ describe('[TEST]: Observable with computed $a field', () => {
     });
 
     it('should be trigger when $a state changed', () => {
-        expect(a.snapshot).toEqual({ value: 1 });
-        expect(b.snapshot).toEqual({ value: 2 });
+        expect(a.snapshot).toEqual({value: 1});
+        expect(b.snapshot).toEqual({value: 2});
 
         subResult.push('subscribe ref#1');
         ref1 = a.a$.subscribe((value) => subResult.push(`ref#1: ${value}`));
@@ -119,8 +128,8 @@ describe('[TEST]: Observable with computed $a field', () => {
         a.increment();
         subResult.push(`a.incremented ${a.value}`);
 
-        expect(a.snapshot).toEqual({ value: 3 });
-        expect(b.snapshot).toEqual({ value: 2 });
+        expect(a.snapshot).toEqual({value: 3});
+        expect(b.snapshot).toEqual({value: 2});
 
         subResult.push('subscribe ref#3');
         ref3 = a.a$.subscribe((value) => subResult.push(`ref#3: ${value}`));
@@ -134,8 +143,8 @@ describe('[TEST]: Observable with computed $a field', () => {
         b.increment();
         subResult.push(`b.incremented ${b.value}`);
 
-        expect(a.snapshot).toEqual({ value: 3 });
-        expect(b.snapshot).toEqual({ value: 4 });
+        expect(a.snapshot).toEqual({value: 3});
+        expect(b.snapshot).toEqual({value: 4});
 
         ref1.unsubscribe();
         subResult.push(`ref#1 unsubscribe`);
@@ -156,8 +165,8 @@ describe('[TEST]: Observable with computed $a field', () => {
         expect(ref4.closed).toBe(false);
         expect(ref5.closed).toBe(false);
 
-        expect(a.snapshot).toEqual({ value: 4 });
-        expect(b.snapshot).toEqual({ value: 5 });
+        expect(a.snapshot).toEqual({value: 4});
+        expect(b.snapshot).toEqual({value: 5});
 
         expect(subResult).toEqual([
             'subscribe ref#1',
@@ -183,15 +192,15 @@ describe('[TEST]: Observable with computed $a field', () => {
             'a.incremented 4',
             'b.incremented 5',
             'subscribe ref#5',
-            'ref#5: a(4) + b(5) = 9'
+            'ref#5: a(4) + b(5) = 9',
         ]);
 
         expect(a.subscribeA$).toBe(1);
     });
 
     it('should be trigger only when $a and $b states changed', () => {
-        expect(a.snapshot).toEqual({ value: 1 });
-        expect(b.snapshot).toEqual({ value: 2 });
+        expect(a.snapshot).toEqual({value: 1});
+        expect(b.snapshot).toEqual({value: 2});
 
         subResult.push('subscribe ref#1');
         ref1 = a.aWithB$.subscribe((value) => subResult.push(`ref#1: ${value}`));
@@ -205,8 +214,8 @@ describe('[TEST]: Observable with computed $a field', () => {
         a.increment();
         subResult.push(`a.incremented ${a.value}`);
 
-        expect(a.snapshot).toEqual({ value: 3 });
-        expect(b.snapshot).toEqual({ value: 2 });
+        expect(a.snapshot).toEqual({value: 3});
+        expect(b.snapshot).toEqual({value: 2});
 
         subResult.push('subscribe ref#3');
         ref3 = a.aWithB$.subscribe((value) => subResult.push(`ref#3: ${value}`));
@@ -220,8 +229,8 @@ describe('[TEST]: Observable with computed $a field', () => {
         b.increment();
         subResult.push(`b.incremented ${b.value}`);
 
-        expect(a.snapshot).toEqual({ value: 3 });
-        expect(b.snapshot).toEqual({ value: 4 });
+        expect(a.snapshot).toEqual({value: 3});
+        expect(b.snapshot).toEqual({value: 4});
 
         ref1.unsubscribe();
         subResult.push(`ref#1 unsubscribe`);
@@ -270,7 +279,7 @@ describe('[TEST]: Observable with computed $a field', () => {
             'ref#4: a(4) + b(5) = 9',
             'b.incremented 5',
             'subscribe ref#5',
-            'ref#5: a(4) + b(5) = 9'
+            'ref#5: a(4) + b(5) = 9',
         ]);
 
         expect(a.subscribeA$_$B).toBe(1);

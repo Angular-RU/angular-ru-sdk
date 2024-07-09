@@ -1,12 +1,22 @@
-import { DOCUMENT } from '@angular/common';
-import { AfterViewInit, ApplicationRef, Component, Injectable, NgModule, OnInit } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
-import { BrowserModule, ɵBrowserDomAdapter as BrowserDomAdapter } from '@angular/platform-browser';
-import { NgxsDataPluginModule } from '@angular-ru/ngxs';
-import { StateRepository } from '@angular-ru/ngxs/decorators';
-import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
-import { NGXS_DATA_EXCEPTIONS } from '@angular-ru/ngxs/tokens';
-import { NgxsAfterBootstrap, NgxsModule, NgxsOnInit, State, Store } from '@ngxs/store';
+import {DOCUMENT} from '@angular/common';
+import {
+    AfterViewInit,
+    ApplicationRef,
+    Component,
+    Injectable,
+    NgModule,
+    OnInit,
+} from '@angular/core';
+import {TestBed} from '@angular/core/testing';
+import {
+    BrowserModule,
+    ɵBrowserDomAdapter as BrowserDomAdapter,
+} from '@angular/platform-browser';
+import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {StateRepository} from '@angular-ru/ngxs/decorators';
+import {NgxsImmutableDataRepository} from '@angular-ru/ngxs/repositories';
+import {NGXS_DATA_EXCEPTIONS} from '@angular-ru/ngxs/tokens';
+import {NgxsAfterBootstrap, NgxsModule, NgxsOnInit, State, Store} from '@ngxs/store';
 
 describe('complex lifecycle', () => {
     @Injectable()
@@ -17,7 +27,7 @@ describe('complex lifecycle', () => {
         @StateRepository()
         @State({
             name: 'count',
-            defaults: 0
+            defaults: 0,
         })
         class CountState extends NgxsImmutableDataRepository<number> {
             public value: number | null = null;
@@ -29,8 +39,11 @@ describe('complex lifecycle', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([CountState], { developmentMode: true }), NgxsDataPluginModule.forRoot()],
-            providers: [MyApiService]
+            imports: [
+                NgxsModule.forRoot([CountState], {developmentMode: true}),
+                NgxsDataPluginModule.forRoot(),
+            ],
+            providers: [MyApiService],
         });
 
         let message: string | null = null;
@@ -52,9 +65,12 @@ describe('complex lifecycle', () => {
         @StateRepository()
         @State({
             name: 'count',
-            defaults: 0
+            defaults: 0,
         })
-        class CountState extends NgxsImmutableDataRepository<number> implements NgxsOnInit, NgxsAfterBootstrap {
+        class CountState
+            extends NgxsImmutableDataRepository<number>
+            implements NgxsOnInit, NgxsAfterBootstrap
+        {
             constructor(public myService: MyApiService) {
                 super();
                 hooks.push('CountState - create');
@@ -71,7 +87,7 @@ describe('complex lifecycle', () => {
 
         @Component({
             selector: 'app-root',
-            template: ''
+            template: '',
         })
         class NgxsTestComponent implements OnInit, AfterViewInit {
             public ngOnInit(): void {
@@ -86,7 +102,7 @@ describe('complex lifecycle', () => {
         @NgModule({
             imports: [BrowserModule],
             declarations: [NgxsTestComponent],
-            entryComponents: [NgxsTestComponent]
+            entryComponents: [NgxsTestComponent],
         })
         class AppTestModule {
             // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
@@ -107,10 +123,10 @@ describe('complex lifecycle', () => {
         TestBed.configureTestingModule({
             imports: [
                 AppTestModule,
-                NgxsModule.forRoot([CountState], { developmentMode: true }),
-                NgxsDataPluginModule.forRoot()
+                NgxsModule.forRoot([CountState], {developmentMode: true}),
+                NgxsDataPluginModule.forRoot(),
             ],
-            providers: [MyApiService]
+            providers: [MyApiService],
         });
 
         AppTestModule.ngDoBootstrap(TestBed.inject(ApplicationRef));
@@ -120,7 +136,7 @@ describe('complex lifecycle', () => {
             'CountState - ngxsOnInit',
             'NgxsTestComponent - ngOnInit',
             'NgxsTestComponent - ngAfterViewInit',
-            'CountState - ngxsAfterBootstrap'
+            'CountState - ngxsAfterBootstrap',
         ]);
     });
 });

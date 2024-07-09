@@ -1,17 +1,27 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Nullable, PlainObject } from '@angular-ru/cdk/typings';
-import { NgxTableViewChangesService, TableUpdateSchema } from '@angular-ru/cdk/virtual-table';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import {
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    OnDestroy,
+    OnInit,
+} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {Nullable, PlainObject} from '@angular-ru/cdk/typings';
+import {
+    NgxTableViewChangesService,
+    TableUpdateSchema,
+} from '@angular-ru/cdk/virtual-table';
+import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
-import { hlJsCode } from '../../../../../.global/utils/hljs-code';
-import { MocksGenerator } from '../../mocks-generator';
+import {hlJsCode} from '../../../../../.global/utils/hljs-code';
+import {MocksGenerator} from '../../mocks-generator';
 
 @Component({
     selector: 'sample-sixteen',
     templateUrl: './sample-sixteen.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SampleSixteenComponent implements OnInit, AfterViewInit, OnDestroy {
     private destroy$: Subject<void> = new Subject();
@@ -22,18 +32,22 @@ export class SampleSixteenComponent implements OnInit, AfterViewInit, OnDestroy 
     constructor(
         public readonly dialog: MatDialog,
         private readonly cd: ChangeDetectorRef,
-        private readonly tableChanges: NgxTableViewChangesService
+        private readonly tableChanges: NgxTableViewChangesService,
     ) {}
 
     public ngOnInit(): void {
-        this.schema = JSON.parse(window.localStorage.getItem(this.testName) ?? '{}') as TableUpdateSchema;
+        this.schema = JSON.parse(
+            window.localStorage.getItem(this.testName) ?? '{}',
+        ) as TableUpdateSchema;
         const rowNumber: number = 3;
         const colsNumber: number = 10;
 
-        MocksGenerator.generator(rowNumber, colsNumber).then((data: PlainObject[]): void => {
-            this.data = data;
-            this.cd.detectChanges();
-        });
+        MocksGenerator.generator(rowNumber, colsNumber).then(
+            (data: PlainObject[]): void => {
+                this.data = data;
+                this.cd.detectChanges();
+            },
+        );
 
         this.tableChanges.events$
             .pipe(takeUntil(this.destroy$))

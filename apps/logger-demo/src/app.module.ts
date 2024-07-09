@@ -1,11 +1,11 @@
-import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { LoggerModule } from '@angular-ru/cdk/logger';
-import { isTrue } from '@angular-ru/cdk/utils';
+import {HttpClientModule} from '@angular/common/http';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {LoggerModule} from '@angular-ru/cdk/logger';
+import {isTrue} from '@angular-ru/cdk/utils';
 
-import { environment } from '../environments/environment';
-import { AppComponent } from './app.component';
+import {environment} from '../environments/environment';
+import {AppComponent} from './app.component';
 
 @NgModule({
     declarations: [AppComponent],
@@ -22,15 +22,15 @@ import { AppComponent } from './app.component';
                             background: #f4f4f4;
                             border-left: 3px solid #f36d33;
                             font-family: monospace;
-                            font-size: 15px;`
-                      }
+                            font-size: 15px;`,
+                      },
                   }
-                : {}
+                : {},
         ),
         BrowserModule,
-        HttpClientModule
+        HttpClientModule,
     ],
     providers: [],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
-import { StateRepository } from '@angular-ru/ngxs/decorators';
-import { NgxsDataRepository } from '@angular-ru/ngxs/repositories';
-import { ngxsTestingPlatform } from '@angular-ru/ngxs/testing';
-import { State, Store } from '@ngxs/store';
+import {Injectable} from '@angular/core';
+import {StateRepository} from '@angular-ru/ngxs/decorators';
+import {NgxsDataRepository} from '@angular-ru/ngxs/repositories';
+import {ngxsTestingPlatform} from '@angular-ru/ngxs/testing';
+import {State, Store} from '@ngxs/store';
 
 describe('appState', () => {
     @StateRepository()
     @State({
         name: 'app',
-        defaults: 'hello world'
+        defaults: 'hello world',
     })
     @Injectable()
     class AppState extends NgxsDataRepository<string> {}
@@ -16,9 +16,9 @@ describe('appState', () => {
     it(
         'should be correct ensure state from AppState',
         ngxsTestingPlatform([AppState], (store: Store, app: AppState) => {
-            expect(store.snapshot()).toEqual({ app: 'hello world' });
+            expect(store.snapshot()).toEqual({app: 'hello world'});
             expect(app.getState()).toBe('hello world');
-        })
+        }),
     );
 
     it('invalid state', async () => {
@@ -33,6 +33,8 @@ describe('appState', () => {
             message = (error as Error).message;
         }
 
-        expect(message).toBe('InvalidState class must be decorated with @State() decorator');
+        expect(message).toBe(
+            'InvalidState class must be decorated with @State() decorator',
+        );
     });
 });

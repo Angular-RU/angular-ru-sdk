@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { NgxsDataPluginModule } from '@angular-ru/ngxs';
-import { DataAction, StateRepository } from '@angular-ru/ngxs/decorators';
-import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
-import { NgxsModule, State, Store } from '@ngxs/store';
-import { forkJoin, isObservable, Observable, of } from 'rxjs';
-import { delay, finalize, map, tap } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {fakeAsync, TestBed, tick} from '@angular/core/testing';
+import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {DataAction, StateRepository} from '@angular-ru/ngxs/decorators';
+import {NgxsImmutableDataRepository} from '@angular-ru/ngxs/repositories';
+import {NgxsModule, State, Store} from '@ngxs/store';
+import {forkJoin, isObservable, Observable, of} from 'rxjs';
+import {delay, finalize, map, tap} from 'rxjs/operators';
 
 describe('correct behavior NGXS DATA with Count, Todo states', () => {
     let store: Store;
@@ -22,7 +22,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
     @StateRepository()
     @State({
         name: 'count',
-        defaults: 0
+        defaults: 0,
     })
     @Injectable()
     class CountState extends NgxsImmutableDataRepository<number> {
@@ -40,7 +40,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
             return this.api.getData().pipe(
                 tap((value: number) => {
                     this.ctx.setState(value);
-                })
+                }),
             );
         }
 
@@ -50,7 +50,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
                 tap((value: number) => {
                     this.ctx.setState((state: number) => state + value);
                 }),
-                map(() => this.ctx.getState() + 100)
+                map(() => this.ctx.getState() + 100),
             );
         }
 
@@ -66,7 +66,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
             return this.api.getData().pipe(
                 tap((value: number) => {
                     this.ctx.setState(value);
-                })
+                }),
             );
         }
 
@@ -75,7 +75,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
                 tap((value: number) => {
                     this.ctx.setState((state: number) => state + value);
                 }),
-                map(() => this.ctx.getState() + 100)
+                map(() => this.ctx.getState() + 100),
             );
         }
     }
@@ -84,7 +84,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
     @StateRepository()
     @State<string[]>({
         name: 'todos',
-        defaults: []
+        defaults: [],
     })
     class TodoState extends NgxsImmutableDataRepository<string[]> {
         constructor(private readonly counter: CountState) {
@@ -103,10 +103,10 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
-                NgxsModule.forRoot([CountState, TodoState], { developmentMode: true }),
-                NgxsDataPluginModule.forRoot()
+                NgxsModule.forRoot([CountState, TodoState], {developmentMode: true}),
+                NgxsDataPluginModule.forRoot(),
             ],
-            providers: [ApiService]
+            providers: [ApiService],
         });
 
         count = TestBed.inject<CountState>(CountState);
@@ -117,15 +117,15 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
     it('should be identify non-obvious behavior', () => {
         count.setValue(5);
         expect(count.getState()).toBe(5);
-        expect(store.snapshot()).toEqual({ todos: [], count: 5 });
+        expect(store.snapshot()).toEqual({todos: [], count: 5});
 
         count.incorrectReturnedValue(15);
         expect(count.getState()).toBe(15);
-        expect(store.snapshot()).toEqual({ todos: [], count: 15 });
+        expect(store.snapshot()).toEqual({todos: [], count: 15});
     });
 
     it('should be correct injectable state', () => {
-        expect(store.snapshot()).toEqual({ todos: [], count: 0 });
+        expect(store.snapshot()).toEqual({todos: [], count: 0});
 
         todo.add('A').add('B').add('C');
 
@@ -134,7 +134,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
         todo.reset();
         count.reset();
 
-        expect(store.snapshot()).toEqual({ todos: [], count: 0 });
+        expect(store.snapshot()).toEqual({todos: [], count: 0});
     });
 
     it('should be correct async method with subscribe', fakeAsync(() => {
@@ -146,7 +146,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
             .pipe(
                 finalize(() => {
                     finalized = true;
-                })
+                }),
             )
             .subscribe((response: number) => {
                 result = response;
@@ -165,7 +165,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
             .pipe(
                 finalize(() => {
                     finalized = true;
-                })
+                }),
             )
             .subscribe((response: number) => {
                 result = response;
@@ -186,7 +186,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
         count.asyncSetState().pipe(
             finalize(() => {
                 finalized = true;
-            })
+            }),
         );
 
         tick(2000);
@@ -227,7 +227,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
             .pipe(
                 finalize(() => {
                     finalized = true;
-                })
+                }),
             )
             .subscribe((response: number) => {
                 result = response;
@@ -271,7 +271,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
             .pipe(
                 finalize(() => {
                     finalized = true;
-                })
+                }),
             )
             .subscribe((response: number) => {
                 result = response;
@@ -292,7 +292,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
         forkJoin([count.asyncSetStateAction(), count.asyncIncrementAction()]).pipe(
             tap((value) => {
                 result = value;
-            })
+            }),
         );
 
         tick(2000);
@@ -304,7 +304,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
             .pipe(
                 tap((value) => {
                     result = value;
-                })
+                }),
             )
             .subscribe((response) => {
                 responseResult = response;

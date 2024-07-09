@@ -14,9 +14,9 @@ import {
     replaceWithNull,
     shallowMapObject,
     sortByAsc,
-    sortByDesc
+    sortByDesc,
 } from '@angular-ru/cdk/object';
-import { Nullable, PlainObject } from '@angular-ru/cdk/typings';
+import {Nullable, PlainObject} from '@angular-ru/cdk/typings';
 
 describe('[TEST]: Object', () => {
     interface A {
@@ -31,32 +31,32 @@ describe('[TEST]: Object', () => {
     }
 
     describe('sorting', () => {
-        const objectList: A[] = [{ a: 1 }, { a: 3 }, { a: 2 }, { a: -1 }, { a: 0 }];
+        const objectList: A[] = [{a: 1}, {a: 3}, {a: 2}, {a: -1}, {a: 0}];
 
         it('sort by asc', () => {
             expect(objectList.slice().sort((a, b) => sortByAsc('a', a, b))).toEqual([
-                { a: -1 },
-                { a: 0 },
-                { a: 1 },
-                { a: 2 },
-                { a: 3 }
+                {a: -1},
+                {a: 0},
+                {a: 1},
+                {a: 2},
+                {a: 3},
             ]);
         });
 
         it('sort by desc', () => {
             expect(objectList.slice().sort((a, b) => sortByDesc('a', a, b))).toEqual([
-                { a: 3 },
-                { a: 2 },
-                { a: 1 },
-                { a: 0 },
-                { a: -1 }
+                {a: 3},
+                {a: 2},
+                {a: 1},
+                {a: 0},
+                {a: -1},
             ]);
         });
     });
 
     it('should correct return first key', () => {
-        expect(firstKey({ a: 1 })).toBe('a');
-        expect(firstKey({ b: 2, a: 1, c: 3 })).toBe('b');
+        expect(firstKey({a: 1})).toBe('a');
+        expect(firstKey({b: 2, a: 1, c: 3})).toBe('b');
         expect(firstKey(null)).toBeNull();
     });
 
@@ -79,7 +79,7 @@ describe('[TEST]: Object', () => {
             expect(
                 isObject(() => {
                     // ...
-                })
+                }),
             ).toBe(true);
             // eslint-disable-next-line no-new-wrappers,unicorn/new-for-builtins
             expect(isObject(new Number(6))).toBe(true);
@@ -91,8 +91,8 @@ describe('[TEST]: Object', () => {
                     // @ts-ignore
                     new (function Foo() {
                         // ...
-                    })()
-                )
+                    })(),
+                ),
             ).toBe(true);
             expect(isObject(window)).toBe(true);
         });
@@ -115,7 +115,7 @@ describe('[TEST]: Object', () => {
             expect(
                 isPlainObject(() => {
                     // ...
-                })
+                }),
             ).toBe(false);
             // eslint-disable-next-line no-new-wrappers,unicorn/new-for-builtins
             expect(isPlainObject(new Number(6))).toBe(false);
@@ -126,8 +126,8 @@ describe('[TEST]: Object', () => {
                     // @ts-ignore
                     new (function Foo() {
                         // ...
-                    })()
-                )
+                    })(),
+                ),
             ).toBe(false);
         });
 
@@ -147,8 +147,8 @@ describe('[TEST]: Object', () => {
                     // @ts-ignore
                     new (function Foo() {
                         // ...
-                    })()
-                )
+                    })(),
+                ),
             ).toBe(true);
             // complex object (Array, DOM, Set, Map, other structure)
             expect(isSimpleObject([])).toBe(false);
@@ -157,7 +157,7 @@ describe('[TEST]: Object', () => {
             expect(
                 isSimpleObject(() => {
                     // ...
-                })
+                }),
             ).toBe(false);
             // eslint-disable-next-line no-new-wrappers,unicorn/new-for-builtins
             expect(isSimpleObject(new Number(6))).toBe(false);
@@ -184,10 +184,10 @@ describe('[TEST]: Object', () => {
                     {
                         get a() {
                             return 2;
-                        }
+                        },
                     },
-                    'a'
-                )
+                    'a',
+                ),
             ).toBe(true);
 
             expect(
@@ -196,13 +196,13 @@ describe('[TEST]: Object', () => {
                         _a: null,
                         set a(value: any) {
                             this._a = value;
-                        }
+                        },
                     },
-                    'a'
-                )
+                    'a',
+                ),
             ).toBe(false);
 
-            expect(isGetter({ a: 2 }, 'a')).toBe(false);
+            expect(isGetter({a: 2}, 'a')).toBe(false);
         });
 
         it('inheritance getter', () => {
@@ -227,7 +227,7 @@ describe('[TEST]: Object', () => {
 
             const r = new R();
 
-            Object.defineProperty(r, 'base', { value: 'joke' });
+            Object.defineProperty(r, 'base', {value: 'joke'});
 
             expect(r.base).toBe('joke');
             expect(isGetter(r, 'base')).toBe(false);
@@ -248,7 +248,7 @@ describe('[TEST]: Object', () => {
 
     describe('clone', () => {
         it('deep clone', () => {
-            const origin: Origin = { a: 1, b: { c: 2 } };
+            const origin: Origin = {a: 1, b: {c: 2}};
             const copy: Origin = deepClone(origin);
 
             expect(Object.is(origin, copy)).toBe(false);
@@ -262,11 +262,11 @@ describe('[TEST]: Object', () => {
         });
 
         it('not equals', () => {
-            const c = { d: 3 };
-            const a = { a: 1, b: 2, c };
+            const c = {d: 3};
+            const a = {a: 1, b: 2, c};
 
             expect(deepClone(a).c !== c).toBeTruthy();
-            expect(deepClone(a).c).toEqual({ d: 3 });
+            expect(deepClone(a).c).toEqual({d: 3});
         });
 
         it('copy null/NaN/undefined/0/Infinity', () => {
@@ -280,7 +280,7 @@ describe('[TEST]: Object', () => {
         it('should be correct clone object', () => {
             class Mock {
                 public a: string = null!;
-                public b: PlainObject[] = [{ c: 1, d: 2 }];
+                public b: PlainObject[] = [{c: 1, d: 2}];
                 public e: number = NaN;
                 public f: number = Infinity;
                 public g: Date | string = new Date(2018, 10, 28);
@@ -288,17 +288,17 @@ describe('[TEST]: Object', () => {
 
             expect(deepClone(new Mock())).toEqual({
                 a: null,
-                b: [{ c: 1, d: 2 }],
+                b: [{c: 1, d: 2}],
                 e: null,
                 f: null,
-                g: expect.any(String)
+                g: expect.any(String),
             });
         });
     });
 
     describe('freeze', () => {
         it('deep freeze', () => {
-            const origin: Origin = deepFreeze({ a: 1, b: { c: 2 } });
+            const origin: Origin = deepFreeze({a: 1, b: {c: 2}});
             let message: Nullable<string> = null;
 
             try {
@@ -307,7 +307,9 @@ describe('[TEST]: Object', () => {
                 message = (error as Error).message;
             }
 
-            expect(message).toBe(`Cannot assign to read only property 'c' of object '[object Object]'`);
+            expect(message).toBe(
+                `Cannot assign to read only property 'c' of object '[object Object]'`,
+            );
         });
     });
 
@@ -315,21 +317,21 @@ describe('[TEST]: Object', () => {
         const wrongElement: PlainObject = {
             a: '',
             b: [
-                { c: NaN, d: 1 },
-                { c: '   ', d: undefined },
-                { c: 0, d: 0 }
+                {c: NaN, d: 1},
+                {c: '   ', d: undefined},
+                {c: 0, d: 0},
             ],
-            e: Infinity
+            e: Infinity,
         };
 
         expect(replaceWithNull(wrongElement)).toEqual({
             a: null,
             b: [
-                { c: null, d: 1 },
-                { c: null, d: null },
-                { c: 0, d: 0 }
+                {c: null, d: 1},
+                {c: null, d: null},
+                {c: 0, d: 0},
             ],
-            e: null
+            e: null,
         });
     });
 
@@ -345,52 +347,52 @@ describe('[TEST]: Object', () => {
                     a: 2,
                     b: undefined,
                     c: '',
-                    d: Infinity
+                    d: Infinity,
                 },
                 {
                     a: 3,
                     b: undefined,
                     c: '',
-                    d: Infinity
-                }
+                    d: Infinity,
+                },
             ],
             g: {
                 a: 4,
                 b: undefined,
                 c: '',
-                d: Infinity
+                d: Infinity,
             },
-            h: Infinity
+            h: Infinity,
         });
 
-        const B: PlainObject = { a: 1, f: [{ a: 2 }, { a: 3 }], g: { a: 4 } };
+        const B: PlainObject = {a: 1, f: [{a: 2}, {a: 3}], g: {a: 4}};
 
         expect(A).toEqual(B);
     });
 
     it('getValueByPath', () => {
-        const object: PlainObject = { a: 1, f: [{ a: 2 }, { a: 3 }], g: { a: 4 } };
+        const object: PlainObject = {a: 1, f: [{a: 2}, {a: 3}], g: {a: 4}};
 
         expect(getValueByPath(null, '')).toBeNull();
-        expect(getValueByPath({ a: 2 }, '')).toEqual({ a: 2 });
+        expect(getValueByPath({a: 2}, '')).toEqual({a: 2});
         expect(getValueByPath(null, 'ge')).toBeUndefined();
         expect(getValueByPath(undefined, 'ge')).toBeUndefined();
         expect(getValueByPath(object, 'ge')).toBeUndefined();
         expect(getValueByPath(object, 'g.a')).toBe(4);
-        expect(getValueByPath(object, 'f.0')).toEqual({ a: 2 });
+        expect(getValueByPath(object, 'f.0')).toEqual({a: 2});
         expect(getValueByPath(object, 'f.0.a')).toBe(2);
         expect(getValueByPath(object, 'abc')).toBeUndefined();
         expect(getValueByPath(object, 'f.0.a.Z', [])).toEqual([]);
     });
 
     it('checkIsShallowEmpty', () => {
-        expect(checkIsShallowEmpty({ a: 0 })).toBe(false);
-        expect(checkIsShallowEmpty({ a: { b: '' } })).toBe(false);
-        expect(checkIsShallowEmpty({ a: 'hello' })).toBe(false);
+        expect(checkIsShallowEmpty({a: 0})).toBe(false);
+        expect(checkIsShallowEmpty({a: {b: ''}})).toBe(false);
+        expect(checkIsShallowEmpty({a: 'hello'})).toBe(false);
         // shallow empty object
         expect(checkIsShallowEmpty({})).toBe(true);
-        expect(checkIsShallowEmpty({ a: null })).toBe(true);
-        expect(checkIsShallowEmpty({ a: '', b: undefined, c: NaN, d: '   ' })).toBe(true);
+        expect(checkIsShallowEmpty({a: null})).toBe(true);
+        expect(checkIsShallowEmpty({a: '', b: undefined, c: NaN, d: '   '})).toBe(true);
     });
 
     it('should correct recognize iterable values', () => {
@@ -401,19 +403,19 @@ describe('[TEST]: Object', () => {
             isIterable(
                 new Map([
                     ['a', 1],
-                    ['b', 2]
-                ])
-            )
+                    ['b', 2],
+                ]),
+            ),
         ).toBe(true);
         expect(
             isIterable(
                 new Map([
                     ['a', 1],
-                    ['b', 2]
-                ]).entries()
-            )
+                    ['b', 2],
+                ]).entries(),
+            ),
         ).toBe(true);
-        expect(isIterable({ a: 1, b: 2 })).toBe(false);
+        expect(isIterable({a: 1, b: 2})).toBe(false);
         expect(isIterable(null)).toBe(false);
         expect(isIterable(undefined)).toBe(false);
         expect(isIterable(0)).toBe(false);
@@ -421,7 +423,7 @@ describe('[TEST]: Object', () => {
         expect(
             isIterable(() => {
                 // ...
-            })
+            }),
         ).toBe(false);
     });
 
@@ -431,16 +433,19 @@ describe('[TEST]: Object', () => {
             b: {
                 c: 2,
                 d: {
-                    e: 3
+                    e: 3,
                 },
-                g: [1, 2, 3]
-            }
+                g: [1, 2, 3],
+            },
         };
 
         expect(pathsOfObject(row)).toEqual(['a', 'b.c', 'b.d.e', 'b.g']);
 
         class Person {
-            constructor(public name: string, public city: string) {}
+            constructor(
+                public name: string,
+                public city: string,
+            ) {}
         }
 
         // @ts-ignore
@@ -451,30 +456,47 @@ describe('[TEST]: Object', () => {
     });
 
     it('should correct map objects by keys', () => {
-        const oneTypeObject = { a: 1, b: 3, c: 5 };
+        const oneTypeObject = {a: 1, b: 3, c: 5};
 
-        expect(shallowMapObject(oneTypeObject, (a: number): number => a * 2)).toEqual({ a: 2, b: 6, c: 10 });
+        expect(shallowMapObject(oneTypeObject, (a: number): number => a * 2)).toEqual({
+            a: 2,
+            b: 6,
+            c: 10,
+        });
 
-        const baseTypeObject = { a: '1 asd', b: 3, c: true };
+        const baseTypeObject = {a: '1 asd', b: 3, c: true};
 
         expect(
-            shallowMapObject(baseTypeObject, (a: number | string | boolean): string => `${a} - interpolated`)
+            shallowMapObject(
+                baseTypeObject,
+                (a: number | string | boolean): string => `${a} - interpolated`,
+            ),
         ).toEqual({
             a: '1 asd - interpolated',
             b: '3 - interpolated',
-            c: `true - interpolated`
+            c: `true - interpolated`,
         });
 
-        const complexObject = { a: 1, b: 'two', c: true, d: undefined, e: null, f: { field: 'value' }, g: [1, 2, 3] };
-
-        expect(shallowMapObject(complexObject, (a): string => JSON.stringify(a))).toEqual({
-            a: '1',
-            b: '"two"',
-            c: 'true',
+        const complexObject = {
+            a: 1,
+            b: 'two',
+            c: true,
             d: undefined,
-            e: 'null',
-            f: '{"field":"value"}',
-            g: '[1,2,3]'
-        });
+            e: null,
+            f: {field: 'value'},
+            g: [1, 2, 3],
+        };
+
+        expect(shallowMapObject(complexObject, (a): string => JSON.stringify(a))).toEqual(
+            {
+                a: '1',
+                b: '"two"',
+                c: 'true',
+                d: undefined,
+                e: 'null',
+                f: '{"field":"value"}',
+                g: '[1,2,3]',
+            },
+        );
     });
 });

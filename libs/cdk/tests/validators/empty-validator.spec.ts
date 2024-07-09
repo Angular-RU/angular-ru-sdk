@@ -1,14 +1,19 @@
-import { Component } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AbstractControlOptions, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {Component} from '@angular/core';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {
+    AbstractControlOptions,
+    FormBuilder,
+    FormGroup,
+    ReactiveFormsModule,
+} from '@angular/forms';
 // eslint-disable-next-line deprecation/deprecation
-import { emptyValidator } from '@angular-ru/cdk/validators';
+import {emptyValidator} from '@angular-ru/cdk/validators';
 
 describe('empty validator', () => {
     it('without empty validator', () => {
         @Component({
             selector: 'app',
-            template: ``
+            template: ``,
         })
         class AppComponent {
             public form: FormGroup;
@@ -16,14 +21,14 @@ describe('empty validator', () => {
             constructor(private readonly fb: FormBuilder) {
                 this.form = this.fb.group({
                     name: '',
-                    lastName: ''
+                    lastName: '',
                 });
             }
         }
 
         TestBed.configureTestingModule({
             imports: [ReactiveFormsModule],
-            declarations: [AppComponent]
+            declarations: [AppComponent],
         });
 
         const app: ComponentFixture<AppComponent> = TestBed.createComponent(AppComponent);
@@ -34,7 +39,7 @@ describe('empty validator', () => {
     it('with empty validator', () => {
         @Component({
             selector: 'app',
-            template: ``
+            template: ``,
         })
         class AppComponent {
             public form: FormGroup;
@@ -43,17 +48,17 @@ describe('empty validator', () => {
                 this.form = this.fb.group(
                     {
                         name: this.fb.control(''),
-                        lastName: this.fb.control('')
+                        lastName: this.fb.control(''),
                     },
                     // eslint-disable-next-line deprecation/deprecation
-                    { validators: [emptyValidator] } as AbstractControlOptions
+                    {validators: [emptyValidator]} as AbstractControlOptions,
                 );
             }
         }
 
         TestBed.configureTestingModule({
             imports: [ReactiveFormsModule],
-            declarations: [AppComponent]
+            declarations: [AppComponent],
         });
 
         const app: ComponentFixture<AppComponent> = TestBed.createComponent(AppComponent);

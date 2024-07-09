@@ -1,9 +1,15 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { PlainObject } from '@angular-ru/cdk/typings';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    OnInit,
+    ViewEncapsulation,
+} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {PlainObject} from '@angular-ru/cdk/typings';
 
-import { MocksGenerator } from '../../mocks-generator';
-import { CodeDialogComponent } from '../../shared/dialog/code-dialog.component';
+import {MocksGenerator} from '../../mocks-generator';
+import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
 
 @Component({
     selector: 'sample-eighteen',
@@ -13,16 +19,19 @@ import { CodeDialogComponent } from '../../shared/dialog/code-dialog.component';
             .highlight {
                 background: lightgreen;
             }
-        `
+        `,
     ],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
 })
 export class SampleEighteenComponent implements OnInit {
     public data: PlainObject[] = [];
-    public rowCssClasses: PlainObject = { 1: ['highlight'], 3: ['highlight'] };
+    public rowCssClasses: PlainObject = {1: ['highlight'], 3: ['highlight']};
 
-    constructor(public readonly dialog: MatDialog, private readonly cd: ChangeDetectorRef) {}
+    constructor(
+        public readonly dialog: MatDialog,
+        private readonly cd: ChangeDetectorRef,
+    ) {}
 
     public ngOnInit(): void {
         const rows: number = 50;
@@ -51,10 +60,10 @@ export class SampleEighteenComponent implements OnInit {
     <ngx-source-null>Loading</ngx-source-null>
     <ngx-options is-sortable></ngx-options>
 </ngx-table-builder>
-                `
+                `,
             },
             height: '350px',
-            width: '700px'
+            width: '700px',
         });
     }
 }
