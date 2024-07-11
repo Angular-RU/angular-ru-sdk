@@ -23,22 +23,27 @@ import {
     SCROLLBAR_SIZE,
 } from '../table-builder.properties';
 
-const MIN_RESIZE_DELAY: number = 500;
-const RECALCULATE_HEIGHT: number = 100;
+const MIN_RESIZE_DELAY = 500;
+const RECALCULATE_HEIGHT = 100;
 
 @Directive({selector: '[autoHeight]'})
 export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
-    private _destroy$: Subject<boolean> = new Subject<boolean>();
+    private readonly _destroy$: Subject<boolean> = new Subject<boolean>();
     private readonly minHeight: number = 0;
-    private useOnlyAutoViewPort: boolean = false;
-    private isDirtyCheck: boolean = false;
+    private useOnlyAutoViewPort = false;
+    private isDirtyCheck = false;
     private taskId: Nullable<number> = null;
-    @Input() public autoHeight: Partial<DynamicHeightOptions> = {};
-    @Input() public tableViewport: Partial<HTMLDivElement> = {};
-    @Input() public sourceRef: T[] = [];
-    @Output() public readonly recalculatedHeight: EventEmitter<void> = new EventEmitter(
-        true,
-    );
+    @Input()
+    public autoHeight: Partial<DynamicHeightOptions> = {};
+
+    @Input()
+    public tableViewport: Partial<HTMLDivElement> = {};
+
+    @Input()
+    public sourceRef: T[] = [];
+
+    @Output()
+    public readonly recalculatedHeight = new EventEmitter<void>(true);
 
     constructor(
         private readonly element: ElementRef,
@@ -141,7 +146,7 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
     }
 
     private static getStyle(element: Element | any, strCssRule: string): string {
-        let strValue: string = '';
+        let strValue = '0px';
         let strRule: string = strCssRule;
 
         if (document.defaultView && isNotNil(document.defaultView.getComputedStyle)) {
@@ -153,7 +158,7 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
                 strValue = '0px';
             }
         } else if (isNotNil(element.currentStyle)) {
-            strRule = strRule.replace(/-(\w)/g, (_: string, p1: string): string =>
+            strRule = strRule.replaceAll(/-(\w)/g, (_: string, p1: string): string =>
                 p1.toUpperCase(),
             );
             strValue = element.currentStyle[strRule];
@@ -236,14 +241,14 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
     private getHeightByParent({paddingTop, paddingBottom}: BoxView): string {
         const viewportHeight: number = this.parentOffsetHeight - parseInt(HEAD_TOP);
 
-        return `calc(${viewportHeight}px - ${paddingTop} - ${paddingBottom})`;
+        return `calc(${viewportHeight}px - ${paddingTop.trim() || '0px'} - ${paddingBottom.trim() || '0px'})`;
     }
 
     private getHeightByViewPort({paddingTop, paddingBottom}: BoxView): string {
         const viewportHeight: number = this.autoViewHeight - parseInt(HEAD_TOP);
 
         return this.columnHeight > viewportHeight
-            ? `calc(${viewportHeight}px - ${paddingTop} - ${paddingBottom} - ${this.scrollbarHeight}px)`
+            ? `calc(${viewportHeight}px - ${paddingTop.trim() || '0px'} - ${paddingBottom.trim() || '0px'} - ${this.scrollbarHeight}px)`
             : this.getDefaultHeight();
     }
 

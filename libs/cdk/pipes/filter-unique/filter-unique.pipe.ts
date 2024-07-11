@@ -3,10 +3,7 @@ import {uniqueArrayOf} from '@angular-ru/cdk/array';
 
 @Pipe({name: 'filterUnique'})
 export class FilterUniquePipe implements PipeTransform {
-    public transform<ValueType = any>(
-        values: ValueType[],
-        path: string = '',
-    ): ValueType[] {
+    public transform<ValueType = any>(values: ValueType[], path = ''): ValueType[] {
         return uniqueArrayOf(values, path);
     }
 }

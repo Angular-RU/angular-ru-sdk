@@ -11,9 +11,9 @@ import {Observable, OperatorFunction} from 'rxjs';
 import {DataHttpClient} from '../services/data-http.client';
 
 export class RestTemplate<T> {
-    private markAsRequest: boolean = false;
+    private markAsRequest = false;
     private _client: Nullable<DataHttpClient> = null;
-    protected operators: OperatorFunction<T, any>[] = [];
+    protected operators: Array<OperatorFunction<T, any>> = [];
     public path!: string;
     public methodType!: RequestType;
 
@@ -73,7 +73,7 @@ export class RestTemplate<T> {
 
         const fakeProxy: any = {
             restTemplateRef: that,
-            pipe(...operators: OperatorFunction<T, any>[]): Observable<T> {
+            pipe(...operators: Array<OperatorFunction<T, any>>): Observable<T> {
                 that.operators.push(...operators);
 
                 return fakeProxy;

@@ -1,5 +1,5 @@
-/* eslint-disable no-cyrillic-string/no-cyrillic-string */
-import {DeclinationDictionary, declinationOfNumber} from '@angular-ru/cdk/utils';
+import {DeclinationDictionary} from '@angular-ru/cdk/utils';
+import {declinationOfNumber} from '@angular-ru/cdk/utils';
 
 describe('[TEST]: declinationOfNumber', () => {
     it('seconds', () => {

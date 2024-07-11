@@ -1,6 +1,6 @@
 export function truncated(value: number, decimalPlaces: number): number {
-    const mantisa: number = 10;
-    const numPowerConverter: number = Math.pow(mantisa, decimalPlaces);
+    const mantisa = 10;
+    const numPowerConverter: number = mantisa ** decimalPlaces;
 
     return ~~(value * numPowerConverter) / numPowerConverter;
 }

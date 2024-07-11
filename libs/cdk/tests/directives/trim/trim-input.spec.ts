@@ -1,10 +1,11 @@
 import {ChangeDetectionStrategy, Component, DebugElement} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatInput} from '@angular/material/input';
 import {BrowserModule, By} from '@angular/platform-browser';
 import {TrimInputModule} from '@angular-ru/cdk/directives';
 import {Nullable} from '@angular-ru/cdk/typings';
-import {NgxMaskModule} from 'ngx-mask';
+import {NgxMaskDirective, provideEnvironmentNgxMask} from 'ngx-mask';
 
 describe('[TEST]: Trim Input', function () {
     let fixture: Nullable<ComponentFixture<TestComponent>> = null;
@@ -12,7 +13,9 @@ describe('[TEST]: Trim Input', function () {
     let debugElement: Nullable<DebugElement> = null;
 
     @Component({
+        standalone: true,
         selector: 'test',
+        imports: [ReactiveFormsModule, NgxMaskDirective, MatInput, TrimInputModule],
         template: `
             <div [formGroup]="form">
                 <input
@@ -39,9 +42,9 @@ describe('[TEST]: Trim Input', function () {
                 ReactiveFormsModule,
                 FormsModule,
                 TrimInputModule,
-                NgxMaskModule.forRoot(),
+                TestComponent,
             ],
-            declarations: [TestComponent],
+            providers: [provideEnvironmentNgxMask()],
         }).compileComponents();
 
         fixture = TestBed.createComponent(TestComponent);
@@ -69,7 +72,7 @@ describe('[TEST]: Trim Input', function () {
         expect(component?.form.pristine).toBe(false);
         expect(component?.form.dirty).toBe(true);
 
-        expect(component?.form.value).toEqual({value: '1234000012340000'});
+        expect(component?.form.value).toEqual({value: 1234000012340000});
         expect(debugElement?.nativeElement.value).toBe('1234-0000-1234-0000');
     });
 });

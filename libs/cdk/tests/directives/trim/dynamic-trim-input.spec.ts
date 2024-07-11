@@ -6,11 +6,12 @@ import {
 } from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatInput} from '@angular/material/input';
 import {BrowserModule, By} from '@angular/platform-browser';
 import {TrimInputModule} from '@angular-ru/cdk/directives';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {isNotNil} from '@angular-ru/cdk/utils';
-import {NgxMaskModule} from 'ngx-mask';
+import {NgxMaskDirective, provideEnvironmentNgxMask} from 'ngx-mask';
 
 describe('[TEST]: Trim Input', function () {
     let fixture: Nullable<ComponentFixture<DynamicTestComponent>> = null;
@@ -18,7 +19,9 @@ describe('[TEST]: Trim Input', function () {
     let debugElement: Nullable<DebugElement> = null;
 
     @Component({
+        standalone: true,
         selector: 'test',
+        imports: [NgxMaskDirective, ReactiveFormsModule, MatInput, TrimInputModule],
         template: `
             <div [formGroup]="form">
                 <input
@@ -34,7 +37,7 @@ describe('[TEST]: Trim Input', function () {
     })
     class DynamicTestComponent {
         public form = this.fb.group({a: 1234000012340000, b: null});
-        public controlName: string = 'b';
+        public controlName = 'b';
 
         constructor(
             public readonly cd: ChangeDetectorRef,
@@ -49,9 +52,9 @@ describe('[TEST]: Trim Input', function () {
                 ReactiveFormsModule,
                 FormsModule,
                 TrimInputModule,
-                NgxMaskModule.forRoot(),
+                DynamicTestComponent,
             ],
-            declarations: [DynamicTestComponent],
+            providers: [provideEnvironmentNgxMask()],
         }).compileComponents();
 
         fixture = TestBed.createComponent(DynamicTestComponent);

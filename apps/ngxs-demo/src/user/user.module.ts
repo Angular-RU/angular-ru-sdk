@@ -9,7 +9,6 @@ import {UserService} from './user.service';
 import {UserState} from './user.state';
 
 @NgModule({
-    declarations: [UserComponent],
     imports: [
         CommonModule,
         HttpClientModule,
@@ -21,6 +20,7 @@ import {UserState} from './user.state';
             },
         ]),
     ],
+    declarations: [UserComponent],
     providers: [UserService],
 })
 export class UserModule {}

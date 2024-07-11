@@ -7,7 +7,7 @@
         (click)="emitClick($event)"
         (mouseenter)="calculateSubMenuPosition(ref)"
     >
-        <ng-content select="ngx-menu-content"></ng-content>
+        <ng-content select="ngx-menu-content" />
 
         <!-- eslint-disable @angular-eslint/template/no-call-expression -->
         <div
@@ -30,13 +30,13 @@
                     #ref
                     class="sub-menu__tree--content"
                 >
-                    <ng-content select="ngx-context-menu-item"></ng-content>
+                    <ng-content select="ngx-context-menu-item" />
                 </div>
             </div>
         </div>
     </div>
 
     <ng-template [ngIf]="divider !== false">
-        <ngx-context-menu-divider></ngx-context-menu-divider>
+        <ngx-context-menu-divider />
     </ng-template>
 </ng-template>

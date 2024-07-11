@@ -18,13 +18,14 @@ import {
 
 @Directive({selector: '[virtualFor][virtualForOf]'})
 export class VirtualForDirective<T> implements OnDestroy {
-    private cache: Map<number, InternalVirtualRef<T>> = new Map();
+    private readonly cache = new Map<number, InternalVirtualRef<T>>();
     private _source: T[] = [];
     private _indexes: VirtualIndex[] = [];
     private removeFrameId?: number;
     private initFrameId?: number;
-    private dirty: boolean = false;
-    @Input() public virtualForDiffIndexes?: Nullable<number[]>;
+    private dirty = false;
+    @Input()
+    public virtualForDiffIndexes?: Nullable<number[]>;
 
     constructor(
         private readonly view: ViewContainerRef,

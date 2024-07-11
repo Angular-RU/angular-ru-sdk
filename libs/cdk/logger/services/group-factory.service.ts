@@ -16,11 +16,13 @@ import {CssFactory} from './css-factory.service';
 
 @Injectable()
 export class GroupFactory {
-    private counterOpenedGroup: number = 0;
-    public executePipesGroup: boolean = false;
+    private counterOpenedGroup = 0;
+    public executePipesGroup = false;
 
     constructor(
+        @Inject(ConsoleService)
         private readonly console: ConsoleService,
+        @Inject(CssFactory)
         private readonly cssFactory: CssFactory,
         @Inject(LOGGER_OPTIONS) public readonly options: LoggerOptionsImpl,
     ) {}
@@ -38,7 +40,6 @@ export class GroupFactory {
         }
     }
 
-    // eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
     public group<T>(
         title: string,
         pipeline: Nullable<Pipeline<T>>,
@@ -52,7 +53,6 @@ export class GroupFactory {
         return this.createGroupLogger<T>(group, title, pipeline, logger, level);
     }
 
-    // eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
     public groupCollapsed<T = unknown>(
         title: string,
         pipeline: Nullable<Pipeline<T>>,
@@ -66,7 +66,6 @@ export class GroupFactory {
         return this.createGroupLogger<T>(groupCollapsed, title, pipeline, logger, level);
     }
 
-    // eslint-disable-next-line max-lines-per-function,max-params-no-constructor/max-params-no-constructor
     private createGroupLogger<T = unknown>(
         groupType: GroupMethod,
         title: string,

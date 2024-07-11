@@ -29,9 +29,9 @@ export function deserializeByStorageMeta<T>(
         return provider.decode === STORAGE_DECODE_TYPE.BASE64
             ? JSON.parse(window.atob(meta.data as string))
             : meta.data;
-    } else {
-        throw new InvalidStructureDataException(`"${value}" not an object`);
     }
+
+    throw new InvalidStructureDataException(`"${value}" not an object`);
 }
 
 function versionIsInvalid<T>(meta: StorageMeta<T>): boolean {

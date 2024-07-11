@@ -34,5 +34,5 @@ export const DEFAULT_METHODS: PlainObject = {
     [LoggerLevel.ERROR]: 'error',
 };
 
-export const LEXER_JSON: RegExp =
+export const LEXER_JSON =
     /("(\\u[\dA-Za-z]{4}|\\[^u]|[^"\\])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[Ee][+\-]?\d+)?)/g;

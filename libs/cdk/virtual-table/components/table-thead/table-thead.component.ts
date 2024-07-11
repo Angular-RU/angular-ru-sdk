@@ -20,27 +20,45 @@ import {OVERLOAD_WIDTH_TABLE_HEAD_CELL} from '../../table-builder.properties';
 @Component({
     selector: 'table-thead',
     templateUrl: './table-thead.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     animations: [fadeInLinearAnimation],
 })
 export class TableTheadComponent<T> {
-    @Input('column-width') public columnWidth: number = 0;
-    @Input('head-height') public headHeight: Nullable<string | number> = null;
+    @Input('column-width')
+    public columnWidth = 0;
+
+    @Input('head-height')
+    public headHeight: Nullable<number | string> = null;
+
     @Input('sortable-definition')
     public sortableDefinition: PlainObjectOf<SortOrderType> = {};
-    @Input('sortable-position') public positionMap: PlainObjectOf<number> = {};
-    @Input('sortable-count') public sortableCount: number = 0;
-    @Input('filterable-definition') public filterableDefinition:
-        | PlainObjectOf<string>
-        | ReadonlyMap<unknown, unknown> = {};
 
-    @Input('client-row-height') public clientRowHeight: Nullable<number> = null;
-    @Input('column-schema') public columnSchema: Nullable<ColumnsSchema> = null;
-    @Output() public readonly resizing: EventEmitter<ResizeEvent> = new EventEmitter();
-    @Output() public readonly sortByKey: EventEmitter<string> = new EventEmitter();
-    @Output() public readonly openContextMenu: EventEmitter<MouseEvent> =
-        new EventEmitter();
+    @Input('sortable-position')
+    public positionMap: PlainObjectOf<number> = {};
+
+    @Input('sortable-count')
+    public sortableCount = 0;
+
+    @Input('filterable-definition')
+    public filterableDefinition: PlainObjectOf<string> | ReadonlyMap<unknown, unknown> =
+        {};
+
+    @Input('client-row-height')
+    public clientRowHeight: Nullable<number> = null;
+
+    @Input('column-schema')
+    public columnSchema: Nullable<ColumnsSchema> = null;
+
+    @Output()
+    public readonly resizing = new EventEmitter<ResizeEvent>();
+
+    @Output()
+    public readonly sortByKey = new EventEmitter<string>();
+
+    @Output()
+    public readonly openContextMenu = new EventEmitter<MouseEvent>();
+
     public orderType: typeof SortOrderType = SortOrderType;
     public limit: number = OVERLOAD_WIDTH_TABLE_HEAD_CELL;
 

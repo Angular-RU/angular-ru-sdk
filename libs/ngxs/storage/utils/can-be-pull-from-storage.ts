@@ -37,7 +37,7 @@ function ensureInfoByTtl<T>(
 
     if (canBeOverrideFromStorage && existTtl(provider)) {
         const expiry: Date = new Date(meta.expiry!);
-        const expiryExist: boolean = !isNaN(expiry.getTime());
+        const expiryExist = !isNaN(expiry.getTime());
 
         if (expiryExist) {
             if (isExpiredByTtl(expiry)) {
@@ -71,7 +71,7 @@ function ensureInfoByVersionMismatch<T>(
 
     if (canBeOverrideFromStorage && meta.version !== provider.version) {
         const instance: NgxsDataMigrateStorage | undefined =
-            provider.stateInstance as any as NgxsDataMigrateStorage;
+            provider.stateInstance as NgxsDataMigrateStorage;
         const tryMigrate: boolean =
             // eslint-disable-next-line @typescript-eslint/unbound-method
             isFalsy(provider.skipMigrate) &&

@@ -16,28 +16,36 @@ import {AbstractModalViewLayerDirective} from '../../directives/abstract-modal-v
 import {NgxFilterDirective} from '../../directives/ngx-filter.directive';
 import {FilterStateEvent} from '../../services/filterable/filter-state-event';
 
-const FILTER_WIDTH: number = 300;
-const FILTER_MIN_LEFT_X: number = 10;
-const FILTER_MIN_TOP_Y: number = 50;
+const FILTER_WIDTH = 300;
+const FILTER_MIN_LEFT_X = 10;
+const FILTER_MIN_TOP_Y = 50;
 
 @Component({
     selector: 'ngx-filter',
     templateUrl: './ngx-filter.component.html',
     styleUrls: ['./ngx-filter.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     animations: [fadeInLinearAnimation],
 })
 export class NgxFilterComponent<T>
     extends AbstractModalViewLayerDirective<T, FilterStateEvent>
     implements OnInit, OnDestroy
 {
-    private destroy$: Subject<void> = new Subject();
-    @Input() public width: number = FILTER_WIDTH;
-    @Input() public height: Nullable<number> = null;
+    private readonly destroy$ = new Subject<void>();
+    @Input()
+    public width: number = FILTER_WIDTH;
+
+    @Input()
+    public height: Nullable<number> = null;
+
     // eslint-disable-next-line @angular-eslint/no-input-rename
-    @Input('max-height') public maxHeight: Nullable<number> = null;
-    @ContentChild(NgxFilterDirective, {static: false}) public filter!: NgxFilterDirective;
+    @Input('max-height')
+    public maxHeight: Nullable<number> = null;
+
+    @ContentChild(NgxFilterDirective, {static: false})
+    public filter!: NgxFilterDirective;
+
     public readonly leftX: number = FILTER_MIN_LEFT_X;
     public readonly topY: number = FILTER_MIN_TOP_Y;
 

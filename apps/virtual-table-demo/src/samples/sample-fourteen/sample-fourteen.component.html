@@ -35,9 +35,9 @@
         is-filterable
         is-resizable
         is-sortable
-    ></ngx-options>
+    />
     <ngx-source-null>Loading...</ngx-source-null>
-    <ngx-empty><not-found></not-found></ngx-empty>
+    <ngx-empty><not-found /></ngx-empty>
 
     <ngx-header
         height="65"
@@ -87,7 +87,7 @@
                 [checked]="table.selectionModel.isAll"
                 [indeterminate]="table.selectionModel.isIndeterminate"
                 (change)="table.selection.toggleAll(data)"
-            ></mat-checkbox>
+            />
         </ng-template>
         <ng-template
             let-row
@@ -99,7 +99,7 @@
             <mat-checkbox
                 [checked]="table.selectionModel.get($any(row).id)"
                 (change)="table.selection.toggle(row)"
-            ></mat-checkbox>
+            />
         </ng-template>
     </ngx-column>
 
@@ -125,7 +125,7 @@
                 <ngx-filter-viewer
                     [key]="key"
                     [text]="cell"
-                ></ngx-filter-viewer>
+                />
             </a>
         </ng-template>
     </ngx-column>
@@ -146,7 +146,7 @@
         <context-menu-sample
             [state]="filter.state"
             [table]="table"
-        ></context-menu-sample>
+        />
     </ngx-filter>
 
     <ngx-footer>

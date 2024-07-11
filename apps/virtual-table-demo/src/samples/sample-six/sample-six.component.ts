@@ -19,17 +19,17 @@ import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SampleSixComponent implements OnInit, AfterViewInit {
-    public sortByIdDirection: boolean = true;
+    public sortByIdDirection = true;
     public data: PlainObject[] = [];
-    public skipSort: boolean = false;
+    public skipSort = false;
     constructor(
         public readonly dialog: MatDialog,
         private readonly cd: ChangeDetectorRef,
     ) {}
 
     public ngOnInit(): void {
-        const rows: number = 10000;
-        const cols: number = 50;
+        const rows = 10000;
+        const cols = 50;
 
         MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => {
             this.data = data;

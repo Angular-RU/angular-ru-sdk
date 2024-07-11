@@ -29,11 +29,11 @@ export function compareTo(a: string, b: string): CompareResult {
 function compareIfOnlyOneNegative(a: string, b: string): Nullable<CompareResult> {
     let result: Nullable<CompareResult> = null;
 
-    if (a[0] === '-' && b[0] !== '-') {
+    if (a.startsWith('-') && !b.startsWith('-')) {
         result = -1;
     }
 
-    if (a[0] !== '-' && b[0] === '-') {
+    if (!a.startsWith('-') && b.startsWith('-')) {
         result = 1;
     }
 
@@ -41,14 +41,12 @@ function compareIfOnlyOneNegative(a: string, b: string): Nullable<CompareResult>
 }
 
 function compareIfBothNegative(inputA: string, inputB: string): Nullable<CompareResult> {
-    if (inputA[0] !== '-' || inputB[0] !== '-') {
+    if (!inputA.startsWith('-') || !inputB.startsWith('-')) {
         return null;
     }
 
-    // eslint-disable-next-line deprecation/deprecation
-    const a: string = inputA.substr(1);
-    // eslint-disable-next-line deprecation/deprecation
-    const b: string = inputB.substr(1);
+    const a: string = inputA.slice(1);
+    const b: string = inputB.slice(1);
 
     const compareModulesResult: CompareResult = compareNumberModules(a, b);
 
@@ -76,7 +74,7 @@ function compareNumberModules(inputA: string, inputB: string): CompareResult {
     }
 
     // eslint-disable-next-line unicorn/no-for-loop
-    for (let i: number = 0; i < a.length; i++) {
+    for (let i = 0; i < a.length; i++) {
         const compareDigitsResult: CompareResult = compareDigits(a[i] ?? '', b[i] ?? '');
 
         if (compareDigitsResult === 0) {

@@ -20,7 +20,6 @@ export class ExcelService {
 
     public exportExcel<T>(workbook: Partial<ExcelWorkbook<T>>): void {
         this.getTranslatedColumn()
-            // eslint-disable-next-line rxjs/no-topromise, deprecation/deprecation
             .toPromise()
             .then(async (translatedKeys: Nullable<PlainObject>): Promise<void> => {
                 await this.builder.exportExcelByWorkbook({
@@ -41,7 +40,7 @@ export class ExcelService {
 
     private interceptWorksheets<T>(
         workbook: Partial<ExcelWorkbook<T>>,
-    ): ExcelWorksheet<T>[] {
+    ): Array<ExcelWorksheet<T>> {
         return (workbook.worksheets ?? []).map(
             (worksheet: ExcelWorksheet<T>): ExcelWorksheet<T> => {
                 const worksheetName: string =

@@ -48,7 +48,7 @@ export function DataAction(options: RepositoryActionOptions = {}): MethodDecorat
                 NgxsDataFactory.getRepositoryByInstance(instance);
             const operations: PlainObjectOf<NgxsDataOperation> = repository.operations!;
             let operation: NgxsDataOperation | undefined = operations[key];
-            const stateMeta: any = repository.stateMeta!;
+            const stateMeta: any = repository.stateMeta;
             const registry: MethodArgsRegistry | undefined =
                 getMethodArgsRegistry(originalMethod);
 
@@ -107,9 +107,9 @@ export function DataAction(options: RepositoryActionOptions = {}): MethodDecorat
 
             if (isObservable(result)) {
                 return combineStream(dispatcher$, result);
-            } else {
-                return result;
             }
+
+            return result;
         };
 
         return descriptor;

@@ -12,7 +12,7 @@ import {FlexNoneDirective} from './directives/flex-none.directive';
 import {FlexSpaceBetweenDirective} from './directives/flex-space-between.directive';
 import {FlexStartDirective} from './directives/flex-start.directive';
 
-const DECLARATIONS: Type<unknown>[] = [
+const DECLARATIONS: Array<Type<unknown>> = [
     FlexContainerDirective,
     FlexNoneDirective,
     FlexColumnDirective,

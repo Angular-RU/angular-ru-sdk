@@ -31,8 +31,9 @@ describe('[TEST]: inputFilter Simple Input', () => {
         changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class TestComponent {
-        @Input() public disableFilter: boolean = false;
-        // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
+        @Input()
+        public disableFilter = false;
+
         public filterValue = 'abcД';
         public predicate: FilterPredicate = ['a', 'b', 'c', ' '];
 
@@ -78,11 +79,9 @@ describe('[TEST]: inputFilter Simple Input', () => {
     }
 
     it('should correct sync modelView with model', async () => {
-        // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
         expect(component?.filterValue).toBe('abcД');
 
         if (isNotNil(debugElement)) {
-            // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
             debugElement.nativeElement.value = 'ab c Д';
         }
 
@@ -115,7 +114,6 @@ describe('[TEST]: inputFilter Simple Input', () => {
     });
 
     it('should filter cyrillic by default', () => {
-        // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
         setValueAndDispatch('aaaДДДccc');
         expect(debugElement?.nativeElement.value).toBe('aaaccc');
     });

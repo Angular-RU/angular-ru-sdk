@@ -5,7 +5,7 @@ import {checkValueIsEmpty} from '@angular-ru/cdk/utils';
 @Pipe({name: 'defaultValue'})
 export class DefaultValuePipe implements PipeTransform {
     public transform<T = unknown>(
-        item: Nullable<T | PlainObject>,
+        item: Nullable<PlainObject | T>,
         fallback: Nullable<string> = '-',
     ): Nullable<PlainObject | T | string> {
         return checkValueIsEmpty(item) ? fallback : item;

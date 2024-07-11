@@ -1,4 +1,11 @@
-import {AfterViewInit, Directive, ElementRef, HostBinding, Input} from '@angular/core';
+import {
+    AfterViewInit,
+    Directive,
+    ElementRef,
+    HostBinding,
+    Inject,
+    Input,
+} from '@angular/core';
 import {Nullable} from '@angular-ru/cdk/typings';
 
 import {AbstractFlexLayoutDirective} from './abstract-flex-layout.directive';
@@ -10,13 +17,16 @@ export class FlexBottomIndentDirective
 {
     @Input('flex-bottom-indent')
     @HostBinding('style.margin-bottom.px')
-    public bottomIndent: Nullable<string | number> = null;
+    public bottomIndent: Nullable<number | string> = null;
 
-    constructor(protected readonly elementRef: ElementRef) {
+    constructor(
+        @Inject(ElementRef)
+        protected readonly elementRef: ElementRef,
+    ) {
         super();
     }
 
     public ngAfterViewInit(): void {
-        this.classList.add(`flex-bottom-indent`);
+        this.classList.add('flex-bottom-indent');
     }
 }

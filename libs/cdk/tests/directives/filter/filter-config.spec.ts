@@ -27,7 +27,7 @@ describe('[TEST]: inputFilter Config', () => {
         changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class TestComponent {
-        public filterValue: string = '';
+        public filterValue = '';
         constructor(public readonly cd: ChangeDetectorRef) {}
     }
 

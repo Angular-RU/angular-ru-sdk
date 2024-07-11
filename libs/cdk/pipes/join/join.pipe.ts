@@ -10,10 +10,10 @@ export class JoinPipe implements PipeTransform {
     private readonly defaultSeparator: string = ',';
 
     public transform<T>(
-        input: T[] | EmptyValue,
+        input: EmptyValue | T[],
         {separator, mapTransformer}: JoinPipeOptions<T> = {},
     ): string {
-        let result: string = '';
+        let result = '';
 
         if (checkValueIsEmpty(input)) {
             return result;
@@ -22,7 +22,6 @@ export class JoinPipe implements PipeTransform {
         const currentSeparator: string = separator ?? this.defaultSeparator;
 
         if (isFunctionLike(mapTransformer)) {
-            // eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
             result = input.reduce(
                 (prev: string, next: T, index: number, arr: T[]): string => {
                     const transformed: string = mapTransformer(next, index, arr);

@@ -1,5 +1,5 @@
 // eslint-disable-next-line max-classes-per-file
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {Nullable, PlainObject} from '@angular-ru/cdk/typings';
 import {WebWorkerThreadService} from '@angular-ru/cdk/webworker';
 
@@ -8,7 +8,10 @@ import {RulesDescriptor} from './interfaces/rules-descriptor';
 
 @Injectable()
 export class PlainTableComposerService {
-    constructor(private readonly webWorker: WebWorkerThreadService) {}
+    constructor(
+        @Inject(WebWorkerThreadService)
+        private readonly webWorker: WebWorkerThreadService,
+    ) {}
 
     public async composeSingle<T extends PlainObject>(
         entry: T,
@@ -20,7 +23,7 @@ export class PlainTableComposerService {
     }
 
     // eslint-disable-next-line max-lines-per-function
-    public compose<T extends PlainObject>(
+    public async compose<T extends PlainObject>(
         tableEntries: T[],
         keyRules?: RulesDescriptor,
     ): Promise<PlainObject[]> {
@@ -31,7 +34,7 @@ export class PlainTableComposerService {
                     // eslint-disable-next-line sonarjs/cognitive-complexity,max-lines-per-function
                     (input: InputDescriptor<T>): PlainObject[] => {
                         class PlainComposer {
-                            private keySet: Set<string> = new Set();
+                            private readonly keySet = new Set<string>();
 
                             constructor(
                                 private readonly rules: Nullable<RulesDescriptor>,
@@ -58,7 +61,7 @@ export class PlainTableComposerService {
 
                             private flattenAndClean(
                                 objectRef: PlainObject,
-                                keyPrefix: string = '',
+                                keyPrefix = '',
                             ): PlainObject {
                                 const depthGraph: PlainObject = {};
                                 const keys: string[] = Object.keys(objectRef);
@@ -107,9 +110,9 @@ export class PlainTableComposerService {
                             private passesBlacklist(key: string): boolean {
                                 if (this.rules?.excludeKeys) {
                                     return !this.rules.excludeKeys.includes(key);
-                                } else {
-                                    return true;
                                 }
+
+                                return true;
                             }
                         }
 

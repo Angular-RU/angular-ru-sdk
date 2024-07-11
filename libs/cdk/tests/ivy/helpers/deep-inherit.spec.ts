@@ -26,13 +26,16 @@ function Injection<T>(classRef: Type<T>): PropertyDecorator {
 
 @Injectable()
 class MockService {
-    public testField: string = 'test';
+    public testField = 'test';
 }
 
 @Directive()
 abstract class AbstractDemoChildComponent {
-    @Injection(MockService) public anotherService1!: MockService;
-    @Injection(MockService) public anotherService2!: MockService;
+    @Injection(MockService)
+    public anotherService1!: MockService;
+
+    @Injection(MockService)
+    public anotherService2!: MockService;
 
     public hello(): string {
         try {
@@ -45,7 +48,8 @@ abstract class AbstractDemoChildComponent {
 
 @Directive()
 class HelloWorldComponent extends AbstractDemoChildComponent {
-    @Injection(MockService) public anotherService3!: MockService;
+    @Injection(MockService)
+    public anotherService3!: MockService;
 }
 
 @Directive()
@@ -70,8 +74,11 @@ class C extends B {}
     `,
 })
 class MockComponent extends C {
-    @Injection(MockService) public testService!: MockService;
-    @Injection(NgZone) public ngZone!: NgZone;
+    @Injection(MockService)
+    public testService!: MockService;
+
+    @Injection(NgZone)
+    public ngZone!: NgZone;
 }
 
 @NgModule({

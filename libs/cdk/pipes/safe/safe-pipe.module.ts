@@ -2,9 +2,5 @@ import {NgModule} from '@angular/core';
 
 import {SafePipe} from './safe.pipe';
 
-@NgModule({
-    exports: [SafePipe],
-    providers: [SafePipe],
-    declarations: [SafePipe],
-})
+@NgModule({declarations: [SafePipe], providers: [SafePipe], exports: [SafePipe]})
 export class SafePipeModule {}

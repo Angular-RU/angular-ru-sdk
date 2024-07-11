@@ -9,7 +9,6 @@ import {FlexLayoutModule} from '@angular-ru/cdk/flex-layout';
 import {SampleFirstComponent} from './sample-first.component';
 
 @NgModule({
-    declarations: [SampleFirstComponent],
     imports: [
         CommonModule,
         RouterModule.forChild([
@@ -23,5 +22,6 @@ import {SampleFirstComponent} from './sample-first.component';
         MatInputModule,
         MatToolbarModule,
     ],
+    declarations: [SampleFirstComponent],
 })
 export class SampleFirstModule {}

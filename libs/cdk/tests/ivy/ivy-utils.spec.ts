@@ -31,7 +31,7 @@ describe('[TEST]: Ivy utils', (): void => {
     /** @description due to test running Angular in JIT mode,
      * it is necessary to defer the patch until the next cycle by `Promise.then`
      * so Jest requires to mark such test as async */
-    it(`should work useInjector with component's fields`, async (): Promise<void> => {
+    it("should work useInjector with component's fields", async (): Promise<void> => {
         const component: TestComponent = componentFixture.componentInstance;
 
         expect(component.ngZone.constructor).toBe(NgZone);
@@ -39,7 +39,7 @@ describe('[TEST]: Ivy utils', (): void => {
         expect(component.testService.testField).toBe('test');
     });
 
-    it(`should work useInjector with directive's fields`, async (): Promise<void> => {
+    it("should work useInjector with directive's fields", async (): Promise<void> => {
         const directiveElement: DebugElement = componentFixture.debugElement.query(
             By.directive(TestDirective),
         );
@@ -50,7 +50,7 @@ describe('[TEST]: Ivy utils', (): void => {
         expect(directive.testService.testField).toBe('test');
     });
 
-    it(`should work useInjector with pipe's fields`, async (): Promise<void> => {
+    it("should work useInjector with pipe's fields", async (): Promise<void> => {
         const testService: TestService = TestBed.inject(TestService);
 
         componentFixture.detectChanges();
@@ -62,7 +62,7 @@ describe('[TEST]: Ivy utils', (): void => {
         );
     });
 
-    it(`should work useInjector with service's fields`, async (): Promise<void> => {
+    it("should work useInjector with service's fields", async (): Promise<void> => {
         const service: FeatureTestService = TestBed.inject(FeatureTestService);
 
         expect(service.ngZone.constructor).toBe(NgZone);

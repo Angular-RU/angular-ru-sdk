@@ -28,9 +28,8 @@ export class GuideComponent {
             title: Math.random()
                 // eslint-disable-next-line @typescript-eslint/no-magic-numbers
                 .toString(36)
-                .replace(/[^a-z]+/g, '')
-                // eslint-disable-next-line @typescript-eslint/no-magic-numbers,deprecation/deprecation
-                .substr(0, 5),
+                .replaceAll(/[^a-z]+/g, '')
+                .slice(0, 5),
             isMarked: false,
         }),
     );

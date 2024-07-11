@@ -5,7 +5,7 @@ import {ColumnsSchema} from '../../interfaces/table-builder.external';
 export class SchemaBuilder {
     constructor(public columns: ColumnsSchema[] = []) {}
 
-    public exportColumns(): DeepPartial<ColumnsSchema>[] {
+    public exportColumns(): Array<DeepPartial<ColumnsSchema>> {
         return this.columns.map(
             (column: ColumnsSchema): DeepPartial<ColumnsSchema> => ({
                 key: column.key,

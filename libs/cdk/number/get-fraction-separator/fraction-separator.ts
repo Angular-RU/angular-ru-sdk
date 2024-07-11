@@ -1,1 +1,1 @@
-export type FractionSeparator = '.' | ',';
+export type FractionSeparator = ',' | '.';

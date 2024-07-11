@@ -1,10 +1,4 @@
-import {
-    ApplicationRef,
-    destroyPlatform,
-    ModuleWithProviders,
-    NgModule,
-    Type,
-} from '@angular/core';
+import {ApplicationRef, ModuleWithProviders, NgModule, Type} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
 import {NgxsDataPluginModule} from '@angular-ru/ngxs';
 import {
@@ -12,7 +6,7 @@ import {
     NGXS_DATA_STORAGE_EXTENSION,
 } from '@angular-ru/ngxs/storage';
 import {NgxsModule} from '@ngxs/store';
-import {ɵStateClass as StateClass} from "@ngxs/store/internals/symbols";
+import {ɵStateClass as StateClass} from '@ngxs/store/internals/symbols';
 
 import {createInternalNgxsRootElement} from './internal/create-internal-ngxs-root-element';
 import {NgxsAppMockModule} from './ngxs-app-mock.module';
@@ -43,7 +37,6 @@ export class NgxsDataTestingModule {
     }
 
     public static ngxsInitPlatform(): void {
-        destroyPlatform();
         createInternalNgxsRootElement();
         // eslint-disable-next-line @angular-eslint/no-lifecycle-call
         NgxsAppMockModule.ngDoBootstrap(TestBed.inject(ApplicationRef));

@@ -3,8 +3,8 @@ import {NgModule} from '@angular/core';
 import {CoerceBooleanPipe} from './coerce-boolean.pipe';
 
 @NgModule({
-    exports: [CoerceBooleanPipe],
-    providers: [CoerceBooleanPipe],
     declarations: [CoerceBooleanPipe],
+    providers: [CoerceBooleanPipe],
+    exports: [CoerceBooleanPipe],
 })
 export class CoerceBooleanPipeModule {}

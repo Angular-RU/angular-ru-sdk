@@ -14,11 +14,11 @@ describe('[TEST]: Check global style', () => {
     let logger: LoggerService;
     const fakeConsole: ConsoleFake = new ConsoleFake();
 
-    const traceIsWork: string = 'trace is worked';
-    const debugIsWork: string = 'debug is worked';
-    const infoIsWork: string = 'info is worked';
-    const warnIsWork: string = 'warn is worked';
-    const errorIsWork: string = 'error is worked';
+    const traceIsWork = 'trace is worked';
+    const debugIsWork = 'debug is worked';
+    const infoIsWork = 'info is worked';
+    const warnIsWork = 'warn is worked';
+    const errorIsWork = 'error is worked';
 
     beforeAll(() => {
         TestBed.configureTestingModule({
@@ -40,7 +40,7 @@ describe('[TEST]: Check global style', () => {
                         [LoggerLevel.ERROR]: CUSTOM_COLORS.ERROR,
                     },
                     format(label: string, labelStyle: string): FormatOutput {
-                        const customLabel: string = `${label}`;
+                        const customLabel = `${label}`;
 
                         return {label: customLabel, style: labelStyle};
                     },
@@ -55,28 +55,28 @@ describe('[TEST]: Check global style', () => {
         logger.clear();
     });
 
-    it(`set new text for labels: [trace, debug, info, warn, error]`, () => {
+    it('set new text for labels: [trace, debug, info, warn, error]', () => {
         logger.level = LoggerLevel.ALL;
 
-        const traceLine: number = 0;
+        const traceLine = 0;
 
         logger.trace(traceIsWork, 1, {a: 1});
 
-        const debugLine: number = 1;
+        const debugLine = 1;
 
         logger.debug(debugIsWork, 2, {});
 
-        const infoLine: number = 2;
+        const infoLine = 2;
 
         logger.info(infoIsWork, 3, Object);
 
-        const warnLine: number = 3;
+        const warnLine = 3;
 
         logger.warn(warnIsWork, 4, String);
 
-        const errorLine: number = 4;
+        const errorLine = 4;
 
-        logger.error(errorIsWork, 5, (2.55).toFixed());
+        logger.error(errorIsWork, 5, (2.55).toFixed(0));
 
         const stackOptionsList: PlainObject = fakeConsole.stackOptionsList();
 
@@ -93,28 +93,28 @@ describe('[TEST]: Check global style', () => {
         expect(errorLabel).toEqual(CUSTOM_LABELS.ERROR);
     });
 
-    it(`detect custom colors for labels`, () => {
+    it('detect custom colors for labels', () => {
         logger.level = LoggerLevel.ALL;
 
-        const traceLine: number = 0;
+        const traceLine = 0;
 
         logger.trace(traceIsWork, 1, {a: 1});
 
-        const debugLine: number = 1;
+        const debugLine = 1;
 
         logger.debug(debugIsWork, 2, {});
 
-        const infoLine: number = 2;
+        const infoLine = 2;
 
         logger.info(infoIsWork, 3, Object);
 
-        const warnLine: number = 3;
+        const warnLine = 3;
 
         logger.warn(warnIsWork, 4, String);
 
-        const errorLine: number = 4;
+        const errorLine = 4;
 
-        logger.error(errorIsWork, 5, (2.55).toFixed());
+        logger.error(errorIsWork, 5, (2.55).toFixed(0));
 
         const stackOptionsList: PlainObject = fakeConsole.stackOptionsList();
 
@@ -131,7 +131,7 @@ describe('[TEST]: Check global style', () => {
         expect(errorStyle.color).toEqual(CUSTOM_COLORS.ERROR);
     });
 
-    it(`clear custom labels:`, () => {
+    it('clear custom labels:', () => {
         logger.setLabels({
             [LoggerLevel.TRACE]: CUSTOM_LABELS.TRACE,
             [LoggerLevel.DEBUG]: CUSTOM_LABELS.DEBUG,
@@ -140,25 +140,25 @@ describe('[TEST]: Check global style', () => {
             [LoggerLevel.ERROR]: CUSTOM_LABELS.ERROR,
         });
 
-        const traceLine: number = 0;
+        const traceLine = 0;
 
         logger.trace(traceIsWork, 1, {a: 1});
 
-        const debugLine: number = 1;
+        const debugLine = 1;
 
         logger.debug(debugIsWork, 2, {});
 
-        const infoLine: number = 2;
+        const infoLine = 2;
 
         logger.info(infoIsWork, 3, Object);
 
-        const warnLine: number = 3;
+        const warnLine = 3;
 
         logger.warn(warnIsWork, 4, String);
 
-        const errorLine: number = 4;
+        const errorLine = 4;
 
-        logger.error(errorIsWork, 5, (2.55).toFixed());
+        logger.error(errorIsWork, 5, (2.55).toFixed(0));
 
         const stackOptionsList: PlainObject = fakeConsole.stackOptionsList();
 
@@ -175,7 +175,7 @@ describe('[TEST]: Check global style', () => {
         expect(errorLabel).toEqual(CUSTOM_LABELS.ERROR);
     });
 
-    it(`set new colors for labels`, () => {
+    it('set new colors for labels', () => {
         logger.level = LoggerLevel.ALL;
         logger.clear();
 
@@ -187,25 +187,25 @@ describe('[TEST]: Check global style', () => {
             [LoggerLevel.ERROR]: CUSTOM_COLORS.ERROR,
         });
 
-        const traceLine: number = 0;
+        const traceLine = 0;
 
         logger.trace(traceIsWork, 1, {a: 1});
 
-        const debugLine: number = 1;
+        const debugLine = 1;
 
         logger.debug(debugIsWork, 2, {});
 
-        const infoLine: number = 2;
+        const infoLine = 2;
 
         logger.info(infoIsWork, 3, Object);
 
-        const warnLine: number = 3;
+        const warnLine = 3;
 
         logger.warn(warnIsWork, 4, String);
 
-        const errorLine: number = 4;
+        const errorLine = 4;
 
-        logger.error(errorIsWork, 5, (2.55).toFixed());
+        logger.error(errorIsWork, 5, (2.55).toFixed(0));
 
         const stackOptionsList: PlainObject = fakeConsole.stackOptionsList();
 

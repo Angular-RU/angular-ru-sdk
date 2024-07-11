@@ -1,7 +1,7 @@
 import {isObservable} from 'rxjs';
 
-export function itObservable(value: unknown | any): boolean {
-    let observable: boolean = false;
+export function itObservable(value: any | unknown): boolean {
+    let observable = false;
 
     if (isObservable(value)) {
         observable = true;

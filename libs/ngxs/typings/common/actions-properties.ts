@@ -12,11 +12,11 @@ export interface RepositoryActionOptions extends ActionOptions {
 /**
  * @publicApi
  */
-export type ActionEvent = (ActionType & {payload: PlainObjectOf<any>}) | ActionType;
+export type ActionEvent = ActionType | (ActionType & {payload: PlainObjectOf<any>});
 
 export type ActionName = string;
 export type PayloadName = string;
 export type ArgName = string;
 
-export type PayloadMap = Map<number | PayloadName, PayloadName>;
-export type ArgNameMap = Map<number | ArgName, ArgName>;
+export type PayloadMap = Map<PayloadName | number, PayloadName>;
+export type ArgNameMap = Map<ArgName | number, ArgName>;

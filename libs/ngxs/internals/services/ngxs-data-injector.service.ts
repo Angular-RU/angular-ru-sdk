@@ -18,8 +18,8 @@ export class NgxsDataInjector {
 
     constructor(
         injector: Injector,
-        @Inject(NGXS_STATE_FACTORY) stateFactory: unknown | any,
-        @Inject(NGXS_STATE_CONTEXT_FACTORY) stateContextFactory: unknown | any,
+        @Inject(NGXS_STATE_FACTORY) stateFactory: any | unknown,
+        @Inject(NGXS_STATE_CONTEXT_FACTORY) stateContextFactory: any | unknown,
     ) {
         NgxsDataInjector.store = injector.get<Store>(Store);
         NgxsDataInjector.ngZone = injector.get<NgZone>(NgZone);

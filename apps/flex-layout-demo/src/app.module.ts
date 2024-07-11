@@ -12,7 +12,6 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 
 @NgModule({
-    declarations: [AppComponent],
     imports: [
         AppRoutingModule,
         BrowserAnimationsModule,
@@ -24,6 +23,7 @@ import {AppRoutingModule} from './app-routing.module';
         MatSidenavModule,
         MatToolbarModule,
     ],
+    declarations: [AppComponent],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

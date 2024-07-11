@@ -5,7 +5,7 @@ import {GroupLevel, LoggerLevel} from '../../interfaces/logger.external';
 import {groupDecoratorFactory} from './group.common';
 
 export function Group(
-    title: string | Fn,
+    title: Fn | string,
     level: LoggerLevel = LoggerLevel.INFO,
 ): MethodDecorator {
     return function (

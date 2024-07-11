@@ -19,13 +19,13 @@ export const LOGGER_OPTIONS: InjectionToken<string> = new InjectionToken<string>
     'LOGGER_OPTIONS',
 );
 export type TimerLevels =
-    | LoggerLevel.TRACE
     | LoggerLevel.DEBUG
+    | LoggerLevel.ERROR
     | LoggerLevel.INFO
-    | LoggerLevel.WARN
-    | LoggerLevel.ERROR;
+    | LoggerLevel.TRACE
+    | LoggerLevel.WARN;
 
-export type LogFn = GroupMethods & ConsoleOperation;
+export type LogFn = ConsoleOperation & GroupMethods;
 
 export interface FormatOutput {
     label: string;
@@ -59,7 +59,7 @@ export interface TimerInfo {
     startTime: number;
 }
 
-export type PipeOperation = GroupMethods | ConsoleOperation;
+export type PipeOperation = ConsoleOperation | GroupMethods;
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type GroupMethod<T = unknown> = (

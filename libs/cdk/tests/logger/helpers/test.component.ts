@@ -35,18 +35,31 @@ interface HttpDebugInterface {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MyTestComponent implements OnInit {
-    @Logger() public logger!: LoggerService;
-    @TraceLog() public trace!: LogFn;
-    @DebugLog() public debug!: LogFn;
-    @InfoLog() public info!: LogFn;
-    @ErrorLog() public error!: LogFn;
-    @WarnLog() public warn!: LogFn;
-    @Log() public log!: LogFn;
+    @Logger()
+    public logger!: LoggerService;
 
-    public count: number = 0;
+    @TraceLog()
+    public trace!: LogFn;
+
+    @DebugLog()
+    public debug!: LogFn;
+
+    @InfoLog()
+    public info!: LogFn;
+
+    @ErrorLog()
+    public error!: LogFn;
+
+    @WarnLog()
+    public warn!: LogFn;
+
+    @Log()
+    public log!: LogFn;
+
+    public count = 0;
     public hook: Nullable<string> = null;
-    public doneHeavy: boolean = false;
-    public name: string = 'MockLoggerComponent';
+    public doneHeavy = false;
+    public name = 'MockLoggerComponent';
 
     public static getUrlInfo({
         method,

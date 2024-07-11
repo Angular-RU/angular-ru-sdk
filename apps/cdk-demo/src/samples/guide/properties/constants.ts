@@ -1,1 +1,1 @@
-export const REG_EXP_ONLY_NUMBERS: RegExp = /\d+/;
+export const REG_EXP_ONLY_NUMBERS = /\d+/;

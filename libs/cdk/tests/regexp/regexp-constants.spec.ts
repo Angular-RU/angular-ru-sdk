@@ -14,7 +14,7 @@ describe('[TEST]: Regexp constants', () => {
         expect(REG_EXP_STRICT_NAME.test('777aaaBBB')).toBe(false);
         expect(REG_EXP_STRICT_NAME.test('aaa BBB')).toBe(false);
         expect(REG_EXP_STRICT_NAME.test('aaaBBB!')).toBe(false);
-        // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
+
         expect(REG_EXP_STRICT_NAME.test('aaaДДД')).toBe(false);
     });
 
@@ -28,7 +28,7 @@ describe('[TEST]: Regexp constants', () => {
 
     it('should parse string with REG_EXP_NO_CYRILLIC', () => {
         expect(parse('aaa BBB @ ! 7', REG_EXP_NO_CYRILLIC)).toBe('aaa BBB @ ! 7');
-        // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
+
         expect(parse('aaa ДДД', REG_EXP_NO_CYRILLIC)).toBe('aaa ');
     });
 

@@ -3,7 +3,7 @@ import {BigDecimal} from '@angular-ru/cdk/big-decimal';
 import {Nullable, PlainObject} from '@angular-ru/cdk/typings';
 import {isNil} from '@angular-ru/cdk/utils';
 
-type ComparableRangeResult = 0 | 1 | -1;
+type ComparableRangeResult = -1 | 0 | 1;
 
 const MIN_LONG_VALUE: BigDecimal = new BigDecimal('-9223372036854775808');
 const MAX_LONG_VALUE: BigDecimal = new BigDecimal('9223372036854775807');
@@ -18,17 +18,17 @@ export function longValidator(): ValidatorFn {
     };
 }
 
-function isLong(value: Nullable<string | number>): boolean {
+function isLong(value: Nullable<number | string>): boolean {
     if (isNil(value) || value.toString().match(/[^\d\-]/g)) {
         return false;
-    } else {
-        const decimal: BigDecimal = new BigDecimal(value);
-        const comparedLeft: ComparableRangeResult = decimal.compareTo(MIN_LONG_VALUE);
-        const comparedRight: ComparableRangeResult = decimal.compareTo(MAX_LONG_VALUE);
-
-        return !(
-            (comparedLeft === 1 && comparedRight === 1) ||
-            (comparedLeft === -1 && comparedRight === -1)
-        );
     }
+
+    const decimal: BigDecimal = new BigDecimal(value);
+    const comparedLeft: ComparableRangeResult = decimal.compareTo(MIN_LONG_VALUE);
+    const comparedRight: ComparableRangeResult = decimal.compareTo(MAX_LONG_VALUE);
+
+    return !(
+        (comparedLeft === 1 && comparedRight === 1) ||
+        (comparedLeft === -1 && comparedRight === -1)
+    );
 }

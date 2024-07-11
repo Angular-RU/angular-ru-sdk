@@ -11,13 +11,13 @@ import {SelectionRange} from './selection-range';
 @Injectable()
 export class SelectionService<T> implements OnDestroy {
     private readonly handler: PlainObjectOf<Fn> = {};
-    public selectionModel: SelectionMap<T> = new SelectionMap();
+    public selectionModel = new SelectionMap<T>();
     public range: SelectionRange = new SelectionRange();
     public selectionStart: SelectionStatus = {status: false};
     public primaryKey: string = PrimaryKey.ID;
     public selectionTaskIdle: Nullable<number> = null;
     public onChanges$: Subject<void> = new Subject<void>();
-    public selectionModeIsEnabled: boolean = false;
+    public selectionModeIsEnabled = false;
     public rows: Nullable<T[]> = null;
 
     constructor(private readonly ngZone: NgZone) {}
@@ -141,14 +141,14 @@ export class SelectionService<T> implements OnDestroy {
             };
 
             if (this.handler[type]) {
-                window.addEventListener(type, this.handler[type]!, true);
+                window.addEventListener(type, this.handler[type], true);
             }
         });
     }
 
     private removeListenerByType(type: string): void {
         if (this.handler[type]) {
-            window.removeEventListener(type, this.handler[type]!, true);
+            window.removeEventListener(type, this.handler[type], true);
         }
     }
 
@@ -178,7 +178,7 @@ export class SelectionService<T> implements OnDestroy {
             const {start, end}: SelectionRange = this.range.sortKeys();
 
             for (let i: number = start!; i <= end!; ++i) {
-                const row: T = rows[i] as T;
+                const row: T = rows[i];
                 const rowId: RowId = this.getIdByRow(row);
 
                 this.selectionModel.select(rowId, row, false);

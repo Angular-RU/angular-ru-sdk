@@ -1,4 +1,4 @@
 export interface SplitStringOptions {
-    separator: string | RegExp;
+    separator: RegExp | string;
     joinWith: string;
 }

@@ -6,11 +6,11 @@ import {SharedModule} from '../../shared/shared.module';
 import {GuideComponent} from './guide.component';
 
 @NgModule({
-    declarations: [GuideComponent],
     imports: [
         CommonModule,
         SharedModule,
         RouterModule.forChild([{path: '', component: GuideComponent}]),
     ],
+    declarations: [GuideComponent],
 })
 export class GuideModule {}

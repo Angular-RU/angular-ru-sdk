@@ -21,7 +21,7 @@ import {DialogTemplateComponent} from '../../shared/dialog-template/dialog-templ
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SampleFirstSecondComponent implements OnInit, OnDestroy {
-    private destroy$: Subject<void> = new Subject();
+    private readonly destroy$ = new Subject<void>();
     private idInterval: Nullable<number> = null;
     public data: PlainObject[] = [];
 
@@ -32,7 +32,7 @@ export class SampleFirstSecondComponent implements OnInit, OnDestroy {
     ) {}
 
     public ngOnInit(): void {
-        const DEFAULT_TIMEOUT: number = 14500;
+        const DEFAULT_TIMEOUT = 14500;
 
         this.ngZone.runOutsideAngular((): void => {
             // eslint-disable-next-line no-restricted-properties
@@ -78,8 +78,8 @@ export class SampleFirstSecondComponent implements OnInit, OnDestroy {
     }
 
     public updateTable(): void {
-        const rows: number = 1;
-        const cols: number = 10;
+        const rows = 1;
+        const cols = 10;
 
         const startIndex: number =
             this.data.length > 0

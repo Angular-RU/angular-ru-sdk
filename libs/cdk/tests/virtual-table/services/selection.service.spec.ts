@@ -7,9 +7,9 @@ import {SelectionService} from '../../../virtual-table/services/selection/select
 
 describe('[TEST]: Selection service', () => {
     // @ts-ignore
-    let preventDefaultInvoked: number = 0;
-    let listenKeydown: boolean = false;
-    let listenKeyup: boolean = false;
+    let preventDefaultInvoked = 0;
+    let listenKeydown = false;
+    let listenKeyup = false;
 
     const mockNgZone: Partial<NgZone> = {
         runOutsideAngular: (fn: any): any => fn(),
@@ -66,13 +66,13 @@ describe('[TEST]: Selection service', () => {
         }
 
         expect(message).toContain(
-            `Can't select item, make sure you pass the correct primary key`,
+            "Can't select item, make sure you pass the correct primary key",
         );
     });
 
     it('should be correct selection with shift key', (): void => {
-        const lastIndex: number = 2;
-        const firstIndex: number = 0;
+        const lastIndex = 2;
+        const firstIndex = 0;
 
         selection.primaryKey = 'position';
         selection.selectRow(data[lastIndex], {
@@ -97,8 +97,8 @@ describe('[TEST]: Selection service', () => {
     });
 
     it('should be correct selection with ctrl key', (): void => {
-        const lastIndex: number = 2;
-        const firstIndex: number = 0;
+        const lastIndex = 2;
+        const firstIndex = 0;
 
         selection.primaryKey = 'position';
 
@@ -124,8 +124,8 @@ describe('[TEST]: Selection service', () => {
     });
 
     it('should be correct selection without keypress', () => {
-        const lastIndex: number = 2;
-        const firstIndex: number = 0;
+        const lastIndex = 2;
+        const firstIndex = 0;
 
         selection.primaryKey = 'position';
 
@@ -185,7 +185,7 @@ describe('[TEST]: Selection service', () => {
     });
 
     it('should be correct toggle', () => {
-        const selectionMap: SelectionMap<PlainObject> = new SelectionMap();
+        const selectionMap = new SelectionMap<PlainObject>();
         const id: RowId = 5;
 
         expect(selectionMap.hasValue()).toBe(false);

@@ -23,6 +23,7 @@ describe('appState', () => {
 
     it('invalid state', async () => {
         class InvalidState {}
+
         let message: string | null = null;
 
         try {

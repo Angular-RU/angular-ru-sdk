@@ -1,6 +1,6 @@
 import {UnitsMap} from './types';
 
-const NUMBER_PATTERN: string = `([0-9]+([\.][0-9]+)?)`;
+const NUMBER_PATTERN = '([0-9]+([.][0-9]+)?)';
 
 export function replaceUnits(text: string, unitsMap: UnitsMap): string {
     return parseMultiLineText(text, unitsMap);

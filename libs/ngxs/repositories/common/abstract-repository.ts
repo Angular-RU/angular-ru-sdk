@@ -17,13 +17,13 @@ import {Observable, Subject} from 'rxjs';
 export abstract class AbstractRepository<T>
     implements NgxsOnChanges, NgxsOnInit, NgxsAfterBootstrap
 {
-    private _dirty: boolean = true;
-    public browserStorageEvents$: Subject<NgxsDataStorageEvent<T>> = new Subject();
+    private _dirty = true;
+    public browserStorageEvents$ = new Subject<NgxsDataStorageEvent<T>>();
     public readonly name!: string;
     public readonly initialState!: T;
     public readonly state$!: Observable<T>;
-    public isInitialised: boolean = false;
-    public isBootstrapped: boolean = false;
+    public isInitialised = false;
+    public isBootstrapped = false;
 
     protected get dirty(): boolean {
         return this._dirty;

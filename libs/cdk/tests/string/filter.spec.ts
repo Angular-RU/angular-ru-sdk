@@ -39,7 +39,6 @@ describe('[TEST]: Filter', () => {
         });
 
         it('should remove cyrillic characters', () => {
-            // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
             expect(filter('будет удалено abc', ['a', 'b', 'c'])).toBe('abc');
         });
 

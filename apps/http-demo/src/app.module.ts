@@ -12,7 +12,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {ApiClient} from './services/clients/api.client';
 
 @NgModule({
-    declarations: [AppComponent],
     imports: [
         AppRoutingModule,
         BrowserAnimationsModule,
@@ -26,6 +25,7 @@ import {ApiClient} from './services/clients/api.client';
             limitConcurrency: 5,
         }),
     ],
+    declarations: [AppComponent],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

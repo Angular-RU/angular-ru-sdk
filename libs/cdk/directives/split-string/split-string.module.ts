@@ -4,8 +4,8 @@ import {NgModule} from '@angular/core';
 import {SplitStringDirective} from './split-string.directive';
 
 @NgModule({
-    declarations: [SplitStringDirective],
     imports: [CommonModule],
+    declarations: [SplitStringDirective],
     exports: [SplitStringDirective],
 })
 export class SplitStringModule {}

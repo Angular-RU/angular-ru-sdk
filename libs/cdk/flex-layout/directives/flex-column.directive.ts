@@ -1,4 +1,4 @@
-import {AfterViewInit, Directive, ElementRef, Input} from '@angular/core';
+import {AfterViewInit, Directive, ElementRef, Inject, Input} from '@angular/core';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {isNotNil} from '@angular-ru/cdk/utils';
 
@@ -10,9 +10,13 @@ export class FlexColumnDirective
     implements AfterViewInit
 {
     // eslint-disable-next-line @angular-eslint/no-input-rename
-    @Input('flex-direction') public flexDirection: Nullable<string> = null;
+    @Input('flex-direction')
+    public flexDirection: Nullable<string> = null;
 
-    constructor(protected readonly elementRef: ElementRef) {
+    constructor(
+        @Inject(ElementRef)
+        protected readonly elementRef: ElementRef,
+    ) {
         super();
     }
 
@@ -21,6 +25,6 @@ export class FlexColumnDirective
             this.elementRef.nativeElement.style.flexDirection = this.flexDirection;
         }
 
-        this.classList.add(`flex-column`);
+        this.classList.add('flex-column');
     }
 }

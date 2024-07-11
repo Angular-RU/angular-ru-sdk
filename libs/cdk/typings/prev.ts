@@ -22,5 +22,5 @@ export type Prev = [
     18,
     19,
     20,
-    ...0[],
+    ...Array<0>,
 ];

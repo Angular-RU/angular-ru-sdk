@@ -1,8 +1,9 @@
-import {isNil} from '@angular-ru/cdk/utils';
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 
-export function readFromBlob(blob?: Blob): Promise<string> {
+import {isNil} from '@angular-ru/cdk/utils';
+
+export async function readFromBlob(blob?: Blob): Promise<string> {
     if (isNil(blob)) {
         return Promise.reject();
     }
@@ -26,9 +27,9 @@ export function fileSuitesReader(base: string): (...filePath: string[]) => strin
 export function minify(content: string): string {
     return content
         .trim()
-        .replace(/\n/g, ' ')
-        .replace(/\s\s+/g, ' ')
-        .replace(/> </g, '><')
-        .replace(/ \/>/g, '/>')
-        .replace(/ >/g, '>');
+        .replaceAll('\n', ' ')
+        .replaceAll(/\s\s+/g, ' ')
+        .replaceAll('> <', '><')
+        .replaceAll(' />', '/>')
+        .replaceAll(' >', '>');
 }

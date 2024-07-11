@@ -1,4 +1,4 @@
-const MIN_SIZE_REGEXP: number = 2;
+const MIN_SIZE_REGEXP = 2;
 
 export function isRegexpStr(value?: string): boolean {
     return (

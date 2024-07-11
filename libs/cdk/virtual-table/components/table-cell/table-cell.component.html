@@ -18,7 +18,7 @@
                             : (item![$castKey(columnSchema?.key)] | defaultValue: columnSchema?.stub)
                         : item,
             }"
-        ></ng-template>
+        />
     </ng-template>
     <ng-template #defaultTd>
         <ng-template
@@ -33,7 +33,7 @@
                         ? $any(item | deepPath: columnSchema?.key : columnSchema?.stub)
                         : $any(item![$castKey(columnSchema?.key)] | defaultValue: columnSchema?.stub)
                 "
-            ></ngx-filter-viewer>
+            />
         </ng-template>
         <ng-template #simple>
             {{

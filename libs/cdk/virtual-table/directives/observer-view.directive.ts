@@ -15,13 +15,16 @@ import {isNotNil} from '@angular-ru/cdk/utils';
 @Directive({selector: '[observerView]'})
 export class ObserverViewDirective implements AfterViewInit, OnDestroy {
     private observer: Nullable<IntersectionObserver> = null;
-    private previousRation: number = 0.0;
+    private previousRation = 0.0;
     private frameId: Nullable<number> = null;
-    @Input() public observerRoot?: HTMLElement;
-    @Input() public observerRootMargin?: string;
-    @Output() public readonly observeVisible: EventEmitter<boolean> = new EventEmitter(
-        true,
-    );
+    @Input()
+    public observerRoot?: HTMLElement;
+
+    @Input()
+    public observerRootMargin?: string;
+
+    @Output()
+    public readonly observeVisible = new EventEmitter<boolean>(true);
 
     constructor(
         private element: ElementRef,

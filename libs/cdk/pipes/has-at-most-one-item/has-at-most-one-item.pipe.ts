@@ -6,7 +6,7 @@ import {Nullable} from '@angular-ru/cdk/typings';
 export class HasAtMostOneItemPipe implements PipeTransform {
     public transform<EntryType>(
         array?: Nullable<EntryType[]>,
-    ): array is [EntryType] | [] {
+    ): array is [] | [EntryType] {
         return hasAtMostOneItem(array);
     }
 }

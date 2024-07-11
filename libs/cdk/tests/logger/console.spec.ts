@@ -25,7 +25,7 @@ describe('[TEST]: ConsoleService', () => {
             consoleInternal = TestBed.inject(ConsoleService);
         });
 
-        it(`check console instance`, () => {
+        it('check console instance', () => {
             consoleInternal.console = console;
             expect(consoleInternal.console).toEqual(console);
         });
@@ -45,11 +45,11 @@ describe('[TEST]: ConsoleService', () => {
                 consoleService = TestBed.inject(ConsoleService);
             });
 
-            it(`should be truthy logger`, () => {
+            it('should be truthy logger', () => {
                 expect(logger).toBeTruthy();
             });
 
-            it(`should be correct minLevel and instance`, () => {
+            it('should be correct minLevel and instance', () => {
                 expect(consoleService.minLevel).toEqual(LoggerLevel.ALL);
                 expect(consoleService.instance).toEqual(console);
             });

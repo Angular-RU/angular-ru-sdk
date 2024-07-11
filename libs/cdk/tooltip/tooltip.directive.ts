@@ -1,15 +1,6 @@
 /* eslint-disable @angular-eslint/no-input-rename */
-import {
-    Directive,
-    ElementRef,
-    EmbeddedViewRef,
-    Inject,
-    Input,
-    NgZone,
-    OnDestroy,
-    Renderer2,
-    TemplateRef,
-} from '@angular/core';
+import {ElementRef, EmbeddedViewRef, NgZone, OnDestroy, Renderer2} from '@angular/core';
+import {Directive, Inject, Input, TemplateRef} from '@angular/core';
 import {generateQuickGuid} from '@angular-ru/cdk/string';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {checkValueIsEmpty, isFalsy, isNotNil} from '@angular-ru/cdk/utils';
@@ -37,26 +28,37 @@ export class TooltipDirective implements OnDestroy {
     private mouseLeaveTooltipId?: number;
     private tooltipMouseenter: Nullable<Subscription> = null;
     private tooltipMouseleave: Nullable<Subscription> = null;
-    private handlerOptions: AddEventListenerOptions = {passive: true};
+    private readonly handlerOptions: AddEventListenerOptions = {passive: true};
     private internalTooltipValue: TooltipValue = null;
     private internalContext: TooltipContextValue = null;
     private mouseenterListener!: EventListenerOrEventListenerObject;
     private mouseleaveListener!: EventListenerOrEventListenerObject;
-    @Input('tooltip-disabled') public tooltipDisabled!: boolean;
-    @Input('tooltip-placement') public placement: TooltipPlacement = 'top';
-    @Input('tooltip-css-style') public localCssStyle: Nullable<string> = null;
-    @Input('tooltip-size') public size: TooltipSize = 'small';
+    @Input('tooltip-disabled')
+    public tooltipDisabled!: boolean;
+
+    @Input('tooltip-placement')
+    public placement: TooltipPlacement = 'top';
+
+    @Input('tooltip-css-style')
+    public localCssStyle: Nullable<string> = null;
+
+    @Input('tooltip-size')
+    public size: TooltipSize = 'small';
 
     public uid: string = generateQuickGuid();
 
     constructor(
+        @Inject(ElementRef)
         private readonly elementRef: ElementRef<HTMLElement>,
+        @Inject(Renderer2)
         private readonly renderer: Renderer2,
+        @Inject(NgZone)
         private readonly ngZone: NgZone,
         @Inject(TOOLTIP_OPTIONS_TOKEN)
         private readonly options: TooltipOptions,
         @Inject(TOOLTIP_TEXT_INTERCEPTOR_TOKEN)
         private readonly interceptor: TooltipTextInterceptor,
+        @Inject(TooltipDomLeakService)
         private readonly domLeak: TooltipDomLeakService,
     ) {
         this.addUidToElement();

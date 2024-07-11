@@ -4,7 +4,7 @@ import {ExcelWorkbook} from './excel-workbook';
 import {PreparedExcelWorksheet} from './prepared-excel-worksheet';
 
 export interface PreparedExcelWorkbook<T> extends ExcelWorkbook<T> {
-    worksheets: PreparedExcelWorksheet<T>[];
+    worksheets: Array<PreparedExcelWorksheet<T>>;
     widthOfSymbols: WidthOfSymbols;
     preparedTranslatedKeys: PlainObject;
 }

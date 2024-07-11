@@ -142,7 +142,7 @@ describe('[TEST]: http utils', () => {
             expect(params.keys()).toEqual(['pageSize', 'value', 'pageIndex']);
             expect(params.get('pageSize')).toBe('5');
             expect(params.get('value')).toBe('2');
-            expect(params.get('pageIndex')).toBe(0);
+            expect(params.get('pageIndex')).toBe('0');
         });
     });
 
@@ -160,8 +160,8 @@ describe('[TEST]: http utils', () => {
         map.set('id', 5);
         map.set('newId', 6);
 
-        expect(ensurePathByPathVariables(`/a/{newId}/b/{id}/d`, map)).toBe('/a/6/b/5/d');
-        expect(ensurePathByPathVariables(`/a/{invalidName}`, map)).toBe(
+        expect(ensurePathByPathVariables('/a/{newId}/b/{id}/d', map)).toBe('/a/6/b/5/d');
+        expect(ensurePathByPathVariables('/a/{invalidName}', map)).toBe(
             '/a/{invalidName}',
         );
     });

@@ -1,6 +1,6 @@
 import {add} from './add';
 
-export function subtract(number1: string | number, number2: string | number): string {
+export function subtract(number1: number | string, number2: number | string): string {
     const a: string = number1.toString();
     let b: string = number2.toString();
 
@@ -10,11 +10,10 @@ export function subtract(number1: string | number, number2: string | number): st
 }
 
 export function negate(number: string): string {
-    let result: string = '';
+    let result = '';
 
-    if (number[0] === '-') {
-        // eslint-disable-next-line deprecation/deprecation
-        result = number.substr(1);
+    if (number.startsWith('-')) {
+        result = number.slice(1);
     } else {
         result = `-${number}`;
     }

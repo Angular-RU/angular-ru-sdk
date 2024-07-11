@@ -10,7 +10,7 @@ export function PathVariable(name: string): ParameterDecorator {
         const key: string = name.trim();
 
         if (!key) {
-            throw new Error(`@PathVariable name should be initialized`);
+            throw new Error('@PathVariable name should be initialized');
         }
 
         const originalMethod: Fn = target?.[methodName as any];

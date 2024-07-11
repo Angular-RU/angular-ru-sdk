@@ -78,7 +78,7 @@ describe('mutate', () => {
         });
 
         expect(errorResult).toBe(
-            `Cannot assign to read only property '0' of object '[object Array]'`,
+            "Cannot assign to read only property '0' of object '[object Array]'",
         );
         expect(store.snapshot()).toEqual({todos: [1, 2, 3]});
     });
@@ -122,17 +122,17 @@ describe('mutate', () => {
         }
 
         expect(errorResult).toBe(
-            `Cannot assign to read only property '0' of object '[object Array]'`,
+            "Cannot assign to read only property '0' of object '[object Array]'",
         );
 
         try {
-            (todo.getState() as A[])[0]!.a++;
+            (todo.getState() as A[])[0].a++;
         } catch (error: unknown) {
             errorResult = (error as Error).message;
         }
 
         expect(errorResult).toBe(
-            `Cannot assign to read only property 'a' of object '[object Object]'`,
+            "Cannot assign to read only property 'a' of object '[object Object]'",
         );
     });
 });

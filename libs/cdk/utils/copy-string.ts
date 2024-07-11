@@ -8,7 +8,7 @@ declare const document: any;
 export const copyBuffer: (str: string) => void = copyString;
 
 export function copyString(str: string): void {
-    const firstIndex: number = 0;
+    const firstIndex = 0;
     const element: HTMLTextAreaElement = document.createElement('textarea');
 
     element.value = str;

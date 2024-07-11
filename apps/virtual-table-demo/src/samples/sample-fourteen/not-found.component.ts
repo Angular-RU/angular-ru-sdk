@@ -5,7 +5,7 @@ import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/co
     template: `
         <b>Not found</b>
     `,
-    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotFoundComponent {}

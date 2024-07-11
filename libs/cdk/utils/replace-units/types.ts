@@ -1,3 +1,1 @@
-export interface UnitsMap {
-    [key: string]: number;
-}
+export type UnitsMap = Record<string, number>;

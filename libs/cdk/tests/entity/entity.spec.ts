@@ -46,7 +46,7 @@ describe('[TEST]: Entity', () => {
                 {code: 1, name: 'a'},
                 {code: 2, name: 'b'},
             ]),
-        ).toThrow(`The current entity doesn't have primaryKey - id.`);
+        ).toThrow("The current entity doesn't have primaryKey - id.");
 
         const result: IdsMapOf<Currency, 'code'> = createIdsMapOf(
             [

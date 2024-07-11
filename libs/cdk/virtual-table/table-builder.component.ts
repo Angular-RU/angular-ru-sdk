@@ -9,6 +9,8 @@ import {
     Component,
     ElementRef,
     HostListener,
+    Inject,
+    INJECTOR,
     Injector,
     NgZone,
     OnChanges,
@@ -75,6 +77,7 @@ const {
     selector: 'ngx-table-builder',
     templateUrl: './table-builder.component.html',
     styleUrls: ['./table-builder.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
         TemplateParserService,
@@ -85,7 +88,6 @@ const {
         FilterableService,
         DraggableService,
     ],
-    encapsulation: ViewEncapsulation.None,
     animations: [fadeInLinearAnimation],
 })
 export class TableBuilderComponent<T>
@@ -98,29 +100,34 @@ export class TableBuilderComponent<T>
         AfterViewChecked,
         OnDestroy
 {
-    private forcedRefresh: boolean = false;
+    private forcedRefresh = false;
     private readonly _destroy$: Subject<boolean> = new Subject<boolean>();
     private timeoutCheckedTaskId: Nullable<number> = null;
     private timeoutScrolledId: Nullable<number> = null;
     private timeoutViewCheckedId: Nullable<number> = null;
     private frameCalculateViewportId: Nullable<number> = null;
     private selectionUpdateTaskId: Nullable<number> = null;
-    private changesTimerId: number = 0;
+    private changesTimerId = 0;
     protected readonly app: ApplicationRef;
     protected readonly draggable: DraggableService<T>;
     protected readonly viewChanges: NgxTableViewChangesService;
-    @ViewChild('header', {static: false}) public headerRef!: ElementRef<HTMLDivElement>;
-    @ViewChild('footer', {static: false}) public footerRef!: ElementRef<HTMLDivElement>;
+    @ViewChild('header', {static: false})
+    public headerRef!: ElementRef<HTMLDivElement>;
+
+    @ViewChild('footer', {static: false})
+    public footerRef!: ElementRef<HTMLDivElement>;
+
     @ViewChild(AutoHeightDirective, {static: false})
     public readonly autoHeight!: AutoHeightDirective<T>;
-    public dirty: boolean = true;
-    public rendering: boolean = false;
-    public isRendered: boolean = false;
-    public contentInit: boolean = false;
-    public contentCheck: boolean = false;
+
+    public dirty = true;
+    public rendering = false;
+    public isRendered = false;
+    public contentInit = false;
+    public contentCheck = false;
     public recalculated: RecalculatedStatus = {recalculateHeight: false};
-    public sourceIsNull: boolean = false;
-    public afterViewInitDone: boolean = false;
+    public sourceIsNull = false;
+    public afterViewInitDone = false;
     public readonly selection: SelectionService<T>;
     public readonly templateParser: TemplateParserService<T>;
     public readonly ngZone: NgZone;
@@ -130,7 +137,9 @@ export class TableBuilderComponent<T>
     public readonly filterable: FilterableService<T>;
 
     constructor(
+        @Inject(ChangeDetectorRef)
         public readonly cd: ChangeDetectorRef,
+        @Inject(INJECTOR)
         injector: Injector,
     ) {
         super();
@@ -169,17 +178,17 @@ export class TableBuilderComponent<T>
     }
 
     public get rootHeight(): string {
-        const height: Nullable<string | number> = this.expandableTableExpanded
+        const height: Nullable<number | string> = this.expandableTableExpanded
             ? this.height
             : getClientHeight(this.headerRef) + getClientHeight(this.footerRef);
 
         if (checkValueIsFilled(height)) {
-            const heightAsNumber: number = Number(height);
+            const heightAsNumber = Number(height);
 
             return isNaN(heightAsNumber) ? String(height) : `${height}px`;
-        } else {
-            return '';
         }
+
+        return '';
     }
 
     private get expandableTableExpanded(): boolean {
@@ -307,7 +316,7 @@ export class TableBuilderComponent<T>
         // eslint-disable-next-line @typescript-eslint/dot-notation
         const transform: string = event.source._dragRef['_preview'].style.transform ?? '';
         const [x, , z]: [number, number, number] = transform
-            .replace(/translate3d|\(|\)|px/g, '')
+            .replaceAll(/translate3d|\(|\)|px/g, '')
             .split(',')
             .map((value: string): number => parseFloat(value)) as [
             number,
@@ -431,7 +440,7 @@ export class TableBuilderComponent<T>
         });
     }
 
-    public calculateViewport(force: boolean = false): void {
+    public calculateViewport(force = false): void {
         if (this.ignoreCalculate()) {
             return;
         }
@@ -532,7 +541,7 @@ export class TableBuilderComponent<T>
         this.viewPortInfo.indexes = [];
         this.viewPortInfo.virtualIndexes = [];
 
-        for (let i: number = start, even: number = 2; i < end; i++) {
+        for (let i: number = start, even = 2; i < end; i++) {
             this.viewPortInfo.indexes.push(i);
             this.viewPortInfo.virtualIndexes.push({
                 position: i,
@@ -553,13 +562,13 @@ export class TableBuilderComponent<T>
             if (isNotNil(schemaChange?.currentValue)) {
                 if (isNil(this.name)) {
                     console.error(
-                        `Table name is required! Example: <ngx-table-builder name="my-table-name" />`,
+                        'Table name is required! Example: <ngx-table-builder name="my-table-name" />',
                     );
                 }
 
                 if (isNil(this.schemaVersion)) {
                     console.error(
-                        `Table version is required! Example: <ngx-table-builder [schema-version]="2" />`,
+                        'Table version is required! Example: <ngx-table-builder [schema-version]="2" />',
                     );
                 }
             }
@@ -704,7 +713,7 @@ export class TableBuilderComponent<T>
         this.customModelColumnsKeys = this.generateCustomModelColumnsKeys();
         this.modelColumnKeys = this.generateModelColumnKeys();
         this.setSource(this.source);
-        const unDirty: boolean = !this.dirty;
+        const unDirty = !this.dirty;
 
         this.checkSelectionValue();
         this.checkFilterValues();
@@ -762,9 +771,11 @@ export class TableBuilderComponent<T>
     private tryRefreshViewModelBySelection(): void {
         this.ngZone.runOutsideAngular((): void => {
             window.cancelAnimationFrame(this.selectionUpdateTaskId ?? 0);
-            this.selectionUpdateTaskId = window.requestAnimationFrame((): void =>
-                this.app.tick(),
-            );
+            this.selectionUpdateTaskId = window.requestAnimationFrame((): void => {
+                if (!this.app.destroyed) {
+                    this.app.tick();
+                }
+            });
         });
     }
 

@@ -4,7 +4,9 @@ import {Nullable} from '@angular-ru/cdk/typings';
 import {isNil} from './is-nil';
 import {isNotNil} from './is-not-nil';
 
-type DetectorOrDetectors = Nullable<ChangeDetectorRef> | Nullable<ChangeDetectorRef>[];
+type DetectorOrDetectors =
+    | Array<Nullable<ChangeDetectorRef>>
+    | Nullable<ChangeDetectorRef>;
 
 export function detectChanges(detectorOrDetectors?: DetectorOrDetectors): void {
     if (isNil(detectorOrDetectors)) {

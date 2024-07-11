@@ -10,7 +10,7 @@ describe('[TEST] Table utils', () => {
     let plainTableComposer: PlainTableComposerService;
 
     const mockWebWorker: Partial<WebWorkerThreadService> = {
-        run<T, K>(workerFunction: (input: K) => T, data?: K): Promise<T> {
+        async run<T, K>(workerFunction: (input: K) => T, data?: K): Promise<T> {
             return Promise.resolve(workerFunction(data!));
         },
     };

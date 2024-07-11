@@ -7,12 +7,12 @@ import {SharedModule} from '../../shared/shared.module';
 import {SampleThirteenComponent} from './sample-thirteen.component';
 
 @NgModule({
-    declarations: [SampleThirteenComponent],
     imports: [
         CommonModule,
         SharedModule,
         ToastrModule,
         RouterModule.forChild([{path: '', component: SampleThirteenComponent}]),
     ],
+    declarations: [SampleThirteenComponent],
 })
 export class SampleThirteenModule {}

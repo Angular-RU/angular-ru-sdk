@@ -21,7 +21,7 @@ describe('[TEST] get client height pipe', () => {
     const elRef5: Nullable<MockElementRef> = new MockElementRef(undefined);
     const elRef6: Nullable<MockElementRef> = new MockElementRef(null);
     const elRef7: Nullable<MockElementRef> = null;
-    const elRefs: Nullable<MockElementRef>[] = [
+    const elRefs: Array<Nullable<MockElementRef>> = [
         new MockElementRef({clientHeight: 20}),
         new MockElementRef({}),
         null,

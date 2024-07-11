@@ -8,7 +8,7 @@ export const enum HttpMockRequestId {
     LONG_REQUEST = 'long-request',
 }
 
-const HTTP_MOCK_DEFAULT_TIMEOUT: number = 500;
+const HTTP_MOCK_DEFAULT_TIMEOUT = 500;
 
 @Injectable()
 export class HttpMockInterceptor implements HttpInterceptor {
@@ -22,7 +22,7 @@ export class HttpMockInterceptor implements HttpInterceptor {
         );
     }
 
-    private timeout(ms: number): Promise<any> {
+    private async timeout(ms: number): Promise<any> {
         // eslint-disable-next-line no-restricted-properties
         return new Promise((resolve: Fn): number => window.setTimeout(resolve, ms));
     }

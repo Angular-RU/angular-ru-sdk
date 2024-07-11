@@ -9,11 +9,11 @@ import {
 } from '@angular-ru/cdk/date';
 import {Nullable} from '@angular-ru/cdk/typings';
 
-const isoFormat: string = 'yyyy-MM-dd HH:mm:ss';
+const isoFormat = 'yyyy-MM-dd HH:mm:ss';
 
 describe('[TEST]: Date', (): void => {
     it('should be correct date pipe', (): void => {
-        const dateTime: number = 1544532097434;
+        const dateTime = 1544532097434;
 
         expect(
             toFormatDateTime(dateTime, {
@@ -132,7 +132,7 @@ describe('[TEST]: Date', (): void => {
         });
     });
 
-    it(`toMilliseconds`, () => {
+    it('toMilliseconds', () => {
         expect(toMilliseconds(1599485851)).toBe(1599485851000);
         expect(toMilliseconds('1599485851')).toBe(1599485851000);
         expect(toMilliseconds(new Date(0))).toBe(0);

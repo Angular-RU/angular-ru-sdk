@@ -30,19 +30,19 @@ export function divide(
 
     divisor = trim(divisor.replace('.', ''));
     const dl: number = divisor.length;
-    let precission: number = 0;
-    let quotient: string = '';
+    let precission = 0;
+    let quotient = '';
     let dividendBeforePoint: string =
-        dividend.indexOf('.') > -1 && dividend.indexOf('.') < dl
-            ? dividend.substring(0, dl + 1)
-            : dividend.substring(0, dl);
+        dividend.includes('.') && dividend.indexOf('.') < dl
+            ? dividend.slice(0, Math.max(0, dl + 1))
+            : dividend.slice(0, Math.max(0, dl));
 
     dividend =
-        dividend.indexOf('.') > -1 && dividend.indexOf('.') < dl
-            ? dividend.substring(dl + 1)
-            : dividend.substring(dl);
+        dividend.includes('.') && dividend.indexOf('.') < dl
+            ? dividend.slice(Math.max(0, dl + 1))
+            : dividend.slice(Math.max(0, dl));
 
-    if (dividendBeforePoint.indexOf('.') > -1) {
+    if (dividendBeforePoint.includes('.')) {
         let shift: number =
             dividendBeforePoint.length - dividendBeforePoint.indexOf('.') - 1;
 
@@ -50,9 +50,9 @@ export function divide(
 
         if (dl > dividendBeforePoint.length) {
             shift += dl - dividendBeforePoint.length;
-            dividendBeforePoint =
-                dividendBeforePoint +
-                new Array(dl - dividendBeforePoint.length + 1).join('0');
+            dividendBeforePoint += new Array(dl - dividendBeforePoint.length + 1).join(
+                '0',
+            );
         }
 
         precission = shift;
@@ -60,7 +60,7 @@ export function divide(
     }
 
     while (precission <= inputPrecision + PRECISSION_SECOND) {
-        let qt: number = 0;
+        let qt = 0;
 
         while (parseInt(dividendBeforePoint) >= parseInt(divisor)) {
             dividendBeforePoint = add(dividendBeforePoint, `-${divisor}`);
@@ -78,14 +78,14 @@ export function divide(
             precission++;
             dividendBeforePoint = `${dividendBeforePoint}0`;
         } else {
-            if (dividend[0] === '.') {
+            if (dividend.startsWith('.')) {
                 quotient += '.';
                 precission++;
-                dividend = dividend.substring(1);
+                dividend = dividend.slice(1);
             }
 
-            dividendBeforePoint = dividendBeforePoint + dividend.substring(0, 1);
-            dividend = dividend.substring(1);
+            dividendBeforePoint += dividend.slice(0, 1);
+            dividend = dividend.slice(1);
         }
     }
 
@@ -114,25 +114,25 @@ function parseDividendByPositiveDividend(
 
     if (ptDividend === -1) {
         dividend = trim(dividend + new Array(ptDivisor + 1).join('0'));
-    } else {
-        if (ptDivisor > ptDividend) {
-            dividend = dividend.replace('.', '');
-            dividend = trim(dividend + new Array(ptDivisor - ptDividend + 1).join('0'));
-        } else if (ptDivisor < ptDividend) {
-            dividend = dividend.replace('.', '');
-            const i: number = dividend.length - ptDividend + ptDivisor;
+    } else if (ptDivisor > ptDividend) {
+        dividend = dividend.replace('.', '');
+        dividend = trim(dividend + new Array(ptDivisor - ptDividend + 1).join('0'));
+    } else if (ptDivisor < ptDividend) {
+        dividend = dividend.replace('.', '');
+        const i: number = dividend.length - ptDividend + ptDivisor;
 
-            dividend = trim(`${dividend.substring(0, i)}.${dividend.substring(i)}`);
-        } else if (ptDivisor === ptDividend) {
-            dividend = trim(dividend.replace('.', ''));
-        }
+        dividend = trim(
+            `${dividend.slice(0, Math.max(0, i))}.${dividend.slice(Math.max(0, i))}`,
+        );
+    } else if (ptDivisor === ptDividend) {
+        dividend = trim(dividend.replace('.', ''));
     }
 
     return dividend;
 }
 
 function removeTrailingZeros(value: string): string {
-    return value.replace(/(\.\d*?[1-9])0+$/g, '$1').replace(/\.0+$/, '');
+    return value.replaceAll(/(\.\d*?[1-9])0+$/g, '$1').replace(/\.0+$/, '');
 }
 
 function checkDivisionByZero(divisor: any): void {
@@ -142,13 +142,13 @@ function checkDivisionByZero(divisor: any): void {
 }
 
 function checkNegative(divisor: string, dividend: string): boolean {
-    let isNegative: boolean = false;
+    let isNegative = false;
 
-    if (divisor[0] === '-') {
+    if (divisor.startsWith('-')) {
         isNegative = !isNegative;
     }
 
-    if (dividend[0] === '-') {
+    if (dividend.startsWith('-')) {
         isNegative = !isNegative;
     }
 
@@ -156,5 +156,5 @@ function checkNegative(divisor: string, dividend: string): boolean {
 }
 
 function getAbsoluteValue(value: string): string {
-    return value[0] === '-' ? value.substring(1) : value;
+    return value.startsWith('-') ? value.slice(1) : value;
 }

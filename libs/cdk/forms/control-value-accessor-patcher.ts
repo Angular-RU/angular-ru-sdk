@@ -4,12 +4,15 @@ import {Observable, Subject} from 'rxjs';
 export class ControlValueAccessorPatcher<ModelValue = any, ViewValue = ModelValue> {
     private readonly onViewValueChangedSubject$: Subject<ViewValue> =
         new Subject<ViewValue>();
+
     private readonly onModelValueChangedSubject$: Subject<ModelValue> =
         new Subject<ModelValue>();
+
     private writeViewValueFunction!: (viewValue: ViewValue) => void;
     private registerOnViewValueChangeFunction!: (
         onViewValueChangeFunction: (viewValue: ViewValue) => void,
     ) => void;
+
     private onModelValueChangeFunction?: (modelValue: ModelValue) => void;
     public readonly onViewValueChanged$: Observable<ViewValue>;
     public readonly onModelValueChanged$: Observable<ModelValue>;

@@ -30,17 +30,17 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
     private readonly subscriptions: Subscription = new Subscription();
     private previousLang: Nullable<string> = null;
     private readonly maximumFractionDigits: number = 3;
-    private isInsideAngularZone: boolean = true;
+    private isInsideAngularZone = true;
     private options: Partial<AmountOptions> = {};
-    private markedAsDirty: boolean = true;
-    private cursorPointer: number = 0;
+    private markedAsDirty = true;
+    private cursorPointer = 0;
 
     constructor(
-        private readonly elementRef: ElementRef<HTMLInputElement>,
+        @Inject(ElementRef) private readonly elementRef: ElementRef<HTMLInputElement>,
         @Inject(AMOUNT_FORMAT_OPTIONS) globalOptions: AmountOptions,
-        @Optional() private readonly ngControl?: NgControl,
-        @Optional() private readonly ngZone?: NgZone,
-        @Optional() private readonly cd?: ChangeDetectorRef,
+        @Inject(NgControl) @Optional() private readonly ngControl?: NgControl,
+        @Inject(NgZone) @Optional() private readonly ngZone?: NgZone,
+        @Inject(ChangeDetectorRef) @Optional() private readonly cd?: ChangeDetectorRef,
     ) {
         this.setFirstLocalOptionsByGlobal(globalOptions);
     }
@@ -235,7 +235,7 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
             }
         }
 
-        return convertedToLocaleValue.replace(/\s/g, ' ');
+        return convertedToLocaleValue.replaceAll(/\s/g, ' ');
     }
 
     private setModelValueBy(numberValue: number): void {
@@ -267,21 +267,24 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
     }
 
     private replaceInvalidFractionPosition(fraction: string): string {
-        return this.element.value.replace(new RegExp(`\\${fraction}+$`, 'g'), fraction);
+        return this.element.value.replaceAll(
+            new RegExp(`\\${fraction}+$`, 'g'),
+            fraction,
+        );
     }
 
     private removeDuplicateMinusOrFractionSymbol(fraction: string): string {
         let value: string = this.element.value;
-        let count: number = 0;
+        let count = 0;
 
-        value = value.replace(new RegExp(`\\${fraction}`, 'g'), (): string => {
+        value = value.replaceAll(new RegExp(`\\${fraction}`, 'g'), (): string => {
             count++;
 
             return count > 1 ? '' : fraction;
         });
 
-        if (value.indexOf('-') !== 0) {
-            value = value.replace(/-/g, '');
+        if (!value.startsWith('-')) {
+            value = value.replaceAll('-', '');
         }
 
         return value;

@@ -7,12 +7,11 @@ import {LoggerInjector} from '../../logger.injector';
 import {LoggerService} from '../../logger.service';
 import {GroupFactory} from '../../services/group-factory.service';
 
-// eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
 export function groupDecoratorFactory(
     level: LoggerLevel,
     groupType: GroupLevel,
     method: Fn,
-    title: string | Fn<string>,
+    title: Fn<string> | string,
     args: any[],
     target: Type<unknown>,
 ): unknown {

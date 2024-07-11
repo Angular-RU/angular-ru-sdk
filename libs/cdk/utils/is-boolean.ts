@@ -1,3 +1,3 @@
-export function isBoolean(value: unknown | any): value is boolean {
+export function isBoolean(value: any | unknown): value is boolean {
     return typeof value === 'boolean';
 }

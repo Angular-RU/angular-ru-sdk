@@ -6,8 +6,8 @@ import {finalize, switchMap} from 'rxjs/operators';
 
 @Injectable()
 export class LimitConcurrencyService {
-    private activeRequestCount: number = 0;
-    private requestQueue: Subject<boolean>[] = [];
+    private activeRequestCount = 0;
+    private readonly requestQueue: Array<Subject<boolean>> = [];
 
     public add<R>(request$: Observable<R>, limitConcurrency: number): Observable<R> {
         if (limitConcurrency === Infinity) {

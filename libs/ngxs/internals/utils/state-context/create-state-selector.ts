@@ -12,10 +12,10 @@ import {getRepository} from '../repository/get-repository';
 // eslint-disable-next-line max-lines-per-function,sonarjs/cognitive-complexity
 export function createStateSelector(stateClass: DataStateClass): void {
     const repository: NgxsRepositoryMeta = getRepository(stateClass);
-    const name: string | undefined | null = repository?.stateMeta?.name ?? null;
+    const name: string | null | undefined = repository?.stateMeta?.name ?? null;
 
     if (isNotNil(name)) {
-        const selectorId: string = `__${name}__selector`;
+        const selectorId = `__${name}__selector`;
 
         Object.defineProperties(stateClass.prototype, {
             [selectorId]: {writable: true, enumerable: false, configurable: true},
@@ -25,20 +25,20 @@ export function createStateSelector(stateClass: DataStateClass): void {
                 get(): Observable<any> {
                     if (isNotNil(this[selectorId])) {
                         return this[selectorId];
-                    } else {
-                        if (isNil(NgxsDataInjector.store)) {
-                            throw new Error(
-                                NGXS_DATA_EXCEPTIONS.NGXS_DATA_MODULE_EXCEPTION,
-                            );
-                        }
+                    }
 
-                        this[selectorId] = NgxsDataInjector.store.select(stateClass as any).pipe(
+                    if (isNil(NgxsDataInjector.store)) {
+                        throw new Error(NGXS_DATA_EXCEPTIONS.NGXS_DATA_MODULE_EXCEPTION);
+                    }
+
+                    this[selectorId] = NgxsDataInjector.store
+                        .select(stateClass as any)
+                        .pipe(
                             map((state: any): any =>
                                 isDevMode() ? deepFreeze(state) : state,
                             ),
                             shareReplay({refCount: true, bufferSize: 1}),
                         );
-                    }
 
                     return this[selectorId];
                 },

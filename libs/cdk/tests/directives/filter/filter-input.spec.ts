@@ -32,7 +32,6 @@ describe('[TEST]: inputFilter Input', function () {
         changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class TestComponent {
-        // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
         public form = this.fb.group({value: 'abcД'});
         public predicate: FilterPredicate = ['a', 'b', 'c', ' '];
 
@@ -78,11 +77,9 @@ describe('[TEST]: inputFilter Input', function () {
     }
 
     it('should correct sync modelView with model', async () => {
-        // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
         expect(component?.form.value).toEqual({value: 'abcД'});
 
         if (isNotNil(debugElement)) {
-            // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
             debugElement.nativeElement.value = 'ab c Д';
         }
 

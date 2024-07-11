@@ -3,7 +3,7 @@ import {SafeValueType} from './safe-value-type';
 export type SafeTypeOptions =
     | SafeValueType
     | 'html'
-    | 'style'
+    | 'resourceUrl'
     | 'script'
-    | 'url'
-    | 'resourceUrl';
+    | 'style'
+    | 'url';

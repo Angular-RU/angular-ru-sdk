@@ -31,14 +31,17 @@ describe('[TEST]: Integration with class-transformer', () => {
         @Expose()
         @Transform(transformToFormatDateTime, ONLY_TO_CLASS)
         public startDate?: number;
+
         @Expose() @Transform(transformToUnix, ONLY_TO_CLASS) public endDate?: string;
         @Expose() @Transform(transformToTrim, ONLY_TO_CLASS) public comment?: string;
         @Expose()
         @Transform(transformToPrettyFormat, ONLY_TO_CLASS)
         public lastChanged?: number;
+
         @Expose()
         @Transform(transformToStringVal, ONLY_TO_CLASS)
         public enabled?: boolean;
+
         @Expose() @Transform(transformParseFloat, ONLY_TO_CLASS) public floatVal?: number;
         @Expose() @Transform(transformParseInt, ONLY_TO_CLASS) public intVal?: number;
         @Expose() @Transform(transformToNumber, ONLY_TO_CLASS) public numVal?: string;

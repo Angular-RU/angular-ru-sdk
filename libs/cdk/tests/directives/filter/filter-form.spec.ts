@@ -36,7 +36,7 @@ describe('[TEST]: inputFilter Input', function () {
     class TestComponent {
         public form = this.fb.group({value: 'aaaKKK'});
         public characters = ['a', 'b', 'c'];
-        public name: string = 'aaaKKK';
+        public name = 'aaaKKK';
 
         constructor(private readonly fb: FormBuilder) {}
     }
@@ -95,7 +95,7 @@ describe('[TEST]: inputFilter Input', function () {
     });
 
     it('should trigger "input" event only once', () => {
-        let count: number = 0;
+        let count = 0;
 
         debugElement2?.nativeElement.addEventListener('input', () => ++count);
         debugElement2!.nativeElement.value = 'bbbOOO';

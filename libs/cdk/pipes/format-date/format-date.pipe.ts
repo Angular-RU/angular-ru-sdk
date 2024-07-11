@@ -9,10 +9,10 @@ import {FormatDatePipeOptions} from './format-date';
 @Pipe({name: 'formatDate'})
 export class FormatDatePipe implements PipeTransform {
     public transform(
-        value?: Nullable<string | number | Date>,
+        value?: Nullable<Date | number | string>,
         options?: FormatDatePipeOptions,
     ): string {
-        let result: Nullable<string | number | Date> = value;
+        let result: Nullable<Date | number | string> = value;
 
         if (isString(result)) {
             result = takeFirstItem(result.split('+')) ?? '';

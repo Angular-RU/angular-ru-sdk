@@ -8,11 +8,11 @@ describe('[TEST]: auto height', () => {
     let directive: AutoHeightDirective<PlainObject>;
     // @ts-ignore
     let recalculateDispatcher: Nullable<Fn> = null;
-    let addedEvent: boolean = false;
+    let addedEvent = false;
     // @ts-ignore
-    let removeEvent: boolean = false;
+    let removeEvent = false;
     // @ts-ignore
-    let ticked: number = 0;
+    let ticked = 0;
     let style: string;
 
     const mockNgZone: Partial<NgZone> = {
@@ -74,11 +74,9 @@ describe('[TEST]: auto height', () => {
 
     it('should be correct invoke ngOnDestroy', () => {
         expect(directive.destroy$.closed).toBe(false);
-        // eslint-disable-next-line deprecation/deprecation
         expect(directive.destroy$.isStopped).toBe(false);
         directive.ngOnDestroy();
         expect(directive.destroy$.closed).toBe(false);
-        // eslint-disable-next-line deprecation/deprecation
         expect(directive.destroy$.isStopped).toBe(true);
     });
 
@@ -93,7 +91,7 @@ describe('[TEST]: auto height', () => {
         directive.recalculateTableSize();
         tick(100);
 
-        expect(style).toBe(`display: block; height: calc(59px)`); // 45px + 12px + 2px boarding (scrollbar height)
+        expect(style).toBe('display: block; height: calc(59px)'); // 45px + 12px + 2px boarding (scrollbar height)
     }));
 
     it('should be correct calculate auto height when columnHeight = 2000px', fakeAsync(() => {
@@ -107,13 +105,13 @@ describe('[TEST]: auto height', () => {
         directive.recalculateTableSize();
         tick(100);
 
-        expect(style).toBe(`display: block; height: calc(980px - 0px - 0px - 14px)`);
+        expect(style).toBe('display: block; height: calc(980px - 0px - 0px - 14px)');
     }));
 
     it('should be correct hide height not in viewport', () => {
         directive.autoHeight = {detect: true, inViewport: false};
         directive.calculateHeight();
-        expect(style).toBe(``);
+        expect(style).toBe('');
 
         directive.autoHeight = {
             detect: false,
@@ -122,7 +120,7 @@ describe('[TEST]: auto height', () => {
             sourceLength: 1,
         };
         directive.calculateHeight();
-        expect(style).toBe(``);
+        expect(style).toBe('');
     });
 
     it('should be correct calculate custom height', () => {
@@ -133,7 +131,7 @@ describe('[TEST]: auto height', () => {
             sourceLength: 1,
         };
         directive.calculateHeight();
-        expect(style).toBe(`display: block; height: 500px`);
+        expect(style).toBe('display: block; height: 500px');
     });
 
     it('should be correct empty style when autoHeight not called', () => {
@@ -144,7 +142,7 @@ describe('[TEST]: auto height', () => {
             sourceLength: 1,
         };
         directive.calculateHeight();
-        expect(style).toBe(``);
+        expect(style).toBe('');
     });
 
     it('should be correct recalculate height', fakeAsync(() => {
@@ -153,6 +151,6 @@ describe('[TEST]: auto height', () => {
         directive.recalculateTableSize();
         tick(100);
 
-        expect(style).toBe(`display: block; height: 200px`);
+        expect(style).toBe('display: block; height: 200px');
     }));
 });

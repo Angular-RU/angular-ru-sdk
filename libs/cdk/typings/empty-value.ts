@@ -1,1 +1,1 @@
-export type EmptyValue = null | undefined | '';
+export type EmptyValue = '' | null | undefined;

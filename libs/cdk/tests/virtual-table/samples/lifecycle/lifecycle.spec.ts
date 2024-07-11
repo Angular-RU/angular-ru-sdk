@@ -49,7 +49,7 @@ describe('[TEST]: Lifecycle table', () => {
         runOutsideAngular: (callback: Fn): any => callback(),
     };
     const webWorker: Partial<WebWorkerThreadService> = {
-        run<T, K>(workerFunction: (input: K) => T, data?: K): Promise<T> {
+        async run<T, K>(workerFunction: (input: K) => T, data?: K): Promise<T> {
             return Promise.resolve(workerFunction(data!));
         },
     };
@@ -81,7 +81,7 @@ describe('[TEST]: Lifecycle table', () => {
         const app: ApplicationRef = appRef as ApplicationRef;
         const view: NgxTableViewChangesService = new NgxTableViewChangesService();
 
-        const parser: TemplateParserService<PlainObject> = new TemplateParserService();
+        const parser = new TemplateParserService<PlainObject>();
 
         draggable = new DraggableService(parser);
 
@@ -144,7 +144,6 @@ describe('[TEST]: Lifecycle table', () => {
     it('should be basic api', async () => {
         table.setSource(deepClone(data));
 
-        // eslint-disable-next-line deprecation/deprecation
         expect(new TableSelectedItemsPipe(table).transform({1: true, 2: true})).toEqual([
             {position: 1, name: 'Hydrogen', symbol: 'H', weight: 1.0079},
             {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
@@ -172,9 +171,9 @@ describe('[TEST]: Lifecycle table', () => {
         ]);
 
         // expect selection pipe works even with filtered values
-        // eslint-disable-next-line deprecation/deprecation
+
         expect(new TableSelectedItemsPipe(table).transform({})).toEqual([]);
-        // eslint-disable-next-line deprecation/deprecation
+
         expect(new TableSelectedItemsPipe(table).transform({1: true, 2: true})).toEqual([
             {position: 1, name: 'Hydrogen', symbol: 'H', weight: 1.0079},
             {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
@@ -278,7 +277,7 @@ describe('[TEST]: Lifecycle table', () => {
     }));
 
     it('should be correct template changes', fakeAsync(() => {
-        const templates: QueryList<NgxColumnComponent<PlainObject>> = new QueryList();
+        const templates = new QueryList<NgxColumnComponent<PlainObject>>();
 
         table.columnTemplates = templates;
         table.source = [];
@@ -319,7 +318,7 @@ describe('[TEST]: Lifecycle table', () => {
     }));
 
     it('should be correct template changes with check renderCount', fakeAsync(() => {
-        const templates: QueryList<NgxColumnComponent<PlainObject>> = new QueryList();
+        const templates = new QueryList<NgxColumnComponent<PlainObject>>();
 
         table.columnTemplates = templates;
         table.source = deepClone(data);
@@ -368,7 +367,7 @@ describe('[TEST]: Lifecycle table', () => {
     }));
 
     it('should be correct template changes query list', fakeAsync(() => {
-        const templates: QueryList<NgxColumnComponent<PlainObject>> = new QueryList();
+        const templates = new QueryList<NgxColumnComponent<PlainObject>>();
 
         table.columnTemplates = templates;
         table.source = [];
@@ -412,7 +411,7 @@ describe('[TEST]: Lifecycle table', () => {
 
     it('should be correct ngOnDestroy', () => {
         expect(table.destroy$.closed).toBe(false);
-        // eslint-disable-next-line deprecation/deprecation
+
         expect(table.destroy$.isStopped).toBe(false);
 
         table.ngOnChanges(changes);
@@ -423,7 +422,7 @@ describe('[TEST]: Lifecycle table', () => {
         table.ngOnDestroy();
 
         expect(table.destroy$.closed).toBe(false);
-        // eslint-disable-next-line deprecation/deprecation
+
         expect(table.destroy$.isStopped).toBe(true);
     });
 

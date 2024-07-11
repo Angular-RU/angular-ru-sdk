@@ -5,11 +5,11 @@ import {Descriptor} from '@angular-ru/cdk/typings';
 import {ensureDescriptorByType} from './internal/ensure-descriptor-by-type';
 
 export function Get<T>(
-    path: string = '/',
+    path = '/',
     emitOptions: EmitOptions = {emitFailure: true, emitSuccess: false},
 ): MethodDecorator {
     return (
-        target: any & DataHttpClient,
+        target: DataHttpClient & any,
         _name: string | symbol,
         descriptor: Descriptor,
     ): Descriptor =>

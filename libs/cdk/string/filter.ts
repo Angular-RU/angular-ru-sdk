@@ -8,7 +8,7 @@ export type FilterPredicateFn = (
     index?: number,
     self?: string[],
 ) => boolean;
-export type FilterPredicate = string[] | FilterPredicateFn | RegExp;
+export type FilterPredicate = FilterPredicateFn | RegExp | string[];
 
 export function filter(value: string, predicate: FilterPredicate | '' = []): string {
     if (Array.isArray(predicate)) {
@@ -29,11 +29,11 @@ export function filter(value: string, predicate: FilterPredicate | '' = []): str
 function filterWithCharacters(value: string, predicate: string[] = []): string {
     if (hasNoItems(predicate)) {
         return value;
-    } else {
-        return Array.from(value)
-            .filter((char: string): boolean => predicate.includes(char))
-            .join('');
     }
+
+    return Array.from(value)
+        .filter((char: string): boolean => predicate.includes(char))
+        .join('');
 }
 
 function filterWithFunction(value: string, predicate: FilterPredicateFn): string {

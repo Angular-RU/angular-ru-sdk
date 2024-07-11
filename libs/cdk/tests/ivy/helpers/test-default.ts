@@ -1,13 +1,11 @@
 /* eslint-disable max-classes-per-file */
+import {ApplicationRef, NgZone, PipeTransform} from '@angular/core';
 import {
-    ApplicationRef,
     ChangeDetectionStrategy,
     Component,
     Directive,
     Injectable,
-    NgZone,
     Pipe,
-    PipeTransform,
 } from '@angular/core';
 
 import {
@@ -18,14 +16,15 @@ import {
 
 @Injectable()
 export class TestService {
-    public testField: string = 'test';
+    public testField = 'test';
 }
 
 @Directive({
     selector: '[test-directive]',
 })
 export class TestDirective {
-    @InjectTestService() public testService!: TestService;
+    @InjectTestService()
+    public testService!: TestService;
 
     constructor(public ngZone: NgZone) {}
 }
@@ -40,14 +39,16 @@ export class TestDirective {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TestComponent {
-    @InjectTestService() public testService!: TestService;
+    @InjectTestService()
+    public testService!: TestService;
 
     constructor(public ngZone: NgZone) {}
 }
 
 @Pipe({name: 'test'})
 export class TestPipe implements PipeTransform {
-    @InjectTestService() public testService!: TestService;
+    @InjectTestService()
+    public testService!: TestService;
 
     constructor(public ngZone: NgZone) {}
 
@@ -58,9 +59,10 @@ export class TestPipe implements PipeTransform {
 
 @Injectable()
 export class FeatureTestService {
-    @InjectTestService() public testService!: TestService;
+    @InjectTestService()
+    public testService!: TestService;
 
-    public callsCounter: number = 0;
+    public callsCounter = 0;
 
     constructor(public ngZone: NgZone) {}
 }
@@ -71,13 +73,16 @@ export class FeatureTestService {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FeatureTestComponent {
-    @InjectFeatureTestService() public featureTestService!: FeatureTestService;
+    @InjectFeatureTestService()
+    public featureTestService!: FeatureTestService;
 
-    @InjectNgZone() public ngZone!: NgZone;
+    @InjectNgZone()
+    public ngZone!: NgZone;
 
     constructor(public appRef: ApplicationRef) {}
 }
 
 export class NonInjectable {
-    @InjectNgZone() public ngZone!: NgZone;
+    @InjectNgZone()
+    public ngZone!: NgZone;
 }

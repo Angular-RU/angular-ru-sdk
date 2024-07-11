@@ -6,4 +6,4 @@ import {
     SafeUrl,
 } from '@angular/platform-browser';
 
-export type SafeType = SafeHtml | SafeStyle | SafeScript | SafeUrl | SafeResourceUrl;
+export type SafeType = SafeHtml | SafeResourceUrl | SafeScript | SafeStyle | SafeUrl;

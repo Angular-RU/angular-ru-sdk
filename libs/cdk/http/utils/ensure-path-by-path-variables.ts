@@ -3,7 +3,7 @@ export function ensurePathByPathVariables(path: string, map: Map<string, any>): 
     const parsedUrls: string[] = newPath.match(/{(.*?)}/g) ?? [];
 
     for (const variable of parsedUrls) {
-        const key: string = variable.replace(/{|}/g, '');
+        const key: string = variable.replaceAll(/{|}/g, '');
 
         if (map.has(key)) {
             newPath = newPath.replace(variable, map.get(key));

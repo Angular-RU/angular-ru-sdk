@@ -2,13 +2,14 @@
 // import 'jest-preset-angular/setup-jest';
 import 'zone.js/fesm2015/zone-testing-bundle.min.js';
 
+import {arrayBuffer} from 'node:stream/consumers';
+import {TransformStream} from 'node:stream/web';
+
 import {getTestBed} from '@angular/core/testing';
 import {
     BrowserDynamicTestingModule,
     platformBrowserDynamicTesting,
 } from '@angular/platform-browser-dynamic/testing';
-import {arrayBuffer} from 'node:stream/consumers';
-import {TransformStream} from 'node:stream/web';
 
 declare const jest: any;
 declare const global: any;
@@ -43,8 +44,8 @@ global.window.resizeTo = (width: number): void => {
     global.window.dispatchEvent(resizeEvent);
 };
 
-global.TextEncoder = require('util').TextEncoder;
-global.TextDecoder = require('util').TextDecoder;
+global.TextEncoder = require('node:util').TextEncoder;
+global.TextDecoder = require('node:util').TextDecoder;
 
 global.CompressionStream = class {
     constructor() {
@@ -81,7 +82,7 @@ global.DecompressionStream = class {
 global.Response = class {
     constructor(public readonly readable: NodeJS.ReadableStream) {}
 
-    public arrayBuffer(): Promise<ArrayBuffer> {
+    public async arrayBuffer(): Promise<ArrayBuffer> {
         return arrayBuffer(this.readable);
     }
 };
@@ -90,7 +91,6 @@ global.URL.createObjectURL = jest.fn((blob: Blob): string => `${blob}`);
 global.URL.revokeObjectURL = jest.fn();
 
 // todo get rid of execCommand
-// eslint-disable-next-line deprecation/deprecation
 document.execCommand = jest.fn((): void => void 0);
 
 getTestBed().initTestEnvironment(

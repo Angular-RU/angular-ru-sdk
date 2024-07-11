@@ -23,7 +23,7 @@
             [ngIf]="columnSchema?.th?.template!"
             [ngIfElse]="defaultTh"
             [ngTemplateOutlet]="columnSchema?.th?.template!"
-        ></ng-template>
+        />
         <ng-template #defaultTh>
             <ng-template [ngIf]="!columnSchema?.th?.emptyHead!">
                 {{ columnSchema?.th?.headTitle || (columnSchema?.key! | titlecase) }}
@@ -74,7 +74,7 @@
                 xmlns="http://www.w3.org/2000/svg"
                 class="table-grid-icon--filterable"
             >
-                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
             </svg>
         </div>
 

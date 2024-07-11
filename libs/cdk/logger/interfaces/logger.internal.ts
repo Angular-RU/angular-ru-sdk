@@ -1,5 +1,5 @@
 export interface ClipboardData {
-    setData: (type: string, value: string) => void | boolean;
+    setData: (type: string, value: string) => boolean | void;
 }
 
 export interface ConsoleServiceInterface {
@@ -15,4 +15,4 @@ export interface Clipboard {
     textAreaSelectData(value: string): boolean;
 }
 
-export type SetDataType = (format: string, data: string) => void | boolean;
+export type SetDataType = (format: string, data: string) => boolean | void;

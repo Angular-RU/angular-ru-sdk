@@ -6,7 +6,7 @@ import {parseQueryParams} from './parse-query-params';
 
 export function getHttpParams(
     path: string,
-    params: Nullable<PlainObject> | HttpParams,
+    params: HttpParams | Nullable<PlainObject>,
 ): HttpParams {
     if (params instanceof HttpParams) {
         return params;

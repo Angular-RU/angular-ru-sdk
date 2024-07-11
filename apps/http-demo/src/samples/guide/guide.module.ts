@@ -7,7 +7,6 @@ import {RouterModule} from '@angular/router';
 import {GuideComponent} from './guide.component';
 
 @NgModule({
-    declarations: [GuideComponent],
     imports: [
         CommonModule,
         RouterModule.forChild([
@@ -19,5 +18,6 @@ import {GuideComponent} from './guide.component';
         MatIconModule,
         ScrollingModule,
     ],
+    declarations: [GuideComponent],
 })
 export class GuideModule {}

@@ -29,7 +29,7 @@
         vertical-line
         width="60"
     >
-        <ng-template ngx-th></ng-template>
+        <ng-template ngx-th />
         <ng-template
             let-row
             ngx-td
@@ -39,7 +39,7 @@
                 <mat-checkbox
                     [checked]="$any(row)?.active"
                     (change)="updateRow(row, 'active', $event.checked)"
-                ></mat-checkbox>
+                />
             </div>
         </ng-template>
     </ngx-column>

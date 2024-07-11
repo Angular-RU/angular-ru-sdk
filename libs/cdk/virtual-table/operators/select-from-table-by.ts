@@ -8,7 +8,6 @@ export function selectFromTableBy<T>(
     entries: PlainObjectOf<boolean> | T[],
     table?: TableBuilderComponent<T>,
 ): SelectFromTableResult<T> {
-    // eslint-disable-next-line deprecation/deprecation
     const selectedItems: T[] = Array.isArray(entries)
         ? entries
         : table?.selectedItems ?? [];

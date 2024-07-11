@@ -1,1 +1,1 @@
-export type ExcelType = 'Number' | 'String' | 'DateTime';
+export type ExcelType = 'DateTime' | 'Number' | 'String';

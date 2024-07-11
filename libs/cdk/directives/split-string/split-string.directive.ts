@@ -10,12 +10,13 @@ import {SplitStringOptions} from './split-string-options';
     providers: [ControlValueInterceptor],
 })
 export class SplitStringDirective {
-    private defaultSplitOptions: SplitStringOptions = {
+    private readonly defaultSplitOptions: SplitStringOptions = {
         separator: /[\n,;]/g,
         joinWith: ', ',
     };
 
-    @Input() public splitOptions?: Partial<SplitStringOptions>;
+    @Input()
+    public splitOptions?: Partial<SplitStringOptions>;
 
     constructor(interceptor: ControlValueInterceptor) {
         interceptor.attach({
@@ -32,7 +33,7 @@ export class SplitStringDirective {
     }
 
     private splitAndTrimViewValue(viewValue: string): string[] {
-        const separator: string | RegExp =
+        const separator: RegExp | string =
             this.splitOptions?.separator ?? this.defaultSplitOptions.separator;
 
         return viewValue

@@ -30,7 +30,7 @@
                 [checked]="table.selectionModel.isAll"
                 [indeterminate]="table.selectionModel.isIndeterminate"
                 (change)="table.selection.toggleAll(data)"
-            ></mat-checkbox>
+            />
         </ng-template>
         <ng-template
             let-row
@@ -42,12 +42,12 @@
             <mat-checkbox
                 [checked]="table.selectionModel.get($any(row).id)"
                 (change)="table.selection.toggle(row)"
-            ></mat-checkbox>
+            />
         </ng-template>
     </ngx-column>
 
     <ngx-column
         *ngFor="let key of table.modelColumnKeys"
         [key]="key"
-    ></ngx-column>
+    />
 </ngx-table-builder>

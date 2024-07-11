@@ -5,8 +5,8 @@ import {isNotNil} from '@angular-ru/cdk/utils';
 
 type TrackBy<T> = (item: T) => any;
 
-export function uniqueArrayOf<T>(list: T[], trackBy: string | TrackBy<T>): T[] {
-    const uniqueMap: Map<string, T> = new Map();
+export function uniqueArrayOf<T>(list: T[], trackBy: TrackBy<T> | string): T[] {
+    const uniqueMap = new Map<string, T>();
 
     for (const item of list) {
         let trackKey: Nullable<any>;

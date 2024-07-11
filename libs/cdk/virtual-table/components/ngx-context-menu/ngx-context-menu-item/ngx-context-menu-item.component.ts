@@ -1,15 +1,19 @@
 /* eslint-disable @angular-eslint/no-input-rename */
 import {
-    ChangeDetectionStrategy,
     ChangeDetectorRef,
-    Component,
     ElementRef,
-    EventEmitter,
+    Inject,
+    INJECTOR,
     Injector,
-    Input,
-    NgZone,
     OnDestroy,
     OnInit,
+} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Input,
+    NgZone,
     Output,
     ViewChild,
     ViewEncapsulation,
@@ -28,37 +32,52 @@ import {
     SCROLLBAR_SIZE,
 } from '../../../table-builder.properties';
 
-const MENU_WIDTH: number = 300;
+const MENU_WIDTH = 300;
 
 @Component({
     selector: 'ngx-context-menu-item',
     templateUrl: './ngx-context-menu-item.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NgxContextMenuItemComponent<T = any> implements OnInit, OnDestroy {
-    private destroy$: Subject<void> = new Subject();
+    private readonly destroy$ = new Subject<void>();
     private taskId: Nullable<number> = null;
     private readonly contextMenu: ContextMenuService<T>;
     private readonly ngZone: NgZone;
-    @Input() public visible: string | boolean = true;
-    @Input() public contextTitle: Nullable<string | boolean> = null;
-    @Input() public disable: Nullable<string | boolean> = false;
-    @Input() public divider: Nullable<string | boolean> = false;
-    @Input('disable-sub-menu') public disableSubMenu: boolean = false;
-    @Input('sub-menu-width') public subMenuWidth: number = MENU_WIDTH;
+    @Input()
+    public visible: boolean | string = true;
+
+    @Input()
+    public contextTitle: Nullable<boolean | string> = null;
+
+    @Input()
+    public disable: Nullable<boolean | string> = false;
+
+    @Input()
+    public divider: Nullable<boolean | string> = false;
+
+    @Input('disable-sub-menu')
+    public disableSubMenu = false;
+
+    @Input('sub-menu-width')
+    public subMenuWidth: number = MENU_WIDTH;
+
     // TODO: should be rename (breaking changes)
     // eslint-disable-next-line @angular-eslint/no-output-on-prefix
-    @Output() public readonly onClick: EventEmitter<ContextItemEvent> =
-        new EventEmitter();
-    @ViewChild('item', {static: false}) public itemRef: Nullable<
-        ElementRef<HTMLDivElement>
-    > = null;
+    @Output()
+    public readonly onClick = new EventEmitter<ContextItemEvent>();
+
+    @ViewChild('item', {static: false})
+    public itemRef: Nullable<ElementRef<HTMLDivElement>> = null;
+
     public offsetX: Nullable<number> = null;
     public offsetY: Nullable<number> = null;
 
     constructor(
+        @Inject(ChangeDetectorRef)
         private readonly cd: ChangeDetectorRef,
+        @Inject(INJECTOR)
         injector: Injector,
     ) {
         this.contextMenu = injector.get<ContextMenuService<T>>(ContextMenuService);
@@ -95,9 +114,9 @@ export class NgxContextMenuItemComponent<T = any> implements OnInit, OnDestroy {
         if (contentExist) {
             this.offsetX =
                 this.clientRect.left! + this.subMenuWidth - MIN_PADDING_CONTEXT_ITEM;
-            this.offsetX = this.offsetX - this.overflowX();
+            this.offsetX -= this.overflowX();
             this.offsetY = this.clientRect.top! - MIN_PADDING_CONTEXT_ITEM;
-            this.offsetY = this.offsetY - this.overflowY(ref);
+            this.offsetY -= this.overflowY(ref);
             this.deferUpdateView();
         }
     }

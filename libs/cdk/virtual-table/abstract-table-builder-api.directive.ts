@@ -27,7 +27,8 @@ import {pathsOfObject} from '@angular-ru/cdk/object';
 import {
     DeepPartial,
     Fn,
-    Nullable, PlainObject,
+    Nullable,
+    PlainObject,
     PlainObjectOf,
     PrimaryKey,
 } from '@angular-ru/cdk/typings';
@@ -96,50 +97,100 @@ export abstract class AbstractTableBuilderApiDirective<T>
     private filterIdTask: Nullable<number> = null;
     private idleDetectChangesId: Nullable<number> = null;
     private columnFrameId: Nullable<number> = null;
-    private onChangesId: number = 0;
+    private onChangesId = 0;
     private _headHeight: Nullable<number> = null;
     private _rowHeight: Nullable<number> = null;
     protected originalSource: Nullable<T[]> = null;
     protected renderedKeys: string[] = [];
-    protected isDragMoving: boolean = false;
-    @Input() public height: Nullable<string | number> = null;
-    @Input() public width: Nullable<string | number> = null;
-    @Input() public source: Nullable<T[]> = null;
-    @Input() public keys: string[] = [];
-    @Input() public striped: boolean = true;
-    @Input() public name: Nullable<string> = null;
-    @Input('skip-sort') public skipSort: boolean | string = false;
-    @Input('sort-types') public sortTypes: TableSortTypes = null;
-    @Input('filter-definition') public filterDefinition: Nullable<FilterDescriptor[]> =
-        [];
-    @Input('exclude-keys') public excludeKeys: ExcludePattern<T>[] = [];
-    @Input('auto-width') public autoWidth: boolean | string = false;
-    @Input('auto-height') public autoHeightDetect: boolean = true;
-    @Input('native-scrollbar') public nativeScrollbar: boolean = false;
-    @Input('primary-key') public primaryKey: string = PrimaryKey.ID;
-    @Input('vertical-border') public verticalBorder: boolean = true;
-    @Input('enable-selection') public enableSelection: boolean | string = false;
-    @Input('enable-filtering') public enableFiltering: boolean | string = false;
-    @Input('disable-deep-path') public disableDeepPath: boolean = false;
-    @Input('produce-disable-fn') public produceDisableFn: ProduceDisableFn<T> = null;
-    @Input('row-css-classes') public rowCssClasses: PlainObjectOf<string[]> = {};
-    @Input('schema-columns') public schemaColumns: Nullable<TableUpdateSchema> = null;
-    @Input('schema-version') public schemaVersion: number = 1;
-    @Input('is-virtual-table') public isVirtualTable: boolean = true;
-    @Output() public readonly afterRendered: EventEmitter<boolean> = new EventEmitter();
-    @Output() public readonly schemaChanges: EventEmitter<TableUpdateSchema> =
-        new EventEmitter();
+    protected isDragMoving = false;
+    @Input()
+    public height: Nullable<number | string> = null;
+
+    @Input()
+    public width: Nullable<number | string> = null;
+
+    @Input()
+    public source: Nullable<T[]> = null;
+
+    @Input()
+    public keys: string[] = [];
+
+    @Input()
+    public striped = true;
+
+    @Input()
+    public name: Nullable<string> = null;
+
+    @Input('skip-sort')
+    public skipSort: boolean | string = false;
+
+    @Input('sort-types')
+    public sortTypes: TableSortTypes = null;
+
+    @Input('filter-definition')
+    public filterDefinition: Nullable<FilterDescriptor[]> = [];
+
+    @Input('exclude-keys')
+    public excludeKeys: Array<ExcludePattern<T>> = [];
+
+    @Input('auto-width')
+    public autoWidth: boolean | string = false;
+
+    @Input('auto-height')
+    public autoHeightDetect = true;
+
+    @Input('native-scrollbar')
+    public nativeScrollbar = false;
+
+    @Input('primary-key')
+    public primaryKey: string = PrimaryKey.ID;
+
+    @Input('vertical-border')
+    public verticalBorder = true;
+
+    @Input('enable-selection')
+    public enableSelection: boolean | string = false;
+
+    @Input('enable-filtering')
+    public enableFiltering: boolean | string = false;
+
+    @Input('disable-deep-path')
+    public disableDeepPath = false;
+
+    @Input('produce-disable-fn')
+    public produceDisableFn: ProduceDisableFn<T> = null;
+
+    @Input('row-css-classes')
+    public rowCssClasses: PlainObjectOf<string[]> = {};
+
+    @Input('schema-columns')
+    public schemaColumns: Nullable<TableUpdateSchema> = null;
+
+    @Input('schema-version')
+    public schemaVersion = 1;
+
+    @Input('is-virtual-table')
+    public isVirtualTable = true;
+
+    @Output()
+    public readonly afterRendered = new EventEmitter<boolean>();
+
+    @Output()
+    public readonly schemaChanges = new EventEmitter<TableUpdateSchema>();
+
     // TODO: should be rename (breaking changes)
     // eslint-disable-next-line @angular-eslint/no-output-on-prefix
-    @Output() public readonly onChanges: EventEmitter<Nullable<T[]>> = new EventEmitter();
-    @Output() public readonly sortChanges: EventEmitter<OrderedField[]> =
-        new EventEmitter();
+    @Output()
+    public readonly onChanges = new EventEmitter<Nullable<T[]>>();
+
+    @Output()
+    public readonly sortChanges = new EventEmitter<OrderedField[]>();
+
     @ContentChild(NgxOptionsComponent, {static: false})
     public columnOptions: Nullable<NgxOptionsComponent> = null;
 
-    @ContentChildren(NgxColumnComponent) public columnTemplates: Nullable<
-        QueryList<NgxColumnComponent<T>>
-    > = null;
+    @ContentChildren(NgxColumnComponent)
+    public columnTemplates: Nullable<QueryList<NgxColumnComponent<T>>> = null;
 
     @ContentChild(NgxContextMenuComponent, {static: false})
     public contextMenuTemplate: Nullable<NgxContextMenuComponent<T>> = null;
@@ -159,14 +210,13 @@ export abstract class AbstractTableBuilderApiDirective<T>
     @ViewChild('tableViewport', {static: true})
     public scrollContainer!: ElementRef<HTMLElement>;
 
-    @ViewChildren('column', {read: false}) public columnList!: QueryList<
-        ElementRef<HTMLDivElement>
-    >;
+    @ViewChildren('column', {read: false})
+    public columnList!: QueryList<ElementRef<HTMLDivElement>>;
 
     public scrollbarWidth: number = SCROLLBAR_SIZE;
-    public columnListWidth: number = 0;
+    public columnListWidth = 0;
     public viewPortInfo: ViewPortInfo = {};
-    public tableViewportChecked: boolean = true;
+    public tableViewportChecked = true;
     /**
      * @description: the custom names of the column list to be displayed in the view.
      * @example:
@@ -190,8 +240,8 @@ export abstract class AbstractTableBuilderApiDirective<T>
      */
     public customModelColumnsKeys: string[] = [];
     public isDragging: PlainObjectOf<boolean> = {};
-    public accessDragging: boolean = false;
-    public filteringRun: boolean = false;
+    public accessDragging = false;
+    public filteringRun = false;
 
     /**
      * @description - <table-builder [keys]=[ 'id', 'value', 'id', 'position', 'value' ] />
@@ -294,12 +344,12 @@ export abstract class AbstractTableBuilderApiDirective<T>
     }
 
     @Input('head-height')
-    public set headHeight(value: string | number) {
+    public set headHeight(value: number | string) {
         this._headHeight = parseInt(value as string);
     }
 
     @Input('row-height')
-    public set rowHeight(value: Nullable<string | number>) {
+    public set rowHeight(value: Nullable<number | string>) {
         this._rowHeight = parseInt((value ?? ROW_HEIGHT) as string);
     }
 
@@ -415,11 +465,11 @@ export abstract class AbstractTableBuilderApiDirective<T>
     }
 
     public changeSchema(
-        defaultColumns: Nullable<DeepPartial<ColumnsSchema>[]> = null,
+        defaultColumns: Nullable<Array<DeepPartial<ColumnsSchema>>> = null,
     ): void {
-        const renderedColumns: Nullable<DeepPartial<ColumnsSchema>[]> =
+        const renderedColumns: Nullable<Array<DeepPartial<ColumnsSchema>>> =
             this.templateParser.schema?.exportColumns();
-        const columns: Nullable<DeepPartial<ColumnsSchema>[]> =
+        const columns: Nullable<Array<DeepPartial<ColumnsSchema>>> =
             defaultColumns ?? renderedColumns;
         const generalTableSettings: GeneralTableSettings = {
             expanded: this.expanded,
@@ -459,7 +509,11 @@ export abstract class AbstractTableBuilderApiDirective<T>
         this.filterable.changeFilteringStatus();
         this.calculateViewport(true);
         // eslint-disable-next-line no-restricted-properties
-        window.setTimeout((): void => this.app.tick(), TIME_RELOAD);
+        window.setTimeout((): void => {
+            if (!this.app.destroyed) {
+                this.app.tick();
+            }
+        }, TIME_RELOAD);
     }
 
     protected forceCalculateViewport(): void {
@@ -504,7 +558,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
             clearInterval(this.columnFrameId ?? 0);
             // eslint-disable-next-line no-restricted-properties
             this.columnFrameId = window.setTimeout((): void => {
-                let width: number = 0;
+                let width = 0;
 
                 for (const element of this.columnList) {
                     width += element.nativeElement.offsetWidth;

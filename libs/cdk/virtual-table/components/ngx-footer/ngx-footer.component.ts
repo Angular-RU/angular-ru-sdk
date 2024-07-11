@@ -5,7 +5,7 @@ import {TableContentDirective} from '../../directives/table-content.directive';
 @Component({
     selector: 'ngx-footer',
     templateUrl: './ngx-footer.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NgxFooterComponent extends TableContentDirective {}

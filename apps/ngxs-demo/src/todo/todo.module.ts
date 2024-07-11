@@ -8,12 +8,12 @@ import {TodoComponent} from './todo.component';
 import {TodoState} from './todo.state';
 
 @NgModule({
-    declarations: [TodoComponent],
     imports: [
         CommonModule,
         MatSnackBarModule,
         NgxsModule.forFeature([TodoState]),
         RouterModule.forChild([{path: '', component: TodoComponent}]),
     ],
+    declarations: [TodoComponent],
 })
 export class TodoModule {}

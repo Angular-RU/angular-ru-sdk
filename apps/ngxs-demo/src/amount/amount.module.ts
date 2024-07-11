@@ -9,12 +9,12 @@ import {AmountState} from './amount.state';
 import {PriceState} from './price.state';
 
 @NgModule({
-    declarations: [AmountComponent],
     imports: [
         CommonModule,
         FormsModule,
         NgxsModule.forFeature([AmountState, PriceState]),
         RouterModule.forChild([{path: '', component: AmountComponent}]),
     ],
+    declarations: [AmountComponent],
 })
 export class AmountModule {}

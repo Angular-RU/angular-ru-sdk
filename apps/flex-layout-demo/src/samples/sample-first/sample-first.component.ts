@@ -11,8 +11,8 @@ import {hlJsCode} from '../../../../../.global/utils/hljs-code';
     selector: 'sample-first',
     templateUrl: './sample-first.component.html',
     styleUrls: ['./sample-first.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SampleFirstComponent implements AfterViewInit {
     public ngAfterViewInit(): void {

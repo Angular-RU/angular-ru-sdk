@@ -48,19 +48,24 @@ describe('sync control value interceptor', () => {
     class SyncInterceptorTestComponent {
         @ViewChild('ngModelInputElement')
         public readonly inputElementRef!: ElementRef<HTMLInputElement>;
+
         @ViewChild('formControlInputElement')
         public readonly formControlInputElementRef!: ElementRef<HTMLInputElement>;
+
         @ViewChild('formGroupControlA')
         public readonly formGroupControlARef!: ElementRef<HTMLInputElement>;
+
         @ViewChild('formGroupControlB')
         public readonly formGroupControlBRef!: ElementRef<HTMLInputElement>;
+
         @ViewChild('formGroupControlC')
         public readonly formGroupControlCRef!: ElementRef<HTMLInputElement>;
+
         @ViewChild('ngModelInputElement', {read: ControlValueInterceptor})
         public interceptor!: ControlValueInterceptor;
 
-        public enableAutoSplit: boolean = true;
-        public enableControl: boolean = true;
+        public enableAutoSplit = true;
+        public enableControl = true;
 
         public value: string[] = ['value1', 'value2'];
         public formControl = new FormControl(['valueA', 'valueB']);

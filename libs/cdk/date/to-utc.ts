@@ -10,17 +10,15 @@ export function toUtc(config: Partial<SerialDateConfig> = {}): string {
         seconds,
         timeZoneHours,
     }: SerialDateConfig = {
-        ...{
-            fullYear: new Date().getFullYear(),
-            month: new Date().getMonth(),
-            date: new Date().getDate(),
-            hours: 0,
-            minutes: 0,
-            seconds: 0,
-            // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-            timeZoneHours:
-                new Date().getTimezoneOffset() /* TIMEZONE_OFFSET */ / 60 /* ONE_HOUR */,
-        },
+        fullYear: new Date().getFullYear(),
+        month: new Date().getMonth(),
+        date: new Date().getDate(),
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+        timeZoneHours:
+            new Date().getTimezoneOffset() /* TIMEZONE_OFFSET */ / 60 /* ONE_HOUR */,
         ...config,
     };
 

@@ -6,7 +6,7 @@ import {RowId} from '../../interfaces/table-builder.internal';
 
 export class SelectionMap<T> {
     private readonly selectionSet: Set<RowId> = new Set<RowId>();
-    public isAll: boolean = false;
+    public isAll = false;
     public entries: PlainObjectOf<boolean> = {};
     public selectedList: RowId[] = [];
     public produceDisableFn: ProduceDisableFn<T> = null;
@@ -52,7 +52,7 @@ export class SelectionMap<T> {
         return true;
     }
 
-    public toggle(key: string | number, row: T, emit: boolean): void {
+    public toggle(key: number | string, row: T, emit: boolean): void {
         if (this.has(key)) {
             this.delete(key, emit);
         } else {

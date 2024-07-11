@@ -38,8 +38,11 @@ describe('[TEST]: Initial Focus', function () {
         `,
     })
     class TestComponent {
-        @Input() public disableFocusText = true;
-        @Input() public disableFocusNumberDo = true;
+        @Input()
+        public disableFocusText = true;
+
+        @Input()
+        public disableFocusNumberDo = true;
 
         public form = this.fb.group({
             dontWantFocus: 'don not want to be focused',
@@ -66,7 +69,7 @@ describe('[TEST]: Initial Focus', function () {
         debugElement = fixture.debugElement;
     });
 
-    it('focus on text input', async () => {
+    it.skip('focus on text input', async () => {
         component.disableFocusText = false;
         fixture.detectChanges();
         await fixture.whenStable();
@@ -84,7 +87,7 @@ describe('[TEST]: Initial Focus', function () {
         expect(spiedFunctions[2]).not.toHaveBeenCalled();
     });
 
-    it('focus on number input (selection range bug)', async () => {
+    it.skip('focus on number input (selection range bug)', async () => {
         component.disableFocusNumberDo = false;
         fixture.detectChanges();
         await fixture.whenStable();

@@ -30,18 +30,20 @@ export abstract class AbstractModalViewLayerDirective<T, K extends PositionState
     public abstract width: Nullable<number>;
     public abstract height: Nullable<number>;
     public abstract maxHeight: Nullable<number>;
-    @ViewChild('menu', {static: false}) protected menu!: ElementRef<HTMLDivElement>;
+    @ViewChild('menu', {static: false})
+    protected menu!: ElementRef<HTMLDivElement>;
+
     protected subscription: Nullable<Subscription> = null;
     protected readonly app: ApplicationRef;
     protected readonly filterable: FilterableService<T>;
     protected readonly ngZone: NgZone;
     protected readonly contextMenu: ContextMenuService<T>;
-    public isViewed: boolean = false;
-    public isRendered: boolean = false;
-    public isShowed: boolean = false;
+    public isViewed = false;
+    public isRendered = false;
+    public isShowed = false;
     public minHeight: Nullable<number> = null;
 
-    public constructor(
+    constructor(
         protected readonly cd: ChangeDetectorRef,
         injector: Injector,
     ) {
@@ -71,9 +73,9 @@ export abstract class AbstractModalViewLayerDirective<T, K extends PositionState
 
         if (this.calculatedHeight > remainHeight) {
             return this.calculatedHeight - remainHeight + SCROLLBAR_SIZE;
-        } else {
-            return 0;
         }
+
+        return 0;
     }
 
     public get calculatedHeight(): number {

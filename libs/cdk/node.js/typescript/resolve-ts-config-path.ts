@@ -6,13 +6,13 @@ declare const require: any;
 
 checkIsNodeEnvironment();
 
-const path: any = require('path');
-const fs: any = require('fs');
+const path: any = require('node:path');
+const fs: any = require('node:fs');
 
 export function resolveTsConfigPath(
     tsConfigPath: string,
     relative?: string,
-): string | never {
+): never | string {
     let resolvedPath: string = (path.isAbsolute(tsConfigPath) as boolean)
         ? tsConfigPath
         : path.resolve(relative ?? '.', tsConfigPath);

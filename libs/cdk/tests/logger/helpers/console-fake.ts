@@ -86,7 +86,7 @@ export class ConsoleFake implements Console {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-    public stack(withoutLabel: number = 2): string {
+    public stack(withoutLabel = 2): string {
         const history: PlainObject[] = [...this._stack];
 
         for (const [index, line] of history.entries()) {
@@ -111,7 +111,7 @@ export class ConsoleFake implements Console {
         for (const line of stackObject) {
             for (const levelLog in line) {
                 if (line.hasOwnProperty(levelLog)) {
-                    stackList.push(line[levelLog]!);
+                    stackList.push(line[levelLog]);
                 }
             }
         }
@@ -119,7 +119,7 @@ export class ConsoleFake implements Console {
         return stackList;
     }
 
-    public stackOptionsList(usageNext: boolean = false): PlainObject {
+    public stackOptionsList(usageNext = false): PlainObject {
         const stackList: PlainObject[] = this.stackList(this.stack(0));
         const stackOptionsList: PlainObject[] = [];
 
@@ -127,7 +127,7 @@ export class ConsoleFake implements Console {
             stackOptionsList.push({
                 label: String(line[0]).replace('%c', ''),
                 // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-                styles: ConsoleFake.parseCssString(line[usageNext ? 2 : 1]!),
+                styles: ConsoleFake.parseCssString(line[usageNext ? 2 : 1]),
             });
         }
 

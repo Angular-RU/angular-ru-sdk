@@ -2,7 +2,7 @@ import {EntityCollections, EntityUpdate} from '@angular-ru/cdk/entity';
 import {ActionType} from '@ngxs/store';
 import {Observable} from 'rxjs';
 
-export interface EntityRepository<V, K extends string | number, C = Record<string, any>> {
+export interface EntityRepository<V, K extends number | string, C = Record<string, any>> {
     name: string;
     initialState: EntityCollections<V, K, C>;
     state$: Observable<EntityCollections<V, K, C>>;
@@ -29,7 +29,7 @@ export interface EntityRepository<V, K extends string | number, C = Record<strin
 
     updateOne(update: EntityUpdate<V, K>): void;
 
-    updateMany(updates: EntityUpdate<V, K>[]): void;
+    updateMany(updates: Array<EntityUpdate<V, K>>): void;
 
     upsertOne(entity: V): void;
 

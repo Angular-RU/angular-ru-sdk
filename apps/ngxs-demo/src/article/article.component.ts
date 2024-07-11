@@ -15,7 +15,7 @@ import {ArticleDialogComponent} from './dialog/article-dialog.component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticleComponent implements OnDestroy {
-    private destroy$: Subject<void> = new Subject();
+    private readonly destroy$ = new Subject<void>();
 
     constructor(
         public dialog: MatDialog,

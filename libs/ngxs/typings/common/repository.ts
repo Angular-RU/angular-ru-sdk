@@ -36,10 +36,10 @@ export interface ImmutableDataRepository<T> {
     reset(): void;
 }
 
-export type ImmutablePatchValue<T> = Partial<T | Immutable<T>>;
+export type ImmutablePatchValue<T> = Partial<Immutable<T> | T>;
 export type ImmutableStateValue<T> =
-    | T
     | Immutable<T>
+    | T
     | ((state: Immutable<T>) => Immutable<T> | T);
 
 export interface ImmutableStateContext<T> {
@@ -69,8 +69,8 @@ export interface DataRepository<T> {
     reset(): void;
 }
 
-export type PatchValue<T> = Partial<T | Immutable<T>>;
-export type StateValue<T> = T | StateOperator<T>;
+export type PatchValue<T> = Partial<Immutable<T> | T>;
+export type StateValue<T> = StateOperator<T> | T;
 
 export interface DataStateContext<T> {
     getState(): T;

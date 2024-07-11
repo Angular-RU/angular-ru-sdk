@@ -3,8 +3,8 @@ import {NgModule} from '@angular/core';
 import {HttpReplacerPipe} from './http-replacer.pipe';
 
 @NgModule({
-    exports: [HttpReplacerPipe],
-    providers: [HttpReplacerPipe],
     declarations: [HttpReplacerPipe],
+    providers: [HttpReplacerPipe],
+    exports: [HttpReplacerPipe],
 })
 export class HttpReplacerPipeModule {}

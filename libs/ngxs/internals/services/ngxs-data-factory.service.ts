@@ -20,7 +20,7 @@ import {NgxsDataInjector} from './ngxs-data-injector.service';
 
 @Injectable()
 export class NgxsDataFactory {
-    private static readonly statesCachedMeta: Map<string, MappedStore> = new Map();
+    private static readonly statesCachedMeta = new Map<string, MappedStore>();
 
     constructor() {
         NgxsDataFactory.statesCachedMeta.clear();

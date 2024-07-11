@@ -5,10 +5,10 @@ import {checkValueIsFilled} from '@angular-ru/cdk/utils';
 
 import {assertFormGroup} from './utils/assert-form-group';
 
-const VALIDATOR_TYPE: string = 'requiredSomeValueByKeys';
+const VALIDATOR_TYPE = 'requiredSomeValueByKeys';
 
 export function requiredSomeValueByKeysValidator<T>(
-    keyList: (keyof T | string)[] = [],
+    keyList: Array<string | keyof T> = [],
 ): ValidatorFn {
     return (formGroup: AbstractControl): ValidationErrors | null => {
         assertFormGroup(formGroup, VALIDATOR_TYPE);

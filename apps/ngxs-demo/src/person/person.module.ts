@@ -10,7 +10,6 @@ import {PersonService} from './person.service';
 import {PersonState} from './person.state';
 
 @NgModule({
-    declarations: [PersonComponent],
     imports: [
         CommonModule,
         HttpClientModule,
@@ -25,6 +24,7 @@ import {PersonState} from './person.state';
             },
         ]),
     ],
+    declarations: [PersonComponent],
     providers: [PersonResolver, PersonService],
 })
 export class PersonModule {}

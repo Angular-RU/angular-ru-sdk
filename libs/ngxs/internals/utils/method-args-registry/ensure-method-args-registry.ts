@@ -6,8 +6,8 @@ import {getMethodArgsRegistry} from './get-method-args-registry';
 import {MethodArgsRegistry} from './method-args-registry';
 
 export function ensureMethodArgsRegistry(
-    target: unknown | any,
-    propertyKey: unknown | any,
+    target: any | unknown,
+    propertyKey: any | unknown,
 ): MethodArgsRegistry {
     const originMethod: Fn = target[propertyKey];
     const registry: MethodArgsRegistry | undefined = getMethodArgsRegistry(originMethod);

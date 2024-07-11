@@ -1,3 +1,3 @@
 import {Nullable} from './nullable';
 
-export type InputBoolean = Nullable<string | boolean | number | '' | 'false'>;
+export type InputBoolean = Nullable<boolean | number | string | '' | 'false'>;

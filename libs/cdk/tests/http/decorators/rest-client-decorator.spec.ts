@@ -11,7 +11,7 @@ import {RestClient} from '@angular-ru/cdk/http/decorators';
 import {Nullable} from '@angular-ru/cdk/typings';
 
 describe('[TEST]: HTTP decorators for client', () => {
-    const MOCK_API: string = 'http://localhost';
+    const MOCK_API = 'http://localhost';
     let client: Nullable<ApiGithubClient> = null;
     let httpMock: HttpTestingController;
     let request: TestRequest;

@@ -14,7 +14,7 @@ export class MarkByFilterPipe implements PipeTransform {
     public transform(
         value: Nullable<string>,
         filter?: Nullable<string>,
-        color: string = '#ffdd2d',
+        color = '#ffdd2d',
     ): MarkedValue {
         return isNotNil(filter) ? this.search(value, filter, color) : value;
     }
@@ -28,9 +28,9 @@ export class MarkByFilterPipe implements PipeTransform {
             );
 
             return this.sanitizer.bypassSecurityTrustHtml(highlighted);
-        } else {
-            return '';
         }
+
+        return '';
     }
 
     private highLightingString(value: string, filter: string, color: string): string {

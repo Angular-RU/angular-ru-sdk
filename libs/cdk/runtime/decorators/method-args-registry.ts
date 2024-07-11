@@ -8,7 +8,10 @@ export interface MethodArgsRegistryMeta {
 }
 
 export class MethodArgsRegistry {
-    private argumentsIndexMap: Map<number | string, MethodArgsRegistryMeta> = new Map();
+    private readonly argumentsIndexMap = new Map<
+        number | string,
+        MethodArgsRegistryMeta
+    >();
 
     public get size(): number {
         return this.argumentsIndexMap.size;
@@ -30,7 +33,7 @@ export class MethodArgsRegistry {
         this.argumentsIndexMap.set(name, info);
     }
 
-    private checkDuplicateName(name: string, method: string): void | never {
+    private checkDuplicateName(name: string, method: string): never | void {
         if (this.argumentsIndexMap.has(name)) {
             throw new InvalidArgsNamesException(name, method);
         }

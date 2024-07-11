@@ -3,8 +3,8 @@ import {NgModule} from '@angular/core';
 import {ToStringPipe} from './to-string.pipe';
 
 @NgModule({
-    exports: [ToStringPipe],
-    providers: [ToStringPipe],
     declarations: [ToStringPipe],
+    providers: [ToStringPipe],
+    exports: [ToStringPipe],
 })
 export class ToStringPipeModule {}

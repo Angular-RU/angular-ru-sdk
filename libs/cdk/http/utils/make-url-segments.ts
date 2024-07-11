@@ -4,8 +4,8 @@ import {replaceLeadingAndTrailingSlashes} from './replace-leading-and-trailing-s
 
 export function makeUrlSegments(
     {hostUrl, baseUrl}: Partial<DataClientRequestOptions> = {},
-    restUrl: string = '',
-    pathUrl: string = '',
+    restUrl = '',
+    pathUrl = '',
 ): DataUrlPathSegment {
     const clearHostUrl: string =
         replaceLeadingAndTrailingSlashes(hostUrl) ||

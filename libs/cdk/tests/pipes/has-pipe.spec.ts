@@ -10,7 +10,7 @@ describe('[TEST]: has-pipe accessibility', () => {
     });
 
     it('decide if element is in set', () => {
-        const set: Set<string> = new Set(['first', 'second', 'third', 'last']);
+        const set = new Set<string>(['first', 'second', 'third', 'last']);
 
         expect(pipe.transform(set, 'first')).toBe(true);
         expect(pipe.transform(set, 'second')).toBe(true);

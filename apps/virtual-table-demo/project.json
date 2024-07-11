@@ -13,7 +13,11 @@
                 "index": "apps/virtual-table-demo/index.html",
                 "assets": ["apps/virtual-table-demo/assets"],
                 "polyfills": "apps/virtual-table-demo/polyfills.ts",
-                "styles": [".global/integration-app.style.scss",  "node_modules/ngx-toastr/toastr.css","apps/virtual-table-demo/styles.scss"],
+                "styles": [
+                    ".global/integration-app.style.scss",
+                    "node_modules/ngx-toastr/toastr.css",
+                    "apps/virtual-table-demo/styles.scss"
+                ],
                 "aot": false,
                 "vendorChunk": true,
                 "extractLicenses": false,

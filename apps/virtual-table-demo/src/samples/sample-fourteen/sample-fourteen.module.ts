@@ -12,11 +12,6 @@ import {NotFoundComponent} from './not-found.component';
 import {SampleFourteenComponent} from './sample-fourteen.component';
 
 @NgModule({
-    declarations: [
-        ContextMenuSampleComponent,
-        NotFoundComponent,
-        SampleFourteenComponent,
-    ],
     imports: [
         CommonModule,
         SharedModule,
@@ -30,6 +25,11 @@ import {SampleFourteenComponent} from './sample-fourteen.component';
         MatInputModule,
         MatDatepickerModule,
         MatNativeDateModule,
+    ],
+    declarations: [
+        ContextMenuSampleComponent,
+        NotFoundComponent,
+        SampleFourteenComponent,
     ],
 })
 export class SampleFourteenModule {}

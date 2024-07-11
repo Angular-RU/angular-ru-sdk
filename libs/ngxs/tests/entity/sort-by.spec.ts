@@ -227,7 +227,7 @@ describe('sort by entities', () => {
     );
 
     it(
-        `{ sortByOrder: '' } not supported`,
+        "{ sortByOrder: '' } not supported",
         ngxsTestingPlatform([PeopleEntitiesState], (_, people) => {
             spy = jest.spyOn(console, 'warn').mockImplementation();
 

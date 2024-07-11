@@ -18,7 +18,7 @@ const enum DateIntervalValidatorType {
     ORDERED_INTERVAL = 'orderedInterval',
 }
 
-const DATE_INTERVAL_VALIDATOR: string = 'DateIntervalValidator';
+const DATE_INTERVAL_VALIDATOR = 'DateIntervalValidator';
 
 export function dateMaxIntervalValidator(
     intervalLimit: Timestamp,

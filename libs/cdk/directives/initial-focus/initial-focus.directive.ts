@@ -2,6 +2,7 @@ import {
     AfterViewInit,
     Directive,
     ElementRef,
+    Inject,
     Input,
     NgZone,
     OnDestroy,
@@ -9,18 +10,25 @@ import {
 import {Subject, timer} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 
-const MIN_DELAY: number = 500;
+const MIN_DELAY = 500;
 
 @Directive({selector: '[initialFocus]'})
 export class InitialFocusDirective implements AfterViewInit, OnDestroy {
     private readonly className: string = 'initial-focused';
     private readonly unsubscribe$: Subject<boolean> = new Subject<boolean>();
-    @Input() public focusDelay: number = MIN_DELAY;
-    @Input() public focusDisabled: boolean = false;
-    @Input() public type?: string;
+    @Input()
+    public focusDelay: number = MIN_DELAY;
+
+    @Input()
+    public focusDisabled = false;
+
+    @Input()
+    public type?: string;
 
     constructor(
+        @Inject(ElementRef)
         private readonly element: ElementRef<HTMLInputElement>,
+        @Inject(NgZone)
         private readonly ngZone: NgZone,
     ) {}
 

@@ -5,8 +5,8 @@ import {checkValueIsEmpty} from './check-value-is-empty';
 export function fallbackIfEmpty<V, F>(
     value: V,
     fallback: F,
-): (V extends EmptyValue ? never : V) | (V & EmptyValue extends never ? never : F) {
+): (EmptyValue & V extends never ? never : F) | (V extends EmptyValue ? never : V) {
     return (checkValueIsEmpty(value) ? fallback : value) as
-        | (V extends EmptyValue ? never : V)
-        | (V & EmptyValue extends never ? never : F);
+        | (EmptyValue & V extends never ? never : F)
+        | (V extends EmptyValue ? never : V);
 }

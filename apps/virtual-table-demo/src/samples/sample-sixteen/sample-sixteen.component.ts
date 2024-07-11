@@ -24,7 +24,7 @@ import {MocksGenerator} from '../../mocks-generator';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SampleSixteenComponent implements OnInit, AfterViewInit, OnDestroy {
-    private destroy$: Subject<void> = new Subject();
+    private readonly destroy$ = new Subject<void>();
     public data: PlainObject[] = [];
     public schema: Nullable<TableUpdateSchema> = null;
     public readonly testName: string = 'test';
@@ -39,8 +39,8 @@ export class SampleSixteenComponent implements OnInit, AfterViewInit, OnDestroy 
         this.schema = JSON.parse(
             window.localStorage.getItem(this.testName) ?? '{}',
         ) as TableUpdateSchema;
-        const rowNumber: number = 3;
-        const colsNumber: number = 10;
+        const rowNumber = 3;
+        const colsNumber = 10;
 
         MocksGenerator.generator(rowNumber, colsNumber).then(
             (data: PlainObject[]): void => {

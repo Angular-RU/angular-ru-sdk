@@ -7,11 +7,11 @@ import {TableFilterType} from './table-filter-type';
 
 type NumericFilterTypes =
     | TableFilterType.LESS_OR_EQUAL
-    | TableFilterType.MORE_OR_EQUAL
     | TableFilterType.LESS_THAN
+    | TableFilterType.MORE_OR_EQUAL
     | TableFilterType.MORE_THAN;
 
-type PlainValue = string | number | boolean;
+type PlainValue = boolean | number | string;
 
 // TODO: should be refactor because duplicate code as sortWorker
 // eslint-disable-next-line sonarjs/cognitive-complexity,max-lines-per-function
@@ -21,8 +21,8 @@ export function filterAllWorker<T>({
     types,
     columns,
 }: FilterableMessage<T>): T[] {
-    const INTERVAL_ARRAY_SIZE: number = 2;
-    const PLAIN_TYPES: Set<string> = new Set(['number', 'string', 'boolean']);
+    const INTERVAL_ARRAY_SIZE = 2;
+    const PLAIN_TYPES = new Set<string>(['number', 'string', 'boolean']);
     const {value: globalOperand, type: globalFilterType}: FilterGlobalOptions = global;
     let result: T[] = source;
 
@@ -79,7 +79,7 @@ export function filterAllWorker<T>({
 
     // eslint-disable-next-line complexity,max-lines-per-function
     function isSatisfying(
-        valuesSet: Nullable<PlainValue>[],
+        valuesSet: Array<Nullable<PlainValue>>,
         operand: PlainValue,
         filterType: TableFilterType | string,
     ): boolean {
@@ -146,9 +146,9 @@ export function filterAllWorker<T>({
                                 toDateWithoutTime(element).getTime(),
                             )
                             .includes(toDateWithoutTime(operand as any).getTime());
-                    } else {
-                        return false;
                     }
+
+                    return false;
                 }
                 case types.DOES_NOT_EQUAL:
                     return !valuesSet
@@ -192,7 +192,7 @@ export function filterAllWorker<T>({
         }
     }
 
-    function toDateWithoutTime(value: string | number | Date): Date {
+    function toDateWithoutTime(value: Date | number | string): Date {
         const date: Date = value instanceof Date ? value : new Date(value);
 
         date.setHours(0, 0, 0, 0);
@@ -258,7 +258,7 @@ export function filterAllWorker<T>({
     }
 
     function asNumber(value: PlainValue): number {
-        const comparingNumber: number = Number(value);
+        const comparingNumber = Number(value);
 
         if (isNaN(comparingNumber)) {
             throw new Error('Operand is not a number');

@@ -285,8 +285,8 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
     }));
 
     it('should be correct forkJoin', fakeAsync(() => {
-        let responseResult: [number, number] | [] = [];
-        let result: [number, number] | [] = [];
+        let responseResult: [] | [number, number] = [];
+        let result: [] | [number, number] = [];
 
         // eslint-disable-next-line rxjs/no-ignored-observable
         forkJoin([count.asyncSetStateAction(), count.asyncIncrementAction()]).pipe(

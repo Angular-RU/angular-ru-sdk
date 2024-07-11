@@ -15,9 +15,6 @@ import {MocksGenerator} from '../../mocks-generator';
 @Component({
     selector: 'sample-eleven',
     templateUrl: './sample-eleven.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None,
-    // eslint-disable-next-line @angular-eslint/component-max-inline-declarations
     styles: [
         `
             .night {
@@ -39,6 +36,8 @@ import {MocksGenerator} from '../../mocks-generator';
             }
         `,
     ],
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SampleElevenComponent implements OnInit, AfterViewInit {
     public data: PlainObject[] = [];
@@ -69,8 +68,8 @@ export class SampleElevenComponent implements OnInit, AfterViewInit {
     constructor(private readonly cd: ChangeDetectorRef) {}
 
     public ngOnInit(): void {
-        const rows: number = 50;
-        const cols: number = 15;
+        const rows = 50;
+        const cols = 15;
 
         MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => {
             this.data = data;

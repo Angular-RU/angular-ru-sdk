@@ -4,8 +4,8 @@ import {NgModule} from '@angular/core';
 import {ConvertCaseDirective} from './convert-case.directive';
 
 @NgModule({
-    declarations: [ConvertCaseDirective],
     imports: [CommonModule],
+    declarations: [ConvertCaseDirective],
     exports: [ConvertCaseDirective],
 })
 export class ConvertCaseModule {}

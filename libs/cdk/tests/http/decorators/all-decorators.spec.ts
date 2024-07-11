@@ -23,7 +23,7 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 
 describe('[TEST]: HTTP decorators for client', () => {
-    const MOCK_API: string = 'http://localhost';
+    const MOCK_API = 'http://localhost';
     let client: Nullable<ApiUsersClient> = null;
     let httpMock: HttpTestingController;
     let request: TestRequest;
@@ -56,9 +56,7 @@ describe('[TEST]: HTTP decorators for client', () => {
 
         @Get('/')
         public getFirstUser(): Observable<User> {
-            return this.restTemplate<User[]>().pipe(
-                map((value: User[]) => value[0] as User),
-            );
+            return this.restTemplate<User[]>().pipe(map((value: User[]) => value[0]));
         }
 
         @Post('/{id}')

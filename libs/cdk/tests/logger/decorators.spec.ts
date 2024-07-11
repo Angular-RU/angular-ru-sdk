@@ -7,14 +7,14 @@ import {MyTestComponent} from './helpers/test.component';
 describe('[TEST]: Decorator API', () => {
     let logger: LoggerService;
     const fakeConsole: ConsoleFake = new ConsoleFake();
-    const logIsWork: string = 'log is worked';
-    const traceIsWork: string = 'trace is worked';
-    const debugIsWork: string = 'debug is worked';
-    const infoIsWork: string = 'info is worked';
-    const warnIsWork: string = 'warn is worked';
-    const errorIsWork: string = 'error is worked';
-    const groupIsWork: string = 'group is worked';
-    const groupCollapsedIsWork: string = 'groupCollapsed is worked';
+    const logIsWork = 'log is worked';
+    const traceIsWork = 'trace is worked';
+    const debugIsWork = 'debug is worked';
+    const infoIsWork = 'info is worked';
+    const warnIsWork = 'warn is worked';
+    const errorIsWork = 'error is worked';
+    const groupIsWork = 'group is worked';
+    const groupCollapsedIsWork = 'groupCollapsed is worked';
 
     let fixture: ComponentFixture<MyTestComponent>;
     let component: MyTestComponent;
@@ -141,7 +141,7 @@ describe('[TEST]: Decorator API', () => {
         expect(fakeConsole.stack()).toEqual(fakeConsole.createStack());
     });
 
-    it('query by second timer', () =>
+    it('query by second timer', async () =>
         new Promise((done) => {
             component.longQueryBySecond(3, done);
             expect(fakeConsole.stack()).toEqual(
@@ -151,7 +151,7 @@ describe('[TEST]: Decorator API', () => {
             );
         }));
 
-    it('query by ms timer', () =>
+    it('query by ms timer', async () =>
         new Promise((done) => {
             component.longQueryBySecondMs(3, done);
             expect(fakeConsole.stack()).toContain('TimerLog: longQueryBySecondMs');

@@ -10,9 +10,9 @@ import {TOOLTIP_OPTIONS_TOKEN, TOOLTIP_TEXT_INTERCEPTOR_TOKEN} from './tooltip.t
 
 @NgModule({
     imports: [CommonModule],
-    exports: [TooltipDirective],
     declarations: [TooltipDirective],
     providers: [TooltipDomLeakService],
+    exports: [TooltipDirective],
 })
 export class TooltipModule {
     public static forRoot(

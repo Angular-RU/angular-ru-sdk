@@ -6,13 +6,13 @@ describe('@BoundClass', () => {
     it('auto bind methods', () => {
         @Injectable()
         class B {
-            public b: string = '2';
+            public b = '2';
         }
 
         @BoundClass
         @Injectable()
         class A {
-            public a: string = '1';
+            public a = '1';
 
             constructor(public readonly b: B) {}
 

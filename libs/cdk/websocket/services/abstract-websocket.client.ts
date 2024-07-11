@@ -9,24 +9,23 @@ import {WebsocketHandler} from '../interfaces/websocket-handler';
 import {WebsocketMessage} from '../interfaces/websocket-message';
 import {WebsocketConfig} from './websocket-config';
 
-type WebSocketMessage = string | ArrayBuffer | Blob | ArrayBufferView;
+type WebSocketMessage = ArrayBuffer | ArrayBufferView | Blob | string;
 
 export const PLAIN_TEXT: PlainObject = {};
 export const BINARY: PlainObject = {};
 
 @Injectable()
-export abstract class AbstractWebsocketClient<K extends string | PlainObject>
+export abstract class AbstractWebsocketClient<K extends PlainObject | string>
     implements WebsocketHandler<K>, OnDestroy
 {
-    private connected: boolean = false;
+    private connected = false;
     private socket$: Nullable<WebSocketSubject<WebsocketMessage<K, any>>>;
     private socketSubscription: Nullable<Subscription>;
     private handlerPath: Nullable<string>;
-    protected readonly messages$: Subject<WebsocketMessage<K, any>> = new Subject();
-    public connected$: ReplaySubject<Event> = new ReplaySubject(Number.POSITIVE_INFINITY);
-    public disconnected$: ReplaySubject<Event> = new ReplaySubject(
-        Number.POSITIVE_INFINITY,
-    );
+    protected readonly messages$ = new Subject<WebsocketMessage<K, any>>();
+    public connected$ = new ReplaySubject<Event>(Number.POSITIVE_INFINITY);
+    public disconnected$ = new ReplaySubject<Event>(Number.POSITIVE_INFINITY);
+
     public destroy$: Subject<boolean> = new Subject<boolean>();
 
     protected constructor(
@@ -121,11 +120,9 @@ export abstract class AbstractWebsocketClient<K extends string | PlainObject>
     protected deserialize({data}: MessageEvent): WebsocketMessage<any, any> {
         if (AbstractWebsocketClient.isArrayBuffer(data)) {
             return {type: BINARY, data};
-        } else {
-            return (
-                tryParseJson<WebsocketMessage<any, any>>(data) ?? {type: PLAIN_TEXT, data}
-            );
         }
+
+        return tryParseJson<WebsocketMessage<any, any>>(data) ?? {type: PLAIN_TEXT, data};
     }
 
     private onOpenObserver(event: Event): void {
@@ -164,7 +161,7 @@ export abstract class AbstractWebsocketClient<K extends string | PlainObject>
 
     private completeStoppedSocket(): void {
         // TODO: need replace isStopped
-        // eslint-disable-next-line deprecation/deprecation
+
         if (isFalsy(this.socket$?.isStopped)) {
             this.socket$?.complete();
         }

@@ -8,7 +8,7 @@ describe('[TEST]: Check style', () => {
         let logger: LoggerService;
         const fakeConsole: ConsoleFake = new ConsoleFake();
 
-        const testString: string = 'test string';
+        const testString = 'test string';
 
         beforeAll(() => {
             TestBed.configureTestingModule({
@@ -29,18 +29,18 @@ describe('[TEST]: Check style', () => {
 
         beforeEach(() => logger.clear());
 
-        it(`set style another console line`, () => {
+        it('set style another console line', () => {
             logger.level = LoggerLevel.ALL;
 
             logger
                 .css('color: red; text-decoration: underline; font-weight: bold')
-                .info(`It's awesome`);
+                .info("It's awesome");
 
             expect(fakeConsole.stack()).toEqual(
                 fakeConsole.createStack({
                     [TestLoggerLineType.INFO]: [
                         'color: red; text-decoration: underline; font-weight: bold;',
-                        `It's awesome`,
+                        "It's awesome",
                     ],
                 }),
             );
@@ -103,7 +103,7 @@ describe('[TEST]: Check style', () => {
     describe('case #2', () => {
         let logger: LoggerService;
         const fakeConsole: ConsoleFake = new ConsoleFake();
-        const testString: string = 'test string';
+        const testString = 'test string';
 
         beforeAll(() => {
             TestBed.configureTestingModule({

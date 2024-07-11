@@ -20,7 +20,7 @@ import {
 import {Nullable} from '@angular-ru/cdk/typings';
 
 describe('[TEST]: HTTP Client', () => {
-    const MOCK_API: string = 'http://localhost';
+    const MOCK_API = 'http://localhost';
     let client: Nullable<ApiEmitsClient> = null;
     let httpMock: HttpTestingController;
     let request: TestRequest;

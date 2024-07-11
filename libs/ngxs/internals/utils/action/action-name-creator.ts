@@ -18,9 +18,9 @@ export function actionNameCreator(options: ActionNameCreatorOptions): string {
         argumentRegistry,
     }: ActionNameCreatorOptions = options;
 
-    let argsList: string = '';
+    let argsList = '';
 
-    for (let index: number = 0; index < argumentsNames.length; index++) {
+    for (let index = 0; index < argumentsNames.length; index++) {
         if (isNotNil(argumentRegistry?.getArgumentNameByIndex(index))) {
             argsList += argumentRegistry?.getArgumentNameByIndex(index);
         } else if (isNotNil(argumentRegistry?.getPayloadTypeByIndex(index))) {
@@ -34,5 +34,5 @@ export function actionNameCreator(options: ActionNameCreatorOptions): string {
         }
     }
 
-    return `@${statePath.replace(/\./g, '/')}.${methodName}(${argsList})`;
+    return `@${statePath.replaceAll('.', '/')}.${methodName}(${argsList})`;
 }

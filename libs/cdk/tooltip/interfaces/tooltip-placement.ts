@@ -1,1 +1,1 @@
-export type TooltipPlacement = 'top' | 'bottom' | 'left' | 'right';
+export type TooltipPlacement = 'bottom' | 'left' | 'right' | 'top';

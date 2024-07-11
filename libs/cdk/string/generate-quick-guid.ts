@@ -1,7 +1,7 @@
 export function generateQuickGuid(): string {
-    const radix: number = 36;
-    const startWith: number = 2;
-    const endWith: number = 15;
+    const radix = 36;
+    const startWith = 2;
+    const endWith = 15;
 
     return (
         Math.random().toString(radix).substring(startWith, endWith) +

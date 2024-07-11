@@ -5,7 +5,7 @@ import {MousePosition} from '../../interfaces/table-builder.internal';
 
 export class ContextMenuState<T = any, K = any> {
     public position: MousePosition = {left: null, top: null};
-    public opened: boolean = false;
+    public opened = false;
     public key: Nullable<string> = null;
     public item: Nullable<T> = null;
     public value: Nullable<K> = null;

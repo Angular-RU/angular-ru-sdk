@@ -9,7 +9,7 @@ declare const require: any;
 
 checkIsNodeEnvironment();
 
-const path: any = require('path');
+const path: any = require('node:path');
 
 export function exposeTsCompilerOptionsByTsConfig(
     tsConfigPath: string,

@@ -161,7 +161,7 @@ describe('[TEST]: Utils', () => {
                 getSelectorOptions(
                     localOptions?: SharedSelectorOptions,
                 ): SharedSelectorOptions {
-                    return localOptions as any;
+                    return localOptions;
                 },
                 getStateGetter(_key: any): (state: any) => any {
                     // selector
@@ -206,7 +206,7 @@ describe('[TEST]: Utils', () => {
                 getSelectorOptions(
                     localOptions?: SharedSelectorOptions,
                 ): SharedSelectorOptions {
-                    return localOptions as any;
+                    return localOptions;
                 },
                 getStateGetter(key: any): (state: any) => any {
                     // selector

@@ -2,9 +2,9 @@ import {Nullable} from '@angular-ru/cdk/typings';
 
 export function splitOnUniqueValues(
     value: Nullable<string>,
-    separator: RegExp = /[,;]|(\s+)/g,
+    separator = /[,;]|(\s+)/g,
 ): string[] {
-    const uniqueValues: Set<string> = new Set();
+    const uniqueValues = new Set<string>();
     const parsedValues: string[] = value?.split(separator) ?? [];
 
     for (const item of parsedValues) {

@@ -4,5 +4,5 @@ import {TableFilterType} from './table-filter-type';
 
 export interface FilterEvent {
     value: Nullable<string>;
-    type: Nullable<string | TableFilterType>;
+    type: Nullable<TableFilterType | string>;
 }

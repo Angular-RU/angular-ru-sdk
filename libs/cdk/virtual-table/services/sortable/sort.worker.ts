@@ -18,8 +18,7 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
                   .split('.')
                   // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
                   .reduce(
-                      (value: Nullable<PlainObject>, key: string): any =>
-                          value && value[key],
+                      (value: Nullable<PlainObject>, key: string): any => value?.[key],
                       object,
                   )
             : object;
@@ -55,8 +54,8 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
             matches: PlainObjectOf<number>,
         ): any {
             const countKeys: number = Object.keys(matches).length;
-            let sorted: number = 0;
-            let ix: number = 0;
+            let sorted = 0;
+            let ix = 0;
 
             while (sorted === 0 && ix < countKeys) {
                 const key: Nullable<string> = Sortable.observeKey(matches, ix);
@@ -95,7 +94,6 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
             return matches;
         }
 
-        // eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
         private static deepSort(
             key: string,
             leftHand: any,
@@ -128,7 +126,7 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
             count: number,
         ): Nullable<string> {
             let key: string;
-            let size: number = 0;
+            let size = 0;
 
             for (key in keys) {
                 if (keys.hasOwnProperty(key)) {

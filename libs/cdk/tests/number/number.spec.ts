@@ -55,9 +55,9 @@ describe('[TEST]: Number', () => {
             expect(toNumber('30,000,000.01', 'en-US')).toBe(30000000.01);
             expect(toNumber('2.13472231235', 'de')).toBe(213472231235);
             expect(toNumber('2.134.722.312.350', 'de')).toBe(2134722312350);
-            expect(toNumber('-10000000000.0009', 'en-US')).toEqual(-10000000000.0009);
-            expect(toNumber('-10000000000.0009', 'de')).toEqual(-100000000000009);
-            expect(toNumber('-10000000000.0009', 'fr')).toEqual(-10000000000.0009);
+            expect(toNumber('-10000000000.0009', 'en-US')).toBe(-10000000000.0009);
+            expect(toNumber('-10000000000.0009', 'de')).toBe(-100000000000009);
+            expect(toNumber('-10000000000.0009', 'fr')).toBe(-10000000000.0009);
         });
     });
 
@@ -65,10 +65,10 @@ describe('[TEST]: Number', () => {
         expect(half(4)).toBe(2);
         expect(half(2)).toBe(1);
         expect(half(0)).toBe(0);
-        expect(half(-2)).toEqual(-1);
+        expect(half(-2)).toBe(-1);
         expect(half(1)).toBe(0.5);
-        expect(half(-3)).toEqual(-1.5);
-        expect(half(-0.5)).toEqual(-0.25);
+        expect(half(-3)).toBe(-1.5);
+        expect(half(-0.5)).toBe(-0.25);
         expect(half(4.1)).toBe(2.05);
         expect(half(Infinity)).toEqual(Infinity);
         expect(half(-Infinity)).toEqual(-Infinity);
@@ -98,7 +98,7 @@ describe('[TEST]: Number', () => {
         expect(gaussRound(1000.1, 3)).toBe(1000.1);
         expect(gaussRound(1000.12, 3)).toBe(1000.12);
         expect(gaussRound(1000.56, 3)).toBe(1000.56);
-        expect(gaussRound(-10000000000.0009, 3)).toEqual(-10000000000.001);
+        expect(gaussRound(-10000000000.0009, 3)).toBe(-10000000000.001);
         expect(gaussRound(NaN, 3)).toBeNaN();
     });
 

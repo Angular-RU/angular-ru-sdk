@@ -9,7 +9,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {SharedModule} from './shared/shared.module';
 
 @NgModule({
-    declarations: [AppComponent],
     imports: [
         AppRoutingModule,
         BrowserAnimationsModule,
@@ -18,6 +17,7 @@ import {SharedModule} from './shared/shared.module';
         SharedModule,
         ToastrModule.forRoot(),
     ],
+    declarations: [AppComponent],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

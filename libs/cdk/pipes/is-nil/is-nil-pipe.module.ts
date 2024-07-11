@@ -2,9 +2,5 @@ import {NgModule} from '@angular/core';
 
 import {IsNilPipe} from './is-nil.pipe';
 
-@NgModule({
-    exports: [IsNilPipe],
-    providers: [IsNilPipe],
-    declarations: [IsNilPipe],
-})
+@NgModule({declarations: [IsNilPipe], providers: [IsNilPipe], exports: [IsNilPipe]})
 export class IsNilPipeModule {}

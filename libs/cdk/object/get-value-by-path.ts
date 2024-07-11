@@ -14,10 +14,10 @@ export function getValueByPath<T = unknown, K = T>(
     let result: K = object as any as K;
 
     const parts: string[] = path?.split('.') ?? [];
-    let index: number = 0;
+    let index = 0;
 
     for (; isNotNil(result) && index < parts.length; ++index) {
-        const localIndex: string = parts?.[index] as string;
+        const localIndex: string = parts?.[index];
 
         result = (result as any)?.[localIndex];
     }

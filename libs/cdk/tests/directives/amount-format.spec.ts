@@ -20,7 +20,7 @@ import {Nullable} from '@angular-ru/cdk/typings';
 describe('[TEST]: Amount format directive', () => {
     describe('expect without component', () => {
         let directive: AmountFormatDirective;
-        let ngModelValue: Nullable<string | number>;
+        let ngModelValue: Nullable<number | string>;
         let element: Partial<ElementRef<Partial<HTMLInputElement>>>;
         let control: Partial<NgControl>;
 
@@ -38,7 +38,7 @@ describe('[TEST]: Amount format directive', () => {
 
             control = {
                 value: null,
-                reset(value?: string | number): void {
+                reset(value?: number | string): void {
                     // @ts-ignore
                     control.value = ngModelValue = value;
                 },
@@ -87,14 +87,14 @@ describe('[TEST]: Amount format directive', () => {
                     element.nativeElement!.value = '-100,000';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-100,000');
-                    expect(ngModelValue).toEqual(-100);
+                    expect(ngModelValue).toBe(-100);
                 });
 
                 it('represent the value `-100.100` in the model as `-100.1`', () => {
                     element.nativeElement!.value = '-100.100';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-100,1');
-                    expect(ngModelValue).toEqual(-100.1);
+                    expect(ngModelValue).toBe(-100.1);
                 });
 
                 it('use gaussian rounding for `0,02000`', () => {
@@ -122,7 +122,7 @@ describe('[TEST]: Amount format directive', () => {
                     element.nativeElement!.value = '-10000000000.0009';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-10 000 000 000,001');
-                    expect(ngModelValue).toEqual(-10000000000.001);
+                    expect(ngModelValue).toBe(-10000000000.001);
                 });
             });
 
@@ -145,14 +145,14 @@ describe('[TEST]: Amount format directive', () => {
                     element.nativeElement!.value = '-100,000';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-100');
-                    expect(ngModelValue).toEqual(-100);
+                    expect(ngModelValue).toBe(-100);
                 });
 
                 it('represent the value `-100.100` in the model as `-100`', () => {
                     element.nativeElement!.value = '-100.100';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-100');
-                    expect(ngModelValue).toEqual(-100);
+                    expect(ngModelValue).toBe(-100);
                 });
 
                 it('use gaussian rounding for `0,02000`', () => {
@@ -180,7 +180,7 @@ describe('[TEST]: Amount format directive', () => {
                     element.nativeElement!.value = '-10000000000.0009';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-10 000 000 000');
-                    expect(ngModelValue).toEqual(-10000000000);
+                    expect(ngModelValue).toBe(-10000000000);
                 });
             });
         });
@@ -211,7 +211,7 @@ describe('[TEST]: Amount format directive', () => {
                     element.nativeElement!.value = '-500 000,000';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-500,000,000');
-                    expect(ngModelValue).toEqual(-500000000);
+                    expect(ngModelValue).toBe(-500000000);
                 });
             });
 
@@ -227,19 +227,19 @@ describe('[TEST]: Amount format directive', () => {
                     element.nativeElement!.value = '-100,000';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-100,000');
-                    expect(ngModelValue).toEqual(-100000);
+                    expect(ngModelValue).toBe(-100000);
 
                     element.nativeElement!.value = '-500,000.000';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-500,000.000');
-                    expect(ngModelValue).toEqual(-500000);
+                    expect(ngModelValue).toBe(-500000);
                 });
 
                 it('represent the value `-100.200` in the model as `-100.2`', () => {
                     element.nativeElement!.value = '-100.200';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-100.200');
-                    expect(ngModelValue).toEqual(-100.2);
+                    expect(ngModelValue).toBe(-100.2);
                 });
 
                 it('use gaussian rounding for `0.03000`', () => {
@@ -267,7 +267,7 @@ describe('[TEST]: Amount format directive', () => {
                     element.nativeElement!.value = '-10000000000.0009';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-10,000,000,000.001');
-                    expect(ngModelValue).toEqual(-10000000000.001);
+                    expect(ngModelValue).toBe(-10000000000.001);
                 });
             });
 
@@ -290,14 +290,14 @@ describe('[TEST]: Amount format directive', () => {
                     element.nativeElement!.value = '-200.000';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-200');
-                    expect(ngModelValue).toEqual(-200);
+                    expect(ngModelValue).toBe(-200);
                 });
 
                 it('represent the value `-300.100` in the model as `-100`', () => {
                     element.nativeElement!.value = '-300.100';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-300');
-                    expect(ngModelValue).toEqual(-300);
+                    expect(ngModelValue).toBe(-300);
                 });
 
                 it('use gaussian rounding for `0.04000`', () => {
@@ -325,7 +325,7 @@ describe('[TEST]: Amount format directive', () => {
                     element.nativeElement!.value = '-10000000000.0009';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-10,000,000,000');
-                    expect(ngModelValue).toEqual(-10000000000);
+                    expect(ngModelValue).toBe(-10000000000);
                 });
             });
         });
@@ -356,7 +356,7 @@ describe('[TEST]: Amount format directive', () => {
                     element.nativeElement!.value = '-500 000,000';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-500.000,000');
-                    expect(ngModelValue).toEqual(-500000);
+                    expect(ngModelValue).toBe(-500000);
                 });
             });
 
@@ -372,19 +372,19 @@ describe('[TEST]: Amount format directive', () => {
                     element.nativeElement!.value = '-100.000';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-100.000');
-                    expect(ngModelValue).toEqual(-100000);
+                    expect(ngModelValue).toBe(-100000);
 
                     element.nativeElement!.value = '-500,000.000';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-500,0');
-                    expect(ngModelValue).toEqual(-500);
+                    expect(ngModelValue).toBe(-500);
                 });
 
                 it('represent the value `-100,100` in the model as `-100,1`', () => {
                     element.nativeElement!.value = '-100,100';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-100,100');
-                    expect(ngModelValue).toEqual(-100.1);
+                    expect(ngModelValue).toBe(-100.1);
                 });
 
                 it('use gaussian rounding for `0,02000`', () => {
@@ -412,7 +412,7 @@ describe('[TEST]: Amount format directive', () => {
                     element.nativeElement!.value = '-10000000000,0009';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-10.000.000.000,001');
-                    expect(ngModelValue).toEqual(-10000000000.001);
+                    expect(ngModelValue).toBe(-10000000000.001);
                 });
             });
 
@@ -435,14 +435,14 @@ describe('[TEST]: Amount format directive', () => {
                     element.nativeElement!.value = '-100,000';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-100');
-                    expect(ngModelValue).toEqual(-100);
+                    expect(ngModelValue).toBe(-100);
                 });
 
                 it('represent the value `-100,100` in the model as `-100`', () => {
                     element.nativeElement!.value = '-100,100';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-100');
-                    expect(ngModelValue).toEqual(-100);
+                    expect(ngModelValue).toBe(-100);
                 });
 
                 it('use gaussian rounding for `0,02000`', () => {
@@ -470,7 +470,7 @@ describe('[TEST]: Amount format directive', () => {
                     element.nativeElement!.value = '-10000000000,0009';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-10.000.000.000');
-                    expect(ngModelValue).toEqual(-10000000000);
+                    expect(ngModelValue).toBe(-10000000000);
                 });
             });
         });
@@ -501,7 +501,7 @@ describe('[TEST]: Amount format directive', () => {
                     element.nativeElement!.value = '-500 000,000';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-500,000,000');
-                    expect(ngModelValue).toEqual(-500000000);
+                    expect(ngModelValue).toBe(-500000000);
                 });
             });
 
@@ -517,19 +517,19 @@ describe('[TEST]: Amount format directive', () => {
                     element.nativeElement!.value = '-200,000';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-200,000');
-                    expect(ngModelValue).toEqual(-200000);
+                    expect(ngModelValue).toBe(-200000);
 
                     element.nativeElement!.value = '-500,000.000';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-500,000.000');
-                    expect(ngModelValue).toEqual(-500000);
+                    expect(ngModelValue).toBe(-500000);
                 });
 
                 it('represent the value `-100.100` in the model as `-100.1`', () => {
                     element.nativeElement!.value = '-100.100';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-100.100');
-                    expect(ngModelValue).toEqual(-100.1);
+                    expect(ngModelValue).toBe(-100.1);
                 });
 
                 it('use gaussian rounding for `0.02000`', () => {
@@ -557,7 +557,7 @@ describe('[TEST]: Amount format directive', () => {
                     element.nativeElement!.value = '-10000000000.0009';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-10,000,000,000.001');
-                    expect(ngModelValue).toEqual(-10000000000.001);
+                    expect(ngModelValue).toBe(-10000000000.001);
                 });
             });
 
@@ -580,14 +580,14 @@ describe('[TEST]: Amount format directive', () => {
                     element.nativeElement!.value = '-100.000';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-100');
-                    expect(ngModelValue).toEqual(-100);
+                    expect(ngModelValue).toBe(-100);
                 });
 
                 it('represent the value `-100.100` in the model as `-100`', () => {
                     element.nativeElement!.value = '-100.100';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-100');
-                    expect(ngModelValue).toEqual(-100);
+                    expect(ngModelValue).toBe(-100);
                 });
 
                 it('use gaussian rounding for `0.02000`', () => {
@@ -615,7 +615,7 @@ describe('[TEST]: Amount format directive', () => {
                     element.nativeElement!.value = '-10000000000.0009';
                     directive.format();
                     expect(element.nativeElement!.value).toBe('-10,000,000,000');
-                    expect(ngModelValue).toEqual(-10000000000);
+                    expect(ngModelValue).toBe(-10000000000);
                 });
             });
         });
@@ -660,22 +660,22 @@ describe('[TEST]: Amount format directive', () => {
                 element.nativeElement!.value = '-500 000,050';
                 directive.format();
                 expect(element.nativeElement!.value).toBe('-500 000,050');
-                expect(ngModelValue).toEqual(-500000.05);
+                expect(ngModelValue).toBe(-500000.05);
 
                 // EN
                 directive.amountFormatOptions = {lang: 'en-EU'};
                 expect(element.nativeElement!.value).toBe('-500,000.05');
-                expect(ngModelValue).toEqual(-500000.05);
+                expect(ngModelValue).toBe(-500000.05);
 
                 // DE
                 directive.amountFormatOptions = {lang: 'de-DE'};
                 expect(element.nativeElement!.value).toBe('-500.000,05');
-                expect(ngModelValue).toEqual(-500000.05);
+                expect(ngModelValue).toBe(-500000.05);
 
                 // JP
                 directive.amountFormatOptions = {lang: 'ja-JP'};
                 expect(element.nativeElement!.value).toBe('-500,000.05');
-                expect(ngModelValue).toEqual(-500000.05);
+                expect(ngModelValue).toBe(-500000.05);
             });
 
             it('support recalculate format by integer', () => {
@@ -683,7 +683,7 @@ describe('[TEST]: Amount format directive', () => {
                 element.nativeElement!.value = '-600 000,051';
                 directive.format();
                 expect(element.nativeElement!.value).toBe('-600 000,051');
-                expect(ngModelValue).toEqual(-600000.051);
+                expect(ngModelValue).toBe(-600000.051);
 
                 // EN
                 directive.amountFormatOptions = {
@@ -691,18 +691,18 @@ describe('[TEST]: Amount format directive', () => {
                     formatOptions: {maximumFractionDigits: 0},
                 };
                 expect(element.nativeElement!.value).toBe('-600,000');
-                expect(ngModelValue).toEqual(-600000);
+                expect(ngModelValue).toBe(-600000);
 
                 // RU
                 directive.setLang('ru-RU');
                 directive.format();
                 expect(element.nativeElement!.value).toBe('-600 000');
-                expect(ngModelValue).toEqual(-600000);
+                expect(ngModelValue).toBe(-600000);
 
                 element.nativeElement!.value = '-600 000,051';
                 directive.format();
                 expect(element.nativeElement!.value).toBe('-600 000');
-                expect(ngModelValue).toEqual(-600000);
+                expect(ngModelValue).toBe(-600000);
             });
         });
     });
@@ -722,7 +722,8 @@ describe('[TEST]: Amount format directive', () => {
             `,
         })
         class HelloWorldComponent {
-            @ViewChild(AmountFormatDirective) public directive!: AmountFormatDirective;
+            @ViewChild(AmountFormatDirective)
+            public directive!: AmountFormatDirective;
 
             public form: FormGroup = this.fb.group({
                 amount: this.fb.control('INVALID_VALUE'),
@@ -746,7 +747,7 @@ describe('[TEST]: Amount format directive', () => {
         function setInputViewValue(
             value: string,
             type: 'push' | 'reset' = 'reset',
-            emitBlur: boolean = true,
+            emitBlur = true,
         ): void {
             const input = getInputRef();
 
@@ -879,15 +880,15 @@ describe('[TEST]: Amount format directive', () => {
 
                 setInputViewValue('-1');
                 expect(getInputViewValue()).toBe('-1');
-                expect(getInputModelValue()).toEqual(-1);
+                expect(getInputModelValue()).toBe(-1);
 
                 setInputViewValue('-12345678');
                 expect(getInputViewValue()).toBe('-12 345 678');
-                expect(getInputModelValue()).toEqual(-12345678);
+                expect(getInputModelValue()).toBe(-12345678);
 
                 setInputViewValue('-904241,25');
                 expect(getInputViewValue()).toBe('-904 241,25');
-                expect(getInputModelValue()).toEqual(-904241.25);
+                expect(getInputModelValue()).toBe(-904241.25);
             });
 
             it('should be correct detect cursor position', () => {
@@ -1069,15 +1070,15 @@ describe('[TEST]: Amount format directive', () => {
 
                 setInputViewValue('-1');
                 expect(getInputViewValue()).toBe('-1');
-                expect(getInputModelValue()).toEqual(-1);
+                expect(getInputModelValue()).toBe(-1);
 
                 setInputViewValue('-12345678');
                 expect(getInputViewValue()).toBe('-12,345,678');
-                expect(getInputModelValue()).toEqual(-12345678);
+                expect(getInputModelValue()).toBe(-12345678);
 
                 setInputViewValue('-904241.25');
                 expect(getInputViewValue()).toBe('-904,241.25');
-                expect(getInputModelValue()).toEqual(-904241.25);
+                expect(getInputModelValue()).toBe(-904241.25);
             });
 
             it('should be correct detect cursor position', () => {

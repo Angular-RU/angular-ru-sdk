@@ -1,9 +1,9 @@
 <div *ngIf="source?.length === 0 && !filterable.filterValueExist">
-    <ng-content select="ngx-empty"></ng-content>
+    <ng-content select="ngx-empty" />
 </div>
 
 <div *ngIf="sourceIsNull">
-    <ng-content select="ngx-source-null"></ng-content>
+    <ng-content select="ngx-source-null" />
 </div>
 
 <div
@@ -49,7 +49,7 @@
         #header
         class="table-grid__header-sticky"
     >
-        <ng-content select="ngx-header"></ng-content>
+        <ng-content select="ngx-header" />
     </div>
     <div
         #tableViewport
@@ -135,7 +135,7 @@
                             (openContextMenu)="openContextMenuWithKey($event, schema.key)"
                             (resizing)="resizeColumn($event, column)"
                             (sortByKey)="sortByKey($event)"
-                        ></table-thead>
+                        />
 
                         <table-tbody
                             [client-row-height]="clientRowHeight"
@@ -159,7 +159,7 @@
                             [viewport-info]="viewPortInfo"
                             [virtual-indexes]="viewPortInfo.virtualIndexes!"
                             (changed)="idleDetectChanges()"
-                        ></table-tbody>
+                        />
                     </div>
                 </div>
             </ng-container>
@@ -171,14 +171,14 @@
         #footer
         class="table-grid__footer-sticky"
     >
-        <ng-content select="ngx-footer"></ng-content>
+        <ng-content select="ngx-footer" />
     </div>
 </div>
 
 <ng-template [ngIf]="contextMenuTemplate && (contextMenu.state.opened || false)">
-    <ng-content select="ngx-context-menu"></ng-content>
+    <ng-content select="ngx-context-menu" />
 </ng-template>
 
 <ng-template [ngIf]="filterTemplate">
-    <ng-content select="ngx-filter"></ng-content>
+    <ng-content select="ngx-filter" />
 </ng-template>

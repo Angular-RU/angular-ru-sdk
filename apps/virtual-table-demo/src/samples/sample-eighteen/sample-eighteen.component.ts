@@ -21,8 +21,8 @@ import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
             }
         `,
     ],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SampleEighteenComponent implements OnInit {
     public data: PlainObject[] = [];
@@ -34,8 +34,8 @@ export class SampleEighteenComponent implements OnInit {
     ) {}
 
     public ngOnInit(): void {
-        const rows: number = 50;
-        const cols: number = 5;
+        const rows = 50;
+        const cols = 5;
 
         MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => {
             this.data = data;

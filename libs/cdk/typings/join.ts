@@ -1,5 +1,5 @@
-export type Join<K, P> = K extends string | number
-    ? P extends string | number
+export type Join<K, P> = K extends number | string
+    ? P extends number | string
         ? `${K}${'' extends P ? '' : '.'}${P}`
         : never
     : never;

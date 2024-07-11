@@ -16,7 +16,7 @@ function boundMethod(target: any, key: any, descriptor: any) {
     // In IE11 calling Object.defineProperty has a side effect of evaluating the
     // getter for the property which is being replaced. This causes infinite
     // recursion and an "Out of stack space" error.
-    let definingProperty: boolean = false;
+    let definingProperty = false;
 
     return {
         configurable: true,

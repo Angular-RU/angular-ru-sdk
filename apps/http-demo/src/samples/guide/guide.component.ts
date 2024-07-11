@@ -10,7 +10,7 @@ import {ApiClient} from '../../services/clients/api.client';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GuideComponent implements OnInit, OnDestroy {
-    private destroy$: Subject<void> = new Subject();
+    private readonly destroy$ = new Subject<void>();
 
     constructor(private readonly apiClient: ApiClient) {}
 

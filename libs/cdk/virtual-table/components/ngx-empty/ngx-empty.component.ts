@@ -3,7 +3,7 @@ import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/co
 @Component({
     selector: 'ngx-empty',
     template: '<ng-content></ng-content>',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NgxEmptyComponent {}

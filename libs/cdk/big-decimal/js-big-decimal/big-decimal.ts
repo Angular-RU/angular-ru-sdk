@@ -31,7 +31,7 @@ export class BigDecimal {
     public static ceil(inputNum: number | string): any {
         const num: string = BigDecimal.validate(inputNum);
 
-        if (num.indexOf('.') === -1) {
+        if (!num.includes('.')) {
             return num;
         }
 
@@ -89,7 +89,7 @@ export class BigDecimal {
 
     public static round(
         inputA: number | string,
-        precision: number = 0,
+        precision = 0,
         mode: RoundingModes = RoundingModes.HALF_EVEN,
     ): any {
         const a: string = BigDecimal.validate(inputA);
@@ -104,7 +104,7 @@ export class BigDecimal {
     public static floor(inputA: number | string): any {
         const a: string = BigDecimal.validate(inputA);
 
-        if (a.indexOf('.') === -1) {
+        if (!a.includes('.')) {
             return a;
         }
 
@@ -127,7 +127,7 @@ export class BigDecimal {
         const neg: boolean = num.charAt(0) === '-';
 
         if (neg) {
-            num = num.substring(1);
+            num = num.slice(1);
         }
 
         let numLength: number = num.indexOf('.');
@@ -135,7 +135,7 @@ export class BigDecimal {
         numLength = numLength > 0 ? numLength : num.length;
         const temp: string = getTemp(prettyParams, numLength, num);
 
-        return (neg ? '-' : '') + temp + num.substring(numLength);
+        return (neg ? '-' : '') + temp + num.slice(Math.max(0, numLength));
     }
 
     private static validate(inputNum?: number | string): string {
@@ -147,7 +147,7 @@ export class BigDecimal {
         if (isPoint) {
             num = `0${num}`;
         } else if (isDashPoint) {
-            num = `-0${num.substr(1)}`;
+            num = `-0${num.slice(1)}`;
         }
 
         if (/e/i.test(num)) {
@@ -166,7 +166,7 @@ export class BigDecimal {
     }
 
     public round(
-        precision: number = 0,
+        precision = 0,
         mode: RoundingModes = RoundingModes.HALF_EVEN,
     ): BigDecimal {
         if (isNaN(precision)) {
@@ -177,7 +177,7 @@ export class BigDecimal {
     }
 
     public floor(): BigDecimal {
-        if (this.value.indexOf('.') === -1) {
+        if (!this.value.includes('.')) {
             return new BigDecimal(this.value);
         }
 
@@ -185,7 +185,7 @@ export class BigDecimal {
     }
 
     public ceil(): BigDecimal {
-        if (this.value.indexOf('.') === -1) {
+        if (!this.value.includes('.')) {
             return new BigDecimal(this.value);
         }
 
@@ -237,7 +237,7 @@ function validatePrettyParams(params: PrettyParams): PrettyParams {
 }
 
 function getTemp(params: PrettyParams, length_: number, num: any): string {
-    let temp: string = '';
+    let temp = '';
 
     for (let i: number = length_; i > 0; ) {
         if (i < (params?.digits as any)) {
@@ -265,7 +265,7 @@ function getExponentiation(inputNum: string): string {
 
     let mantisa: any = trim(numParts[0] ?? '');
     let exponent: any = numParts[1] ?? '';
-    let offset: number = 0;
+    let offset = 0;
 
     if (mantisa.indexOf('.') >= 0) {
         exponent = parseInt(exponent) + mantisa.indexOf('.');
@@ -277,14 +277,14 @@ function getExponentiation(inputNum: string): string {
 }
 
 function prepareExponentiation(mantisa: any, exponent: any, offset: number): string {
-    let num: string = '';
+    let num = '';
 
     if (mantisa.length < exponent) {
         num = mantisa + new Array(exponent - mantisa.length + 1).join('0');
     } else if (mantisa.length >= exponent && exponent > 0) {
         num =
-            trim(mantisa.substring(0, exponent)) +
-            (mantisa.length > exponent ? `.${mantisa.substring(exponent)}` : '');
+            trim(mantisa.slice(0, Math.max(0, exponent))) +
+            (mantisa.length > exponent ? `.${mantisa.slice(Math.max(0, exponent))}` : '');
     } else {
         num = `0.${new Array(-exponent + offset).join('0')}${mantisa}`;
     }
@@ -292,8 +292,8 @@ function prepareExponentiation(mantisa: any, exponent: any, offset: number): str
     return num;
 }
 
-function prepareNum(inputNum?: string | number): any {
-    let num: string | number | undefined = inputNum;
+function prepareNum(inputNum?: number | string): any {
+    let num: number | string | undefined = inputNum;
 
     if (checkValueIsFilled(inputNum)) {
         num = inputNum.toString();
@@ -302,8 +302,8 @@ function prepareNum(inputNum?: string | number): any {
             throw new Error(`Parameter is not a num: ${num}`);
         }
 
-        if (num[0] === '+') {
-            num = num.substring(1);
+        if (num.startsWith('+')) {
+            num = num.slice(1);
         }
     } else {
         num = '0';

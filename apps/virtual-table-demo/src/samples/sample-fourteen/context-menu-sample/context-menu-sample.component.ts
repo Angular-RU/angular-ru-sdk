@@ -4,13 +4,12 @@ import {
     Input,
     ViewEncapsulation,
 } from '@angular/core';
+import {Nullable} from '@angular-ru/cdk/typings';
 import {
     FilterStateEvent,
     TableBuilderComponent,
     TableFilterType,
 } from '@angular-ru/cdk/virtual-table';
-
-import {Nullable} from '@angular-ru/cdk/typings';
 
 @Component({
     selector: 'context-menu-sample',
@@ -22,15 +21,18 @@ import {Nullable} from '@angular-ru/cdk/typings';
             }
         `,
     ],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContextMenuSampleComponent<T> {
-    @Input() public table!: TableBuilderComponent<T>;
-    @Input() public state!: Partial<FilterStateEvent>;
+    @Input()
+    public table!: TableBuilderComponent<T>;
+
+    @Input()
+    public state!: Partial<FilterStateEvent>;
 
     public TableFilterType: typeof TableFilterType = TableFilterType;
-    public dateRange: Nullable<Date>[] = [null, null];
+    public dateRange: Array<Nullable<Date>> = [null, null];
 
     public changeDateRange(): void {
         if (this.dateRange[0] || this.dateRange[1]) {

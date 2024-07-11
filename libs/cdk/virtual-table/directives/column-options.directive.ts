@@ -13,15 +13,36 @@ export class ColumnOptionsDirective {
     /**
      * preserve track global value for overflowTooltip if selected
      */
-    @Input('overflow-tooltip') public overflowTooltip: Nullable<string | boolean> = null;
-    @Input('filter-type') public filterType: Nullable<string | TableFilterType> = null;
-    @Input() public nowrap: Nullable<string | boolean> = null;
-    @Input() public width: Nullable<string | number> = null;
-    @Input('is-resizable') public isResizable: Nullable<string | boolean> = null;
-    @Input('is-sortable') public isSortable: Nullable<string | boolean> = null;
-    @Input('is-filterable') public isFilterable: Nullable<string | boolean> = null;
-    @Input('is-draggable') public isDraggable: Nullable<string | boolean> = null;
-    @Input('css-class') public cssClass: string[] = [];
-    @Input('css-style') public cssStyle: string[] = [];
-    @Input() public stub: Nullable<string> = null;
+    @Input('overflow-tooltip')
+    public overflowTooltip: Nullable<boolean | string> = null;
+
+    @Input('filter-type')
+    public filterType: Nullable<TableFilterType | string> = null;
+
+    @Input()
+    public nowrap: Nullable<boolean | string> = null;
+
+    @Input()
+    public width: Nullable<number | string> = null;
+
+    @Input('is-resizable')
+    public isResizable: Nullable<boolean | string> = null;
+
+    @Input('is-sortable')
+    public isSortable: Nullable<boolean | string> = null;
+
+    @Input('is-filterable')
+    public isFilterable: Nullable<boolean | string> = null;
+
+    @Input('is-draggable')
+    public isDraggable: Nullable<boolean | string> = null;
+
+    @Input('css-class')
+    public cssClass: string[] = [];
+
+    @Input('css-style')
+    public cssStyle: string[] = [];
+
+    @Input()
+    public stub: Nullable<string> = null;
 }

@@ -3,8 +3,8 @@ import {NgModule} from '@angular/core';
 import {MutableTypePipe} from './mutable-type.pipe';
 
 @NgModule({
-    exports: [MutableTypePipe],
-    providers: [MutableTypePipe],
     declarations: [MutableTypePipe],
+    providers: [MutableTypePipe],
+    exports: [MutableTypePipe],
 })
 export class MutableTypePipeModule {}

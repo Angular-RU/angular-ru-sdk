@@ -22,8 +22,11 @@ export class LoggerFactory {
     // eslint-disable-next-line max-params
     constructor(
         @Inject(LOGGER_OPTIONS) private readonly options: LoggerOptionsImpl,
+        @Inject(ConsoleService)
         private readonly console: ConsoleService,
+        @Inject(CssFactory)
         private readonly cssFactory: CssFactory,
+        @Inject(GroupFactory)
         private readonly groupFactory: GroupFactory,
     ) {}
 

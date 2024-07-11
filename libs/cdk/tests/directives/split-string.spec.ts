@@ -42,9 +42,13 @@ describe('[TEST]: Trim Input', function () {
     class TestComponent {
         @ViewChild('textAreaElement')
         public textAreaElement!: ElementRef<HTMLTextAreaElement>;
-        @ViewChild('inputElement') public inputElement!: ElementRef<HTMLInputElement>;
+
+        @ViewChild('inputElement')
+        public inputElement!: ElementRef<HTMLInputElement>;
+
         @ViewChild('tdfInputElement')
         public tdfInputElement!: ElementRef<HTMLInputElement>;
+
         public splitStringOptions?: Partial<SplitStringOptions>;
         public form = this.fb.group({textarea: null, input: null});
         public list?: string[];

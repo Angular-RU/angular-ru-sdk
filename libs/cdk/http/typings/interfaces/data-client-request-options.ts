@@ -1,9 +1,7 @@
 import {HttpParams} from '@angular/common/http';
 import {Nullable, PlainObject} from '@angular-ru/cdk/typings';
 
-export interface DataHeadersParams {
-    [key: string]: string | string[];
-}
+export type DataHeadersParams = Record<string, string[] | string>;
 
 export type DataResponseType = 'arraybuffer' | 'blob' | 'json' | 'text';
 
@@ -37,7 +35,7 @@ export interface DataClientRequestOptions<T extends PlainObject = any> {
      * @description
      * query params for request
      */
-    queryParams: Nullable<PlainObject> | HttpParams;
+    queryParams: HttpParams | Nullable<PlainObject>;
 
     /**
      * @description

@@ -1,10 +1,9 @@
 /* eslint-disable @angular-eslint/no-input-rename */
+import {ChangeDetectorRef, Injector} from '@angular/core';
 import {
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     EventEmitter,
-    Injector,
     Input,
     NgZone,
     Output,
@@ -30,40 +29,80 @@ import {ContextMenuService} from '../../services/context-menu/context-menu.servi
 import {SelectionService} from '../../services/selection/selection.service';
 import {NgxContextMenuComponent} from '../ngx-context-menu/ngx-context-menu.component';
 
-const SELECTION_DELAY: number = 100;
+const SELECTION_DELAY = 100;
 
 @Component({
     selector: 'table-tbody',
     templateUrl: './table-tbody.component.html',
     styleUrls: ['./table-tbody.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableTbodyComponent<T> {
     private readonly ngZone: NgZone;
-    @Input() public source: Nullable<T[]> = null;
-    @Input() public striped: boolean = false;
-    @Input() public isRendered: boolean = false;
-    @Input('offset-top') public offsetTop?: Nullable<number> = null;
-    @Input('primary-key') public primaryKey?: Nullable<string> = null;
-    @Input() public recalculated: Nullable<RecalculatedStatus> = null;
-    @Input('head-height') public headLineHeight: Nullable<number> = null;
-    @Input('viewport-info') public viewportInfo: Nullable<ViewPortInfo> = null;
-    @Input('virtual-indexes') public virtualIndexes: VirtualIndex[] = [];
-    @Input('enable-selection') public enableSelection: boolean = false;
-    @Input('enable-filtering') public enableFiltering: boolean = false;
-    @Input('disable-deep-path') public disableDeepPath: boolean = false;
-    @Input('table-viewport') public tableViewport: Nullable<HTMLElement> = null;
-    @Input('column-virtual-height') public columnVirtualHeight: Nullable<number> = null;
-    @Input('selection-entries') public selectionEntries: PlainObjectOf<boolean> = {};
-    @Input('context-menu') public contextMenuTemplate: Nullable<
-        NgxContextMenuComponent<T>
-    > = null;
-    @Input('produce-disable-fn') public produceDisableFn: ProduceDisableFn<T> = null;
-    @Input('client-row-height') public clientRowHeight: Nullable<number> = null;
-    @Input('row-css-classes') public rowCssClasses: PlainObjectOf<string[]> = {};
-    @Input('column-schema') public columnSchema: Nullable<ColumnsSchema> = null;
-    @Output() public readonly changed: EventEmitter<void> = new EventEmitter(true);
+    @Input()
+    public source: Nullable<T[]> = null;
+
+    @Input()
+    public striped = false;
+
+    @Input()
+    public isRendered = false;
+
+    @Input('offset-top')
+    public offsetTop?: Nullable<number> = null;
+
+    @Input('primary-key')
+    public primaryKey?: Nullable<string> = null;
+
+    @Input()
+    public recalculated: Nullable<RecalculatedStatus> = null;
+
+    @Input('head-height')
+    public headLineHeight: Nullable<number> = null;
+
+    @Input('viewport-info')
+    public viewportInfo: Nullable<ViewPortInfo> = null;
+
+    @Input('virtual-indexes')
+    public virtualIndexes: VirtualIndex[] = [];
+
+    @Input('enable-selection')
+    public enableSelection = false;
+
+    @Input('enable-filtering')
+    public enableFiltering = false;
+
+    @Input('disable-deep-path')
+    public disableDeepPath = false;
+
+    @Input('table-viewport')
+    public tableViewport: Nullable<HTMLElement> = null;
+
+    @Input('column-virtual-height')
+    public columnVirtualHeight: Nullable<number> = null;
+
+    @Input('selection-entries')
+    public selectionEntries: PlainObjectOf<boolean> = {};
+
+    @Input('context-menu')
+    public contextMenuTemplate: Nullable<NgxContextMenuComponent<T>> = null;
+
+    @Input('produce-disable-fn')
+    public produceDisableFn: ProduceDisableFn<T> = null;
+
+    @Input('client-row-height')
+    public clientRowHeight: Nullable<number> = null;
+
+    @Input('row-css-classes')
+    public rowCssClasses: PlainObjectOf<string[]> = {};
+
+    @Input('column-schema')
+    public columnSchema: Nullable<ColumnsSchema> = null;
+
+    @Output()
+    public readonly changed = new EventEmitter<void>(true);
+
     public selection: SelectionService<T>;
     public contextMenu: ContextMenuService<T>;
 
@@ -96,7 +135,6 @@ export class TableTbodyComponent<T> {
         }
     }
 
-    // eslint-disable-next-line max-params,max-params-no-constructor/max-params-no-constructor
     public handleDblClick<K>(
         row: T,
         key: string,
@@ -107,7 +145,6 @@ export class TableTbodyComponent<T> {
         this.handleEventEmitter(row, key, event, emitter);
     }
 
-    // eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
     public handleOnClick<K>(
         row: T,
         key: string,
@@ -142,7 +179,6 @@ export class TableTbodyComponent<T> {
         };
     }
 
-    // eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
     private handleEventEmitter<K>(
         row: T,
         key: string,

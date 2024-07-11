@@ -1,10 +1,11 @@
 import {ChangeDetectionStrategy, Component, DebugElement, Input} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatInput} from '@angular/material/input';
 import {BrowserModule, By} from '@angular/platform-browser';
 import {TrimInputModule} from '@angular-ru/cdk/directives';
 import {Nullable} from '@angular-ru/cdk/typings';
-import {NgxMaskModule} from 'ngx-mask';
+import {provideEnvironmentNgxMask} from 'ngx-mask';
 
 describe('[TEST]: Disabling trim Input', function () {
     let fixture: Nullable<ComponentFixture<TestComponent>> = null;
@@ -12,7 +13,9 @@ describe('[TEST]: Disabling trim Input', function () {
     let debugElement: Nullable<DebugElement> = null;
 
     @Component({
+        standalone: true,
         selector: 'test',
+        imports: [ReactiveFormsModule, MatInput, TrimInputModule],
         template: `
             <div [formGroup]="form">
                 <input
@@ -27,7 +30,9 @@ describe('[TEST]: Disabling trim Input', function () {
         changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class TestComponent {
-        @Input() public disable = true;
+        @Input()
+        public disable = true;
+
         public form = this.fb.group({value: 'nothing special'});
 
         constructor(private readonly fb: FormBuilder) {}
@@ -40,9 +45,9 @@ describe('[TEST]: Disabling trim Input', function () {
                 ReactiveFormsModule,
                 FormsModule,
                 TrimInputModule,
-                NgxMaskModule.forRoot(),
+                TestComponent,
             ],
-            declarations: [TestComponent],
+            providers: [provideEnvironmentNgxMask()],
         }).compileComponents();
 
         fixture = TestBed.createComponent(TestComponent);

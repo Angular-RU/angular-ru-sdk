@@ -2,6 +2,8 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    Inject,
+    INJECTOR,
     Injector,
     Input,
     NgZone,
@@ -28,23 +30,32 @@ const {TIME_RELOAD}: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
 @Component({
     selector: 'ngx-filter-viewer',
     template: '<span [class.filter-founded]="founded" [innerHTML]="html"></span>',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy {
-    private destroy$: Subject<void> = new Subject();
+    private readonly destroy$ = new Subject<void>();
     private taskId: Nullable<number> = null;
     private readonly ngZone: NgZone;
     private readonly filterable: FilterableService<T>;
-    @Input() public text?: Nullable<PlainObject | string> = null;
-    @Input() public key?: Nullable<string> = null;
-    @Input() public index?: Nullable<number> = 0;
-    public html?: Nullable<string | SafeHtml> = null;
-    public founded: boolean = false;
+    @Input()
+    public text?: Nullable<PlainObject | string> = null;
+
+    @Input()
+    public key?: Nullable<string> = null;
+
+    @Input()
+    public index?: Nullable<number> = 0;
+
+    public html?: Nullable<SafeHtml | string> = null;
+    public founded = false;
 
     constructor(
+        @Inject(ChangeDetectorRef)
         private readonly cd: ChangeDetectorRef,
+        @Inject(DomSanitizer)
         private readonly sanitizer: DomSanitizer,
+        @Inject(INJECTOR)
         injector: Injector,
     ) {
         this.cd.reattach();
@@ -111,7 +122,7 @@ export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy
         const value: Nullable<string> = String(
             (this.filterable.definition as any)[this.key!] ?? event.value,
         );
-        const type: Nullable<string | TableFilterType> = isNotNil(
+        const type: Nullable<TableFilterType | string> = isNotNil(
             (this.filterable.definition as any)[this.key!],
         )
             ? (this.filterable.filterTypeDefinition as any)[this.key!]

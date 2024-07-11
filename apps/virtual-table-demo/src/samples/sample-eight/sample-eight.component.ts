@@ -1,4 +1,3 @@
-/* eslint-disable spellcheck/spell-checker */
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
@@ -80,7 +79,7 @@ export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
     private idInterval: Nullable<number> = null;
     private timeout: Nullable<number> = null;
     public data: PlainObject[] = [];
-    public regenerate: boolean = false;
+    public regenerate = false;
 
     constructor(
         private readonly cd: ChangeDetectorRef,
@@ -89,7 +88,7 @@ export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
 
     public ngOnInit(): void {
         this.updateTable();
-        const DEFAULT_TIMEOUT: number = 14500;
+        const DEFAULT_TIMEOUT = 14500;
 
         this.ngZone.runOutsideAngular((): void => {
             // eslint-disable-next-line no-restricted-properties
@@ -114,7 +113,7 @@ export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     public asyncRow<T>(row: PlainObject, key: string, value: T): void {
-        const time: number = 500;
+        const time = 500;
 
         window.clearTimeout(this.timeout ?? 0);
         // eslint-disable-next-line no-restricted-properties
@@ -130,7 +129,7 @@ export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
 
     // eslint-disable-next-line max-lines-per-function
     private updateTable(): void {
-        const length: number = 1000;
+        const length = 1000;
 
         this.data = new Array(length).fill(0).map(
             // eslint-disable-next-line max-lines-per-function

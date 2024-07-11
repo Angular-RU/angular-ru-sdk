@@ -13,7 +13,7 @@ export enum ImplicitContext {
 export type TableClickEventEmitter<T, K> = Nullable<EventEmitter<TableEvent<T, K>>>;
 
 export interface TableCellOptions<T = any> {
-    class: Nullable<string | string[] | PlainObject>;
+    class: Nullable<PlainObject | string[] | string>;
     textBold: boolean;
     nowrap: boolean;
     useDeepPath: boolean;
@@ -55,7 +55,7 @@ export interface ColumnsSchema<T = any> {
 }
 
 export interface TableUpdateSchema {
-    columns: DeepPartial<ColumnsSchema>[];
+    columns: Array<DeepPartial<ColumnsSchema>>;
     generalTableSettings?: GeneralTableSettings;
     name: Nullable<string>;
     version: number;
@@ -110,11 +110,11 @@ export interface CalculateRange {
     force: boolean;
 }
 
-export type ProduceDisableFn<T> = Nullable<(item: T | Nullable<PlainObject>) => boolean>;
+export type ProduceDisableFn<T> = Nullable<(item: Nullable<PlainObject> | T) => boolean>;
 
 export interface OrderedField {
     field: string;
     order: 'ASC' | 'DESC';
 }
 
-export type ExcludePattern<T> = keyof T | RegExp;
+export type ExcludePattern<T> = RegExp | keyof T;

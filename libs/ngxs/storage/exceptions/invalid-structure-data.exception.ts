@@ -1,4 +1,4 @@
-const SPACE: number = 4;
+const SPACE = 4;
 
 export class InvalidStructureDataException extends Error {
     constructor(message: string) {

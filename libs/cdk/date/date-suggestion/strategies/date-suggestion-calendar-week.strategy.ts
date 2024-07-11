@@ -8,7 +8,7 @@ import {startOfDay} from '../../start-of-day';
 import {DateSuggestionStrategy} from '../domain/interfaces/date-suggestion-strategy';
 import {DayOfWeek, FIRST_DAY_OF_WEEK} from '../tokens/first-day-of-week';
 
-const WEEK_LENGTH: number = 7;
+const WEEK_LENGTH = 7;
 
 @Injectable()
 export class DateSuggestionCalendarWeekStrategy implements DateSuggestionStrategy {

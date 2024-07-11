@@ -19,15 +19,15 @@ export class JsonFactory {
         resultJson = resultJson.replace(this.lexerTypeFinder, (match: string): string => {
             let style: string = this._number;
 
-            if (/^"/.test(match)) {
-                if (/:$/.test(match)) {
+            if (match.startsWith('"')) {
+                if (match.endsWith(':')) {
                     style = this._key;
                 } else {
                     style = this._string;
                 }
             } else if (/true|false/.test(match)) {
                 style = this._boolean;
-            } else if (/null/.test(match)) {
+            } else if (match.includes('null')) {
                 style = this._null;
             }
 

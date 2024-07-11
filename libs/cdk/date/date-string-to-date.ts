@@ -1,19 +1,19 @@
-const MAX_YEAR: number = 3000;
+const MAX_YEAR = 3000;
 
-export function dateStringToDate(date: string | Date): Date {
+export function dateStringToDate(date: Date | string): Date {
     if (date instanceof Date) {
         return date;
     }
 
-    const firstItem: number = 1;
+    const firstItem = 1;
     const parsedDate: string = (date || '')
         .replace(/^(\d)/, '0$1')
         .replace(/\.(\d)\./, '.0$1.')
         .replace('..', '.01.')
         .replace(/^\./, '01.')
-        .replace(/(\d{3})\./g, (str: string): string => str.slice(firstItem))
+        .replaceAll(/(\d{3})\./g, (str: string): string => str.slice(firstItem))
         .replace(/(\d{2}).(\d{2}).(\d{4})/, '$2/$1/$3')
-        .replace(/00\//g, '01/');
+        .replaceAll('00/', '01/');
 
     const dateValue: Date = new Date(parsedDate);
 

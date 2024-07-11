@@ -16,17 +16,15 @@ export function modulus(
     validate(dividend);
     validate(divisor);
 
-    let sign: string = '';
+    let sign = '';
 
-    if (dividend[0] === '-') {
+    if (dividend.startsWith('-')) {
         sign = '-';
-        // eslint-disable-next-line deprecation/deprecation
-        dividend = dividend.substr(1);
+        dividend = dividend.slice(1);
     }
 
-    if (divisor[0] === '-') {
-        // eslint-disable-next-line deprecation/deprecation
-        divisor = divisor.substr(1);
+    if (divisor.startsWith('-')) {
+        divisor = divisor.slice(1);
     }
 
     const result: string = subtract(
@@ -38,7 +36,7 @@ export function modulus(
 }
 
 function validate(operand: string): void {
-    if (operand.indexOf('.') !== -1) {
+    if (operand.includes('.')) {
         throw new Error('Modulus of non-integers not supported');
     }
 }

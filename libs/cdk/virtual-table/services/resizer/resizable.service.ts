@@ -22,7 +22,6 @@ export class ResizableService {
         }
     }
 
-    // eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
     public resize(
         mouseEvent: MouseEvent,
         column: HTMLElement,

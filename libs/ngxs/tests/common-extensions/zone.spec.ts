@@ -12,8 +12,8 @@ describe('[TEST]: Zone', () => {
     })
     @Injectable()
     class CounterState extends NgxsDataRepository<number> {
-        public inside: number = 0;
-        public outside: number = 0;
+        public inside = 0;
+        public outside = 0;
 
         @DataAction()
         public increment(): number {

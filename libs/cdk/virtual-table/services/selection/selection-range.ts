@@ -18,7 +18,7 @@ export class SelectionRange {
     }
 
     public sortKeys(): SelectionRange {
-        const [start, end]: Nullable<number>[] = [this.start, this.end].sort(
+        const [start, end]: Array<Nullable<number>> = [this.start, this.end].sort(
             (a: Nullable<number>, b: Nullable<number>): any => (a ?? 0) - (b ?? 0),
         );
 

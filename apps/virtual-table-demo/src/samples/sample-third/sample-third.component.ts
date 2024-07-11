@@ -26,8 +26,8 @@ export class SampleThirdComponent implements OnInit, AfterViewInit {
     ) {}
 
     public ngOnInit(): void {
-        const rowNumber: number = 1000;
-        const colsNumber: number = 59;
+        const rowNumber = 1000;
+        const colsNumber = 59;
 
         MocksGenerator.generator(rowNumber, colsNumber).then(
             (data: PlainObject[]): void => {

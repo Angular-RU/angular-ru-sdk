@@ -29,7 +29,7 @@ import {MetaDataRequest} from '../../../http/typings/interfaces/meta-data-reques
 import {HttpMockInterceptor} from '../helpers/http-mock-interceptor';
 
 describe('[TEST]: HTTP Intercept Client', () => {
-    const MOCK_API: string = 'http://localhost';
+    const MOCK_API = 'http://localhost';
     let client: Nullable<ApiEventsClient> = null;
     let httpMock: HttpTestingController;
     let request: TestRequest;

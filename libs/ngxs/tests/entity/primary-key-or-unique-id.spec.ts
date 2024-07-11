@@ -29,13 +29,13 @@ describe('[TEST]: Entity - primary key or unique id', () => {
                 this.addEntityOne({lessonId: 2, title: 'B'});
             }
 
-            public set(value: EntityCollections<Lesson, string | number>): void {
+            public set(value: EntityCollections<Lesson, number | string>): void {
                 this.setEntitiesState(value);
             }
         }
 
         it(
-            `the entity passed to the 'selectId' implementation returned undefined`,
+            "the entity passed to the 'selectId' implementation returned undefined",
             ngxsTestingPlatform([LessonEntitiesState], (_store, lesson) => {
                 expect(lesson.getState()).toEqual({ids: [], entities: {}});
 
@@ -45,8 +45,8 @@ describe('[TEST]: Entity - primary key or unique id', () => {
 
                 expect(spy).toHaveBeenCalledTimes(1);
                 expect(console.warn).toHaveBeenLastCalledWith(
-                    `The entity passed to the 'selectId' implementation returned undefined.`,
-                    `You should probably provide your own 'selectId' implementation.`,
+                    "The entity passed to the 'selectId' implementation returned undefined.",
+                    "You should probably provide your own 'selectId' implementation.",
                     'The entity that was passed:',
                     {lessonId: 1, title: 'A'},
                     'The current `selectId` implementation: (entity: V): K => entity.id',
@@ -81,7 +81,7 @@ describe('[TEST]: Entity - primary key or unique id', () => {
         })
         @Injectable()
         class LessonEntitiesState extends NgxsDataEntityCollectionsRepository<Lesson> {
-            public override primaryKey: string = 'lessonId';
+            public override primaryKey = 'lessonId';
         }
 
         it(
@@ -233,7 +233,7 @@ describe('[TEST]: Entity - primary key or unique id', () => {
             'correct create entities with composite keys',
             ngxsTestingPlatform([StudentEntitiesState], (_store, studentEntities) => {
                 const idEvents: string[][] = [];
-                const entityEvents: EntityDictionary<string, StudentEntity>[] = [];
+                const entityEvents: Array<EntityDictionary<string, StudentEntity>> = [];
 
                 studentEntities.ids$.subscribe((ids) => {
                     idEvents.push(ids);

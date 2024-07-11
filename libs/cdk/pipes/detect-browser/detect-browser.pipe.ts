@@ -37,10 +37,9 @@ export class DetectBrowserPipe implements PipeTransform {
         ua: string,
     ): string {
         const matcher: Nullable<RegExpMatchArray> = ua.match(/version\/(\d+)/i);
-        const otherMatchers: Nullable<string>[] = isNotNil(takeThirdItem(matchers))
+        const otherMatchers: Array<Nullable<string>> = isNotNil(takeThirdItem(matchers))
             ? [takeSecondItem(matchers), takeThirdItem(matchers)]
             : // TODO: need refactor deprecated method
-              // eslint-disable-next-line deprecation/deprecation
               [navigator.appName, navigator.appVersion, '-?'];
 
         if (matcher !== null) {

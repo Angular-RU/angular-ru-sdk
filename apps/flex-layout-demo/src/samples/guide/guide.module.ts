@@ -5,10 +5,10 @@ import {RouterModule} from '@angular/router';
 import {GuideComponent} from './guide.component';
 
 @NgModule({
-    declarations: [GuideComponent],
     imports: [
         CommonModule,
         RouterModule.forChild([{path: '', component: GuideComponent}]),
     ],
+    declarations: [GuideComponent],
 })
 export class GuideModule {}

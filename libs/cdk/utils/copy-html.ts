@@ -26,7 +26,7 @@ export function copyHtml(plainHtml: string): void {
 
     selection.removeAllRanges();
     selection.addRange(range);
-    // eslint-disable-next-line deprecation/deprecation
+
     document.execCommand('copy');
     document.body.removeChild(element);
 

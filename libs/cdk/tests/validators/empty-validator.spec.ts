@@ -6,14 +6,13 @@ import {
     FormGroup,
     ReactiveFormsModule,
 } from '@angular/forms';
-// eslint-disable-next-line deprecation/deprecation
 import {emptyValidator} from '@angular-ru/cdk/validators';
 
 describe('empty validator', () => {
     it('without empty validator', () => {
         @Component({
             selector: 'app',
-            template: ``,
+            template: '',
         })
         class AppComponent {
             public form: FormGroup;
@@ -39,7 +38,7 @@ describe('empty validator', () => {
     it('with empty validator', () => {
         @Component({
             selector: 'app',
-            template: ``,
+            template: '',
         })
         class AppComponent {
             public form: FormGroup;
@@ -50,7 +49,6 @@ describe('empty validator', () => {
                         name: this.fb.control(''),
                         lastName: this.fb.control(''),
                     },
-                    // eslint-disable-next-line deprecation/deprecation
                     {validators: [emptyValidator]} as AbstractControlOptions,
                 );
             }

@@ -1,17 +1,15 @@
 /* eslint-disable no-redeclare */
+import {AbstractType, InjectionToken, Type} from '@angular/core';
 import {
-    AbstractType,
     InjectFlags,
-    InjectionToken,
     ɵɵdirectiveInject as ivyDirectiveInject,
     ɵɵinject as ivyInject,
-    Type,
 } from '@angular/core';
 import {Fn, Nullable} from '@angular-ru/cdk/typings';
 
 function wrapperForInject<T>(
     wrap: Fn,
-    token: Type<T> | AbstractType<T> | InjectionToken<T>,
+    token: AbstractType<T> | InjectionToken<T> | Type<T>,
     flags?: InjectFlags,
 ): Nullable<T> {
     if (InjectFlags.Optional) {
@@ -29,15 +27,15 @@ function wrapperForInject<T>(
  * @description `directiveInject`
  */
 export function directiveInject<T>(
-    token: Type<T> | AbstractType<T> | InjectionToken<T>,
+    token: AbstractType<T> | InjectionToken<T> | Type<T>,
 ): T;
 export function directiveInject<T>(
-    token: Type<T> | AbstractType<T> | InjectionToken<T>,
+    token: AbstractType<T> | InjectionToken<T> | Type<T>,
     flags: InjectFlags,
 ): Nullable<T>;
 
 export function directiveInject<T>(
-    token: Type<T> | AbstractType<T> | InjectionToken<T>,
+    token: AbstractType<T> | InjectionToken<T> | Type<T>,
     flags?: InjectFlags,
 ): Nullable<T> {
     return wrapperForInject(ivyDirectiveInject, token, flags);
@@ -46,14 +44,14 @@ export function directiveInject<T>(
 /**
  * @description `inject`
  */
-export function inject<T>(token: Type<T> | AbstractType<T> | InjectionToken<T>): T;
+export function inject<T>(token: AbstractType<T> | InjectionToken<T> | Type<T>): T;
 export function inject<T>(
-    token: Type<T> | AbstractType<T> | InjectionToken<T>,
+    token: AbstractType<T> | InjectionToken<T> | Type<T>,
     flags: InjectFlags,
 ): Nullable<T>;
 
 export function inject<T>(
-    token: Type<T> | AbstractType<T> | InjectionToken<T>,
+    token: AbstractType<T> | InjectionToken<T> | Type<T>,
     flags?: InjectFlags,
 ): Nullable<T> {
     return wrapperForInject(ivyInject, token, flags);

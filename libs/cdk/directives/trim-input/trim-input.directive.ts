@@ -2,6 +2,7 @@ import {
     Directive,
     ElementRef,
     HostListener,
+    Inject,
     Input,
     OnInit,
     Optional,
@@ -16,11 +17,12 @@ export class TrimInputDirective implements OnInit {
     private declare previousName: string;
     private previousValue: any;
 
-    @Input() public trimDisabled: boolean = false;
+    @Input()
+    public trimDisabled = false;
 
     constructor(
-        public readonly elementRef: ElementRef,
-        @Optional() private readonly ngControl?: NgControl,
+        @Inject(ElementRef) public readonly elementRef: ElementRef,
+        @Inject(NgControl) @Optional() private readonly ngControl?: NgControl,
     ) {}
 
     @Input()

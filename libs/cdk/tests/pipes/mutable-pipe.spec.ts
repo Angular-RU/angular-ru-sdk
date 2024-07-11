@@ -33,7 +33,7 @@ describe('mutable', () => {
         });
 
         it('should be correct extract', () => {
-            const b: Nullable<string | PlainObject> = pipePath.transform(
+            const b: Nullable<PlainObject | string> = pipePath.transform(
                 {
                     a: {
                         b: {
@@ -48,7 +48,7 @@ describe('mutable', () => {
                 c: 1,
             });
 
-            const c: Nullable<string | number> = pipePath.transform(
+            const c: Nullable<number | string> = pipePath.transform(
                 {
                     a: {
                         b: {
@@ -63,7 +63,7 @@ describe('mutable', () => {
         });
 
         it('should be correct return object when set empty path', () => {
-            const result: Nullable<string | PlainObject> = pipePath.transform(
+            const result: Nullable<PlainObject | string> = pipePath.transform(
                 {a: {b: 1}},
                 '',
             );

@@ -13,17 +13,17 @@ describe('[TEST]: Check work in groups', () => {
         let logger: LoggerService;
         const fakeConsole: ConsoleFake = new ConsoleFake();
 
-        const traceIsWork: string = 'trace is worked';
-        const debugIsWork: string = 'debug is worked';
-        const infoIsWork: string = 'info is worked';
-        const warnIsWork: string = 'warn is worked';
-        const errorIsWork: string = 'error is worked';
+        const traceIsWork = 'trace is worked';
+        const debugIsWork = 'debug is worked';
+        const infoIsWork = 'info is worked';
+        const warnIsWork = 'warn is worked';
+        const errorIsWork = 'error is worked';
 
-        const traceGroupIsWork: string = 'trace group is worked';
-        const debugGroupIsWork: string = 'debug group is worked';
-        const infoGroupIsWork: string = 'info group is worked';
-        const warnGroupIsWork: string = 'warn group is worked';
-        const errorGroupIsWork: string = 'error group is worked';
+        const traceGroupIsWork = 'trace group is worked';
+        const debugGroupIsWork = 'debug group is worked';
+        const infoGroupIsWork = 'info group is worked';
+        const warnGroupIsWork = 'warn group is worked';
+        const errorGroupIsWork = 'error group is worked';
 
         beforeAll(() => {
             TestBed.configureTestingModule({
@@ -55,7 +55,7 @@ describe('[TEST]: Check work in groups', () => {
             logger.clear();
         });
 
-        it(`show classic group`, () => {
+        it('show classic group', () => {
             logger.group('group label', ({trace}: LoggerService): void => {
                 trace(traceIsWork, 1, {a: 1});
             });
@@ -69,7 +69,7 @@ describe('[TEST]: Check work in groups', () => {
             );
         });
 
-        it(`pipe group`, () => {
+        it('pipe group', () => {
             logger
                 .group('group name')
                 .pipe(({trace}: LoggerService) => trace(traceIsWork))
@@ -81,7 +81,7 @@ describe('[TEST]: Check work in groups', () => {
 
             expect(fakeConsole.stack()).toEqual(
                 fakeConsole.createStack(
-                    {[TestLoggerGroupType.GROUP_OPEN]: [`group name`]},
+                    {[TestLoggerGroupType.GROUP_OPEN]: ['group name']},
                     {[TestLoggerLineType.TRACE_OR_DEBUG]: [traceIsWork]},
                     {[TestLoggerLineType.DEBUG]: [debugIsWork]},
                     {[TestLoggerLineType.INFO]: [infoIsWork]},
@@ -92,7 +92,7 @@ describe('[TEST]: Check work in groups', () => {
             );
         });
 
-        it(`pipe group-collapsed`, () => {
+        it('pipe group-collapsed', () => {
             logger
                 .groupCollapsed('group collapsed name')
                 .pipe(({trace}: LoggerService) => trace(traceIsWork))
@@ -106,7 +106,7 @@ describe('[TEST]: Check work in groups', () => {
                 fakeConsole.createStack(
                     {
                         [TestLoggerGroupType.GROUP_COLLAPSED_OPEN]: [
-                            `group collapsed name`,
+                            'group collapsed name',
                         ],
                     },
                     {[TestLoggerLineType.TRACE_OR_DEBUG]: [traceIsWork]},
@@ -119,7 +119,7 @@ describe('[TEST]: Check work in groups', () => {
             );
         });
 
-        it(`pipe groups (with collapsed)`, () => {
+        it('pipe groups (with collapsed)', () => {
             logger
                 .groupCollapsed('group A')
                 .pipe(({trace}: LoggerService) => trace(traceIsWork))
@@ -130,17 +130,17 @@ describe('[TEST]: Check work in groups', () => {
 
             expect(fakeConsole.stack()).toEqual(
                 fakeConsole.createStack(
-                    {[TestLoggerGroupType.GROUP_COLLAPSED_OPEN]: [`group A`]},
+                    {[TestLoggerGroupType.GROUP_COLLAPSED_OPEN]: ['group A']},
                     {[TestLoggerLineType.TRACE_OR_DEBUG]: [traceIsWork]},
                     {[TestLoggerGroupType.GROUP_END]: []},
-                    {[TestLoggerGroupType.GROUP_OPEN]: [`group B`]},
+                    {[TestLoggerGroupType.GROUP_OPEN]: ['group B']},
                     {[TestLoggerLineType.TRACE_OR_DEBUG]: [traceIsWork]},
                     {[TestLoggerGroupType.GROUP_END]: []},
                 ),
             );
         });
 
-        it(`great groups with group`, () => {
+        it('great groups with group', () => {
             logger
                 .group('A')
                 .pipe(
@@ -170,19 +170,19 @@ describe('[TEST]: Check work in groups', () => {
 
             expect(fakeConsole.stack()).toEqual(
                 fakeConsole.createStack(
-                    {[TestLoggerGroupType.GROUP_OPEN]: [`A`]},
+                    {[TestLoggerGroupType.GROUP_OPEN]: ['A']},
                     {[TestLoggerLineType.TRACE_OR_DEBUG]: [traceIsWork]},
                     {[TestLoggerLineType.DEBUG]: [debugIsWork]},
                     {[TestLoggerLineType.INFO]: [infoIsWork]},
                     {[TestLoggerLineType.WARN]: [warnIsWork]},
                     {[TestLoggerLineType.ERROR]: [errorIsWork]},
-                    {[TestLoggerGroupType.GROUP_COLLAPSED_OPEN]: [`B`]},
+                    {[TestLoggerGroupType.GROUP_COLLAPSED_OPEN]: ['B']},
                     {[TestLoggerLineType.TRACE_OR_DEBUG]: [traceIsWork]},
                     {[TestLoggerLineType.DEBUG]: [debugIsWork]},
                     {[TestLoggerLineType.INFO]: [infoIsWork]},
                     {[TestLoggerLineType.WARN]: [warnIsWork]},
                     {[TestLoggerLineType.ERROR]: [errorIsWork]},
-                    {[TestLoggerGroupType.GROUP_OPEN]: [`C`]},
+                    {[TestLoggerGroupType.GROUP_OPEN]: ['C']},
                     {[TestLoggerLineType.TRACE_OR_DEBUG]: [traceIsWork]},
                     {[TestLoggerLineType.DEBUG]: [debugIsWork]},
                     {[TestLoggerLineType.INFO]: [infoIsWork]},
@@ -195,7 +195,7 @@ describe('[TEST]: Check work in groups', () => {
             );
         });
 
-        it(`level pretty groups`, () => {
+        it('level pretty groups', () => {
             logger.level = LoggerLevel.ALL;
 
             logger.trace.group('A opened', ({trace}: LoggerService) =>
@@ -234,42 +234,42 @@ describe('[TEST]: Check work in groups', () => {
 
             expect(fakeConsole.stack()).toEqual(
                 fakeConsole.createStack(
-                    {[TestLoggerGroupType.GROUP_OPEN]: [`A opened`]},
+                    {[TestLoggerGroupType.GROUP_OPEN]: ['A opened']},
                     {[TestLoggerLineType.TRACE_OR_DEBUG]: [traceGroupIsWork]},
                     {[TestLoggerGroupType.GROUP_END]: []},
 
-                    {[TestLoggerGroupType.GROUP_OPEN]: [`B opened`]},
+                    {[TestLoggerGroupType.GROUP_OPEN]: ['B opened']},
                     {[TestLoggerLineType.DEBUG]: [debugGroupIsWork]},
                     {[TestLoggerGroupType.GROUP_END]: []},
 
-                    {[TestLoggerGroupType.GROUP_OPEN]: [`C opened`]},
+                    {[TestLoggerGroupType.GROUP_OPEN]: ['C opened']},
                     {[TestLoggerLineType.INFO]: [infoGroupIsWork]},
                     {[TestLoggerGroupType.GROUP_END]: []},
 
-                    {[TestLoggerGroupType.GROUP_OPEN]: [`D opened`]},
+                    {[TestLoggerGroupType.GROUP_OPEN]: ['D opened']},
                     {[TestLoggerLineType.WARN]: [warnGroupIsWork]},
                     {[TestLoggerGroupType.GROUP_END]: []},
 
-                    {[TestLoggerGroupType.GROUP_OPEN]: [`E opened`]},
+                    {[TestLoggerGroupType.GROUP_OPEN]: ['E opened']},
                     {[TestLoggerLineType.ERROR]: [errorGroupIsWork]},
                     {[TestLoggerGroupType.GROUP_END]: []},
 
-                    {[TestLoggerGroupType.GROUP_COLLAPSED_OPEN]: [`C collapsed`]},
+                    {[TestLoggerGroupType.GROUP_COLLAPSED_OPEN]: ['C collapsed']},
                     {[TestLoggerLineType.INFO]: [infoGroupIsWork]},
                     {[TestLoggerGroupType.GROUP_END]: []},
 
-                    {[TestLoggerGroupType.GROUP_COLLAPSED_OPEN]: [`D collapsed`]},
+                    {[TestLoggerGroupType.GROUP_COLLAPSED_OPEN]: ['D collapsed']},
                     {[TestLoggerLineType.WARN]: [warnGroupIsWork]},
                     {[TestLoggerGroupType.GROUP_END]: []},
 
-                    {[TestLoggerGroupType.GROUP_COLLAPSED_OPEN]: [`E collapsed`]},
+                    {[TestLoggerGroupType.GROUP_COLLAPSED_OPEN]: ['E collapsed']},
                     {[TestLoggerLineType.ERROR]: [errorGroupIsWork]},
                     {[TestLoggerGroupType.GROUP_END]: []},
                 ),
             );
         });
 
-        it(`level groups with pretty pipes`, () => {
+        it('level groups with pretty pipes', () => {
             logger.level = LoggerLevel.INFO;
 
             logger.trace
@@ -315,19 +315,19 @@ describe('[TEST]: Check work in groups', () => {
 
             expect(fakeConsole.stack()).toEqual(
                 fakeConsole.createStack(
-                    {[TestLoggerGroupType.GROUP_OPEN]: [`C`]},
+                    {[TestLoggerGroupType.GROUP_OPEN]: ['C']},
                     {[TestLoggerLineType.INFO]: ['info is worked from C']},
                     {[TestLoggerLineType.WARN]: ['warn is worked from C']},
                     {[TestLoggerLineType.ERROR]: ['error is worked from C']},
                     {[TestLoggerGroupType.GROUP_END]: []},
 
-                    {[TestLoggerGroupType.GROUP_OPEN]: [`D`]},
+                    {[TestLoggerGroupType.GROUP_OPEN]: ['D']},
                     {[TestLoggerLineType.INFO]: ['info is worked from D']},
                     {[TestLoggerLineType.WARN]: ['warn is worked from D']},
                     {[TestLoggerLineType.ERROR]: ['error is worked from D']},
                     {[TestLoggerGroupType.GROUP_END]: []},
 
-                    {[TestLoggerGroupType.GROUP_OPEN]: [`E`]},
+                    {[TestLoggerGroupType.GROUP_OPEN]: ['E']},
                     {[TestLoggerLineType.INFO]: ['info is worked from E']},
                     {[TestLoggerLineType.WARN]: ['warn is worked from E']},
                     {[TestLoggerLineType.ERROR]: ['error is worked from E']},
@@ -354,7 +354,7 @@ describe('[TEST]: Check work in groups', () => {
             logger = TestBed.inject(LoggerService);
         });
 
-        it(`should be throw logger`, () => {
+        it('should be throw logger', () => {
             let message: string | null = null;
 
             try {

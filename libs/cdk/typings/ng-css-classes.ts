@@ -1,1 +1,1 @@
-export type NgCssClasses = string | string[] | Set<string> | {[cssClass: string]: any};
+export type NgCssClasses = Record<string, any> | Set<string> | string[] | string;

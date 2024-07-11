@@ -209,7 +209,7 @@ export interface TtlListenerOptions {
 
 export interface TtLCreatorOptions {
     provider: PersistenceProvider;
-    expiry: Date | undefined | null;
+    expiry: Date | null | undefined;
     map: WeakMap<PersistenceProvider, TtlListenerOptions>;
     engine: ExistingStorageEngine;
 }
@@ -253,7 +253,7 @@ export interface CheckExpiredInitOptions {
     map: WeakMap<PersistenceProvider, TtlListenerOptions>;
 }
 
-export type ProviderOptions = PersistenceProvider[] | PersistenceProvider;
+export type ProviderOptions = PersistenceProvider | PersistenceProvider[];
 
 export interface MergeOptions {
     meta: NgxsRepositoryMeta;

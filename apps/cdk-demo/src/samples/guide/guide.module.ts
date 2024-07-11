@@ -11,7 +11,6 @@ import {GuideComponent} from './guide.component';
 import {REG_EXP_ONLY_NUMBERS} from './properties/constants';
 
 @NgModule({
-    declarations: [GuideComponent],
     imports: [
         AmountFormatModule,
         RouterModule.forChild([
@@ -29,5 +28,6 @@ import {REG_EXP_ONLY_NUMBERS} from './properties/constants';
             default: REG_EXP_ONLY_NUMBERS,
         }),
     ],
+    declarations: [GuideComponent],
 })
 export class GuideModule {}

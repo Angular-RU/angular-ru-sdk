@@ -1,1 +1,1 @@
-export { mapToVoid } from './map-to-void';
+export {mapToVoid} from './map-to-void';

@@ -13,7 +13,7 @@ import {NotImplementedStorageException} from '../exceptions/not-implemented-stor
 import {ensureKey} from './ensure-key';
 
 export function exposeEngine(
-    provider: PersistenceProvider | ExistingEngineProvider | UseClassEngineProvider,
+    provider: ExistingEngineProvider | PersistenceProvider | UseClassEngineProvider,
     injector: Injector,
 ): ExistingStorageEngine {
     const engine: ExistingStorageEngine | null | undefined =

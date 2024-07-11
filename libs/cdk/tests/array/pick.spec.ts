@@ -19,14 +19,14 @@ describe('[TEST]: pick', (): void => {
     });
 
     it('no pick values by deep keys', (): void => {
-        const deepKey: string = 'home';
+        const deepKey = 'home';
 
         // @ts-ignore
         expect(arrMock.map(pick(deepKey))).toEqual([undefined]);
     });
 
     it('should return undefined by typo', (): void => {
-        const keyWithTypo: string = 'typo';
+        const keyWithTypo = 'typo';
 
         // @ts-ignore
         expect(arrMock.map(pick(keyWithTypo))).toEqual([undefined]);

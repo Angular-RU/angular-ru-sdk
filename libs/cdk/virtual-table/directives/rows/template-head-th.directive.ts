@@ -1,4 +1,4 @@
-import {Directive, Input, Optional, TemplateRef} from '@angular/core';
+import {Directive, Inject, Input, Optional, TemplateRef} from '@angular/core';
 import {Nullable} from '@angular-ru/cdk/typings';
 
 import {AbstractTemplateCellCommonDirective} from './abstract-template-cell-common.directive';
@@ -6,10 +6,16 @@ import {AbstractTemplateCellCommonDirective} from './abstract-template-cell-comm
 @Directive({selector: 'ng-template[ngx-th]'})
 export class TemplateHeadThDirective<T> extends AbstractTemplateCellCommonDirective<T> {
     // eslint-disable-next-line @angular-eslint/no-input-rename
-    @Input('ngx-th') public override type: Nullable<string> = null;
-    public override nowrap: boolean = false;
+    @Input('ngx-th')
+    public override type: Nullable<string> = null;
 
-    constructor(@Optional() public override template?: TemplateRef<any>) {
+    public override nowrap = false;
+
+    constructor(
+        @Inject(TemplateRef)
+        @Optional()
+        public override template?: TemplateRef<any>,
+    ) {
         super(template);
         this.bold = true;
     }

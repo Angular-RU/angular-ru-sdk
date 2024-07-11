@@ -5,7 +5,7 @@ import {Nullable} from '@angular-ru/cdk/typings';
 @Pipe({name: 'numberFormat'})
 export class NumberFormatPipe implements PipeTransform {
     public transform(
-        value?: Nullable<string | number>,
+        value?: Nullable<number | string>,
         options?: NumberFormatOptions,
     ): string {
         return numberFormat(value, options);

@@ -9,29 +9,29 @@ export function trim(number: string): string {
 
     if (isNil(parts[1])) {
         return parts[0] ?? '';
-    } else {
-        return `${parts[0]}.${parts[1]}`;
     }
+
+    return `${parts[0]}.${parts[1]}`;
 }
 
 // eslint-disable-next-line max-lines-per-function, complexity
 export function add(inputA: number | string, inputB: any = '0'): string {
     let a: any = inputA;
     let b: any = inputB;
-    let neg: number = 0;
-    let ind: number = -1;
+    let neg = 0;
+    let ind = -1;
 
     // check for negatives
-    if (inputA.toString()[0] === '-') {
+    if (inputA.toString().startsWith('-')) {
         neg++;
         ind = 1;
-        a = inputA.toString().substring(1);
+        a = inputA.toString().slice(1);
     }
 
     if (inputB[0] === '-') {
         neg++;
         ind = EXPONENTIAL_PARTS_LENGTH;
-        b = inputB.substring(1);
+        b = inputB.slice(1);
     }
 
     const padResult: string[] = pad(trim(a), trim(b));
@@ -51,19 +51,21 @@ export function add(inputA: number | string, inputB: any = '0'): string {
 
     if (!neg) {
         return trim(result);
-    } else if (neg === EXPONENTIAL_PARTS_LENGTH) {
-        return `-${trim(result)}`;
-    } else {
-        if (a.length < result.length) {
-            return trim(result.substring(1));
-        } else {
-            return `-${trim(compliment(result))}`;
-        }
     }
+
+    if (neg === EXPONENTIAL_PARTS_LENGTH) {
+        return `-${trim(result)}`;
+    }
+
+    if (a.length < result.length) {
+        return trim(result.slice(1));
+    }
+
+    return `-${trim(compliment(result))}`;
 }
 
 // eslint-disable-next-line max-lines-per-function, complexity
-export function pad(inputA: string | number, inputB: string | number): [string, string] {
+export function pad(inputA: number | string, inputB: number | string): [string, string] {
     const partsA: string[] = inputA.toString().split('.');
     const partsB: string[] = inputB.toString().split('.');
 
@@ -100,7 +102,7 @@ export function pad(inputA: string | number, inputB: string | number): [string, 
 }
 
 function compliment(num: string): string {
-    let s: string = '';
+    let s = '';
     const part: any = num.split('.')[1];
     const ld: number = checkValueIsFilled(part) ? part.length : 0;
 
@@ -119,9 +121,9 @@ function getPreparedDigit(char: string): number | string {
     if (isDigit) {
         // eslint-disable-next-line @typescript-eslint/no-magic-numbers
         return 9 - parseInt(char);
-    } else {
-        return char;
     }
+
+    return char;
 }
 
 function getIntegralPart(parts: string[], larger: number): string {
@@ -147,8 +149,8 @@ function removeZerosAtTheBeginning(parts: string[]): string[] {
         result[0] = '0';
     }
 
-    while (result[0][0] === '0' && result[0].length > 1) {
-        result[0] = result[0].substring(1);
+    while (result[0].startsWith('0') && result[0].length > 1) {
+        result[0] = result[0].slice(1);
     }
 
     return result;
@@ -167,8 +169,8 @@ function addCore(inputA: string, inputB: string): string {
 }
 
 function calculateCarryAndSum(a: string, b: string): CalculateResult {
-    let sum: string = '';
-    let carry: number = 0;
+    let sum = '';
+    let carry = 0;
 
     for (let i: number = a.length - 1; i >= 0; i--) {
         if (a[i] === '.') {

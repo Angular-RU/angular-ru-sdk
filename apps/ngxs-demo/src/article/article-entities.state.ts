@@ -19,5 +19,5 @@ export class ArticleEntitiesState extends NgxsDataEntityCollectionsRepository<
     Article,
     string
 > {
-    public override primaryKey: string = 'uid';
+    public override primaryKey = 'uid';
 }

@@ -26,7 +26,7 @@ interface ReqProperty {
 export abstract class AbstractHttpClient<K = unknown> {
     protected controllerUrl!: string;
     protected local!: Partial<DataClientRequestOptions>;
-    public interceptor: K & DataHttpInterceptor;
+    public interceptor: DataHttpInterceptor & K;
 
     protected constructor(
         protected http: HttpClient,
@@ -124,7 +124,7 @@ export abstract class AbstractHttpClient<K = unknown> {
         };
     }
 
-    private createHttpBody<T>(options: DataBeforeRequestOptions): T | FormData {
+    private createHttpBody<T>(options: DataBeforeRequestOptions): FormData | T {
         const payload: T = options.clientOptions.body as T;
 
         if (payload instanceof FormData) {

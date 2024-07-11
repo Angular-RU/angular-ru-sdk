@@ -87,9 +87,9 @@ export class TemplateParserService<T> {
                 (column: ColumnsSchema): ColumnsSchema => {
                     if (key === column.key) {
                         return {...column, isVisible: !column.isVisible};
-                    } else {
-                        return column;
                     }
+
+                    return column;
                 },
             );
 
@@ -103,9 +103,9 @@ export class TemplateParserService<T> {
                 (column: ColumnsSchema): ColumnsSchema => {
                     if (isNotNil(column.key)) {
                         return {...column, ...patch[column.key]};
-                    } else {
-                        return column;
                     }
+
+                    return column;
                 },
             );
         }
@@ -193,7 +193,7 @@ export class TemplateParserService<T> {
         const stickyLeft: boolean = getValidHtmlBooleanAttribute(column.stickyLeft);
         const stickyRight: boolean = getValidHtmlBooleanAttribute(column.stickyRight);
         const isCustomKey: boolean = getValidHtmlBooleanAttribute(customKey);
-        const canBeAddDraggable: boolean = !(stickyLeft || stickyRight);
+        const canBeAddDraggable = !(stickyLeft || stickyRight);
         const isModel: boolean =
             checkValueIsFilled(this.keyMap[key as string]) ||
             getValidHtmlBooleanAttribute(forceModel);

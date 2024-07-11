@@ -40,6 +40,6 @@ export class ConsoleService implements ConsoleServiceInterface {
     }
 
     public getTemplateWithoutLabel(): string {
-        return `%c%s`;
+        return '%c%s';
     }
 }

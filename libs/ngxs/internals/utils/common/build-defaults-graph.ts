@@ -16,9 +16,9 @@ export function buildDefaultsGraph(stateClasses: DataStateClass): any {
     if (children.length > 0) {
         if (isSimpleObject(currentDefaults)) {
             return buildChildrenGraph(currentDefaults, children);
-        } else {
-            throw new InvalidChildrenException(currentDefaults);
         }
+
+        throw new InvalidChildrenException(currentDefaults);
     } else {
         return currentDefaults;
     }

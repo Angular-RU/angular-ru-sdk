@@ -10,7 +10,7 @@ export function getDateInterval(
         const toTimestamp: number = new Date(to).getTime();
 
         return Math.abs(toTimestamp - fromTimestamp);
-    } else {
-        return null;
     }
+
+    return null;
 }

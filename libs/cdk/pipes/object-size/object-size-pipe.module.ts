@@ -3,8 +3,8 @@ import {NgModule} from '@angular/core';
 import {ObjectSizePipe} from './object-size.pipe';
 
 @NgModule({
-    exports: [ObjectSizePipe],
-    providers: [ObjectSizePipe],
     declarations: [ObjectSizePipe],
+    providers: [ObjectSizePipe],
+    exports: [ObjectSizePipe],
 })
 export class ObjectSizePipeModule {}

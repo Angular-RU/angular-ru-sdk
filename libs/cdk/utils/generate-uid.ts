@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 export function generateUid(): string {
-    // eslint-disable-next-line spellcheck/spell-checker
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replaceAll(
         /[xy]/g,
         (c: string): string => {
             const r: number = (Math.random() * 16) | 0;

@@ -1,14 +1,11 @@
 import {Nullable} from '@angular-ru/cdk/typings';
 import {checkValueIsFilled} from '@angular-ru/cdk/utils';
 
-const formatToPartsValue: number = 12345.6;
-const intlFormatOrigin: number = 9876543210;
+const formatToPartsValue = 12345.6;
+const intlFormatOrigin = 9876543210;
 
-export function toNumber(
-    value: Nullable<number | string>,
-    locale: string = 'ru-RU',
-): number {
-    let prepared: Nullable<string> = value?.toString().replace(/\s/g, '');
+export function toNumber(value: Nullable<number | string>, locale = 'ru-RU'): number {
+    let prepared: Nullable<string> = value?.toString().replaceAll(/\s/g, '');
 
     const parts: Intl.NumberFormatPart[] = new Intl.NumberFormat(locale).formatToParts(
         formatToPartsValue,
@@ -18,16 +15,16 @@ export function toNumber(
         new Intl.NumberFormat(locale, {useGrouping: false}).format(intlFormatOrigin),
     ).reverse();
 
-    const group: RegExp = new RegExp(
+    const group = new RegExp(
         `[${parts.find((d: Intl.NumberFormatPart): boolean => d.type === 'group')?.value}]`,
         'g',
     );
 
-    const decimal: RegExp = new RegExp(
+    const decimal = new RegExp(
         `[${parts.find((d: Intl.NumberFormatPart): boolean => d.type === 'decimal')?.value}]`,
     );
 
-    const numeral: RegExp = new RegExp(`[${numerals.join('')}]`, 'g');
+    const numeral = new RegExp(`[${numerals.join('')}]`, 'g');
 
     const indexes = (decimalValue: string): string =>
         new Map(numerals.map((dx: unknown, i: number): [unknown, number] => [dx, i]))

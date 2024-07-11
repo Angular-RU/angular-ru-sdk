@@ -22,7 +22,7 @@ describe('[TEST] Table clipboard service', () => {
     const readFile = fileSuitesReader(__dirname);
 
     const mockWebWorker: Partial<WebWorkerThreadService> = {
-        run<T, K>(workerFunction: (input: K) => T, data?: K): Promise<T> {
+        async run<T, K>(workerFunction: (input: K) => T, data?: K): Promise<T> {
             return Promise.resolve(workerFunction(data!));
         },
     };

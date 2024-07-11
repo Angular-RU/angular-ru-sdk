@@ -99,7 +99,7 @@ describe('[TEST]: Debounce', () => {
 
         tick(50);
 
-        expect(state.getState()).toEqual(-1);
+        expect(state.getState()).toBe(-1);
 
         const value1 = state.incrementByValue(6);
         const value2 = state.incrementByValue(6);

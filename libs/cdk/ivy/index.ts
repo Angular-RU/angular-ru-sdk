@@ -1,2 +1,2 @@
-export { directiveInject, inject } from './utils/injection-utils';
-export { useInjector } from './utils/use-injector';
+export {directiveInject, inject} from './utils/injection-utils';
+export {useInjector} from './utils/use-injector';

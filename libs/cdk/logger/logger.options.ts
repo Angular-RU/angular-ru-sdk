@@ -8,9 +8,9 @@ import {COLORS, LABELS} from './logger.config';
 export class LoggerOptionsImpl implements LoggerOptions {
     public instance: Console = console;
     public minLevel: LoggerLevel = LoggerLevel.ALL;
-    public globalLineStyle: string = '';
+    public globalLineStyle = '';
     public cssClassMap: PlainObject = {};
-    public useLevelGroup: boolean = true;
+    public useLevelGroup = true;
     public labelColors: PlainObjectOf<string> = {
         [LoggerLevel.TRACE]: COLORS.TRACE,
         [LoggerLevel.DEBUG]: COLORS.DEBUG,

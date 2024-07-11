@@ -61,7 +61,7 @@ export class ExcelBuilderService {
                 }
 
                 class ExcelBuilder {
-                    private static commonBorderStyles: string = `
+                    private static readonly commonBorderStyles = `
                         <Borders>
                             <Border ss:Position="Top" ss:Color="#000000" ss:LineStyle="Continuous" ss:Weight="1"/>
                             <Border ss:Position="Bottom" ss:Color="#000000" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -69,7 +69,7 @@ export class ExcelBuilderService {
                             <Border ss:Position="Left" ss:Color="#000000" ss:LineStyle="Continuous" ss:Weight="1"/>
                         </Borders>`;
 
-                    private static commonStyles: string = `
+                    private static readonly commonStyles = `
                         <Styles>
                             <Style ss:ID="${StyleType.HEAD}">
                                 <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="0" />
@@ -130,7 +130,7 @@ export class ExcelBuilderService {
 
                         if (typeof cellValue === 'string') {
                             cellValue = cellValue.trim();
-                            cellValue = cellValue.replace(/[<>]/g, '');
+                            cellValue = cellValue.replaceAll(/[<>]/g, '');
                         }
 
                         return `<Cell ss:StyleID="${
@@ -152,11 +152,13 @@ export class ExcelBuilderService {
                     private static getCellType(value: any): ExcelType {
                         if (value instanceof Date) {
                             return 'DateTime';
-                        } else if (typeof value === 'number') {
-                            return 'Number';
-                        } else {
-                            return 'String';
                         }
+
+                        if (typeof value === 'number') {
+                            return 'Number';
+                        }
+
+                        return 'String';
                     }
 
                     private static isFilled(value: Nullable<string>): value is string {
@@ -164,7 +166,7 @@ export class ExcelBuilderService {
                     }
 
                     public buildWorkbook(
-                        worksheets: PreparedExcelWorksheet<T>[],
+                        worksheets: Array<PreparedExcelWorksheet<T>>,
                     ): string {
                         const xmlWorksheets: string = this.generateWorksheets(worksheets);
 
@@ -172,7 +174,7 @@ export class ExcelBuilderService {
                     }
 
                     private generateWorksheets(
-                        worksheets: PreparedExcelWorksheet<T>[],
+                        worksheets: Array<PreparedExcelWorksheet<T>>,
                     ): string {
                         const xmlSheets: string[] = worksheets.map(
                             (worksheet: PreparedExcelWorksheet<T>): string =>
@@ -190,8 +192,8 @@ export class ExcelBuilderService {
                             this.generateColumnsDescriptor(worksheet);
                         const xmlBodyRows: string = this.generateBodyRows(worksheet);
 
-                        const MAX_WORKSHEET_NAME_LENGTH: number = 31;
-                        const DEFAULT_WORKSHEET_NAME: string = 'Table';
+                        const MAX_WORKSHEET_NAME_LENGTH = 31;
+                        const DEFAULT_WORKSHEET_NAME = 'Table';
                         let worksheetName: string =
                             worksheet.worksheetName
                                 ?.match(/[\p{Alpha}\p{Nd}]+/gu)
@@ -199,7 +201,7 @@ export class ExcelBuilderService {
 
                         if (worksheetName.length > MAX_WORKSHEET_NAME_LENGTH) {
                             worksheetName = worksheetName
-                                .replace(/\s/g, '')
+                                .replaceAll(/\s/g, '')
                                 .slice(0, MAX_WORKSHEET_NAME_LENGTH);
                         }
 
@@ -219,8 +221,8 @@ export class ExcelBuilderService {
                             worksheet.flatEntries?.[0] ?? [],
                         );
 
-                        let columnsDescriptor: string = '';
-                        let columnCells: string = '';
+                        let columnsDescriptor = '';
+                        let columnCells = '';
 
                         for (const key of keys) {
                             const title: string = this.getTranslatedTitle(
@@ -233,7 +235,7 @@ export class ExcelBuilderService {
                                 (entry: PlainObject): string =>
                                     entry[key]?.toString() ?? '',
                             );
-                            const widthSetting: Nullable<number | ColumnWidth> =
+                            const widthSetting: Nullable<ColumnWidth | number> =
                                 parameters?.width ??
                                 worksheet.generalColumnParameters?.width;
                             const width: number = this.getWidthOfColumn(
@@ -254,17 +256,19 @@ export class ExcelBuilderService {
                     private getWidthOfColumn(
                         title: string,
                         entries: string[],
-                        width: Nullable<number | ColumnWidth>,
+                        width: Nullable<ColumnWidth | number>,
                     ): number {
                         const {minColumnWidth}: StyleSizes = this.sizes;
 
                         if (width === ColumnWidth.MAX_WIDTH) {
                             return this.calcMaxWidthByEntries(entries, title);
-                        } else if (typeof width === 'number') {
-                            return width;
-                        } else {
-                            return minColumnWidth;
                         }
+
+                        if (typeof width === 'number') {
+                            return width;
+                        }
+
+                        return minColumnWidth;
                     }
 
                     private calcMaxWidthByEntries(
@@ -272,7 +276,7 @@ export class ExcelBuilderService {
                         title: string,
                     ): number {
                         const titleLength: number = this.getWidthOfString(title, 'bold');
-                        const indentMeasuredInSymbols: number = 2;
+                        const indentMeasuredInSymbols = 2;
                         const indent: number =
                             this.sizes.fontWidth * indentMeasuredInSymbols;
                         const maxLength: number = entries.reduce(
@@ -294,7 +298,7 @@ export class ExcelBuilderService {
                         string: string,
                         fontWeight: keyof WidthOfSymbols,
                     ): number {
-                        let width: number = 0;
+                        let width = 0;
 
                         for (const symbol of string) {
                             width +=
@@ -370,7 +374,7 @@ export class ExcelBuilderService {
                     input.preparedTranslatedKeys,
                 ).buildWorkbook(input.worksheets);
 
-                const UTF8: string = '\uFEFF';
+                const UTF8 = '\uFEFF';
 
                 return new Blob([UTF8, xmlBookTemplate], {
                     type: 'application/vnd.ms-excel;charset=UTF-8',
@@ -384,7 +388,7 @@ export class ExcelBuilderService {
     private async prepareWorkbook<T>(
         workbook: ExcelWorkbook<T>,
     ): Promise<PreparedExcelWorkbook<T>> {
-        const preparedWorksheets: PreparedExcelWorksheet<T>[] = await Promise.all(
+        const preparedWorksheets: Array<PreparedExcelWorksheet<T>> = await Promise.all(
             workbook.worksheets.map(
                 async (
                     worksheet: ExcelWorksheet<T>,
@@ -413,10 +417,13 @@ export class ExcelBuilderService {
         let flatEntries: PlainObject[] = [];
 
         if (isNotNil(worksheet.entries)) {
-            flatEntries = await this.plainTableComposer.compose(worksheet.entries as any, {
-                includeKeys: worksheet.keys,
-                excludeKeys: worksheet.excludeKeys,
-            });
+            flatEntries = await this.plainTableComposer.compose(
+                worksheet.entries as any,
+                {
+                    includeKeys: worksheet.keys,
+                    excludeKeys: worksheet.excludeKeys,
+                },
+            );
         }
 
         return {...worksheet, flatEntries};

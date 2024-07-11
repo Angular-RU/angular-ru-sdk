@@ -22,7 +22,7 @@ describe('[TEST]: HTTP limit concurrency service with Marble', () => {
     });
 
     describe('infinity', () => {
-        const limitConcurrency: number = Infinity;
+        const limitConcurrency = Infinity;
 
         it('should run all Observables in parallel if there is no limit Infinity', () => {
             // noinspection DuplicatedCode
@@ -43,7 +43,7 @@ describe('[TEST]: HTTP limit concurrency service with Marble', () => {
     });
 
     describe('limitConcurrency = -1', () => {
-        const limitConcurrency: number = -1;
+        const limitConcurrency = -1;
 
         it('should throw an error if limitConcurrency = -1', () => {
             testScheduler.run(({cold}) => {
@@ -57,7 +57,7 @@ describe('[TEST]: HTTP limit concurrency service with Marble', () => {
     });
 
     describe('limitConcurrency = 0', () => {
-        const limitConcurrency: number = 0;
+        const limitConcurrency = 0;
 
         it('should throw an error if limitConcurrency = 0', () => {
             testScheduler.run(({cold}) => {
@@ -71,7 +71,7 @@ describe('[TEST]: HTTP limit concurrency service with Marble', () => {
     });
 
     describe('limitConcurrency = 1', () => {
-        const limitConcurrency: number = 1;
+        const limitConcurrency = 1;
 
         it('should return Observable with the same data', () => {
             testScheduler.run(({cold, expectObservable: expect}) => {
@@ -100,7 +100,7 @@ describe('[TEST]: HTTP limit concurrency service with Marble', () => {
     });
 
     describe('limitConcurrency = 3', () => {
-        const limitConcurrency: number = 3;
+        const limitConcurrency = 3;
 
         it('should run all Observables in parallel if the limit allows', () => {
             // noinspection DuplicatedCode

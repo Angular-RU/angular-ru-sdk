@@ -15,33 +15,8 @@ jobs:
       - name: Setup Node.js and Cache
         uses: ./.github/actions/nodejs
 
-      - name: Run build artifacts dependent
-        run: | # todo fix later
-          npx nx build cdk
-          npx nx build ngxs
-          npx nx build jest
-          npx nx build eslint-plugin-enterprise
-
       - name: Run unit tests
-        run: npx nx run-many --target=test --all --parallel=1 --collect-coverage
-
-      - uses: codecov/codecov-action@v3
-        with:
-          directory: ./coverage/cdk/
-          flags: summary,cdk
-          name: cdk
-
-      - uses: codecov/codecov-action@v3
-        with:
-          directory: ./coverage/ngxs/
-          flags: summary,ngxs
-          name: ngxs
-
-      - uses: codecov/codecov-action@v3
-        with:
-          directory: ./coverage/jest/
-          flags: summary,jest
-          name: jest
+        run: npm test
 
 concurrency:
   group: test-${{ github.head_ref }}

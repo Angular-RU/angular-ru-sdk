@@ -153,18 +153,18 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
         let message: string | null = null;
 
         try {
-            snapshot[0]!.a!++;
+            snapshot[0].a!++;
         } catch (error: unknown) {
             message = (error as Error).message;
         }
 
         // eslint-disable-next-line @typescript-eslint/quotes
         expect(
-            `Cannot assign to read only property 'a' of object '[object Object]'`,
+            "Cannot assign to read only property 'a' of object '[object Object]'",
         ).toEqual(message);
 
         try {
-            snapshot[0]!.b = 3;
+            snapshot[0].b = 3;
         } catch (error: unknown) {
             message = (error as Error).message;
         }
@@ -172,14 +172,14 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
         expect('Cannot add property b, object is not extensible').toEqual(message);
 
         try {
-            snapshot[1]!.b!++;
+            snapshot[1].b!++;
         } catch (error: unknown) {
             message = (error as Error).message;
         }
 
         // eslint-disable-next-line @typescript-eslint/quotes
         expect(
-            `Cannot assign to read only property 'b' of object '[object Object]'`,
+            "Cannot assign to read only property 'b' of object '[object Object]'",
         ).toEqual(message);
     });
 

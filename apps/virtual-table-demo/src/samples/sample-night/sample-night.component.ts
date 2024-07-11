@@ -23,7 +23,7 @@ export class SampleNightComponent implements OnInit, AfterViewInit {
     private readonly ngZone: NgZone;
     public dataFirst: PlainObject[] = [];
     public dataSecond: PlainObject[] = [];
-    public nativeScrollbar: boolean = false;
+    public nativeScrollbar = false;
     public readonly dialog: MatDialog;
 
     constructor(
@@ -35,11 +35,11 @@ export class SampleNightComponent implements OnInit, AfterViewInit {
     }
 
     public ngOnInit(): void {
-        const rows1: number = 11;
-        const cols1: number = 30;
+        const rows1 = 11;
+        const cols1 = 30;
 
-        const rows2: number = 10000;
-        const cols2: number = 30;
+        const rows2 = 10000;
+        const cols2 = 30;
 
         Promise.all([
             MocksGenerator.generator(rows1, cols1),

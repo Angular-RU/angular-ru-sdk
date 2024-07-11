@@ -13,12 +13,12 @@ import {Observable, Subject} from 'rxjs';
 import {delay, takeUntil} from 'rxjs/operators';
 
 describe('[TEST]: Canceling requests and unsubscribing', () => {
-    const mockApi: string = 'http://localhost';
-    const restClient: string = 'hello';
-    const api: string = 'api_';
-    const apiUrl: string = `${mockApi}/${restClient}/${api}`;
-    const countRequests: number = 10;
-    const limitConcurrency: number = 5;
+    const mockApi = 'http://localhost';
+    const restClient = 'hello';
+    const api = 'api_';
+    const apiUrl = `${mockApi}/${restClient}/${api}`;
+    const countRequests = 10;
+    const limitConcurrency = 5;
 
     let fixture: Nullable<ComponentFixture<TestComponent>> = null;
     let component: TestComponent;
@@ -30,43 +30,53 @@ describe('[TEST]: Canceling requests and unsubscribing', () => {
     @Injectable()
     @RestClient(restClient)
     class ApiClient extends DataHttpClient {
-        @Get(`${api}0`) public getData_0(): Observable<string> {
+        @Get(`${api}0`)
+        public getData_0(): Observable<string> {
             return this.emulate();
         }
 
-        @Get(`${api}1`) public getData_1(): Observable<string> {
+        @Get(`${api}1`)
+        public getData_1(): Observable<string> {
             return this.emulate();
         }
 
-        @Get(`${api}2`) public getData_2(): Observable<string> {
+        @Get(`${api}2`)
+        public getData_2(): Observable<string> {
             return this.emulate();
         }
 
-        @Get(`${api}3`) public getData_3(): Observable<string> {
+        @Get(`${api}3`)
+        public getData_3(): Observable<string> {
             return this.emulate();
         }
 
-        @Get(`${api}4`) public getData_4(): Observable<string> {
+        @Get(`${api}4`)
+        public getData_4(): Observable<string> {
             return this.emulate();
         }
 
-        @Get(`${api}5`) public getData_5(): Observable<string> {
+        @Get(`${api}5`)
+        public getData_5(): Observable<string> {
             return this.emulate();
         }
 
-        @Get(`${api}6`) public getData_6(): Observable<string> {
+        @Get(`${api}6`)
+        public getData_6(): Observable<string> {
             return this.emulate();
         }
 
-        @Get(`${api}7`) public getData_7(): Observable<string> {
+        @Get(`${api}7`)
+        public getData_7(): Observable<string> {
             return this.emulate();
         }
 
-        @Get(`${api}8`) public getData_8(): Observable<string> {
+        @Get(`${api}8`)
+        public getData_8(): Observable<string> {
             return this.emulate();
         }
 
-        @Get(`${api}9`) public getData_9(): Observable<string> {
+        @Get(`${api}9`)
+        public getData_9(): Observable<string> {
             return this.emulate();
         }
 
@@ -80,7 +90,7 @@ describe('[TEST]: Canceling requests and unsubscribing', () => {
         template: '',
     })
     class TestComponent implements OnInit, OnDestroy {
-        private destroy$: Subject<boolean> = new Subject<boolean>();
+        private readonly destroy$: Subject<boolean> = new Subject<boolean>();
         constructor(public readonly _api: ApiClient) {}
         public ngOnInit(): void {
             this.generateRequests();

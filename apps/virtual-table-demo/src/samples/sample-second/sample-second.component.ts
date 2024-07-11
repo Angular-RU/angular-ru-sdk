@@ -57,6 +57,7 @@ export class SampleSecondComponent implements AfterViewInit {
         'symbol',
         'status',
     ];
+
     // noinspection DuplicatedCode
     public elements: PeriodicElement[] = [
         {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},

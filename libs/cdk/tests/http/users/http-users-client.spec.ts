@@ -14,7 +14,7 @@ import {Nullable, PlainObject, PlainObjectOf} from '@angular-ru/cdk/typings';
 import {HttpMockInterceptor} from '../helpers/http-mock-interceptor';
 
 describe('[TEST]: HTTP Client', () => {
-    const MOCK_API: string = 'http://localhost';
+    const MOCK_API = 'http://localhost';
     const queryParams: PlainObject = {params: 'value'};
     const body: PlainObjectOf<string> = {payload: 'value'};
     let client: Nullable<ApiUsersClient> = null;
@@ -167,7 +167,7 @@ describe('[TEST]: HTTP Client', () => {
             requestMethod = request.request.method;
         });
 
-        request = httpMock.expectOne(`https://angular.io/api/my-api-get`);
+        request = httpMock.expectOne('https://angular.io/api/my-api-get');
         request.flush(null);
 
         tick(2000);

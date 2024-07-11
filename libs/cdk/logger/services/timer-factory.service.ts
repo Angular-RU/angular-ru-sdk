@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {Nullable} from '@angular-ru/cdk/typings';
 
 import {LoggerLevel, TimerInfo} from '../interfaces/logger.external';
@@ -11,12 +11,15 @@ export class TimerFactory {
     private readonly DIGITS_TO_FIX: number = 4;
     private readonly SECONDS: number = 1000;
 
-    constructor(private readonly console: ConsoleService) {}
+    constructor(
+        @Inject(ConsoleService)
+        private readonly console: ConsoleService,
+    ) {}
 
     public startTime(title: string, level: LoggerLevel): Nullable<TimerInfo> {
         let result: Nullable<TimerInfo> = null;
         // eslint-disable-next-line sonarjs/no-inverted-boolean-check
-        const canExecute: boolean = !(this.console.minLevel > level);
+        const canExecute = !(this.console.minLevel > level);
 
         if (canExecute) {
             result = {startTime: performance.now(), title};
@@ -25,7 +28,6 @@ export class TimerFactory {
         return result;
     }
 
-    // eslint-disable-next-line max-params-no-constructor/max-params-no-constructor
     public endTime(
         info: TimerInfo,
         level: LoggerLevel,
@@ -33,7 +35,7 @@ export class TimerFactory {
         logger: LoggerService,
     ): void {
         // eslint-disable-next-line sonarjs/no-inverted-boolean-check
-        const canExecute: boolean = !(this.console.minLevel > level);
+        const canExecute = !(this.console.minLevel > level);
 
         if (canExecute) {
             const methodName: string = DEFAULT_METHODS[level];

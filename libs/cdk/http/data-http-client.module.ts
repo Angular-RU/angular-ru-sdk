@@ -1,5 +1,6 @@
 import {ModuleWithProviders, NgModule, Type} from '@angular/core';
 import {DataClientRequestOptions} from '@angular-ru/cdk/http/typings';
+import {PlainObject} from '@angular-ru/cdk/typings';
 
 import {DATA_REQUEST_OPTIONS_CONFIG} from './configs/data-request-options.config';
 import {DataConfiguratorService} from './services/data-configurator.service';
@@ -8,12 +9,11 @@ import {DefaultHttpClientInterceptor} from './services/default-http-client-inter
 import {LimitConcurrencyService} from './services/limit-concurrency.service';
 import {DATA_CONFIG_SERVICE_TOKEN} from './tokens/data-config-service.token';
 import {DATA_HTTP_CLIENT_INTERCEPTOR} from './tokens/data-http-client-interceptor.token';
-import {PlainObject} from "@angular-ru/cdk/typings";
 
 @NgModule()
 export class DataHttpClientModule {
     public static forRoot<K extends PlainObject = any>(
-        clients: Type<unknown>[] = [],
+        clients: Array<Type<unknown>> = [],
         options: Partial<DataClientRequestOptions<K>> = {},
     ): ModuleWithProviders<DataHttpClientModule> {
         return {
@@ -36,7 +36,7 @@ export class DataHttpClientModule {
     }
 
     public static forFeature(
-        clients: Type<unknown>[] = [],
+        clients: Array<Type<unknown>> = [],
     ): ModuleWithProviders<DataHttpClientModule> {
         return {ngModule: DataHttpClientModule, providers: clients};
     }

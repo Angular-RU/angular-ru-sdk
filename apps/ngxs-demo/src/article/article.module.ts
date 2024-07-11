@@ -15,7 +15,6 @@ import {ArticleEntitiesState} from './article-entities.state';
 import {ArticleDialogComponent} from './dialog/article-dialog.component';
 
 @NgModule({
-    declarations: [ArticleComponent, ArticleDialogComponent],
     imports: [
         CommonModule,
         MatButtonModule,
@@ -28,5 +27,6 @@ import {ArticleDialogComponent} from './dialog/article-dialog.component';
         RouterModule.forChild([{path: '', component: ArticleComponent}]),
         ReactiveFormsModule,
     ],
+    declarations: [ArticleComponent, ArticleDialogComponent],
 })
 export class ArticleModule {}

@@ -25,11 +25,17 @@ export class LoggerService {
 
     // eslint-disable-next-line max-params
     constructor(
+        @Inject(CssFactory)
         private readonly cssFactory: CssFactory,
+        @Inject(ConsoleService)
         private readonly console: ConsoleService,
+        @Inject(LoggerFactory)
         private readonly factory: LoggerFactory,
+        @Inject(GroupFactory)
         private readonly groupFactory: GroupFactory,
+        @Inject(JsonFactory)
         private readonly jsonFactory: JsonFactory,
+        @Inject(TimerFactory)
         private readonly timerFactory: TimerFactory,
         @Inject(LOGGER_OPTIONS) private readonly options: LoggerOptionsImpl,
     ) {}
@@ -156,7 +162,7 @@ export class LoggerService {
     public endTime(
         info: Nullable<TimerInfo>,
         level: LoggerLevel = LoggerLevel.DEBUG,
-        isMillisecond: boolean = true,
+        isMillisecond = true,
     ): void {
         if (isNotNil(info)) {
             this.timerFactory.endTime(info, level, isMillisecond, this);

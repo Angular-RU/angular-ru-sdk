@@ -6,11 +6,11 @@ import {SharedModule} from '../../shared/shared.module';
 import {SampleElevenComponent} from './sample-eleven.component';
 
 @NgModule({
-    declarations: [SampleElevenComponent],
     imports: [
         CommonModule,
         SharedModule,
         RouterModule.forChild([{path: '', component: SampleElevenComponent}]),
     ],
+    declarations: [SampleElevenComponent],
 })
 export class SampleElevenModule {}

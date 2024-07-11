@@ -1,1 +1,1 @@
-export type TooltipSize = 'small' | 'medium';
+export type TooltipSize = 'medium' | 'small';

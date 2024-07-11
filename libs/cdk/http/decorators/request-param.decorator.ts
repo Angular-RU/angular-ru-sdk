@@ -10,7 +10,7 @@ export function RequestParam(name: string): ParameterDecorator {
         const key: string = name.trim();
 
         if (!key) {
-            throw new Error(`@RequestParam name should be initialized`);
+            throw new Error('@RequestParam name should be initialized');
         }
 
         const originalMethod: Fn = target?.[methodName as any];

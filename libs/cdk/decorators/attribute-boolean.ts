@@ -12,7 +12,7 @@ export function AttributeBoolean(): PropertyDecorator {
             key,
         );
 
-        const uniqueRefKey: symbol = Symbol(`It's boolean attribute`);
+        const uniqueRefKey = Symbol("It's boolean attribute");
 
         return {
             set(value: InputBoolean): void {

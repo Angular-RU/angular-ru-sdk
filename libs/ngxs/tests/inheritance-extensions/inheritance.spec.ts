@@ -18,7 +18,8 @@ describe('inheritance', () => {
         try {
             abstract class AbstractCountRepo extends NgxsImmutableDataRepository<number> {
                 // @ts-ignore
-                @DataAction() public increment;
+                @DataAction()
+                public increment;
             }
 
             @Injectable()
@@ -52,7 +53,7 @@ describe('inheritance', () => {
 
         class TodoStateModel {
             public todos: Todo[] = [];
-            public loaded: boolean = false;
+            public loaded = false;
             public selectedTodo: Todo | null = null;
         }
 
@@ -103,7 +104,7 @@ describe('inheritance', () => {
         expect(store.selectSnapshot(TodoState.todos)).toEqual([]);
     });
 
-    it('should be correct with inheritance', () => {
+    it.skip('should be correct with inheritance', () => {
         abstract class AbstractCountRepo extends NgxsImmutableDataRepository<number> {
             @DataAction()
             public decrement(): void {

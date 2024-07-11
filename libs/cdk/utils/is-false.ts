@@ -1,3 +1,3 @@
-export function isFalse(value: unknown | any): value is false {
+export function isFalse(value: any | unknown): value is false {
     return value === false;
 }

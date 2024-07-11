@@ -9,6 +9,7 @@ import {
     Self,
 } from '@angular/core';
 import {isGetter} from '@angular-ru/cdk/object';
+import {PlainObject} from '@angular-ru/cdk/typings';
 import {checkValueIsFilled, isFalsy, isNotNil, isTruthy} from '@angular-ru/cdk/utils';
 import {STORAGE_INITIALIZER} from '@angular-ru/ngxs/internals';
 import {NGXS_DATA_STORAGE_EVENT_TYPE} from '@angular-ru/ngxs/tokens';
@@ -48,14 +49,15 @@ import {parseStorageMeta} from './utils/parse-storage-meta';
 import {rehydrate} from './utils/rehydrate';
 import {silentDeserializeWarning} from './utils/silent-deserialize-warning';
 import {silentSerializeWarning} from './utils/silent-serialize-warning';
-import {PlainObject} from "@angular-ru/cdk/typings";
 
 @Injectable()
 export class NgxsDataStoragePlugin implements NgxsPlugin, DataStoragePlugin {
     public static injector: Injector | null = null;
     private static eventsSubscriptions: Subscription | null = null;
-    private static ttlListeners: WeakMap<PersistenceProvider, TtlListenerOptions> =
-        new WeakMap();
+    private static readonly ttlListeners = new WeakMap<
+        PersistenceProvider,
+        TtlListenerOptions
+    >();
 
     constructor(
         @Inject(PLATFORM_ID) public readonly platformId: string,
@@ -120,7 +122,7 @@ export class NgxsDataStoragePlugin implements NgxsPlugin, DataStoragePlugin {
 
         if (isTruthy(info.rehydrateIn) && isTruthy(isStorageEvent(action))) {
             const instance: NgxsDataAfterStorageEvent =
-                provider.stateInstance as any as NgxsDataAfterStorageEvent;
+                provider.stateInstance as NgxsDataAfterStorageEvent;
             const event: NgxsDataStorageEvent = {key, value, data, provider};
 
             instance?.browserStorageEvents$.next(event);

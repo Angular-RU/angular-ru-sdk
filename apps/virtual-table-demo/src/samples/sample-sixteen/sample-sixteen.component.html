@@ -21,7 +21,7 @@
         is-draggable
         is-filterable
         is-sortable
-    ></ngx-options>
+    />
 
     <ngx-context-menu>
         <ngx-context-menu-item
@@ -47,7 +47,7 @@
                     <mat-checkbox
                         color="primary"
                         [checked]="column.isVisible"
-                    ></mat-checkbox>
+                    />
                 </ngx-menu-content>
             </ngx-context-menu-item>
         </ngx-context-menu-item>
@@ -68,7 +68,7 @@
         vertical-line
         width="100"
         [is-draggable]="false"
-    ></ngx-column>
+    />
 
     <ngx-column
         custom-key
@@ -76,12 +76,12 @@
         key="reverseId"
         vertical-line
         width="150"
-    ></ngx-column>
+    />
 
     <ngx-column
         *ngFor="let key of table.modelColumnKeys"
         [key]="key"
-    ></ngx-column>
+    />
 
     <ngx-column
         custom-key

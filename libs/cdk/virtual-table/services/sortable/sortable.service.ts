@@ -10,11 +10,11 @@ import {SortableMessage} from './sortable-message';
 
 @Injectable()
 export class SortableService<T> {
-    private skipInternalSort: boolean = false;
+    private skipInternalSort = false;
     private sortChanges: Nullable<EventEmitter<OrderedField[]>> = null;
     public definition: PlainObjectOf<SortOrderType> = {};
     public positionMap: PlainObjectOf<number> = {};
-    public sortableCount: number = 0;
+    public sortableCount = 0;
 
     constructor(
         private readonly thread: WebWorkerThreadService,
@@ -29,7 +29,7 @@ export class SortableService<T> {
         return !this.empty;
     }
 
-    public sort(data: T[]): Promise<T[]> {
+    public async sort(data: T[]): Promise<T[]> {
         return new Promise((resolve: (value: T[]) => void): void => {
             if (this.skipInternalSort) {
                 resolve(data);

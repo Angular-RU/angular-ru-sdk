@@ -3,6 +3,7 @@ import {
     Directive,
     ElementRef,
     HostListener,
+    Inject,
     Input,
     Optional,
 } from '@angular/core';
@@ -11,12 +12,18 @@ import {toStringValue} from '@angular-ru/cdk/string';
 
 @Directive({selector: '[convertCase]'})
 export class ConvertCaseDirective implements AfterViewInit {
-    @Input() public toUpperCase: boolean = true;
-    @Input() public toLowerCase: boolean = false;
+    @Input()
+    public toUpperCase = true;
+
+    @Input()
+    public toLowerCase = false;
 
     constructor(
+        @Inject(ElementRef)
         private readonly elementRef: ElementRef,
-        @Optional() private readonly ngControl?: NgControl,
+        @Inject(NgControl)
+        @Optional()
+        private readonly ngControl?: NgControl,
     ) {}
 
     private get element(): HTMLInputElement {

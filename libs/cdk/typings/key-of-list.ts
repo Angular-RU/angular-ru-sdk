@@ -1,1 +1,1 @@
-export type KeyOfList<T> = (keyof T)[];
+export type KeyOfList<T> = Array<keyof T>;

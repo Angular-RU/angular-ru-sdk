@@ -3,8 +3,8 @@ import {NgModule} from '@angular/core';
 import {FileSizePipe} from './file-size.pipe';
 
 @NgModule({
-    exports: [FileSizePipe],
-    providers: [FileSizePipe],
     declarations: [FileSizePipe],
+    providers: [FileSizePipe],
+    exports: [FileSizePipe],
 })
 export class FileSizePipeModule {}

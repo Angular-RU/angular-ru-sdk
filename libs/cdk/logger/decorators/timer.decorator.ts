@@ -8,7 +8,7 @@ import {LoggerService} from '../logger.service';
 export function TimerLog(
     title: string,
     level: TimerLevels = LoggerLevel.DEBUG,
-    isMillisecond: boolean = true,
+    isMillisecond = true,
 ): MethodDecorator {
     return function (
         _target: unknown,

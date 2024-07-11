@@ -1,4 +1,3 @@
-/* eslint-disable spellcheck/spell-checker */
 import {AbstractControl, FormControl, FormGroup} from '@angular/forms';
 import {toUtc} from '@angular-ru/cdk/date';
 import {

@@ -1,3 +1,4 @@
+import {PlainObject} from '@angular-ru/cdk/typings';
 import {isFalsy, isTruthy} from '@angular-ru/cdk/utils';
 import {
     MigrateFn,
@@ -8,7 +9,6 @@ import {
 import {getValue, setValue} from '@ngxs/store';
 
 import {ensurePath} from './ensure-path';
-import {PlainObject} from "@angular-ru/cdk/typings";
 
 // eslint-disable-next-line max-lines-per-function
 export function rehydrate<T>(params: RehydrateInfoOptions<T>): RehydrateInfo {
@@ -33,7 +33,9 @@ export function rehydrate<T>(params: RehydrateInfoOptions<T>): RehydrateInfo {
         states = setValue(states, path, newMigrationData);
 
         return {states, rehydrateIn: true};
-    } else if (JSON.stringify(prevData) !== JSON.stringify(data)) {
+    }
+
+    if (JSON.stringify(prevData) !== JSON.stringify(data)) {
         states = setValue(states, path, data);
 
         return {states, rehydrateIn: true};

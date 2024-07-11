@@ -10,7 +10,8 @@ import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 })
 export class CodeDialogComponent implements AfterViewInit {
     constructor(
-        @Inject(MAT_DIALOG_DATA) public data: unknown | any,
+        @Inject(MAT_DIALOG_DATA) public data: any | unknown,
+        @Inject(MatDialogRef)
         public dialogRef: MatDialogRef<unknown>,
     ) {}
 

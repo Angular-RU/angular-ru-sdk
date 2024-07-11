@@ -18,12 +18,10 @@ import {AppComponent} from './app.component';
 
 // ts-prune-ignore-next
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
-    return new TranslateHttpLoader(http, './assets/i18n/', `.json`);
+    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 @NgModule({
-    bootstrap: [AppComponent],
-    declarations: [AppComponent],
     imports: [
         BrowserAnimationsModule,
         BrowserModule,
@@ -42,6 +40,8 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
         RouterModule.forRoot([]),
         ExcelBuilderModule.forRoot(),
     ],
+    declarations: [AppComponent],
     providers: [EXCEL_BUILDER_NGX_TRANSLATE_FALLBACK_PROVIDER],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -18,7 +18,7 @@ describe('[TEST]: ShiftDate', (): void => {
             someDate,
         );
 
-        expect(expectDate.toISOString()).toBe('2022-05-23T03:00:06.000Z');
+        expect(expectDate.toISOString()).toBe('2022-05-23T00:00:06.000Z');
     });
     it('should correctly add year', (): void => {
         const expectDate: Date = shiftDate({years: 1}, someDate);

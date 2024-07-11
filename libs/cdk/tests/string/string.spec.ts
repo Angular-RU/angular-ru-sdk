@@ -25,7 +25,6 @@ describe('[TEST]: String', () => {
     });
 
     it('get byte size', () => {
-        // eslint-disable-next-line no-cyrillic-string/no-cyrillic-string
         expect(getByteSize('сын')).toBe(6);
         expect(getByteSize('son')).toBe(3);
     });

@@ -8,7 +8,7 @@ describe('[TEST]: File Size Pipe', (): void => {
     });
 
     it('should correct transform file size', (): void => {
-        let fileSize: number = 1100;
+        let fileSize = 1100;
 
         expect(fileSizePipe.transform(fileSize)).toBe('1.07 Kb');
         fileSize = 13;

@@ -5,15 +5,19 @@ export {
     ArgNameMap,
     PayloadMap,
     PayloadName,
-    RepositoryActionOptions
+    RepositoryActionOptions,
 } from './common/actions-properties';
-export { ComputedCacheMap } from './common/computed-cache-map';
-export { ComputedOptions } from './common/computed-options';
-export { DataStateClass, StateArgumentDecorator, StateClassDecorator } from './common/data-state-class';
-export { DispatchedResult } from './common/dispatched-result';
-export { NgxsDataExtension } from './common/extension';
-export { MappedState } from './common/mapped-state';
-export { NgxsDataAfterReset, NgxsDataDoCheck } from './common/ngxs-data-lifecycle';
+export {ComputedCacheMap} from './common/computed-cache-map';
+export {ComputedOptions} from './common/computed-options';
+export {
+    DataStateClass,
+    StateArgumentDecorator,
+    StateClassDecorator,
+} from './common/data-state-class';
+export {DispatchedResult} from './common/dispatched-result';
+export {NgxsDataExtension} from './common/extension';
+export {MappedState} from './common/mapped-state';
+export {NgxsDataAfterReset, NgxsDataDoCheck} from './common/ngxs-data-lifecycle';
 export {
     DataRepository,
     DataStateContext,
@@ -24,10 +28,10 @@ export {
     NgxsDataOperation,
     NgxsRepositoryMeta,
     PatchValue,
-    StateValue
+    StateValue,
 } from './common/repository';
-export { EntityContext } from './entity/entity-context';
-export { EntityRepository } from './entity/entity-repository';
+export {EntityContext} from './entity/entity-context';
+export {EntityRepository} from './entity/entity-repository';
 export {
     CheckExpiredInitOptions,
     CreateStorageDefaultOptions,
@@ -57,5 +61,5 @@ export {
     TtlExpiredStrategy as TTL_EXPIRED_STRATEGY,
     TtLCreatorOptions,
     TtlListenerOptions,
-    UseClassEngineProvider
+    UseClassEngineProvider,
 } from './storage/storage';

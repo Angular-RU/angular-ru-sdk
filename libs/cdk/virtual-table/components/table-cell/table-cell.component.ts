@@ -1,11 +1,9 @@
 /* eslint-disable @angular-eslint/no-input-rename */
+import {ChangeDetectorRef, NgZone, OnDestroy} from '@angular/core';
 import {
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     Input,
-    NgZone,
-    OnDestroy,
     ViewEncapsulation,
 } from '@angular/core';
 import {Nullable} from '@angular-ru/cdk/typings';
@@ -21,16 +19,16 @@ import {
 } from '../../interfaces/table-builder.external';
 import {trim} from '../../operators/trim';
 
-const TIME_IDLE: number = 1500;
+const TIME_IDLE = 1500;
 
 @Component({
     selector: 'table-cell',
     templateUrl: './table-cell.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableCellComponent<T> implements OnDestroy {
-    private destroy$: Subject<void> = new Subject();
+    private readonly destroy$ = new Subject<void>();
     private readonly closeButtonSelector: string = 'table-close__button';
     private readonly overflowSelector: string = 'table-grid__cell-overflow-content';
     private readonly timeIdle: number = TIME_IDLE;
@@ -38,15 +36,33 @@ export class TableCellComponent<T> implements OnDestroy {
     private closeElemSub: Nullable<Subscription> = null;
     private timeoutShowedFrameId: Nullable<number> = null;
     private timeoutOverflowId: Nullable<number> = null;
-    @Input() public item: Nullable<T> = null;
-    @Input() public index: Nullable<number> = null;
-    @Input() public parent: Nullable<HTMLDivElement> = null;
-    @Input() public isRendered: boolean = false;
-    @Input('is-filterable') public isFilterable: boolean = false;
-    @Input('column-schema') public columnSchema: Nullable<ColumnsSchema> = null;
-    @Input('enable-filtering') public enableFiltering: boolean = false;
-    @Input('viewport-info') public viewportInfo: Nullable<ViewPortInfo> = null;
-    @Input('disable-deep-path') public disableDeepPath: boolean = false;
+    @Input()
+    public item: Nullable<T> = null;
+
+    @Input()
+    public index: Nullable<number> = null;
+
+    @Input()
+    public parent: Nullable<HTMLDivElement> = null;
+
+    @Input()
+    public isRendered = false;
+
+    @Input('is-filterable')
+    public isFilterable = false;
+
+    @Input('column-schema')
+    public columnSchema: Nullable<ColumnsSchema> = null;
+
+    @Input('enable-filtering')
+    public enableFiltering = false;
+
+    @Input('viewport-info')
+    public viewportInfo: Nullable<ViewPortInfo> = null;
+
+    @Input('disable-deep-path')
+    public disableDeepPath = false;
+
     public contextType: typeof ImplicitContext = ImplicitContext;
 
     constructor(
@@ -139,7 +155,7 @@ export class TableCellComponent<T> implements OnDestroy {
         const divElement: HTMLDivElement = document.createElement('div');
 
         divElement.classList.add(this.overflowSelector);
-        const minOffset: number = 15;
+        const minOffset = 15;
         const left: number = event.clientX - minOffset;
         const top: number = event.clientY - minOffset;
 

@@ -23,7 +23,7 @@ export interface RecalculatedStatus {
     recalculateHeight: boolean;
 }
 
-export type RowId = string | number;
+export type RowId = number | string;
 
 export interface SelectionStatus {
     status: boolean;
@@ -34,7 +34,7 @@ export const enum KeyType {
     KEYUP = 'keyup',
 }
 
-export type TableBrowserEvent = Event | MouseEvent | KeyboardEvent;
+export type TableBrowserEvent = Event | KeyboardEvent | MouseEvent;
 
 export interface ResizeEvent {
     event: TableBrowserEvent;

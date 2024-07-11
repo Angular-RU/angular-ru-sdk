@@ -16,7 +16,7 @@ export function firedStateWhenExpired(key: string, options: TtLCreatorOptions): 
     };
 
     const instance: NgxsDataAfterExpired | undefined =
-        provider.stateInstance as any as NgxsDataAfterExpired;
+        provider.stateInstance as NgxsDataAfterExpired;
 
     instance?.expired$?.next(event);
 

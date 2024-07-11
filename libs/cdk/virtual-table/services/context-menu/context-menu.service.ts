@@ -8,7 +8,7 @@ import {ContextMenuState} from './context-menu-state';
 @Injectable()
 export class ContextMenuService<T, K = unknown> {
     public state: ContextMenuState<T, K> = new ContextMenuState<T, K>();
-    public readonly events$: Subject<void> = new Subject();
+    public readonly events$ = new Subject<void>();
 
     public openContextMenu(
         event: MouseEvent,

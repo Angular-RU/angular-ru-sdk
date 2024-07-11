@@ -1,4 +1,4 @@
-import {AfterViewInit, Directive, ElementRef} from '@angular/core';
+import {AfterViewInit, Directive, ElementRef, Inject} from '@angular/core';
 
 import {AbstractFlexLayoutDirective} from './abstract-flex-layout.directive';
 
@@ -7,11 +7,14 @@ export class FlexFullWidthDirective
     extends AbstractFlexLayoutDirective
     implements AfterViewInit
 {
-    constructor(protected readonly elementRef: ElementRef) {
+    constructor(
+        @Inject(ElementRef)
+        protected readonly elementRef: ElementRef,
+    ) {
         super();
     }
 
     public ngAfterViewInit(): void {
-        this.classList.add(`flex__full-width`);
+        this.classList.add('flex__full-width');
     }
 }

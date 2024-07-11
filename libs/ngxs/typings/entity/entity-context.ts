@@ -6,7 +6,7 @@ import {
 import {ActionType} from '@ngxs/store';
 import {Observable} from 'rxjs';
 
-export interface EntityContext<V, K extends string | number, C = Record<string, any>> {
+export interface EntityContext<V, K extends number | string, C = Record<string, any>> {
     getState(): EntityCollections<V, K, C>;
 
     setState(value: EntityStateValue<EntityCollections<V, K, C>>): void;

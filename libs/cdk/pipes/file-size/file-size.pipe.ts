@@ -6,17 +6,14 @@ export class FileSizePipe implements PipeTransform {
     private readonly commonPrecision: number = 2;
     private readonly byteSize: number = 1024;
 
-    public transform(
-        bytes: number = 0,
-        precision: number = this.commonPrecision,
-    ): string {
+    public transform(bytes = 0, precision: number = this.commonPrecision): string {
         let result: string;
         let calculatedBytes: number = bytes;
 
         if (isNaN(parseFloat(String(calculatedBytes))) || !isFinite(calculatedBytes)) {
             result = '?';
         } else {
-            let unit: number = 0;
+            let unit = 0;
 
             while (calculatedBytes >= this.byteSize) {
                 calculatedBytes /= this.byteSize;

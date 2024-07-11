@@ -13,9 +13,9 @@ import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 @Component({
     selector: 'sample-thirteen',
     templateUrl: './sample-thirteen.component.html',
+    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [ToastrService],
-    encapsulation: ViewEncapsulation.None,
 })
 export class SampleThirteenComponent implements AfterViewInit {
     public data: PlainObject[] = [
@@ -52,7 +52,7 @@ export class SampleThirteenComponent implements AfterViewInit {
     }
 
     public rowOnClick(event: TableEvent<PlainObject, string>): void {
-        const space: number = 4;
+        const space = 4;
 
         this.toast.success(JSON.stringify(event, null, space), 'OnClick', {
             timeOut: 2000,
@@ -61,7 +61,7 @@ export class SampleThirteenComponent implements AfterViewInit {
     }
 
     public rowDblClick(event: TableEvent<PlainObject, string>): void {
-        const space: number = 4;
+        const space = 4;
 
         this.toast.success(JSON.stringify(event, null, space), 'DblClick', {
             timeOut: 2000,

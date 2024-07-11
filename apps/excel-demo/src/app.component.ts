@@ -1,4 +1,3 @@
-/* eslint-disable spellcheck/spell-checker */
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 import {ExcelService} from '@angular-ru/cdk/excel';
 import {TranslateService} from '@ngx-translate/core';
@@ -15,8 +14,8 @@ interface A {
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
     public data: A[] = [

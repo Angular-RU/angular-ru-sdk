@@ -127,7 +127,7 @@ export abstract class AbstractNgxsDataEntityCollectionsRepository<
     }
 
     @DataAction()
-    public updateMany(@Payload('updates') updates: EntityUpdate<V, K>[]): void {
+    public updateMany(@Payload('updates') updates: Array<EntityUpdate<V, K>>): void {
         this.updateEntitiesMany(updates);
     }
 
@@ -241,7 +241,7 @@ export abstract class AbstractNgxsDataEntityCollectionsRepository<
 
     protected addEntitiesMany(entities: V[]): void {
         const state: EntityCollections<V, K, C> = this.getState();
-        const dictionary: EntityDictionary<K, V> | EmptyDictionary<K, V> = {};
+        const dictionary: EmptyDictionary<K, V> | EntityDictionary<K, V> = {};
         const ids: K[] = [];
 
         for (const entity of entities) {
@@ -266,7 +266,7 @@ export abstract class AbstractNgxsDataEntityCollectionsRepository<
 
     protected setEntitiesAll(entities: V[]): void {
         const state: EntityCollections<V, K, C> = this.getState();
-        const dictionary: EntityDictionary<K, V> | EmptyDictionary<K, V> = {};
+        const dictionary: EmptyDictionary<K, V> | EntityDictionary<K, V> = {};
         const ids: K[] = [];
 
         for (const entity of entities) {
@@ -312,9 +312,9 @@ export abstract class AbstractNgxsDataEntityCollectionsRepository<
     }
 
     // eslint-disable-next-line max-lines-per-function
-    protected updateEntitiesMany(updates: EntityUpdate<V, K>[]): void {
+    protected updateEntitiesMany(updates: Array<EntityUpdate<V, K>>): void {
         const state: EntityCollections<V, K, C> = this.getState();
-        const newUpdates: EntityUpdate<V, K>[] = updates.filter(
+        const newUpdates: Array<EntityUpdate<V, K>> = updates.filter(
             (update: EntityUpdate<V, K>): boolean => update.id in state.entities,
         );
 
@@ -347,7 +347,7 @@ export abstract class AbstractNgxsDataEntityCollectionsRepository<
 
     protected upsertEntitiesMany(entities: V[]): void {
         const state: EntityCollections<V, K, C> = this.getState();
-        const updates: EntityUpdate<V, K>[] = [];
+        const updates: Array<EntityUpdate<V, K>> = [];
         const added: V[] = [];
 
         for (const entity of entities) {
@@ -463,7 +463,7 @@ export abstract class AbstractNgxsDataEntityCollectionsRepository<
         if (invalidId) {
             console.warn(
                 `The entity passed to the 'selectId' implementation returned ${id}.`,
-                `You should probably provide your own 'selectId' implementation.`,
+                "You should probably provide your own 'selectId' implementation.",
                 'The entity that was passed:',
                 entity,
                 'The current `selectId` implementation: (entity: V): K => entity.id',

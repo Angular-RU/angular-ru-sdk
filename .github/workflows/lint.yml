@@ -18,15 +18,7 @@ jobs:
         uses: ./.github/actions/nodejs
 
       - name: Run format
-        run: npm run format
-
-      - run: | # todo fix later
-          npx nx build cdk
-          npx nx build ngxs
-
-      - name: Run build artifacts dependent
-        run: |
-          npx nx build eslint-plugin-enterprise
+        run: npm run prettier -- --write
 
       - name: Run lint
         run: npm run lint

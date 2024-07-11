@@ -1,6 +1,6 @@
 /* eslint-disable unicorn/consistent-function-scoping */
 // eslint-disable-next-line max-classes-per-file
-import {Injectable, Optional} from '@angular/core';
+import {Inject, Injectable, Optional} from '@angular/core';
 import {EmptyValue, Nullable, PlainObject} from '@angular-ru/cdk/typings';
 import {copyHtml, isNotNil} from '@angular-ru/cdk/utils';
 import {WebWorkerThreadService} from '@angular-ru/cdk/webworker';
@@ -26,9 +26,13 @@ interface PreparedRequest {
 @Injectable()
 export class TableClipboardService {
     constructor(
+        @Inject(PlainTableComposerService)
         private readonly plainTableComposer: PlainTableComposerService,
+        @Inject(WebWorkerThreadService)
         private readonly webWorker: WebWorkerThreadService,
-        @Optional() private readonly translate: TranslateService,
+        @Inject(TranslateService)
+        @Optional()
+        private readonly translate: TranslateService,
     ) {}
 
     // eslint-disable-next-line max-lines-per-function
@@ -63,7 +67,7 @@ export class TableClipboardService {
                         constructor(
                             private readonly translationMap?: PlainObject,
                             private readonly translationPrefix?: string,
-                            private readonly stub: string = '-',
+                            private readonly stub = '-',
                         ) {}
 
                         public generateTable(entities: PlainObject[]): string {
@@ -79,9 +83,9 @@ export class TableClipboardService {
                                     .join('');
 
                                 return `<html><body><table border="1" cellspacing="0"><tbody>${htmlHeader}${htmlBody}</tbody></table></body></html>`;
-                            } else {
-                                return '';
                             }
+
+                            return '';
                         }
 
                         private generateHeaderRow(keys: string[]): string {
@@ -147,14 +151,11 @@ export class TableClipboardService {
             ? this.translate.getTranslation(lang)
             : of({});
 
-        return (
-            translationMap$
-                // eslint-disable-next-line rxjs/no-topromise, deprecation/deprecation
-                .toPromise()
-                .then(
-                    (map: PlainObject | null | undefined): PlainObject =>
-                        this.plainTableComposer.composeSingle(map!),
-                )
-        );
+        return translationMap$
+            .toPromise()
+            .then(
+                (map: PlainObject | null | undefined): PlainObject =>
+                    this.plainTableComposer.composeSingle(map!),
+            );
     }
 }

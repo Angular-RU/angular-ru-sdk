@@ -8,33 +8,33 @@ export function updateArray<T extends {id?: any}>(
 export function updateArray<T>(
     sourceArray: Nullable<T[]>,
     updatedArray: Nullable<T[]>,
-    compareFnOrKey: keyof T | CompareFn<T>,
+    compareFnOrKey: CompareFn<T> | keyof T,
 ): T[];
 
 // eslint-disable-next-line complexity,max-lines-per-function,sonarjs/cognitive-complexity
 export function updateArray<T>(
     sourceArray: Nullable<T[]>,
     updatedArray: Nullable<T[]>,
-    compareFnOrKey: typeof PrimaryKey.ID | keyof T | CompareFn<T> = PrimaryKey.ID,
+    compareFnOrKey: CompareFn<T> | keyof T | typeof PrimaryKey.ID = PrimaryKey.ID,
 ): T[] {
     const preparedSourceArray: T[] = sourceArray ?? [];
     const newSourceArray: T[] = [];
     const newUpdatedArray: T[] = updatedArray?.slice() ?? [];
-    const skipIndexes: Set<number> = new Set();
+    const skipIndexes = new Set<number>();
 
     // eslint-disable-next-line unicorn/no-for-loop
-    for (let i: number = 0; i < preparedSourceArray.length; i++) {
-        const currentItem: T = preparedSourceArray[i] as T;
-        let updated: boolean = false;
+    for (let i = 0; i < preparedSourceArray.length; i++) {
+        const currentItem: T = preparedSourceArray[i];
+        let updated = false;
 
         // eslint-disable-next-line unicorn/no-for-loop
-        for (let j: number = 0; j < newUpdatedArray.length; j++) {
+        for (let j = 0; j < newUpdatedArray.length; j++) {
             if (skipIndexes.has(j)) {
                 continue;
             }
 
-            let isCompared: boolean = false;
-            const newItem: T = newUpdatedArray[j] as T;
+            let isCompared = false;
+            const newItem: T = newUpdatedArray[j];
 
             if (isFunctionLike<CompareFn<T>>(compareFnOrKey)) {
                 isCompared = compareFnOrKey(currentItem, newItem);

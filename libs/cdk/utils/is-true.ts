@@ -1,3 +1,3 @@
-export function isTrue(value: unknown | any): value is true {
+export function isTrue(value: any | unknown): value is true {
     return value === true;
 }

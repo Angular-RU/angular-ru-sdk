@@ -16,9 +16,13 @@ export class MergeCssClassesPipe implements PipeTransform {
     private convertToPlainObject(descriptor: ClassDescriptor): PlainObject {
         if (isNil(descriptor)) {
             return {};
-        } else if (isString(descriptor)) {
+        }
+
+        if (isString(descriptor)) {
             return this.makePlainObjectOfTrues(descriptor.split(/\s+/));
-        } else if (isIterable(descriptor)) {
+        }
+
+        if (isIterable(descriptor)) {
             return this.makePlainObjectOfTrues(Array.from(descriptor) as any[]);
         }
 

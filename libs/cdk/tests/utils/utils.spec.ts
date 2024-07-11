@@ -68,7 +68,7 @@ describe('[TEST]: Common utils', () => {
     });
 
     it('detect changes invoked three times', () => {
-        let count: number = 0;
+        let count = 0;
         const cd: ChangeDetectorRef = {
             detectChanges() {
                 count++;
@@ -133,8 +133,8 @@ describe('[TEST]: Common utils', () => {
         expect(checkSomeValueIsEmpty('', undefined, null)).toBe(true));
 
     it('isMacOS should return true if user agent shows that user has MacOS and false if otherwise', () => {
-        expect(isMacOS({userAgent: `Mac`} as unknown as Navigator)).toBeTruthy();
-        expect(isMacOS({userAgent: `Linux`} as unknown as Navigator)).toBeFalsy();
+        expect(isMacOS({userAgent: 'Mac'} as unknown as Navigator)).toBeTruthy();
+        expect(isMacOS({userAgent: 'Linux'} as unknown as Navigator)).toBeFalsy();
     });
 
     describe('[TEST]: checkSomeValueIsTrue', () => {
@@ -333,7 +333,7 @@ describe('[TEST]: Common utils', () => {
             expect(tryParseJson('qwerty')).toBeUndefined();
             expect(tryParseJson('{ a: 1 }')).toBeUndefined();
 
-            const plain: string = '{ checked: true }';
+            const plain = '{ checked: true }';
 
             expect(tryParseJson<{checked: boolean}>(plain)?.checked ?? false).toBe(false);
         });

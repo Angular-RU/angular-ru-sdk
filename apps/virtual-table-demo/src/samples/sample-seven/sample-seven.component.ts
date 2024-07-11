@@ -21,8 +21,8 @@ export class SampleSevenComponent implements OnInit, AfterViewInit {
     constructor(private readonly cd: ChangeDetectorRef) {}
 
     public ngOnInit(): void {
-        const rowsNumber: number = 10000;
-        const cols: number = 30;
+        const rowsNumber = 10000;
+        const cols = 30;
 
         MocksGenerator.generator(rowsNumber, cols).then((data: PlainObject[]): void => {
             this.data = data;
@@ -35,7 +35,7 @@ export class SampleSevenComponent implements OnInit, AfterViewInit {
     }
 
     public alert(row: PlainObject): void {
-        const space: number = 4;
+        const space = 4;
 
         window.alert(JSON.stringify(row, null, space));
     }

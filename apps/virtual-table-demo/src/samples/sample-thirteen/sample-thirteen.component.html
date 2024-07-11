@@ -92,7 +92,7 @@
                         [checked]="tableFirst.selectionModel.isAll"
                         [indeterminate]="tableFirst.selectionModel.isIndeterminate"
                         (change)="tableFirst.selection.toggleAll(data)"
-                    ></mat-checkbox>
+                    />
                 </ng-template>
                 <ng-template
                     let-row
@@ -104,7 +104,7 @@
                     <mat-checkbox
                         [checked]="tableFirst.selectionModel.get($any(row).id)"
                         (change)="tableFirst.selection.toggle(row)"
-                    ></mat-checkbox>
+                    />
                 </ng-template>
             </ngx-column>
 
@@ -145,7 +145,7 @@
                         [checked]="tableSecond.selectionModel.isAll"
                         [indeterminate]="tableSecond.selectionModel.isIndeterminate"
                         (change)="tableSecond.selection.toggleAll(data)"
-                    ></mat-checkbox>
+                    />
                 </ng-template>
                 <ng-template
                     let-row
@@ -157,7 +157,7 @@
                     <mat-checkbox
                         [checked]="tableSecond.selectionModel.get($any(row).id)"
                         (change)="tableSecond.selection.toggle(row)"
-                    ></mat-checkbox>
+                    />
                 </ng-template>
             </ngx-column>
 

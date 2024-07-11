@@ -24,7 +24,7 @@ export function mutatePathByPathVariables(
         META_PATH_VARIABLE,
     );
     const definedVariables: PlainObject = pathVariables ?? {};
-    const variableMap: Map<string, any> = new Map();
+    const variableMap = new Map<string, any>();
 
     mutateMapByMethodArgsRegistry(variableMap, args, registry);
     mutateMapByDefinedVariables(variableMap, definedVariables);

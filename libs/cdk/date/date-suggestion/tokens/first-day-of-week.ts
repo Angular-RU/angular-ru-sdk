@@ -11,7 +11,7 @@ export const enum DayOfWeek {
 }
 
 export const FIRST_DAY_OF_WEEK: InjectionToken<DayOfWeek> = new InjectionToken<DayOfWeek>(
-    'First day of week',
+    '[FIRST_DAY_OF_WEEK]: First day of week',
     {
         factory: (): DayOfWeek => DayOfWeek.Monday,
     },

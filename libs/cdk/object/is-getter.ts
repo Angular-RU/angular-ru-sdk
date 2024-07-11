@@ -4,7 +4,7 @@ import {isSimpleObject} from './is-simple-object';
 
 export function isGetter<T>(object: T, prop: string): boolean {
     let currentObject: any = object;
-    let result: boolean = false;
+    let result = false;
 
     if (isSimpleObject(currentObject)) {
         while (currentObject !== null) {

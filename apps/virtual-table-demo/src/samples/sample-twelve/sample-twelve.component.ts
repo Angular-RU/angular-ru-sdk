@@ -14,8 +14,8 @@ import {MocksGenerator} from '../../mocks-generator';
 @Component({
     selector: 'sample-twelve',
     templateUrl: './sample-twelve.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SampleTwelveComponent implements OnInit, AfterViewInit {
     public data: PlainObject[] = [];
@@ -46,8 +46,8 @@ export class SampleTwelveComponent implements OnInit, AfterViewInit {
     constructor(private readonly cd: ChangeDetectorRef) {}
 
     public ngOnInit(): void {
-        const rowNumber: number = 50;
-        const colsNumber: number = 15;
+        const rowNumber = 50;
+        const colsNumber = 15;
 
         MocksGenerator.generator(rowNumber, colsNumber).then(
             (data: PlainObject[]): void => {

@@ -1,6 +1,6 @@
 import {SortOrderType} from '@angular-ru/cdk/typings';
 
-type SortDirection = SortOrderType | 'asc' | 'desc' | '';
+type SortDirection = SortOrderType | '' | 'asc' | 'desc';
 
 export interface EntitySortBy<V> {
     sortBy: keyof V;
@@ -9,4 +9,4 @@ export interface EntitySortBy<V> {
 
 export type EntityCompareFn<V> = (a: V, b: V) => number;
 
-export type EntityComparator<V> = EntitySortBy<V> | EntityCompareFn<V>;
+export type EntityComparator<V> = EntityCompareFn<V> | EntitySortBy<V>;

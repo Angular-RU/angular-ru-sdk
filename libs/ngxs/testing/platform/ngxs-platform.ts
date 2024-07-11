@@ -1,10 +1,9 @@
-/* eslint-disable deprecation/deprecation */
 import {SchemaMetadata, Type} from '@angular/core';
 import {TestBed, TestModuleMetadata} from '@angular/core/testing';
 import {isNil} from '@angular-ru/cdk/utils';
 import {getStateMetadata} from '@angular-ru/ngxs/internals';
 import {Store} from '@ngxs/store';
-import {ɵStateClass as StateClass} from "@ngxs/store/internals/symbols";
+import {ɵStateClass as StateClass} from '@ngxs/store/internals/symbols';
 
 import {TestSpec} from './internal/types';
 import {NgxsDataTestingModule} from './ngxs-data-testing.module';
@@ -21,35 +20,36 @@ export type PlatformMetadata =
  */
 
 export function ngxsTestingPlatform<A>(
-    params: (PlatformMetadata & {states?: [StateClass<A>]}) | [StateClass<A>],
+    params: [StateClass<A>] | (PlatformMetadata & {states?: [StateClass<A>]}),
     fn: (store: Store, a: A) => any,
 ): TestSpec;
 
 export function ngxsTestingPlatform<A, B>(
     params:
-        | (PlatformMetadata & {states?: [StateClass<A>, StateClass<B>]})
-        | [StateClass<A>, StateClass<B>],
+        | [StateClass<A>, StateClass<B>]
+        | (PlatformMetadata & {states?: [StateClass<A>, StateClass<B>]}),
     fn: (store: Store, a: A, b: B) => any,
 ): TestSpec;
 
 export function ngxsTestingPlatform<A, B, C>(
     params:
-        | (PlatformMetadata & {states?: [StateClass<A>, StateClass<B>, StateClass<C>]})
-        | [StateClass<A>, StateClass<B>, StateClass<C>],
+        | [StateClass<A>, StateClass<B>, StateClass<C>]
+        | (PlatformMetadata & {states?: [StateClass<A>, StateClass<B>, StateClass<C>]}),
     fn: (store: Store, a: A, b: B, c: C) => any,
 ): TestSpec;
 
 export function ngxsTestingPlatform<A, B, C, D>(
     params:
+        | [StateClass<A>, StateClass<B>, StateClass<C>, StateClass<D>]
         | (PlatformMetadata & {
               states?: [StateClass<A>, StateClass<B>, StateClass<C>, StateClass<D>];
-          })
-        | [StateClass<A>, StateClass<B>, StateClass<C>, StateClass<D>],
+          }),
     fn: (store: Store, a: A, b: B, c: C, d: D) => any,
 ): TestSpec;
 
 export function ngxsTestingPlatform<A, B, C, D, E>(
     params:
+        | [StateClass<A>, StateClass<B>, StateClass<C>, StateClass<D>, StateClass<E>]
         | (PlatformMetadata & {
               states?: [
                   StateClass<A>,
@@ -58,14 +58,21 @@ export function ngxsTestingPlatform<A, B, C, D, E>(
                   StateClass<D>,
                   StateClass<E>,
               ];
-          })
-        | [StateClass<A>, StateClass<B>, StateClass<C>, StateClass<D>, StateClass<E>],
+          }),
     // eslint-disable-next-line unicorn/prevent-abbreviations
     fn: (store: Store, a: A, b: B, c: C, d: D, e: E) => any,
 ): TestSpec;
 
 export function ngxsTestingPlatform<A, B, C, D, E, F>(
     params:
+        | [
+              StateClass<A>,
+              StateClass<B>,
+              StateClass<C>,
+              StateClass<D>,
+              StateClass<E>,
+              StateClass<F>,
+          ]
         | (PlatformMetadata & {
               states?: [
                   StateClass<A>,
@@ -75,15 +82,7 @@ export function ngxsTestingPlatform<A, B, C, D, E, F>(
                   StateClass<E>,
                   StateClass<F>,
               ];
-          })
-        | [
-              StateClass<A>,
-              StateClass<B>,
-              StateClass<C>,
-              StateClass<D>,
-              StateClass<E>,
-              StateClass<F>,
-          ],
+          }),
     // eslint-disable-next-line unicorn/prevent-abbreviations
     fn: (store: Store, a: A, b: B, c: C, d: D, e: E, f: F) => any,
 ): TestSpec;
@@ -98,7 +97,7 @@ export function ngxsTestingPlatform(
  */
 // eslint-disable-next-line max-lines-per-function
 export function ngxsTestingPlatform(
-    params: (PlatformMetadata & {states?: StateClass[]}) | StateClass[],
+    params: StateClass[] | (PlatformMetadata & {states?: StateClass[]}),
     fn: (store: Store, ...states: StateClass[]) => any,
 ): TestSpec {
     // eslint-disable-next-line max-lines-per-function
@@ -124,7 +123,10 @@ export function ngxsTestingPlatform(
                 schemas,
                 providers,
                 declarations,
-                imports: [NgxsDataTestingModule.forRoot(states), ...Array.from(imports as any[])],
+                imports: [
+                    NgxsDataTestingModule.forRoot(states),
+                    ...Array.from(imports as any[]),
+                ],
             }).compileComponents();
 
             NgxsDataTestingModule.ngxsInitPlatform();
@@ -143,13 +145,13 @@ export function ngxsTestingPlatform(
 
 // eslint-disable-next-line complexity,max-lines-per-function
 function ensure(
-    options: (TestModuleMetadata & {states?: StateClass[]}) | StateClass[],
+    options: StateClass[] | (TestModuleMetadata & {states?: StateClass[]}),
 ): any {
     let states: StateClass[];
-    let providers: Type<unknown>[] = [];
-    let declarations: Type<unknown>[] = [];
-    let imports: Type<unknown>[] = [];
-    let schemas: (SchemaMetadata | any[])[] = [];
+    let providers: Array<Type<unknown>> = [];
+    let declarations: Array<Type<unknown>> = [];
+    let imports: Array<Type<unknown>> = [];
+    let schemas: Array<any[] | SchemaMetadata> = [];
 
     if (Array.isArray(options)) {
         states = options;

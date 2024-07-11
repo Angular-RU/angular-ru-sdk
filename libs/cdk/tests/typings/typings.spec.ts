@@ -11,11 +11,11 @@ describe('[TEST]: Common types', () => {
 
     it('keyof', () => {
         class B {
-            public c: string = '';
+            public c = '';
         }
 
         class A {
-            public a: string = '';
+            public a = '';
             public b: B = new B();
         }
 
@@ -26,12 +26,12 @@ describe('[TEST]: Common types', () => {
 
     it('deep keyof', () => {
         class B {
-            public c: string = '';
+            public c = '';
             public etc: {f: string} = {f: ''};
         }
 
         class A {
-            public a: string = '';
+            public a = '';
             public b: B = new B();
         }
 
@@ -42,32 +42,32 @@ describe('[TEST]: Common types', () => {
 
     it('leaves', () => {
         class B {
-            public c: string = '';
+            public c = '';
             public etc: {f: string} = {f: ''};
         }
 
         class A {
-            public a: string = '';
+            public a = '';
             public b: B = new B();
         }
 
-        const keys: Leaves<A>[] = ['a', 'b.c', 'b.etc.f']; // output keys
+        const keys: Array<Leaves<A>> = ['a', 'b.c', 'b.etc.f']; // output keys
 
         expect(keys).toEqual(['a', 'b.c', 'b.etc.f']);
     });
 
     it('paths', () => {
         class B {
-            public c: string = '';
+            public c = '';
             public etc: {f: string} = {f: ''};
         }
 
         class A {
-            public a: string = '';
+            public a = '';
             public b: B = new B();
         }
 
-        const paths: Paths<A>[] = ['a', 'b', 'b.c', 'b.etc', 'b.etc.f']; // output keys
+        const paths: Array<Paths<A>> = ['a', 'b', 'b.c', 'b.etc', 'b.etc.f']; // output keys
 
         expect(paths).toEqual(['a', 'b', 'b.c', 'b.etc', 'b.etc.f']);
 

@@ -4,10 +4,10 @@ import {WebWorkerThreadService} from '@angular-ru/cdk/webworker';
 
 export class MocksGenerator {
     // eslint-disable-next-line max-lines-per-function
-    public static generator(
+    public static async generator(
         rowsNumber: number,
         colsNumber: number,
-        startIndex: number = 0,
+        startIndex = 0,
     ): Promise<PlainObject[]> {
         return new WebWorkerThreadService().run<PlainObject[], any>(
             // eslint-disable-next-line max-lines-per-function
@@ -56,7 +56,6 @@ export class MocksGenerator {
                                     min + Math.random() * (max - min);
 
                                 if (cols > 7) {
-                                    // eslint-disable-next-line spellcheck/spell-checker
                                     baseRow[
                                         'About Big Text And More Powerful Label Fugiat Tempor Sunt Nostrud'
                                     ] = new Array(Math.ceil(random(0, 1000)))
@@ -66,7 +65,7 @@ export class MocksGenerator {
                                         )
                                         .join('');
 
-                                    for (let i: number = 7; i <= cols - 1; i++) {
+                                    for (let i = 7; i <= cols - 1; i++) {
                                         baseRow[`column-${i}`] = `$row-${idx} $col-${i}`;
                                     }
                                 }

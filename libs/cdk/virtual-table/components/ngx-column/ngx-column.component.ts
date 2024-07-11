@@ -16,24 +16,49 @@ import {TemplateHeadThDirective} from '../../directives/rows/template-head-th.di
 @Component({
     selector: 'ngx-column',
     templateUrl: './ngx-column.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NgxColumnComponent<T> extends ColumnOptionsDirective {
-    @Input() public key: Nullable<string> = null;
-    @Input() public override stub: Nullable<string> = '-';
-    @Input('sticky') public stickyLeft: Nullable<boolean | string> = false;
-    @Input('empty-head') public emptyHead: Nullable<string | boolean> = null;
-    @Input('head-title') public headTitle: Nullable<string> = null;
-    @Input('custom-key') public customKey: string | boolean = false;
-    @Input('sticky-end') public stickyRight: string | boolean = false;
-    @Input('vertical-line') public verticalLine: string | boolean = false;
-    @Input('important-template') public importantTemplate: string | boolean = false;
-    @Input('force-model') public forceModel: Nullable<string | boolean> = null;
-    @Input('overflow-tooltip') public override overflowTooltip: Nullable<boolean> = null;
-    @Input('excel-type') public excelType: Nullable<ExcelType> = null;
+    @Input()
+    public key: Nullable<string> = null;
+
+    @Input()
+    public override stub: Nullable<string> = '-';
+
+    @Input('sticky')
+    public stickyLeft: Nullable<boolean | string> = false;
+
+    @Input('empty-head')
+    public emptyHead: Nullable<boolean | string> = null;
+
+    @Input('head-title')
+    public headTitle: Nullable<string> = null;
+
+    @Input('custom-key')
+    public customKey: boolean | string = false;
+
+    @Input('sticky-end')
+    public stickyRight: boolean | string = false;
+
+    @Input('vertical-line')
+    public verticalLine: boolean | string = false;
+
+    @Input('important-template')
+    public importantTemplate: boolean | string = false;
+
+    @Input('force-model')
+    public forceModel: Nullable<boolean | string> = null;
+
+    @Input('overflow-tooltip')
+    public override overflowTooltip: Nullable<boolean> = null;
+
+    @Input('excel-type')
+    public excelType: Nullable<ExcelType> = null;
+
     @ContentChild(TemplateHeadThDirective, {static: false})
     public th!: TemplateHeadThDirective<T>;
+
     @ContentChild(TemplateBodyTdDirective, {static: false})
     public td!: TemplateBodyTdDirective<T>;
 

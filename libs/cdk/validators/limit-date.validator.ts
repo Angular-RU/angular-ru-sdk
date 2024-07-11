@@ -29,13 +29,13 @@ function limitDateValidator(
 
         if (isNaN(dateTimestamp)) {
             return null;
-        } else {
-            const limitExceeded: boolean =
-                type === DateLimitValidatorType.LIMIT_MAX_INTERVAL
-                    ? dateTimestamp > maxDateTimestamp
-                    : dateTimestamp < maxDateTimestamp;
-
-            return limitExceeded ? {[type]: true} : null;
         }
+
+        const limitExceeded: boolean =
+            type === DateLimitValidatorType.LIMIT_MAX_INTERVAL
+                ? dateTimestamp > maxDateTimestamp
+                : dateTimestamp < maxDateTimestamp;
+
+        return limitExceeded ? {[type]: true} : null;
     };
 }

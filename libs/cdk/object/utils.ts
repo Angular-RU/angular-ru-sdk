@@ -17,7 +17,7 @@ export function unwrap<T>(target: any, options: ObjectExtraOptions): T {
                 deepObjectReduce<T>({
                     key,
                     accumulator,
-                    targetValue: (target as any)?.[key],
+                    targetValue: target?.[key],
                     options,
                 }),
             {} as T,

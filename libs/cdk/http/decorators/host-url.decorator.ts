@@ -4,7 +4,7 @@ import {isNotNil} from '@angular-ru/cdk/utils';
 
 import {validateHttpParentDecorator} from './internal/validate-http-parent-decorator';
 
-export function HostUrl(hostUrl: string = ''): (clientClass: ClassType) => void {
+export function HostUrl(hostUrl = ''): (clientClass: ClassType) => void {
     return (clientClass: ClassType): void => {
         validateHttpParentDecorator('@HostUrl', clientClass);
 

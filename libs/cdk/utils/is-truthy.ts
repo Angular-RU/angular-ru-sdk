@@ -1,3 +1,3 @@
-export function isTruthy(value: unknown | any): boolean {
+export function isTruthy(value: any | unknown): boolean {
     return Boolean(value);
 }

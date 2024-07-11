@@ -72,7 +72,6 @@ import {TableBuilderComponent} from './table-builder.component';
         ObserverViewDirective,
         TableBuilderComponent,
         TableCellComponent,
-        // eslint-disable-next-line deprecation/deprecation
         TableSelectedItemsPipe,
         TableTbodyComponent,
         TableTheadComponent,
@@ -97,7 +96,6 @@ import {TableBuilderComponent} from './table-builder.component';
         NgxOptionsComponent,
         NgxSourceNullComponent,
         TableBuilderComponent,
-        // eslint-disable-next-line deprecation/deprecation
         TableSelectedItemsPipe,
         TemplateBodyTdDirective,
         TemplateHeadThDirective,

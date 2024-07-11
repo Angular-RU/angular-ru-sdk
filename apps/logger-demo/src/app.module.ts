@@ -8,7 +8,6 @@ import {environment} from '../environments/environment';
 import {AppComponent} from './app.component';
 
 @NgModule({
-    declarations: [AppComponent],
     imports: [
         LoggerModule.forRoot(
             isTrue(environment.useConfig)
@@ -30,6 +29,7 @@ import {AppComponent} from './app.component';
         BrowserModule,
         HttpClientModule,
     ],
+    declarations: [AppComponent],
     providers: [],
     bootstrap: [AppComponent],
 })

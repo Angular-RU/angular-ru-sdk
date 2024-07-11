@@ -12,9 +12,8 @@ import {isString} from '@angular-ru/cdk/string';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {isNil, isNotNil, isTrue} from '@angular-ru/cdk/utils';
 
-// eslint-disable-next-line spellcheck/spell-checker
-export const NG_FACTORY_DEF: string = 'ɵfac' as const;
-export const PATCHER_KEY: string = 'NG_RU_PATCHER' as const;
+export const NG_FACTORY_DEF = 'ɵfac';
+export const PATCHER_KEY = 'NG_RU_PATCHER';
 
 type PatchFunction<T> = (injector: Injector, instance: T) => void;
 
@@ -125,15 +124,15 @@ function getOwnDefinitionOfClass(constructor: any): Nullable<any> {
 function getNgFactoryOfClass<T>(constructor: any): Nullable<(...args: any[]) => T> {
     if (isTrue(constructor?.hasOwnProperty(NG_FACTORY_DEF))) {
         return constructor[NG_FACTORY_DEF];
-    } else {
-        return undefined;
     }
+
+    return undefined;
 }
 
 function getPatcherOfClass<T>(constructor: any): Nullable<PatchFunction<T>> {
     if (isTrue(constructor?.hasOwnProperty(PATCHER_KEY))) {
         return constructor[PATCHER_KEY];
-    } else {
-        return undefined;
     }
+
+    return undefined;
 }

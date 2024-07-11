@@ -1,12 +1,6 @@
 /* eslint-disable max-classes-per-file */
-import {
-    ApplicationRef,
-    ChangeDetectionStrategy,
-    Component,
-    Directive,
-    Injectable,
-    NgZone,
-} from '@angular/core';
+import {ApplicationRef, NgZone} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Directive, Injectable} from '@angular/core';
 
 import {
     InjectFeatureTestService,
@@ -20,12 +14,14 @@ import {FeatureTestService, TestService} from './test-default';
     selector: '[test-stairs-a]',
 })
 export class TestStairsADirective {
-    @InjectNgZone() public ngZone!: NgZone;
+    @InjectNgZone()
+    public ngZone!: NgZone;
 }
 
 @Injectable()
 export class TestStairsB extends TestStairsADirective {
-    @InjectTestService() public testService!: TestService;
+    @InjectTestService()
+    public testService!: TestService;
 }
 
 @Component({
@@ -35,7 +31,8 @@ export class TestStairsB extends TestStairsADirective {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TestStairsComponent extends TestStairsB {
-    @InjectFeatureTestService() public featureTestService!: FeatureTestService;
+    @InjectFeatureTestService()
+    public featureTestService!: FeatureTestService;
 }
 
 @Directive({
@@ -56,7 +53,8 @@ export abstract class AbstractSuperTestDirective {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExtendingTestComponent extends AbstractSuperTestDirective {
-    @InjectNgZone() public ngZone!: NgZone;
+    @InjectNgZone()
+    public ngZone!: NgZone;
 
     constructor(public override appRef: ApplicationRef) {
         super(appRef);

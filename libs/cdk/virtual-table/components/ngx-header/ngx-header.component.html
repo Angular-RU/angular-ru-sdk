@@ -10,7 +10,7 @@
         [class.content-box]="contentCell !== null"
         [ngClass]="cssClasses"
     >
-        <ng-content></ng-content>
+        <ng-content />
     </div>
     <ng-container *ngIf="expandablePanel && !hideToggle">
         <div class="table-grid__header-sticky--expand-button-wrapper">

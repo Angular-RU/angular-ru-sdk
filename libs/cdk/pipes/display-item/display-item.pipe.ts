@@ -5,18 +5,18 @@ import {checkValueIsEmpty} from '@angular-ru/cdk/utils';
 
 @Pipe({name: 'displayItem'})
 export class DisplayItemPipe implements PipeTransform {
-    private static invalidDisplayKey(displayKey?: unknown | any): boolean {
+    private static invalidDisplayKey(displayKey?: any | unknown): boolean {
         return Boolean(checkValueIsEmpty(displayKey)) || typeof displayKey !== 'string';
     }
 
-    private static parseObject<T>(item: T, displayKey?: unknown | any): string {
+    private static parseObject<T>(item: T, displayKey?: any | unknown): string {
         if (DisplayItemPipe.invalidDisplayKey(displayKey)) {
             throw new Error(
                 'attribute "displayKey" can not be empty if input item has "object" type',
             );
         }
 
-        const value: string | any[] =
+        const value: any[] | string =
             getValueByPath<T, string>(item, displayKey as string) ?? '';
 
         return Array.isArray(value) ? '' : value;
@@ -26,7 +26,7 @@ export class DisplayItemPipe implements PipeTransform {
         return isString(item) ? (item as unknown as string) : '';
     }
 
-    public transform<T>(item: T, displayKey?: unknown | any): string {
+    public transform<T>(item: T, displayKey?: any | unknown): string {
         return Boolean(isObject(item as any)) && !Array.isArray(item)
             ? DisplayItemPipe.parseObject<T>(item, displayKey)
             : DisplayItemPipe.parseNotObject<T>(item);

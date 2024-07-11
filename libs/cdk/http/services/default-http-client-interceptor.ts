@@ -8,6 +8,6 @@ import {Subject} from 'rxjs';
 
 @Injectable()
 export class DefaultHttpClientInterceptor implements DataHttpInterceptor {
-    public success$: Subject<DataHttpSuccessEvent<any>> = new Subject();
-    public errors$: Subject<DataHttpFailureEvent<any>> = new Subject();
+    public success$ = new Subject<DataHttpSuccessEvent<any>>();
+    public errors$ = new Subject<DataHttpFailureEvent<any>>();
 }

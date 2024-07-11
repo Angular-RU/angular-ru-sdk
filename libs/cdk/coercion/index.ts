@@ -1,1 +1,1 @@
-export { coerceBoolean } from './coerce-boolean';
+export {coerceBoolean} from './coerce-boolean';

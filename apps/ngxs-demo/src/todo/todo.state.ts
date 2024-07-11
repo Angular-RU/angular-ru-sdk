@@ -34,7 +34,7 @@ export class TodoState
     extends NgxsImmutableDataRepository<string[]>
     implements NgxsDataAfterExpired, NgxsDataAfterStorageEvent
 {
-    public expired$: Subject<NgxsDataExpiredEvent> = new Subject();
+    public expired$ = new Subject<NgxsDataExpiredEvent>();
 
     constructor(private readonly snackBar: MatSnackBar) {
         super();

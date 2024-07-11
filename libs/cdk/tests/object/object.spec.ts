@@ -169,7 +169,7 @@ describe('[TEST]: Object', () => {
     describe('getter', () => {
         it('is getter', () => {
             class A {
-                public b: string = '2';
+                public b = '2';
 
                 public get a(): number {
                     return 1;
@@ -281,8 +281,8 @@ describe('[TEST]: Object', () => {
             class Mock {
                 public a: string = null!;
                 public b: PlainObject[] = [{c: 1, d: 2}];
-                public e: number = NaN;
-                public f: number = Infinity;
+                public e = NaN;
+                public f = Infinity;
                 public g: Date | string = new Date(2018, 10, 28);
             }
 
@@ -308,7 +308,7 @@ describe('[TEST]: Object', () => {
             }
 
             expect(message).toBe(
-                `Cannot assign to read only property 'c' of object '[object Object]'`,
+                "Cannot assign to read only property 'c' of object '[object Object]'",
             );
         });
     });
@@ -469,12 +469,12 @@ describe('[TEST]: Object', () => {
         expect(
             shallowMapObject(
                 baseTypeObject,
-                (a: number | string | boolean): string => `${a} - interpolated`,
+                (a: boolean | number | string): string => `${a} - interpolated`,
             ),
         ).toEqual({
             a: '1 asd - interpolated',
             b: '3 - interpolated',
-            c: `true - interpolated`,
+            c: 'true - interpolated',
         });
 
         const complexObject = {

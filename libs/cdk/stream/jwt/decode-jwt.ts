@@ -8,8 +8,7 @@ export function decodeJwt<T>(token: Nullable<string>): Nullable<T> {
 
     if (isString(token)) {
         const base64Url: string = takeSecondItem(token?.split('.')) ?? '';
-        const base64: string = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-        // eslint-disable-next-line deprecation/deprecation
+        const base64: string = base64Url.replaceAll('-', '+').replaceAll('_', '/');
         const decodedStringValue: string = decodeURIComponent(
             escape(window.atob(base64)),
         );

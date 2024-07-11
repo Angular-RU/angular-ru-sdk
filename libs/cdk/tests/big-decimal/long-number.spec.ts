@@ -18,8 +18,8 @@ describe('[TEST]: BigDecimal - long number', () => {
     });
 
     it('should be able to storage long numbers', () => {
-        const minString: string = '-9223372036854775808';
-        const maxString: string = '9223372036854775807';
+        const minString = '-9223372036854775808';
+        const maxString = '9223372036854775807';
 
         const min: BigDecimal = new BigDecimal(minString);
         const max: BigDecimal = new BigDecimal(maxString);

@@ -1,4 +1,3 @@
-/* eslint-disable spellcheck/spell-checker */
 import {PlainObject} from '@angular-ru/cdk/typings';
 
 export const dataset: PlainObject[] = [

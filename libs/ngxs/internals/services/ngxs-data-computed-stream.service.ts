@@ -4,8 +4,8 @@ import {BehaviorSubject, Subscription} from 'rxjs';
 
 @Injectable()
 export class NgxsDataSequence implements OnDestroy {
-    private subscription: Subscription | null = null;
-    public readonly sequence$: BehaviorSubject<number> = new BehaviorSubject(0);
+    private readonly subscription: Subscription | null = null;
+    public readonly sequence$ = new BehaviorSubject<number>(0);
 
     constructor(@Optional() store?: Store) {
         if (store) {

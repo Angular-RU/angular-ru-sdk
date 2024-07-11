@@ -26,8 +26,8 @@ export class SampleFiveComponent implements OnInit, AfterViewInit {
     ) {}
 
     public ngOnInit(): void {
-        const rows: number = 1000;
-        const cols: number = 40;
+        const rows = 1000;
+        const cols = 40;
 
         MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => {
             this.data = data;

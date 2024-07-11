@@ -38,9 +38,9 @@ export function Computed(): MethodDecorator {
                 });
 
                 return value;
-            } else {
-                return cache?.value;
             }
+
+            return cache?.value;
         };
 
         return descriptor;

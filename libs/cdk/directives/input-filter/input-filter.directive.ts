@@ -20,10 +20,14 @@ import {InputFilterConfig} from './input-filter.config';
 })
 export class InputFilterDirective {
     private manualEvent: Nullable<InputEvent> = null;
-    @Input() public declare inputFilter: FilterPredicate | '';
-    @Input() public filterDisabled: boolean = false;
+    @Input()
+    public declare inputFilter: FilterPredicate | '';
+
+    @Input()
+    public filterDisabled = false;
 
     constructor(
+        @Inject(ElementRef)
         private readonly elementRef: ElementRef<HTMLInputElement>,
         @Optional()
         @Inject(InputFilterConfig)

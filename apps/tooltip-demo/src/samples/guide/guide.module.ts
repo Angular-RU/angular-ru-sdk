@@ -8,7 +8,6 @@ import {TooltipModule} from '@angular-ru/cdk/tooltip';
 import {GuideComponent} from './guide.component';
 
 @NgModule({
-    declarations: [GuideComponent],
     imports: [
         CommonModule,
         MatIconModule,
@@ -21,5 +20,6 @@ import {GuideComponent} from './guide.component';
         ScrollingModule,
         TooltipModule,
     ],
+    declarations: [GuideComponent],
 })
 export class GuideModule {}

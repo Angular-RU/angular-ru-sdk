@@ -81,16 +81,33 @@ describe('[TEST]: Attribute boolean', () => {
         `,
     })
     class HostComponent {
-        @ViewChild('simpleProp') public declare simplePropRef: ChildComponent;
-        @ViewChild('noProp') public declare noPropRef: ChildComponent;
-        @ViewChild('emptyStringProp') public declare emptyStringPropRef: ChildComponent;
-        @ViewChild('filledStringProp') public declare filledStringPropRef: ChildComponent;
-        @ViewChild('falseStringProp') public declare falseStringPropRef: ChildComponent;
-        @ViewChild('dynamicProp') public declare dynamicPropRef: ChildComponent;
-        @ViewChild('setterProp') public declare setterPropRef: ChildComponent;
-        @ViewChild('hookProp') public declare hookPropRef: ChildComponent;
+        @ViewChild('simpleProp')
+        public declare simplePropRef: ChildComponent;
+
+        @ViewChild('noProp')
+        public declare noPropRef: ChildComponent;
+
+        @ViewChild('emptyStringProp')
+        public declare emptyStringPropRef: ChildComponent;
+
+        @ViewChild('filledStringProp')
+        public declare filledStringPropRef: ChildComponent;
+
+        @ViewChild('falseStringProp')
+        public declare falseStringPropRef: ChildComponent;
+
+        @ViewChild('dynamicProp')
+        public declare dynamicPropRef: ChildComponent;
+
+        @ViewChild('setterProp')
+        public declare setterPropRef: ChildComponent;
+
+        @ViewChild('hookProp')
+        public declare hookPropRef: ChildComponent;
+
         @ViewChild('dynamicSetterProp')
         public declare dynamicSetterPropRef: ChildComponent;
+
         public propValue: any = false;
     }
 

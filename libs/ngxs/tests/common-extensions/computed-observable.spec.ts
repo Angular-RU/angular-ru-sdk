@@ -46,8 +46,8 @@ describe('[TEST]: Observable with computed $a field', () => {
     })
     @Injectable()
     class A extends NgxsDataRepository<Model> {
-        public subscribeA$: number = 0;
-        public subscribeA$_$B: number = 0;
+        public subscribeA$ = 0;
+        public subscribeA$_$B = 0;
 
         constructor(private readonly _b: B) {
             super();
@@ -76,10 +76,9 @@ describe('[TEST]: Observable with computed $a field', () => {
         public get aWithB$(): Observable<string> {
             this.subscribeA$_$B++;
 
-            return combineLatest([
-                this.state$,
-                this._b.state$,
-            ] as Observable<Model>[]).pipe(
+            return combineLatest([this.state$, this._b.state$] as Array<
+                Observable<Model>
+            >).pipe(
                 map(
                     ([_a, _b]): string =>
                         `a(${_a?.value}) + b(${_b?.value}) = ${(_a?.value ?? 0) + (_b?.value ?? 0)}`,
@@ -147,10 +146,10 @@ describe('[TEST]: Observable with computed $a field', () => {
         expect(b.snapshot).toEqual({value: 4});
 
         ref1.unsubscribe();
-        subResult.push(`ref#1 unsubscribe`);
+        subResult.push('ref#1 unsubscribe');
 
         ref2.unsubscribe();
-        subResult.push(`ref#2 unsubscribe`);
+        subResult.push('ref#2 unsubscribe');
 
         a.increment();
         subResult.push(`a.incremented ${a.value}`);
@@ -233,10 +232,10 @@ describe('[TEST]: Observable with computed $a field', () => {
         expect(b.snapshot).toEqual({value: 4});
 
         ref1.unsubscribe();
-        subResult.push(`ref#1 unsubscribe`);
+        subResult.push('ref#1 unsubscribe');
 
         ref2.unsubscribe();
-        subResult.push(`ref#2 unsubscribe`);
+        subResult.push('ref#2 unsubscribe');
 
         a.increment();
         subResult.push(`a.incremented ${a.value}`);

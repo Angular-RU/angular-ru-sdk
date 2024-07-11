@@ -1,7 +1,7 @@
 /* eslint-disable max-classes-per-file */
 // noinspection AngularMissingOrInvalidDeclarationInModule
 
-import {Directive, ElementRef, HostListener, Input} from '@angular/core';
+import {Directive, ElementRef, HostListener, Inject, Input} from '@angular/core';
 import {coerceBoolean} from '@angular-ru/cdk/coercion';
 import {
     ControlValueInterceptor,
@@ -15,7 +15,9 @@ import {isNotNil} from '@angular-ru/cdk/utils';
 })
 export class TrimDirective {
     constructor(
+        @Inject(ControlValueInterceptor)
         private readonly interceptor: ControlValueInterceptor,
+        @Inject(ElementRef)
         private readonly elementRef: ElementRef<HTMLInputElement>,
     ) {
         this.interceptor.attach({
@@ -39,7 +41,7 @@ export class AutoSplitDirective {
     constructor(private readonly interceptor: ControlValueInterceptor) {}
 
     @Input('autoSplit')
-    public set enable(enable: string | boolean) {
+    public set enable(enable: boolean | string) {
         if (coerceBoolean(enable)) {
             this.descriptor = {
                 toModelValue: (inline: string): string[] =>

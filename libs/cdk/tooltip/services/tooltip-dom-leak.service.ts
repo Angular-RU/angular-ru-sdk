@@ -17,7 +17,7 @@ export class TooltipDomLeakService {
                 );
 
                 for (const uid of collection) {
-                    const notExistParent: boolean = !document.querySelector(
+                    const notExistParent = !document.querySelector(
                         `[data-tooltip-uid="${uid}"]`,
                     );
 

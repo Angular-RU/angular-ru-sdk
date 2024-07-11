@@ -3,8 +3,8 @@ import {NgModule} from '@angular/core';
 import {DateToNativePipe} from './date-to-native.pipe';
 
 @NgModule({
-    exports: [DateToNativePipe],
-    providers: [DateToNativePipe],
     declarations: [DateToNativePipe],
+    providers: [DateToNativePipe],
+    exports: [DateToNativePipe],
 })
 export class DateToNativePipeModule {}

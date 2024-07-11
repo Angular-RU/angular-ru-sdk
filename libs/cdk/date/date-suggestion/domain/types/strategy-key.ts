@@ -1,1 +1,1 @@
-export type StrategyKey = string | symbol | number;
+export type StrategyKey = number | string | symbol;

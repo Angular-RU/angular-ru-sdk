@@ -9,12 +9,12 @@ import {CountState} from './count.state';
 import {CountSubState} from './count-sub.state';
 
 @NgModule({
-    declarations: [CountComponent],
     imports: [
         CommonModule,
         FormsModule,
         NgxsModule.forFeature([CountState, CountSubState]),
         RouterModule.forChild([{path: '', component: CountComponent}]),
     ],
+    declarations: [CountComponent],
 })
 export class CountModule {}

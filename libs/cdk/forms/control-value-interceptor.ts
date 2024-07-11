@@ -12,9 +12,9 @@ import {ControlValueInterceptorDescriptor} from './control-value-interceptor-des
 export class ControlValueInterceptor<ModelValue = unknown, ViewValue = ModelValue>
     implements OnDestroy
 {
-    private onDestroy$: Subject<void> = new Subject<void>();
+    private readonly onDestroy$: Subject<void> = new Subject<void>();
     private readonly interceptor?: ControlValueAccessorPatcher<ModelValue, ViewValue>;
-    private controlValueOperators: ControlValueInterceptorDescriptor<any>[] = [];
+    private controlValueOperators: ControlValueInterceptorDescriptor[] = [];
 
     constructor(@Inject(NG_VALUE_ACCESSOR) @Self() accessors: ControlValueAccessor[]) {
         const [accessor]: ControlValueAccessor[] = accessors;

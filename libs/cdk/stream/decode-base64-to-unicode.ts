@@ -1,7 +1,7 @@
 export function decodeBase64ToUnicode(str: string): any {
-    const HEX_LENGTH: number = -2;
-    const ZEROS: string = '00';
-    const HEX: number = 16;
+    const HEX_LENGTH = -2;
+    const ZEROS = '00';
+    const HEX = 16;
 
     return decodeURIComponent(
         Array.prototype.map

@@ -4,7 +4,7 @@ import {isNotNil} from '@angular-ru/cdk/utils';
 import {checkExistNgZone, NgxsDataInjector} from '@angular-ru/ngxs/internals';
 import {NGXS_DATA_EXCEPTIONS} from '@angular-ru/ngxs/tokens';
 
-const DEFAULT_TIMEOUT: number = 300;
+const DEFAULT_TIMEOUT = 300;
 
 export function Debounce(timeout: number = DEFAULT_TIMEOUT): MethodDecorator {
     let timeoutRef: number | null = null;

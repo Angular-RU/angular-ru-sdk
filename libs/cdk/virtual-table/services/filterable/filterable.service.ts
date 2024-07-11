@@ -17,26 +17,29 @@ import {TableFilterType} from './table-filter-type';
 
 @Injectable()
 export class FilterableService<T> implements Filterable {
-    private previousFiltering: boolean = false;
+    private previousFiltering = false;
     private readonly thread: WebWorkerThreadService;
     public types: ReadonlyMap<unknown, unknown> = TableFilterType as any as ReadonlyMap<
         unknown,
         unknown
     >;
+
     public definition: ReadonlyMap<unknown, unknown> = {} as any as ReadonlyMap<
         unknown,
         unknown
     >;
+
     public filterTypeDefinition: ReadonlyMap<unknown, TableFilterType> = {} as any;
-    public readonly filterOpenEvents$: Subject<void> = new Subject();
+    public readonly filterOpenEvents$ = new Subject<void>();
     public readonly events$: Subject<FilterEvent> = new ReplaySubject(
         Number.POSITIVE_INFINITY,
     );
+
     public readonly resetEvents$: Subject<void> = new Subject<void>();
     public state: FilterStateEvent = new FilterStateEvent();
     public filterValue: Nullable<string> = null;
-    public filterType: Nullable<string | TableFilterType> = null;
-    public filtering: boolean = false;
+    public filterType: Nullable<TableFilterType | string> = null;
+    public filtering = false;
 
     constructor(injector: Injector) {
         this.thread = injector.get<WebWorkerThreadService>(WebWorkerThreadService);
@@ -70,7 +73,7 @@ export class FilterableService<T> implements Filterable {
         }
     }
 
-    public updateFilterValueBy(value: unknown | any, key?: Nullable<string>): void {
+    public updateFilterValueBy(value: any | unknown, key?: Nullable<string>): void {
         if (isNotNil(key)) {
             this.definition = {...this.definition, [key]: value};
         }
@@ -111,8 +114,8 @@ export class FilterableService<T> implements Filterable {
     }
 
     // eslint-disable-next-line max-lines-per-function
-    public filter(source: T[]): Promise<FilterWorkerEvent<T>> {
-        const type: Nullable<string | TableFilterType> = this.filterType;
+    public async filter(source: T[]): Promise<FilterWorkerEvent<T>> {
+        const type: Nullable<TableFilterType | string> = this.filterType;
         const value: Nullable<string> = isString(this.globalFilterValue)
             ? String(this.globalFilterValue).trim()
             : null;
@@ -143,7 +146,7 @@ export class FilterableService<T> implements Filterable {
     }
 
     private getFilterableMessage(source: T[]): FilterableMessage<T> {
-        const type: Nullable<string | TableFilterType> = this.filterType;
+        const type: Nullable<TableFilterType | string> = this.filterType;
         const value: Nullable<string> = isString(this.globalFilterValue)
             ? String(this.globalFilterValue).trim()
             : null;

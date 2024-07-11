@@ -1,3 +1,1 @@
-export interface PlainObjectOf<T> {
-    [key: string]: T;
-}
+export type PlainObjectOf<T> = Record<string, T>;
