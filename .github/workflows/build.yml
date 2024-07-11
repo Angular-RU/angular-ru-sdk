@@ -14,8 +14,8 @@ jobs:
       - name: Setup Node.js and Cache
         uses: ./.github/actions/nodejs
 
-      - name: Run build packages
-        run: npx nx run-many --target=build --parallel=1
+      - run: npx nx run-many --target=build --projects=tag:libs
+      - run: npx nx run-many --target=build --projects=tag:apps
 
 concurrency:
   group: build-${{ github.head_ref }}

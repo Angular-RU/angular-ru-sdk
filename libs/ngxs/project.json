@@ -3,26 +3,34 @@
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "libs/ngxs/",
     "projectType": "library",
+    "tags": ["libs"],
     "targets": {
         "build": {
             "executor": "@angular-devkit/build-angular:ng-packagr",
             "options": {
                 "tsConfig": "tsconfig.lib.json",
-                "project": "libs/ngxs/ng-package.json"
+                "project": "libs/{projectName}/ng-package.json"
             },
-            "outputs": ["{projectRoot}/dist/ngxs"],
+            "outputs": ["{projectRoot}/dist/{projectName}"],
             "dependsOn": [
                 {
+                    "dependencies": true,
                     "target": "build",
-                    "dependencies": true
+                    "params": "ignore"
                 }
             ]
         },
         "publish": {
             "executor": "nx:run-commands",
             "options": {
-                "command": "npm publish ./node_modules/@angular-ru/ngxs --ignore-scripts || echo \"already published\""
-            }
+                "command": "npm publish ./dist/{projectName} --ignore-scripts || echo \"already published\""
+            },
+            "dependsOn": [
+                {
+                    "target": "build",
+                    "params": "ignore"
+                }
+            ]
         }
     }
 }

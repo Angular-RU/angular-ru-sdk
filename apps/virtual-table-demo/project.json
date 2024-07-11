@@ -3,6 +3,7 @@
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "apps/virtual-table-demo/",
     "projectType": "application",
+    "tags": ["apps"],
     "targets": {
         "build": {
             "executor": "@angular-devkit/build-angular:browser",

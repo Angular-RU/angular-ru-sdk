@@ -3,20 +3,27 @@
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "libs/cdk/",
     "projectType": "library",
+    "tags": ["libs"],
     "targets": {
         "build": {
             "executor": "@angular-devkit/build-angular:ng-packagr",
             "options": {
                 "tsConfig": "tsconfig.lib.json",
-                "project": "libs/cdk/ng-package.json"
+                "project": "libs/{projectName}/ng-package.json"
             },
-            "outputs": ["{projectRoot}/dist/cdk"]
+            "outputs": ["{projectRoot}/dist/{projectName}"]
         },
         "publish": {
             "executor": "nx:run-commands",
             "options": {
-                "command": "npm publish ./dist/cdk --ignore-scripts || echo \"already published\""
-            }
+                "command": "npm publish ./dist/{projectName} --ignore-scripts || echo \"already published\""
+            },
+            "dependsOn": [
+                {
+                    "target": "build",
+                    "params": "ignore"
+                }
+            ]
         }
     }
 }

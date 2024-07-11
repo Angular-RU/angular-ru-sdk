@@ -23,7 +23,7 @@
         }
     },
     "hooks": {
-        "after:bump": "npx nx run-many --target=build --output-style=stream && npx nx run-many --target=publish  --output-style=stream",
+        "after:bump": "npx nx run-many --target=publish --projects=tag:libs",
         "after:release": "echo Successfully released ${name} v${version} to ${repo.repository}."
     }
 }
