@@ -1,19 +1,4 @@
 {
-    "parallel": 1,
-    "implicitDependencies": {
-        "project.json": "*",
-        "package.json": {
-            "dependencies": "*",
-            "devDependencies": "*"
-        },
-        ".eslintrc.js": "*",
-        "nx.json": "*",
-        "jest.*.js": "*",
-        "karma.*.js": "*",
-        "workspace.json": "*",
-        "tsconfig.*.json": "*",
-        "tsconfig.json": "*"
-    },
     "namedInputs": {
         "sharedGlobals": [
             "{workspaceRoot}/nx.json",
@@ -30,16 +15,6 @@
     "targetDefaults": {
         "build": {
             "inputs": ["default", "^default"],
-            "cache": true
-        },
-        "test": {
-            "inputs": [
-                "default",
-                "production",
-                "^production",
-                "{workspaceRoot}/setup-jest.ts",
-                "{workspaceRoot}/jest.config.ts"
-            ],
             "cache": true
         }
     },
