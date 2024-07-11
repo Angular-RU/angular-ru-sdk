@@ -18,7 +18,9 @@
         "test": "jest ."
     },
     "commitlint": {
-        "extends": []
+        "extends": [
+            "@taiga-ui/commitlint-config"
+        ]
     },
     "lint-staged": {
         "*.ts": [
@@ -89,7 +91,7 @@
         "root": true
     },
     "devDependencies": {
-        "@angular-devkit/build-angular": "^18.1.0",
+        "@angular-devkit/build-angular": "18.1.0",
         "@angular/animations": "18.0.6",
         "@angular/cdk": "18.0.6",
         "@angular/cli": "18.0.7",
@@ -103,15 +105,16 @@
         "@angular/platform-browser": "18.0.6",
         "@angular/platform-browser-dynamic": "18.0.6",
         "@angular/router": "18.0.6",
-        "@ng-web-apis/universal": "^4.1.2",
+        "@ng-web-apis/universal": "4.1.2",
         "@ngx-translate/core": "15.0.0",
         "@ngx-translate/http-loader": "8.0.0",
         "@ngxs/logger-plugin": "18.0.0",
         "@nx/workspace": "19.4.1",
         "@release-it-plugins/workspaces": "4.2.0",
         "@release-it/conventional-changelog": "8.0.1",
+        "@taiga-ui/commitlint-config": "0.113.8",
         "@taiga-ui/eslint-plugin-experience": "0.113.7",
-        "@taiga-ui/prettier-config": "^0.113.5",
+        "@taiga-ui/prettier-config": "0.113.5",
         "@taiga-ui/tsconfig": "0.113.5",
         "@types/jest": "29.5.12",
         "@types/node": "20.14.10",
