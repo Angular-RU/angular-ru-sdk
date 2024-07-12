@@ -30,6 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ secrets.ANGULAR_RU_BOT_PAT }}
+      GITHUB_TOKEN: ${{ secrets.ANGULAR_RU_BOT_PAT }}
     steps:
       - uses: taiga-family/ci/actions/setup/checkout@v1.65.1
         with:
@@ -53,5 +54,3 @@ jobs:
           else
               npx release-it minor --increment --ci
           fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.ANGULAR_RU_BOT_PAT }}
