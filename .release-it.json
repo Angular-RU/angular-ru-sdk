@@ -10,6 +10,7 @@
     "npm": false,
     "plugins": {
         "@release-it-plugins/workspaces": {
+            "workspaces": ["libs/*"],
             "skipChecks": true,
             "publish": false
         },

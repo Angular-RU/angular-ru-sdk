@@ -9,7 +9,7 @@
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "workspaces": [
-        "./libs/*"
+        "libs/*"
     ],
     "scripts": {
         "postinstall": "npx husky install",
