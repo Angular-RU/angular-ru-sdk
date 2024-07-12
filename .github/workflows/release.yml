@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - 'libs/**/*.ts'
+      - 'libs/**/package.json'
       - '!libs/**/*.spec.ts'
   workflow_dispatch:
     inputs:
