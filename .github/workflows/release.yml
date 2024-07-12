@@ -3,9 +3,9 @@ on:
   push:
     branches: [main]
     paths:
-      - 'libs/**/*.ts'
-      - 'libs/**/package.json'
+      - 'libs/**/*'
       - '!libs/**/*.spec.ts'
+      - '!libs/**/*.md'
   workflow_dispatch:
     inputs:
       forcePush:

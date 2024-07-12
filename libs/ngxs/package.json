@@ -7,6 +7,9 @@
     "repository": "https://github.com/Angular-RU/angular-ru-sdk",
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
+    "peerDependencies": {
+        "@ngxs/store": ">=18.0.0"
+    },
     "publishConfig": {
         "access": "public"
     }
