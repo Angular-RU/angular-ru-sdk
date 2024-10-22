@@ -1,7 +1,7 @@
 /* istanbul ignore next */
 
 import {NGXS_DATA_META, NGXS_META_KEY} from '@angular-ru/ngxs/tokens';
-import {ɵStateClass as StateClass} from '@ngxs/store/internals/symbols';
+import {ɵStateClass as StateClass} from '@ngxs/store/internals';
 
 import {NgxsRepositoryMeta} from './repository';
 

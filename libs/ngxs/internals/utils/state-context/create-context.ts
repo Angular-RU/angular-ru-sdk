@@ -1,6 +1,5 @@
-import {DataStateClass, NgxsRepositoryMeta} from '@angular-ru/ngxs/typings';
+import {DataStateClass, MappedStore, NgxsRepositoryMeta} from '@angular-ru/ngxs/typings';
 import {StateContext} from '@ngxs/store';
-import {MappedStore} from '@ngxs/store/src/internal/internals';
 
 import {NgxsDataFactory} from '../../services/ngxs-data-factory.service';
 import {getRepository} from '../repository/get-repository';
@@ -15,7 +14,7 @@ export function createContext(stateClass: DataStateClass): PropertyDescriptor {
                 meta.stateMeta,
             )!;
 
-            return NgxsDataFactory.createStateContext(mappedMeta);
+            return NgxsDataFactory.createStateContext(mappedMeta.path);
         },
     };
 }

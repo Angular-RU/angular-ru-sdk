@@ -220,6 +220,7 @@ describe('[TEST]: Entity - primary key or unique id', () => {
             name: 'student',
             defaults: createEntityCollections(),
         })
+        @Injectable()
         class StudentEntitiesState extends NgxsDataEntityCollectionsRepository<
             StudentEntity,
             string
