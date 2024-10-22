@@ -17,6 +17,7 @@ export {
 export {DispatchedResult} from './common/dispatched-result';
 export {NgxsDataExtension} from './common/extension';
 export {MappedState} from './common/mapped-state';
+export {MappedStore} from './common/mapped-store';
 export {NgxsDataAfterReset, NgxsDataDoCheck} from './common/ngxs-data-lifecycle';
 export {
     DataRepository,
@@ -30,6 +31,7 @@ export {
     PatchValue,
     StateValue,
 } from './common/repository';
+export {StateFactory} from './common/state-factory';
 export {EntityContext} from './entity/entity-context';
 export {EntityRepository} from './entity/entity-repository';
 export {

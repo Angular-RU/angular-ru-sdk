@@ -17,11 +17,11 @@ import {
     DataStateClass,
     DispatchedResult,
     ImmutableDataRepository,
+    type MappedStore,
     NgxsDataOperation,
     NgxsRepositoryMeta,
     RepositoryActionOptions,
 } from '@angular-ru/ngxs/typings';
-import {MappedStore} from '@ngxs/store/src/internal/internals';
 import {isObservable, Observable, of} from 'rxjs';
 import {map} from 'rxjs/operators';
 
@@ -48,11 +48,12 @@ export function DataAction(options: RepositoryActionOptions = {}): MethodDecorat
                 NgxsDataFactory.getRepositoryByInstance(instance);
             const operations: PlainObjectOf<NgxsDataOperation> = repository.operations!;
             let operation: NgxsDataOperation | undefined = operations[key];
+            const operationNotSet = isNil(operation);
             const stateMeta: any = repository.stateMeta;
             const registry: MethodArgsRegistry | undefined =
                 getMethodArgsRegistry(originalMethod);
 
-            if (isNil(operation)) {
+            if (operationNotSet) {
                 // Note: late init operation when first invoke action method
                 const argumentsNames: string[] = $args(originalMethod);
                 const type: string = actionNameCreator({
@@ -67,15 +68,13 @@ export function DataAction(options: RepositoryActionOptions = {}): MethodDecorat
                     options: {cancelUncompleted: config.cancelUncompleted ?? false},
                 };
 
-                if (isNotNil(operation)) {
-                    stateMeta.actions[operation.type] = [
-                        {
-                            type: operation.type,
-                            options: operation.options,
-                            fn: operation.type,
-                        },
-                    ];
-                }
+                stateMeta.actions[operation.type] = [
+                    {
+                        type: operation.type,
+                        options: operation.options,
+                        fn: operation.type,
+                    },
+                ];
             }
 
             const mapped: MappedStore = NgxsDataFactory.ensureMappedState(stateMeta)!;
@@ -98,8 +97,19 @@ export function DataAction(options: RepositoryActionOptions = {}): MethodDecorat
                     : result;
             };
 
+            if (operationNotSet) {
+                const factory = NgxsDataInjector.factory!;
+
+                factory.hydrateActionMetasMap({
+                    ...mapped,
+                    actions: {
+                        [operation.type]: mapped.actions[operation.type],
+                    },
+                });
+            }
+
             const event: ActionEvent = NgxsDataFactory.createAction(
-                operation,
+                operation.type,
                 args,
                 registry,
             );

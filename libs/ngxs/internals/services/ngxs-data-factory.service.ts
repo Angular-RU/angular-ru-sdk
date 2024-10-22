@@ -6,12 +6,11 @@ import {
     ActionEvent,
     DataStateClass,
     MappedState,
-    NgxsDataOperation,
+    MappedStore,
     NgxsRepositoryMeta,
     PayloadName,
 } from '@angular-ru/ngxs/typings';
 import {StateContext} from '@ngxs/store';
-import {MappedStore} from '@ngxs/store/src/internal/internals';
 
 import {dynamicActionByType} from '../utils/action/dynamic-action';
 import {MethodArgsRegistry} from '../utils/method-args-registry/method-args-registry';
@@ -26,8 +25,8 @@ export class NgxsDataFactory {
         NgxsDataFactory.statesCachedMeta.clear();
     }
 
-    public static createStateContext<T>(metadata: MappedStore): StateContext<T> {
-        return NgxsDataInjector.context.createStateContext(metadata);
+    public static createStateContext<T>(path: string): StateContext<T> {
+        return NgxsDataInjector.context.createStateContext(path);
     }
 
     public static ensureMappedState(stateMeta: any | undefined): MappedState | never {
@@ -93,7 +92,7 @@ export class NgxsDataFactory {
     }
 
     public static createAction(
-        operation: NgxsDataOperation,
+        type: string,
         args: any[],
         registry?: MethodArgsRegistry,
     ): ActionEvent {
@@ -101,14 +100,14 @@ export class NgxsDataFactory {
             args,
             registry,
         );
-        const dynamicActionByTypeFactory: Type<any> = dynamicActionByType(operation.type);
+        const dynamicActionByTypeFactory: Type<any> = dynamicActionByType(type);
 
         return new dynamicActionByTypeFactory(payload);
     }
 
     private static ensureMeta(stateMeta: any): MappedStore | null | undefined {
         const meta: MappedState = isNotNil(stateMeta.name)
-            ? (NgxsDataInjector.factory.states as MappedStore[])?.find(
+            ? NgxsDataInjector.factory!.states?.find(
                   (state: MappedStore): boolean => state.name === stateMeta.name,
               )
             : null;

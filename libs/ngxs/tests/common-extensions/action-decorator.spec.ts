@@ -10,7 +10,7 @@ import {NgxsModule, State} from '@ngxs/store';
 describe('[TEST]: Action decorator', () => {
     afterEach(() => TestBed.resetTestingModule());
 
-    it("don't should be working without @StateRepository decorator", () => {
+    it('should not be working without @StateRepository decorator', () => {
         let message: string | null = null;
 
         try {
@@ -41,7 +41,7 @@ describe('[TEST]: Action decorator', () => {
         expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_STATE_DECORATOR);
     });
 
-    it.skip("don't should be working without @StateRepository and @State decorator", () => {
+    it.skip('should not be working without @StateRepository and @State decorator', () => {
         let message: string | null = null;
 
         try {
@@ -73,7 +73,7 @@ describe('[TEST]: Action decorator', () => {
         );
     });
 
-    it.skip("don't should be working without provided meta information", () => {
+    it.skip('should not be working without provided meta information', () => {
         let message: string | null = null;
 
         try {
@@ -104,7 +104,7 @@ describe('[TEST]: Action decorator', () => {
         expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_STATE_DECORATOR);
     });
 
-    it.skip("don't should be working when register as service", () => {
+    it.skip('should not be working when register as service', () => {
         let message: string | null = null;
 
         try {

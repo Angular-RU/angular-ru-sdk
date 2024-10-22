@@ -1,4 +1,5 @@
 import {Inject, Injectable, Injector, NgZone} from '@angular/core';
+import type {StateFactory} from '@angular-ru/ngxs/typings';
 import {Store} from '@ngxs/store';
 import {
     ɵNGXS_STATE_CONTEXT_FACTORY as NGXS_STATE_CONTEXT_FACTORY,
@@ -12,7 +13,7 @@ export class NgxsDataInjector {
     public static store: Store | null = null;
     public static computed: NgxsDataSequence | null = null;
     public static context: any | null = null;
-    public static factory: any | null = null;
+    public static factory: StateFactory | null = null;
     public static ngZone: NgZone | null = null;
     public static injector: Injector | null = null;
 

@@ -5,7 +5,7 @@ import {NgxsDataPluginModule} from '@angular-ru/ngxs';
 import {StateRepository} from '@angular-ru/ngxs/decorators';
 import {NgxsImmutableDataRepository} from '@angular-ru/ngxs/repositories';
 import {Action, NgxsModule, State, StateContext, Store} from '@ngxs/store';
-import {PlainObjectOf} from '@ngxs/store/internals';
+import {ɵPlainObjectOf as PlainObjectOf} from '@ngxs/store/internals';
 
 describe('check correct deep instance', () => {
     let app: AppState;

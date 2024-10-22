@@ -9,7 +9,10 @@ import {
 } from '@angular-ru/ngxs/internals';
 import {NgxsImmutableDataRepository} from '@angular-ru/ngxs/repositories';
 import {NgxsModule, State, Store} from '@ngxs/store';
-import {MetaDataModel, SharedSelectorOptions} from '@ngxs/store/src/internal/internals';
+import {
+    ɵMetaDataModel as MetaDataModel,
+    ɵSharedSelectorOptions as SharedSelectorOptions,
+} from '@ngxs/store/internals';
 import {isObservable} from 'rxjs';
 
 describe('[TEST]: Utils', () => {

@@ -3,7 +3,7 @@ import {TestBed, TestModuleMetadata} from '@angular/core/testing';
 import {isNil} from '@angular-ru/cdk/utils';
 import {getStateMetadata} from '@angular-ru/ngxs/internals';
 import {Store} from '@ngxs/store';
-import {ɵStateClass as StateClass} from '@ngxs/store/internals/symbols';
+import {ɵStateClass as StateClass} from '@ngxs/store/internals';
 
 import {TestSpec} from './internal/types';
 import {NgxsDataTestingModule} from './ngxs-data-testing.module';
