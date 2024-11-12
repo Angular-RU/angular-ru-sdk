@@ -5,6 +5,7 @@ import {
     NgxsDataSequence,
 } from '@angular-ru/ngxs/internals';
 import {NgxsDataExtension} from '@angular-ru/ngxs/typings';
+import {ɵprovideNgxsInternalStateTokens as provideNgxsInternalStateTokens} from '@ngxs/store';
 
 @NgModule()
 export class NgxsDataPluginModule {
@@ -22,6 +23,7 @@ export class NgxsDataPluginModule {
                 NgxsDataFactory,
                 NgxsDataInjector,
                 NgxsDataSequence,
+                provideNgxsInternalStateTokens(),
                 ...extensions,
             ],
         };
