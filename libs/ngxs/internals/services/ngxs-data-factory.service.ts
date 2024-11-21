@@ -107,7 +107,7 @@ export class NgxsDataFactory {
 
     private static ensureMeta(stateMeta: any): MappedStore | null | undefined {
         const meta: MappedState = isNotNil(stateMeta.name)
-            ? NgxsDataInjector.factory!.states?.find(
+            ? NgxsDataInjector.factory!._states?.find(
                   (state: MappedStore): boolean => state.name === stateMeta.name,
               )
             : null;
