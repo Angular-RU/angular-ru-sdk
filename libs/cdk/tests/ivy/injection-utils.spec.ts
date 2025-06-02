@@ -1,4 +1,4 @@
-import {Component, Injectable, InjectFlags} from '@angular/core';
+import {Component, Injectable} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
 import {directiveInject, inject} from '@angular-ru/cdk/ivy';
 import {Nullable} from '@angular-ru/cdk/typings';
@@ -68,7 +68,7 @@ describe('[TEST]: injection utils', () => {
                 public b: Nullable<B> = null;
 
                 constructor() {
-                    this.b = inject(B, InjectFlags.Optional);
+                    this.b = inject(B, {optional: true});
                 }
             }
 
@@ -92,7 +92,7 @@ describe('[TEST]: injection utils', () => {
                 public service: Nullable<Service>;
 
                 constructor() {
-                    this.service = directiveInject(Service, InjectFlags.Optional);
+                    this.service = directiveInject(Service, {optional: true});
                 }
             }
 

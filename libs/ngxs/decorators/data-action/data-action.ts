@@ -1,4 +1,3 @@
-import {InjectFlags} from '@angular/core';
 import {$args} from '@angular-ru/cdk/function';
 import {Descriptor, PlainObjectOf} from '@angular-ru/cdk/typings';
 import {isNil, isNotNil, isTrue} from '@angular-ru/cdk/utils';
@@ -127,11 +126,8 @@ export function DataAction(options: RepositoryActionOptions = {}): MethodDecorat
 }
 
 function mergeConfig(options: RepositoryActionOptions): RepositoryActionOptions {
-    const globalConfig: NgxsDataConfig | undefined = NgxsDataInjector?.injector?.get(
-        NGXS_DATA_CONFIG,
-        undefined,
-        InjectFlags.Optional,
-    );
+    const globalConfig: NgxsDataConfig | null | undefined =
+        NgxsDataInjector?.injector?.get(NGXS_DATA_CONFIG, undefined, {optional: true});
     const mergedOptions: RepositoryActionOptions = {...REPOSITORY_ACTION_OPTIONS};
 
     if (

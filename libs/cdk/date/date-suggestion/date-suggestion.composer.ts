@@ -1,4 +1,4 @@
-import {Inject, Injectable, InjectFlags, Injector} from '@angular/core';
+import {Inject, Injectable, Injector} from '@angular/core';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {isNil} from '@angular-ru/cdk/utils';
 
@@ -28,7 +28,7 @@ export class DateSuggestionComposer<StrategyKeys extends StrategyKey = StrategyK
                 ...(descriptor.providers ?? []),
             ],
             parent: this.injector,
-        }).get(descriptor.strategy, null, InjectFlags.Optional);
+        }).get(descriptor.strategy, null, {optional: true});
 
         if (isNil(strategy)) {
             throw new Error('This type of date suggestion is not supported');
