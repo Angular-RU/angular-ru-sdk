@@ -1,4 +1,4 @@
-import {HttpClientModule} from '@angular/common/http';
+import {provideHttpClient} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {MatListModule} from '@angular/material/list';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -15,13 +15,13 @@ import {AppRoutingModule} from './app-routing.module';
         AppRoutingModule,
         BrowserAnimationsModule,
         BrowserModule,
-        HttpClientModule,
         MatListModule,
         MatSidenavModule,
         MatToolbarModule,
         AmountFormatModule.forRoot(),
     ],
     declarations: [AppComponent],
+    providers: [provideHttpClient()],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

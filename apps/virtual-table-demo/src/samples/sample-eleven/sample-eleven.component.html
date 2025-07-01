@@ -3,87 +3,234 @@
 </mat-toolbar>
 
 <div class="night">
-    <div
-        *ngIf="licences.length"
-        class="column"
-    >
-        <mat-tab-group (selectedTabChange)="update()">
-            <mat-tab label="Custom context menu">
-                <div class="column-samples">
-                    <div class="column">
-                        <br />
-                        <pre><code class="html">
-  &lt;!-- app.component.html -->
-  &lt;ngx-table-builder [source]="data">
-    &lt;ngx-context-menu>
-
-      &lt;ngx-context-menu-item contextTitle divider>
-        &lt;ngx-menu-content icon="./assets/angular.svg">&lt;/ngx-menu-content>
-        &lt;ngx-menu-content>My custom context menu title&lt;/ngx-menu-content>
-      &lt;/ngx-context-menu-item>
-
-      &lt;ngx-context-menu-item (onClick)="exportExcel(data)">
-        &lt;ngx-menu-content icon="./assets/excel.png">&lt;/ngx-menu-content>
-        &lt;ngx-menu-content>Export Excel&lt;/ngx-menu-content>
-      &lt;/ngx-context-menu-item>
-
-      &lt;ngx-context-menu-item #item divider
-       [disable]="!item.state.key"
-       (onClick)="showLine(item.state.key, item.state.item)">
-        &lt;ngx-menu-content icon>&lt;/ngx-menu-content>
-        &lt;ngx-menu-content>Show item row&lt;/ngx-menu-content>
-      &lt;/ngx-context-menu-item>
-
-      &lt;ngx-context-menu-item #item
-       *ngIf="item.state.key === 'id'"
-       (onClick)="copyId(item.state.value)">
-        &lt;ngx-menu-content icon>&lt;/ngx-menu-content>
-        &lt;ngx-menu-content>Show item row&lt;/ngx-menu-content>
-      &lt;/ngx-context-menu-item>
-
-    &lt;/ngx-context-menu>
-  &lt;/ngx-table-builder>
-
-</code></pre>
+    @if (licences.length) {
+        <div class="column">
+            <mat-tab-group (selectedTabChange)="update()">
+                <mat-tab label="Custom context menu">
+                    <div class="column-samples">
+                        <div class="column">
+                            <br />
+                            <pre><code class="html">
+                &lt;!-- app.component.html -->
+                &lt;ngx-table-builder [source]="data">
+                &lt;ngx-context-menu>
+                &lt;ngx-context-menu-item contextTitle divider>
+                &lt;ngx-menu-content icon="./assets/angular.svg">&lt;/ngx-menu-content>
+                &lt;ngx-menu-content>My custom context menu title&lt;/ngx-menu-content>
+                &lt;/ngx-context-menu-item>
+                &lt;ngx-context-menu-item (onClick)="exportExcel(data)">
+                &lt;ngx-menu-content icon="./assets/excel.png">&lt;/ngx-menu-content>
+                &lt;ngx-menu-content>Export Excel&lt;/ngx-menu-content>
+                &lt;/ngx-context-menu-item>
+                &lt;ngx-context-menu-item #item divider
+                [disable]="!item.state.key"
+                (onClick)="showLine(item.state.key, item.state.item)">
+                &lt;ngx-menu-content icon>&lt;/ngx-menu-content>
+                &lt;ngx-menu-content>Show item row&lt;/ngx-menu-content>
+                &lt;/ngx-context-menu-item>
+                &lt;ngx-context-menu-item #item
+                *ngIf="item.state.key === 'id'"
+                (onClick)="copyId(item.state.value)">
+                &lt;ngx-menu-content icon>&lt;/ngx-menu-content>
+                &lt;ngx-menu-content>Show item row&lt;/ngx-menu-content>
+                &lt;/ngx-context-menu-item>
+                &lt;/ngx-context-menu>
+                &lt;/ngx-table-builder>
+              </code></pre>
+                        </div>
+                        <div class="column">
+                            <br />
+                            <ngx-table-builder
+                                #table1
+                                enable-selection
+                                [source]="licences"
+                            >
+                                <ngx-context-menu [height]="null">
+                                    <ngx-context-menu-item
+                                        contextTitle
+                                        divider
+                                    >
+                                        <ngx-menu-content
+                                            icon="https://angular.io/assets/images/logos/angular/angular.svg"
+                                        />
+                                        <ngx-menu-content>My custom context menu title</ngx-menu-content>
+                                    </ngx-context-menu-item>
+                                    <ngx-context-menu-item (onClick)="exportExcel(licences)">
+                                        <ngx-menu-content
+                                            icon="http://www.myiconfinder.com/uploads/iconsets/ae86b3a8881d697b6c42528aff5ba48b-excel.png"
+                                        />
+                                        <ngx-menu-content>Export Excel</ngx-menu-content>
+                                    </ngx-context-menu-item>
+                                    <ngx-context-menu-item>
+                                        <ngx-menu-content icon />
+                                        <ngx-menu-content>Column settings</ngx-menu-content>
+                                        <ngx-context-menu-item>
+                                            <ngx-menu-content>List</ngx-menu-content>
+                                            @for (column of table1.columnSchema; track column.key) {
+                                                <ngx-context-menu-item
+                                                    [visible]="column.isModel"
+                                                    (onClick)="
+                                                        table1.toggleColumnVisibility(column.key);
+                                                        $event.preventDefault()
+                                                    "
+                                                >
+                                                    <ngx-menu-content no-margin>{{ column.key }}</ngx-menu-content>
+                                                    <ngx-menu-content
+                                                        align-center
+                                                        no-margin
+                                                    >
+                                                        <mat-checkbox
+                                                            color="primary"
+                                                            [checked]="column.isVisible"
+                                                        />
+                                                    </ngx-menu-content>
+                                                </ngx-context-menu-item>
+                                            }
+                                        </ngx-context-menu-item>
+                                    </ngx-context-menu-item>
+                                    <ngx-context-menu-item
+                                        #item
+                                        divider
+                                        [disable]="!item.state.key"
+                                        (onClick)="showLine(item.state.key, item.state.item)"
+                                    >
+                                        <ngx-menu-content icon />
+                                        <ngx-menu-content>Show item row</ngx-menu-content>
+                                    </ngx-context-menu-item>
+                                    <ngx-context-menu-item
+                                        #item
+                                        divider
+                                        (onClick)="showColumnName(item.state.key)"
+                                    >
+                                        <ngx-menu-content icon />
+                                        <ngx-menu-content>Show column name</ngx-menu-content>
+                                    </ngx-context-menu-item>
+                                    @if (item.state.key === 'id') {
+                                        <ngx-context-menu-item
+                                            #item
+                                            (onClick)="copyId(item.state.value)"
+                                        >
+                                            <ngx-menu-content icon />
+                                            <ngx-menu-content>Copy in buffer ID</ngx-menu-content>
+                                        </ngx-context-menu-item>
+                                    }
+                                    @if (item.state.key === 'price') {
+                                        <ngx-context-menu-item #item>
+                                            <ngx-menu-content icon />
+                                            <ngx-menu-content>Price: {{ item.state.textContent }}</ngx-menu-content>
+                                        </ngx-context-menu-item>
+                                    }
+                                    <ngx-context-menu-item>
+                                        <ngx-menu-content icon />
+                                        <ngx-menu-content>
+                                            Selected items ({{
+                                                (table1?.selectionEntries | tableSelectedItems).length
+                                            }})
+                                        </ngx-menu-content>
+                                    </ngx-context-menu-item>
+                                </ngx-context-menu>
+                                <ngx-column
+                                    important-template
+                                    key="price"
+                                >
+                                    <ng-template
+                                        let-value
+                                        ngx-td
+                                    >
+                                        {{ value | currency }}
+                                    </ng-template>
+                                </ngx-column>
+                            </ngx-table-builder>
+                            <br />
+                            <br />
+                            <pre><code class="javascript">
+                      // app.component.ts
+                      import &#123; Component &#125; from "&#64;angular/core";
+                      import &#123; Data &#125; from "./data.interface";
+                      &#64;Component(&#123;
+                      selector: 'app',
+                      templateUrl: './app.component.html'
+                      &#125;)
+                      export class AppComponent &#123;
+                      public data: Data[] = [ .. ];
+                      public exportExcel(data: Data[]): void &#123;
+                      window.alert('export excel - ' + JSON.stringify(data));
+                      &#125;
+                      public showLine(key: string, item: Data): void &#123;
+                      window.alert('key - ' + key + ' item - ' + JSON.stringify(item));
+                      &#125;
+                      public copyId(id: string): void &#123;
+                      window.alert('Copy on buffer - ' + id);
+                      &#125;
+                      &#125;
+                    </code></pre>
+                        </div>
                     </div>
-                    <div class="column">
-                        <br />
-
+                </mat-tab>
+                <mat-tab label="Custom sub menu">
+                    <br />
+                    <div>
                         <ngx-table-builder
-                            #table1
+                            #table2
                             enable-selection
-                            [source]="licences"
+                            height="500"
+                            [source]="data"
+                            (schemaChanges)="updatedSchema($event)"
                         >
-                            <ngx-context-menu [height]="null">
+                            <ngx-options
+                                is-draggable
+                                is-sortable
+                            />
+                            <ngx-column
+                                custom-key
+                                key="action"
+                                sticky
+                                width="50"
+                                [is-draggable]="false"
+                            >
+                                <ng-template ngx-th />
+                                <ng-template
+                                    let-row
+                                    ngx-td
+                                    row
+                                >
+                                    <!-- eslint-disable @angular-eslint/template/no-call-expression -->
+                                    {{ table2.selectionModel.get($any(row).id) ? 'x' : '-' }}
+                                </ng-template>
+                            </ngx-column>
+                            @for (key of table2.modelColumnKeys; track key) {
+                                <ngx-column [key]="key" />
+                            }
+                            <ngx-context-menu>
                                 <ngx-context-menu-item
                                     contextTitle
                                     divider
                                 >
-                                    <ngx-menu-content
-                                        icon="https://angular.io/assets/images/logos/angular/angular.svg"
-                                    />
-                                    <ngx-menu-content>My custom context menu title</ngx-menu-content>
+                                    <ngx-menu-content>Menu {{ table2.selection.selectionModel.size }}</ngx-menu-content>
                                 </ngx-context-menu-item>
-
-                                <ngx-context-menu-item (onClick)="exportExcel(licences)">
-                                    <ngx-menu-content
-                                        icon="http://www.myiconfinder.com/uploads/iconsets/ae86b3a8881d697b6c42528aff5ba48b-excel.png"
-                                    />
-                                    <ngx-menu-content>Export Excel</ngx-menu-content>
-                                </ngx-context-menu-item>
-
                                 <ngx-context-menu-item>
                                     <ngx-menu-content icon />
-                                    <ngx-menu-content>Column settings</ngx-menu-content>
-
-                                    <ngx-context-menu-item>
-                                        <ngx-menu-content>List</ngx-menu-content>
-
+                                    <ngx-menu-content>Item1</ngx-menu-content>
+                                </ngx-context-menu-item>
+                                <ngx-context-menu-item>
+                                    <ngx-menu-content icon />
+                                    <ngx-menu-content>Item2</ngx-menu-content>
+                                </ngx-context-menu-item>
+                                <ngx-context-menu-item>
+                                    <ngx-menu-content icon />
+                                    <ngx-menu-content>Item3</ngx-menu-content>
+                                </ngx-context-menu-item>
+                                <ngx-context-menu-item divider>
+                                    <ngx-menu-content icon />
+                                    <ngx-menu-content>Item4</ngx-menu-content>
+                                </ngx-context-menu-item>
+                                <ngx-context-menu-item>
+                                    <ngx-menu-content>Column list</ngx-menu-content>
+                                    @for (column of table2.columnSchema; track column.key) {
                                         <ngx-context-menu-item
-                                            *ngFor="let column of table1.columnSchema"
                                             [visible]="column.isModel"
                                             (onClick)="
-                                                table1.toggleColumnVisibility(column.key); $event.preventDefault()
+                                                table2.toggleColumnVisibility(column.key); $event.preventDefault()
                                             "
                                         >
                                             <ngx-menu-content no-margin>{{ column.key }}</ngx-menu-content>
@@ -97,355 +244,153 @@
                                                 />
                                             </ngx-menu-content>
                                         </ngx-context-menu-item>
-                                    </ngx-context-menu-item>
+                                    }
                                 </ngx-context-menu-item>
-
                                 <ngx-context-menu-item
-                                    #item
                                     divider
-                                    [disable]="!item.state.key"
-                                    (onClick)="showLine(item.state.key, item.state.item)"
+                                    (onClick)="table2.resetSchema()"
                                 >
-                                    <ngx-menu-content icon />
-                                    <ngx-menu-content>Show item row</ngx-menu-content>
+                                    <ngx-menu-content>Reset table settings</ngx-menu-content>
                                 </ngx-context-menu-item>
-
-                                <ngx-context-menu-item
-                                    #item
-                                    divider
-                                    (onClick)="showColumnName(item.state.key)"
-                                >
-                                    <ngx-menu-content icon />
-                                    <ngx-menu-content>Show column name</ngx-menu-content>
-                                </ngx-context-menu-item>
-
-                                <ngx-context-menu-item
-                                    *ngIf="item.state.key === 'id'"
-                                    #item
-                                    (onClick)="copyId(item.state.value)"
-                                >
-                                    <ngx-menu-content icon />
-                                    <ngx-menu-content>Copy in buffer ID</ngx-menu-content>
-                                </ngx-context-menu-item>
-
-                                <ngx-context-menu-item
-                                    *ngIf="item.state.key === 'price'"
-                                    #item
-                                >
-                                    <ngx-menu-content icon />
-                                    <ngx-menu-content>Price: {{ item.state.textContent }}</ngx-menu-content>
-                                </ngx-context-menu-item>
-
                                 <ngx-context-menu-item>
-                                    <ngx-menu-content icon />
-                                    <ngx-menu-content>
-                                        Selected items ({{ (table1?.selectionEntries | tableSelectedItems).length }})
-                                    </ngx-menu-content>
+                                    <ngx-menu-content>Example tree</ngx-menu-content>
+                                    <ngx-context-menu-item>
+                                        <ngx-menu-content>Root A</ngx-menu-content>
+                                        <ngx-context-menu-item>
+                                            <ngx-menu-content>Child A1</ngx-menu-content>
+                                        </ngx-context-menu-item>
+                                        <ngx-context-menu-item>
+                                            <ngx-menu-content>Child A2</ngx-menu-content>
+                                        </ngx-context-menu-item>
+                                        <ngx-context-menu-item>
+                                            <ngx-menu-content>Child A3</ngx-menu-content>
+                                        </ngx-context-menu-item>
+                                    </ngx-context-menu-item>
+                                    <ngx-context-menu-item>
+                                        <ngx-menu-content>Root B</ngx-menu-content>
+                                    </ngx-context-menu-item>
+                                    <ngx-context-menu-item>
+                                        <ngx-menu-content>Root C</ngx-menu-content>
+                                        <ngx-context-menu-item>
+                                            <ngx-menu-content>Child C1</ngx-menu-content>
+                                        </ngx-context-menu-item>
+                                        <ngx-context-menu-item>
+                                            <ngx-menu-content>Child C2</ngx-menu-content>
+                                        </ngx-context-menu-item>
+                                        <ngx-context-menu-item>
+                                            <ngx-menu-content>Child C3</ngx-menu-content>
+                                        </ngx-context-menu-item>
+                                    </ngx-context-menu-item>
                                 </ngx-context-menu-item>
                             </ngx-context-menu>
-
-                            <ngx-column
-                                important-template
-                                key="price"
-                            >
-                                <ng-template
-                                    let-value
-                                    ngx-td
-                                >
-                                    {{ value | currency }}
-                                </ng-template>
-                            </ngx-column>
                         </ngx-table-builder>
-
-                        <br />
-                        <br />
-
-                        <pre><code class="javascript">
-  // app.component.ts
-  import &#123; Component &#125; from "&#64;angular/core";
-  import &#123; Data &#125; from "./data.interface";
-
-  &#64;Component(&#123;
-    selector: 'app',
-    templateUrl: './app.component.html'
-  &#125;)
-  export class AppComponent &#123;
-
-    public data: Data[] = [ .. ];
-
-    public exportExcel(data: Data[]): void &#123;
-        window.alert('export excel - ' + JSON.stringify(data));
-    &#125;
-
-    public showLine(key: string, item: Data): void &#123;
-        window.alert('key - ' + key + ' item - ' + JSON.stringify(item));
-    &#125;
-
-    public copyId(id: string): void &#123;
-        window.alert('Copy on buffer - ' + id);
-    &#125;
-
-  &#125;
-
-</code></pre>
                     </div>
-                </div>
-            </mat-tab>
-
-            <mat-tab label="Custom sub menu">
-                <br />
-                <div>
-                    <ngx-table-builder
-                        #table2
-                        enable-selection
-                        height="500"
-                        [source]="data"
-                        (schemaChanges)="updatedSchema($event)"
-                    >
-                        <ngx-options
-                            is-draggable
-                            is-sortable
-                        />
-
-                        <ngx-column
-                            custom-key
-                            key="action"
-                            sticky
-                            width="50"
-                            [is-draggable]="false"
-                        >
-                            <ng-template ngx-th />
-                            <ng-template
-                                let-row
-                                ngx-td
-                                row
-                            >
-                                <!-- eslint-disable @angular-eslint/template/no-call-expression -->
-                                {{ table2.selectionModel.get($any(row).id) ? 'x' : '-' }}
-                            </ng-template>
-                        </ngx-column>
-
-                        <ngx-column
-                            *ngFor="let key of table2.modelColumnKeys"
-                            [key]="key"
-                        />
-
-                        <ngx-context-menu>
-                            <ngx-context-menu-item
-                                contextTitle
-                                divider
-                            >
-                                <ngx-menu-content>Menu {{ table2.selection.selectionModel.size }}</ngx-menu-content>
-                            </ngx-context-menu-item>
-
-                            <ngx-context-menu-item>
-                                <ngx-menu-content icon />
-                                <ngx-menu-content>Item1</ngx-menu-content>
-                            </ngx-context-menu-item>
-
-                            <ngx-context-menu-item>
-                                <ngx-menu-content icon />
-                                <ngx-menu-content>Item2</ngx-menu-content>
-                            </ngx-context-menu-item>
-
-                            <ngx-context-menu-item>
-                                <ngx-menu-content icon />
-                                <ngx-menu-content>Item3</ngx-menu-content>
-                            </ngx-context-menu-item>
-
-                            <ngx-context-menu-item divider>
-                                <ngx-menu-content icon />
-                                <ngx-menu-content>Item4</ngx-menu-content>
-                            </ngx-context-menu-item>
-
-                            <ngx-context-menu-item>
-                                <ngx-menu-content>Column list</ngx-menu-content>
-
-                                <ngx-context-menu-item
-                                    *ngFor="let column of table2.columnSchema"
-                                    [visible]="column.isModel"
-                                    (onClick)="table2.toggleColumnVisibility(column.key); $event.preventDefault()"
-                                >
-                                    <ngx-menu-content no-margin>{{ column.key }}</ngx-menu-content>
-                                    <ngx-menu-content
-                                        align-center
-                                        no-margin
-                                    >
-                                        <mat-checkbox
-                                            color="primary"
-                                            [checked]="column.isVisible"
-                                        />
-                                    </ngx-menu-content>
-                                </ngx-context-menu-item>
-                            </ngx-context-menu-item>
-
-                            <ngx-context-menu-item
-                                divider
-                                (onClick)="table2.resetSchema()"
-                            >
-                                <ngx-menu-content>Reset table settings</ngx-menu-content>
-                            </ngx-context-menu-item>
-
-                            <ngx-context-menu-item>
-                                <ngx-menu-content>Example tree</ngx-menu-content>
-
-                                <ngx-context-menu-item>
-                                    <ngx-menu-content>Root A</ngx-menu-content>
-                                    <ngx-context-menu-item>
-                                        <ngx-menu-content>Child A1</ngx-menu-content>
-                                    </ngx-context-menu-item>
-                                    <ngx-context-menu-item>
-                                        <ngx-menu-content>Child A2</ngx-menu-content>
-                                    </ngx-context-menu-item>
-                                    <ngx-context-menu-item>
-                                        <ngx-menu-content>Child A3</ngx-menu-content>
-                                    </ngx-context-menu-item>
-                                </ngx-context-menu-item>
-
-                                <ngx-context-menu-item>
-                                    <ngx-menu-content>Root B</ngx-menu-content>
-                                </ngx-context-menu-item>
-
-                                <ngx-context-menu-item>
-                                    <ngx-menu-content>Root C</ngx-menu-content>
-                                    <ngx-context-menu-item>
-                                        <ngx-menu-content>Child C1</ngx-menu-content>
-                                    </ngx-context-menu-item>
-                                    <ngx-context-menu-item>
-                                        <ngx-menu-content>Child C2</ngx-menu-content>
-                                    </ngx-context-menu-item>
-                                    <ngx-context-menu-item>
-                                        <ngx-menu-content>Child C3</ngx-menu-content>
-                                    </ngx-context-menu-item>
-                                </ngx-context-menu-item>
-                            </ngx-context-menu-item>
-                        </ngx-context-menu>
-                    </ngx-table-builder>
-                </div>
-                <div class="column-samples">
-                    <div class="column">
-                        <br />
-
-                        <p>
-                            <b>Note</b>
-                            : You can also wrap the templates in your component.
-                        </p>
-
-                        <pre><code class="html" ngNonBindable>
-  &lt;!-- app.component.html -->
-  &lt;ngx-table-builder #table [source]="data" height="500" enable-selection>
-    &lt;ngx-options [resizable]="true" [sortable]="true">&lt;/ngx-options>
-
-    &lt;ngx-context-menu>
-       &lt;my-menu [table]="table">&lt;/my-menu>
-    &lt;/ngx-context-menu>
-
-    &lt;ngx-column key="action" custom-key sticky [resizable]="false" [width]="50">
-        &lt;ng-template ngx-th>&lt;/ng-template>
-        &lt;ng-template ngx-td row let-row>
-            &#123;&#123; table.selectionModel.get($any(row).id) ? 'x' : '-' &#125;&#125;
-        &lt;/ng-template>
-    &lt;/ngx-column>
-
-    &lt;ngx-column *ngFor="let key of table.modelColumnKeys" [key]="key">&lt;/ngx-column>
-  &lt;/ngx-table-builder>
-
-</code></pre>
-                        <br />
-                        <pre><code class="javascript">
-  // my-menu.component.ts
-  import &#123; TableBuilderComponent &#125; from "&#64;angular-ru/cdk/virtual-table";
-  import &#123; Component &#125; from "&#64;angular/core";
-
-  &#64;Component(&#123;
-    selector: 'my-menu',
-    templateUrl: './my-menu.component.html'
-  &#125;)
-  export class MyMenuComponent &#123;
-    &#64;Input() public table: TableBuilderComponent;
-  &#125;
-
-</code></pre>
+                    <div class="column-samples">
+                        <div class="column">
+                            <br />
+                            <p>
+                                <b>Note</b>
+                                : You can also wrap the templates in your component.
+                            </p>
+                            <pre><code class="html" ngNonBindable>
+                          &lt;!-- app.component.html -->
+                          &lt;ngx-table-builder #table [source]="data" height="500" enable-selection>
+                          &lt;ngx-options [resizable]="true" [sortable]="true">&lt;/ngx-options>
+                          &lt;ngx-context-menu>
+                          &lt;my-menu [table]="table">&lt;/my-menu>
+                          &lt;/ngx-context-menu>
+                          &lt;ngx-column key="action" custom-key sticky [resizable]="false" [width]="50">
+                          &lt;ng-template ngx-th>&lt;/ng-template>
+                          &lt;ng-template ngx-td row let-row>
+                          &#123;&#123; table.selectionModel.get($any(row).id) ? 'x' : '-' &#125;&#125;
+                          &lt;/ng-template>
+                          &lt;/ngx-column>
+                          &lt;ngx-column *ngFor="let key of table.modelColumnKeys" [key]="key">&lt;/ngx-column>
+                          &lt;/ngx-table-builder>
+                        </code></pre>
+                            <br />
+                            <pre><code class="javascript">
+                          // my-menu.component.ts
+                          import &#123; TableBuilderComponent &#125; from "&#64;angular-ru/cdk/virtual-table";
+                          import &#123; Component &#125; from "&#64;angular/core";
+                          &#64;Component(&#123;
+                          selector: 'my-menu',
+                          templateUrl: './my-menu.component.html'
+                          &#125;)
+                          export class MyMenuComponent &#123;
+                          &#64;Input() public table: TableBuilderComponent;
+                          &#125;
+                        </code></pre>
+                        </div>
+                        <div class="column">
+                            <br />
+                            <p>
+                                <b>Note</b>
+                                : You can also wrap the templates in your component.
+                            </p>
+                            <pre><code class="html" ngNonBindable>
+                          &lt;!-- my-menu.component.html -->
+                          &lt;!-- first item -->
+                          &lt;ngx-context-menu-item contextTitle divider>
+                          &lt;ngx-menu-content>Menu&lt;/ngx-menu-content>
+                          &lt;/ngx-context-menu-item>
+                          &lt;!-- second item -->
+                          &lt;ngx-context-menu-item>
+                          &lt;ngx-menu-content>Column list&lt;/ngx-menu-content>
+                          &lt;ngx-context-menu-item
+                          *ngFor="let column of table.columnSchema"
+                          (onClick)="table.toggleColumnVisibility(column.key); $events.preventDefault()"
+                          [visible]="column.isModel"
+                          >
+                          &lt;ngx-menu-content no-margin>&#123;&#123; column.key &#125;&#125;&lt;/ngx-menu-content>
+                          &lt;ngx-menu-content no-margin align-center>
+                          &lt;mat-checkbox
+                          color="primary"
+                          [checked]="column.visible"
+                          >&lt;/mat-checkbox>
+                          &lt;/ngx-menu-content>
+                          &lt;/ngx-context-menu-item>
+                          &lt;/ngx-context-menu-item>
+                          &lt;!-- third item -->
+                          &lt;ngx-context-menu-item (onClick)="table.resetSchema()" divider>
+                          &lt;ngx-menu-content>Reset table settings&lt;/ngx-menu-content>
+                          &lt;/ngx-context-menu-item>
+                          &lt;!-- fourth item -->
+                          &lt;ngx-context-menu-item>
+                          &lt;ngx-menu-content>Example tree&lt;/ngx-menu-content>
+                          &lt;ngx-context-menu-item>
+                          &lt;ngx-menu-content>Root A&lt;/ngx-menu-content>
+                          &lt;ngx-context-menu-item>
+                          &lt;ngx-menu-content>Child A1&lt;/ngx-menu-content>
+                          &lt;/ngx-context-menu-item>
+                          &lt;ngx-context-menu-item>
+                          &lt;ngx-menu-content>Child A2&lt;/ngx-menu-content>
+                          &lt;/ngx-context-menu-item>
+                          &lt;ngx-context-menu-item>
+                          &lt;ngx-menu-content>Child A3&lt;/ngx-menu-content>
+                          &lt;/ngx-context-menu-item>
+                          &lt;/ngx-context-menu-item>
+                          &lt;ngx-context-menu-item>
+                          &lt;ngx-menu-content>Root B&lt;/ngx-menu-content>
+                          &lt;/ngx-context-menu-item>
+                          &lt;ngx-context-menu-item>
+                          &lt;ngx-menu-content>Root C&lt;/ngx-menu-content>
+                          &lt;ngx-context-menu-item>
+                          &lt;ngx-menu-content> Child C1&lt;/ngx-menu-content>
+                          &lt;/ngx-context-menu-item>
+                          &lt;ngx-context-menu-item>
+                          &lt;ngx-menu-content>Child C2&lt;/ngx-menu-content>
+                          &lt;/ngx-context-menu-item>
+                          &lt;ngx-context-menu-item>
+                          &lt;ngx-menu-content>Child C3&lt;/ngx-menu-content>
+                          &lt;/ngx-context-menu-item>
+                          &lt;/ngx-context-menu-item>
+                          &lt;/ngx-context-menu-item>
+                        </code></pre>
+                        </div>
                     </div>
-                    <div class="column">
-                        <br />
-                        <p>
-                            <b>Note</b>
-                            : You can also wrap the templates in your component.
-                        </p>
-                        <pre><code class="html" ngNonBindable>
-  &lt;!-- my-menu.component.html -->
-
-  &lt;!-- first item -->
-  &lt;ngx-context-menu-item contextTitle divider>
-      &lt;ngx-menu-content>Menu&lt;/ngx-menu-content>
-  &lt;/ngx-context-menu-item>
-
-  &lt;!-- second item -->
-  &lt;ngx-context-menu-item>
-      &lt;ngx-menu-content>Column list&lt;/ngx-menu-content>
-
-      &lt;ngx-context-menu-item
-          *ngFor="let column of table.columnSchema"
-          (onClick)="table.toggleColumnVisibility(column.key); $events.preventDefault()"
-          [visible]="column.isModel"
-      >
-          &lt;ngx-menu-content no-margin>&#123;&#123; column.key &#125;&#125;&lt;/ngx-menu-content>
-          &lt;ngx-menu-content no-margin align-center>
-              &lt;mat-checkbox
-                  color="primary"
-                  [checked]="column.visible"
-              >&lt;/mat-checkbox>
-          &lt;/ngx-menu-content>
-      &lt;/ngx-context-menu-item>
-  &lt;/ngx-context-menu-item>
-
-  &lt;!-- third item -->
-  &lt;ngx-context-menu-item (onClick)="table.resetSchema()" divider>
-      &lt;ngx-menu-content>Reset table settings&lt;/ngx-menu-content>
-  &lt;/ngx-context-menu-item>
-
-  &lt;!-- fourth item -->
-  &lt;ngx-context-menu-item>
-
-      &lt;ngx-menu-content>Example tree&lt;/ngx-menu-content>
-
-      &lt;ngx-context-menu-item>
-          &lt;ngx-menu-content>Root A&lt;/ngx-menu-content>
-          &lt;ngx-context-menu-item>
-              &lt;ngx-menu-content>Child A1&lt;/ngx-menu-content>
-          &lt;/ngx-context-menu-item>
-          &lt;ngx-context-menu-item>
-              &lt;ngx-menu-content>Child A2&lt;/ngx-menu-content>
-          &lt;/ngx-context-menu-item>
-          &lt;ngx-context-menu-item>
-              &lt;ngx-menu-content>Child A3&lt;/ngx-menu-content>
-          &lt;/ngx-context-menu-item>
-      &lt;/ngx-context-menu-item>
-
-      &lt;ngx-context-menu-item>
-          &lt;ngx-menu-content>Root B&lt;/ngx-menu-content>
-      &lt;/ngx-context-menu-item>
-
-      &lt;ngx-context-menu-item>
-          &lt;ngx-menu-content>Root C&lt;/ngx-menu-content>
-          &lt;ngx-context-menu-item>
-              &lt;ngx-menu-content> Child C1&lt;/ngx-menu-content>
-          &lt;/ngx-context-menu-item>
-          &lt;ngx-context-menu-item>
-              &lt;ngx-menu-content>Child C2&lt;/ngx-menu-content>
-          &lt;/ngx-context-menu-item>
-          &lt;ngx-context-menu-item>
-              &lt;ngx-menu-content>Child C3&lt;/ngx-menu-content>
-          &lt;/ngx-context-menu-item>
-      &lt;/ngx-context-menu-item>
-
-  &lt;/ngx-context-menu-item>
-
-</code></pre>
-                    </div>
-                </div>
-            </mat-tab>
-        </mat-tab-group>
-    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    }
 </div>

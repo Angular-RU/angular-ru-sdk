@@ -1,8 +1,12 @@
 <h3>User state</h3>
 
-<div *ngIf="user$ | async as user">
-    <h4>{{ user.name }}</h4>
-    <p>{{ user.email }}</p>
-</div>
+@if (user$ | async; as user) {
+    <div>
+        <h4>{{ user.name }}</h4>
+        <p>{{ user.email }}</p>
+    </div>
+}
 
-<div *ngIf="(isLoading$ | async) === true">LOADING...</div>
+@if ((isLoading$ | async) === true) {
+    <div>LOADING...</div>
+}

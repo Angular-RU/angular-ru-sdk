@@ -3,6 +3,7 @@
     "include": ["**/*.spec.ts", "**/*.d.ts"],
     "compilerOptions": {
         "target": "es2016",
+        "isolatedModules": true,
         "types": ["jest", "node", "webpack-env"]
     }
 }

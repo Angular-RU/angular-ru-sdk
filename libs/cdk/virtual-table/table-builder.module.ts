@@ -45,9 +45,9 @@ import {TableBuilderComponent} from './table-builder.component';
         DeepPathPipeModule,
         DefaultValuePipeModule,
         DragDropModule,
+        IsFilledPipeModule,
         MergeCssClassesPipeModule,
         SafePipeModule,
-        IsFilledPipeModule,
     ],
     declarations: [
         AutoHeightDirective,

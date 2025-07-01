@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {
     AbstractControlOptions,
@@ -11,8 +11,10 @@ import {emptyValidator} from '@angular-ru/cdk/validators';
 describe('empty validator', () => {
     it('without empty validator', () => {
         @Component({
+            standalone: false,
             selector: 'app',
             template: '',
+            changeDetection: ChangeDetectionStrategy.OnPush,
         })
         class AppComponent {
             public form: FormGroup;
@@ -37,8 +39,10 @@ describe('empty validator', () => {
 
     it('with empty validator', () => {
         @Component({
+            standalone: false,
             selector: 'app',
             template: '',
+            changeDetection: ChangeDetectionStrategy.OnPush,
         })
         class AppComponent {
             public form: FormGroup;

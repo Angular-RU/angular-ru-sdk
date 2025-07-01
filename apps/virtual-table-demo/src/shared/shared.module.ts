@@ -26,13 +26,13 @@ import {DialogTemplateComponent} from './dialog-template/dialog-template.compone
 
 @NgModule({
     imports: [
-        TableBuilderModule.forRoot(),
         CommonModule,
         FormsModule,
         MatButtonModule,
         MatInputModule,
         MatMenuModule,
         ReactiveFormsModule,
+        TableBuilderModule.forRoot(),
     ],
     declarations: [CodeDialogComponent, DialogTemplateComponent],
     exports: [

@@ -21,8 +21,7 @@ const config: JestConfigWithTsJest = {
             'jest-preset-angular',
             {
                 tsconfig: resolve(__dirname, 'tsconfig.spec.json'),
-                stringifyContentPathRegex: '\\.html$',
-                isolatedModules: true,
+                stringifyContentPathRegex: String.raw`\.html$`,
                 diagnostics: true,
             },
         ],

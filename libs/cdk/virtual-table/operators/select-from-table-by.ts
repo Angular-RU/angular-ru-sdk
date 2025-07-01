@@ -10,7 +10,7 @@ export function selectFromTableBy<T>(
 ): SelectFromTableResult<T> {
     const selectedItems: T[] = Array.isArray(entries)
         ? entries
-        : table?.selectedItems ?? [];
+        : (table?.selectedItems ?? []);
     const firstSelected: Nullable<T> = takeFirstItem(selectedItems);
 
     return {items: selectedItems, first: firstSelected};

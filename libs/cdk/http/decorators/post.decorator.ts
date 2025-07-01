@@ -9,7 +9,7 @@ export function Post<T>(
     emitOptions: EmitOptions = {emitFailure: true, emitSuccess: true},
 ): MethodDecorator {
     return (
-        target: DataHttpClient & any,
+        target: DataHttpClient | any,
         _name: string | symbol,
         descriptor: Descriptor,
     ): Descriptor =>

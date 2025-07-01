@@ -4,6 +4,7 @@ import {PlainObject} from '@angular-ru/cdk/typings';
 import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 
 @Component({
+    standalone: false,
     selector: 'sample-fourth',
     templateUrl: './sample-fourth.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,

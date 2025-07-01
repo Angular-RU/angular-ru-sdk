@@ -12,6 +12,7 @@ import {MocksGenerator} from '../../mocks-generator';
 import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
 
 @Component({
+    standalone: false,
     selector: 'sample-eighteen',
     templateUrl: './sample-eighteen.component.html',
     styles: [
@@ -55,7 +56,7 @@ export class SampleEighteenComponent implements OnInit {
     [row-css-classes]="rowCssClasses"
     primary-key="id"
 >
-    <!-- rowCssClasses === \{ 1: ['highlight'], 3: ['highlight'] \} -->
+    <!-- rowCssClasses === { 1: ['highlight'], 3: ['highlight'] } -->
     <ngx-empty>No data</ngx-empty>
     <ngx-source-null>Loading</ngx-source-null>
     <ngx-options is-sortable></ngx-options>

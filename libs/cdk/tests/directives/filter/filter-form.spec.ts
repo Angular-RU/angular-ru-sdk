@@ -12,6 +12,7 @@ describe('[TEST]: inputFilter Input', function () {
     let debugElement2: Nullable<DebugElement> = null;
 
     @Component({
+        standalone: false,
         selector: 'test',
         template: `
             <div [formGroup]="form">
@@ -102,6 +103,7 @@ describe('[TEST]: inputFilter Input', function () {
         debugElement2?.triggerEventHandler('input', {
             target: debugElement2?.nativeElement,
         });
+
         expect(count).toBe(1);
     });
 });

@@ -5,6 +5,7 @@ import {takeUntil} from 'rxjs/operators';
 import {ApiClient} from '../../services/clients/api.client';
 
 @Component({
+    standalone: false,
     selector: 'guide',
     templateUrl: './guide.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,

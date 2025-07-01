@@ -4,7 +4,7 @@ import {isNotNil} from '@angular-ru/cdk/utils';
 
 import {AbstractFlexLayoutDirective} from './abstract-flex-layout.directive';
 
-@Directive({selector: '[flex-column]'})
+@Directive({standalone: false, selector: '[flex-column]'})
 export class FlexColumnDirective
     extends AbstractFlexLayoutDirective
     implements AfterViewInit

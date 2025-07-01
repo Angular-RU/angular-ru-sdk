@@ -21,6 +21,7 @@ const FILTER_MIN_LEFT_X = 10;
 const FILTER_MIN_TOP_Y = 50;
 
 @Component({
+    standalone: false,
     selector: 'ngx-filter',
     templateUrl: './ngx-filter.component.html',
     styleUrls: ['./ngx-filter.component.scss'],

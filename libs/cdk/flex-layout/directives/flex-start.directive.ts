@@ -2,7 +2,7 @@ import {AfterViewInit, Directive, ElementRef, Inject} from '@angular/core';
 
 import {AbstractFlexLayoutDirective} from './abstract-flex-layout.directive';
 
-@Directive({selector: '[flex-start]'})
+@Directive({standalone: false, selector: '[flex-start]'})
 export class FlexStartDirective
     extends AbstractFlexLayoutDirective
     implements AfterViewInit

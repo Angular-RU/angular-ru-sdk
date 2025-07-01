@@ -25,7 +25,7 @@ import {fromEvent, Subscription} from 'rxjs';
 import {AMOUNT_FORMAT_OPTIONS, DEFAULT_AMOUNT_OPTIONS} from './amount-format.properties';
 import {AmountOptions} from './amount-options';
 
-@Directive({selector: '[amountFormat]'})
+@Directive({standalone: false, selector: '[amountFormat]'})
 export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
     private readonly subscriptions: Subscription = new Subscription();
     private previousLang: Nullable<string> = null;
@@ -187,9 +187,9 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
         let lastSymbolsAsZeroDot: string =
             maximumFractionDigits === 0
                 ? ''
-                : this.element.value
-                      .match(new RegExp(`(\\${fraction})(.+)?`))?.[0]
-                      ?.replace(/,|./, '') ?? '';
+                : (new RegExp(`(\\${fraction})(.+)?`)
+                      .exec(this.element.value)?.[0]
+                      ?.replace(/,|./, '') ?? '');
 
         const isOverflowGaussRound: boolean =
             lastSymbolsAsZeroDot.length > this.maximumFractionDigits;
@@ -332,7 +332,7 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
 
         this.element.value = value.toLocaleString(
             this.options.lang,
-            this.options.formatOptions,
+            this.options.formatOptions ?? {},
         );
         this.previousLang = this.options.lang;
         this.format();

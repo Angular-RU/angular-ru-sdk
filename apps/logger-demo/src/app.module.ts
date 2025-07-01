@@ -1,4 +1,4 @@
-import {HttpClientModule} from '@angular/common/http';
+import {provideHttpClient} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {LoggerModule} from '@angular-ru/cdk/logger';
@@ -9,6 +9,7 @@ import {AppComponent} from './app.component';
 
 @NgModule({
     imports: [
+        BrowserModule,
         LoggerModule.forRoot(
             isTrue(environment.useConfig)
                 ? {
@@ -26,11 +27,9 @@ import {AppComponent} from './app.component';
                   }
                 : {},
         ),
-        BrowserModule,
-        HttpClientModule,
     ],
     declarations: [AppComponent],
-    providers: [],
+    providers: [provideHttpClient()],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

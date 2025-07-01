@@ -34,22 +34,23 @@
         <ngx-context-menu-item>
             <ngx-menu-content>Column list</ngx-menu-content>
 
-            <ngx-context-menu-item
-                *ngFor="let column of table.columnSchema"
-                [visible]="column.isModel"
-                (onClick)="table.toggleColumnVisibility(column.key); $event.preventDefault()"
-            >
-                <ngx-menu-content no-margin>{{ column.key }}</ngx-menu-content>
-                <ngx-menu-content
-                    align-center
-                    no-margin
+            @for (column of table.columnSchema; track column.key) {
+                <ngx-context-menu-item
+                    [visible]="column.isModel"
+                    (onClick)="table.toggleColumnVisibility(column.key); $event.preventDefault()"
                 >
-                    <mat-checkbox
-                        color="primary"
-                        [checked]="column.isVisible"
-                    />
-                </ngx-menu-content>
-            </ngx-context-menu-item>
+                    <ngx-menu-content no-margin>{{ column.key }}</ngx-menu-content>
+                    <ngx-menu-content
+                        align-center
+                        no-margin
+                    >
+                        <mat-checkbox
+                            color="primary"
+                            [checked]="column.isVisible"
+                        />
+                    </ngx-menu-content>
+                </ngx-context-menu-item>
+            }
         </ngx-context-menu-item>
 
         <ngx-context-menu-item
@@ -78,10 +79,9 @@
         width="150"
     />
 
-    <ngx-column
-        *ngFor="let key of table.modelColumnKeys"
-        [key]="key"
-    />
+    @for (key of table.modelColumnKeys; track key) {
+        <ngx-column [key]="key" />
+    }
 
     <ngx-column
         custom-key

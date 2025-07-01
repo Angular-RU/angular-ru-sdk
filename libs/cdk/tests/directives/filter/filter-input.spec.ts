@@ -18,6 +18,7 @@ describe('[TEST]: inputFilter Input', function () {
     let debugElement: Nullable<DebugElement> = null;
 
     @Component({
+        standalone: false,
         selector: 'test',
         template: `
             <div [formGroup]="form">
@@ -100,6 +101,7 @@ describe('[TEST]: inputFilter Input', function () {
     it('should filter input with characters', () => {
         component!.predicate = ['a', 'b'];
         setValueAndDispatch('aaabbbccc');
+
         expect(component?.form.value).toEqual({value: 'aaabbb'});
         expect(debugElement?.nativeElement.value).toBe('aaabbb');
     });
@@ -107,6 +109,7 @@ describe('[TEST]: inputFilter Input', function () {
     it('should filter input with RegExp', () => {
         component!.predicate = /[,ab]+/;
         setValueAndDispatch('aaabbbccc');
+
         expect(component?.form.value).toEqual({value: 'aaabbb'});
         expect(debugElement?.nativeElement.value).toBe('aaabbb');
     });
@@ -114,6 +117,7 @@ describe('[TEST]: inputFilter Input', function () {
     it('should filter input with custom function', () => {
         component!.predicate = (item: string): boolean => item === 'a' || item === 'b';
         setValueAndDispatch('aaabbbccc');
+
         expect(component?.form.value).toEqual({value: 'aaabbb'});
         expect(debugElement?.nativeElement.value).toBe('aaabbb');
     });

@@ -30,7 +30,7 @@ export function sortWorker<T>(message: SortableMessage<T>): T[] {
         // noinspection SuspiciousTypeOfGuard
         const nextValue: string = typeof value === 'string' ? value.trim() : value;
 
-        return [undefined, null, NaN, '', Infinity].includes(nextValue);
+        return ['', Infinity, NaN, null, undefined].includes(nextValue);
     }
 
     class Sortable {

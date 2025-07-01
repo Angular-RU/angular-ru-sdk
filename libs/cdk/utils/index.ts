@@ -10,7 +10,7 @@ export {checkSomeValueIsTrue} from './check-some-value-is-true';
 export {checkValueIsEmpty} from './check-value-is-empty';
 export {checkValueIsFilled} from './check-value-is-filled';
 export {copyHtml} from './copy-html';
-export {copyBuffer, copyString} from './copy-string';
+export {copyString} from './copy-string';
 export {
     DeclinationAssociativeMap,
     DeclinationDictionary,

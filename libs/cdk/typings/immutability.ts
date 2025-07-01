@@ -1,6 +1,5 @@
 import {Nullable} from './nullable';
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export type PrimitiveType = Nullable<Function | boolean | number | string>;
 
 export type Immutable<T> = {

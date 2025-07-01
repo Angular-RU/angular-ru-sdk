@@ -1,4 +1,4 @@
-import {Component, DebugElement, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, DebugElement, Input} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserModule, By} from '@angular/platform-browser';
@@ -12,6 +12,7 @@ describe('[TEST]: Initial Focus', function () {
     let debugElement!: DebugElement;
 
     @Component({
+        standalone: false,
         selector: 'test',
         template: `
             <form [formGroup]="form">
@@ -36,6 +37,7 @@ describe('[TEST]: Initial Focus', function () {
                 />
             </form>
         `,
+        changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class TestComponent {
         @Input()
@@ -81,7 +83,9 @@ describe('[TEST]: Initial Focus', function () {
         expect(spiedFunctions[1]).not.toHaveBeenCalled();
         expect(spiedFunctions[2]).not.toHaveBeenCalled();
         expect(component.form?.value?.wantFocusText).toBe('wanna be focused');
+
         jest.runOnlyPendingTimers();
+
         expect(spiedFunctions[0]).not.toHaveBeenCalled();
         expect(spiedFunctions[1]).toHaveBeenCalledTimes(1);
         expect(spiedFunctions[2]).not.toHaveBeenCalled();
@@ -105,7 +109,9 @@ describe('[TEST]: Initial Focus', function () {
             'initial-focus',
         );
         expect(component.form?.value?.wantFocusText).toBe('wanna be focused');
+
         jest.runOnlyPendingTimers();
+
         expect(spiedFunctions[0]).not.toHaveBeenCalled();
         expect(spiedFunctions[1]).not.toHaveBeenCalled();
         expect((inputElements[1] as HTMLInputElement).className).not.toContain(

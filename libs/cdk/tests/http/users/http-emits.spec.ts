@@ -4,7 +4,7 @@ import {
     HttpTestingController,
     TestRequest,
 } from '@angular/common/http/testing';
-import {Component, Injectable} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Injectable} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
 import {
     DATA_HTTP_CLIENT_INTERCEPTOR,
@@ -75,8 +75,10 @@ describe('[TEST]: HTTP Client', () => {
     }
 
     @Component({
+        standalone: false,
         selector: 'any',
         template: '',
+        changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class AnyComponent {
         constructor(public readonly api: ApiEmitsClient) {}

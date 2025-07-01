@@ -10,7 +10,7 @@ import {Nullable} from '@angular-ru/cdk/typings';
 
 import {AbstractFlexLayoutDirective} from './abstract-flex-layout.directive';
 
-@Directive({selector: '[flex-bottom-indent]'})
+@Directive({standalone: false, selector: '[flex-bottom-indent]'})
 export class FlexBottomIndentDirective
     extends AbstractFlexLayoutDirective
     implements AfterViewInit

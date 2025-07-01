@@ -11,10 +11,10 @@ import {AbstractControl, NgControl} from '@angular/forms';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {isNotNil} from '@angular-ru/cdk/utils';
 
-@Directive({selector: '[trimInput]'})
+@Directive({standalone: false, selector: '[trimInput]'})
 export class TrimInputDirective implements OnInit {
-    private declare name: string;
-    private declare previousName: string;
+    declare private name: string;
+    declare private previousName: string;
     private previousValue: any;
 
     @Input()

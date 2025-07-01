@@ -14,6 +14,7 @@ interface Favorite {
 }
 
 @Component({
+    standalone: false,
     selector: 'guide',
     templateUrl: './guide.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,

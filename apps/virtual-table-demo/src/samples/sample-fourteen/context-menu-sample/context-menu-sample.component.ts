@@ -12,6 +12,7 @@ import {
 } from '@angular-ru/cdk/virtual-table';
 
 @Component({
+    standalone: false,
     selector: 'context-menu-sample',
     templateUrl: './context-menu-sample.component.html',
     styles: [

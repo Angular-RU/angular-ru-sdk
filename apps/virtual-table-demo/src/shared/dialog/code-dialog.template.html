@@ -1,8 +1,7 @@
 <h3>{{ data.title }}</h3>
-<p
-    *ngIf="data.description"
-    [innerHTML]="data.description"
-></p>
+@if (data.description) {
+    <p [innerHTML]="data.description"></p>
+}
 <pre><code class="html">{{ data.code }}</code></pre>
 
 <button

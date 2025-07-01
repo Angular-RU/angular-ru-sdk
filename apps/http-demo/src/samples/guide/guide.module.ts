@@ -9,14 +9,14 @@ import {GuideComponent} from './guide.component';
 @NgModule({
     imports: [
         CommonModule,
+        MatIconModule,
+        ScrollingModule,
         RouterModule.forChild([
             {
                 path: '',
                 component: GuideComponent,
             },
         ]),
-        MatIconModule,
-        ScrollingModule,
     ],
     declarations: [GuideComponent],
 })

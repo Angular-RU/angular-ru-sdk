@@ -1,4 +1,4 @@
-import {Component, Injectable} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Injectable} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {Immutable} from '@angular-ru/cdk/typings';
 import {NgxsDataPluginModule} from '@angular-ru/ngxs';
@@ -103,6 +103,7 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
         expect(state.getState()).toBeNull();
 
         state.setState({a: 5});
+
         expect(state.getState()).toEqual({a: 5});
 
         const immutable: Immutable<CustomType> = {a: 10};
@@ -158,7 +159,6 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
             message = (error as Error).message;
         }
 
-        // eslint-disable-next-line @typescript-eslint/quotes
         expect(
             "Cannot assign to read only property 'a' of object '[object Object]'",
         ).toEqual(message);
@@ -177,7 +177,6 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
             message = (error as Error).message;
         }
 
-        // eslint-disable-next-line @typescript-eslint/quotes
         expect(
             "Cannot assign to read only property 'b' of object '[object Object]'",
         ).toEqual(message);
@@ -237,7 +236,12 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
         @Injectable()
         class StateDataListState extends NgxsDataRepository<ListModel[]> {}
 
-        @Component({selector: 'app', template: '{{ app.state$ | async | json }}'})
+        @Component({
+            standalone: false,
+            selector: 'app',
+            template: '{{ app.state$ | async | json }}',
+            changeDetection: ChangeDetectionStrategy.OnPush,
+        })
         class AppComponent {
             constructor(public app: StateDataListState) {}
         }
@@ -270,7 +274,6 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
             message = (error as Error).message;
         }
 
-        // eslint-disable-next-line @typescript-eslint/quotes
         expect(message).toBe(
             "Cannot assign to read only property '0' of object '[object Array]'",
         );

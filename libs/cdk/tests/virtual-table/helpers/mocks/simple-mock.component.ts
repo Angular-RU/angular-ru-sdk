@@ -3,6 +3,7 @@ import {PlainObject} from '@angular-ru/cdk/typings';
 
 // noinspection AngularMissingOrInvalidDeclarationInModule
 @Component({
+    standalone: false,
     selector: 'app',
     template: `
         <ngx-table-builder [source]="data"></ngx-table-builder>

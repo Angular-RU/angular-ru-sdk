@@ -1,4 +1,4 @@
-import {Component, Injectable, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Injectable, OnInit} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {NgxsDataPluginModule} from '@angular-ru/ngxs';
 import {DataAction, StateRepository} from '@angular-ru/ngxs/decorators';
@@ -46,8 +46,10 @@ describe('check correct deep instance', () => {
     }
 
     @Component({
+        standalone: false,
         selector: 'my-app',
         template: '',
+        changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class AppComponent implements OnInit {
         public name = 'Angular + NGXS';

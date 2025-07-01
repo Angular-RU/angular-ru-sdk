@@ -28,6 +28,7 @@ import {IGNORE_FILTER_TYPES} from './ngx-filter-viewer.properties';
 const {TIME_RELOAD}: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
 
 @Component({
+    standalone: false,
     selector: 'ngx-filter-viewer',
     template: '<span [class.filter-founded]="founded" [innerHTML]="html"></span>',
     encapsulation: ViewEncapsulation.None,
@@ -135,7 +136,7 @@ export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy
         let regexp: RegExp;
         const escapedValue: Nullable<string> = value?.replace(
             /[$()*+.?[\\\]^{|}]/g,
-            '\\$&',
+            String.raw`\$&`,
         );
 
         if (type === TableFilterType.START_WITH) {

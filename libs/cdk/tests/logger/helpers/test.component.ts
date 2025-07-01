@@ -30,6 +30,7 @@ interface HttpDebugInterface {
 }
 
 @Component({
+    standalone: false,
     selector: 'lib-hello-test',
     template: '',
     changeDetection: ChangeDetectionStrategy.OnPush,

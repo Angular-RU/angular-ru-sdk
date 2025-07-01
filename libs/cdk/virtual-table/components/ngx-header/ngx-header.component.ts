@@ -13,6 +13,7 @@ import {InputBoolean} from '@angular-ru/cdk/typings';
 import {TableContentDirective} from '../../directives/table-content.directive';
 
 @Component({
+    standalone: false,
     selector: 'ngx-header',
     templateUrl: './ngx-header.component.html',
     encapsulation: ViewEncapsulation.None,

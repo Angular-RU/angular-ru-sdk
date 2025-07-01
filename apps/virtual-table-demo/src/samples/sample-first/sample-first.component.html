@@ -1,12 +1,13 @@
 <div #header>
     <mat-toolbar class="simple-toolbar">
         <span>Virtual scroll table</span>
-        <mat-spinner
-            *ngIf="loading"
-            strokeWidth="5"
-            class="spinner"
-            [diameter]="30"
-        />
+        @if (loading) {
+            <mat-spinner
+                strokeWidth="5"
+                class="spinner"
+                [diameter]="30"
+            />
+        }
     </mat-toolbar>
 
     <form>

@@ -17,6 +17,7 @@ describe('[TEST]: inputFilter Config', () => {
     let debugElement: Nullable<DebugElement> = null;
 
     @Component({
+        standalone: false,
         selector: 'test',
         template: `
             <input
@@ -45,7 +46,9 @@ describe('[TEST]: inputFilter Config', () => {
         debugElement = fixture?.debugElement.query(By.css('input'));
 
         expect(component).toBeTruthy();
+
         setValueAndDispatch('abc123');
+
         expect(debugElement.nativeElement.value).toBe('123');
     });
 
@@ -56,7 +59,9 @@ describe('[TEST]: inputFilter Config', () => {
         debugElement = fixture?.debugElement.query(By.css('input'));
 
         expect(component).toBeTruthy();
+
         setValueAndDispatch('abc123');
+
         expect(debugElement.nativeElement.value).toBe('123');
     });
 

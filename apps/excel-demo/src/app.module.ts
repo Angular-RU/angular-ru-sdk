@@ -1,4 +1,4 @@
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HttpClient, provideHttpClient} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
@@ -25,7 +25,6 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     imports: [
         BrowserAnimationsModule,
         BrowserModule,
-        HttpClientModule,
         MatButtonModule,
         MatListModule,
         MatSidenavModule,
@@ -41,7 +40,7 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
         ExcelBuilderModule.forRoot(),
     ],
     declarations: [AppComponent],
-    providers: [EXCEL_BUILDER_NGX_TRANSLATE_FALLBACK_PROVIDER],
+    providers: [EXCEL_BUILDER_NGX_TRANSLATE_FALLBACK_PROVIDER, provideHttpClient()],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

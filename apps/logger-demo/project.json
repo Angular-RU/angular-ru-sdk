@@ -6,22 +6,26 @@
     "tags": ["apps"],
     "targets": {
         "build": {
-            "executor": "@angular-devkit/build-angular:browser",
+            "executor": "@angular/build:application",
             "options": {
-                "outputPath": "dist/logger-demo",
-                "tsConfig": "apps/logger-demo/tsconfig.app.json",
-                "main": "apps/logger-demo/main.ts",
+                "outputPath": {
+                    "base": "dist/logger-demo",
+                    "browser": ""
+                },
                 "index": "apps/logger-demo/index.html",
+                "browser": "apps/logger-demo/main.ts",
+                "tsConfig": "apps/logger-demo/tsconfig.app.json",
+                "polyfills": ["zone.js"],
+                "inlineStyleLanguage": "scss",
                 "assets": ["apps/logger-demo/assets"],
-                "polyfills": "apps/logger-demo/polyfills.ts",
                 "styles": [".global/integration-app.style.scss", "apps/logger-demo/styles.css"],
-                "aot": false,
-                "vendorChunk": true,
-                "extractLicenses": false,
-                "buildOptimizer": false,
-                "sourceMap": true,
-                "optimization": false,
-                "namedChunks": true
+                "scripts": [],
+                "stylePreprocessorOptions": {
+                    "includePaths": ["./src"],
+                    "sass": {
+                        "silenceDeprecations": ["import"]
+                    }
+                }
             },
             "configurations": {
                 "production": {
@@ -31,32 +35,30 @@
                             "with": "apps/logger-demo/environments/environment.prod.ts"
                         }
                     ],
-                    "optimization": true,
-                    "outputHashing": "all",
-                    "sourceMap": false,
-                    "namedChunks": false,
-                    "aot": true,
-                    "extractLicenses": true,
-                    "buildOptimizer": true
-                },
-                "development": {
-                    "fileReplacements": [
+                    "budgets": [
                         {
-                            "replace": "apps/flex-layout-demo/environments/environment.ts",
-                            "with": "apps/flex-layout-demo/environments/environment.prod.ts"
+                            "type": "initial",
+                            "maximumWarning": "1mb",
+                            "maximumError": "2mb"
+                        },
+                        {
+                            "type": "anyComponentStyle",
+                            "maximumWarning": "6kb"
                         }
                     ],
-                    "optimization": false
+                    "outputHashing": "all"
+                },
+                "development": {
+                    "optimization": false,
+                    "extractLicenses": false,
+                    "sourceMap": true
                 }
             },
             "defaultConfiguration": "production",
-            "outputs": ["{projectRoot}/dist/logger-demo"]
+            "outputs": ["{options.outputPath}"]
         },
         "serve": {
-            "executor": "@angular-devkit/build-angular:dev-server",
-            "options": {
-                "buildTarget": "logger-demo:build"
-            },
+            "executor": "@angular/build:dev-server",
             "configurations": {
                 "production": {
                     "buildTarget": "logger-demo:build:production"

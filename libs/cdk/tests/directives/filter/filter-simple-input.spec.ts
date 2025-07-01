@@ -20,6 +20,7 @@ describe('[TEST]: inputFilter Simple Input', () => {
     let debugElement: Nullable<DebugElement> = null;
 
     @Component({
+        standalone: false,
         selector: 'test',
         template: `
             <input
@@ -98,23 +99,27 @@ describe('[TEST]: inputFilter Simple Input', () => {
     it('should filter input with characters', () => {
         component!.predicate = ['a', 'b'];
         setValueAndDispatch('aaabbbccc');
+
         expect(debugElement?.nativeElement.value).toBe('aaabbb');
     });
 
     it('should filter input with RegExp', () => {
         component!.predicate = /[,ab]+/;
         setValueAndDispatch('aaabbbccc');
+
         expect(debugElement?.nativeElement.value).toBe('aaabbb');
     });
 
     it('should filter input with custom function', () => {
         component!.predicate = (item: string): boolean => item === 'a' || item === 'b';
         setValueAndDispatch('aaabbbccc');
+
         expect(debugElement?.nativeElement.value).toBe('aaabbb');
     });
 
     it('should filter cyrillic by default', () => {
         setValueAndDispatch('aaaДДДccc');
+
         expect(debugElement?.nativeElement.value).toBe('aaaccc');
     });
 
@@ -122,6 +127,7 @@ describe('[TEST]: inputFilter Simple Input', () => {
         component!.disableFilter = true;
         fixture?.detectChanges();
         setValueAndDispatch('aaaZZZZccc');
+
         expect(debugElement?.nativeElement.value).toBe('aaaZZZZccc');
     });
 });

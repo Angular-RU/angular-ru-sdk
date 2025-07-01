@@ -10,7 +10,7 @@ import {
 import {NgControl} from '@angular/forms';
 import {toStringValue} from '@angular-ru/cdk/string';
 
-@Directive({selector: '[convertCase]'})
+@Directive({standalone: false, selector: '[convertCase]'})
 export class ConvertCaseDirective implements AfterViewInit {
     @Input()
     public toUpperCase = true;

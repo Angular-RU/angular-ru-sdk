@@ -1,4 +1,4 @@
-import {Component, Injectable} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Injectable} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
 import {MutableTypePipe, MutableTypePipeModule} from '@angular-ru/cdk/pipes';
 import {Immutable} from '@angular-ru/cdk/typings';
@@ -18,6 +18,7 @@ describe('mutable', () => {
         const mutableA = new MutableTypePipe().transform(a);
 
         mutableA.b++;
+
         expect(a).toEqual({a: 1, b: 3});
     });
 
@@ -49,7 +50,12 @@ describe('mutable', () => {
         @Injectable()
         class AppState extends NgxsImmutableDataRepository<number> {}
 
-        @Component({selector: 'app', template: '{{ appState.state$ | async | mutable }}'})
+        @Component({
+            standalone: false,
+            selector: 'app',
+            template: '{{ appState.state$ | async | mutable }}',
+            changeDetection: ChangeDetectionStrategy.OnPush,
+        })
         class AppComponent {
             constructor(public appState: AppState) {}
         }

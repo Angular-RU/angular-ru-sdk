@@ -12,6 +12,7 @@ import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 import {MocksGenerator} from '../../mocks-generator';
 
 @Component({
+    standalone: false,
     selector: 'sample-twelve',
     templateUrl: './sample-twelve.component.html',
     encapsulation: ViewEncapsulation.None,

@@ -6,7 +6,7 @@ import {Nullable} from '@angular-ru/cdk/typings';
 
 import {FormatDatePipeOptions} from './format-date';
 
-@Pipe({name: 'formatDate'})
+@Pipe({standalone: false, name: 'formatDate'})
 export class FormatDatePipe implements PipeTransform {
     public transform(
         value?: Nullable<Date | number | string>,

@@ -6,59 +6,59 @@
     "tags": ["apps"],
     "targets": {
         "build": {
-            "executor": "@angular-devkit/build-angular:browser",
+            "executor": "@angular/build:application",
             "options": {
-                "outputPath": "dist/cdk-demo",
-                "tsConfig": "apps/cdk-demo/tsconfig.app.json",
-                "main": "apps/cdk-demo/main.ts",
+                "outputPath": {
+                    "base": "dist/cdk-demo",
+                    "browser": ""
+                },
                 "index": "apps/cdk-demo/index.html",
+                "browser": "apps/cdk-demo/main.ts",
+                "tsConfig": "apps/cdk-demo/tsconfig.app.json",
+                "polyfills": ["apps/cdk-demo/polyfills.ts"],
+                "inlineStyleLanguage": "scss",
                 "assets": ["apps/cdk-demo/assets"],
-                "polyfills": "apps/cdk-demo/polyfills.ts",
                 "styles": [".global/integration-app.style.scss", "apps/cdk-demo/styles.scss"],
-                "aot": false,
-                "vendorChunk": true,
-                "extractLicenses": false,
-                "buildOptimizer": false,
-                "sourceMap": true,
-                "optimization": false,
-                "namedChunks": true
+                "scripts": [],
+                "stylePreprocessorOptions": {
+                    "includePaths": ["./src"],
+                    "sass": {
+                        "silenceDeprecations": ["import"]
+                    }
+                }
             },
             "configurations": {
                 "production": {
+                    "budgets": [
+                        {
+                            "type": "initial",
+                            "maximumWarning": "1mb",
+                            "maximumError": "2mb"
+                        },
+                        {
+                            "type": "anyComponentStyle",
+                            "maximumWarning": "6kb"
+                        }
+                    ],
+                    "outputHashing": "all",
                     "fileReplacements": [
                         {
                             "replace": "apps/cdk-demo/environments/environment.ts",
                             "with": "apps/cdk-demo/environments/environment.prod.ts"
                         }
-                    ],
-                    "optimization": true,
-                    "outputHashing": "all",
-                    "sourceMap": false,
-                    "namedChunks": false,
-                    "aot": true,
-                    "extractLicenses": true,
-                    "buildOptimizer": true
+                    ]
                 },
                 "development": {
-                    "fileReplacements": [
-                        {
-                            "replace": "apps/cdk-demo/environments/environment.ts",
-                            "with": "apps/cdk-demo/environments/environment.prod.ts"
-                        }
-                    ],
                     "optimization": false,
-                    "outputHashing": "all",
-                    "aot": true
+                    "extractLicenses": false,
+                    "sourceMap": true
                 }
             },
             "defaultConfiguration": "production",
-            "outputs": ["{projectRoot}/dist/cdk-demo"]
+            "outputs": ["{options.outputPath}"]
         },
         "serve": {
-            "executor": "@angular-devkit/build-angular:dev-server",
-            "options": {
-                "buildTarget": "cdk-demo:build"
-            },
+            "executor": "@angular/build:dev-server",
             "configurations": {
                 "production": {
                     "buildTarget": "cdk-demo:build:production"

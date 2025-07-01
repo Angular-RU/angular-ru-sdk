@@ -2,7 +2,7 @@ import {AfterViewInit, Directive, ElementRef, Inject} from '@angular/core';
 
 import {AbstractFlexLayoutDirective} from './abstract-flex-layout.directive';
 
-@Directive({selector: '[flex-end]'})
+@Directive({standalone: false, selector: '[flex-end]'})
 export class FlexEndDirective
     extends AbstractFlexLayoutDirective
     implements AfterViewInit

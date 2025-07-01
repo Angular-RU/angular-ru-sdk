@@ -16,6 +16,7 @@ import {MocksGenerator} from '../../mocks-generator';
 import {DialogTemplateComponent} from '../../shared/dialog-template/dialog-template.component';
 
 @Component({
+    standalone: false,
     selector: 'sample-first-second',
     templateUrl: './sample-first-second.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,

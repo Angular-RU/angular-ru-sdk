@@ -1,5 +1,6 @@
-import 'jest-preset-angular/setup-jest';
-/// <reference types="jest" />
+import {setupZoneTestEnv} from 'jest-preset-angular/setup-env/zone';
+
+setupZoneTestEnv();
 
 const {TextEncoder: TextEncoderMock, TextDecoder: TextDecoderMock} = require('node:util');
 
@@ -28,7 +29,7 @@ global.window.resizeTo = (width) => {
     global.window.dispatchEvent(resizeEvent);
 };
 
-global.URL.createObjectURL = jest.fn((blob) => `${blob}`);
+global.URL.createObjectURL = jest.fn(() => '');
 global.URL.revokeObjectURL = jest.fn();
 
 Object.defineProperty(global.window, 'CSS', {value: null});
@@ -152,11 +153,11 @@ if (!('Zone' in global)) {
 export {};
 
 // make custom mocks
-window.AnimationEvent = {};
-window.TransitionEvent = {};
-window.DragEvent = class {};
+(window as any).AnimationEvent = {};
+(window as any).TransitionEvent = {};
+(window as any).DragEvent = class {};
 
-window.IntersectionObserver = function () {
+(window as any).IntersectionObserver = function () {
     this.observe = () => {};
 
     this.unobserve = () => {};

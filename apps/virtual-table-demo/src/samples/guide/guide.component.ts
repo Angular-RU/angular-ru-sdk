@@ -4,6 +4,7 @@ import {PlainObject} from '@angular-ru/cdk/typings';
 import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 
 @Component({
+    standalone: false,
     selector: 'guide',
     templateUrl: './guide.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,

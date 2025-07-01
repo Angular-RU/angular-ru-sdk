@@ -1,7 +1,9 @@
 <mat-toolbar class="simple-toolbar">
     <span>
         Example selection
-        <span *ngIf="table.isRendered">({{ table.source?.length }}x{{ table.displayedColumns.length }})</span>
+        @if (table.isRendered) {
+            <span>({{ table.source?.length }}x{{ table.displayedColumns.length }})</span>
+        }
         <span style="margin-left: 5px">Selected: {{ table.selection.selectionModel.size }}</span>
     </span>
     <button
@@ -46,8 +48,7 @@
         </ng-template>
     </ngx-column>
 
-    <ngx-column
-        *ngFor="let key of table.modelColumnKeys"
-        [key]="key"
-    />
+    @for (key of table.modelColumnKeys; track key) {
+        <ngx-column [key]="key" />
+    }
 </ngx-table-builder>

@@ -5,7 +5,7 @@ import {isNotNil} from '@angular-ru/cdk/utils';
 import {RowId} from '../interfaces/table-builder.internal';
 import {TableBuilderComponent} from '../table-builder.component';
 
-@Pipe({name: 'mapToTableEntries'})
+@Pipe({standalone: false, name: 'mapToTableEntries'})
 export class MapToTableEntriesPipe<T> implements PipeTransform {
     constructor(
         @Inject(TableBuilderComponent)
@@ -22,7 +22,7 @@ export class MapToTableEntriesPipe<T> implements PipeTransform {
         const filteredEntriesMap = new Map<RowId, Nullable<T>>();
 
         for (const rowId of selectedEntries) {
-            void filteredEntriesMap.set(rowId, null);
+            filteredEntriesMap.set(rowId, null);
         }
 
         let itemsToFindLeft: number = filteredEntriesMap.size;

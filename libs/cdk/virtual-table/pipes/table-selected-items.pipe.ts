@@ -7,7 +7,7 @@ import {TableBuilderComponent} from '../table-builder.component';
 /**
  * @deprecated Use `table.selectedKeyList` + `mapToTableEntries` instead
  */
-@Pipe({name: 'tableSelectedItems'})
+@Pipe({standalone: false, name: 'tableSelectedItems'})
 export class TableSelectedItemsPipe<T> implements PipeTransform {
     constructor(
         @Inject(TableBuilderComponent)

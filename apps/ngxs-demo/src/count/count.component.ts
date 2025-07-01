@@ -4,6 +4,7 @@ import {CountState} from './count.state';
 import {CountSubState} from './count-sub.state';
 
 @Component({
+    standalone: false,
     selector: 'count',
     templateUrl: './count.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,

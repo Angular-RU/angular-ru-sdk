@@ -17,9 +17,9 @@ import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
 
 // noinspection CssUnusedSymbol
 @Component({
+    standalone: false,
     selector: 'sample-fourteen',
     templateUrl: './sample-fourteen.component.html',
-    // eslint-disable-next-line @angular-eslint/component-max-inline-declarations
     styles: [
         `
             .filter-example .table-grid__column {
@@ -91,9 +91,11 @@ export class SampleFourteenComponent implements OnInit, AfterViewInit {
                     [value]="table.filterable.filterTypeDefinition[filter.state.key!]"
                     (valueChange)="table.filterable.updateFilterTypeBy($event, filter.state.key); table.filter()"
                 >
-                    <mat-option *ngFor="let type of table.filterable.types | keyvalue" [value]="type.value">
+                @for (type of table.filterable.types | keyvalue; track type.key) {
+                    <mat-option [value]="type.value">
                         {{ type.key }}
                     </mat-option>
+                }
                 </mat-select>
             </mat-form-field>
 

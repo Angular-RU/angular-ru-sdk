@@ -4,6 +4,7 @@ import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {REG_EXP_ONLY_NUMBERS} from './properties/constants';
 
 @Component({
+    standalone: false,
     selector: 'guide',
     templateUrl: './guide.component.html',
     styleUrls: ['./guide.component.scss'],

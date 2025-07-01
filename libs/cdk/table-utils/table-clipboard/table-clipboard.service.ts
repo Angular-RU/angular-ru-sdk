@@ -56,7 +56,7 @@ export class TableClipboardService {
                         const nextValue: any =
                             typeof value === 'string' ? value.trim() : value;
 
-                        return [undefined, null, NaN, '', Infinity].includes(nextValue);
+                        return ['', Infinity, NaN, null, undefined].includes(nextValue);
                     }
 
                     function isFilledString(value: Nullable<string>): value is string {

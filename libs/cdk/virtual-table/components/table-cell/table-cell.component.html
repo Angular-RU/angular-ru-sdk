@@ -4,10 +4,7 @@
     (mouseenter)="mouseEnterCell(divElement, $event)"
     (mouseleave)="mouseLeaveCell($event)"
 >
-    <ng-template
-        [ngIf]="columnSchema?.td?.template!"
-        [ngIfElse]="defaultTd"
-    >
+    @if (columnSchema?.td?.template!) {
         <ng-template
             [ngTemplateOutlet]="columnSchema?.td?.template!"
             [ngTemplateOutletContext]="{
@@ -19,12 +16,8 @@
                         : item,
             }"
         />
-    </ng-template>
-    <ng-template #defaultTd>
-        <ng-template
-            [ngIf]="isFilterable || enableFiltering"
-            [ngIfElse]="simple"
-        >
+    } @else {
+        @if (isFilterable || enableFiltering) {
             <ngx-filter-viewer
                 [index]="index"
                 [key]="columnSchema?.key"
@@ -34,13 +27,12 @@
                         : $any(item![$castKey(columnSchema?.key)] | defaultValue: columnSchema?.stub)
                 "
             />
-        </ng-template>
-        <ng-template #simple>
+        } @else {
             {{
                 columnSchema?.td?.useDeepPath && !disableDeepPath
                     ? (item | deepPath: columnSchema?.key : columnSchema?.stub)
                     : (item![$castKey(columnSchema?.key)] | defaultValue: columnSchema?.stub)
             }}
-        </ng-template>
-    </ng-template>
+        }
+    }
 </div>

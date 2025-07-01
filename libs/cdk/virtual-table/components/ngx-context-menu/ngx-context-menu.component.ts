@@ -19,6 +19,7 @@ const SIZE = 300;
 const MAX_HEIGHT = 400;
 
 @Component({
+    standalone: false,
     selector: 'ngx-context-menu',
     templateUrl: './ngx-context-menu.component.html',
     styleUrls: ['./ngx-context-menu.component.scss'],
