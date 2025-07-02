@@ -61,9 +61,9 @@ function replaceAt(array: any[], index: number, value: any): any[] {
 }
 
 @Component({
+    standalone: false,
     selector: 'sample-eight',
     templateUrl: './sample-eight.component.html',
-    // eslint-disable-next-line @angular-eslint/component-max-inline-declarations
     styles: [
         `
             .cost-disable {

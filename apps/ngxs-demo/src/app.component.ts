@@ -3,6 +3,7 @@ import {Store} from '@ngxs/store';
 import {Observable} from 'rxjs';
 
 @Component({
+    standalone: false,
     selector: 'app-root',
     templateUrl: './app.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,

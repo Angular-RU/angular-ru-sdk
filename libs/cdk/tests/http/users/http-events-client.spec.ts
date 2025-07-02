@@ -10,7 +10,7 @@ import {
     HttpTestingController,
     TestRequest,
 } from '@angular/common/http/testing';
-import {Component, Injectable} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Injectable} from '@angular/core';
 import {fakeAsync, TestBed, tick} from '@angular/core/testing';
 import {
     DATA_HTTP_CLIENT_INTERCEPTOR,
@@ -39,8 +39,10 @@ describe('[TEST]: HTTP Intercept Client', () => {
     class ApiEventsClient extends DataHttpClient<MyInterceptor> {}
 
     @Component({
+        standalone: false,
         selector: 'events',
         template: '',
+        changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class EventsComponent {
         constructor(public readonly api: ApiEventsClient) {}

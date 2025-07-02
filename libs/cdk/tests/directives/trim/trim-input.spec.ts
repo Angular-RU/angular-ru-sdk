@@ -15,7 +15,7 @@ describe('[TEST]: Trim Input', function () {
     @Component({
         standalone: true,
         selector: 'test',
-        imports: [ReactiveFormsModule, NgxMaskDirective, MatInput, TrimInputModule],
+        imports: [MatInput, NgxMaskDirective, ReactiveFormsModule, TrimInputModule],
         template: `
             <div [formGroup]="form">
                 <input
@@ -54,7 +54,7 @@ describe('[TEST]: Trim Input', function () {
     });
 
     it('correct sync modelView with model', async () => {
-        expect(component?.form.value).toEqual({value: '1234000012340000'});
+        expect(component?.form.value).toEqual({value: 1234000012340000});
         expect(debugElement?.nativeElement.value).toBe('1234-0000-1234-0000');
 
         debugElement!.nativeElement.value = '\t  1234000012340000   ';

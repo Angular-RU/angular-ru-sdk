@@ -1,8 +1,9 @@
-import {DOCUMENT} from '@angular/common';
 import {
     AfterViewInit,
     ApplicationRef,
+    ChangeDetectionStrategy,
     Component,
+    DOCUMENT,
     Injectable,
     NgModule,
     OnInit,
@@ -86,8 +87,10 @@ describe('complex lifecycle', () => {
         }
 
         @Component({
+            standalone: false,
             selector: 'app-root',
             template: '',
+            changeDetection: ChangeDetectionStrategy.OnPush,
         })
         class NgxsTestComponent implements OnInit, AfterViewInit {
             public ngOnInit(): void {
@@ -102,7 +105,6 @@ describe('complex lifecycle', () => {
         @NgModule({
             imports: [BrowserModule],
             declarations: [NgxsTestComponent],
-            entryComponents: [NgxsTestComponent],
         })
         class AppTestModule {
             // eslint-disable-next-line @angular-eslint/use-lifecycle-interface

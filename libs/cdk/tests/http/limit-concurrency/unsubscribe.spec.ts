@@ -4,7 +4,13 @@ import {
     HttpTestingController,
     TestRequest,
 } from '@angular/common/http/testing';
-import {Component, Injectable, OnDestroy, OnInit} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    Injectable,
+    OnDestroy,
+    OnInit,
+} from '@angular/core';
 import {ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
 import {DataHttpClient, DataHttpClientModule} from '@angular-ru/cdk/http';
 import {Get, RestClient} from '@angular-ru/cdk/http/decorators';
@@ -86,8 +92,10 @@ describe('[TEST]: Canceling requests and unsubscribing', () => {
     }
 
     @Component({
+        standalone: false,
         selector: '',
         template: '',
+        changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class TestComponent implements OnInit, OnDestroy {
         private readonly destroy$: Subject<boolean> = new Subject<boolean>();

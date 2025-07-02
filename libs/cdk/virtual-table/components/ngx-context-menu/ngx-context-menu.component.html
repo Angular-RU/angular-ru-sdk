@@ -1,28 +1,28 @@
-<div
-    *ngIf="state?.opened"
-    class="table-grid__background-flat"
-    (click)="close($event)"
-    (contextmenu)="close($event)"
-></div>
-
-<div
-    *ngIf="state?.opened"
-    class="table-grid__context-menu"
->
+@if (state.opened) {
     <div
-        #menu
-        class="context-menu"
-        [ngStyle]="{
-            'width.px': width,
-            opacity: isShowed ? 1 : 0,
-            'max-height.px': isRendered ? maxHeight : 0,
-            'min-height.px': isRendered ? minHeight : 0,
-            'top.px': (state.position.top ?? 0) - overflowY,
-            'left.px': (state.position.left ?? 0) - overflowX,
-            visibility: isRendered && (menu?.offsetHeight || 0 > 10) ? 'visible' : 'hidden',
-        }"
+        class="table-grid__background-flat"
+        (click)="close($event)"
         (contextmenu)="close($event)"
-    >
-        <ng-content />
+    ></div>
+}
+
+@if (state.opened) {
+    <div class="table-grid__context-menu">
+        <div
+            #menu
+            class="context-menu"
+            [ngStyle]="{
+                'width.px': width,
+                opacity: isShowed ? 1 : 0,
+                'max-height.px': isRendered ? maxHeight : 0,
+                'min-height.px': isRendered ? minHeight : 0,
+                'top.px': (state.position.top ?? 0) - overflowY,
+                'left.px': (state.position.left ?? 0) - overflowX,
+                visibility: isRendered && (menu?.offsetHeight || 0 > 10) ? 'visible' : 'hidden',
+            }"
+            (contextmenu)="close($event)"
+        >
+            <ng-content />
+        </div>
     </div>
-</div>
+}

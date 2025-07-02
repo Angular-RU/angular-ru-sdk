@@ -17,6 +17,7 @@ describe('[TEST]: inputFilter Dynamic', function () {
     let debugElement: Nullable<DebugElement> = null;
 
     @Component({
+        standalone: false,
         selector: 'test',
         template: `
             <div [formGroup]="form">
@@ -78,18 +79,21 @@ describe('[TEST]: inputFilter Dynamic', function () {
         component!.control = component!.form.get('a');
         localDetectChanges();
         setValueAndDispatch('aaaqqq');
+
         expect(component?.form.value).toEqual({a: 'aaa', b: null});
         expect(debugElement?.nativeElement.value).toBe('aaa');
 
         component!.control = component?.form.get('b');
         localDetectChanges();
         setValueAndDispatch('bbbddd');
+
         expect(component?.form.value).toEqual({a: 'aaa', b: 'bbb'});
         expect(debugElement?.nativeElement.value).toBe('bbb');
 
         component!.control = component?.form.get('a');
         localDetectChanges();
         setValueAndDispatch('eeeccc');
+
         expect(component?.form.value).toEqual({a: 'ccc', b: 'bbb'});
         expect(debugElement?.nativeElement.value).toBe('ccc');
     });
@@ -102,6 +106,7 @@ describe('[TEST]: inputFilter Dynamic', function () {
         component!.predicate = ['d', 'e', 'f', ' '];
         localDetectChanges();
         setValueAndDispatch('d e f abc');
+
         expect(component?.form.value).toEqual({a: 'kkk', b: 'd e f '});
         expect(debugElement?.nativeElement.value).toBe('d e f ');
     });

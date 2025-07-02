@@ -1,4 +1,4 @@
-import {Component, Injectable} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Injectable} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {NgxsDataPluginModule} from '@angular-ru/ngxs';
 import {StateRepository} from '@angular-ru/ngxs/decorators';
@@ -65,7 +65,6 @@ describe('[TEST]: Freeze states', () => {
             message = (error as Error).message;
         }
 
-        // eslint-disable-next-line @typescript-eslint/quotes
         expect(
             "Cannot assign to read only property 'a' of object '[object Object]'",
         ).toEqual(message);
@@ -84,7 +83,6 @@ describe('[TEST]: Freeze states', () => {
             message = (error as Error).message;
         }
 
-        // eslint-disable-next-line @typescript-eslint/quotes
         expect(
             "Cannot assign to read only property 'b' of object '[object Object]'",
         ).toEqual(message);
@@ -144,7 +142,12 @@ describe('[TEST]: Freeze states', () => {
         @Injectable()
         class StateListState extends NgxsImmutableDataRepository<ListModel[]> {}
 
-        @Component({selector: 'app', template: '{{ app.state$ | async | json }}'})
+        @Component({
+            standalone: false,
+            selector: 'app',
+            template: '{{ app.state$ | async | json }}',
+            changeDetection: ChangeDetectionStrategy.OnPush,
+        })
         class AppComponent {
             constructor(public app: StateListState) {}
         }
@@ -177,7 +180,6 @@ describe('[TEST]: Freeze states', () => {
             message = (error as Error).message;
         }
 
-        // eslint-disable-next-line @typescript-eslint/quotes
         expect(message).toBe(
             "Cannot assign to read only property '0' of object '[object Array]'",
         );

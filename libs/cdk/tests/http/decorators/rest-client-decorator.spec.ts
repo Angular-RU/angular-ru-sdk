@@ -4,7 +4,7 @@ import {
     HttpTestingController,
     TestRequest,
 } from '@angular/common/http/testing';
-import {Component, Injectable} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Injectable} from '@angular/core';
 import {fakeAsync, TestBed, tick} from '@angular/core/testing';
 import {DataHttpClient, DataHttpClientModule} from '@angular-ru/cdk/http';
 import {RestClient} from '@angular-ru/cdk/http/decorators';
@@ -21,8 +21,10 @@ describe('[TEST]: HTTP decorators for client', () => {
     class ApiGithubClient extends DataHttpClient {}
 
     @Component({
+        standalone: false,
         selector: 'events',
         template: '',
+        changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class GithubComponent {
         constructor(public readonly api: ApiGithubClient) {}

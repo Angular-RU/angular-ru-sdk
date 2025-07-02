@@ -83,14 +83,14 @@ function getSingleUnitPattern(unitsMap: UnitsMap): RegExp {
 }
 
 function getCoefficient(unit: string): number {
-    const prefix: string = unit.match(`^${NUMBER_PATTERN}`)?.[0] ?? '';
+    const prefix: string = new RegExp(`^${NUMBER_PATTERN}`).exec(unit)?.[0] ?? '';
     const result: number = prefix.includes('.') ? parseFloat(prefix) : parseInt(prefix);
 
     return result;
 }
 
 function getUnitValue(unit: string, unitsMap: UnitsMap): number {
-    const postfix: string = unit.match(/\D+$/s)?.[0] ?? '';
+    const postfix: string = /\D+$/s.exec(unit)?.[0] ?? '';
 
     return unitsMap[postfix] ?? 0;
 }

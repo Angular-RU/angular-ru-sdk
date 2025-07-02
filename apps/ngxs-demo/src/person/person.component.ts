@@ -3,6 +3,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {PersonState} from './person.state';
 
 @Component({
+    standalone: false,
     selector: 'person',
     templateUrl: './person.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,

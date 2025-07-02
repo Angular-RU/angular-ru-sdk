@@ -1,17 +1,18 @@
 <h3>Edit</h3>
 
-<form
-    *ngIf="form"
-    [formGroup]="form"
->
-    <mat-form-field *ngFor="let input of data | keyvalue">
-        <input
-            matInput
-            placeholder="{{ input.key }}"
-            [formControlName]="$any(input.key)"
-        />
-    </mat-form-field>
-</form>
+@if (form) {
+    <form [formGroup]="form">
+        @for (input of data | keyvalue; track input.key) {
+            <mat-form-field>
+                <input
+                    matInput
+                    placeholder="{{ input.key }}"
+                    [formControlName]="$any(input.key)"
+                />
+            </mat-form-field>
+        }
+    </form>
+}
 
 <button
     mat-button

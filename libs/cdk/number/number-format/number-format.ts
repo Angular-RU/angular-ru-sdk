@@ -15,6 +15,6 @@ export function numberFormat(
     return (
         isNaN(numberValue)
             ? fallback
-            : numberValue.toLocaleString(locales, options?.formatOptions)
+            : numberValue.toLocaleString(locales, options?.formatOptions ?? {})
     ).replaceAll(/\s/g, ' ');
 }

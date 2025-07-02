@@ -54,9 +54,9 @@ a {
 }
 
 .dashboard__menu {
-    background: rgb(24, 75, 170);
-    color: #fff;
-    width: 300px;
+    --mat-sidenav-container-background-color: rgb(24, 75, 170);
+    --mat-sidenav-container-text-color: #fff;
+    --mat-sidenav-container-width: 300px;
 }
 
 .title {
@@ -124,7 +124,7 @@ code {
 }
 
 .mat-divider {
-    border-top-color: rgba(241, 232, 232, 0.12);
+    --mat-divider-color: rgba(241, 232, 232, 0.12);
     width: 80%;
     margin: 0 auto !important;
 }

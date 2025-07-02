@@ -6,6 +6,7 @@ import {checkValueIsFilled} from '@angular-ru/cdk/utils';
 import {SplitStringOptions} from './split-string-options';
 
 @Directive({
+    standalone: false,
     selector: '[splitString]',
     providers: [ControlValueInterceptor],
 })

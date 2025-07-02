@@ -32,6 +32,7 @@ import {NgxContextMenuComponent} from '../ngx-context-menu/ngx-context-menu.comp
 const SELECTION_DELAY = 100;
 
 @Component({
+    standalone: false,
     selector: 'table-tbody',
     templateUrl: './table-tbody.component.html',
     styleUrls: ['./table-tbody.component.scss'],

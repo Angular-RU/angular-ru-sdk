@@ -9,6 +9,7 @@ interface LicenseSample {
 }
 
 @Component({
+    standalone: false,
     selector: 'sample-seventeen',
     templateUrl: './sample-seventeen.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,

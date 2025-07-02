@@ -10,6 +10,7 @@ import {ArticleEntitiesState} from './article-entities.state';
 import {ArticleDialogComponent} from './dialog/article-dialog.component';
 
 @Component({
+    standalone: false,
     selector: 'article',
     templateUrl: './article.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,

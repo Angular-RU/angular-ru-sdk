@@ -6,12 +6,20 @@
     "tags": ["libs"],
     "targets": {
         "build": {
-            "executor": "@angular-devkit/build-angular:ng-packagr",
+            "executor": "@nx/angular:package",
             "options": {
-                "tsConfig": "tsconfig.lib.json",
                 "project": "libs/{projectName}/ng-package.json"
             },
             "outputs": ["{projectRoot}/dist/{projectName}"],
+            "configurations": {
+                "production": {
+                    "tsConfig": "tsconfig.lib.json"
+                },
+                "development": {
+                    "tsConfig": "tsconfig.lib.json"
+                }
+            },
+            "defaultConfiguration": "production",
             "dependsOn": [
                 {
                     "dependencies": true,

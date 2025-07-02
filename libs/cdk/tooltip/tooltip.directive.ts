@@ -16,7 +16,7 @@ import {TooltipValue} from './interfaces/tooltip-value';
 import {TooltipDomLeakService} from './services/tooltip-dom-leak.service';
 import {TOOLTIP_OPTIONS_TOKEN, TOOLTIP_TEXT_INTERCEPTOR_TOKEN} from './tooltip.tokens';
 
-@Directive({selector: '[tooltip]'})
+@Directive({standalone: false, selector: '[tooltip]'})
 export class TooltipDirective implements OnDestroy {
     private readonly delta: number = 2;
     private readonly layoutMinDuration: number = 100;

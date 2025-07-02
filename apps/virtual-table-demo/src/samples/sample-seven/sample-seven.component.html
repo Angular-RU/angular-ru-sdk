@@ -32,18 +32,17 @@
                 </ng-template>
             </ngx-column>
 
-            <ngx-column
-                *ngFor="let key of table.modelColumnKeys"
-                [key]="key"
-            >
-                <ng-template ngx-th>{{ key }}</ng-template>
-                <ng-template
-                    let-cell
-                    ngx-td
-                >
-                    {{ cell }}
-                </ng-template>
-            </ngx-column>
+            @for (key of table.modelColumnKeys; track key) {
+                <ngx-column [key]="key">
+                    <ng-template ngx-th>{{ key }}</ng-template>
+                    <ng-template
+                        let-cell
+                        ngx-td
+                    >
+                        {{ cell }}
+                    </ng-template>
+                </ngx-column>
+            }
 
             <ngx-column
                 custom-key
@@ -75,18 +74,17 @@
             [source]="data"
             [vertical-border]="false"
         >
-            <ngx-column
-                *ngFor="let key of table.modelColumnKeys"
-                [key]="key"
-            >
-                <ng-template ngx-th>{{ key }}</ng-template>
-                <ng-template
-                    let-cell
-                    ngx-td
-                >
-                    {{ cell }}
-                </ng-template>
-            </ngx-column>
+            @for (key of table.modelColumnKeys; track key) {
+                <ngx-column [key]="key">
+                    <ng-template ngx-th>{{ key }}</ng-template>
+                    <ng-template
+                        let-cell
+                        ngx-td
+                    >
+                        {{ cell }}
+                    </ng-template>
+                </ngx-column>
+            }
 
             <ngx-column
                 custom-key
@@ -201,18 +199,17 @@
                 </ng-template>
             </ngx-column>
 
-            <ngx-column
-                *ngFor="let key of table.modelColumnKeys"
-                [key]="key"
-            >
-                <ng-template ngx-th>{{ key }}</ng-template>
-                <ng-template
-                    let-cell
-                    ngx-td
-                >
-                    {{ cell }}
-                </ng-template>
-            </ngx-column>
+            @for (key of table.modelColumnKeys; track key) {
+                <ngx-column [key]="key">
+                    <ng-template ngx-th>{{ key }}</ng-template>
+                    <ng-template
+                        let-cell
+                        ngx-td
+                    >
+                        {{ cell }}
+                    </ng-template>
+                </ngx-column>
+            }
         </ngx-table-builder>
     </mat-tab>
 </mat-tab-group>

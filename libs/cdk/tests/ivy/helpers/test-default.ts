@@ -19,9 +19,7 @@ export class TestService {
     public testField = 'test';
 }
 
-@Directive({
-    selector: '[test-directive]',
-})
+@Directive({standalone: false, selector: '[test-directive]'})
 export class TestDirective {
     @InjectTestService()
     public testService!: TestService;
@@ -30,6 +28,7 @@ export class TestDirective {
 }
 
 @Component({
+    standalone: false,
     selector: 'test-component',
     template: `
         <div test-directive></div>
@@ -45,7 +44,7 @@ export class TestComponent {
     constructor(public ngZone: NgZone) {}
 }
 
-@Pipe({name: 'test'})
+@Pipe({standalone: false, name: 'test'})
 export class TestPipe implements PipeTransform {
     @InjectTestService()
     public testService!: TestService;
@@ -68,6 +67,7 @@ export class FeatureTestService {
 }
 
 @Component({
+    standalone: false,
     selector: 'feature-test-component',
     template: '',
     changeDetection: ChangeDetectionStrategy.OnPush,

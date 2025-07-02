@@ -1,4 +1,10 @@
-import {Component, Injectable, OnDestroy, OnInit} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    Injectable,
+    OnDestroy,
+    OnInit,
+} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {Immutable} from '@angular-ru/cdk/typings';
 import {NgxsDataPluginModule} from '@angular-ru/ngxs';
@@ -79,8 +85,10 @@ describe('check correct deep instance', () => {
     }
 
     @Component({
+        standalone: false,
         selector: 'app',
         template: '',
+        changeDetection: ChangeDetectionStrategy.OnPush,
         providers: [Facade],
     })
     class AppComponent implements OnInit {

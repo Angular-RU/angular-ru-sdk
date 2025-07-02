@@ -14,6 +14,10 @@ import {SampleFourteenComponent} from './sample-fourteen.component';
 @NgModule({
     imports: [
         CommonModule,
+        MatButtonToggleModule,
+        MatDatepickerModule,
+        MatInputModule,
+        MatNativeDateModule,
         SharedModule,
         RouterModule.forChild([
             {
@@ -21,10 +25,6 @@ import {SampleFourteenComponent} from './sample-fourteen.component';
                 component: SampleFourteenComponent,
             },
         ]),
-        MatButtonToggleModule,
-        MatInputModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
     ],
     declarations: [
         ContextMenuSampleComponent,

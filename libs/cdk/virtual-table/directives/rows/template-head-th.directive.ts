@@ -3,7 +3,7 @@ import {Nullable} from '@angular-ru/cdk/typings';
 
 import {AbstractTemplateCellCommonDirective} from './abstract-template-cell-common.directive';
 
-@Directive({selector: 'ng-template[ngx-th]'})
+@Directive({standalone: false, selector: 'ng-template[ngx-th]'})
 export class TemplateHeadThDirective<T> extends AbstractTemplateCellCommonDirective<T> {
     // eslint-disable-next-line @angular-eslint/no-input-rename
     @Input('ngx-th')

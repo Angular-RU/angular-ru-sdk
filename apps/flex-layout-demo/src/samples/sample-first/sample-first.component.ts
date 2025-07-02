@@ -8,6 +8,7 @@ import {
 import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 
 @Component({
+    standalone: false,
     selector: 'sample-first',
     templateUrl: './sample-first.component.html',
     styleUrls: ['./sample-first.component.scss'],

@@ -4,13 +4,14 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 
 @Component({
+    standalone: false,
     selector: 'code-dialog',
     templateUrl: './code-dialog.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CodeDialogComponent implements AfterViewInit {
     constructor(
-        @Inject(MAT_DIALOG_DATA) public data: any | unknown,
+        @Inject(MAT_DIALOG_DATA) public data: any,
         @Inject(MatDialogRef)
         public dialogRef: MatDialogRef<unknown>,
     ) {}

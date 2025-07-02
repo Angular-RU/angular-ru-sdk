@@ -13,6 +13,7 @@ import {MocksGenerator} from '../../mocks-generator';
 import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
 
 @Component({
+    standalone: false,
     selector: 'sample-first',
     templateUrl: './sample-first.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -80,34 +81,10 @@ export class SampleFirstComponent implements OnInit, OnDestroy {
         this.loading = true;
 
         switch (this.dataSize) {
-            case '10x5':
+            case '100000x100':
                 {
-                    const rows = 10;
-                    const cols = 5;
-
-                    MocksGenerator.generator(rows, cols).then(
-                        (data: PlainObject[]): void => this.setData(data),
-                    );
-                }
-
-                break;
-
-            case '100x20':
-                {
-                    const rows = 100;
-                    const cols = 20;
-
-                    MocksGenerator.generator(rows, cols).then(
-                        (data: PlainObject[]): void => this.setData(data),
-                    );
-                }
-
-                break;
-
-            case '1000x30':
-                {
-                    const rows = 1000;
-                    const cols = 30;
+                    const rows = 100000;
+                    const cols = 100;
 
                     MocksGenerator.generator(rows, cols).then(
                         (data: PlainObject[]): void => this.setData(data),
@@ -128,10 +105,34 @@ export class SampleFirstComponent implements OnInit, OnDestroy {
 
                 break;
 
-            case '100000x100':
+            case '1000x30':
                 {
-                    const rows = 100000;
-                    const cols = 100;
+                    const rows = 1000;
+                    const cols = 30;
+
+                    MocksGenerator.generator(rows, cols).then(
+                        (data: PlainObject[]): void => this.setData(data),
+                    );
+                }
+
+                break;
+
+            case '100x20':
+                {
+                    const rows = 100;
+                    const cols = 20;
+
+                    MocksGenerator.generator(rows, cols).then(
+                        (data: PlainObject[]): void => this.setData(data),
+                    );
+                }
+
+                break;
+
+            case '10x5':
+                {
+                    const rows = 10;
+                    const cols = 5;
 
                     MocksGenerator.generator(rows, cols).then(
                         (data: PlainObject[]): void => this.setData(data),

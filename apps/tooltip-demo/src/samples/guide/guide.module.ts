@@ -11,14 +11,14 @@ import {GuideComponent} from './guide.component';
     imports: [
         CommonModule,
         MatIconModule,
+        ScrollingModule,
+        TooltipModule,
         RouterModule.forChild([
             {
                 path: '',
                 component: GuideComponent,
             },
         ]),
-        ScrollingModule,
-        TooltipModule,
     ],
     declarations: [GuideComponent],
 })

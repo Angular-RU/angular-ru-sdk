@@ -4,7 +4,7 @@ import {Directive, Input} from '@angular/core';
 
 import {AbstractFlexLayoutDirective} from './abstract-flex-layout.directive';
 
-@Directive({selector: '[flex-item]'})
+@Directive({standalone: false, selector: '[flex-item]'})
 export class FlexItemDirective
     extends AbstractFlexLayoutDirective
     implements AfterViewInit

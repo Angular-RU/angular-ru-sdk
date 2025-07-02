@@ -13,6 +13,7 @@ import {MocksGenerator} from '../../mocks-generator';
 import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
 
 @Component({
+    standalone: false,
     selector: 'sample-third',
     templateUrl: './sample-third.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -72,13 +73,15 @@ export class SampleThirdComponent implements OnInit, AfterViewInit {
         </ng-template>
     </ngx-column>
 
-    <ngx-column *ngFor="let key of table.modelColumnKeys" [key]="key">
-       <!--
-        If you want to parameterize your templates, you can describe the code here.
-        <ng-template ngx-th>{{ key }}</ng-template>
-        <ng-template ngx-td let-cell>{{ cell }}</ng-template>
+    @for (key of table.modelColumnKeys; track key) {
+        <ngx-column [key]="key">
+        <!--
+            If you want to parameterize your templates, you can describe the code here.
+            <ng-template ngx-th>{{ key }}</ng-template>
+            <ng-template ngx-td let-cell>{{ cell }}</ng-template>
        -->
-    </ngx-column>
+        </ngx-column>
+    }
 </ngx-table-builder>
                     `,
             },

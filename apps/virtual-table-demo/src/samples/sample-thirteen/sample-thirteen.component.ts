@@ -11,6 +11,7 @@ import {ToastrService} from 'ngx-toastr';
 import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 
 @Component({
+    standalone: false,
     selector: 'sample-thirteen',
     templateUrl: './sample-thirteen.component.html',
     encapsulation: ViewEncapsulation.None,

@@ -4,6 +4,7 @@ import {AmountState} from './amount.state';
 import {PriceState} from './price.state';
 
 @Component({
+    standalone: false,
     selector: 'amount',
     templateUrl: './amount.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,

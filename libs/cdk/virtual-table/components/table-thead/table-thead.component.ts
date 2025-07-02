@@ -18,6 +18,7 @@ import {FilterableService} from '../../services/filterable/filterable.service';
 import {OVERLOAD_WIDTH_TABLE_HEAD_CELL} from '../../table-builder.properties';
 
 @Component({
+    standalone: false,
     selector: 'table-thead',
     templateUrl: './table-thead.component.html',
     encapsulation: ViewEncapsulation.None,

@@ -1,4 +1,10 @@
 {
     "extends": "../../tsconfig.json",
-    "include": ["main.ts", "polyfills.ts"]
+    "compilerOptions": {
+        "types": []
+    },
+    "include": ["main.ts", "polyfills.ts"],
+    "angularCompilerOptions": {
+        "compilationMode": "full"
+    }
 }

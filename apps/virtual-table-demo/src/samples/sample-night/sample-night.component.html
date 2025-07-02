@@ -52,27 +52,28 @@
                             [(value)]="table1.filterable.filterType"
                             (valueChange)="table1.filter()"
                         >
-                            <mat-option
-                                *ngFor="let type of table1.filterable.types | keyvalue"
-                                [value]="type.value"
-                            >
-                                {{ type.key }}
-                            </mat-option>
+                            @for (type of table1.filterable.types | keyvalue; track type.key) {
+                                <mat-option [value]="type.value">
+                                    {{ type.key }}
+                                </mat-option>
+                            }
                         </mat-select>
                     </mat-form-field>
                 </div>
             </ngx-header>
 
             <ngx-options is-draggable />
-            <ngx-column *ngFor="let key of table1.modelColumnKeys">
-                <ng-template ngx-th>{{ key }}</ng-template>
-                <ng-template
-                    let-cell
-                    ngx-td
-                >
-                    {{ cell }}
-                </ng-template>
-            </ngx-column>
+            @for (key of table1.modelColumnKeys; track key) {
+                <ngx-column>
+                    <ng-template ngx-th>{{ key }}</ng-template>
+                    <ng-template
+                        let-cell
+                        ngx-td
+                    >
+                        {{ cell }}
+                    </ng-template>
+                </ngx-column>
+            }
         </ngx-table-builder>
     </div>
 
@@ -109,27 +110,28 @@
                             [(value)]="table2.filterable.filterType"
                             (valueChange)="table2.filter()"
                         >
-                            <mat-option
-                                *ngFor="let type of table2.filterable.types | keyvalue"
-                                [value]="type.value"
-                            >
-                                {{ type.key }}
-                            </mat-option>
+                            @for (type of table2.filterable.types | keyvalue; track type.key) {
+                                <mat-option [value]="type.value">
+                                    {{ type.key }}
+                                </mat-option>
+                            }
                         </mat-select>
                     </mat-form-field>
                 </div>
             </ngx-header>
 
             <ngx-options is-draggable />
-            <ngx-column *ngFor="let key of table2.modelColumnKeys">
-                <ng-template ngx-th>{{ key }}</ng-template>
-                <ng-template
-                    let-cell
-                    ngx-td
-                >
-                    {{ cell }}
-                </ng-template>
-            </ngx-column>
+            @for (key of table2.modelColumnKeys; track key) {
+                <ngx-column>
+                    <ng-template ngx-th>{{ key }}</ng-template>
+                    <ng-template
+                        let-cell
+                        ngx-td
+                    >
+                        {{ cell }}
+                    </ng-template>
+                </ngx-column>
+            }
         </ngx-table-builder>
     </div>
 </div>

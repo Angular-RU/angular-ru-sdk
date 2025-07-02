@@ -22,9 +22,9 @@ export interface PeriodicElement {
 }
 
 @Component({
+    standalone: false,
     selector: 'sample-second',
     templateUrl: './sample-second.component.html',
-    // eslint-disable-next-line @angular-eslint/component-max-inline-declarations
     styles: [
         `
             /*noinspection CssUnusedSymbol*/
@@ -40,7 +40,6 @@ export interface PeriodicElement {
             }
         `,
     ],
-    // Use to disable CSS Encapsulation for this component
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

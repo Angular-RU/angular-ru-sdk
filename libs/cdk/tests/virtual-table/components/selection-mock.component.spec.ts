@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ViewChild} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {PlainObject} from '@angular-ru/cdk/typings';
@@ -8,6 +8,7 @@ import {WebWorkerThreadService} from '@angular-ru/cdk/webworker';
 import {MockWebWorkerService} from '../helpers/mock-web-worker.service';
 
 @Component({
+    standalone: false,
     selector: 'selection-mock',
     template: `
         <ngx-table-builder
@@ -15,6 +16,7 @@ import {MockWebWorkerService} from '../helpers/mock-web-worker.service';
             [source]="data"
         ></ngx-table-builder>
     `,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class SelectionMockComponent {
     @ViewChild(TableBuilderComponent, {static: true})
@@ -63,6 +65,7 @@ describe('[TEST] Table builder', (): void => {
         expect(tableBuilderComponent.source).toBeNull();
 
         componentFixture.detectChanges();
+
         expect(tableBuilderComponent.source).toEqual([
             {id: 1, name: 'Max', lastName: 'Ivanov'},
             {id: 2, name: 'Ivan', lastName: 'Petrov'},
@@ -73,6 +76,7 @@ describe('[TEST] Table builder', (): void => {
             tableBuilderComponent.source![0],
             new MouseEvent('click'),
         );
+
         expect(tableBuilderComponent.selection.selectionModel.entries).toEqual({1: true});
 
         tableBuilderComponent.selection.selectRow(

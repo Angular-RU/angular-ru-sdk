@@ -13,12 +13,6 @@ import {REG_EXP_ONLY_NUMBERS} from './properties/constants';
 @NgModule({
     imports: [
         AmountFormatModule,
-        RouterModule.forChild([
-            {
-                path: '',
-                component: GuideComponent,
-            },
-        ]),
         CommonModule,
         MatIconModule,
         MatInputModule,
@@ -27,6 +21,12 @@ import {REG_EXP_ONLY_NUMBERS} from './properties/constants';
         InputFilterModule.forChild({
             default: REG_EXP_ONLY_NUMBERS,
         }),
+        RouterModule.forChild([
+            {
+                path: '',
+                component: GuideComponent,
+            },
+        ]),
     ],
     declarations: [GuideComponent],
 })

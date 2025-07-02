@@ -8,8 +8,8 @@ interface LicenseSample {
 
 // noinspection AngularMissingOrInvalidDeclarationInModule
 @Component({
+    standalone: false,
     selector: 'template-mock',
-    // eslint-disable-next-line @angular-eslint/component-max-inline-declarations
     template: `
         <ngx-table-builder [source]="licenses">
             <ngx-column key="name">

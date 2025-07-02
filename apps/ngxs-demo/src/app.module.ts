@@ -8,7 +8,7 @@ import {
     NGXS_DATA_STORAGE_EXTENSION,
 } from '@angular-ru/ngxs/storage';
 import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
-import {NgxsModule, NoopNgxsExecutionStrategy} from '@ngxs/store';
+import {NgxsModule} from '@ngxs/store';
 
 import {environment} from '../environments/environment';
 import {AppComponent} from './app.component';
@@ -23,7 +23,6 @@ import {AppRoutingModule} from './app-routing.module';
         ReactiveFormsModule,
         NgxsModule.forRoot([], {
             developmentMode: !environment.production,
-            executionStrategy: NoopNgxsExecutionStrategy,
         }),
         NgxsLoggerPluginModule.forRoot(),
         NgxsDataPluginModule.forRoot([

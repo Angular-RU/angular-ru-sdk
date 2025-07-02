@@ -23,9 +23,9 @@ import {ArticleDialogComponent} from './dialog/article-dialog.component';
         MatInputModule,
         MatSortModule,
         MatTableModule,
+        ReactiveFormsModule,
         NgxsModule.forFeature([ArticleEntitiesState]),
         RouterModule.forChild([{path: '', component: ArticleComponent}]),
-        ReactiveFormsModule,
     ],
     declarations: [ArticleComponent, ArticleDialogComponent],
 })

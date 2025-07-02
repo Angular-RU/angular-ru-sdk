@@ -14,6 +14,7 @@ import {TemplateBodyTdDirective} from '../../directives/rows/template-body-td.di
 import {TemplateHeadThDirective} from '../../directives/rows/template-head-th.directive';
 
 @Component({
+    standalone: false,
     selector: 'ngx-column',
     templateUrl: './ngx-column.component.html',
     encapsulation: ViewEncapsulation.None,

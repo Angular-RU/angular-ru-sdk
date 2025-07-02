@@ -3,10 +3,8 @@ import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Nullable} from '@angular-ru/cdk/typings';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type AnyType = any;
-
 @Component({
+    standalone: false,
     selector: 'dialog-template',
     templateUrl: './dialog-template.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -15,7 +13,7 @@ export class DialogTemplateComponent implements OnInit {
     public form: Nullable<FormGroup> = null;
 
     constructor(
-        @Inject(MAT_DIALOG_DATA) public data: AnyType,
+        @Inject(MAT_DIALOG_DATA) public data: any,
         public dialogRef: MatDialogRef<unknown>,
         private readonly fb: FormBuilder,
     ) {}

@@ -26,7 +26,7 @@ import {
 const MIN_RESIZE_DELAY = 500;
 const RECALCULATE_HEIGHT = 100;
 
-@Directive({selector: '[autoHeight]'})
+@Directive({standalone: false, selector: '[autoHeight]'})
 export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
     private readonly _destroy$: Subject<boolean> = new Subject<boolean>();
     private readonly minHeight: number = 0;
@@ -110,11 +110,7 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
     }
 
     private get rootCurrentElement(): Partial<HTMLElement> {
-        return (
-            (this.currentElement.parentNode &&
-                this.currentElement.parentNode.parentElement) ||
-            {}
-        );
+        return this.currentElement.parentNode?.parentElement || {};
     }
 
     private get columnHeight(): number {
@@ -154,7 +150,7 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
                 strValue = document.defaultView
                     .getComputedStyle(element, '')
                     .getPropertyValue(strRule);
-            } catch (error: unknown) {
+            } catch {
                 strValue = '0px';
             }
         } else if (isNotNil(element.currentStyle)) {

@@ -14,6 +14,7 @@ import {MocksGenerator} from '../../mocks-generator';
 import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
 
 @Component({
+    standalone: false,
     selector: 'sample-six',
     templateUrl: './sample-six.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,

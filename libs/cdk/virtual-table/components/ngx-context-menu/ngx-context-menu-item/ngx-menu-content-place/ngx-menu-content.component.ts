@@ -9,6 +9,7 @@ import {
 import {Nullable} from '@angular-ru/cdk/typings';
 
 @Component({
+    standalone: false,
     selector: 'ngx-menu-content',
     templateUrl: './ngx-menu-content.component.html',
     encapsulation: ViewEncapsulation.None,

@@ -3,6 +3,7 @@ import {AfterViewInit, ChangeDetectionStrategy, Component} from '@angular/core';
 declare const hljs: any;
 
 @Component({
+    standalone: false,
     selector: 'guide',
     templateUrl: './guide.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,

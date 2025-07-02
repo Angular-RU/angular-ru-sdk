@@ -1,4 +1,4 @@
-import {Component, Injectable} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Injectable} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
 import {directiveInject, inject} from '@angular-ru/cdk/ivy';
 import {Nullable} from '@angular-ru/cdk/typings';
@@ -11,8 +11,10 @@ describe('[TEST]: injection utils', () => {
         }
 
         @Component({
+            standalone: false,
             selector: 'ctx',
             template: '',
+            changeDetection: ChangeDetectionStrategy.OnPush,
             providers: [Service],
         })
         class CtxComponent {
@@ -84,8 +86,10 @@ describe('[TEST]: injection utils', () => {
             }
 
             @Component({
+                standalone: false,
                 selector: 'ctx',
                 template: '',
+                changeDetection: ChangeDetectionStrategy.OnPush,
                 providers: [Service],
             })
             class CtxComponent {

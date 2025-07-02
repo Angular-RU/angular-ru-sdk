@@ -7,7 +7,7 @@ import {DATA_CONFIG_SERVICE_TOKEN} from '../tokens/data-config-service.token';
 export class DataConfiguratorService {
     public config: DataClientRequestOptions;
 
-    constructor(@Inject(DATA_CONFIG_SERVICE_TOKEN) config: any | unknown) {
+    constructor(@Inject(DATA_CONFIG_SERVICE_TOKEN) config: any) {
         this.config = config;
     }
 

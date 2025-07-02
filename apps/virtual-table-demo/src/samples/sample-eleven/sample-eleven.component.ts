@@ -13,6 +13,7 @@ import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 import {MocksGenerator} from '../../mocks-generator';
 
 @Component({
+    standalone: false,
     selector: 'sample-eleven',
     templateUrl: './sample-eleven.component.html',
     styles: [

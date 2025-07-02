@@ -5,6 +5,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Article} from '../article';
 
 @Component({
+    standalone: false,
     selector: 'article-dialog',
     templateUrl: './article-dialog.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,

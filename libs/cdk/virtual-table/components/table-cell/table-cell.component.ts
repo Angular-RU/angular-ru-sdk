@@ -22,6 +22,7 @@ import {trim} from '../../operators/trim';
 const TIME_IDLE = 1500;
 
 @Component({
+    standalone: false,
     selector: 'table-cell',
     templateUrl: './table-cell.component.html',
     encapsulation: ViewEncapsulation.None,

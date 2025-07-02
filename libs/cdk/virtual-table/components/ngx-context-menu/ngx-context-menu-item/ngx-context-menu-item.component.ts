@@ -35,6 +35,7 @@ import {
 const MENU_WIDTH = 300;
 
 @Component({
+    standalone: false,
     selector: 'ngx-context-menu-item',
     templateUrl: './ngx-context-menu-item.component.html',
     encapsulation: ViewEncapsulation.None,

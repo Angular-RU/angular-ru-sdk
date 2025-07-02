@@ -19,6 +19,7 @@ import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 import {MocksGenerator} from '../../mocks-generator';
 
 @Component({
+    standalone: false,
     selector: 'sample-sixteen',
     templateUrl: './sample-sixteen.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,

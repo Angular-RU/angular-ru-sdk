@@ -1,10 +1,7 @@
 export {
     ActionEvent,
-    ActionName,
-    ArgName,
     ArgNameMap,
     PayloadMap,
-    PayloadName,
     RepositoryActionOptions,
 } from './common/actions-properties';
 export {ComputedCacheMap} from './common/computed-cache-map';

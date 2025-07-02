@@ -74,6 +74,7 @@ const {
 }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
 
 @Component({
+    standalone: false,
     selector: 'ngx-table-builder',
     templateUrl: './table-builder.component.html',
     styleUrls: ['./table-builder.component.scss'],
@@ -541,7 +542,7 @@ export class TableBuilderComponent<T>
         this.viewPortInfo.indexes = [];
         this.viewPortInfo.virtualIndexes = [];
 
-        for (let i: number = start, even = 2; i < end; i++) {
+        for (let even = 2, i: number = start; i < end; i++) {
             this.viewPortInfo.indexes.push(i);
             this.viewPortInfo.virtualIndexes.push({
                 position: i,
@@ -976,8 +977,7 @@ export class TableBuilderComponent<T>
         this.templateParser.parse(this.columnTemplates);
 
         return {
-            allRenderedKeys:
-                Array.from(this.templateParser.fullTemplateKeys ?? []) ?? new Set(),
+            allRenderedKeys: Array.from(this.templateParser.fullTemplateKeys ?? []),
             overridingRenderedKeys: this.templateParser.overrideTemplateKeys ?? new Set(),
             simpleRenderedKeys: this.templateParser.templateKeys ?? new Set(),
         };

@@ -6,6 +6,7 @@ import {UserState} from './user.state';
 import {UserModel} from './user-model';
 
 @Component({
+    standalone: false,
     selector: 'user',
     templateUrl: './user.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
