@@ -1,3 +1,4 @@
+import {DatePipe, KeyValuePipe} from '@angular/common';
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
@@ -7,18 +8,44 @@ import {
     ViewChild,
     ViewEncapsulation,
 } from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {MatButton} from '@angular/material/button';
+import {MatCheckbox} from '@angular/material/checkbox';
 import {MatDialog} from '@angular/material/dialog';
+import {MatIcon} from '@angular/material/icon';
+import {MatFormField, MatInput, MatLabel, MatSuffix} from '@angular/material/input';
+import {MatOption, MatSelect} from '@angular/material/select';
+import {MatToolbar} from '@angular/material/toolbar';
 import {PlainObject} from '@angular-ru/cdk/typings';
-import {TableBuilderComponent, TableFilterType} from '@angular-ru/cdk/virtual-table';
+import {TableBuilder, TableFilterType, VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 import {MocksGenerator} from '../../mocks-generator';
 import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
+import {ContextMenuSampleComponent} from './context-menu-sample/context-menu-sample.component';
+import {NotFoundComponent} from './not-found.component';
 
 // noinspection CssUnusedSymbol
 @Component({
-    standalone: false,
     selector: 'sample-fourteen',
+    imports: [
+        ContextMenuSampleComponent,
+        DatePipe,
+        FormsModule,
+        KeyValuePipe,
+        MatButton,
+        MatCheckbox,
+        MatFormField,
+        MatIcon,
+        MatInput,
+        MatLabel,
+        MatOption,
+        MatSelect,
+        MatSuffix,
+        MatToolbar,
+        NotFoundComponent,
+        VirtualTable,
+    ],
     templateUrl: './sample-fourteen.component.html',
     styles: [
         `
@@ -39,9 +66,9 @@ import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SampleFourteenComponent implements OnInit, AfterViewInit {
+export default class SampleFourteenComponent implements OnInit, AfterViewInit {
     @ViewChild('table', {static: false})
-    public table!: TableBuilderComponent<PlainObject>;
+    public table!: TableBuilder<PlainObject>;
 
     public data: PlainObject[] = [];
     constructor(

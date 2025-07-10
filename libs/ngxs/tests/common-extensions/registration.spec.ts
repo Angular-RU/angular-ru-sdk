@@ -1,9 +1,9 @@
 import {ChangeDetectionStrategy, Component, Injectable, OnInit} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
 import {DataAction, StateRepository} from '@angular-ru/ngxs/decorators';
 import {NgxsImmutableDataRepository} from '@angular-ru/ngxs/repositories';
-import {NgxsModule, Select, State, Store} from '@ngxs/store';
+import {provideStore, Select, State, Store} from '@ngxs/store';
 import {Observable} from 'rxjs';
 
 describe('check correct deep instance', () => {
@@ -46,7 +46,6 @@ describe('check correct deep instance', () => {
     }
 
     @Component({
-        standalone: false,
         selector: 'my-app',
         template: '',
         changeDetection: ChangeDetectionStrategy.OnPush,
@@ -67,11 +66,11 @@ describe('check correct deep instance', () => {
 
     beforeAll(() => {
         TestBed.configureTestingModule({
-            imports: [
-                NgxsModule.forRoot([RegistrationState], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            imports: [AppComponent],
+            providers: [
+                provideStore([RegistrationState], {developmentMode: true}),
+                provideNgxsDataPlugin(),
             ],
-            declarations: [AppComponent],
         });
 
         fixture = TestBed.createComponent(AppComponent);

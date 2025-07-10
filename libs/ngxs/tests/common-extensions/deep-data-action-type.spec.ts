@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {fakeAsync, TestBed, tick} from '@angular/core/testing';
-import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
 import {DataAction, Payload, StateRepository} from '@angular-ru/ngxs/decorators';
 import {NgxsDataRepository} from '@angular-ru/ngxs/repositories';
-import {Actions, NgxsModule, State} from '@ngxs/store';
+import {Actions, provideStore, State} from '@ngxs/store';
 import {take} from 'rxjs/operators';
 
 describe('[TEST]: Deep data action type', () => {
@@ -43,9 +43,9 @@ describe('[TEST]: Deep data action type', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [
-                NgxsModule.forRoot([A, B, C], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            providers: [
+                provideStore([A, B, C], {developmentMode: true}),
+                provideNgxsDataPlugin(),
             ],
         });
 

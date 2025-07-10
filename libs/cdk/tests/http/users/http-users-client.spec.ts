@@ -1,4 +1,3 @@
-import {CommonModule} from '@angular/common';
 import {
     HTTP_INTERCEPTORS,
     provideHttpClient,
@@ -11,7 +10,7 @@ import {
 } from '@angular/common/http/testing';
 import {ChangeDetectionStrategy, Component, Injectable} from '@angular/core';
 import {fakeAsync, TestBed, tick} from '@angular/core/testing';
-import {DataHttpClient, DataHttpClientModule} from '@angular-ru/cdk/http';
+import {DataHttpClient, provideDataHttpClientOptions} from '@angular-ru/cdk/http';
 import {RestClient} from '@angular-ru/cdk/http/decorators';
 import {Nullable, PlainObject, PlainObjectOf} from '@angular-ru/cdk/typings';
 
@@ -35,7 +34,6 @@ describe('[TEST]: HTTP Client', () => {
     class ApiUsersClient extends DataHttpClient {}
 
     @Component({
-        standalone: false,
         selector: 'users',
         template: '',
         changeDetection: ChangeDetectionStrategy.OnPush,
@@ -54,9 +52,9 @@ describe('[TEST]: HTTP Client', () => {
                 },
                 provideHttpClient(withInterceptorsFromDi()),
                 provideHttpClientTesting(),
+                provideDataHttpClientOptions([ApiUsersClient]),
             ],
-            declarations: [UserComponent],
-            imports: [CommonModule, DataHttpClientModule.forRoot([ApiUsersClient])],
+            imports: [UserComponent],
         });
 
         TestBed.compileComponents();

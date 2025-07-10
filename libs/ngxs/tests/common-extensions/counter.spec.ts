@@ -1,12 +1,19 @@
 import {Injectable} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
-import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
 import {DataAction, Payload, StateRepository} from '@angular-ru/ngxs/decorators';
 import {NgxsDataFactory} from '@angular-ru/ngxs/internals';
 import {NgxsImmutableDataRepository} from '@angular-ru/ngxs/repositories';
 import {NGXS_DATA_EXCEPTIONS} from '@angular-ru/ngxs/tokens';
 import {NgxsRepositoryMeta} from '@angular-ru/ngxs/typings';
-import {Actions, NgxsModule, ofActionDispatched, State, Store} from '@ngxs/store';
+import {
+    Actions,
+    NgxsModule,
+    ofActionDispatched,
+    provideStore,
+    State,
+    Store,
+} from '@ngxs/store';
 
 describe('[TEST]: CountState', () => {
     let store: Store;
@@ -22,7 +29,7 @@ describe('[TEST]: CountState', () => {
         class CountState {}
 
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([CountState], {developmentMode: true})],
+            providers: [provideStore([CountState], {developmentMode: true})],
         });
 
         store = TestBed.inject<Store>(Store);
@@ -75,7 +82,7 @@ describe('[TEST]: CountState', () => {
                 message = (error as Error).message;
             }
 
-            expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_MODULE_EXCEPTION);
+            expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_PROVIDER_EXCEPTION);
         });
 
         it.skip('should be throw when forgot add @StateRepository #1', () => {
@@ -87,9 +94,9 @@ describe('[TEST]: CountState', () => {
             class CountState extends NgxsImmutableDataRepository<number> {}
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([CountState], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot(),
+                providers: [
+                    provideStore([CountState], {developmentMode: true}),
+                    provideNgxsDataPlugin(),
                 ],
             });
 
@@ -113,11 +120,11 @@ describe('[TEST]: CountState', () => {
             class CountState extends NgxsImmutableDataRepository<number> {}
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot(),
+                providers: [
+                    provideStore([CountState], {developmentMode: true}),
+                    provideNgxsDataPlugin(),
+                    CountState,
                 ],
-                providers: [CountState],
             });
 
             const count: CountState = TestBed.inject<CountState>(CountState);
@@ -216,9 +223,9 @@ describe('[TEST]: CountState', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([CountState], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot(),
+                providers: [
+                    provideStore([CountState], {developmentMode: true}),
+                    provideNgxsDataPlugin(),
                 ],
             });
 
@@ -254,6 +261,7 @@ describe('[TEST]: CountState', () => {
             expect(store.snapshot()).toEqual({count: 1});
 
             count.reset();
+
             expect(count.getState()).toBe(0);
             expect(store.snapshot()).toEqual({count: 0});
 
@@ -276,10 +284,12 @@ describe('[TEST]: CountState', () => {
             expect(store.snapshot()).toEqual({count: 5});
 
             count.withAction(15);
+
             expect(count.getState()).toBe(15);
             expect(store.snapshot()).toEqual({count: 15});
 
             count.withAction(10);
+
             expect(count.getState()).toBe(10);
             expect(store.snapshot()).toEqual({count: 10});
 
@@ -296,12 +306,15 @@ describe('[TEST]: CountState', () => {
             expect(count.getState()).toBe(0);
 
             count.setState(1);
+
             expect(count.getState()).toBe(1);
 
             count.withAction(2);
+
             expect(count.getState()).toBe(2);
 
             count.reset();
+
             expect(count.getState()).toBe(0);
 
             expect(repository.stateMeta!.actions).toEqual({

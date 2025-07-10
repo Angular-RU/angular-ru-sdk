@@ -1,6 +1,6 @@
 import {TestBed} from '@angular/core/testing';
 import {takeFirstItem} from '@angular-ru/cdk/array';
-import {TableClipboardModule, TableClipboardService} from '@angular-ru/cdk/table-utils';
+import {provideTableClipboard, TableClipboardService} from '@angular-ru/cdk/table-utils';
 import {Nullable, PlainObject} from '@angular-ru/cdk/typings';
 import * as copyHtmlModule from '@angular-ru/cdk/utils';
 import {WebWorkerThreadService} from '@angular-ru/cdk/webworker';
@@ -38,8 +38,8 @@ describe('[TEST] Table clipboard service', () => {
 
     beforeEach((): void => {
         TestBed.configureTestingModule({
-            imports: [TableClipboardModule],
             providers: [
+                provideTableClipboard(),
                 {provide: WebWorkerThreadService, useValue: mockWebWorker},
                 {provide: TranslateService, useClass: TranslateMock},
             ],
@@ -58,7 +58,7 @@ describe('[TEST] Table clipboard service', () => {
         await new Promise((resolve) => timer(0).subscribe(resolve));
         const plainHtml: string = getClipboardDataFromSpyFunction();
 
-        await expect(plainHtml).toBe(readFile('test-1-simple.html'));
+        expect(plainHtml).toBe(readFile('test-1-simple.html'));
     });
 
     it('should correctly convert to plain html by keys', async () => {
@@ -69,7 +69,7 @@ describe('[TEST] Table clipboard service', () => {
         await new Promise((resolve) => timer(0).subscribe(resolve));
         const plainHtml: string = getClipboardDataFromSpyFunction();
 
-        await expect(plainHtml).toBe(readFile('test-2-by-keys.html'));
+        expect(plainHtml).toBe(readFile('test-2-by-keys.html'));
     });
 
     it('should correctly convert to plain html excluding keys', async () => {
@@ -80,7 +80,7 @@ describe('[TEST] Table clipboard service', () => {
         await new Promise((resolve) => timer(0).subscribe(resolve));
         const plainHtml: string = getClipboardDataFromSpyFunction();
 
-        await expect(plainHtml).toBe(readFile('test-3-exclude-keys.html'));
+        expect(plainHtml).toBe(readFile('test-3-exclude-keys.html'));
     });
 
     it('should correctly convert nested data to plain html with options', async () => {
@@ -91,7 +91,7 @@ describe('[TEST] Table clipboard service', () => {
         await new Promise((resolve) => timer(0).subscribe(resolve));
         const plainHtml: string = getClipboardDataFromSpyFunction();
 
-        await expect(plainHtml).toBe(readFile('test-4-options.html'));
+        expect(plainHtml).toBe(readFile('test-4-options.html'));
     });
 
     it('should correctly convert nested data with translate', async () => {
@@ -102,7 +102,7 @@ describe('[TEST] Table clipboard service', () => {
         await new Promise((resolve) => timer(0).subscribe(resolve));
         const plainHtml: string = getClipboardDataFromSpyFunction();
 
-        await expect(plainHtml).toBe(readFile('test-5-translate.html'));
+        expect(plainHtml).toBe(readFile('test-5-translate.html'));
     });
 
     function getClipboardDataFromSpyFunction(): string {

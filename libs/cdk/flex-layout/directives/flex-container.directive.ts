@@ -2,13 +2,10 @@
 import {AfterViewInit, ElementRef, Inject} from '@angular/core';
 import {Directive, Input} from '@angular/core';
 
-import {AbstractFlexLayoutDirective} from './abstract-flex-layout.directive';
+import {AbstractFlexLayout} from './abstract-flex-layout.directive';
 
-@Directive({standalone: false, selector: '[flex-container]'})
-export class FlexContainerDirective
-    extends AbstractFlexLayoutDirective
-    implements AfterViewInit
-{
+@Directive({selector: '[flex-container]'})
+export class FlexContainer extends AbstractFlexLayout implements AfterViewInit {
     @Input('flex-center')
     public center: boolean | string = false;
 

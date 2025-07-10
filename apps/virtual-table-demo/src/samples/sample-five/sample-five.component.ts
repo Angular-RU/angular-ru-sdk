@@ -5,21 +5,23 @@ import {
     Component,
     OnInit,
 } from '@angular/core';
+import {MatButton} from '@angular/material/button';
 import {MatDialog} from '@angular/material/dialog';
+import {MatToolbar} from '@angular/material/toolbar';
 import {PlainObject} from '@angular-ru/cdk/typings';
-import {TableUpdateSchema} from '@angular-ru/cdk/virtual-table';
+import {TableUpdateSchema, VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 import {MocksGenerator} from '../../mocks-generator';
 import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
 
 @Component({
-    standalone: false,
     selector: 'sample-five',
+    imports: [MatButton, MatToolbar, VirtualTable],
     templateUrl: './sample-five.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SampleFiveComponent implements OnInit, AfterViewInit {
+export default class SampleFiveComponent implements OnInit, AfterViewInit {
     public data: PlainObject[] = [];
     constructor(
         public readonly dialog: MatDialog,

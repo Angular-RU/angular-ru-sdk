@@ -5,7 +5,7 @@ import {checkValueIsEmpty} from '@angular-ru/cdk/utils';
 
 import {JoinPipeOptions} from './join-pipe-options';
 
-@Pipe({standalone: false, name: 'join'})
+@Pipe({name: 'join'})
 export class JoinPipe implements PipeTransform {
     private readonly defaultSeparator: string = ',';
 

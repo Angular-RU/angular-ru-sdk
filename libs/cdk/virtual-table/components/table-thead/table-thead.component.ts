@@ -1,4 +1,5 @@
 /* eslint-disable @angular-eslint/no-input-rename */
+import {NgClass, NgStyle, NgTemplateOutlet, TitleCasePipe} from '@angular/common';
 import {
     ChangeDetectionStrategy,
     Component,
@@ -9,6 +10,7 @@ import {
     ViewEncapsulation,
 } from '@angular/core';
 import {fadeInLinearAnimation} from '@angular-ru/cdk/animations';
+import {IsFilledPipe} from '@angular-ru/cdk/pipes';
 import {Nullable, PlainObjectOf, SortOrderType} from '@angular-ru/cdk/typings';
 import {isNotNil, isTrue} from '@angular-ru/cdk/utils';
 
@@ -18,14 +20,14 @@ import {FilterableService} from '../../services/filterable/filterable.service';
 import {OVERLOAD_WIDTH_TABLE_HEAD_CELL} from '../../table-builder.properties';
 
 @Component({
-    standalone: false,
     selector: 'table-thead',
+    imports: [IsFilledPipe, NgClass, NgStyle, NgTemplateOutlet, TitleCasePipe],
     templateUrl: './table-thead.component.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     animations: [fadeInLinearAnimation],
 })
-export class TableTheadComponent<T> {
+export class TableThead<T> {
     @Input('column-width')
     public columnWidth = 0;
 

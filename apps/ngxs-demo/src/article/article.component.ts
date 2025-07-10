@@ -1,6 +1,21 @@
+import {AsyncPipe} from '@angular/common';
 import {ChangeDetectionStrategy, Component, OnDestroy} from '@angular/core';
+import {MatButton, MatIconButton} from '@angular/material/button';
 import {MatDialog} from '@angular/material/dialog';
-import {Sort} from '@angular/material/sort';
+import {MatIcon} from '@angular/material/icon';
+import {MatSort, MatSortHeader, Sort} from '@angular/material/sort';
+import {
+    MatCell,
+    MatCellDef,
+    MatColumnDef,
+    MatHeaderCell,
+    MatHeaderCellDef,
+    MatHeaderRow,
+    MatHeaderRowDef,
+    MatRow,
+    MatRowDef,
+    MatTable,
+} from '@angular/material/table';
 import {generateUid, isNil, isNotNil} from '@angular-ru/cdk/utils';
 import {Observable, of, Subject} from 'rxjs';
 import {filter, takeUntil} from 'rxjs/operators';
@@ -10,8 +25,25 @@ import {ArticleEntitiesState} from './article-entities.state';
 import {ArticleDialogComponent} from './dialog/article-dialog.component';
 
 @Component({
-    standalone: false,
     selector: 'article',
+    imports: [
+        AsyncPipe,
+        MatButton,
+        MatCell,
+        MatCellDef,
+        MatColumnDef,
+        MatHeaderCell,
+        MatHeaderCellDef,
+        MatHeaderRow,
+        MatHeaderRowDef,
+        MatIcon,
+        MatIconButton,
+        MatRow,
+        MatRowDef,
+        MatSort,
+        MatSortHeader,
+        MatTable,
+    ],
     templateUrl: './article.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

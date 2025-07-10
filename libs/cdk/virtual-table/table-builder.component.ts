@@ -1,4 +1,5 @@
-import {CdkDragStart} from '@angular/cdk/drag-drop';
+import {CdkDrag, CdkDragHandle, CdkDragStart, CdkDropList} from '@angular/cdk/drag-drop';
+import {NgClass, NgStyle} from '@angular/common';
 import {
     AfterContentInit,
     AfterViewChecked,
@@ -24,6 +25,7 @@ import {
 import {fadeInLinearAnimation} from '@angular-ru/cdk/animations';
 import {hasItems, include} from '@angular-ru/cdk/array';
 import {coerceBoolean} from '@angular-ru/cdk/coercion';
+import {SafePipe} from '@angular-ru/cdk/pipes';
 import {
     DeepPartial,
     Nullable,
@@ -41,10 +43,13 @@ import {
 import {EMPTY, fromEvent, Observable, Subject} from 'rxjs';
 import {catchError, takeUntil} from 'rxjs/operators';
 
-import {AbstractTableBuilderApiDirective} from './abstract-table-builder-api.directive';
-import {NgxColumnComponent} from './components/ngx-column/ngx-column.component';
+import {AbstractTableBuilderApi} from './abstract-table-builder-api.directive';
+import {NgxColumn} from './components/ngx-column/ngx-column.component';
+import {TableTbody} from './components/table-tbody/table-tbody.component';
+import {TableThead} from './components/table-thead/table-thead.component';
 import {TABLE_GLOBAL_OPTIONS} from './config/table-global-options';
-import {AutoHeightDirective} from './directives/auto-height.directive';
+import {AutoHeight} from './directives/auto-height.directive';
+import {ObserverView} from './directives/observer-view.directive';
 import {CalculateRange, ColumnsSchema} from './interfaces/table-builder.external';
 import {
     RecalculatedStatus,
@@ -53,6 +58,8 @@ import {
     TemplateKeys,
 } from './interfaces/table-builder.internal';
 import {getClientHeight} from './operators/get-client-height';
+import {GetClientHeightPipe} from './pipes/get-client-height.pipe';
+import {GetFreeSizePipe} from './pipes/get-free-size.pipe';
 import {ContextMenuService} from './services/context-menu/context-menu.service';
 import {DraggableService} from './services/draggable/draggable.service';
 import {FilterableService} from './services/filterable/filterable.service';
@@ -74,8 +81,21 @@ const {
 }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
 
 @Component({
-    standalone: false,
     selector: 'ngx-table-builder',
+    imports: [
+        AutoHeight,
+        CdkDrag,
+        CdkDragHandle,
+        CdkDropList,
+        GetClientHeightPipe,
+        GetFreeSizePipe,
+        NgClass,
+        NgStyle,
+        ObserverView,
+        SafePipe,
+        TableTbody,
+        TableThead,
+    ],
     templateUrl: './table-builder.component.html',
     styleUrls: ['./table-builder.component.scss'],
     encapsulation: ViewEncapsulation.None,
@@ -91,8 +111,8 @@ const {
     ],
     animations: [fadeInLinearAnimation],
 })
-export class TableBuilderComponent<T>
-    extends AbstractTableBuilderApiDirective<T>
+export class TableBuilder<T>
+    extends AbstractTableBuilderApi<T>
     implements
         OnChanges,
         OnInit,
@@ -118,8 +138,8 @@ export class TableBuilderComponent<T>
     @ViewChild('footer', {static: false})
     public footerRef!: ElementRef<HTMLDivElement>;
 
-    @ViewChild(AutoHeightDirective, {static: false})
-    public readonly autoHeight!: AutoHeightDirective<T>;
+    @ViewChild(AutoHeight, {static: false})
+    public readonly autoHeight!: AutoHeight<T>;
 
     public dirty = true;
     public rendering = false;
@@ -312,10 +332,10 @@ export class TableBuilderComponent<T>
     public cdkDragMoved(event: CdkDragStart, root: HTMLElement): void {
         this.isDragMoving = true;
         // eslint-disable-next-line @typescript-eslint/dot-notation
-        const preview: HTMLElement = event.source._dragRef['_preview'];
+        const preview: HTMLElement = event.source._dragRef['_preview'].element;
         const top: number = root.getBoundingClientRect().top;
         // eslint-disable-next-line @typescript-eslint/dot-notation
-        const transform: string = event.source._dragRef['_preview'].style.transform ?? '';
+        const transform: string = preview.style?.transform ?? '';
         const [x, , z]: [number, number, number] = transform
             .replaceAll(/translate3d|\(|\)|px/g, '')
             .split(',')
@@ -325,7 +345,7 @@ export class TableBuilderComponent<T>
             number,
         ];
 
-        preview.style.transform = `translate3d(${x}px, ${top}px, ${z}px)`;
+        preview.style.transform = `transform: translate3d(${x}px, ${top}px, ${z}px);`;
     }
 
     public ngAfterViewChecked(): void {
@@ -836,9 +856,7 @@ export class TableBuilderComponent<T>
             this.getCustomColumnSchemaByIndex(index);
 
         if (!this.templateParser.compiledTemplates[key]) {
-            const column: NgxColumnComponent<T> = new NgxColumnComponent<T>().withKey(
-                key,
-            );
+            const column: NgxColumn<T> = new NgxColumn<T>().withKey(key);
 
             this.templateParser.compileColumnMetadata(column);
         }
@@ -879,7 +897,7 @@ export class TableBuilderComponent<T>
 
     /**
      * @description: notification that the table has been rendered
-     * @see TableBuilderComponent#isRendered
+     * @see TableBuilder#isRendered
      */
     private emitRendered(): void {
         this.rendering = false;

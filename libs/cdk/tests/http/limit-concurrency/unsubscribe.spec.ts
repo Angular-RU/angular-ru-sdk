@@ -1,7 +1,7 @@
-import {CommonModule} from '@angular/common';
+import {provideHttpClient} from '@angular/common/http';
 import {
-    HttpClientTestingModule,
     HttpTestingController,
+    provideHttpClientTesting,
     TestRequest,
 } from '@angular/common/http/testing';
 import {
@@ -12,7 +12,7 @@ import {
     OnInit,
 } from '@angular/core';
 import {ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
-import {DataHttpClient, DataHttpClientModule} from '@angular-ru/cdk/http';
+import {DataHttpClient, provideDataHttpClientOptions} from '@angular-ru/cdk/http';
 import {Get, RestClient} from '@angular-ru/cdk/http/decorators';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {Observable, Subject} from 'rxjs';
@@ -92,7 +92,6 @@ describe('[TEST]: Canceling requests and unsubscribing', () => {
     }
 
     @Component({
-        standalone: false,
         selector: '',
         template: '',
         changeDetection: ChangeDetectionStrategy.OnPush,
@@ -135,11 +134,11 @@ describe('[TEST]: Canceling requests and unsubscribing', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [TestComponent],
-            imports: [
-                CommonModule,
-                HttpClientTestingModule,
-                DataHttpClientModule.forRoot([ApiClient], {limitConcurrency}),
+            imports: [TestComponent],
+            providers: [
+                provideHttpClient(),
+                provideHttpClientTesting(),
+                provideDataHttpClientOptions([ApiClient], {limitConcurrency}),
             ],
         });
 

@@ -16,8 +16,8 @@ import {
     VirtualIndex,
 } from '../interfaces/table-builder.external';
 
-@Directive({standalone: false, selector: '[virtualFor][virtualForOf]'})
-export class VirtualForDirective<T> implements OnDestroy {
+@Directive({selector: '[virtualFor][virtualForOf]'})
+export class VirtualFor<T> implements OnDestroy {
     private readonly cache = new Map<number, InternalVirtualRef<T>>();
     private _source: T[] = [];
     private _indexes: VirtualIndex[] = [];

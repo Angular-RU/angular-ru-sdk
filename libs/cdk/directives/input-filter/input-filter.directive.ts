@@ -15,11 +15,10 @@ import {checkValueIsFilled} from '@angular-ru/cdk/utils';
 import {InputFilterConfig} from './input-filter.config';
 
 @Directive({
-    standalone: false,
     selector: '[inputFilter]',
     providers: [ControlValueInterceptor],
 })
-export class InputFilterDirective {
+export class InputFilter {
     private manualEvent: Nullable<InputEvent> = null;
     @Input()
     declare public inputFilter: FilterPredicate | '';

@@ -1,12 +1,12 @@
 import {TestBed} from '@angular/core/testing';
-import {DetectBrowserPipe, DetectBrowserPipeModule} from '@angular-ru/cdk/pipes';
+import {DetectBrowserPipe} from '@angular-ru/cdk/pipes';
 
 describe('detect browser pipe', () => {
     let pipe: DetectBrowserPipe;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [DetectBrowserPipeModule],
+            providers: [DetectBrowserPipe],
         }).compileComponents();
         pipe = TestBed.inject(DetectBrowserPipe);
     });

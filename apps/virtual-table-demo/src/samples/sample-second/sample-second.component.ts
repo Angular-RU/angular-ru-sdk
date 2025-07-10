@@ -1,3 +1,4 @@
+import {CurrencyPipe, UpperCasePipe} from '@angular/common';
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
@@ -5,6 +6,13 @@ import {
     Component,
     ViewEncapsulation,
 } from '@angular/core';
+import {MatButton} from '@angular/material/button';
+import {MatIcon} from '@angular/material/icon';
+import {MatFormField, MatLabel} from '@angular/material/input';
+import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
+import {MatOption, MatSelect} from '@angular/material/select';
+import {MatToolbar} from '@angular/material/toolbar';
+import {VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 
@@ -22,8 +30,22 @@ export interface PeriodicElement {
 }
 
 @Component({
-    standalone: false,
     selector: 'sample-second',
+    imports: [
+        CurrencyPipe,
+        MatButton,
+        MatFormField,
+        MatIcon,
+        MatLabel,
+        MatMenu,
+        MatMenuItem,
+        MatMenuTrigger,
+        MatOption,
+        MatSelect,
+        MatToolbar,
+        UpperCasePipe,
+        VirtualTable,
+    ],
     templateUrl: './sample-second.component.html',
     styles: [
         `
@@ -43,19 +65,10 @@ export interface PeriodicElement {
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SampleSecondComponent implements AfterViewInit {
+export default class SampleSecondComponent implements AfterViewInit {
     public licenses: LicenseSample[] = [];
 
-    public columns: string[] = [
-        'name',
-        'position',
-        'weight',
-        'symbol',
-        'position',
-        'weight',
-        'symbol',
-        'status',
-    ];
+    public columns: string[] = ['name', 'position', 'weight', 'symbol', 'status'];
 
     // noinspection DuplicatedCode
     public elements: PeriodicElement[] = [

@@ -8,7 +8,7 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInput} from '@angular/material/input';
 import {BrowserModule, By} from '@angular/platform-browser';
-import {TrimInputModule} from '@angular-ru/cdk/directives';
+import {TrimInput} from '@angular-ru/cdk/directives';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {isNotNil} from '@angular-ru/cdk/utils';
 import {NgxMaskDirective, provideEnvironmentNgxMask} from 'ngx-mask';
@@ -19,9 +19,8 @@ describe('[TEST]: Trim Input', function () {
     let debugElement: Nullable<DebugElement> = null;
 
     @Component({
-        standalone: true,
         selector: 'test',
-        imports: [NgxMaskDirective, ReactiveFormsModule, MatInput, TrimInputModule],
+        imports: [MatInput, NgxMaskDirective, ReactiveFormsModule, TrimInput],
         template: `
             <div [formGroup]="form">
                 <input
@@ -51,7 +50,6 @@ describe('[TEST]: Trim Input', function () {
                 BrowserModule,
                 ReactiveFormsModule,
                 FormsModule,
-                TrimInputModule,
                 DynamicTestComponent,
             ],
             providers: [provideEnvironmentNgxMask()],
@@ -94,6 +92,7 @@ describe('[TEST]: Trim Input', function () {
 
         localDetectChanges();
         setValueAndDispatchBlur('\t  2222000022220000   ');
+
         expect(component?.controlName).toBe('a');
         expect(component?.form.value).toEqual({a: '2222000022220000', b: undefined});
         expect(debugElement?.nativeElement.value).toBe('2222-0000-2222-0000');
@@ -104,6 +103,7 @@ describe('[TEST]: Trim Input', function () {
 
         localDetectChanges();
         setValueAndDispatchBlur('\t  3333000033330000   ');
+
         expect(component?.controlName).toBe('b');
         expect(component?.form.value).toEqual({
             a: '2222000022220000',
@@ -117,6 +117,7 @@ describe('[TEST]: Trim Input', function () {
 
         localDetectChanges();
         setValueAndDispatchBlur('\t  4444000044440000   ');
+
         expect(component?.controlName).toBe('a');
         expect(component?.form.value).toEqual({
             a: '4444000044440000',

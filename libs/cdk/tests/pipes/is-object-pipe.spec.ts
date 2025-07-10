@@ -1,12 +1,12 @@
 import {TestBed} from '@angular/core/testing';
-import {IsObjectPipe, IsObjectPipeModule} from '@angular-ru/cdk/pipes';
+import {IsObjectPipe} from '@angular-ru/cdk/pipes';
 
 describe('is object pipe', () => {
     let pipe: IsObjectPipe;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [IsObjectPipeModule],
+            providers: [IsObjectPipe],
         }).compileComponents();
         pipe = TestBed.inject(IsObjectPipe);
     });

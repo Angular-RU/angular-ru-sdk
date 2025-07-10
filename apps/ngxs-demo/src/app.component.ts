@@ -1,10 +1,12 @@
+import {AsyncPipe, JsonPipe} from '@angular/common';
 import {ChangeDetectionStrategy, Component, isDevMode, OnInit} from '@angular/core';
+import {RouterLink, RouterOutlet} from '@angular/router';
 import {Store} from '@ngxs/store';
 import {Observable} from 'rxjs';
 
 @Component({
-    standalone: false,
     selector: 'app-root',
+    imports: [AsyncPipe, JsonPipe, RouterLink, RouterOutlet],
     templateUrl: './app.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

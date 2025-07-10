@@ -56,9 +56,7 @@
                                         <ngx-menu-content>My custom context menu title</ngx-menu-content>
                                     </ngx-context-menu-item>
                                     <ngx-context-menu-item (onClick)="exportExcel(licences)">
-                                        <ngx-menu-content
-                                            icon="http://www.myiconfinder.com/uploads/iconsets/ae86b3a8881d697b6c42528aff5ba48b-excel.png"
-                                        />
+                                        <ngx-menu-content icon="/assets/img/excel.png" />
                                         <ngx-menu-content>Export Excel</ngx-menu-content>
                                     </ngx-context-menu-item>
                                     <ngx-context-menu-item>
@@ -123,9 +121,7 @@
                                     <ngx-context-menu-item>
                                         <ngx-menu-content icon />
                                         <ngx-menu-content>
-                                            Selected items ({{
-                                                (table1?.selectionEntries | tableSelectedItems).length
-                                            }})
+                                            Selected items ({{ (table1?.selectedKeyList | mapToTableEntries).length }})
                                         </ngx-menu-content>
                                     </ngx-context-menu-item>
                                 </ngx-context-menu>

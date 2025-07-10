@@ -1,10 +1,11 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {PlainObject} from '@angular-ru/cdk/typings';
+import {VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 // noinspection AngularMissingOrInvalidDeclarationInModule
 @Component({
-    standalone: false,
     selector: 'app',
+    imports: [VirtualTable],
     template: `
         <ngx-table-builder [source]="data"></ngx-table-builder>
     `,

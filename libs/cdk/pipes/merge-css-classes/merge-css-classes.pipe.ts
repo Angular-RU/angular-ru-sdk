@@ -4,7 +4,7 @@ import {isString} from '@angular-ru/cdk/string';
 import {ClassDescriptor, PlainObject, PlainObjectOf} from '@angular-ru/cdk/typings';
 import {isNil} from '@angular-ru/cdk/utils';
 
-@Pipe({standalone: false, name: 'mergeCssClasses'})
+@Pipe({name: 'mergeCssClasses'})
 export class MergeCssClassesPipe implements PipeTransform {
     public transform(...descriptors: ClassDescriptor[]): PlainObject {
         return Object.assign(

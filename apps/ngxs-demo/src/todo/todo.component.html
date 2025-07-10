@@ -1,5 +1,5 @@
 <a
-    href="http://stackblitz.com/github/ngxs-labs/data?file=integration%2Fapp%2Fexamples%2Ftodo%2Ftodo.state.ts"
+    href="https://stackblitz.com/github/ngxs-labs/data?file=integration%2Fapp%2Fexamples%2Ftodo%2Ftodo.state.ts"
     target="_blank"
 >
     <img
@@ -11,21 +11,37 @@
 
 <h3>TodoState</h3>
 
-PS: TodoState will be persistence in localStorage (ttl: 30sec)
+PS: TodoState will be persisted in localStorage (ttl: 30sec)
 
 <div class="add-todo">
     <input
         #text
         placeholder="New Todo"
+        (keydown.enter)="todo.addTodo(text.value)"
     />
-    <button (click)="todo.addTodo(text.value)">Add</button>
-    <button (click)="todo.reset()">Reset</button>
+    <button
+        type="button"
+        (click)="todo.addTodo(text.value)"
+    >
+        Add
+    </button>
+    <button
+        type="button"
+        (click)="todo.reset()"
+    >
+        Reset
+    </button>
 </div>
 <ul>
     @for (todoItem of todo.state$ | async; track todoItem; let i = $index) {
         <li class="todo">
             {{ todoItem }}
-            <button (click)="todo.removeTodo(i)">🗑</button>
+            <button
+                type="button"
+                (click)="todo.removeTodo(i)"
+            >
+                🗑
+            </button>
         </li>
     }
 </ul>

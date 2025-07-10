@@ -1,11 +1,12 @@
+import {AsyncPipe} from '@angular/common';
 import {ChangeDetectionStrategy, Component, Injectable} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
-import {MutableTypePipe, MutableTypePipeModule} from '@angular-ru/cdk/pipes';
+import {MutableTypePipe} from '@angular-ru/cdk/pipes';
 import {Immutable} from '@angular-ru/cdk/typings';
-import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
 import {StateRepository} from '@angular-ru/ngxs/decorators';
 import {NgxsImmutableDataRepository} from '@angular-ru/ngxs/repositories';
-import {NgxsModule, State} from '@ngxs/store';
+import {provideStore, State} from '@ngxs/store';
 
 describe('mutable', () => {
     interface A {
@@ -51,8 +52,8 @@ describe('mutable', () => {
         class AppState extends NgxsImmutableDataRepository<number> {}
 
         @Component({
-            standalone: false,
             selector: 'app',
+            imports: [AsyncPipe, MutableTypePipe],
             template: '{{ appState.state$ | async | mutable }}',
             changeDetection: ChangeDetectionStrategy.OnPush,
         })
@@ -61,11 +62,10 @@ describe('mutable', () => {
         }
 
         TestBed.configureTestingModule({
-            declarations: [AppComponent],
-            imports: [
-                NgxsModule.forRoot([AppState], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
-                MutableTypePipeModule,
+            imports: [AppComponent],
+            providers: [
+                provideStore([AppState], {developmentMode: true}),
+                provideNgxsDataPlugin(),
             ],
         }).compileComponents();
 

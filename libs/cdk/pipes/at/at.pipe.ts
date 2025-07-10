@@ -2,7 +2,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {isNil} from '@angular-ru/cdk/utils';
 
-@Pipe({standalone: false, name: 'at'})
+@Pipe({name: 'at'})
 export class AtPipe implements PipeTransform {
     public transform<EntryType, ArrayType extends EntryType[]>(
         array: Nullable<ArrayType>,

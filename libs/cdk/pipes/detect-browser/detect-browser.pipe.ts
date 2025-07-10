@@ -5,7 +5,7 @@ import {isNotNil, isTrue} from '@angular-ru/cdk/utils';
 
 import {DetectBrowserPipeOptions} from './detect-browser-pipe';
 
-@Pipe({standalone: false, name: 'detectBrowser'})
+@Pipe({name: 'detectBrowser'})
 export class DetectBrowserPipe implements PipeTransform {
     private static getBrowserMatchers(userAgent?: string): Nullable<RegExpMatchArray> {
         const ua: string = userAgent ?? navigator.userAgent;

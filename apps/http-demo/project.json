@@ -15,7 +15,6 @@
                 "index": "apps/http-demo/index.html",
                 "browser": "apps/http-demo/main.ts",
                 "tsConfig": "apps/http-demo/tsconfig.app.json",
-                "polyfills": ["apps/http-demo/polyfills.ts"],
                 "inlineStyleLanguage": "scss",
                 "assets": ["apps/http-demo/assets"],
                 "styles": [".global/integration-app.style.scss", "apps/http-demo/styles.scss"],

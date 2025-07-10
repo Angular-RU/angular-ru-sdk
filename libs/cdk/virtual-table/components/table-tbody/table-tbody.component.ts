@@ -1,4 +1,5 @@
 /* eslint-disable @angular-eslint/no-input-rename */
+import {NgClass, NgStyle} from '@angular/common';
 import {ChangeDetectorRef, Injector} from '@angular/core';
 import {
     ChangeDetectionStrategy,
@@ -10,9 +11,11 @@ import {
     ViewEncapsulation,
 } from '@angular/core';
 import {getValueByPath} from '@angular-ru/cdk/object';
+import {MergeCssClassesPipe} from '@angular-ru/cdk/pipes';
 import {Nullable, PlainObjectOf} from '@angular-ru/cdk/typings';
 import {isNotNil} from '@angular-ru/cdk/utils';
 
+import {VirtualFor} from '../../directives/virtual-for.directive';
 import {
     ColumnsSchema,
     ProduceDisableFn,
@@ -25,21 +28,30 @@ import {
     RecalculatedStatus,
     TableBrowserEvent,
 } from '../../interfaces/table-builder.internal';
+import {DisableRowPipe} from '../../pipes/disable-row.pipe';
 import {ContextMenuService} from '../../services/context-menu/context-menu.service';
 import {SelectionService} from '../../services/selection/selection.service';
-import {NgxContextMenuComponent} from '../ngx-context-menu/ngx-context-menu.component';
+import {NgxContextMenu} from '../ngx-context-menu/ngx-context-menu.component';
+import {TableCell} from '../table-cell/table-cell.component';
 
 const SELECTION_DELAY = 100;
 
 @Component({
-    standalone: false,
     selector: 'table-tbody',
+    imports: [
+        DisableRowPipe,
+        MergeCssClassesPipe,
+        NgClass,
+        NgStyle,
+        TableCell,
+        VirtualFor,
+    ],
     templateUrl: './table-tbody.component.html',
     styleUrls: ['./table-tbody.component.scss'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TableTbodyComponent<T> {
+export class TableTbody<T> {
     private readonly ngZone: NgZone;
     @Input()
     public source: Nullable<T[]> = null;
@@ -87,7 +99,7 @@ export class TableTbodyComponent<T> {
     public selectionEntries: PlainObjectOf<boolean> = {};
 
     @Input('context-menu')
-    public contextMenuTemplate: Nullable<NgxContextMenuComponent<T>> = null;
+    public contextMenuTemplate: Nullable<NgxContextMenu<T>> = null;
 
     @Input('produce-disable-fn')
     public produceDisableFn: ProduceDisableFn<T> = null;

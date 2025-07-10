@@ -1,15 +1,18 @@
+import {CurrencyPipe, DatePipe} from '@angular/common';
 import {AfterViewInit, ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {MatToolbar} from '@angular/material/toolbar';
 import {PlainObject} from '@angular-ru/cdk/typings';
+import {VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 
 @Component({
-    standalone: false,
     selector: 'sample-fourth',
+    imports: [CurrencyPipe, DatePipe, MatToolbar, VirtualTable],
     templateUrl: './sample-fourth.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SampleFourthComponent implements OnInit, AfterViewInit {
+export default class SampleFourthComponent implements OnInit, AfterViewInit {
     public data: PlainObject[] = [];
     public elements: PlainObject[] = [];
 

@@ -2,13 +2,14 @@ import {ApplicationRef, DebugElement, NgZone} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 
-import {TestModule} from './helpers/test.module';
+import {MODULE_TOKEN} from './helpers/injection-tokens';
 import {
     FeatureTestComponent,
     FeatureTestService,
     NonInjectable,
     TestComponent,
     TestDirective,
+    TestPipe,
     TestService,
 } from './helpers/test-default';
 import {ExtendingTestComponent, TestStairsComponent} from './helpers/test-extending';
@@ -20,7 +21,25 @@ describe('[TEST]: Ivy utils', (): void => {
     jest.spyOn(console, 'error').mockImplementation();
 
     beforeEach((): void => {
-        TestBed.configureTestingModule({imports: [TestModule]});
+        TestBed.configureTestingModule({
+            imports: [
+                ExtendingTestComponent,
+                FeatureTestComponent,
+                TestComponent,
+                TestDirective,
+                TestPipe,
+                TestStairsComponent,
+                TestTokenComponent,
+            ],
+            providers: [
+                FeatureTestService,
+                TestService,
+                {
+                    provide: MODULE_TOKEN,
+                    useValue: 'MODULE_TOKEN',
+                },
+            ],
+        });
         componentFixture = TestBed.createComponent(TestComponent);
     });
 

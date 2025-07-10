@@ -2,12 +2,12 @@ import {TestBed} from '@angular/core/testing';
 import {FormControl, FormGroup} from '@angular/forms';
 import {
     DateSuggestionComposer,
-    DateSuggestionModule,
     DayOfWeek,
     DEFAULT_SUGGESTION_STRATEGY_MAP,
     DefaultDateIntervalSuggestion,
     endOfDay,
     FIRST_DAY_OF_WEEK,
+    provideDateSuggestion,
     shiftDate,
     startOfDay,
 } from '@angular-ru/cdk/date';
@@ -56,8 +56,13 @@ describe('[TEST]: Trim Input', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [DateSuggestionModule.forRoot()],
-            providers: [{provide: FIRST_DAY_OF_WEEK, useFactory: firstDayOfWeekFactory}],
+            providers: [
+                provideDateSuggestion(),
+                {
+                    provide: FIRST_DAY_OF_WEEK,
+                    useFactory: firstDayOfWeekFactory,
+                },
+            ],
         }).compileComponents();
 
         composer = TestBed.inject(DateSuggestionComposer);

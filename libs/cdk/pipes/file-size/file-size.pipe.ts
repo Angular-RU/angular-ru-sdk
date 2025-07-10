@@ -1,6 +1,6 @@
 import {Pipe, PipeTransform} from '@angular/core';
 
-@Pipe({standalone: false, name: 'fileSize'})
+@Pipe({name: 'fileSize'})
 export class FileSizePipe implements PipeTransform {
     private readonly units: string[] = ['bytes', 'Kb', 'Mb', 'Gb', 'Tb', 'Pb'];
     private readonly commonPrecision: number = 2;

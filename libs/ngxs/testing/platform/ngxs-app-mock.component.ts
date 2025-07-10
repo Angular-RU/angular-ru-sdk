@@ -1,7 +1,6 @@
 import {AfterViewInit, ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 
 @Component({
-    standalone: false,
     selector: 'app-root',
     template: '',
     changeDetection: ChangeDetectionStrategy.OnPush,

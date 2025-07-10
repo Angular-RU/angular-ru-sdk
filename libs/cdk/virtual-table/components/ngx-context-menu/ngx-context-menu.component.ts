@@ -1,4 +1,5 @@
 /* eslint-disable @angular-eslint/no-input-rename */
+import {NgStyle} from '@angular/common';
 import {OnDestroy, OnInit} from '@angular/core';
 import {
     ChangeDetectionStrategy,
@@ -11,7 +12,7 @@ import {detectChanges} from '@angular-ru/cdk/utils';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 
-import {AbstractModalViewLayerDirective} from '../../directives/abstract-modal-view-layer.directive';
+import {AbstractModalViewLayer} from '../../directives/abstract-modal-view-layer.directive';
 import {ContextMenuState} from '../../services/context-menu/context-menu-state';
 import {MINIMAL_TIMEOUT} from '../../table-builder.properties';
 
@@ -19,15 +20,15 @@ const SIZE = 300;
 const MAX_HEIGHT = 400;
 
 @Component({
-    standalone: false,
     selector: 'ngx-context-menu',
+    imports: [NgStyle],
     templateUrl: './ngx-context-menu.component.html',
     styleUrls: ['./ngx-context-menu.component.scss'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NgxContextMenuComponent<T>
-    extends AbstractModalViewLayerDirective<T, ContextMenuState<T>>
+export class NgxContextMenu<T>
+    extends AbstractModalViewLayer<T, ContextMenuState<T>>
     implements OnInit, OnDestroy
 {
     private readonly destroy$ = new Subject<void>();

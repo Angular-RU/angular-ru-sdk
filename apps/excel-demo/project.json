@@ -15,7 +15,6 @@
                 "index": "apps/excel-demo/index.html",
                 "browser": "apps/excel-demo/main.ts",
                 "tsConfig": "apps/excel-demo/tsconfig.app.json",
-                "polyfills": ["zone.js"],
                 "inlineStyleLanguage": "scss",
                 "assets": ["apps/excel-demo/assets"],
                 "styles": [".global/integration-app.style.scss", "apps/excel-demo/styles.css"],

@@ -1,6 +1,7 @@
 {
     "extends": "@taiga-ui/tsconfig",
     "compilerOptions": {
+        "outDir": "./dist",
         "baseUrl": "./",
         "target": "esnext",
         "module": "esnext",

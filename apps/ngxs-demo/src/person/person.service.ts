@@ -5,7 +5,9 @@ import {map} from 'rxjs/operators';
 
 import {PersonModel} from './person-model';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+})
 export class PersonService {
     constructor(private readonly httpService: HttpClient) {}
 

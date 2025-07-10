@@ -1,12 +1,36 @@
 import {ChangeDetectionStrategy, Component, Inject} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {
+    FormBuilder,
+    FormGroup,
+    FormsModule,
+    ReactiveFormsModule,
+    Validators,
+} from '@angular/forms';
+import {MatButton} from '@angular/material/button';
+import {
+    MAT_DIALOG_DATA,
+    MatDialogActions,
+    MatDialogContent,
+    MatDialogRef,
+    MatDialogTitle,
+} from '@angular/material/dialog';
+import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
 
 import {Article} from '../article';
 
 @Component({
-    standalone: false,
     selector: 'article-dialog',
+    imports: [
+        FormsModule,
+        MatButton,
+        MatDialogActions,
+        MatDialogContent,
+        MatDialogTitle,
+        MatFormField,
+        MatInput,
+        MatLabel,
+        ReactiveFormsModule,
+    ],
     templateUrl: './article-dialog.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

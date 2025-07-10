@@ -1,12 +1,9 @@
 import {AfterViewInit, Directive, ElementRef, Inject} from '@angular/core';
 
-import {AbstractFlexLayoutDirective} from './abstract-flex-layout.directive';
+import {AbstractFlexLayout} from './abstract-flex-layout.directive';
 
-@Directive({standalone: false, selector: '[flex-justify-normal]'})
-export class FlexJustifyNormalDirective
-    extends AbstractFlexLayoutDirective
-    implements AfterViewInit
-{
+@Directive({selector: '[flex-justify-normal]'})
+export class FlexJustifyNormal extends AbstractFlexLayout implements AfterViewInit {
     constructor(
         @Inject(ElementRef)
         protected readonly elementRef: ElementRef,

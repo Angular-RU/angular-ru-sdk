@@ -1,12 +1,9 @@
 import {AfterViewInit, Directive, ElementRef, Inject} from '@angular/core';
 
-import {AbstractFlexLayoutDirective} from './abstract-flex-layout.directive';
+import {AbstractFlexLayout} from './abstract-flex-layout.directive';
 
-@Directive({standalone: false, selector: '[flex-inline]'})
-export class FlexInlineDirective
-    extends AbstractFlexLayoutDirective
-    implements AfterViewInit
-{
+@Directive({selector: '[flex-inline]'})
+export class FlexInline extends AbstractFlexLayout implements AfterViewInit {
     constructor(
         @Inject(ElementRef)
         protected readonly elementRef: ElementRef,

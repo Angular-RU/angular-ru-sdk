@@ -20,7 +20,6 @@ import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/co
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
     encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent {

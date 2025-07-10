@@ -5,15 +5,18 @@ import {
     OnInit,
     ViewEncapsulation,
 } from '@angular/core';
+import {MatButton} from '@angular/material/button';
 import {MatDialog} from '@angular/material/dialog';
+import {MatToolbar} from '@angular/material/toolbar';
 import {PlainObject} from '@angular-ru/cdk/typings';
+import {VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 import {MocksGenerator} from '../../mocks-generator';
 import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
 
 @Component({
-    standalone: false,
     selector: 'sample-eighteen',
+    imports: [MatButton, MatToolbar, VirtualTable],
     templateUrl: './sample-eighteen.component.html',
     styles: [
         `
@@ -25,7 +28,7 @@ import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SampleEighteenComponent implements OnInit {
+export default class SampleEighteenComponent implements OnInit {
     public data: PlainObject[] = [];
     public rowCssClasses: PlainObject = {1: ['highlight'], 3: ['highlight']};
 

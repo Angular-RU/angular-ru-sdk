@@ -1,11 +1,27 @@
+import {KeyValuePipe} from '@angular/common';
 import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {
+    FormBuilder,
+    FormControl,
+    FormGroup,
+    FormsModule,
+    ReactiveFormsModule,
+} from '@angular/forms';
+import {MatButton} from '@angular/material/button';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {MatFormField, MatInput} from '@angular/material/input';
 import {Nullable} from '@angular-ru/cdk/typings';
 
 @Component({
-    standalone: false,
     selector: 'dialog-template',
+    imports: [
+        FormsModule,
+        KeyValuePipe,
+        MatButton,
+        MatFormField,
+        MatInput,
+        ReactiveFormsModule,
+    ],
     templateUrl: './dialog-template.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

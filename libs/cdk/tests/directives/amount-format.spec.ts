@@ -1,4 +1,3 @@
-import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component, ElementRef, ViewChild} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {
@@ -10,16 +9,16 @@ import {
 } from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import {
-    AmountFormatDirective,
-    AmountFormatModule,
+    AmountFormat,
     AmountOptions,
     DEFAULT_AMOUNT_OPTIONS,
+    provideAmountFormat,
 } from '@angular-ru/cdk/directives';
 import {Nullable} from '@angular-ru/cdk/typings';
 
 describe('[TEST]: Amount format directive', () => {
     describe('expect without component', () => {
-        let directive: AmountFormatDirective;
+        let directive: AmountFormat;
         let ngModelValue: Nullable<number | string>;
         let element: Partial<ElementRef<Partial<HTMLInputElement>>>;
         let control: Partial<NgControl>;
@@ -45,7 +44,7 @@ describe('[TEST]: Amount format directive', () => {
             };
 
             // MOCK
-            directive = new AmountFormatDirective(
+            directive = new AmountFormat(
                 element as ElementRef,
                 DEFAULT_AMOUNT_OPTIONS,
                 control as NgControl,
@@ -795,8 +794,8 @@ describe('[TEST]: Amount format directive', () => {
         let fixture: Nullable<ComponentFixture<HelloWorldComponent>> = null;
 
         @Component({
-            standalone: false,
             selector: 'hello-world',
+            imports: [AmountFormat, ReactiveFormsModule],
             template: `
                 <form [formGroup]="form">
                     <input
@@ -808,8 +807,8 @@ describe('[TEST]: Amount format directive', () => {
             changeDetection: ChangeDetectionStrategy.OnPush,
         })
         class HelloWorldComponent {
-            @ViewChild(AmountFormatDirective)
-            public directive!: AmountFormatDirective;
+            @ViewChild(AmountFormat)
+            public directive!: AmountFormat;
 
             public form: FormGroup = this.fb.group({
                 amount: this.fb.control('INVALID_VALUE'),
@@ -870,7 +869,7 @@ describe('[TEST]: Amount format directive', () => {
             input.selectionEnd = cursorPosition;
         }
 
-        function getDirectiveInfo(): Nullable<AmountFormatDirective> {
+        function getDirectiveInfo(): Nullable<AmountFormat> {
             return fixture?.componentInstance.directive;
         }
 
@@ -880,13 +879,13 @@ describe('[TEST]: Amount format directive', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                declarations: [HelloWorldComponent],
                 imports: [
-                    AmountFormatModule.forRoot(),
-                    CommonModule,
+                    AmountFormat,
                     FormsModule,
                     ReactiveFormsModule,
+                    HelloWorldComponent,
                 ],
+                providers: [provideAmountFormat()],
             });
 
             fixture = TestBed.createComponent(HelloWorldComponent);

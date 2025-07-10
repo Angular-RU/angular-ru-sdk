@@ -15,7 +15,6 @@
                 "index": "apps/tooltip-demo/index.html",
                 "browser": "apps/tooltip-demo/main.ts",
                 "tsConfig": "apps/tooltip-demo/tsconfig.app.json",
-                "polyfills": ["apps/tooltip-demo/polyfills.ts"],
                 "inlineStyleLanguage": "scss",
                 "assets": ["apps/tooltip-demo/assets"],
                 "styles": [".global/integration-app.style.scss", "apps/tooltip-demo/styles.scss"],

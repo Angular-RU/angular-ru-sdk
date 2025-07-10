@@ -34,13 +34,13 @@ import {
 } from '@angular-ru/cdk/typings';
 import {detectChanges, isNotNil, isTrue} from '@angular-ru/cdk/utils';
 
-import {NgxColumnComponent} from './components/ngx-column/ngx-column.component';
-import {NgxContextMenuComponent} from './components/ngx-context-menu/ngx-context-menu.component';
-import {NgxEmptyComponent} from './components/ngx-empty/ngx-empty.component';
-import {NgxFilterComponent} from './components/ngx-filter/ngx-filter.component';
-import {NgxFooterComponent} from './components/ngx-footer/ngx-footer.component';
-import {NgxHeaderComponent} from './components/ngx-header/ngx-header.component';
-import {NgxOptionsComponent} from './components/ngx-options/ngx-options.component';
+import {NgxColumn} from './components/ngx-column/ngx-column.component';
+import {NgxContextMenu} from './components/ngx-context-menu/ngx-context-menu.component';
+import {NgxEmpty} from './components/ngx-empty/ngx-empty.component';
+import {NgxFilter} from './components/ngx-filter/ngx-filter.component';
+import {NgxFooter} from './components/ngx-footer/ngx-footer.component';
+import {NgxHeader} from './components/ngx-header/ngx-header.component';
+import {NgxOptions} from './components/ngx-options/ngx-options.component';
 import {TABLE_GLOBAL_OPTIONS} from './config/table-global-options';
 import {
     ColumnsSchema,
@@ -74,7 +74,7 @@ const {
 }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
 
 @Directive()
-export abstract class AbstractTableBuilderApiDirective<T>
+export abstract class AbstractTableBuilderApi<T>
     implements
         OnChanges,
         OnInit,
@@ -186,26 +186,26 @@ export abstract class AbstractTableBuilderApiDirective<T>
     @Output()
     public readonly sortChanges = new EventEmitter<OrderedField[]>();
 
-    @ContentChild(NgxOptionsComponent, {static: false})
-    public columnOptions: Nullable<NgxOptionsComponent> = null;
+    @ContentChild(NgxOptions, {static: false})
+    public columnOptions: Nullable<NgxOptions> = null;
 
-    @ContentChildren(NgxColumnComponent)
-    public columnTemplates: Nullable<QueryList<NgxColumnComponent<T>>> = null;
+    @ContentChildren(NgxColumn)
+    public columnTemplates: Nullable<QueryList<NgxColumn<T>>> = null;
 
-    @ContentChild(NgxContextMenuComponent, {static: false})
-    public contextMenuTemplate: Nullable<NgxContextMenuComponent<T>> = null;
+    @ContentChild(NgxContextMenu, {static: false})
+    public contextMenuTemplate: Nullable<NgxContextMenu<T>> = null;
 
-    @ContentChild(NgxEmptyComponent, {read: ElementRef})
+    @ContentChild(NgxEmpty, {read: ElementRef})
     public ngxEmptyContent: Nullable<ElementRef> = null;
 
-    @ContentChild(NgxHeaderComponent, {static: false})
-    public headerTemplate: Nullable<NgxHeaderComponent> = null;
+    @ContentChild(NgxHeader, {static: false})
+    public headerTemplate: Nullable<NgxHeader> = null;
 
-    @ContentChild(NgxFooterComponent, {static: false})
-    public footerTemplate: Nullable<NgxFooterComponent> = null;
+    @ContentChild(NgxFooter, {static: false})
+    public footerTemplate: Nullable<NgxFooter> = null;
 
-    @ContentChild(NgxFilterComponent, {static: false})
-    public filterTemplate: Nullable<NgxFilterComponent<T>> = null;
+    @ContentChild(NgxFilter, {static: false})
+    public filterTemplate: Nullable<NgxFilter<T>> = null;
 
     @ViewChild('tableViewport', {static: true})
     public scrollContainer!: ElementRef<HTMLElement>;

@@ -235,6 +235,7 @@
                 <ng-template ngx-td>
                     <button
                         mat-button
+                        type="button"
                         class="button__done"
                     >
                         <mat-icon>done</mat-icon>
@@ -304,13 +305,24 @@
                     <!-- https://github.com/angular/components/issues/24126 -->
                     <button
                         mat-button
+                        type="button"
                         [matMenuTriggerFor]="$any(menu)"
                     >
                         {{ price | currency }}
                     </button>
                     <mat-menu #menu="matMenu">
-                        <button mat-menu-item>EUR</button>
-                        <button mat-menu-item>DOL</button>
+                        <button
+                            mat-menu-item
+                            type="button"
+                        >
+                            EUR
+                        </button>
+                        <button
+                            mat-menu-item
+                            type="button"
+                        >
+                            DOL
+                        </button>
                     </mat-menu>
                 </ng-template>
             </ngx-column>

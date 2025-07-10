@@ -1,13 +1,14 @@
-import {CommonModule} from '@angular/common';
 import {
     HTTP_INTERCEPTORS,
     HttpErrorResponse,
     HttpHeaders,
     HttpParams,
+    provideHttpClient,
+    withInterceptorsFromDi,
 } from '@angular/common/http';
 import {
-    HttpClientTestingModule,
     HttpTestingController,
+    provideHttpClientTesting,
     TestRequest,
 } from '@angular/common/http/testing';
 import {ChangeDetectionStrategy, Component, Injectable} from '@angular/core';
@@ -15,8 +16,8 @@ import {fakeAsync, TestBed, tick} from '@angular/core/testing';
 import {
     DATA_HTTP_CLIENT_INTERCEPTOR,
     DataHttpClient,
-    DataHttpClientModule,
     DefaultHttpClientInterceptor,
+    provideDataHttpClientOptions,
 } from '@angular-ru/cdk/http';
 import {RestClient} from '@angular-ru/cdk/http/decorators';
 import {
@@ -39,7 +40,6 @@ describe('[TEST]: HTTP Intercept Client', () => {
     class ApiEventsClient extends DataHttpClient<MyInterceptor> {}
 
     @Component({
-        standalone: false,
         selector: 'events',
         template: '',
         changeDetection: ChangeDetectionStrategy.OnPush,
@@ -129,7 +129,11 @@ describe('[TEST]: HTTP Intercept Client', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
+            imports: [EventsComponent],
             providers: [
+                provideHttpClient(withInterceptorsFromDi()),
+                provideHttpClientTesting(),
+                provideDataHttpClientOptions([ApiEventsClient]),
                 {
                     provide: HTTP_INTERCEPTORS,
                     useClass: HttpMockInterceptor,
@@ -139,12 +143,6 @@ describe('[TEST]: HTTP Intercept Client', () => {
                     provide: DATA_HTTP_CLIENT_INTERCEPTOR,
                     useClass: MyInterceptor,
                 },
-            ],
-            declarations: [EventsComponent],
-            imports: [
-                CommonModule,
-                HttpClientTestingModule,
-                DataHttpClientModule.forRoot([ApiEventsClient]),
             ],
         });
 

@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {fakeAsync, TestBed, tick} from '@angular/core/testing';
-import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
 import {DataAction, StateRepository} from '@angular-ru/ngxs/decorators';
 import {NgxsImmutableDataRepository} from '@angular-ru/ngxs/repositories';
-import {NgxsModule, State, Store} from '@ngxs/store';
+import {provideStore, State, Store} from '@ngxs/store';
 import {forkJoin, isObservable, Observable, of} from 'rxjs';
 import {delay, finalize, map, tap} from 'rxjs/operators';
 
@@ -102,11 +102,11 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [
-                NgxsModule.forRoot([CountState, TodoState], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            providers: [
+                provideStore([CountState, TodoState], {developmentMode: true}),
+                provideNgxsDataPlugin(),
+                ApiService,
             ],
-            providers: [ApiService],
         });
 
         count = TestBed.inject<CountState>(CountState);
@@ -116,10 +116,12 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
 
     it('should be identify non-obvious behavior', () => {
         count.setValue(5);
+
         expect(count.getState()).toBe(5);
         expect(store.snapshot()).toEqual({todos: [], count: 5});
 
         count.incorrectReturnedValue(15);
+
         expect(count.getState()).toBe(15);
         expect(store.snapshot()).toEqual({todos: [], count: 15});
     });

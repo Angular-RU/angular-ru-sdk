@@ -28,13 +28,12 @@ import {IGNORE_FILTER_TYPES} from './ngx-filter-viewer.properties';
 const {TIME_RELOAD}: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
 
 @Component({
-    standalone: false,
     selector: 'ngx-filter-viewer',
     template: '<span [class.filter-founded]="founded" [innerHTML]="html"></span>',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy {
+export class NgxFilterViewer<T> implements OnChanges, OnInit, OnDestroy {
     private readonly destroy$ = new Subject<void>();
     private taskId: Nullable<number> = null;
     private readonly ngZone: NgZone;
@@ -160,7 +159,7 @@ export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy
 
         const trustedHtml: string = String(this.text).replace(
             regexp,
-            (finder: string): string => NgxFilterViewerComponent.wrapSelectedHtml(finder),
+            (finder: string): string => NgxFilterViewer.wrapSelectedHtml(finder),
         );
 
         this.html = this.sanitizer.bypassSecurityTrustHtml(trustedHtml);

@@ -15,7 +15,6 @@
                 "index": "apps/ngxs-demo/index.html",
                 "browser": "apps/ngxs-demo/main.ts",
                 "tsConfig": "apps/ngxs-demo/tsconfig.app.json",
-                "polyfills": ["zone.js"],
                 "inlineStyleLanguage": "scss",
                 "assets": ["apps/ngxs-demo/assets"],
                 "styles": [".global/integration-app.style.scss", "apps/ngxs-demo/styles.scss"],

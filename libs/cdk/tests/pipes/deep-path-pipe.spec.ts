@@ -1,12 +1,12 @@
 import {TestBed} from '@angular/core/testing';
-import {DeepPathPipe, DeepPathPipeModule} from '@angular-ru/cdk/pipes';
+import {DeepPathPipe} from '@angular-ru/cdk/pipes';
 
 describe('deep path', () => {
     let pipe: DeepPathPipe;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [DeepPathPipeModule],
+            providers: [DeepPathPipe],
         }).compileComponents();
         pipe = TestBed.inject(DeepPathPipe);
     });

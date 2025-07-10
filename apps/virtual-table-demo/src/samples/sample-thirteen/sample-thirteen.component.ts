@@ -4,21 +4,23 @@ import {
     Component,
     ViewEncapsulation,
 } from '@angular/core';
+import {MatCheckbox} from '@angular/material/checkbox';
+import {MatToolbar} from '@angular/material/toolbar';
 import {PlainObject} from '@angular-ru/cdk/typings';
-import {TableEvent} from '@angular-ru/cdk/virtual-table';
+import {TableEvent, VirtualTable} from '@angular-ru/cdk/virtual-table';
 import {ToastrService} from 'ngx-toastr';
 
 import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 
 @Component({
-    standalone: false,
     selector: 'sample-thirteen',
+    imports: [MatCheckbox, MatToolbar, VirtualTable],
     templateUrl: './sample-thirteen.component.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [ToastrService],
 })
-export class SampleThirteenComponent implements AfterViewInit {
+export default class SampleThirteenComponent implements AfterViewInit {
     public data: PlainObject[] = [
         {
             id: 1,

@@ -20,7 +20,6 @@ export class TestTokenService {
 }
 
 @Component({
-    standalone: false,
     selector: 'test-token',
     template: '',
     changeDetection: ChangeDetectionStrategy.OnPush,

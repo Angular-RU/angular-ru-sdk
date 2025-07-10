@@ -1,8 +1,4 @@
 .ext-box {
-    display: none;
-}
-
-.ext-box.load {
     display: table;
     width: 100%;
     height: 100%;
@@ -11,26 +7,12 @@
 .int-box {
     display: table-cell;
     vertical-align: middle;
-    opacity: 0;
-    transition: opacity 0.3s ease-out;
-}
-
-.load .int-box {
-    opacity: 1;
-    transition: opacity 0.3s ease-out;
 }
 
 .center-block {
     margin: 0 auto;
     display: block;
     padding: 10px;
-}
-
-.example.no-display {
-    transition: opacity 0.3s ease-out;
-    opacity: 0;
-    height: 0;
-    overflow: hidden;
 }
 
 .example {

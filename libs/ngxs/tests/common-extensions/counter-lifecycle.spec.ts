@@ -1,23 +1,17 @@
 import {
     AfterViewInit,
-    ApplicationRef,
     ChangeDetectionStrategy,
     Component,
-    DOCUMENT,
     Injectable,
-    NgModule,
     OnInit,
 } from '@angular/core';
 import {TestBed} from '@angular/core/testing';
-import {
-    BrowserModule,
-    ɵBrowserDomAdapter as BrowserDomAdapter,
-} from '@angular/platform-browser';
-import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
 import {StateRepository} from '@angular-ru/ngxs/decorators';
 import {NgxsImmutableDataRepository} from '@angular-ru/ngxs/repositories';
+import {ngxsInitTestingPlatform} from '@angular-ru/ngxs/testing';
 import {NGXS_DATA_EXCEPTIONS} from '@angular-ru/ngxs/tokens';
-import {NgxsAfterBootstrap, NgxsModule, NgxsOnInit, State, Store} from '@ngxs/store';
+import {NgxsAfterBootstrap, NgxsOnInit, provideStore, State, Store} from '@ngxs/store';
 
 describe('complex lifecycle', () => {
     @Injectable()
@@ -40,11 +34,11 @@ describe('complex lifecycle', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [
-                NgxsModule.forRoot([CountState], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            providers: [
+                provideStore([CountState], {developmentMode: true}),
+                provideNgxsDataPlugin(),
+                MyApiService,
             ],
-            providers: [MyApiService],
         });
 
         let message: string | null = null;
@@ -56,7 +50,7 @@ describe('complex lifecycle', () => {
             message = (error as Error).message;
         }
 
-        expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_MODULE_EXCEPTION);
+        expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_PROVIDER_EXCEPTION);
     });
 
     it('should be correct lifecycle', () => {
@@ -87,7 +81,6 @@ describe('complex lifecycle', () => {
         }
 
         @Component({
-            standalone: false,
             selector: 'app-root',
             template: '',
             changeDetection: ChangeDetectionStrategy.OnPush,
@@ -102,36 +95,16 @@ describe('complex lifecycle', () => {
             }
         }
 
-        @NgModule({
-            imports: [BrowserModule],
-            declarations: [NgxsTestComponent],
-        })
-        class AppTestModule {
-            // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
-            public static ngDoBootstrap(app: ApplicationRef): void {
-                AppTestModule.createRootNode();
-                app.bootstrap(NgxsTestComponent);
-            }
-
-            private static createRootNode(selector = 'app-root'): void {
-                const document = TestBed.inject(DOCUMENT);
-                const adapter = new BrowserDomAdapter();
-                const root = adapter.createElement(selector);
-
-                document.body.appendChild(root);
-            }
-        }
-
         TestBed.configureTestingModule({
-            imports: [
-                AppTestModule,
-                NgxsModule.forRoot([CountState], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            imports: [NgxsTestComponent],
+            providers: [
+                provideStore([CountState], {developmentMode: true}),
+                provideNgxsDataPlugin(),
+                MyApiService,
             ],
-            providers: [MyApiService],
         });
 
-        AppTestModule.ngDoBootstrap(TestBed.inject(ApplicationRef));
+        ngxsInitTestingPlatform(NgxsTestComponent);
 
         expect(hooks).toEqual([
             'CountState - create',

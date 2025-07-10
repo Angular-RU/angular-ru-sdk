@@ -16,8 +16,8 @@ import {TooltipValue} from './interfaces/tooltip-value';
 import {TooltipDomLeakService} from './services/tooltip-dom-leak.service';
 import {TOOLTIP_OPTIONS_TOKEN, TOOLTIP_TEXT_INTERCEPTOR_TOKEN} from './tooltip.tokens';
 
-@Directive({standalone: false, selector: '[tooltip]'})
-export class TooltipDirective implements OnDestroy {
+@Directive({selector: '[tooltip]'})
+export class Tooltip implements OnDestroy {
     private readonly delta: number = 2;
     private readonly layoutMinDuration: number = 100;
     private tooltipDomElement: Nullable<HTMLElement> = null;
@@ -164,7 +164,7 @@ export class TooltipDirective implements OnDestroy {
         const hostPos: DOMRect = this.elementRef.nativeElement.getBoundingClientRect();
         const tooltipPos: Nullable<DOMRect> =
             this.tooltipDomElement?.getBoundingClientRect();
-        const scrollPos: number = TooltipDirective.getScrollPos();
+        const scrollPos: number = Tooltip.getScrollPos();
 
         if (this.placement === 'top') {
             const {top, left}: TooltipOffset = this.calculateByTop(hostPos, tooltipPos);

@@ -1,8 +1,8 @@
 import {ChangeDetectionStrategy, Component, DebugElement, Input} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {BrowserModule, By} from '@angular/platform-browser';
-import {InitialFocusModule} from '@angular-ru/cdk/directives';
+import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
+import {By} from '@angular/platform-browser';
+import {InitialFocus} from '@angular-ru/cdk/directives';
 
 jest.useFakeTimers();
 
@@ -12,8 +12,8 @@ describe('[TEST]: Initial Focus', function () {
     let debugElement!: DebugElement;
 
     @Component({
-        standalone: false,
         selector: 'test',
+        imports: [InitialFocus, ReactiveFormsModule],
         template: `
             <form [formGroup]="form">
                 <input
@@ -57,13 +57,7 @@ describe('[TEST]: Initial Focus', function () {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [TestComponent],
-            imports: [
-                BrowserModule,
-                ReactiveFormsModule,
-                FormsModule,
-                InitialFocusModule,
-            ],
+            imports: [TestComponent],
         }).compileComponents();
 
         fixture = TestBed.createComponent(TestComponent);

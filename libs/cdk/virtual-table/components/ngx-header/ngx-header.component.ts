@@ -1,3 +1,4 @@
+import {NgClass} from '@angular/common';
 import {
     ChangeDetectionStrategy,
     Component,
@@ -13,13 +14,13 @@ import {InputBoolean} from '@angular-ru/cdk/typings';
 import {TableContentDirective} from '../../directives/table-content.directive';
 
 @Component({
-    standalone: false,
     selector: 'ngx-header',
+    imports: [NgClass],
     templateUrl: './ngx-header.component.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NgxHeaderComponent extends TableContentDirective {
+export class NgxHeader extends TableContentDirective {
     @Output()
     public readonly expandedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 

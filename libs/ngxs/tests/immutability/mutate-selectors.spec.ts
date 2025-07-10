@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
 import {Immutable} from '@angular-ru/cdk/typings';
-import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
 import {StateRepository} from '@angular-ru/ngxs/decorators';
 import {NgxsImmutableDataRepository} from '@angular-ru/ngxs/repositories';
 import {NGXS_DATA_EXCEPTIONS} from '@angular-ru/ngxs/tokens';
-import {NgxsModule, State, Store} from '@ngxs/store';
+import {NgxsModule, provideStore, State, Store} from '@ngxs/store';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 
@@ -35,7 +35,7 @@ describe('mutate', () => {
             message = (error as Error).message;
         }
 
-        expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_MODULE_EXCEPTION);
+        expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_PROVIDER_EXCEPTION);
     });
 
     it('should be check mutate state', () => {
@@ -49,9 +49,9 @@ describe('mutate', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [
-                NgxsModule.forRoot([TodosState], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            providers: [
+                provideStore([TodosState], {developmentMode: true}),
+                provideNgxsDataPlugin(),
             ],
         });
 
@@ -97,9 +97,9 @@ describe('mutate', () => {
         class TodosState extends NgxsImmutableDataRepository<A[]> {}
 
         TestBed.configureTestingModule({
-            imports: [
-                NgxsModule.forRoot([TodosState], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            providers: [
+                provideStore([TodosState], {developmentMode: true}),
+                provideNgxsDataPlugin(),
             ],
         });
 

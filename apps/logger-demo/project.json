@@ -15,7 +15,6 @@
                 "index": "apps/logger-demo/index.html",
                 "browser": "apps/logger-demo/main.ts",
                 "tsConfig": "apps/logger-demo/tsconfig.app.json",
-                "polyfills": ["zone.js"],
                 "inlineStyleLanguage": "scss",
                 "assets": ["apps/logger-demo/assets"],
                 "styles": [".global/integration-app.style.scss", "apps/logger-demo/styles.css"],

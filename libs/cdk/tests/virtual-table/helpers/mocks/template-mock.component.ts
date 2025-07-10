@@ -1,4 +1,6 @@
+import {CurrencyPipe, UpperCasePipe} from '@angular/common';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 interface LicenseSample {
     id: number;
@@ -6,10 +8,9 @@ interface LicenseSample {
     price: number;
 }
 
-// noinspection AngularMissingOrInvalidDeclarationInModule
 @Component({
-    standalone: false,
     selector: 'template-mock',
+    imports: [CurrencyPipe, UpperCasePipe, VirtualTable],
     template: `
         <ngx-table-builder [source]="licenses">
             <ngx-column key="name">

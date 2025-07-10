@@ -6,12 +6,14 @@ import {
     OnDestroy,
     OnInit,
 } from '@angular/core';
+import {MatButton} from '@angular/material/button';
+import {MatCheckbox} from '@angular/material/checkbox';
 import {MatDialog} from '@angular/material/dialog';
+import {MatIcon} from '@angular/material/icon';
+import {MatToolbar} from '@angular/material/toolbar';
 import {Nullable, PlainObject} from '@angular-ru/cdk/typings';
-import {
-    NgxTableViewChangesService,
-    TableUpdateSchema,
-} from '@angular-ru/cdk/virtual-table';
+import type {TableUpdateSchema} from '@angular-ru/cdk/virtual-table';
+import {NgxTableViewChangesService, VirtualTable} from '@angular-ru/cdk/virtual-table';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 
@@ -19,12 +21,12 @@ import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 import {MocksGenerator} from '../../mocks-generator';
 
 @Component({
-    standalone: false,
     selector: 'sample-sixteen',
+    imports: [MatButton, MatCheckbox, MatIcon, MatToolbar, VirtualTable],
     templateUrl: './sample-sixteen.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SampleSixteenComponent implements OnInit, AfterViewInit, OnDestroy {
+export default class SampleSixteenComponent implements OnInit, AfterViewInit, OnDestroy {
     private readonly destroy$ = new Subject<void>();
     public data: PlainObject[] = [];
     public schema: Nullable<TableUpdateSchema> = null;

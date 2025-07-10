@@ -1,5 +1,15 @@
 @import './../../libs/cdk/tooltip/styles/index';
 
+html,
+body {
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    margin: 0;
+}
+
 //noinspection DuplicatedCode
 .wrapper {
     display: grid;

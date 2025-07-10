@@ -1,16 +1,16 @@
 import {TestBed} from '@angular/core/testing';
-import {HasPipe, HasPipeModule} from '@angular-ru/cdk/pipes';
+import {HasPipe} from '@angular-ru/cdk/pipes';
 
 describe('[TEST]: has-pipe accessibility', () => {
     let pipe: HasPipe;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({imports: [HasPipeModule]}).compileComponents();
+        TestBed.configureTestingModule({providers: [HasPipe]}).compileComponents();
         pipe = TestBed.inject(HasPipe);
     });
 
     it('decide if element is in set', () => {
-        const set = new Set<string>(['first', 'second', 'third', 'last']);
+        const set = new Set<string>(['first', 'last', 'second', 'third']);
 
         expect(pipe.transform(set, 'first')).toBe(true);
         expect(pipe.transform(set, 'second')).toBe(true);

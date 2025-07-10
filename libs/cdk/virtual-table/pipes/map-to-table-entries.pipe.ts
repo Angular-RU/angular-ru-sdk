@@ -3,13 +3,13 @@ import {Nullable} from '@angular-ru/cdk/typings';
 import {isNotNil} from '@angular-ru/cdk/utils';
 
 import {RowId} from '../interfaces/table-builder.internal';
-import {TableBuilderComponent} from '../table-builder.component';
+import {TableBuilder} from '../table-builder.component';
 
-@Pipe({standalone: false, name: 'mapToTableEntries'})
+@Pipe({name: 'mapToTableEntries'})
 export class MapToTableEntriesPipe<T> implements PipeTransform {
     constructor(
-        @Inject(TableBuilderComponent)
-        private readonly table: TableBuilderComponent<T>,
+        @Inject(TableBuilder)
+        private readonly table: TableBuilder<T>,
     ) {}
 
     public transform(selectedEntries?: RowId[]): T[] {

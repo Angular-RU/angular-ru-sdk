@@ -2,8 +2,8 @@ import {Directive, Inject, Input, Optional} from '@angular/core';
 import {NgControl} from '@angular/forms';
 import {PlainObject} from '@angular-ru/cdk/typings';
 
-@Directive({standalone: false, selector: '[disableControl]'})
-export class DisableControlDirective {
+@Directive({selector: '[disableControl]'})
+export class DisableControl {
     constructor(
         @Inject(NgControl)
         @Optional()

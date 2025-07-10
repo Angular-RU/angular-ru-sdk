@@ -3,7 +3,7 @@ import {getValueByPath, isObject} from '@angular-ru/cdk/object';
 import {isString} from '@angular-ru/cdk/string';
 import {checkValueIsEmpty} from '@angular-ru/cdk/utils';
 
-@Pipe({standalone: false, name: 'displayItem'})
+@Pipe({name: 'displayItem'})
 export class DisplayItemPipe implements PipeTransform {
     private static invalidDisplayKey(displayKey?: any): boolean {
         return Boolean(checkValueIsEmpty(displayKey)) || typeof displayKey !== 'string';

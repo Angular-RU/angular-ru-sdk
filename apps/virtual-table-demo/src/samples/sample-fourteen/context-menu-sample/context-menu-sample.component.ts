@@ -1,19 +1,54 @@
+import {KeyValuePipe, UpperCasePipe} from '@angular/common';
 import {
     ChangeDetectionStrategy,
     Component,
     Input,
     ViewEncapsulation,
 } from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {MatButtonToggle, MatButtonToggleGroup} from '@angular/material/button-toggle';
+import {
+    MatDatepicker,
+    MatDatepickerInput,
+    MatDatepickerToggle,
+    MatDateRangeInput,
+    MatDateRangePicker,
+    MatEndDate,
+    MatStartDate,
+} from '@angular/material/datepicker';
+import {MatIcon} from '@angular/material/icon';
+import {MatFormField, MatInput, MatLabel, MatSuffix} from '@angular/material/input';
+import {MatOption, MatSelect} from '@angular/material/select';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {
     FilterStateEvent,
-    TableBuilderComponent,
+    TableBuilder,
     TableFilterType,
 } from '@angular-ru/cdk/virtual-table';
 
 @Component({
-    standalone: false,
     selector: 'context-menu-sample',
+    imports: [
+        FormsModule,
+        KeyValuePipe,
+        MatButtonToggle,
+        MatButtonToggleGroup,
+        MatDatepicker,
+        MatDatepickerInput,
+        MatDatepickerToggle,
+        MatDateRangeInput,
+        MatDateRangePicker,
+        MatEndDate,
+        MatFormField,
+        MatIcon,
+        MatInput,
+        MatLabel,
+        MatOption,
+        MatSelect,
+        MatStartDate,
+        MatSuffix,
+        UpperCasePipe,
+    ],
     templateUrl: './context-menu-sample.component.html',
     styles: [
         `
@@ -27,7 +62,7 @@ import {
 })
 export class ContextMenuSampleComponent<T> {
     @Input()
-    public table!: TableBuilderComponent<T>;
+    public table!: TableBuilder<T>;
 
     @Input()
     public state!: Partial<FilterStateEvent>;

@@ -31,17 +31,18 @@ import {
     MIN_PADDING_CONTEXT_ITEM,
     SCROLLBAR_SIZE,
 } from '../../../table-builder.properties';
+import {NgxContextMenuDivider} from '../ngx-context-menu-divider/ngx-context-menu-divider.component';
 
 const MENU_WIDTH = 300;
 
 @Component({
-    standalone: false,
     selector: 'ngx-context-menu-item',
+    imports: [NgxContextMenuDivider],
     templateUrl: './ngx-context-menu-item.component.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NgxContextMenuItemComponent<T = any> implements OnInit, OnDestroy {
+export class NgxContextMenuItem<T = any> implements OnInit, OnDestroy {
     private readonly destroy$ = new Subject<void>();
     private taskId: Nullable<number> = null;
     private readonly contextMenu: ContextMenuService<T>;

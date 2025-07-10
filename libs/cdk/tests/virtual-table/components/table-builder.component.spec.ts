@@ -3,10 +3,10 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {Nullable, PlainObject, SortOrderType} from '@angular-ru/cdk/typings';
 import {
-    TableBuilderComponent,
-    TableBuilderModule,
+    TableBuilder,
     TableFilterType,
     TableSortTypes,
+    VirtualTable,
 } from '@angular-ru/cdk/virtual-table';
 import {WebWorkerThreadService} from '@angular-ru/cdk/webworker';
 
@@ -14,8 +14,8 @@ import {FilterDescriptor} from '../../../virtual-table/services/filterable/filte
 import {MockWebWorkerService} from '../helpers/mock-web-worker.service';
 
 @Component({
-    standalone: false,
     selector: 'app-ngx-table-builder-mock',
+    imports: [VirtualTable],
     template: `
         <ngx-table-builder
             enable-filtering
@@ -23,13 +23,13 @@ import {MockWebWorkerService} from '../helpers/mock-web-worker.service';
             [filter-definition]="filterDefinition"
             [sort-types]="sortTypes()"
             [source]="data"
-        ></ngx-table-builder>
+        />
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class NgxTableBuilderMockComponent {
-    @ViewChild(TableBuilderComponent, {static: true})
-    public tableBuilderComponent!: TableBuilderComponent<PlainObject>;
+    @ViewChild(TableBuilder, {static: true})
+    public tableBuilderComponent!: TableBuilder<PlainObject>;
 
     public data: PlainObject[] = [
         {id: 1, name: 'Max', lastName: 'Ivanov'},
@@ -50,8 +50,7 @@ describe('[TEST] Table builder', (): void => {
 
     beforeEach(async (): Promise<void> => {
         await TestBed.configureTestingModule({
-            imports: [TableBuilderModule, NoopAnimationsModule],
-            declarations: [NgxTableBuilderMockComponent],
+            imports: [NgxTableBuilderMockComponent, NoopAnimationsModule],
             providers: [
                 {
                     provide: WebWorkerThreadService,
@@ -61,7 +60,7 @@ describe('[TEST] Table builder', (): void => {
         }).compileComponents();
 
         const someSortableService =
-            TestBed.createComponent(TableBuilderComponent).componentInstance.sortable;
+            TestBed.createComponent(TableBuilder).componentInstance.sortable;
 
         idleResolveMock = jest
             .spyOn(someSortableService.constructor.prototype, 'idleResolve')
@@ -77,7 +76,7 @@ describe('[TEST] Table builder', (): void => {
     });
 
     it('should correct sort by input', async (): Promise<void> => {
-        const tableBuilderComponent: TableBuilderComponent<PlainObject> =
+        const tableBuilderComponent: TableBuilder<PlainObject> =
             component.tableBuilderComponent;
 
         component.sortTypes.set({id: 'desc'});
@@ -107,7 +106,7 @@ describe('[TEST] Table builder', (): void => {
     it('should correct select after sort', async (): Promise<void> => {
         const mockClientEvent = new MouseEvent('click');
         const mockShiftClientEvent = new MouseEvent('click', {shiftKey: true});
-        const tableBuilderComponent: TableBuilderComponent<PlainObject> =
+        const tableBuilderComponent: TableBuilder<PlainObject> =
             component.tableBuilderComponent;
 
         componentFixture.detectChanges();
@@ -178,7 +177,7 @@ describe('[TEST] Table builder', (): void => {
     });
 
     it('should correctly filter table', async (): Promise<void> => {
-        const tableBuilderComponent: TableBuilderComponent<PlainObject> =
+        const tableBuilderComponent: TableBuilder<PlainObject> =
             component.tableBuilderComponent;
 
         tableBuilderComponent.filterable.setDefinition([
@@ -349,7 +348,7 @@ describe('[TEST] Table builder', (): void => {
     });
 
     it('should correctly filter table by input', async (): Promise<void> => {
-        const tableBuilderComponent: TableBuilderComponent<PlainObject> =
+        const tableBuilderComponent: TableBuilder<PlainObject> =
             component.tableBuilderComponent;
 
         expect(tableBuilderComponent.source).toEqual([
@@ -380,7 +379,7 @@ describe('[TEST] Table builder', (): void => {
     });
 
     it('should not filter table', async (): Promise<void> => {
-        const tableBuilderComponent: TableBuilderComponent<PlainObject> =
+        const tableBuilderComponent: TableBuilder<PlainObject> =
             component.tableBuilderComponent;
 
         tableBuilderComponent.enableFiltering = false;

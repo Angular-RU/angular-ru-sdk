@@ -1,13 +1,8 @@
-import {enableProdMode} from '@angular/core';
-import {platformBrowser} from '@angular/platform-browser';
+import {bootstrapApplication} from '@angular/platform-browser';
 
-import {environment} from './environments/environment';
-import {AppModule} from './src/app.module';
+import {AppComponent} from './src/app.component';
+import {appConfig} from './src/app.config';
 
-if (environment.production) {
-    enableProdMode();
-}
-
-platformBrowser()
-    .bootstrapModule(AppModule)
-    .catch((error: unknown): void => console.error(error));
+bootstrapApplication(AppComponent, appConfig).catch((error: unknown) =>
+    console.error(error),
+);

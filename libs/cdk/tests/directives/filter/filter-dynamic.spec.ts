@@ -6,8 +6,9 @@ import {
 } from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {AbstractControl, FormBuilder, ReactiveFormsModule} from '@angular/forms';
+import {MatInput} from '@angular/material/input';
 import {By} from '@angular/platform-browser';
-import {InputFilterModule} from '@angular-ru/cdk/directives';
+import {InputFilter} from '@angular-ru/cdk/directives';
 import {FilterPredicate} from '@angular-ru/cdk/string';
 import {Nullable} from '@angular-ru/cdk/typings';
 
@@ -17,8 +18,8 @@ describe('[TEST]: inputFilter Dynamic', function () {
     let debugElement: Nullable<DebugElement> = null;
 
     @Component({
-        standalone: false,
         selector: 'test',
+        imports: [InputFilter, MatInput, ReactiveFormsModule],
         template: `
             <div [formGroup]="form">
                 <input
@@ -44,8 +45,7 @@ describe('[TEST]: inputFilter Dynamic', function () {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [ReactiveFormsModule, InputFilterModule],
-            declarations: [DynamicTestComponent],
+            imports: [DynamicTestComponent],
         }).compileComponents();
 
         fixture = TestBed.createComponent(DynamicTestComponent);

@@ -16,7 +16,6 @@ describe('[TEST]: Attribute boolean', () => {
     let host: HostComponent;
 
     @Component({
-        standalone: false,
         selector: 'child-component',
         template: '',
         changeDetection: ChangeDetectionStrategy.OnPush,
@@ -49,8 +48,8 @@ describe('[TEST]: Attribute boolean', () => {
     }
 
     @Component({
-        standalone: false,
         selector: 'host-component',
+        imports: [ChildComponent],
         template: `
             <child-component
                 #simpleProp
@@ -122,8 +121,7 @@ describe('[TEST]: Attribute boolean', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [CommonModule],
-            declarations: [HostComponent, ChildComponent],
+            imports: [CommonModule, HostComponent, ChildComponent],
         }).compileComponents();
         hostFixture = TestBed.createComponent(HostComponent);
         host = hostFixture.componentInstance;

@@ -30,7 +30,7 @@ export class NgxsDataFactory {
 
     public static ensureMappedState(stateMeta: any | undefined): MappedState | never {
         if (isNil(NgxsDataInjector.factory) || isNil(stateMeta)) {
-            throw new Error(NGXS_DATA_EXCEPTIONS.NGXS_DATA_MODULE_EXCEPTION);
+            throw new Error(NGXS_DATA_EXCEPTIONS.NGXS_DATA_PROVIDER_EXCEPTION);
         }
 
         const cachedMeta: MappedStore | null =

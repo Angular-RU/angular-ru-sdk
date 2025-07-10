@@ -25,8 +25,8 @@ import {fromEvent, Subscription} from 'rxjs';
 import {AMOUNT_FORMAT_OPTIONS, DEFAULT_AMOUNT_OPTIONS} from './amount-format.properties';
 import {AmountOptions} from './amount-options';
 
-@Directive({standalone: false, selector: '[amountFormat]'})
-export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
+@Directive({selector: '[amountFormat]'})
+export class AmountFormat implements OnInit, AfterViewInit, OnDestroy {
     private readonly subscriptions: Subscription = new Subscription();
     private previousLang: Nullable<string> = null;
     private readonly maximumFractionDigits: number = 3;

@@ -4,7 +4,6 @@ import {
     Directive,
     Injectable,
     Injector,
-    NgModule,
     NgZone,
     Type,
 } from '@angular/core';
@@ -30,9 +29,7 @@ class MockService {
     public testField = 'test';
 }
 
-@Directive({
-    standalone: false,
-})
+@Directive({})
 abstract class AbstractDemoChildComponent {
     @Injection(MockService)
     public anotherService1!: MockService;
@@ -49,13 +46,13 @@ abstract class AbstractDemoChildComponent {
     }
 }
 
-@Directive({standalone: false, selector: 'hello-world'})
+@Directive({selector: 'hello-world'})
 class HelloWorldComponent extends AbstractDemoChildComponent {
     @Injection(MockService)
     public anotherService3!: MockService;
 }
 
-@Directive({standalone: false, selector: 'hello-world'})
+@Directive({selector: 'hello-world'})
 class A extends HelloWorldComponent {}
 
 class B extends A {
@@ -71,7 +68,6 @@ class B extends A {
 class C extends B {}
 
 @Component({
-    standalone: false,
     selector: 'test-component',
     template: `
         <p class="service">{{ world() }}</p>
@@ -86,19 +82,16 @@ class MockComponent extends C {
     public ngZone!: NgZone;
 }
 
-@NgModule({
-    declarations: [MockComponent],
-    providers: [MockService],
-})
-class TestModule {}
-
 describe('[TEST] Ivy utils - check deep inheritance', () => {
     let componentFixture: ComponentFixture<MockComponent>;
 
     jest.spyOn(console, 'error').mockImplementation();
 
     beforeEach((): void => {
-        TestBed.configureTestingModule({imports: [TestModule]});
+        TestBed.configureTestingModule({
+            imports: [MockComponent],
+            providers: [MockService],
+        });
         componentFixture = TestBed.createComponent(MockComponent);
     });
 

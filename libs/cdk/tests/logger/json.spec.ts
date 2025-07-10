@@ -1,5 +1,5 @@
 import {TestBed} from '@angular/core/testing';
-import {LoggerModule, LoggerService} from '@angular-ru/cdk/logger';
+import {LoggerService, provideLogger} from '@angular-ru/cdk/logger';
 
 import {ConsoleFake, TestLoggerLineType} from './helpers/console-fake';
 
@@ -9,7 +9,7 @@ describe('[TEST]: Check JSON', () => {
 
     beforeAll(() => {
         TestBed.configureTestingModule({
-            imports: [LoggerModule.forRoot({instance: fakeConsole})],
+            providers: [provideLogger({instance: fakeConsole})],
         });
 
         logger = TestBed.inject(LoggerService);

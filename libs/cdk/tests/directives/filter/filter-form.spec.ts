@@ -1,8 +1,9 @@
 import {ChangeDetectionStrategy, Component, DebugElement} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatInput} from '@angular/material/input';
 import {By} from '@angular/platform-browser';
-import {InputFilterModule} from '@angular-ru/cdk/directives';
+import {InputFilter} from '@angular-ru/cdk/directives';
 import {Nullable} from '@angular-ru/cdk/typings';
 
 describe('[TEST]: inputFilter Input', function () {
@@ -12,8 +13,8 @@ describe('[TEST]: inputFilter Input', function () {
     let debugElement2: Nullable<DebugElement> = null;
 
     @Component({
-        standalone: false,
         selector: 'test',
+        imports: [FormsModule, InputFilter, MatInput, ReactiveFormsModule],
         template: `
             <div [formGroup]="form">
                 <input
@@ -44,8 +45,7 @@ describe('[TEST]: inputFilter Input', function () {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [ReactiveFormsModule, InputFilterModule, FormsModule],
-            declarations: [TestComponent],
+            imports: [TestComponent],
         }).compileComponents();
 
         fixture = TestBed.createComponent(TestComponent);

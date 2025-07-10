@@ -2,9 +2,9 @@ import {TestBed} from '@angular/core/testing';
 import {
     ColumnWidth,
     EXCEL_BUILDER_INTERCEPTOR_TOKEN,
-    ExcelBuilderModule,
     ExcelBuilderTextColumnInterceptor,
     ExcelService,
+    provideExcelBuilder,
 } from '@angular-ru/cdk/excel';
 import {getValueByPath} from '@angular-ru/cdk/object';
 import {Nullable, PlainObject} from '@angular-ru/cdk/typings';
@@ -46,8 +46,8 @@ describe('[TEST] Excel service', () => {
 
     beforeEach((): void => {
         TestBed.configureTestingModule({
-            imports: [ExcelBuilderModule.forRoot()],
             providers: [
+                provideExcelBuilder(),
                 {provide: WebWorkerThreadService, useValue: mockWebWorker},
                 {provide: EXCEL_BUILDER_INTERCEPTOR_TOKEN, useClass: TranslateMock},
             ],

@@ -26,7 +26,7 @@
         @case (TableFilterType.INTERVAL) {
             <mat-form-field
                 appearance="outline"
-                formType="daterange"
+                type="daterange"
             >
                 <mat-date-range-input [rangePicker]="rangePicker">
                     <input
@@ -46,10 +46,7 @@
                     matSuffix
                     [for]="rangePicker"
                 />
-                <mat-date-range-picker
-                    #rangePicker
-                    dateEndOfDay
-                />
+                <mat-date-range-picker #rangePicker />
             </mat-form-field>
         }
         @case (TableFilterType.EQUALS_DATES_WITHOUT_TIME) {

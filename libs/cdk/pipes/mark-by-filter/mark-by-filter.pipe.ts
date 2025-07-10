@@ -7,7 +7,7 @@ import {isNotNil} from '@angular-ru/cdk/utils';
 
 import {MarkedValue} from './marked-value';
 
-@Pipe({standalone: false, name: 'markByFilter'})
+@Pipe({name: 'markByFilter'})
 export class MarkByFilterPipe implements PipeTransform {
     constructor(private readonly sanitizer: DomSanitizer) {}
 

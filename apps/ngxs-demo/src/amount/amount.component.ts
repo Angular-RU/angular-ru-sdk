@@ -1,11 +1,12 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 
 import {AmountState} from './amount.state';
 import {PriceState} from './price.state';
 
 @Component({
-    standalone: false,
     selector: 'amount',
+    imports: [FormsModule],
     templateUrl: './amount.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

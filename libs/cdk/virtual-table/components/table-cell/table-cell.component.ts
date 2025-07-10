@@ -1,4 +1,5 @@
 /* eslint-disable @angular-eslint/no-input-rename */
+import {NgTemplateOutlet} from '@angular/common';
 import {ChangeDetectorRef, NgZone, OnDestroy} from '@angular/core';
 import {
     ChangeDetectionStrategy,
@@ -6,6 +7,8 @@ import {
     Input,
     ViewEncapsulation,
 } from '@angular/core';
+import {DeepPathPipe} from '@angular-ru/cdk/pipes';
+import {DefaultValuePipe} from '@angular-ru/cdk/pipes';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {isFalse, isNotNil, isTrue} from '@angular-ru/cdk/utils';
 import {fromEvent, Subject, Subscription} from 'rxjs';
@@ -18,17 +21,18 @@ import {
     ViewPortInfo,
 } from '../../interfaces/table-builder.external';
 import {trim} from '../../operators/trim';
+import {NgxFilterViewer} from '../ngx-filter-viewer/ngx-filter-viewer.component';
 
 const TIME_IDLE = 1500;
 
 @Component({
-    standalone: false,
     selector: 'table-cell',
+    imports: [DeepPathPipe, DefaultValuePipe, NgTemplateOutlet, NgxFilterViewer],
     templateUrl: './table-cell.component.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TableCellComponent<T> implements OnDestroy {
+export class TableCell<T> implements OnDestroy {
     private readonly destroy$ = new Subject<void>();
     private readonly closeButtonSelector: string = 'table-close__button';
     private readonly overflowSelector: string = 'table-grid__cell-overflow-content';

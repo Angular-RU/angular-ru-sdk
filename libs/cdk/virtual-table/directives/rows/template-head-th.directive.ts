@@ -3,8 +3,8 @@ import {Nullable} from '@angular-ru/cdk/typings';
 
 import {AbstractTemplateCellCommonDirective} from './abstract-template-cell-common.directive';
 
-@Directive({standalone: false, selector: 'ng-template[ngx-th]'})
-export class TemplateHeadThDirective<T> extends AbstractTemplateCellCommonDirective<T> {
+@Directive({selector: 'ng-template[ngx-th]'})
+export class TemplateHeadTh<T> extends AbstractTemplateCellCommonDirective<T> {
     // eslint-disable-next-line @angular-eslint/no-input-rename
     @Input('ngx-th')
     public override type: Nullable<string> = null;

@@ -1,4 +1,3 @@
-import {CommonModule} from '@angular/common';
 import {
     ChangeDetectionStrategy,
     Component,
@@ -16,9 +15,10 @@ describe('sync control value interceptor', () => {
     let fixture: ComponentFixture<SyncInterceptorTestComponent>;
     let component: SyncInterceptorTestComponent;
 
+    // eslint-disable-next-line @taiga-ui/experience/standalone-imports-sort
     @Component({
-        standalone: false,
         selector: 'sync-test',
+        imports: [TrimDirective, AutoSplitDirective, FormsModule, ReactiveFormsModule],
         template: `
             @if (enableControl()) {
                 <input
@@ -93,12 +93,7 @@ describe('sync control value interceptor', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [
-                TrimDirective,
-                AutoSplitDirective,
-                SyncInterceptorTestComponent,
-            ],
-            imports: [CommonModule, FormsModule, ReactiveFormsModule],
+            imports: [SyncInterceptorTestComponent],
         }).compileComponents();
         fixture = TestBed.createComponent(SyncInterceptorTestComponent);
         component = fixture.componentInstance;

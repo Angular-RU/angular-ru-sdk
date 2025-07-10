@@ -5,18 +5,22 @@ import {
     Component,
     OnInit,
 } from '@angular/core';
+import {MatButton} from '@angular/material/button';
+import {MatTab, MatTabContent, MatTabGroup} from '@angular/material/tabs';
+import {MatToolbar} from '@angular/material/toolbar';
 import {PlainObject} from '@angular-ru/cdk/typings';
+import {VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 import {MocksGenerator} from '../../mocks-generator';
 
 @Component({
-    standalone: false,
     selector: 'sample-seven',
+    imports: [MatButton, MatTab, MatTabContent, MatTabGroup, MatToolbar, VirtualTable],
     templateUrl: './sample-seven.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SampleSevenComponent implements OnInit, AfterViewInit {
+export default class SampleSevenComponent implements OnInit, AfterViewInit {
     public data: PlainObject[] = [];
 
     constructor(private readonly cd: ChangeDetectorRef) {}

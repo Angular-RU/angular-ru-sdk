@@ -2,8 +2,8 @@ import {TestBed} from '@angular/core/testing';
 import {
     ConsoleService,
     LoggerLevel,
-    LoggerModule,
     LoggerService,
+    provideLogger,
 } from '@angular-ru/cdk/logger';
 
 import {ConsoleFake} from './helpers/console-fake';
@@ -15,8 +15,8 @@ describe('[TEST]: ConsoleService', () => {
 
         beforeAll(() => {
             TestBed.configureTestingModule({
-                imports: [
-                    LoggerModule.forRoot({
+                providers: [
+                    provideLogger({
                         instance: fakeConsole,
                     }),
                 ],
@@ -27,6 +27,7 @@ describe('[TEST]: ConsoleService', () => {
 
         it('check console instance', () => {
             consoleInternal.console = console;
+
             expect(consoleInternal.console).toEqual(console);
         });
     });
@@ -38,7 +39,7 @@ describe('[TEST]: ConsoleService', () => {
 
             beforeAll(() => {
                 TestBed.configureTestingModule({
-                    imports: [LoggerModule.forRoot()],
+                    providers: [provideLogger()],
                 });
 
                 logger = TestBed.inject(LoggerService);

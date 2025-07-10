@@ -2,17 +2,13 @@ import {ElementRef, NgZone} from '@angular/core';
 import {fakeAsync, tick} from '@angular/core/testing';
 import {Fn, Nullable, PlainObject} from '@angular-ru/cdk/typings';
 
-import {AutoHeightDirective} from '../../../virtual-table/directives/auto-height.directive';
+import {AutoHeight} from '../../../virtual-table/directives/auto-height.directive';
 
 describe('[TEST]: auto height', () => {
-    let directive: AutoHeightDirective<PlainObject>;
+    let directive: AutoHeight<PlainObject>;
     // @ts-ignore
     let recalculateDispatcher: Nullable<Fn> = null;
     let addedEvent = false;
-    // @ts-ignore
-    let removeEvent = false;
-    // @ts-ignore
-    let ticked = 0;
     let style: string;
 
     const mockNgZone: Partial<NgZone> = {
@@ -45,8 +41,7 @@ describe('[TEST]: auto height', () => {
 
         Object.defineProperties(window, {
             addEventListener: {
-                value: (_: string, fn: Fn): void => {
-                    recalculateDispatcher = fn;
+                value: (): void => {
                     addedEvent = true;
                 },
             },
@@ -54,28 +49,29 @@ describe('[TEST]: auto height', () => {
                 value: (): void => {
                     // eslint-disable-next-line @typescript-eslint/no-unused-vars
                     recalculateDispatcher = null;
-                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                    removeEvent = true;
                 },
             },
         });
 
-        directive = new AutoHeightDirective(mockElementRef, mockNgZone as NgZone);
+        directive = new AutoHeight(mockElementRef, mockNgZone as NgZone);
         directive.sourceRef = [{a: 1}];
         style = '';
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        ticked = 0;
+        // ticked = 0;
     });
 
     it('should be correct invoke ngOnInit', () => {
         directive.ngOnInit();
+
         expect(addedEvent).toBe(true);
     });
 
     it('should be correct invoke ngOnDestroy', () => {
         expect(directive.destroy$.closed).toBe(false);
         expect(directive.destroy$.isStopped).toBe(false);
+
         directive.ngOnDestroy();
+
         expect(directive.destroy$.closed).toBe(false);
         expect(directive.destroy$.isStopped).toBe(true);
     });
@@ -111,6 +107,7 @@ describe('[TEST]: auto height', () => {
     it('should be correct hide height not in viewport', () => {
         directive.autoHeight = {detect: true, inViewport: false};
         directive.calculateHeight();
+
         expect(style).toBe('');
 
         directive.autoHeight = {
@@ -120,6 +117,7 @@ describe('[TEST]: auto height', () => {
             sourceLength: 1,
         };
         directive.calculateHeight();
+
         expect(style).toBe('');
     });
 
@@ -131,6 +129,7 @@ describe('[TEST]: auto height', () => {
             sourceLength: 1,
         };
         directive.calculateHeight();
+
         expect(style).toBe('display: block; height: 500px');
     });
 
@@ -142,6 +141,7 @@ describe('[TEST]: auto height', () => {
             sourceLength: 1,
         };
         directive.calculateHeight();
+
         expect(style).toBe('');
     });
 

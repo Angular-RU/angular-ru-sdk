@@ -11,7 +11,6 @@ describe('[TEST]: injection utils', () => {
         }
 
         @Component({
-            standalone: false,
             selector: 'ctx',
             template: '',
             changeDetection: ChangeDetectionStrategy.OnPush,
@@ -27,7 +26,7 @@ describe('[TEST]: injection utils', () => {
 
         it('should be correct provide nested service by directiveInject', async () => {
             await TestBed.configureTestingModule({
-                declarations: [CtxComponent],
+                imports: [CtxComponent],
             }).compileComponents();
             const fixture = TestBed.createComponent(CtxComponent);
 
@@ -86,7 +85,6 @@ describe('[TEST]: injection utils', () => {
             }
 
             @Component({
-                standalone: false,
                 selector: 'ctx',
                 template: '',
                 changeDetection: ChangeDetectionStrategy.OnPush,

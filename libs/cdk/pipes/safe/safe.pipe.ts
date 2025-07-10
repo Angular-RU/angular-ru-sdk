@@ -6,7 +6,7 @@ import {SafeType} from './safe-type';
 import {SafeTypeOptions} from './safe-type-options';
 import {SafeValueType} from './safe-value-type';
 
-@Pipe({standalone: false, name: 'safe'})
+@Pipe({name: 'safe'})
 export class SafePipe implements PipeTransform {
     constructor(protected sanitizer: DomSanitizer) {}
 

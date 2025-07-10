@@ -6,9 +6,8 @@ import {
     Input,
 } from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {ReactiveFormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
-import {InputFilterModule} from '@angular-ru/cdk/directives';
+import {InputFilter, provideInputFilter} from '@angular-ru/cdk/directives';
 import {REG_EXP_NO_CYRILLIC} from '@angular-ru/cdk/regexp';
 import {FilterPredicate} from '@angular-ru/cdk/string';
 import {Nullable} from '@angular-ru/cdk/typings';
@@ -20,8 +19,8 @@ describe('[TEST]: inputFilter Simple Input', () => {
     let debugElement: Nullable<DebugElement> = null;
 
     @Component({
-        standalone: false,
         selector: 'test',
+        imports: [InputFilter],
         template: `
             <input
                 [filterDisabled]="disableFilter"
@@ -43,11 +42,8 @@ describe('[TEST]: inputFilter Simple Input', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                InputFilterModule.forRoot({default: REG_EXP_NO_CYRILLIC}),
-            ],
-            declarations: [TestComponent],
+            imports: [TestComponent],
+            providers: [provideInputFilter({default: REG_EXP_NO_CYRILLIC})],
         }).compileComponents();
 
         fixture = TestBed.createComponent(TestComponent);

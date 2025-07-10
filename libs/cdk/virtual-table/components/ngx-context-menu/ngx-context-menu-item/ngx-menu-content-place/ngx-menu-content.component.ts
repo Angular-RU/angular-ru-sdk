@@ -9,13 +9,12 @@ import {
 import {Nullable} from '@angular-ru/cdk/typings';
 
 @Component({
-    standalone: false,
     selector: 'ngx-menu-content',
     templateUrl: './ngx-menu-content.component.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NgxMenuContentComponent {
+export class NgxMenuContent {
     @Input()
     public icon: Nullable<string> = null;
 

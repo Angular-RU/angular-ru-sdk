@@ -3,7 +3,7 @@
     "compilerOptions": {
         "types": []
     },
-    "include": ["main.ts", "polyfills.ts"],
+    "include": ["main.ts"],
     "angularCompilerOptions": {
         "compilationMode": "full"
     }

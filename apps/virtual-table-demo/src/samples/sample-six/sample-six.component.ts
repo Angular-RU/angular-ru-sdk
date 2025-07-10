@@ -5,21 +5,26 @@ import {
     Component,
     OnInit,
 } from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {MatButton} from '@angular/material/button';
+import {MatCheckbox} from '@angular/material/checkbox';
 import {MatDialog} from '@angular/material/dialog';
+import {MatToolbar} from '@angular/material/toolbar';
 import {PlainObject} from '@angular-ru/cdk/typings';
-import {OrderedField} from '@angular-ru/cdk/virtual-table';
+import type {OrderedField} from '@angular-ru/cdk/virtual-table';
+import {VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 import {MocksGenerator} from '../../mocks-generator';
 import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
 
 @Component({
-    standalone: false,
     selector: 'sample-six',
+    imports: [FormsModule, MatButton, MatCheckbox, MatToolbar, VirtualTable],
     templateUrl: './sample-six.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SampleSixComponent implements OnInit, AfterViewInit {
+export default class SampleSixComponent implements OnInit, AfterViewInit {
     public sortByIdDirection = true;
     public data: PlainObject[] = [];
     public skipSort = false;

@@ -1,12 +1,12 @@
-import {CommonModule} from '@angular/common';
+import {provideHttpClient} from '@angular/common/http';
 import {
-    HttpClientTestingModule,
     HttpTestingController,
+    provideHttpClientTesting,
     TestRequest,
 } from '@angular/common/http/testing';
 import {ChangeDetectionStrategy, Component, Injectable} from '@angular/core';
 import {fakeAsync, TestBed, tick} from '@angular/core/testing';
-import {DataHttpClient, DataHttpClientModule} from '@angular-ru/cdk/http';
+import {DataHttpClient, provideDataHttpClientOptions} from '@angular-ru/cdk/http';
 import {RestClient} from '@angular-ru/cdk/http/decorators';
 import {Nullable} from '@angular-ru/cdk/typings';
 
@@ -21,7 +21,6 @@ describe('[TEST]: HTTP decorators for client', () => {
     class ApiGithubClient extends DataHttpClient {}
 
     @Component({
-        standalone: false,
         selector: 'events',
         template: '',
         changeDetection: ChangeDetectionStrategy.OnPush,
@@ -32,11 +31,11 @@ describe('[TEST]: HTTP decorators for client', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [GithubComponent],
-            imports: [
-                CommonModule,
-                HttpClientTestingModule,
-                DataHttpClientModule.forRoot([ApiGithubClient]),
+            imports: [GithubComponent],
+            providers: [
+                provideHttpClient(),
+                provideHttpClientTesting(),
+                provideDataHttpClientOptions([ApiGithubClient]),
             ],
         });
 

@@ -1,7 +1,8 @@
 <mat-toolbar class="simple-toolbar">
-    <span>Persistent state</span>
+    <span>Persistent state (re-order the columns to see the order saved in local storage)</span>
     <button
         mat-raised-button
+        type="button"
         class="show-simple"
     >
         show code sample
@@ -95,7 +96,12 @@
             ngx-td
             row
         >
-            <button mat-button><mat-icon>info</mat-icon></button>
+            <button
+                mat-button
+                type="button"
+            >
+                <mat-icon>info</mat-icon>
+            </button>
         </ng-template>
     </ngx-column>
 </ngx-table-builder>

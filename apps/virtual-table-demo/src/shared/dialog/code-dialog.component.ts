@@ -1,11 +1,12 @@
 import {AfterViewInit, ChangeDetectionStrategy, Component, Inject} from '@angular/core';
+import {MatButton} from '@angular/material/button';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
 import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 
 @Component({
-    standalone: false,
     selector: 'code-dialog',
+    imports: [MatButton],
     templateUrl: './code-dialog.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

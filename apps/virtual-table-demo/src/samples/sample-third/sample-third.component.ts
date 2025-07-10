@@ -5,20 +5,24 @@ import {
     Component,
     OnInit,
 } from '@angular/core';
+import {MatButton} from '@angular/material/button';
+import {MatCheckbox} from '@angular/material/checkbox';
 import {MatDialog} from '@angular/material/dialog';
+import {MatToolbar} from '@angular/material/toolbar';
 import {Nullable, PlainObject} from '@angular-ru/cdk/typings';
+import {VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 import {MocksGenerator} from '../../mocks-generator';
 import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
 
 @Component({
-    standalone: false,
     selector: 'sample-third',
+    imports: [MatButton, MatCheckbox, MatToolbar, VirtualTable],
     templateUrl: './sample-third.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SampleThirdComponent implements OnInit, AfterViewInit {
+export default class SampleThirdComponent implements OnInit, AfterViewInit {
     public data: PlainObject[] = [];
 
     constructor(

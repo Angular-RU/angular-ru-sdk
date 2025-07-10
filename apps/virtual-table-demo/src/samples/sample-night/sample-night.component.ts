@@ -1,3 +1,4 @@
+import {KeyValuePipe} from '@angular/common';
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
@@ -7,20 +8,42 @@ import {
     NgZone,
     OnInit,
 } from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {MatButton} from '@angular/material/button';
+import {MatCheckbox} from '@angular/material/checkbox';
 import {MatDialog} from '@angular/material/dialog';
+import {MatIcon} from '@angular/material/icon';
+import {MatFormField, MatInput, MatLabel, MatSuffix} from '@angular/material/input';
+import {MatOption, MatSelect} from '@angular/material/select';
+import {MatToolbar} from '@angular/material/toolbar';
 import {PlainObject} from '@angular-ru/cdk/typings';
+import {VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 import {MocksGenerator} from '../../mocks-generator';
 import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
 
 @Component({
-    standalone: false,
     selector: 'sample-night',
+    imports: [
+        FormsModule,
+        KeyValuePipe,
+        MatButton,
+        MatCheckbox,
+        MatFormField,
+        MatIcon,
+        MatInput,
+        MatLabel,
+        MatOption,
+        MatSelect,
+        MatSuffix,
+        MatToolbar,
+        VirtualTable,
+    ],
     templateUrl: './sample-night.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SampleNightComponent implements OnInit, AfterViewInit {
+export default class SampleNightComponent implements OnInit, AfterViewInit {
     private readonly ngZone: NgZone;
     public dataFirst: PlainObject[] = [];
     public dataSecond: PlainObject[] = [];

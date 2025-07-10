@@ -1,9 +1,10 @@
+import {AsyncPipe, JsonPipe} from '@angular/common';
 import {ChangeDetectionStrategy, Component, Injectable} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
 import {StateRepository} from '@angular-ru/ngxs/decorators';
 import {NgxsImmutableDataRepository} from '@angular-ru/ngxs/repositories';
-import {NgxsModule, State, Store} from '@ngxs/store';
+import {provideStore, State, Store} from '@ngxs/store';
 
 describe('[TEST]: Freeze states', () => {
     it('should be return null from state', () => {
@@ -16,9 +17,9 @@ describe('[TEST]: Freeze states', () => {
         class MyState extends NgxsImmutableDataRepository<string> {}
 
         TestBed.configureTestingModule({
-            imports: [
-                NgxsModule.forRoot([MyState], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            providers: [
+                provideStore([MyState], {developmentMode: true}),
+                provideNgxsDataPlugin(),
             ],
         });
 
@@ -44,9 +45,9 @@ describe('[TEST]: Freeze states', () => {
         class MyArrState extends NgxsImmutableDataRepository<StateModel[]> {}
 
         TestBed.configureTestingModule({
-            imports: [
-                NgxsModule.forRoot([MyArrState], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            providers: [
+                provideStore([MyArrState], {developmentMode: true}),
+                provideNgxsDataPlugin(),
             ],
         });
 
@@ -104,9 +105,9 @@ describe('[TEST]: Freeze states', () => {
         class DateState extends NgxsImmutableDataRepository<DateModel> {}
 
         TestBed.configureTestingModule({
-            imports: [
-                NgxsModule.forRoot([DateState], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            providers: [
+                provideStore([DateState], {developmentMode: true}),
+                provideNgxsDataPlugin(),
             ],
         });
 
@@ -143,8 +144,8 @@ describe('[TEST]: Freeze states', () => {
         class StateListState extends NgxsImmutableDataRepository<ListModel[]> {}
 
         @Component({
-            standalone: false,
             selector: 'app',
+            imports: [AsyncPipe, JsonPipe],
             template: '{{ app.state$ | async | json }}',
             changeDetection: ChangeDetectionStrategy.OnPush,
         })
@@ -153,10 +154,10 @@ describe('[TEST]: Freeze states', () => {
         }
 
         TestBed.configureTestingModule({
-            declarations: [AppComponent],
-            imports: [
-                NgxsModule.forRoot([StateListState], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            imports: [AppComponent],
+            providers: [
+                provideStore([StateListState], {developmentMode: true}),
+                provideNgxsDataPlugin(),
             ],
         }).compileComponents();
 

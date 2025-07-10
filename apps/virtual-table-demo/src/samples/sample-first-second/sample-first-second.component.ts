@@ -6,9 +6,13 @@ import {
     OnDestroy,
     OnInit,
 } from '@angular/core';
+import {MatButton} from '@angular/material/button';
 import {MatDialog} from '@angular/material/dialog';
+import {MatIcon} from '@angular/material/icon';
+import {MatToolbar} from '@angular/material/toolbar';
 import {Nullable, PlainObject} from '@angular-ru/cdk/typings';
 import {detectChanges, isNotNil} from '@angular-ru/cdk/utils';
+import {VirtualTable} from '@angular-ru/cdk/virtual-table';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 
@@ -16,12 +20,12 @@ import {MocksGenerator} from '../../mocks-generator';
 import {DialogTemplateComponent} from '../../shared/dialog-template/dialog-template.component';
 
 @Component({
-    standalone: false,
     selector: 'sample-first-second',
+    imports: [MatButton, MatIcon, MatToolbar, VirtualTable],
     templateUrl: './sample-first-second.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SampleFirstSecondComponent implements OnInit, OnDestroy {
+export default class SampleFirstSecondComponent implements OnInit, OnDestroy {
     private readonly destroy$ = new Subject<void>();
     private idInterval: Nullable<number> = null;
     public data: PlainObject[] = [];

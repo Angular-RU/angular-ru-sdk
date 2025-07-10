@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, ElementRef, ViewChild} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {SplitStringModule, SplitStringOptions} from '@angular-ru/cdk/directives';
+import {SplitString, SplitStringOptions} from '@angular-ru/cdk/directives';
 
 describe('[TEST]: Trim Input', function () {
     let fixture: ComponentFixture<TestComponent>;
@@ -11,8 +11,8 @@ describe('[TEST]: Trim Input', function () {
     let textAreaElement: HTMLTextAreaElement;
 
     @Component({
-        standalone: false,
         selector: 'test',
+        imports: [FormsModule, ReactiveFormsModule, SplitString],
         template: `
             <form [formGroup]="form">
                 <textarea
@@ -66,8 +66,7 @@ describe('[TEST]: Trim Input', function () {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [ReactiveFormsModule, FormsModule, SplitStringModule],
-            declarations: [TestComponent],
+            imports: [ReactiveFormsModule, FormsModule, TestComponent],
         }).compileComponents();
         fixture = TestBed.createComponent(TestComponent);
         fixture.detectChanges();

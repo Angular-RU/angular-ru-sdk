@@ -1,7 +1,6 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 
 @Component({
-    standalone: false,
     selector: 'not-found',
     template: `
         <b>Not found</b>

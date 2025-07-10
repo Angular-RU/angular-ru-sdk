@@ -15,7 +15,6 @@
                 "index": "apps/flex-layout-demo/index.html",
                 "browser": "apps/flex-layout-demo/main.ts",
                 "tsConfig": "apps/flex-layout-demo/tsconfig.app.json",
-                "polyfills": ["zone.js"],
                 "inlineStyleLanguage": "scss",
                 "assets": ["apps/flex-layout-demo/assets"],
                 "styles": [".global/integration-app.style.scss", "apps/flex-layout-demo/styles.scss"],

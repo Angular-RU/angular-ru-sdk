@@ -1,4 +1,9 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
+import {MatButton} from '@angular/material/button';
+import {MatDivider, MatList, MatListItem} from '@angular/material/list';
+import {MatDrawer, MatDrawerContainer, MatDrawerContent} from '@angular/material/sidenav';
+import {MatToolbar} from '@angular/material/toolbar';
+import {RouterLink} from '@angular/router';
 import {ExcelService} from '@angular-ru/cdk/excel';
 import {TranslateService} from '@ngx-translate/core';
 
@@ -11,8 +16,18 @@ interface A {
 }
 
 @Component({
-    standalone: false,
     selector: 'app-root',
+    imports: [
+        MatButton,
+        MatDivider,
+        MatDrawer,
+        MatDrawerContainer,
+        MatDrawerContent,
+        MatList,
+        MatListItem,
+        MatToolbar,
+        RouterLink,
+    ],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
     encapsulation: ViewEncapsulation.None,

@@ -15,7 +15,6 @@
                 "index": "apps/cdk-demo/index.html",
                 "browser": "apps/cdk-demo/main.ts",
                 "tsConfig": "apps/cdk-demo/tsconfig.app.json",
-                "polyfills": ["apps/cdk-demo/polyfills.ts"],
                 "inlineStyleLanguage": "scss",
                 "assets": ["apps/cdk-demo/assets"],
                 "styles": [".global/integration-app.style.scss", "apps/cdk-demo/styles.scss"],

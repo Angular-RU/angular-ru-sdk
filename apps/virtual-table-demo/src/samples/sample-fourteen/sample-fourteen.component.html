@@ -3,18 +3,21 @@
     <div class="show-simple">
         <button
             mat-raised-button
+            type="button"
             (click)="filterFromFifth()"
         >
             filter from fifth
         </button>
         <button
             mat-raised-button
+            type="button"
             (click)="clearFilter()"
         >
             clear filter
         </button>
         <button
             mat-raised-button
+            type="button"
             (click)="showSample()"
         >
             show code sample
@@ -40,7 +43,7 @@
     <ngx-empty><not-found /></ngx-empty>
 
     <ngx-header
-        height="65"
+        height="61"
         [css-class]="['my-filter']"
     >
         <div class="filter-form">
