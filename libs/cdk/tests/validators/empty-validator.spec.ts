@@ -1,11 +1,6 @@
-import {Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {
-    AbstractControlOptions,
-    FormBuilder,
-    FormGroup,
-    ReactiveFormsModule,
-} from '@angular/forms';
+import {AbstractControlOptions, FormBuilder, FormGroup} from '@angular/forms';
 import {emptyValidator} from '@angular-ru/cdk/validators';
 
 describe('empty validator', () => {
@@ -13,6 +8,7 @@ describe('empty validator', () => {
         @Component({
             selector: 'app',
             template: '',
+            changeDetection: ChangeDetectionStrategy.OnPush,
         })
         class AppComponent {
             public form: FormGroup;
@@ -26,8 +22,7 @@ describe('empty validator', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [ReactiveFormsModule],
-            declarations: [AppComponent],
+            imports: [AppComponent],
         });
 
         const app: ComponentFixture<AppComponent> = TestBed.createComponent(AppComponent);
@@ -39,6 +34,7 @@ describe('empty validator', () => {
         @Component({
             selector: 'app',
             template: '',
+            changeDetection: ChangeDetectionStrategy.OnPush,
         })
         class AppComponent {
             public form: FormGroup;
@@ -55,8 +51,7 @@ describe('empty validator', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [ReactiveFormsModule],
-            declarations: [AppComponent],
+            imports: [AppComponent],
         });
 
         const app: ComponentFixture<AppComponent> = TestBed.createComponent(AppComponent);

@@ -9,7 +9,7 @@ import {SplitStringOptions} from './split-string-options';
     selector: '[splitString]',
     providers: [ControlValueInterceptor],
 })
-export class SplitStringDirective {
+export class SplitString {
     private readonly defaultSplitOptions: SplitStringOptions = {
         separator: /[\n,;]/g,
         joinWith: ', ',

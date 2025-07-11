@@ -6,18 +6,21 @@ import {
     OnInit,
     ViewEncapsulation,
 } from '@angular/core';
+import {MatToolbar} from '@angular/material/toolbar';
 import {PlainObject} from '@angular-ru/cdk/typings';
+import {VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 import {MocksGenerator} from '../../mocks-generator';
 
 @Component({
     selector: 'sample-twelve',
+    imports: [MatToolbar, VirtualTable],
     templateUrl: './sample-twelve.component.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SampleTwelveComponent implements OnInit, AfterViewInit {
+export default class SampleTwelveComponent implements OnInit, AfterViewInit {
     public data: PlainObject[] = [];
 
     public licences: PlainObject[] = [

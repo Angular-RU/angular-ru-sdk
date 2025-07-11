@@ -15,7 +15,7 @@ export class LoggerInjector {
 
     public static getInjector(): Injector | never {
         if (isNil(LoggerInjector.injector)) {
-            throw new Error("You've forgotten to import `LoggerModule`");
+            throw new Error("You've forgotten to provide `Logger`");
         }
 
         return LoggerInjector.injector;

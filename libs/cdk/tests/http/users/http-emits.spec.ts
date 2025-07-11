@@ -1,16 +1,16 @@
-import {CommonModule} from '@angular/common';
+import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 import {
-    HttpClientTestingModule,
     HttpTestingController,
+    provideHttpClientTesting,
     TestRequest,
 } from '@angular/common/http/testing';
-import {Component, Injectable} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Injectable} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
 import {
     DATA_HTTP_CLIENT_INTERCEPTOR,
     DataHttpClient,
-    DataHttpClientModule,
     DefaultHttpClientInterceptor,
+    provideDataHttpClientOptions,
 } from '@angular-ru/cdk/http';
 import {Delete, Get, Patch, Post, Put, RestClient} from '@angular-ru/cdk/http/decorators';
 import {
@@ -77,6 +77,7 @@ describe('[TEST]: HTTP Client', () => {
     @Component({
         selector: 'any',
         template: '',
+        changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class AnyComponent {
         constructor(public readonly api: ApiEmitsClient) {}
@@ -84,17 +85,15 @@ describe('[TEST]: HTTP Client', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
+            imports: [AnyComponent],
             providers: [
+                provideHttpClient(withInterceptorsFromDi()),
+                provideHttpClientTesting(),
+                provideDataHttpClientOptions([ApiEmitsClient], {}),
                 {
                     provide: DATA_HTTP_CLIENT_INTERCEPTOR,
                     useClass: MyInterceptor,
                 },
-            ],
-            declarations: [AnyComponent],
-            imports: [
-                CommonModule,
-                HttpClientTestingModule,
-                DataHttpClientModule.forRoot([ApiEmitsClient], {}),
             ],
         });
 

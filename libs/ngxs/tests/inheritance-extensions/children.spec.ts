@@ -1,10 +1,16 @@
-import {Component, Injectable, OnDestroy, OnInit} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    Injectable,
+    OnDestroy,
+    OnInit,
+} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {Immutable} from '@angular-ru/cdk/typings';
-import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
 import {StateRepository} from '@angular-ru/ngxs/decorators';
 import {NgxsImmutableDataRepository} from '@angular-ru/ngxs/repositories';
-import {Action, NgxsModule, State, StateContext, Store} from '@ngxs/store';
+import {Action, provideStore, State, StateContext, Store} from '@ngxs/store';
 import {ɵPlainObjectOf as PlainObjectOf} from '@ngxs/store/internals';
 
 describe('check correct deep instance', () => {
@@ -81,6 +87,7 @@ describe('check correct deep instance', () => {
     @Component({
         selector: 'app',
         template: '',
+        changeDetection: ChangeDetectionStrategy.OnPush,
         providers: [Facade],
     })
     class AppComponent implements OnInit {
@@ -93,13 +100,12 @@ describe('check correct deep instance', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [AppComponent],
-            imports: [
-                NgxsModule.forRoot(
-                    [AppState, MyChildB, MyChildBa, MyChildBaa, MyChildA],
-                    {developmentMode: true},
-                ),
-                NgxsDataPluginModule.forRoot(),
+            imports: [AppComponent],
+            providers: [
+                provideStore([AppState, MyChildB, MyChildBa, MyChildBaa, MyChildA], {
+                    developmentMode: true,
+                }),
+                provideNgxsDataPlugin(),
             ],
         }).compileComponents();
 

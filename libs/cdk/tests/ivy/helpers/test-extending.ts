@@ -10,9 +10,7 @@ import {
 import {FeatureTestService, TestService} from './test-default';
 
 // noinspection AngularMissingOrInvalidDeclarationInModule
-@Directive({
-    selector: '[test-stairs-a]',
-})
+@Directive({selector: '[test-stairs-a]'})
 export class TestStairsADirective {
     @InjectNgZone()
     public ngZone!: NgZone;
@@ -35,9 +33,7 @@ export class TestStairsComponent extends TestStairsB {
     public featureTestService!: FeatureTestService;
 }
 
-@Directive({
-    selector: '[super-test-directive]',
-})
+@Directive({selector: '[super-test-directive]'})
 export abstract class AbstractSuperTestDirective {
     public abstract ngZone: NgZone;
 

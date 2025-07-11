@@ -26,6 +26,6 @@ export {
 } from './interfaces/logger.external';
 export {COLORS, DEFAULT_METHODS, LABELS, LEXER_JSON} from './logger.config';
 export {LoggerInjector} from './logger.injector';
-export {LoggerModule} from './logger.module';
+export {provideLogger} from './logger.provider';
 export {LoggerService} from './logger.service';
 export {ConsoleService} from './services/console.service';

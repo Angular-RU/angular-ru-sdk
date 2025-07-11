@@ -13,7 +13,7 @@ import {isNotNil} from '@angular-ru/cdk/utils';
 
 // TODO: move this directive to common
 @Directive({selector: '[observerView]'})
-export class ObserverViewDirective implements AfterViewInit, OnDestroy {
+export class ObserverView implements AfterViewInit, OnDestroy {
     private observer: Nullable<IntersectionObserver> = null;
     private previousRation = 0.0;
     private frameId: Nullable<number> = null;

@@ -3,7 +3,7 @@ import {NgControl} from '@angular/forms';
 import {PlainObject} from '@angular-ru/cdk/typings';
 
 @Directive({selector: '[disableControl]'})
-export class DisableControlDirective {
+export class DisableControl {
     constructor(
         @Inject(NgControl)
         @Optional()

@@ -18,10 +18,10 @@ import {InputFilterConfig} from './input-filter.config';
     selector: '[inputFilter]',
     providers: [ControlValueInterceptor],
 })
-export class InputFilterDirective {
+export class InputFilter {
     private manualEvent: Nullable<InputEvent> = null;
     @Input()
-    public declare inputFilter: FilterPredicate | '';
+    declare public inputFilter: FilterPredicate | '';
 
     @Input()
     public filterDisabled = false;
@@ -58,6 +58,6 @@ export class InputFilterDirective {
             ? hasItems(this.inputFilter)
             : checkValueIsFilled(this.inputFilter);
 
-        return isInputPredicate ? this.inputFilter : this.config?.default ?? [];
+        return isInputPredicate ? this.inputFilter : (this.config?.default ?? []);
     }
 }

@@ -40,7 +40,7 @@ export class UserState extends NgxsImmutableDataRepository<UserStateModel> {
         return state.loading;
     }
 
-    // Note: Also can be configured globally by providing custom NGXS_DATA_CONFIG
+    // Note: Also can be configured globally using provideNgxsDataPlugin({subscribeRequired: false})
     @DataAction({subscribeRequired: false})
     public loadUser(): Observable<UserModel> {
         this.ctx.patchState({loading: true});

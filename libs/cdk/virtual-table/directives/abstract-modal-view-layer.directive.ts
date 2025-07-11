@@ -24,7 +24,7 @@ export interface PositionState {
 }
 
 @Directive()
-export abstract class AbstractModalViewLayerDirective<T, K extends PositionState>
+export abstract class AbstractModalViewLayer<T, K extends PositionState>
     implements OnDestroy
 {
     public abstract width: Nullable<number>;
@@ -90,7 +90,7 @@ export abstract class AbstractModalViewLayerDirective<T, K extends PositionState
             } else {
                 height = this.menu.nativeElement.scrollHeight;
             }
-        } catch (error: unknown) {
+        } catch {
             height = this.height;
         }
 

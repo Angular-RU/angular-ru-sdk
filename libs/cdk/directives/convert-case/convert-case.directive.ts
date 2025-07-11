@@ -11,7 +11,7 @@ import {NgControl} from '@angular/forms';
 import {toStringValue} from '@angular-ru/cdk/string';
 
 @Directive({selector: '[convertCase]'})
-export class ConvertCaseDirective implements AfterViewInit {
+export class ConvertCase implements AfterViewInit {
     @Input()
     public toUpperCase = true;
 

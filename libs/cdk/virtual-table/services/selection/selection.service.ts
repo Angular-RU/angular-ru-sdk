@@ -102,7 +102,7 @@ export class SelectionService<T> implements OnDestroy {
         const index: number = rows.findIndex(
             (item: T): boolean =>
                 ((item as any) ?? ({} as T))[this.primaryKey] ===
-                (row ?? {})[this.primaryKey],
+                row?.[this.primaryKey as keyof T],
         );
 
         if (shiftKey) {
@@ -117,7 +117,7 @@ export class SelectionService<T> implements OnDestroy {
     }
 
     public getIdByRow(row?: Nullable<T>): RowId {
-        const id: RowId = ((row as any) ?? {})[this.primaryKey];
+        const id: RowId = (row as any)?.[this.primaryKey];
 
         if (checkValueIsEmpty(id)) {
             throw new Error(

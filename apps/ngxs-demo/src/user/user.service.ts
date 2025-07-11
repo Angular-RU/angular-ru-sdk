@@ -5,7 +5,9 @@ import {delay, map} from 'rxjs/operators';
 
 import {UserModel} from './user-model';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+})
 export class UserService {
     private readonly SIMULATE_REQUEST_DELAY: number = 2000;
     constructor(private readonly httpService: HttpClient) {}

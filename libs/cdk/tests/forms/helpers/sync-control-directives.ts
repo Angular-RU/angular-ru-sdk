@@ -9,10 +9,7 @@ import {
 } from '@angular-ru/cdk/forms';
 import {isNotNil} from '@angular-ru/cdk/utils';
 
-@Directive({
-    selector: '[trim]',
-    providers: [ControlValueInterceptor],
-})
+@Directive({selector: '[trim]', providers: [ControlValueInterceptor]})
 export class TrimDirective {
     constructor(
         @Inject(ControlValueInterceptor)

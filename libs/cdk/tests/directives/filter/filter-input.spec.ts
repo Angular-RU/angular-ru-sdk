@@ -6,8 +6,9 @@ import {
 } from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
+import {MatInput} from '@angular/material/input';
 import {By} from '@angular/platform-browser';
-import {InputFilterModule} from '@angular-ru/cdk/directives';
+import {InputFilter} from '@angular-ru/cdk/directives';
 import {FilterPredicate} from '@angular-ru/cdk/string';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {isNotNil} from '@angular-ru/cdk/utils';
@@ -19,6 +20,7 @@ describe('[TEST]: inputFilter Input', function () {
 
     @Component({
         selector: 'test',
+        imports: [InputFilter, MatInput, ReactiveFormsModule],
         template: `
             <div [formGroup]="form">
                 <input
@@ -43,8 +45,7 @@ describe('[TEST]: inputFilter Input', function () {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [ReactiveFormsModule, InputFilterModule],
-            declarations: [TestComponent],
+            imports: [TestComponent],
         }).compileComponents();
 
         fixture = TestBed.createComponent(TestComponent);
@@ -100,6 +101,7 @@ describe('[TEST]: inputFilter Input', function () {
     it('should filter input with characters', () => {
         component!.predicate = ['a', 'b'];
         setValueAndDispatch('aaabbbccc');
+
         expect(component?.form.value).toEqual({value: 'aaabbb'});
         expect(debugElement?.nativeElement.value).toBe('aaabbb');
     });
@@ -107,6 +109,7 @@ describe('[TEST]: inputFilter Input', function () {
     it('should filter input with RegExp', () => {
         component!.predicate = /[,ab]+/;
         setValueAndDispatch('aaabbbccc');
+
         expect(component?.form.value).toEqual({value: 'aaabbb'});
         expect(debugElement?.nativeElement.value).toBe('aaabbb');
     });
@@ -114,6 +117,7 @@ describe('[TEST]: inputFilter Input', function () {
     it('should filter input with custom function', () => {
         component!.predicate = (item: string): boolean => item === 'a' || item === 'b';
         setValueAndDispatch('aaabbbccc');
+
         expect(component?.form.value).toEqual({value: 'aaabbb'});
         expect(debugElement?.nativeElement.value).toBe('aaabbb');
     });

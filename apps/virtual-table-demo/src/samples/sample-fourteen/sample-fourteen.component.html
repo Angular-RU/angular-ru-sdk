@@ -3,18 +3,21 @@
     <div class="show-simple">
         <button
             mat-raised-button
+            type="button"
             (click)="filterFromFifth()"
         >
             filter from fifth
         </button>
         <button
             mat-raised-button
+            type="button"
             (click)="clearFilter()"
         >
             clear filter
         </button>
         <button
             mat-raised-button
+            type="button"
             (click)="showSample()"
         >
             show code sample
@@ -40,7 +43,7 @@
     <ngx-empty><not-found /></ngx-empty>
 
     <ngx-header
-        height="65"
+        height="61"
         [css-class]="['my-filter']"
     >
         <div class="filter-form">
@@ -65,12 +68,11 @@
                     [(value)]="table.filterable.filterType"
                     (valueChange)="table.filter()"
                 >
-                    <mat-option
-                        *ngFor="let type of table.filterable.types | keyvalue"
-                        [value]="type.value"
-                    >
-                        {{ type.key }}
-                    </mat-option>
+                    @for (type of table.filterable.types | keyvalue; track type.key) {
+                        <mat-option [value]="type.value">
+                            {{ type.key }}
+                        </mat-option>
+                    }
                 </mat-select>
             </mat-form-field>
         </div>
@@ -112,23 +114,22 @@
         </ng-template>
     </ngx-column>
 
-    <ngx-column
-        *ngFor="let key of table.modelColumnKeys"
-        [key]="key"
-    >
-        <ng-template
-            let-cell
-            ngx-td
-            [nowrap]="false"
-        >
-            <a onclick="javascript:void(0)">
-                <ngx-filter-viewer
-                    [key]="key"
-                    [text]="cell"
-                />
-            </a>
-        </ng-template>
-    </ngx-column>
+    @for (key of table.modelColumnKeys; track key) {
+        <ngx-column [key]="key">
+            <ng-template
+                let-cell
+                ngx-td
+                [nowrap]="false"
+            >
+                <a onclick="void(0)">
+                    <ngx-filter-viewer
+                        [key]="key"
+                        [text]="cell"
+                    />
+                </a>
+            </ng-template>
+        </ngx-column>
+    }
 
     <ngx-column
         custom-key

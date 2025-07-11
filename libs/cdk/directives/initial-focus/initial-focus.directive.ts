@@ -13,7 +13,7 @@ import {takeUntil} from 'rxjs/operators';
 const MIN_DELAY = 500;
 
 @Directive({selector: '[initialFocus]'})
-export class InitialFocusDirective implements AfterViewInit, OnDestroy {
+export class InitialFocus implements AfterViewInit, OnDestroy {
     private readonly className: string = 'initial-focused';
     private readonly unsubscribe$: Subject<boolean> = new Subject<boolean>();
     @Input()

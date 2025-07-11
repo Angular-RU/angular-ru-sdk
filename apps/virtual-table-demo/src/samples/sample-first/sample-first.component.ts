@@ -6,18 +6,39 @@ import {
     OnDestroy,
     OnInit,
 } from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {MatButton} from '@angular/material/button';
+import {MatCheckbox} from '@angular/material/checkbox';
 import {MatDialog} from '@angular/material/dialog';
+import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
+import {MatProgressSpinner} from '@angular/material/progress-spinner';
+import {MatOption, MatSelect} from '@angular/material/select';
+import {MatToolbar} from '@angular/material/toolbar';
 import {Nullable, PlainObject} from '@angular-ru/cdk/typings';
+import {VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 import {MocksGenerator} from '../../mocks-generator';
 import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
 
 @Component({
     selector: 'sample-first',
+    imports: [
+        FormsModule,
+        MatButton,
+        MatCheckbox,
+        MatFormField,
+        MatInput,
+        MatLabel,
+        MatOption,
+        MatProgressSpinner,
+        MatSelect,
+        MatToolbar,
+        VirtualTable,
+    ],
     templateUrl: './sample-first.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SampleFirstComponent implements OnInit, OnDestroy {
+export default class SampleFirstComponent implements OnInit, OnDestroy {
     private idInterval: Nullable<number> = null;
     public width = '100%';
     public height: Nullable<number> = null;
@@ -80,34 +101,10 @@ export class SampleFirstComponent implements OnInit, OnDestroy {
         this.loading = true;
 
         switch (this.dataSize) {
-            case '10x5':
+            case '100000x100':
                 {
-                    const rows = 10;
-                    const cols = 5;
-
-                    MocksGenerator.generator(rows, cols).then(
-                        (data: PlainObject[]): void => this.setData(data),
-                    );
-                }
-
-                break;
-
-            case '100x20':
-                {
-                    const rows = 100;
-                    const cols = 20;
-
-                    MocksGenerator.generator(rows, cols).then(
-                        (data: PlainObject[]): void => this.setData(data),
-                    );
-                }
-
-                break;
-
-            case '1000x30':
-                {
-                    const rows = 1000;
-                    const cols = 30;
+                    const rows = 100000;
+                    const cols = 100;
 
                     MocksGenerator.generator(rows, cols).then(
                         (data: PlainObject[]): void => this.setData(data),
@@ -128,10 +125,34 @@ export class SampleFirstComponent implements OnInit, OnDestroy {
 
                 break;
 
-            case '100000x100':
+            case '1000x30':
                 {
-                    const rows = 100000;
-                    const cols = 100;
+                    const rows = 1000;
+                    const cols = 30;
+
+                    MocksGenerator.generator(rows, cols).then(
+                        (data: PlainObject[]): void => this.setData(data),
+                    );
+                }
+
+                break;
+
+            case '100x20':
+                {
+                    const rows = 100;
+                    const cols = 20;
+
+                    MocksGenerator.generator(rows, cols).then(
+                        (data: PlainObject[]): void => this.setData(data),
+                    );
+                }
+
+                break;
+
+            case '10x5':
+                {
+                    const rows = 10;
+                    const cols = 5;
 
                     MocksGenerator.generator(rows, cols).then(
                         (data: PlainObject[]): void => this.setData(data),

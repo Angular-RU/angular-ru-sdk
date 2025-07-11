@@ -22,6 +22,6 @@ export class AmountState extends NgxsDataRepository<number> {
     }
 
     public setAmount(value: string): void {
-        this.setState(parseFloat(value));
+        this.setState(parseFloat(value) || 0);
     }
 }

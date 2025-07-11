@@ -6,7 +6,10 @@ import {Store} from '@ngxs/store';
 import {ɵStateClass as StateClass} from '@ngxs/store/internals';
 
 import {TestSpec} from './internal/types';
-import {NgxsDataTestingModule} from './ngxs-data-testing.module';
+import {
+    ngxsInitTestingPlatform,
+    provideNgxsDataTesting,
+} from './ngxs-data-testing.provider';
 import {resetPlatformAfterBootstrapping} from './reset-platform-after-bootrapping';
 
 export type PlatformMetadata =
@@ -121,15 +124,15 @@ export function ngxsTestingPlatform(
 
             await TestBed.configureTestingModule({
                 schemas,
-                providers,
+                imports: Array.from(imports as any[]),
                 declarations,
-                imports: [
-                    NgxsDataTestingModule.forRoot(states),
-                    ...Array.from(imports as any[]),
+                providers: [
+                    ...Array.from(providers as any[]),
+                    provideNgxsDataTesting(states),
                 ],
             }).compileComponents();
 
-            NgxsDataTestingModule.ngxsInitPlatform();
+            ngxsInitTestingPlatform();
 
             const store: Store = TestBed.inject(Store);
             const injectedStates: StateClass[] =

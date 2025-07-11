@@ -1,12 +1,10 @@
 /* eslint-disable no-restricted-globals */
-import {TestRequest} from '@angular/common/http/testing';
-import {
-    HttpClientTestingModule,
-    HttpTestingController,
-} from '@angular/common/http/testing';
+import {provideHttpClient} from '@angular/common/http';
+import {provideHttpClientTesting, TestRequest} from '@angular/common/http/testing';
+import {HttpTestingController} from '@angular/common/http/testing';
 import {Injectable} from '@angular/core';
 import {fakeAsync, TestBed, tick} from '@angular/core/testing';
-import {DataHttpClient, DataHttpClientModule} from '@angular-ru/cdk/http';
+import {DataHttpClient, provideDataHttpClientOptions} from '@angular-ru/cdk/http';
 import {RestClient} from '@angular-ru/cdk/http/decorators';
 import {Nullable} from '@angular-ru/cdk/typings';
 
@@ -99,9 +97,10 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
             limitConcurrency != null || limitConcurrency === 0 ? {limitConcurrency} : {};
 
         TestBed.configureTestingModule({
-            imports: [
-                HttpClientTestingModule,
-                DataHttpClientModule.forRoot([MyClient], options),
+            providers: [
+                provideHttpClient(),
+                provideHttpClientTesting(),
+                provideDataHttpClientOptions([MyClient], options),
             ],
         });
 
@@ -122,6 +121,7 @@ describe('[TEST]: HTTP Limit Concurrency Service with Client API', () => {
 
     it('should throw an error if limitConcurrency = 0', fakeAsync(() => {
         ({client, httpMock} = configureTestingModule(0));
+
         expect(() => generateRequests(3)).toThrow(
             new Error('Limit concurrency should be more than 0'),
         );

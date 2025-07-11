@@ -10,9 +10,9 @@ import {fakeAsync, tick} from '@angular/core/testing';
 import {deepClone} from '@angular-ru/cdk/object';
 import {Fn, Nullable, PlainObject} from '@angular-ru/cdk/typings';
 import {
-    NgxColumnComponent,
+    NgxColumn,
     NgxTableViewChangesService,
-    TableBuilderComponent,
+    TableBuilder,
 } from '@angular-ru/cdk/virtual-table';
 import {WebWorkerThreadService} from '@angular-ru/cdk/webworker';
 
@@ -27,7 +27,7 @@ import {SortableService} from '../../../../virtual-table/services/sortable/sorta
 import {TemplateParserService} from '../../../../virtual-table/services/template-parser/template-parser.service';
 
 describe('[TEST]: Lifecycle table', () => {
-    let table: TableBuilderComponent<PlainObject>;
+    let table: TableBuilder<PlainObject>;
     let sortable: SortableService<PlainObject>;
     let draggable: DraggableService<PlainObject>;
     let resizeService: ResizableService;
@@ -90,24 +90,16 @@ describe('[TEST]: Lifecycle table', () => {
         // @ts-ignore
         sortable = new SortableService(worker, zone);
 
-        table = new TableBuilderComponent(mockChangeDetector as ChangeDetectorRef, {
+        table = new TableBuilder(mockChangeDetector as ChangeDetectorRef, {
             // eslint-disable-next-line complexity
             get(token: any): any {
                 switch (token) {
-                    case SelectionService:
-                        return new SelectionService(zone);
-                    case TemplateParserService:
-                        return parser;
-                    case NgZone:
-                        return zone;
-                    case ResizableService:
-                        return resizeService;
-                    case SortableService:
-                        return sortable;
-                    case ContextMenuService:
-                        return new ContextMenuService();
                     case ApplicationRef:
                         return app;
+                    case ContextMenuService:
+                        return new ContextMenuService();
+                    case DraggableService:
+                        return draggable;
                     case FilterableService:
                         return new FilterableService({
                             get(_token: any): any {
@@ -115,17 +107,25 @@ describe('[TEST]: Lifecycle table', () => {
                                 switch (_token) {
                                     case ApplicationRef:
                                         return app;
-                                    case WebWorkerThreadService:
-                                        return worker;
                                     case NgZone:
                                         return zone;
+                                    case WebWorkerThreadService:
+                                        return worker;
                                 }
                             },
                         });
-                    case DraggableService:
-                        return draggable;
                     case NgxTableViewChangesService:
                         return view;
+                    case NgZone:
+                        return zone;
+                    case ResizableService:
+                        return resizeService;
+                    case SelectionService:
+                        return new SelectionService(zone);
+                    case SortableService:
+                        return sortable;
+                    case TemplateParserService:
+                        return parser;
                 }
             },
         });
@@ -166,6 +166,7 @@ describe('[TEST]: Lifecycle table', () => {
         table.filterable.filterValue = 'Hydrogen';
         table.filterable.filterType = 'START_WITH';
         await table.sortAndFilter();
+
         expect(table.source).toEqual([
             {name: 'Hydrogen', position: 1, symbol: 'H', weight: 1.0079},
         ]);
@@ -191,6 +192,7 @@ describe('[TEST]: Lifecycle table', () => {
         table.filterable.filterValue = null;
         table.filterable.filterType = null;
         await table.sortAndFilter();
+
         expect(table.source).toEqual(data);
 
         expect(table.lastItem).toEqual({
@@ -277,7 +279,7 @@ describe('[TEST]: Lifecycle table', () => {
     }));
 
     it('should be correct template changes', fakeAsync(() => {
-        const templates = new QueryList<NgxColumnComponent<PlainObject>>();
+        const templates = new QueryList<NgxColumn<PlainObject>>();
 
         table.columnTemplates = templates;
         table.source = [];
@@ -297,7 +299,7 @@ describe('[TEST]: Lifecycle table', () => {
         expect(table.sourceExists).toBe(false);
 
         table.source = deepClone(data);
-        templates.reset([new NgxColumnComponent()]);
+        templates.reset([new NgxColumn()]);
         templates.notifyOnChanges();
 
         tick(1000);
@@ -318,7 +320,7 @@ describe('[TEST]: Lifecycle table', () => {
     }));
 
     it('should be correct template changes with check renderCount', fakeAsync(() => {
-        const templates = new QueryList<NgxColumnComponent<PlainObject>>();
+        const templates = new QueryList<NgxColumn<PlainObject>>();
 
         table.columnTemplates = templates;
         table.source = deepClone(data);
@@ -342,7 +344,7 @@ describe('[TEST]: Lifecycle table', () => {
         expect(table.sourceExists).toBe(true);
 
         table.source = deepClone(data);
-        templates.reset([new NgxColumnComponent()]);
+        templates.reset([new NgxColumn()]);
 
         templates.notifyOnChanges();
 
@@ -355,7 +357,7 @@ describe('[TEST]: Lifecycle table', () => {
         expect(table.contentCheck).toBe(true);
         expect(table.sourceExists).toBe(true);
 
-        templates.reset([new NgxColumnComponent(), new NgxColumnComponent()]);
+        templates.reset([new NgxColumn(), new NgxColumn()]);
         templates.notifyOnChanges();
         table.ngAfterViewChecked();
 
@@ -367,7 +369,7 @@ describe('[TEST]: Lifecycle table', () => {
     }));
 
     it('should be correct template changes query list', fakeAsync(() => {
-        const templates = new QueryList<NgxColumnComponent<PlainObject>>();
+        const templates = new QueryList<NgxColumn<PlainObject>>();
 
         table.columnTemplates = templates;
         table.source = [];
@@ -378,7 +380,7 @@ describe('[TEST]: Lifecycle table', () => {
         table.ngAfterViewInit();
         table.ngAfterViewChecked();
 
-        templates.reset([new NgxColumnComponent()]);
+        templates.reset([new NgxColumn()]);
         templates.notifyOnChanges();
 
         table.source = deepClone(data);

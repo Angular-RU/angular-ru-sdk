@@ -5,8 +5,12 @@ import {
     Component,
     OnInit,
 } from '@angular/core';
+import {MatButton} from '@angular/material/button';
+import {MatCheckbox} from '@angular/material/checkbox';
 import {MatDialog} from '@angular/material/dialog';
+import {MatToolbar} from '@angular/material/toolbar';
 import {Nullable, PlainObject} from '@angular-ru/cdk/typings';
+import {VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 import {MocksGenerator} from '../../mocks-generator';
@@ -14,10 +18,11 @@ import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
 
 @Component({
     selector: 'sample-third',
+    imports: [MatButton, MatCheckbox, MatToolbar, VirtualTable],
     templateUrl: './sample-third.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SampleThirdComponent implements OnInit, AfterViewInit {
+export default class SampleThirdComponent implements OnInit, AfterViewInit {
     public data: PlainObject[] = [];
 
     constructor(
@@ -72,13 +77,15 @@ export class SampleThirdComponent implements OnInit, AfterViewInit {
         </ng-template>
     </ngx-column>
 
-    <ngx-column *ngFor="let key of table.modelColumnKeys" [key]="key">
-       <!--
-        If you want to parameterize your templates, you can describe the code here.
-        <ng-template ngx-th>{{ key }}</ng-template>
-        <ng-template ngx-td let-cell>{{ cell }}</ng-template>
+    @for (key of table.modelColumnKeys; track key) {
+        <ngx-column [key]="key">
+        <!--
+            If you want to parameterize your templates, you can describe the code here.
+            <ng-template ngx-th>{{ key }}</ng-template>
+            <ng-template ngx-td let-cell>{{ cell }}</ng-template>
        -->
-    </ngx-column>
+        </ngx-column>
+    }
 </ngx-table-builder>
                     `,
             },

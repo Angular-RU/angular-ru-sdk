@@ -1,11 +1,11 @@
 import {TestBed} from '@angular/core/testing';
-import {SafePipe, SafePipeModule} from '@angular-ru/cdk/pipes';
+import {SafePipe} from '@angular-ru/cdk/pipes';
 
 describe('safe pipe', () => {
     let pipe: SafePipe;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({imports: [SafePipeModule]}).compileComponents();
+        TestBed.configureTestingModule({providers: [SafePipe]}).compileComponents();
         pipe = TestBed.inject(SafePipe);
     });
 

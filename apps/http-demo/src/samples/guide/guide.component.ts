@@ -9,7 +9,7 @@ import {ApiClient} from '../../services/clients/api.client';
     templateUrl: './guide.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GuideComponent implements OnInit, OnDestroy {
+export default class GuideComponent implements OnInit, OnDestroy {
     private readonly destroy$ = new Subject<void>();
 
     constructor(private readonly apiClient: ApiClient) {}

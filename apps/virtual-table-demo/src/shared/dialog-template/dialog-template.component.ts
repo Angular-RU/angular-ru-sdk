@@ -1,13 +1,27 @@
+import {KeyValuePipe} from '@angular/common';
 import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {
+    FormBuilder,
+    FormControl,
+    FormGroup,
+    FormsModule,
+    ReactiveFormsModule,
+} from '@angular/forms';
+import {MatButton} from '@angular/material/button';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {MatFormField, MatInput} from '@angular/material/input';
 import {Nullable} from '@angular-ru/cdk/typings';
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type AnyType = any;
 
 @Component({
     selector: 'dialog-template',
+    imports: [
+        FormsModule,
+        KeyValuePipe,
+        MatButton,
+        MatFormField,
+        MatInput,
+        ReactiveFormsModule,
+    ],
     templateUrl: './dialog-template.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -15,7 +29,7 @@ export class DialogTemplateComponent implements OnInit {
     public form: Nullable<FormGroup> = null;
 
     constructor(
-        @Inject(MAT_DIALOG_DATA) public data: AnyType,
+        @Inject(MAT_DIALOG_DATA) public data: any,
         public dialogRef: MatDialogRef<unknown>,
         private readonly fb: FormBuilder,
     ) {}

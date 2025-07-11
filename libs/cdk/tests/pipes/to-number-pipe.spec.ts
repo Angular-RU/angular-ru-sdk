@@ -1,12 +1,12 @@
 import {TestBed} from '@angular/core/testing';
-import {ToNumberPipe, ToNumberPipeModule} from '@angular-ru/cdk/pipes';
+import {ToNumberPipe} from '@angular-ru/cdk/pipes';
 
 describe('to number pipe', () => {
     let pipe: ToNumberPipe;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [ToNumberPipeModule],
+            providers: [ToNumberPipe],
         }).compileComponents();
         pipe = TestBed.inject(ToNumberPipe);
     });

@@ -1,5 +1,5 @@
 /* eslint-disable max-classes-per-file */
-import {ApplicationRef, NgZone, PipeTransform} from '@angular/core';
+import {ApplicationRef, forwardRef, NgZone, PipeTransform} from '@angular/core';
 import {
     ChangeDetectionStrategy,
     Component,
@@ -19,9 +19,7 @@ export class TestService {
     public testField = 'test';
 }
 
-@Directive({
-    selector: '[test-directive]',
-})
+@Directive({selector: '[test-directive]'})
 export class TestDirective {
     @InjectTestService()
     public testService!: TestService;
@@ -31,6 +29,7 @@ export class TestDirective {
 
 @Component({
     selector: 'test-component',
+    imports: [TestDirective, forwardRef(() => TestPipe)],
     template: `
         <div test-directive></div>
         <p class="service">{{ testService.testField }}</p>

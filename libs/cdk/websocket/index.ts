@@ -7,4 +7,4 @@ export {
 } from './services/abstract-websocket.client';
 export {WebsocketConfig} from './services/websocket-config';
 export {WEBSOCKET_CONFIGS} from './tokens/websocket-configs';
-export {WebsocketModule} from './websocket.module';
+export {provideWebsocket} from './websocket.provider';

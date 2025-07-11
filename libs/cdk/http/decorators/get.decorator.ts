@@ -9,7 +9,7 @@ export function Get<T>(
     emitOptions: EmitOptions = {emitFailure: true, emitSuccess: false},
 ): MethodDecorator {
     return (
-        target: DataHttpClient & any,
+        target: DataHttpClient | any,
         _name: string | symbol,
         descriptor: Descriptor,
     ): Descriptor =>

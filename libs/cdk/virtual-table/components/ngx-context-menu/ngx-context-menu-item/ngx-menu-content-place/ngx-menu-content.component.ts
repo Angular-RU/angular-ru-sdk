@@ -14,7 +14,7 @@ import {Nullable} from '@angular-ru/cdk/typings';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NgxMenuContentComponent {
+export class NgxMenuContent {
     @Input()
     public icon: Nullable<string> = null;
 
