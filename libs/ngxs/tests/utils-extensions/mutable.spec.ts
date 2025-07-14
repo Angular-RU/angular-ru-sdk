@@ -1,5 +1,5 @@
 import {AsyncPipe} from '@angular/common';
-import {ChangeDetectionStrategy, Component, Injectable} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, Injectable} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
 import {MutableTypePipe} from '@angular-ru/cdk/pipes';
 import {Immutable} from '@angular-ru/cdk/typings';
@@ -58,7 +58,7 @@ describe('mutable', () => {
             changeDetection: ChangeDetectionStrategy.OnPush,
         })
         class AppComponent {
-            constructor(public appState: AppState) {}
+            public appState = inject(AppState);
         }
 
         TestBed.configureTestingModule({

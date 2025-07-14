@@ -2,6 +2,7 @@ import {
     AfterViewInit,
     ChangeDetectionStrategy,
     Component,
+    inject,
     ViewEncapsulation,
 } from '@angular/core';
 import {MatCheckbox} from '@angular/material/checkbox';
@@ -21,6 +22,8 @@ import {hlJsCode} from '../../../../../.global/utils/hljs-code';
     providers: [ToastrService],
 })
 export default class SampleThirteenComponent implements AfterViewInit {
+    private readonly toast = inject(ToastrService);
+
     public data: PlainObject[] = [
         {
             id: 1,
@@ -43,8 +46,6 @@ export default class SampleThirteenComponent implements AfterViewInit {
             price: 199,
         },
     ];
-
-    constructor(private readonly toast: ToastrService) {}
 
     public ngAfterViewInit(): void {
         this.update();

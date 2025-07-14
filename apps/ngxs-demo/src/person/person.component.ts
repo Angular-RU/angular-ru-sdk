@@ -1,5 +1,5 @@
 import {AsyncPipe} from '@angular/common';
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 
 import {PersonState} from './person.state';
 
@@ -10,5 +10,5 @@ import {PersonState} from './person.state';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PersonComponent {
-    constructor(public person: PersonState) {}
+    public person = inject(PersonState);
 }

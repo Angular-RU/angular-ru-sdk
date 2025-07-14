@@ -1,4 +1,4 @@
-import {Inject, Pipe, PipeTransform} from '@angular/core';
+import {inject, Pipe, PipeTransform} from '@angular/core';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {isNotNil} from '@angular-ru/cdk/utils';
 
@@ -7,10 +7,7 @@ import {TableBuilder} from '../table-builder.component';
 
 @Pipe({name: 'mapToTableEntries'})
 export class MapToTableEntriesPipe<T> implements PipeTransform {
-    constructor(
-        @Inject(TableBuilder)
-        private readonly table: TableBuilder<T>,
-    ) {}
+    private readonly table = inject<TableBuilder<T>>(TableBuilder);
 
     public transform(selectedEntries?: RowId[]): T[] {
         const entries: RowId[] = selectedEntries ?? this.table.selectedKeyList;

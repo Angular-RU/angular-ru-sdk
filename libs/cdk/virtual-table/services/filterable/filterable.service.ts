@@ -1,4 +1,4 @@
-import {Injectable, Injector} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {checkIsShallowEmpty} from '@angular-ru/cdk/object';
 import {isString} from '@angular-ru/cdk/string';
 import {Nullable} from '@angular-ru/cdk/typings';
@@ -18,7 +18,7 @@ import {TableFilterType} from './table-filter-type';
 @Injectable()
 export class FilterableService<T> implements Filterable {
     private previousFiltering = false;
-    private readonly thread: WebWorkerThreadService;
+    private readonly thread = inject(WebWorkerThreadService);
     public types: ReadonlyMap<unknown, unknown> = TableFilterType as any as ReadonlyMap<
         unknown,
         unknown
@@ -40,10 +40,6 @@ export class FilterableService<T> implements Filterable {
     public filterValue: Nullable<string> = null;
     public filterType: Nullable<TableFilterType | string> = null;
     public filtering = false;
-
-    constructor(injector: Injector) {
-        this.thread = injector.get<WebWorkerThreadService>(WebWorkerThreadService);
-    }
 
     public get globalFilterValue(): Nullable<string> {
         return isString(this.filterValue) ? String(this.filterValue).trim() : null;
@@ -150,7 +146,8 @@ export class FilterableService<T> implements Filterable {
         const value: Nullable<string> = isString(this.globalFilterValue)
             ? String(this.globalFilterValue).trim()
             : null;
-        const message: FilterableMessage<T> = {
+
+        return {
             source,
             types: TableFilterType,
             global: {value, type},
@@ -160,8 +157,6 @@ export class FilterableService<T> implements Filterable {
                 isEmpty: checkIsShallowEmpty(this.definition),
             },
         };
-
-        return message;
     }
 
     private clearDefinitions(): void {

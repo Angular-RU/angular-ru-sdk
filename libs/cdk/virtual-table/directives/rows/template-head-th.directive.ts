@@ -1,4 +1,4 @@
-import {Directive, Inject, Input, Optional, TemplateRef} from '@angular/core';
+import {Directive, Input} from '@angular/core';
 import {Nullable} from '@angular-ru/cdk/typings';
 
 import {AbstractTemplateCellCommonDirective} from './abstract-template-cell-common.directive';
@@ -9,14 +9,8 @@ export class TemplateHeadTh<T> extends AbstractTemplateCellCommonDirective<T> {
     @Input('ngx-th')
     public override type: Nullable<string> = null;
 
-    public override nowrap = false;
+    @Input()
+    public override bold = true;
 
-    constructor(
-        @Inject(TemplateRef)
-        @Optional()
-        public override template?: TemplateRef<any>,
-    ) {
-        super(template);
-        this.bold = true;
-    }
+    public override nowrap = false;
 }

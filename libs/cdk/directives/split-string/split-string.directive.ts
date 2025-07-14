@@ -1,4 +1,4 @@
-import {Directive, Input} from '@angular/core';
+import {Directive, inject, Input} from '@angular/core';
 import {ControlValueInterceptor} from '@angular-ru/cdk/forms';
 import {trim} from '@angular-ru/cdk/string';
 import {checkValueIsFilled} from '@angular-ru/cdk/utils';
@@ -18,7 +18,9 @@ export class SplitString {
     @Input()
     public splitOptions?: Partial<SplitStringOptions>;
 
-    constructor(interceptor: ControlValueInterceptor) {
+    constructor() {
+        const interceptor = inject(ControlValueInterceptor);
+
         interceptor.attach({
             toModelValue: (viewValue: string): string[] =>
                 this.splitAndTrimViewValue(viewValue),

@@ -3,6 +3,7 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    inject,
     OnInit,
 } from '@angular/core';
 import {MatButton} from '@angular/material/button';
@@ -22,11 +23,10 @@ import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SampleFiveComponent implements OnInit, AfterViewInit {
+    public readonly dialog = inject(MatDialog);
+    private readonly cd = inject(ChangeDetectorRef);
+
     public data: PlainObject[] = [];
-    constructor(
-        public readonly dialog: MatDialog,
-        private readonly cd: ChangeDetectorRef,
-    ) {}
 
     public ngOnInit(): void {
         const rows = 1000;
@@ -55,13 +55,11 @@ export default class SampleFiveComponent implements OnInit, AfterViewInit {
        Also you can customize your columns manually
        <ngx-column key="myKey" [resizable]="true">...</ngx-column>
     -->
-    <ngx-options is-draggable></ngx-options>
+    <ngx-options is-draggable is-resizable />
 </ngx-table-builder>
 
                 `,
             },
-            height: '350px',
-            width: '700px',
         });
     }
 

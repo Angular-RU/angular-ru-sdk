@@ -8,7 +8,7 @@ import {
     provideHttpClientTesting,
     TestRequest,
 } from '@angular/common/http/testing';
-import {ChangeDetectionStrategy, Component, Injectable} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, Injectable} from '@angular/core';
 import {fakeAsync, TestBed, tick} from '@angular/core/testing';
 import {DataHttpClient, provideDataHttpClientOptions} from '@angular-ru/cdk/http';
 import {RestClient} from '@angular-ru/cdk/http/decorators';
@@ -39,7 +39,7 @@ describe('[TEST]: HTTP Client', () => {
         changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class UserComponent {
-        constructor(public readonly api: ApiUsersClient) {}
+        public readonly api = inject(ApiUsersClient);
     }
 
     beforeEach(() => {

@@ -3,9 +3,11 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    OnDestroy,
+    DestroyRef,
+    inject,
     OnInit,
 } from '@angular/core';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {MatButton} from '@angular/material/button';
 import {MatCheckbox} from '@angular/material/checkbox';
 import {MatDialog} from '@angular/material/dialog';
@@ -14,11 +16,10 @@ import {MatToolbar} from '@angular/material/toolbar';
 import {Nullable, PlainObject} from '@angular-ru/cdk/typings';
 import type {TableUpdateSchema} from '@angular-ru/cdk/virtual-table';
 import {NgxTableViewChangesService, VirtualTable} from '@angular-ru/cdk/virtual-table';
-import {Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
 
 import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 import {MocksGenerator} from '../../mocks-generator';
+import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
 
 @Component({
     selector: 'sample-sixteen',
@@ -26,17 +27,15 @@ import {MocksGenerator} from '../../mocks-generator';
     templateUrl: './sample-sixteen.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class SampleSixteenComponent implements OnInit, AfterViewInit, OnDestroy {
-    private readonly destroy$ = new Subject<void>();
+export default class SampleSixteenComponent implements OnInit, AfterViewInit {
+    private readonly dialog = inject(MatDialog);
+    private readonly cd = inject(ChangeDetectorRef);
+    private readonly tableChanges = inject(NgxTableViewChangesService);
+    private readonly destroyRef = inject(DestroyRef);
+
     public data: PlainObject[] = [];
     public schema: Nullable<TableUpdateSchema> = null;
-    public readonly testName: string = 'test';
-
-    constructor(
-        public readonly dialog: MatDialog,
-        private readonly cd: ChangeDetectorRef,
-        private readonly tableChanges: NgxTableViewChangesService,
-    ) {}
+    public readonly testName = 'test';
 
     public ngOnInit(): void {
         this.schema = JSON.parse(
@@ -53,7 +52,7 @@ export default class SampleSixteenComponent implements OnInit, AfterViewInit, On
         );
 
         this.tableChanges.events$
-            .pipe(takeUntil(this.destroy$))
+            .pipe(takeUntilDestroyed(this.destroyRef))
             .subscribe((event: TableUpdateSchema): void => this.save(event));
     }
 
@@ -61,14 +60,41 @@ export default class SampleSixteenComponent implements OnInit, AfterViewInit, On
         hlJsCode();
     }
 
-    public ngOnDestroy(): void {
-        this.destroy$.next();
-        this.destroy$.complete();
-    }
-
     private save(event: TableUpdateSchema): void {
         // eslint-disable-next-line no-console
         console.log('update schema', event);
         window.localStorage.setItem(this.testName, JSON.stringify(event));
+    }
+
+    protected showSample() {
+        this.dialog.open(CodeDialogComponent, {
+            data: {
+                title: 'Overview persistent state table',
+                description: '',
+                language: 'typescript',
+                code: `
+export class MyComponent implements OnInit {
+    protected schema: Nullable<TableUpdateSchema> = null;
+    private readonly tableChanges = inject(NgxTableViewChangesService);
+    private readonly testName = 'test';
+    private readonly destroyRef = inject(DestroyRef);
+    
+    ngOnInit() {
+        this.schema = JSON.parse(
+            window.localStorage.getItem(this.testName) ?? '{}',
+        ) as TableUpdateSchema;
+        
+        this.tableChanges.events$
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe((event: TableUpdateSchema) => this.save(event));
+    }
+    
+    private save(event: TableUpdateSchema) {
+        window.localStorage.setItem(this.testName, JSON.stringify(event));
+    }
+}
+                `,
+            },
+        });
     }
 }

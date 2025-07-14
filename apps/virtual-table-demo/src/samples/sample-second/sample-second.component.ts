@@ -4,6 +4,7 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    inject,
     ViewEncapsulation,
 } from '@angular/core';
 import {MatButton} from '@angular/material/button';
@@ -66,6 +67,8 @@ export interface PeriodicElement {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SampleSecondComponent implements AfterViewInit {
+    public readonly cd = inject(ChangeDetectorRef);
+
     public licenses: LicenseSample[] = [];
 
     public columns: string[] = ['name', 'position', 'weight', 'symbol', 'status'];
@@ -83,8 +86,6 @@ export default class SampleSecondComponent implements AfterViewInit {
         {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
         {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
     ];
-
-    constructor(public readonly cd: ChangeDetectorRef) {}
 
     // eslint-disable-next-line max-lines-per-function
     public ngAfterViewInit(): void {

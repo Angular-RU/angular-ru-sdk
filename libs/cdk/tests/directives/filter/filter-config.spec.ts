@@ -3,6 +3,7 @@ import {
     ChangeDetectorRef,
     Component,
     DebugElement,
+    inject,
 } from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
@@ -27,8 +28,9 @@ describe('[TEST]: inputFilter Config', () => {
         changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class TestComponent {
+        public readonly cd = inject(ChangeDetectorRef);
+
         public filterValue = '';
-        constructor(public readonly cd: ChangeDetectorRef) {}
     }
 
     beforeEach(() => {

@@ -2,6 +2,7 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    inject,
     NgZone,
     OnDestroy,
     OnInit,
@@ -39,6 +40,10 @@ import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SampleFirstComponent implements OnInit, OnDestroy {
+    private readonly cd = inject(ChangeDetectorRef);
+    public readonly dialog = inject(MatDialog);
+    private readonly ngZone = inject(NgZone);
+
     private idInterval: Nullable<number> = null;
     public width = '100%';
     public height: Nullable<number> = null;
@@ -47,12 +52,6 @@ export default class SampleFirstComponent implements OnInit, OnDestroy {
     public loading = false;
     public simple: PlainObject[] = [];
     public regenerate = false;
-
-    constructor(
-        private readonly cd: ChangeDetectorRef,
-        public readonly dialog: MatDialog,
-        private readonly ngZone: NgZone,
-    ) {}
 
     public ngOnInit(): void {
         this.updateTable();
@@ -91,8 +90,6 @@ export default class SampleFirstComponent implements OnInit, OnDestroy {
                     '   [row-height]="rowHeight"\n' +
                     '></ngx-table-builder>\n',
             },
-            height: '450px',
-            width: '600px',
         });
     }
 

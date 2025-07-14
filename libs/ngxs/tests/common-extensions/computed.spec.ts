@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
 import {Immutable} from '@angular-ru/cdk/typings';
 import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
@@ -417,11 +417,9 @@ describe('[TEST]: Computed fields', () => {
         })
         @Injectable()
         class A extends NgxsDataRepository<Model> {
-            public heavyCount = 0;
+            private readonly b = inject(B);
 
-            constructor(private readonly b: B) {
-                super();
-            }
+            public heavyCount = 0;
 
             @Computed()
             public get sum(): number {
@@ -524,9 +522,7 @@ describe('[TEST]: Computed fields', () => {
         })
         @Injectable()
         class MySecondCountState extends NgxsDataRepository<number> {
-            constructor(private readonly first: MyFirstCountService) {
-                super();
-            }
+            private readonly first = inject(MyFirstCountService);
 
             @Computed()
             public get sum(): number {
@@ -575,9 +571,9 @@ describe('[TEST]: Computed fields', () => {
     it.skip('recalculate sum when use state from third-party service', () => {
         @Injectable()
         class MyFirstCountService {
-            private readonly values$ = new BehaviorSubject<number>(0);
+            private readonly sequence = inject(NgxsDataSequence);
 
-            constructor(private readonly sequence: NgxsDataSequence) {}
+            private readonly values$ = new BehaviorSubject<number>(0);
 
             public increment(): void {
                 this.values$.next(this.getValue() + 1);
@@ -597,9 +593,7 @@ describe('[TEST]: Computed fields', () => {
         })
         @Injectable()
         class MySecondCountState extends NgxsDataRepository<number> {
-            constructor(private readonly first: MyFirstCountService) {
-                super();
-            }
+            private readonly first = inject(MyFirstCountService);
 
             @Computed()
             public get sum(): number {

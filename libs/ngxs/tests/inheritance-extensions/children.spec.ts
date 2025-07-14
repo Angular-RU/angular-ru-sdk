@@ -1,6 +1,7 @@
 import {
     ChangeDetectionStrategy,
     Component,
+    inject,
     Injectable,
     OnDestroy,
     OnInit,
@@ -73,7 +74,7 @@ describe('check correct deep instance', () => {
 
     @Injectable()
     class Facade implements OnDestroy {
-        constructor(private readonly appState: AppState) {}
+        private readonly appState = inject(AppState);
 
         public save(): void {
             this.appState.setup();
@@ -91,7 +92,7 @@ describe('check correct deep instance', () => {
         providers: [Facade],
     })
     class AppComponent implements OnInit {
-        constructor(private readonly facade: Facade) {}
+        private readonly facade = inject(Facade);
 
         public ngOnInit(): void {
             this.facade.save();

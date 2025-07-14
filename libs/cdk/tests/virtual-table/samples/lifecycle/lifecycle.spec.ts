@@ -1,36 +1,26 @@
-import {
-    ApplicationRef,
-    ChangeDetectorRef,
-    ElementRef,
-    NgZone,
-    QueryList,
-    SimpleChanges,
-} from '@angular/core';
-import {fakeAsync, tick} from '@angular/core/testing';
+import {ChangeDetectorRef, ElementRef, QueryList, SimpleChanges} from '@angular/core';
+import {fakeAsync, TestBed, tick} from '@angular/core/testing';
+import {provideNoopAnimations} from '@angular/platform-browser/animations';
 import {deepClone} from '@angular-ru/cdk/object';
-import {Fn, Nullable, PlainObject} from '@angular-ru/cdk/typings';
+import {Nullable, PlainObject} from '@angular-ru/cdk/typings';
 import {
+    FilterableService,
     NgxColumn,
     NgxTableViewChangesService,
+    SelectionService,
     TableBuilder,
 } from '@angular-ru/cdk/virtual-table';
+import {ContextMenuService} from '@angular-ru/cdk/virtual-table/services/context-menu/context-menu.service';
 import {WebWorkerThreadService} from '@angular-ru/cdk/webworker';
 
 import {MapToTableEntriesPipe} from '../../../../virtual-table/pipes/map-to-table-entries.pipe';
-import {TableSelectedItemsPipe} from '../../../../virtual-table/pipes/table-selected-items.pipe';
-import {ContextMenuService} from '../../../../virtual-table/services/context-menu/context-menu.service';
 import {DraggableService} from '../../../../virtual-table/services/draggable/draggable.service';
-import {FilterableService} from '../../../../virtual-table/services/filterable/filterable.service';
 import {ResizableService} from '../../../../virtual-table/services/resizer/resizable.service';
-import {SelectionService} from '../../../../virtual-table/services/selection/selection.service';
 import {SortableService} from '../../../../virtual-table/services/sortable/sortable.service';
 import {TemplateParserService} from '../../../../virtual-table/services/template-parser/template-parser.service';
 
 describe('[TEST]: Lifecycle table', () => {
     let table: TableBuilder<PlainObject>;
-    let sortable: SortableService<PlainObject>;
-    let draggable: DraggableService<PlainObject>;
-    let resizeService: ResizableService;
     let changes: SimpleChanges;
 
     const mockChangeDetector: Partial<ChangeDetectorRef> = {
@@ -39,15 +29,6 @@ describe('[TEST]: Lifecycle table', () => {
         },
     };
 
-    const appRef: Partial<ApplicationRef> = {
-        tick: (): void => {
-            // ...
-        },
-    };
-    const mockNgZone: Partial<NgZone> = {
-        run: (callback: Fn): any => callback(),
-        runOutsideAngular: (callback: Fn): any => callback(),
-    };
     const webWorker: Partial<WebWorkerThreadService> = {
         async run<T, K>(workerFunction: (input: K) => T, data?: K): Promise<T> {
             return Promise.resolve(workerFunction(data!));
@@ -77,58 +58,32 @@ describe('[TEST]: Lifecycle table', () => {
 
     beforeEach(() => {
         const worker: WebWorkerThreadService = webWorker as WebWorkerThreadService;
-        const zone: NgZone = mockNgZone as NgZone;
-        const app: ApplicationRef = appRef as ApplicationRef;
-        const view: NgxTableViewChangesService = new NgxTableViewChangesService();
 
-        const parser = new TemplateParserService<PlainObject>();
-
-        draggable = new DraggableService(parser);
-
-        resizeService = new ResizableService();
-
-        // @ts-ignore
-        sortable = new SortableService(worker, zone);
-
-        table = new TableBuilder(mockChangeDetector as ChangeDetectorRef, {
-            // eslint-disable-next-line complexity
-            get(token: any): any {
-                switch (token) {
-                    case ApplicationRef:
-                        return app;
-                    case ContextMenuService:
-                        return new ContextMenuService();
-                    case DraggableService:
-                        return draggable;
-                    case FilterableService:
-                        return new FilterableService({
-                            get(_token: any): any {
-                                // eslint-disable-next-line sonarjs/no-nested-switch
-                                switch (_token) {
-                                    case ApplicationRef:
-                                        return app;
-                                    case NgZone:
-                                        return zone;
-                                    case WebWorkerThreadService:
-                                        return worker;
-                                }
-                            },
-                        });
-                    case NgxTableViewChangesService:
-                        return view;
-                    case NgZone:
-                        return zone;
-                    case ResizableService:
-                        return resizeService;
-                    case SelectionService:
-                        return new SelectionService(zone);
-                    case SortableService:
-                        return sortable;
-                    case TemplateParserService:
-                        return parser;
-                }
-            },
+        TestBed.configureTestingModule({
+            providers: [
+                {
+                    provide: WebWorkerThreadService,
+                    useValue: worker,
+                },
+                {
+                    provide: ChangeDetectorRef,
+                    useValue: mockChangeDetector,
+                },
+                provideNoopAnimations(),
+                MapToTableEntriesPipe,
+                ContextMenuService,
+                DraggableService,
+                FilterableService,
+                NgxTableViewChangesService,
+                ResizableService,
+                SelectionService,
+                SortableService,
+                TemplateParserService,
+                TableBuilder,
+            ],
         });
+
+        table = TestBed.inject(TableBuilder);
 
         const element: HTMLElement = document.createElement('div') as HTMLElement;
 
@@ -144,19 +99,16 @@ describe('[TEST]: Lifecycle table', () => {
     it('should be basic api', async () => {
         table.setSource(deepClone(data));
 
-        expect(new TableSelectedItemsPipe(table).transform({1: true, 2: true})).toEqual([
-            {position: 1, name: 'Hydrogen', symbol: 'H', weight: 1.0079},
-            {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-        ]);
+        const mapToTableEntriesPipe = TestBed.inject(MapToTableEntriesPipe);
 
         // expect MapToTableEntriesPipe pipe works
-        expect(new MapToTableEntriesPipe(table).transform([1, 2])).toEqual([
+        expect(mapToTableEntriesPipe.transform([1, 2])).toEqual([
             {position: 1, name: 'Hydrogen', symbol: 'H', weight: 1.0079},
             {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
         ]);
 
         // expect MapToTableEntriesPipe pipe works with another ordering
-        expect(new MapToTableEntriesPipe(table).transform([2, 1])).toEqual([
+        expect(mapToTableEntriesPipe.transform([2, 1])).toEqual([
             {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
             {position: 1, name: 'Hydrogen', symbol: 'H', weight: 1.0079},
         ]);
@@ -169,15 +121,6 @@ describe('[TEST]: Lifecycle table', () => {
 
         expect(table.source).toEqual([
             {name: 'Hydrogen', position: 1, symbol: 'H', weight: 1.0079},
-        ]);
-
-        // expect selection pipe works even with filtered values
-
-        expect(new TableSelectedItemsPipe(table).transform({})).toEqual([]);
-
-        expect(new TableSelectedItemsPipe(table).transform({1: true, 2: true})).toEqual([
-            {position: 1, name: 'Hydrogen', symbol: 'H', weight: 1.0079},
-            {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
         ]);
 
         expect(table.lastItem).toEqual({

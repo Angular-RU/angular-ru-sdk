@@ -11,12 +11,14 @@ import {UserState} from './user.state';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserComponent {
+    public userState = inject(UserState);
+
     private readonly store = inject(Store);
 
     protected user$ = this.store.select(UserState.getEntity);
     protected isLoading$ = this.store.select(UserState.isLoading);
 
-    constructor(public userState: UserState) {
+    constructor() {
         // eslint-disable-next-line rxjs/no-ignored-observable
         this.userState.loadUser();
     }

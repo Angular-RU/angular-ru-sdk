@@ -1,11 +1,4 @@
-import {
-    Directive,
-    ElementRef,
-    HostListener,
-    Inject,
-    Input,
-    Optional,
-} from '@angular/core';
+import {Directive, ElementRef, HostListener, inject, Input} from '@angular/core';
 import {hasItems} from '@angular-ru/cdk/array';
 import {ControlValueInterceptor} from '@angular-ru/cdk/forms';
 import {filter, FilterPredicate} from '@angular-ru/cdk/string';
@@ -19,20 +12,17 @@ import {InputFilterConfig} from './input-filter.config';
     providers: [ControlValueInterceptor],
 })
 export class InputFilter {
+    private readonly elementRef = inject<ElementRef<HTMLInputElement>>(ElementRef);
+    private readonly config = inject<Nullable<InputFilterConfig>>(InputFilterConfig, {
+        optional: true,
+    })!;
+
     private manualEvent: Nullable<InputEvent> = null;
     @Input()
     declare public inputFilter: FilterPredicate | '';
 
     @Input()
     public filterDisabled = false;
-
-    constructor(
-        @Inject(ElementRef)
-        private readonly elementRef: ElementRef<HTMLInputElement>,
-        @Optional()
-        @Inject(InputFilterConfig)
-        private readonly config: Nullable<InputFilterConfig>,
-    ) {}
 
     @HostListener('input', ['$event'])
     public onInput(baseEvent: InputEvent): void {

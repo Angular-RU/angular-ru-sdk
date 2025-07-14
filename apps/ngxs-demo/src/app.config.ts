@@ -15,7 +15,7 @@ import {
 import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
 import {withNgxsDataStorage} from '@angular-ru/ngxs/storage';
 import {withNgxsLoggerPlugin} from '@ngxs/logger-plugin';
-import {provideStore} from '@ngxs/store';
+import {provideStore, withNgxsNoopExecutionStrategy} from '@ngxs/store';
 
 import {environment} from '../environments/environment';
 import {routes} from './app.routes';
@@ -43,6 +43,7 @@ export const appConfig: ApplicationConfig = {
                 developmentMode: !environment.production,
             },
             withNgxsLoggerPlugin(),
+            withNgxsNoopExecutionStrategy(),
         ),
         provideNgxsDataPlugin(withNgxsDataStorage()),
     ],

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {AbstractControlOptions, FormBuilder, FormGroup} from '@angular/forms';
 import {emptyValidator} from '@angular-ru/cdk/validators';
@@ -11,9 +11,11 @@ describe('empty validator', () => {
             changeDetection: ChangeDetectionStrategy.OnPush,
         })
         class AppComponent {
+            private readonly fb = inject(FormBuilder);
+
             public form: FormGroup;
 
-            constructor(private readonly fb: FormBuilder) {
+            constructor() {
                 this.form = this.fb.group({
                     name: '',
                     lastName: '',
@@ -37,9 +39,11 @@ describe('empty validator', () => {
             changeDetection: ChangeDetectionStrategy.OnPush,
         })
         class AppComponent {
+            private readonly fb = inject(FormBuilder);
+
             public form: FormGroup;
 
-            constructor(private readonly fb: FormBuilder) {
+            constructor() {
                 this.form = this.fb.group(
                     {
                         name: this.fb.control(''),

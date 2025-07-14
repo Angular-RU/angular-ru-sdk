@@ -3,6 +3,7 @@ import {
     ChangeDetectorRef,
     Component,
     DebugElement,
+    inject,
 } from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -35,13 +36,11 @@ describe('[TEST]: Trim Input', function () {
         changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class DynamicTestComponent {
+        public readonly cd = inject(ChangeDetectorRef);
+        private readonly fb = inject(FormBuilder);
+
         public form = this.fb.group({a: 1234000012340000, b: null});
         public controlName = 'b';
-
-        constructor(
-            public readonly cd: ChangeDetectorRef,
-            private readonly fb: FormBuilder,
-        ) {}
     }
 
     beforeEach(async () => {

@@ -3,6 +3,7 @@ import {
     ChangeDetectorRef,
     Component,
     DebugElement,
+    inject,
 } from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {AbstractControl, FormBuilder, ReactiveFormsModule} from '@angular/forms';
@@ -33,14 +34,12 @@ describe('[TEST]: inputFilter Dynamic', function () {
         changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class DynamicTestComponent {
+        public readonly cd = inject(ChangeDetectorRef);
+        private readonly fb = inject(FormBuilder);
+
         public form = this.fb.group({a: 'kkk', b: null});
         public control: Nullable<AbstractControl> = this.form.get('b');
         public predicate: FilterPredicate = ['a', 'b', 'c'];
-
-        constructor(
-            public readonly cd: ChangeDetectorRef,
-            private readonly fb: FormBuilder,
-        ) {}
     }
 
     beforeEach(async () => {

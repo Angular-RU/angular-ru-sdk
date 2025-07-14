@@ -1,4 +1,10 @@
-import {ChangeDetectionStrategy, Component, DebugElement, Input} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    DebugElement,
+    inject,
+    Input,
+} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
@@ -40,6 +46,8 @@ describe('[TEST]: Initial Focus', function () {
         changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class TestComponent {
+        private readonly fb = inject(FormBuilder);
+
         @Input()
         public disableFocusText = true;
 
@@ -51,8 +59,6 @@ describe('[TEST]: Initial Focus', function () {
             wantFocusText: 'wanna be focused',
             wantFocusNumber: 7,
         });
-
-        constructor(private readonly fb: FormBuilder) {}
     }
 
     beforeEach(async () => {

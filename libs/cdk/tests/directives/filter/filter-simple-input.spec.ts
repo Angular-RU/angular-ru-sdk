@@ -3,6 +3,7 @@ import {
     ChangeDetectorRef,
     Component,
     DebugElement,
+    inject,
     Input,
 } from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
@@ -31,13 +32,13 @@ describe('[TEST]: inputFilter Simple Input', () => {
         changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class TestComponent {
+        public readonly cd = inject(ChangeDetectorRef);
+
         @Input()
         public disableFilter = false;
 
         public filterValue = 'abcД';
         public predicate: FilterPredicate = ['a', 'b', 'c', ' '];
-
-        constructor(public readonly cd: ChangeDetectorRef) {}
     }
 
     beforeEach(() => {

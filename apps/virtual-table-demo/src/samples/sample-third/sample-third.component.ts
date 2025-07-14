@@ -3,6 +3,7 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    inject,
     OnInit,
 } from '@angular/core';
 import {MatButton} from '@angular/material/button';
@@ -23,12 +24,10 @@ import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SampleThirdComponent implements OnInit, AfterViewInit {
-    public data: PlainObject[] = [];
+    public readonly dialog = inject(MatDialog);
+    private readonly cd = inject(ChangeDetectorRef);
 
-    constructor(
-        public readonly dialog: MatDialog,
-        private readonly cd: ChangeDetectorRef,
-    ) {}
+    public data: PlainObject[] = [];
 
     public ngOnInit(): void {
         const rowNumber = 1000;
@@ -89,8 +88,6 @@ export default class SampleThirdComponent implements OnInit, AfterViewInit {
 </ngx-table-builder>
                     `,
             },
-            height: '650px',
-            width: '900px',
         });
     }
 }

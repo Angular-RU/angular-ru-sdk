@@ -1,4 +1,10 @@
-import {Injectable, QueryList} from '@angular/core';
+import {
+    inject,
+    Injectable,
+    Injector,
+    QueryList,
+    runInInjectionContext,
+} from '@angular/core';
 import {toNumber} from '@angular-ru/cdk/number';
 import {shallowMapObject} from '@angular-ru/cdk/object';
 import {Nullable, PlainObjectOf} from '@angular-ru/cdk/typings';
@@ -56,6 +62,8 @@ export class TemplateParserService<T> {
      *    allowedKeyMap === { 'id': true, 'hello': true, 'value': true, 'description': false }
      */
     public keyMap: PlainObjectOf<boolean> = {};
+
+    private readonly injector = inject(Injector);
 
     private static templateContext<U>(
         key: string,
@@ -181,9 +189,9 @@ export class TemplateParserService<T> {
             excelType,
         }: NgxColumn<T> = column;
         const thTemplate: AbstractTemplateCellCommonDirective<T> =
-            th ?? new TemplateHeadTh<T>();
+            th ?? runInInjectionContext(this.injector, () => new TemplateHeadTh<T>());
         const tdTemplate: AbstractTemplateCellCommonDirective<T> =
-            td ?? new TemplateBodyTd<T>();
+            td ?? runInInjectionContext(this.injector, () => new TemplateBodyTd<T>());
         const isEmptyHead: boolean = getValidHtmlBooleanAttribute(emptyHead);
         const thOptions: TableCellOptions = TemplateParserService.templateContext(
             key ?? '',

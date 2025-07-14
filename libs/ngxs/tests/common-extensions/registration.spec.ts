@@ -1,4 +1,10 @@
-import {ChangeDetectionStrategy, Component, Injectable, OnInit} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    inject,
+    Injectable,
+    OnInit,
+} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
 import {DataAction, StateRepository} from '@angular-ru/ngxs/decorators';
@@ -51,10 +57,10 @@ describe('check correct deep instance', () => {
         changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class AppComponent implements OnInit {
+        private readonly registration = inject(RegistrationState);
+
         public name = 'Angular + NGXS';
         public result: any = null;
-
-        constructor(private readonly registration: RegistrationState) {}
 
         public ngOnInit() {
             this.result = this.registration.addAddress({

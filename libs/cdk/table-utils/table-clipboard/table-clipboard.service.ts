@@ -1,6 +1,6 @@
 /* eslint-disable unicorn/consistent-function-scoping */
 // eslint-disable-next-line max-classes-per-file
-import {Inject, Injectable, Optional} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {EmptyValue, Nullable, PlainObject} from '@angular-ru/cdk/typings';
 import {copyHtml, isNotNil} from '@angular-ru/cdk/utils';
 import {WebWorkerThreadService} from '@angular-ru/cdk/webworker';
@@ -25,15 +25,14 @@ interface PreparedRequest {
 
 @Injectable()
 export class TableClipboardService {
-    constructor(
-        @Inject(PlainTableComposerService)
-        private readonly plainTableComposer: PlainTableComposerService,
-        @Inject(WebWorkerThreadService)
-        private readonly webWorker: WebWorkerThreadService,
-        @Inject(TranslateService)
-        @Optional()
-        private readonly translate: TranslateService,
-    ) {}
+    private readonly plainTableComposer = inject<PlainTableComposerService>(
+        PlainTableComposerService,
+    );
+
+    private readonly webWorker = inject<WebWorkerThreadService>(WebWorkerThreadService);
+    private readonly translate = inject<TranslateService>(TranslateService, {
+        optional: true,
+    })!;
 
     // eslint-disable-next-line max-lines-per-function
     public async generateTableAndCopy<EntryType extends PlainObject>(

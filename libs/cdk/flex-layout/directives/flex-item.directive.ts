@@ -1,23 +1,18 @@
 /* eslint-disable @angular-eslint/no-input-rename */
-import {AfterViewInit, ElementRef, Inject} from '@angular/core';
+import {AfterViewInit, ElementRef, inject} from '@angular/core';
 import {Directive, Input} from '@angular/core';
 
 import {AbstractFlexLayout} from './abstract-flex-layout.directive';
 
 @Directive({selector: '[flex-item]'})
 export class FlexItem extends AbstractFlexLayout implements AfterViewInit {
+    protected readonly elementRef = inject<ElementRef>(ElementRef);
+
     @Input('flex-wide')
     public wide: boolean | string = false;
 
     @Input('flex-equal')
     public equalWidth: boolean | string = false;
-
-    constructor(
-        @Inject(ElementRef)
-        protected readonly elementRef: ElementRef,
-    ) {
-        super();
-    }
 
     public ngAfterViewInit(): void {
         this.classList.add('flex__item');

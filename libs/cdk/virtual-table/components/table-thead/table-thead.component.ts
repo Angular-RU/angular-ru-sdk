@@ -5,6 +5,7 @@ import {
     Component,
     EventEmitter,
     HostListener,
+    inject,
     Input,
     Output,
     ViewEncapsulation,
@@ -28,6 +29,8 @@ import {OVERLOAD_WIDTH_TABLE_HEAD_CELL} from '../../table-builder.properties';
     animations: [fadeInLinearAnimation],
 })
 export class TableThead<T> {
+    protected readonly filterable = inject<FilterableService<T>>(FilterableService);
+
     @Input('column-width')
     public columnWidth = 0;
 
@@ -64,8 +67,6 @@ export class TableThead<T> {
 
     public orderType: typeof SortOrderType = SortOrderType;
     public limit: number = OVERLOAD_WIDTH_TABLE_HEAD_CELL;
-
-    constructor(protected readonly filterable: FilterableService<T>) {}
 
     @HostListener('contextmenu', ['$event'])
     public openContextMenuHandler($event: MouseEvent): void {

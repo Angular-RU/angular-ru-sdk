@@ -4,16 +4,10 @@ import {
     AfterContentInit,
     AfterViewChecked,
     AfterViewInit,
-    ApplicationRef,
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     ElementRef,
     HostListener,
-    Inject,
-    INJECTOR,
-    Injector,
-    NgZone,
     OnChanges,
     OnDestroy,
     OnInit,
@@ -67,7 +61,6 @@ import {TableFilterType} from './services/filterable/table-filter-type';
 import {ResizableService} from './services/resizer/resizable.service';
 import {SelectionService} from './services/selection/selection.service';
 import {SortableService} from './services/sortable/sortable.service';
-import {NgxTableViewChangesService} from './services/table-view-changes/ngx-table-view-changes.service';
 import {TemplateParserService} from './services/template-parser/template-parser.service';
 
 const {
@@ -129,9 +122,6 @@ export class TableBuilder<T>
     private frameCalculateViewportId: Nullable<number> = null;
     private selectionUpdateTaskId: Nullable<number> = null;
     private changesTimerId = 0;
-    protected readonly app: ApplicationRef;
-    protected readonly draggable: DraggableService<T>;
-    protected readonly viewChanges: NgxTableViewChangesService;
     @ViewChild('header', {static: false})
     public headerRef!: ElementRef<HTMLDivElement>;
 
@@ -149,35 +139,6 @@ export class TableBuilder<T>
     public recalculated: RecalculatedStatus = {recalculateHeight: false};
     public sourceIsNull = false;
     public afterViewInitDone = false;
-    public readonly selection: SelectionService<T>;
-    public readonly templateParser: TemplateParserService<T>;
-    public readonly ngZone: NgZone;
-    public readonly resize: ResizableService;
-    public readonly sortable: SortableService<T>;
-    public readonly contextMenu: ContextMenuService<T>;
-    public readonly filterable: FilterableService<T>;
-
-    constructor(
-        @Inject(ChangeDetectorRef)
-        public readonly cd: ChangeDetectorRef,
-        @Inject(INJECTOR)
-        injector: Injector,
-    ) {
-        super();
-        this.selection = injector.get<SelectionService<T>>(SelectionService);
-        this.templateParser =
-            injector.get<TemplateParserService<T>>(TemplateParserService);
-        this.ngZone = injector.get<NgZone>(NgZone);
-        this.resize = injector.get<ResizableService>(ResizableService);
-        this.sortable = injector.get<SortableService<T>>(SortableService);
-        this.contextMenu = injector.get<ContextMenuService<T>>(ContextMenuService);
-        this.app = injector.get<ApplicationRef>(ApplicationRef);
-        this.filterable = injector.get<FilterableService<T>>(FilterableService);
-        this.draggable = injector.get<DraggableService<T>>(DraggableService);
-        this.viewChanges = injector.get<NgxTableViewChangesService>(
-            NgxTableViewChangesService,
-        );
-    }
 
     public get destroy$(): Subject<boolean> {
         return this._destroy$;

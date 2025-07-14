@@ -1,5 +1,5 @@
 import {AsyncPipe} from '@angular/common';
-import {ChangeDetectionStrategy, Component, OnDestroy} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, OnDestroy} from '@angular/core';
 import {MatButton, MatIconButton} from '@angular/material/button';
 import {MatDialog} from '@angular/material/dialog';
 import {MatIcon} from '@angular/material/icon';
@@ -48,12 +48,10 @@ import {ArticleDialogComponent} from './dialog/article-dialog.component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticleComponent implements OnDestroy {
-    private readonly destroy$ = new Subject<void>();
+    public dialog = inject(MatDialog);
+    public articleEntities = inject(ArticleEntitiesState);
 
-    constructor(
-        public dialog: MatDialog,
-        public articleEntities: ArticleEntitiesState,
-    ) {}
+    private readonly destroy$ = new Subject<void>();
 
     public ngOnDestroy(): void {
         this.destroy$.next();

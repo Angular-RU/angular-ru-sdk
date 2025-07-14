@@ -1,13 +1,5 @@
 import {isPlatformServer} from '@angular/common';
-import {
-    Inject,
-    inject,
-    Injectable,
-    Injector,
-    PLATFORM_ID,
-    ProviderToken,
-    Self,
-} from '@angular/core';
+import {inject, Injectable, Injector, PLATFORM_ID, ProviderToken} from '@angular/core';
 import {isGetter} from '@angular-ru/cdk/object';
 import {PlainObject} from '@angular-ru/cdk/typings';
 import {checkValueIsFilled, isFalsy, isNotNil, isTruthy} from '@angular-ru/cdk/utils';
@@ -52,6 +44,8 @@ import {silentSerializeWarning} from './utils/silent-serialize-warning';
 
 @Injectable()
 export class NgxsDataStoragePlugin implements NgxsPlugin, DataStoragePlugin {
+    public readonly platformId = inject(PLATFORM_ID);
+
     public static injector: Injector | null = null;
     private static eventsSubscriptions: Subscription | null = null;
     private static readonly ttlListeners = new WeakMap<
@@ -59,11 +53,8 @@ export class NgxsDataStoragePlugin implements NgxsPlugin, DataStoragePlugin {
         TtlListenerOptions
     >();
 
-    constructor(
-        @Inject(PLATFORM_ID) public readonly platformId: string,
-        @Self() injector: Injector,
-    ) {
-        NgxsDataStoragePlugin.injector = injector;
+    constructor() {
+        NgxsDataStoragePlugin.injector = inject(Injector, {self: true});
         STORAGE_INITIALIZER.init();
         this.listenWindowEvents();
     }

@@ -8,6 +8,7 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    inject,
     NgZone,
     VERSION,
     Version,
@@ -35,6 +36,9 @@ interface Favorite {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class GuideComponent {
+    private readonly zone = inject(NgZone);
+    protected readonly cd = inject(ChangeDetectorRef);
+
     public version: Version = VERSION;
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers,@typescript-eslint/explicit-function-return-type
     public favorites: Favorite[] = new Array(10000).fill(0).map(
@@ -49,11 +53,6 @@ export default class GuideComponent {
             isMarked: false,
         }),
     );
-
-    constructor(
-        private readonly zone: NgZone,
-        protected readonly cd: ChangeDetectorRef,
-    ) {}
 
     public markFavorite(favorite: Favorite): void {
         this.zone.runOutsideAngular((): void => {

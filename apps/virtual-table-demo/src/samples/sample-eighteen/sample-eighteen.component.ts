@@ -2,6 +2,7 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    inject,
     OnInit,
     ViewEncapsulation,
 } from '@angular/core';
@@ -29,13 +30,11 @@ import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SampleEighteenComponent implements OnInit {
+    public readonly dialog = inject(MatDialog);
+    private readonly cd = inject(ChangeDetectorRef);
+
     public data: PlainObject[] = [];
     public rowCssClasses: PlainObject = {1: ['highlight'], 3: ['highlight']};
-
-    constructor(
-        public readonly dialog: MatDialog,
-        private readonly cd: ChangeDetectorRef,
-    ) {}
 
     public ngOnInit(): void {
         const rows = 50;
@@ -66,8 +65,6 @@ export default class SampleEighteenComponent implements OnInit {
 </ngx-table-builder>
                 `,
             },
-            height: '350px',
-            width: '700px',
         });
     }
 }

@@ -2,6 +2,7 @@ import {
     Directive,
     ElementRef,
     EventEmitter,
+    inject,
     Input,
     NgZone,
     OnChanges,
@@ -28,6 +29,9 @@ const RECALCULATE_HEIGHT = 100;
 
 @Directive({selector: '[autoHeight]'})
 export class AutoHeight<T> implements OnInit, OnChanges, OnDestroy {
+    private readonly element = inject(ElementRef);
+    public readonly ngZone = inject(NgZone);
+
     private readonly _destroy$: Subject<boolean> = new Subject<boolean>();
     private readonly minHeight: number = 0;
     private useOnlyAutoViewPort = false;
@@ -44,11 +48,6 @@ export class AutoHeight<T> implements OnInit, OnChanges, OnDestroy {
 
     @Output()
     public readonly recalculatedHeight = new EventEmitter<void>(true);
-
-    constructor(
-        private readonly element: ElementRef,
-        public readonly ngZone: NgZone,
-    ) {}
 
     public get destroy$(): Subject<boolean> {
         return this._destroy$;

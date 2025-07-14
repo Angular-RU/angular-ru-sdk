@@ -2,9 +2,7 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    Inject,
-    INJECTOR,
-    Injector,
+    inject,
     Input,
     NgZone,
     OnChanges,
@@ -34,10 +32,13 @@ const {TIME_RELOAD}: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NgxFilterViewer<T> implements OnChanges, OnInit, OnDestroy {
+    private readonly cd = inject<ChangeDetectorRef>(ChangeDetectorRef);
+    private readonly sanitizer = inject<DomSanitizer>(DomSanitizer);
+
     private readonly destroy$ = new Subject<void>();
     private taskId: Nullable<number> = null;
-    private readonly ngZone: NgZone;
-    private readonly filterable: FilterableService<T>;
+    private readonly ngZone = inject(NgZone);
+    private readonly filterable = inject(FilterableService<T>);
     @Input()
     public text?: Nullable<PlainObject | string> = null;
 
@@ -50,17 +51,8 @@ export class NgxFilterViewer<T> implements OnChanges, OnInit, OnDestroy {
     public html?: Nullable<SafeHtml | string> = null;
     public founded = false;
 
-    constructor(
-        @Inject(ChangeDetectorRef)
-        private readonly cd: ChangeDetectorRef,
-        @Inject(DomSanitizer)
-        private readonly sanitizer: DomSanitizer,
-        @Inject(INJECTOR)
-        injector: Injector,
-    ) {
+    constructor() {
         this.cd.reattach();
-        this.ngZone = injector.get<NgZone>(NgZone);
-        this.filterable = injector.get<FilterableService<T>>(FilterableService);
     }
 
     private static wrapSelectedHtml(finder: string): string {

@@ -13,11 +13,13 @@ $ng-app-variable-theme: mat.m2-define-light-theme(
             accent: $ng-app-variable-accent,
             warn: $ng-app-variable-warn,
         ),
+        typography: mat.m2-define-typography-config(),
         density: -1,
     )
 );
 
 @include mat.all-component-themes($ng-app-variable-theme);
+@include mat.typography-hierarchy($ng-app-variable-theme);
 @include mat.form-field-density(-4);
 
 html,

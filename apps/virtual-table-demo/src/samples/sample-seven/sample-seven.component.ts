@@ -3,6 +3,7 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    inject,
     OnInit,
 } from '@angular/core';
 import {MatButton} from '@angular/material/button';
@@ -21,9 +22,9 @@ import {MocksGenerator} from '../../mocks-generator';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SampleSevenComponent implements OnInit, AfterViewInit {
-    public data: PlainObject[] = [];
+    private readonly cd = inject(ChangeDetectorRef);
 
-    constructor(private readonly cd: ChangeDetectorRef) {}
+    public data: PlainObject[] = [];
 
     public ngOnInit(): void {
         const rowsNumber = 10000;

@@ -1,4 +1,4 @@
-import {Inject, Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {Arguments, PlainObject} from '@angular-ru/cdk/typings';
 
 import {
@@ -19,16 +19,10 @@ import {GroupFactory} from './group-factory.service';
 
 @Injectable()
 export class LoggerFactory {
-    // eslint-disable-next-line max-params
-    constructor(
-        @Inject(LOGGER_OPTIONS) private readonly options: LoggerOptionsImpl,
-        @Inject(ConsoleService)
-        private readonly console: ConsoleService,
-        @Inject(CssFactory)
-        private readonly cssFactory: CssFactory,
-        @Inject(GroupFactory)
-        private readonly groupFactory: GroupFactory,
-    ) {}
+    private readonly options = inject<LoggerOptionsImpl>(LOGGER_OPTIONS);
+    private readonly console = inject<ConsoleService>(ConsoleService);
+    private readonly cssFactory = inject<CssFactory>(CssFactory);
+    private readonly groupFactory = inject<GroupFactory>(GroupFactory);
 
     public createLogger<T>(level: LoggerLevel, logger: LoggerService): T {
         const args: Arguments = this.getArgumentsByType(level);

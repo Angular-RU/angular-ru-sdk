@@ -7,6 +7,7 @@ import {
 import {
     ChangeDetectionStrategy,
     Component,
+    inject,
     Injectable,
     OnDestroy,
     OnInit,
@@ -97,8 +98,9 @@ describe('[TEST]: Canceling requests and unsubscribing', () => {
         changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class TestComponent implements OnInit, OnDestroy {
+        public readonly _api = inject(ApiClient);
+
         private readonly destroy$: Subject<boolean> = new Subject<boolean>();
-        constructor(public readonly _api: ApiClient) {}
         public ngOnInit(): void {
             this.generateRequests();
         }

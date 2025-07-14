@@ -1,5 +1,5 @@
 import {AsyncPipe, JsonPipe} from '@angular/common';
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
 import {CountState} from './count.state';
@@ -12,8 +12,6 @@ import {CountSubState} from './count-sub.state';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CountComponent {
-    constructor(
-        public counter: CountState,
-        public subCount: CountSubState,
-    ) {}
+    public counter = inject(CountState);
+    public subCount = inject(CountSubState);
 }

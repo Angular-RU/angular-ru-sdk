@@ -1,6 +1,6 @@
 /* eslint-disable @angular-eslint/no-input-rename */
 import {NgTemplateOutlet} from '@angular/common';
-import {ChangeDetectorRef, NgZone, OnDestroy} from '@angular/core';
+import {ChangeDetectorRef, inject, NgZone, OnDestroy} from '@angular/core';
 import {
     ChangeDetectionStrategy,
     Component,
@@ -33,6 +33,9 @@ const TIME_IDLE = 1500;
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableCell<T> implements OnDestroy {
+    public readonly cd = inject(ChangeDetectorRef);
+    private readonly ngZone = inject(NgZone);
+
     private readonly destroy$ = new Subject<void>();
     private readonly closeButtonSelector: string = 'table-close__button';
     private readonly overflowSelector: string = 'table-grid__cell-overflow-content';
@@ -69,11 +72,6 @@ export class TableCell<T> implements OnDestroy {
     public disableDeepPath = false;
 
     public contextType: typeof ImplicitContext = ImplicitContext;
-
-    constructor(
-        public readonly cd: ChangeDetectorRef,
-        private readonly ngZone: NgZone,
-    ) {}
 
     private get overflowContentElem(): HTMLDivElement {
         return document.querySelector(`.${this.overflowSelector}`) as HTMLDivElement;

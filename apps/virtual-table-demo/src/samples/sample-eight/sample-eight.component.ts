@@ -4,6 +4,7 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    inject,
     NgZone,
     OnDestroy,
     OnInit,
@@ -90,15 +91,13 @@ function replaceAt(array: any[], index: number, value: any): any[] {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
+    private readonly cd = inject(ChangeDetectorRef);
+    private readonly ngZone = inject(NgZone);
+
     private idInterval: Nullable<number> = null;
     private timeout: Nullable<number> = null;
     public data: PlainObject[] = [];
     public regenerate = false;
-
-    constructor(
-        private readonly cd: ChangeDetectorRef,
-        private readonly ngZone: NgZone,
-    ) {}
 
     public ngOnInit(): void {
         this.updateTable();

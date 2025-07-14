@@ -1,5 +1,5 @@
 import {AsyncPipe, JsonPipe} from '@angular/common';
-import {ChangeDetectionStrategy, Component, Injectable} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, Injectable} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {Immutable} from '@angular-ru/cdk/typings';
 import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
@@ -244,7 +244,7 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
             changeDetection: ChangeDetectionStrategy.OnPush,
         })
         class AppComponent {
-            constructor(public app: StateDataListState) {}
+            public app = inject(StateDataListState);
         }
 
         TestBed.configureTestingModule({

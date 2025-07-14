@@ -1,5 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {delay, map} from 'rxjs/operators';
 
@@ -9,8 +9,9 @@ import {UserModel} from './user-model';
     providedIn: 'root',
 })
 export class UserService {
+    private readonly httpService = inject(HttpClient);
+
     private readonly SIMULATE_REQUEST_DELAY: number = 2000;
-    constructor(private readonly httpService: HttpClient) {}
 
     public loadUser(): Observable<UserModel> {
         return this.httpService.get<{data: UserModel}>('/assets/user.json').pipe(

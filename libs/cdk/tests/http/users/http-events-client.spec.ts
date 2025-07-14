@@ -11,7 +11,7 @@ import {
     provideHttpClientTesting,
     TestRequest,
 } from '@angular/common/http/testing';
-import {ChangeDetectionStrategy, Component, Injectable} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, Injectable} from '@angular/core';
 import {fakeAsync, TestBed, tick} from '@angular/core/testing';
 import {
     DATA_HTTP_CLIENT_INTERCEPTOR,
@@ -45,7 +45,7 @@ describe('[TEST]: HTTP Intercept Client', () => {
         changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class EventsComponent {
-        constructor(public readonly api: ApiEventsClient) {}
+        public readonly api = inject(ApiEventsClient);
     }
 
     @Injectable()

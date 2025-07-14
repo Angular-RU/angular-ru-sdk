@@ -1,4 +1,4 @@
-import {Pipe, PipeTransform} from '@angular/core';
+import {inject, Pipe, PipeTransform} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Nullable} from '@angular-ru/cdk/typings';
 
@@ -8,7 +8,7 @@ import {SafeValueType} from './safe-value-type';
 
 @Pipe({name: 'safe'})
 export class SafePipe implements PipeTransform {
-    constructor(protected sanitizer: DomSanitizer) {}
+    protected sanitizer = inject(DomSanitizer);
 
     // eslint-disable-next-line complexity
     public transform(value: Nullable<string>, type: SafeTypeOptions): SafeType | string {

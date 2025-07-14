@@ -3,6 +3,7 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    inject,
     OnInit,
 } from '@angular/core';
 import {FormsModule} from '@angular/forms';
@@ -25,13 +26,12 @@ import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SampleSixComponent implements OnInit, AfterViewInit {
+    public readonly dialog = inject(MatDialog);
+    private readonly cd = inject(ChangeDetectorRef);
+
     public sortByIdDirection = true;
     public data: PlainObject[] = [];
     public skipSort = false;
-    constructor(
-        public readonly dialog: MatDialog,
-        private readonly cd: ChangeDetectorRef,
-    ) {}
 
     public ngOnInit(): void {
         const rows = 10000;
@@ -65,8 +65,6 @@ export default class SampleSixComponent implements OnInit, AfterViewInit {
     (sortChanges)="sortChanges($event)"
 ></ngx-table-builder>`,
             },
-            height: '350px',
-            width: '700px',
         });
     }
 }

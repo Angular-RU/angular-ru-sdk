@@ -1,4 +1,10 @@
-import {ChangeDetectionStrategy, Component, ElementRef, ViewChild} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    inject,
+    ViewChild,
+} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SplitString, SplitStringOptions} from '@angular-ru/cdk/directives';
@@ -41,6 +47,8 @@ describe('[TEST]: Trim Input', function () {
         changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class TestComponent {
+        private readonly fb = inject(FormBuilder);
+
         @ViewChild('textAreaElement')
         public textAreaElement!: ElementRef<HTMLTextAreaElement>;
 
@@ -60,8 +68,6 @@ describe('[TEST]: Trim Input', function () {
         });
 
         public list?: string[];
-
-        constructor(private readonly fb: FormBuilder) {}
     }
 
     beforeEach(async () => {

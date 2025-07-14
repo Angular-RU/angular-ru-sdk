@@ -4,6 +4,7 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    inject,
     OnInit,
     ViewChild,
     ViewEncapsulation,
@@ -67,14 +68,13 @@ import {NotFoundComponent} from './not-found.component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SampleFourteenComponent implements OnInit, AfterViewInit {
+    public readonly dialog = inject(MatDialog);
+    private readonly cd = inject(ChangeDetectorRef);
+
     @ViewChild('table', {static: false})
     public table!: TableBuilder<PlainObject>;
 
     public data: PlainObject[] = [];
-    constructor(
-        public readonly dialog: MatDialog,
-        private readonly cd: ChangeDetectorRef,
-    ) {}
 
     public ngOnInit(): void {
         const rows = 10000;
@@ -141,8 +141,6 @@ export default class SampleFourteenComponent implements OnInit, AfterViewInit {
     </ngx-filter>
                     `,
             },
-            height: '650px',
-            width: '900px',
         });
     }
 }

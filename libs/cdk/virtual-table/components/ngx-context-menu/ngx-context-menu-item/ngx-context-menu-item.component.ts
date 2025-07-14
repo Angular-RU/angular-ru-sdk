@@ -1,19 +1,15 @@
 /* eslint-disable @angular-eslint/no-input-rename */
 import {
-    ChangeDetectorRef,
-    ElementRef,
-    Inject,
-    INJECTOR,
-    Injector,
-    OnDestroy,
-    OnInit,
-} from '@angular/core';
-import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
+    ElementRef,
     EventEmitter,
+    inject,
     Input,
     NgZone,
+    OnDestroy,
+    OnInit,
     Output,
     ViewChild,
     ViewEncapsulation,
@@ -43,10 +39,12 @@ const MENU_WIDTH = 300;
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NgxContextMenuItem<T = any> implements OnInit, OnDestroy {
+    private readonly cd = inject<ChangeDetectorRef>(ChangeDetectorRef);
+
     private readonly destroy$ = new Subject<void>();
     private taskId: Nullable<number> = null;
-    private readonly contextMenu: ContextMenuService<T>;
-    private readonly ngZone: NgZone;
+    private readonly contextMenu = inject(ContextMenuService<T>);
+    private readonly ngZone = inject(NgZone);
     @Input()
     public visible: boolean | string = true;
 
@@ -75,16 +73,6 @@ export class NgxContextMenuItem<T = any> implements OnInit, OnDestroy {
 
     public offsetX: Nullable<number> = null;
     public offsetY: Nullable<number> = null;
-
-    constructor(
-        @Inject(ChangeDetectorRef)
-        private readonly cd: ChangeDetectorRef,
-        @Inject(INJECTOR)
-        injector: Injector,
-    ) {
-        this.contextMenu = injector.get<ContextMenuService<T>>(ContextMenuService);
-        this.ngZone = injector.get<NgZone>(NgZone);
-    }
 
     public get state(): ContextMenuState<T> {
         return this.contextMenu.state;

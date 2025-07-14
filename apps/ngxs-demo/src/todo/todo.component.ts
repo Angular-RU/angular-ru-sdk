@@ -1,5 +1,5 @@
 import {AsyncPipe} from '@angular/common';
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 
 import {TodoState} from './todo.state';
 
@@ -10,5 +10,5 @@ import {TodoState} from './todo.state';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodoComponent {
-    constructor(public todo: TodoState) {}
+    public todo = inject(TodoState);
 }

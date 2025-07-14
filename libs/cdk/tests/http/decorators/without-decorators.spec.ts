@@ -4,7 +4,7 @@ import {
     provideHttpClientTesting,
     TestRequest,
 } from '@angular/common/http/testing';
-import {ChangeDetectionStrategy, Component, Injectable} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, Injectable} from '@angular/core';
 import {fakeAsync, TestBed, tick} from '@angular/core/testing';
 import {DataHttpClient, provideDataHttpClientOptions} from '@angular-ru/cdk/http';
 import {
@@ -92,7 +92,7 @@ describe('[TEST]: HTTP without decorators for client', () => {
         changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class UsersComponent {
-        constructor(public readonly api: ApiUsersClient) {}
+        public readonly api = inject(ApiUsersClient);
     }
 
     beforeEach(() => {

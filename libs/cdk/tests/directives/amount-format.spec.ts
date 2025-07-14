@@ -1,4 +1,10 @@
-import {ChangeDetectionStrategy, Component, ElementRef, ViewChild} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    inject,
+    ViewChild,
+} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {
     FormBuilder,
@@ -11,7 +17,6 @@ import {By} from '@angular/platform-browser';
 import {
     AmountFormat,
     AmountOptions,
-    DEFAULT_AMOUNT_OPTIONS,
     provideAmountFormat,
 } from '@angular-ru/cdk/directives';
 import {Nullable} from '@angular-ru/cdk/typings';
@@ -43,12 +48,22 @@ describe('[TEST]: Amount format directive', () => {
                 },
             };
 
+            TestBed.configureTestingModule({
+                providers: [
+                    AmountFormat,
+                    provideAmountFormat(),
+                    {
+                        provide: ElementRef,
+                        useValue: element,
+                    },
+                    {
+                        provide: NgControl,
+                        useValue: control,
+                    },
+                ],
+            });
             // MOCK
-            directive = new AmountFormat(
-                element as ElementRef,
-                DEFAULT_AMOUNT_OPTIONS,
-                control as NgControl,
-            );
+            directive = TestBed.inject(AmountFormat);
         });
 
         describe('ru-RU', () => {
@@ -807,14 +822,14 @@ describe('[TEST]: Amount format directive', () => {
             changeDetection: ChangeDetectionStrategy.OnPush,
         })
         class HelloWorldComponent {
+            private readonly fb = inject(FormBuilder);
+
             @ViewChild(AmountFormat)
             public directive!: AmountFormat;
 
             public form: FormGroup = this.fb.group({
                 amount: this.fb.control('INVALID_VALUE'),
             });
-
-            constructor(private readonly fb: FormBuilder) {}
         }
 
         function getInputViewValue(): Nullable<string> {

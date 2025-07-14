@@ -2,6 +2,7 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    inject,
     NgZone,
     OnDestroy,
     OnInit,
@@ -26,15 +27,13 @@ import {DialogTemplateComponent} from '../../shared/dialog-template/dialog-templ
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SampleFirstSecondComponent implements OnInit, OnDestroy {
+    private readonly cd = inject(ChangeDetectorRef);
+    public readonly dialog = inject(MatDialog);
+    private readonly ngZone = inject(NgZone);
+
     private readonly destroy$ = new Subject<void>();
     private idInterval: Nullable<number> = null;
     public data: PlainObject[] = [];
-
-    constructor(
-        private readonly cd: ChangeDetectorRef,
-        public readonly dialog: MatDialog,
-        private readonly ngZone: NgZone,
-    ) {}
 
     public ngOnInit(): void {
         const DEFAULT_TIMEOUT = 14500;

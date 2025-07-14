@@ -2,7 +2,7 @@ import {
     AfterViewInit,
     Directive,
     ElementRef,
-    Inject,
+    inject,
     Input,
     NgZone,
     OnDestroy,
@@ -14,6 +14,9 @@ const MIN_DELAY = 500;
 
 @Directive({selector: '[initialFocus]'})
 export class InitialFocus implements AfterViewInit, OnDestroy {
+    private readonly element = inject<ElementRef<HTMLInputElement>>(ElementRef);
+    private readonly ngZone = inject<NgZone>(NgZone);
+
     private readonly className: string = 'initial-focused';
     private readonly unsubscribe$: Subject<boolean> = new Subject<boolean>();
     @Input()
@@ -24,13 +27,6 @@ export class InitialFocus implements AfterViewInit, OnDestroy {
 
     @Input()
     public type?: string;
-
-    constructor(
-        @Inject(ElementRef)
-        private readonly element: ElementRef<HTMLInputElement>,
-        @Inject(NgZone)
-        private readonly ngZone: NgZone,
-    ) {}
 
     private get el(): HTMLInputElement {
         return this.element.nativeElement;

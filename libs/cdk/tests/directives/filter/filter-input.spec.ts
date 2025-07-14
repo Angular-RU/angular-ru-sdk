@@ -3,6 +3,7 @@ import {
     ChangeDetectorRef,
     Component,
     DebugElement,
+    inject,
 } from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
@@ -34,13 +35,11 @@ describe('[TEST]: inputFilter Input', function () {
         changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class TestComponent {
+        public readonly cd = inject(ChangeDetectorRef);
+        private readonly fb = inject(FormBuilder);
+
         public form = this.fb.group({value: 'abcД'});
         public predicate: FilterPredicate = ['a', 'b', 'c', ' '];
-
-        constructor(
-            public readonly cd: ChangeDetectorRef,
-            private readonly fb: FormBuilder,
-        ) {}
     }
 
     beforeEach(async () => {

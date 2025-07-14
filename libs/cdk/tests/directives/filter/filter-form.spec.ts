@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, DebugElement} from '@angular/core';
+import {ChangeDetectionStrategy, Component, DebugElement, inject} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInput} from '@angular/material/input';
@@ -36,11 +36,11 @@ describe('[TEST]: inputFilter Input', function () {
         changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class TestComponent {
+        private readonly fb = inject(FormBuilder);
+
         public form = this.fb.group({value: 'aaaKKK'});
         public characters = ['a', 'b', 'c'];
         public name = 'aaaKKK';
-
-        constructor(private readonly fb: FormBuilder) {}
     }
 
     beforeEach(async () => {

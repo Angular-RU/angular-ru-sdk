@@ -1,10 +1,11 @@
 /* eslint-disable @angular-eslint/no-input-rename */
 import {NgClass, NgStyle} from '@angular/common';
-import {ChangeDetectorRef, Injector} from '@angular/core';
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     EventEmitter,
+    inject,
     Input,
     NgZone,
     Output,
@@ -52,7 +53,9 @@ const SELECTION_DELAY = 100;
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableTbody<T> {
-    private readonly ngZone: NgZone;
+    public cd = inject(ChangeDetectorRef);
+
+    private readonly ngZone = inject(NgZone);
     @Input()
     public source: Nullable<T[]> = null;
 
@@ -116,17 +119,8 @@ export class TableTbody<T> {
     @Output()
     public readonly changed = new EventEmitter<void>(true);
 
-    public selection: SelectionService<T>;
-    public contextMenu: ContextMenuService<T>;
-
-    constructor(
-        public cd: ChangeDetectorRef,
-        injector: Injector,
-    ) {
-        this.selection = injector.get<SelectionService<T>>(SelectionService);
-        this.contextMenu = injector.get<ContextMenuService<T>>(ContextMenuService);
-        this.ngZone = injector.get<NgZone>(NgZone);
-    }
+    public selection = inject(SelectionService<T>);
+    public contextMenu = inject(ContextMenuService<T>);
 
     public get canSelectTextInTable(): boolean {
         return !this.selection.selectionStart.status;

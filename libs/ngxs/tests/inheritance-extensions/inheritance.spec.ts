@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
 import {Immutable} from '@angular-ru/cdk/typings';
 import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
@@ -74,9 +74,7 @@ describe('inheritance', () => {
         })
         @Injectable()
         class TodoState extends NgxsDataRepository<TodoStateModel> {
-            constructor(protected readonly api: TodoApiService) {
-                super();
-            }
+            protected readonly api = inject(TodoApiService);
 
             @Selector()
             public static todos(state: TodoStateModel) {

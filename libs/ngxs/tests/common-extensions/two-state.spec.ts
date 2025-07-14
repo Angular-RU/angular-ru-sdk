@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {fakeAsync, TestBed, tick} from '@angular/core/testing';
 import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
 import {DataAction, StateRepository} from '@angular-ru/ngxs/decorators';
@@ -26,9 +26,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
     })
     @Injectable()
     class CountState extends NgxsImmutableDataRepository<number> {
-        constructor(private readonly api: ApiService) {
-            super();
-        }
+        private readonly api = inject(ApiService);
 
         @DataAction()
         public increment(): void {
@@ -87,9 +85,7 @@ describe('correct behavior NGXS DATA with Count, Todo states', () => {
         defaults: [],
     })
     class TodoState extends NgxsImmutableDataRepository<string[]> {
-        constructor(private readonly counter: CountState) {
-            super();
-        }
+        private readonly counter = inject(CountState);
 
         @DataAction()
         public add(value: string): TodoState {

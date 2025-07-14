@@ -1,5 +1,5 @@
 import {AsyncPipe, JsonPipe} from '@angular/common';
-import {ChangeDetectionStrategy, Component, Injectable} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, Injectable} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
 import {StateRepository} from '@angular-ru/ngxs/decorators';
@@ -150,7 +150,7 @@ describe('[TEST]: Freeze states', () => {
             changeDetection: ChangeDetectionStrategy.OnPush,
         })
         class AppComponent {
-            constructor(public app: StateListState) {}
+            public app = inject(StateListState);
         }
 
         TestBed.configureTestingModule({

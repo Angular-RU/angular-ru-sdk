@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
 import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
 import {Computed, DataAction, StateRepository} from '@angular-ru/ngxs/decorators';
@@ -46,12 +46,10 @@ describe('[TEST]: Observable with computed $a field', () => {
     })
     @Injectable()
     class A extends NgxsDataRepository<Model> {
+        private readonly _b = inject(B);
+
         public subscribeA$ = 0;
         public subscribeA$_$B = 0;
-
-        constructor(private readonly _b: B) {
-            super();
-        }
 
         @Computed()
         public get value(): number {

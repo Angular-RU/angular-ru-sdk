@@ -3,12 +3,11 @@ import {
     ChangeDetectorRef,
     Directive,
     ElementRef,
-    Inject,
+    inject,
     Input,
     NgZone,
     OnDestroy,
     OnInit,
-    Optional,
 } from '@angular/core';
 import {NgControl} from '@angular/forms';
 import {gaussRound, getFractionSeparator, toNumber} from '@angular-ru/cdk/number';
@@ -27,6 +26,11 @@ import {AmountOptions} from './amount-options';
 
 @Directive({selector: '[amountFormat]'})
 export class AmountFormat implements OnInit, AfterViewInit, OnDestroy {
+    private readonly elementRef = inject<ElementRef<HTMLInputElement>>(ElementRef);
+    private readonly ngControl = inject<NgControl>(NgControl, {optional: true});
+    private readonly ngZone = inject<NgZone>(NgZone, {optional: true});
+    private readonly cd = inject<ChangeDetectorRef>(ChangeDetectorRef, {optional: true});
+
     private readonly subscriptions: Subscription = new Subscription();
     private previousLang: Nullable<string> = null;
     private readonly maximumFractionDigits: number = 3;
@@ -35,13 +39,9 @@ export class AmountFormat implements OnInit, AfterViewInit, OnDestroy {
     private markedAsDirty = true;
     private cursorPointer = 0;
 
-    constructor(
-        @Inject(ElementRef) private readonly elementRef: ElementRef<HTMLInputElement>,
-        @Inject(AMOUNT_FORMAT_OPTIONS) globalOptions: AmountOptions,
-        @Inject(NgControl) @Optional() private readonly ngControl?: NgControl,
-        @Inject(NgZone) @Optional() private readonly ngZone?: NgZone,
-        @Inject(ChangeDetectorRef) @Optional() private readonly cd?: ChangeDetectorRef,
-    ) {
+    constructor() {
+        const globalOptions = inject<AmountOptions>(AMOUNT_FORMAT_OPTIONS);
+
         this.setFirstLocalOptionsByGlobal(globalOptions);
     }
 

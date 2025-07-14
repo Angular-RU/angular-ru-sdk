@@ -1,4 +1,9 @@
-import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    inject,
+    ViewEncapsulation,
+} from '@angular/core';
 import {MatButton} from '@angular/material/button';
 import {MatDivider, MatList, MatListItem} from '@angular/material/list';
 import {MatDrawer, MatDrawerContainer, MatDrawerContent} from '@angular/material/sidenav';
@@ -34,6 +39,9 @@ interface A {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
+    protected excel = inject(ExcelService);
+    private readonly translate = inject(TranslateService);
+
     public data: A[] = [
         {
             id: 'id',
@@ -45,10 +53,7 @@ export class AppComponent {
         },
     ];
 
-    constructor(
-        protected excel: ExcelService,
-        private readonly translate: TranslateService,
-    ) {
+    constructor() {
         this.translate.setDefaultLang('ru');
     }
 

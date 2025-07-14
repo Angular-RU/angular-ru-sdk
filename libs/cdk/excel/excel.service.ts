@@ -1,4 +1,4 @@
-import {Inject, Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {exclude} from '@angular-ru/cdk/array';
 import {Nullable, PlainObject} from '@angular-ru/cdk/typings';
 import {Observable, of} from 'rxjs';
@@ -12,11 +12,11 @@ import {EXCEL_BUILDER_INTERCEPTOR_TOKEN} from './excel-interceptor-text.token';
 
 @Injectable()
 export class ExcelService {
-    constructor(
-        @Inject(EXCEL_BUILDER_INTERCEPTOR_TOKEN)
-        private readonly interceptor: ExcelBuilderTextColumnInterceptor,
-        private readonly builder: ExcelBuilderService,
-    ) {}
+    private readonly interceptor = inject<ExcelBuilderTextColumnInterceptor>(
+        EXCEL_BUILDER_INTERCEPTOR_TOKEN,
+    );
+
+    private readonly builder = inject(ExcelBuilderService);
 
     public exportExcel<T>(workbook: Partial<ExcelWorkbook<T>>): void {
         this.getTranslatedColumn()

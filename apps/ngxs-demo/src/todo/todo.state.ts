@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Immutable} from '@angular-ru/cdk/typings';
 import {
@@ -34,11 +34,9 @@ export class TodoState
     extends NgxsImmutableDataRepository<string[]>
     implements NgxsDataAfterExpired, NgxsDataAfterStorageEvent
 {
-    public expired$ = new Subject<NgxsDataExpiredEvent>();
+    private readonly snackBar = inject(MatSnackBar);
 
-    constructor(private readonly snackBar: MatSnackBar) {
-        super();
-    }
+    public expired$ = new Subject<NgxsDataExpiredEvent>();
 
     @DataAction()
     public addTodo(@Payload('todo') todo: string): void {

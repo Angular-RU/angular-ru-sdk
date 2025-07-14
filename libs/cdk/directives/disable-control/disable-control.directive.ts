@@ -1,14 +1,10 @@
-import {Directive, Inject, Input, Optional} from '@angular/core';
+import {Directive, inject, Input} from '@angular/core';
 import {NgControl} from '@angular/forms';
 import {PlainObject} from '@angular-ru/cdk/typings';
 
 @Directive({selector: '[disableControl]'})
 export class DisableControl {
-    constructor(
-        @Inject(NgControl)
-        @Optional()
-        private readonly ngControl: NgControl,
-    ) {}
+    private readonly ngControl = inject<NgControl>(NgControl, {optional: true})!;
 
     @Input()
     public set disableControl(condition: boolean) {

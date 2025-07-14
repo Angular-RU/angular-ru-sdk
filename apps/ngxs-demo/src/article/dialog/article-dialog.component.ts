@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {
     FormBuilder,
     FormGroup,
@@ -35,13 +35,15 @@ import {Article} from '../article';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticleDialogComponent {
+    public dialogRef = inject<MatDialogRef<ArticleDialogComponent>>(MatDialogRef);
+    public data = inject<Article>(MAT_DIALOG_DATA);
+    private readonly fb = inject(FormBuilder);
+
     public form: FormGroup;
 
-    constructor(
-        public dialogRef: MatDialogRef<ArticleDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: Article,
-        private readonly fb: FormBuilder,
-    ) {
+    constructor() {
+        const data = this.data;
+
         this.form = this.fb.group({
             uid: this.fb.control(data.uid, [Validators.required]),
             title: this.fb.control(data.title, [Validators.required]),

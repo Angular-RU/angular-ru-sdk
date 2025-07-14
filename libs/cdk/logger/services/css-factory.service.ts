@@ -1,4 +1,4 @@
-import {Inject, Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {isNotNil} from '@angular-ru/cdk/utils';
 
@@ -7,9 +7,9 @@ import {LoggerOptionsImpl} from '../logger.options';
 
 @Injectable()
 export class CssFactory {
-    private lineStyle: Nullable<string> = null;
+    private readonly options = inject<LoggerOptionsImpl>(LOGGER_OPTIONS);
 
-    constructor(@Inject(LOGGER_OPTIONS) private readonly options: LoggerOptionsImpl) {}
+    private lineStyle: Nullable<string> = null;
 
     public get style(): string {
         const style: string = this.localStyle;

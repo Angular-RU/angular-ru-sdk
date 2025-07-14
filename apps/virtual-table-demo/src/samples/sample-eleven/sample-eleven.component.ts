@@ -4,6 +4,7 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    inject,
     OnInit,
     ViewEncapsulation,
 } from '@angular/core';
@@ -46,6 +47,8 @@ import {MocksGenerator} from '../../mocks-generator';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SampleElevenComponent implements OnInit, AfterViewInit {
+    private readonly cd = inject(ChangeDetectorRef);
+
     public data: PlainObject[] = [];
 
     public licences: PlainObject[] = [
@@ -70,8 +73,6 @@ export default class SampleElevenComponent implements OnInit, AfterViewInit {
             price: 199,
         },
     ];
-
-    constructor(private readonly cd: ChangeDetectorRef) {}
 
     public ngOnInit(): void {
         const rows = 50;

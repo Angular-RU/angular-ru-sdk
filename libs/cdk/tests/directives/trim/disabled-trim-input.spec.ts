@@ -1,4 +1,10 @@
-import {ChangeDetectionStrategy, Component, DebugElement, Input} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    DebugElement,
+    inject,
+    Input,
+} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInput} from '@angular/material/input';
@@ -29,12 +35,12 @@ describe('[TEST]: Disabling trim Input', function () {
         changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class TestComponent {
+        private readonly fb = inject(FormBuilder);
+
         @Input()
         public disable = true;
 
         public form = this.fb.group({value: 'nothing special'});
-
-        constructor(private readonly fb: FormBuilder) {}
     }
 
     beforeEach(async () => {

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, DebugElement} from '@angular/core';
+import {ChangeDetectionStrategy, Component, DebugElement, inject} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInput} from '@angular/material/input';
@@ -29,9 +29,9 @@ describe('[TEST]: Trim Input', function () {
         changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class TestComponent {
-        public form = this.fb.group({value: 1234000012340000});
+        private readonly fb = inject(FormBuilder);
 
-        constructor(private readonly fb: FormBuilder) {}
+        public form = this.fb.group({value: 1234000012340000});
     }
 
     beforeEach(async () => {

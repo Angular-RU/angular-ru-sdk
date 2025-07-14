@@ -4,7 +4,7 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    Injector,
+    inject,
     NgZone,
     OnInit,
 } from '@angular/core';
@@ -44,19 +44,13 @@ import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SampleNightComponent implements OnInit, AfterViewInit {
-    private readonly ngZone: NgZone;
+    private readonly cd = inject(ChangeDetectorRef);
+
+    private readonly ngZone = inject(NgZone);
     public dataFirst: PlainObject[] = [];
     public dataSecond: PlainObject[] = [];
     public nativeScrollbar = false;
-    public readonly dialog: MatDialog;
-
-    constructor(
-        private readonly cd: ChangeDetectorRef,
-        injector: Injector,
-    ) {
-        this.dialog = injector.get<MatDialog>(MatDialog);
-        this.ngZone = injector.get<NgZone>(NgZone);
-    }
+    public readonly dialog = inject(MatDialog);
 
     public ngOnInit(): void {
         const rows1 = 11;
@@ -123,8 +117,6 @@ export default class SampleNightComponent implements OnInit, AfterViewInit {
 
                     `,
             },
-            height: '750px',
-            width: '700px',
         });
     }
 }

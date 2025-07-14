@@ -11,6 +11,7 @@ import {
     Directive,
     ElementRef,
     EventEmitter,
+    inject,
     Input,
     NgZone,
     OnChanges,
@@ -83,17 +84,17 @@ export abstract class AbstractTableBuilderApi<T>
         AfterViewChecked,
         OnDestroy
 {
-    public abstract readonly templateParser: TemplateParserService<T>;
-    public abstract readonly selection: SelectionService<T>;
-    public abstract readonly cd: ChangeDetectorRef;
-    public abstract readonly resize: ResizableService;
-    public abstract readonly sortable: SortableService<T>;
-    public abstract readonly contextMenu: ContextMenuService<T>;
-    public abstract readonly filterable: FilterableService<T>;
-    public abstract readonly ngZone: NgZone;
-    protected abstract readonly app: ApplicationRef;
-    protected abstract readonly viewChanges: NgxTableViewChangesService;
-    protected abstract readonly draggable: DraggableService<T>;
+    public templateParser = inject(TemplateParserService<T>);
+    public selection = inject(SelectionService<T>);
+    public cd = inject(ChangeDetectorRef);
+    public readonly resize = inject(ResizableService);
+    public readonly sortable = inject(SortableService<T>);
+    public readonly contextMenu = inject(ContextMenuService<T>);
+    public readonly filterable = inject(FilterableService<T>);
+    public readonly ngZone = inject(NgZone);
+    protected readonly app = inject(ApplicationRef);
+    protected readonly viewChanges = inject(NgxTableViewChangesService);
+    protected readonly draggable = inject(DraggableService<T>);
     private filterIdTask: Nullable<number> = null;
     private idleDetectChangesId: Nullable<number> = null;
     private columnFrameId: Nullable<number> = null;

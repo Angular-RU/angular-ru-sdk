@@ -14,9 +14,6 @@ import {NGXS_DATA_EXCEPTIONS} from '@angular-ru/ngxs/tokens';
 import {NgxsAfterBootstrap, NgxsOnInit, provideStore, State, Store} from '@ngxs/store';
 
 describe('complex lifecycle', () => {
-    @Injectable()
-    class MyApiService {}
-
     it('should be throw when use context before app initial', () => {
         @Injectable()
         @StateRepository()
@@ -26,7 +23,7 @@ describe('complex lifecycle', () => {
         })
         class CountState extends NgxsImmutableDataRepository<number> {
             public value: number | null = null;
-            constructor(public myService: MyApiService) {
+            constructor() {
                 super();
                 this.value = 1;
                 this.ctx.setState(this.value);
@@ -37,7 +34,6 @@ describe('complex lifecycle', () => {
             providers: [
                 provideStore([CountState], {developmentMode: true}),
                 provideNgxsDataPlugin(),
-                MyApiService,
             ],
         });
 
@@ -66,7 +62,7 @@ describe('complex lifecycle', () => {
             extends NgxsImmutableDataRepository<number>
             implements NgxsOnInit, NgxsAfterBootstrap
         {
-            constructor(public myService: MyApiService) {
+            constructor() {
                 super();
                 hooks.push('CountState - create');
             }
@@ -100,7 +96,6 @@ describe('complex lifecycle', () => {
             providers: [
                 provideStore([CountState], {developmentMode: true}),
                 provideNgxsDataPlugin(),
-                MyApiService,
             ],
         });
 

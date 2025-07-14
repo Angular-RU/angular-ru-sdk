@@ -1,5 +1,5 @@
-import {ElementRef, NgZone} from '@angular/core';
-import {fakeAsync, tick} from '@angular/core/testing';
+import {ElementRef} from '@angular/core';
+import {fakeAsync, TestBed, tick} from '@angular/core/testing';
 import {Fn, Nullable, PlainObject} from '@angular-ru/cdk/typings';
 
 import {AutoHeight} from '../../../virtual-table/directives/auto-height.directive';
@@ -10,12 +10,6 @@ describe('[TEST]: auto height', () => {
     let recalculateDispatcher: Nullable<Fn> = null;
     let addedEvent = false;
     let style: string;
-
-    const mockNgZone: Partial<NgZone> = {
-        runOutsideAngular<T = any>(fn: Fn): T {
-            return fn();
-        },
-    };
 
     const mockElementRef: ElementRef = {
         nativeElement: {
@@ -53,7 +47,16 @@ describe('[TEST]: auto height', () => {
             },
         });
 
-        directive = new AutoHeight(mockElementRef, mockNgZone as NgZone);
+        TestBed.configureTestingModule({
+            providers: [
+                {
+                    provide: ElementRef,
+                    useValue: mockElementRef,
+                },
+                AutoHeight,
+            ],
+        });
+        directive = TestBed.inject(AutoHeight);
         directive.sourceRef = [{a: 1}];
         style = '';
         // eslint-disable-next-line @typescript-eslint/no-unused-vars

@@ -1,4 +1,4 @@
-import {NgZone} from '@angular/core';
+import {TestBed} from '@angular/core/testing';
 import {PlainObject} from '@angular-ru/cdk/typings';
 
 import {RowId} from '../../../virtual-table/interfaces/table-builder.internal';
@@ -10,10 +10,6 @@ describe('[TEST]: Selection service', () => {
     let preventDefaultInvoked = 0;
     let listenKeydown = false;
     let listenKeyup = false;
-
-    const mockNgZone: Partial<NgZone> = {
-        runOutsideAngular: (fn: any): any => fn(),
-    };
 
     const mockPreventDefault: Partial<MouseEvent> = {
         preventDefault: (): void => {
@@ -51,7 +47,11 @@ describe('[TEST]: Selection service', () => {
     let selection: SelectionService<PlainObject>;
 
     beforeEach(() => {
-        selection = new SelectionService(mockNgZone as NgZone);
+        TestBed.configureTestingModule({
+            providers: [SelectionService],
+        });
+
+        selection = TestBed.inject(SelectionService);
         selection.rows = data;
         selection.selectionModeIsEnabled = true;
     });
@@ -146,21 +146,27 @@ describe('[TEST]: Selection service', () => {
 
     it('should be correct get Id by row', () => {
         selection.primaryKey = 'position';
+
         expect(selection.getIdByRow(data[0])).toBe(1);
     });
 
     it('should be correct remove listener before ngOnDestroy', () => {
         selection.listenShiftKey();
+
         expect(listenKeydown).toBe(true);
         expect(listenKeyup).toBe(true);
+
         selection.ngOnDestroy();
+
         expect(listenKeydown).toBe(false);
         expect(listenKeyup).toBe(false);
     });
 
     it('should be correct change selection start', () => {
         expect(selection.selectionStart).toEqual({status: false});
+
         selection.shiftKeyDetectSelection({shiftKey: true} as KeyboardEvent);
+
         expect(selection.selectionStart).toEqual({status: true});
     });
 
@@ -168,18 +174,22 @@ describe('[TEST]: Selection service', () => {
         selection.primaryKey = 'position';
 
         selection.toggle(data[0]);
+
         expect(selection.selectionModel.entries).toEqual({1: true});
         expect(selection.selectionModel.isAll).toBe(false);
 
         selection.reset();
+
         expect(selection.selectionModel.entries).toEqual({});
         expect(selection.selectionModel.isAll).toBe(false);
 
         selection.toggleAll(data);
+
         expect(selection.selectionModel.entries).toEqual({1: true, 2: true, 3: true});
         expect(selection.selectionModel.isAll).toBe(true);
 
         selection.toggleAll(data);
+
         expect(selection.selectionModel.entries).toEqual({});
         expect(selection.selectionModel.isAll).toBe(false);
     });
@@ -189,14 +199,17 @@ describe('[TEST]: Selection service', () => {
         const id: RowId = 5;
 
         expect(selectionMap.hasValue()).toBe(false);
+
         selectionMap.select(id, {}, true);
 
         expect(selectionMap.hasValue()).toBe(true);
 
         selectionMap.toggle(id, {}, true);
+
         expect(selectionMap.entries).toEqual({});
 
         selectionMap.toggle(id, {}, true);
+
         expect(selectionMap.get(5)).toBe(true);
         expect(selectionMap.entries).toEqual({5: true});
     });
