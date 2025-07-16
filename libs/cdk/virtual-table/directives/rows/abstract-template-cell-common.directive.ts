@@ -1,12 +1,13 @@
 /* eslint-disable @angular-eslint/no-input-rename */
-import {TemplateRef} from '@angular/core';
-import {Directive, EventEmitter, Input, Optional, Output} from '@angular/core';
+import {Directive, EventEmitter, inject, Input, Output, TemplateRef} from '@angular/core';
 import {Nullable, PlainObject} from '@angular-ru/cdk/typings';
 
 import {TableEvent} from '../../interfaces/table-builder.external';
 
 @Directive()
 export abstract class AbstractTemplateCellCommonDirective<T> {
+    public readonly template = inject(TemplateRef<unknown>, {optional: true});
+
     @Input()
     public row: boolean | string = false;
 
@@ -37,6 +38,4 @@ export abstract class AbstractTemplateCellCommonDirective<T> {
     public readonly dblClick = new EventEmitter<TableEvent<T | any, any>>();
 
     public type: Nullable<string> = null;
-
-    protected constructor(@Optional() public template?: TemplateRef<unknown>) {}
 }

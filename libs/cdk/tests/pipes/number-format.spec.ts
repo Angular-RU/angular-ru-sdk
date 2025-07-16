@@ -1,8 +1,8 @@
 import {inject, TestBed} from '@angular/core/testing';
-import {NumberFormatPipe, NumberFormatPipeModule} from '@angular-ru/cdk/pipes';
+import {NumberFormatPipe} from '@angular-ru/cdk/pipes';
 
 describe('[TEST]: number format pipe', () => {
-    beforeEach(() => TestBed.configureTestingModule({imports: [NumberFormatPipeModule]}));
+    beforeEach(() => TestBed.configureTestingModule({providers: [NumberFormatPipe]}));
 
     it('format number', inject([NumberFormatPipe], (pipe: NumberFormatPipe) => {
         expect(pipe.transform(1500300.5)).toBe('1 500 300,5');
@@ -25,7 +25,7 @@ describe('[TEST]: number format pipe', () => {
         );
         expect(pipe.transform()).toBe('');
         expect(pipe.transform(null)).toBe('');
-        expect(pipe.transform(undefined)).toBe('');
+        expect(pipe.transform()).toBe('');
         expect(pipe.transform(NaN)).toBe('');
     }));
 });

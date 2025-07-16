@@ -3,12 +3,12 @@ import {
     ChangeDetectorRef,
     Component,
     DebugElement,
+    inject,
     Input,
 } from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {ReactiveFormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
-import {InputFilterModule} from '@angular-ru/cdk/directives';
+import {InputFilter, provideInputFilter} from '@angular-ru/cdk/directives';
 import {REG_EXP_NO_CYRILLIC} from '@angular-ru/cdk/regexp';
 import {FilterPredicate} from '@angular-ru/cdk/string';
 import {Nullable} from '@angular-ru/cdk/typings';
@@ -21,6 +21,7 @@ describe('[TEST]: inputFilter Simple Input', () => {
 
     @Component({
         selector: 'test',
+        imports: [InputFilter],
         template: `
             <input
                 [filterDisabled]="disableFilter"
@@ -31,22 +32,19 @@ describe('[TEST]: inputFilter Simple Input', () => {
         changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class TestComponent {
+        public readonly cd = inject(ChangeDetectorRef);
+
         @Input()
         public disableFilter = false;
 
         public filterValue = 'abcД';
         public predicate: FilterPredicate = ['a', 'b', 'c', ' '];
-
-        constructor(public readonly cd: ChangeDetectorRef) {}
     }
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                InputFilterModule.forRoot({default: REG_EXP_NO_CYRILLIC}),
-            ],
-            declarations: [TestComponent],
+            imports: [TestComponent],
+            providers: [provideInputFilter({default: REG_EXP_NO_CYRILLIC})],
         }).compileComponents();
 
         fixture = TestBed.createComponent(TestComponent);
@@ -98,23 +96,27 @@ describe('[TEST]: inputFilter Simple Input', () => {
     it('should filter input with characters', () => {
         component!.predicate = ['a', 'b'];
         setValueAndDispatch('aaabbbccc');
+
         expect(debugElement?.nativeElement.value).toBe('aaabbb');
     });
 
     it('should filter input with RegExp', () => {
         component!.predicate = /[,ab]+/;
         setValueAndDispatch('aaabbbccc');
+
         expect(debugElement?.nativeElement.value).toBe('aaabbb');
     });
 
     it('should filter input with custom function', () => {
         component!.predicate = (item: string): boolean => item === 'a' || item === 'b';
         setValueAndDispatch('aaabbbccc');
+
         expect(debugElement?.nativeElement.value).toBe('aaabbb');
     });
 
     it('should filter cyrillic by default', () => {
         setValueAndDispatch('aaaДДДccc');
+
         expect(debugElement?.nativeElement.value).toBe('aaaccc');
     });
 
@@ -122,6 +124,7 @@ describe('[TEST]: inputFilter Simple Input', () => {
         component!.disableFilter = true;
         fixture?.detectChanges();
         setValueAndDispatch('aaaZZZZccc');
+
         expect(debugElement?.nativeElement.value).toBe('aaaZZZZccc');
     });
 });

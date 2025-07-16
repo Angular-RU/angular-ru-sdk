@@ -1,12 +1,12 @@
-import {Component, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, signal, ViewChild} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {Nullable, PlainObject, SortOrderType} from '@angular-ru/cdk/typings';
 import {
-    TableBuilderComponent,
-    TableBuilderModule,
+    TableBuilder,
     TableFilterType,
     TableSortTypes,
+    VirtualTable,
 } from '@angular-ru/cdk/virtual-table';
 import {WebWorkerThreadService} from '@angular-ru/cdk/webworker';
 
@@ -15,19 +15,21 @@ import {MockWebWorkerService} from '../helpers/mock-web-worker.service';
 
 @Component({
     selector: 'app-ngx-table-builder-mock',
+    imports: [VirtualTable],
     template: `
         <ngx-table-builder
             enable-filtering
             enable-selection
             [filter-definition]="filterDefinition"
-            [sort-types]="sortTypes"
+            [sort-types]="sortTypes()"
             [source]="data"
-        ></ngx-table-builder>
+        />
     `,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class NgxTableBuilderMockComponent {
-    @ViewChild(TableBuilderComponent, {static: true})
-    public tableBuilderComponent!: TableBuilderComponent<PlainObject>;
+    @ViewChild(TableBuilder, {static: true})
+    public tableBuilderComponent!: TableBuilder<PlainObject>;
 
     public data: PlainObject[] = [
         {id: 1, name: 'Max', lastName: 'Ivanov'},
@@ -38,7 +40,7 @@ class NgxTableBuilderMockComponent {
 
     public filterDefinition: Nullable<FilterDescriptor[]> = null;
 
-    public sortTypes: TableSortTypes = null;
+    public sortTypes = signal<TableSortTypes | null>(null);
 }
 
 describe('[TEST] Table builder', (): void => {
@@ -48,8 +50,7 @@ describe('[TEST] Table builder', (): void => {
 
     beforeEach(async (): Promise<void> => {
         await TestBed.configureTestingModule({
-            imports: [TableBuilderModule, NoopAnimationsModule],
-            declarations: [NgxTableBuilderMockComponent],
+            imports: [NgxTableBuilderMockComponent, NoopAnimationsModule],
             providers: [
                 {
                     provide: WebWorkerThreadService,
@@ -59,7 +60,7 @@ describe('[TEST] Table builder', (): void => {
         }).compileComponents();
 
         const someSortableService =
-            TestBed.createComponent(TableBuilderComponent).componentInstance.sortable;
+            TestBed.createComponent(TableBuilder).componentInstance.sortable;
 
         idleResolveMock = jest
             .spyOn(someSortableService.constructor.prototype, 'idleResolve')
@@ -75,13 +76,14 @@ describe('[TEST] Table builder', (): void => {
     });
 
     it('should correct sort by input', async (): Promise<void> => {
-        const tableBuilderComponent: TableBuilderComponent<PlainObject> =
+        const tableBuilderComponent: TableBuilder<PlainObject> =
             component.tableBuilderComponent;
 
-        component.sortTypes = {id: 'desc'};
+        component.sortTypes.set({id: 'desc'});
         componentFixture.detectChanges();
 
         await componentFixture.whenStable();
+
         expect(tableBuilderComponent.source).toEqual([
             {id: 4, name: null, lastName: null},
             {id: 3, name: 'Petr', lastName: 'Sidorov'},
@@ -89,10 +91,10 @@ describe('[TEST] Table builder', (): void => {
             {id: 1, name: 'Max', lastName: 'Ivanov'},
         ]);
 
-        // eslint-disable-next-line require-atomic-updates
-        component.sortTypes = {name: SortOrderType.ASC};
+        component.sortTypes.set({name: SortOrderType.ASC});
         componentFixture.detectChanges();
         await componentFixture.whenStable();
+
         expect(tableBuilderComponent.source).toEqual([
             {id: 4, name: null, lastName: null},
             {id: 2, name: 'Ivan', lastName: 'Petrov'},
@@ -104,11 +106,12 @@ describe('[TEST] Table builder', (): void => {
     it('should correct select after sort', async (): Promise<void> => {
         const mockClientEvent = new MouseEvent('click');
         const mockShiftClientEvent = new MouseEvent('click', {shiftKey: true});
-        const tableBuilderComponent: TableBuilderComponent<PlainObject> =
+        const tableBuilderComponent: TableBuilder<PlainObject> =
             component.tableBuilderComponent;
 
         componentFixture.detectChanges();
         await componentFixture.whenStable();
+
         expect(tableBuilderComponent.source).toEqual([
             {id: 1, name: 'Max', lastName: 'Ivanov'},
             {id: 2, name: 'Ivan', lastName: 'Petrov'},
@@ -120,21 +123,23 @@ describe('[TEST] Table builder', (): void => {
             tableBuilderComponent.source![0],
             mockClientEvent,
         );
+
         expect(tableBuilderComponent.selection.selectionModel.entries).toEqual({1: true});
 
         tableBuilderComponent.selection.selectRow(
             tableBuilderComponent.source![1],
             mockShiftClientEvent,
         );
+
         expect(tableBuilderComponent.selection.selectionModel.entries).toEqual({
             1: true,
             2: true,
         });
 
-        // eslint-disable-next-line require-atomic-updates
-        component.sortTypes = {name: SortOrderType.DESC};
+        component.sortTypes.set({name: SortOrderType.DESC});
         componentFixture.detectChanges();
         await componentFixture.whenStable();
+
         expect(tableBuilderComponent.source).toEqual([
             {id: 3, name: 'Petr', lastName: 'Sidorov'},
             {id: 1, name: 'Max', lastName: 'Ivanov'},
@@ -146,12 +151,14 @@ describe('[TEST] Table builder', (): void => {
             tableBuilderComponent.source![0],
             mockClientEvent,
         );
+
         expect(tableBuilderComponent.selection.selectionModel.entries).toEqual({3: true});
 
         tableBuilderComponent.selection.selectRow(
             tableBuilderComponent.source![1],
             mockShiftClientEvent,
         );
+
         expect(tableBuilderComponent.selection.selectionModel.entries).toEqual({
             3: true,
             1: true,
@@ -161,6 +168,7 @@ describe('[TEST] Table builder', (): void => {
             tableBuilderComponent.source![2],
             mockShiftClientEvent,
         );
+
         expect(tableBuilderComponent.selection.selectionModel.entries).toEqual({
             3: true,
             1: true,
@@ -169,7 +177,7 @@ describe('[TEST] Table builder', (): void => {
     });
 
     it('should correctly filter table', async (): Promise<void> => {
-        const tableBuilderComponent: TableBuilderComponent<PlainObject> =
+        const tableBuilderComponent: TableBuilder<PlainObject> =
             component.tableBuilderComponent;
 
         tableBuilderComponent.filterable.setDefinition([
@@ -340,7 +348,7 @@ describe('[TEST] Table builder', (): void => {
     });
 
     it('should correctly filter table by input', async (): Promise<void> => {
-        const tableBuilderComponent: TableBuilderComponent<PlainObject> =
+        const tableBuilderComponent: TableBuilder<PlainObject> =
             component.tableBuilderComponent;
 
         expect(tableBuilderComponent.source).toEqual([
@@ -349,6 +357,7 @@ describe('[TEST] Table builder', (): void => {
             {id: 3, name: 'Petr', lastName: 'Sidorov'},
             {id: 4, name: null, lastName: null},
         ]);
+
         tableBuilderComponent.filterable.updateFilterTypeBy(
             TableFilterType.LESS_OR_EQUAL,
             'id',
@@ -370,7 +379,7 @@ describe('[TEST] Table builder', (): void => {
     });
 
     it('should not filter table', async (): Promise<void> => {
-        const tableBuilderComponent: TableBuilderComponent<PlainObject> =
+        const tableBuilderComponent: TableBuilder<PlainObject> =
             component.tableBuilderComponent;
 
         tableBuilderComponent.enableFiltering = false;
@@ -381,6 +390,7 @@ describe('[TEST] Table builder', (): void => {
             {id: 3, name: 'Petr', lastName: 'Sidorov'},
             {id: 4, name: null, lastName: null},
         ]);
+
         // default type - TableFilterType.CONTAINS
         tableBuilderComponent.filterable.updateFilterValueBy('rov', 'lastName');
         componentFixture.detectChanges();

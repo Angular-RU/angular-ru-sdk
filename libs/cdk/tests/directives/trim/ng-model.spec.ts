@@ -3,7 +3,7 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {MatInput} from '@angular/material/input';
 import {BrowserModule, By} from '@angular/platform-browser';
-import {TrimInputModule} from '@angular-ru/cdk/directives';
+import {TrimInput} from '@angular-ru/cdk/directives';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {isNotNil} from '@angular-ru/cdk/utils';
 import {NgxMaskDirective, provideEnvironmentNgxMask} from 'ngx-mask';
@@ -14,9 +14,8 @@ describe('[TEST]: Trim Input', () => {
     let debugElement: Nullable<DebugElement> = null;
 
     @Component({
-        standalone: true,
         selector: 'test',
-        imports: [NgxMaskDirective, MatInput, TrimInputModule, FormsModule],
+        imports: [FormsModule, MatInput, NgxMaskDirective, TrimInput],
         template: `
             <input
                 mask="0000-0000-0000-0000"
@@ -34,7 +33,7 @@ describe('[TEST]: Trim Input', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [BrowserModule, FormsModule, TrimInputModule, NgModelTestComponent],
+            imports: [BrowserModule, FormsModule, NgModelTestComponent],
             providers: [provideEnvironmentNgxMask()],
         }).compileComponents();
 

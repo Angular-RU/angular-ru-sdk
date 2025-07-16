@@ -1,24 +1,26 @@
-import {Component, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ViewChild} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {PlainObject} from '@angular-ru/cdk/typings';
-import {TableBuilderComponent, TableBuilderModule} from '@angular-ru/cdk/virtual-table';
+import {TableBuilder, VirtualTable} from '@angular-ru/cdk/virtual-table';
 import {WebWorkerThreadService} from '@angular-ru/cdk/webworker';
 
 import {MockWebWorkerService} from '../helpers/mock-web-worker.service';
 
 @Component({
     selector: 'selection-mock',
+    imports: [VirtualTable],
     template: `
         <ngx-table-builder
             enable-selection
             [source]="data"
         ></ngx-table-builder>
     `,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class SelectionMockComponent {
-    @ViewChild(TableBuilderComponent, {static: true})
-    public tableBuilderComponent!: TableBuilderComponent<PlainObject>;
+    @ViewChild(TableBuilder, {static: true})
+    public tableBuilderComponent!: TableBuilder<PlainObject>;
 
     public data: PlainObject[] = [
         {id: 1, name: 'Max', lastName: 'Ivanov'},
@@ -34,15 +36,14 @@ describe('[TEST] Table builder', (): void => {
 
     beforeEach((): void => {
         TestBed.configureTestingModule({
-            declarations: [SelectionMockComponent],
-            imports: [TableBuilderModule, NoopAnimationsModule],
+            imports: [SelectionMockComponent, NoopAnimationsModule],
             providers: [
                 {provide: WebWorkerThreadService, useClass: MockWebWorkerService},
             ],
         }).compileComponents();
 
         const someSortableService =
-            TestBed.createComponent(TableBuilderComponent).componentInstance.sortable;
+            TestBed.createComponent(TableBuilder).componentInstance.sortable;
 
         idleResolve = jest
             .spyOn(someSortableService.constructor.prototype, 'idleResolve')
@@ -57,12 +58,13 @@ describe('[TEST] Table builder', (): void => {
     });
 
     it('should be correct select items from 1..2 by shift key', async () => {
-        const tableBuilderComponent: TableBuilderComponent<PlainObject> =
+        const tableBuilderComponent: TableBuilder<PlainObject> =
             component.tableBuilderComponent;
 
         expect(tableBuilderComponent.source).toBeNull();
 
         componentFixture.detectChanges();
+
         expect(tableBuilderComponent.source).toEqual([
             {id: 1, name: 'Max', lastName: 'Ivanov'},
             {id: 2, name: 'Ivan', lastName: 'Petrov'},
@@ -73,6 +75,7 @@ describe('[TEST] Table builder', (): void => {
             tableBuilderComponent.source![0],
             new MouseEvent('click'),
         );
+
         expect(tableBuilderComponent.selection.selectionModel.entries).toEqual({1: true});
 
         tableBuilderComponent.selection.selectRow(

@@ -1,4 +1,4 @@
-import {EventEmitter, Injectable, NgZone} from '@angular/core';
+import {EventEmitter, inject, Injectable, NgZone} from '@angular/core';
 import {Nullable, PlainObjectOf, SortOrderType} from '@angular-ru/cdk/typings';
 import {isNotNil, isTruthy} from '@angular-ru/cdk/utils';
 import {WebWorkerThreadService} from '@angular-ru/cdk/webworker';
@@ -10,16 +10,14 @@ import {SortableMessage} from './sortable-message';
 
 @Injectable()
 export class SortableService<T> {
+    private readonly thread = inject(WebWorkerThreadService);
+    private readonly zone = inject(NgZone);
+
     private skipInternalSort = false;
     private sortChanges: Nullable<EventEmitter<OrderedField[]>> = null;
     public definition: PlainObjectOf<SortOrderType> = {};
     public positionMap: PlainObjectOf<number> = {};
     public sortableCount = 0;
-
-    constructor(
-        private readonly thread: WebWorkerThreadService,
-        private readonly zone: NgZone,
-    ) {}
 
     public get empty(): boolean {
         return Object.keys(this.definition).length === 0;

@@ -7,10 +7,10 @@ export {TooltipTextInterceptor} from './interfaces/tooltip-text-interceptor';
 export {TooltipValue} from './interfaces/tooltip-value';
 export {NgxTooltipTextInterceptor} from './services/ngx-tooltip-text.interceptor';
 export {TooltipDefaultTextInterceptor} from './services/tooltip-default-text.interceptor';
-export {TooltipDirective} from './tooltip.directive';
-export {TooltipModule} from './tooltip.module';
+export {Tooltip} from './tooltip.directive';
 export {
     NGX_TOOLTIP_FALLBACK_PROVIDER,
     TOOLTIP_DEFAULT_OPTIONS,
 } from './tooltip.properties';
+export {provideTooltip} from './tooltip.provider';
 export {TOOLTIP_OPTIONS_TOKEN, TOOLTIP_TEXT_INTERCEPTOR_TOKEN} from './tooltip.tokens';

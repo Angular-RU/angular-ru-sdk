@@ -1,5 +1,5 @@
 /* eslint-disable max-classes-per-file */
-import {ApplicationRef, NgZone} from '@angular/core';
+import {ApplicationRef, inject, NgZone} from '@angular/core';
 import {ChangeDetectionStrategy, Component, Injectable} from '@angular/core';
 
 import {COMPONENT_TOKEN, MODULE_TOKEN, SERVICE_TOKEN} from './injection-tokens';
@@ -7,6 +7,8 @@ import {InjectByToken} from './test-decorators';
 
 @Injectable()
 export class TestTokenService {
+    public ngZone = inject(NgZone);
+
     @InjectByToken(MODULE_TOKEN)
     public moduleToken!: string;
 
@@ -15,8 +17,6 @@ export class TestTokenService {
 
     @InjectByToken(COMPONENT_TOKEN)
     public componentToken!: string;
-
-    constructor(public ngZone: NgZone) {}
 }
 
 @Component({
@@ -30,6 +30,8 @@ export class TestTokenService {
     ],
 })
 export class TestTokenComponent {
+    public appRef = inject(ApplicationRef);
+
     @InjectByToken(MODULE_TOKEN)
     public moduleToken!: string;
 
@@ -41,6 +43,4 @@ export class TestTokenComponent {
 
     @InjectByToken(TestTokenService)
     public testTokenService!: TestTokenService;
-
-    constructor(public appRef: ApplicationRef) {}
 }

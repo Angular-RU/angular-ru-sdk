@@ -1,3 +1,4 @@
+import {NgStyle} from '@angular/common';
 import {
     ChangeDetectionStrategy,
     Component,
@@ -12,7 +13,7 @@ import {Nullable} from '@angular-ru/cdk/typings';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 
-import {AbstractModalViewLayerDirective} from '../../directives/abstract-modal-view-layer.directive';
+import {AbstractModalViewLayer} from '../../directives/abstract-modal-view-layer.directive';
 import {NgxFilterDirective} from '../../directives/ngx-filter.directive';
 import {FilterStateEvent} from '../../services/filterable/filter-state-event';
 
@@ -22,14 +23,15 @@ const FILTER_MIN_TOP_Y = 50;
 
 @Component({
     selector: 'ngx-filter',
+    imports: [NgStyle],
     templateUrl: './ngx-filter.component.html',
     styleUrls: ['./ngx-filter.component.scss'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     animations: [fadeInLinearAnimation],
 })
-export class NgxFilterComponent<T>
-    extends AbstractModalViewLayerDirective<T, FilterStateEvent>
+export class NgxFilter<T>
+    extends AbstractModalViewLayer<T, FilterStateEvent>
     implements OnInit, OnDestroy
 {
     private readonly destroy$ = new Subject<void>();

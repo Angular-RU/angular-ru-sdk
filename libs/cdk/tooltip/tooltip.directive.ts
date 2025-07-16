@@ -1,6 +1,13 @@
 /* eslint-disable @angular-eslint/no-input-rename */
-import {ElementRef, EmbeddedViewRef, NgZone, OnDestroy, Renderer2} from '@angular/core';
-import {Directive, Inject, Input, TemplateRef} from '@angular/core';
+import {
+    ElementRef,
+    EmbeddedViewRef,
+    inject,
+    NgZone,
+    OnDestroy,
+    Renderer2,
+} from '@angular/core';
+import {Directive, Input, TemplateRef} from '@angular/core';
 import {generateQuickGuid} from '@angular-ru/cdk/string';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {checkValueIsEmpty, isFalsy, isNotNil} from '@angular-ru/cdk/utils';
@@ -17,7 +24,17 @@ import {TooltipDomLeakService} from './services/tooltip-dom-leak.service';
 import {TOOLTIP_OPTIONS_TOKEN, TOOLTIP_TEXT_INTERCEPTOR_TOKEN} from './tooltip.tokens';
 
 @Directive({selector: '[tooltip]'})
-export class TooltipDirective implements OnDestroy {
+export class Tooltip implements OnDestroy {
+    private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+    private readonly renderer = inject<Renderer2>(Renderer2);
+    private readonly ngZone = inject<NgZone>(NgZone);
+    private readonly options = inject<TooltipOptions>(TOOLTIP_OPTIONS_TOKEN);
+    private readonly interceptor = inject<TooltipTextInterceptor>(
+        TOOLTIP_TEXT_INTERCEPTOR_TOKEN,
+    );
+
+    private readonly domLeak = inject<TooltipDomLeakService>(TooltipDomLeakService);
+
     private readonly delta: number = 2;
     private readonly layoutMinDuration: number = 100;
     private tooltipDomElement: Nullable<HTMLElement> = null;
@@ -47,20 +64,7 @@ export class TooltipDirective implements OnDestroy {
 
     public uid: string = generateQuickGuid();
 
-    constructor(
-        @Inject(ElementRef)
-        private readonly elementRef: ElementRef<HTMLElement>,
-        @Inject(Renderer2)
-        private readonly renderer: Renderer2,
-        @Inject(NgZone)
-        private readonly ngZone: NgZone,
-        @Inject(TOOLTIP_OPTIONS_TOKEN)
-        private readonly options: TooltipOptions,
-        @Inject(TOOLTIP_TEXT_INTERCEPTOR_TOKEN)
-        private readonly interceptor: TooltipTextInterceptor,
-        @Inject(TooltipDomLeakService)
-        private readonly domLeak: TooltipDomLeakService,
-    ) {
+    constructor() {
         this.addUidToElement();
         this.connectMouseEvents();
     }
@@ -164,7 +168,7 @@ export class TooltipDirective implements OnDestroy {
         const hostPos: DOMRect = this.elementRef.nativeElement.getBoundingClientRect();
         const tooltipPos: Nullable<DOMRect> =
             this.tooltipDomElement?.getBoundingClientRect();
-        const scrollPos: number = TooltipDirective.getScrollPos();
+        const scrollPos: number = Tooltip.getScrollPos();
 
         if (this.placement === 'top') {
             const {top, left}: TooltipOffset = this.calculateByTop(hostPos, tooltipPos);

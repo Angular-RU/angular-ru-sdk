@@ -1,19 +1,15 @@
 /* eslint-disable @angular-eslint/no-input-rename */
 import {
-    ChangeDetectorRef,
-    ElementRef,
-    Inject,
-    INJECTOR,
-    Injector,
-    OnDestroy,
-    OnInit,
-} from '@angular/core';
-import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
+    ElementRef,
     EventEmitter,
+    inject,
     Input,
     NgZone,
+    OnDestroy,
+    OnInit,
     Output,
     ViewChild,
     ViewEncapsulation,
@@ -31,20 +27,24 @@ import {
     MIN_PADDING_CONTEXT_ITEM,
     SCROLLBAR_SIZE,
 } from '../../../table-builder.properties';
+import {NgxContextMenuDivider} from '../ngx-context-menu-divider/ngx-context-menu-divider.component';
 
 const MENU_WIDTH = 300;
 
 @Component({
     selector: 'ngx-context-menu-item',
+    imports: [NgxContextMenuDivider],
     templateUrl: './ngx-context-menu-item.component.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NgxContextMenuItemComponent<T = any> implements OnInit, OnDestroy {
+export class NgxContextMenuItem<T = any> implements OnInit, OnDestroy {
+    private readonly cd = inject<ChangeDetectorRef>(ChangeDetectorRef);
+
     private readonly destroy$ = new Subject<void>();
     private taskId: Nullable<number> = null;
-    private readonly contextMenu: ContextMenuService<T>;
-    private readonly ngZone: NgZone;
+    private readonly contextMenu = inject(ContextMenuService<T>);
+    private readonly ngZone = inject(NgZone);
     @Input()
     public visible: boolean | string = true;
 
@@ -73,16 +73,6 @@ export class NgxContextMenuItemComponent<T = any> implements OnInit, OnDestroy {
 
     public offsetX: Nullable<number> = null;
     public offsetY: Nullable<number> = null;
-
-    constructor(
-        @Inject(ChangeDetectorRef)
-        private readonly cd: ChangeDetectorRef,
-        @Inject(INJECTOR)
-        injector: Injector,
-    ) {
-        this.contextMenu = injector.get<ContextMenuService<T>>(ContextMenuService);
-        this.ngZone = injector.get<NgZone>(NgZone);
-    }
 
     public get state(): ContextMenuState<T> {
         return this.contextMenu.state;

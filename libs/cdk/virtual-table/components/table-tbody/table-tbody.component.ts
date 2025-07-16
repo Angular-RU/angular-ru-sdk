@@ -1,18 +1,22 @@
 /* eslint-disable @angular-eslint/no-input-rename */
-import {ChangeDetectorRef, Injector} from '@angular/core';
+import {NgClass, NgStyle} from '@angular/common';
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     EventEmitter,
+    inject,
     Input,
     NgZone,
     Output,
     ViewEncapsulation,
 } from '@angular/core';
 import {getValueByPath} from '@angular-ru/cdk/object';
+import {MergeCssClassesPipe} from '@angular-ru/cdk/pipes';
 import {Nullable, PlainObjectOf} from '@angular-ru/cdk/typings';
 import {isNotNil} from '@angular-ru/cdk/utils';
 
+import {VirtualFor} from '../../directives/virtual-for.directive';
 import {
     ColumnsSchema,
     ProduceDisableFn,
@@ -25,21 +29,33 @@ import {
     RecalculatedStatus,
     TableBrowserEvent,
 } from '../../interfaces/table-builder.internal';
+import {DisableRowPipe} from '../../pipes/disable-row.pipe';
 import {ContextMenuService} from '../../services/context-menu/context-menu.service';
 import {SelectionService} from '../../services/selection/selection.service';
-import {NgxContextMenuComponent} from '../ngx-context-menu/ngx-context-menu.component';
+import {NgxContextMenu} from '../ngx-context-menu/ngx-context-menu.component';
+import {TableCell} from '../table-cell/table-cell.component';
 
 const SELECTION_DELAY = 100;
 
 @Component({
     selector: 'table-tbody',
+    imports: [
+        DisableRowPipe,
+        MergeCssClassesPipe,
+        NgClass,
+        NgStyle,
+        TableCell,
+        VirtualFor,
+    ],
     templateUrl: './table-tbody.component.html',
     styleUrls: ['./table-tbody.component.scss'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TableTbodyComponent<T> {
-    private readonly ngZone: NgZone;
+export class TableTbody<T> {
+    public cd = inject(ChangeDetectorRef);
+
+    private readonly ngZone = inject(NgZone);
     @Input()
     public source: Nullable<T[]> = null;
 
@@ -86,7 +102,7 @@ export class TableTbodyComponent<T> {
     public selectionEntries: PlainObjectOf<boolean> = {};
 
     @Input('context-menu')
-    public contextMenuTemplate: Nullable<NgxContextMenuComponent<T>> = null;
+    public contextMenuTemplate: Nullable<NgxContextMenu<T>> = null;
 
     @Input('produce-disable-fn')
     public produceDisableFn: ProduceDisableFn<T> = null;
@@ -103,17 +119,8 @@ export class TableTbodyComponent<T> {
     @Output()
     public readonly changed = new EventEmitter<void>(true);
 
-    public selection: SelectionService<T>;
-    public contextMenu: ContextMenuService<T>;
-
-    constructor(
-        public cd: ChangeDetectorRef,
-        injector: Injector,
-    ) {
-        this.selection = injector.get<SelectionService<T>>(SelectionService);
-        this.contextMenu = injector.get<ContextMenuService<T>>(ContextMenuService);
-        this.ngZone = injector.get<NgZone>(NgZone);
-    }
+    public selection = inject(SelectionService<T>);
+    public contextMenu = inject(ContextMenuService<T>);
 
     public get canSelectTextInTable(): boolean {
         return !this.selection.selectionStart.status;

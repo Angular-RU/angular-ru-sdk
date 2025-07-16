@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
 import {Immutable} from '@angular-ru/cdk/typings';
-import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
 import {Computed, DataAction, StateRepository} from '@angular-ru/ngxs/decorators';
 import {NgxsDataSequence} from '@angular-ru/ngxs/internals';
 import {
@@ -9,7 +9,7 @@ import {
     NgxsImmutableDataRepository,
 } from '@angular-ru/ngxs/repositories';
 import {NGXS_DATA_EXCEPTIONS} from '@angular-ru/ngxs/tokens';
-import {NgxsModule, State, Store} from '@ngxs/store';
+import {provideStore, State, Store} from '@ngxs/store';
 import {BehaviorSubject} from 'rxjs';
 
 describe('[TEST]: Computed fields', () => {
@@ -28,9 +28,9 @@ describe('[TEST]: Computed fields', () => {
             }
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([A], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot(),
+                providers: [
+                    provideStore([A], {developmentMode: true}),
+                    provideNgxsDataPlugin(),
                 ],
                 teardown: {destroyAfterEach: true},
             });
@@ -59,9 +59,9 @@ describe('[TEST]: Computed fields', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [
-                NgxsModule.forRoot([B], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            providers: [
+                provideStore([B], {developmentMode: true}),
+                provideNgxsDataPlugin(),
             ],
             teardown: {destroyAfterEach: true},
         });
@@ -140,9 +140,9 @@ describe('[TEST]: Computed fields', () => {
             }
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([OrderLineState], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot(),
+                providers: [
+                    provideStore([OrderLineState], {developmentMode: true}),
+                    provideNgxsDataPlugin(),
                 ],
                 teardown: {destroyAfterEach: true},
             });
@@ -226,11 +226,9 @@ describe('[TEST]: Computed fields', () => {
             }
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([ImmutableOrderLineState], {
-                        developmentMode: true,
-                    }),
-                    NgxsDataPluginModule.forRoot(),
+                providers: [
+                    provideStore([ImmutableOrderLineState], {developmentMode: true}),
+                    provideNgxsDataPlugin(),
                 ],
                 teardown: {destroyAfterEach: true},
             });
@@ -296,9 +294,9 @@ describe('[TEST]: Computed fields', () => {
         class B extends AbstractCommonCounter {}
 
         TestBed.configureTestingModule({
-            imports: [
-                NgxsModule.forRoot([A, B], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            providers: [
+                provideStore([A, B], {developmentMode: true}),
+                provideNgxsDataPlugin(),
             ],
             teardown: {destroyAfterEach: true},
         });
@@ -346,9 +344,9 @@ describe('[TEST]: Computed fields', () => {
 
         // noinspection DuplicatedCode
         TestBed.configureTestingModule({
-            imports: [
-                NgxsModule.forRoot([A, B], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            providers: [
+                provideStore([A, B], {developmentMode: true}),
+                provideNgxsDataPlugin(),
             ],
             teardown: {destroyAfterEach: true},
         });
@@ -419,11 +417,9 @@ describe('[TEST]: Computed fields', () => {
         })
         @Injectable()
         class A extends NgxsDataRepository<Model> {
-            public heavyCount = 0;
+            private readonly b = inject(B);
 
-            constructor(private readonly b: B) {
-                super();
-            }
+            public heavyCount = 0;
 
             @Computed()
             public get sum(): number {
@@ -434,9 +430,9 @@ describe('[TEST]: Computed fields', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [
-                NgxsModule.forRoot([A, B], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            providers: [
+                provideStore([A, B], {developmentMode: true}),
+                provideNgxsDataPlugin(),
             ],
             teardown: {destroyAfterEach: true},
         });
@@ -496,9 +492,11 @@ describe('[TEST]: Computed fields', () => {
 
         stream.ngOnDestroy();
         store.reset({a: {value: 0}, b: {value: 0}});
+
         expect(stream.sequenceValue).toBe(0);
 
         store.reset({a: {value: 1}, b: {value: 1}});
+
         expect(stream.sequenceValue).toBe(0);
     });
 
@@ -524,9 +522,7 @@ describe('[TEST]: Computed fields', () => {
         })
         @Injectable()
         class MySecondCountState extends NgxsDataRepository<number> {
-            constructor(private readonly first: MyFirstCountService) {
-                super();
-            }
+            private readonly first = inject(MyFirstCountService);
 
             @Computed()
             public get sum(): number {
@@ -540,11 +536,11 @@ describe('[TEST]: Computed fields', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [
-                NgxsModule.forRoot([MySecondCountState], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            providers: [
+                MyFirstCountService,
+                provideStore([MySecondCountState], {developmentMode: true}),
+                provideNgxsDataPlugin(),
             ],
-            providers: [MyFirstCountService],
             teardown: {destroyAfterEach: true},
         });
 
@@ -575,9 +571,9 @@ describe('[TEST]: Computed fields', () => {
     it.skip('recalculate sum when use state from third-party service', () => {
         @Injectable()
         class MyFirstCountService {
-            private readonly values$ = new BehaviorSubject<number>(0);
+            private readonly sequence = inject(NgxsDataSequence);
 
-            constructor(private readonly sequence: NgxsDataSequence) {}
+            private readonly values$ = new BehaviorSubject<number>(0);
 
             public increment(): void {
                 this.values$.next(this.getValue() + 1);
@@ -597,9 +593,7 @@ describe('[TEST]: Computed fields', () => {
         })
         @Injectable()
         class MySecondCountState extends NgxsDataRepository<number> {
-            constructor(private readonly first: MyFirstCountService) {
-                super();
-            }
+            private readonly first = inject(MyFirstCountService);
 
             @Computed()
             public get sum(): number {
@@ -614,8 +608,8 @@ describe('[TEST]: Computed fields', () => {
 
         TestBed.configureTestingModule({
             imports: [
-                NgxsModule.forRoot([MySecondCountState], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+                provideStore([MySecondCountState], {developmentMode: true}),
+                provideNgxsDataPlugin(),
             ],
             providers: [MyFirstCountService],
             teardown: {destroyAfterEach: true},

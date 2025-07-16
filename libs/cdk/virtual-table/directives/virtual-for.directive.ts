@@ -1,6 +1,7 @@
 import {
     Directive,
     EmbeddedViewRef,
+    inject,
     Input,
     NgZone,
     OnDestroy,
@@ -17,7 +18,11 @@ import {
 } from '../interfaces/table-builder.external';
 
 @Directive({selector: '[virtualFor][virtualForOf]'})
-export class VirtualForDirective<T> implements OnDestroy {
+export class VirtualFor<T> implements OnDestroy {
+    private readonly view = inject(ViewContainerRef);
+    private readonly template = inject<TemplateRef<VirtualContext<T>>>(TemplateRef);
+    private readonly ngZone = inject(NgZone);
+
     private readonly cache = new Map<number, InternalVirtualRef<T>>();
     private _source: T[] = [];
     private _indexes: VirtualIndex[] = [];
@@ -26,12 +31,6 @@ export class VirtualForDirective<T> implements OnDestroy {
     private dirty = false;
     @Input()
     public virtualForDiffIndexes?: Nullable<number[]>;
-
-    constructor(
-        private readonly view: ViewContainerRef,
-        private readonly template: TemplateRef<VirtualContext<T>>,
-        private readonly ngZone: NgZone,
-    ) {}
 
     @Input()
     public set virtualForOriginSource(origin: Nullable<T[]>) {

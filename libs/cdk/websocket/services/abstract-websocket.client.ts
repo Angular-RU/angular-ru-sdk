@@ -1,4 +1,4 @@
-import {Injectable, NgZone, OnDestroy} from '@angular/core';
+import {inject, Injectable, NgZone, OnDestroy} from '@angular/core';
 import {Nullable, PlainObject} from '@angular-ru/cdk/typings';
 import {isFalsy, tryParseJson} from '@angular-ru/cdk/utils';
 import {Observable, ReplaySubject, Subject, Subscription, throwError} from 'rxjs';
@@ -18,6 +18,9 @@ export const BINARY: PlainObject = {};
 export abstract class AbstractWebsocketClient<K extends PlainObject | string>
     implements WebsocketHandler<K>, OnDestroy
 {
+    private readonly wsConfig = inject(WebsocketConfig);
+    private readonly ngZone = inject(NgZone);
+
     private connected = false;
     private socket$: Nullable<WebSocketSubject<WebsocketMessage<K, any>>>;
     private socketSubscription: Nullable<Subscription>;
@@ -27,11 +30,6 @@ export abstract class AbstractWebsocketClient<K extends PlainObject | string>
     public disconnected$ = new ReplaySubject<Event>(Number.POSITIVE_INFINITY);
 
     public destroy$: Subject<boolean> = new Subject<boolean>();
-
-    protected constructor(
-        private readonly wsConfig: WebsocketConfig,
-        private readonly ngZone: NgZone,
-    ) {}
 
     public get isConnected(): boolean {
         return this.connected;

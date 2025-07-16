@@ -3,7 +3,7 @@ import {
     ChangeDetectorRef,
     Directive,
     ElementRef,
-    Injector,
+    inject,
     NgZone,
     OnDestroy,
     ViewChild,
@@ -24,9 +24,11 @@ export interface PositionState {
 }
 
 @Directive()
-export abstract class AbstractModalViewLayerDirective<T, K extends PositionState>
+export abstract class AbstractModalViewLayer<T, K extends PositionState>
     implements OnDestroy
 {
+    protected readonly cd = inject(ChangeDetectorRef);
+
     public abstract width: Nullable<number>;
     public abstract height: Nullable<number>;
     public abstract maxHeight: Nullable<number>;
@@ -34,24 +36,14 @@ export abstract class AbstractModalViewLayerDirective<T, K extends PositionState
     protected menu!: ElementRef<HTMLDivElement>;
 
     protected subscription: Nullable<Subscription> = null;
-    protected readonly app: ApplicationRef;
-    protected readonly filterable: FilterableService<T>;
-    protected readonly ngZone: NgZone;
-    protected readonly contextMenu: ContextMenuService<T>;
+    protected readonly app = inject(ApplicationRef);
+    protected readonly filterable = inject(FilterableService<T>);
+    protected readonly ngZone = inject(NgZone);
+    protected readonly contextMenu = inject(ContextMenuService<T>);
     public isViewed = false;
     public isRendered = false;
     public isShowed = false;
     public minHeight: Nullable<number> = null;
-
-    constructor(
-        protected readonly cd: ChangeDetectorRef,
-        injector: Injector,
-    ) {
-        this.app = injector.get<ApplicationRef>(ApplicationRef);
-        this.filterable = injector.get<FilterableService<T>>(FilterableService);
-        this.ngZone = injector.get<NgZone>(NgZone);
-        this.contextMenu = injector.get<ContextMenuService<T>>(ContextMenuService);
-    }
 
     public get left(): number {
         return this.state.position?.left ?? 0;
@@ -90,7 +82,7 @@ export abstract class AbstractModalViewLayerDirective<T, K extends PositionState
             } else {
                 height = this.menu.nativeElement.scrollHeight;
             }
-        } catch (error: unknown) {
+        } catch {
             height = this.height;
         }
 

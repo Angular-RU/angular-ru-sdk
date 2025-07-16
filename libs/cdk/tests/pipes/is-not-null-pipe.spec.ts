@@ -1,12 +1,12 @@
 import {TestBed} from '@angular/core/testing';
-import {IsNotNullPipe, IsNotNullPipeModule} from '@angular-ru/cdk/pipes';
+import {IsNotNullPipe} from '@angular-ru/cdk/pipes';
 
 describe('is not null pipe', () => {
     let pipe: IsNotNullPipe;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [IsNotNullPipeModule],
+            providers: [IsNotNullPipe],
         }).compileComponents();
         pipe = TestBed.inject(IsNotNullPipe);
     });

@@ -2,12 +2,12 @@ import {TestBed} from '@angular/core/testing';
 import {FormControl, FormGroup} from '@angular/forms';
 import {
     DateSuggestionComposer,
-    DateSuggestionModule,
     DayOfWeek,
     DEFAULT_SUGGESTION_STRATEGY_MAP,
     DefaultDateIntervalSuggestion,
     endOfDay,
     FIRST_DAY_OF_WEEK,
+    provideDateSuggestion,
     shiftDate,
     startOfDay,
 } from '@angular-ru/cdk/date';
@@ -56,8 +56,13 @@ describe('[TEST]: Trim Input', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [DateSuggestionModule.forRoot()],
-            providers: [{provide: FIRST_DAY_OF_WEEK, useFactory: firstDayOfWeekFactory}],
+            providers: [
+                provideDateSuggestion(),
+                {
+                    provide: FIRST_DAY_OF_WEEK,
+                    useFactory: firstDayOfWeekFactory,
+                },
+            ],
         }).compileComponents();
 
         composer = TestBed.inject(DateSuggestionComposer);
@@ -77,6 +82,7 @@ describe('[TEST]: Trim Input', () => {
         composer
             .getStrategy(DefaultDateIntervalSuggestion.LAST_3_DAYS)
             .updateIntervalFor(form, descriptor);
+
         expect(form.getRawValue()).toEqual({
             dateFrom: startOfDay(shiftDate({days: -2})),
             dateTo: endOfDay(),
@@ -85,6 +91,7 @@ describe('[TEST]: Trim Input', () => {
         composer
             .getStrategy(DefaultDateIntervalSuggestion.LAST_7_DAYS)
             .updateIntervalFor(form, descriptor);
+
         expect(form.getRawValue()).toEqual({
             dateFrom: startOfDay(shiftDate({days: -6})),
             dateTo: endOfDay(),
@@ -93,6 +100,7 @@ describe('[TEST]: Trim Input', () => {
         composer
             .getStrategy(DefaultDateIntervalSuggestion.LAST_60_DAYS)
             .updateIntervalFor(form, descriptor);
+
         expect(form.getRawValue()).toEqual({
             dateFrom: startOfDay(shiftDate({days: -59})),
             dateTo: endOfDay(),
@@ -103,6 +111,7 @@ describe('[TEST]: Trim Input', () => {
         composer
             .getStrategy(DefaultDateIntervalSuggestion.TODAY)
             .updateIntervalFor(form, descriptor);
+
         expect(form.getRawValue()).toEqual({
             dateFrom: startOfDay(),
             dateTo: endOfDay(),
@@ -111,6 +120,7 @@ describe('[TEST]: Trim Input', () => {
         composer
             .getStrategy(DefaultDateIntervalSuggestion.YESTERDAY)
             .updateIntervalFor(form, descriptor);
+
         expect(form.getRawValue()).toEqual({
             dateFrom: startOfDay(shiftDate({days: -1})),
             dateTo: endOfDay(shiftDate({days: -1})),
@@ -124,6 +134,7 @@ describe('[TEST]: Trim Input', () => {
         composer
             .getStrategy(DefaultDateIntervalSuggestion.FIRST_DAY_OF_INTERVAL)
             .updateIntervalFor(form, descriptor);
+
         expect(form.getRawValue()).toEqual({
             dateFrom: startOfDay(mockStart),
             dateTo: endOfDay(mockStart),
@@ -137,6 +148,7 @@ describe('[TEST]: Trim Input', () => {
         composer
             .getStrategy(DefaultDateIntervalSuggestion.LAST_180_DAYS_OF_INTERVAL)
             .updateIntervalFor(form, descriptor);
+
         expect(form.getRawValue()).toEqual({
             dateFrom: startOfDay(shiftDate({days: -179}, mockEnd)),
             dateTo: endOfDay(mockEnd),
@@ -150,7 +162,7 @@ describe('[TEST]: Trim Input', () => {
             firstDayOfWeekFactory.mockImplementation(() => firstDayOfWeekNumber);
 
             // mocking today's week day
-            jest.useFakeTimers('modern');
+            jest.useFakeTimers();
             jest.setSystemTime(mockToday);
 
             expect(new Date().getDay()).toBe(3); // wednesday
@@ -158,6 +170,7 @@ describe('[TEST]: Trim Input', () => {
             composer
                 .getStrategy(DefaultDateIntervalSuggestion.CALENDAR_WEEK)
                 .updateIntervalFor(form, descriptor);
+
             expect(form.getRawValue()).toEqual({
                 dateFrom: startOfDay(firstDayOfWeek),
                 dateTo: endOfDay(mockToday),

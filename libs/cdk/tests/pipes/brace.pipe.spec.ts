@@ -1,11 +1,11 @@
 import {TestBed} from '@angular/core/testing';
-import {BracePipe, BracePipeModule} from '@angular-ru/cdk/pipes';
+import {BracePipe} from '@angular-ru/cdk/pipes';
 
 describe('brace pipe', () => {
     let pipe: BracePipe;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({imports: [BracePipeModule]}).compileComponents();
+        TestBed.configureTestingModule({providers: [BracePipe]}).compileComponents();
         pipe = TestBed.inject(BracePipe);
     });
 

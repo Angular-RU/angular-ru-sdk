@@ -1,5 +1,5 @@
 // eslint-disable-next-line max-classes-per-file
-import {Inject, Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {Nullable, PlainObject} from '@angular-ru/cdk/typings';
 import {WebWorkerThreadService} from '@angular-ru/cdk/webworker';
 
@@ -8,10 +8,7 @@ import {RulesDescriptor} from './interfaces/rules-descriptor';
 
 @Injectable()
 export class PlainTableComposerService {
-    constructor(
-        @Inject(WebWorkerThreadService)
-        private readonly webWorker: WebWorkerThreadService,
-    ) {}
+    private readonly webWorker = inject<WebWorkerThreadService>(WebWorkerThreadService);
 
     public async composeSingle<T extends PlainObject>(
         entry: T,

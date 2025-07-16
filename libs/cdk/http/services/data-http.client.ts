@@ -1,9 +1,8 @@
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {inject, Injectable} from '@angular/core';
+import {HttpErrorResponse} from '@angular/common/http';
+import {Injectable} from '@angular/core';
 import {
     DataBeforeRequestOptions,
     DataClientRequestOptions,
-    DataHttpInterceptor,
     DataHttpRequestOptions,
     DataUrlPathSegment,
     MetaDataRequest,
@@ -13,23 +12,11 @@ import {isNil, isTrue} from '@angular-ru/cdk/utils';
 import {Observable, Subscriber, Subscription, throwError} from 'rxjs';
 import {catchError, finalize, take, tap} from 'rxjs/operators';
 
-import {DATA_HTTP_CLIENT_INTERCEPTOR} from '../tokens/data-http-client-interceptor.token';
 import {RestTemplate} from '../utils/rest-template';
 import {AbstractHttpClient} from './abstract-http.client';
-import {DataConfiguratorService} from './data-configurator.service';
-import {LimitConcurrencyService} from './limit-concurrency.service';
 
 @Injectable()
 export class DataHttpClient<K = unknown> extends AbstractHttpClient<K> {
-    constructor() {
-        super(
-            inject<HttpClient>(HttpClient),
-            inject<DataConfiguratorService>(DataConfiguratorService),
-            inject<LimitConcurrencyService>(LimitConcurrencyService),
-            inject<DataHttpInterceptor>(DATA_HTTP_CLIENT_INTERCEPTOR),
-        );
-    }
-
     public request<T, R = T>(options: DataBeforeRequestOptions): Observable<R> {
         if (isNil(this.local)) {
             throw new Error(

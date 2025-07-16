@@ -1,5 +1,5 @@
 <a
-    href="http://stackblitz.com/github/ngxs-labs/data?file=integration%2Fapp%2Fexamples%2Ftodo%2Ftodo.state.ts"
+    href="https://stackblitz.com/github/ngxs-labs/data?file=integration%2Fapp%2Fexamples%2Ftodo%2Ftodo.state.ts"
     target="_blank"
 >
     <img
@@ -11,7 +11,9 @@
 
 <h3>Person state</h3>
 
-<div *ngIf="person.state$ | async as person">
-    <h4>{{ person.title }}</h4>
-    <p>{{ person.description }}</p>
-</div>
+@if (person.state$ | async; as person) {
+    <div>
+        <h4>{{ person.title }}</h4>
+        <p>{{ person.description }}</p>
+    </div>
+}

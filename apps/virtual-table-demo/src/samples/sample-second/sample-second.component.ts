@@ -1,10 +1,19 @@
+import {CurrencyPipe, UpperCasePipe} from '@angular/common';
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    inject,
     ViewEncapsulation,
 } from '@angular/core';
+import {MatButton} from '@angular/material/button';
+import {MatIcon} from '@angular/material/icon';
+import {MatFormField, MatLabel} from '@angular/material/input';
+import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
+import {MatOption, MatSelect} from '@angular/material/select';
+import {MatToolbar} from '@angular/material/toolbar';
+import {VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 
@@ -23,8 +32,22 @@ export interface PeriodicElement {
 
 @Component({
     selector: 'sample-second',
+    imports: [
+        CurrencyPipe,
+        MatButton,
+        MatFormField,
+        MatIcon,
+        MatLabel,
+        MatMenu,
+        MatMenuItem,
+        MatMenuTrigger,
+        MatOption,
+        MatSelect,
+        MatToolbar,
+        UpperCasePipe,
+        VirtualTable,
+    ],
     templateUrl: './sample-second.component.html',
-    // eslint-disable-next-line @angular-eslint/component-max-inline-declarations
     styles: [
         `
             /*noinspection CssUnusedSymbol*/
@@ -40,23 +63,15 @@ export interface PeriodicElement {
             }
         `,
     ],
-    // Use to disable CSS Encapsulation for this component
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SampleSecondComponent implements AfterViewInit {
+export default class SampleSecondComponent implements AfterViewInit {
+    public readonly cd = inject(ChangeDetectorRef);
+
     public licenses: LicenseSample[] = [];
 
-    public columns: string[] = [
-        'name',
-        'position',
-        'weight',
-        'symbol',
-        'position',
-        'weight',
-        'symbol',
-        'status',
-    ];
+    public columns: string[] = ['name', 'position', 'weight', 'symbol', 'status'];
 
     // noinspection DuplicatedCode
     public elements: PeriodicElement[] = [
@@ -71,8 +86,6 @@ export class SampleSecondComponent implements AfterViewInit {
         {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
         {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
     ];
-
-    constructor(public readonly cd: ChangeDetectorRef) {}
 
     // eslint-disable-next-line max-lines-per-function
     public ngAfterViewInit(): void {

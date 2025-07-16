@@ -2,6 +2,7 @@ import {
     Directive,
     ElementRef,
     EventEmitter,
+    inject,
     Input,
     NgZone,
     OnChanges,
@@ -27,7 +28,10 @@ const MIN_RESIZE_DELAY = 500;
 const RECALCULATE_HEIGHT = 100;
 
 @Directive({selector: '[autoHeight]'})
-export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
+export class AutoHeight<T> implements OnInit, OnChanges, OnDestroy {
+    private readonly element = inject(ElementRef);
+    public readonly ngZone = inject(NgZone);
+
     private readonly _destroy$: Subject<boolean> = new Subject<boolean>();
     private readonly minHeight: number = 0;
     private useOnlyAutoViewPort = false;
@@ -44,11 +48,6 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
 
     @Output()
     public readonly recalculatedHeight = new EventEmitter<void>(true);
-
-    constructor(
-        private readonly element: ElementRef,
-        public readonly ngZone: NgZone,
-    ) {}
 
     public get destroy$(): Subject<boolean> {
         return this._destroy$;
@@ -69,11 +68,11 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
         if (checkValueIsFilled(this.autoHeight.rootHeight)) {
             height = this.autoHeight.rootHeight;
         } else if (isTrue(this.autoHeight.detect)) {
-            const paddingTop: string = AutoHeightDirective.getStyle(
+            const paddingTop: string = AutoHeight.getStyle(
                 this.rootCurrentElement,
                 'padding-top',
             );
-            const paddingBottom: string = AutoHeightDirective.getStyle(
+            const paddingBottom: string = AutoHeight.getStyle(
                 this.rootCurrentElement,
                 'padding-bottom',
             );
@@ -110,11 +109,7 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
     }
 
     private get rootCurrentElement(): Partial<HTMLElement> {
-        return (
-            (this.currentElement.parentNode &&
-                this.currentElement.parentNode.parentElement) ||
-            {}
-        );
+        return this.currentElement.parentNode?.parentElement || {};
     }
 
     private get columnHeight(): number {
@@ -154,7 +149,7 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
                 strValue = document.defaultView
                     .getComputedStyle(element, '')
                     .getPropertyValue(strRule);
-            } catch (error: unknown) {
+            } catch {
                 strValue = '0px';
             }
         } else if (isNotNil(element.currentStyle)) {

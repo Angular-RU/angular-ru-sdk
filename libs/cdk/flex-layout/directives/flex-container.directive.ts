@@ -1,14 +1,13 @@
 /* eslint-disable @angular-eslint/no-input-rename */
-import {AfterViewInit, ElementRef, Inject} from '@angular/core';
+import {AfterViewInit, ElementRef, inject} from '@angular/core';
 import {Directive, Input} from '@angular/core';
 
-import {AbstractFlexLayoutDirective} from './abstract-flex-layout.directive';
+import {AbstractFlexLayout} from './abstract-flex-layout.directive';
 
 @Directive({selector: '[flex-container]'})
-export class FlexContainerDirective
-    extends AbstractFlexLayoutDirective
-    implements AfterViewInit
-{
+export class FlexContainer extends AbstractFlexLayout implements AfterViewInit {
+    protected readonly elementRef = inject<ElementRef>(ElementRef);
+
     @Input('flex-center')
     public center: boolean | string = false;
 
@@ -17,13 +16,6 @@ export class FlexContainerDirective
 
     @Input('full-width')
     public fullWidth: boolean | string = false;
-
-    constructor(
-        @Inject(ElementRef)
-        protected readonly elementRef: ElementRef,
-    ) {
-        super();
-    }
 
     public ngAfterViewInit(): void {
         this.classList.add('flex-container');

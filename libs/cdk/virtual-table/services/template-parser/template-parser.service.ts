@@ -1,4 +1,10 @@
-import {Injectable, QueryList} from '@angular/core';
+import {
+    inject,
+    Injectable,
+    Injector,
+    QueryList,
+    runInInjectionContext,
+} from '@angular/core';
 import {toNumber} from '@angular-ru/cdk/number';
 import {shallowMapObject} from '@angular-ru/cdk/object';
 import {Nullable, PlainObjectOf} from '@angular-ru/cdk/typings';
@@ -10,11 +16,11 @@ import {
     isTrue,
 } from '@angular-ru/cdk/utils';
 
-import {NgxColumnComponent} from '../../components/ngx-column/ngx-column.component';
+import {NgxColumn} from '../../components/ngx-column/ngx-column.component';
 import {ColumnOptionsDirective} from '../../directives/column-options.directive';
 import {AbstractTemplateCellCommonDirective} from '../../directives/rows/abstract-template-cell-common.directive';
-import {TemplateBodyTdDirective} from '../../directives/rows/template-body-td.directive';
-import {TemplateHeadThDirective} from '../../directives/rows/template-head-th.directive';
+import {TemplateBodyTd} from '../../directives/rows/template-body-td.directive';
+import {TemplateHeadTh} from '../../directives/rows/template-head-th.directive';
 import {
     ColumnsSchema,
     ImplicitContext,
@@ -56,6 +62,8 @@ export class TemplateParserService<T> {
      *    allowedKeyMap === { 'id': true, 'hello': true, 'value': true, 'description': false }
      */
     public keyMap: PlainObjectOf<boolean> = {};
+
+    private readonly injector = inject(Injector);
 
     private static templateContext<U>(
         key: string,
@@ -124,13 +132,13 @@ export class TemplateParserService<T> {
     }
 
     // eslint-disable-next-line max-lines-per-function,complexity
-    public parse(templates?: QueryList<NgxColumnComponent<T>> | null): void {
+    public parse(templates?: QueryList<NgxColumn<T>> | null): void {
         if (isNil(templates)) {
             return;
         }
 
         for (const column of templates ?? []) {
-            const {key, customKey, importantTemplate}: NgxColumnComponent<T> = column;
+            const {key, customKey, importantTemplate}: NgxColumn<T> = column;
             const needTemplateCheck: boolean =
                 this.allowedKeyMap[key!] ?? customKey !== false;
 
@@ -159,7 +167,7 @@ export class TemplateParserService<T> {
     }
 
     // eslint-disable-next-line complexity,max-lines-per-function
-    public compileColumnMetadata(column: NgxColumnComponent<T>): void {
+    public compileColumnMetadata(column: NgxColumn<T>): void {
         const {
             key,
             th,
@@ -179,11 +187,11 @@ export class TemplateParserService<T> {
             cssClass,
             overflowTooltip,
             excelType,
-        }: NgxColumnComponent<T> = column;
+        }: NgxColumn<T> = column;
         const thTemplate: AbstractTemplateCellCommonDirective<T> =
-            th ?? new TemplateHeadThDirective<T>();
+            th ?? runInInjectionContext(this.injector, () => new TemplateHeadTh<T>());
         const tdTemplate: AbstractTemplateCellCommonDirective<T> =
-            td ?? new TemplateBodyTdDirective<T>();
+            td ?? runInInjectionContext(this.injector, () => new TemplateBodyTd<T>());
         const isEmptyHead: boolean = getValidHtmlBooleanAttribute(emptyHead);
         const thOptions: TableCellOptions = TemplateParserService.templateContext(
             key ?? '',

@@ -6,4 +6,4 @@ import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/co
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NgxEmptyComponent {}
+export class NgxEmpty {}

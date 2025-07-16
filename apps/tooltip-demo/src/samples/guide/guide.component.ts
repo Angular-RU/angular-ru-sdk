@@ -1,11 +1,20 @@
 import {
+    CdkFixedSizeVirtualScroll,
+    CdkVirtualForOf,
+    CdkVirtualScrollViewport,
+} from '@angular/cdk/scrolling';
+import {NgTemplateOutlet} from '@angular/common';
+import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    inject,
     NgZone,
     VERSION,
     Version,
 } from '@angular/core';
+import {MatIcon} from '@angular/material/icon';
+import {Tooltip} from '@angular-ru/cdk/tooltip/tooltip.directive';
 
 interface Favorite {
     id: number;
@@ -15,10 +24,21 @@ interface Favorite {
 
 @Component({
     selector: 'guide',
+    imports: [
+        CdkFixedSizeVirtualScroll,
+        CdkVirtualForOf,
+        CdkVirtualScrollViewport,
+        MatIcon,
+        NgTemplateOutlet,
+        Tooltip,
+    ],
     templateUrl: './guide.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GuideComponent {
+export default class GuideComponent {
+    private readonly zone = inject(NgZone);
+    protected readonly cd = inject(ChangeDetectorRef);
+
     public version: Version = VERSION;
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers,@typescript-eslint/explicit-function-return-type
     public favorites: Favorite[] = new Array(10000).fill(0).map(
@@ -33,11 +53,6 @@ export class GuideComponent {
             isMarked: false,
         }),
     );
-
-    constructor(
-        private readonly zone: NgZone,
-        protected readonly cd: ChangeDetectorRef,
-    ) {}
 
     public markFavorite(favorite: Favorite): void {
         this.zone.runOutsideAngular((): void => {

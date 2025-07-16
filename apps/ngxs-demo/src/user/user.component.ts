@@ -1,23 +1,24 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {Select} from '@ngxs/store';
-import {Observable} from 'rxjs';
+import {AsyncPipe} from '@angular/common';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {Store} from '@ngxs/store';
 
 import {UserState} from './user.state';
-import {UserModel} from './user-model';
 
 @Component({
     selector: 'user',
+    imports: [AsyncPipe],
     templateUrl: './user.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserComponent {
-    @Select(UserState.getEntity)
-    public user$!: Observable<UserModel>;
+    public userState = inject(UserState);
 
-    @Select(UserState.isLoading)
-    public isLoading$!: Observable<boolean>;
+    private readonly store = inject(Store);
 
-    constructor(public userState: UserState) {
+    protected user$ = this.store.select(UserState.getEntity);
+    protected isLoading$ = this.store.select(UserState.isLoading);
+
+    constructor() {
         // eslint-disable-next-line rxjs/no-ignored-observable
         this.userState.loadUser();
     }

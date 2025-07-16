@@ -1,13 +1,10 @@
-import {
-    createNgModuleRef,
-    Injectable,
-    Injector,
-    NgModule,
-    PLATFORM_ID,
-} from '@angular/core';
+/* eslint-disable sonarjs/no-alphabetical-sort */
+import {ChangeDetectionStrategy, Component, Injectable, PLATFORM_ID} from '@angular/core';
 import {fakeAsync, TestBed, tick} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {provideRouter, Router, RouterOutlet} from '@angular/router';
 import {Immutable} from '@angular-ru/cdk/typings';
-import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
 import {DataAction, Persistence, StateRepository} from '@angular-ru/ngxs/decorators';
 import {STORAGE_INITIALIZER} from '@angular-ru/ngxs/internals';
 import {
@@ -15,14 +12,12 @@ import {
     NgxsImmutableDataRepository,
 } from '@angular-ru/ngxs/repositories';
 import {
-    NGXS_DATA_STORAGE_CONTAINER,
     NGXS_DATA_STORAGE_CONTAINER_TOKEN,
     NGXS_DATA_STORAGE_DECODE_TYPE_TOKEN,
-    NGXS_DATA_STORAGE_EXTENSION,
-    NGXS_DATA_STORAGE_PLUGIN,
     NGXS_DATA_STORAGE_PREFIX_TOKEN,
     NgxsDataStoragePlugin,
     STORAGE_TTL_DELAY,
+    withNgxsDataStorage,
 } from '@angular-ru/ngxs/storage';
 import {
     NGXS_DATA_EXCEPTIONS,
@@ -44,9 +39,10 @@ import {
 import {
     Actions,
     NGXS_PLUGINS,
-    NgxsModule,
     ofActionDispatched,
     ofActionSuccessful,
+    provideStates,
+    provideStore,
     State,
     Store,
 } from '@ngxs/store';
@@ -59,9 +55,9 @@ describe('[TEST]: Storage plugin', () => {
     describe('simple API', () => {
         it('should be work with correct providers', () => {
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot([NGXS_DATA_STORAGE_PLUGIN]),
+                providers: [
+                    provideStore([], {developmentMode: true}),
+                    provideNgxsDataPlugin(withNgxsDataStorage()),
                 ],
             });
 
@@ -84,9 +80,9 @@ describe('[TEST]: Storage plugin', () => {
                 class Invalid extends NgxsImmutableDataRepository<string> {}
 
                 TestBed.configureTestingModule({
-                    imports: [
-                        NgxsModule.forRoot([Invalid], {developmentMode: true}),
-                        NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
+                    providers: [
+                        provideStore([Invalid], {developmentMode: true}),
+                        provideNgxsDataPlugin(withNgxsDataStorage()),
                     ],
                 });
             } catch (error: unknown) {
@@ -104,9 +100,9 @@ describe('[TEST]: Storage plugin', () => {
             class CustomState extends NgxsImmutableDataRepository<string> {}
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([CustomState], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot([NGXS_DATA_STORAGE_EXTENSION]),
+                providers: [
+                    provideStore([CustomState], {developmentMode: true}),
+                    provideNgxsDataPlugin(withNgxsDataStorage()),
                 ],
             });
 
@@ -145,12 +141,9 @@ describe('[TEST]: Storage plugin', () => {
                 class A extends NgxsImmutableDataRepository<number> {}
 
                 TestBed.configureTestingModule({
-                    imports: [
-                        NgxsModule.forRoot([A], {developmentMode: true}),
-                        NgxsDataPluginModule.forRoot([
-                            NGXS_DATA_STORAGE_EXTENSION,
-                            NGXS_DATA_STORAGE_CONTAINER,
-                        ]),
+                    providers: [
+                        provideStore([A], {developmentMode: true}),
+                        provideNgxsDataPlugin(withNgxsDataStorage()),
                     ],
                 });
 
@@ -237,12 +230,9 @@ describe('[TEST]: Storage plugin', () => {
                 }
 
                 TestBed.configureTestingModule({
-                    imports: [
-                        NgxsModule.forRoot([B], {developmentMode: true}),
-                        NgxsDataPluginModule.forRoot([
-                            NGXS_DATA_STORAGE_EXTENSION,
-                            NGXS_DATA_STORAGE_CONTAINER,
-                        ]),
+                    providers: [
+                        provideStore([B], {developmentMode: true}),
+                        provideNgxsDataPlugin(withNgxsDataStorage()),
                     ],
                 }).compileComponents();
 
@@ -338,12 +328,9 @@ describe('[TEST]: Storage plugin', () => {
             class C extends NgxsImmutableDataRepository<string> {}
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([C], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot([
-                        NGXS_DATA_STORAGE_EXTENSION,
-                        NGXS_DATA_STORAGE_CONTAINER,
-                    ]),
+                providers: [
+                    provideStore([C], {developmentMode: true}),
+                    provideNgxsDataPlugin(withNgxsDataStorage()),
                 ],
             });
 
@@ -376,12 +363,9 @@ describe('[TEST]: Storage plugin', () => {
             class C1 extends NgxsImmutableDataRepository<string> {}
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([C1], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot([
-                        NGXS_DATA_STORAGE_EXTENSION,
-                        NGXS_DATA_STORAGE_CONTAINER,
-                    ]),
+                providers: [
+                    provideStore([C1], {developmentMode: true}),
+                    provideNgxsDataPlugin(withNgxsDataStorage()),
                 ],
             });
 
@@ -414,12 +398,9 @@ describe('[TEST]: Storage plugin', () => {
             class C2 extends NgxsImmutableDataRepository<string> {}
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([C2], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot([
-                        NGXS_DATA_STORAGE_EXTENSION,
-                        NGXS_DATA_STORAGE_CONTAINER,
-                    ]),
+                providers: [
+                    provideStore([C2], {developmentMode: true}),
+                    provideNgxsDataPlugin(withNgxsDataStorage()),
                 ],
             });
 
@@ -449,12 +430,9 @@ describe('[TEST]: Storage plugin', () => {
             class C3 extends NgxsImmutableDataRepository<string> {}
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([C3], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot([
-                        NGXS_DATA_STORAGE_EXTENSION,
-                        NGXS_DATA_STORAGE_CONTAINER,
-                    ]),
+                providers: [
+                    provideStore([C3], {developmentMode: true}),
+                    provideNgxsDataPlugin(withNgxsDataStorage()),
                 ],
             });
 
@@ -484,12 +462,9 @@ describe('[TEST]: Storage plugin', () => {
             class C4 extends NgxsImmutableDataRepository<string> {}
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([C4], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot([
-                        NGXS_DATA_STORAGE_EXTENSION,
-                        NGXS_DATA_STORAGE_CONTAINER,
-                    ]),
+                providers: [
+                    provideStore([C4], {developmentMode: true}),
+                    provideNgxsDataPlugin(withNgxsDataStorage()),
                 ],
             });
 
@@ -519,12 +494,9 @@ describe('[TEST]: Storage plugin', () => {
             class C5 extends NgxsImmutableDataRepository<string> {}
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([C5], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot([
-                        NGXS_DATA_STORAGE_EXTENSION,
-                        NGXS_DATA_STORAGE_CONTAINER,
-                    ]),
+                providers: [
+                    provideStore([C5], {developmentMode: true}),
+                    provideNgxsDataPlugin(withNgxsDataStorage()),
                 ],
             });
 
@@ -556,11 +528,9 @@ describe('[TEST]: Storage plugin', () => {
             class C6 extends NgxsImmutableDataRepository<string> {}
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([C6], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
-                ],
                 providers: [
+                    provideStore([C6], {developmentMode: true}),
+                    provideNgxsDataPlugin(withNgxsDataStorage()),
                     {
                         provide: NGXS_DATA_STORAGE_PREFIX_TOKEN,
                         useValue: '@myCompany.store.',
@@ -620,9 +590,9 @@ describe('[TEST]: Storage plugin', () => {
             class C9 extends NgxsImmutableDataRepository<string> {}
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([C7, C8, C9], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
+                providers: [
+                    provideStore([C7, C8, C9], {developmentMode: true}),
+                    provideNgxsDataPlugin(withNgxsDataStorage()),
                 ],
             });
 
@@ -748,9 +718,9 @@ describe('[TEST]: Storage plugin', () => {
             class C12 extends NgxsImmutableDataRepository<string> {}
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([C10, C11, C12], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
+                providers: [
+                    provideStore([C10, C11, C12], {developmentMode: true}),
+                    provideNgxsDataPlugin(withNgxsDataStorage()),
                 ],
             });
 
@@ -873,9 +843,9 @@ describe('[TEST]: Storage plugin', () => {
             class C13 extends NgxsImmutableDataRepository<string> {}
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([C13], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
+                providers: [
+                    provideStore([C13], {developmentMode: true}),
+                    provideNgxsDataPlugin(withNgxsDataStorage()),
                 ],
             });
 
@@ -935,9 +905,9 @@ describe('[TEST]: Storage plugin', () => {
             class C14 extends NgxsImmutableDataRepository<string> {}
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([C14], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
+                providers: [
+                    provideStore([C14], {developmentMode: true}),
+                    provideNgxsDataPlugin(withNgxsDataStorage()),
                 ],
             });
 
@@ -974,12 +944,9 @@ describe('[TEST]: Storage plugin', () => {
             class C15 extends NgxsImmutableDataRepository<string> {}
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([C15], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot([
-                        NGXS_DATA_STORAGE_EXTENSION,
-                        NGXS_DATA_STORAGE_CONTAINER,
-                    ]),
+                providers: [
+                    provideStore([C15], {developmentMode: true}),
+                    provideNgxsDataPlugin(withNgxsDataStorage()),
                 ],
             });
 
@@ -1063,14 +1030,11 @@ describe('[TEST]: Storage plugin', () => {
             class C16 extends NgxsImmutableDataRepository<string> {}
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([C16], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot([
-                        NGXS_DATA_STORAGE_EXTENSION,
-                        NGXS_DATA_STORAGE_CONTAINER,
-                    ]),
+                providers: [
+                    provideStore([C16], {developmentMode: true}),
+                    provideNgxsDataPlugin(withNgxsDataStorage()),
+                    {provide: PLATFORM_ID, useValue: 'server'},
                 ],
-                providers: [{provide: PLATFORM_ID, useValue: 'server'}],
             });
 
             const actions$: Actions = TestBed.inject<Actions>(Actions);
@@ -1185,11 +1149,11 @@ describe('[TEST]: Storage plugin', () => {
             class C17 extends NgxsImmutableDataRepository<string> {}
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([C17], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
+                providers: [
+                    provideStore([C17], {developmentMode: true}),
+                    provideNgxsDataPlugin(withNgxsDataStorage()),
+                    MyInvalidStorage,
                 ],
-                providers: [MyInvalidStorage],
             });
 
             const stateC14: C17 = TestBed.inject<C17>(C17);
@@ -1241,9 +1205,9 @@ describe('[TEST]: Storage plugin', () => {
             class D2 extends NgxsDataRepository<string> {}
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([D1, D2], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
+                providers: [
+                    provideStore([D1, D2], {developmentMode: true}),
+                    provideNgxsDataPlugin(withNgxsDataStorage()),
                 ],
             });
 
@@ -1338,9 +1302,9 @@ describe('[TEST]: Storage plugin', () => {
             class E2 extends NgxsDataRepository<EModel> {}
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([E1, E2], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
+                providers: [
+                    provideStore([E1, E2], {developmentMode: true}),
+                    provideNgxsDataPlugin(withNgxsDataStorage()),
                 ],
             });
 
@@ -1474,9 +1438,9 @@ describe('[TEST]: Storage plugin', () => {
 
             // noinspection DuplicatedCode
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([E1, E2], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
+                providers: [
+                    provideStore([E1, E2], {developmentMode: true}),
+                    provideNgxsDataPlugin(withNgxsDataStorage()),
                 ],
             });
 
@@ -1564,9 +1528,9 @@ describe('[TEST]: Storage plugin', () => {
 
                 // noinspection DuplicatedCode
                 TestBed.configureTestingModule({
-                    imports: [
-                        NgxsModule.forRoot([FireState], {developmentMode: true}),
-                        NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
+                    providers: [
+                        provideStore([FireState], {developmentMode: true}),
+                        provideNgxsDataPlugin(withNgxsDataStorage()),
                     ],
                 });
 
@@ -1601,9 +1565,9 @@ describe('[TEST]: Storage plugin', () => {
 
                 // noinspection DuplicatedCode
                 TestBed.configureTestingModule({
-                    imports: [
-                        NgxsModule.forRoot([Fire2State], {developmentMode: true}),
-                        NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
+                    providers: [
+                        provideStore([Fire2State], {developmentMode: true}),
+                        provideNgxsDataPlugin(withNgxsDataStorage()),
                     ],
                 });
 
@@ -1618,6 +1582,7 @@ describe('[TEST]: Storage plugin', () => {
                 expect(lastChanged).toEqual(newLastChanged);
 
                 fire.setState('FIRE2_VALUE');
+
                 expect(fire.snapshot).toBe('FIRE2_VALUE');
 
                 const newLastChanged2: string = JSON.parse(
@@ -1648,9 +1613,9 @@ describe('[TEST]: Storage plugin', () => {
                 class StorageState extends NgxsDataRepository<string> {}
 
                 TestBed.configureTestingModule({
-                    imports: [
-                        NgxsModule.forRoot([StorageState], {developmentMode: true}),
-                        NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
+                    providers: [
+                        provideStore([StorageState], {developmentMode: true}),
+                        provideNgxsDataPlugin(withNgxsDataStorage()),
                     ],
                 });
 
@@ -1679,9 +1644,9 @@ describe('[TEST]: Storage plugin', () => {
                 class StorageState extends NgxsDataRepository<string> {}
 
                 TestBed.configureTestingModule({
-                    imports: [
-                        NgxsModule.forRoot([StorageState], {developmentMode: true}),
-                        NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
+                    providers: [
+                        provideStore([StorageState], {developmentMode: true}),
+                        provideNgxsDataPlugin(withNgxsDataStorage()),
                     ],
                 });
 
@@ -1711,9 +1676,9 @@ describe('[TEST]: Storage plugin', () => {
                 class RehydrateState extends NgxsDataRepository<string> {}
 
                 TestBed.configureTestingModule({
-                    imports: [
-                        NgxsModule.forRoot([RehydrateState], {developmentMode: true}),
-                        NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
+                    providers: [
+                        provideStore([RehydrateState], {developmentMode: true}),
+                        provideNgxsDataPlugin(withNgxsDataStorage()),
                     ],
                 });
 
@@ -1743,9 +1708,9 @@ describe('[TEST]: Storage plugin', () => {
                 class RehydrateState extends NgxsDataRepository<string> {}
 
                 TestBed.configureTestingModule({
-                    imports: [
-                        NgxsModule.forRoot([RehydrateState], {developmentMode: true}),
-                        NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
+                    providers: [
+                        provideStore([RehydrateState], {developmentMode: true}),
+                        provideNgxsDataPlugin(withNgxsDataStorage()),
                     ],
                 });
 
@@ -1755,6 +1720,7 @@ describe('[TEST]: Storage plugin', () => {
                 expect(state.getState()).toBe('value');
 
                 state.setState('new value');
+
                 expect(state.getState()).toBe('new value');
                 expect(ensureMockStorage('@ngxs.store.rehydrate').data).toBe('new value');
             });
@@ -1802,9 +1768,9 @@ describe('[TEST]: Storage plugin', () => {
                 }
 
                 TestBed.configureTestingModule({
-                    imports: [
-                        NgxsModule.forRoot([AuthJwtState], {developmentMode: true}),
-                        NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
+                    providers: [
+                        provideStore([AuthJwtState], {developmentMode: true}),
+                        provideNgxsDataPlugin(withNgxsDataStorage()),
                     ],
                 });
 
@@ -1812,6 +1778,7 @@ describe('[TEST]: Storage plugin', () => {
                 const events: NgxsDataExpiredEvent[] = [];
 
                 state.expired$.subscribe((event) => events.push(event));
+
                 expect(events).toHaveLength(0);
                 expect(state.internalEvents).toHaveLength(0);
 
@@ -1822,6 +1789,7 @@ describe('[TEST]: Storage plugin', () => {
                 tick(100);
 
                 state.setState({accessToken: 'ABC', refreshToken: 'CDE'});
+
                 expect(state.getState()).toEqual({
                     accessToken: 'ABC',
                     refreshToken: 'CDE',
@@ -1933,9 +1901,9 @@ describe('[TEST]: Storage plugin', () => {
                 }
 
                 TestBed.configureTestingModule({
-                    imports: [
-                        NgxsModule.forRoot([AuthJwtState], {developmentMode: true}),
-                        NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
+                    providers: [
+                        provideStore([AuthJwtState], {developmentMode: true}),
+                        provideNgxsDataPlugin(withNgxsDataStorage()),
                     ],
                 });
 
@@ -1943,6 +1911,7 @@ describe('[TEST]: Storage plugin', () => {
                 const events: NgxsDataExpiredEvent[] = [];
 
                 state.expired$.subscribe((event) => events.push(event));
+
                 expect(events).toHaveLength(0);
                 expect(state.internalEvents).toHaveLength(1);
 
@@ -1982,6 +1951,7 @@ describe('[TEST]: Storage plugin', () => {
                 tick(100);
 
                 state.setState({accessToken: 'ABC', refreshToken: 'CDE'});
+
                 expect(state.getState()).toEqual({
                     accessToken: 'ABC',
                     refreshToken: 'CDE',
@@ -2081,9 +2051,9 @@ describe('[TEST]: Storage plugin', () => {
                 class MigrateV1toV2State extends NgxsDataRepository<string> {}
 
                 TestBed.configureTestingModule({
-                    imports: [
-                        NgxsModule.forRoot([MigrateV1toV2State], {developmentMode: true}),
-                        NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
+                    providers: [
+                        provideStore([MigrateV1toV2State], {developmentMode: true}),
+                        provideNgxsDataPlugin(withNgxsDataStorage()),
                     ],
                 });
 
@@ -2150,9 +2120,9 @@ describe('[TEST]: Storage plugin', () => {
                 }
 
                 TestBed.configureTestingModule({
-                    imports: [
-                        NgxsModule.forRoot([MigrateV1toV2State], {developmentMode: true}),
-                        NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
+                    providers: [
+                        provideStore([MigrateV1toV2State], {developmentMode: true}),
+                        provideNgxsDataPlugin(withNgxsDataStorage()),
                     ],
                 });
 
@@ -2261,9 +2231,9 @@ describe('[TEST]: Storage plugin', () => {
                 }
 
                 TestBed.configureTestingModule({
-                    imports: [
-                        NgxsModule.forRoot([DeepFilterState], {developmentMode: true}),
-                        NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
+                    providers: [
+                        provideStore([DeepFilterState], {developmentMode: true}),
+                        provideNgxsDataPlugin(withNgxsDataStorage()),
                     ],
                 });
 
@@ -2369,9 +2339,9 @@ describe('[TEST]: Storage plugin', () => {
                 }
 
                 TestBed.configureTestingModule({
-                    imports: [
-                        NgxsModule.forRoot([DeepFilterState], {developmentMode: true}),
-                        NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
+                    providers: [
+                        provideStore([DeepFilterState], {developmentMode: true}),
+                        provideNgxsDataPlugin(withNgxsDataStorage()),
                     ],
                 });
 
@@ -2430,9 +2400,9 @@ describe('[TEST]: Storage plugin', () => {
             }
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([CountState], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
+                providers: [
+                    provideStore([CountState], {developmentMode: true}),
+                    provideNgxsDataPlugin(withNgxsDataStorage()),
                 ],
             });
 
@@ -2537,11 +2507,9 @@ describe('[TEST]: Storage plugin', () => {
             class FilterState extends NgxsDataRepository<FilterModel> {}
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([FilterState], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
-                ],
                 providers: [
+                    provideStore([FilterState], {developmentMode: true}),
+                    provideNgxsDataPlugin(withNgxsDataStorage()),
                     {
                         provide: NGXS_DATA_STORAGE_DECODE_TYPE_TOKEN,
                         useValue: STORAGE_DECODE_TYPE.BASE64,
@@ -2595,7 +2563,7 @@ describe('[TEST]: Storage plugin', () => {
         });
 
         // eslint-disable-next-line jest/no-done-callback
-        it('should be correct read in feature modules', (done: () => void) => {
+        it('should be correct read in feature modules', async () => {
             localStorage.setItem(
                 '@ngxs.store.b',
                 JSON.stringify({
@@ -2611,10 +2579,30 @@ describe('[TEST]: Storage plugin', () => {
             @Injectable()
             class StateA extends NgxsImmutableDataRepository<string> {}
 
+            @Persistence()
+            @StateRepository()
+            @State({name: 'b', defaults: 'default value'})
+            @Injectable()
+            class StateB extends NgxsImmutableDataRepository<string> {}
+
+            @Component({
+                standalone: true,
+                template: '',
+                changeDetection: ChangeDetectionStrategy.OnPush,
+            })
+            class LazyLoadedComponent {}
+
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([StateA], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
+                providers: [
+                    provideStore([StateA], {developmentMode: true}),
+                    provideNgxsDataPlugin(withNgxsDataStorage()),
+                    provideRouter([
+                        {
+                            path: 'b',
+                            loadComponent: () => LazyLoadedComponent,
+                            providers: [provideStates([StateB])],
+                        },
+                    ]),
                 ],
             });
 
@@ -2624,49 +2612,65 @@ describe('[TEST]: Storage plugin', () => {
 
             expect(container.getProvidedKeys()).toEqual(['@ngxs.store.a']);
 
-            // eslint-disable-next-line no-restricted-globals
-            setTimeout(() => {
-                @Persistence()
-                @StateRepository()
-                @State({name: 'b', defaults: 'default value'})
-                @Injectable()
-                class StateB extends NgxsImmutableDataRepository<string> {}
+            const router = TestBed.inject(Router);
 
-                @NgModule({
-                    imports: [NgxsModule.forFeature([StateB])],
-                })
-                class FeatureModule {}
+            expect(() => TestBed.inject(StateB)).toThrow(Error);
 
-                expect(() => TestBed.inject(StateB)).toThrow(Error);
+            const navigationResult = await router.navigate(['/b']);
 
-                const moduleRef = createNgModuleRef(
-                    FeatureModule,
-                    TestBed.inject(Injector),
-                );
-                const state = moduleRef.injector.get(StateB);
+            expect(navigationResult).toBe(true);
 
-                expect(container.getProvidedKeys()).toEqual([
-                    '@ngxs.store.a',
-                    '@ngxs.store.b',
-                ]);
-                expect(state.getState()).toBe('cached value');
+            expect(container.getProvidedKeys()).toEqual([
+                '@ngxs.store.a',
+                '@ngxs.store.b',
+            ]);
 
-                done();
-            });
+            const store = TestBed.inject(Store);
+
+            expect(store.snapshot().b).toBe('cached value');
         });
 
         // eslint-disable-next-line jest/no-done-callback
-        it('should be correct written in feature modules', (done: () => void) => {
+        it('should be correct written in feature modules', async () => {
             @Persistence()
             @StateRepository()
             @State({name: 'a'})
             @Injectable()
             class StateA extends NgxsImmutableDataRepository<string> {}
 
+            @Persistence()
+            @StateRepository()
+            @State({name: 'b', defaults: 'default value'})
+            @Injectable()
+            class StateB extends NgxsImmutableDataRepository<string> {}
+
+            @Component({
+                standalone: true,
+                imports: [RouterOutlet],
+                template: '<router-outlet></router-outlet>',
+                changeDetection: ChangeDetectionStrategy.OnPush,
+            })
+            class TestHostComponent {}
+
+            @Component({
+                standalone: true,
+                template: '',
+                changeDetection: ChangeDetectionStrategy.OnPush,
+            })
+            class LazyLoadedComponent {}
+
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([StateA], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN),
+                imports: [TestHostComponent],
+                providers: [
+                    provideStore([StateA], {developmentMode: true}),
+                    provideNgxsDataPlugin(withNgxsDataStorage()),
+                    provideRouter([
+                        {
+                            path: 'b',
+                            loadComponent: () => LazyLoadedComponent,
+                            providers: [provideStates([StateB])],
+                        },
+                    ]),
                 ],
             });
 
@@ -2675,40 +2679,37 @@ describe('[TEST]: Storage plugin', () => {
             );
 
             expect(container.getProvidedKeys()).toEqual(['@ngxs.store.a']);
+            expect(() => TestBed.inject(StateB)).toThrow(Error);
 
-            // eslint-disable-next-line no-restricted-globals
-            setTimeout(() => {
-                @Persistence()
-                @StateRepository()
-                @State({name: 'b', defaults: 'default value'})
-                @Injectable()
-                class StateB extends NgxsImmutableDataRepository<string> {}
+            const fixture = TestBed.createComponent(TestHostComponent);
+            const router = TestBed.inject(Router);
 
-                @NgModule({
-                    imports: [NgxsModule.forFeature([StateB])],
-                })
-                class FeatureModule {}
+            expect(() => TestBed.inject(StateB)).toThrow(Error);
 
-                expect(() => TestBed.inject(StateB)).toThrow(Error);
+            const navigationResult = await router.navigate(['/b']);
 
-                const moduleRef = createNgModuleRef(
-                    FeatureModule,
-                    TestBed.inject(Injector),
-                );
-                const state = moduleRef.injector.get(StateB);
+            expect(navigationResult).toBe(true);
 
-                expect(container.getProvidedKeys()).toEqual([
-                    '@ngxs.store.a',
-                    '@ngxs.store.b',
-                ]);
-                expect(state.getState()).toBe('default value');
+            expect(container.getProvidedKeys()).toEqual([
+                '@ngxs.store.a',
+                '@ngxs.store.b',
+            ]);
 
-                state.setState('new value');
-                expect(state.getState()).toBe('new value');
-                expect(ensureMockStorage('@ngxs.store.b').data).toBe('new value');
+            const store = TestBed.inject(Store);
 
-                done();
-            });
+            expect(store.snapshot().b).toBe('default value');
+
+            fixture.detectChanges();
+
+            const testComponentDebugEl = fixture.debugElement.query(
+                By.directive(LazyLoadedComponent),
+            );
+            const stateB = testComponentDebugEl.injector.get(StateB);
+
+            stateB.setState('new value');
+
+            expect(stateB.getState()).toBe('new value');
+            expect(ensureMockStorage('@ngxs.store.b').data).toBe('new value');
         });
     });
 });
@@ -2717,7 +2718,7 @@ function ensureMockStorage<T>(
     key: string,
     storage: Storage = localStorage,
 ): StorageMeta<T> {
-    return JSON.parse(storage.getItem(key)! ?? '{}');
+    return JSON.parse(storage.getItem(key) ?? '{}');
 }
 
 function ensureStoragePlugin(): NgxsDataStoragePlugin {

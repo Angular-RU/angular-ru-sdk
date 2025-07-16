@@ -1,40 +1,35 @@
 /* eslint-disable max-classes-per-file,@typescript-eslint/no-explicit-any,import/first */
-// import 'jest-preset-angular/setup-jest';
-import 'zone.js/fesm2015/zone-testing-bundle.min.js';
-
 import {arrayBuffer} from 'node:stream/consumers';
 import {TransformStream} from 'node:stream/web';
 
 import {getTestBed} from '@angular/core/testing';
 import {
-    BrowserDynamicTestingModule,
-    platformBrowserDynamicTesting,
-} from '@angular/platform-browser-dynamic/testing';
+    BrowserTestingModule,
+    platformBrowserTesting,
+} from '@angular/platform-browser/testing';
 
 declare const jest: any;
 declare const global: any;
 
-const jsdom: any = require('jsdom');
+import {JSDOM} from 'jsdom';
 
-const {JSDOM}: any = jsdom;
+const dom = new JSDOM('<!DOCTYPE html><html><head></head><body></body></html>');
 
-const dom: any = new JSDOM('<!DOCTYPE html><html><head></head><body></body></html>');
-
-const observe: any = jest.fn();
-const unobserve: any = jest.fn();
+const observe = jest.fn();
+const unobserve = jest.fn();
 
 global.window = dom.window;
 global.document = dom.window.document;
 
 // you can also pass the mock implementation
 // to jest.fn as an argument
-global.window!.IntersectionObserver = jest.fn((): any => ({
+global.window!.IntersectionObserver = jest.fn(() => ({
     observe,
     unobserve,
 }));
 
 // Simulate window resize events
-const resizeEvent: any = document.createEvent('Event');
+const resizeEvent = document.createEvent('Event');
 
 resizeEvent.initEvent('resize', true, true);
 
@@ -87,13 +82,12 @@ global.Response = class {
     }
 };
 
-global.URL.createObjectURL = jest.fn((blob: Blob): string => `${blob}`);
+global.URL.createObjectURL = jest.fn(() => '');
 global.URL.revokeObjectURL = jest.fn();
 
 // todo get rid of execCommand
 document.execCommand = jest.fn((): void => void 0);
 
-getTestBed().initTestEnvironment(
-    BrowserDynamicTestingModule,
-    platformBrowserDynamicTesting(),
-);
+getTestBed().initTestEnvironment(BrowserTestingModule, platformBrowserTesting(), {
+    teardown: {destroyAfterEach: false},
+});

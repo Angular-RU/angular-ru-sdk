@@ -10,8 +10,8 @@ import {ExcelType} from '@angular-ru/cdk/excel';
 import {Nullable} from '@angular-ru/cdk/typings';
 
 import {ColumnOptionsDirective} from '../../directives/column-options.directive';
-import {TemplateBodyTdDirective} from '../../directives/rows/template-body-td.directive';
-import {TemplateHeadThDirective} from '../../directives/rows/template-head-th.directive';
+import {TemplateBodyTd} from '../../directives/rows/template-body-td.directive';
+import {TemplateHeadTh} from '../../directives/rows/template-head-th.directive';
 
 @Component({
     selector: 'ngx-column',
@@ -19,7 +19,7 @@ import {TemplateHeadThDirective} from '../../directives/rows/template-head-th.di
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NgxColumnComponent<T> extends ColumnOptionsDirective {
+export class NgxColumn<T> extends ColumnOptionsDirective {
     @Input()
     public key: Nullable<string> = null;
 
@@ -56,13 +56,13 @@ export class NgxColumnComponent<T> extends ColumnOptionsDirective {
     @Input('excel-type')
     public excelType: Nullable<ExcelType> = null;
 
-    @ContentChild(TemplateHeadThDirective, {static: false})
-    public th!: TemplateHeadThDirective<T>;
+    @ContentChild(TemplateHeadTh, {static: false})
+    public th!: TemplateHeadTh<T>;
 
-    @ContentChild(TemplateBodyTdDirective, {static: false})
-    public td!: TemplateBodyTdDirective<T>;
+    @ContentChild(TemplateBodyTd, {static: false})
+    public td!: TemplateBodyTd<T>;
 
-    public withKey(key: string): NgxColumnComponent<T> {
+    public withKey(key: string): NgxColumn<T> {
         this.key = key;
 
         return this;
