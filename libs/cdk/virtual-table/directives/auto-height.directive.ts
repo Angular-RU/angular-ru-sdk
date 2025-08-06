@@ -1,14 +1,13 @@
 import {
     Directive,
     ElementRef,
-    EventEmitter,
     inject,
     input,
     NgZone,
     OnChanges,
     OnDestroy,
     OnInit,
-    Output,
+    output,
     SimpleChanges,
 } from '@angular/core';
 import {Nullable} from '@angular-ru/cdk/typings';
@@ -43,8 +42,7 @@ export class AutoHeight<T> implements OnInit, OnChanges, OnDestroy {
 
     public readonly sourceRef = input<T[]>([]);
 
-    @Output()
-    public readonly recalculatedHeight = new EventEmitter<void>(true);
+    public readonly recalculatedHeight = output();
 
     public get destroy$(): Subject<boolean> {
         return this._destroy$;

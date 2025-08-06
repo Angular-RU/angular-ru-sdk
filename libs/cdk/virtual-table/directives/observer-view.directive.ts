@@ -2,12 +2,11 @@ import {
     AfterViewInit,
     Directive,
     ElementRef,
-    EventEmitter,
     inject,
     input,
     NgZone,
     OnDestroy,
-    Output,
+    output,
 } from '@angular/core';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {isNotNil} from '@angular-ru/cdk/utils';
@@ -25,8 +24,7 @@ export class ObserverView implements AfterViewInit, OnDestroy {
 
     public readonly observerRootMargin = input<string>();
 
-    @Output()
-    public readonly observeVisible = new EventEmitter<boolean>(true);
+    public readonly observeVisible = output<boolean>();
 
     public ngAfterViewInit(): void {
         this.ngZone.runOutsideAngular((): void => {

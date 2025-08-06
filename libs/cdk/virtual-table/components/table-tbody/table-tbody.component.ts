@@ -4,11 +4,10 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    EventEmitter,
     inject,
     input,
     NgZone,
-    Output,
+    output,
     ViewEncapsulation,
 } from '@angular/core';
 import {getValueByPath} from '@angular-ru/cdk/object';
@@ -120,8 +119,7 @@ export class TableTbody<T> {
         alias: 'column-schema',
     });
 
-    @Output()
-    public readonly changed = new EventEmitter<void>(true);
+    public readonly changed = output();
 
     public selection = inject(SelectionService<T>);
     public contextMenu = inject(ContextMenuService<T>);

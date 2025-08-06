@@ -2,9 +2,8 @@ import {NgClass} from '@angular/common';
 import {
     ChangeDetectionStrategy,
     Component,
-    EventEmitter,
     input,
-    Output,
+    output,
     ViewEncapsulation,
 } from '@angular/core';
 import {SIGNAL} from '@angular/core/primitives/signals';
@@ -21,8 +20,7 @@ import {TableContentDirective} from '../../directives/table-content.directive';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NgxHeader extends TableContentDirective {
-    @Output()
-    public readonly expandedChange = new EventEmitter<InputBoolean>();
+    public readonly expandedChange = output<InputBoolean>();
 
     public readonly expanded = input<boolean, InputBoolean>(true, {
         transform: coerceBoolean,

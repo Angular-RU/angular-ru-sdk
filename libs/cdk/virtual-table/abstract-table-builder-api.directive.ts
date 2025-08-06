@@ -11,14 +11,13 @@ import {
     Directive,
     effect,
     ElementRef,
-    EventEmitter,
     inject,
     input,
     NgZone,
     OnChanges,
     OnDestroy,
     OnInit,
-    Output,
+    output,
     QueryList,
     SimpleChanges,
     ViewChild,
@@ -167,19 +166,13 @@ export abstract class AbstractTableBuilderApi<T>
 
     public readonly isVirtualTable = input(true, {alias: 'is-virtual-table'});
 
-    @Output()
-    public readonly afterRendered = new EventEmitter<boolean>();
-
-    @Output()
-    public readonly schemaChanges = new EventEmitter<TableUpdateSchema>();
+    public readonly afterRendered = output<boolean>();
+    public readonly schemaChanges = output<TableUpdateSchema>();
 
     // TODO: should be rename (breaking changes)
     // eslint-disable-next-line @angular-eslint/no-output-on-prefix
-    @Output()
-    public readonly onChanges = new EventEmitter<Nullable<T[]>>();
-
-    @Output()
-    public readonly sortChanges = new EventEmitter<OrderedField[]>();
+    public readonly onChanges = output<Nullable<T[]>>();
+    public readonly sortChanges = output<OrderedField[]>();
 
     @ContentChild(NgxOptions, {static: false})
     public columnOptions: Nullable<NgxOptions> = null;

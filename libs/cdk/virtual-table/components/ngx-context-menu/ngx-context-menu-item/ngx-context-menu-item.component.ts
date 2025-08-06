@@ -4,13 +4,12 @@ import {
     ChangeDetectorRef,
     Component,
     ElementRef,
-    EventEmitter,
     inject,
     input,
     NgZone,
     OnDestroy,
     OnInit,
-    Output,
+    output,
     ViewChild,
     ViewEncapsulation,
 } from '@angular/core';
@@ -59,8 +58,7 @@ export class NgxContextMenuItem<T = any> implements OnInit, OnDestroy {
 
     // TODO: should be rename (breaking changes)
     // eslint-disable-next-line @angular-eslint/no-output-on-prefix
-    @Output()
-    public readonly onClick = new EventEmitter<ContextItemEvent>();
+    public readonly onClick = output<ContextItemEvent>();
 
     @ViewChild('item', {static: false})
     public itemRef: Nullable<ElementRef<HTMLDivElement>> = null;

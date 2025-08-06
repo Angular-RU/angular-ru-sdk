@@ -976,11 +976,9 @@ export class TableBuilder<T>
     }
 
     private listenExpandChange(): void {
-        this.headerTemplate?.expandedChange
-            .pipe(takeUntil(this._destroy$))
-            .subscribe((): void => {
-                this.updateTableHeight();
-                this.changeSchema();
-            });
+        this.headerTemplate?.expandedChange.subscribe((): void => {
+            this.updateTableHeight();
+            this.changeSchema();
+        });
     }
 }

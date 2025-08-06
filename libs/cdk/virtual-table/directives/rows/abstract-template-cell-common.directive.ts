@@ -1,14 +1,6 @@
 /* eslint-disable @angular-eslint/no-input-rename */
 import type {Signal} from '@angular/core';
-import {
-    Directive,
-    EventEmitter,
-    inject,
-    input,
-    Output,
-    signal,
-    TemplateRef,
-} from '@angular/core';
+import {Directive, inject, input, output, signal, TemplateRef} from '@angular/core';
 import {Nullable, PlainObject} from '@angular-ru/cdk/typings';
 
 import {TableEvent} from '../../interfaces/table-builder.external';
@@ -29,11 +21,9 @@ export abstract class AbstractTemplateCellCommonDirective<T> {
 
     // TODO: should be rename (breaking changes)
     // eslint-disable-next-line @angular-eslint/no-output-on-prefix
-    @Output()
-    public readonly onClick = new EventEmitter<TableEvent<T | any, any>>();
+    public readonly onClick = output<TableEvent<T | any, any>>();
 
-    @Output()
-    public readonly dblClick = new EventEmitter<TableEvent<T | any, any>>();
+    public readonly dblClick = output<TableEvent<T | any, any>>();
 
     public type: Signal<Nullable<string>> = signal(null);
 }

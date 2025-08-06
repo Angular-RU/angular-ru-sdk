@@ -3,11 +3,10 @@ import {NgClass, NgStyle, NgTemplateOutlet, TitleCasePipe} from '@angular/common
 import {
     ChangeDetectionStrategy,
     Component,
-    EventEmitter,
     HostListener,
     inject,
     input,
-    Output,
+    output,
     ViewEncapsulation,
 } from '@angular/core';
 import {fadeInLinearAnimation} from '@angular-ru/cdk/animations';
@@ -61,14 +60,9 @@ export class TableThead<T> {
         alias: 'column-schema',
     });
 
-    @Output()
-    public readonly resizing = new EventEmitter<ResizeEvent>();
-
-    @Output()
-    public readonly sortByKey = new EventEmitter<string>();
-
-    @Output()
-    public readonly openContextMenu = new EventEmitter<MouseEvent>();
+    public readonly resizing = output<ResizeEvent>();
+    public readonly sortByKey = output<string>();
+    public readonly openContextMenu = output<MouseEvent>();
 
     public orderType: typeof SortOrderType = SortOrderType;
     public limit: number = OVERLOAD_WIDTH_TABLE_HEAD_CELL;

@@ -1,4 +1,4 @@
-import {EventEmitter, inject, Injectable, NgZone} from '@angular/core';
+import {inject, Injectable, NgZone, OutputEmitterRef} from '@angular/core';
 import {Nullable, PlainObjectOf, SortOrderType} from '@angular-ru/cdk/typings';
 import {isNotNil, isTruthy} from '@angular-ru/cdk/utils';
 import {WebWorkerThreadService} from '@angular-ru/cdk/webworker';
@@ -14,7 +14,7 @@ export class SortableService<T> {
     private readonly zone = inject(NgZone);
 
     private skipInternalSort = false;
-    private sortChanges: Nullable<EventEmitter<OrderedField[]>> = null;
+    private sortChanges: Nullable<OutputEmitterRef<OrderedField[]>> = null;
     public definition: PlainObjectOf<SortOrderType> = {};
     public positionMap: PlainObjectOf<number> = {};
     public sortableCount = 0;
@@ -52,7 +52,7 @@ export class SortableService<T> {
         this.skipInternalSort = skipInternalSort;
     }
 
-    public setSortChanges(emitter: EventEmitter<OrderedField[]>): void {
+    public setSortChanges(emitter: OutputEmitterRef<OrderedField[]>): void {
         this.sortChanges = emitter;
     }
 
