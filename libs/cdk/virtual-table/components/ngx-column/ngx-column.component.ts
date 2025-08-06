@@ -3,9 +3,10 @@ import {
     ChangeDetectionStrategy,
     Component,
     ContentChild,
-    Input,
+    input,
     ViewEncapsulation,
 } from '@angular/core';
+import {SIGNAL} from '@angular/core/primitives/signals';
 import {ExcelType} from '@angular-ru/cdk/excel';
 import {Nullable} from '@angular-ru/cdk/typings';
 
@@ -20,41 +21,41 @@ import {TemplateHeadTh} from '../../directives/rows/template-head-th.directive';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NgxColumn<T> extends ColumnOptionsDirective {
-    @Input()
-    public key: Nullable<string> = null;
+    public readonly key = input<Nullable<string>>(null);
 
-    @Input()
-    public override stub: Nullable<string> = '-';
+    public override readonly stub = input<Nullable<string>>('-');
 
-    @Input('sticky')
-    public stickyLeft: Nullable<boolean | string> = false;
+    public readonly stickyLeft = input<Nullable<boolean | string>>(false, {
+        alias: 'sticky',
+    });
 
-    @Input('empty-head')
-    public emptyHead: Nullable<boolean | string> = null;
+    public readonly emptyHead = input<Nullable<boolean | string>>(null, {
+        alias: 'empty-head',
+    });
 
-    @Input('head-title')
-    public headTitle: Nullable<string> = null;
+    public readonly headTitle = input<Nullable<string>>(null, {alias: 'head-title'});
 
-    @Input('custom-key')
-    public customKey: boolean | string = false;
+    public readonly customKey = input<boolean | string>(false, {alias: 'custom-key'});
 
-    @Input('sticky-end')
-    public stickyRight: boolean | string = false;
+    public readonly stickyRight = input<boolean | string>(false, {alias: 'sticky-end'});
 
-    @Input('vertical-line')
-    public verticalLine: boolean | string = false;
+    public readonly verticalLine = input<boolean | string>(false, {
+        alias: 'vertical-line',
+    });
 
-    @Input('important-template')
-    public importantTemplate: boolean | string = false;
+    public readonly importantTemplate = input<boolean | string>(false, {
+        alias: 'important-template',
+    });
 
-    @Input('force-model')
-    public forceModel: Nullable<boolean | string> = null;
+    public readonly forceModel = input<Nullable<boolean | string>>(null, {
+        alias: 'force-model',
+    });
 
-    @Input('overflow-tooltip')
-    public override overflowTooltip: Nullable<boolean> = null;
+    public override readonly overflowTooltip = input<Nullable<boolean | string>>(null, {
+        alias: 'overflow-tooltip',
+    });
 
-    @Input('excel-type')
-    public excelType: Nullable<ExcelType> = null;
+    public readonly excelType = input<Nullable<ExcelType>>(null, {alias: 'excel-type'});
 
     @ContentChild(TemplateHeadTh, {static: false})
     public th!: TemplateHeadTh<T>;
@@ -63,7 +64,7 @@ export class NgxColumn<T> extends ColumnOptionsDirective {
     public td!: TemplateBodyTd<T>;
 
     public withKey(key: string): NgxColumn<T> {
-        this.key = key;
+        this.key[SIGNAL].value = key;
 
         return this;
     }

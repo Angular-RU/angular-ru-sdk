@@ -1,4 +1,4 @@
-import {AfterViewInit, Directive, ElementRef, inject, Input} from '@angular/core';
+import {AfterViewInit, Directive, ElementRef, inject, input} from '@angular/core';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {isNotNil} from '@angular-ru/cdk/utils';
 
@@ -8,13 +8,15 @@ import {AbstractFlexLayout} from './abstract-flex-layout.directive';
 export class FlexColumn extends AbstractFlexLayout implements AfterViewInit {
     protected readonly elementRef = inject<ElementRef>(ElementRef);
 
-    // eslint-disable-next-line @angular-eslint/no-input-rename
-    @Input('flex-direction')
-    public flexDirection: Nullable<string> = null;
+    public readonly flexDirection = input<Nullable<string>>(null, {
+        alias: 'flex-direction',
+    });
 
     public ngAfterViewInit(): void {
-        if (isNotNil(this.flexDirection)) {
-            this.elementRef.nativeElement.style.flexDirection = this.flexDirection;
+        const flexDirection = this.flexDirection();
+
+        if (isNotNil(flexDirection)) {
+            this.elementRef.nativeElement.style.flexDirection = flexDirection;
         }
 
         this.classList.add('flex-column');

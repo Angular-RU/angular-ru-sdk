@@ -3,12 +3,12 @@ import {
     ChangeDetectionStrategy,
     Component,
     EventEmitter,
-    Input,
+    input,
     Output,
     ViewEncapsulation,
 } from '@angular/core';
+import {SIGNAL} from '@angular/core/primitives/signals';
 import {coerceBoolean} from '@angular-ru/cdk/coercion';
-import {AttributeBoolean} from '@angular-ru/cdk/decorators';
 import {InputBoolean} from '@angular-ru/cdk/typings';
 
 import {TableContentDirective} from '../../directives/table-content.directive';
@@ -22,14 +22,22 @@ import {TableContentDirective} from '../../directives/table-content.directive';
 })
 export class NgxHeader extends TableContentDirective {
     @Output()
-    public readonly expandedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+    public readonly expandedChange = new EventEmitter<InputBoolean>();
 
-    @AttributeBoolean() @Input() public expanded: InputBoolean = true;
-    @AttributeBoolean() @Input() public expandablePanel: InputBoolean = false;
-    @AttributeBoolean() @Input() public hideToggle: InputBoolean = false;
+    public readonly expanded = input<boolean, InputBoolean>(true, {
+        transform: coerceBoolean,
+    });
+
+    public readonly expandablePanel = input<boolean, InputBoolean>(false, {
+        transform: coerceBoolean,
+    });
+
+    public readonly hideToggle = input<boolean, InputBoolean>(false, {
+        transform: coerceBoolean,
+    });
 
     public toggleExpand(): void {
-        this.expanded = !coerceBoolean(this.expanded);
-        this.expandedChange.emit(this.expanded);
+        this.expanded[SIGNAL].value = !coerceBoolean(this.expanded());
+        this.expandedChange.emit(this.expanded());
     }
 }

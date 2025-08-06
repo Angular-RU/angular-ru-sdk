@@ -6,7 +6,7 @@ import {
     ElementRef,
     EventEmitter,
     inject,
-    Input,
+    input,
     NgZone,
     OnDestroy,
     OnInit,
@@ -45,23 +45,17 @@ export class NgxContextMenuItem<T = any> implements OnInit, OnDestroy {
     private taskId: Nullable<number> = null;
     private readonly contextMenu = inject(ContextMenuService<T>);
     private readonly ngZone = inject(NgZone);
-    @Input()
-    public visible: boolean | string = true;
+    public readonly visible = input<boolean | string>(true);
 
-    @Input()
-    public contextTitle: Nullable<boolean | string> = null;
+    public readonly contextTitle = input<Nullable<boolean | string>>(null);
 
-    @Input()
-    public disable: Nullable<boolean | string> = false;
+    public readonly disable = input<Nullable<boolean | string>>(false);
 
-    @Input()
-    public divider: Nullable<boolean | string> = false;
+    public readonly divider = input<Nullable<boolean | string>>(false);
 
-    @Input('disable-sub-menu')
-    public disableSubMenu = false;
+    public readonly disableSubMenu = input(false, {alias: 'disable-sub-menu'});
 
-    @Input('sub-menu-width')
-    public subMenuWidth: number = MENU_WIDTH;
+    public readonly subMenuWidth = input<number>(MENU_WIDTH, {alias: 'sub-menu-width'});
 
     // TODO: should be rename (breaking changes)
     // eslint-disable-next-line @angular-eslint/no-output-on-prefix
@@ -103,7 +97,7 @@ export class NgxContextMenuItem<T = any> implements OnInit, OnDestroy {
 
         if (contentExist) {
             this.offsetX =
-                this.clientRect.left! + this.subMenuWidth - MIN_PADDING_CONTEXT_ITEM;
+                this.clientRect.left! + this.subMenuWidth() - MIN_PADDING_CONTEXT_ITEM;
             this.offsetX -= this.overflowX();
             this.offsetY = this.clientRect.top! - MIN_PADDING_CONTEXT_ITEM;
             this.offsetY -= this.overflowY(ref);
@@ -113,7 +107,7 @@ export class NgxContextMenuItem<T = any> implements OnInit, OnDestroy {
 
     public overflowX(): number {
         const overflowX: number =
-            this.subMenuWidth + (this.offsetX ?? 0) - (getBodyRect()?.width ?? 0);
+            this.subMenuWidth() + (this.offsetX ?? 0) - (getBodyRect()?.width ?? 0);
 
         return overflowX > 0 ? overflowX + SCROLLBAR_SIZE : 0;
     }
@@ -126,7 +120,7 @@ export class NgxContextMenuItem<T = any> implements OnInit, OnDestroy {
     }
 
     public emitClick(event: MouseEvent): void {
-        if (coerceBoolean(this.disable)) {
+        if (coerceBoolean(this.disable())) {
             return;
         }
 

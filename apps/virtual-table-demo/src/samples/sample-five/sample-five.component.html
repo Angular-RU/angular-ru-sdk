@@ -2,7 +2,7 @@
     <span>
         Example resizing
         @if (table.isRendered) {
-            <span>({{ table.source?.length }}x{{ table.displayedColumns.length }})</span>
+            <span>({{ table.source()?.length }}x{{ table.displayedColumns.length }})</span>
         }
     </span>
     <button

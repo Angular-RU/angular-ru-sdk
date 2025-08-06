@@ -4,34 +4,34 @@
     (mouseenter)="mouseEnterCell(divElement, $event)"
     (mouseleave)="mouseLeaveCell($event)"
 >
-    @if (columnSchema?.td?.template!) {
+    @if (columnSchema()?.td?.template!) {
         <ng-template
-            [ngTemplateOutlet]="columnSchema?.td?.template!"
+            [ngTemplateOutlet]="columnSchema()?.td?.template!"
             [ngTemplateOutletContext]="{
                 $implicit:
-                    columnSchema?.td?.context === contextType.CELL
-                        ? columnSchema?.td?.useDeepPath && !disableDeepPath
-                            ? (item | deepPath: columnSchema?.key : columnSchema?.stub)
-                            : (item![$castKey(columnSchema?.key)] | defaultValue: columnSchema?.stub)
-                        : item,
+                    columnSchema()?.td?.context === contextType.CELL
+                        ? columnSchema()?.td?.useDeepPath && !disableDeepPath()
+                            ? (item() | deepPath: columnSchema()?.key : columnSchema()?.stub)
+                            : (item()![$castKey(columnSchema()?.key)] | defaultValue: columnSchema()?.stub)
+                        : item(),
             }"
         />
     } @else {
-        @if (isFilterable || enableFiltering) {
+        @if (isFilterable() || enableFiltering()) {
             <ngx-filter-viewer
-                [index]="index"
-                [key]="columnSchema?.key"
+                [index]="index()"
+                [key]="columnSchema()?.key"
                 [text]="
-                    columnSchema?.td?.useDeepPath && !disableDeepPath
-                        ? $any(item | deepPath: columnSchema?.key : columnSchema?.stub)
-                        : $any(item![$castKey(columnSchema?.key)] | defaultValue: columnSchema?.stub)
+                    columnSchema()?.td?.useDeepPath && !disableDeepPath()
+                        ? $any(item() | deepPath: columnSchema()?.key : columnSchema()?.stub)
+                        : $any(item()![$castKey(columnSchema()?.key)] | defaultValue: columnSchema()?.stub)
                 "
             />
         } @else {
             {{
-                columnSchema?.td?.useDeepPath && !disableDeepPath
-                    ? (item | deepPath: columnSchema?.key : columnSchema?.stub)
-                    : (item![$castKey(columnSchema?.key)] | defaultValue: columnSchema?.stub)
+                columnSchema()?.td?.useDeepPath && !disableDeepPath()
+                    ? (item() | deepPath: columnSchema()?.key : columnSchema()?.stub)
+                    : (item()![$castKey(columnSchema()?.key)] | defaultValue: columnSchema()?.stub)
             }}
         }
     }

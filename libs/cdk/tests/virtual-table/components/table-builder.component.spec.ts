@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component, signal, ViewChild} from '@angular/core';
+import {SIGNAL} from '@angular/core/primitives/signals';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {Nullable, PlainObject, SortOrderType} from '@angular-ru/cdk/typings';
@@ -84,7 +85,7 @@ describe('[TEST] Table builder', (): void => {
 
         await componentFixture.whenStable();
 
-        expect(tableBuilderComponent.source).toEqual([
+        expect(tableBuilderComponent.source()).toEqual([
             {id: 4, name: null, lastName: null},
             {id: 3, name: 'Petr', lastName: 'Sidorov'},
             {id: 2, name: 'Ivan', lastName: 'Petrov'},
@@ -95,7 +96,7 @@ describe('[TEST] Table builder', (): void => {
         componentFixture.detectChanges();
         await componentFixture.whenStable();
 
-        expect(tableBuilderComponent.source).toEqual([
+        expect(tableBuilderComponent.source()).toEqual([
             {id: 4, name: null, lastName: null},
             {id: 2, name: 'Ivan', lastName: 'Petrov'},
             {id: 1, name: 'Max', lastName: 'Ivanov'},
@@ -112,7 +113,7 @@ describe('[TEST] Table builder', (): void => {
         componentFixture.detectChanges();
         await componentFixture.whenStable();
 
-        expect(tableBuilderComponent.source).toEqual([
+        expect(tableBuilderComponent.source()).toEqual([
             {id: 1, name: 'Max', lastName: 'Ivanov'},
             {id: 2, name: 'Ivan', lastName: 'Petrov'},
             {id: 3, name: 'Petr', lastName: 'Sidorov'},
@@ -120,14 +121,14 @@ describe('[TEST] Table builder', (): void => {
         ]);
 
         tableBuilderComponent.selection.selectRow(
-            tableBuilderComponent.source![0],
+            tableBuilderComponent.source()![0],
             mockClientEvent,
         );
 
         expect(tableBuilderComponent.selection.selectionModel.entries).toEqual({1: true});
 
         tableBuilderComponent.selection.selectRow(
-            tableBuilderComponent.source![1],
+            tableBuilderComponent.source()![1],
             mockShiftClientEvent,
         );
 
@@ -140,7 +141,7 @@ describe('[TEST] Table builder', (): void => {
         componentFixture.detectChanges();
         await componentFixture.whenStable();
 
-        expect(tableBuilderComponent.source).toEqual([
+        expect(tableBuilderComponent.source()).toEqual([
             {id: 3, name: 'Petr', lastName: 'Sidorov'},
             {id: 1, name: 'Max', lastName: 'Ivanov'},
             {id: 2, name: 'Ivan', lastName: 'Petrov'},
@@ -148,14 +149,14 @@ describe('[TEST] Table builder', (): void => {
         ]);
 
         tableBuilderComponent.selection.selectRow(
-            tableBuilderComponent.source![0],
+            tableBuilderComponent.source()![0],
             mockClientEvent,
         );
 
         expect(tableBuilderComponent.selection.selectionModel.entries).toEqual({3: true});
 
         tableBuilderComponent.selection.selectRow(
-            tableBuilderComponent.source![1],
+            tableBuilderComponent.source()![1],
             mockShiftClientEvent,
         );
 
@@ -165,7 +166,7 @@ describe('[TEST] Table builder', (): void => {
         });
 
         tableBuilderComponent.selection.selectRow(
-            tableBuilderComponent.source![2],
+            tableBuilderComponent.source()![2],
             mockShiftClientEvent,
         );
 
@@ -185,7 +186,7 @@ describe('[TEST] Table builder', (): void => {
         ]);
         await tableBuilderComponent.sortAndFilter();
 
-        expect(tableBuilderComponent.source).toEqual([
+        expect(tableBuilderComponent.source()).toEqual([
             {id: 3, name: 'Petr', lastName: 'Sidorov'},
         ]);
 
@@ -194,7 +195,7 @@ describe('[TEST] Table builder', (): void => {
         ]);
         await tableBuilderComponent.sortAndFilter();
 
-        expect(tableBuilderComponent.source).toEqual([
+        expect(tableBuilderComponent.source()).toEqual([
             {id: 2, name: 'Ivan', lastName: 'Petrov'},
             {id: 3, name: 'Petr', lastName: 'Sidorov'},
         ]);
@@ -204,7 +205,7 @@ describe('[TEST] Table builder', (): void => {
         ]);
         await tableBuilderComponent.sortAndFilter();
 
-        expect(tableBuilderComponent.source).toEqual([
+        expect(tableBuilderComponent.source()).toEqual([
             {id: 1, name: 'Max', lastName: 'Ivanov'},
             {id: 3, name: 'Petr', lastName: 'Sidorov'},
         ]);
@@ -218,7 +219,7 @@ describe('[TEST] Table builder', (): void => {
         ]);
         await tableBuilderComponent.sortAndFilter();
 
-        expect(tableBuilderComponent.source).toEqual([
+        expect(tableBuilderComponent.source()).toEqual([
             {id: 1, name: 'Max', lastName: 'Ivanov'},
             {id: 3, name: 'Petr', lastName: 'Sidorov'},
         ]);
@@ -232,7 +233,7 @@ describe('[TEST] Table builder', (): void => {
         ]);
         await tableBuilderComponent.sortAndFilter();
 
-        expect(tableBuilderComponent.source).toEqual([
+        expect(tableBuilderComponent.source()).toEqual([
             {id: 1, name: 'Max', lastName: 'Ivanov'},
         ]);
 
@@ -241,7 +242,7 @@ describe('[TEST] Table builder', (): void => {
         ]);
         await tableBuilderComponent.sortAndFilter();
 
-        expect(tableBuilderComponent.source).toEqual([
+        expect(tableBuilderComponent.source()).toEqual([
             {id: 2, name: 'Ivan', lastName: 'Petrov'},
             {id: 4, lastName: null, name: null},
         ]);
@@ -251,7 +252,7 @@ describe('[TEST] Table builder', (): void => {
         ]);
         await tableBuilderComponent.sortAndFilter();
 
-        expect(tableBuilderComponent.source).toEqual([
+        expect(tableBuilderComponent.source()).toEqual([
             {id: 1, name: 'Max', lastName: 'Ivanov'},
         ]);
 
@@ -260,7 +261,7 @@ describe('[TEST] Table builder', (): void => {
         ]);
         await tableBuilderComponent.sortAndFilter();
 
-        expect(tableBuilderComponent.source).toEqual([
+        expect(tableBuilderComponent.source()).toEqual([
             {id: 1, name: 'Max', lastName: 'Ivanov'},
             {id: 3, name: 'Petr', lastName: 'Sidorov'},
             {id: 4, lastName: null, name: null},
@@ -271,7 +272,7 @@ describe('[TEST] Table builder', (): void => {
         ]);
         await tableBuilderComponent.sortAndFilter();
 
-        expect(tableBuilderComponent.source).toEqual([
+        expect(tableBuilderComponent.source()).toEqual([
             {id: 1, name: 'Max', lastName: 'Ivanov'},
             {id: 2, name: 'Ivan', lastName: 'Petrov'},
             {id: 4, name: null, lastName: null},
@@ -282,7 +283,7 @@ describe('[TEST] Table builder', (): void => {
         ]);
         await tableBuilderComponent.sortAndFilter();
 
-        expect(tableBuilderComponent.source).toEqual([
+        expect(tableBuilderComponent.source()).toEqual([
             {id: 3, name: 'Petr', lastName: 'Sidorov'},
         ]);
 
@@ -291,7 +292,7 @@ describe('[TEST] Table builder', (): void => {
         ]);
         await tableBuilderComponent.sortAndFilter();
 
-        expect(tableBuilderComponent.source).toEqual([
+        expect(tableBuilderComponent.source()).toEqual([
             {id: 1, name: 'Max', lastName: 'Ivanov'},
             {id: 2, name: 'Ivan', lastName: 'Petrov'},
             {id: 3, name: 'Petr', lastName: 'Sidorov'},
@@ -302,7 +303,7 @@ describe('[TEST] Table builder', (): void => {
         ]);
         await tableBuilderComponent.sortAndFilter();
 
-        expect(tableBuilderComponent.source).toEqual([
+        expect(tableBuilderComponent.source()).toEqual([
             {id: 4, name: null, lastName: null},
         ]);
 
@@ -311,7 +312,7 @@ describe('[TEST] Table builder', (): void => {
         ]);
         await tableBuilderComponent.sortAndFilter();
 
-        expect(tableBuilderComponent.source).toEqual([
+        expect(tableBuilderComponent.source()).toEqual([
             {id: 3, name: 'Petr', lastName: 'Sidorov'},
             {id: 4, lastName: null, name: null},
         ]);
@@ -321,7 +322,7 @@ describe('[TEST] Table builder', (): void => {
         ]);
         await tableBuilderComponent.sortAndFilter();
 
-        expect(tableBuilderComponent.source).toEqual([
+        expect(tableBuilderComponent.source()).toEqual([
             {id: 2, name: 'Ivan', lastName: 'Petrov'},
             {id: 3, name: 'Petr', lastName: 'Sidorov'},
             {id: 4, lastName: null, name: null},
@@ -332,7 +333,7 @@ describe('[TEST] Table builder', (): void => {
         ]);
         await tableBuilderComponent.sortAndFilter();
 
-        expect(tableBuilderComponent.source).toEqual([
+        expect(tableBuilderComponent.source()).toEqual([
             {id: 1, name: 'Max', lastName: 'Ivanov'},
         ]);
 
@@ -341,7 +342,7 @@ describe('[TEST] Table builder', (): void => {
         ]);
         await tableBuilderComponent.sortAndFilter();
 
-        expect(tableBuilderComponent.source).toEqual([
+        expect(tableBuilderComponent.source()).toEqual([
             {id: 1, name: 'Max', lastName: 'Ivanov'},
             {id: 2, name: 'Ivan', lastName: 'Petrov'},
         ]);
@@ -351,7 +352,7 @@ describe('[TEST] Table builder', (): void => {
         const tableBuilderComponent: TableBuilder<PlainObject> =
             component.tableBuilderComponent;
 
-        expect(tableBuilderComponent.source).toEqual([
+        expect(tableBuilderComponent.source()).toEqual([
             {id: 1, name: 'Max', lastName: 'Ivanov'},
             {id: 2, name: 'Ivan', lastName: 'Petrov'},
             {id: 3, name: 'Petr', lastName: 'Sidorov'},
@@ -372,7 +373,7 @@ describe('[TEST] Table builder', (): void => {
         // eslint-disable-next-line no-restricted-globals
         await new Promise((resolve) => setTimeout(resolve, 1000));
 
-        expect(tableBuilderComponent.source).toEqual([
+        expect(tableBuilderComponent.source()).toEqual([
             {id: 1, name: 'Max', lastName: 'Ivanov'},
             {id: 2, name: 'Ivan', lastName: 'Petrov'},
         ]);
@@ -382,9 +383,9 @@ describe('[TEST] Table builder', (): void => {
         const tableBuilderComponent: TableBuilder<PlainObject> =
             component.tableBuilderComponent;
 
-        tableBuilderComponent.enableFiltering = false;
+        tableBuilderComponent.enableFiltering[SIGNAL].value = false;
 
-        expect(tableBuilderComponent.source).toEqual([
+        expect(tableBuilderComponent.source()).toEqual([
             {id: 1, name: 'Max', lastName: 'Ivanov'},
             {id: 2, name: 'Ivan', lastName: 'Petrov'},
             {id: 3, name: 'Petr', lastName: 'Sidorov'},
@@ -402,7 +403,7 @@ describe('[TEST] Table builder', (): void => {
         // eslint-disable-next-line no-restricted-globals
         await new Promise((resolve) => setTimeout(resolve, 1000));
 
-        expect(tableBuilderComponent.source).toEqual([
+        expect(tableBuilderComponent.source()).toEqual([
             {id: 1, name: 'Max', lastName: 'Ivanov'},
             {id: 2, name: 'Ivan', lastName: 'Petrov'},
             {id: 3, name: 'Petr', lastName: 'Sidorov'},

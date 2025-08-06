@@ -1,15 +1,15 @@
 <div
-    [class.context-menu__content-place]="icon === null"
-    [class.context-menu__icon-place]="icon !== null"
+    [class.context-menu__content-place]="icon() === null"
+    [class.context-menu__icon-place]="icon() !== null"
 >
     <div
         class="content"
-        [class.align-center]="alignCenter !== null"
+        [class.align-center]="alignCenter() !== null"
     >
-        @if (icon?.length! > 0) {
+        @if (icon()?.length! > 0) {
             <img
                 alt="img"
-                [attr.src]="icon"
+                [attr.src]="icon()"
             />
         } @else {
             <ng-content />

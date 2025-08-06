@@ -1,6 +1,6 @@
 /* eslint-disable @angular-eslint/no-input-rename */
-import {AfterViewInit, ElementRef, inject} from '@angular/core';
-import {Directive, Input} from '@angular/core';
+import {AfterViewInit, ElementRef, inject, input} from '@angular/core';
+import {Directive} from '@angular/core';
 
 import {AbstractFlexLayout} from './abstract-flex-layout.directive';
 
@@ -8,27 +8,22 @@ import {AbstractFlexLayout} from './abstract-flex-layout.directive';
 export class FlexContainer extends AbstractFlexLayout implements AfterViewInit {
     protected readonly elementRef = inject<ElementRef>(ElementRef);
 
-    @Input('flex-center')
-    public center: boolean | string = false;
-
-    @Input('no-wrap')
-    public noWrap: boolean | string = false;
-
-    @Input('full-width')
-    public fullWidth: boolean | string = false;
+    public readonly center = input<boolean | string>(false, {alias: 'flex-center'});
+    public readonly noWrap = input<boolean | string>(false, {alias: 'no-wrap'});
+    public readonly fullWidth = input<boolean | string>(false, {alias: 'full-width'});
 
     public ngAfterViewInit(): void {
         this.classList.add('flex-container');
 
-        if (this.center !== false) {
+        if (this.center() !== false) {
             this.classList.add('flex-container--center');
         }
 
-        if (this.noWrap !== false) {
+        if (this.noWrap() !== false) {
             this.classList.add('flex-container__nowrap');
         }
 
-        if (this.fullWidth !== false) {
+        if (this.fullWidth() !== false) {
             this.classList.add('flex-container__full-width');
         }
     }

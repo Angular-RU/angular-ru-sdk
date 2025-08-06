@@ -8,14 +8,18 @@ import {
     Component,
     ElementRef,
     HostListener,
+    inject,
+    Injector,
     OnChanges,
     OnDestroy,
     OnInit,
+    runInInjectionContext,
     SimpleChange,
     SimpleChanges,
     ViewChild,
     ViewEncapsulation,
 } from '@angular/core';
+import {SIGNAL} from '@angular/core/primitives/signals';
 import {fadeInLinearAnimation} from '@angular-ru/cdk/animations';
 import {hasItems, include} from '@angular-ru/cdk/array';
 import {coerceBoolean} from '@angular-ru/cdk/coercion';
@@ -140,6 +144,8 @@ export class TableBuilder<T>
     public sourceIsNull = false;
     public afterViewInitDone = false;
 
+    private readonly injector = inject(Injector);
+
     public get destroy$(): Subject<boolean> {
         return this._destroy$;
     }
@@ -161,7 +167,7 @@ export class TableBuilder<T>
 
     public get rootHeight(): string {
         const height: Nullable<number | string> = this.expandableTableExpanded
-            ? this.height
+            ? this.height()
             : getClientHeight(this.headerRef) + getClientHeight(this.footerRef);
 
         if (checkValueIsFilled(height)) {
@@ -176,8 +182,8 @@ export class TableBuilder<T>
     private get expandableTableExpanded(): boolean {
         return (
             isNil(this.headerTemplate) ||
-            !coerceBoolean(this.headerTemplate.expandablePanel) ||
-            coerceBoolean(this.headerTemplate.expanded)
+            !coerceBoolean(this.headerTemplate.expandablePanel()) ||
+            coerceBoolean(this.headerTemplate.expanded())
         );
     }
 
@@ -212,7 +218,7 @@ export class TableBuilder<T>
 
     public checkSourceIsNull(): boolean {
         // eslint-disable-next-line
-        return !('length' in (this.source || {}));
+        return !('length' in (this.source() || {}));
     }
 
     public recalculateHeight(): void {
@@ -257,9 +263,9 @@ export class TableBuilder<T>
     public ngOnInit(): void {
         if (this.isEnableSelection) {
             this.selection.listenShiftKey();
-            this.selection.primaryKey = this.primaryKey;
+            this.selection.primaryKey = this.primaryKey();
             this.selection.selectionModeIsEnabled = true;
-            this.selection.setProducerDisableFn(this.produceDisableFn);
+            this.selection.setProducerDisableFn(this.produceDisableFn());
         }
 
         this.sortable.setSortChanges(this.sortChanges);
@@ -333,7 +339,8 @@ export class TableBuilder<T>
     }
 
     public markTemplateContentCheck(): void {
-        this.contentInit = isNotNil(this.source) || isFalsy(this.columnTemplates?.length);
+        this.contentInit =
+            isNotNil(this.source()) || isFalsy(this.columnTemplates?.length);
     }
 
     public markDirtyCheck(): void {
@@ -406,7 +413,7 @@ export class TableBuilder<T>
 
     public resetSchema(): void {
         this.columnListWidth = 0;
-        this.schemaColumns = null;
+        this.schemaColumns[SIGNAL].value = null;
         detectChanges(this.cd);
 
         this.renderTable();
@@ -439,7 +446,7 @@ export class TableBuilder<T>
     }
 
     public setSource(source: Nullable<T[]>): void {
-        this.originalSource = this.source = this.selection.rows = source;
+        this.originalSource = this.source[SIGNAL].value = this.selection.rows = source;
     }
 
     public updateTableHeight(): void {
@@ -504,13 +511,13 @@ export class TableBuilder<T>
     protected calculateEndIndex(start: number): number {
         const end: number = start + this.getVisibleCountItems() + MIN_BUFFER;
 
-        return !this.isVirtualTable || end > this.sourceRef.length
+        return !this.isVirtualTable() || end > this.sourceRef.length
             ? this.sourceRef.length
             : end;
     }
 
     protected ignoreCalculate(): boolean {
-        return isNil(this.source) || !this.viewportHeight;
+        return isNil(this.source()) || !this.viewportHeight;
     }
 
     protected isDownMoved(): boolean {
@@ -527,7 +534,7 @@ export class TableBuilder<T>
             this.viewPortInfo.indexes.push(i);
             this.viewPortInfo.virtualIndexes.push({
                 position: i,
-                stripped: this.striped ? i % even === 0 : false,
+                stripped: this.striped() ? i % even === 0 : false,
                 offsetTop: i * this.clientRowHeight,
             });
         }
@@ -542,13 +549,13 @@ export class TableBuilder<T>
                 changes[TableSimpleChanges.SCHEMA_COLUMNS];
 
             if (isNotNil(schemaChange?.currentValue)) {
-                if (isNil(this.name)) {
+                if (isNil(this.name())) {
                     console.error(
                         'Table name is required! Example: <ngx-table-builder name="my-table-name" />',
                     );
                 }
 
-                if (isNil(this.schemaVersion)) {
+                if (isNil(this.schemaVersion())) {
                     console.error(
                         'Table version is required! Example: <ngx-table-builder [schema-version]="2" />',
                     );
@@ -558,7 +565,9 @@ export class TableBuilder<T>
     }
 
     private setSortTypes(): void {
-        this.sortable.setDefinition({...this.sortTypes} as PlainObjectOf<SortOrderType>);
+        this.sortable.setDefinition({
+            ...this.sortTypes(),
+        } as PlainObjectOf<SortOrderType>);
 
         if (this.sourceExists) {
             this.sortAndFilter().then((): void => this.reCheckDefinitions());
@@ -567,7 +576,7 @@ export class TableBuilder<T>
 
     private handleFilterDefinitionChanges(changes: SimpleChanges): void {
         if (TableSimpleChanges.FILTER_DEFINITION in changes) {
-            this.filterable.setDefinition(this.filterDefinition ?? []);
+            this.filterable.setDefinition(this.filterDefinition() ?? []);
             this.filter();
         }
     }
@@ -600,7 +609,7 @@ export class TableBuilder<T>
         this.filterable.resetEvents$
             .pipe(takeUntil(this._destroy$))
             .subscribe((): void => {
-                this.source = this.originalSource;
+                this.source[SIGNAL].value = this.originalSource;
                 this.calculateViewport(true);
             });
     }
@@ -676,13 +685,13 @@ export class TableBuilder<T>
     }
 
     private getOffsetVisibleStartIndex(): number {
-        return this.isVirtualTable
+        return this.isVirtualTable()
             ? Math.ceil(this.scrollOffsetTop / this.clientRowHeight)
             : 0;
     }
 
     private preSortAndFilterTable(): void {
-        this.setSource(this.source);
+        this.setSource(this.source());
         this.sortAndFilter().then((): void => {
             this.reCheckDefinitions();
             this.checkSelectionValue();
@@ -694,7 +703,7 @@ export class TableBuilder<T>
         this.renderedKeys = this.getKeys();
         this.customModelColumnsKeys = this.generateCustomModelColumnsKeys();
         this.modelColumnKeys = this.generateModelColumnKeys();
-        this.setSource(this.source);
+        this.setSource(this.source());
         const unDirty = !this.dirty;
 
         this.checkSelectionValue();
@@ -721,7 +730,7 @@ export class TableBuilder<T>
         if (this.isEnableFiltering) {
             this.filterable.filterType =
                 this.filterable.filterType ??
-                this.columnOptions?.filterType ??
+                this.columnOptions?.filterType() ??
                 TableFilterType.CONTAINS;
 
             for (const key of this.modelColumnKeys) {
@@ -804,7 +813,7 @@ export class TableBuilder<T>
     }
 
     private getCustomColumnSchemaByIndex(index: number): Partial<ColumnsSchema> {
-        return this.schemaColumns?.columns?.[index] ?? ({} as any);
+        return this.schemaColumns()?.columns?.[index] ?? ({} as any);
     }
 
     /**
@@ -817,7 +826,9 @@ export class TableBuilder<T>
             this.getCustomColumnSchemaByIndex(index);
 
         if (!this.templateParser.compiledTemplates[key]) {
-            const column: NgxColumn<T> = new NgxColumn<T>().withKey(key);
+            const column: NgxColumn<T> = runInInjectionContext(this.injector, () =>
+                new NgxColumn<T>().withKey(key),
+            );
 
             this.templateParser.compileColumnMetadata(column);
         }
@@ -871,7 +882,7 @@ export class TableBuilder<T>
                 detectChanges(this.cd);
                 this.recalculateHeight();
                 this.afterRendered.emit(this.isRendered);
-                this.onChanges.emit(this.source ?? null);
+                this.onChanges.emit(this.source() ?? null);
             }, TIME_RELOAD);
         });
     }
@@ -889,10 +900,10 @@ export class TableBuilder<T>
 
         if (isValid) {
             generatedList =
-                this.schemaColumns?.columns?.map(
+                this.schemaColumns()?.columns?.map(
                     (column: DeepPartial<ColumnsSchema>): string => column.key as string,
                 ) ?? [];
-        } else if (this.keys.length > 0) {
+        } else if (this.keys().length > 0) {
             generatedList = this.customModelColumnsKeys;
         } else if (simpleRenderedKeys.size > 0) {
             generatedList = allRenderedKeys;
@@ -905,14 +916,15 @@ export class TableBuilder<T>
 
     // eslint-disable-next-line max-lines-per-function
     private validationSchemaColumnsAndResetIfInvalid(): boolean {
+        const schemaColumns = this.schemaColumns();
         let isValid: boolean =
-            isNotNil(this.schemaColumns) &&
-            (this.schemaColumns?.columns?.length ?? 0) > 0;
+            isNotNil(schemaColumns) && (schemaColumns?.columns?.length ?? 0) > 0;
 
         if (isValid) {
-            const nameIsValid: boolean = this.schemaColumns?.name === this.name;
+            const schemaColumnsValue = this.schemaColumns();
+            const nameIsValid: boolean = schemaColumnsValue?.name === this.name();
             const versionIsValid: boolean =
-                this.schemaColumns?.version === this.schemaVersion;
+                schemaColumnsValue?.version === this.schemaVersion();
             const invalid: boolean = !nameIsValid || !versionIsValid;
 
             if (invalid) {
@@ -920,11 +932,11 @@ export class TableBuilder<T>
                 console.error(
                     'The table name or version is mismatched by your schema, your schema will be reset.',
                     'Current name:',
-                    this.name,
+                    this.name(),
                     'Current version:',
-                    this.schemaVersion,
+                    this.schemaVersion(),
                     'Schema:',
-                    this.schemaColumns,
+                    schemaColumnsValue,
                 );
 
                 this.changeSchema([]);
@@ -942,14 +954,15 @@ export class TableBuilder<T>
     // eslint-disable-next-line complexity
     private parseTemplateKeys(): TemplateKeys {
         const modelKeys: string[] = this.getModelKeys();
-        const keys: string[] = hasItems(this.keys)
-            ? this.keys.filter((key: string): boolean => modelKeys.includes(key))
+        const keysValue = this.keys();
+        const keys: string[] = hasItems(keysValue)
+            ? keysValue.filter((key: string): boolean => modelKeys.includes(key))
             : modelKeys;
 
         this.templateParser.keyMap = this.generateColumnsKeyMap(keys);
 
         this.templateParser.allowedKeyMap =
-            this.keys.length > 0
+            this.keys().length > 0
                 ? this.generateColumnsKeyMap(this.customModelColumnsKeys)
                 : this.generateColumnsKeyMap(this.modelColumnKeys);
 

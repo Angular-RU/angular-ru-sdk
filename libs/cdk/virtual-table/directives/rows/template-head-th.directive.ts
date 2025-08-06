@@ -1,4 +1,4 @@
-import {Directive, Input} from '@angular/core';
+import {Directive, input} from '@angular/core';
 import {Nullable} from '@angular-ru/cdk/typings';
 
 import {AbstractTemplateCellCommonDirective} from './abstract-template-cell-common.directive';
@@ -6,11 +6,9 @@ import {AbstractTemplateCellCommonDirective} from './abstract-template-cell-comm
 @Directive({selector: 'ng-template[ngx-th]'})
 export class TemplateHeadTh<T> extends AbstractTemplateCellCommonDirective<T> {
     // eslint-disable-next-line @angular-eslint/no-input-rename
-    @Input('ngx-th')
-    public override type: Nullable<string> = null;
+    public override readonly type = input<Nullable<string>>(null, {alias: 'ngx-th'});
 
-    @Input()
-    public override bold = true;
+    public override readonly bold = input(true);
 
-    public override nowrap = false;
+    public override nowrap = input(false);
 }

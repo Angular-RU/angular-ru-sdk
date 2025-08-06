@@ -61,25 +61,25 @@ describe('[TEST] Table builder', (): void => {
         const tableBuilderComponent: TableBuilder<PlainObject> =
             component.tableBuilderComponent;
 
-        expect(tableBuilderComponent.source).toBeNull();
+        expect(tableBuilderComponent.source()).toBeNull();
 
         componentFixture.detectChanges();
 
-        expect(tableBuilderComponent.source).toEqual([
+        expect(tableBuilderComponent.source()).toEqual([
             {id: 1, name: 'Max', lastName: 'Ivanov'},
             {id: 2, name: 'Ivan', lastName: 'Petrov'},
             {id: 3, name: 'Petr', lastName: 'Sidorov'},
         ]);
 
         tableBuilderComponent.selection.selectRow(
-            tableBuilderComponent.source![0],
+            tableBuilderComponent.source()![0],
             new MouseEvent('click'),
         );
 
         expect(tableBuilderComponent.selection.selectionModel.entries).toEqual({1: true});
 
         tableBuilderComponent.selection.selectRow(
-            tableBuilderComponent.source![1],
+            tableBuilderComponent.source()![1],
             new MouseEvent('click', {shiftKey: true}),
         );
 

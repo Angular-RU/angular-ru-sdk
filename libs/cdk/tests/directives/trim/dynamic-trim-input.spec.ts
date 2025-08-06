@@ -82,7 +82,7 @@ describe('[TEST]: Trim Input', function () {
 
     it('correct sync modelView with model and dynamic control name', () => {
         expect(component?.controlName).toBe('b');
-        expect(component?.form.value).toEqual({a: 1234000012340000, b: undefined});
+        expect(component?.form.value).toEqual({a: 1234000012340000, b: null});
         expect(debugElement?.nativeElement.value).toBe('');
 
         if (isNotNil(component)) {
@@ -93,7 +93,7 @@ describe('[TEST]: Trim Input', function () {
         setValueAndDispatchBlur('\t  2222000022220000   ');
 
         expect(component?.controlName).toBe('a');
-        expect(component?.form.value).toEqual({a: '2222000022220000', b: undefined});
+        expect(component?.form.value).toEqual({a: '2222000022220000', b: null});
         expect(debugElement?.nativeElement.value).toBe('2222-0000-2222-0000');
 
         if (isNotNil(component)) {

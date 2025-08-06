@@ -3,7 +3,7 @@ import {
     ChangeDetectionStrategy,
     Component,
     ContentChild,
-    Input,
+    input,
     OnDestroy,
     OnInit,
     ViewEncapsulation,
@@ -35,15 +35,12 @@ export class NgxFilter<T>
     implements OnInit, OnDestroy
 {
     private readonly destroy$ = new Subject<void>();
-    @Input()
-    public width: number = FILTER_WIDTH;
+    public readonly width = input<number>(FILTER_WIDTH);
 
-    @Input()
-    public height: Nullable<number> = null;
+    public readonly height = input<Nullable<number>>(null);
 
     // eslint-disable-next-line @angular-eslint/no-input-rename
-    @Input('max-height')
-    public maxHeight: Nullable<number> = null;
+    public readonly maxHeight = input<Nullable<number>>(null, {alias: 'max-height'});
 
     @ContentChild(NgxFilterDirective, {static: false})
     public filter!: NgxFilterDirective;

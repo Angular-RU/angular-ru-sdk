@@ -1,4 +1,4 @@
-import {Directive, ElementRef, HostListener, inject, Input} from '@angular/core';
+import {Directive, ElementRef, HostListener, inject, input} from '@angular/core';
 import {hasItems} from '@angular-ru/cdk/array';
 import {ControlValueInterceptor} from '@angular-ru/cdk/forms';
 import {filter, FilterPredicate} from '@angular-ru/cdk/string';
@@ -18,15 +18,13 @@ export class InputFilter {
     })!;
 
     private manualEvent: Nullable<InputEvent> = null;
-    @Input()
-    declare public inputFilter: FilterPredicate | '';
 
-    @Input()
-    public filterDisabled = false;
+    public readonly inputFilter = input<FilterPredicate | ''>('');
+    public readonly filterDisabled = input(false);
 
     @HostListener('input', ['$event'])
     public onInput(baseEvent: InputEvent): void {
-        if (this.filterDisabled || this.manualEvent === baseEvent) {
+        if (this.filterDisabled() || this.manualEvent === baseEvent) {
             return;
         }
 
@@ -44,10 +42,11 @@ export class InputFilter {
     }
 
     private getPredicate(): FilterPredicate | '' {
-        const isInputPredicate: boolean = Array.isArray(this.inputFilter)
-            ? hasItems(this.inputFilter)
-            : checkValueIsFilled(this.inputFilter);
+        const inputFilter = this.inputFilter();
+        const isInputPredicate: boolean = Array.isArray(inputFilter)
+            ? hasItems(inputFilter)
+            : checkValueIsFilled(inputFilter);
 
-        return isInputPredicate ? this.inputFilter : (this.config?.default ?? []);
+        return isInputPredicate ? inputFilter : (this.config?.default ?? []);
     }
 }

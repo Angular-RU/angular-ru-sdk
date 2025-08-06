@@ -2,21 +2,21 @@
     <mat-form-field appearance="outline">
         <mat-label>Find options</mat-label>
         <mat-select
-            [value]="$any(table.filterable.filterTypeDefinition)[state.key!]"
+            [value]="$any(table().filterable.filterTypeDefinition)[state().key!]"
             (valueChange)="updateFilterType($event)"
         >
-            @for (type of table.filterable.types | keyvalue; track type.key) {
+            @for (type of table().filterable.types | keyvalue; track type.key) {
                 <mat-option [value]="type.value">
                     {{ type.key }}
                 </mat-option>
             }
         </mat-select>
     </mat-form-field>
-    @switch ($any(table.filterable.filterTypeDefinition)[state.key!]) {
+    @switch ($any(table().filterable.filterTypeDefinition)[state().key!]) {
         @case (TableFilterType.IS_FILLED) {
             <mat-button-toggle-group
-                [ngModel]="$any(table.filterable.definition)[state.key!]"
-                (ngModelChange)="table.filterable.updateFilterValueBy($event, state.key); table.filter()"
+                [ngModel]="$any(table().filterable.definition)[state().key!]"
+                (ngModelChange)="table().filterable.updateFilterValueBy($event, state().key); table().filter()"
             >
                 <mat-button-toggle [value]="true">Filled</mat-button-toggle>
                 <mat-button-toggle [value]="false">Empty</mat-button-toggle>
@@ -57,8 +57,8 @@
                 <input
                     matInput
                     [matDatepicker]="picker"
-                    [ngModel]="$any(table.filterable.definition)[state.key!]"
-                    (ngModelChange)="table.filterable.updateFilterValueBy($event, state.key); table.filter()"
+                    [ngModel]="$any(table().filterable.definition)[state().key!]"
+                    (ngModelChange)="table().filterable.updateFilterValueBy($event, state().key); table().filter()"
                 />
                 <mat-datepicker-toggle
                     matIconSuffix
@@ -69,13 +69,13 @@
         }
         @default {
             <mat-form-field appearance="outline">
-                <mat-label>Filter by {{ state.key! | uppercase }}</mat-label>
+                <mat-label>Filter by {{ state().key! | uppercase }}</mat-label>
                 <input
                     autocomplete="off"
                     matInput
                     name="width"
-                    [ngModel]="$any(table.filterable.definition)[state.key!]"
-                    (ngModelChange)="table.filterable.updateFilterValueBy($event, state.key); table.filter()"
+                    [ngModel]="$any(table().filterable.definition)[state().key!]"
+                    (ngModelChange)="table().filterable.updateFilterValueBy($event, state().key); table().filter()"
                 />
                 <mat-icon matSuffix>search</mat-icon>
             </mat-form-field>

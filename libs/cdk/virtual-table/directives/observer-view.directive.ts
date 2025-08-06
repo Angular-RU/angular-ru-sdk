@@ -4,7 +4,7 @@ import {
     ElementRef,
     EventEmitter,
     inject,
-    Input,
+    input,
     NgZone,
     OnDestroy,
     Output,
@@ -21,11 +21,9 @@ export class ObserverView implements AfterViewInit, OnDestroy {
     private observer: Nullable<IntersectionObserver> = null;
     private previousRation = 0.0;
     private frameId: Nullable<number> = null;
-    @Input()
-    public observerRoot?: HTMLElement;
+    public readonly observerRoot = input<HTMLElement>();
 
-    @Input()
-    public observerRootMargin?: string;
+    public readonly observerRootMargin = input<string>();
 
     @Output()
     public readonly observeVisible = new EventEmitter<boolean>(true);
@@ -42,8 +40,8 @@ export class ObserverView implements AfterViewInit, OnDestroy {
                     }
                 },
                 {
-                    root: this.observerRoot ?? null,
-                    rootMargin: this.observerRootMargin ?? '0px 0px 0px 0px',
+                    root: this.observerRoot() ?? null,
+                    rootMargin: this.observerRootMargin() ?? '0px 0px 0px 0px',
                     threshold: [0],
                 },
             );

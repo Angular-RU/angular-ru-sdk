@@ -1,4 +1,4 @@
-import {Directive, Input} from '@angular/core';
+import {Directive, input} from '@angular/core';
 import {Nullable} from '@angular-ru/cdk/typings';
 
 import {AbstractTemplateCellCommonDirective} from './abstract-template-cell-common.directive';
@@ -6,6 +6,5 @@ import {AbstractTemplateCellCommonDirective} from './abstract-template-cell-comm
 @Directive({selector: 'ng-template[ngx-td]'})
 export class TemplateBodyTd<T> extends AbstractTemplateCellCommonDirective<T> {
     // eslint-disable-next-line @angular-eslint/no-input-rename
-    @Input('ngx-td')
-    public override type: Nullable<string> = null;
+    public override readonly type = input<Nullable<string>>(null, {alias: 'ngx-td'});
 }

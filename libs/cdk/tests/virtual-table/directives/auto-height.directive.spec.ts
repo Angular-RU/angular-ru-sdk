@@ -1,4 +1,5 @@
 import {ElementRef} from '@angular/core';
+import {SIGNAL} from '@angular/core/primitives/signals';
 import {fakeAsync, TestBed, tick} from '@angular/core/testing';
 import {Fn, Nullable, PlainObject} from '@angular-ru/cdk/typings';
 
@@ -57,7 +58,7 @@ describe('[TEST]: auto height', () => {
             ],
         });
         directive = TestBed.inject(AutoHeight);
-        directive.sourceRef = [{a: 1}];
+        directive.sourceRef[SIGNAL].value = [{a: 1}];
         style = '';
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         // ticked = 0;
@@ -80,7 +81,7 @@ describe('[TEST]: auto height', () => {
     });
 
     it('should be correct calculate auto height when columnHeight = 45px', fakeAsync(() => {
-        directive.autoHeight = {
+        directive.autoHeight[SIGNAL].value = {
             detect: true,
             inViewport: true,
             sourceLength: 1,
@@ -94,7 +95,7 @@ describe('[TEST]: auto height', () => {
     }));
 
     it('should be correct calculate auto height when columnHeight = 2000px', fakeAsync(() => {
-        directive.autoHeight = {
+        directive.autoHeight[SIGNAL].value = {
             detect: true,
             inViewport: true,
             sourceLength: 45,
@@ -108,12 +109,12 @@ describe('[TEST]: auto height', () => {
     }));
 
     it('should be correct hide height not in viewport', () => {
-        directive.autoHeight = {detect: true, inViewport: false};
+        directive.autoHeight[SIGNAL].value = {detect: true, inViewport: false};
         directive.calculateHeight();
 
         expect(style).toBe('');
 
-        directive.autoHeight = {
+        directive.autoHeight[SIGNAL].value = {
             detect: false,
             rootHeight: '200px',
             inViewport: false,
@@ -125,7 +126,7 @@ describe('[TEST]: auto height', () => {
     });
 
     it('should be correct calculate custom height', () => {
-        directive.autoHeight = {
+        directive.autoHeight[SIGNAL].value = {
             detect: true,
             rootHeight: '500px',
             inViewport: true,
@@ -137,7 +138,7 @@ describe('[TEST]: auto height', () => {
     });
 
     it('should be correct empty style when autoHeight not called', () => {
-        directive.autoHeight = {
+        directive.autoHeight[SIGNAL].value = {
             detect: false,
             rootHeight: null,
             inViewport: true,
@@ -149,7 +150,11 @@ describe('[TEST]: auto height', () => {
     });
 
     it('should be correct recalculate height', fakeAsync(() => {
-        directive.autoHeight = {rootHeight: '200px', inViewport: true, sourceLength: 1};
+        directive.autoHeight[SIGNAL].value = {
+            rootHeight: '200px',
+            inViewport: true,
+            sourceLength: 1,
+        };
 
         directive.recalculateTableSize();
         tick(100);

@@ -1,3 +1,4 @@
+import type {Signal} from '@angular/core';
 import {
     ApplicationRef,
     ChangeDetectorRef,
@@ -29,9 +30,10 @@ export abstract class AbstractModalViewLayer<T, K extends PositionState>
 {
     protected readonly cd = inject(ChangeDetectorRef);
 
-    public abstract width: Nullable<number>;
-    public abstract height: Nullable<number>;
-    public abstract maxHeight: Nullable<number>;
+    public abstract width: Signal<Nullable<number>>;
+    public abstract height: Signal<Nullable<number>>;
+    public abstract maxHeight: Signal<Nullable<number>>;
+
     @ViewChild('menu', {static: false})
     protected menu!: ElementRef<HTMLDivElement>;
 
@@ -55,7 +57,7 @@ export abstract class AbstractModalViewLayer<T, K extends PositionState>
 
     public get overflowX(): number {
         const overflowX: number =
-            (this.width ?? 0) + this.left - (getBodyRect()?.width ?? 0);
+            (this.width() ?? 0) + this.left - (getBodyRect()?.width ?? 0);
 
         return overflowX > 0 ? overflowX + SCROLLBAR_SIZE : 0;
     }
@@ -71,22 +73,24 @@ export abstract class AbstractModalViewLayer<T, K extends PositionState>
     }
 
     public get calculatedHeight(): number {
-        let height: Nullable<number>;
+        let calculatedHeight: Nullable<number>;
 
         try {
-            if (isNotNil(this.height)) {
-                height =
-                    this.menu.nativeElement.scrollHeight > this.height
+            const height = this.height();
+
+            if (isNotNil(height)) {
+                calculatedHeight =
+                    this.menu.nativeElement.scrollHeight > height
                         ? this.menu.nativeElement.offsetHeight
-                        : this.height;
+                        : height;
             } else {
-                height = this.menu.nativeElement.scrollHeight;
+                calculatedHeight = this.menu.nativeElement.scrollHeight;
             }
         } catch {
-            height = this.height;
+            calculatedHeight = this.height();
         }
 
-        return height!;
+        return calculatedHeight!;
     }
 
     public abstract get state(): Partial<K>;

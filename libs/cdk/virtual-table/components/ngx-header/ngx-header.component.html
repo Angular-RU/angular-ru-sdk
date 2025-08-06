@@ -1,24 +1,24 @@
 <div
     class="table-grid__table-content-place"
-    [class.table-grid__header-expandable]="expandablePanel"
-    [class.table-grid__table-content-place--align-center]="alignCenter !== null"
-    [class.table-grid__table-content-place--bold]="bold !== null"
-    [class.table-grid__table-content-place--content-cell]="contentCell !== null"
-    [style.height.px]="height"
+    [class.table-grid__header-expandable]="expandablePanel()"
+    [class.table-grid__table-content-place--align-center]="alignCenter() !== null"
+    [class.table-grid__table-content-place--bold]="bold() !== null"
+    [class.table-grid__table-content-place--content-cell]="contentCell() !== null"
+    [style.height.px]="height()"
 >
     <div
-        [class.content-box]="contentCell !== null"
-        [ngClass]="cssClasses"
+        [class.content-box]="contentCell() !== null"
+        [ngClass]="cssClasses()"
     >
         <ng-content />
     </div>
-    @if (expandablePanel && !hideToggle) {
+    @if (expandablePanel() && !hideToggle()) {
         <div class="table-grid__header-sticky--expand-button-wrapper">
             <svg
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
                 class="table-grid__header-sticky--expand-button"
-                [class.table-grid__header-sticky--expand-button--expanded]="expanded"
+                [class.table-grid__header-sticky--expand-button--expanded]="expanded()"
                 (click)="toggleExpand()"
             >
                 <path

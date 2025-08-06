@@ -4,7 +4,7 @@ import {
     ElementRef,
     HostListener,
     inject,
-    Input,
+    input,
 } from '@angular/core';
 import {NgControl} from '@angular/forms';
 import {toStringValue} from '@angular-ru/cdk/string';
@@ -14,11 +14,8 @@ export class ConvertCase implements AfterViewInit {
     private readonly elementRef = inject<ElementRef>(ElementRef);
     private readonly ngControl = inject<NgControl>(NgControl, {optional: true});
 
-    @Input()
-    public toUpperCase = true;
-
-    @Input()
-    public toLowerCase = false;
+    public readonly toUpperCase = input(true);
+    public readonly toLowerCase = input(false);
 
     private get element(): HTMLInputElement {
         return this.elementRef.nativeElement;
@@ -28,7 +25,7 @@ export class ConvertCase implements AfterViewInit {
     public onInput(): void {
         const dirtyValue: string = toStringValue(this.element.value);
 
-        this.element.value = this.toLowerCase
+        this.element.value = this.toLowerCase()
             ? dirtyValue.toLowerCase()
             : dirtyValue.toUpperCase();
         this.ngControl?.reset(this.element.value);

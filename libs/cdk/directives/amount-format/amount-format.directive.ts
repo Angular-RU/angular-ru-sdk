@@ -2,9 +2,10 @@ import {
     AfterViewInit,
     ChangeDetectorRef,
     Directive,
+    effect,
     ElementRef,
     inject,
-    Input,
+    model,
     NgZone,
     OnDestroy,
     OnInit,
@@ -42,7 +43,18 @@ export class AmountFormat implements OnInit, AfterViewInit, OnDestroy {
     constructor() {
         const globalOptions = inject<AmountOptions>(AMOUNT_FORMAT_OPTIONS);
 
+        this.listenToOptionInputChanges();
         this.setFirstLocalOptionsByGlobal(globalOptions);
+    }
+
+    private listenToOptionInputChanges() {
+        effect(() => {
+            const options: Partial<AmountOptions> = this.amountFormatOptions();
+
+            this.options = {...this.options, ...(options ?? {})};
+
+            this.recalculateOnOptionChange();
+        });
     }
 
     public get isInAngularZone(): boolean {
@@ -57,19 +69,11 @@ export class AmountFormat implements OnInit, AfterViewInit, OnDestroy {
         return this.elementRef.nativeElement;
     }
 
-    public get amountFormatOptions(): Partial<AmountOptions> {
-        return this.options;
-    }
-
-    @Input()
-    public set amountFormatOptions(options: Partial<AmountOptions>) {
-        this.options = {...this.options, ...(options ?? {})};
-        this.recalculateWhenChangesOptions();
-    }
+    public readonly amountFormatOptions = model<Partial<AmountOptions>>(this.options);
 
     public setLang(lang: string): void {
         this.options.lang = lang;
-        this.recalculateWhenChangesOptions();
+        this.recalculateOnOptionChange();
     }
 
     public getCursorPosition(): number {
@@ -322,9 +326,10 @@ export class AmountFormat implements OnInit, AfterViewInit, OnDestroy {
     private setFirstLocalOptionsByGlobal(options: AmountOptions): void {
         this.options = deepClone(options);
         this.previousLang = this.options.lang;
+        this.amountFormatOptions.set(this.options);
     }
 
-    private recalculateWhenChangesOptions(): void {
+    private recalculateOnOptionChange(): void {
         const value: number = toNumber(
             this.element.value,
             this.previousLang ?? this.options.lang,

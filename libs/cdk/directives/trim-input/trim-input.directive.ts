@@ -1,4 +1,12 @@
-import {Directive, ElementRef, HostListener, inject, Input, OnInit} from '@angular/core';
+import {
+    Directive,
+    effect,
+    ElementRef,
+    HostListener,
+    inject,
+    input,
+    OnInit,
+} from '@angular/core';
 import {AbstractControl, NgControl} from '@angular/forms';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {isNotNil} from '@angular-ru/cdk/utils';
@@ -8,18 +16,27 @@ export class TrimInput implements OnInit {
     public readonly elementRef = inject<ElementRef>(ElementRef);
     private readonly ngControl = inject<NgControl>(NgControl, {optional: true});
 
-    declare private name: string;
-    declare private previousName: string;
+    declare private name?: string;
+    declare private previousName?: string;
     private previousValue: any;
 
-    @Input()
-    public trimDisabled = false;
+    public readonly trimDisabled = input(false);
+    public readonly formControlName = input<string>();
 
-    @Input()
-    public set formControlName(name: string) {
-        this.previousValue = this.ngControl?.control?.parent?.get(this.name)?.value;
-        this.previousName = this.name;
-        this.name = name;
+    constructor() {
+        this.listenToFormControlNameChanges();
+    }
+
+    private listenToFormControlNameChanges() {
+        effect(() => {
+            const name = this.formControlName();
+
+            this.previousValue = this.ngControl?.control?.parent?.get(
+                this.name ?? '',
+            )?.value;
+            this.previousName = this.name;
+            this.name = name;
+        });
     }
 
     @HostListener('keydown.enter')
@@ -37,7 +54,7 @@ export class TrimInput implements OnInit {
     }
 
     private trimValue(): void {
-        if (this.trimDisabled) {
+        if (this.trimDisabled()) {
             return;
         }
 
@@ -46,8 +63,8 @@ export class TrimInput implements OnInit {
             .trim();
 
         const control: Nullable<AbstractControl> = this.ngControl?.control?.parent
-            ? this.ngControl?.control?.parent?.get(this.name)
-            : this.ngControl?.control?.get(this.name);
+            ? this.ngControl?.control?.parent?.get(this.name ?? '')
+            : this.ngControl?.control?.get(this.name ?? '');
 
         if (isNotNil(control)) {
             const modelValue: string = (this.ngControl?.value ?? control?.value)
@@ -59,7 +76,7 @@ export class TrimInput implements OnInit {
             } else {
                 control?.setValue(modelValue, {emitEvent: false});
                 control?.parent
-                    ?.get(this.previousName)
+                    ?.get(this.previousName ?? '')
                     ?.setValue(this.previousValue, {emitEvent: false});
             }
         }

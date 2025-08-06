@@ -1,4 +1,5 @@
 import {ChangeDetectorRef, ElementRef, QueryList, SimpleChanges} from '@angular/core';
+import {SIGNAL} from '@angular/core/primitives/signals';
 import {fakeAsync, TestBed, tick} from '@angular/core/testing';
 import {provideNoopAnimations} from '@angular/platform-browser/animations';
 import {deepClone} from '@angular-ru/cdk/object';
@@ -90,7 +91,7 @@ describe('[TEST]: Lifecycle table', () => {
         Object.defineProperty(element, 'offsetHeight', {value: 900});
 
         table.scrollContainer = {nativeElement: element};
-        table.primaryKey = 'position';
+        table.primaryKey[SIGNAL].value = 'position';
         changes = {};
 
         table.columnList = new QueryList<ElementRef<HTMLDivElement>>();
@@ -114,12 +115,12 @@ describe('[TEST]: Lifecycle table', () => {
         ]);
 
         // enable and check filter
-        table.enableFiltering = true;
+        table.enableFiltering[SIGNAL].value = true;
         table.filterable.filterValue = 'Hydrogen';
         table.filterable.filterType = 'START_WITH';
         await table.sortAndFilter();
 
-        expect(table.source).toEqual([
+        expect(table.source()).toEqual([
             {name: 'Hydrogen', position: 1, symbol: 'H', weight: 1.0079},
         ]);
 
@@ -131,12 +132,12 @@ describe('[TEST]: Lifecycle table', () => {
         });
 
         // reset filter
-        table.enableFiltering = true;
+        table.enableFiltering[SIGNAL].value = true;
         table.filterable.filterValue = null;
         table.filterable.filterType = null;
         await table.sortAndFilter();
 
-        expect(table.source).toEqual(data);
+        expect(table.source()).toEqual(data);
 
         expect(table.lastItem).toEqual({
             position: 10,
@@ -147,7 +148,7 @@ describe('[TEST]: Lifecycle table', () => {
     });
 
     it('should be unchecked state before ngOnChange', () => {
-        table.source = deepClone(data);
+        table.source[SIGNAL].value = deepClone(data);
 
         expect(table.isRendered).toBe(false);
         expect(table.modelColumnKeys).toEqual([]);
@@ -160,8 +161,8 @@ describe('[TEST]: Lifecycle table', () => {
     });
 
     it('should be correct generate modelColumnKeys after ngOnChange', () => {
-        table.source = deepClone(data);
-        table.enableSelection = true;
+        table.source[SIGNAL].value = deepClone(data);
+        table.enableSelection[SIGNAL].value = true;
         table.ngOnChanges(changes);
         table.ngOnInit();
 
@@ -177,8 +178,8 @@ describe('[TEST]: Lifecycle table', () => {
     });
 
     it('should be correct state after ngAfterContentInit when source empty', () => {
-        table.source = null;
-        table.enableSelection = true;
+        table.source[SIGNAL].value = null;
+        table.enableSelection[SIGNAL].value = true;
         table.ngOnChanges(changes);
         table.ngOnInit();
         table.ngAfterContentInit();
@@ -194,7 +195,7 @@ describe('[TEST]: Lifecycle table', () => {
     });
 
     it('should be correct state after ngAfterContentInit', fakeAsync(() => {
-        table.source = deepClone(data);
+        table.source[SIGNAL].value = deepClone(data);
         table.ngOnChanges(changes);
         table.ngOnInit();
         table.ngAfterContentInit();
@@ -225,7 +226,7 @@ describe('[TEST]: Lifecycle table', () => {
         const templates = new QueryList<NgxColumn<PlainObject>>();
 
         table.columnTemplates = templates;
-        table.source = [];
+        table.source[SIGNAL].value = [];
 
         table.ngOnChanges(changes);
         table.ngOnInit();
@@ -241,8 +242,10 @@ describe('[TEST]: Lifecycle table', () => {
         expect(table.contentCheck).toBe(false);
         expect(table.sourceExists).toBe(false);
 
-        table.source = deepClone(data);
-        templates.reset([new NgxColumn()]);
+        table.source[SIGNAL].value = deepClone(data);
+        const column = TestBed.runInInjectionContext(() => new NgxColumn());
+
+        templates.reset([column]);
         templates.notifyOnChanges();
 
         tick(1000);
@@ -266,7 +269,7 @@ describe('[TEST]: Lifecycle table', () => {
         const templates = new QueryList<NgxColumn<PlainObject>>();
 
         table.columnTemplates = templates;
-        table.source = deepClone(data);
+        table.source[SIGNAL].value = deepClone(data);
 
         table.ngOnChanges(changes);
         table.ngOnInit();
@@ -286,8 +289,10 @@ describe('[TEST]: Lifecycle table', () => {
         expect(table.contentCheck).toBe(false);
         expect(table.sourceExists).toBe(true);
 
-        table.source = deepClone(data);
-        templates.reset([new NgxColumn()]);
+        table.source[SIGNAL].value = deepClone(data);
+        const column = TestBed.runInInjectionContext(() => new NgxColumn());
+
+        templates.reset([column]);
 
         templates.notifyOnChanges();
 
@@ -300,7 +305,10 @@ describe('[TEST]: Lifecycle table', () => {
         expect(table.contentCheck).toBe(true);
         expect(table.sourceExists).toBe(true);
 
-        templates.reset([new NgxColumn(), new NgxColumn()]);
+        const column1 = TestBed.runInInjectionContext(() => new NgxColumn());
+        const column2 = TestBed.runInInjectionContext(() => new NgxColumn());
+
+        templates.reset([column1, column2]);
         templates.notifyOnChanges();
         table.ngAfterViewChecked();
 
@@ -315,7 +323,7 @@ describe('[TEST]: Lifecycle table', () => {
         const templates = new QueryList<NgxColumn<PlainObject>>();
 
         table.columnTemplates = templates;
-        table.source = [];
+        table.source[SIGNAL].value = [];
 
         table.ngOnChanges(changes);
         table.ngOnInit();
@@ -323,10 +331,12 @@ describe('[TEST]: Lifecycle table', () => {
         table.ngAfterViewInit();
         table.ngAfterViewChecked();
 
-        templates.reset([new NgxColumn()]);
+        const column = TestBed.runInInjectionContext(() => new NgxColumn());
+
+        templates.reset([column]);
         templates.notifyOnChanges();
 
-        table.source = deepClone(data);
+        table.source[SIGNAL].value = deepClone(data);
         table.ngOnChanges(changes);
 
         tick(1000);
@@ -372,7 +382,7 @@ describe('[TEST]: Lifecycle table', () => {
     });
 
     it('should be correct sync rendering', fakeAsync(() => {
-        table.source = deepClone(data);
+        table.source[SIGNAL].value = deepClone(data);
 
         table.ngOnChanges(changes);
         table.renderTable();

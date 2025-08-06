@@ -6,7 +6,7 @@ import {
     Component,
     EventEmitter,
     inject,
-    Input,
+    input,
     NgZone,
     Output,
     ViewEncapsulation,
@@ -56,65 +56,69 @@ export class TableTbody<T> {
     public cd = inject(ChangeDetectorRef);
 
     private readonly ngZone = inject(NgZone);
-    @Input()
-    public source: Nullable<T[]> = null;
+    public readonly source = input<Nullable<T[]>>(null);
 
-    @Input()
-    public striped = false;
+    public readonly striped = input(false);
 
-    @Input()
-    public isRendered = false;
+    public readonly isRendered = input(false);
 
-    @Input('offset-top')
-    public offsetTop?: Nullable<number> = null;
+    public readonly offsetTop = input<Nullable<number>>(null, {alias: 'offset-top'});
 
-    @Input('primary-key')
-    public primaryKey?: Nullable<string> = null;
+    public readonly primaryKey = input<Nullable<string>>(null, {alias: 'primary-key'});
 
-    @Input()
-    public recalculated: Nullable<RecalculatedStatus> = null;
+    public readonly recalculated = input<Nullable<RecalculatedStatus>>(null);
 
-    @Input('head-height')
-    public headLineHeight: Nullable<number> = null;
+    public readonly headLineHeight = input<Nullable<number>>(null, {
+        alias: 'head-height',
+    });
 
-    @Input('viewport-info')
-    public viewportInfo: Nullable<ViewPortInfo> = null;
+    public readonly viewportInfo = input<Nullable<ViewPortInfo>>(null, {
+        alias: 'viewport-info',
+    });
 
-    @Input('virtual-indexes')
-    public virtualIndexes: VirtualIndex[] = [];
+    public readonly virtualIndexes = input<VirtualIndex[]>([], {
+        alias: 'virtual-indexes',
+    });
 
-    @Input('enable-selection')
-    public enableSelection = false;
+    public readonly enableSelection = input(false, {alias: 'enable-selection'});
 
-    @Input('enable-filtering')
-    public enableFiltering = false;
+    public readonly enableFiltering = input(false, {alias: 'enable-filtering'});
 
-    @Input('disable-deep-path')
-    public disableDeepPath = false;
+    public readonly disableDeepPath = input(false, {alias: 'disable-deep-path'});
 
-    @Input('table-viewport')
-    public tableViewport: Nullable<HTMLElement> = null;
+    public readonly tableViewport = input<Nullable<HTMLElement>>(null, {
+        alias: 'table-viewport',
+    });
 
-    @Input('column-virtual-height')
-    public columnVirtualHeight: Nullable<number> = null;
+    public readonly columnVirtualHeight = input<Nullable<number>>(null, {
+        alias: 'column-virtual-height',
+    });
 
-    @Input('selection-entries')
-    public selectionEntries: PlainObjectOf<boolean> = {};
+    public readonly selectionEntries = input<PlainObjectOf<boolean>>(
+        {},
+        {alias: 'selection-entries'},
+    );
 
-    @Input('context-menu')
-    public contextMenuTemplate: Nullable<NgxContextMenu<T>> = null;
+    public readonly contextMenuTemplate = input<Nullable<NgxContextMenu<T>>>(null, {
+        alias: 'context-menu',
+    });
 
-    @Input('produce-disable-fn')
-    public produceDisableFn: ProduceDisableFn<T> = null;
+    public readonly produceDisableFn = input<ProduceDisableFn<T>>(null, {
+        alias: 'produce-disable-fn',
+    });
 
-    @Input('client-row-height')
-    public clientRowHeight: Nullable<number> = null;
+    public readonly clientRowHeight = input<Nullable<number>>(null, {
+        alias: 'client-row-height',
+    });
 
-    @Input('row-css-classes')
-    public rowCssClasses: PlainObjectOf<string[]> = {};
+    public readonly rowCssClasses = input<PlainObjectOf<string[]>>(
+        {},
+        {alias: 'row-css-classes'},
+    );
 
-    @Input('column-schema')
-    public columnSchema: Nullable<ColumnsSchema> = null;
+    public readonly columnSchema = input<Nullable<ColumnsSchema>>(null, {
+        alias: 'column-schema',
+    });
 
     @Output()
     public readonly changed = new EventEmitter<void>(true);
@@ -127,10 +131,10 @@ export class TableTbody<T> {
     }
 
     public openContextMenu(event: MouseEvent, key: Nullable<string>, row: T): void {
-        if (isNotNil(this.contextMenuTemplate)) {
+        if (isNotNil(this.contextMenuTemplate())) {
             this.ngZone.run((): void => {
                 const selectOnlyUnSelectedRow: boolean =
-                    this.enableSelection && !this.checkSelectedItem(row);
+                    this.enableSelection() && !this.checkSelectedItem(row);
 
                 if (selectOnlyUnSelectedRow) {
                     this.selection.selectRow(row, event);
@@ -159,7 +163,7 @@ export class TableTbody<T> {
         emitter?: TableClickEventEmitter<T, K>,
     ): void {
         this.ngZone.run((): void => {
-            if (this.enableSelection) {
+            if (this.enableSelection()) {
                 // eslint-disable-next-line no-restricted-properties
                 this.selection.selectionTaskIdle = window.setTimeout((): void => {
                     this.selection.selectRow(row, event);
@@ -203,6 +207,8 @@ export class TableTbody<T> {
     }
 
     private checkSelectedItem(row: T): boolean {
-        return this.selection.selectionModel.get((row as any)[this.primaryKey!]) ?? false;
+        return (
+            this.selection.selectionModel.get((row as any)[this.primaryKey()!]) ?? false
+        );
     }
 }

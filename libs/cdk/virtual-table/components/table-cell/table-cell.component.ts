@@ -1,12 +1,7 @@
 /* eslint-disable @angular-eslint/no-input-rename */
 import {NgTemplateOutlet} from '@angular/common';
-import {ChangeDetectorRef, inject, NgZone, OnDestroy} from '@angular/core';
-import {
-    ChangeDetectionStrategy,
-    Component,
-    Input,
-    ViewEncapsulation,
-} from '@angular/core';
+import {ChangeDetectorRef, inject, input, NgZone, OnDestroy} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 import {DeepPathPipe} from '@angular-ru/cdk/pipes';
 import {DefaultValuePipe} from '@angular-ru/cdk/pipes';
 import {Nullable} from '@angular-ru/cdk/typings';
@@ -44,32 +39,22 @@ export class TableCell<T> implements OnDestroy {
     private closeElemSub: Nullable<Subscription> = null;
     private timeoutShowedFrameId: Nullable<number> = null;
     private timeoutOverflowId: Nullable<number> = null;
-    @Input()
-    public item: Nullable<T> = null;
 
-    @Input()
-    public index: Nullable<number> = null;
+    public readonly item = input<Nullable<T>>(null);
+    public readonly index = input<Nullable<number>>(null);
+    public readonly parent = input<Nullable<HTMLDivElement>>(null);
+    public readonly isRendered = input(false);
+    public readonly isFilterable = input(false, {alias: 'is-filterable'});
+    public readonly columnSchema = input<Nullable<ColumnsSchema>>(null, {
+        alias: 'column-schema',
+    });
 
-    @Input()
-    public parent: Nullable<HTMLDivElement> = null;
+    public readonly enableFiltering = input(false, {alias: 'enable-filtering'});
+    public readonly viewportInfo = input<Nullable<ViewPortInfo>>(null, {
+        alias: 'viewport-info',
+    });
 
-    @Input()
-    public isRendered = false;
-
-    @Input('is-filterable')
-    public isFilterable = false;
-
-    @Input('column-schema')
-    public columnSchema: Nullable<ColumnsSchema> = null;
-
-    @Input('enable-filtering')
-    public enableFiltering = false;
-
-    @Input('viewport-info')
-    public viewportInfo: Nullable<ViewPortInfo> = null;
-
-    @Input('disable-deep-path')
-    public disableDeepPath = false;
+    public readonly disableDeepPath = input(false, {alias: 'disable-deep-path'});
 
     public contextType: typeof ImplicitContext = ImplicitContext;
 
@@ -91,8 +76,8 @@ export class TableCell<T> implements OnDestroy {
 
     public mouseEnterCell(element: HTMLDivElement, event: MouseEvent): void {
         if (
-            isFalse(this.columnSchema?.overflowTooltip) ||
-            isTrue(this.viewportInfo?.isScrolling)
+            isFalse(this.columnSchema()?.overflowTooltip) ||
+            isTrue(this.viewportInfo()?.isScrolling)
         ) {
             return;
         }
@@ -105,7 +90,7 @@ export class TableCell<T> implements OnDestroy {
             event.relatedTarget === this.overflowContentElem;
 
         if (
-            isFalse(this.columnSchema?.overflowTooltip) ||
+            isFalse(this.columnSchema()?.overflowTooltip) ||
             isTrue(isTooltipAsRelatedTarget)
         ) {
             return;
@@ -121,8 +106,8 @@ export class TableCell<T> implements OnDestroy {
 
     private isEllipsisActive(element: HTMLElement): boolean {
         return (
-            element.offsetWidth > (this.parent?.offsetWidth ?? 0) ||
-            element.offsetHeight > (this.parent?.offsetHeight ?? 0) ||
+            element.offsetWidth > (this.parent()?.offsetWidth ?? 0) ||
+            element.offsetHeight > (this.parent()?.offsetHeight ?? 0) ||
             element.scrollWidth > element.offsetWidth ||
             element.scrollHeight > element.offsetHeight
         );
@@ -133,7 +118,7 @@ export class TableCell<T> implements OnDestroy {
         this.ngZone.runOutsideAngular((): void => {
             // eslint-disable-next-line no-restricted-properties
             this.timeoutShowedFrameId = window.setTimeout((): void => {
-                const canEnableTooltip: boolean = isTrue(this.viewportInfo?.isScrolling)
+                const canEnableTooltip: boolean = isTrue(this.viewportInfo()?.isScrolling)
                     ? false
                     : this.isEllipsisActive(element);
 
@@ -180,7 +165,7 @@ export class TableCell<T> implements OnDestroy {
         this.ngZone.runOutsideAngular((): void => {
             // eslint-disable-next-line no-restricted-properties
             this.timeoutOverflowId = window.setTimeout((): void => {
-                if (isTrue(this.viewportInfo?.isScrolling)) {
+                if (isTrue(this.viewportInfo()?.isScrolling)) {
                     this.removeElement();
                 } else {
                     this.overflowContentElem.classList.add('visible');

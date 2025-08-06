@@ -152,10 +152,11 @@ describe('[TEST]: Amount format directive', () => {
 
             describe('only integer by ru-RU', () => {
                 beforeEach(() => {
-                    directive.amountFormatOptions = {
+                    directive.amountFormatOptions.set({
                         lang: 'ru-RU',
                         formatOptions: {maximumFractionDigits: 0},
-                    };
+                    });
+                    TestBed.tick();
                 });
 
                 it('convert `15000` to `15 000` for view value', () => {
@@ -221,7 +222,8 @@ describe('[TEST]: Amount format directive', () => {
                 // noinspection UnnecessaryLocalVariableJS
                 const options: AmountOptions = {lang: 'en-EU'};
 
-                directive.amountFormatOptions = options;
+                directive.amountFormatOptions.set(options);
+                TestBed.tick();
             });
 
             describe('non numeric by en-EU', () => {
@@ -315,10 +317,11 @@ describe('[TEST]: Amount format directive', () => {
 
             describe('only integer en-EU', () => {
                 beforeEach(() => {
-                    directive.amountFormatOptions = {
+                    directive.amountFormatOptions.set({
                         lang: 'en-EU',
                         formatOptions: {maximumFractionDigits: 0},
-                    };
+                    });
+                    TestBed.tick();
                 });
 
                 it('convert `16000` to `16,000` for view value', () => {
@@ -384,7 +387,8 @@ describe('[TEST]: Amount format directive', () => {
                 // noinspection UnnecessaryLocalVariableJS
                 const options: AmountOptions = {lang: 'de-DE'};
 
-                directive.amountFormatOptions = options;
+                directive.amountFormatOptions.set(options);
+                TestBed.tick();
             });
 
             describe('non numeric by de-DE', () => {
@@ -478,10 +482,11 @@ describe('[TEST]: Amount format directive', () => {
 
             describe('only integer de-DE', () => {
                 beforeEach(() => {
-                    directive.amountFormatOptions = {
+                    directive.amountFormatOptions.set({
                         lang: 'de-DE',
                         formatOptions: {maximumFractionDigits: 0},
-                    };
+                    });
+                    TestBed.tick();
                 });
 
                 it('convert `15000` to `15.000` for view value', () => {
@@ -547,7 +552,8 @@ describe('[TEST]: Amount format directive', () => {
                 // noinspection UnnecessaryLocalVariableJS
                 const options: AmountOptions = {lang: 'ja-JP'};
 
-                directive.amountFormatOptions = options;
+                directive.amountFormatOptions.set(options);
+                TestBed.tick();
             });
 
             describe('non numeric by ja-JP', () => {
@@ -641,10 +647,11 @@ describe('[TEST]: Amount format directive', () => {
 
             describe('only integer ja-JP', () => {
                 beforeEach(() => {
-                    directive.amountFormatOptions = {
+                    directive.amountFormatOptions.set({
                         lang: 'ja-JP',
                         formatOptions: {maximumFractionDigits: 0},
-                    };
+                    });
+                    TestBed.tick();
                 });
 
                 it('convert `15000` to `15,000` for view value', () => {
@@ -707,8 +714,8 @@ describe('[TEST]: Amount format directive', () => {
 
         describe('dynamic change language', () => {
             it('support recalculate without value', () => {
-                expect(directive.amountFormatOptions.lang).toBe('ru-RU');
-                expect(directive.amountFormatOptions.formatOptions).toBeUndefined();
+                expect(directive.amountFormatOptions().lang).toBe('ru-RU');
+                expect(directive.amountFormatOptions().formatOptions).toBeUndefined();
 
                 // RU
                 directive.format();
@@ -717,34 +724,38 @@ describe('[TEST]: Amount format directive', () => {
                 expect(ngModelValue).toBeNull();
 
                 // EN
-                directive.amountFormatOptions = {lang: 'en-EU'};
+                directive.amountFormatOptions.set({lang: 'en-EU'});
+                TestBed.tick();
 
                 expect(element.nativeElement!.value).toBe('');
                 expect(ngModelValue).toBeNull();
 
                 // DE
-                directive.amountFormatOptions = {lang: 'de-DE'};
+                directive.amountFormatOptions.set({lang: 'de-DE'});
+                TestBed.tick();
 
                 expect(element.nativeElement!.value).toBe('');
                 expect(ngModelValue).toBeNull();
 
                 // JP
-                directive.amountFormatOptions = {lang: 'ja-JP'};
+                directive.amountFormatOptions.set({lang: 'ja-JP'});
+                TestBed.tick();
 
                 expect(element.nativeElement!.value).toBe('');
                 expect(ngModelValue).toBeNull();
 
                 // RU
                 element.nativeElement!.value = '';
-                directive.amountFormatOptions = {lang: 'ru-RU'};
+                directive.amountFormatOptions.set({lang: 'ru-RU'});
+                TestBed.tick();
 
                 expect(element.nativeElement!.value).toBe('');
                 expect(ngModelValue).toBeNull();
             });
 
             it('support recalculate format by integer, float', () => {
-                expect(directive.amountFormatOptions.lang).toBe('ru-RU');
-                expect(directive.amountFormatOptions.formatOptions).toBeUndefined();
+                expect(directive.amountFormatOptions().lang).toBe('ru-RU');
+                expect(directive.amountFormatOptions().formatOptions).toBeUndefined();
 
                 // RU
                 element.nativeElement!.value = '-500 000,050';
@@ -754,19 +765,22 @@ describe('[TEST]: Amount format directive', () => {
                 expect(ngModelValue).toBe(-500000.05);
 
                 // EN
-                directive.amountFormatOptions = {lang: 'en-EU'};
+                directive.amountFormatOptions.set({lang: 'en-EU'});
+                TestBed.tick();
 
                 expect(element.nativeElement!.value).toBe('-500,000.05');
                 expect(ngModelValue).toBe(-500000.05);
 
                 // DE
-                directive.amountFormatOptions = {lang: 'de-DE'};
+                directive.amountFormatOptions.set({lang: 'de-DE'});
+                TestBed.tick();
 
                 expect(element.nativeElement!.value).toBe('-500.000,05');
                 expect(ngModelValue).toBe(-500000.05);
 
                 // JP
-                directive.amountFormatOptions = {lang: 'ja-JP'};
+                directive.amountFormatOptions.set({lang: 'ja-JP'});
+                TestBed.tick();
 
                 expect(element.nativeElement!.value).toBe('-500,000.05');
                 expect(ngModelValue).toBe(-500000.05);
@@ -781,10 +795,11 @@ describe('[TEST]: Amount format directive', () => {
                 expect(ngModelValue).toBe(-600000.051);
 
                 // EN
-                directive.amountFormatOptions = {
+                directive.amountFormatOptions.set({
                     lang: 'en-EU',
                     formatOptions: {maximumFractionDigits: 0},
-                };
+                });
+                TestBed.tick();
 
                 expect(element.nativeElement!.value).toBe('-600,000');
                 expect(ngModelValue).toBe(-600000);

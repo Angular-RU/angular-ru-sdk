@@ -1,9 +1,9 @@
-@if (visible) {
+@if (visible()) {
     <div
         #item
         class="context-menu__item"
-        [class.context-menu__item--disable]="disable"
-        [class.context-menu__title]="contextTitle !== null"
+        [class.context-menu__item--disable]="disable()"
+        [class.context-menu__title]="contextTitle() !== null"
         (click)="emitClick($event)"
         (mouseenter)="calculateSubMenuPosition(ref)"
     >
@@ -11,7 +11,7 @@
         <!-- eslint-disable @angular-eslint/template/no-call-expression -->
         <div
             class="context-menu__sub-menu-place"
-            [class.context-menu__sub-hidden]="ref.innerHTML.trim().length === 0 || disableSubMenu !== false"
+            [class.context-menu__sub-hidden]="ref.innerHTML.trim().length === 0 || disableSubMenu() !== false"
         >
             <img
                 alt="arrow"
@@ -22,7 +22,7 @@
                 class="sub-menu__tree"
                 [style.left.px]="offsetX"
                 [style.top.px]="offsetY"
-                [style.width.px]="subMenuWidth"
+                [style.width.px]="subMenuWidth()"
             >
                 <div
                     #ref
@@ -33,7 +33,7 @@
             </div>
         </div>
     </div>
-    @if (divider !== false) {
+    @if (divider() !== false) {
         <ngx-context-menu-divider />
     }
 }

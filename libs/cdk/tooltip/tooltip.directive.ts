@@ -1,13 +1,16 @@
 /* eslint-disable @angular-eslint/no-input-rename */
 import {
+    Directive,
+    effect,
     ElementRef,
     EmbeddedViewRef,
     inject,
+    input,
     NgZone,
     OnDestroy,
     Renderer2,
+    TemplateRef,
 } from '@angular/core';
-import {Directive, Input, TemplateRef} from '@angular/core';
 import {generateQuickGuid} from '@angular-ru/cdk/string';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {checkValueIsEmpty, isFalsy, isNotNil} from '@angular-ru/cdk/utils';
@@ -50,36 +53,42 @@ export class Tooltip implements OnDestroy {
     private internalContext: TooltipContextValue = null;
     private mouseenterListener!: EventListenerOrEventListenerObject;
     private mouseleaveListener!: EventListenerOrEventListenerObject;
-    @Input('tooltip-disabled')
-    public tooltipDisabled!: boolean;
 
-    @Input('tooltip-placement')
-    public placement: TooltipPlacement = 'top';
+    public readonly tooltipDisabled = input<boolean>(false, {
+        alias: 'tooltip-disabled',
+    });
 
-    @Input('tooltip-css-style')
-    public localCssStyle: Nullable<string> = null;
+    public readonly placement = input<TooltipPlacement>('top', {
+        alias: 'tooltip-placement',
+    });
 
-    @Input('tooltip-size')
-    public size: TooltipSize = 'small';
+    public readonly localCssStyle = input<Nullable<string>>(null, {
+        alias: 'tooltip-css-style',
+    });
+
+    public readonly size = input<TooltipSize>('small', {alias: 'tooltip-size'});
 
     public uid: string = generateQuickGuid();
 
     constructor() {
         this.addUidToElement();
         this.connectMouseEvents();
+        this.refreshTooltipOnInputChanges();
     }
 
-    @Input('tooltip-context')
-    public set context(contextValue: TooltipContextValue) {
-        this.internalContext = contextValue;
-        this.refreshTooltipContent();
+    private refreshTooltipOnInputChanges() {
+        effect(() => {
+            this.internalContext = this.context();
+            this.internalTooltipValue = this.tooltip();
+            this.refreshTooltipContent();
+        });
     }
 
-    @Input()
-    public set tooltip(tooltipValue: TooltipValue) {
-        this.internalTooltipValue = tooltipValue;
-        this.refreshTooltipContent();
-    }
+    public readonly context = input<TooltipContextValue>(null, {
+        alias: 'tooltip-context',
+    });
+
+    public readonly tooltip = input<TooltipValue>(null);
 
     private get offsetElementHeight(): number {
         return this.tooltipDomElement?.clientHeight ?? 0;
@@ -99,7 +108,7 @@ export class Tooltip implements OnDestroy {
     }
 
     public onMouseenterHandler(): void {
-        if (this.tooltipDisabled) {
+        if (this.tooltipDisabled()) {
             return;
         }
 
@@ -108,7 +117,7 @@ export class Tooltip implements OnDestroy {
     }
 
     public onMouseleaveHandler(): void {
-        if (this.tooltipDisabled) {
+        if (this.tooltipDisabled()) {
             return;
         }
 
@@ -158,9 +167,9 @@ export class Tooltip implements OnDestroy {
             this.renderer.addClass(this.tooltipDomElement, 'ng-tooltip');
             this.renderer.addClass(
                 this.tooltipDomElement,
-                `ng-tooltip-${this.placement}`,
+                `ng-tooltip-${this.placement()}`,
             );
-            this.renderer.addClass(this.tooltipDomElement, `ng-tooltip-${this.size}`);
+            this.renderer.addClass(this.tooltipDomElement, `ng-tooltip-${this.size()}`);
         }
     }
 
@@ -170,22 +179,24 @@ export class Tooltip implements OnDestroy {
             this.tooltipDomElement?.getBoundingClientRect();
         const scrollPos: number = Tooltip.getScrollPos();
 
-        if (this.placement === 'top') {
+        const placement = this.placement();
+
+        if (placement === 'top') {
             const {top, left}: TooltipOffset = this.calculateByTop(hostPos, tooltipPos);
 
             this.setStyle(top, left, scrollPos);
-        } else if (this.placement === 'bottom') {
+        } else if (placement === 'bottom') {
             const {top, left}: TooltipOffset = this.calculateByBottom(
                 hostPos,
                 tooltipPos,
             );
 
             this.setStyle(top, left, scrollPos);
-        } else if (this.placement === 'left') {
+        } else if (placement === 'left') {
             const {top, left}: TooltipOffset = this.calculateByLeft(hostPos, tooltipPos);
 
             this.setStyle(top, left, scrollPos);
-        } else if (this.placement === 'right') {
+        } else if (placement === 'right') {
             const {top, left}: TooltipOffset = this.calculateByRight(hostPos, tooltipPos);
 
             this.setStyle(top, left, scrollPos);
@@ -337,7 +348,7 @@ export class Tooltip implements OnDestroy {
             content.innerHTML = this.interceptor.instant?.(value) ?? value;
         }
 
-        content.style.cssText = this.localCssStyle ?? this.options.cssStyle;
+        content.style.cssText = this.localCssStyle() ?? this.options.cssStyle;
 
         return content;
     }

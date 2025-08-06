@@ -3,7 +3,7 @@ import {
     ChangeDetectorRef,
     Component,
     inject,
-    Input,
+    input,
     NgZone,
     OnChanges,
     OnDestroy,
@@ -39,14 +39,11 @@ export class NgxFilterViewer<T> implements OnChanges, OnInit, OnDestroy {
     private taskId: Nullable<number> = null;
     private readonly ngZone = inject(NgZone);
     private readonly filterable = inject(FilterableService<T>);
-    @Input()
-    public text?: Nullable<PlainObject | string> = null;
+    public readonly text = input<Nullable<PlainObject | string>>(null);
 
-    @Input()
-    public key?: Nullable<string> = null;
+    public readonly key = input<Nullable<string>>(null);
 
-    @Input()
-    public index?: Nullable<number> = 0;
+    public readonly index = input<Nullable<number>>(0);
 
     public html?: Nullable<SafeHtml | string> = null;
     public founded = false;
@@ -70,7 +67,7 @@ export class NgxFilterViewer<T> implements OnChanges, OnInit, OnDestroy {
             .pipe(takeUntil(this.destroy$))
             .subscribe((event: FilterEvent): void => {
                 const hasFilter: boolean =
-                    isNotNil((this.filterable.definition as any)[this.key!]) ||
+                    isNotNil((this.filterable.definition as any)[this.key()!]) ||
                     isNotNil(this.filterable.globalFilterValue);
 
                 if (hasFilter) {
@@ -94,7 +91,7 @@ export class NgxFilterViewer<T> implements OnChanges, OnInit, OnDestroy {
                 (): void => {
                     const hasFilter: boolean =
                         isNotNil(event.value) ||
-                        isNotNil((this.filterable.definition as any)[this.key!]);
+                        isNotNil((this.filterable.definition as any)[this.key()!]);
 
                     if (hasFilter) {
                         this.selected(event);
@@ -104,7 +101,7 @@ export class NgxFilterViewer<T> implements OnChanges, OnInit, OnDestroy {
 
                     detectChanges(this.cd);
                 },
-                TIME_RELOAD + (this.index ?? 0),
+                TIME_RELOAD + (this.index() ?? 0),
             );
         });
     }
@@ -112,12 +109,12 @@ export class NgxFilterViewer<T> implements OnChanges, OnInit, OnDestroy {
     // eslint-disable-next-line max-lines-per-function,complexity
     private selected(event: FilterEvent): void {
         const value: Nullable<string> = String(
-            (this.filterable.definition as any)[this.key!] ?? event.value,
+            (this.filterable.definition as any)[this.key()!] ?? event.value,
         );
         const type: Nullable<TableFilterType | string> = isNotNil(
-            (this.filterable.definition as any)[this.key!],
+            (this.filterable.definition as any)[this.key()!],
         )
-            ? (this.filterable.filterTypeDefinition as any)[this.key!]
+            ? (this.filterable.filterTypeDefinition as any)[this.key()!]
             : event.type;
 
         if (IGNORE_FILTER_TYPES.includes(type as TableFilterType)) {
@@ -149,7 +146,7 @@ export class NgxFilterViewer<T> implements OnChanges, OnInit, OnDestroy {
             regexp = new RegExp(`${escapedValue}`, 'ig');
         }
 
-        const trustedHtml: string = String(this.text).replace(
+        const trustedHtml: string = String(this.text()).replace(
             regexp,
             (finder: string): string => NgxFilterViewer.wrapSelectedHtml(finder),
         );
@@ -162,7 +159,7 @@ export class NgxFilterViewer<T> implements OnChanges, OnInit, OnDestroy {
     }
 
     private defaultHtmlValue({forceUpdate}: {forceUpdate: boolean}): void {
-        this.html = this.text;
+        this.html = this.text();
         this.founded = false;
 
         if (forceUpdate) {

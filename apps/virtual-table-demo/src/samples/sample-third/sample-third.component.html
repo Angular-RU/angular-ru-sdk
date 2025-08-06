@@ -2,7 +2,7 @@
     <span>
         Example selection
         @if (table.isRendered) {
-            <span>({{ table.source?.length }}x{{ table.displayedColumns.length }})</span>
+            <span>({{ table.source()?.length }}x{{ table.displayedColumns.length }})</span>
         }
         <span style="margin-left: 5px">Selected: {{ table.selection.selectionModel.size }}</span>
     </span>

@@ -3,7 +3,7 @@ import {
     ElementRef,
     EventEmitter,
     inject,
-    Input,
+    input,
     NgZone,
     OnChanges,
     OnDestroy,
@@ -37,14 +37,11 @@ export class AutoHeight<T> implements OnInit, OnChanges, OnDestroy {
     private useOnlyAutoViewPort = false;
     private isDirtyCheck = false;
     private taskId: Nullable<number> = null;
-    @Input()
-    public autoHeight: Partial<DynamicHeightOptions> = {};
+    public readonly autoHeight = input<Partial<DynamicHeightOptions>>({});
 
-    @Input()
-    public tableViewport: Partial<HTMLDivElement> = {};
+    public readonly tableViewport = input<Partial<HTMLDivElement>>({});
 
-    @Input()
-    public sourceRef: T[] = [];
+    public readonly sourceRef = input<T[]>([]);
 
     @Output()
     public readonly recalculatedHeight = new EventEmitter<void>(true);
@@ -54,10 +51,12 @@ export class AutoHeight<T> implements OnInit, OnChanges, OnDestroy {
     }
 
     private get canCalculated(): boolean {
+        const autoHeight = this.autoHeight();
+
         return (
-            isTrue(this.autoHeight.inViewport) &&
-            this.autoHeight.sourceLength! > 0 &&
-            this.sourceRef.length > 0
+            isTrue(autoHeight.inViewport) &&
+            autoHeight.sourceLength! > 0 &&
+            this.sourceRef().length > 0
         );
     }
 
@@ -65,9 +64,11 @@ export class AutoHeight<T> implements OnInit, OnChanges, OnDestroy {
     private get style(): string {
         let height: Nullable<string> = null;
 
-        if (checkValueIsFilled(this.autoHeight.rootHeight)) {
-            height = this.autoHeight.rootHeight;
-        } else if (isTrue(this.autoHeight.detect)) {
+        const autoHeight = this.autoHeight();
+
+        if (checkValueIsFilled(autoHeight.rootHeight)) {
+            height = autoHeight.rootHeight;
+        } else if (isTrue(autoHeight.detect)) {
             const paddingTop: string = AutoHeight.getStyle(
                 this.rootCurrentElement,
                 'padding-top',
@@ -113,7 +114,7 @@ export class AutoHeight<T> implements OnInit, OnChanges, OnDestroy {
     }
 
     private get columnHeight(): number {
-        return this.autoHeight.columnHeight ?? 0;
+        return this.autoHeight().columnHeight ?? 0;
     }
 
     private get autoViewHeight(): number {
@@ -124,20 +125,20 @@ export class AutoHeight<T> implements OnInit, OnChanges, OnDestroy {
 
     private get scrollbarHeight(): number {
         const scrollHeight: number =
-            this.sourceRef.length === 1
+            this.sourceRef().length === 1
                 ? SCROLLBAR_SIZE
-                : (this.tableViewport.offsetHeight ?? 0) -
-                  (this.tableViewport.clientHeight ?? 0);
+                : (this.tableViewport().offsetHeight ?? 0) -
+                  (this.tableViewport().clientHeight ?? 0);
 
         return scrollHeight + BORDER_TOB_WITH_BOTTOM;
     }
 
     private get headerHeight(): number {
-        return this.autoHeight.headerHeight ?? 0;
+        return this.autoHeight().headerHeight ?? 0;
     }
 
     private get footerHeight(): number {
-        return this.autoHeight.footerHeight ?? 0;
+        return this.autoHeight().footerHeight ?? 0;
     }
 
     private static getStyle(element: Element | any, strCssRule: string): string {
@@ -197,7 +198,7 @@ export class AutoHeight<T> implements OnInit, OnChanges, OnDestroy {
                     this.markForCheck();
                 }
 
-                if (this.isDirtyCheck && isTrue(this.autoHeight.inViewport)) {
+                if (this.isDirtyCheck && isTrue(this.autoHeight().inViewport)) {
                     this.calculateHeight();
                     this.recalculatedHeight.emit();
                 }

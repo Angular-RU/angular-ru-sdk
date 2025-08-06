@@ -3,7 +3,7 @@ import {
     Directive,
     ElementRef,
     inject,
-    Input,
+    input,
     NgZone,
     OnDestroy,
 } from '@angular/core';
@@ -19,14 +19,10 @@ export class InitialFocus implements AfterViewInit, OnDestroy {
 
     private readonly className: string = 'initial-focused';
     private readonly unsubscribe$: Subject<boolean> = new Subject<boolean>();
-    @Input()
-    public focusDelay: number = MIN_DELAY;
 
-    @Input()
-    public focusDisabled = false;
-
-    @Input()
-    public type?: string;
+    public readonly focusDelay = input<number>(MIN_DELAY);
+    public readonly focusDisabled = input(false);
+    public readonly type = input<string>();
 
     private get el(): HTMLInputElement {
         return this.element.nativeElement;
@@ -41,9 +37,9 @@ export class InitialFocus implements AfterViewInit, OnDestroy {
     }
 
     private decideAndTryToFocus(): void {
-        if (!this.focusDisabled && !this.isFocused()) {
+        if (!this.focusDisabled() && !this.isFocused()) {
             this.ngZone.runOutsideAngular((): void => {
-                timer(this.focusDelay)
+                timer(this.focusDelay())
                     .pipe(takeUntil(this.unsubscribe$))
                     .subscribe((_value: number): void => {
                         this.focus();
@@ -64,13 +60,15 @@ export class InitialFocus implements AfterViewInit, OnDestroy {
         this.el.focus();
 
         // selection range doesn't work with number type
-        if (this.type === 'number') {
+        const type = this.type();
+
+        if (type === 'number') {
             this.el.type = 'text';
         }
 
         this.el.setSelectionRange(this.el.value.length, this.el.value.length);
 
-        if (this.type === 'number') {
+        if (type === 'number') {
             this.el.type = 'number';
         }
 

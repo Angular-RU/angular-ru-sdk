@@ -1,8 +1,9 @@
 import {
     Directive,
+    effect,
     EmbeddedViewRef,
     inject,
-    Input,
+    input,
     NgZone,
     OnDestroy,
     TemplateRef,
@@ -29,29 +30,41 @@ export class VirtualFor<T> implements OnDestroy {
     private removeFrameId?: number;
     private initFrameId?: number;
     private dirty = false;
-    @Input()
-    public virtualForDiffIndexes?: Nullable<number[]>;
+    public readonly virtualForDiffIndexes = input<Nullable<number[]>>();
+    public readonly virtualForOriginSource = input<Nullable<T[]>>(this._source);
+    public readonly virtualForOf = input<Nullable<VirtualIndex[]>>(this._indexes);
 
-    @Input()
-    public set virtualForOriginSource(origin: Nullable<T[]>) {
-        if (this._source !== origin) {
-            this._source = origin ?? [];
-            this.dirty = true;
-        }
+    constructor() {
+        this.listenToIndexesChanges();
+        this.listenToOriginSourceChanges();
     }
 
-    @Input()
-    public set virtualForOf(indexes: Nullable<VirtualIndex[]>) {
-        this.ngZone.runOutsideAngular((): void => {
-            this.initFrameId = window.requestAnimationFrame((): void => {
-                if (isNil(this._source) || this._indexes === indexes) {
-                    return;
-                }
+    private listenToIndexesChanges() {
+        effect(() => {
+            const indexes = this.virtualForOf();
 
-                this._indexes = indexes ?? [];
-                this.removeOldNodes();
-                this.createNewNodes(this._indexes);
+            this.ngZone.runOutsideAngular((): void => {
+                this.initFrameId = window.requestAnimationFrame((): void => {
+                    if (isNil(this._source) || this._indexes === indexes) {
+                        return;
+                    }
+
+                    this._indexes = indexes ?? [];
+                    this.removeOldNodes();
+                    this.createNewNodes(this._indexes);
+                });
             });
+        });
+    }
+
+    private listenToOriginSourceChanges() {
+        effect(() => {
+            const source = this.virtualForOriginSource();
+
+            if (this._source !== source) {
+                this._source = source ?? [];
+                this.dirty = true;
+            }
         });
     }
 
@@ -111,7 +124,7 @@ export class VirtualFor<T> implements OnDestroy {
             return;
         }
 
-        for (const index of this.virtualForDiffIndexes ?? []) {
+        for (const index of this.virtualForDiffIndexes() ?? []) {
             this.removeFrameId = window.requestAnimationFrame((): void =>
                 this.removeEmbeddedViewByIndex(index),
             );

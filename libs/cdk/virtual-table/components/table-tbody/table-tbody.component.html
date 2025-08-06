@@ -1,12 +1,12 @@
 <div
     class="total-padding"
-    [style.height.px]="columnVirtualHeight"
+    [style.height.px]="columnVirtualHeight()"
 >
     <ng-container
         *virtualFor="
-            let item of virtualIndexes;
-            originSource: source;
-            diffIndexes: viewportInfo?.diffIndexes;
+            let item of virtualIndexes();
+            originSource: source();
+            diffIndexes: viewportInfo()?.diffIndexes;
             let virtualIndex = virtualIndex
         "
     >
@@ -14,36 +14,36 @@
             <div
                 #parent
                 class="table-grid__cell table-grid__cell--body"
-                [class.table-grid__cell--custom-cell]="columnSchema?.customColumn"
-                [class.table-grid__cell--disable]="item | disableRow: produceDisableFn"
-                [class.table-grid__cell--enable-selection]="enableSelection"
-                [class.table-grid__cell--resizable]="columnSchema?.resizable"
-                [class.table-grid__cell--selected]="selectionEntries[item[primaryKey!]]"
+                [class.table-grid__cell--custom-cell]="columnSchema()?.customColumn"
+                [class.table-grid__cell--disable]="item | disableRow: produceDisableFn()"
+                [class.table-grid__cell--enable-selection]="enableSelection()"
+                [class.table-grid__cell--resizable]="columnSchema()?.resizable"
+                [class.table-grid__cell--selected]="selectionEntries()[item[primaryKey()!]]"
                 [class.table-grid__cell--strip]="virtualIndex.stripped"
-                [class.table-grid__cell--text-bold]="columnSchema?.td?.textBold"
-                [ngClass]="columnSchema?.td?.class | mergeCssClasses: rowCssClasses[item[primaryKey!]]"
-                [ngStyle]="columnSchema?.td?.style || []"
-                [style.max-height.px]="columnSchema?.td?.height || clientRowHeight"
-                [style.min-height.px]="columnSchema?.td?.height || clientRowHeight"
+                [class.table-grid__cell--text-bold]="columnSchema()?.td?.textBold"
+                [ngClass]="columnSchema()?.td?.class | mergeCssClasses: rowCssClasses()[item[primaryKey()!]]"
+                [ngStyle]="columnSchema()?.td?.style || []"
+                [style.max-height.px]="columnSchema()?.td?.height || clientRowHeight()"
+                [style.min-height.px]="columnSchema()?.td?.height || clientRowHeight()"
                 [style.transform]="'translateY(' + virtualIndex.offsetTop + 'px)'"
-                (click)="handleOnClick(item, columnSchema?.key!, $event, columnSchema?.td?.onClick)"
-                (contextmenu)="openContextMenu($event, columnSchema?.key, item)"
-                (dblclick)="handleDblClick(item, columnSchema?.key!, $event, columnSchema?.td?.dblClick)"
+                (click)="handleOnClick(item, columnSchema()?.key!, $event, columnSchema()?.td?.onClick)"
+                (contextmenu)="openContextMenu($event, columnSchema()?.key, item)"
+                (dblclick)="handleDblClick(item, columnSchema()?.key!, $event, columnSchema()?.td?.dblClick)"
                 (selectstart)="(canSelectTextInTable)"
             >
                 <div
                     class="table-grid__cell--content"
-                    [class.table-grid__cell--nowrap]="!columnSchema?.customColumn && columnSchema?.td?.nowrap"
+                    [class.table-grid__cell--nowrap]="!columnSchema()?.customColumn && columnSchema()?.td?.nowrap"
                 >
                     <table-cell
-                        [column-schema]="columnSchema"
-                        [disable-deep-path]="disableDeepPath"
-                        [enable-filtering]="enableFiltering"
-                        [is-filterable]="columnSchema?.filterable!"
-                        [isRendered]="isRendered"
+                        [column-schema]="columnSchema()"
+                        [disable-deep-path]="disableDeepPath()"
+                        [enable-filtering]="enableFiltering()"
+                        [is-filterable]="columnSchema()?.filterable!"
+                        [isRendered]="isRendered()"
                         [item]="item"
                         [parent]="parent"
-                        [viewport-info]="viewportInfo"
+                        [viewport-info]="viewportInfo()"
                     />
                 </div>
             </div>

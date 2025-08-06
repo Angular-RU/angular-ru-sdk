@@ -71,20 +71,20 @@ export class TemplateParserService<T> {
         options: ColumnOptionsDirective,
     ): TableCellOptions {
         return {
-            textBold: cell.bold,
+            textBold: cell.bold(),
             template: cell.template,
-            class: cell.cssClasses,
-            style: cell.cssStyles,
-            width: cell.width,
-            height: cell.height,
+            class: cell.cssClasses(),
+            style: cell.cssStyles(),
+            width: cell.width(),
+            height: cell.height(),
             onClick: cell.onClick,
             dblClick: cell.dblClick,
             useDeepPath: key?.includes('.'),
-            context: getValidHtmlBooleanAttribute(cell.row)
+            context: getValidHtmlBooleanAttribute(cell.row())
                 ? ImplicitContext.ROW
                 : ImplicitContext.CELL,
             nowrap: getValidHtmlBooleanAttribute(
-                getValidPredicate(options.nowrap, cell.nowrap),
+                getValidPredicate(options.nowrap(), cell.nowrap()),
             ),
         };
     }
@@ -128,7 +128,9 @@ export class TemplateParserService<T> {
         this.templateKeys = new Set<string>();
         this.overrideTemplateKeys = new Set<string>();
         this.fullTemplateKeys = new Set<string>();
-        this.columnOptions = columnOptions ?? new ColumnOptionsDirective();
+        this.columnOptions =
+            columnOptions ??
+            runInInjectionContext(this.injector, () => new ColumnOptionsDirective());
     }
 
     // eslint-disable-next-line max-lines-per-function,complexity
@@ -138,7 +140,14 @@ export class TemplateParserService<T> {
         }
 
         for (const column of templates ?? []) {
-            const {key, customKey, importantTemplate}: NgxColumn<T> = column;
+            const {
+                key: keyInput,
+                customKey: customKeyInput,
+                importantTemplate: importantTemplateInput,
+            }: NgxColumn<T> = column;
+            const key = keyInput();
+            const customKey = customKeyInput();
+            const importantTemplate = importantTemplateInput();
             const needTemplateCheck: boolean =
                 this.allowedKeyMap[key!] ?? customKey !== false;
 
@@ -169,25 +178,41 @@ export class TemplateParserService<T> {
     // eslint-disable-next-line complexity,max-lines-per-function
     public compileColumnMetadata(column: NgxColumn<T>): void {
         const {
-            key,
+            key: keyInput,
             th,
             td,
-            emptyHead,
-            headTitle,
-            verticalLine,
-            customKey,
-            isSortable,
-            isResizable,
-            isDraggable,
-            isFilterable,
-            forceModel,
-            stub,
-            cssStyle,
-            width,
-            cssClass,
-            overflowTooltip,
-            excelType,
+            emptyHead: emptyHeadInput,
+            headTitle: headTitleInput,
+            verticalLine: verticalLineInput,
+            customKey: customKeyInput,
+            isSortable: isSortableInput,
+            isResizable: isResizableInput,
+            isDraggable: isDraggableInput,
+            isFilterable: isFilterableInput,
+            forceModel: forceModelInput,
+            stub: stubInput,
+            cssStyle: cssStyleInput,
+            width: widthInput,
+            cssClass: cssClassInput,
+            overflowTooltip: overflowTooltipInput,
+            excelType: excelTypeInput,
         }: NgxColumn<T> = column;
+        const key = keyInput();
+        const emptyHead = emptyHeadInput();
+        const headTitle = headTitleInput();
+        const verticalLine = verticalLineInput();
+        const customKey = customKeyInput();
+        const isSortable = isSortableInput();
+        const isResizable = isResizableInput();
+        const isDraggable = isDraggableInput();
+        const isFilterable = isFilterableInput();
+        const forceModel = forceModelInput();
+        const stub = stubInput();
+        const cssStyle = cssStyleInput();
+        const width = widthInput();
+        const cssClass = cssClassInput();
+        const overflowTooltip = overflowTooltipInput();
+        const excelType = excelTypeInput();
         const thTemplate: AbstractTemplateCellCommonDirective<T> =
             th ?? runInInjectionContext(this.injector, () => new TemplateHeadTh<T>());
         const tdTemplate: AbstractTemplateCellCommonDirective<T> =
@@ -198,8 +223,8 @@ export class TemplateParserService<T> {
             thTemplate,
             this.columnOptions!,
         );
-        const stickyLeft: boolean = getValidHtmlBooleanAttribute(column.stickyLeft);
-        const stickyRight: boolean = getValidHtmlBooleanAttribute(column.stickyRight);
+        const stickyLeft: boolean = getValidHtmlBooleanAttribute(column.stickyLeft());
+        const stickyRight: boolean = getValidHtmlBooleanAttribute(column.stickyRight());
         const isCustomKey: boolean = getValidHtmlBooleanAttribute(customKey);
         const canBeAddDraggable = !(stickyLeft || stickyRight);
         const isModel: boolean =
@@ -217,36 +242,36 @@ export class TemplateParserService<T> {
                 tdTemplate,
                 this.columnOptions!,
             ),
-            stickyLeft: getValidHtmlBooleanAttribute(column.stickyLeft),
-            stickyRight: getValidHtmlBooleanAttribute(column.stickyRight),
+            stickyLeft: getValidHtmlBooleanAttribute(column.stickyLeft()),
+            stickyRight: getValidHtmlBooleanAttribute(column.stickyRight()),
             customColumn: isCustomKey,
-            width: fallbackIfEmpty(toNumber(width ?? this.columnOptions?.width), null),
-            cssClass: getValidPredicate(cssClass, this.columnOptions?.cssClass) ?? [],
-            cssStyle: getValidPredicate(cssStyle, this.columnOptions?.cssStyle) ?? [],
+            width: fallbackIfEmpty(toNumber(width ?? this.columnOptions?.width()), null),
+            cssClass: getValidPredicate(cssClass, this.columnOptions?.cssClass()) ?? [],
+            cssStyle: getValidPredicate(cssStyle, this.columnOptions?.cssStyle()) ?? [],
             resizable: isModel
                 ? getValidHtmlBooleanAttribute(
-                      getValidPredicate(isResizable, this.columnOptions?.isResizable),
+                      getValidPredicate(isResizable, this.columnOptions?.isResizable()),
                   )
                 : false,
-            stub: getValidPredicate(this.columnOptions?.stub, stub),
+            stub: getValidPredicate(this.columnOptions?.stub(), stub),
             filterable: isModel
                 ? getValidHtmlBooleanAttribute(
-                      getValidPredicate(isFilterable, this.columnOptions?.isFilterable),
+                      getValidPredicate(isFilterable, this.columnOptions?.isFilterable()),
                   )
                 : false,
             sortable: isModel
                 ? getValidHtmlBooleanAttribute(
-                      getValidPredicate(isSortable, this.columnOptions?.isSortable),
+                      getValidPredicate(isSortable, this.columnOptions?.isSortable()),
                   )
                 : false,
             draggable: canBeAddDraggable
                 ? getValidHtmlBooleanAttribute(
-                      getValidPredicate(isDraggable, this.columnOptions?.isDraggable),
+                      getValidPredicate(isDraggable, this.columnOptions?.isDraggable()),
                   )
                 : false,
             overflowTooltip: getValidHtmlBooleanAttribute(
                 getValidPredicate(
-                    this.columnOptions?.overflowTooltip,
+                    this.columnOptions?.overflowTooltip(),
                     typeof overflowTooltip === 'boolean' ? overflowTooltip : !isCustomKey,
                 ),
             ),

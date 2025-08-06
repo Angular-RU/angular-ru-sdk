@@ -9,10 +9,11 @@ import {
     ContentChild,
     ContentChildren,
     Directive,
+    effect,
     ElementRef,
     EventEmitter,
     inject,
-    Input,
+    input,
     NgZone,
     OnChanges,
     OnDestroy,
@@ -23,6 +24,7 @@ import {
     ViewChild,
     ViewChildren,
 } from '@angular/core';
+import {SIGNAL} from '@angular/core/primitives/signals';
 import {coerceBoolean} from '@angular-ru/cdk/coercion';
 import {pathsOfObject} from '@angular-ru/cdk/object';
 import {
@@ -104,74 +106,66 @@ export abstract class AbstractTableBuilderApi<T>
     protected originalSource: Nullable<T[]> = null;
     protected renderedKeys: string[] = [];
     protected isDragMoving = false;
-    @Input()
-    public height: Nullable<number | string> = null;
+    public readonly height = input<Nullable<number | string>>(null);
 
-    @Input()
-    public width: Nullable<number | string> = null;
+    public readonly width = input<Nullable<number | string>>(null);
 
-    @Input()
-    public source: Nullable<T[]> = null;
+    public readonly source = input<Nullable<T[]>>(null);
 
-    @Input()
-    public keys: string[] = [];
+    public readonly keys = input<string[]>([]);
 
-    @Input()
-    public striped = true;
+    public readonly striped = input(true);
 
-    @Input()
-    public name: Nullable<string> = null;
+    public readonly name = input<Nullable<string>>(null);
 
-    @Input('skip-sort')
-    public skipSort: boolean | string = false;
+    public readonly skipSort = input<boolean | string>(false, {alias: 'skip-sort'});
 
-    @Input('sort-types')
-    public sortTypes: TableSortTypes = null;
+    public readonly sortTypes = input<TableSortTypes>(null, {alias: 'sort-types'});
 
-    @Input('filter-definition')
-    public filterDefinition: Nullable<FilterDescriptor[]> = [];
+    public readonly filterDefinition = input<Nullable<FilterDescriptor[]>>([], {
+        alias: 'filter-definition',
+    });
 
-    @Input('exclude-keys')
-    public excludeKeys: Array<ExcludePattern<T>> = [];
+    public readonly excludeKeys = input<Array<ExcludePattern<T>>>([], {
+        alias: 'exclude-keys',
+    });
 
-    @Input('auto-width')
-    public autoWidth: boolean | string = false;
+    public readonly autoWidth = input<boolean | string>(false, {alias: 'auto-width'});
 
-    @Input('auto-height')
-    public autoHeightDetect = true;
+    public readonly autoHeightDetect = input(true, {alias: 'auto-height'});
 
-    @Input('native-scrollbar')
-    public nativeScrollbar = false;
+    public readonly nativeScrollbar = input(false, {alias: 'native-scrollbar'});
 
-    @Input('primary-key')
-    public primaryKey: string = PrimaryKey.ID;
+    public readonly primaryKey = input<string>(PrimaryKey.ID, {alias: 'primary-key'});
 
-    @Input('vertical-border')
-    public verticalBorder = true;
+    public readonly verticalBorder = input(true, {alias: 'vertical-border'});
 
-    @Input('enable-selection')
-    public enableSelection: boolean | string = false;
+    public readonly enableSelection = input<boolean | string>(false, {
+        alias: 'enable-selection',
+    });
 
-    @Input('enable-filtering')
-    public enableFiltering: boolean | string = false;
+    public readonly enableFiltering = input<boolean | string>(false, {
+        alias: 'enable-filtering',
+    });
 
-    @Input('disable-deep-path')
-    public disableDeepPath = false;
+    public readonly disableDeepPath = input(false, {alias: 'disable-deep-path'});
 
-    @Input('produce-disable-fn')
-    public produceDisableFn: ProduceDisableFn<T> = null;
+    public readonly produceDisableFn = input<ProduceDisableFn<T>>(null, {
+        alias: 'produce-disable-fn',
+    });
 
-    @Input('row-css-classes')
-    public rowCssClasses: PlainObjectOf<string[]> = {};
+    public readonly rowCssClasses = input<PlainObjectOf<string[]>>(
+        {},
+        {alias: 'row-css-classes'},
+    );
 
-    @Input('schema-columns')
-    public schemaColumns: Nullable<TableUpdateSchema> = null;
+    public readonly schemaColumns = input<Nullable<TableUpdateSchema>>(null, {
+        alias: 'schema-columns',
+    });
 
-    @Input('schema-version')
-    public schemaVersion = 1;
+    public readonly schemaVersion = input(1, {alias: 'schema-version'});
 
-    @Input('is-virtual-table')
-    public isVirtualTable = true;
+    public readonly isVirtualTable = input(true, {alias: 'is-virtual-table'});
 
     @Output()
     public readonly afterRendered = new EventEmitter<boolean>();
@@ -244,6 +238,17 @@ export abstract class AbstractTableBuilderApi<T>
     public accessDragging = false;
     public filteringRun = false;
 
+    constructor() {
+        this.listenToHeightChanges();
+    }
+
+    private listenToHeightChanges() {
+        effect(() => {
+            this._headHeight = this.headHeight();
+            this._rowHeight = this.rowHeight();
+        });
+    }
+
     /**
      * @description - <table-builder [keys]=[ 'id', 'value', 'id', 'position', 'value' ] />
      * returned unique displayed columns [ 'id', 'value', 'position' ]
@@ -308,7 +313,7 @@ export abstract class AbstractTableBuilderApi<T>
      * @description Returns a list of displayed table entries, including filters and sorting.
      */
     public get sourceRef(): T[] {
-        return this.source ?? [];
+        return this.source() ?? [];
     }
 
     public get firstItem(): T {
@@ -325,34 +330,35 @@ export abstract class AbstractTableBuilderApi<T>
      * @description Returns the entire list of table entries, excluding filters and sorting.
      */
     public get originalSourceRef(): T[] {
-        return this.originalSource ?? this.source ?? [];
+        return this.originalSource ?? this.source() ?? [];
     }
 
     public get isEnableFiltering(): boolean {
-        return this.enableFiltering !== false;
+        return this.enableFiltering() !== false;
     }
 
     public get isSkippedInternalSort(): boolean {
-        return this.skipSort !== false;
+        return this.skipSort() !== false;
     }
 
     public get isEnableAutoWidthColumn(): boolean {
-        return this.autoWidth !== false;
+        return this.autoWidth() !== false;
     }
 
     public get isEnableSelection(): boolean {
-        return this.enableSelection !== false;
+        return this.enableSelection() !== false;
     }
 
-    @Input('head-height')
-    public set headHeight(value: number | string) {
-        this._headHeight = parseInt(value as string);
-    }
+    public readonly headHeight = input<number, Nullable<number | string>>(undefined, {
+        transform: (value: Nullable<number | string>) => parseInt(value as string, 10),
+        alias: 'head-height',
+    });
 
-    @Input('row-height')
-    public set rowHeight(value: Nullable<number | string>) {
-        this._rowHeight = parseInt((value ?? ROW_HEIGHT) as string);
-    }
+    public readonly rowHeight = input<number, Nullable<number | string>>(undefined, {
+        transform: (value: Nullable<number | string>) =>
+            parseInt((value ?? ROW_HEIGHT) as string, 10),
+        alias: 'row-height',
+    });
 
     private get shouldBeFiltered(): boolean {
         return this.filterable.filterValueExist && this.isEnableFiltering;
@@ -363,9 +369,10 @@ export abstract class AbstractTableBuilderApi<T>
     }
 
     private get expanded(): Nullable<boolean> {
-        return coerceBoolean(this.headerTemplate?.expandablePanel) &&
-            isNotNil(this.headerTemplate?.expanded)
-            ? coerceBoolean(this.headerTemplate?.expanded)
+        const expanded = this.headerTemplate?.expanded();
+
+        return coerceBoolean(this.headerTemplate?.expandablePanel()) && isNotNil(expanded)
+            ? coerceBoolean(expanded)
             : null;
     }
 
@@ -438,7 +445,7 @@ export abstract class AbstractTableBuilderApi<T>
 
     public async sortAndFilter(): Promise<void> {
         await this.sortAndFilterOriginalSource();
-        this.selection.rows = this.source;
+        this.selection.rows = this.source();
 
         // TODO: need research this code, because we have problem with recursive update,
         //  when page have more than one tables
@@ -480,8 +487,8 @@ export abstract class AbstractTableBuilderApi<T>
             const updateSchema: TableUpdateSchema = {
                 columns,
                 generalTableSettings,
-                name: this.name,
-                version: this.schemaVersion,
+                name: this.name(),
+                version: this.schemaVersion(),
             };
 
             this.viewChanges.update(updateSchema);
@@ -501,7 +508,7 @@ export abstract class AbstractTableBuilderApi<T>
 
     public getSelectedItems(): T[] {
         return this.sourceRef.filter((item: T): boolean =>
-            isNotNil(this.selectionModel.entries[(item as any)[this.primaryKey]]),
+            isNotNil(this.selectionModel.entries[(item as any)[this.primaryKey()]]),
         );
     }
 
@@ -536,7 +543,7 @@ export abstract class AbstractTableBuilderApi<T>
      * @see AbstractTableBuilderApiDirective#customModelColumnsKeys for further information
      */
     protected generateCustomModelColumnsKeys(): string[] {
-        return this.excluding(this.keys);
+        return this.excluding(this.keys());
     }
 
     /**
@@ -572,19 +579,19 @@ export abstract class AbstractTableBuilderApi<T>
     }
 
     private async sortAndFilterOriginalSource(): Promise<void> {
-        this.source = this.originalSource ?? [];
+        this.source[SIGNAL].value = this.originalSource ?? [];
 
         if (this.shouldBeFiltered) {
             const filter: FilterWorkerEvent<T> = await this.filterable.filter(
-                this.source,
+                this.source() ?? [],
             );
 
-            this.source = filter.source;
+            this.source[SIGNAL].value = filter.source;
             filter.fireSelection();
         }
 
         if (this.shouldBeSorted) {
-            this.source = await this.sortable.sort(this.source);
+            this.source[SIGNAL].value = await this.sortable.sort(this.source() ?? []);
         }
     }
 
@@ -606,13 +613,14 @@ export abstract class AbstractTableBuilderApi<T>
     }
 
     private excluding(keys: string[]): string[] {
-        return this.excludeKeys.length > 0
+        return this.excludeKeys().length > 0
             ? keys.filter(
                   (key: string): boolean =>
-                      !this.excludeKeys.some((excludeKey: ExcludePattern<T>): boolean =>
-                          excludeKey instanceof RegExp
-                              ? Boolean(key.match(excludeKey))
-                              : key === excludeKey,
+                      !this.excludeKeys().some(
+                          (excludeKey: ExcludePattern<T>): boolean =>
+                              excludeKey instanceof RegExp
+                                  ? Boolean(key.match(excludeKey))
+                                  : key === excludeKey,
                       ),
               )
             : keys;

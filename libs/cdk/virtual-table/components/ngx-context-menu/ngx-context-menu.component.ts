@@ -1,12 +1,7 @@
 /* eslint-disable @angular-eslint/no-input-rename */
 import {NgStyle} from '@angular/common';
-import {OnDestroy, OnInit} from '@angular/core';
-import {
-    ChangeDetectionStrategy,
-    Component,
-    Input,
-    ViewEncapsulation,
-} from '@angular/core';
+import {input, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {detectChanges} from '@angular-ru/cdk/utils';
 import {Subject} from 'rxjs';
@@ -32,14 +27,10 @@ export class NgxContextMenu<T>
     implements OnInit, OnDestroy
 {
     private readonly destroy$ = new Subject<void>();
-    @Input()
-    public width: Nullable<number> = SIZE;
 
-    @Input()
-    public height: Nullable<number> = SIZE;
-
-    @Input('max-height')
-    public maxHeight: number = MAX_HEIGHT;
+    public readonly width = input<Nullable<number>>(SIZE);
+    public readonly height = input<Nullable<number>>(SIZE);
+    public readonly maxHeight = input<number>(MAX_HEIGHT, {alias: 'max-height'});
 
     public get state(): ContextMenuState<T> {
         return this.contextMenu.state;
