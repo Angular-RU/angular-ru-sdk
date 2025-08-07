@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
 import {PlainObject} from '@angular-ru/cdk/typings';
-import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
 import {StateRepository} from '@angular-ru/ngxs/decorators';
 import {NgxsImmutableDataRepository} from '@angular-ru/ngxs/repositories';
-import {NgxsModule, State, Store} from '@ngxs/store';
+import {provideStore, State, Store} from '@ngxs/store';
 
 describe('[TEST]: Reset', () => {
     let store: Store;
@@ -42,9 +42,9 @@ describe('[TEST]: Reset', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [
-                NgxsModule.forRoot([A, B, C, D], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            providers: [
+                provideStore([A, B, C, D], {developmentMode: true}),
+                provideNgxsDataPlugin(),
             ],
         }).compileComponents();
 

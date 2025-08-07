@@ -1,4 +1,7 @@
-export {DataHttpClientModule} from './data-http-client.module';
+export {
+    provideDataHttpClientClients,
+    provideDataHttpClientOptions,
+} from './data-http-client.provider';
 export {AbstractHttpClient} from './services/abstract-http.client';
 export {DataConfiguratorService} from './services/data-configurator.service';
 export {DataHttpClient} from './services/data-http.client';

@@ -1,5 +1,5 @@
 /* eslint-disable @angular-eslint/no-input-rename */
-import {Directive, Input} from '@angular/core';
+import {Directive, input} from '@angular/core';
 import {Nullable} from '@angular-ru/cdk/typings';
 
 import {TableFilterType} from '../services/filterable/table-filter-type';
@@ -13,36 +13,37 @@ export class ColumnOptionsDirective {
     /**
      * preserve track global value for overflowTooltip if selected
      */
-    @Input('overflow-tooltip')
-    public overflowTooltip: Nullable<boolean | string> = null;
+    public readonly overflowTooltip = input<Nullable<boolean | string>>(null, {
+        alias: 'overflow-tooltip',
+    });
 
-    @Input('filter-type')
-    public filterType: Nullable<TableFilterType | string> = null;
+    public readonly filterType = input<Nullable<TableFilterType | string>>(null, {
+        alias: 'filter-type',
+    });
 
-    @Input()
-    public nowrap: Nullable<boolean | string> = null;
+    public readonly nowrap = input<Nullable<boolean | string>>(null);
 
-    @Input()
-    public width: Nullable<number | string> = null;
+    public readonly width = input<Nullable<number | string>>(null);
 
-    @Input('is-resizable')
-    public isResizable: Nullable<boolean | string> = null;
+    public readonly isResizable = input<Nullable<boolean | string>>(null, {
+        alias: 'is-resizable',
+    });
 
-    @Input('is-sortable')
-    public isSortable: Nullable<boolean | string> = null;
+    public readonly isSortable = input<Nullable<boolean | string>>(null, {
+        alias: 'is-sortable',
+    });
 
-    @Input('is-filterable')
-    public isFilterable: Nullable<boolean | string> = null;
+    public readonly isFilterable = input<Nullable<boolean | string>>(null, {
+        alias: 'is-filterable',
+    });
 
-    @Input('is-draggable')
-    public isDraggable: Nullable<boolean | string> = null;
+    public readonly isDraggable = input<Nullable<boolean | string>>(null, {
+        alias: 'is-draggable',
+    });
 
-    @Input('css-class')
-    public cssClass: string[] = [];
+    public readonly cssClass = input<string[]>([], {alias: 'css-class'});
 
-    @Input('css-style')
-    public cssStyle: string[] = [];
+    public readonly cssStyle = input<string[]>([], {alias: 'css-style'});
 
-    @Input()
-    public stub: Nullable<string> = null;
+    public readonly stub = input<Nullable<string>>(null);
 }

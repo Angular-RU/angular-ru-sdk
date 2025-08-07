@@ -8,4 +8,4 @@ import {ColumnOptionsDirective} from '../../directives/column-options.directive'
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NgxOptionsComponent extends ColumnOptionsDirective {}
+export class NgxOptions extends ColumnOptionsDirective {}

@@ -1,5 +1,10 @@
-import {CommonModule} from '@angular/common';
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    inject,
+    ViewChild,
+} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {
     FormBuilder,
@@ -10,16 +15,15 @@ import {
 } from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import {
-    AmountFormatDirective,
-    AmountFormatModule,
+    AmountFormat,
     AmountOptions,
-    DEFAULT_AMOUNT_OPTIONS,
+    provideAmountFormat,
 } from '@angular-ru/cdk/directives';
 import {Nullable} from '@angular-ru/cdk/typings';
 
 describe('[TEST]: Amount format directive', () => {
     describe('expect without component', () => {
-        let directive: AmountFormatDirective;
+        let directive: AmountFormat;
         let ngModelValue: Nullable<number | string>;
         let element: Partial<ElementRef<Partial<HTMLInputElement>>>;
         let control: Partial<NgControl>;
@@ -44,18 +48,29 @@ describe('[TEST]: Amount format directive', () => {
                 },
             };
 
+            TestBed.configureTestingModule({
+                providers: [
+                    AmountFormat,
+                    provideAmountFormat(),
+                    {
+                        provide: ElementRef,
+                        useValue: element,
+                    },
+                    {
+                        provide: NgControl,
+                        useValue: control,
+                    },
+                ],
+            });
             // MOCK
-            directive = new AmountFormatDirective(
-                element as ElementRef,
-                DEFAULT_AMOUNT_OPTIONS,
-                control as NgControl,
-            );
+            directive = TestBed.inject(AmountFormat);
         });
 
         describe('ru-RU', () => {
             describe('non numeric by ru-RU', () => {
                 it('ngModel value is empty by ru-RU', () => {
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('');
                     expect(ngModelValue).toBeNull();
                 });
@@ -63,6 +78,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('set incorrect number value (ASD) to input by ru-RU', () => {
                     element.nativeElement!.value = 'ASD';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('');
                     expect(ngModelValue).toBeNull();
                 });
@@ -70,6 +86,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('set incorrect number value (-500,000.000) to input by ru-RU', () => {
                     element.nativeElement!.value = '-500,000.000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('');
                     expect(ngModelValue).toBeNull();
                 });
@@ -79,6 +96,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('convert `15000` to `15 000` for view value', () => {
                     element.nativeElement!.value = '15000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('15 000');
                     expect(ngModelValue).toBe(15000);
                 });
@@ -86,6 +104,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('trim the value when there are only zeros after the decimal point', () => {
                     element.nativeElement!.value = '-100,000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-100,000');
                     expect(ngModelValue).toBe(-100);
                 });
@@ -93,6 +112,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('represent the value `-100.100` in the model as `-100.1`', () => {
                     element.nativeElement!.value = '-100.100';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-100,1');
                     expect(ngModelValue).toBe(-100.1);
                 });
@@ -100,6 +120,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('use gaussian rounding for `0,02000`', () => {
                     element.nativeElement!.value = '199900,02000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('199 900,02');
                     expect(ngModelValue).toBe(199900.02);
                 });
@@ -107,6 +128,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('represent value `9123.50` as `9 123,5`', () => {
                     element.nativeElement!.value = '9123.50';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('9 123,5');
                     expect(ngModelValue).toBe(9123.5);
                 });
@@ -114,6 +136,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('what happens if we are specify incorrect separators', () => {
                     element.nativeElement!.value = '100,200,300';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('100,2');
                     expect(ngModelValue).toBe(100.2);
                 });
@@ -121,6 +144,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('use gaussian rounding for `0,0009`', () => {
                     element.nativeElement!.value = '-10000000000.0009';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-10 000 000 000,001');
                     expect(ngModelValue).toBe(-10000000000.001);
                 });
@@ -128,15 +152,17 @@ describe('[TEST]: Amount format directive', () => {
 
             describe('only integer by ru-RU', () => {
                 beforeEach(() => {
-                    directive.amountFormatOptions = {
+                    directive.amountFormatOptions.set({
                         lang: 'ru-RU',
                         formatOptions: {maximumFractionDigits: 0},
-                    };
+                    });
+                    TestBed.tick();
                 });
 
                 it('convert `15000` to `15 000` for view value', () => {
                     element.nativeElement!.value = '15000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('15 000');
                     expect(ngModelValue).toBe(15000);
                 });
@@ -144,6 +170,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('trim the value when there are only zeros after the decimal point', () => {
                     element.nativeElement!.value = '-100,000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-100');
                     expect(ngModelValue).toBe(-100);
                 });
@@ -151,6 +178,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('represent the value `-100.100` in the model as `-100`', () => {
                     element.nativeElement!.value = '-100.100';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-100');
                     expect(ngModelValue).toBe(-100);
                 });
@@ -158,6 +186,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('use gaussian rounding for `0,02000`', () => {
                     element.nativeElement!.value = '199900,02000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('199 900');
                     expect(ngModelValue).toBe(199900);
                 });
@@ -165,6 +194,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('represent value `9123.50` as `9 124`', () => {
                     element.nativeElement!.value = '9123.50';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('9 124');
                     expect(ngModelValue).toBe(9124);
                 });
@@ -172,6 +202,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('what happens if we are specify incorrect separators', () => {
                     element.nativeElement!.value = '100,200,300';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('100');
                     expect(ngModelValue).toBe(100);
                 });
@@ -179,6 +210,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('use gaussian rounding for `0,0009`', () => {
                     element.nativeElement!.value = '-10000000000.0009';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-10 000 000 000');
                     expect(ngModelValue).toBe(-10000000000);
                 });
@@ -190,12 +222,14 @@ describe('[TEST]: Amount format directive', () => {
                 // noinspection UnnecessaryLocalVariableJS
                 const options: AmountOptions = {lang: 'en-EU'};
 
-                directive.amountFormatOptions = options;
+                directive.amountFormatOptions.set(options);
+                TestBed.tick();
             });
 
             describe('non numeric by en-EU', () => {
                 it('ngModel value is empty by en-EU', () => {
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('');
                     expect(ngModelValue).toBeNull();
                 });
@@ -203,6 +237,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('set incorrect number value (ASD) to input by en-EU', () => {
                     element.nativeElement!.value = 'ASD';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('');
                     expect(ngModelValue).toBeNull();
                 });
@@ -210,6 +245,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('set incorrect number value (-500 000,000) to input by en-EU', () => {
                     element.nativeElement!.value = '-500 000,000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-500,000,000');
                     expect(ngModelValue).toBe(-500000000);
                 });
@@ -219,6 +255,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('convert `15000` to `15,000` for view value', () => {
                     element.nativeElement!.value = '15000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('15,000');
                     expect(ngModelValue).toBe(15000);
                 });
@@ -226,11 +263,13 @@ describe('[TEST]: Amount format directive', () => {
                 it('trim the value when there are only zeros after the decimal point', () => {
                     element.nativeElement!.value = '-100,000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-100,000');
                     expect(ngModelValue).toBe(-100000);
 
                     element.nativeElement!.value = '-500,000.000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-500,000.000');
                     expect(ngModelValue).toBe(-500000);
                 });
@@ -238,6 +277,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('represent the value `-100.200` in the model as `-100.2`', () => {
                     element.nativeElement!.value = '-100.200';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-100.200');
                     expect(ngModelValue).toBe(-100.2);
                 });
@@ -245,6 +285,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('use gaussian rounding for `0.03000`', () => {
                     element.nativeElement!.value = '199900.03000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('199,900.03');
                     expect(ngModelValue).toBe(199900.03);
                 });
@@ -252,6 +293,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('represent value `9123.60` as `9,123.60`', () => {
                     element.nativeElement!.value = '9123.60';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('9,123.60');
                     expect(ngModelValue).toBe(9123.6);
                 });
@@ -259,6 +301,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('what happens if we are specify incorrect separators', () => {
                     element.nativeElement!.value = '100.200.300';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('100.2');
                     expect(ngModelValue).toBe(100.2);
                 });
@@ -266,6 +309,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('use gaussian rounding for `0,0009`', () => {
                     element.nativeElement!.value = '-10000000000.0009';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-10,000,000,000.001');
                     expect(ngModelValue).toBe(-10000000000.001);
                 });
@@ -273,15 +317,17 @@ describe('[TEST]: Amount format directive', () => {
 
             describe('only integer en-EU', () => {
                 beforeEach(() => {
-                    directive.amountFormatOptions = {
+                    directive.amountFormatOptions.set({
                         lang: 'en-EU',
                         formatOptions: {maximumFractionDigits: 0},
-                    };
+                    });
+                    TestBed.tick();
                 });
 
                 it('convert `16000` to `16,000` for view value', () => {
                     element.nativeElement!.value = '16000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('16,000');
                     expect(ngModelValue).toBe(16000);
                 });
@@ -289,6 +335,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('trim the value when there are only zeros after the decimal point', () => {
                     element.nativeElement!.value = '-200.000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-200');
                     expect(ngModelValue).toBe(-200);
                 });
@@ -296,6 +343,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('represent the value `-300.100` in the model as `-100`', () => {
                     element.nativeElement!.value = '-300.100';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-300');
                     expect(ngModelValue).toBe(-300);
                 });
@@ -303,6 +351,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('use gaussian rounding for `0.04000`', () => {
                     element.nativeElement!.value = '199900.04000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('199,900');
                     expect(ngModelValue).toBe(199900);
                 });
@@ -310,6 +359,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('represent value `9223.50` as `9,224`', () => {
                     element.nativeElement!.value = '9223.50';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('9,224');
                     expect(ngModelValue).toBe(9224);
                 });
@@ -317,6 +367,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('what happens if we are specify incorrect separators', () => {
                     element.nativeElement!.value = '100.200.300';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('100');
                     expect(ngModelValue).toBe(100);
                 });
@@ -324,6 +375,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('use gaussian rounding for `0,0009`', () => {
                     element.nativeElement!.value = '-10000000000.0009';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-10,000,000,000');
                     expect(ngModelValue).toBe(-10000000000);
                 });
@@ -335,12 +387,14 @@ describe('[TEST]: Amount format directive', () => {
                 // noinspection UnnecessaryLocalVariableJS
                 const options: AmountOptions = {lang: 'de-DE'};
 
-                directive.amountFormatOptions = options;
+                directive.amountFormatOptions.set(options);
+                TestBed.tick();
             });
 
             describe('non numeric by de-DE', () => {
                 it('ngModel value is empty by de-DE', () => {
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('');
                     expect(ngModelValue).toBeNull();
                 });
@@ -348,6 +402,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('set incorrect number value (ASD) to input by de-DE', () => {
                     element.nativeElement!.value = 'ASD';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('');
                     expect(ngModelValue).toBeNull();
                 });
@@ -355,6 +410,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('set incorrect number value (-500 000,000) to input by de-DE', () => {
                     element.nativeElement!.value = '-500 000,000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-500.000,000');
                     expect(ngModelValue).toBe(-500000);
                 });
@@ -364,6 +420,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('convert `15000` to `15.000` for view value', () => {
                     element.nativeElement!.value = '15000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('15.000');
                     expect(ngModelValue).toBe(15000);
                 });
@@ -371,11 +428,13 @@ describe('[TEST]: Amount format directive', () => {
                 it('trim the value when there are only zeros after the decimal point', () => {
                     element.nativeElement!.value = '-100.000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-100.000');
                     expect(ngModelValue).toBe(-100000);
 
                     element.nativeElement!.value = '-500,000.000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-500,0');
                     expect(ngModelValue).toBe(-500);
                 });
@@ -383,6 +442,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('represent the value `-100,100` in the model as `-100,1`', () => {
                     element.nativeElement!.value = '-100,100';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-100,100');
                     expect(ngModelValue).toBe(-100.1);
                 });
@@ -390,6 +450,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('use gaussian rounding for `0,02000`', () => {
                     element.nativeElement!.value = '199900,02000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('199.900,02');
                     expect(ngModelValue).toBe(199900.02);
                 });
@@ -397,6 +458,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('represent value `9123,50` as `9.123,50`', () => {
                     element.nativeElement!.value = '9123,50';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('9.123,50');
                     expect(ngModelValue).toBe(9123.5);
                 });
@@ -404,6 +466,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('what happens if we are specify incorrect separators', () => {
                     element.nativeElement!.value = '100,200,300';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('100,2');
                     expect(ngModelValue).toBe(100.2);
                 });
@@ -411,6 +474,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('use gaussian rounding for `0,0009`', () => {
                     element.nativeElement!.value = '-10000000000,0009';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-10.000.000.000,001');
                     expect(ngModelValue).toBe(-10000000000.001);
                 });
@@ -418,15 +482,17 @@ describe('[TEST]: Amount format directive', () => {
 
             describe('only integer de-DE', () => {
                 beforeEach(() => {
-                    directive.amountFormatOptions = {
+                    directive.amountFormatOptions.set({
                         lang: 'de-DE',
                         formatOptions: {maximumFractionDigits: 0},
-                    };
+                    });
+                    TestBed.tick();
                 });
 
                 it('convert `15000` to `15.000` for view value', () => {
                     element.nativeElement!.value = '15000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('15.000');
                     expect(ngModelValue).toBe(15000);
                 });
@@ -434,6 +500,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('trim the value when there are only zeros after the decimal point', () => {
                     element.nativeElement!.value = '-100,000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-100');
                     expect(ngModelValue).toBe(-100);
                 });
@@ -441,6 +508,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('represent the value `-100,100` in the model as `-100`', () => {
                     element.nativeElement!.value = '-100,100';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-100');
                     expect(ngModelValue).toBe(-100);
                 });
@@ -448,6 +516,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('use gaussian rounding for `0,02000`', () => {
                     element.nativeElement!.value = '199900,02000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('199.900');
                     expect(ngModelValue).toBe(199900);
                 });
@@ -455,6 +524,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('represent value `9123,50` as `9,124`', () => {
                     element.nativeElement!.value = '9123,50';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('9.124');
                     expect(ngModelValue).toBe(9124);
                 });
@@ -462,6 +532,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('what happens if we are specify incorrect separators', () => {
                     element.nativeElement!.value = '100,200,300';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('100');
                     expect(ngModelValue).toBe(100);
                 });
@@ -469,6 +540,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('use gaussian rounding for `0,0009`', () => {
                     element.nativeElement!.value = '-10000000000,0009';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-10.000.000.000');
                     expect(ngModelValue).toBe(-10000000000);
                 });
@@ -480,12 +552,14 @@ describe('[TEST]: Amount format directive', () => {
                 // noinspection UnnecessaryLocalVariableJS
                 const options: AmountOptions = {lang: 'ja-JP'};
 
-                directive.amountFormatOptions = options;
+                directive.amountFormatOptions.set(options);
+                TestBed.tick();
             });
 
             describe('non numeric by ja-JP', () => {
                 it('ngModel value is empty by ja-JP', () => {
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('');
                     expect(ngModelValue).toBeNull();
                 });
@@ -493,6 +567,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('set incorrect number value (ASD) to input by ja-JP', () => {
                     element.nativeElement!.value = 'ASD';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('');
                     expect(ngModelValue).toBeNull();
                 });
@@ -500,6 +575,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('set incorrect number value (-500 000,000) to input by ja-JP', () => {
                     element.nativeElement!.value = '-500 000,000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-500,000,000');
                     expect(ngModelValue).toBe(-500000000);
                 });
@@ -509,6 +585,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('convert `15000` to `15,000` for view value', () => {
                     element.nativeElement!.value = '15000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('15,000');
                     expect(ngModelValue).toBe(15000);
                 });
@@ -516,11 +593,13 @@ describe('[TEST]: Amount format directive', () => {
                 it('trim the value when there are only zeros after the decimal point', () => {
                     element.nativeElement!.value = '-200,000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-200,000');
                     expect(ngModelValue).toBe(-200000);
 
                     element.nativeElement!.value = '-500,000.000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-500,000.000');
                     expect(ngModelValue).toBe(-500000);
                 });
@@ -528,6 +607,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('represent the value `-100.100` in the model as `-100.1`', () => {
                     element.nativeElement!.value = '-100.100';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-100.100');
                     expect(ngModelValue).toBe(-100.1);
                 });
@@ -535,6 +615,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('use gaussian rounding for `0.02000`', () => {
                     element.nativeElement!.value = '199900.02000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('199,900.02');
                     expect(ngModelValue).toBe(199900.02);
                 });
@@ -542,6 +623,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('represent value `9123.50` as `9,123.50`', () => {
                     element.nativeElement!.value = '9123.50';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('9,123.50');
                     expect(ngModelValue).toBe(9123.5);
                 });
@@ -549,6 +631,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('what happens if we are specify incorrect separators', () => {
                     element.nativeElement!.value = '100.200.300';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('100.2');
                     expect(ngModelValue).toBe(100.2);
                 });
@@ -556,6 +639,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('use gaussian rounding for `0.0009`', () => {
                     element.nativeElement!.value = '-10000000000.0009';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-10,000,000,000.001');
                     expect(ngModelValue).toBe(-10000000000.001);
                 });
@@ -563,15 +647,17 @@ describe('[TEST]: Amount format directive', () => {
 
             describe('only integer ja-JP', () => {
                 beforeEach(() => {
-                    directive.amountFormatOptions = {
+                    directive.amountFormatOptions.set({
                         lang: 'ja-JP',
                         formatOptions: {maximumFractionDigits: 0},
-                    };
+                    });
+                    TestBed.tick();
                 });
 
                 it('convert `15000` to `15,000` for view value', () => {
                     element.nativeElement!.value = '15000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('15,000');
                     expect(ngModelValue).toBe(15000);
                 });
@@ -579,6 +665,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('trim the value when there are only zeros after the decimal point', () => {
                     element.nativeElement!.value = '-100.000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-100');
                     expect(ngModelValue).toBe(-100);
                 });
@@ -586,6 +673,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('represent the value `-100.100` in the model as `-100`', () => {
                     element.nativeElement!.value = '-100.100';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-100');
                     expect(ngModelValue).toBe(-100);
                 });
@@ -593,6 +681,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('use gaussian rounding for `0.02000`', () => {
                     element.nativeElement!.value = '199900.02000';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('199,900');
                     expect(ngModelValue).toBe(199900);
                 });
@@ -600,6 +689,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('represent value `9123.50` as `9,124`', () => {
                     element.nativeElement!.value = '9123.50';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('9,124');
                     expect(ngModelValue).toBe(9124);
                 });
@@ -607,6 +697,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('what happens if we are specify incorrect separators', () => {
                     element.nativeElement!.value = '100.200.300';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('100');
                     expect(ngModelValue).toBe(100);
                 });
@@ -614,6 +705,7 @@ describe('[TEST]: Amount format directive', () => {
                 it('use gaussian rounding for `0.0009`', () => {
                     element.nativeElement!.value = '-10000000000.0009';
                     directive.format();
+
                     expect(element.nativeElement!.value).toBe('-10,000,000,000');
                     expect(ngModelValue).toBe(-10000000000);
                 });
@@ -622,58 +714,74 @@ describe('[TEST]: Amount format directive', () => {
 
         describe('dynamic change language', () => {
             it('support recalculate without value', () => {
-                expect(directive.amountFormatOptions.lang).toBe('ru-RU');
-                expect(directive.amountFormatOptions.formatOptions).toBeUndefined();
+                expect(directive.amountFormatOptions().lang).toBe('ru-RU');
+                expect(directive.amountFormatOptions().formatOptions).toBeUndefined();
 
                 // RU
                 directive.format();
+
                 expect(element.nativeElement!.value).toBe('');
                 expect(ngModelValue).toBeNull();
 
                 // EN
-                directive.amountFormatOptions = {lang: 'en-EU'};
+                directive.amountFormatOptions.set({lang: 'en-EU'});
+                TestBed.tick();
+
                 expect(element.nativeElement!.value).toBe('');
                 expect(ngModelValue).toBeNull();
 
                 // DE
-                directive.amountFormatOptions = {lang: 'de-DE'};
+                directive.amountFormatOptions.set({lang: 'de-DE'});
+                TestBed.tick();
+
                 expect(element.nativeElement!.value).toBe('');
                 expect(ngModelValue).toBeNull();
 
                 // JP
-                directive.amountFormatOptions = {lang: 'ja-JP'};
+                directive.amountFormatOptions.set({lang: 'ja-JP'});
+                TestBed.tick();
+
                 expect(element.nativeElement!.value).toBe('');
                 expect(ngModelValue).toBeNull();
 
                 // RU
                 element.nativeElement!.value = '';
-                directive.amountFormatOptions = {lang: 'ru-RU'};
+                directive.amountFormatOptions.set({lang: 'ru-RU'});
+                TestBed.tick();
+
                 expect(element.nativeElement!.value).toBe('');
                 expect(ngModelValue).toBeNull();
             });
 
             it('support recalculate format by integer, float', () => {
-                expect(directive.amountFormatOptions.lang).toBe('ru-RU');
-                expect(directive.amountFormatOptions.formatOptions).toBeUndefined();
+                expect(directive.amountFormatOptions().lang).toBe('ru-RU');
+                expect(directive.amountFormatOptions().formatOptions).toBeUndefined();
 
                 // RU
                 element.nativeElement!.value = '-500 000,050';
                 directive.format();
+
                 expect(element.nativeElement!.value).toBe('-500 000,050');
                 expect(ngModelValue).toBe(-500000.05);
 
                 // EN
-                directive.amountFormatOptions = {lang: 'en-EU'};
+                directive.amountFormatOptions.set({lang: 'en-EU'});
+                TestBed.tick();
+
                 expect(element.nativeElement!.value).toBe('-500,000.05');
                 expect(ngModelValue).toBe(-500000.05);
 
                 // DE
-                directive.amountFormatOptions = {lang: 'de-DE'};
+                directive.amountFormatOptions.set({lang: 'de-DE'});
+                TestBed.tick();
+
                 expect(element.nativeElement!.value).toBe('-500.000,05');
                 expect(ngModelValue).toBe(-500000.05);
 
                 // JP
-                directive.amountFormatOptions = {lang: 'ja-JP'};
+                directive.amountFormatOptions.set({lang: 'ja-JP'});
+                TestBed.tick();
+
                 expect(element.nativeElement!.value).toBe('-500,000.05');
                 expect(ngModelValue).toBe(-500000.05);
             });
@@ -682,25 +790,30 @@ describe('[TEST]: Amount format directive', () => {
                 // RU
                 element.nativeElement!.value = '-600 000,051';
                 directive.format();
+
                 expect(element.nativeElement!.value).toBe('-600 000,051');
                 expect(ngModelValue).toBe(-600000.051);
 
                 // EN
-                directive.amountFormatOptions = {
+                directive.amountFormatOptions.set({
                     lang: 'en-EU',
                     formatOptions: {maximumFractionDigits: 0},
-                };
+                });
+                TestBed.tick();
+
                 expect(element.nativeElement!.value).toBe('-600,000');
                 expect(ngModelValue).toBe(-600000);
 
                 // RU
                 directive.setLang('ru-RU');
                 directive.format();
+
                 expect(element.nativeElement!.value).toBe('-600 000');
                 expect(ngModelValue).toBe(-600000);
 
                 element.nativeElement!.value = '-600 000,051';
                 directive.format();
+
                 expect(element.nativeElement!.value).toBe('-600 000');
                 expect(ngModelValue).toBe(-600000);
             });
@@ -712,6 +825,7 @@ describe('[TEST]: Amount format directive', () => {
 
         @Component({
             selector: 'hello-world',
+            imports: [AmountFormat, ReactiveFormsModule],
             template: `
                 <form [formGroup]="form">
                     <input
@@ -720,16 +834,17 @@ describe('[TEST]: Amount format directive', () => {
                     />
                 </form>
             `,
+            changeDetection: ChangeDetectionStrategy.OnPush,
         })
         class HelloWorldComponent {
-            @ViewChild(AmountFormatDirective)
-            public directive!: AmountFormatDirective;
+            private readonly fb = inject(FormBuilder);
+
+            @ViewChild(AmountFormat)
+            public directive!: AmountFormat;
 
             public form: FormGroup = this.fb.group({
                 amount: this.fb.control('INVALID_VALUE'),
             });
-
-            constructor(private readonly fb: FormBuilder) {}
         }
 
         function getInputViewValue(): Nullable<string> {
@@ -784,7 +899,7 @@ describe('[TEST]: Amount format directive', () => {
             input.selectionEnd = cursorPosition;
         }
 
-        function getDirectiveInfo(): Nullable<AmountFormatDirective> {
+        function getDirectiveInfo(): Nullable<AmountFormat> {
             return fixture?.componentInstance.directive;
         }
 
@@ -794,13 +909,13 @@ describe('[TEST]: Amount format directive', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                declarations: [HelloWorldComponent],
                 imports: [
-                    AmountFormatModule.forRoot(),
-                    CommonModule,
+                    AmountFormat,
                     FormsModule,
                     ReactiveFormsModule,
+                    HelloWorldComponent,
                 ],
+                providers: [provideAmountFormat()],
             });
 
             fixture = TestBed.createComponent(HelloWorldComponent);
@@ -810,6 +925,7 @@ describe('[TEST]: Amount format directive', () => {
         describe('change detection', () => {
             it('outside zone', () => {
                 setInputViewValue('10000');
+
                 expect(getInputViewValue()).toBe('10 000');
                 expect(getInputModelValue()).toBe(10000);
                 expect(getDirectiveInfo()?.isInAngularZone).toBe(false);
@@ -820,10 +936,12 @@ describe('[TEST]: Amount format directive', () => {
             describe('without emit blur by ru-RU', () => {
                 it('what happens if we are specify separators', () => {
                     setInputViewValue('100000', 'reset', false);
+
                     expect(getInputViewValue()).toBe('100 000');
                     expect(getInputModelValue()).toBe(100000);
 
                     setInputViewValue(',', 'push', false);
+
                     expect(getInputViewValue()).toBe('100 000,');
                     expect(getInputModelValue()).toBe(100000);
 
@@ -847,156 +965,186 @@ describe('[TEST]: Amount format directive', () => {
 
             it('should be reset wrong value', () => {
                 setInputViewValue('a');
+
                 expect(getInputViewValue()).toBe('');
                 expect(getInputModelValue()).toBeNull();
             });
 
             it('should skip invalid values `10abc`', () => {
                 setInputViewValue('10abc');
+
                 expect(getInputViewValue()).toBe('10');
                 expect(getInputModelValue()).toBe(10);
             });
 
             it('should skip invalid values `10.20.30`', () => {
                 setInputViewValue('10.20.30');
+
                 expect(getInputViewValue()).toBe('');
                 expect(getInputModelValue()).toBeNull();
             });
 
             it('validation correct value by Ru', () => {
                 setInputViewValue('10,24');
+
                 expect(getInputViewValue()).toBe('10,24');
                 expect(getInputModelValue()).toBe(10.24);
             });
 
             it('when given a value with negation', () => {
                 setInputViewValue('-', 'reset', false);
+
                 expect(getInputViewValue()).toBe('-');
                 expect(getInputModelValue()).toBeNull();
 
                 setInputViewValue('-', 'reset', true);
+
                 expect(getInputViewValue()).toBe('');
                 expect(getInputModelValue()).toBeNull();
 
                 setInputViewValue('-1');
+
                 expect(getInputViewValue()).toBe('-1');
                 expect(getInputModelValue()).toBe(-1);
 
                 setInputViewValue('-12345678');
+
                 expect(getInputViewValue()).toBe('-12 345 678');
                 expect(getInputModelValue()).toBe(-12345678);
 
                 setInputViewValue('-904241,25');
+
                 expect(getInputViewValue()).toBe('-904 241,25');
                 expect(getInputModelValue()).toBe(-904241.25);
             });
 
             it('should be correct detect cursor position', () => {
                 setInputViewValue('1');
+
                 expect(getInputViewValue()).toBe('1');
                 expect(getInputModelValue()).toBe(1);
                 expect(getCursorPosition()).toBe(1);
 
                 setInputViewValue('123456');
+
                 expect(getInputViewValue()).toBe('123 456');
                 expect(getInputModelValue()).toBe(123456);
                 expect(getCursorPosition()).toBe(7);
 
                 setInputViewValue('12345678910');
+
                 expect(getInputViewValue()).toBe('12 345 678 910');
                 expect(getInputModelValue()).toBe(12345678910);
                 expect(getCursorPosition()).toBe(14);
 
                 setInputViewValue('0', 'push');
+
                 expect(getInputViewValue()).toBe('123 456 789 100');
                 expect(getInputModelValue()).toBe(123456789100);
                 expect(getCursorPosition()).toBe(15);
 
                 setInputViewValue('7', 'push');
+
                 expect(getInputViewValue()).toBe('1 234 567 891 007');
                 expect(getInputModelValue()).toBe(1234567891007);
                 expect(getCursorPosition()).toBe(17);
 
                 setInputSelectionPosition(5);
                 setInputViewValue('0', 'push');
+
                 expect(getInputViewValue()).toBe('12 340 567 891 007');
                 expect(getInputModelValue()).toBe(12340567891007);
                 expect(getCursorPosition()).toBe(6);
 
                 setInputSelectionPosition(0);
                 setInputViewValue('0', 'push');
+
                 expect(getInputViewValue()).toBe('12 340 567 891 007');
                 expect(getInputModelValue()).toBe(12340567891007);
                 expect(getCursorPosition()).toBe(1);
 
                 setInputSelectionPosition(0);
                 setInputViewValue('8', 'push');
+
                 expect(getInputViewValue()).toBe('812 340 567 891 007');
                 expect(getInputModelValue()).toBe(812340567891007);
                 expect(getCursorPosition()).toBe(1);
 
                 setInputSelectionPosition(0);
                 setInputViewValue(',', 'push');
+
                 expect(getInputViewValue()).toBe('812 340 567 891 007');
                 expect(getInputModelValue()).toBe(812340567891007);
                 expect(getCursorPosition()).toBe(1);
 
                 setInputSelectionPosition(1);
                 setInputViewValue(',', 'push');
+
                 expect(getInputViewValue()).toBe('8,123');
                 expect(getInputModelValue()).toBe(8.123);
                 expect(getCursorPosition()).toBe(2);
 
                 setInputSelectionPosition(0);
                 setInputViewValue('.', 'push');
+
                 expect(getInputViewValue()).toBe('8,123');
                 expect(getInputModelValue()).toBe(8.123);
                 expect(getCursorPosition()).toBe(1);
 
                 setInputSelectionPosition(1);
                 setInputViewValue(',', 'push');
+
                 expect(getInputViewValue()).toBe('8,123');
                 expect(getInputModelValue()).toBe(8.123);
                 expect(getCursorPosition()).toBe(2);
 
                 setInputViewValue('812340567891007');
+
                 expect(getInputViewValue()).toBe('812 340 567 891 007');
                 expect(getInputModelValue()).toBe(812340567891007);
 
                 setInputSelectionPosition(8);
                 setInputViewValue(',', 'push');
+
                 expect(getInputViewValue()).toBe('812 340,568');
                 expect(getInputModelValue()).toBe(812340.568);
             });
 
             it('when setting an invalid value', () => {
                 setInputViewValue('.');
+
                 expect(getInputViewValue()).toBe('');
                 expect(getInputModelValue()).toBeNull();
 
                 setInputViewValue(',');
+
                 expect(getInputViewValue()).toBe('');
                 expect(getInputModelValue()).toBeNull();
 
                 setInputViewValue('!');
+
                 expect(getInputViewValue()).toBe('');
                 expect(getInputModelValue()).toBeNull();
             });
 
             it('when less than one', () => {
                 setInputViewValue('0.');
+
                 expect(getInputViewValue()).toBe('0');
                 expect(getInputModelValue()).toBe(0);
 
                 setInputViewValue('0.1');
+
                 expect(getInputViewValue()).toBe('0,1');
                 expect(getInputModelValue()).toBe(0.1);
 
                 setInputViewValue('0.135');
+
                 expect(getInputViewValue()).toBe('0,135');
                 expect(getInputModelValue()).toBe(0.135);
 
                 setInputViewValue('0.1357');
+
                 expect(getInputViewValue()).toBe('0,136');
                 expect(getInputModelValue()).toBe(0.136);
             });
@@ -1010,10 +1158,12 @@ describe('[TEST]: Amount format directive', () => {
             describe('without emit blur', () => {
                 it('what happens if we are specify separators by en-EU', () => {
                     setInputViewValue('100000', 'reset', false);
+
                     expect(getInputViewValue()).toBe('100,000');
                     expect(getInputModelValue()).toBe(100000);
 
                     setInputViewValue('.', 'push', false);
+
                     expect(getInputViewValue()).toBe('100,000.');
                     expect(getInputModelValue()).toBe(100000);
 
@@ -1037,156 +1187,186 @@ describe('[TEST]: Amount format directive', () => {
 
             it('should be reset wrong value', () => {
                 setInputViewValue('a');
+
                 expect(getInputViewValue()).toBe('');
                 expect(getInputModelValue()).toBeNull();
             });
 
             it('should skip invalid values `10abc`', () => {
                 setInputViewValue('10abc');
+
                 expect(getInputViewValue()).toBe('10');
                 expect(getInputModelValue()).toBe(10);
             });
 
             it('should skip invalid values `10.20.30`', () => {
                 setInputViewValue('10.20.30');
+
                 expect(getInputViewValue()).toBe('10.203');
                 expect(getInputModelValue()).toBe(10.203);
             });
 
             it('validation correct value by EU', () => {
                 setInputViewValue('10,24');
+
                 expect(getInputViewValue()).toBe('1,024');
                 expect(getInputModelValue()).toBe(1024);
             });
 
             it('when given a value with negation', () => {
                 setInputViewValue('-', 'reset', false);
+
                 expect(getInputViewValue()).toBe('-');
                 expect(getInputModelValue()).toBeNull();
 
                 setInputViewValue('-', 'reset', true);
+
                 expect(getInputViewValue()).toBe('');
                 expect(getInputModelValue()).toBeNull();
 
                 setInputViewValue('-1');
+
                 expect(getInputViewValue()).toBe('-1');
                 expect(getInputModelValue()).toBe(-1);
 
                 setInputViewValue('-12345678');
+
                 expect(getInputViewValue()).toBe('-12,345,678');
                 expect(getInputModelValue()).toBe(-12345678);
 
                 setInputViewValue('-904241.25');
+
                 expect(getInputViewValue()).toBe('-904,241.25');
                 expect(getInputModelValue()).toBe(-904241.25);
             });
 
             it('should be correct detect cursor position', () => {
                 setInputViewValue('1');
+
                 expect(getInputViewValue()).toBe('1');
                 expect(getInputModelValue()).toBe(1);
                 expect(getCursorPosition()).toBe(1);
 
                 setInputViewValue('123456');
+
                 expect(getInputViewValue()).toBe('123,456');
                 expect(getInputModelValue()).toBe(123456);
                 expect(getCursorPosition()).toBe(7);
 
                 setInputViewValue('12345678910');
+
                 expect(getInputViewValue()).toBe('12,345,678,910');
                 expect(getInputModelValue()).toBe(12345678910);
                 expect(getCursorPosition()).toBe(14);
 
                 setInputViewValue('0', 'push');
+
                 expect(getInputViewValue()).toBe('123,456,789,100');
                 expect(getInputModelValue()).toBe(123456789100);
                 expect(getCursorPosition()).toBe(15);
 
                 setInputViewValue('7', 'push');
+
                 expect(getInputViewValue()).toBe('1,234,567,891,007');
                 expect(getInputModelValue()).toBe(1234567891007);
                 expect(getCursorPosition()).toBe(17);
 
                 setInputSelectionPosition(5);
                 setInputViewValue('0', 'push');
+
                 expect(getInputViewValue()).toBe('12,340,567,891,007');
                 expect(getInputModelValue()).toBe(12340567891007);
                 expect(getCursorPosition()).toBe(6);
 
                 setInputSelectionPosition(0);
                 setInputViewValue('0', 'push');
+
                 expect(getInputViewValue()).toBe('12,340,567,891,007');
                 expect(getInputModelValue()).toBe(12340567891007);
                 expect(getCursorPosition()).toBe(1);
 
                 setInputSelectionPosition(0);
                 setInputViewValue('8', 'push');
+
                 expect(getInputViewValue()).toBe('812,340,567,891,007');
                 expect(getInputModelValue()).toBe(812340567891007);
                 expect(getCursorPosition()).toBe(1);
 
                 setInputSelectionPosition(0);
                 setInputViewValue(',', 'push');
+
                 expect(getInputViewValue()).toBe('812,340,567,891,007');
                 expect(getInputModelValue()).toBe(812340567891007);
                 expect(getCursorPosition()).toBe(1);
 
                 setInputSelectionPosition(1);
                 setInputViewValue('.', 'push');
+
                 expect(getInputViewValue()).toBe('8.123');
                 expect(getInputModelValue()).toBe(8.123);
                 expect(getCursorPosition()).toBe(2);
 
                 setInputSelectionPosition(0);
                 setInputViewValue('.', 'push');
+
                 expect(getInputViewValue()).toBe('8.123');
                 expect(getInputModelValue()).toBe(8.123);
                 expect(getCursorPosition()).toBe(1);
 
                 setInputSelectionPosition(1);
                 setInputViewValue(',', 'push');
+
                 expect(getInputViewValue()).toBe('8.123');
                 expect(getInputModelValue()).toBe(8.123);
                 expect(getCursorPosition()).toBe(2);
 
                 setInputViewValue('812340567891007');
+
                 expect(getInputViewValue()).toBe('812,340,567,891,007');
                 expect(getInputModelValue()).toBe(812340567891007);
 
                 setInputSelectionPosition(8);
                 setInputViewValue('.', 'push');
+
                 expect(getInputViewValue()).toBe('812,340.568');
                 expect(getInputModelValue()).toBe(812340.568);
             });
 
             it('when setting an invalid value', () => {
                 setInputViewValue('.');
+
                 expect(getInputViewValue()).toBe('');
                 expect(getInputModelValue()).toBeNull();
 
                 setInputViewValue(',');
+
                 expect(getInputViewValue()).toBe('');
                 expect(getInputModelValue()).toBeNull();
 
                 setInputViewValue('!');
+
                 expect(getInputViewValue()).toBe('');
                 expect(getInputModelValue()).toBeNull();
             });
 
             it('when less than one', () => {
                 setInputViewValue('0.');
+
                 expect(getInputViewValue()).toBe('0');
                 expect(getInputModelValue()).toBe(0);
 
                 setInputViewValue('0.1');
+
                 expect(getInputViewValue()).toBe('0.1');
                 expect(getInputModelValue()).toBe(0.1);
 
                 setInputViewValue('0.135');
+
                 expect(getInputViewValue()).toBe('0.135');
                 expect(getInputModelValue()).toBe(0.135);
 
                 setInputViewValue('0.1357');
+
                 expect(getInputViewValue()).toBe('0.136');
                 expect(getInputModelValue()).toBe(0.136);
             });

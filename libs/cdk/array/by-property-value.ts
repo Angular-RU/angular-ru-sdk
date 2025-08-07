@@ -7,9 +7,9 @@ export function byPropertyValue<
     value: ValueType,
 ): (
     arrayItem: ArrayEntryType,
-) => arrayItem is ArrayEntryType & {[key in ArrayEntryTypeKey]: ValueType} {
+) => arrayItem is ArrayEntryType & Record<ArrayEntryTypeKey, ValueType> {
     return (
         arrayItem: ArrayEntryType,
-    ): arrayItem is ArrayEntryType & {[key in ArrayEntryTypeKey]: ValueType} =>
+    ): arrayItem is ArrayEntryType & Record<ArrayEntryTypeKey, ValueType> =>
         arrayItem[key] === value;
 }

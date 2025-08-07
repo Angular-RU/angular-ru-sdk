@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
-import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
 import {StateRepository} from '@angular-ru/ngxs/decorators';
 import {
     buildDefaultsGraph,
@@ -8,7 +8,7 @@ import {
     getStateMetadata,
 } from '@angular-ru/ngxs/internals';
 import {NgxsImmutableDataRepository} from '@angular-ru/ngxs/repositories';
-import {NgxsModule, State, Store} from '@ngxs/store';
+import {provideStore, State, Store} from '@ngxs/store';
 import {
     ɵMetaDataModel as MetaDataModel,
     ɵSharedSelectorOptions as SharedSelectorOptions,
@@ -128,9 +128,9 @@ describe('[TEST]: Utils', () => {
         class MyState extends NgxsImmutableDataRepository<string> {}
 
         TestBed.configureTestingModule({
-            imports: [
-                NgxsModule.forRoot([MyState], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            providers: [
+                provideStore([MyState], {developmentMode: true}),
+                provideNgxsDataPlugin(),
             ],
         });
 
@@ -164,7 +164,7 @@ describe('[TEST]: Utils', () => {
                 getSelectorOptions(
                     localOptions?: SharedSelectorOptions,
                 ): SharedSelectorOptions {
-                    return localOptions;
+                    return localOptions!;
                 },
                 getStateGetter(_key: any): (state: any) => any {
                     // selector
@@ -184,9 +184,9 @@ describe('[TEST]: Utils', () => {
         class AppState extends NgxsImmutableDataRepository<number> {}
 
         TestBed.configureTestingModule({
-            imports: [
-                NgxsModule.forRoot([AppState], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            providers: [
+                provideStore([AppState], {developmentMode: true}),
+                provideNgxsDataPlugin(),
             ],
         });
 
@@ -209,7 +209,7 @@ describe('[TEST]: Utils', () => {
                 getSelectorOptions(
                     localOptions?: SharedSelectorOptions,
                 ): SharedSelectorOptions {
-                    return localOptions;
+                    return localOptions!;
                 },
                 getStateGetter(key: any): (state: any) => any {
                     // selector

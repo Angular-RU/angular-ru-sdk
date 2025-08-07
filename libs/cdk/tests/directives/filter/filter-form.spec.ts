@@ -1,8 +1,9 @@
-import {ChangeDetectionStrategy, Component, DebugElement} from '@angular/core';
+import {ChangeDetectionStrategy, Component, DebugElement, inject} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatInput} from '@angular/material/input';
 import {By} from '@angular/platform-browser';
-import {InputFilterModule} from '@angular-ru/cdk/directives';
+import {InputFilter} from '@angular-ru/cdk/directives';
 import {Nullable} from '@angular-ru/cdk/typings';
 
 describe('[TEST]: inputFilter Input', function () {
@@ -13,6 +14,7 @@ describe('[TEST]: inputFilter Input', function () {
 
     @Component({
         selector: 'test',
+        imports: [FormsModule, InputFilter, MatInput, ReactiveFormsModule],
         template: `
             <div [formGroup]="form">
                 <input
@@ -34,17 +36,16 @@ describe('[TEST]: inputFilter Input', function () {
         changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class TestComponent {
+        private readonly fb = inject(FormBuilder);
+
         public form = this.fb.group({value: 'aaaKKK'});
         public characters = ['a', 'b', 'c'];
         public name = 'aaaKKK';
-
-        constructor(private readonly fb: FormBuilder) {}
     }
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [ReactiveFormsModule, InputFilterModule, FormsModule],
-            declarations: [TestComponent],
+            imports: [TestComponent],
         }).compileComponents();
 
         fixture = TestBed.createComponent(TestComponent);
@@ -102,6 +103,7 @@ describe('[TEST]: inputFilter Input', function () {
         debugElement2?.triggerEventHandler('input', {
             target: debugElement2?.nativeElement,
         });
+
         expect(count).toBe(1);
     });
 });

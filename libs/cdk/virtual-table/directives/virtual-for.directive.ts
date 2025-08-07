@@ -1,7 +1,9 @@
 import {
     Directive,
+    effect,
     EmbeddedViewRef,
-    Input,
+    inject,
+    input,
     NgZone,
     OnDestroy,
     TemplateRef,
@@ -17,42 +19,52 @@ import {
 } from '../interfaces/table-builder.external';
 
 @Directive({selector: '[virtualFor][virtualForOf]'})
-export class VirtualForDirective<T> implements OnDestroy {
+export class VirtualFor<T> implements OnDestroy {
+    private readonly view = inject(ViewContainerRef);
+    private readonly template = inject<TemplateRef<VirtualContext<T>>>(TemplateRef);
+    private readonly ngZone = inject(NgZone);
+
     private readonly cache = new Map<number, InternalVirtualRef<T>>();
     private _source: T[] = [];
     private _indexes: VirtualIndex[] = [];
     private removeFrameId?: number;
     private initFrameId?: number;
     private dirty = false;
-    @Input()
-    public virtualForDiffIndexes?: Nullable<number[]>;
+    public readonly virtualForDiffIndexes = input<Nullable<number[]>>();
+    public readonly virtualForOriginSource = input<Nullable<T[]>>(this._source);
+    public readonly virtualForOf = input<Nullable<VirtualIndex[]>>(this._indexes);
 
-    constructor(
-        private readonly view: ViewContainerRef,
-        private readonly template: TemplateRef<VirtualContext<T>>,
-        private readonly ngZone: NgZone,
-    ) {}
-
-    @Input()
-    public set virtualForOriginSource(origin: Nullable<T[]>) {
-        if (this._source !== origin) {
-            this._source = origin ?? [];
-            this.dirty = true;
-        }
+    constructor() {
+        this.listenToIndexesChanges();
+        this.listenToOriginSourceChanges();
     }
 
-    @Input()
-    public set virtualForOf(indexes: Nullable<VirtualIndex[]>) {
-        this.ngZone.runOutsideAngular((): void => {
-            this.initFrameId = window.requestAnimationFrame((): void => {
-                if (isNil(this._source) || this._indexes === indexes) {
-                    return;
-                }
+    private listenToIndexesChanges() {
+        effect(() => {
+            const indexes = this.virtualForOf();
 
-                this._indexes = indexes ?? [];
-                this.removeOldNodes();
-                this.createNewNodes(this._indexes);
+            this.ngZone.runOutsideAngular((): void => {
+                this.initFrameId = window.requestAnimationFrame((): void => {
+                    if (isNil(this._source) || this._indexes === indexes) {
+                        return;
+                    }
+
+                    this._indexes = indexes ?? [];
+                    this.removeOldNodes();
+                    this.createNewNodes(this._indexes);
+                });
             });
+        });
+    }
+
+    private listenToOriginSourceChanges() {
+        effect(() => {
+            const source = this.virtualForOriginSource();
+
+            if (this._source !== source) {
+                this._source = source ?? [];
+                this.dirty = true;
+            }
         });
     }
 
@@ -112,7 +124,7 @@ export class VirtualForDirective<T> implements OnDestroy {
             return;
         }
 
-        for (const index of this.virtualForDiffIndexes ?? []) {
+        for (const index of this.virtualForDiffIndexes() ?? []) {
             this.removeFrameId = window.requestAnimationFrame((): void =>
                 this.removeEmbeddedViewByIndex(index),
             );

@@ -1,13 +1,15 @@
 import {HttpClient} from '@angular/common/http';
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 
 import {PersonModel} from './person-model';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+})
 export class PersonService {
-    constructor(private readonly httpService: HttpClient) {}
+    private readonly httpService = inject(HttpClient);
 
     public fetchAll(): Observable<PersonModel> {
         return this.httpService

@@ -1,19 +1,26 @@
+import {CurrencyPipe} from '@angular/common';
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    inject,
     OnInit,
     ViewEncapsulation,
 } from '@angular/core';
+import {MatCheckbox} from '@angular/material/checkbox';
+import {MatTab, MatTabGroup} from '@angular/material/tabs';
+import {MatToolbar} from '@angular/material/toolbar';
 import {Nullable, PlainObject} from '@angular-ru/cdk/typings';
-import {TableUpdateSchema} from '@angular-ru/cdk/virtual-table';
+import type {TableUpdateSchema} from '@angular-ru/cdk/virtual-table';
+import {VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 import {MocksGenerator} from '../../mocks-generator';
 
 @Component({
     selector: 'sample-eleven',
+    imports: [CurrencyPipe, MatCheckbox, MatTab, MatTabGroup, MatToolbar, VirtualTable],
     templateUrl: './sample-eleven.component.html',
     styles: [
         `
@@ -39,7 +46,9 @@ import {MocksGenerator} from '../../mocks-generator';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SampleElevenComponent implements OnInit, AfterViewInit {
+export default class SampleElevenComponent implements OnInit, AfterViewInit {
+    private readonly cd = inject(ChangeDetectorRef);
+
     public data: PlainObject[] = [];
 
     public licences: PlainObject[] = [
@@ -64,8 +73,6 @@ export class SampleElevenComponent implements OnInit, AfterViewInit {
             price: 199,
         },
     ];
-
-    constructor(private readonly cd: ChangeDetectorRef) {}
 
     public ngOnInit(): void {
         const rows = 50;

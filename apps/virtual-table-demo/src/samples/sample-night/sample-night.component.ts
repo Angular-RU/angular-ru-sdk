@@ -1,14 +1,23 @@
+import {KeyValuePipe} from '@angular/common';
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    Injector,
+    inject,
     NgZone,
     OnInit,
 } from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {MatButton} from '@angular/material/button';
+import {MatCheckbox} from '@angular/material/checkbox';
 import {MatDialog} from '@angular/material/dialog';
+import {MatIcon} from '@angular/material/icon';
+import {MatFormField, MatInput, MatLabel, MatSuffix} from '@angular/material/input';
+import {MatOption, MatSelect} from '@angular/material/select';
+import {MatToolbar} from '@angular/material/toolbar';
 import {PlainObject} from '@angular-ru/cdk/typings';
+import {VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 import {MocksGenerator} from '../../mocks-generator';
@@ -16,23 +25,32 @@ import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
 
 @Component({
     selector: 'sample-night',
+    imports: [
+        FormsModule,
+        KeyValuePipe,
+        MatButton,
+        MatCheckbox,
+        MatFormField,
+        MatIcon,
+        MatInput,
+        MatLabel,
+        MatOption,
+        MatSelect,
+        MatSuffix,
+        MatToolbar,
+        VirtualTable,
+    ],
     templateUrl: './sample-night.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SampleNightComponent implements OnInit, AfterViewInit {
-    private readonly ngZone: NgZone;
+export default class SampleNightComponent implements OnInit, AfterViewInit {
+    private readonly cd = inject(ChangeDetectorRef);
+
+    private readonly ngZone = inject(NgZone);
     public dataFirst: PlainObject[] = [];
     public dataSecond: PlainObject[] = [];
     public nativeScrollbar = false;
-    public readonly dialog: MatDialog;
-
-    constructor(
-        private readonly cd: ChangeDetectorRef,
-        injector: Injector,
-    ) {
-        this.dialog = injector.get<MatDialog>(MatDialog);
-        this.ngZone = injector.get<NgZone>(NgZone);
-    }
+    public readonly dialog = inject(MatDialog);
 
     public ngOnInit(): void {
         const rows1 = 11;
@@ -99,8 +117,6 @@ export class SampleNightComponent implements OnInit, AfterViewInit {
 
                     `,
             },
-            height: '750px',
-            width: '700px',
         });
     }
 }

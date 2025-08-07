@@ -6,57 +6,58 @@
     "tags": ["apps"],
     "targets": {
         "build": {
-            "executor": "@angular-devkit/build-angular:browser",
+            "executor": "@angular/build:application",
             "options": {
-                "outputPath": "dist/ngxs-demo",
-                "tsConfig": "apps/ngxs-demo/tsconfig.app.json",
-                "main": "apps/ngxs-demo/main.ts",
+                "outputPath": {
+                    "base": "dist/ngxs-demo",
+                    "browser": ""
+                },
                 "index": "apps/ngxs-demo/index.html",
+                "browser": "apps/ngxs-demo/main.ts",
+                "tsConfig": "apps/ngxs-demo/tsconfig.app.json",
+                "inlineStyleLanguage": "scss",
                 "assets": ["apps/ngxs-demo/assets"],
-                "polyfills": "apps/ngxs-demo/polyfills.ts",
                 "styles": [".global/integration-app.style.scss", "apps/ngxs-demo/styles.scss"],
-                "aot": false,
-                "vendorChunk": true,
-                "extractLicenses": false,
-                "buildOptimizer": false,
-                "sourceMap": true,
-                "optimization": false,
-                "namedChunks": true
+                "scripts": [],
+                "stylePreprocessorOptions": {
+                    "includePaths": ["./src"],
+                    "sass": {
+                        "silenceDeprecations": ["import"]
+                    }
+                }
             },
             "configurations": {
                 "production": {
+                    "budgets": [
+                        {
+                            "type": "initial",
+                            "maximumWarning": "1mb",
+                            "maximumError": "2mb"
+                        },
+                        {
+                            "type": "anyComponentStyle",
+                            "maximumWarning": "6kb"
+                        }
+                    ],
+                    "outputHashing": "all",
                     "fileReplacements": [
                         {
                             "replace": "apps/ngxs-demo/environments/environment.ts",
                             "with": "apps/ngxs-demo/environments/environment.prod.ts"
                         }
-                    ],
-                    "optimization": true,
-                    "outputHashing": "all",
-                    "sourceMap": false,
-                    "namedChunks": false,
-                    "aot": true,
-                    "extractLicenses": true,
-                    "buildOptimizer": true
+                    ]
                 },
                 "development": {
-                    "fileReplacements": [
-                        {
-                            "replace": "apps/flex-layout-demo/environments/environment.ts",
-                            "with": "apps/flex-layout-demo/environments/environment.prod.ts"
-                        }
-                    ],
-                    "optimization": false
+                    "optimization": false,
+                    "extractLicenses": false,
+                    "sourceMap": true
                 }
             },
             "defaultConfiguration": "production",
-            "outputs": ["{projectRoot}/dist/ngxs-demo"]
+            "outputs": ["{options.outputPath}"]
         },
         "serve": {
-            "executor": "@angular-devkit/build-angular:dev-server",
-            "options": {
-                "buildTarget": "ngxs-demo:build"
-            },
+            "executor": "@angular/build:dev-server",
             "configurations": {
                 "production": {
                     "buildTarget": "ngxs-demo:build:production"

@@ -6,7 +6,7 @@ export function AttributeBoolean(): PropertyDecorator {
     return function (
         prototype: PlainObject,
         key: string | symbol,
-    ): PropertyDescriptor & ThisType<any> {
+    ): PropertyDescriptor & Record<symbol, boolean> {
         const descriptor: Nullable<PropertyDescriptor> = Object.getOwnPropertyDescriptor(
             prototype,
             key,
@@ -23,7 +23,7 @@ export function AttributeBoolean(): PropertyDecorator {
                 // eslint-disable-next-line @typescript-eslint/unbound-method
                 return isNotNil(descriptor?.get)
                     ? descriptor?.get.call(this)
-                    : this[uniqueRefKey] ?? false;
+                    : (this[uniqueRefKey] ?? false);
             },
         };
     };

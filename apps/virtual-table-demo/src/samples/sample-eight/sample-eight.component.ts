@@ -1,14 +1,21 @@
+import {CurrencyPipe} from '@angular/common';
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    inject,
     NgZone,
     OnDestroy,
     OnInit,
 } from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {MatCheckbox} from '@angular/material/checkbox';
+import {MatFormField, MatInput} from '@angular/material/input';
+import {MatToolbar} from '@angular/material/toolbar';
 import {Nullable, PlainObject} from '@angular-ru/cdk/typings';
 import {detectChanges} from '@angular-ru/cdk/utils';
+import {VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 
@@ -62,8 +69,16 @@ function replaceAt(array: any[], index: number, value: any): any[] {
 
 @Component({
     selector: 'sample-eight',
+    imports: [
+        CurrencyPipe,
+        FormsModule,
+        MatCheckbox,
+        MatFormField,
+        MatInput,
+        MatToolbar,
+        VirtualTable,
+    ],
     templateUrl: './sample-eight.component.html',
-    // eslint-disable-next-line @angular-eslint/component-max-inline-declarations
     styles: [
         `
             .cost-disable {
@@ -75,16 +90,14 @@ function replaceAt(array: any[], index: number, value: any): any[] {
     ],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
+export default class SampleEightComponent implements OnInit, AfterViewInit, OnDestroy {
+    private readonly cd = inject(ChangeDetectorRef);
+    private readonly ngZone = inject(NgZone);
+
     private idInterval: Nullable<number> = null;
     private timeout: Nullable<number> = null;
     public data: PlainObject[] = [];
     public regenerate = false;
-
-    constructor(
-        private readonly cd: ChangeDetectorRef,
-        private readonly ngZone: NgZone,
-    ) {}
 
     public ngOnInit(): void {
         this.updateTable();

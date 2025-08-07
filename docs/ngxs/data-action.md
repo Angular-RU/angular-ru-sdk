@@ -514,7 +514,7 @@ export class PersonState extends NgxsImmutableDataRepository<PersonModel> {
     super();
   }
 
-  // Note: Also can be configured globally by providing custom NGXS_DATA_CONFIG
+  // Note: Also can be configured globally using provideNgxsDataPlugin({subscribeRequired: false})
   @DataAction({subscribeRequired: false})
   public getContent(): Observable<PersonModel> {
     return this.personService.fetchAll().pipe(tap((content: PersonModel): void => this.setState(content)));

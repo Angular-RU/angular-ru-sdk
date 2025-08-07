@@ -11,7 +11,7 @@
 
 <h3>CountState</h3>
 
-PS: CountSubState will be persistence in sessionStorage
+PS: CountSubState will be persisted in sessionStorage
 <br />
 
 <br />
@@ -29,10 +29,30 @@ counter.state$ = {{ counter.state$ | async | json }}
 <br />
 <b class="title">Actions:</b>
 
-<button (click)="counter.increment()">increment</button>
-<button (click)="counter.countSubIncrement()">countSubIncrement</button>
-<button (click)="counter.decrement()">decrement</button>
-<button (click)="counter.reset()">reset</button>
+<button
+    type="button"
+    (click)="counter.increment()"
+>
+    increment
+</button>
+<button
+    type="button"
+    (click)="counter.countSubIncrement()"
+>
+    countSubIncrement
+</button>
+<button
+    type="button"
+    (click)="counter.decrement()"
+>
+    decrement
+</button>
+<button
+    type="button"
+    (click)="counter.reset()"
+>
+    reset
+</button>
 
 <br />
 <br />

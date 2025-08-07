@@ -1,12 +1,13 @@
+import type {Signal} from '@angular/core';
 import {
     ApplicationRef,
     ChangeDetectorRef,
     Directive,
     ElementRef,
-    Injector,
+    inject,
     NgZone,
     OnDestroy,
-    ViewChild,
+    viewChild,
 } from '@angular/core';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {detectChanges, getBodyRect, isNotNil, isTrue} from '@angular-ru/cdk/utils';
@@ -24,34 +25,26 @@ export interface PositionState {
 }
 
 @Directive()
-export abstract class AbstractModalViewLayerDirective<T, K extends PositionState>
+export abstract class AbstractModalViewLayer<T, K extends PositionState>
     implements OnDestroy
 {
-    public abstract width: Nullable<number>;
-    public abstract height: Nullable<number>;
-    public abstract maxHeight: Nullable<number>;
-    @ViewChild('menu', {static: false})
-    protected menu!: ElementRef<HTMLDivElement>;
+    protected readonly cd = inject(ChangeDetectorRef);
+
+    public abstract width: Signal<Nullable<number>>;
+    public abstract height: Signal<Nullable<number>>;
+    public abstract maxHeight: Signal<Nullable<number>>;
+
+    protected readonly menu = viewChild<ElementRef<HTMLDivElement>>('menu');
 
     protected subscription: Nullable<Subscription> = null;
-    protected readonly app: ApplicationRef;
-    protected readonly filterable: FilterableService<T>;
-    protected readonly ngZone: NgZone;
-    protected readonly contextMenu: ContextMenuService<T>;
+    protected readonly app = inject(ApplicationRef);
+    protected readonly filterable = inject(FilterableService<T>);
+    protected readonly ngZone = inject(NgZone);
+    protected readonly contextMenu = inject(ContextMenuService<T>);
     public isViewed = false;
     public isRendered = false;
     public isShowed = false;
     public minHeight: Nullable<number> = null;
-
-    constructor(
-        protected readonly cd: ChangeDetectorRef,
-        injector: Injector,
-    ) {
-        this.app = injector.get<ApplicationRef>(ApplicationRef);
-        this.filterable = injector.get<FilterableService<T>>(FilterableService);
-        this.ngZone = injector.get<NgZone>(NgZone);
-        this.contextMenu = injector.get<ContextMenuService<T>>(ContextMenuService);
-    }
 
     public get left(): number {
         return this.state.position?.left ?? 0;
@@ -63,7 +56,7 @@ export abstract class AbstractModalViewLayerDirective<T, K extends PositionState
 
     public get overflowX(): number {
         const overflowX: number =
-            (this.width ?? 0) + this.left - (getBodyRect()?.width ?? 0);
+            (this.width() ?? 0) + this.left - (getBodyRect()?.width ?? 0);
 
         return overflowX > 0 ? overflowX + SCROLLBAR_SIZE : 0;
     }
@@ -79,22 +72,24 @@ export abstract class AbstractModalViewLayerDirective<T, K extends PositionState
     }
 
     public get calculatedHeight(): number {
-        let height: Nullable<number>;
+        let calculatedHeight: Nullable<number>;
 
         try {
-            if (isNotNil(this.height)) {
-                height =
-                    this.menu.nativeElement.scrollHeight > this.height
-                        ? this.menu.nativeElement.offsetHeight
-                        : this.height;
+            const height = this.height();
+
+            if (isNotNil(height)) {
+                calculatedHeight =
+                    (this.menu()?.nativeElement.scrollHeight ?? 0) > height
+                        ? this.menu()?.nativeElement.offsetHeight
+                        : height;
             } else {
-                height = this.menu.nativeElement.scrollHeight;
+                calculatedHeight = this.menu()?.nativeElement.scrollHeight;
             }
-        } catch (error: unknown) {
-            height = this.height;
+        } catch {
+            calculatedHeight = this.height();
         }
 
-        return height!;
+        return calculatedHeight!;
     }
 
     public abstract get state(): Partial<K>;

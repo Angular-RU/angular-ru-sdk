@@ -3,22 +3,28 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    inject,
     OnInit,
 } from '@angular/core';
+import {MatButton} from '@angular/material/button';
+import {MatTab, MatTabContent, MatTabGroup} from '@angular/material/tabs';
+import {MatToolbar} from '@angular/material/toolbar';
 import {PlainObject} from '@angular-ru/cdk/typings';
+import {VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 import {MocksGenerator} from '../../mocks-generator';
 
 @Component({
     selector: 'sample-seven',
+    imports: [MatButton, MatTab, MatTabContent, MatTabGroup, MatToolbar, VirtualTable],
     templateUrl: './sample-seven.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SampleSevenComponent implements OnInit, AfterViewInit {
-    public data: PlainObject[] = [];
+export default class SampleSevenComponent implements OnInit, AfterViewInit {
+    private readonly cd = inject(ChangeDetectorRef);
 
-    constructor(private readonly cd: ChangeDetectorRef) {}
+    public data: PlainObject[] = [];
 
     public ngOnInit(): void {
         const rowsNumber = 10000;

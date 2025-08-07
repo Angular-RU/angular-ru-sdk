@@ -1,4 +1,4 @@
-import {Inject, Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {AbstractControl} from '@angular/forms';
 import {DateIntervalDescriptor} from '@angular-ru/cdk/typings';
 
@@ -12,7 +12,7 @@ const WEEK_LENGTH = 7;
 
 @Injectable()
 export class DateSuggestionCalendarWeekStrategy implements DateSuggestionStrategy {
-    constructor(@Inject(FIRST_DAY_OF_WEEK) private readonly firstDayOfWeek: DayOfWeek) {}
+    private readonly firstDayOfWeek = inject<DayOfWeek>(FIRST_DAY_OF_WEEK);
 
     public updateIntervalFor(
         control: AbstractControl,

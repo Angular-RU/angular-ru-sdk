@@ -1,14 +1,16 @@
 /* eslint-disable @angular-eslint/no-input-rename */
+import {NgClass, NgStyle, NgTemplateOutlet, TitleCasePipe} from '@angular/common';
 import {
     ChangeDetectionStrategy,
     Component,
-    EventEmitter,
     HostListener,
-    Input,
-    Output,
+    inject,
+    input,
+    output,
     ViewEncapsulation,
 } from '@angular/core';
 import {fadeInLinearAnimation} from '@angular-ru/cdk/animations';
+import {IsFilledPipe} from '@angular-ru/cdk/pipes';
 import {Nullable, PlainObjectOf, SortOrderType} from '@angular-ru/cdk/typings';
 import {isNotNil, isTrue} from '@angular-ru/cdk/utils';
 
@@ -19,50 +21,51 @@ import {OVERLOAD_WIDTH_TABLE_HEAD_CELL} from '../../table-builder.properties';
 
 @Component({
     selector: 'table-thead',
+    imports: [IsFilledPipe, NgClass, NgStyle, NgTemplateOutlet, TitleCasePipe],
     templateUrl: './table-thead.component.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     animations: [fadeInLinearAnimation],
 })
-export class TableTheadComponent<T> {
-    @Input('column-width')
-    public columnWidth = 0;
+export class TableThead<T> {
+    protected readonly filterable = inject<FilterableService<T>>(FilterableService);
 
-    @Input('head-height')
-    public headHeight: Nullable<number | string> = null;
+    public readonly columnWidth = input(0, {alias: 'column-width'});
 
-    @Input('sortable-definition')
-    public sortableDefinition: PlainObjectOf<SortOrderType> = {};
+    public readonly headHeight = input<Nullable<number | string>>(null, {
+        alias: 'head-height',
+    });
 
-    @Input('sortable-position')
-    public positionMap: PlainObjectOf<number> = {};
+    public readonly sortableDefinition = input<PlainObjectOf<SortOrderType>>(
+        {},
+        {alias: 'sortable-definition'},
+    );
 
-    @Input('sortable-count')
-    public sortableCount = 0;
+    public readonly positionMap = input<PlainObjectOf<number>>(
+        {},
+        {alias: 'sortable-position'},
+    );
 
-    @Input('filterable-definition')
-    public filterableDefinition: PlainObjectOf<string> | ReadonlyMap<unknown, unknown> =
-        {};
+    public readonly sortableCount = input(0, {alias: 'sortable-count'});
 
-    @Input('client-row-height')
-    public clientRowHeight: Nullable<number> = null;
+    public readonly filterableDefinition = input<
+        PlainObjectOf<string> | ReadonlyMap<unknown, unknown>
+    >({}, {alias: 'filterable-definition'});
 
-    @Input('column-schema')
-    public columnSchema: Nullable<ColumnsSchema> = null;
+    public readonly clientRowHeight = input<Nullable<number>>(null, {
+        alias: 'client-row-height',
+    });
 
-    @Output()
-    public readonly resizing = new EventEmitter<ResizeEvent>();
+    public readonly columnSchema = input<Nullable<ColumnsSchema>>(null, {
+        alias: 'column-schema',
+    });
 
-    @Output()
-    public readonly sortByKey = new EventEmitter<string>();
-
-    @Output()
-    public readonly openContextMenu = new EventEmitter<MouseEvent>();
+    public readonly resizing = output<ResizeEvent>();
+    public readonly sortByKey = output<string>();
+    public readonly openContextMenu = output<MouseEvent>();
 
     public orderType: typeof SortOrderType = SortOrderType;
     public limit: number = OVERLOAD_WIDTH_TABLE_HEAD_CELL;
-
-    constructor(protected readonly filterable: FilterableService<T>) {}
 
     @HostListener('contextmenu', ['$event'])
     public openContextMenuHandler($event: MouseEvent): void {
@@ -70,11 +73,12 @@ export class TableTheadComponent<T> {
     }
 
     public sortIfEnabled(): void {
-        const key: Nullable<string> = this.columnSchema?.key;
+        const columnSchema = this.columnSchema();
+        const key: Nullable<string> = columnSchema?.key;
 
         if (isNotNil(key)) {
-            const sortIsEnabled: boolean = isTrue(this.columnSchema?.sortable);
-            const sortIsActive: boolean = isNotNil(this.sortableDefinition[key]);
+            const sortIsEnabled: boolean = isTrue(columnSchema?.sortable);
+            const sortIsActive: boolean = isNotNil(this.sortableDefinition()[key]);
 
             if (sortIsEnabled || sortIsActive) {
                 this.sortByKey.emit(key);

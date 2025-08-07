@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
-import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
 import {DataAction, Named, Payload, StateRepository} from '@angular-ru/ngxs/decorators';
 import {getRepository} from '@angular-ru/ngxs/internals';
 import {NgxsImmutableDataRepository} from '@angular-ru/ngxs/repositories';
 import {NGXS_DATA_EXCEPTIONS} from '@angular-ru/ngxs/tokens';
 import {NgxsRepositoryMeta} from '@angular-ru/ngxs/typings';
-import {NgxsModule, State} from '@ngxs/store';
+import {provideStore, State} from '@ngxs/store';
 
 describe('[TEST]: Argument decorators', () => {
     it('should be correct ensure meta from A', () => {
@@ -16,9 +16,9 @@ describe('[TEST]: Argument decorators', () => {
         class A extends NgxsImmutableDataRepository<string> {}
 
         TestBed.configureTestingModule({
-            imports: [
-                NgxsModule.forRoot([A], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            providers: [
+                provideStore([A], {developmentMode: true}),
+                provideNgxsDataPlugin(),
             ],
         });
 
@@ -53,9 +53,9 @@ describe('[TEST]: Argument decorators', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [
-                NgxsModule.forRoot([B], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            providers: [
+                provideStore([B], {developmentMode: true}),
+                provideNgxsDataPlugin(),
             ],
         });
 
@@ -90,9 +90,9 @@ describe('[TEST]: Argument decorators', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [
-                NgxsModule.forRoot([C], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            providers: [
+                provideStore([C], {developmentMode: true}),
+                provideNgxsDataPlugin(),
             ],
         });
 
@@ -131,9 +131,9 @@ describe('[TEST]: Argument decorators', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [
-                NgxsModule.forRoot([D], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            providers: [
+                provideStore([D], {developmentMode: true}),
+                provideNgxsDataPlugin(),
             ],
         });
 

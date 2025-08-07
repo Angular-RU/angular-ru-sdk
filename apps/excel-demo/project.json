@@ -6,58 +6,58 @@
     "tags": ["apps"],
     "targets": {
         "build": {
-            "executor": "@angular-devkit/build-angular:browser",
+            "executor": "@angular/build:application",
             "options": {
-                "outputPath": "dist/excel-demo",
-                "tsConfig": "apps/excel-demo/tsconfig.app.json",
-                "main": "apps/excel-demo/main.ts",
+                "outputPath": {
+                    "base": "dist/excel-demo",
+                    "browser": ""
+                },
                 "index": "apps/excel-demo/index.html",
+                "browser": "apps/excel-demo/main.ts",
+                "tsConfig": "apps/excel-demo/tsconfig.app.json",
+                "inlineStyleLanguage": "scss",
                 "assets": ["apps/excel-demo/assets"],
-                "polyfills": "apps/excel-demo/polyfills.ts",
                 "styles": [".global/integration-app.style.scss", "apps/excel-demo/styles.css"],
-                "aot": false,
-                "vendorChunk": true,
-                "extractLicenses": false,
-                "buildOptimizer": false,
-                "sourceMap": true,
-                "optimization": false,
-                "namedChunks": true
+                "scripts": [],
+                "stylePreprocessorOptions": {
+                    "includePaths": ["./src"],
+                    "sass": {
+                        "silenceDeprecations": ["import"]
+                    }
+                }
             },
             "configurations": {
                 "production": {
+                    "budgets": [
+                        {
+                            "type": "initial",
+                            "maximumWarning": "1mb",
+                            "maximumError": "2mb"
+                        },
+                        {
+                            "type": "anyComponentStyle",
+                            "maximumWarning": "6kb"
+                        }
+                    ],
+                    "outputHashing": "all",
                     "fileReplacements": [
                         {
                             "replace": "apps/excel-demo/environments/environment.ts",
                             "with": "apps/excel-demo/environments/environment.prod.ts"
                         }
-                    ],
-                    "optimization": true,
-                    "outputHashing": "all",
-                    "sourceMap": false,
-                    "namedChunks": false,
-                    "aot": true,
-                    "extractLicenses": true,
-                    "buildOptimizer": true
+                    ]
                 },
                 "development": {
-                    "fileReplacements": [
-                        {
-                            "replace": "apps/excel-demo/environments/environment.ts",
-                            "with": "apps/excel-demo/environments/environment.prod.ts"
-                        }
-                    ],
                     "optimization": false,
-                    "aot": true
+                    "extractLicenses": false,
+                    "sourceMap": true
                 }
             },
             "defaultConfiguration": "production",
-            "outputs": ["{projectRoot}/dist/excel-demo"]
+            "outputs": ["{options.outputPath}"]
         },
         "serve": {
-            "executor": "@angular-devkit/build-angular:dev-server",
-            "options": {
-                "buildTarget": "excel-demo:build"
-            },
+            "executor": "@angular/build:dev-server",
             "configurations": {
                 "production": {
                     "buildTarget": "excel-demo:build:production"

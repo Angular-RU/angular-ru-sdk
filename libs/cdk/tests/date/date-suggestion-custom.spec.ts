@@ -2,9 +2,9 @@ import {TestBed} from '@angular/core/testing';
 import {FormControl, FormGroup} from '@angular/forms';
 import {
     DateSuggestionComposer,
-    DateSuggestionModule,
     DefaultDateIntervalSuggestion,
     endOfDay,
+    provideDateSuggestion,
     shiftDate,
     startOfDay,
 } from '@angular-ru/cdk/date';
@@ -26,7 +26,7 @@ describe('[TEST]: Trim Input', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [DateSuggestionModule.forRoot(EXTENDED_STRATEGY_MAP)],
+            providers: [provideDateSuggestion(EXTENDED_STRATEGY_MAP)],
         }).compileComponents();
 
         composer = TestBed.inject(DateSuggestionComposer);
@@ -46,6 +46,7 @@ describe('[TEST]: Trim Input', () => {
             composer
                 .getStrategy(DefaultDateIntervalSuggestion.LAST_3_DAYS)
                 .updateIntervalFor(form, descriptor);
+
             expect(form.getRawValue()).toEqual({
                 dateFrom: startOfDay(shiftDate({days: -2})),
                 dateTo: endOfDay(),
@@ -58,6 +59,7 @@ describe('[TEST]: Trim Input', () => {
             composer
                 .getStrategy(SuggestionAddition.TWO_DAYS_AROUND_START)
                 .updateIntervalFor(form, descriptor);
+
             expect(form.getRawValue()).toEqual({
                 dateFrom: startOfDay(shiftDate({days: -2}, dateFrom)),
                 dateTo: endOfDay(shiftDate({days: 2}, dateFrom)),

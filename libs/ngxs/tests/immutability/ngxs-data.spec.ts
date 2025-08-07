@@ -1,11 +1,12 @@
-import {Component, Injectable} from '@angular/core';
+import {AsyncPipe, JsonPipe} from '@angular/common';
+import {ChangeDetectionStrategy, Component, inject, Injectable} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {Immutable} from '@angular-ru/cdk/typings';
-import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
 import {StateRepository} from '@angular-ru/ngxs/decorators';
 import {NgxsDataRepository} from '@angular-ru/ngxs/repositories';
 import {NGXS_DATA_EXCEPTIONS} from '@angular-ru/ngxs/tokens';
-import {Action, NgxsModule, State, StateContext, Store} from '@ngxs/store';
+import {Action, provideStore, State, StateContext, Store} from '@ngxs/store';
 
 describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
     it('should be throw exception when forgot add StateRepository', () => {
@@ -25,9 +26,9 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
             }
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([MyAppState], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot(),
+                providers: [
+                    provideStore([MyAppState], {developmentMode: true}),
+                    provideNgxsDataPlugin(),
                 ],
             });
 
@@ -57,9 +58,9 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
             }
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([MyState], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot(),
+                providers: [
+                    provideStore([MyState], {developmentMode: true}),
+                    provideNgxsDataPlugin(),
                 ],
             });
 
@@ -68,7 +69,7 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
             message = (error as Error).message;
         }
 
-        expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_MODULE_EXCEPTION);
+        expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_PROVIDER_EXCEPTION);
     });
 
     it('should be return null from state', () => {
@@ -90,9 +91,9 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [
-                NgxsModule.forRoot([MyDataState], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            providers: [
+                provideStore([MyDataState], {developmentMode: true}),
+                provideNgxsDataPlugin(),
             ],
         });
 
@@ -103,6 +104,7 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
         expect(state.getState()).toBeNull();
 
         state.setState({a: 5});
+
         expect(state.getState()).toEqual({a: 5});
 
         const immutable: Immutable<CustomType> = {a: 10};
@@ -136,9 +138,9 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
         class MyDataArrState extends NgxsDataRepository<StateModel[]> {}
 
         TestBed.configureTestingModule({
-            imports: [
-                NgxsModule.forRoot([MyDataArrState], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            providers: [
+                provideStore([MyDataArrState], {developmentMode: true}),
+                provideNgxsDataPlugin(),
             ],
         });
 
@@ -158,7 +160,6 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
             message = (error as Error).message;
         }
 
-        // eslint-disable-next-line @typescript-eslint/quotes
         expect(
             "Cannot assign to read only property 'a' of object '[object Object]'",
         ).toEqual(message);
@@ -177,7 +178,6 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
             message = (error as Error).message;
         }
 
-        // eslint-disable-next-line @typescript-eslint/quotes
         expect(
             "Cannot assign to read only property 'b' of object '[object Object]'",
         ).toEqual(message);
@@ -199,9 +199,9 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
         class MyDateState extends NgxsDataRepository<DateModel> {}
 
         TestBed.configureTestingModule({
-            imports: [
-                NgxsModule.forRoot([MyDateState], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            providers: [
+                provideStore([MyDateState], {developmentMode: true}),
+                provideNgxsDataPlugin(),
             ],
         });
 
@@ -237,16 +237,21 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
         @Injectable()
         class StateDataListState extends NgxsDataRepository<ListModel[]> {}
 
-        @Component({selector: 'app', template: '{{ app.state$ | async | json }}'})
+        @Component({
+            selector: 'app',
+            imports: [AsyncPipe, JsonPipe],
+            template: '{{ app.state$ | async | json }}',
+            changeDetection: ChangeDetectionStrategy.OnPush,
+        })
         class AppComponent {
-            constructor(public app: StateDataListState) {}
+            public app = inject(StateDataListState);
         }
 
         TestBed.configureTestingModule({
-            declarations: [AppComponent],
-            imports: [
-                NgxsModule.forRoot([StateDataListState], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            imports: [AppComponent],
+            providers: [
+                provideStore([StateDataListState], {developmentMode: true}),
+                provideNgxsDataPlugin(),
             ],
         }).compileComponents();
 
@@ -270,7 +275,6 @@ describe('[TEST]: Freeze states when extends NgxsDataRepository', () => {
             message = (error as Error).message;
         }
 
-        // eslint-disable-next-line @typescript-eslint/quotes
         expect(message).toBe(
             "Cannot assign to read only property '0' of object '[object Array]'",
         );
