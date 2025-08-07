@@ -184,23 +184,22 @@
               import &#123; Data &#125; from "./data.interface";
 
               &#64;Component(&#123;
-              selector: 'app',
-              templateUrl: './app.component.html'
-              &#123;)
+                  selector: 'app',
+                  templateUrl: './app.component.html'
+              &#125;)
               export class AppComponent &#123;
-              public data: Data[] = [ .. ];
-              constructor(private toast: ToastService) &#123;&#125;
+                  public data: Data[] = [ .. ];
 
-              public rowOnClick(events: TableEvent): void &#123;
-              this.toast.success('OnClick', events);
+                  constructor(private toast: ToastService) &#123;&#125;
+
+                  public rowOnClick(events: TableEvent): void &#123;
+                      this.toast.success('OnClick', events);
+                  &#125;
+
+                  public rowDblClick(events: TableEvent): void &#123;
+                      this.toast.success('DblClick', events);
+                  &#125;
               &#125;
-
-              public rowDblClick(events: TableEvent): void &#123;
-              this.toast.success('DblClick', events);
-              &#125;
-
-              &#123;
-
             </code></pre>
     </div>
 </div>
