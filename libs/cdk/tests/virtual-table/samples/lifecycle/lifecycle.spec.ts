@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, ElementRef, QueryList, SimpleChanges} from '@angular/core';
+import {ChangeDetectorRef, ElementRef, signal, SimpleChanges} from '@angular/core';
 import {SIGNAL} from '@angular/core/primitives/signals';
 import {fakeAsync, TestBed, tick} from '@angular/core/testing';
 import {provideNoopAnimations} from '@angular/platform-browser/animations';
@@ -90,11 +90,16 @@ describe('[TEST]: Lifecycle table', () => {
 
         Object.defineProperty(element, 'offsetHeight', {value: 900});
 
-        table.scrollContainer = {nativeElement: element};
+        jest.spyOn(table, 'scrollContainer').mockImplementation(() => ({
+            nativeElement: element,
+        }));
+
         table.primaryKey[SIGNAL].value = 'position';
         changes = {};
 
-        table.columnList = new QueryList<ElementRef<HTMLDivElement>>();
+        jest.spyOn(table, 'columnList').mockImplementation(
+            () => [] as ReadonlyArray<ElementRef<HTMLDivElement>>,
+        );
     });
 
     it('should be basic api', async () => {
@@ -223,9 +228,12 @@ describe('[TEST]: Lifecycle table', () => {
     }));
 
     it('should be correct template changes', fakeAsync(() => {
-        const templates = new QueryList<NgxColumn<PlainObject>>();
+        const columnTemplatesSignal = signal<ReadonlyArray<NgxColumn<PlainObject>>>([]);
 
-        table.columnTemplates = templates;
+        jest.spyOn(table, 'columnTemplates').mockImplementation(
+            columnTemplatesSignal.asReadonly(),
+        );
+
         table.source[SIGNAL].value = [];
 
         table.ngOnChanges(changes);
@@ -245,10 +253,10 @@ describe('[TEST]: Lifecycle table', () => {
         table.source[SIGNAL].value = deepClone(data);
         const column = TestBed.runInInjectionContext(() => new NgxColumn());
 
-        templates.reset([column]);
-        templates.notifyOnChanges();
+        columnTemplatesSignal.set([column]);
 
         tick(1000);
+        TestBed.tick();
 
         expect(table.isRendered).toBe(false);
         expect(table.modelColumnKeys).toEqual([]);
@@ -266,9 +274,12 @@ describe('[TEST]: Lifecycle table', () => {
     }));
 
     it('should be correct template changes with check renderCount', fakeAsync(() => {
-        const templates = new QueryList<NgxColumn<PlainObject>>();
+        const columnTemplatesSignal = signal<ReadonlyArray<NgxColumn<PlainObject>>>([]);
 
-        table.columnTemplates = templates;
+        jest.spyOn(table, 'columnTemplates').mockImplementation(
+            columnTemplatesSignal.asReadonly(),
+        );
+
         table.source[SIGNAL].value = deepClone(data);
 
         table.ngOnChanges(changes);
@@ -278,6 +289,7 @@ describe('[TEST]: Lifecycle table', () => {
         table.ngAfterViewChecked();
 
         tick(600);
+        TestBed.tick();
 
         expect(table.afterViewInitDone).toBe(false);
         expect(table.isRendered).toBe(true);
@@ -292,9 +304,8 @@ describe('[TEST]: Lifecycle table', () => {
         table.source[SIGNAL].value = deepClone(data);
         const column = TestBed.runInInjectionContext(() => new NgxColumn());
 
-        templates.reset([column]);
-
-        templates.notifyOnChanges();
+        columnTemplatesSignal.set([column]);
+        TestBed.tick();
 
         expect(table.isRendered).toBe(true);
         expect(table.modelColumnKeys).toEqual(['position', 'name', 'weight', 'symbol']);
@@ -308,21 +319,24 @@ describe('[TEST]: Lifecycle table', () => {
         const column1 = TestBed.runInInjectionContext(() => new NgxColumn());
         const column2 = TestBed.runInInjectionContext(() => new NgxColumn());
 
-        templates.reset([column1, column2]);
-        templates.notifyOnChanges();
+        columnTemplatesSignal.set([column1, column2]);
         table.ngAfterViewChecked();
 
         expect(table.afterViewInitDone).toBe(false);
 
         tick(1000);
+        TestBed.tick();
 
         expect(table.afterViewInitDone).toBe(true);
     }));
 
     it('should be correct template changes query list', fakeAsync(() => {
-        const templates = new QueryList<NgxColumn<PlainObject>>();
+        const columnTemplatesSignal = signal<ReadonlyArray<NgxColumn<PlainObject>>>([]);
 
-        table.columnTemplates = templates;
+        jest.spyOn(table, 'columnTemplates').mockImplementation(
+            columnTemplatesSignal.asReadonly(),
+        );
+
         table.source[SIGNAL].value = [];
 
         table.ngOnChanges(changes);
@@ -333,13 +347,13 @@ describe('[TEST]: Lifecycle table', () => {
 
         const column = TestBed.runInInjectionContext(() => new NgxColumn());
 
-        templates.reset([column]);
-        templates.notifyOnChanges();
+        columnTemplatesSignal.set([column]);
 
         table.source[SIGNAL].value = deepClone(data);
         table.ngOnChanges(changes);
 
         tick(1000);
+        TestBed.tick();
 
         expect(table.isRendered).toBe(false);
         expect(table.modelColumnKeys).toEqual(['position', 'name', 'weight', 'symbol']);
@@ -353,6 +367,7 @@ describe('[TEST]: Lifecycle table', () => {
         table.ngAfterViewChecked();
 
         tick(1000);
+        TestBed.tick();
 
         expect(table.isRendered).toBe(true);
         expect(table.modelColumnKeys).toEqual(['position', 'name', 'weight', 'symbol']);

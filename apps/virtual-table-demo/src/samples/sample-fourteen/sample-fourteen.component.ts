@@ -6,7 +6,7 @@ import {
     Component,
     inject,
     OnInit,
-    ViewChild,
+    viewChild,
     ViewEncapsulation,
 } from '@angular/core';
 import {FormsModule} from '@angular/forms';
@@ -71,8 +71,7 @@ export default class SampleFourteenComponent implements OnInit, AfterViewInit {
     public readonly dialog = inject(MatDialog);
     private readonly cd = inject(ChangeDetectorRef);
 
-    @ViewChild('table', {static: false})
-    public table!: TableBuilder<PlainObject>;
+    public readonly table = viewChild.required<TableBuilder<PlainObject>>('table');
 
     public data: PlainObject[] = [];
 
@@ -91,14 +90,14 @@ export default class SampleFourteenComponent implements OnInit, AfterViewInit {
     }
 
     public clearFilter(): void {
-        this.table.filterable.reset();
+        this.table().filterable.reset();
     }
 
     public filterFromFifth(): void {
-        this.table.filterable.setDefinition([
+        this.table().filterable.setDefinition([
             {key: 'id', type: TableFilterType.MORE_OR_EQUAL, value: 5},
         ]);
-        this.table.filter();
+        this.table().filter();
     }
 
     // eslint-disable-next-line max-lines-per-function

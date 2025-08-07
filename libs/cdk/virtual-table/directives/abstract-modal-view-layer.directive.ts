@@ -7,7 +7,7 @@ import {
     inject,
     NgZone,
     OnDestroy,
-    ViewChild,
+    viewChild,
 } from '@angular/core';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {detectChanges, getBodyRect, isNotNil, isTrue} from '@angular-ru/cdk/utils';
@@ -34,8 +34,7 @@ export abstract class AbstractModalViewLayer<T, K extends PositionState>
     public abstract height: Signal<Nullable<number>>;
     public abstract maxHeight: Signal<Nullable<number>>;
 
-    @ViewChild('menu', {static: false})
-    protected menu!: ElementRef<HTMLDivElement>;
+    protected readonly menu = viewChild<ElementRef<HTMLDivElement>>('menu');
 
     protected subscription: Nullable<Subscription> = null;
     protected readonly app = inject(ApplicationRef);
@@ -80,11 +79,11 @@ export abstract class AbstractModalViewLayer<T, K extends PositionState>
 
             if (isNotNil(height)) {
                 calculatedHeight =
-                    this.menu.nativeElement.scrollHeight > height
-                        ? this.menu.nativeElement.offsetHeight
+                    (this.menu()?.nativeElement.scrollHeight ?? 0) > height
+                        ? this.menu()?.nativeElement.offsetHeight
                         : height;
             } else {
-                calculatedHeight = this.menu.nativeElement.scrollHeight;
+                calculatedHeight = this.menu()?.nativeElement.scrollHeight;
             }
         } catch {
             calculatedHeight = this.height();

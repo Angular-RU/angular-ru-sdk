@@ -10,7 +10,7 @@ import {
     OnDestroy,
     OnInit,
     output,
-    ViewChild,
+    viewChild,
     ViewEncapsulation,
 } from '@angular/core';
 import {coerceBoolean} from '@angular-ru/cdk/coercion';
@@ -60,8 +60,7 @@ export class NgxContextMenuItem<T = any> implements OnInit, OnDestroy {
     // eslint-disable-next-line @angular-eslint/no-output-on-prefix
     public readonly onClick = output<ContextItemEvent>();
 
-    @ViewChild('item', {static: false})
-    public itemRef: Nullable<ElementRef<HTMLDivElement>> = null;
+    public readonly itemRef = viewChild<Nullable<ElementRef<HTMLDivElement>>>('item');
 
     public offsetX: Nullable<number> = null;
     public offsetY: Nullable<number> = null;
@@ -75,7 +74,7 @@ export class NgxContextMenuItem<T = any> implements OnInit, OnDestroy {
     }
 
     private get itemElement(): Partial<HTMLDivElement> {
-        return this.itemRef?.nativeElement ?? {};
+        return this.itemRef()?.nativeElement ?? {};
     }
 
     public ngOnInit(): void {
@@ -85,7 +84,6 @@ export class NgxContextMenuItem<T = any> implements OnInit, OnDestroy {
     }
 
     public ngOnDestroy(): void {
-        this.itemRef = null;
         this.destroy$.next();
         this.destroy$.complete();
     }

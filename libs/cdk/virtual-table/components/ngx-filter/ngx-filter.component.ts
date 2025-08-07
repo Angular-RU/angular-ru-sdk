@@ -2,7 +2,7 @@ import {NgStyle} from '@angular/common';
 import {
     ChangeDetectionStrategy,
     Component,
-    ContentChild,
+    contentChild,
     input,
     OnDestroy,
     OnInit,
@@ -42,8 +42,7 @@ export class NgxFilter<T>
     // eslint-disable-next-line @angular-eslint/no-input-rename
     public readonly maxHeight = input<Nullable<number>>(null, {alias: 'max-height'});
 
-    @ContentChild(NgxFilterDirective, {static: false})
-    public filter!: NgxFilterDirective;
+    public readonly filter = contentChild(NgxFilterDirective);
 
     public readonly leftX: number = FILTER_MIN_LEFT_X;
     public readonly topY: number = FILTER_MIN_TOP_Y;

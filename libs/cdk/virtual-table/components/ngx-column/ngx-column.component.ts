@@ -2,7 +2,7 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    ContentChild,
+    contentChild,
     input,
     ViewEncapsulation,
 } from '@angular/core';
@@ -57,11 +57,8 @@ export class NgxColumn<T> extends ColumnOptionsDirective {
 
     public readonly excelType = input<Nullable<ExcelType>>(null, {alias: 'excel-type'});
 
-    @ContentChild(TemplateHeadTh, {static: false})
-    public th!: TemplateHeadTh<T>;
-
-    @ContentChild(TemplateBodyTd, {static: false})
-    public td!: TemplateBodyTd<T>;
+    public th = contentChild<TemplateHeadTh<T>>(TemplateHeadTh);
+    public td = contentChild<TemplateBodyTd<T>>(TemplateBodyTd);
 
     public withKey(key: string): NgxColumn<T> {
         this.key[SIGNAL].value = key;

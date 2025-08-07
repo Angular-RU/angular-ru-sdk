@@ -6,6 +6,7 @@ import {
     AfterViewInit,
     ChangeDetectionStrategy,
     Component,
+    effect,
     ElementRef,
     HostListener,
     inject,
@@ -16,7 +17,7 @@ import {
     runInInjectionContext,
     SimpleChange,
     SimpleChanges,
-    ViewChild,
+    viewChild,
     ViewEncapsulation,
 } from '@angular/core';
 import {SIGNAL} from '@angular/core/primitives/signals';
@@ -126,14 +127,9 @@ export class TableBuilder<T>
     private frameCalculateViewportId: Nullable<number> = null;
     private selectionUpdateTaskId: Nullable<number> = null;
     private changesTimerId = 0;
-    @ViewChild('header', {static: false})
-    public headerRef!: ElementRef<HTMLDivElement>;
-
-    @ViewChild('footer', {static: false})
-    public footerRef!: ElementRef<HTMLDivElement>;
-
-    @ViewChild(AutoHeight, {static: false})
-    public readonly autoHeight!: AutoHeight<T>;
+    public readonly headerRef = viewChild<ElementRef<HTMLDivElement>>('header');
+    public readonly footerRef = viewChild<ElementRef<HTMLDivElement>>('footer');
+    public readonly autoHeight = viewChild<AutoHeight<T>>(AutoHeight);
 
     public dirty = true;
     public rendering = false;
@@ -168,7 +164,7 @@ export class TableBuilder<T>
     public get rootHeight(): string {
         const height: Nullable<number | string> = this.expandableTableExpanded
             ? this.height()
-            : getClientHeight(this.headerRef) + getClientHeight(this.footerRef);
+            : getClientHeight(this.headerRef()) + getClientHeight(this.footerRef());
 
         if (checkValueIsFilled(height)) {
             const heightAsNumber = Number(height);
@@ -180,10 +176,12 @@ export class TableBuilder<T>
     }
 
     private get expandableTableExpanded(): boolean {
+        const headerTemplate = this.headerTemplate();
+
         return (
-            isNil(this.headerTemplate) ||
-            !coerceBoolean(this.headerTemplate.expandablePanel()) ||
-            coerceBoolean(this.headerTemplate.expanded())
+            isNil(headerTemplate) ||
+            !coerceBoolean(headerTemplate.expandablePanel()) ||
+            coerceBoolean(headerTemplate.expanded())
         );
     }
 
@@ -196,22 +194,22 @@ export class TableBuilder<T>
     }
 
     private get viewportHeight(): number {
-        return this.scrollContainer.nativeElement.offsetHeight;
+        return this.scrollContainer().nativeElement.offsetHeight;
     }
 
     private get scrollOffsetTop(): number {
-        return this.scrollContainer.nativeElement.scrollTop;
+        return this.scrollContainer().nativeElement.scrollTop;
     }
 
     @HostListener('contextmenu', ['$event'])
     public openContextMenu($event: MouseEvent): void {
-        if (isNotNil(this.contextMenuTemplate)) {
+        if (isNotNil(this.contextMenuTemplate())) {
             this.contextMenu.openContextMenu($event);
         }
     }
 
     public openContextMenuWithKey($event: Event, key: Nullable<string>): void {
-        if (isNotNil(this.contextMenuTemplate)) {
+        if (isNotNil(this.contextMenuTemplate())) {
             this.contextMenu.openContextMenu($event as MouseEvent, key);
         }
     }
@@ -340,7 +338,7 @@ export class TableBuilder<T>
 
     public markTemplateContentCheck(): void {
         this.contentInit =
-            isNotNil(this.source()) || isFalsy(this.columnTemplates?.length);
+            isNotNil(this.source()) || isFalsy(this.columnTemplates()?.length);
     }
 
     public markDirtyCheck(): void {
@@ -450,7 +448,7 @@ export class TableBuilder<T>
     }
 
     public updateTableHeight(): void {
-        this.autoHeight.calculateHeight();
+        this.autoHeight()?.calculateHeight();
         detectChanges(this.cd);
     }
 
@@ -582,9 +580,16 @@ export class TableBuilder<T>
     }
 
     private listenColumnListChanges(): void {
-        this.columnList.changes
-            .pipe(takeUntil(this._destroy$))
-            .subscribe((): void => this.calculateColumnWidthSummary());
+        effect(
+            () => {
+                this.columnList();
+
+                this.calculateColumnWidthSummary();
+            },
+            {
+                injector: this.injector,
+            },
+        );
     }
 
     private checkIfKeysAreDifferent(): boolean {
@@ -631,7 +636,7 @@ export class TableBuilder<T>
 
     private listenScroll(): void {
         this.ngZone.runOutsideAngular((): void => {
-            fromEvent(this.scrollContainer.nativeElement, 'scroll', {passive: true})
+            fromEvent(this.scrollContainer().nativeElement, 'scroll', {passive: true})
                 .pipe(
                     catchError((): Observable<never> => {
                         this.calculateViewport(true);
@@ -730,7 +735,7 @@ export class TableBuilder<T>
         if (this.isEnableFiltering) {
             this.filterable.filterType =
                 this.filterable.filterType ??
-                this.columnOptions?.filterType() ??
+                this.columnOptions()?.filterType() ??
                 TableFilterType.CONTAINS;
 
             for (const key of this.modelColumnKeys) {
@@ -771,28 +776,34 @@ export class TableBuilder<T>
     }
 
     private viewForceRefresh(): void {
+        this.forcedRefresh = true;
         this.ngZone.runOutsideAngular((): void => {
             window.clearTimeout(this.timeoutCheckedTaskId ?? 0);
             // eslint-disable-next-line no-restricted-properties
             this.timeoutCheckedTaskId = window.setTimeout((): void => {
-                this.forcedRefresh = true;
                 this.markTemplateContentCheck();
                 this.render();
+                this.forcedRefresh = false;
             }, FRAME_TIME);
         });
     }
 
     private listenTemplateChanges(): void {
-        if (isNotNil(this.columnTemplates)) {
-            this.columnTemplates.changes
-                .pipe(takeUntil(this._destroy$))
-                .subscribe((): void => {
+        effect(
+            () => {
+                const columnTemplates = this.columnTemplates();
+
+                if (columnTemplates.length) {
                     this.markForCheck();
                     this.markTemplateContentCheck();
-                });
-        }
+                }
+            },
+            {
+                injector: this.injector,
+            },
+        );
 
-        if (isNotNil(this.contextMenuTemplate)) {
+        if (isNotNil(this.contextMenuTemplate())) {
             this.contextMenu.events$
                 .pipe(takeUntil(this._destroy$))
                 .subscribe((): void => detectChanges(this.cd));
@@ -893,7 +904,7 @@ export class TableBuilder<T>
     private generateDisplayedColumns(): string[] {
         let generatedList: string[];
 
-        this.templateParser.initialSchema(this.columnOptions);
+        this.templateParser.initialSchema(this.columnOptions());
         const {simpleRenderedKeys, allRenderedKeys}: TemplateKeys =
             this.parseTemplateKeys();
         const isValid: boolean = this.validationSchemaColumnsAndResetIfInvalid();
@@ -966,7 +977,7 @@ export class TableBuilder<T>
                 ? this.generateColumnsKeyMap(this.customModelColumnsKeys)
                 : this.generateColumnsKeyMap(this.modelColumnKeys);
 
-        this.templateParser.parse(this.columnTemplates);
+        this.templateParser.parse(this.columnTemplates());
 
         return {
             allRenderedKeys: Array.from(this.templateParser.fullTemplateKeys ?? []),
@@ -976,7 +987,7 @@ export class TableBuilder<T>
     }
 
     private listenExpandChange(): void {
-        this.headerTemplate?.expandedChange.subscribe((): void => {
+        this.headerTemplate()?.expandedChange.subscribe((): void => {
             this.updateTableHeight();
             this.changeSchema();
         });

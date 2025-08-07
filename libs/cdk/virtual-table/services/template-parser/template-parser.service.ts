@@ -1,10 +1,4 @@
-import {
-    inject,
-    Injectable,
-    Injector,
-    QueryList,
-    runInInjectionContext,
-} from '@angular/core';
+import {inject, Injectable, Injector, runInInjectionContext} from '@angular/core';
 import {toNumber} from '@angular-ru/cdk/number';
 import {shallowMapObject} from '@angular-ru/cdk/object';
 import {Nullable, PlainObjectOf} from '@angular-ru/cdk/typings';
@@ -134,7 +128,7 @@ export class TemplateParserService<T> {
     }
 
     // eslint-disable-next-line max-lines-per-function,complexity
-    public parse(templates?: QueryList<NgxColumn<T>> | null): void {
+    public parse(templates?: ReadonlyArray<NgxColumn<T>> | null): void {
         if (isNil(templates)) {
             return;
         }
@@ -214,9 +208,9 @@ export class TemplateParserService<T> {
         const overflowTooltip = overflowTooltipInput();
         const excelType = excelTypeInput();
         const thTemplate: AbstractTemplateCellCommonDirective<T> =
-            th ?? runInInjectionContext(this.injector, () => new TemplateHeadTh<T>());
+            th() ?? runInInjectionContext(this.injector, () => new TemplateHeadTh<T>());
         const tdTemplate: AbstractTemplateCellCommonDirective<T> =
-            td ?? runInInjectionContext(this.injector, () => new TemplateBodyTd<T>());
+            td() ?? runInInjectionContext(this.injector, () => new TemplateBodyTd<T>());
         const isEmptyHead: boolean = getValidHtmlBooleanAttribute(emptyHead);
         const thOptions: TableCellOptions = TemplateParserService.templateContext(
             key ?? '',

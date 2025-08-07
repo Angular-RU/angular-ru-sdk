@@ -6,8 +6,8 @@ import {
     AfterViewInit,
     ApplicationRef,
     ChangeDetectorRef,
-    ContentChild,
-    ContentChildren,
+    contentChild,
+    contentChildren,
     Directive,
     effect,
     ElementRef,
@@ -18,10 +18,9 @@ import {
     OnDestroy,
     OnInit,
     output,
-    QueryList,
     SimpleChanges,
-    ViewChild,
-    ViewChildren,
+    viewChild,
+    viewChildren,
 } from '@angular/core';
 import {SIGNAL} from '@angular/core/primitives/signals';
 import {coerceBoolean} from '@angular-ru/cdk/coercion';
@@ -174,32 +173,24 @@ export abstract class AbstractTableBuilderApi<T>
     public readonly onChanges = output<Nullable<T[]>>();
     public readonly sortChanges = output<OrderedField[]>();
 
-    @ContentChild(NgxOptions, {static: false})
-    public columnOptions: Nullable<NgxOptions> = null;
+    public readonly columnOptions = contentChild(NgxOptions);
 
-    @ContentChildren(NgxColumn)
-    public columnTemplates: Nullable<QueryList<NgxColumn<T>>> = null;
+    public readonly columnTemplates = contentChildren<NgxColumn<T>>(NgxColumn);
 
-    @ContentChild(NgxContextMenu, {static: false})
-    public contextMenuTemplate: Nullable<NgxContextMenu<T>> = null;
+    public readonly contextMenuTemplate = contentChild(NgxContextMenu);
 
-    @ContentChild(NgxEmpty, {read: ElementRef})
-    public ngxEmptyContent: Nullable<ElementRef> = null;
+    public readonly ngxEmptyContent = contentChild(NgxEmpty, {read: ElementRef});
 
-    @ContentChild(NgxHeader, {static: false})
-    public headerTemplate: Nullable<NgxHeader> = null;
+    public readonly headerTemplate = contentChild(NgxHeader);
 
-    @ContentChild(NgxFooter, {static: false})
-    public footerTemplate: Nullable<NgxFooter> = null;
+    public readonly footerTemplate = contentChild(NgxFooter);
 
-    @ContentChild(NgxFilter, {static: false})
-    public filterTemplate: Nullable<NgxFilter<T>> = null;
+    public readonly filterTemplate = contentChild(NgxFilter);
 
-    @ViewChild('tableViewport', {static: true})
-    public scrollContainer!: ElementRef<HTMLElement>;
+    public readonly scrollContainer =
+        viewChild.required<ElementRef<HTMLElement>>('tableViewport');
 
-    @ViewChildren('column', {read: false})
-    public columnList!: QueryList<ElementRef<HTMLDivElement>>;
+    public readonly columnList = viewChildren<ElementRef<HTMLDivElement>>('column');
 
     public scrollbarWidth: number = SCROLLBAR_SIZE;
     public columnListWidth = 0;
@@ -362,9 +353,10 @@ export abstract class AbstractTableBuilderApi<T>
     }
 
     private get expanded(): Nullable<boolean> {
-        const expanded = this.headerTemplate?.expanded();
+        const headerTemplate = this.headerTemplate();
+        const expanded = headerTemplate?.expanded();
 
-        return coerceBoolean(this.headerTemplate?.expandablePanel()) && isNotNil(expanded)
+        return coerceBoolean(headerTemplate?.expandablePanel()) && isNotNil(expanded)
             ? coerceBoolean(expanded)
             : null;
     }
@@ -561,7 +553,7 @@ export abstract class AbstractTableBuilderApi<T>
             this.columnFrameId = window.setTimeout((): void => {
                 let width = 0;
 
-                for (const element of this.columnList) {
+                for (const element of this.columnList()) {
                     width += element.nativeElement.offsetWidth;
                 }
 

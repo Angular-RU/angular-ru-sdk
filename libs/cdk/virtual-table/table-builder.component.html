@@ -20,8 +20,8 @@
         columnHeight: columnHeight,
         statusRendered: isRendered,
         sourceLength: source()?.length || 0,
-        headerHeight: headerRef | getClientHeight,
-        footerHeight: footerRef | getClientHeight,
+        headerHeight: headerRef() | getClientHeight,
+        footerHeight: footerRef() | getClientHeight,
     }"
     [class.table-grid__no-display]="!(columnSchema.length > 0)"
     [class.table-grid__no-visible]="!sourceRef.length && !filterable.filtering"
@@ -43,7 +43,7 @@
     @if (source()?.length === 0 && filterable.filterValueExist) {
         <div
             class="table-grid__root-empty-after-filter"
-            [innerHTML]="ngxEmptyContent?.nativeElement?.innerHTML | safe: 'html'"
+            [innerHTML]="ngxEmptyContent()?.nativeElement?.innerHTML | safe: 'html'"
         ></div>
     }
 
@@ -62,7 +62,7 @@
         [cdkDropListDisabled]="!accessDragging"
         [class.table-grid__native-scrollbar]="nativeScrollbar()"
         [class.table-grid__scroll-offset]="viewPortInfo.scrollTop"
-        [style.height]="[headerRef, footerRef] | getClientHeight | getFreeSizePipe"
+        [style.height]="[headerRef(), footerRef()] | getClientHeight | getFreeSizePipe"
         [style.width.px]="
             columnListWidth !== 0 && root.offsetWidth !== 0 && columnListWidth < root.offsetWidth - scrollbarWidth
                 ? columnListWidth + scrollbarWidth
@@ -96,7 +96,7 @@
                         [class.table-grid__column--auto-width-reset-default-with]="isEnableAutoWidthColumn"
                         [class.table-grid__column--custom-column]="schema?.customColumn"
                         [class.table-grid__column--default-width]="!schema?.width"
-                        [class.table-grid__column--filter-enable]="filterTemplate"
+                        [class.table-grid__column--filter-enable]="filterTemplate()"
                         [class.table-grid__column--is-draggable]="schema?.isModel && schema?.draggable"
                         [class.table-grid__column--is-dragging]="isDragging[schema.key!]"
                         [class.table-grid__column--is-invisible]="!$any(column)['visible']!"
@@ -108,7 +108,7 @@
                         [class.table-grid__column--vertical-line]="
                             verticalBorder() !== false || schema?.verticalLine !== false
                         "
-                        [class.table-grid__column--with-footer-content]="footerTemplate"
+                        [class.table-grid__column--with-footer-content]="footerTemplate()"
                         [ngClass]="schema?.cssClass || []"
                         [ngStyle]="schema?.cssStyle || []"
                         [observerRoot]="tableViewport"
@@ -140,7 +140,7 @@
                                     [client-row-height]="clientRowHeight"
                                     [column-schema]="schema"
                                     [column-virtual-height]="columnVirtualHeight"
-                                    [context-menu]="contextMenuTemplate"
+                                    [context-menu]="contextMenuTemplate()"
                                     [disable-deep-path]="disableDeepPath()"
                                     [enable-filtering]="isEnableFiltering"
                                     [enable-selection]="isEnableSelection"
@@ -167,7 +167,7 @@
         </div>
     </div>
 
-    @if (footerTemplate && isRendered) {
+    @if (footerTemplate() && isRendered) {
         <div
             #footer
             class="table-grid__footer-sticky"
@@ -177,10 +177,10 @@
     }
 </div>
 
-@if (contextMenuTemplate && (contextMenu.state.opened || false)) {
+@if (contextMenuTemplate() && (contextMenu.state.opened || false)) {
     <ng-content select="ngx-context-menu" />
 }
 
-@if (filterTemplate) {
+@if (filterTemplate()) {
     <ng-content select="ngx-filter" />
 }
