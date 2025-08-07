@@ -7,17 +7,17 @@
         flex: 1 1 auto;
         box-sizing: border-box;
 
-        &--virtual {
-            position: relative;
-            overflow: hidden;
-            box-sizing: border-box;
-        }
-
         // preserve cdk handle
         touch-action: initial !important;
         -webkit-user-drag: initial !important;
         -webkit-tap-highlight-color: initial !important;
         user-select: initial !important;
+
+        &--virtual {
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
 
         &--sticky-left,
         &--sticky-right {
