@@ -7,7 +7,7 @@ import {VirtualTable} from '@angular-ru/cdk/virtual-table';
     selector: 'app',
     imports: [VirtualTable],
     template: `
-        <ngx-table-builder [source]="data"></ngx-table-builder>
+        <ngx-table-builder [source]="data" />
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
