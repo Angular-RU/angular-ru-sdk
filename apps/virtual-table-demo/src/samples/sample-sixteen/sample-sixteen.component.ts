@@ -1,11 +1,11 @@
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     DestroyRef,
     inject,
     OnInit,
+    signal,
 } from '@angular/core';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {MatButton} from '@angular/material/button';
@@ -29,11 +29,10 @@ import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
 })
 export default class SampleSixteenComponent implements OnInit, AfterViewInit {
     private readonly dialog = inject(MatDialog);
-    private readonly cd = inject(ChangeDetectorRef);
     private readonly tableChanges = inject(NgxTableViewChangesService);
     private readonly destroyRef = inject(DestroyRef);
 
-    public data: PlainObject[] = [];
+    public data = signal<PlainObject[]>([]);
     public schema: Nullable<TableUpdateSchema> = null;
     public readonly testName = 'test';
 
@@ -46,8 +45,7 @@ export default class SampleSixteenComponent implements OnInit, AfterViewInit {
 
         MocksGenerator.generator(rowNumber, colsNumber).then(
             (data: PlainObject[]): void => {
-                this.data = data;
-                this.cd.detectChanges();
+                this.data.set(data);
             },
         );
 

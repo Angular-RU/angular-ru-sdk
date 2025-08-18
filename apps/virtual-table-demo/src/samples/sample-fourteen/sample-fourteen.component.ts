@@ -1,11 +1,11 @@
-import {DatePipe, KeyValuePipe} from '@angular/common';
+import {KeyValuePipe} from '@angular/common';
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     inject,
     OnInit,
+    signal,
     viewChild,
     ViewEncapsulation,
 } from '@angular/core';
@@ -31,7 +31,6 @@ import {NotFoundComponent} from './not-found.component';
     selector: 'sample-fourteen',
     imports: [
         ContextMenuSampleComponent,
-        DatePipe,
         FormsModule,
         KeyValuePipe,
         MatButton,
@@ -62,6 +61,13 @@ import {NotFoundComponent} from './not-found.component';
                 min-height: 50px;
                 max-height: 50px;
             }
+
+            context-menu-sample .my-filter {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
         `,
     ],
     encapsulation: ViewEncapsulation.None,
@@ -69,19 +75,17 @@ import {NotFoundComponent} from './not-found.component';
 })
 export default class SampleFourteenComponent implements OnInit, AfterViewInit {
     public readonly dialog = inject(MatDialog);
-    private readonly cd = inject(ChangeDetectorRef);
 
     public readonly table = viewChild.required<TableBuilder<PlainObject>>('table');
 
-    public data: PlainObject[] = [];
+    public data = signal<PlainObject[]>([]);
 
     public ngOnInit(): void {
         const rows = 10000;
         const cols = 59;
 
         MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => {
-            this.data = data;
-            this.cd.detectChanges();
+            this.data.set(data);
         });
     }
 

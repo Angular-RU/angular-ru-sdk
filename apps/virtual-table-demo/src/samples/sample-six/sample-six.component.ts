@@ -1,10 +1,10 @@
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     inject,
     OnInit,
+    signal,
 } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MatButton} from '@angular/material/button';
@@ -27,10 +27,9 @@ import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
 })
 export default class SampleSixComponent implements OnInit, AfterViewInit {
     public readonly dialog = inject(MatDialog);
-    private readonly cd = inject(ChangeDetectorRef);
 
     public sortByIdDirection = true;
-    public data: PlainObject[] = [];
+    public data = signal<PlainObject[]>([]);
     public skipSort = false;
 
     public ngOnInit(): void {
@@ -38,8 +37,7 @@ export default class SampleSixComponent implements OnInit, AfterViewInit {
         const cols = 50;
 
         MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => {
-            this.data = data;
-            this.cd.detectChanges();
+            this.data.set(data);
         });
     }
 

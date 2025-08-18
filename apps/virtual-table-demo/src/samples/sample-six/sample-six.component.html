@@ -31,7 +31,7 @@
 <ngx-table-builder
     [skip-sort]="skipSort"
     [sort-types]="sortByIdDirection ? {id: 'asc'} : {id: 'desc'}"
-    [source]="data"
+    [source]="data()"
     (sortChanges)="sortChanges($event)"
 >
     <ngx-empty>No data</ngx-empty>

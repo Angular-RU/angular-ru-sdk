@@ -1,7 +1,7 @@
 <div #header>
     <mat-toolbar class="simple-toolbar">
         <span>Virtual scroll table</span>
-        @if (loading) {
+        @if (loading()) {
             <mat-spinner
                 strokeWidth="5"
                 class="spinner"
@@ -85,7 +85,7 @@
     <ngx-table-builder
         [height]="height"
         [row-height]="rowHeight"
-        [source]="simple"
+        [source]="simple()"
         [width]="width"
     />
 </div>

@@ -1,10 +1,9 @@
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
-    inject,
     OnInit,
+    signal,
     ViewEncapsulation,
 } from '@angular/core';
 import {MatToolbar} from '@angular/material/toolbar';
@@ -22,9 +21,7 @@ import {MocksGenerator} from '../../mocks-generator';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SampleTwelveComponent implements OnInit, AfterViewInit {
-    private readonly cd = inject(ChangeDetectorRef);
-
-    public data: PlainObject[] = [];
+    public data = signal<PlainObject[]>([]);
 
     public licences: PlainObject[] = [
         {
@@ -55,8 +52,7 @@ export default class SampleTwelveComponent implements OnInit, AfterViewInit {
 
         MocksGenerator.generator(rowNumber, colsNumber).then(
             (data: PlainObject[]): void => {
-                this.data = data;
-                this.cd.detectChanges();
+                this.data.set(data);
             },
         );
     }

@@ -299,6 +299,7 @@ describe('[TEST]: Lifecycle table', () => {
         expect(table.contentInit).toBe(true);
         expect(table.displayedColumns).toEqual(['position', 'name', 'weight', 'symbol']);
         expect(table.contentCheck).toBe(false);
+        expect(table['forcedRefresh']).toBe(false);
         expect(table.sourceExists).toBe(true);
 
         table.source[SIGNAL].value = deepClone(data);
@@ -314,6 +315,7 @@ describe('[TEST]: Lifecycle table', () => {
         expect(table.contentInit).toBe(true);
         expect(table.displayedColumns).toEqual(['position', 'name', 'weight', 'symbol']);
         expect(table.contentCheck).toBe(true);
+        expect(table['forcedRefresh']).toBe(false);
         expect(table.sourceExists).toBe(true);
 
         const column1 = TestBed.runInInjectionContext(() => new NgxColumn());
@@ -322,11 +324,13 @@ describe('[TEST]: Lifecycle table', () => {
         columnTemplatesSignal.set([column1, column2]);
         table.ngAfterViewChecked();
 
+        expect(table['forcedRefresh']).toBe(true);
         expect(table.afterViewInitDone).toBe(false);
 
         tick(1000);
         TestBed.tick();
 
+        expect(table['forcedRefresh']).toBe(false);
         expect(table.afterViewInitDone).toBe(true);
     }));
 
@@ -363,8 +367,11 @@ describe('[TEST]: Lifecycle table', () => {
         expect(table.displayedColumns).toEqual([]);
         expect(table.contentCheck).toBe(true);
         expect(table.sourceExists).toBe(true);
+        expect(table['forcedRefresh']).toBe(false);
 
         table.ngAfterViewChecked();
+
+        expect(table['forcedRefresh']).toBe(true);
 
         tick(1000);
         TestBed.tick();
@@ -377,6 +384,7 @@ describe('[TEST]: Lifecycle table', () => {
         expect(table.displayedColumns).toEqual(['position', 'name', 'weight', 'symbol']);
         expect(table.contentCheck).toBe(false);
         expect(table.sourceExists).toBe(true);
+        expect(table['forcedRefresh']).toBe(false);
     }));
 
     it('should be correct ngOnDestroy', () => {

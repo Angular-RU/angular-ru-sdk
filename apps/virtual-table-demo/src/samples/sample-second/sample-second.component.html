@@ -68,7 +68,7 @@
 
     </code></pre>
 
-        <ngx-table-builder [source]="licenses">
+        <ngx-table-builder [source]="licenses()">
             <ngx-column key="name">
                 <ng-template ngx-th>License</ng-template>
                 <ng-template
@@ -115,7 +115,7 @@
       // Use custom CSS for column and cell
       .status-column .table-grid__cell &#123;
       padding: 0;
-      color: green;
+      --mat-icon-color: green;
       &#125;
 
       // Reset CSS for default mat-button style
@@ -267,7 +267,7 @@
 
         <ngx-table-builder
             row-height="60"
-            [source]="licenses"
+            [source]="licenses()"
         >
             <ngx-column
                 empty-head
@@ -337,11 +337,8 @@
                     <mat-form-field>
                         <mat-label>Relative</mat-label>
                         <mat-select>
-                            @for (license of licenses; track license.id) {
-                                <mat-option
-                                    [value]="license.name"
-                                    (click)="cd.detectChanges()"
-                                >
+                            @for (license of licenses(); track license.id) {
+                                <mat-option [value]="license.name">
                                     {{ license.name }}
                                 </mat-option>
                             }

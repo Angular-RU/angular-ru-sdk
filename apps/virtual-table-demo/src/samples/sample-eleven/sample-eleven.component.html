@@ -170,7 +170,7 @@
                             #table2
                             enable-selection
                             height="500"
-                            [source]="data"
+                            [source]="data()"
                             (schemaChanges)="updatedSchema($event)"
                         >
                             <ngx-options

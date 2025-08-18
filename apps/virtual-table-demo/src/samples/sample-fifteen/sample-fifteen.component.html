@@ -1,5 +1,5 @@
 <mat-toolbar class="simple-toolbar">
-    <span>Example drag-and-drop</span>
+    <span>Example drag-and-drop (drag-n-drop columns to re-order them)</span>
     <button
         mat-raised-button
         type="button"
@@ -12,7 +12,7 @@
 
 <ngx-table-builder
     [row-height]="40"
-    [source]="data"
+    [source]="data()"
     (schemaChanges)="updatedSchema($event)"
 >
     <ngx-options is-draggable />

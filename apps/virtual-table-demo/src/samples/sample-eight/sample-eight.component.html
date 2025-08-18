@@ -19,7 +19,7 @@
 <ngx-table-builder
     #table
     [row-height]="40"
-    [source]="data"
+    [source]="data()"
     [vertical-border]="false"
 >
     <ngx-column
@@ -27,7 +27,8 @@
         key="active"
         sticky
         vertical-line
-        width="80"
+        width="46"
+        [css-class]="['checkbox-column']"
     >
         <ng-template ngx-th />
         <ng-template

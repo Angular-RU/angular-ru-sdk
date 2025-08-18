@@ -31,7 +31,7 @@
     enable-selection
     class="filter-example"
     [row-height]="40"
-    [source]="data"
+    [source]="data()"
 >
     <ngx-options
         is-draggable
@@ -88,7 +88,7 @@
             <mat-checkbox
                 [checked]="table.selectionModel.isAll"
                 [indeterminate]="table.selectionModel.isIndeterminate"
-                (change)="table.selection.toggleAll(data)"
+                (change)="table.selection.toggleAll(data())"
             />
         </ng-template>
         <ng-template
@@ -105,14 +105,7 @@
         </ng-template>
     </ngx-column>
 
-    <ngx-column key="someDate">
-        <ng-template
-            let-cell
-            ngx-td
-        >
-            {{ cell | date: 'dd.MM.yyyy HH:mm:ss' }}
-        </ng-template>
-    </ngx-column>
+    <ngx-column key="someDate" />
 
     @for (key of table.modelColumnKeys; track key) {
         <ngx-column [key]="key">

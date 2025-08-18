@@ -7,7 +7,7 @@
         <ng-template matTabContent>
             <ngx-table-builder
                 #table
-                [source]="data"
+                [source]="data()"
                 [vertical-border]="false"
             >
                 <ngx-column
@@ -76,7 +76,7 @@
         <ng-template matTabContent>
             <ngx-table-builder
                 #table
-                [source]="data"
+                [source]="data()"
                 [vertical-border]="false"
             >
                 @for (key of table.modelColumnKeys; track key) {
@@ -120,7 +120,7 @@
     <mat-tab label="Tab 3">
         <ng-template matTabContent>
             <ngx-table-builder
-                [source]="data"
+                [source]="data()"
                 [vertical-border]="false"
             >
                 <ngx-column key="id">
@@ -184,7 +184,7 @@
         <ng-template matTabContent>
             <ngx-table-builder
                 #table
-                [source]="data"
+                [source]="data()"
                 [vertical-border]="false"
             >
                 <ngx-column

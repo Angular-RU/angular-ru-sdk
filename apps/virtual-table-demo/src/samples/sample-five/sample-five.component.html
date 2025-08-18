@@ -24,7 +24,7 @@
     #table
     [exclude-keys]="['guid']"
     [row-height]="55"
-    [source]="data"
+    [source]="data()"
     [vertical-border]="false"
     (schemaChanges)="updatedSchema($event)"
 >

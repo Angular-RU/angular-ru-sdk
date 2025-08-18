@@ -14,7 +14,7 @@
 <ngx-table-builder
     primary-key="id"
     [row-css-classes]="rowCssClasses"
-    [source]="data"
+    [source]="data()"
 >
     <ngx-empty>No data</ngx-empty>
     <ngx-source-null>Loading</ngx-source-null>

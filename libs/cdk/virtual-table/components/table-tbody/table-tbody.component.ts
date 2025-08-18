@@ -4,6 +4,7 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    computed,
     inject,
     input,
     NgZone,
@@ -24,6 +25,7 @@ import {
     ViewPortInfo,
     VirtualIndex,
 } from '../../interfaces/table-builder.external';
+import type {RowId} from '../../interfaces/table-builder.internal';
 import {
     RecalculatedStatus,
     TableBrowserEvent,
@@ -93,9 +95,12 @@ export class TableTbody<T> {
         alias: 'column-virtual-height',
     });
 
-    public readonly selectionEntries = input<PlainObjectOf<boolean>>(
-        {},
-        {alias: 'selection-entries'},
+    public readonly selectedKeys = input<RowId[]>([], {alias: 'selected-keys'});
+
+    protected readonly selectionMap = computed<PlainObjectOf<boolean>>(() =>
+        Object.fromEntries(
+            this.selectedKeys().map((key: RowId): [RowId, boolean] => [key, true]),
+        ),
     );
 
     public readonly contextMenuTemplate = input<Nullable<NgxContextMenu<T>>>(null, {

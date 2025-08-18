@@ -1,10 +1,10 @@
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     inject,
     OnInit,
+    signal,
 } from '@angular/core';
 import {MatButton} from '@angular/material/button';
 import {MatDialog} from '@angular/material/dialog';
@@ -24,17 +24,15 @@ import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
 })
 export default class SampleFiveComponent implements OnInit, AfterViewInit {
     public readonly dialog = inject(MatDialog);
-    private readonly cd = inject(ChangeDetectorRef);
 
-    public data: PlainObject[] = [];
+    public data = signal<PlainObject[]>([]);
 
     public ngOnInit(): void {
         const rows = 1000;
         const cols = 40;
 
         MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => {
-            this.data = data;
-            this.cd.detectChanges();
+            this.data.set(data);
         });
     }
 

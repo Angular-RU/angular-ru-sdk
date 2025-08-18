@@ -18,7 +18,7 @@
                 [class.table-grid__cell--disable]="item | disableRow: produceDisableFn()"
                 [class.table-grid__cell--enable-selection]="enableSelection()"
                 [class.table-grid__cell--resizable]="columnSchema()?.resizable"
-                [class.table-grid__cell--selected]="selectionEntries()[item[primaryKey()!]]"
+                [class.table-grid__cell--selected]="selectionMap()[item[primaryKey()!]]"
                 [class.table-grid__cell--strip]="virtualIndex.stripped"
                 [class.table-grid__cell--text-bold]="columnSchema()?.td?.textBold"
                 [ngClass]="columnSchema()?.td?.class | mergeCssClasses: rowCssClasses()[item[primaryKey()!]]"

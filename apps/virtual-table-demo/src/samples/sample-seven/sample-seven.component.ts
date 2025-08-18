@@ -1,10 +1,9 @@
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
-    inject,
     OnInit,
+    signal,
 } from '@angular/core';
 import {MatButton} from '@angular/material/button';
 import {MatTab, MatTabContent, MatTabGroup} from '@angular/material/tabs';
@@ -22,17 +21,14 @@ import {MocksGenerator} from '../../mocks-generator';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SampleSevenComponent implements OnInit, AfterViewInit {
-    private readonly cd = inject(ChangeDetectorRef);
-
-    public data: PlainObject[] = [];
+    public data = signal<PlainObject[]>([]);
 
     public ngOnInit(): void {
         const rowsNumber = 10000;
         const cols = 30;
 
         MocksGenerator.generator(rowsNumber, cols).then((data: PlainObject[]): void => {
-            this.data = data;
-            this.cd.detectChanges();
+            this.data.set(data);
         });
     }
 

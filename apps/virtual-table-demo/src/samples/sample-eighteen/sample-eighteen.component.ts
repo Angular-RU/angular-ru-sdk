@@ -1,9 +1,9 @@
 import {
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     inject,
     OnInit,
+    signal,
     ViewEncapsulation,
 } from '@angular/core';
 import {MatButton} from '@angular/material/button';
@@ -31,9 +31,8 @@ import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
 })
 export default class SampleEighteenComponent implements OnInit {
     public readonly dialog = inject(MatDialog);
-    private readonly cd = inject(ChangeDetectorRef);
 
-    public data: PlainObject[] = [];
+    public data = signal<PlainObject[]>([]);
     public rowCssClasses: PlainObject = {1: ['highlight'], 3: ['highlight']};
 
     public ngOnInit(): void {
@@ -41,8 +40,7 @@ export default class SampleEighteenComponent implements OnInit {
         const cols = 5;
 
         MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => {
-            this.data = data;
-            this.cd.detectChanges();
+            this.data.set(data);
         });
     }
 

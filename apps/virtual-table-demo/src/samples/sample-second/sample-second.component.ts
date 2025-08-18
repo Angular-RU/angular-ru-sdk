@@ -2,9 +2,8 @@ import {CurrencyPipe, UpperCasePipe} from '@angular/common';
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
-    inject,
+    signal,
     ViewEncapsulation,
 } from '@angular/core';
 import {MatButton} from '@angular/material/button';
@@ -53,7 +52,7 @@ export interface PeriodicElement {
             /*noinspection CssUnusedSymbol*/
             .status-column .table-grid__cell {
                 padding: 0;
-                color: green;
+                --mat-icon-color: green;
             }
 
             /*noinspection CssUnusedSymbol*/
@@ -67,9 +66,7 @@ export interface PeriodicElement {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SampleSecondComponent implements AfterViewInit {
-    public readonly cd = inject(ChangeDetectorRef);
-
-    public licenses: LicenseSample[] = [];
+    public licenses = signal<LicenseSample[]>([]);
 
     public columns: string[] = ['name', 'position', 'weight', 'symbol', 'status'];
 
@@ -95,7 +92,7 @@ export default class SampleSecondComponent implements AfterViewInit {
         setTimeout(
             // eslint-disable-next-line max-lines-per-function
             (): void => {
-                this.licenses = [
+                this.licenses.set([
                     {
                         id: 1,
                         name: 'single',
@@ -116,9 +113,7 @@ export default class SampleSecondComponent implements AfterViewInit {
                         name: 'enterprise',
                         price: 199,
                     },
-                ];
-
-                this.cd.detectChanges();
+                ]);
             },
         );
     }

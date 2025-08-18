@@ -4,7 +4,6 @@
         style="margin-left: 10px"
         class="mat-checkbox-flat"
         [(ngModel)]="nativeScrollbar"
-        (change)="update()"
     >
         Enable native scrollbar
     </mat-checkbox>
@@ -24,8 +23,8 @@
         <ngx-table-builder
             #table1
             enable-filtering
-            [native-scrollbar]="nativeScrollbar"
-            [source]="dataFirst"
+            [native-scrollbar]="nativeScrollbar()"
+            [source]="dataFirst()"
         >
             <ngx-header
                 height="61"
@@ -82,8 +81,8 @@
         <ngx-table-builder
             #table2
             enable-filtering
-            [native-scrollbar]="nativeScrollbar"
-            [source]="dataSecond"
+            [native-scrollbar]="nativeScrollbar()"
+            [source]="dataSecond()"
         >
             <ngx-header
                 height="61"

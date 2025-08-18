@@ -15,7 +15,7 @@
 
 <ngx-table-builder
     #table
-    [source]="data"
+    [source]="data()"
 >
     @for (key of table.modelColumnKeys; track key) {
         <ngx-column [key]="key">

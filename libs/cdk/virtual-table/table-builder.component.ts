@@ -150,13 +150,6 @@ export class TableBuilder<T>
         return this.selection.selectionModel.selectedList;
     }
 
-    /** @deprecated
-     * Use `selectedKeyList` instead
-     */
-    public get selectionEntries(): PlainObjectOf<boolean> {
-        return this.selection.selectionModel.entries;
-    }
-
     public get sourceExists(): boolean {
         return this.sourceRef.length > 0;
     }

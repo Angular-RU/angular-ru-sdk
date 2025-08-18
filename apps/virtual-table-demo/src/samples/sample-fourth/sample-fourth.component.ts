@@ -1,5 +1,11 @@
 import {CurrencyPipe, DatePipe} from '@angular/common';
-import {AfterViewInit, ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    Component,
+    OnInit,
+    signal,
+} from '@angular/core';
 import {MatToolbar} from '@angular/material/toolbar';
 import {PlainObject} from '@angular-ru/cdk/typings';
 import {VirtualTable} from '@angular-ru/cdk/virtual-table';
@@ -13,12 +19,12 @@ import {hlJsCode} from '../../../../../.global/utils/hljs-code';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SampleFourthComponent implements OnInit, AfterViewInit {
-    public data: PlainObject[] = [];
+    public data = signal<PlainObject[]>([]);
     public elements: PlainObject[] = [];
 
     // eslint-disable-next-line max-lines-per-function
     public ngOnInit(): void {
-        this.data = [
+        this.data.set([
             {
                 toppings: ['tomato sauce', 'mozzarella cheese'],
                 prices: {
@@ -35,7 +41,7 @@ export default class SampleFourthComponent implements OnInit, AfterViewInit {
                     large: '8.50',
                 },
             },
-        ];
+        ]);
 
         this.elements = [
             {

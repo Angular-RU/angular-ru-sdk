@@ -20,7 +20,7 @@
     #table
     enable-selection
     [produce-disable-fn]="disableFn"
-    [source]="data"
+    [source]="data()"
 >
     <ngx-column
         custom-key
@@ -32,7 +32,7 @@
             <mat-checkbox
                 [checked]="table.selectionModel.isAll"
                 [indeterminate]="table.selectionModel.isIndeterminate"
-                (change)="table.selection.toggleAll(data)"
+                (change)="table.selection.toggleAll(data())"
             />
         </ng-template>
         <ng-template

@@ -1,11 +1,11 @@
 import {
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     inject,
     NgZone,
     OnDestroy,
     OnInit,
+    signal,
 } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MatButton} from '@angular/material/button';
@@ -40,7 +40,6 @@ import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SampleFirstComponent implements OnInit, OnDestroy {
-    private readonly cd = inject(ChangeDetectorRef);
     public readonly dialog = inject(MatDialog);
     private readonly ngZone = inject(NgZone);
 
@@ -49,8 +48,8 @@ export default class SampleFirstComponent implements OnInit, OnDestroy {
     public height: Nullable<number> = null;
     public rowHeight: Nullable<string> = null;
     public dataSize = '100x20';
-    public loading = false;
-    public simple: PlainObject[] = [];
+    public loading = signal(false);
+    public simple = signal<PlainObject[]>([]);
     public regenerate = false;
 
     public ngOnInit(): void {
@@ -95,7 +94,7 @@ export default class SampleFirstComponent implements OnInit, OnDestroy {
 
     // eslint-disable-next-line max-lines-per-function
     public updateTable(): void {
-        this.loading = true;
+        this.loading.set(true);
 
         switch (this.dataSize) {
             case '100000x100':
@@ -158,18 +157,14 @@ export default class SampleFirstComponent implements OnInit, OnDestroy {
 
                 break;
         }
-
-        this.cd.detectChanges();
     }
 
     private setData(data: PlainObject[]): void {
-        this.simple = data;
+        this.simple.set(data);
         const timeout = 500;
 
-        // eslint-disable-next-line no-restricted-properties
         window.setTimeout((): void => {
-            this.loading = false;
-            this.cd.detectChanges();
+            this.loading.set(false);
         }, timeout);
     }
 }

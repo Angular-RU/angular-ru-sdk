@@ -2,10 +2,9 @@ import {CurrencyPipe} from '@angular/common';
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
-    inject,
     OnInit,
+    signal,
     ViewEncapsulation,
 } from '@angular/core';
 import {MatCheckbox} from '@angular/material/checkbox';
@@ -47,9 +46,7 @@ import {MocksGenerator} from '../../mocks-generator';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SampleElevenComponent implements OnInit, AfterViewInit {
-    private readonly cd = inject(ChangeDetectorRef);
-
-    public data: PlainObject[] = [];
+    public data = signal<PlainObject[]>([]);
 
     public licences: PlainObject[] = [
         {
@@ -79,8 +76,7 @@ export default class SampleElevenComponent implements OnInit, AfterViewInit {
         const cols = 15;
 
         MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => {
-            this.data = data;
-            this.cd.detectChanges();
+            this.data.set(data);
         });
     }
 
