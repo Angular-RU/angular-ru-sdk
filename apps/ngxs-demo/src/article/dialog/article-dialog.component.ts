@@ -32,6 +32,17 @@ import {Article} from '../article';
         ReactiveFormsModule,
     ],
     templateUrl: './article-dialog.component.html',
+    styles: `
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        mat-form-field {
+            padding-top: 0.25rem;
+        }
+    `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticleDialogComponent {

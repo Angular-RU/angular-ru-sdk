@@ -47,7 +47,7 @@
         [css-class]="['my-filter']"
     >
         <div class="filter-form">
-            <mat-form-field appearance="outline">
+            <mat-form-field>
                 <mat-label>Filter</mat-label>
                 <input
                     autocomplete="off"
@@ -59,10 +59,7 @@
                 <mat-icon matSuffix>search</mat-icon>
             </mat-form-field>
 
-            <mat-form-field
-                appearance="outline"
-                class="filter-options"
-            >
+            <mat-form-field class="filter-options">
                 <mat-label>Find options</mat-label>
                 <mat-select
                     [(value)]="table.filterable.filterType"

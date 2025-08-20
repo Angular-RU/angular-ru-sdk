@@ -37,6 +37,14 @@ import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
         VirtualTable,
     ],
     templateUrl: './sample-first.component.html',
+    styles: `
+        .filter-form {
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+    `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SampleFirstComponent implements OnInit, OnDestroy {

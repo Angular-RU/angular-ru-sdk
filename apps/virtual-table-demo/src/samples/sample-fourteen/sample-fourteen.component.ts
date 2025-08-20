@@ -115,7 +115,7 @@ export default class SampleFourteenComponent implements OnInit, AfterViewInit {
                 code: `
     <ngx-filter #filter>
         <div class="my-filter">
-            <mat-form-field appearance="outline">
+            <mat-form-field>
                 <mat-label>Find options</mat-label>
                 <mat-select
                     [value]="table.filterable.filterTypeDefinition[filter.state.key!]"
@@ -129,7 +129,7 @@ export default class SampleFourteenComponent implements OnInit, AfterViewInit {
                 </mat-select>
             </mat-form-field>
 
-            <mat-form-field appearance="outline">
+            <mat-form-field>
                 <mat-label>Filter by {{ filter.state.key! | uppercase }}</mat-label>
                 <input
                     matInput

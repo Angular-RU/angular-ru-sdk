@@ -8,8 +8,14 @@ import {
     ReactiveFormsModule,
 } from '@angular/forms';
 import {MatButton} from '@angular/material/button';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {MatFormField, MatInput} from '@angular/material/input';
+import {
+    MAT_DIALOG_DATA,
+    MatDialogActions,
+    MatDialogContent,
+    MatDialogRef,
+    MatDialogTitle,
+} from '@angular/material/dialog';
+import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
 import {Nullable} from '@angular-ru/cdk/typings';
 
 @Component({
@@ -18,11 +24,22 @@ import {Nullable} from '@angular-ru/cdk/typings';
         FormsModule,
         KeyValuePipe,
         MatButton,
+        MatDialogActions,
+        MatDialogContent,
+        MatDialogTitle,
         MatFormField,
         MatInput,
+        MatLabel,
         ReactiveFormsModule,
     ],
     templateUrl: './dialog-template.template.html',
+    styles: `
+        form {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+    `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogTemplateComponent implements OnInit {

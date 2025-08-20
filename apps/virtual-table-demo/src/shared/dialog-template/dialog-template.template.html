@@ -1,24 +1,28 @@
-<h3>Edit</h3>
+<h2 mat-dialog-title>Edit</h2>
 
-@if (form) {
-    <form [formGroup]="form">
-        @for (input of data | keyvalue; track input.key) {
-            <mat-form-field>
-                <input
-                    matInput
-                    placeholder="{{ input.key }}"
-                    [formControlName]="$any(input.key)"
-                />
-            </mat-form-field>
-        }
-    </form>
-}
+<mat-dialog-content>
+    @if (form) {
+        <form [formGroup]="form">
+            @for (input of data | keyvalue; track input.key) {
+                <mat-form-field>
+                    <mat-label>{{ input.key }}</mat-label>
+                    <input
+                        matInput
+                        [formControlName]="$any(input.key)"
+                    />
+                </mat-form-field>
+            }
+        </form>
+    }
+</mat-dialog-content>
 
-<button
-    mat-button
-    type="button"
-    class="dialog-close"
-    (click)="save()"
->
-    Save
-</button>
+<mat-dialog-actions align="end">
+    <button
+        mat-button
+        type="button"
+        class="dialog-close"
+        (click)="save()"
+    >
+        Save
+    </button>
+</mat-dialog-actions>

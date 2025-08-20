@@ -1,33 +1,27 @@
-<h1 mat-dialog-title>Article</h1>
+<h2 mat-dialog-title>Article</h2>
 
-<div
-    mat-dialog-content
+<mat-dialog-content
+    class="content"
     [formGroup]="form"
 >
-    <div>
-        <mat-form-field>
-            <mat-label>Article title</mat-label>
-            <input
-                formControlName="title"
-                matInput
-                placeholder="title"
-            />
-        </mat-form-field>
-    </div>
+    <mat-form-field>
+        <mat-label>Article title</mat-label>
+        <input
+            formControlName="title"
+            matInput
+        />
+    </mat-form-field>
 
-    <div>
-        <mat-form-field>
-            <mat-label>Article category</mat-label>
-            <input
-                formControlName="category"
-                matInput
-                placeholder="category"
-            />
-        </mat-form-field>
-    </div>
-</div>
+    <mat-form-field>
+        <mat-label>Article category</mat-label>
+        <input
+            formControlName="category"
+            matInput
+        />
+    </mat-form-field>
+</mat-dialog-content>
 
-<div mat-dialog-actions>
+<mat-dialog-actions align="end">
     <button
         mat-button
         type="button"
@@ -43,4 +37,4 @@
     >
         Save
     </button>
-</div>
+</mat-dialog-actions>

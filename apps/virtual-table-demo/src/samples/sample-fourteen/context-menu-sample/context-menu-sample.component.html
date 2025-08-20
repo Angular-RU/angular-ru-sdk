@@ -1,5 +1,5 @@
 <div class="my-filter">
-    <mat-form-field appearance="outline">
+    <mat-form-field>
         <mat-label>Find options</mat-label>
         <mat-select
             [value]="$any(table().filterable.filterTypeDefinition)[state().key!]"
@@ -24,10 +24,7 @@
             </mat-button-toggle-group>
         }
         @case (TableFilterType.INTERVAL) {
-            <mat-form-field
-                appearance="outline"
-                type="daterange"
-            >
+            <mat-form-field type="daterange">
                 <mat-date-range-input [rangePicker]="rangePicker">
                     <input
                         matStartDate
@@ -50,10 +47,7 @@
             </mat-form-field>
         }
         @case (TableFilterType.EQUALS_DATES_WITHOUT_TIME) {
-            <mat-form-field
-                appearance="outline"
-                class="date-picker"
-            >
+            <mat-form-field class="date-picker">
                 <input
                     matInput
                     [matDatepicker]="picker"
@@ -68,7 +62,7 @@
             </mat-form-field>
         }
         @default {
-            <mat-form-field appearance="outline">
+            <mat-form-field>
                 <mat-label>Filter by {{ state().key! | uppercase }}</mat-label>
                 <input
                     autocomplete="off"
