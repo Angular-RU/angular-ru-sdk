@@ -372,15 +372,8 @@ export class TableBuilder<T>
         this.rendering = true;
         const columnList: string[] = this.generateDisplayedColumns();
 
-        if (this.sortable.notEmpty) {
-            this.sortAndFilter().then((): void => {
-                this.syncDrawColumns(columnList);
-                this.emitRendered();
-            });
-        } else {
-            this.syncDrawColumns(columnList);
-            this.emitRendered();
-        }
+        this.syncDrawColumns(columnList);
+        this.emitRendered();
     }
 
     public toggleColumnVisibility(key?: Nullable<string>): void {
