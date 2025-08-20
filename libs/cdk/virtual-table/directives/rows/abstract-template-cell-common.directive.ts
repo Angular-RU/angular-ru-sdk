@@ -1,42 +1,29 @@
 /* eslint-disable @angular-eslint/no-input-rename */
-import {TemplateRef} from '@angular/core';
-import {Directive, EventEmitter, Input, Optional, Output} from '@angular/core';
+import type {Signal} from '@angular/core';
+import {Directive, inject, input, output, signal, TemplateRef} from '@angular/core';
 import {Nullable, PlainObject} from '@angular-ru/cdk/typings';
 
 import {TableEvent} from '../../interfaces/table-builder.external';
 
 @Directive()
 export abstract class AbstractTemplateCellCommonDirective<T> {
-    @Input()
-    public row: boolean | string = false;
+    public readonly template = inject(TemplateRef<unknown>, {optional: true});
 
-    @Input()
-    public bold = false;
-
-    @Input()
-    public nowrap = true;
-
-    @Input()
-    public width: Nullable<number> = null;
-
-    @Input()
-    public height: Nullable<number> = null;
-
-    @Input('ng-style')
-    public cssStyles: Nullable<PlainObject> = null;
-
-    @Input('ng-class')
-    public cssClasses: Nullable<PlainObject | string[] | string> = null;
+    public readonly row = input<boolean | string>(false);
+    public readonly bold = input(false);
+    public readonly nowrap = input(true);
+    public readonly width = input<Nullable<number>>(null);
+    public readonly height = input<Nullable<number>>(null);
+    public readonly cssStyles = input<Nullable<PlainObject>>(null, {alias: 'ng-style'});
+    public readonly cssClasses = input<Nullable<PlainObject | string[] | string>>(null, {
+        alias: 'ng-class',
+    });
 
     // TODO: should be rename (breaking changes)
     // eslint-disable-next-line @angular-eslint/no-output-on-prefix
-    @Output()
-    public readonly onClick = new EventEmitter<TableEvent<T | any, any>>();
+    public readonly onClick = output<TableEvent<T | any, any>>();
 
-    @Output()
-    public readonly dblClick = new EventEmitter<TableEvent<T | any, any>>();
+    public readonly dblClick = output<TableEvent<T | any, any>>();
 
-    public type: Nullable<string> = null;
-
-    protected constructor(@Optional() public template?: TemplateRef<unknown>) {}
+    public type: Signal<Nullable<string>> = signal(null);
 }

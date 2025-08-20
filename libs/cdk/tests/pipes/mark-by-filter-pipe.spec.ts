@@ -1,12 +1,12 @@
 import {TestBed} from '@angular/core/testing';
-import {MarkByFilterPipe, MarkByFilterPipeModule} from '@angular-ru/cdk/pipes';
+import {MarkByFilterPipe} from '@angular-ru/cdk/pipes';
 
 describe('mark by filter pipe', () => {
     let pipe: MarkByFilterPipe;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [MarkByFilterPipeModule],
+            providers: [MarkByFilterPipe],
         }).compileComponents();
         pipe = TestBed.inject(MarkByFilterPipe);
     });

@@ -1,4 +1,4 @@
-import {Inject, Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {Nullable} from '@angular-ru/cdk/typings';
 
 import {LoggerLevel, TimerInfo} from '../interfaces/logger.external';
@@ -8,13 +8,10 @@ import {ConsoleService} from './console.service';
 
 @Injectable()
 export class TimerFactory {
+    private readonly console = inject<ConsoleService>(ConsoleService);
+
     private readonly DIGITS_TO_FIX: number = 4;
     private readonly SECONDS: number = 1000;
-
-    constructor(
-        @Inject(ConsoleService)
-        private readonly console: ConsoleService,
-    ) {}
 
     public startTime(title: string, level: LoggerLevel): Nullable<TimerInfo> {
         let result: Nullable<TimerInfo> = null;

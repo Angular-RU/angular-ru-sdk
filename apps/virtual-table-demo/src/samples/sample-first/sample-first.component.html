@@ -1,15 +1,16 @@
 <div #header>
     <mat-toolbar class="simple-toolbar">
         <span>Virtual scroll table</span>
-        <mat-spinner
-            *ngIf="loading"
-            strokeWidth="5"
-            class="spinner"
-            [diameter]="30"
-        />
+        @if (loading()) {
+            <mat-spinner
+                strokeWidth="5"
+                class="spinner"
+                [diameter]="30"
+            />
+        }
     </mat-toolbar>
 
-    <form>
+    <form class="filter-form">
         <mat-form-field>
             <mat-label>Data size</mat-label>
             <mat-select
@@ -69,6 +70,7 @@
 
         <button
             mat-raised-button
+            type="button"
             (click)="showSample()"
         >
             show code sample
@@ -83,7 +85,7 @@
     <ngx-table-builder
         [height]="height"
         [row-height]="rowHeight"
-        [source]="simple"
+        [source]="simple()"
         [width]="width"
     />
 </div>

@@ -19,7 +19,7 @@ export function longValidator(): ValidatorFn {
 }
 
 function isLong(value: Nullable<number | string>): boolean {
-    if (isNil(value) || value.toString().match(/[^\d\-]/g)) {
+    if (isNil(value) || value.toString().match(/[^\d-]/g)) {
         return false;
     }
 

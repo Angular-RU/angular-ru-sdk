@@ -35,15 +35,14 @@
     </p>
 
     <pre><code class="javascript" ngNonBindable>
-    import &#123; TableBuilderModule &#125; from '&#64;angular-ru/cdk/virtual-table';
+    import &#123; provideVirtualTable &#125; from '&#64;angular-ru/cdk/virtual-table';
 
-    &#64;NgModule(&#123;
-       imports: [
-          TableBuilderModule.forRoot()
+    export const appConfig: ApplicationConfig = &#123;
+       providers: [
+          provideVirtualTable()
        ],
        ...
-    &#125;)
-    export class AppModule &#123; &#125;
+    &#125;;
     </code></pre>
 
     <p>Next, let's declare the basic grid configuration. Edit src/app.component.ts:</p>
@@ -51,10 +50,12 @@
     <pre><code class="typescript">
     import &#123; Component &#125; from '&#64;angular/core';
     import &#123; MyData &#125; from './my-data.interface';
+    import &#123; VirtualTable &#125; from '&#64;angular-ru/cdk/virtual-table';
 
     &#64;Component(&#123;
       selector: 'app-root',
-      template: `&lt;ngx-table-builder [source]="data"&gt;&lt;/ngx-table-builder&gt;`
+      template: `&lt;ngx-table-builder [source]="data"&gt;&lt;/ngx-table-builder&gt;`,
+      imports: [VirtualTable]
     &#125;)
     export class AppComponent &#123;
       public data: MyData[] = [

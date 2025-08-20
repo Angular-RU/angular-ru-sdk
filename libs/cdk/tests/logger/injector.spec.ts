@@ -11,6 +11,6 @@ describe('[TEST]: Check injector error', () => {
             message = (error as Error).message;
         }
 
-        expect(message).toBe("You've forgotten to import `LoggerModule`");
+        expect(message).toBe("You've forgotten to provide `Logger`");
     });
 });

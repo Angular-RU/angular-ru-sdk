@@ -3,7 +3,7 @@ import {isNotNil} from '@angular-ru/cdk/utils';
 // eslint-disable-next-line max-lines-per-function
 export function unpatchEvents(): void {
     if (typeof window !== 'undefined') {
-        const windowInstance: Window & any = window as any;
+        const windowInstance = window as any;
 
         if (isNotNil(windowInstance.Zone)) {
             throw new Error(

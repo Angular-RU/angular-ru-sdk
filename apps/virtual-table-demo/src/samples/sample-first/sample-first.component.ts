@@ -1,37 +1,64 @@
 import {
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
+    inject,
     NgZone,
     OnDestroy,
     OnInit,
+    signal,
 } from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {MatButton} from '@angular/material/button';
+import {MatCheckbox} from '@angular/material/checkbox';
 import {MatDialog} from '@angular/material/dialog';
+import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
+import {MatProgressSpinner} from '@angular/material/progress-spinner';
+import {MatOption, MatSelect} from '@angular/material/select';
+import {MatToolbar} from '@angular/material/toolbar';
 import {Nullable, PlainObject} from '@angular-ru/cdk/typings';
+import {VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 import {MocksGenerator} from '../../mocks-generator';
 import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
 
 @Component({
     selector: 'sample-first',
+    imports: [
+        FormsModule,
+        MatButton,
+        MatCheckbox,
+        MatFormField,
+        MatInput,
+        MatLabel,
+        MatOption,
+        MatProgressSpinner,
+        MatSelect,
+        MatToolbar,
+        VirtualTable,
+    ],
     templateUrl: './sample-first.component.html',
+    styles: `
+        .filter-form {
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+    `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SampleFirstComponent implements OnInit, OnDestroy {
+export default class SampleFirstComponent implements OnInit, OnDestroy {
+    public readonly dialog = inject(MatDialog);
+    private readonly ngZone = inject(NgZone);
+
     private idInterval: Nullable<number> = null;
     public width = '100%';
     public height: Nullable<number> = null;
     public rowHeight: Nullable<string> = null;
     public dataSize = '100x20';
-    public loading = false;
-    public simple: PlainObject[] = [];
+    public loading = signal(false);
+    public simple = signal<PlainObject[]>([]);
     public regenerate = false;
-
-    constructor(
-        private readonly cd: ChangeDetectorRef,
-        public readonly dialog: MatDialog,
-        private readonly ngZone: NgZone,
-    ) {}
 
     public ngOnInit(): void {
         this.updateTable();
@@ -70,44 +97,18 @@ export class SampleFirstComponent implements OnInit, OnDestroy {
                     '   [row-height]="rowHeight"\n' +
                     '></ngx-table-builder>\n',
             },
-            height: '450px',
-            width: '600px',
         });
     }
 
     // eslint-disable-next-line max-lines-per-function
     public updateTable(): void {
-        this.loading = true;
+        this.loading.set(true);
 
         switch (this.dataSize) {
-            case '10x5':
+            case '100000x100':
                 {
-                    const rows = 10;
-                    const cols = 5;
-
-                    MocksGenerator.generator(rows, cols).then(
-                        (data: PlainObject[]): void => this.setData(data),
-                    );
-                }
-
-                break;
-
-            case '100x20':
-                {
-                    const rows = 100;
-                    const cols = 20;
-
-                    MocksGenerator.generator(rows, cols).then(
-                        (data: PlainObject[]): void => this.setData(data),
-                    );
-                }
-
-                break;
-
-            case '1000x30':
-                {
-                    const rows = 1000;
-                    const cols = 30;
+                    const rows = 100000;
+                    const cols = 100;
 
                     MocksGenerator.generator(rows, cols).then(
                         (data: PlainObject[]): void => this.setData(data),
@@ -128,10 +129,34 @@ export class SampleFirstComponent implements OnInit, OnDestroy {
 
                 break;
 
-            case '100000x100':
+            case '1000x30':
                 {
-                    const rows = 100000;
-                    const cols = 100;
+                    const rows = 1000;
+                    const cols = 30;
+
+                    MocksGenerator.generator(rows, cols).then(
+                        (data: PlainObject[]): void => this.setData(data),
+                    );
+                }
+
+                break;
+
+            case '100x20':
+                {
+                    const rows = 100;
+                    const cols = 20;
+
+                    MocksGenerator.generator(rows, cols).then(
+                        (data: PlainObject[]): void => this.setData(data),
+                    );
+                }
+
+                break;
+
+            case '10x5':
+                {
+                    const rows = 10;
+                    const cols = 5;
 
                     MocksGenerator.generator(rows, cols).then(
                         (data: PlainObject[]): void => this.setData(data),
@@ -140,18 +165,14 @@ export class SampleFirstComponent implements OnInit, OnDestroy {
 
                 break;
         }
-
-        this.cd.detectChanges();
     }
 
     private setData(data: PlainObject[]): void {
-        this.simple = data;
+        this.simple.set(data);
         const timeout = 500;
 
-        // eslint-disable-next-line no-restricted-properties
         window.setTimeout((): void => {
-            this.loading = false;
-            this.cd.detectChanges();
+            this.loading.set(false);
         }, timeout);
     }
 }

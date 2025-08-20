@@ -22,7 +22,7 @@ export function filterAllWorker<T>({
     columns,
 }: FilterableMessage<T>): T[] {
     const INTERVAL_ARRAY_SIZE = 2;
-    const PLAIN_TYPES = new Set<string>(['number', 'string', 'boolean']);
+    const PLAIN_TYPES = new Set<string>(['boolean', 'number', 'string']);
     const {value: globalOperand, type: globalFilterType}: FilterGlobalOptions = global;
     let result: T[] = source;
 
@@ -85,18 +85,6 @@ export function filterAllWorker<T>({
     ): boolean {
         try {
             switch (filterType) {
-                case types.START_WITH:
-                    return valuesSet
-                        .map((element: Nullable<PlainValue>): string =>
-                            toLowercase(element),
-                        )
-                        .some(startsWith(toLowercase(operand)));
-                case types.END_WITH:
-                    return valuesSet
-                        .map((element: Nullable<PlainValue>): string =>
-                            toLowercase(element),
-                        )
-                        .some(endsWith(toLowercase(operand)));
                 case types.CONTAINS:
                     return valuesSet
                         .map((element: Nullable<PlainValue>): string =>
@@ -122,6 +110,18 @@ export function filterAllWorker<T>({
                             toLowercase(element),
                         )
                         .every(notIncludes(toLowercase(operand)));
+                case types.DOES_NOT_EQUAL:
+                    return !valuesSet
+                        .map((element: Nullable<PlainValue>): string =>
+                            toLowercase(element),
+                        )
+                        .includes(toLowercase(operand));
+                case types.END_WITH:
+                    return valuesSet
+                        .map((element: Nullable<PlainValue>): string =>
+                            toLowercase(element),
+                        )
+                        .some(endsWith(toLowercase(operand)));
                 case types.EQUALS:
                     return valuesSet
                         .map((element: Nullable<PlainValue>): string =>
@@ -150,21 +150,6 @@ export function filterAllWorker<T>({
 
                     return false;
                 }
-                case types.DOES_NOT_EQUAL:
-                    return !valuesSet
-                        .map((element: Nullable<PlainValue>): string =>
-                            toLowercase(element),
-                        )
-                        .includes(toLowercase(operand));
-                case types.MORE_THAN:
-                case types.MORE_OR_EQUAL:
-                case types.LESS_THAN:
-                case types.LESS_OR_EQUAL:
-                    return valuesSet
-                        .filter((element: Nullable<PlainValue>): element is PlainValue =>
-                            isFilled(element),
-                        )
-                        .some(compareNumber(operand, filterType));
                 case types.INTERVAL: {
                     const operandsArray: [PlainValue, PlainValue] = (Array.isArray(
                         operand,
@@ -184,6 +169,21 @@ export function filterAllWorker<T>({
                             isFilled(element),
                         )
                         .includes(operand as boolean);
+                case types.LESS_OR_EQUAL:
+                case types.LESS_THAN:
+                case types.MORE_OR_EQUAL:
+                case types.MORE_THAN:
+                    return valuesSet
+                        .filter((element: Nullable<PlainValue>): element is PlainValue =>
+                            isFilled(element),
+                        )
+                        .some(compareNumber(operand, filterType));
+                case types.START_WITH:
+                    return valuesSet
+                        .map((element: Nullable<PlainValue>): string =>
+                            toLowercase(element),
+                        )
+                        .some(startsWith(toLowercase(operand)));
                 default:
                     return true;
             }
@@ -243,17 +243,17 @@ export function filterAllWorker<T>({
         const comparingNumber: number = asNumber(comparing);
 
         switch (type) {
-            case types.MORE_THAN:
-                return (value: PlainValue): boolean => Number(value) > comparingNumber;
-
-            case types.MORE_OR_EQUAL:
-                return (value: PlainValue): boolean => Number(value) >= comparingNumber;
+            case types.LESS_OR_EQUAL:
+                return (value: PlainValue): boolean => Number(value) <= comparingNumber;
 
             case types.LESS_THAN:
                 return (value: PlainValue): boolean => Number(value) < comparingNumber;
 
-            case types.LESS_OR_EQUAL:
-                return (value: PlainValue): boolean => Number(value) <= comparingNumber;
+            case types.MORE_OR_EQUAL:
+                return (value: PlainValue): boolean => Number(value) >= comparingNumber;
+
+            case types.MORE_THAN:
+                return (value: PlainValue): boolean => Number(value) > comparingNumber;
         }
     }
 

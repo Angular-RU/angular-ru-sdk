@@ -1,4 +1,4 @@
-import {Inject, Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {isNotNil} from '@angular-ru/cdk/utils';
 
@@ -16,16 +16,12 @@ import {CssFactory} from './css-factory.service';
 
 @Injectable()
 export class GroupFactory {
+    private readonly console = inject<ConsoleService>(ConsoleService);
+    private readonly cssFactory = inject<CssFactory>(CssFactory);
+    public readonly options = inject<LoggerOptionsImpl>(LOGGER_OPTIONS);
+
     private counterOpenedGroup = 0;
     public executePipesGroup = false;
-
-    constructor(
-        @Inject(ConsoleService)
-        private readonly console: ConsoleService,
-        @Inject(CssFactory)
-        private readonly cssFactory: CssFactory,
-        @Inject(LOGGER_OPTIONS) public readonly options: LoggerOptionsImpl,
-    ) {}
 
     public close(): void {
         if (this.executePipesGroup) {

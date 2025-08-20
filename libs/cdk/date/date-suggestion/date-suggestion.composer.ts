@@ -1,4 +1,4 @@
-import {Inject, Injectable, Injector} from '@angular/core';
+import {inject, Injectable, Injector} from '@angular/core';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {isNil} from '@angular-ru/cdk/utils';
 
@@ -10,11 +10,11 @@ import {SUGGESTION_STRATEGY_MAP} from './tokens/suggestion-strategy-map';
 
 @Injectable()
 export class DateSuggestionComposer<StrategyKeys extends StrategyKey = StrategyKey> {
-    constructor(
-        @Inject(SUGGESTION_STRATEGY_MAP)
-        private readonly suggestionStrategyMap: SuggestionStrategyMap<StrategyKeys>,
-        private readonly injector: Injector,
-    ) {}
+    private readonly suggestionStrategyMap = inject<SuggestionStrategyMap<StrategyKeys>>(
+        SUGGESTION_STRATEGY_MAP,
+    );
+
+    private readonly injector = inject(Injector);
 
     public getSuggestions(): StrategyKeys[] {
         return Object.keys(this.suggestionStrategyMap) as StrategyKeys[];

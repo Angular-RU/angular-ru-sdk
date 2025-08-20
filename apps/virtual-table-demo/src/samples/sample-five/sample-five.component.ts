@@ -1,13 +1,16 @@
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
+    inject,
     OnInit,
+    signal,
 } from '@angular/core';
+import {MatButton} from '@angular/material/button';
 import {MatDialog} from '@angular/material/dialog';
+import {MatToolbar} from '@angular/material/toolbar';
 import {PlainObject} from '@angular-ru/cdk/typings';
-import {TableUpdateSchema} from '@angular-ru/cdk/virtual-table';
+import {TableUpdateSchema, VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 import {MocksGenerator} from '../../mocks-generator';
@@ -15,23 +18,21 @@ import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
 
 @Component({
     selector: 'sample-five',
+    imports: [MatButton, MatToolbar, VirtualTable],
     templateUrl: './sample-five.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SampleFiveComponent implements OnInit, AfterViewInit {
-    public data: PlainObject[] = [];
-    constructor(
-        public readonly dialog: MatDialog,
-        private readonly cd: ChangeDetectorRef,
-    ) {}
+export default class SampleFiveComponent implements OnInit, AfterViewInit {
+    public readonly dialog = inject(MatDialog);
+
+    public data = signal<PlainObject[]>([]);
 
     public ngOnInit(): void {
         const rows = 1000;
         const cols = 40;
 
         MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => {
-            this.data = data;
-            this.cd.detectChanges();
+            this.data.set(data);
         });
     }
 
@@ -52,13 +53,11 @@ export class SampleFiveComponent implements OnInit, AfterViewInit {
        Also you can customize your columns manually
        <ngx-column key="myKey" [resizable]="true">...</ngx-column>
     -->
-    <ngx-options is-draggable></ngx-options>
+    <ngx-options is-draggable is-resizable />
 </ngx-table-builder>
 
                 `,
             },
-            height: '350px',
-            width: '700px',
         });
     }
 

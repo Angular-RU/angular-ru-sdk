@@ -4,215 +4,225 @@
 
 <mat-tab-group>
     <mat-tab label="Tab 1">
-        <ngx-table-builder
-            #table
-            [source]="data"
-            [vertical-border]="false"
-        >
-            <ngx-column
-                custom-key
-                key="action-start"
-                sticky
-                vertical-line
-                width="100"
+        <ng-template matTabContent>
+            <ngx-table-builder
+                #table
+                [source]="data()"
+                [vertical-border]="false"
             >
-                <ng-template ngx-th />
-                <ng-template
-                    let-row
-                    ngx-td
-                    row
+                <ngx-column
+                    custom-key
+                    key="action-start"
+                    sticky
+                    vertical-line
+                    width="100"
                 >
-                    <button
-                        color="primary"
-                        mat-button
-                        (click)="alert(row)"
+                    <ng-template ngx-th />
+                    <ng-template
+                        let-row
+                        ngx-td
+                        row
                     >
-                        show (A)
-                    </button>
-                </ng-template>
-            </ngx-column>
-
-            <ngx-column
-                *ngFor="let key of table.modelColumnKeys"
-                [key]="key"
-            >
-                <ng-template ngx-th>{{ key }}</ng-template>
-                <ng-template
-                    let-cell
-                    ngx-td
-                >
-                    {{ cell }}
-                </ng-template>
-            </ngx-column>
-
-            <ngx-column
-                custom-key
-                key="action-end"
-                sticky-end
-                vertical-line
-                width="100"
-            >
-                <ng-template ngx-th />
-                <ng-template
-                    let-row
-                    ngx-td
-                    row
-                >
-                    <button
-                        color="primary"
-                        mat-button
-                        (click)="alert(row)"
-                    >
-                        show (B)
-                    </button>
-                </ng-template>
-            </ngx-column>
-        </ngx-table-builder>
-    </mat-tab>
-    <mat-tab label="Tab 2">
-        <ngx-table-builder
-            #table
-            [source]="data"
-            [vertical-border]="false"
-        >
-            <ngx-column
-                *ngFor="let key of table.modelColumnKeys"
-                [key]="key"
-            >
-                <ng-template ngx-th>{{ key }}</ng-template>
-                <ng-template
-                    let-cell
-                    ngx-td
-                >
-                    {{ cell }}
-                </ng-template>
-            </ngx-column>
-
-            <ngx-column
-                custom-key
-                key="edit"
-                sticky-end
-                vertical-line
-                width="80"
-            >
-                <ng-template ngx-th />
-                <ng-template
-                    let-row
-                    ngx-td
-                    row
-                >
-                    <button
-                        color="primary"
-                        mat-button
-                        (click)="alert(row)"
-                    >
-                        show
-                    </button>
-                </ng-template>
-            </ngx-column>
-        </ngx-table-builder>
-    </mat-tab>
-    <mat-tab label="Tab 3">
-        <ngx-table-builder
-            [source]="data"
-            [vertical-border]="false"
-        >
-            <ngx-column key="id">
-                <ng-template ngx-th>{{ 'ID' }}</ng-template>
-                <ng-template
-                    let-id
-                    ngx-td
-                >
-                    {{ id }}
-                </ng-template>
-            </ngx-column>
-
-            <ngx-column key="name">
-                <ng-template ngx-th>{{ 'NAME' }}</ng-template>
-                <ng-template
-                    let-name
-                    ngx-td
-                >
-                    {{ name }}
-                </ng-template>
-            </ngx-column>
-
-            <ngx-column key="description">
-                <ng-template ngx-th>{{ 'DESCRIPTION' }}</ng-template>
-                <ng-template
-                    let-description
-                    ngx-td
-                >
-                    {{ description }}
-                </ng-template>
-            </ngx-column>
-
-            <ngx-column
-                custom-key
-                key="edit"
-                vertical-line
-                width="200"
-            >
-                <ng-template ngx-th />
-                <ng-template
-                    let-row
-                    ngx-td
-                    row
-                >
-                    <div class="table-edit-property__right-column">
                         <button
                             color="primary"
                             mat-button
+                            type="button"
+                            (click)="alert(row)"
+                        >
+                            show (A)
+                        </button>
+                    </ng-template>
+                </ngx-column>
+
+                @for (key of table.modelColumnKeys; track key) {
+                    <ngx-column [key]="key">
+                        <ng-template ngx-th>{{ key }}</ng-template>
+                        <ng-template
+                            let-cell
+                            ngx-td
+                        >
+                            {{ cell }}
+                        </ng-template>
+                    </ngx-column>
+                }
+
+                <ngx-column
+                    custom-key
+                    key="action-end"
+                    sticky-end
+                    vertical-line
+                    width="100"
+                >
+                    <ng-template ngx-th />
+                    <ng-template
+                        let-row
+                        ngx-td
+                        row
+                    >
+                        <button
+                            color="primary"
+                            mat-button
+                            type="button"
+                            (click)="alert(row)"
+                        >
+                            show (B)
+                        </button>
+                    </ng-template>
+                </ngx-column>
+            </ngx-table-builder>
+        </ng-template>
+    </mat-tab>
+    <mat-tab label="Tab 2">
+        <ng-template matTabContent>
+            <ngx-table-builder
+                #table
+                [source]="data()"
+                [vertical-border]="false"
+            >
+                @for (key of table.modelColumnKeys; track key) {
+                    <ngx-column [key]="key">
+                        <ng-template ngx-th>{{ key }}</ng-template>
+                        <ng-template
+                            let-cell
+                            ngx-td
+                        >
+                            {{ cell }}
+                        </ng-template>
+                    </ngx-column>
+                }
+
+                <ngx-column
+                    custom-key
+                    key="edit"
+                    sticky-end
+                    vertical-line
+                    width="80"
+                >
+                    <ng-template ngx-th />
+                    <ng-template
+                        let-row
+                        ngx-td
+                        row
+                    >
+                        <button
+                            color="primary"
+                            mat-button
+                            type="button"
                             (click)="alert(row)"
                         >
                             show
                         </button>
-                    </div>
-                </ng-template>
-            </ngx-column>
-        </ngx-table-builder>
+                    </ng-template>
+                </ngx-column>
+            </ngx-table-builder>
+        </ng-template>
+    </mat-tab>
+    <mat-tab label="Tab 3">
+        <ng-template matTabContent>
+            <ngx-table-builder
+                [source]="data()"
+                [vertical-border]="false"
+            >
+                <ngx-column key="id">
+                    <ng-template ngx-th>{{ 'ID' }}</ng-template>
+                    <ng-template
+                        let-id
+                        ngx-td
+                    >
+                        {{ id }}
+                    </ng-template>
+                </ngx-column>
+
+                <ngx-column key="name">
+                    <ng-template ngx-th>{{ 'NAME' }}</ng-template>
+                    <ng-template
+                        let-name
+                        ngx-td
+                    >
+                        {{ name }}
+                    </ng-template>
+                </ngx-column>
+
+                <ngx-column key="description">
+                    <ng-template ngx-th>{{ 'DESCRIPTION' }}</ng-template>
+                    <ng-template
+                        let-description
+                        ngx-td
+                    >
+                        {{ description }}
+                    </ng-template>
+                </ngx-column>
+
+                <ngx-column
+                    custom-key
+                    key="edit"
+                    vertical-line
+                    width="200"
+                >
+                    <ng-template ngx-th />
+                    <ng-template
+                        let-row
+                        ngx-td
+                        row
+                    >
+                        <div class="table-edit-property__right-column">
+                            <button
+                                color="primary"
+                                mat-button
+                                type="button"
+                                (click)="alert(row)"
+                            >
+                                show
+                            </button>
+                        </div>
+                    </ng-template>
+                </ngx-column>
+            </ngx-table-builder>
+        </ng-template>
     </mat-tab>
     <mat-tab label="Tab 4">
-        <ngx-table-builder
-            #table
-            [source]="data"
-            [vertical-border]="false"
-        >
-            <ngx-column
-                custom-key
-                key="action"
-                sticky
-                vertical-line
-                width="80"
+        <ng-template matTabContent>
+            <ngx-table-builder
+                #table
+                [source]="data()"
+                [vertical-border]="false"
             >
-                <ng-template ngx-th />
-                <ng-template
-                    let-row
-                    ngx-td
-                    row
+                <ngx-column
+                    custom-key
+                    key="action"
+                    sticky
+                    vertical-line
+                    width="80"
                 >
-                    <button
-                        color="primary"
-                        mat-button
-                        (click)="alert(row)"
+                    <ng-template ngx-th />
+                    <ng-template
+                        let-row
+                        ngx-td
+                        row
                     >
-                        show
-                    </button>
-                </ng-template>
-            </ngx-column>
+                        <button
+                            color="primary"
+                            mat-button
+                            type="button"
+                            (click)="alert(row)"
+                        >
+                            show
+                        </button>
+                    </ng-template>
+                </ngx-column>
 
-            <ngx-column
-                *ngFor="let key of table.modelColumnKeys"
-                [key]="key"
-            >
-                <ng-template ngx-th>{{ key }}</ng-template>
-                <ng-template
-                    let-cell
-                    ngx-td
-                >
-                    {{ cell }}
-                </ng-template>
-            </ngx-column>
-        </ngx-table-builder>
+                @for (key of table.modelColumnKeys; track key) {
+                    <ngx-column [key]="key">
+                        <ng-template ngx-th>{{ key }}</ng-template>
+                        <ng-template
+                            let-cell
+                            ngx-td
+                        >
+                            {{ cell }}
+                        </ng-template>
+                    </ngx-column>
+                }
+            </ngx-table-builder>
+        </ng-template>
     </mat-tab>
 </mat-tab-group>

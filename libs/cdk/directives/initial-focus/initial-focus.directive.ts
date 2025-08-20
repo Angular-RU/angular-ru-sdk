@@ -2,8 +2,8 @@ import {
     AfterViewInit,
     Directive,
     ElementRef,
-    Inject,
-    Input,
+    inject,
+    input,
     NgZone,
     OnDestroy,
 } from '@angular/core';
@@ -13,24 +13,16 @@ import {takeUntil} from 'rxjs/operators';
 const MIN_DELAY = 500;
 
 @Directive({selector: '[initialFocus]'})
-export class InitialFocusDirective implements AfterViewInit, OnDestroy {
+export class InitialFocus implements AfterViewInit, OnDestroy {
+    private readonly element = inject<ElementRef<HTMLInputElement>>(ElementRef);
+    private readonly ngZone = inject<NgZone>(NgZone);
+
     private readonly className: string = 'initial-focused';
     private readonly unsubscribe$: Subject<boolean> = new Subject<boolean>();
-    @Input()
-    public focusDelay: number = MIN_DELAY;
 
-    @Input()
-    public focusDisabled = false;
-
-    @Input()
-    public type?: string;
-
-    constructor(
-        @Inject(ElementRef)
-        private readonly element: ElementRef<HTMLInputElement>,
-        @Inject(NgZone)
-        private readonly ngZone: NgZone,
-    ) {}
+    public readonly focusDelay = input<number>(MIN_DELAY);
+    public readonly focusDisabled = input(false);
+    public readonly type = input<string>();
 
     private get el(): HTMLInputElement {
         return this.element.nativeElement;
@@ -45,9 +37,9 @@ export class InitialFocusDirective implements AfterViewInit, OnDestroy {
     }
 
     private decideAndTryToFocus(): void {
-        if (!this.focusDisabled && !this.isFocused()) {
+        if (!this.focusDisabled() && !this.isFocused()) {
             this.ngZone.runOutsideAngular((): void => {
-                timer(this.focusDelay)
+                timer(this.focusDelay())
                     .pipe(takeUntil(this.unsubscribe$))
                     .subscribe((_value: number): void => {
                         this.focus();
@@ -68,13 +60,15 @@ export class InitialFocusDirective implements AfterViewInit, OnDestroy {
         this.el.focus();
 
         // selection range doesn't work with number type
-        if (this.type === 'number') {
+        const type = this.type();
+
+        if (type === 'number') {
             this.el.type = 'text';
         }
 
         this.el.setSelectionRange(this.el.value.length, this.el.value.length);
 
-        if (this.type === 'number') {
+        if (type === 'number') {
             this.el.type = 'number';
         }
 

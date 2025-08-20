@@ -6,4 +6,4 @@ import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/co
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NgxContextMenuDividerComponent {}
+export class NgxContextMenuDivider {}

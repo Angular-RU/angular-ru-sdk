@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
-import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
 import {Computed, DataAction, StateRepository} from '@angular-ru/ngxs/decorators';
 import {NgxsDataRepository} from '@angular-ru/ngxs/repositories';
-import {NgxsModule, State} from '@ngxs/store';
+import {provideStore, State} from '@ngxs/store';
 import {combineLatest, Observable, Subscription} from 'rxjs';
 import {map} from 'rxjs/operators';
 
@@ -46,12 +46,10 @@ describe('[TEST]: Observable with computed $a field', () => {
     })
     @Injectable()
     class A extends NgxsDataRepository<Model> {
+        private readonly _b = inject(B);
+
         public subscribeA$ = 0;
         public subscribeA$_$B = 0;
-
-        constructor(private readonly _b: B) {
-            super();
-        }
 
         @Computed()
         public get value(): number {
@@ -94,9 +92,9 @@ describe('[TEST]: Observable with computed $a field', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [
-                NgxsModule.forRoot([A, B], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            providers: [
+                provideStore([A, B], {developmentMode: true}),
+                provideNgxsDataPlugin(),
             ],
         });
 

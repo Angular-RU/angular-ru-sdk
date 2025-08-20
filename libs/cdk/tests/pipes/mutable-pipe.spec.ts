@@ -1,9 +1,5 @@
 import {TestBed} from '@angular/core/testing';
-import {
-    DeepPathPipe,
-    MutableTypePipe,
-    MutableTypePipeModule,
-} from '@angular-ru/cdk/pipes';
+import {DeepPathPipe, MutableTypePipe} from '@angular-ru/cdk/pipes';
 import {Immutable, Nullable, PlainObject} from '@angular-ru/cdk/typings';
 
 describe('mutable', () => {
@@ -11,7 +7,7 @@ describe('mutable', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [MutableTypePipeModule],
+            providers: [MutableTypePipe],
         }).compileComponents();
         pipe = TestBed.inject(MutableTypePipe);
     });
@@ -21,6 +17,7 @@ describe('mutable', () => {
         const mutableObject = pipe.transform(object);
 
         mutableObject.a = 'str2';
+
         expect(object.a).toBe('str2');
         expect(mutableObject.a).toBe('str2');
     });

@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {fakeAsync, TestBed, tick} from '@angular/core/testing';
-import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
 import {DataAction, Debounce, StateRepository} from '@angular-ru/ngxs/decorators';
 import {NgxsImmutableDataRepository} from '@angular-ru/ngxs/repositories';
 import {NGXS_DATA_EXCEPTIONS} from '@angular-ru/ngxs/tokens';
-import {NgxsModule, State} from '@ngxs/store';
+import {provideStore, State} from '@ngxs/store';
 
 describe('[TEST]: Debounce', () => {
     it('should be check ngZone', () => {
@@ -23,7 +23,7 @@ describe('[TEST]: Debounce', () => {
             message = (error as Error).message;
         }
 
-        expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_MODULE_EXCEPTION);
+        expect(message).toEqual(NGXS_DATA_EXCEPTIONS.NGXS_DATA_PROVIDER_EXCEPTION);
     });
 
     it('should be correct invoke', fakeAsync(() => {
@@ -55,9 +55,9 @@ describe('[TEST]: Debounce', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [
-                NgxsModule.forRoot([DebounceState], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            providers: [
+                provideStore([DebounceState], {developmentMode: true}),
+                provideNgxsDataPlugin(),
             ],
         });
 

@@ -6,22 +6,23 @@ import {
     AfterViewInit,
     ApplicationRef,
     ChangeDetectorRef,
-    ContentChild,
-    ContentChildren,
+    contentChild,
+    contentChildren,
     Directive,
+    effect,
     ElementRef,
-    EventEmitter,
-    Input,
+    inject,
+    input,
     NgZone,
     OnChanges,
     OnDestroy,
     OnInit,
-    Output,
-    QueryList,
+    output,
     SimpleChanges,
-    ViewChild,
-    ViewChildren,
+    viewChild,
+    viewChildren,
 } from '@angular/core';
+import {SIGNAL} from '@angular/core/primitives/signals';
 import {coerceBoolean} from '@angular-ru/cdk/coercion';
 import {pathsOfObject} from '@angular-ru/cdk/object';
 import {
@@ -34,13 +35,13 @@ import {
 } from '@angular-ru/cdk/typings';
 import {detectChanges, isNotNil, isTrue} from '@angular-ru/cdk/utils';
 
-import {NgxColumnComponent} from './components/ngx-column/ngx-column.component';
-import {NgxContextMenuComponent} from './components/ngx-context-menu/ngx-context-menu.component';
-import {NgxEmptyComponent} from './components/ngx-empty/ngx-empty.component';
-import {NgxFilterComponent} from './components/ngx-filter/ngx-filter.component';
-import {NgxFooterComponent} from './components/ngx-footer/ngx-footer.component';
-import {NgxHeaderComponent} from './components/ngx-header/ngx-header.component';
-import {NgxOptionsComponent} from './components/ngx-options/ngx-options.component';
+import {NgxColumn} from './components/ngx-column/ngx-column.component';
+import {NgxContextMenu} from './components/ngx-context-menu/ngx-context-menu.component';
+import {NgxEmpty} from './components/ngx-empty/ngx-empty.component';
+import {NgxFilter} from './components/ngx-filter/ngx-filter.component';
+import {NgxFooter} from './components/ngx-footer/ngx-footer.component';
+import {NgxHeader} from './components/ngx-header/ngx-header.component';
+import {NgxOptions} from './components/ngx-options/ngx-options.component';
 import {TABLE_GLOBAL_OPTIONS} from './config/table-global-options';
 import {
     ColumnsSchema,
@@ -74,7 +75,7 @@ const {
 }: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
 
 @Directive()
-export abstract class AbstractTableBuilderApiDirective<T>
+export abstract class AbstractTableBuilderApi<T>
     implements
         OnChanges,
         OnInit,
@@ -83,17 +84,17 @@ export abstract class AbstractTableBuilderApiDirective<T>
         AfterViewChecked,
         OnDestroy
 {
-    public abstract readonly templateParser: TemplateParserService<T>;
-    public abstract readonly selection: SelectionService<T>;
-    public abstract readonly cd: ChangeDetectorRef;
-    public abstract readonly resize: ResizableService;
-    public abstract readonly sortable: SortableService<T>;
-    public abstract readonly contextMenu: ContextMenuService<T>;
-    public abstract readonly filterable: FilterableService<T>;
-    public abstract readonly ngZone: NgZone;
-    protected abstract readonly app: ApplicationRef;
-    protected abstract readonly viewChanges: NgxTableViewChangesService;
-    protected abstract readonly draggable: DraggableService<T>;
+    public templateParser = inject(TemplateParserService<T>);
+    public selection = inject(SelectionService<T>);
+    public cd = inject(ChangeDetectorRef);
+    public readonly resize = inject(ResizableService);
+    public readonly sortable = inject(SortableService<T>);
+    public readonly contextMenu = inject(ContextMenuService<T>);
+    public readonly filterable = inject(FilterableService<T>);
+    public readonly ngZone = inject(NgZone);
+    protected readonly app = inject(ApplicationRef);
+    protected readonly viewChanges = inject(NgxTableViewChangesService);
+    protected readonly draggable = inject(DraggableService<T>);
     private filterIdTask: Nullable<number> = null;
     private idleDetectChangesId: Nullable<number> = null;
     private columnFrameId: Nullable<number> = null;
@@ -103,115 +104,93 @@ export abstract class AbstractTableBuilderApiDirective<T>
     protected originalSource: Nullable<T[]> = null;
     protected renderedKeys: string[] = [];
     protected isDragMoving = false;
-    @Input()
-    public height: Nullable<number | string> = null;
+    public readonly height = input<Nullable<number | string>>(null);
 
-    @Input()
-    public width: Nullable<number | string> = null;
+    public readonly width = input<Nullable<number | string>>(null);
 
-    @Input()
-    public source: Nullable<T[]> = null;
+    public readonly source = input<Nullable<T[]>>(null);
 
-    @Input()
-    public keys: string[] = [];
+    public readonly keys = input<string[]>([]);
 
-    @Input()
-    public striped = true;
+    public readonly striped = input(true);
 
-    @Input()
-    public name: Nullable<string> = null;
+    public readonly name = input<Nullable<string>>(null);
 
-    @Input('skip-sort')
-    public skipSort: boolean | string = false;
+    public readonly skipSort = input<boolean | string>(false, {alias: 'skip-sort'});
 
-    @Input('sort-types')
-    public sortTypes: TableSortTypes = null;
+    public readonly sortTypes = input<TableSortTypes>(null, {alias: 'sort-types'});
 
-    @Input('filter-definition')
-    public filterDefinition: Nullable<FilterDescriptor[]> = [];
+    public readonly filterDefinition = input<Nullable<FilterDescriptor[]>>([], {
+        alias: 'filter-definition',
+    });
 
-    @Input('exclude-keys')
-    public excludeKeys: Array<ExcludePattern<T>> = [];
+    public readonly excludeKeys = input<Array<ExcludePattern<T>>>([], {
+        alias: 'exclude-keys',
+    });
 
-    @Input('auto-width')
-    public autoWidth: boolean | string = false;
+    public readonly autoWidth = input<boolean | string>(false, {alias: 'auto-width'});
 
-    @Input('auto-height')
-    public autoHeightDetect = true;
+    public readonly autoHeightDetect = input(true, {alias: 'auto-height'});
 
-    @Input('native-scrollbar')
-    public nativeScrollbar = false;
+    public readonly nativeScrollbar = input(false, {alias: 'native-scrollbar'});
 
-    @Input('primary-key')
-    public primaryKey: string = PrimaryKey.ID;
+    public readonly primaryKey = input<string>(PrimaryKey.ID, {alias: 'primary-key'});
 
-    @Input('vertical-border')
-    public verticalBorder = true;
+    public readonly verticalBorder = input(true, {alias: 'vertical-border'});
 
-    @Input('enable-selection')
-    public enableSelection: boolean | string = false;
+    public readonly enableSelection = input<boolean | string>(false, {
+        alias: 'enable-selection',
+    });
 
-    @Input('enable-filtering')
-    public enableFiltering: boolean | string = false;
+    public readonly enableFiltering = input<boolean | string>(false, {
+        alias: 'enable-filtering',
+    });
 
-    @Input('disable-deep-path')
-    public disableDeepPath = false;
+    public readonly disableDeepPath = input(false, {alias: 'disable-deep-path'});
 
-    @Input('produce-disable-fn')
-    public produceDisableFn: ProduceDisableFn<T> = null;
+    public readonly produceDisableFn = input<ProduceDisableFn<T>>(null, {
+        alias: 'produce-disable-fn',
+    });
 
-    @Input('row-css-classes')
-    public rowCssClasses: PlainObjectOf<string[]> = {};
+    public readonly rowCssClasses = input<PlainObjectOf<string[]>>(
+        {},
+        {alias: 'row-css-classes'},
+    );
 
-    @Input('schema-columns')
-    public schemaColumns: Nullable<TableUpdateSchema> = null;
+    public readonly schemaColumns = input<Nullable<TableUpdateSchema>>(null, {
+        alias: 'schema-columns',
+    });
 
-    @Input('schema-version')
-    public schemaVersion = 1;
+    public readonly schemaVersion = input(1, {alias: 'schema-version'});
 
-    @Input('is-virtual-table')
-    public isVirtualTable = true;
+    public readonly isVirtualTable = input(true, {alias: 'is-virtual-table'});
 
-    @Output()
-    public readonly afterRendered = new EventEmitter<boolean>();
-
-    @Output()
-    public readonly schemaChanges = new EventEmitter<TableUpdateSchema>();
+    public readonly afterRendered = output<boolean>();
+    public readonly schemaChanges = output<TableUpdateSchema>();
 
     // TODO: should be rename (breaking changes)
     // eslint-disable-next-line @angular-eslint/no-output-on-prefix
-    @Output()
-    public readonly onChanges = new EventEmitter<Nullable<T[]>>();
+    public readonly onChanges = output<Nullable<T[]>>();
+    public readonly sortChanges = output<OrderedField[]>();
 
-    @Output()
-    public readonly sortChanges = new EventEmitter<OrderedField[]>();
+    public readonly columnOptions = contentChild(NgxOptions);
 
-    @ContentChild(NgxOptionsComponent, {static: false})
-    public columnOptions: Nullable<NgxOptionsComponent> = null;
+    public readonly columnTemplates = contentChildren<NgxColumn<T>>(NgxColumn);
 
-    @ContentChildren(NgxColumnComponent)
-    public columnTemplates: Nullable<QueryList<NgxColumnComponent<T>>> = null;
+    public readonly contextMenuTemplate = contentChild(NgxContextMenu);
 
-    @ContentChild(NgxContextMenuComponent, {static: false})
-    public contextMenuTemplate: Nullable<NgxContextMenuComponent<T>> = null;
+    public readonly ngxEmptyContent = contentChild(NgxEmpty, {read: ElementRef});
 
-    @ContentChild(NgxEmptyComponent, {read: ElementRef})
-    public ngxEmptyContent: Nullable<ElementRef> = null;
+    public readonly headerTemplate = contentChild(NgxHeader);
 
-    @ContentChild(NgxHeaderComponent, {static: false})
-    public headerTemplate: Nullable<NgxHeaderComponent> = null;
+    public readonly footerTemplate = contentChild(NgxFooter);
 
-    @ContentChild(NgxFooterComponent, {static: false})
-    public footerTemplate: Nullable<NgxFooterComponent> = null;
+    public readonly filterTemplate = contentChild(NgxFilter);
 
-    @ContentChild(NgxFilterComponent, {static: false})
-    public filterTemplate: Nullable<NgxFilterComponent<T>> = null;
+    public readonly scrollContainer =
+        viewChild.required<ElementRef<HTMLElement>>('tableViewport');
 
-    @ViewChild('tableViewport', {static: true})
-    public scrollContainer!: ElementRef<HTMLElement>;
-
-    @ViewChildren('column', {read: false})
-    public columnList!: QueryList<ElementRef<HTMLDivElement>>;
+    public readonly columnList = viewChildren<ElementRef<HTMLDivElement>>('column');
 
     public scrollbarWidth: number = SCROLLBAR_SIZE;
     public columnListWidth = 0;
@@ -243,6 +222,17 @@ export abstract class AbstractTableBuilderApiDirective<T>
     public accessDragging = false;
     public filteringRun = false;
 
+    constructor() {
+        this.listenToHeightChanges();
+    }
+
+    private listenToHeightChanges() {
+        effect(() => {
+            this._headHeight = this.headHeight();
+            this._rowHeight = this.rowHeight();
+        });
+    }
+
     /**
      * @description - <table-builder [keys]=[ 'id', 'value', 'id', 'position', 'value' ] />
      * returned unique displayed columns [ 'id', 'value', 'position' ]
@@ -267,16 +257,6 @@ export abstract class AbstractTableBuilderApiDirective<T>
 
     public get columnSchema(): ColumnsSchema[] {
         return this.templateParser.schema?.columns ?? [];
-    }
-
-    /**
-     * todo caretaker note
-     * @deprecated - remove in v13
-     * remove and replace with AbstractTableBuilderApiDirective#getSelectedItems
-     * while table refactoring
-     */
-    public get selectedItems(): T[] {
-        return this.getSelectedItems();
     }
 
     public get selectionModel(): SelectionMap<T> {
@@ -307,7 +287,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
      * @description Returns a list of displayed table entries, including filters and sorting.
      */
     public get sourceRef(): T[] {
-        return this.source ?? [];
+        return this.source() ?? [];
     }
 
     public get firstItem(): T {
@@ -324,34 +304,35 @@ export abstract class AbstractTableBuilderApiDirective<T>
      * @description Returns the entire list of table entries, excluding filters and sorting.
      */
     public get originalSourceRef(): T[] {
-        return this.originalSource ?? this.source ?? [];
+        return this.originalSource ?? this.source() ?? [];
     }
 
     public get isEnableFiltering(): boolean {
-        return this.enableFiltering !== false;
+        return this.enableFiltering() !== false;
     }
 
     public get isSkippedInternalSort(): boolean {
-        return this.skipSort !== false;
+        return this.skipSort() !== false;
     }
 
     public get isEnableAutoWidthColumn(): boolean {
-        return this.autoWidth !== false;
+        return this.autoWidth() !== false;
     }
 
     public get isEnableSelection(): boolean {
-        return this.enableSelection !== false;
+        return this.enableSelection() !== false;
     }
 
-    @Input('head-height')
-    public set headHeight(value: number | string) {
-        this._headHeight = parseInt(value as string);
-    }
+    public readonly headHeight = input<number, Nullable<number | string>>(undefined, {
+        transform: (value: Nullable<number | string>) => parseInt(value as string, 10),
+        alias: 'head-height',
+    });
 
-    @Input('row-height')
-    public set rowHeight(value: Nullable<number | string>) {
-        this._rowHeight = parseInt((value ?? ROW_HEIGHT) as string);
-    }
+    public readonly rowHeight = input<number, Nullable<number | string>>(undefined, {
+        transform: (value: Nullable<number | string>) =>
+            parseInt((value ?? ROW_HEIGHT) as string, 10),
+        alias: 'row-height',
+    });
 
     private get shouldBeFiltered(): boolean {
         return this.filterable.filterValueExist && this.isEnableFiltering;
@@ -362,9 +343,11 @@ export abstract class AbstractTableBuilderApiDirective<T>
     }
 
     private get expanded(): Nullable<boolean> {
-        return coerceBoolean(this.headerTemplate?.expandablePanel) &&
-            isNotNil(this.headerTemplate?.expanded)
-            ? coerceBoolean(this.headerTemplate?.expanded)
+        const headerTemplate = this.headerTemplate();
+        const expanded = headerTemplate?.expanded();
+
+        return coerceBoolean(headerTemplate?.expandablePanel()) && isNotNil(expanded)
+            ? coerceBoolean(expanded)
             : null;
     }
 
@@ -437,7 +420,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
 
     public async sortAndFilter(): Promise<void> {
         await this.sortAndFilterOriginalSource();
-        this.selection.rows = this.source;
+        this.selection.rows = this.source();
 
         // TODO: need research this code, because we have problem with recursive update,
         //  when page have more than one tables
@@ -479,8 +462,8 @@ export abstract class AbstractTableBuilderApiDirective<T>
             const updateSchema: TableUpdateSchema = {
                 columns,
                 generalTableSettings,
-                name: this.name,
-                version: this.schemaVersion,
+                name: this.name(),
+                version: this.schemaVersion(),
             };
 
             this.viewChanges.update(updateSchema);
@@ -500,7 +483,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
 
     public getSelectedItems(): T[] {
         return this.sourceRef.filter((item: T): boolean =>
-            isNotNil(this.selectionModel.entries[(item as any)[this.primaryKey]]),
+            isNotNil(this.selectionModel.entries[(item as any)[this.primaryKey()]]),
         );
     }
 
@@ -535,7 +518,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
      * @see AbstractTableBuilderApiDirective#customModelColumnsKeys for further information
      */
     protected generateCustomModelColumnsKeys(): string[] {
-        return this.excluding(this.keys);
+        return this.excluding(this.keys());
     }
 
     /**
@@ -560,7 +543,7 @@ export abstract class AbstractTableBuilderApiDirective<T>
             this.columnFrameId = window.setTimeout((): void => {
                 let width = 0;
 
-                for (const element of this.columnList) {
+                for (const element of this.columnList()) {
                     width += element.nativeElement.offsetWidth;
                 }
 
@@ -571,19 +554,19 @@ export abstract class AbstractTableBuilderApiDirective<T>
     }
 
     private async sortAndFilterOriginalSource(): Promise<void> {
-        this.source = this.originalSource ?? [];
+        this.source[SIGNAL].value = this.originalSource ?? [];
 
         if (this.shouldBeFiltered) {
             const filter: FilterWorkerEvent<T> = await this.filterable.filter(
-                this.source,
+                this.source() ?? [],
             );
 
-            this.source = filter.source;
+            this.source[SIGNAL].value = filter.source;
             filter.fireSelection();
         }
 
         if (this.shouldBeSorted) {
-            this.source = await this.sortable.sort(this.source);
+            this.source[SIGNAL].value = await this.sortable.sort(this.source() ?? []);
         }
     }
 
@@ -605,13 +588,14 @@ export abstract class AbstractTableBuilderApiDirective<T>
     }
 
     private excluding(keys: string[]): string[] {
-        return this.excludeKeys.length > 0
+        return this.excludeKeys().length > 0
             ? keys.filter(
                   (key: string): boolean =>
-                      !this.excludeKeys.some((excludeKey: ExcludePattern<T>): boolean =>
-                          excludeKey instanceof RegExp
-                              ? Boolean(key.match(excludeKey))
-                              : key === excludeKey,
+                      !this.excludeKeys().some(
+                          (excludeKey: ExcludePattern<T>): boolean =>
+                              excludeKey instanceof RegExp
+                                  ? Boolean(key.match(excludeKey))
+                                  : key === excludeKey,
                       ),
               )
             : keys;

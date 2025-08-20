@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
 import {BoundClass} from '@angular-ru/cdk/decorators';
 
@@ -12,9 +12,9 @@ describe('@BoundClass', () => {
         @BoundClass
         @Injectable()
         class A {
-            public a = '1';
+            public readonly b = inject(B);
 
-            constructor(public readonly b: B) {}
+            public a = '1';
 
             public getA() {
                 return this;
