@@ -3,16 +3,11 @@
 > Lightweight and configurable Angular logger
 
 ```typescript
-import { LoggerModule } from '@angular-ru/cdk/logger';
-...
+import {provideLogger} from '@angular-ru/cdk/logger';
 
-@NgModule({
- imports: [
-    LoggerModule.forRoot()
- ],
- ...
-})
-export class AppModule {}
+export const appConfig: ApplicationConfig = {
+  providers: [provideLogger()],
+};
 ```
 
 ## Motivation
@@ -46,19 +41,14 @@ $ npm install @angular-ru/cdk --save
 ```
 
 ```typescript
-import { LoggerModule } from '@angular-ru/cdk/logger';
-...
+import {provideLogger} from '@angular-ru/cdk/logger';
 
-@NgModule({
- imports: [
-    LoggerModule.forRoot()
- ],
- ...
-})
-export class AppModule {}
+export const appConfig: ApplicationConfig = {
+  providers: [provideLogger()],
+};
 ```
 
-**Online demo**: https://angular-ru.github.io/angular-ru-logger-example-app/
+[**Online demo**](https://angular-ru.github.io/angular-ru-logger-example-app)
 
 ![](https://habrastorage.org/webt/lq/a9/_s/lqa9_sp8gxkwax_sy6x9w3qf5ry.gif)
 
@@ -338,26 +328,24 @@ export class AppComponent implements OnInit {
 ### Example: CSS classes
 
 ```typescript
-import { LoggerModule } from '@angular-ru/cdk/logger';
+import {provideLogger} from '@angular-ru/cdk/logger';
 
-@NgModule({
-    // ..
-    imports: [
-        LoggerModule.forRoot({
-            cssClassMap: {
-                bold: 'font-weight: bold',
-                'line-through': 'text-decoration: line-through',
-                'code-sandbox': `
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideLogger({
+      cssClassMap: {
+        bold: 'font-weight: bold',
+        'line-through': 'text-decoration: line-through',
+        'code-sandbox': `
                   color: #666;
                   background: #f4f4f4;
                   border-left: 3px solid #f36d33;
                   font-family: monospace;
-                  font-size: 15px;`
-            }
-        })
-    ]
-    // ..
-})
+                  font-size: 15px;`,
+      },
+    }),
+  ],
+};
 ```
 
 ```typescript
@@ -376,7 +364,6 @@ export class AppComponent implements OnInit {
     this.logger.cssClass('bold line-through').debug('JavaScript sucks', 'JavaScript is the best');
   }
 }
-export class AppModule {}
 ```
 
 ![](https://habrastorage.org/webt/d5/tm/aa/d5tmaaomjql5px_wkzxnodhacnk.png)
@@ -510,12 +497,11 @@ export class AppComponent {
 ### Example: format output
 
 ```typescript
-import {LoggerModule, NgModule, FormatOutput} from '@angular-ru/cdk/logger';
+import {FormatOutput, provideLogger} from '@angular-ru/cdk/logger';
 
-@NgModule({
-  //..
-  imports: [
-    LoggerModule.forRoot({
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideLogger({
       format(label: string, labelStyle: string): FormatOutput {
         const date = new Date().toLocaleString('ru-RU').replace(',', '');
         const customLabel: string = `${date} ${label}`;
@@ -523,8 +509,7 @@ import {LoggerModule, NgModule, FormatOutput} from '@angular-ru/cdk/logger';
       },
     }),
   ],
-})
-export class AppModule {}
+};
 ```
 
 ```typescript
@@ -548,12 +533,11 @@ export class AppComponent implements OnInit {
 ### Example: full configurations
 
 ```typescript
-import {LoggerModule, NgModule, LoggerLevel} from '@angular-ru/cdk/logger';
+import {LoggerLevel, provideLogger} from '@angular-ru/cdk/logger';
 
-@NgModule({
-  // ..
-  imports: [
-    LoggerModule.forRoot({
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideLogger({
       useLevelGroup: true,
       globalLineStyle: 'color: red; text-decoration: underline; font-weight: bold; font-size: 15px',
       cssClassMap: {
@@ -582,27 +566,23 @@ import {LoggerModule, NgModule, LoggerLevel} from '@angular-ru/cdk/logger';
       },
     }),
   ],
-  // ..
-})
-export class AppModule {}
+};
 ```
 
 ```typescript
-import { LoggerService } from '@angular-ru/cdk/logger';
+import {LoggerService} from '@angular-ru/cdk/logger';
 
-export class AppComponent implements OnInit {
+export class AppComponent {
+  constructor(private readonly logger: LoggerService) {}
 
-  public ngOnInit(): void {
-    constructor(private readonly logger: LoggerService) {}
-
-    public showExample(): void {
-        this.logger.log('Example');
-        this.logger.trace('trace is worked', 1, { a: 1 });
-        this.logger.debug('debug is worked', 2, console);
-        this.logger.info('info is worked', 3, Object);
-        this.logger.warn('warn is worked', 4, String);
-        this.logger.error('error is worked', 5, (2.55).toFixed());
-    }
+  public showExample(): void {
+    this.logger.log('Example');
+    this.logger.trace('trace is worked', 1, {a: 1});
+    this.logger.debug('debug is worked', 2, console);
+    this.logger.info('info is worked', 3, Object);
+    this.logger.warn('warn is worked', 4, String);
+    this.logger.error('error is worked', 5, (2.55).toFixed());
+  }
 }
 ```
 

@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Demo: https://angular-ru.github.io/angular-ru-tooltip-example-app/
+[**Demo**](https://angular-ru.github.io/angular-ru-tooltip-example-app)
 
 ```bash
 $ npm install @angular-ru/cdk/tooltip
@@ -17,16 +17,11 @@ $ npm install @angular-ru/cdk/tooltip
 ```
 
 ```typescript
-import {TooltipModule} from '@angular-ru/cdk/tooltip';
-import {NgModule} from '@angular/core';
+import {provideTooltip} from '@angular-ru/cdk/tooltip';
 
-@NgModule({
-  imports: [
-    // ...
-    TooltipModule.forRoot(),
-  ],
-})
-export class AppModule {}
+export const appConfig: ApplicationConfig = {
+  providers: [provideTooltip()],
+};
 ```
 
 #### Basic example

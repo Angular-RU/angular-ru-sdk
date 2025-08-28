@@ -525,23 +525,19 @@ export class PersonState extends NgxsImmutableDataRepository<PersonModel> {
 The same behavior can be achieved globally for all `@DataAction` in the app by providing a global config property.
 
 ```typescript
-@NgModule({
-  declarations: [AppComponent],
-  imports: [
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgxsModule.forRoot([], {
-      developmentMode: !environment.production,
-      executionStrategy: NoopNgxsExecutionStrategy,
-    }),
-    NgxsLoggerPluginModule.forRoot(),
-    NgxsDataPluginModule.forRoot([NGXS_DATA_STORAGE_EXTENSION, NGXS_DATA_STORAGE_CONTAINER]),
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideRouter(routes),
+    provideAnimationsAsync(),
+    provideStore(
+      [],
+      {
+        developmentMode: !environment.production,
+      },
+      withNgxsLoggerPlugin(),
+      withNgxsNoopExecutionStrategy(),
+    ),
+    provideNgxsDataPlugin({dataActionSubscribeRequired: false}, withNgxsDataStorage()),
   ],
-  providers: [{provide: NGXS_DATA_CONFIG, useValue: {dataActionSubscribeRequired: false}}],
-  bootstrap: [AppComponent],
-})
-export class AppModule {}
+};
 ```

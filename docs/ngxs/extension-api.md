@@ -1,36 +1,36 @@
 ## Extension API
 
 ```typescript
-import {NgxsDataPluginModule} from '@angular-ru/ngxs';
-// ..
+import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
+// ...
 
-@NgModule({
-  imports: [
-    NgxsDataPluginModule.forRoot([
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideNgxsDataPlugin(
       MY_FIRST_EXTENSION,
       MY_SECOND_EXTENSION,
       MY_THIRD_EXTENSION,
       MY_FOURTH_EXTENSION,
       MY_FIFTH_EXTENSION,
-    ]),
+    ),
   ],
-})
-export class AppModule {}
+};
 ```
 
-`my-extensions.ts` - you can define any providers in your module:
+`my-extensions.ts` - you can define any providers in your app config:
 
 ```typescript
-import {NgxsDataExtension} from '@angular-ru/ngxs/typings';
-// ..
+import {makeEnvironmentProviders} from '@angular/core';
 
-export const MY_FIRST_EXTENSION: NgxsDataExtension = {
-  provide: NGXS_PLUGINS,
-  useClass: MySuperService,
-  multi: true,
-};
+export const MY_FIRST_EXTENSION = makeEnvironmentProviders([
+  {
+    provide: NGXS_PLUGINS,
+    useClass: MySuperService,
+    multi: true,
+  },
+]);
 
-export const MY_SECOND_EXTENSION: NgxsDataExtension = [
+export const MY_SECOND_EXTENSION = makeEnvironmentProviders([
   {
     provide: NGXS_PLUGINS,
     useClass: FeatureService,
@@ -40,14 +40,16 @@ export const MY_SECOND_EXTENSION: NgxsDataExtension = [
     provide: MyInjectableToken,
     useFactory: (): MyFactory => new MyFactory(),
   },
-];
+]);
 
-export const MY_THIRD_EXTENSION: NgxsDataExtension = [MySuperPluginA.forRoot(), MySuperPluginB.forRoot()];
+export const MY_THIRD_EXTENSION = makeEnvironmentProviders([provideMySuperPluginA(), provideMySuperPluginB()]);
 
-export const MY_FOURTH_EXTENSION: NgxsDataExtension = MyInjectableService;
+export const MY_FOURTH_EXTENSION = makeEnvironmentProviders([MyInjectableService]);
 
-export const MY_FIFTH_EXTENSION: NgxsDataExtension = {
-  provide: MY_TOKEN,
-  useValue: 'VALUE',
-};
+export const MY_FIFTH_EXTENSION = makeEnvironmentProviders([
+  {
+    provide: MY_TOKEN,
+    useValue: 'VALUE',
+  },
+]);
 ```

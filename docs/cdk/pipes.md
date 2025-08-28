@@ -1,21 +1,16 @@
 #### `@angular-ru/cdk/pipes`
 
-- `MutableTypePipe, MutableTypePipeModule`
+- `MutableTypePipe`
 
 ```typescript
-import {MutableTypePipeModule} from '@angular-ru/cdk/pipes';
-import {Component, NgModule} from '@angular/core';
+import {MutableTypePipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 import {Immutable} from '@angular-ru/typings';
 import {Data} from './data';
 
-@NgModule({
-  // ..
-  imports: [MutableTypePipeModule],
-})
-export class AppModule {}
-
 @Component({
   //...
+  imports: [MutableTypePipe],
   template: `
     <data [list]="data | mutable"></data>
   `,
@@ -38,20 +33,15 @@ expect(obj.a).toEqual('str2');
 expect(mutableObj.a).toEqual('str2');
 ```
 
-- `DeepPathPipe, DeepPathPipeModule`
+- `DeepPathPipe`
 
 ```typescript
-import {DeepPathPipeModule} from '@angular-ru/cdk/pipes';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [DeepPathPipeModule],
-})
-export class AppModule {}
+import {DeepPathPipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [DeepPathPipe],
   template: `
     {{ data | deepPath: 'a.b.c' }}
   `, // view: 'hello'
@@ -61,20 +51,15 @@ export class AppComponent {
 }
 ```
 
-- `DefaultValuePipe, DefaultValuePipeModule`
+- `DefaultValuePipe`
 
 ```typescript
-import {DefaultValuePipeModule} from '@angular-ru/cdk/pipes';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [DefaultValuePipeModule],
-})
-export class AppModule {}
+import {DefaultValuePipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [DefaultValuePipe],
   template: `
     {{ data | defaultValue: '-' }}
   `, // view: '-'
@@ -84,20 +69,15 @@ export class AppComponent {
 }
 ```
 
-- `IsNotNullPipe, IsNotNullPipeModule`
+- `IsNotNullPipe`
 
 ```typescript
-import {IsNotNullPipeModule} from '@angular-ru/cdk/pipes';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [IsNotNullPipeModule],
-})
-export class AppModule {}
+import {IsNotNullPipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [IsNotNullPipe],
   template: `
     {{ data | isNotNull }}
   `, // false
@@ -107,20 +87,15 @@ export class AppComponent {
 }
 ```
 
-- `IsNilPipe, IsNilPipeModule`
+- `IsNilPipe`
 
 ```typescript
-import {IsNilPipeModule} from '@angular-ru/cdk/pipes';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [IsNilPipeModule],
-})
-export class AppModule {}
+import {IsNilPipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [IsNilPipe],
   template: `
     {{ data | isNil }}
   `, // true
@@ -130,20 +105,15 @@ export class AppComponent {
 }
 ```
 
-- `IsObjectPipe, IsObjectPipeModule`
+- `IsObjectPipe`
 
 ```typescript
-import {IsObjectPipeModule} from '@angular-ru/cdk/pipes';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [IsObjectPipeModule],
-})
-export class AppModule {}
+import {IsObjectPipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [IsObjectPipe],
   template: `
     {{ data | isObject }}
   `, // true
@@ -153,20 +123,15 @@ export class AppComponent {
 }
 ```
 
-- `DetectBrowserPipe, DetectBrowserPipeModule`
+- `DetectBrowserPipe`
 
 ```typescript
-import {DetectBrowserPipeModule} from '@angular-ru/cdk/pipes';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [DetectBrowserPipeModule],
-})
-export class AppModule {}
+import {DetectBrowserPipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [DetectBrowserPipe],
   template: `
     {{ browser | detectBrowser }}
   `, // Chrome 84
@@ -177,20 +142,15 @@ export class AppComponent {
 }
 ```
 
-- `IsStringPipe, IsStringPipeModule`
+- `IsStringPipe`
 
 ```typescript
-import {IsStringPipeModule} from '@angular-ru/cdk/pipes';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [IsStringPipeModule],
-})
-export class AppModule {}
+import {IsStringPipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [IsStringPipe],
   template: `
     {{ data | isString }}
   `, // true
@@ -200,20 +160,15 @@ export class AppComponent {
 }
 ```
 
-- `IsArrayPipe, IsArrayPipeModule`
+- `IsArrayPipe`
 
 ```typescript
-import {IsArrayPipeModule} from '@angular-ru/cdk/pipes';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [IsArrayPipeModule],
-})
-export class AppModule {}
+import {IsArrayPipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [IsArrayPipe],
   template: `
     {{ data | isArray }}
   `, // true
@@ -223,20 +178,15 @@ export class AppComponent {
 }
 ```
 
-- `ToStringPipe, ToStringPipeModule`
+- `ToStringPipe`
 
 ```typescript
-import {ToStringPipeModule} from '@angular-ru/cdk/pipes';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [ToStringPipeModule],
-})
-export class AppModule {}
+import {ToStringPipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [ToStringPipe],
   template: `
     {{ data | toString }}
   `, // "1,2"
@@ -246,20 +196,15 @@ export class AppComponent {
 }
 ```
 
-- `ToNumberPipe, ToNumberPipeModule`
+- `ToNumberPipe`
 
 ```typescript
-import {ToNumberPipeModule} from '@angular-ru/cdk/pipes';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [ToNumberPipeModule],
-})
-export class AppModule {}
+import {ToNumberPipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [ToNumberPipe],
   template: `
     {{ data | toNumber }}
   `, // 12
@@ -269,20 +214,15 @@ export class AppComponent {
 }
 ```
 
-- `FormatDatePipe, FormatDatePipeModule`
+- `FormatDatePipe`
 
 ```typescript
-import {FormatDatePipeModule} from '@angular-ru/cdk/pipes';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [FormatDatePipeModule],
-})
-export class AppModule {}
+import {FormatDatePipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [FormatDatePipe],
   template: `
     {{ data | formatDate }}
   `, // 11.12.2018
@@ -292,20 +232,15 @@ export class AppComponent {
 }
 ```
 
-- `SafePipe, SafePipeModule`
+- `SafePipe`
 
 ```typescript
-import {SafePipeModule} from '@angular-ru/cdk/pipes';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [SafePipeModule],
-})
-export class AppModule {}
+import {SafePipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [SafePipe],
   template: `
     <div [innerHTML]="data | safe: 'html'"></div>
   `,
@@ -315,20 +250,15 @@ export class AppComponent {
 }
 ```
 
-- `NumberFormatPipe, NumberFormatPipeModule`
+- `NumberFormatPipe`
 
 ```typescript
-import {NumberFormatPipeModule} from '@angular-ru/cdk/pipes';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [NumberFormatPipeModule],
-})
-export class AppModule {}
+import {NumberFormatPipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [NumberFormatPipe],
   template: `
     {{ data | numberFormat }}
   `, // 1 500 300,5
@@ -338,20 +268,15 @@ export class AppComponent {
 }
 ```
 
-- `HttpReplacerPipe, HttpReplacerPipeModule`
+- `HttpReplacerPipe`
 
 ```typescript
-import {HttpReplacerPipeModule} from '@angular-ru/cdk/pipes';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [HttpReplacerPipeModule],
-})
-export class AppModule {}
+import {HttpReplacerPipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [HttpReplacerPipe],
   template: `
     {{ data | httpReplacer }}
   `, // hello.com/new
@@ -361,20 +286,15 @@ export class AppComponent {
 }
 ```
 
-- `TakeFirstItemPipe, TakeFirstItemPipeModule`
+- `TakeFirstItemPipe`
 
 ```typescript
-import {TakeFirstItemPipeModule} from '@angular-ru/cdk/pipes';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [TakeFirstItemPipeModule],
-})
-export class AppModule {}
+import {TakeFirstItemPipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [TakeFirstItemPipe],
   template: `
     {{ data | takeFirstItem }}
   `, // 1
@@ -384,20 +304,15 @@ export class AppComponent {
 }
 ```
 
-- `TakeSecondItemPipe, TakeSecondItemPipeModule`
+- `TakeSecondItemPipe`
 
 ```typescript
-import {TakeSecondItemPipeModule} from '@angular-ru/cdk/pipes';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [TakeSecondItemPipeModule],
-})
-export class AppModule {}
+import {TakeSecondItemPipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [TakeSecondItemPipe],
   template: `
     {{ data | takeSecondItem }}
   `, // 2
@@ -407,20 +322,15 @@ export class AppComponent {
 }
 ```
 
-- `DateToNativePipe, DateToNativePipeModule`
+- `DateToNativePipe`
 
 ```typescript
-import {DateToNativePipeModule} from '@angular-ru/cdk/pipes';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [DateToNativePipeModule],
-})
-export class AppModule {}
+import {DateToNativePipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [DateToNativePipe],
   template: `
     {{ data | dateNative }}
   `, // Date(type)
@@ -430,20 +340,15 @@ export class AppComponent {
 }
 ```
 
-- `EntrySingleSetPipe, EntrySingleSetPipeModule`
+- `EntrySingleSetPipe`
 
 ```typescript
-import {EntrySingleSetPipeModule} from '@angular-ru/cdk/pipes';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [EntrySingleSetPipeModule],
-})
-export class AppModule {}
+import {EntrySingleSetPipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [EntrySingleSetPipe],
   template: `
     {{ 'a' | entrySingleSet: setList }}
   `, // true
@@ -453,20 +358,15 @@ export class AppComponent {
 }
 ```
 
-- `MarkByFilterPipe, MarkByFilterPipeModuleModule`
+- `MarkByFilterPipe`
 
 ```typescript
-import {MarkByFilterPipeModule} from '@angular-ru/cdk/pipes';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [MarkByFilterPipeModule],
-})
-export class AppModule {}
+import {MarkByFilterPipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [MarkByFilterPipe],
   template: `
     {{ 'hello word' | markByFilter: filter }}
   `, // hello <span style="background: #ffdd2d">world</span>
@@ -476,20 +376,15 @@ export class AppComponent {
 }
 ```
 
-- `DisplayItemPipe, DisplayItemPipeModule`
+- `DisplayItemPipe`
 
 ```typescript
-import {DisplayItemPipeModule} from '@angular-ru/cdk/pipes';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ...
-  imports: [DisplayItemPipeModule],
-})
-export class AppModule {}
+import {DisplayItemPipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
-  // ...
+  //...
+  imports: [DisplayItemPipe],
   template: `
     {{ entity | displayItem: 'value.name' }}
   `, // A
@@ -499,20 +394,15 @@ export class AppComponent {
 }
 ```
 
-- `ObjectSizePipe, ObjectSizePipeModule`
+- `ObjectSizePipe`
 
 ```typescript
-import {ObjectSizePipeModule} from '@angular-ru/cdk/pipes';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [ObjectSizePipeModule],
-})
-export class AppModule {}
+import {ObjectSizePipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [ObjectSizePipe],
   template: `
     <!-- result: 2 -->
     {{ [{a: 1}, {a: 2}] | objectSize }}
@@ -524,20 +414,15 @@ export class AppModule {}
 export class AppComponent {}
 ```
 
-- `MergeCssClassesPipe, MergeCssClassesPipeModule`
+- `MergeCssClassesPipe`
 
 ```typescript
 import {MergeCssClassesPipe} from '@angular-ru/cdk/pipes';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [MergeCssClassesPipe],
-})
-export class AppModule {}
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [MergeCssClassesPipe],
   template: `
     <div [ngClass]="'some-class' | mergeCssClasses: ['class-a', 'class-b'] : {enabled: isEnabled}">
       <!--
@@ -557,20 +442,15 @@ export class AppComponent {
 }
 ```
 
-- `JoinPipe, JoinPipeModule`
+- `JoinPipe`
 
 ```typescript
-import {JoinPipeModule} from '@angular-ru/cdk/pipes';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [JoinPipeModule],
-})
-export class AppModule {}
+import {JoinPipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [JoinPipe],
   template: `
     {{ [1, 2] | join }}
     <!-- result: 1,2 -->
@@ -580,17 +460,12 @@ export class AppComponent {}
 ```
 
 ```typescript
-import {JoinPipeModule} from '@angular-ru/cdk/pipes';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [JoinPipeModule],
-})
-export class AppModule {}
+import {JoinPipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [JoinPipe],
   template: `
     <p [innerHTML]="[1, 2] | join: {separator: '<br>'}"></p>
     <!-- result html: 1<br>2 -->
@@ -600,17 +475,12 @@ export class AppComponent {}
 ```
 
 ```typescript
-import {JoinPipeModule, JoinMapTransformer} from '@angular-ru/cdk/pipes';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [JoinPipeModule],
-})
-export class AppModule {}
+import {JoinPipe, JoinMapTransformer} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [JoinPipe],
   template: `
     <p [innerHTML]="[{a: 1}, {a: 2}, {a: 3}, {a: 4}] | join: {separator: '::', mapTransformer: transformer}"></p>
     <!-- result html: 1 :: 10 :: 11 :: 100 -->
@@ -621,20 +491,15 @@ export class AppComponent {
 }
 ```
 
-- `BracePipe, BracePipeModule`
+- `BracePipe`
 
 ```typescript
-import {BracePipeModule} from '@angular-ru/cdk/pipes';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [BracePipeModule],
-})
-export class AppModule {}
+import {BracePipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [BracePipe],
   template: `
     <span>Edit selected records {{ count | brace }}</span>
     <!--Edit selected records (42)-->
@@ -645,21 +510,16 @@ export class AppComponent {
 }
 ```
 
-- `FilterUniquePipe, FilterUniquePipeModule`
+- `FilterUniquePipe`
 
 ```typescript
-import {FilterUniquePipeModule} from '@angular-ru/cdk/pipes';
+import {FilterUniquePipe} from '@angular-ru/cdk/pipes';
 import {PlainObject} from '@angular-ru/cdk-typings';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [FilterUniquePipeModule],
-})
-export class AppModule {}
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [FilterUniquePipe],
   template: `
     <pre>{{ objects | filterUnique: 'name' | json }}</pre>
     <!-- [{ name: 'a'}, { name: 'b'}] -->
@@ -674,21 +534,16 @@ export class AppComponent {
 }
 ```
 
-- `TypeAsPipe, TypeAsPipeModule`
+- `TypeAsPipe`
 
 ```typescript
-import {TypeAs} from '@angular-ru/cdk/pipes';
-
-@NgModule({
-  // ..
-  imports: [TypeAsPipeModule],
-})
-export class AppModule {}
+import {TypeAsPipe} from '@angular-ru/cdk/pipes';
 
 type SomeType = {a: number};
 
 @Component({
   //...
+  imports: [TypeAsPipe],
   template: `
     <p *ngIf="notTyped | typeAs: typeSample as typed">
       {{ typed.a }}
@@ -704,19 +559,15 @@ export class AppComponent {
 }
 ```
 
-- `AtPipe, AtPipeModule`
+- `AtPipe`
 
 ```typescript
-import {AtPipeModule} from '@angular-ru/cdk/pipes';
-
-@NgModule({
-  // ..
-  imports: [AtPipeModule],
-})
-export class AppModule {}
+import {AtPipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [AtPipe],
   template: `
     <p>{{ someArray | at: 0 }}</p>
     <!-- "first" -->
@@ -730,25 +581,19 @@ export class AppComponent {
 ```
 
 - `HasItems, HasManyItems, HasNoItems, HasOneItem, HasAtMostOneItem`
-- `HasItemsModule, HasManyItemsModule, HasNoItemsModule, HasOneItemModule, HasAtMostOneItemModule`
 
 ```typescript
 import {
-  HasItemsModule,
-  HasManyItemsModule,
-  HasNoItemsModule,
-  HasOneItemModule,
-  HasAtMostOneItemModule,
+  HasItemsPipe,
+  HasManyItemsPipe,
+  HasNoItemsPipe,
+  HasOneItemPipe,
+  HasAtMostOneItemPipe,
 } from '@angular-ru/cdk/pipes';
-
-@NgModule({
-  // ..
-  imports: [HasItemsModule, HasManyItemsModule, HasNoItemsModule, HasOneItemModule, HasAtMostOneItemModule],
-})
-export class AppModule {}
 
 @Component({
   //...
+  imports: [HasItemsPipe, HasManyItemsPipe, HasNoItemsPipe, HasOneItemPipe, HasAtMostOneItemPipe],
   template: `
     <pre *ngIf="someArray | hasItems"><!-- true --></pre>
     <pre *ngIf="someArray | hasManyItems"><!-- false --></pre>
@@ -762,19 +607,15 @@ export class AppComponent {
 }
 ```
 
-- `IncludesPipe, IncludesPipeModule`
+- `IncludesPipe`
 
 ```typescript
-import {IncludesPipeModule} from '@angular-ru/cdk/pipes';
-
-@NgModule({
-  // ..
-  imports: [IncludesPipeModule],
-})
-export class AppModule {}
+import {IncludesPipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [IncludesPipe],
   template: `
     <p *ngIf="someArray | includes: 'first'">first</p>
     <p *ngIf="someArray | includes: 'fourth'">
@@ -788,19 +629,15 @@ export class AppComponent {
 }
 ```
 
-- `HasPipe, HasPipeModule`
+- `HasPipe`
 
 ```typescript
-import {HasPipeModule} from '@angular-ru/cdk/pipes';
-
-@NgModule({
-  // ..
-  imports: [HasPipeModule],
-})
-export class AppModule {}
+import {HasPipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [HasPipe],
   template: `
     <p *ngIf="someSet | has: 'first'">first</p>
     <p *ngIf="someSet | has: 'fourth'">
@@ -814,19 +651,15 @@ export class AppComponent {
 }
 ```
 
-- `CoerceBooleanPipe, CoerceBooleanPipeModule`
+- `CoerceBooleanPipe`
 
 ```typescript
-import {CoerceBooleanPipeModule} from '@angular-ru/cdk/pipes';
-
-@NgModule({
-  // ..
-  imports: [CoerceBooleanPipeModule],
-})
-export class AppModule {}
+import {CoerceBooleanPipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [CoerceBooleanPipe],
   template: `
         <mat-select [multiple]="multiple | coerceBoolean">first</p>
     `,
@@ -836,19 +669,15 @@ export class AppComponent {
 }
 ```
 
-- `DeclinationOfNumberPipe, DeclinationOfNumberPipeModule`
+- `DeclinationOfNumberPipe`
 
 ```typescript
-import {DeclinationOfNumberPipeModule} from '@angular-ru/cdk/pipes';
-
-@NgModule({
-  // ..
-  imports: [DeclinationOfNumberPipeModule],
-})
-export class AppModule {}
+import {DeclinationOfNumberPipe} from '@angular-ru/cdk/pipes';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [DeclinationOfNumberPipe],
   template: `
     {{ numberVal | declinationOfNumber: ['арбуз', 'арбуза', 'арбузов'] }}
   `,
