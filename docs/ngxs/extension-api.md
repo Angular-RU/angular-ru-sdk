@@ -21,21 +21,12 @@ export const appConfig: ApplicationConfig = {
 
 ```typescript
 import {makeEnvironmentProviders} from '@angular/core';
+import {withNgxsPlugin} from '@ngxs/store';
 
-export const MY_FIRST_EXTENSION = makeEnvironmentProviders([
-  {
-    provide: NGXS_PLUGINS,
-    useClass: MySuperService,
-    multi: true,
-  },
-]);
+export const MY_FIRST_EXTENSION = withNgxsPlugin(MySuperService);
 
 export const MY_SECOND_EXTENSION = makeEnvironmentProviders([
-  {
-    provide: NGXS_PLUGINS,
-    useClass: FeatureService,
-    multi: true,
-  },
+  withNgxsPlugin(FeatureService),
   {
     provide: MyInjectableToken,
     useFactory: (): MyFactory => new MyFactory(),

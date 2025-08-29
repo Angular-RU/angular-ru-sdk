@@ -2,6 +2,7 @@
 
 - Getting Started
   - [Introduction](introduction/intro.md)
+  - [Migration Guide](introduction/migration-v19.md)
 - CDK
   - [@angular-ru/cdk/typings](cdk/typings.md)
   - [@angular-ru/cdk/number](cdk/number.md)
