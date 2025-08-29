@@ -1,5 +1,5 @@
 import {TestBed} from '@angular/core/testing';
-import {LoggerLevel, LoggerModule, LoggerService} from '@angular-ru/cdk/logger';
+import {LoggerLevel, LoggerService, provideLogger} from '@angular-ru/cdk/logger';
 
 import {
     ConsoleFake,
@@ -27,8 +27,8 @@ describe('[TEST]: Check work in groups', () => {
 
         beforeAll(() => {
             TestBed.configureTestingModule({
-                imports: [
-                    LoggerModule.forRoot({
+                providers: [
+                    provideLogger({
                         instance: fakeConsole,
                         labelNames: {
                             [LoggerLevel.TRACE]: CUSTOM_LABELS.TRACE,
@@ -343,8 +343,8 @@ describe('[TEST]: Check work in groups', () => {
 
         beforeAll(() => {
             TestBed.configureTestingModule({
-                imports: [
-                    LoggerModule.forRoot({
+                providers: [
+                    provideLogger({
                         instance: fakeConsole,
                         useLevelGroup: false,
                     }),

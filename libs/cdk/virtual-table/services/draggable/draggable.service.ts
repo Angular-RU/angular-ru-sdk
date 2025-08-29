@@ -1,5 +1,5 @@
 import {moveItemInArray} from '@angular/cdk/drag-drop';
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {isNotNil, isTrue} from '@angular-ru/cdk/utils';
 
@@ -8,7 +8,7 @@ import {TemplateParserService} from '../template-parser/template-parser.service'
 
 @Injectable()
 export class DraggableService<T> {
-    constructor(private readonly parser: TemplateParserService<T>) {}
+    private readonly parser = inject<TemplateParserService<T>>(TemplateParserService);
 
     private get columns(): ColumnsSchema[] {
         return this.parser.schema?.columns ?? [];

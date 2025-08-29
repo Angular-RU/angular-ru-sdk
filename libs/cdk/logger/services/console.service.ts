@@ -1,22 +1,15 @@
-import {Inject, Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 
-import {
-    ConsoleOperation,
-    LOGGER_OPTIONS,
-    LoggerLevel,
-} from '../interfaces/logger.external';
+import {ConsoleOperation, LOGGER_OPTIONS} from '../interfaces/logger.external';
 import {ConsoleServiceInterface} from '../interfaces/logger.internal';
 import {LoggerOptionsImpl} from '../logger.options';
 
 @Injectable()
 export class ConsoleService implements ConsoleServiceInterface {
-    public instance: Console;
-    public minLevel: LoggerLevel;
+    public readonly options = inject<LoggerOptionsImpl>(LOGGER_OPTIONS);
 
-    constructor(@Inject(LOGGER_OPTIONS) public readonly options: LoggerOptionsImpl) {
-        this.minLevel = options.minLevel;
-        this.instance = options.instance;
-    }
+    public instance = this.options.instance;
+    public minLevel = this.options.minLevel;
 
     public get noop(): ConsoleOperation {
         // eslint-disable-next-line @typescript-eslint/no-empty-function

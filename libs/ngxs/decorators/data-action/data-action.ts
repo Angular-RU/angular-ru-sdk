@@ -11,12 +11,12 @@ import {
     NgxsDataInjector,
     validateAction,
 } from '@angular-ru/ngxs/internals';
+import type {MappedStore} from '@angular-ru/ngxs/typings';
 import {
     ActionEvent,
     DataStateClass,
     DispatchedResult,
     ImmutableDataRepository,
-    type MappedStore,
     NgxsDataOperation,
     NgxsRepositoryMeta,
     RepositoryActionOptions,

@@ -1,18 +1,10 @@
-import {AfterViewInit, Directive, ElementRef, Inject} from '@angular/core';
+import {AfterViewInit, Directive, ElementRef, inject} from '@angular/core';
 
-import {AbstractFlexLayoutDirective} from './abstract-flex-layout.directive';
+import {AbstractFlexLayout} from './abstract-flex-layout.directive';
 
 @Directive({selector: '[flex-space-between]'})
-export class FlexSpaceBetweenDirective
-    extends AbstractFlexLayoutDirective
-    implements AfterViewInit
-{
-    constructor(
-        @Inject(ElementRef)
-        protected readonly elementRef: ElementRef,
-    ) {
-        super();
-    }
+export class FlexSpaceBetween extends AbstractFlexLayout implements AfterViewInit {
+    protected readonly elementRef = inject<ElementRef>(ElementRef);
 
     public ngAfterViewInit(): void {
         this.classList.add('flex-space-between');

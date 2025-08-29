@@ -4,6 +4,7 @@
 
         <button
             mat-raised-button
+            type="button"
             (click)="sortByIdDirection = !sortByIdDirection"
         >
             Toggle sort by ID
@@ -19,6 +20,7 @@
 
     <button
         mat-raised-button
+        type="button"
         class="show-simple"
         (click)="showSample()"
     >
@@ -29,7 +31,7 @@
 <ngx-table-builder
     [skip-sort]="skipSort"
     [sort-types]="sortByIdDirection ? {id: 'asc'} : {id: 'desc'}"
-    [source]="data"
+    [source]="data()"
     (sortChanges)="sortChanges($event)"
 >
     <ngx-empty>No data</ngx-empty>

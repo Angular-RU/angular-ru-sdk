@@ -46,7 +46,7 @@ export function ensureDescriptorByType<T>({
                 bodyRegistry.getIndexByKey(KEY_REQUEST_BODY);
             const body: any = isNil(indexBody)
                 ? template?.options.body
-                : template?.options.body ?? args?.[indexBody as any];
+                : (template?.options.body ?? args?.[indexBody as any]);
             const params: Nullable<PlainObject> = ensureQueryParams(
                 template?.options.queryParams,
                 originalMethod,

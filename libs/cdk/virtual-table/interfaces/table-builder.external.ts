@@ -1,4 +1,5 @@
-import {EmbeddedViewRef, EventEmitter, TemplateRef} from '@angular/core';
+import type {OutputEmitterRef} from '@angular/core';
+import {EmbeddedViewRef, TemplateRef} from '@angular/core';
 import {ExcelType} from '@angular-ru/cdk/excel';
 import {DeepPartial, Nullable, PlainObject} from '@angular-ru/cdk/typings';
 
@@ -10,7 +11,7 @@ export enum ImplicitContext {
     CELL = 'CELL',
 }
 
-export type TableClickEventEmitter<T, K> = Nullable<EventEmitter<TableEvent<T, K>>>;
+export type TableClickEventEmitter<T, K> = Nullable<OutputEmitterRef<TableEvent<T, K>>>;
 
 export interface TableCellOptions<T = any> {
     class: Nullable<PlainObject | string[] | string>;
@@ -22,8 +23,8 @@ export interface TableCellOptions<T = any> {
     height: Nullable<number>;
     template?: Nullable<TemplateRef<T>>;
     context: ImplicitContext;
-    onClick: EventEmitter<any>;
-    dblClick: EventEmitter<any>;
+    onClick: OutputEmitterRef<any>;
+    dblClick: OutputEmitterRef<any>;
 }
 
 export interface TableHeadCellOptions {

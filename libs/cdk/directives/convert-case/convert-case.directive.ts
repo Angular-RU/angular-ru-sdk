@@ -3,28 +3,19 @@ import {
     Directive,
     ElementRef,
     HostListener,
-    Inject,
-    Input,
-    Optional,
+    inject,
+    input,
 } from '@angular/core';
 import {NgControl} from '@angular/forms';
 import {toStringValue} from '@angular-ru/cdk/string';
 
 @Directive({selector: '[convertCase]'})
-export class ConvertCaseDirective implements AfterViewInit {
-    @Input()
-    public toUpperCase = true;
+export class ConvertCase implements AfterViewInit {
+    private readonly elementRef = inject<ElementRef>(ElementRef);
+    private readonly ngControl = inject<NgControl>(NgControl, {optional: true});
 
-    @Input()
-    public toLowerCase = false;
-
-    constructor(
-        @Inject(ElementRef)
-        private readonly elementRef: ElementRef,
-        @Inject(NgControl)
-        @Optional()
-        private readonly ngControl?: NgControl,
-    ) {}
+    public readonly toUpperCase = input(true);
+    public readonly toLowerCase = input(false);
 
     private get element(): HTMLInputElement {
         return this.elementRef.nativeElement;
@@ -34,7 +25,7 @@ export class ConvertCaseDirective implements AfterViewInit {
     public onInput(): void {
         const dirtyValue: string = toStringValue(this.element.value);
 
-        this.element.value = this.toLowerCase
+        this.element.value = this.toLowerCase()
             ? dirtyValue.toLowerCase()
             : dirtyValue.toUpperCase();
         this.ngControl?.reset(this.element.value);

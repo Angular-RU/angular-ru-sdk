@@ -1,5 +1,5 @@
-import {Inject, Injectable, OnDestroy, Self} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {inject, Injectable, OnDestroy} from '@angular/core';
+import {NG_VALUE_ACCESSOR} from '@angular/forms';
 import {exclude} from '@angular-ru/cdk/array';
 import {isFunctionLike} from '@angular-ru/cdk/function';
 import {Subject} from 'rxjs';
@@ -16,8 +16,10 @@ export class ControlValueInterceptor<ModelValue = unknown, ViewValue = ModelValu
     private readonly interceptor?: ControlValueAccessorPatcher<ModelValue, ViewValue>;
     private controlValueOperators: ControlValueInterceptorDescriptor[] = [];
 
-    constructor(@Inject(NG_VALUE_ACCESSOR) @Self() accessors: ControlValueAccessor[]) {
-        const [accessor]: ControlValueAccessor[] = accessors;
+    constructor() {
+        const accessors = inject(NG_VALUE_ACCESSOR, {self: true});
+
+        const [accessor] = accessors;
 
         if (accessor) {
             this.interceptor = new ControlValueAccessorPatcher(accessor);

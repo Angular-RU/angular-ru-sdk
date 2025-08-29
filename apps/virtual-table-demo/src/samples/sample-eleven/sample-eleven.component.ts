@@ -1,19 +1,25 @@
+import {CurrencyPipe} from '@angular/common';
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     OnInit,
+    signal,
     ViewEncapsulation,
 } from '@angular/core';
+import {MatCheckbox} from '@angular/material/checkbox';
+import {MatTab, MatTabGroup} from '@angular/material/tabs';
+import {MatToolbar} from '@angular/material/toolbar';
 import {Nullable, PlainObject} from '@angular-ru/cdk/typings';
-import {TableUpdateSchema} from '@angular-ru/cdk/virtual-table';
+import type {TableUpdateSchema} from '@angular-ru/cdk/virtual-table';
+import {VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 import {MocksGenerator} from '../../mocks-generator';
 
 @Component({
     selector: 'sample-eleven',
+    imports: [CurrencyPipe, MatCheckbox, MatTab, MatTabGroup, MatToolbar, VirtualTable],
     templateUrl: './sample-eleven.component.html',
     styles: [
         `
@@ -39,8 +45,8 @@ import {MocksGenerator} from '../../mocks-generator';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SampleElevenComponent implements OnInit, AfterViewInit {
-    public data: PlainObject[] = [];
+export default class SampleElevenComponent implements OnInit, AfterViewInit {
+    public data = signal<PlainObject[]>([]);
 
     public licences: PlainObject[] = [
         {
@@ -65,15 +71,12 @@ export class SampleElevenComponent implements OnInit, AfterViewInit {
         },
     ];
 
-    constructor(private readonly cd: ChangeDetectorRef) {}
-
     public ngOnInit(): void {
         const rows = 50;
         const cols = 15;
 
         MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => {
-            this.data = data;
-            this.cd.detectChanges();
+            this.data.set(data);
         });
     }
 

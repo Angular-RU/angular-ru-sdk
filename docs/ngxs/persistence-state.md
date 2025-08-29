@@ -1,14 +1,13 @@
 ## @Persistence
 
 ```typescript
-import {NgxsDataPluginModule} from '@angular-ru/ngxs';
-import {NGXS_DATA_STORAGE_PLUGIN} from '@angular-ru/ngxs/storage';
+import {provideStore} from '@ngxs/store';
+import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
+import {withNgxsDataStorage} from '@angular-ru/ngxs/storage';
 
-@NgModule({
-  // ..
-  imports: [NgxsModule.forRoot([TodoState]), NgxsDataPluginModule.forRoot([NGXS_DATA_STORAGE_PLUGIN])],
-})
-export class AppModule {}
+export const appConfig: ApplicationConfig = {
+  providers: [provideStore([TodoState]), provideNgxsDataPlugin(withNgxsDataStorage())],
+};
 ```
 
 ```typescript
@@ -341,26 +340,31 @@ export class TodoState extends NgxsDataRepository<string[]> {}
 By default, key search uses the prefix `@ngxs.store.`, but you can override the prefix:
 
 ```typescript
-import {NGXS_DATA_STORAGE_PREFIX_TOKEN, NGXS_DATA_STORAGE_PLUGIN} from '@angular-ru/ngxs/storage';
+import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
+import {NGXS_DATA_STORAGE_PREFIX_TOKEN, withNgxsDataStorage} from '@angular-ru/ngxs/storage';
 
-@NgModule({
-  imports: [NgxsModule.forRoot([AppState]), NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)],
-  providers: [{provide: NGXS_DATA_STORAGE_PREFIX_TOKEN, useValue: '@myCompany.store.'}],
-})
-export class AppModule {}
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideStore([AppState]),
+    provideNgxsDataPlugin(withNgxsDataStorage()),
+    {provide: NGXS_DATA_STORAGE_PREFIX_TOKEN, useValue: '@myCompany.store.'},
+  ],
+};
 ```
 
 ### Use base64 for decode/encode data in storage by default everything
 
 ```typescript
-import {STORAGE_DECODE_TYPE} from '@angular-ru/ngxs/typings';
-import {NGXS_DATA_STORAGE_DECODE_TYPE_TOKEN, NGXS_DATA_STORAGE_PLUGIN} from '@angular-ru/ngxs/storage';
+import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
+import {NGXS_DATA_STORAGE_DECODE_TYPE_TOKEN, STORAGE_DECODE_TYPE, withNgxsDataStorage} from '@angular-ru/ngxs/storage';
 
-@NgModule({
-  imports: [NgxsModule.forRoot([AppState]), NgxsDataPluginModule.forRoot(NGXS_DATA_STORAGE_PLUGIN)],
-  providers: [{provide: NGXS_DATA_STORAGE_DECODE_TYPE_TOKEN, useValue: STORAGE_DECODE_TYPE.BASE64}],
-})
-export class AppModule {}
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideStore([AppState]),
+    provideNgxsDataPlugin(withNgxsDataStorage()),
+    {provide: NGXS_DATA_STORAGE_DECODE_TYPE_TOKEN, useValue: STORAGE_DECODE_TYPE.BASE64},
+  ],
+};
 ```
 
 ### Nested states

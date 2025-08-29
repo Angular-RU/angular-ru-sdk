@@ -13,7 +13,12 @@ import {
     TraceLog,
     WarnLog,
 } from '@angular-ru/cdk/logger';
-import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ViewEncapsulation,
+    inject,
+} from '@angular/core';
 
 @Component({
     selector: 'app-root',
@@ -23,6 +28,8 @@ import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/co
     encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent {
+    private readonly logger = inject(LoggerService);
+
     @Logger() public loggerInjection!: LoggerService;
     @TraceLog() public trace!: LogFn;
     @DebugLog() public debug!: LogFn;
@@ -36,8 +43,6 @@ export class AppComponent {
     private readonly infoIsWork: string = 'info is worked';
     private readonly warnIsWork: string = 'warn is worked';
     private readonly errorIsWork: string = 'error is worked';
-
-    constructor(private readonly logger: LoggerService) {}
 
     public exampleBasicMethods(): void {
         this.logger.clear();

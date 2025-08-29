@@ -1,29 +1,30 @@
-import {CdkDragStart} from '@angular/cdk/drag-drop';
+import {CdkDrag, CdkDragHandle, CdkDragStart, CdkDropList} from '@angular/cdk/drag-drop';
+import {NgClass, NgStyle} from '@angular/common';
 import {
     AfterContentInit,
     AfterViewChecked,
     AfterViewInit,
-    ApplicationRef,
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
+    effect,
     ElementRef,
     HostListener,
-    Inject,
-    INJECTOR,
+    inject,
     Injector,
-    NgZone,
     OnChanges,
     OnDestroy,
     OnInit,
+    runInInjectionContext,
     SimpleChange,
     SimpleChanges,
-    ViewChild,
+    viewChild,
     ViewEncapsulation,
 } from '@angular/core';
+import {SIGNAL} from '@angular/core/primitives/signals';
 import {fadeInLinearAnimation} from '@angular-ru/cdk/animations';
 import {hasItems, include} from '@angular-ru/cdk/array';
 import {coerceBoolean} from '@angular-ru/cdk/coercion';
+import {SafePipe} from '@angular-ru/cdk/pipes';
 import {
     DeepPartial,
     Nullable,
@@ -41,10 +42,13 @@ import {
 import {EMPTY, fromEvent, Observable, Subject} from 'rxjs';
 import {catchError, takeUntil} from 'rxjs/operators';
 
-import {AbstractTableBuilderApiDirective} from './abstract-table-builder-api.directive';
-import {NgxColumnComponent} from './components/ngx-column/ngx-column.component';
+import {AbstractTableBuilderApi} from './abstract-table-builder-api.directive';
+import {NgxColumn} from './components/ngx-column/ngx-column.component';
+import {TableTbody} from './components/table-tbody/table-tbody.component';
+import {TableThead} from './components/table-thead/table-thead.component';
 import {TABLE_GLOBAL_OPTIONS} from './config/table-global-options';
-import {AutoHeightDirective} from './directives/auto-height.directive';
+import {AutoHeight} from './directives/auto-height.directive';
+import {ObserverView} from './directives/observer-view.directive';
 import {CalculateRange, ColumnsSchema} from './interfaces/table-builder.external';
 import {
     RecalculatedStatus,
@@ -53,6 +57,8 @@ import {
     TemplateKeys,
 } from './interfaces/table-builder.internal';
 import {getClientHeight} from './operators/get-client-height';
+import {GetClientHeightPipe} from './pipes/get-client-height.pipe';
+import {GetFreeSizePipe} from './pipes/get-free-size.pipe';
 import {ContextMenuService} from './services/context-menu/context-menu.service';
 import {DraggableService} from './services/draggable/draggable.service';
 import {FilterableService} from './services/filterable/filterable.service';
@@ -60,7 +66,6 @@ import {TableFilterType} from './services/filterable/table-filter-type';
 import {ResizableService} from './services/resizer/resizable.service';
 import {SelectionService} from './services/selection/selection.service';
 import {SortableService} from './services/sortable/sortable.service';
-import {NgxTableViewChangesService} from './services/table-view-changes/ngx-table-view-changes.service';
 import {TemplateParserService} from './services/template-parser/template-parser.service';
 
 const {
@@ -75,6 +80,20 @@ const {
 
 @Component({
     selector: 'ngx-table-builder',
+    imports: [
+        AutoHeight,
+        CdkDrag,
+        CdkDragHandle,
+        CdkDropList,
+        GetClientHeightPipe,
+        GetFreeSizePipe,
+        NgClass,
+        NgStyle,
+        ObserverView,
+        SafePipe,
+        TableTbody,
+        TableThead,
+    ],
     templateUrl: './table-builder.component.html',
     styleUrls: ['./table-builder.component.scss'],
     encapsulation: ViewEncapsulation.None,
@@ -90,8 +109,8 @@ const {
     ],
     animations: [fadeInLinearAnimation],
 })
-export class TableBuilderComponent<T>
-    extends AbstractTableBuilderApiDirective<T>
+export class TableBuilder<T>
+    extends AbstractTableBuilderApi<T>
     implements
         OnChanges,
         OnInit,
@@ -108,17 +127,9 @@ export class TableBuilderComponent<T>
     private frameCalculateViewportId: Nullable<number> = null;
     private selectionUpdateTaskId: Nullable<number> = null;
     private changesTimerId = 0;
-    protected readonly app: ApplicationRef;
-    protected readonly draggable: DraggableService<T>;
-    protected readonly viewChanges: NgxTableViewChangesService;
-    @ViewChild('header', {static: false})
-    public headerRef!: ElementRef<HTMLDivElement>;
-
-    @ViewChild('footer', {static: false})
-    public footerRef!: ElementRef<HTMLDivElement>;
-
-    @ViewChild(AutoHeightDirective, {static: false})
-    public readonly autoHeight!: AutoHeightDirective<T>;
+    public readonly headerRef = viewChild<ElementRef<HTMLDivElement>>('header');
+    public readonly footerRef = viewChild<ElementRef<HTMLDivElement>>('footer');
+    public readonly autoHeight = viewChild<AutoHeight<T>>(AutoHeight);
 
     public dirty = true;
     public rendering = false;
@@ -128,35 +139,8 @@ export class TableBuilderComponent<T>
     public recalculated: RecalculatedStatus = {recalculateHeight: false};
     public sourceIsNull = false;
     public afterViewInitDone = false;
-    public readonly selection: SelectionService<T>;
-    public readonly templateParser: TemplateParserService<T>;
-    public readonly ngZone: NgZone;
-    public readonly resize: ResizableService;
-    public readonly sortable: SortableService<T>;
-    public readonly contextMenu: ContextMenuService<T>;
-    public readonly filterable: FilterableService<T>;
 
-    constructor(
-        @Inject(ChangeDetectorRef)
-        public readonly cd: ChangeDetectorRef,
-        @Inject(INJECTOR)
-        injector: Injector,
-    ) {
-        super();
-        this.selection = injector.get<SelectionService<T>>(SelectionService);
-        this.templateParser =
-            injector.get<TemplateParserService<T>>(TemplateParserService);
-        this.ngZone = injector.get<NgZone>(NgZone);
-        this.resize = injector.get<ResizableService>(ResizableService);
-        this.sortable = injector.get<SortableService<T>>(SortableService);
-        this.contextMenu = injector.get<ContextMenuService<T>>(ContextMenuService);
-        this.app = injector.get<ApplicationRef>(ApplicationRef);
-        this.filterable = injector.get<FilterableService<T>>(FilterableService);
-        this.draggable = injector.get<DraggableService<T>>(DraggableService);
-        this.viewChanges = injector.get<NgxTableViewChangesService>(
-            NgxTableViewChangesService,
-        );
-    }
+    private readonly injector = inject(Injector);
 
     public get destroy$(): Subject<boolean> {
         return this._destroy$;
@@ -166,21 +150,14 @@ export class TableBuilderComponent<T>
         return this.selection.selectionModel.selectedList;
     }
 
-    /** @deprecated
-     * Use `selectedKeyList` instead
-     */
-    public get selectionEntries(): PlainObjectOf<boolean> {
-        return this.selection.selectionModel.entries;
-    }
-
     public get sourceExists(): boolean {
         return this.sourceRef.length > 0;
     }
 
     public get rootHeight(): string {
         const height: Nullable<number | string> = this.expandableTableExpanded
-            ? this.height
-            : getClientHeight(this.headerRef) + getClientHeight(this.footerRef);
+            ? this.height()
+            : getClientHeight(this.headerRef()) + getClientHeight(this.footerRef());
 
         if (checkValueIsFilled(height)) {
             const heightAsNumber = Number(height);
@@ -192,10 +169,12 @@ export class TableBuilderComponent<T>
     }
 
     private get expandableTableExpanded(): boolean {
+        const headerTemplate = this.headerTemplate();
+
         return (
-            isNil(this.headerTemplate) ||
-            !coerceBoolean(this.headerTemplate.expandablePanel) ||
-            coerceBoolean(this.headerTemplate.expanded)
+            isNil(headerTemplate) ||
+            !coerceBoolean(headerTemplate.expandablePanel()) ||
+            coerceBoolean(headerTemplate.expanded())
         );
     }
 
@@ -208,29 +187,29 @@ export class TableBuilderComponent<T>
     }
 
     private get viewportHeight(): number {
-        return this.scrollContainer.nativeElement.offsetHeight;
+        return this.scrollContainer().nativeElement.offsetHeight;
     }
 
     private get scrollOffsetTop(): number {
-        return this.scrollContainer.nativeElement.scrollTop;
+        return this.scrollContainer().nativeElement.scrollTop;
     }
 
     @HostListener('contextmenu', ['$event'])
     public openContextMenu($event: MouseEvent): void {
-        if (isNotNil(this.contextMenuTemplate)) {
+        if (isNotNil(this.contextMenuTemplate())) {
             this.contextMenu.openContextMenu($event);
         }
     }
 
     public openContextMenuWithKey($event: Event, key: Nullable<string>): void {
-        if (isNotNil(this.contextMenuTemplate)) {
+        if (isNotNil(this.contextMenuTemplate())) {
             this.contextMenu.openContextMenu($event as MouseEvent, key);
         }
     }
 
     public checkSourceIsNull(): boolean {
         // eslint-disable-next-line
-        return !('length' in (this.source || {}));
+        return !('length' in (this.source() || {}));
     }
 
     public recalculateHeight(): void {
@@ -275,9 +254,9 @@ export class TableBuilderComponent<T>
     public ngOnInit(): void {
         if (this.isEnableSelection) {
             this.selection.listenShiftKey();
-            this.selection.primaryKey = this.primaryKey;
+            this.selection.primaryKey = this.primaryKey();
             this.selection.selectionModeIsEnabled = true;
-            this.selection.setProducerDisableFn(this.produceDisableFn);
+            this.selection.setProducerDisableFn(this.produceDisableFn());
         }
 
         this.sortable.setSortChanges(this.sortChanges);
@@ -311,10 +290,10 @@ export class TableBuilderComponent<T>
     public cdkDragMoved(event: CdkDragStart, root: HTMLElement): void {
         this.isDragMoving = true;
         // eslint-disable-next-line @typescript-eslint/dot-notation
-        const preview: HTMLElement = event.source._dragRef['_preview'];
+        const preview: HTMLElement = event.source._dragRef['_preview'].element;
         const top: number = root.getBoundingClientRect().top;
         // eslint-disable-next-line @typescript-eslint/dot-notation
-        const transform: string = event.source._dragRef['_preview'].style.transform ?? '';
+        const transform: string = preview.style?.transform ?? '';
         const [x, , z]: [number, number, number] = transform
             .replaceAll(/translate3d|\(|\)|px/g, '')
             .split(',')
@@ -324,7 +303,7 @@ export class TableBuilderComponent<T>
             number,
         ];
 
-        preview.style.transform = `translate3d(${x}px, ${top}px, ${z}px)`;
+        preview.style.transform = `transform: translate3d(${x}px, ${top}px, ${z}px);`;
     }
 
     public ngAfterViewChecked(): void {
@@ -351,7 +330,8 @@ export class TableBuilderComponent<T>
     }
 
     public markTemplateContentCheck(): void {
-        this.contentInit = isNotNil(this.source) || isFalsy(this.columnTemplates?.length);
+        this.contentInit =
+            isNotNil(this.source()) || isFalsy(this.columnTemplates()?.length);
     }
 
     public markDirtyCheck(): void {
@@ -392,15 +372,8 @@ export class TableBuilderComponent<T>
         this.rendering = true;
         const columnList: string[] = this.generateDisplayedColumns();
 
-        if (this.sortable.notEmpty) {
-            this.sortAndFilter().then((): void => {
-                this.syncDrawColumns(columnList);
-                this.emitRendered();
-            });
-        } else {
-            this.syncDrawColumns(columnList);
-            this.emitRendered();
-        }
+        this.syncDrawColumns(columnList);
+        this.emitRendered();
     }
 
     public toggleColumnVisibility(key?: Nullable<string>): void {
@@ -424,7 +397,7 @@ export class TableBuilderComponent<T>
 
     public resetSchema(): void {
         this.columnListWidth = 0;
-        this.schemaColumns = null;
+        this.schemaColumns[SIGNAL].value = null;
         detectChanges(this.cd);
 
         this.renderTable();
@@ -457,11 +430,11 @@ export class TableBuilderComponent<T>
     }
 
     public setSource(source: Nullable<T[]>): void {
-        this.originalSource = this.source = this.selection.rows = source;
+        this.originalSource = this.source[SIGNAL].value = this.selection.rows = source;
     }
 
     public updateTableHeight(): void {
-        this.autoHeight.calculateHeight();
+        this.autoHeight()?.calculateHeight();
         detectChanges(this.cd);
     }
 
@@ -522,13 +495,13 @@ export class TableBuilderComponent<T>
     protected calculateEndIndex(start: number): number {
         const end: number = start + this.getVisibleCountItems() + MIN_BUFFER;
 
-        return !this.isVirtualTable || end > this.sourceRef.length
+        return !this.isVirtualTable() || end > this.sourceRef.length
             ? this.sourceRef.length
             : end;
     }
 
     protected ignoreCalculate(): boolean {
-        return isNil(this.source) || !this.viewportHeight;
+        return isNil(this.source()) || !this.viewportHeight;
     }
 
     protected isDownMoved(): boolean {
@@ -541,11 +514,11 @@ export class TableBuilderComponent<T>
         this.viewPortInfo.indexes = [];
         this.viewPortInfo.virtualIndexes = [];
 
-        for (let i: number = start, even = 2; i < end; i++) {
+        for (let even = 2, i: number = start; i < end; i++) {
             this.viewPortInfo.indexes.push(i);
             this.viewPortInfo.virtualIndexes.push({
                 position: i,
-                stripped: this.striped ? i % even === 0 : false,
+                stripped: this.striped() ? i % even === 0 : false,
                 offsetTop: i * this.clientRowHeight,
             });
         }
@@ -560,13 +533,13 @@ export class TableBuilderComponent<T>
                 changes[TableSimpleChanges.SCHEMA_COLUMNS];
 
             if (isNotNil(schemaChange?.currentValue)) {
-                if (isNil(this.name)) {
+                if (isNil(this.name())) {
                     console.error(
                         'Table name is required! Example: <ngx-table-builder name="my-table-name" />',
                     );
                 }
 
-                if (isNil(this.schemaVersion)) {
+                if (isNil(this.schemaVersion())) {
                     console.error(
                         'Table version is required! Example: <ngx-table-builder [schema-version]="2" />',
                     );
@@ -576,7 +549,9 @@ export class TableBuilderComponent<T>
     }
 
     private setSortTypes(): void {
-        this.sortable.setDefinition({...this.sortTypes} as PlainObjectOf<SortOrderType>);
+        this.sortable.setDefinition({
+            ...this.sortTypes(),
+        } as PlainObjectOf<SortOrderType>);
 
         if (this.sourceExists) {
             this.sortAndFilter().then((): void => this.reCheckDefinitions());
@@ -585,15 +560,22 @@ export class TableBuilderComponent<T>
 
     private handleFilterDefinitionChanges(changes: SimpleChanges): void {
         if (TableSimpleChanges.FILTER_DEFINITION in changes) {
-            this.filterable.setDefinition(this.filterDefinition ?? []);
+            this.filterable.setDefinition(this.filterDefinition() ?? []);
             this.filter();
         }
     }
 
     private listenColumnListChanges(): void {
-        this.columnList.changes
-            .pipe(takeUntil(this._destroy$))
-            .subscribe((): void => this.calculateColumnWidthSummary());
+        effect(
+            () => {
+                this.columnList();
+
+                this.calculateColumnWidthSummary();
+            },
+            {
+                injector: this.injector,
+            },
+        );
     }
 
     private checkIfKeysAreDifferent(): boolean {
@@ -618,7 +600,7 @@ export class TableBuilderComponent<T>
         this.filterable.resetEvents$
             .pipe(takeUntil(this._destroy$))
             .subscribe((): void => {
-                this.source = this.originalSource;
+                this.source[SIGNAL].value = this.originalSource;
                 this.calculateViewport(true);
             });
     }
@@ -640,7 +622,7 @@ export class TableBuilderComponent<T>
 
     private listenScroll(): void {
         this.ngZone.runOutsideAngular((): void => {
-            fromEvent(this.scrollContainer.nativeElement, 'scroll', {passive: true})
+            fromEvent(this.scrollContainer().nativeElement, 'scroll', {passive: true})
                 .pipe(
                     catchError((): Observable<never> => {
                         this.calculateViewport(true);
@@ -694,13 +676,13 @@ export class TableBuilderComponent<T>
     }
 
     private getOffsetVisibleStartIndex(): number {
-        return this.isVirtualTable
+        return this.isVirtualTable()
             ? Math.ceil(this.scrollOffsetTop / this.clientRowHeight)
             : 0;
     }
 
     private preSortAndFilterTable(): void {
-        this.setSource(this.source);
+        this.setSource(this.source());
         this.sortAndFilter().then((): void => {
             this.reCheckDefinitions();
             this.checkSelectionValue();
@@ -712,7 +694,7 @@ export class TableBuilderComponent<T>
         this.renderedKeys = this.getKeys();
         this.customModelColumnsKeys = this.generateCustomModelColumnsKeys();
         this.modelColumnKeys = this.generateModelColumnKeys();
-        this.setSource(this.source);
+        this.setSource(this.source());
         const unDirty = !this.dirty;
 
         this.checkSelectionValue();
@@ -739,7 +721,7 @@ export class TableBuilderComponent<T>
         if (this.isEnableFiltering) {
             this.filterable.filterType =
                 this.filterable.filterType ??
-                this.columnOptions?.filterType ??
+                this.columnOptions()?.filterType() ??
                 TableFilterType.CONTAINS;
 
             for (const key of this.modelColumnKeys) {
@@ -780,28 +762,34 @@ export class TableBuilderComponent<T>
     }
 
     private viewForceRefresh(): void {
+        this.forcedRefresh = true;
         this.ngZone.runOutsideAngular((): void => {
             window.clearTimeout(this.timeoutCheckedTaskId ?? 0);
             // eslint-disable-next-line no-restricted-properties
             this.timeoutCheckedTaskId = window.setTimeout((): void => {
-                this.forcedRefresh = true;
                 this.markTemplateContentCheck();
                 this.render();
+                this.forcedRefresh = false;
             }, FRAME_TIME);
         });
     }
 
     private listenTemplateChanges(): void {
-        if (isNotNil(this.columnTemplates)) {
-            this.columnTemplates.changes
-                .pipe(takeUntil(this._destroy$))
-                .subscribe((): void => {
+        effect(
+            () => {
+                const columnTemplates = this.columnTemplates();
+
+                if (columnTemplates.length) {
                     this.markForCheck();
                     this.markTemplateContentCheck();
-                });
-        }
+                }
+            },
+            {
+                injector: this.injector,
+            },
+        );
 
-        if (isNotNil(this.contextMenuTemplate)) {
+        if (isNotNil(this.contextMenuTemplate())) {
             this.contextMenu.events$
                 .pipe(takeUntil(this._destroy$))
                 .subscribe((): void => detectChanges(this.cd));
@@ -822,7 +810,7 @@ export class TableBuilderComponent<T>
     }
 
     private getCustomColumnSchemaByIndex(index: number): Partial<ColumnsSchema> {
-        return this.schemaColumns?.columns?.[index] ?? ({} as any);
+        return this.schemaColumns()?.columns?.[index] ?? ({} as any);
     }
 
     /**
@@ -835,8 +823,8 @@ export class TableBuilderComponent<T>
             this.getCustomColumnSchemaByIndex(index);
 
         if (!this.templateParser.compiledTemplates[key]) {
-            const column: NgxColumnComponent<T> = new NgxColumnComponent<T>().withKey(
-                key,
+            const column: NgxColumn<T> = runInInjectionContext(this.injector, () =>
+                new NgxColumn<T>().withKey(key),
             );
 
             this.templateParser.compileColumnMetadata(column);
@@ -878,7 +866,7 @@ export class TableBuilderComponent<T>
 
     /**
      * @description: notification that the table has been rendered
-     * @see TableBuilderComponent#isRendered
+     * @see TableBuilder#isRendered
      */
     private emitRendered(): void {
         this.rendering = false;
@@ -891,7 +879,7 @@ export class TableBuilderComponent<T>
                 detectChanges(this.cd);
                 this.recalculateHeight();
                 this.afterRendered.emit(this.isRendered);
-                this.onChanges.emit(this.source ?? null);
+                this.onChanges.emit(this.source() ?? null);
             }, TIME_RELOAD);
         });
     }
@@ -902,17 +890,17 @@ export class TableBuilderComponent<T>
     private generateDisplayedColumns(): string[] {
         let generatedList: string[];
 
-        this.templateParser.initialSchema(this.columnOptions);
+        this.templateParser.initialSchema(this.columnOptions());
         const {simpleRenderedKeys, allRenderedKeys}: TemplateKeys =
             this.parseTemplateKeys();
         const isValid: boolean = this.validationSchemaColumnsAndResetIfInvalid();
 
         if (isValid) {
             generatedList =
-                this.schemaColumns?.columns?.map(
+                this.schemaColumns()?.columns?.map(
                     (column: DeepPartial<ColumnsSchema>): string => column.key as string,
                 ) ?? [];
-        } else if (this.keys.length > 0) {
+        } else if (this.keys().length > 0) {
             generatedList = this.customModelColumnsKeys;
         } else if (simpleRenderedKeys.size > 0) {
             generatedList = allRenderedKeys;
@@ -925,14 +913,15 @@ export class TableBuilderComponent<T>
 
     // eslint-disable-next-line max-lines-per-function
     private validationSchemaColumnsAndResetIfInvalid(): boolean {
+        const schemaColumns = this.schemaColumns();
         let isValid: boolean =
-            isNotNil(this.schemaColumns) &&
-            (this.schemaColumns?.columns?.length ?? 0) > 0;
+            isNotNil(schemaColumns) && (schemaColumns?.columns?.length ?? 0) > 0;
 
         if (isValid) {
-            const nameIsValid: boolean = this.schemaColumns?.name === this.name;
+            const schemaColumnsValue = this.schemaColumns();
+            const nameIsValid: boolean = schemaColumnsValue?.name === this.name();
             const versionIsValid: boolean =
-                this.schemaColumns?.version === this.schemaVersion;
+                schemaColumnsValue?.version === this.schemaVersion();
             const invalid: boolean = !nameIsValid || !versionIsValid;
 
             if (invalid) {
@@ -940,11 +929,11 @@ export class TableBuilderComponent<T>
                 console.error(
                     'The table name or version is mismatched by your schema, your schema will be reset.',
                     'Current name:',
-                    this.name,
+                    this.name(),
                     'Current version:',
-                    this.schemaVersion,
+                    this.schemaVersion(),
                     'Schema:',
-                    this.schemaColumns,
+                    schemaColumnsValue,
                 );
 
                 this.changeSchema([]);
@@ -962,33 +951,31 @@ export class TableBuilderComponent<T>
     // eslint-disable-next-line complexity
     private parseTemplateKeys(): TemplateKeys {
         const modelKeys: string[] = this.getModelKeys();
-        const keys: string[] = hasItems(this.keys)
-            ? this.keys.filter((key: string): boolean => modelKeys.includes(key))
+        const keysValue = this.keys();
+        const keys: string[] = hasItems(keysValue)
+            ? keysValue.filter((key: string): boolean => modelKeys.includes(key))
             : modelKeys;
 
         this.templateParser.keyMap = this.generateColumnsKeyMap(keys);
 
         this.templateParser.allowedKeyMap =
-            this.keys.length > 0
+            this.keys().length > 0
                 ? this.generateColumnsKeyMap(this.customModelColumnsKeys)
                 : this.generateColumnsKeyMap(this.modelColumnKeys);
 
-        this.templateParser.parse(this.columnTemplates);
+        this.templateParser.parse(this.columnTemplates());
 
         return {
-            allRenderedKeys:
-                Array.from(this.templateParser.fullTemplateKeys ?? []) ?? new Set(),
+            allRenderedKeys: Array.from(this.templateParser.fullTemplateKeys ?? []),
             overridingRenderedKeys: this.templateParser.overrideTemplateKeys ?? new Set(),
             simpleRenderedKeys: this.templateParser.templateKeys ?? new Set(),
         };
     }
 
     private listenExpandChange(): void {
-        this.headerTemplate?.expandedChange
-            .pipe(takeUntil(this._destroy$))
-            .subscribe((): void => {
-                this.updateTableHeight();
-                this.changeSchema();
-            });
+        this.headerTemplate()?.expandedChange.subscribe((): void => {
+            this.updateTableHeight();
+            this.changeSchema();
+        });
     }
 }

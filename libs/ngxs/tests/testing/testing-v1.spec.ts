@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
 import {DataAction, StateRepository} from '@angular-ru/ngxs/decorators';
 import {NgxsDataRepository} from '@angular-ru/ngxs/repositories';
-import {NgxsDataTestingModule} from '@angular-ru/ngxs/testing';
+import {ngxsInitTestingPlatform, provideNgxsDataTesting} from '@angular-ru/ngxs/testing';
 import {NgxsDataAfterReset, NgxsDataDoCheck} from '@angular-ru/ngxs/typings';
 import {State} from '@ngxs/store';
 
@@ -52,12 +52,12 @@ describe('[TEST]: NgxsTestingModule', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [NgxsDataTestingModule.forRoot([AppState])],
+                providers: [provideNgxsDataTesting([AppState])],
             });
         });
 
         it('should be correct bootstrap ngxs testing', () => {
-            NgxsDataTestingModule.ngxsInitPlatform();
+            ngxsInitTestingPlatform();
             const app: AppState = TestBed.inject(AppState);
 
             app.increment();

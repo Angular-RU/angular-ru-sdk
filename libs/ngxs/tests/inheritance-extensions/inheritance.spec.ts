@@ -1,15 +1,15 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
 import {Immutable} from '@angular-ru/cdk/typings';
-import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
 import {DataAction, Persistence, StateRepository} from '@angular-ru/ngxs/decorators';
 import {
     NgxsDataRepository,
     NgxsImmutableDataRepository,
 } from '@angular-ru/ngxs/repositories';
-import {NGXS_DATA_STORAGE_PLUGIN} from '@angular-ru/ngxs/storage';
+import {withNgxsDataStorage} from '@angular-ru/ngxs/storage';
 import {NGXS_DATA_EXCEPTIONS} from '@angular-ru/ngxs/tokens';
-import {NgxsModule, Selector, State, Store} from '@ngxs/store';
+import {NgxsModule, provideStore, Selector, State, Store} from '@ngxs/store';
 
 describe('inheritance', () => {
     it('should be throw', () => {
@@ -19,7 +19,7 @@ describe('inheritance', () => {
             abstract class AbstractCountRepo extends NgxsImmutableDataRepository<number> {
                 // @ts-ignore
                 @DataAction()
-                public increment;
+                public increment: any;
             }
 
             @Injectable()
@@ -74,9 +74,7 @@ describe('inheritance', () => {
         })
         @Injectable()
         class TodoState extends NgxsDataRepository<TodoStateModel> {
-            constructor(protected readonly api: TodoApiService) {
-                super();
-            }
+            protected readonly api = inject(TodoApiService);
 
             @Selector()
             public static todos(state: TodoStateModel) {
@@ -90,9 +88,9 @@ describe('inheritance', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [
-                NgxsModule.forRoot([TodoState], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot([NGXS_DATA_STORAGE_PLUGIN]),
+            providers: [
+                provideStore([TodoState], {developmentMode: true}),
+                provideNgxsDataPlugin(withNgxsDataStorage()),
             ],
         });
 
@@ -126,9 +124,9 @@ describe('inheritance', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [
-                NgxsModule.forRoot([CountState], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            providers: [
+                provideStore([CountState], {developmentMode: true}),
+                provideNgxsDataPlugin(withNgxsDataStorage()),
             ],
         });
 

@@ -1,21 +1,17 @@
-import {Inject, Injectable, INJECTOR, Injector} from '@angular/core';
-import {Nullable} from '@angular-ru/cdk/typings';
+import {inject, Injectable, Injector} from '@angular/core';
 import {isNil} from '@angular-ru/cdk/utils';
 
 @Injectable()
 export class LoggerInjector {
-    private static injector: Nullable<Injector> = null;
+    private static injector: Injector | null = null;
 
-    constructor(
-        @Inject(INJECTOR)
-        injector: Injector,
-    ) {
-        LoggerInjector.injector = injector;
+    constructor() {
+        LoggerInjector.injector = inject(Injector, {optional: true});
     }
 
     public static getInjector(): Injector | never {
         if (isNil(LoggerInjector.injector)) {
-            throw new Error("You've forgotten to import `LoggerModule`");
+            throw new Error("You've forgotten to provide `Logger`");
         }
 
         return LoggerInjector.injector;

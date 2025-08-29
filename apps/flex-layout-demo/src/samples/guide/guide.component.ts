@@ -7,7 +7,7 @@ declare const hljs: any;
     templateUrl: './guide.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GuideComponent implements AfterViewInit {
+export default class GuideComponent implements AfterViewInit {
     public ngAfterViewInit(): void {
         const list: Element[] = Array.from(document.querySelectorAll('pre code') ?? []);
 

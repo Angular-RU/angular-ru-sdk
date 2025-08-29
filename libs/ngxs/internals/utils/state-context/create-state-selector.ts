@@ -28,7 +28,9 @@ export function createStateSelector(stateClass: DataStateClass): void {
                     }
 
                     if (isNil(NgxsDataInjector.store)) {
-                        throw new Error(NGXS_DATA_EXCEPTIONS.NGXS_DATA_MODULE_EXCEPTION);
+                        throw new Error(
+                            NGXS_DATA_EXCEPTIONS.NGXS_DATA_PROVIDER_EXCEPTION,
+                        );
                     }
 
                     this[selectorId] = NgxsDataInjector.store

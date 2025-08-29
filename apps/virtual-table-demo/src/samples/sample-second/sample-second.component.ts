@@ -1,10 +1,18 @@
+import {CurrencyPipe, UpperCasePipe} from '@angular/common';
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
+    signal,
     ViewEncapsulation,
 } from '@angular/core';
+import {MatButton} from '@angular/material/button';
+import {MatIcon} from '@angular/material/icon';
+import {MatFormField, MatLabel} from '@angular/material/input';
+import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
+import {MatOption, MatSelect} from '@angular/material/select';
+import {MatToolbar} from '@angular/material/toolbar';
+import {VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 
@@ -23,14 +31,28 @@ export interface PeriodicElement {
 
 @Component({
     selector: 'sample-second',
+    imports: [
+        CurrencyPipe,
+        MatButton,
+        MatFormField,
+        MatIcon,
+        MatLabel,
+        MatMenu,
+        MatMenuItem,
+        MatMenuTrigger,
+        MatOption,
+        MatSelect,
+        MatToolbar,
+        UpperCasePipe,
+        VirtualTable,
+    ],
     templateUrl: './sample-second.component.html',
-    // eslint-disable-next-line @angular-eslint/component-max-inline-declarations
     styles: [
         `
             /*noinspection CssUnusedSymbol*/
             .status-column .table-grid__cell {
                 padding: 0;
-                color: green;
+                --mat-icon-color: green;
             }
 
             /*noinspection CssUnusedSymbol*/
@@ -40,23 +62,13 @@ export interface PeriodicElement {
             }
         `,
     ],
-    // Use to disable CSS Encapsulation for this component
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SampleSecondComponent implements AfterViewInit {
-    public licenses: LicenseSample[] = [];
+export default class SampleSecondComponent implements AfterViewInit {
+    public licenses = signal<LicenseSample[]>([]);
 
-    public columns: string[] = [
-        'name',
-        'position',
-        'weight',
-        'symbol',
-        'position',
-        'weight',
-        'symbol',
-        'status',
-    ];
+    public columns: string[] = ['name', 'position', 'weight', 'symbol', 'status'];
 
     // noinspection DuplicatedCode
     public elements: PeriodicElement[] = [
@@ -72,8 +84,6 @@ export class SampleSecondComponent implements AfterViewInit {
         {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
     ];
 
-    constructor(public readonly cd: ChangeDetectorRef) {}
-
     // eslint-disable-next-line max-lines-per-function
     public ngAfterViewInit(): void {
         hlJsCode();
@@ -82,7 +92,7 @@ export class SampleSecondComponent implements AfterViewInit {
         setTimeout(
             // eslint-disable-next-line max-lines-per-function
             (): void => {
-                this.licenses = [
+                this.licenses.set([
                     {
                         id: 1,
                         name: 'single',
@@ -103,9 +113,7 @@ export class SampleSecondComponent implements AfterViewInit {
                         name: 'enterprise',
                         price: 199,
                     },
-                ];
-
-                this.cd.detectChanges();
+                ]);
             },
         );
     }

@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {DataAction, StateRepository} from '@angular-ru/ngxs/decorators';
 import {NgxsImmutableDataRepository} from '@angular-ru/ngxs/repositories';
 import {Selector, State} from '@ngxs/store';
@@ -26,9 +26,7 @@ interface UserStateModel {
 })
 @Injectable()
 export class UserState extends NgxsImmutableDataRepository<UserStateModel> {
-    constructor(private readonly userService: UserService) {
-        super();
-    }
+    private readonly userService = inject(UserService);
 
     @Selector()
     public static getEntity(state: UserStateModel): UserModel {
@@ -40,7 +38,7 @@ export class UserState extends NgxsImmutableDataRepository<UserStateModel> {
         return state.loading;
     }
 
-    // Note: Also can be configured globally by providing custom NGXS_DATA_CONFIG
+    // Note: Also can be configured globally using provideNgxsDataPlugin({subscribeRequired: false})
     @DataAction({subscribeRequired: false})
     public loadUser(): Observable<UserModel> {
         this.ctx.patchState({loading: true});

@@ -1,20 +1,18 @@
 ## Quick Start
 
-`app.module.ts`
+`app.config.ts`
 
 ```typescript
-import {NgxsModule} from '@ngxs/store';
-import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {provideStore} from '@ngxs/store';
+import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
 
-@NgModule({
-  imports: [
+export const appConfig: ApplicationConfig = {
+  providers: [
     // ..
-    NgxsModule.forRoot([AppState]),
-    NgxsDataPluginModule.forRoot(),
+    provideStore([AppState]),
+    provideNgxsDataPlugin(),
   ],
-  // ..
-})
-export class AppModule {}
+};
 ```
 
 `count.state.ts`
@@ -62,14 +60,14 @@ export class CountState extends NgxsDataRepository<CountModel> {
 `app.component.ts`
 
 ```typescript
-...
-
 @Component({
   selector: 'app',
   template: `
     <b class="title">Selection:</b>
-    counter.state$ = {{ counter.state$ | async | json }} <br />
-    counter.values$ = {{ counter.values$ | async }} <br />
+    counter.state$ = {{ counter.state$ | async | json }}
+    <br />
+    counter.values$ = {{ counter.values$ | async }}
+    <br />
 
     <b class="title">Actions:</b>
     <button (click)="counter.increment()">increment</button>
@@ -78,12 +76,12 @@ export class CountState extends NgxsDataRepository<CountModel> {
 
     <b class="title">ngModel:</b>
     <input
-        [ngModel]="counter.snapshot"
-        (ngModelChange)="counter.setValueFromInput($event)"
+      [ngModel]="counter.snapshot"
+      (ngModelChange)="counter.setValueFromInput($event)"
     />
 
     (delay: 300ms)
-  `
+  `,
 })
 export class AppComponent {
   constructor(public counter: CountState) {}
@@ -95,16 +93,15 @@ export class AppComponent {
 `Need provide logger-plugin`
 
 ```typescript
-import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
+import {withNgxsLoggerPlugin} from '@ngxs/logger-plugin';
+import {provideStore, withNgxsNoopExecutionStrategy} from '@ngxs/store';
 
-@NgModule({
-  imports: [
-    // ..
-    NgxsLoggerPluginModule.forRoot(),
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideStore([AppState], withNgxsLoggerPlugin(), withNgxsNoopExecutionStrategy()),
+    // ...
   ],
-  // ..
-})
-export class AppModule {}
+};
 ```
 
 ```typescript

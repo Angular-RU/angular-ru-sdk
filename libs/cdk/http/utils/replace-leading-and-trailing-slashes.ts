@@ -4,7 +4,7 @@ import {checkValueIsEmpty} from '@angular-ru/cdk/utils';
 export function replaceLeadingAndTrailingSlashes(
     inputString: EmptyValue | string,
 ): string {
-    const pattern = new RegExp('^\\/+|\\/+$', 'g');
+    const pattern = new RegExp(String.raw`(^\/+)|(\/+$)`, 'g');
 
     return checkValueIsEmpty(inputString)
         ? ''

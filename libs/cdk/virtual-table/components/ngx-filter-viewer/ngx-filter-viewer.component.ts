@@ -2,10 +2,8 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    Inject,
-    INJECTOR,
-    Injector,
-    Input,
+    inject,
+    input,
     NgZone,
     OnChanges,
     OnDestroy,
@@ -33,34 +31,25 @@ const {TIME_RELOAD}: typeof TABLE_GLOBAL_OPTIONS = TABLE_GLOBAL_OPTIONS;
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy {
+export class NgxFilterViewer<T> implements OnChanges, OnInit, OnDestroy {
+    private readonly cd = inject<ChangeDetectorRef>(ChangeDetectorRef);
+    private readonly sanitizer = inject<DomSanitizer>(DomSanitizer);
+
     private readonly destroy$ = new Subject<void>();
     private taskId: Nullable<number> = null;
-    private readonly ngZone: NgZone;
-    private readonly filterable: FilterableService<T>;
-    @Input()
-    public text?: Nullable<PlainObject | string> = null;
+    private readonly ngZone = inject(NgZone);
+    private readonly filterable = inject(FilterableService<T>);
+    public readonly text = input<Nullable<PlainObject | string>>(null);
 
-    @Input()
-    public key?: Nullable<string> = null;
+    public readonly key = input<Nullable<string>>(null);
 
-    @Input()
-    public index?: Nullable<number> = 0;
+    public readonly index = input<Nullable<number>>(0);
 
     public html?: Nullable<SafeHtml | string> = null;
     public founded = false;
 
-    constructor(
-        @Inject(ChangeDetectorRef)
-        private readonly cd: ChangeDetectorRef,
-        @Inject(DomSanitizer)
-        private readonly sanitizer: DomSanitizer,
-        @Inject(INJECTOR)
-        injector: Injector,
-    ) {
+    constructor() {
         this.cd.reattach();
-        this.ngZone = injector.get<NgZone>(NgZone);
-        this.filterable = injector.get<FilterableService<T>>(FilterableService);
     }
 
     private static wrapSelectedHtml(finder: string): string {
@@ -78,7 +67,7 @@ export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy
             .pipe(takeUntil(this.destroy$))
             .subscribe((event: FilterEvent): void => {
                 const hasFilter: boolean =
-                    isNotNil((this.filterable.definition as any)[this.key!]) ||
+                    isNotNil((this.filterable.definition as any)[this.key()!]) ||
                     isNotNil(this.filterable.globalFilterValue);
 
                 if (hasFilter) {
@@ -102,7 +91,7 @@ export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy
                 (): void => {
                     const hasFilter: boolean =
                         isNotNil(event.value) ||
-                        isNotNil((this.filterable.definition as any)[this.key!]);
+                        isNotNil((this.filterable.definition as any)[this.key()!]);
 
                     if (hasFilter) {
                         this.selected(event);
@@ -112,7 +101,7 @@ export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy
 
                     detectChanges(this.cd);
                 },
-                TIME_RELOAD + (this.index ?? 0),
+                TIME_RELOAD + (this.index() ?? 0),
             );
         });
     }
@@ -120,12 +109,12 @@ export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy
     // eslint-disable-next-line max-lines-per-function,complexity
     private selected(event: FilterEvent): void {
         const value: Nullable<string> = String(
-            (this.filterable.definition as any)[this.key!] ?? event.value,
+            (this.filterable.definition as any)[this.key()!] ?? event.value,
         );
         const type: Nullable<TableFilterType | string> = isNotNil(
-            (this.filterable.definition as any)[this.key!],
+            (this.filterable.definition as any)[this.key()!],
         )
-            ? (this.filterable.filterTypeDefinition as any)[this.key!]
+            ? (this.filterable.filterTypeDefinition as any)[this.key()!]
             : event.type;
 
         if (IGNORE_FILTER_TYPES.includes(type as TableFilterType)) {
@@ -135,7 +124,7 @@ export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy
         let regexp: RegExp;
         const escapedValue: Nullable<string> = value?.replace(
             /[$()*+.?[\\\]^{|}]/g,
-            '\\$&',
+            String.raw`\$&`,
         );
 
         if (type === TableFilterType.START_WITH) {
@@ -157,9 +146,9 @@ export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy
             regexp = new RegExp(`${escapedValue}`, 'ig');
         }
 
-        const trustedHtml: string = String(this.text).replace(
+        const trustedHtml: string = String(this.text()).replace(
             regexp,
-            (finder: string): string => NgxFilterViewerComponent.wrapSelectedHtml(finder),
+            (finder: string): string => NgxFilterViewer.wrapSelectedHtml(finder),
         );
 
         this.html = this.sanitizer.bypassSecurityTrustHtml(trustedHtml);
@@ -170,7 +159,7 @@ export class NgxFilterViewerComponent<T> implements OnChanges, OnInit, OnDestroy
     }
 
     private defaultHtmlValue({forceUpdate}: {forceUpdate: boolean}): void {
-        this.html = this.text;
+        this.html = this.text();
         this.founded = false;
 
         if (forceUpdate) {

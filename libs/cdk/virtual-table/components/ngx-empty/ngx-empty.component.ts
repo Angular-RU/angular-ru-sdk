@@ -2,8 +2,8 @@ import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/co
 
 @Component({
     selector: 'ngx-empty',
-    template: '<ng-content></ng-content>',
+    template: '<ng-content />',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NgxEmptyComponent {}
+export class NgxEmpty {}

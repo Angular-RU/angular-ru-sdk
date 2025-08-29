@@ -3,7 +3,7 @@ import {
     ChangeDetectionStrategy,
     Component,
     HostBinding,
-    Input,
+    input,
     ViewEncapsulation,
 } from '@angular/core';
 import {Nullable} from '@angular-ru/cdk/typings';
@@ -14,20 +14,21 @@ import {Nullable} from '@angular-ru/cdk/typings';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NgxMenuContentComponent {
-    @Input()
-    public icon: Nullable<string> = null;
+export class NgxMenuContent {
+    public readonly icon = input<Nullable<string>>(null);
 
-    @Input('no-margin')
-    public noMargin: Nullable<boolean | string> = null;
+    public readonly noMargin = input<Nullable<boolean | string>>(null, {
+        alias: 'no-margin',
+    });
 
-    @Input('align-center')
-    public alignCenter: Nullable<boolean | string> = null;
+    public readonly alignCenter = input<Nullable<boolean | string>>(null, {
+        alias: 'align-center',
+    });
 
     @HostBinding('class')
     public get class(): string {
-        const cssClasses = `${this.noMargin === null ? '' : 'content-phrase'}`;
+        const cssClasses = `${this.noMargin() === null ? '' : 'content-phrase'}`;
 
-        return this.icon === null ? cssClasses : `icon-place ${cssClasses}`;
+        return this.icon() === null ? cssClasses : `icon-place ${cssClasses}`;
     }
 }

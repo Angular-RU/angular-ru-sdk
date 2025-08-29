@@ -1,13 +1,13 @@
 import {
     Directive,
     ElementRef,
-    EventEmitter,
-    Input,
+    inject,
+    input,
     NgZone,
     OnChanges,
     OnDestroy,
     OnInit,
-    Output,
+    output,
     SimpleChanges,
 } from '@angular/core';
 import {Nullable} from '@angular-ru/cdk/typings';
@@ -27,38 +27,34 @@ const MIN_RESIZE_DELAY = 500;
 const RECALCULATE_HEIGHT = 100;
 
 @Directive({selector: '[autoHeight]'})
-export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
+export class AutoHeight<T> implements OnInit, OnChanges, OnDestroy {
+    private readonly element = inject(ElementRef);
+    public readonly ngZone = inject(NgZone);
+
     private readonly _destroy$: Subject<boolean> = new Subject<boolean>();
     private readonly minHeight: number = 0;
     private useOnlyAutoViewPort = false;
     private isDirtyCheck = false;
     private taskId: Nullable<number> = null;
-    @Input()
-    public autoHeight: Partial<DynamicHeightOptions> = {};
+    public readonly autoHeight = input<Partial<DynamicHeightOptions>>({});
 
-    @Input()
-    public tableViewport: Partial<HTMLDivElement> = {};
+    public readonly tableViewport = input<Partial<HTMLDivElement>>({});
 
-    @Input()
-    public sourceRef: T[] = [];
+    public readonly sourceRef = input<T[]>([]);
 
-    @Output()
-    public readonly recalculatedHeight = new EventEmitter<void>(true);
-
-    constructor(
-        private readonly element: ElementRef,
-        public readonly ngZone: NgZone,
-    ) {}
+    public readonly recalculatedHeight = output();
 
     public get destroy$(): Subject<boolean> {
         return this._destroy$;
     }
 
     private get canCalculated(): boolean {
+        const autoHeight = this.autoHeight();
+
         return (
-            isTrue(this.autoHeight.inViewport) &&
-            this.autoHeight.sourceLength! > 0 &&
-            this.sourceRef.length > 0
+            isTrue(autoHeight.inViewport) &&
+            autoHeight.sourceLength! > 0 &&
+            this.sourceRef().length > 0
         );
     }
 
@@ -66,14 +62,16 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
     private get style(): string {
         let height: Nullable<string> = null;
 
-        if (checkValueIsFilled(this.autoHeight.rootHeight)) {
-            height = this.autoHeight.rootHeight;
-        } else if (isTrue(this.autoHeight.detect)) {
-            const paddingTop: string = AutoHeightDirective.getStyle(
+        const autoHeight = this.autoHeight();
+
+        if (checkValueIsFilled(autoHeight.rootHeight)) {
+            height = autoHeight.rootHeight;
+        } else if (isTrue(autoHeight.detect)) {
+            const paddingTop: string = AutoHeight.getStyle(
                 this.rootCurrentElement,
                 'padding-top',
             );
-            const paddingBottom: string = AutoHeightDirective.getStyle(
+            const paddingBottom: string = AutoHeight.getStyle(
                 this.rootCurrentElement,
                 'padding-bottom',
             );
@@ -110,15 +108,11 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
     }
 
     private get rootCurrentElement(): Partial<HTMLElement> {
-        return (
-            (this.currentElement.parentNode &&
-                this.currentElement.parentNode.parentElement) ||
-            {}
-        );
+        return this.currentElement.parentNode?.parentElement || {};
     }
 
     private get columnHeight(): number {
-        return this.autoHeight.columnHeight ?? 0;
+        return this.autoHeight().columnHeight ?? 0;
     }
 
     private get autoViewHeight(): number {
@@ -129,20 +123,20 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
 
     private get scrollbarHeight(): number {
         const scrollHeight: number =
-            this.sourceRef.length === 1
+            this.sourceRef().length === 1
                 ? SCROLLBAR_SIZE
-                : (this.tableViewport.offsetHeight ?? 0) -
-                  (this.tableViewport.clientHeight ?? 0);
+                : (this.tableViewport().offsetHeight ?? 0) -
+                  (this.tableViewport().clientHeight ?? 0);
 
         return scrollHeight + BORDER_TOB_WITH_BOTTOM;
     }
 
     private get headerHeight(): number {
-        return this.autoHeight.headerHeight ?? 0;
+        return this.autoHeight().headerHeight ?? 0;
     }
 
     private get footerHeight(): number {
-        return this.autoHeight.footerHeight ?? 0;
+        return this.autoHeight().footerHeight ?? 0;
     }
 
     private static getStyle(element: Element | any, strCssRule: string): string {
@@ -154,7 +148,7 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
                 strValue = document.defaultView
                     .getComputedStyle(element, '')
                     .getPropertyValue(strRule);
-            } catch (error: unknown) {
+            } catch {
                 strValue = '0px';
             }
         } else if (isNotNil(element.currentStyle)) {
@@ -202,7 +196,7 @@ export class AutoHeightDirective<T> implements OnInit, OnChanges, OnDestroy {
                     this.markForCheck();
                 }
 
-                if (this.isDirtyCheck && isTrue(this.autoHeight.inViewport)) {
+                if (this.isDirtyCheck && isTrue(this.autoHeight().inViewport)) {
                     this.calculateHeight();
                     this.recalculatedHeight.emit();
                 }

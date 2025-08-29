@@ -2,8 +2,8 @@ import {TestBed} from '@angular/core/testing';
 import {
     FormatOutput,
     LoggerLevel,
-    LoggerModule,
     LoggerService,
+    provideLogger,
 } from '@angular-ru/cdk/logger';
 import {PlainObject} from '@angular-ru/cdk/typings';
 
@@ -22,8 +22,8 @@ describe('[TEST]: Check global style', () => {
 
     beforeAll(() => {
         TestBed.configureTestingModule({
-            imports: [
-                LoggerModule.forRoot({
+            providers: [
+                provideLogger({
                     instance: fakeConsole,
                     labelNames: {
                         [LoggerLevel.TRACE]: CUSTOM_LABELS.TRACE,

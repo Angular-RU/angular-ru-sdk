@@ -17,14 +17,13 @@ $ npm install @angular-ru/cdk
 ```
 
 ```typescript
-import {FlexLayoutModule} from '@angular-ru/cdk/flex-layout';
-import {NgModule} from '@angular/core';
+import {FlexLayout} from '@angular-ru/cdk/flex-layout';
 
-@NgModule({
+@Component({
   imports: [
     // ...
-    FlexLayoutModule,
+    FlexLayout,
   ],
 })
-export class AppModule {}
+export class AppComponent {}
 ```

@@ -1,5 +1,5 @@
 import {TestBed} from '@angular/core/testing';
-import {LoggerLevel, LoggerModule, LoggerService} from '@angular-ru/cdk/logger';
+import {LoggerLevel, LoggerService, provideLogger} from '@angular-ru/cdk/logger';
 
 import {ConsoleFake, TestLoggerLineType} from './helpers/console-fake';
 
@@ -12,8 +12,8 @@ describe('[TEST]: Check style', () => {
 
         beforeAll(() => {
             TestBed.configureTestingModule({
-                imports: [
-                    LoggerModule.forRoot({
+                providers: [
+                    provideLogger({
                         instance: fakeConsole,
                         cssClassMap: {
                             'class-1': 'font-weight: bold',
@@ -62,6 +62,7 @@ describe('[TEST]: Check style', () => {
             logger.clear();
 
             logger.cssClass('class-2').debug('Test 2');
+
             expect(fakeConsole.stack()).toEqual(
                 fakeConsole.createStack({
                     [TestLoggerLineType.DEBUG]: [
@@ -75,11 +76,13 @@ describe('[TEST]: Check style', () => {
         it('clear line style', () => {
             // with style
             logger.css('font-weight: bold');
+
             expect(logger.getCurrentLineStyle()).toBe('font-weight: bold;');
 
             // without style
             logger.css('font-weight: bold');
             logger.clearCssCurrentLine();
+
             expect(logger.getCurrentLineStyle()).toBe('');
         });
 
@@ -107,8 +110,8 @@ describe('[TEST]: Check style', () => {
 
         beforeAll(() => {
             TestBed.configureTestingModule({
-                imports: [
-                    LoggerModule.forRoot({
+                providers: [
+                    provideLogger({
                         instance: fakeConsole,
                         globalLineStyle:
                             'color: violet; font-weight: bold; font-size: 12px',
@@ -123,6 +126,7 @@ describe('[TEST]: Check style', () => {
 
         it('should use global styles', () => {
             logger.log(testString);
+
             expect(fakeConsole.stack()).toBe(
                 '[{"log":["%c%s","color: violet; font-weight: bold; font-size: 12px;","test string"]}]',
             );
@@ -130,6 +134,7 @@ describe('[TEST]: Check style', () => {
 
         it('should use global styles and work with empty css', () => {
             logger.css('').log(testString);
+
             expect(fakeConsole.stack()).toBe(
                 '[{"log":["%c%s","color: violet; font-weight: bold; font-size: 12px;","test string"]}]',
             );

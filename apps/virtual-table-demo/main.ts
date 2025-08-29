@@ -1,13 +1,8 @@
-import {enableProdMode} from '@angular/core';
-import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {bootstrapApplication} from '@angular/platform-browser';
 
-import {environment} from './environments/environment';
-import {AppModule} from './src/app.module';
+import {AppComponent} from './src/app.component';
+import {appConfig} from './src/app.config';
 
-if (environment.production) {
-    enableProdMode();
-}
-
-platformBrowserDynamic()
-    .bootstrapModule(AppModule, {ngZoneEventCoalescing: true})
-    .catch((error: Error): void => console.error(error));
+bootstrapApplication(AppComponent, appConfig).catch((error: unknown) =>
+    console.error(error),
+);

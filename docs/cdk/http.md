@@ -1,4 +1,4 @@
-## DataHttpClientModule
+## DataHttpClient
 
 Custom http client, with the ability to customize requests, auto unsubscribe and additional request interceptors.
 
@@ -6,7 +6,6 @@ Custom http client, with the ability to customize requests, auto unsubscribe and
 
 1. [📖 Changelog](https://github.com/Angular-RU/angular-ru-sdk/blob/master/CHANGELOG.md)
 2. [📦 Advanced](#table-of-contents)
-
    - [@angular-ru/cdk/http/utils](https://github.com/Angular-RU/angular-ru-sdk/blob/master/libs/http/docs/utils.md)
    - [@angular-ru/cdk/http/decorators](https://github.com/Angular-RU/angular-ru-sdk/blob/master/libs/http/docs/decorators.md)
 
@@ -17,21 +16,17 @@ Example, if your API base url placed here `https://my-server.com/api/***` and ha
 ![](https://habrastorage.org/webt/af/bg/n9/afbgn985tehybqdpk2gs1ymq9se.jpeg)
 
 ```typescript
-import {HttpClientModule} from '@angular/common/http';
-import {DataHttpClientModule} from '@angular-ru/cdk/http';
+import {provideHttpClient} from '@angular/common/http';
+import {provideDataHttpClientOptions} from '@angular-ru/cdk/http';
 
-@NgModule({
-  imports: [
-    // ...
-    HttpClientModule,
-    DataHttpClientModule.forRoot([ApiUsersClient], {
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideHttpClient(),
+    provideDataHttpClientOptions([ApiUsersClient], {
       hostUrl: 'https://my-server.com/api/',
     }),
   ],
-  declarations: [AppComponent],
-  bootstrap: [AppComponent],
-})
-export class AppModule {}
+};
 ```
 
 #### Create your http client for your api controller
@@ -164,22 +159,21 @@ limits for maximum connections per host name (Chrome: 6)
 but if necessary, you can change it <br> for example, <b>limitConcurrency: 5</b> <br> This mean that maximum of 5
 requests can be executed in parallel. Next one immediately start only if one of the previous requests is completed
 
-- `app.module.ts`
+- `app.config.ts`
 
 ```typescript
-import {DataHttpClientModule} from '@angular-ru/cdk/http';
+import {provideHttpClient} from '@angular/common/http';
+import {provideDataHttpClientOptions} from '@angular-ru/cdk/http';
 
-@NgModule({
-  imports: [
-    // ...
-    DataHttpClientModule.forRoot([ApiUsersClient], {
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideHttpClient(),
+    provideDataHttpClientOptions([ApiUsersClient], {
       // ...
       limitConcurrency: 5,
     }),
   ],
-  // ...
-})
-export class AppModule {}
+};
 ```
 
 ![](../assets/limit-concurrency-5.png)

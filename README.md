@@ -10,6 +10,19 @@ found in the Angular.
 
 ---
 
+### Migration to v19
+
+Check out the [migration guide](docs/introduction/migration-v19.md) when migrating to `v19` from `v18` or earlier.
+
+### Compatiblity
+
+| Angular | cdk / ngxs | Standalone Components |
+| ------- | ---------- | --------------------- |
+| 20+     | 19         | ✔️                    |
+| 18+     | 18         | ❌                    |
+
+### Packages
+
 | **Package**                                                    | **Version**                                                       | **README**                                                                                           | **Downloads**                                                                                     |
 | -------------------------------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | [@angular-ru/cdk](https://npmjs.com/package/@angular-ru/cdk)   | ![](https://img.shields.io/npm/v/%40angular-ru%2Fcdk/latest.svg)  | [![](https://img.shields.io/badge/Documentation--green.svg)](https://angular-ru.gitbook.io/sdk/cdk)  | [![](https://img.shields.io/npm/dw/@angular-ru/cdk)](https://npmjs.com/package/@angular-ru/cdk)   |

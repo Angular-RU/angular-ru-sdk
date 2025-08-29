@@ -46,7 +46,7 @@ console.log(me); // { name: 'Rob', age: 29 }
 
 If you want to freeze an entire object hierarchy then this requires a traversal of the object tree and for the
 Object.freeze operation to be applied to all objects. This is commonly known as deep freezing. When the developmentMode
-option is enabled in the NGXS forRoot module configuration a
+option is enabled in the NGXS provider configuration a
 [deep freeze](https://github.com/ngxs/store/blob/1a85af3ec36b669bb7491332cf62fc6db202e955/packages/store/src/internal/state-operations.ts#L46)
 operation is applied to any new objects in the state tree to help prevent side effects. Since this imposes some
 performance costs it is only enabled in development mode.
@@ -62,16 +62,14 @@ denote properties as readonly across the entire depth of an object.
 ```typescript
 @StateRepository()
 @State<string[]>({
-    name: 'todo',
-    defaults: []
+  name: 'todo',
+  defaults: [],
 })
 @Injectable()
 export class TodoState extends NgxsImmutableDataRepository<string[]> {
-    reversed$ = this.state$.pipe(
-        map( state => state.reverse() )
-    );                     ^
-                           |
-                           |_____ TS Compile error: property 'reverse' does not exist on type
+  reversed$ = this.state$.pipe(map((state) => state.reverse())); //  ^
+  //  |
+  //  |_____ TS Compile error: property 'reverse' does not exist on type
 }
 ```
 
@@ -79,19 +77,21 @@ Thus, the developer will not be able to make his own mistake. If he mutates the 
 methods. If you need to use states for set input property:
 
 ```typescript
-import { Immutable } from '@angular-ru/cdk/typings';
+import {Immutable} from '@angular-ru/cdk/typings';
 
-@Component({ .. })
+@Component({
+  //..
+})
 class TodoComponent {
-    @Input() public data: Immutable<string[]>;
+  @Input() public data: Immutable<string[]>;
 }
 
 @Component({
-    selector: 'app',
-    template: '<todo [data]="todos.state$ | async"></todo>'
+  selector: 'app',
+  template: '<todo [data]="todos.state$ | async"></todo>',
 })
 class AppComponent {
-    constructor(public todos: TodosState) {}
+  constructor(public todos: TodosState) {}
 }
 ```
 
@@ -104,42 +104,34 @@ However, if you really need to cast to mutable, you can do this in several ways:
 ```typescript
 @StateRepository()
 @State<string[]>({
-    name: 'todo',
-    defaults: []
+  name: 'todo',
+  defaults: [],
 })
 @Injectable()
 export class TodoState extends NgxsImmutableDataRepository<string[]> {
-    mutableState$ = this.state$.pipe(
-        map( state => state as string[] )
-    );
+  mutableState$ = this.state$.pipe(map((state) => state as string[]));
+}
 ```
 
 or `Into template` without creating `mutableState$`:
 
 ```typescript
-import {MutableTypeModule} from '@angular-ru/cdk/pipes';
+import {MutableTypePipe} from '@angular-ru/cdk/pipes';
 
-@NgModule({
-  imports: [
-    // ..
-    MutableTypeModule,
-  ],
+@Component({
+  // ...
 })
-export class AppModuleOrMyLazyModule {}
-```
-
-```typescript
-@Component({ .. })
 class TodoComponent {
-    @Input() public data: string[];
+  @Input() public data: string[];
 }
 
 @Component({
-    selector: 'app',
-    template: '<todo [data]="todos.state$ | async | mutable"></todo>'
+  selector: 'app',
+  imports: [MutableTypePipe],
+  template: '<todo [data]="todos.state$ | async | mutable"></todo>',
 })
 class AppComponent {
-    constructor(public todos: TodosState) {}
+  constructor(public todos: TodosState) {}
 }
 ```
 

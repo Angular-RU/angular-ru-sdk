@@ -3,25 +3,21 @@
 The Angular Table Builder includes a comprehensive set of ready-to-use features covering everything from paging,
 sorting, filtering, editing, and grouping to row and column virtualization, and accessibility support.
 
-Demo: https://angular-ru.github.io/angular-ru-ng-table-builder-example-app/
+[**Demo**](https://angular-ru.github.io/angular-ru-ng-table-builder-example-app)
 
 ```bash
 $ npm install --save @angular-ru/cdk
 ```
 
 After a few seconds of waiting, you should be good to go. Let's get to the actual coding! As a first step, let's add the
-Angular table builder module to our app module (src/app.module.ts):
+virtual table provider to our app config (src/app.config.ts):
 
 ```typescript
-import {TableBuilderModule} from '@angular-ru/cdk/virtual-table';
+import {provideVirtualTable} from '@angular-ru/cdk/virtual-table';
 
-@NgModule({
-  imports: [
-    // ...
-    TableBuilderModule.forRoot(),
-  ],
-})
-export class AppModule {}
+export const appConfig: ApplicationConfig = {
+  providers: [provideVirtualTable()],
+};
 ```
 
 ### Simple use
@@ -31,9 +27,11 @@ Next, let's declare the basic grid configuration. Edit src/app.component.ts:
 ```typescript
 import {Component} from '@angular/core';
 import {MyData} from './my-data.interface';
+import {VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 @Component({
   selector: 'app-root',
+  imports: [VirtualTable],
   template: `
     <ngx-table-builder [source]="data"></ngx-table-builder>
   `,
@@ -59,9 +57,11 @@ acts as the core upon which anyone can build their own tailored data-table exper
 // app.component.ts
 import {Component} from '@angular/core';
 import {LicenseSample} from './license.interface';
+import {VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 @Component({
   selector: 'app',
+  imports: [VirtualTable],
   templateUrl: './app.component.html',
 })
 export class AppComponent {
@@ -121,9 +121,11 @@ export class AppComponent {
 // app.component.ts
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {LicenseSample} from './license.interface';
+import {VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 @Component({
   selector: 'app',
+  imports: [VirtualTable],
   templateUrl: './app.component.html',
 })
 export class AppComponent implements AfterViewInit {

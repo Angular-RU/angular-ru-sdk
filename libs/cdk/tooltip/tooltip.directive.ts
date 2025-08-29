@@ -1,6 +1,16 @@
 /* eslint-disable @angular-eslint/no-input-rename */
-import {ElementRef, EmbeddedViewRef, NgZone, OnDestroy, Renderer2} from '@angular/core';
-import {Directive, Inject, Input, TemplateRef} from '@angular/core';
+import {
+    Directive,
+    effect,
+    ElementRef,
+    EmbeddedViewRef,
+    inject,
+    input,
+    NgZone,
+    OnDestroy,
+    Renderer2,
+    TemplateRef,
+} from '@angular/core';
 import {generateQuickGuid} from '@angular-ru/cdk/string';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {checkValueIsEmpty, isFalsy, isNotNil} from '@angular-ru/cdk/utils';
@@ -17,7 +27,17 @@ import {TooltipDomLeakService} from './services/tooltip-dom-leak.service';
 import {TOOLTIP_OPTIONS_TOKEN, TOOLTIP_TEXT_INTERCEPTOR_TOKEN} from './tooltip.tokens';
 
 @Directive({selector: '[tooltip]'})
-export class TooltipDirective implements OnDestroy {
+export class Tooltip implements OnDestroy {
+    private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+    private readonly renderer = inject<Renderer2>(Renderer2);
+    private readonly ngZone = inject<NgZone>(NgZone);
+    private readonly options = inject<TooltipOptions>(TOOLTIP_OPTIONS_TOKEN);
+    private readonly interceptor = inject<TooltipTextInterceptor>(
+        TOOLTIP_TEXT_INTERCEPTOR_TOKEN,
+    );
+
+    private readonly domLeak = inject<TooltipDomLeakService>(TooltipDomLeakService);
+
     private readonly delta: number = 2;
     private readonly layoutMinDuration: number = 100;
     private tooltipDomElement: Nullable<HTMLElement> = null;
@@ -33,49 +53,42 @@ export class TooltipDirective implements OnDestroy {
     private internalContext: TooltipContextValue = null;
     private mouseenterListener!: EventListenerOrEventListenerObject;
     private mouseleaveListener!: EventListenerOrEventListenerObject;
-    @Input('tooltip-disabled')
-    public tooltipDisabled!: boolean;
 
-    @Input('tooltip-placement')
-    public placement: TooltipPlacement = 'top';
+    public readonly tooltipDisabled = input<boolean>(false, {
+        alias: 'tooltip-disabled',
+    });
 
-    @Input('tooltip-css-style')
-    public localCssStyle: Nullable<string> = null;
+    public readonly placement = input<TooltipPlacement>('top', {
+        alias: 'tooltip-placement',
+    });
 
-    @Input('tooltip-size')
-    public size: TooltipSize = 'small';
+    public readonly localCssStyle = input<Nullable<string>>(null, {
+        alias: 'tooltip-css-style',
+    });
+
+    public readonly size = input<TooltipSize>('small', {alias: 'tooltip-size'});
 
     public uid: string = generateQuickGuid();
 
-    constructor(
-        @Inject(ElementRef)
-        private readonly elementRef: ElementRef<HTMLElement>,
-        @Inject(Renderer2)
-        private readonly renderer: Renderer2,
-        @Inject(NgZone)
-        private readonly ngZone: NgZone,
-        @Inject(TOOLTIP_OPTIONS_TOKEN)
-        private readonly options: TooltipOptions,
-        @Inject(TOOLTIP_TEXT_INTERCEPTOR_TOKEN)
-        private readonly interceptor: TooltipTextInterceptor,
-        @Inject(TooltipDomLeakService)
-        private readonly domLeak: TooltipDomLeakService,
-    ) {
+    constructor() {
         this.addUidToElement();
         this.connectMouseEvents();
+        this.refreshTooltipOnInputChanges();
     }
 
-    @Input('tooltip-context')
-    public set context(contextValue: TooltipContextValue) {
-        this.internalContext = contextValue;
-        this.refreshTooltipContent();
+    private refreshTooltipOnInputChanges() {
+        effect(() => {
+            this.internalContext = this.context();
+            this.internalTooltipValue = this.tooltip();
+            this.refreshTooltipContent();
+        });
     }
 
-    @Input()
-    public set tooltip(tooltipValue: TooltipValue) {
-        this.internalTooltipValue = tooltipValue;
-        this.refreshTooltipContent();
-    }
+    public readonly context = input<TooltipContextValue>(null, {
+        alias: 'tooltip-context',
+    });
+
+    public readonly tooltip = input<TooltipValue>(null);
 
     private get offsetElementHeight(): number {
         return this.tooltipDomElement?.clientHeight ?? 0;
@@ -95,7 +108,7 @@ export class TooltipDirective implements OnDestroy {
     }
 
     public onMouseenterHandler(): void {
-        if (this.tooltipDisabled) {
+        if (this.tooltipDisabled()) {
             return;
         }
 
@@ -104,7 +117,7 @@ export class TooltipDirective implements OnDestroy {
     }
 
     public onMouseleaveHandler(): void {
-        if (this.tooltipDisabled) {
+        if (this.tooltipDisabled()) {
             return;
         }
 
@@ -154,9 +167,9 @@ export class TooltipDirective implements OnDestroy {
             this.renderer.addClass(this.tooltipDomElement, 'ng-tooltip');
             this.renderer.addClass(
                 this.tooltipDomElement,
-                `ng-tooltip-${this.placement}`,
+                `ng-tooltip-${this.placement()}`,
             );
-            this.renderer.addClass(this.tooltipDomElement, `ng-tooltip-${this.size}`);
+            this.renderer.addClass(this.tooltipDomElement, `ng-tooltip-${this.size()}`);
         }
     }
 
@@ -164,24 +177,26 @@ export class TooltipDirective implements OnDestroy {
         const hostPos: DOMRect = this.elementRef.nativeElement.getBoundingClientRect();
         const tooltipPos: Nullable<DOMRect> =
             this.tooltipDomElement?.getBoundingClientRect();
-        const scrollPos: number = TooltipDirective.getScrollPos();
+        const scrollPos: number = Tooltip.getScrollPos();
 
-        if (this.placement === 'top') {
+        const placement = this.placement();
+
+        if (placement === 'top') {
             const {top, left}: TooltipOffset = this.calculateByTop(hostPos, tooltipPos);
 
             this.setStyle(top, left, scrollPos);
-        } else if (this.placement === 'bottom') {
+        } else if (placement === 'bottom') {
             const {top, left}: TooltipOffset = this.calculateByBottom(
                 hostPos,
                 tooltipPos,
             );
 
             this.setStyle(top, left, scrollPos);
-        } else if (this.placement === 'left') {
+        } else if (placement === 'left') {
             const {top, left}: TooltipOffset = this.calculateByLeft(hostPos, tooltipPos);
 
             this.setStyle(top, left, scrollPos);
-        } else if (this.placement === 'right') {
+        } else if (placement === 'right') {
             const {top, left}: TooltipOffset = this.calculateByRight(hostPos, tooltipPos);
 
             this.setStyle(top, left, scrollPos);
@@ -333,7 +348,7 @@ export class TooltipDirective implements OnDestroy {
             content.innerHTML = this.interceptor.instant?.(value) ?? value;
         }
 
-        content.style.cssText = this.localCssStyle ?? this.options.cssStyle;
+        content.style.cssText = this.localCssStyle() ?? this.options.cssStyle;
 
         return content;
     }

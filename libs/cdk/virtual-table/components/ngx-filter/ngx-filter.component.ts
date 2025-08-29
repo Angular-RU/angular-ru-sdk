@@ -1,8 +1,9 @@
+import {NgStyle} from '@angular/common';
 import {
     ChangeDetectionStrategy,
     Component,
-    ContentChild,
-    Input,
+    contentChild,
+    input,
     OnDestroy,
     OnInit,
     ViewEncapsulation,
@@ -12,7 +13,7 @@ import {Nullable} from '@angular-ru/cdk/typings';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 
-import {AbstractModalViewLayerDirective} from '../../directives/abstract-modal-view-layer.directive';
+import {AbstractModalViewLayer} from '../../directives/abstract-modal-view-layer.directive';
 import {NgxFilterDirective} from '../../directives/ngx-filter.directive';
 import {FilterStateEvent} from '../../services/filterable/filter-state-event';
 
@@ -22,29 +23,26 @@ const FILTER_MIN_TOP_Y = 50;
 
 @Component({
     selector: 'ngx-filter',
+    imports: [NgStyle],
     templateUrl: './ngx-filter.component.html',
     styleUrls: ['./ngx-filter.component.scss'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     animations: [fadeInLinearAnimation],
 })
-export class NgxFilterComponent<T>
-    extends AbstractModalViewLayerDirective<T, FilterStateEvent>
+export class NgxFilter<T>
+    extends AbstractModalViewLayer<T, FilterStateEvent>
     implements OnInit, OnDestroy
 {
     private readonly destroy$ = new Subject<void>();
-    @Input()
-    public width: number = FILTER_WIDTH;
+    public readonly width = input<number>(FILTER_WIDTH);
 
-    @Input()
-    public height: Nullable<number> = null;
+    public readonly height = input<Nullable<number>>(null);
 
     // eslint-disable-next-line @angular-eslint/no-input-rename
-    @Input('max-height')
-    public maxHeight: Nullable<number> = null;
+    public readonly maxHeight = input<Nullable<number>>(null, {alias: 'max-height'});
 
-    @ContentChild(NgxFilterDirective, {static: false})
-    public filter!: NgxFilterDirective;
+    public readonly filter = contentChild(NgxFilterDirective);
 
     public readonly leftX: number = FILTER_MIN_LEFT_X;
     public readonly topY: number = FILTER_MIN_TOP_Y;

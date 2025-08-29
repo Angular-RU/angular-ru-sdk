@@ -1,25 +1,52 @@
+import {KeyValuePipe} from '@angular/common';
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
+    inject,
     OnInit,
-    ViewChild,
+    signal,
+    viewChild,
     ViewEncapsulation,
 } from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {MatButton} from '@angular/material/button';
+import {MatCheckbox} from '@angular/material/checkbox';
 import {MatDialog} from '@angular/material/dialog';
+import {MatIcon} from '@angular/material/icon';
+import {MatFormField, MatInput, MatLabel, MatSuffix} from '@angular/material/input';
+import {MatOption, MatSelect} from '@angular/material/select';
+import {MatToolbar} from '@angular/material/toolbar';
 import {PlainObject} from '@angular-ru/cdk/typings';
-import {TableBuilderComponent, TableFilterType} from '@angular-ru/cdk/virtual-table';
+import {TableBuilder, TableFilterType, VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 import {MocksGenerator} from '../../mocks-generator';
 import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
+import {ContextMenuSampleComponent} from './context-menu-sample/context-menu-sample.component';
+import {NotFoundComponent} from './not-found.component';
 
 // noinspection CssUnusedSymbol
 @Component({
     selector: 'sample-fourteen',
+    imports: [
+        ContextMenuSampleComponent,
+        FormsModule,
+        KeyValuePipe,
+        MatButton,
+        MatCheckbox,
+        MatFormField,
+        MatIcon,
+        MatInput,
+        MatLabel,
+        MatOption,
+        MatSelect,
+        MatSuffix,
+        MatToolbar,
+        NotFoundComponent,
+        VirtualTable,
+    ],
     templateUrl: './sample-fourteen.component.html',
-    // eslint-disable-next-line @angular-eslint/component-max-inline-declarations
     styles: [
         `
             .filter-example .table-grid__column {
@@ -34,28 +61,31 @@ import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
                 min-height: 50px;
                 max-height: 50px;
             }
+
+            context-menu-sample .my-filter {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
         `,
     ],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SampleFourteenComponent implements OnInit, AfterViewInit {
-    @ViewChild('table', {static: false})
-    public table!: TableBuilderComponent<PlainObject>;
+export default class SampleFourteenComponent implements OnInit, AfterViewInit {
+    public readonly dialog = inject(MatDialog);
 
-    public data: PlainObject[] = [];
-    constructor(
-        public readonly dialog: MatDialog,
-        private readonly cd: ChangeDetectorRef,
-    ) {}
+    public readonly table = viewChild.required<TableBuilder<PlainObject>>('table');
+
+    public data = signal<PlainObject[]>([]);
 
     public ngOnInit(): void {
         const rows = 10000;
         const cols = 59;
 
         MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => {
-            this.data = data;
-            this.cd.detectChanges();
+            this.data.set(data);
         });
     }
 
@@ -64,14 +94,14 @@ export class SampleFourteenComponent implements OnInit, AfterViewInit {
     }
 
     public clearFilter(): void {
-        this.table.filterable.reset();
+        this.table().filterable.reset();
     }
 
     public filterFromFifth(): void {
-        this.table.filterable.setDefinition([
+        this.table().filterable.setDefinition([
             {key: 'id', type: TableFilterType.MORE_OR_EQUAL, value: 5},
         ]);
-        this.table.filter();
+        this.table().filter();
     }
 
     // eslint-disable-next-line max-lines-per-function
@@ -85,19 +115,21 @@ export class SampleFourteenComponent implements OnInit, AfterViewInit {
                 code: `
     <ngx-filter #filter>
         <div class="my-filter">
-            <mat-form-field appearance="outline">
+            <mat-form-field>
                 <mat-label>Find options</mat-label>
                 <mat-select
                     [value]="table.filterable.filterTypeDefinition[filter.state.key!]"
                     (valueChange)="table.filterable.updateFilterTypeBy($event, filter.state.key); table.filter()"
                 >
-                    <mat-option *ngFor="let type of table.filterable.types | keyvalue" [value]="type.value">
+                @for (type of table.filterable.types | keyvalue; track type.key) {
+                    <mat-option [value]="type.value">
                         {{ type.key }}
                     </mat-option>
+                }
                 </mat-select>
             </mat-form-field>
 
-            <mat-form-field appearance="outline">
+            <mat-form-field>
                 <mat-label>Filter by {{ filter.state.key! | uppercase }}</mat-label>
                 <input
                     matInput
@@ -112,8 +144,6 @@ export class SampleFourteenComponent implements OnInit, AfterViewInit {
     </ngx-filter>
                     `,
             },
-            height: '650px',
-            width: '900px',
         });
     }
 }

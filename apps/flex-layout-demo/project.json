@@ -6,57 +6,58 @@
     "tags": ["apps"],
     "targets": {
         "build": {
-            "executor": "@angular-devkit/build-angular:browser",
+            "executor": "@angular/build:application",
             "options": {
-                "outputPath": "dist/flex-layout-demo",
-                "tsConfig": "apps/flex-layout-demo/tsconfig.app.json",
-                "main": "apps/flex-layout-demo/main.ts",
+                "outputPath": {
+                    "base": "dist/flex-layout-demo",
+                    "browser": ""
+                },
                 "index": "apps/flex-layout-demo/index.html",
+                "browser": "apps/flex-layout-demo/main.ts",
+                "tsConfig": "apps/flex-layout-demo/tsconfig.app.json",
+                "inlineStyleLanguage": "scss",
                 "assets": ["apps/flex-layout-demo/assets"],
-                "polyfills": "apps/flex-layout-demo/polyfills.ts",
                 "styles": [".global/integration-app.style.scss", "apps/flex-layout-demo/styles.scss"],
-                "aot": false,
-                "vendorChunk": true,
-                "extractLicenses": false,
-                "buildOptimizer": false,
-                "sourceMap": true,
-                "optimization": false,
-                "namedChunks": true
+                "scripts": [],
+                "stylePreprocessorOptions": {
+                    "includePaths": ["./src"],
+                    "sass": {
+                        "silenceDeprecations": ["import"]
+                    }
+                }
             },
             "configurations": {
                 "production": {
+                    "budgets": [
+                        {
+                            "type": "initial",
+                            "maximumWarning": "1mb",
+                            "maximumError": "2mb"
+                        },
+                        {
+                            "type": "anyComponentStyle",
+                            "maximumWarning": "6kb"
+                        }
+                    ],
+                    "outputHashing": "all",
                     "fileReplacements": [
                         {
                             "replace": "apps/flex-layout-demo/environments/environment.ts",
                             "with": "apps/flex-layout-demo/environments/environment.prod.ts"
                         }
-                    ],
-                    "optimization": true,
-                    "outputHashing": "all",
-                    "sourceMap": false,
-                    "namedChunks": false,
-                    "aot": true,
-                    "extractLicenses": true,
-                    "buildOptimizer": true
+                    ]
                 },
                 "development": {
-                    "fileReplacements": [
-                        {
-                            "replace": "apps/flex-layout-demo/environments/environment.ts",
-                            "with": "apps/flex-layout-demo/environments/environment.prod.ts"
-                        }
-                    ],
-                    "optimization": false
+                    "optimization": false,
+                    "extractLicenses": false,
+                    "sourceMap": true
                 }
             },
             "defaultConfiguration": "production",
-            "outputs": ["{projectRoot}/dist/flex-layout-demo"]
+            "outputs": ["{options.outputPath}"]
         },
         "serve": {
-            "executor": "@angular-devkit/build-angular:dev-server",
-            "options": {
-                "buildTarget": "flex-layout-demo:build"
-            },
+            "executor": "@angular/build:dev-server",
             "configurations": {
                 "production": {
                     "buildTarget": "flex-layout-demo:build:production"

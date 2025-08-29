@@ -1,4 +1,4 @@
-import {Component, Injectable} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Injectable} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
 import {directiveInject, inject} from '@angular-ru/cdk/ivy';
 import {Nullable} from '@angular-ru/cdk/typings';
@@ -13,6 +13,7 @@ describe('[TEST]: injection utils', () => {
         @Component({
             selector: 'ctx',
             template: '',
+            changeDetection: ChangeDetectionStrategy.OnPush,
             providers: [Service],
         })
         class CtxComponent {
@@ -25,7 +26,7 @@ describe('[TEST]: injection utils', () => {
 
         it('should be correct provide nested service by directiveInject', async () => {
             await TestBed.configureTestingModule({
-                declarations: [CtxComponent],
+                imports: [CtxComponent],
             }).compileComponents();
             const fixture = TestBed.createComponent(CtxComponent);
 
@@ -86,6 +87,7 @@ describe('[TEST]: injection utils', () => {
             @Component({
                 selector: 'ctx',
                 template: '',
+                changeDetection: ChangeDetectionStrategy.OnPush,
                 providers: [Service],
             })
             class CtxComponent {

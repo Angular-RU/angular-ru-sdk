@@ -3,11 +3,11 @@ import {
     ChangeDetectorRef,
     Component,
     DebugElement,
+    inject,
 } from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {ReactiveFormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
-import {InputFilterModule} from '@angular-ru/cdk/directives';
+import {InputFilter, provideInputFilter} from '@angular-ru/cdk/directives';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {isNotNil} from '@angular-ru/cdk/utils';
 
@@ -18,6 +18,7 @@ describe('[TEST]: inputFilter Config', () => {
 
     @Component({
         selector: 'test',
+        imports: [InputFilter],
         template: `
             <input
                 inputFilter
@@ -27,14 +28,15 @@ describe('[TEST]: inputFilter Config', () => {
         changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class TestComponent {
+        public readonly cd = inject(ChangeDetectorRef);
+
         public filterValue = '';
-        constructor(public readonly cd: ChangeDetectorRef) {}
     }
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [ReactiveFormsModule, InputFilterModule.forRoot({default: /\d+/})],
-            declarations: [TestComponent],
+            imports: [TestComponent],
+            providers: [provideInputFilter({default: /\d+/})],
         }).compileComponents();
     });
 
@@ -45,7 +47,9 @@ describe('[TEST]: inputFilter Config', () => {
         debugElement = fixture?.debugElement.query(By.css('input'));
 
         expect(component).toBeTruthy();
+
         setValueAndDispatch('abc123');
+
         expect(debugElement.nativeElement.value).toBe('123');
     });
 
@@ -56,7 +60,9 @@ describe('[TEST]: inputFilter Config', () => {
         debugElement = fixture?.debugElement.query(By.css('input'));
 
         expect(component).toBeTruthy();
+
         setValueAndDispatch('abc123');
+
         expect(debugElement.nativeElement.value).toBe('123');
     });
 
