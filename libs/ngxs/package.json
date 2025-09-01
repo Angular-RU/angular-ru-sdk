@@ -8,7 +8,9 @@
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "peerDependencies": {
-        "@ngxs/store": ">=18.1.6"
+        "@angular/common": ">=20.0.0",
+        "@angular/core": ">=20.0.0",
+        "@ngxs/store": ">=20.0.0"
     },
     "publishConfig": {
         "access": "public"
