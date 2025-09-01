@@ -1,5 +1,5 @@
 /* eslint-disable max-classes-per-file */
-import {ApplicationRef, NgZone} from '@angular/core';
+import {ApplicationRef, inject, NgZone} from '@angular/core';
 import {ChangeDetectionStrategy, Component, Directive, Injectable} from '@angular/core';
 
 import {
@@ -10,9 +10,7 @@ import {
 import {FeatureTestService, TestService} from './test-default';
 
 // noinspection AngularMissingOrInvalidDeclarationInModule
-@Directive({
-    selector: '[test-stairs-a]',
-})
+@Directive({selector: '[test-stairs-a]'})
 export class TestStairsADirective {
     @InjectNgZone()
     public ngZone!: NgZone;
@@ -35,16 +33,14 @@ export class TestStairsComponent extends TestStairsB {
     public featureTestService!: FeatureTestService;
 }
 
-@Directive({
-    selector: '[super-test-directive]',
-})
+@Directive({selector: '[super-test-directive]'})
 export abstract class AbstractSuperTestDirective {
+    public appRef = inject(ApplicationRef);
+
     public abstract ngZone: NgZone;
 
     @InjectFeatureTestService()
     public featureTestService!: FeatureTestService;
-
-    protected constructor(public appRef: ApplicationRef) {}
 }
 
 @Component({
@@ -55,8 +51,4 @@ export abstract class AbstractSuperTestDirective {
 export class ExtendingTestComponent extends AbstractSuperTestDirective {
     @InjectNgZone()
     public ngZone!: NgZone;
-
-    constructor(public override appRef: ApplicationRef) {
-        super(appRef);
-    }
 }

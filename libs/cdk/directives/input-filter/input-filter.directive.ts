@@ -1,11 +1,4 @@
-import {
-    Directive,
-    ElementRef,
-    HostListener,
-    Inject,
-    Input,
-    Optional,
-} from '@angular/core';
+import {Directive, ElementRef, HostListener, inject, input} from '@angular/core';
 import {hasItems} from '@angular-ru/cdk/array';
 import {ControlValueInterceptor} from '@angular-ru/cdk/forms';
 import {filter, FilterPredicate} from '@angular-ru/cdk/string';
@@ -18,25 +11,20 @@ import {InputFilterConfig} from './input-filter.config';
     selector: '[inputFilter]',
     providers: [ControlValueInterceptor],
 })
-export class InputFilterDirective {
+export class InputFilter {
+    private readonly elementRef = inject<ElementRef<HTMLInputElement>>(ElementRef);
+    private readonly config = inject<Nullable<InputFilterConfig>>(InputFilterConfig, {
+        optional: true,
+    })!;
+
     private manualEvent: Nullable<InputEvent> = null;
-    @Input()
-    public declare inputFilter: FilterPredicate | '';
 
-    @Input()
-    public filterDisabled = false;
-
-    constructor(
-        @Inject(ElementRef)
-        private readonly elementRef: ElementRef<HTMLInputElement>,
-        @Optional()
-        @Inject(InputFilterConfig)
-        private readonly config: Nullable<InputFilterConfig>,
-    ) {}
+    public readonly inputFilter = input<FilterPredicate | ''>('');
+    public readonly filterDisabled = input(false);
 
     @HostListener('input', ['$event'])
     public onInput(baseEvent: InputEvent): void {
-        if (this.filterDisabled || this.manualEvent === baseEvent) {
+        if (this.filterDisabled() || this.manualEvent === baseEvent) {
             return;
         }
 
@@ -54,10 +42,11 @@ export class InputFilterDirective {
     }
 
     private getPredicate(): FilterPredicate | '' {
-        const isInputPredicate: boolean = Array.isArray(this.inputFilter)
-            ? hasItems(this.inputFilter)
-            : checkValueIsFilled(this.inputFilter);
+        const inputFilter = this.inputFilter();
+        const isInputPredicate: boolean = Array.isArray(inputFilter)
+            ? hasItems(inputFilter)
+            : checkValueIsFilled(inputFilter);
 
-        return isInputPredicate ? this.inputFilter : this.config?.default ?? [];
+        return isInputPredicate ? inputFilter : (this.config?.default ?? []);
     }
 }

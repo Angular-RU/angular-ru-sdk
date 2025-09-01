@@ -1,4 +1,4 @@
-import {Inject, Injectable, Injector, NgZone} from '@angular/core';
+import {inject, Injectable, Injector, NgZone} from '@angular/core';
 import type {StateFactory} from '@angular-ru/ngxs/typings';
 import {Store} from '@ngxs/store';
 import {
@@ -17,16 +17,12 @@ export class NgxsDataInjector {
     public static ngZone: NgZone | null = null;
     public static injector: Injector | null = null;
 
-    constructor(
-        injector: Injector,
-        @Inject(NGXS_STATE_FACTORY) stateFactory: any | unknown,
-        @Inject(NGXS_STATE_CONTEXT_FACTORY) stateContextFactory: any | unknown,
-    ) {
-        NgxsDataInjector.store = injector.get<Store>(Store);
-        NgxsDataInjector.ngZone = injector.get<NgZone>(NgZone);
-        NgxsDataInjector.factory = stateFactory;
-        NgxsDataInjector.context = stateContextFactory;
-        NgxsDataInjector.computed = injector.get<NgxsDataSequence>(NgxsDataSequence);
-        NgxsDataInjector.injector = injector;
+    constructor() {
+        NgxsDataInjector.store = inject(Store);
+        NgxsDataInjector.ngZone = inject(NgZone);
+        NgxsDataInjector.factory = inject(NGXS_STATE_FACTORY);
+        NgxsDataInjector.context = inject(NGXS_STATE_CONTEXT_FACTORY);
+        NgxsDataInjector.computed = inject(NgxsDataSequence);
+        NgxsDataInjector.injector = inject(Injector);
     }
 }

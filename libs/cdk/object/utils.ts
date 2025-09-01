@@ -11,7 +11,7 @@ import {isObject} from './is-object';
 
 export function unwrap<T>(target: any, options: ObjectExtraOptions): T {
     return Object.keys(target)
-        .sort()
+        .sort((a, b) => a.localeCompare(b))
         .reduce(
             (accumulator: T, key: string): T =>
                 deepObjectReduce<T>({

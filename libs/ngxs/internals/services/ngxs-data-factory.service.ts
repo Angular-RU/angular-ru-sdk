@@ -8,7 +8,6 @@ import {
     MappedState,
     MappedStore,
     NgxsRepositoryMeta,
-    PayloadName,
 } from '@angular-ru/ngxs/typings';
 import {StateContext} from '@ngxs/store';
 
@@ -31,7 +30,7 @@ export class NgxsDataFactory {
 
     public static ensureMappedState(stateMeta: any | undefined): MappedState | never {
         if (isNil(NgxsDataInjector.factory) || isNil(stateMeta)) {
-            throw new Error(NGXS_DATA_EXCEPTIONS.NGXS_DATA_MODULE_EXCEPTION);
+            throw new Error(NGXS_DATA_EXCEPTIONS.NGXS_DATA_PROVIDER_EXCEPTION);
         }
 
         const cachedMeta: MappedStore | null =
@@ -61,7 +60,7 @@ export class NgxsDataFactory {
     }
 
     public static getStateClassByInstance(target: DataStateClass | any): DataStateClass {
-        return (target ?? {}).constructor;
+        return target?.constructor;
     }
 
     public static clearMetaByInstance(target: DataStateClass | any): void {
@@ -80,7 +79,7 @@ export class NgxsDataFactory {
         const arrayArgs: any[] = Array.from(args);
 
         for (const [index, arrayArg] of arrayArgs.entries()) {
-            const payloadName: PayloadName | null | undefined =
+            const payloadName: string | null | undefined =
                 registry?.getPayloadTypeByIndex(index);
 
             if (isNotNil(payloadName)) {

@@ -4,13 +4,13 @@
         style="margin-left: 10px"
         class="mat-checkbox-flat"
         [(ngModel)]="nativeScrollbar"
-        (change)="update()"
     >
         Enable native scrollbar
     </mat-checkbox>
 
     <button
         mat-raised-button
+        type="button"
         class="show-simple"
         (click)="showSample()"
     >
@@ -23,15 +23,15 @@
         <ngx-table-builder
             #table1
             enable-filtering
-            [native-scrollbar]="nativeScrollbar"
-            [source]="dataFirst"
+            [native-scrollbar]="nativeScrollbar()"
+            [source]="dataFirst()"
         >
             <ngx-header
-                height="65"
+                height="61"
                 [css-class]="['my-filter']"
             >
                 <div class="filter-form">
-                    <mat-form-field appearance="outline">
+                    <mat-form-field>
                         <mat-label>Filter</mat-label>
                         <input
                             autocomplete="off"
@@ -43,36 +43,34 @@
                         <mat-icon matSuffix>search</mat-icon>
                     </mat-form-field>
 
-                    <mat-form-field
-                        appearance="outline"
-                        class="filter-options"
-                    >
+                    <mat-form-field class="filter-options">
                         <mat-label>Find options</mat-label>
                         <mat-select
                             [(value)]="table1.filterable.filterType"
                             (valueChange)="table1.filter()"
                         >
-                            <mat-option
-                                *ngFor="let type of table1.filterable.types | keyvalue"
-                                [value]="type.value"
-                            >
-                                {{ type.key }}
-                            </mat-option>
+                            @for (type of table1.filterable.types | keyvalue; track type.key) {
+                                <mat-option [value]="type.value">
+                                    {{ type.key }}
+                                </mat-option>
+                            }
                         </mat-select>
                     </mat-form-field>
                 </div>
             </ngx-header>
 
             <ngx-options is-draggable />
-            <ngx-column *ngFor="let key of table1.modelColumnKeys">
-                <ng-template ngx-th>{{ key }}</ng-template>
-                <ng-template
-                    let-cell
-                    ngx-td
-                >
-                    {{ cell }}
-                </ng-template>
-            </ngx-column>
+            @for (key of table1.modelColumnKeys; track key) {
+                <ngx-column>
+                    <ng-template ngx-th>{{ key }}</ng-template>
+                    <ng-template
+                        let-cell
+                        ngx-td
+                    >
+                        {{ cell }}
+                    </ng-template>
+                </ngx-column>
+            }
         </ngx-table-builder>
     </div>
 
@@ -80,15 +78,15 @@
         <ngx-table-builder
             #table2
             enable-filtering
-            [native-scrollbar]="nativeScrollbar"
-            [source]="dataSecond"
+            [native-scrollbar]="nativeScrollbar()"
+            [source]="dataSecond()"
         >
             <ngx-header
-                height="65"
+                height="61"
                 [css-class]="['my-filter']"
             >
                 <div class="filter-form">
-                    <mat-form-field appearance="outline">
+                    <mat-form-field>
                         <mat-label>Filter</mat-label>
                         <input
                             autocomplete="off"
@@ -100,36 +98,34 @@
                         <mat-icon matSuffix>search</mat-icon>
                     </mat-form-field>
 
-                    <mat-form-field
-                        appearance="outline"
-                        class="filter-options"
-                    >
+                    <mat-form-field class="filter-options">
                         <mat-label>Find options</mat-label>
                         <mat-select
                             [(value)]="table2.filterable.filterType"
                             (valueChange)="table2.filter()"
                         >
-                            <mat-option
-                                *ngFor="let type of table2.filterable.types | keyvalue"
-                                [value]="type.value"
-                            >
-                                {{ type.key }}
-                            </mat-option>
+                            @for (type of table2.filterable.types | keyvalue; track type.key) {
+                                <mat-option [value]="type.value">
+                                    {{ type.key }}
+                                </mat-option>
+                            }
                         </mat-select>
                     </mat-form-field>
                 </div>
             </ngx-header>
 
             <ngx-options is-draggable />
-            <ngx-column *ngFor="let key of table2.modelColumnKeys">
-                <ng-template ngx-th>{{ key }}</ng-template>
-                <ng-template
-                    let-cell
-                    ngx-td
-                >
-                    {{ cell }}
-                </ng-template>
-            </ngx-column>
+            @for (key of table2.modelColumnKeys; track key) {
+                <ngx-column>
+                    <ng-template ngx-th>{{ key }}</ng-template>
+                    <ng-template
+                        let-cell
+                        ngx-td
+                    >
+                        {{ cell }}
+                    </ng-template>
+                </ngx-column>
+            }
         </ngx-table-builder>
     </div>
 </div>

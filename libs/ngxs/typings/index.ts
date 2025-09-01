@@ -1,10 +1,7 @@
 export {
     ActionEvent,
-    ActionName,
-    ArgName,
     ArgNameMap,
     PayloadMap,
-    PayloadName,
     RepositoryActionOptions,
 } from './common/actions-properties';
 export {ComputedCacheMap} from './common/computed-cache-map';
@@ -15,7 +12,6 @@ export {
     StateClassDecorator,
 } from './common/data-state-class';
 export {DispatchedResult} from './common/dispatched-result';
-export {NgxsDataExtension} from './common/extension';
 export {MappedState} from './common/mapped-state';
 export {MappedStore} from './common/mapped-store';
 export {NgxsDataAfterReset, NgxsDataDoCheck} from './common/ngxs-data-lifecycle';

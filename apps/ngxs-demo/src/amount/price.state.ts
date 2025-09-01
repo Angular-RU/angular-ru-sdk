@@ -11,6 +11,6 @@ import {State} from '@ngxs/store';
 @Injectable()
 export class PriceState extends NgxsDataRepository<number> {
     public setPrice(value: string): void {
-        this.setState(parseFloat(value));
+        this.setState(parseFloat(value) || 0);
     }
 }

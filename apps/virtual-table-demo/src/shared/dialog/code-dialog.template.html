@@ -1,14 +1,19 @@
-<h3>{{ data.title }}</h3>
-<p
-    *ngIf="data.description"
-    [innerHTML]="data.description"
-></p>
-<pre><code class="html">{{ data.code }}</code></pre>
+<h2 mat-dialog-title>{{ data.title }}</h2>
+<mat-dialog-content>
+    @if (data.description) {
+        <p [innerHTML]="data.description"></p>
+    }
+    <pre><code
+        [class]="data.language === 'typescript' ? 'typescript' : 'html'"
+    >{{ data.code }}</code></pre>
+</mat-dialog-content>
 
-<button
-    mat-button
-    class="dialog-close"
-    (click)="close()"
->
-    OK
-</button>
+<mat-dialog-actions align="end">
+    <button
+        mat-dialog-close
+        matButton
+        type="button"
+    >
+        OK
+    </button>
+</mat-dialog-actions>

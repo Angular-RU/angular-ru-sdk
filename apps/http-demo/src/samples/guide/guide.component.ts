@@ -1,4 +1,10 @@
-import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    inject,
+    OnDestroy,
+    OnInit,
+} from '@angular/core';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 
@@ -9,10 +15,10 @@ import {ApiClient} from '../../services/clients/api.client';
     templateUrl: './guide.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GuideComponent implements OnInit, OnDestroy {
-    private readonly destroy$ = new Subject<void>();
+export default class GuideComponent implements OnInit, OnDestroy {
+    private readonly apiClient = inject(ApiClient);
 
-    constructor(private readonly apiClient: ApiClient) {}
+    private readonly destroy$ = new Subject<void>();
 
     public ngOnInit(): void {
         this.fetchData();

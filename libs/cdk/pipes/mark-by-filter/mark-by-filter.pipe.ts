@@ -1,4 +1,4 @@
-import {Pipe, PipeTransform} from '@angular/core';
+import {inject, Pipe, PipeTransform} from '@angular/core';
 import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 import {ensureRegexp, isRegexpStr} from '@angular-ru/cdk/regexp';
 import {toStringValue} from '@angular-ru/cdk/string';
@@ -9,7 +9,7 @@ import {MarkedValue} from './marked-value';
 
 @Pipe({name: 'markByFilter'})
 export class MarkByFilterPipe implements PipeTransform {
-    constructor(private readonly sanitizer: DomSanitizer) {}
+    private readonly sanitizer = inject(DomSanitizer);
 
     public transform(
         value: Nullable<string>,

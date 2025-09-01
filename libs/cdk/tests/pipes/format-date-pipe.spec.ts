@@ -1,12 +1,12 @@
 import {TestBed} from '@angular/core/testing';
-import {FormatDatePipe, FormatDatePipeModule} from '@angular-ru/cdk/pipes';
+import {FormatDatePipe} from '@angular-ru/cdk/pipes';
 
 describe('format date pipe', () => {
     let pipe: FormatDatePipe;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [FormatDatePipeModule],
+            providers: [FormatDatePipe],
         }).compileComponents();
         pipe = TestBed.inject(FormatDatePipe);
     });

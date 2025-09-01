@@ -1,8 +1,9 @@
 #### `@angular-ru/cdk/date`
 
-#### DateSuggestionModule
+#### DateSuggestion Composer
 
-Module for convenient substitution of date intervals depending on values and the current date.
+DateSuggestion composer can be used for convenient substitution of date intervals depending on values and the current
+date.
 
 ##### Default usage
 
@@ -17,16 +18,23 @@ Default implementation has 8 built-in strategies:
 - `LAST_180_DAYS_OF_INTERVAL` — set 180 days to the last day from the current interval.
 
 ```typescript
-import {DateSuggestionModule, DateSuggestionComposer, DefaultDateIntervalSuggestion} from '@angular-ru/cdk/date';
+import {
+  DateSuggestionComposer,
+  DayOfWeek,
+  DefaultDateIntervalSuggestion,
+  FIRST_DAY_OF_WEEK,
+  provideDateSuggestion,
+} from '@angular-ru/cdk/date';
 
-@NgModule({
-  // ...
-  imports: [
-    // ...
-    DateSuggestionModule,
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideDateSuggestion(),
+    {
+      provide: FIRST_DAY_OF_WEEK,
+      useValue: DayOfWeek.Monday,
+    },
   ],
-})
-export class AppModule {}
+};
 
 @Component({
   // ...
@@ -68,10 +76,10 @@ import {
   DAYS_COUNT,
   DEFAULT_SUGGESTION_STRATEGY_MAP,
   SuggestionStrategyMap,
-  DateSuggestionModule,
   DateSuggestionComposer,
   DefaultDateIntervalSuggestion,
   endOfDay,
+  provideDateSuggestion,
   shiftDate,
   startOfDay,
 } from '@angular-ru/cdk/date';
@@ -107,15 +115,9 @@ const EXTENDED_STRATEGY_MAP: SuggestionStrategyMap<ExtendedDateIntervalSuggestio
   },
 };
 
-@NgModule({
-  // ...
-  imports: [
-    // ...
-    // Import DateSuggestionModule with created map as parameter
-    DateSuggestionModule.forRoot(EXTENDED_STRATEGY_MAP),
-  ],
-})
-export class AppModule {}
+export const appConfig: ApplicationConfig = {
+  providers: [provideDateSuggestion(EXTENDED_STRATEGY_MAP)],
+};
 
 @Component({
   // ...

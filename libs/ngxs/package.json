@@ -1,6 +1,6 @@
 {
     "name": "@angular-ru/ngxs",
-    "version": "18.11.0",
+    "version": "19.0.0",
     "description": "Angular-RU package",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/libs/cdk#readme",
     "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
@@ -8,7 +8,9 @@
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
     "peerDependencies": {
-        "@ngxs/store": ">=18.1.6"
+        "@angular/common": ">=20.0.0",
+        "@angular/core": ">=20.0.0",
+        "@ngxs/store": ">=20.0.0"
     },
     "publishConfig": {
         "access": "public"

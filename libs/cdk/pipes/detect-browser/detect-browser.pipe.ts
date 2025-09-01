@@ -11,7 +11,7 @@ export class DetectBrowserPipe implements PipeTransform {
         const ua: string = userAgent ?? navigator.userAgent;
 
         return (
-            ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) ??
+            /(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i.exec(ua) ??
             ([] as unknown as RegExpMatchArray)
         );
     }
@@ -20,12 +20,12 @@ export class DetectBrowserPipe implements PipeTransform {
         const matcher: Nullable<RegExpMatchArray> =
             /\brv[ :]+(\d+)/g.exec(ua) || ([] as unknown as RegExpMatchArray);
 
-        return `IE ${takeSecondItem(matcher)}` ?? '';
+        return `IE ${takeSecondItem(matcher) ?? ''}`;
     }
 
     private static ensureChrome(ua: string): string {
-        return ua
-            .match(/\b(OPR|Edge?)\/(\d+)/)!
+        return /\b(OPR|Edge?)\/(\d+)/
+            .exec(ua)!
             .slice(1)
             .join(' ')
             .replace('OPR', 'Opera')
@@ -36,7 +36,7 @@ export class DetectBrowserPipe implements PipeTransform {
         matchers: Nullable<RegExpMatchArray>,
         ua: string,
     ): string {
-        const matcher: Nullable<RegExpMatchArray> = ua.match(/version\/(\d+)/i);
+        const matcher: Nullable<RegExpMatchArray> = /version\/(\d+)/i.exec(ua);
         const otherMatchers: Array<Nullable<string>> = isNotNil(takeThirdItem(matchers))
             ? [takeSecondItem(matchers), takeThirdItem(matchers)]
             : // TODO: need refactor deprecated method
@@ -62,7 +62,7 @@ export class DetectBrowserPipe implements PipeTransform {
             browser = DetectBrowserPipe.ensureInternetExplorer(ua);
         } else if (
             takeSecondItem(matchers) === 'Chrome' &&
-            ua.match(/\b(OPR|Edge?)\/(\d+)/) !== null
+            /\b(OPR|Edge?)\/(\d+)/.exec(ua) !== null
         ) {
             browser = DetectBrowserPipe.ensureChrome(ua);
         } else {

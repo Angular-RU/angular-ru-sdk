@@ -1,5 +1,5 @@
 import {TestBed} from '@angular/core/testing';
-import {LoggerLevel, LoggerModule, LoggerService} from '@angular-ru/cdk/logger';
+import {LoggerLevel, LoggerService, provideLogger} from '@angular-ru/cdk/logger';
 import {PlainObject} from '@angular-ru/cdk/typings';
 
 import {ConsoleFake, TestLoggerLineType} from './helpers/console-fake';
@@ -17,7 +17,7 @@ describe('[TEST]: Execute method by Level', () => {
 
     beforeAll(() => {
         TestBed.configureTestingModule({
-            imports: [LoggerModule.forRoot({instance: fakeConsole})],
+            providers: [provideLogger({instance: fakeConsole})],
         });
 
         logger = TestBed.inject(LoggerService);
@@ -138,16 +138,19 @@ describe('[TEST]: Execute method by Level', () => {
 
     it('clear console stack is worked', () => {
         logger.level = LoggerLevel.ALL;
+
         expect(fakeConsole.stack()).toEqual(fakeConsole.createStack());
     });
 
     it('set minimal level: INFO', () => {
         logger.level = LoggerLevel.INFO;
+
         expect(logger.level).toEqual(LoggerLevel.INFO);
     });
 
     it('assert: 5 is not grater than 6', () => {
         logger.assert(5 > 6, '5 is not grater than 6');
+
         expect(fakeConsole.stack(0)).toEqual(
             fakeConsole.createStack({
                 [TestLoggerLineType.ASSERT]: ['5 is not grater than 6'],
@@ -157,6 +160,7 @@ describe('[TEST]: Execute method by Level', () => {
 
     it('assert: 10 is grater than 6', () => {
         logger.assert(10 > 6, '10 is not grater than 6');
+
         expect(fakeConsole.stack(0)).toEqual(fakeConsole.createStack());
     });
 
@@ -167,6 +171,7 @@ describe('[TEST]: Execute method by Level', () => {
         ];
 
         logger.table(data);
+
         expect(fakeConsole.stack(0)).toEqual(
             fakeConsole.createStack({[TestLoggerLineType.TABLE]: [data]}),
         );

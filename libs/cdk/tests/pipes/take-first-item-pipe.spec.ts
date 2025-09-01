@@ -1,12 +1,12 @@
 import {TestBed} from '@angular/core/testing';
-import {TakeFirstItemPipe, TakeFirstItemPipeModule} from '@angular-ru/cdk/pipes';
+import {TakeFirstItemPipe} from '@angular-ru/cdk/pipes';
 
 describe('take item pipe', () => {
     let pipe: TakeFirstItemPipe;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [TakeFirstItemPipeModule],
+            providers: [TakeFirstItemPipe],
         }).compileComponents();
         pipe = TestBed.inject(TakeFirstItemPipe);
     });

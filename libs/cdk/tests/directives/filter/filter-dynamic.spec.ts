@@ -3,11 +3,13 @@ import {
     ChangeDetectorRef,
     Component,
     DebugElement,
+    inject,
 } from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {AbstractControl, FormBuilder, ReactiveFormsModule} from '@angular/forms';
+import {MatInput} from '@angular/material/input';
 import {By} from '@angular/platform-browser';
-import {InputFilterModule} from '@angular-ru/cdk/directives';
+import {InputFilter} from '@angular-ru/cdk/directives';
 import {FilterPredicate} from '@angular-ru/cdk/string';
 import {Nullable} from '@angular-ru/cdk/typings';
 
@@ -18,6 +20,7 @@ describe('[TEST]: inputFilter Dynamic', function () {
 
     @Component({
         selector: 'test',
+        imports: [InputFilter, MatInput, ReactiveFormsModule],
         template: `
             <div [formGroup]="form">
                 <input
@@ -31,20 +34,17 @@ describe('[TEST]: inputFilter Dynamic', function () {
         changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class DynamicTestComponent {
+        public readonly cd = inject(ChangeDetectorRef);
+        private readonly fb = inject(FormBuilder);
+
         public form = this.fb.group({a: 'kkk', b: null});
         public control: Nullable<AbstractControl> = this.form.get('b');
         public predicate: FilterPredicate = ['a', 'b', 'c'];
-
-        constructor(
-            public readonly cd: ChangeDetectorRef,
-            private readonly fb: FormBuilder,
-        ) {}
     }
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [ReactiveFormsModule, InputFilterModule],
-            declarations: [DynamicTestComponent],
+            imports: [DynamicTestComponent],
         }).compileComponents();
 
         fixture = TestBed.createComponent(DynamicTestComponent);
@@ -78,18 +78,21 @@ describe('[TEST]: inputFilter Dynamic', function () {
         component!.control = component!.form.get('a');
         localDetectChanges();
         setValueAndDispatch('aaaqqq');
+
         expect(component?.form.value).toEqual({a: 'aaa', b: null});
         expect(debugElement?.nativeElement.value).toBe('aaa');
 
         component!.control = component?.form.get('b');
         localDetectChanges();
         setValueAndDispatch('bbbddd');
+
         expect(component?.form.value).toEqual({a: 'aaa', b: 'bbb'});
         expect(debugElement?.nativeElement.value).toBe('bbb');
 
         component!.control = component?.form.get('a');
         localDetectChanges();
         setValueAndDispatch('eeeccc');
+
         expect(component?.form.value).toEqual({a: 'ccc', b: 'bbb'});
         expect(debugElement?.nativeElement.value).toBe('ccc');
     });
@@ -102,6 +105,7 @@ describe('[TEST]: inputFilter Dynamic', function () {
         component!.predicate = ['d', 'e', 'f', ' '];
         localDetectChanges();
         setValueAndDispatch('d e f abc');
+
         expect(component?.form.value).toEqual({a: 'kkk', b: 'd e f '});
         expect(debugElement?.nativeElement.value).toBe('d e f ');
     });

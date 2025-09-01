@@ -6,59 +6,59 @@
     <div class="column">
         <br />
         <pre><code class="html" ngNonBindable>
-  &lt;b>OnClick&lt;/b>:
+      &lt;b>OnClick&lt;/b>:
 
-  &lt;ngx-table-builder [source]="data" enable-selection #tableFirst>
+      &lt;ngx-table-builder [source]="data" enable-selection #tableFirst>
       &lt;ngx-column key="selection" sticky width="55" custom-key>
-          &lt;ng-template ngx-th>
-              &lt;mat-checkbox
-                  (change)="tableFirst.selection.toggleAll(data)"
-                  [indeterminate]="tableFirst.selectionModel.isIndeterminate"
-                  [checked]="tableFirst.selectionModel.isAll"
-              >&lt;/mat-checkbox>
-          &lt;/ng-template>
-          &lt;ng-template ngx-td row let-row (onClick)="$events.preventDefault()">
-              &lt;mat-checkbox
-                  [checked]="tableFirst.selectionModel.get($any(row).id)"
-                  (change)="tableFirst.selection.toggle(row)"
-              >&lt;/mat-checkbox>
-          &lt;/ng-template>
+      &lt;ng-template ngx-th>
+      &lt;mat-checkbox
+      (change)="tableFirst.selection.toggleAll(data)"
+      [indeterminate]="tableFirst.selectionModel.isIndeterminate"
+      [checked]="tableFirst.selectionModel.isAll"
+      >&lt;/mat-checkbox>
+      &lt;/ng-template>
+      &lt;ng-template ngx-td row let-row (onClick)="$events.preventDefault()">
+      &lt;mat-checkbox
+      [checked]="tableFirst.selectionModel.get($any(row).id)"
+      (change)="tableFirst.selection.toggle(row)"
+      >&lt;/mat-checkbox>
+      &lt;/ng-template>
       &lt;/ngx-column>
 
       &lt;ngx-column *ngFor="let key of tableFirst.modelColumnKeys" [key]="key">
-          &lt;ng-template ngx-td (onClick)="rowOnClick($events)" let-cell>
-            &#123;&#123; cell &#125;&#125;
-            &lt;/ng-template>
+      &lt;ng-template ngx-td (onClick)="rowOnClick($events)" let-cell>
+      &#123;&#123; cell &#125;&#125;
+      &lt;/ng-template>
       &lt;/ngx-column>
-  &lt;/ngx-table-builder>
+      &lt;/ngx-table-builder>
 
-  &lt;b>DblClick&lt;/b>:
+      &lt;b>DblClick&lt;/b>:
 
-  &lt;ngx-table-builder [source]="data" enable-selection #tableSecond>
+      &lt;ngx-table-builder [source]="data" enable-selection #tableSecond>
       &lt;ngx-column key="selection" sticky width="55" custom-key>
-          &lt;ng-template ngx-th>
-              &lt;mat-checkbox
-                  (change)="tableSecond.selection.toggleAll(data)"
-                  [indeterminate]="tableSecond.selectionModel.isIndeterminate"
-                  [checked]="tableSecond.selectionModel.isAll"
-              >&lt;/mat-checkbox>
-          &lt;/ng-template>
-          &lt;ng-template ngx-td row let-row (onClick)="$events.preventDefault()">
-              &lt;mat-checkbox
-                  [checked]="tableSecond.selectionModel.get($any(row).id)"
-                  (change)="tableSecond.selection.toggle(row)"
-              >&lt;/mat-checkbox>
-          &lt;/ng-template>
+      &lt;ng-template ngx-th>
+      &lt;mat-checkbox
+      (change)="tableSecond.selection.toggleAll(data)"
+      [indeterminate]="tableSecond.selectionModel.isIndeterminate"
+      [checked]="tableSecond.selectionModel.isAll"
+      >&lt;/mat-checkbox>
+      &lt;/ng-template>
+      &lt;ng-template ngx-td row let-row (onClick)="$events.preventDefault()">
+      &lt;mat-checkbox
+      [checked]="tableSecond.selectionModel.get($any(row).id)"
+      (change)="tableSecond.selection.toggle(row)"
+      >&lt;/mat-checkbox>
+      &lt;/ng-template>
       &lt;/ngx-column>
 
       &lt;ngx-column *ngFor="let key of tableSecond.modelColumnKeys" [key]="key">
-          &lt;ng-template ngx-td (dblClick)="rowDblClick($events)" let-cell>
-            &#123;&#123; cell &#125;&#125;
-            &lt;/ng-template>
+      &lt;ng-template ngx-td (dblClick)="rowDblClick($events)" let-cell>
+      &#123;&#123; cell &#125;&#125;
+      &lt;/ng-template>
       &lt;/ngx-column>
-  &lt;/ngx-table-builder>
+      &lt;/ngx-table-builder>
 
-</code></pre>
+    </code></pre>
 
         <p>
             A template reference variable is often a reference to a DOM element within a template. It can also refer to
@@ -108,18 +108,17 @@
                 </ng-template>
             </ngx-column>
 
-            <ngx-column
-                *ngFor="let key of tableFirst.modelColumnKeys"
-                [key]="key"
-            >
-                <ng-template
-                    let-cell
-                    ngx-td
-                    (onClick)="rowOnClick($event)"
-                >
-                    {{ cell }}
-                </ng-template>
-            </ngx-column>
+            @for (key of tableFirst.modelColumnKeys; track key) {
+                <ngx-column [key]="key">
+                    <ng-template
+                        let-cell
+                        ngx-td
+                        (onClick)="rowOnClick($event)"
+                    >
+                        {{ cell }}
+                    </ng-template>
+                </ngx-column>
+            }
         </ngx-table-builder>
 
         <br />
@@ -161,48 +160,46 @@
                 </ng-template>
             </ngx-column>
 
-            <ngx-column
-                *ngFor="let key of tableSecond.modelColumnKeys"
-                [key]="key"
-            >
-                <ng-template
-                    let-cell
-                    ngx-td
-                    (dblClick)="rowDblClick($event)"
-                >
-                    {{ cell }}
-                </ng-template>
-            </ngx-column>
+            @for (key of tableSecond.modelColumnKeys; track key) {
+                <ngx-column [key]="key">
+                    <ng-template
+                        let-cell
+                        ngx-td
+                        (dblClick)="rowDblClick($event)"
+                    >
+                        {{ cell }}
+                    </ng-template>
+                </ngx-column>
+            }
         </ngx-table-builder>
 
         <br />
         <br />
 
         <pre><code class="javascript">
-  // app.component.ts
-  import &#123; TableEvent &#125; from "&#64;angular-ru/cdk/virtual-table";
-  import &#123; Component &#125; from "&#64;angular/core";
-  import &#123; ToastService &#125; from "./toast.service";
-  import &#123; Data &#125; from "./data.interface";
+              // app.component.ts
+              import &#123; TableEvent &#125; from "&#64;angular-ru/cdk/virtual-table";
+              import &#123; Component &#125; from "&#64;angular/core";
+              import &#123; ToastService &#125; from "./toast.service";
+              import &#123; Data &#125; from "./data.interface";
 
-  &#64;Component(&#123;
-    selector: 'app',
-    templateUrl: './app.component.html'
-  &#123;)
-  export class AppComponent &#123;
-    public data: Data[] = [ .. ];
-    constructor(private toast: ToastService) &#123;&#125;
+              &#64;Component(&#123;
+                  selector: 'app',
+                  templateUrl: './app.component.html'
+              &#125;)
+              export class AppComponent &#123;
+                  public data: Data[] = [ .. ];
 
-    public rowOnClick(events: TableEvent): void &#123;
-        this.toast.success('OnClick', events);
-    &#125;
+                  constructor(private toast: ToastService) &#123;&#125;
 
-    public rowDblClick(events: TableEvent): void &#123;
-        this.toast.success('DblClick', events);
-    &#125;
+                  public rowOnClick(events: TableEvent): void &#123;
+                      this.toast.success('OnClick', events);
+                  &#125;
 
-  &#123;
-
-</code></pre>
+                  public rowDblClick(events: TableEvent): void &#123;
+                      this.toast.success('DblClick', events);
+                  &#125;
+              &#125;
+            </code></pre>
     </div>
 </div>

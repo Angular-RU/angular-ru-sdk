@@ -1,11 +1,11 @@
 <div
     class="table-grid__table-content-place"
-    [class.table-grid__table-content-place--align-center]="alignCenter !== null"
-    [class.table-grid__table-content-place--bold]="bold !== null"
-    [class.table-grid__table-content-place--content-cell]="contentCell !== null"
-    [style.height.px]="height"
+    [class.table-grid__table-content-place--align-center]="alignCenter() !== null"
+    [class.table-grid__table-content-place--bold]="bold() !== null"
+    [class.table-grid__table-content-place--content-cell]="contentCell() !== null"
+    [style.height.px]="height()"
 >
-    <div [class.content-box]="contentCell !== null">
+    <div [class.content-box]="contentCell() !== null">
         <ng-content />
     </div>
 </div>

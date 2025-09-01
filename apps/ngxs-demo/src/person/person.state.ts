@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {StateRepository} from '@angular-ru/ngxs/decorators';
 import {NgxsImmutableDataRepository} from '@angular-ru/ngxs/repositories';
 import {State} from '@ngxs/store';
@@ -15,9 +15,7 @@ import {PersonModel} from './person-model';
 })
 @Injectable()
 export class PersonState extends NgxsImmutableDataRepository<PersonModel> {
-    constructor(private readonly personService: PersonService) {
-        super();
-    }
+    private readonly personService = inject(PersonService);
 
     public getContent(): Observable<PersonModel> {
         return this.personService

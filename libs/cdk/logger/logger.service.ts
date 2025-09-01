@@ -1,4 +1,4 @@
-import {Inject, Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {BoundClass} from '@angular-ru/cdk/decorators';
 import {Nullable, PlainObject, PlainObjectOf} from '@angular-ru/cdk/typings';
 import {isNotNil} from '@angular-ru/cdk/utils';
@@ -21,24 +21,15 @@ import {TimerFactory} from './services/timer-factory.service';
 @BoundClass
 @Injectable()
 export class LoggerService {
-    private readonly DEFAULT_DEPTH: number = 2;
+    private readonly cssFactory = inject<CssFactory>(CssFactory);
+    private readonly console = inject<ConsoleService>(ConsoleService);
+    private readonly factory = inject<LoggerFactory>(LoggerFactory);
+    private readonly groupFactory = inject<GroupFactory>(GroupFactory);
+    private readonly jsonFactory = inject<JsonFactory>(JsonFactory);
+    private readonly timerFactory = inject<TimerFactory>(TimerFactory);
+    private readonly options = inject<LoggerOptionsImpl>(LOGGER_OPTIONS);
 
-    // eslint-disable-next-line max-params
-    constructor(
-        @Inject(CssFactory)
-        private readonly cssFactory: CssFactory,
-        @Inject(ConsoleService)
-        private readonly console: ConsoleService,
-        @Inject(LoggerFactory)
-        private readonly factory: LoggerFactory,
-        @Inject(GroupFactory)
-        private readonly groupFactory: GroupFactory,
-        @Inject(JsonFactory)
-        private readonly jsonFactory: JsonFactory,
-        @Inject(TimerFactory)
-        private readonly timerFactory: TimerFactory,
-        @Inject(LOGGER_OPTIONS) private readonly options: LoggerOptionsImpl,
-    ) {}
+    private readonly DEFAULT_DEPTH: number = 2;
 
     public get clear(): LogFn {
         return this.console.instance.clear.bind(this.console.instance) as LogFn;

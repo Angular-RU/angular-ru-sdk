@@ -76,7 +76,7 @@
         >
             Left with HTML
 
-            <ng-template #template3>...</ng-template>
+            <ng-template #template3><h3>Left html content ➡️</h3></ng-template>
         </div>
         <div
             tooltip-css-style="height: 100px; overflow: auto"
@@ -113,7 +113,7 @@
             [itemSize]="24"
             [style.height.px]="200"
         >
-            <ng-container *cdkVirtualFor="let favorite of favorites">
+            <ng-container *cdkVirtualFor="let favorite of favorites()">
                 <ng-template
                     [ngTemplateOutlet]="virtualRef"
                     [ngTemplateOutletContext]="{$implicit: favorite}"

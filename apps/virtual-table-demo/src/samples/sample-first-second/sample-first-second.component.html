@@ -4,6 +4,7 @@
 
         <button
             mat-button
+            type="button"
             class="regenerate"
             (click)="add()"
         >
@@ -14,20 +15,19 @@
 
 <ngx-table-builder
     #table
-    [source]="data"
+    [source]="data()"
 >
-    <ngx-column
-        *ngFor="let key of table.modelColumnKeys"
-        [key]="key"
-    >
-        <ng-template ngx-th>{{ key }}</ng-template>
-        <ng-template
-            let-cell
-            ngx-td
-        >
-            {{ cell }}
-        </ng-template>
-    </ngx-column>
+    @for (key of table.modelColumnKeys; track key) {
+        <ngx-column [key]="key">
+            <ng-template ngx-th>{{ key }}</ng-template>
+            <ng-template
+                let-cell
+                ngx-td
+            >
+                {{ cell }}
+            </ng-template>
+        </ngx-column>
+    }
 
     <ngx-column
         custom-key
@@ -43,6 +43,7 @@
         >
             <button
                 mat-button
+                type="button"
                 class="my-action"
                 (click)="edit(row)"
             >
@@ -50,6 +51,7 @@
             </button>
             <button
                 mat-button
+                type="button"
                 class="my-action"
                 (click)="delete(row)"
             >

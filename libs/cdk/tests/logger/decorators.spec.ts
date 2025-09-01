@@ -1,5 +1,5 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {LoggerLevel, LoggerModule, LoggerService} from '@angular-ru/cdk/logger';
+import {LoggerLevel, LoggerService, provideLogger} from '@angular-ru/cdk/logger';
 
 import {ConsoleFake, TestLoggerLineType} from './helpers/console-fake';
 import {MyTestComponent} from './helpers/test.component';
@@ -21,8 +21,8 @@ describe('[TEST]: Decorator API', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [LoggerModule.forRoot({instance: fakeConsole})],
-            declarations: [MyTestComponent],
+            imports: [MyTestComponent],
+            providers: [provideLogger({instance: fakeConsole})],
         }).compileComponents();
 
         fixture = TestBed.createComponent(MyTestComponent);
@@ -33,6 +33,7 @@ describe('[TEST]: Decorator API', () => {
 
     it('logger decorator should correct work', () => {
         component.logger.log('Hello world');
+
         expect(fakeConsole.stack()).toEqual(
             fakeConsole.createStack({[TestLoggerLineType.LOG]: ['Hello world']}),
         );
@@ -97,6 +98,7 @@ describe('[TEST]: Decorator API', () => {
         component.info(infoIsWork);
         component.error(errorIsWork);
         component.warn(warnIsWork);
+
         expect(fakeConsole.stack()).toEqual(
             fakeConsole.createStack(
                 {[TestLoggerLineType.LOG]: [logIsWork]},
@@ -111,6 +113,7 @@ describe('[TEST]: Decorator API', () => {
 
     it('should be correct invoke methods', () => {
         component.init();
+
         expect(component.count).toBe(1);
         expect(fakeConsole.stack()).toBe('[]');
     });
@@ -132,30 +135,54 @@ describe('[TEST]: Decorator API', () => {
     it('timer invoke', () => {
         logger.level = LoggerLevel.ALL;
         component.ngOnInit();
+
         expect(fakeConsole.stack()).toContain('TimerLog: mock:ngOnInit');
     });
 
     it('can not execute', () => {
         logger.level = LoggerLevel.ERROR;
         component.ngOnInit();
+
         expect(fakeConsole.stack()).toEqual(fakeConsole.createStack());
     });
 
-    it('query by second timer', async () =>
-        new Promise((done) => {
-            component.longQueryBySecond(3, done);
-            expect(fakeConsole.stack()).toEqual(
-                fakeConsole.createStack({
-                    info: ['TimerLog: longQueryBySecond', 'took 3s to execute'],
-                }),
-            );
-        }));
+    const advanceDateNowBy3Seconds = () => {
+        const now = Date.now();
+        const performanceNow = performance.now();
 
-    it('query by ms timer', async () =>
-        new Promise((done) => {
-            component.longQueryBySecondMs(3, done);
-            expect(fakeConsole.stack()).toContain('TimerLog: longQueryBySecondMs');
-        }));
+        jest.spyOn(global.Date, 'now')
+            .mockImplementationOnce(() => now)
+            .mockImplementationOnce(() => now + 3100);
+        jest.spyOn(global.performance, 'now')
+            .mockImplementationOnce(() => performanceNow)
+            .mockImplementationOnce(() => performanceNow + 3100);
+    };
+
+    it('query by second timer', () => {
+        const doneFn = jest.fn();
+
+        advanceDateNowBy3Seconds();
+
+        component.longQueryBySecond(3, doneFn);
+
+        expect(doneFn).toHaveBeenCalledTimes(1);
+        expect(fakeConsole.stack()).toEqual(
+            fakeConsole.createStack({
+                info: ['TimerLog: longQueryBySecond', 'took 3s to execute'],
+            }),
+        );
+    });
+
+    it('query by ms timer', () => {
+        const doneFn = jest.fn();
+
+        advanceDateNowBy3Seconds();
+
+        component.longQueryBySecondMs(3, doneFn);
+
+        expect(doneFn).toHaveBeenCalledTimes(1);
+        expect(fakeConsole.stack()).toContain('TimerLog: longQueryBySecondMs');
+    });
 
     it('should correct work with errors', () => {
         let message: string | null = null;

@@ -1,5 +1,11 @@
 import {CommonModule} from '@angular/common';
-import {Component, Input, ViewChild} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    Input,
+    signal,
+    ViewChild,
+} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {AttributeBoolean} from '@angular-ru/cdk/decorators';
 import {InputBoolean} from '@angular-ru/cdk/typings';
@@ -12,6 +18,7 @@ describe('[TEST]: Attribute boolean', () => {
     @Component({
         selector: 'child-component',
         template: '',
+        changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class ChildComponent {
         @Input()
@@ -42,7 +49,7 @@ describe('[TEST]: Attribute boolean', () => {
 
     @Component({
         selector: 'host-component',
-
+        imports: [ChildComponent],
         template: `
             <child-component
                 #simpleProp
@@ -63,7 +70,7 @@ describe('[TEST]: Attribute boolean', () => {
             ></child-component>
             <child-component
                 #dynamicProp
-                [prop]="propValue"
+                [prop]="propValue()"
             ></child-component>
             <child-component
                 #setterProp
@@ -75,46 +82,46 @@ describe('[TEST]: Attribute boolean', () => {
             ></child-component>
             <child-component
                 #dynamicSetterProp
-                [hookProp]="propValue"
-                [propWithSetter]="propValue"
+                [hookProp]="propValue()"
+                [propWithSetter]="propValue()"
             ></child-component>
         `,
+        changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class HostComponent {
         @ViewChild('simpleProp')
-        public declare simplePropRef: ChildComponent;
+        declare public simplePropRef: ChildComponent;
 
         @ViewChild('noProp')
-        public declare noPropRef: ChildComponent;
+        declare public noPropRef: ChildComponent;
 
         @ViewChild('emptyStringProp')
-        public declare emptyStringPropRef: ChildComponent;
+        declare public emptyStringPropRef: ChildComponent;
 
         @ViewChild('filledStringProp')
-        public declare filledStringPropRef: ChildComponent;
+        declare public filledStringPropRef: ChildComponent;
 
         @ViewChild('falseStringProp')
-        public declare falseStringPropRef: ChildComponent;
+        declare public falseStringPropRef: ChildComponent;
 
         @ViewChild('dynamicProp')
-        public declare dynamicPropRef: ChildComponent;
+        declare public dynamicPropRef: ChildComponent;
 
         @ViewChild('setterProp')
-        public declare setterPropRef: ChildComponent;
+        declare public setterPropRef: ChildComponent;
 
         @ViewChild('hookProp')
-        public declare hookPropRef: ChildComponent;
+        declare public hookPropRef: ChildComponent;
 
         @ViewChild('dynamicSetterProp')
-        public declare dynamicSetterPropRef: ChildComponent;
+        declare public dynamicSetterPropRef: ChildComponent;
 
-        public propValue: any = false;
+        public propValue = signal<unknown>(false);
     }
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [CommonModule],
-            declarations: [HostComponent, ChildComponent],
+            imports: [CommonModule, HostComponent, ChildComponent],
         }).compileComponents();
         hostFixture = TestBed.createComponent(HostComponent);
         host = hostFixture.componentInstance;
@@ -122,6 +129,7 @@ describe('[TEST]: Attribute boolean', () => {
 
     it('should correct convert html boolean value', () => {
         hostFixture.detectChanges();
+
         expect(host.simplePropRef.prop).toBe(true);
         expect(host.simplePropRef.propWithSetter).toBeUndefined();
         expect(host.simplePropRef.hookCalls).toEqual([]);
@@ -150,7 +158,7 @@ describe('[TEST]: Attribute boolean', () => {
             false,
         ];
         const receivedValues: InputBoolean[] = inputs.map((input) => {
-            host.propValue = input;
+            host.propValue.set(input);
             hostFixture.detectChanges();
 
             return host.dynamicPropRef.prop;

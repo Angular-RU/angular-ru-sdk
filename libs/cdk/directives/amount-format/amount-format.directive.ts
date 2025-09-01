@@ -2,13 +2,13 @@ import {
     AfterViewInit,
     ChangeDetectorRef,
     Directive,
+    effect,
     ElementRef,
-    Inject,
-    Input,
+    inject,
+    model,
     NgZone,
     OnDestroy,
     OnInit,
-    Optional,
 } from '@angular/core';
 import {NgControl} from '@angular/forms';
 import {gaussRound, getFractionSeparator, toNumber} from '@angular-ru/cdk/number';
@@ -26,7 +26,12 @@ import {AMOUNT_FORMAT_OPTIONS, DEFAULT_AMOUNT_OPTIONS} from './amount-format.pro
 import {AmountOptions} from './amount-options';
 
 @Directive({selector: '[amountFormat]'})
-export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
+export class AmountFormat implements OnInit, AfterViewInit, OnDestroy {
+    private readonly elementRef = inject<ElementRef<HTMLInputElement>>(ElementRef);
+    private readonly ngControl = inject<NgControl>(NgControl, {optional: true});
+    private readonly ngZone = inject<NgZone>(NgZone, {optional: true});
+    private readonly cd = inject<ChangeDetectorRef>(ChangeDetectorRef, {optional: true});
+
     private readonly subscriptions: Subscription = new Subscription();
     private previousLang: Nullable<string> = null;
     private readonly maximumFractionDigits: number = 3;
@@ -35,14 +40,21 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
     private markedAsDirty = true;
     private cursorPointer = 0;
 
-    constructor(
-        @Inject(ElementRef) private readonly elementRef: ElementRef<HTMLInputElement>,
-        @Inject(AMOUNT_FORMAT_OPTIONS) globalOptions: AmountOptions,
-        @Inject(NgControl) @Optional() private readonly ngControl?: NgControl,
-        @Inject(NgZone) @Optional() private readonly ngZone?: NgZone,
-        @Inject(ChangeDetectorRef) @Optional() private readonly cd?: ChangeDetectorRef,
-    ) {
+    constructor() {
+        const globalOptions = inject<AmountOptions>(AMOUNT_FORMAT_OPTIONS);
+
+        this.listenToOptionInputChanges();
         this.setFirstLocalOptionsByGlobal(globalOptions);
+    }
+
+    private listenToOptionInputChanges() {
+        effect(() => {
+            const options: Partial<AmountOptions> = this.amountFormatOptions();
+
+            this.options = {...this.options, ...(options ?? {})};
+
+            this.recalculateOnOptionChange();
+        });
     }
 
     public get isInAngularZone(): boolean {
@@ -57,19 +69,11 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
         return this.elementRef.nativeElement;
     }
 
-    public get amountFormatOptions(): Partial<AmountOptions> {
-        return this.options;
-    }
-
-    @Input()
-    public set amountFormatOptions(options: Partial<AmountOptions>) {
-        this.options = {...this.options, ...(options ?? {})};
-        this.recalculateWhenChangesOptions();
-    }
+    public readonly amountFormatOptions = model<Partial<AmountOptions>>(this.options);
 
     public setLang(lang: string): void {
         this.options.lang = lang;
-        this.recalculateWhenChangesOptions();
+        this.recalculateOnOptionChange();
     }
 
     public getCursorPosition(): number {
@@ -187,9 +191,9 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
         let lastSymbolsAsZeroDot: string =
             maximumFractionDigits === 0
                 ? ''
-                : this.element.value
-                      .match(new RegExp(`(\\${fraction})(.+)?`))?.[0]
-                      ?.replace(/,|./, '') ?? '';
+                : (new RegExp(`(\\${fraction})(.+)?`)
+                      .exec(this.element.value)?.[0]
+                      ?.replace(/,|./, '') ?? '');
 
         const isOverflowGaussRound: boolean =
             lastSymbolsAsZeroDot.length > this.maximumFractionDigits;
@@ -322,9 +326,10 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
     private setFirstLocalOptionsByGlobal(options: AmountOptions): void {
         this.options = deepClone(options);
         this.previousLang = this.options.lang;
+        this.amountFormatOptions.set(this.options);
     }
 
-    private recalculateWhenChangesOptions(): void {
+    private recalculateOnOptionChange(): void {
         const value: number = toNumber(
             this.element.value,
             this.previousLang ?? this.options.lang,
@@ -332,7 +337,7 @@ export class AmountFormatDirective implements OnInit, AfterViewInit, OnDestroy {
 
         this.element.value = value.toLocaleString(
             this.options.lang,
-            this.options.formatOptions,
+            this.options.formatOptions ?? {},
         );
         this.previousLang = this.options.lang;
         this.format();

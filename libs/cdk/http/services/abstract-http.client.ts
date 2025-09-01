@@ -1,5 +1,5 @@
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {Inject, Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {
     DataBeforeRequestOptions,
     DataClientRequestOptions,
@@ -24,19 +24,13 @@ interface ReqProperty {
 
 @Injectable()
 export abstract class AbstractHttpClient<K = unknown> {
+    protected http = inject(HttpClient);
+    protected configurator = inject(DataConfiguratorService);
+    protected limitConcurrency = inject(LimitConcurrencyService);
+
     protected controllerUrl!: string;
     protected local!: Partial<DataClientRequestOptions>;
-    public interceptor: DataHttpInterceptor & K;
-
-    protected constructor(
-        protected http: HttpClient,
-        protected configurator: DataConfiguratorService,
-        protected limitConcurrency: LimitConcurrencyService,
-        // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-        @Inject(DATA_HTTP_CLIENT_INTERCEPTOR) _interceptor: any,
-    ) {
-        this.interceptor = _interceptor;
-    }
+    public interceptor = inject<DataHttpInterceptor & K>(DATA_HTTP_CLIENT_INTERCEPTOR);
 
     public abstract request<T = any, R = T>(
         options: DataBeforeRequestOptions,

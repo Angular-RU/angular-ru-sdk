@@ -1,6 +1,21 @@
-import {ChangeDetectionStrategy, Component, OnDestroy} from '@angular/core';
+import {AsyncPipe} from '@angular/common';
+import {ChangeDetectionStrategy, Component, inject, OnDestroy} from '@angular/core';
+import {MatButton, MatIconButton} from '@angular/material/button';
 import {MatDialog} from '@angular/material/dialog';
-import {Sort} from '@angular/material/sort';
+import {MatIcon} from '@angular/material/icon';
+import {MatSort, MatSortHeader, Sort} from '@angular/material/sort';
+import {
+    MatCell,
+    MatCellDef,
+    MatColumnDef,
+    MatHeaderCell,
+    MatHeaderCellDef,
+    MatHeaderRow,
+    MatHeaderRowDef,
+    MatRow,
+    MatRowDef,
+    MatTable,
+} from '@angular/material/table';
 import {generateUid, isNil, isNotNil} from '@angular-ru/cdk/utils';
 import {Observable, of, Subject} from 'rxjs';
 import {filter, takeUntil} from 'rxjs/operators';
@@ -11,16 +26,32 @@ import {ArticleDialogComponent} from './dialog/article-dialog.component';
 
 @Component({
     selector: 'article',
+    imports: [
+        AsyncPipe,
+        MatButton,
+        MatCell,
+        MatCellDef,
+        MatColumnDef,
+        MatHeaderCell,
+        MatHeaderCellDef,
+        MatHeaderRow,
+        MatHeaderRowDef,
+        MatIcon,
+        MatIconButton,
+        MatRow,
+        MatRowDef,
+        MatSort,
+        MatSortHeader,
+        MatTable,
+    ],
     templateUrl: './article.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticleComponent implements OnDestroy {
-    private readonly destroy$ = new Subject<void>();
+    public dialog = inject(MatDialog);
+    public articleEntities = inject(ArticleEntitiesState);
 
-    constructor(
-        public dialog: MatDialog,
-        public articleEntities: ArticleEntitiesState,
-    ) {}
+    private readonly destroy$ = new Subject<void>();
 
     public ngOnDestroy(): void {
         this.destroy$.next();

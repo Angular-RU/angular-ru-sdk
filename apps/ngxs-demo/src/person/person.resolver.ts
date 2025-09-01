@@ -1,15 +1,8 @@
-import {Injectable} from '@angular/core';
-import {Resolve} from '@angular/router';
-import {Observable} from 'rxjs';
+import {inject} from '@angular/core';
+import type {ResolveFn} from '@angular/router';
 
 import {PersonState} from './person.state';
-import {PersonModel} from './person-model';
+import type {PersonModel} from './person-model';
 
-@Injectable()
-export class PersonResolver implements Resolve<PersonModel> {
-    constructor(private readonly personState: PersonState) {}
-
-    public resolve(): Observable<PersonModel> {
-        return this.personState.getContent();
-    }
-}
+export const personResolver: ResolveFn<PersonModel> = () =>
+    inject(PersonState).getContent();

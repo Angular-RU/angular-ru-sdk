@@ -1,16 +1,9 @@
-// import 'jest-preset-angular/setup-jest';
-import 'zone.js/fesm2015/zone-testing-bundle.min.js';
-
 import {getTestBed} from '@angular/core/testing';
 import {
-    BrowserDynamicTestingModule,
-    platformBrowserDynamicTesting,
-} from '@angular/platform-browser-dynamic/testing';
+    BrowserTestingModule,
+    platformBrowserTesting,
+} from '@angular/platform-browser/testing';
 
-getTestBed().initTestEnvironment(
-    BrowserDynamicTestingModule,
-    platformBrowserDynamicTesting(),
-    {
-        teardown: {destroyAfterEach: false},
-    },
-);
+getTestBed().initTestEnvironment(BrowserTestingModule, platformBrowserTesting(), {
+    teardown: {destroyAfterEach: false},
+});

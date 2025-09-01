@@ -5,7 +5,7 @@ import {checkValueIsEmpty} from '@angular-ru/cdk/utils';
 
 @Pipe({name: 'displayItem'})
 export class DisplayItemPipe implements PipeTransform {
-    private static invalidDisplayKey(displayKey?: any | unknown): boolean {
+    private static invalidDisplayKey(displayKey?: any): boolean {
         return Boolean(checkValueIsEmpty(displayKey)) || typeof displayKey !== 'string';
     }
 

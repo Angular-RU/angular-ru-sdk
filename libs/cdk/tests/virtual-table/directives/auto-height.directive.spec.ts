@@ -1,25 +1,16 @@
-import {ElementRef, NgZone} from '@angular/core';
-import {fakeAsync, tick} from '@angular/core/testing';
+import {ElementRef} from '@angular/core';
+import {SIGNAL} from '@angular/core/primitives/signals';
+import {fakeAsync, TestBed, tick} from '@angular/core/testing';
 import {Fn, Nullable, PlainObject} from '@angular-ru/cdk/typings';
 
-import {AutoHeightDirective} from '../../../virtual-table/directives/auto-height.directive';
+import {AutoHeight} from '../../../virtual-table/directives/auto-height.directive';
 
 describe('[TEST]: auto height', () => {
-    let directive: AutoHeightDirective<PlainObject>;
+    let directive: AutoHeight<PlainObject>;
     // @ts-ignore
     let recalculateDispatcher: Nullable<Fn> = null;
     let addedEvent = false;
-    // @ts-ignore
-    let removeEvent = false;
-    // @ts-ignore
-    let ticked = 0;
     let style: string;
-
-    const mockNgZone: Partial<NgZone> = {
-        runOutsideAngular<T = any>(fn: Fn): T {
-            return fn();
-        },
-    };
 
     const mockElementRef: ElementRef = {
         nativeElement: {
@@ -45,8 +36,7 @@ describe('[TEST]: auto height', () => {
 
         Object.defineProperties(window, {
             addEventListener: {
-                value: (_: string, fn: Fn): void => {
-                    recalculateDispatcher = fn;
+                value: (): void => {
                     addedEvent = true;
                 },
             },
@@ -54,34 +44,44 @@ describe('[TEST]: auto height', () => {
                 value: (): void => {
                     // eslint-disable-next-line @typescript-eslint/no-unused-vars
                     recalculateDispatcher = null;
-                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                    removeEvent = true;
                 },
             },
         });
 
-        directive = new AutoHeightDirective(mockElementRef, mockNgZone as NgZone);
-        directive.sourceRef = [{a: 1}];
+        TestBed.configureTestingModule({
+            providers: [
+                {
+                    provide: ElementRef,
+                    useValue: mockElementRef,
+                },
+                AutoHeight,
+            ],
+        });
+        directive = TestBed.inject(AutoHeight);
+        directive.sourceRef[SIGNAL].value = [{a: 1}];
         style = '';
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        ticked = 0;
+        // ticked = 0;
     });
 
     it('should be correct invoke ngOnInit', () => {
         directive.ngOnInit();
+
         expect(addedEvent).toBe(true);
     });
 
     it('should be correct invoke ngOnDestroy', () => {
         expect(directive.destroy$.closed).toBe(false);
         expect(directive.destroy$.isStopped).toBe(false);
+
         directive.ngOnDestroy();
+
         expect(directive.destroy$.closed).toBe(false);
         expect(directive.destroy$.isStopped).toBe(true);
     });
 
     it('should be correct calculate auto height when columnHeight = 45px', fakeAsync(() => {
-        directive.autoHeight = {
+        directive.autoHeight[SIGNAL].value = {
             detect: true,
             inViewport: true,
             sourceLength: 1,
@@ -95,7 +95,7 @@ describe('[TEST]: auto height', () => {
     }));
 
     it('should be correct calculate auto height when columnHeight = 2000px', fakeAsync(() => {
-        directive.autoHeight = {
+        directive.autoHeight[SIGNAL].value = {
             detect: true,
             inViewport: true,
             sourceLength: 45,
@@ -109,44 +109,52 @@ describe('[TEST]: auto height', () => {
     }));
 
     it('should be correct hide height not in viewport', () => {
-        directive.autoHeight = {detect: true, inViewport: false};
+        directive.autoHeight[SIGNAL].value = {detect: true, inViewport: false};
         directive.calculateHeight();
+
         expect(style).toBe('');
 
-        directive.autoHeight = {
+        directive.autoHeight[SIGNAL].value = {
             detect: false,
             rootHeight: '200px',
             inViewport: false,
             sourceLength: 1,
         };
         directive.calculateHeight();
+
         expect(style).toBe('');
     });
 
     it('should be correct calculate custom height', () => {
-        directive.autoHeight = {
+        directive.autoHeight[SIGNAL].value = {
             detect: true,
             rootHeight: '500px',
             inViewport: true,
             sourceLength: 1,
         };
         directive.calculateHeight();
+
         expect(style).toBe('display: block; height: 500px');
     });
 
     it('should be correct empty style when autoHeight not called', () => {
-        directive.autoHeight = {
+        directive.autoHeight[SIGNAL].value = {
             detect: false,
             rootHeight: null,
             inViewport: true,
             sourceLength: 1,
         };
         directive.calculateHeight();
+
         expect(style).toBe('');
     });
 
     it('should be correct recalculate height', fakeAsync(() => {
-        directive.autoHeight = {rootHeight: '200px', inViewport: true, sourceLength: 1};
+        directive.autoHeight[SIGNAL].value = {
+            rootHeight: '200px',
+            inViewport: true,
+            sourceLength: 1,
+        };
 
         directive.recalculateTableSize();
         tick(100);

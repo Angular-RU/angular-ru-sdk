@@ -1,10 +1,13 @@
 <mat-toolbar class="simple-toolbar">
     <span>
         Example resizing
-        <span *ngIf="table.isRendered">({{ table.source?.length }}x{{ table.displayedColumns.length }})</span>
+        @if (table.isRendered) {
+            <span>({{ table.source()?.length }}x{{ table.displayedColumns.length }})</span>
+        }
     </span>
     <button
         mat-raised-button
+        type="button"
         class="show-simple"
         (click)="showSample()"
     >
@@ -21,18 +24,19 @@
     #table
     [exclude-keys]="['guid']"
     [row-height]="55"
-    [source]="data"
+    [source]="data()"
     [vertical-border]="false"
     (schemaChanges)="updatedSchema($event)"
 >
     <!--
-       <ngx-options /> - declaration common options for columns
+  <ngx-options /> - declaration common options for columns
 
-       Also you can customize your columns manually
-       <ngx-column key="myKey" [resizable]="true">...</ngx-column>
-    -->
+  Also you can customize your columns manually
+  <ngx-column key="myKey" [resizable]="true">...</ngx-column>
+  -->
     <ngx-options
         is-draggable
+        is-resizable
         [nowrap]="false"
     />
 

@@ -1,4 +1,4 @@
-import {Inject, Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {AbstractControl} from '@angular/forms';
 import {DateIntervalDescriptor} from '@angular-ru/cdk/typings';
 
@@ -10,7 +10,7 @@ import {DAYS_COUNT} from '../tokens/days-count';
 
 @Injectable()
 export class DateSuggestionLastDaysOfIntervalStrategy implements DateSuggestionStrategy {
-    constructor(@Inject(DAYS_COUNT) private readonly lastDaysCount: number) {}
+    private readonly lastDaysCount = inject(DAYS_COUNT);
 
     public updateIntervalFor(
         control: AbstractControl,

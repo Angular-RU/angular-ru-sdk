@@ -1,12 +1,12 @@
 import {TestBed} from '@angular/core/testing';
-import {EntrySingleSetPipe, EntrySingleSetPipeModule} from '@angular-ru/cdk/pipes';
+import {EntrySingleSetPipe} from '@angular-ru/cdk/pipes';
 
 describe('entry single pipe', () => {
     let pipe: EntrySingleSetPipe;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [EntrySingleSetPipeModule],
+            providers: [EntrySingleSetPipe],
         }).compileComponents();
         pipe = TestBed.inject(EntrySingleSetPipe);
     });

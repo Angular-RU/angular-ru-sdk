@@ -2,34 +2,29 @@ import {
     AfterViewInit,
     Directive,
     ElementRef,
-    EventEmitter,
-    Input,
+    inject,
+    input,
     NgZone,
     OnDestroy,
-    Output,
+    output,
 } from '@angular/core';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {isNotNil} from '@angular-ru/cdk/utils';
 
 // TODO: move this directive to common
 @Directive({selector: '[observerView]'})
-export class ObserverViewDirective implements AfterViewInit, OnDestroy {
+export class ObserverView implements AfterViewInit, OnDestroy {
+    private element = inject(ElementRef);
+    private readonly ngZone = inject(NgZone);
+
     private observer: Nullable<IntersectionObserver> = null;
     private previousRation = 0.0;
     private frameId: Nullable<number> = null;
-    @Input()
-    public observerRoot?: HTMLElement;
+    public readonly observerRoot = input<HTMLElement>();
 
-    @Input()
-    public observerRootMargin?: string;
+    public readonly observerRootMargin = input<string>();
 
-    @Output()
-    public readonly observeVisible = new EventEmitter<boolean>(true);
-
-    constructor(
-        private element: ElementRef,
-        private readonly ngZone: NgZone,
-    ) {}
+    public readonly observeVisible = output<boolean>();
 
     public ngAfterViewInit(): void {
         this.ngZone.runOutsideAngular((): void => {
@@ -43,8 +38,8 @@ export class ObserverViewDirective implements AfterViewInit, OnDestroy {
                     }
                 },
                 {
-                    root: this.observerRoot ?? null,
-                    rootMargin: this.observerRootMargin ?? '0px 0px 0px 0px',
+                    root: this.observerRoot() ?? null,
+                    rootMargin: this.observerRootMargin() ?? '0px 0px 0px 0px',
                     threshold: [0],
                 },
             );

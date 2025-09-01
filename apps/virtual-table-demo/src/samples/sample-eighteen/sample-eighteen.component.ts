@@ -1,18 +1,23 @@
 import {
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
+    inject,
     OnInit,
+    signal,
     ViewEncapsulation,
 } from '@angular/core';
+import {MatButton} from '@angular/material/button';
 import {MatDialog} from '@angular/material/dialog';
+import {MatToolbar} from '@angular/material/toolbar';
 import {PlainObject} from '@angular-ru/cdk/typings';
+import {VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 import {MocksGenerator} from '../../mocks-generator';
 import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
 
 @Component({
     selector: 'sample-eighteen',
+    imports: [MatButton, MatToolbar, VirtualTable],
     templateUrl: './sample-eighteen.component.html',
     styles: [
         `
@@ -24,22 +29,18 @@ import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SampleEighteenComponent implements OnInit {
-    public data: PlainObject[] = [];
-    public rowCssClasses: PlainObject = {1: ['highlight'], 3: ['highlight']};
+export default class SampleEighteenComponent implements OnInit {
+    public readonly dialog = inject(MatDialog);
 
-    constructor(
-        public readonly dialog: MatDialog,
-        private readonly cd: ChangeDetectorRef,
-    ) {}
+    public data = signal<PlainObject[]>([]);
+    public rowCssClasses: PlainObject = {1: ['highlight'], 3: ['highlight']};
 
     public ngOnInit(): void {
         const rows = 50;
         const cols = 5;
 
         MocksGenerator.generator(rows, cols).then((data: PlainObject[]): void => {
-            this.data = data;
-            this.cd.detectChanges();
+            this.data.set(data);
         });
     }
 
@@ -55,15 +56,13 @@ export class SampleEighteenComponent implements OnInit {
     [row-css-classes]="rowCssClasses"
     primary-key="id"
 >
-    <!-- rowCssClasses === \{ 1: ['highlight'], 3: ['highlight'] \} -->
+    <!-- rowCssClasses === { 1: ['highlight'], 3: ['highlight'] } -->
     <ngx-empty>No data</ngx-empty>
     <ngx-source-null>Loading</ngx-source-null>
     <ngx-options is-sortable></ngx-options>
 </ngx-table-builder>
                 `,
             },
-            height: '350px',
-            width: '700px',
         });
     }
 }

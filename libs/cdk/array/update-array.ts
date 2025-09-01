@@ -23,8 +23,8 @@ export function updateArray<T>(
     const skipIndexes = new Set<number>();
 
     // eslint-disable-next-line unicorn/no-for-loop
-    for (let i = 0; i < preparedSourceArray.length; i++) {
-        const currentItem: T = preparedSourceArray[i];
+    for (const element of preparedSourceArray) {
+        const currentItem: T = element;
         let updated = false;
 
         // eslint-disable-next-line unicorn/no-for-loop

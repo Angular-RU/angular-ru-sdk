@@ -1,30 +1,20 @@
-import {
-    AfterViewInit,
-    Directive,
-    ElementRef,
-    HostBinding,
-    Inject,
-    Input,
-} from '@angular/core';
+import {AfterViewInit, Directive, ElementRef, inject, input} from '@angular/core';
 import {Nullable} from '@angular-ru/cdk/typings';
 
-import {AbstractFlexLayoutDirective} from './abstract-flex-layout.directive';
+import {AbstractFlexLayout} from './abstract-flex-layout.directive';
 
-@Directive({selector: '[flex-bottom-indent]'})
-export class FlexBottomIndentDirective
-    extends AbstractFlexLayoutDirective
-    implements AfterViewInit
-{
-    @Input('flex-bottom-indent')
-    @HostBinding('style.margin-bottom.px')
-    public bottomIndent: Nullable<number | string> = null;
+@Directive({
+    selector: '[flex-bottom-indent]',
+    host: {
+        '[style.margin-bottom.px]': 'bottomIndent()',
+    },
+})
+export class FlexBottomIndent extends AbstractFlexLayout implements AfterViewInit {
+    protected readonly elementRef = inject<ElementRef>(ElementRef);
 
-    constructor(
-        @Inject(ElementRef)
-        protected readonly elementRef: ElementRef,
-    ) {
-        super();
-    }
+    public readonly bottomIndent = input<Nullable<number | string>>(null, {
+        alias: 'flex-bottom-indent',
+    });
 
     public ngAfterViewInit(): void {
         this.classList.add('flex-bottom-indent');

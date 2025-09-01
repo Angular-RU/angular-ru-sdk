@@ -1,7 +1,7 @@
 import {TestBed} from '@angular/core/testing';
 import {
-    PlainTableComposerModule,
     PlainTableComposerService,
+    providePlainTableComposer,
 } from '@angular-ru/cdk/table-utils';
 import {PlainObject} from '@angular-ru/cdk/typings';
 import {WebWorkerThreadService} from '@angular-ru/cdk/webworker';
@@ -31,8 +31,13 @@ describe('[TEST] Table utils', () => {
 
     beforeEach((): void => {
         TestBed.configureTestingModule({
-            imports: [PlainTableComposerModule.forRoot()],
-            providers: [{provide: WebWorkerThreadService, useValue: mockWebWorker}],
+            providers: [
+                providePlainTableComposer(),
+                {
+                    provide: WebWorkerThreadService,
+                    useValue: mockWebWorker,
+                },
+            ],
         });
         plainTableComposer = TestBed.inject(PlainTableComposerService);
     });
@@ -97,6 +102,7 @@ describe('[TEST] Table utils', () => {
         plain = await plainTableComposer.compose(dataset, {
             includeKeys: ['firstName', 'id', 'lastName', 'country'],
         });
+
         expect(plain).toEqual([
             {firstName: 'albattani', id: 1, lastName: 'herschel', country: undefined},
             {firstName: 'allen', id: 2, lastName: 'hermann', country: undefined},
@@ -128,6 +134,7 @@ describe('[TEST] Table utils', () => {
         plain = await plainTableComposer.compose(dataset, {
             excludeKeys: ['age', 'firstName', 'country'],
         });
+
         expect(plain).toEqual([
             {id: 1, lastName: 'herschel', nullable: null},
             {id: 2, lastName: 'hermann', nullable: 'not null'},

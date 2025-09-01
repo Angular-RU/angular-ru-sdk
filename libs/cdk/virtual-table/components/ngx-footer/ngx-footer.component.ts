@@ -8,4 +8,4 @@ import {TableContentDirective} from '../../directives/table-content.directive';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NgxFooterComponent extends TableContentDirective {}
+export class NgxFooter extends TableContentDirective {}

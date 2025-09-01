@@ -1,4 +1,4 @@
-import {Inject, Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {AbstractControl} from '@angular/forms';
 import {
     DateSuggestionStrategy,
@@ -11,7 +11,7 @@ import {DateIntervalDescriptor} from '@angular-ru/cdk/typings';
 
 @Injectable()
 export class DaysAroundStartDateStrategy implements DateSuggestionStrategy {
-    constructor(@Inject(DAYS_COUNT) private readonly daysCount: number) {}
+    private readonly daysCount = inject(DAYS_COUNT);
 
     public updateIntervalFor(
         control: AbstractControl,

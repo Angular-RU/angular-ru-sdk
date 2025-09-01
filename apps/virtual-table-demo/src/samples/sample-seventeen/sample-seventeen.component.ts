@@ -1,5 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {TableUpdateSchema} from '@angular-ru/cdk/virtual-table';
+import {MatToolbar} from '@angular/material/toolbar';
+import type {TableUpdateSchema} from '@angular-ru/cdk/virtual-table';
+import {VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 interface LicenseSample {
     id: number;
@@ -10,10 +12,11 @@ interface LicenseSample {
 
 @Component({
     selector: 'sample-seventeen',
+    imports: [MatToolbar, VirtualTable],
     templateUrl: './sample-seventeen.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SampleSeventeenComponent {
+export default class SampleSeventeenComponent {
     public invalidCachedSchema: TableUpdateSchema = {
         name: 'hello',
         version: 1,

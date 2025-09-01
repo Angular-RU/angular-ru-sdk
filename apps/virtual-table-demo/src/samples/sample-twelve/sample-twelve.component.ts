@@ -1,24 +1,27 @@
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     OnInit,
+    signal,
     ViewEncapsulation,
 } from '@angular/core';
+import {MatToolbar} from '@angular/material/toolbar';
 import {PlainObject} from '@angular-ru/cdk/typings';
+import {VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 import {MocksGenerator} from '../../mocks-generator';
 
 @Component({
     selector: 'sample-twelve',
+    imports: [MatToolbar, VirtualTable],
     templateUrl: './sample-twelve.component.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SampleTwelveComponent implements OnInit, AfterViewInit {
-    public data: PlainObject[] = [];
+export default class SampleTwelveComponent implements OnInit, AfterViewInit {
+    public data = signal<PlainObject[]>([]);
 
     public licences: PlainObject[] = [
         {
@@ -43,16 +46,13 @@ export class SampleTwelveComponent implements OnInit, AfterViewInit {
         },
     ];
 
-    constructor(private readonly cd: ChangeDetectorRef) {}
-
     public ngOnInit(): void {
         const rowNumber = 50;
         const colsNumber = 15;
 
         MocksGenerator.generator(rowNumber, colsNumber).then(
             (data: PlainObject[]): void => {
-                this.data = data;
-                this.cd.detectChanges();
+                this.data.set(data);
             },
         );
     }

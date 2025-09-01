@@ -14,9 +14,5 @@ export interface RepositoryActionOptions extends ActionOptions {
  */
 export type ActionEvent = ActionType | (ActionType & {payload: PlainObjectOf<any>});
 
-export type ActionName = string;
-export type PayloadName = string;
-export type ArgName = string;
-
-export type PayloadMap = Map<PayloadName | number, PayloadName>;
-export type ArgNameMap = Map<ArgName | number, ArgName>;
+export type PayloadMap = Map<number | string, string>;
+export type ArgNameMap = Map<number | string, string>;

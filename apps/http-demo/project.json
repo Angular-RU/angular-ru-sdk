@@ -1,62 +1,63 @@
 {
-    "name": "http-demo-demo",
+    "name": "http-demo",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "apps/http-demo/",
     "projectType": "application",
     "tags": ["apps"],
     "targets": {
         "build": {
-            "executor": "@angular-devkit/build-angular:browser",
+            "executor": "@angular/build:application",
             "options": {
-                "outputPath": "dist/http-demo",
-                "tsConfig": "apps/http-demo/tsconfig.app.json",
-                "main": "apps/http-demo/main.ts",
+                "outputPath": {
+                    "base": "dist/http-demo",
+                    "browser": ""
+                },
                 "index": "apps/http-demo/index.html",
+                "browser": "apps/http-demo/main.ts",
+                "tsConfig": "apps/http-demo/tsconfig.app.json",
+                "inlineStyleLanguage": "scss",
                 "assets": ["apps/http-demo/assets"],
-                "polyfills": "apps/http-demo/polyfills.ts",
                 "styles": [".global/integration-app.style.scss", "apps/http-demo/styles.scss"],
-                "aot": false,
-                "vendorChunk": true,
-                "extractLicenses": false,
-                "buildOptimizer": false,
-                "sourceMap": true,
-                "optimization": false,
-                "namedChunks": true
+                "scripts": [],
+                "stylePreprocessorOptions": {
+                    "includePaths": ["./src"],
+                    "sass": {
+                        "silenceDeprecations": ["import"]
+                    }
+                }
             },
             "configurations": {
                 "production": {
+                    "budgets": [
+                        {
+                            "type": "initial",
+                            "maximumWarning": "1mb",
+                            "maximumError": "2mb"
+                        },
+                        {
+                            "type": "anyComponentStyle",
+                            "maximumWarning": "6kb"
+                        }
+                    ],
+                    "outputHashing": "all",
                     "fileReplacements": [
                         {
                             "replace": "apps/http-demo/environments/environment.ts",
                             "with": "apps/http-demo/environments/environment.prod.ts"
                         }
-                    ],
-                    "optimization": true,
-                    "outputHashing": "all",
-                    "sourceMap": false,
-                    "namedChunks": false,
-                    "aot": true,
-                    "extractLicenses": true,
-                    "buildOptimizer": true
+                    ]
                 },
                 "development": {
-                    "fileReplacements": [
-                        {
-                            "replace": "apps/flex-layout-demo/environments/environment.ts",
-                            "with": "apps/flex-layout-demo/environments/environment.prod.ts"
-                        }
-                    ],
-                    "optimization": false
+                    "optimization": false,
+                    "extractLicenses": false,
+                    "sourceMap": true
                 }
             },
             "defaultConfiguration": "production",
-            "outputs": ["{projectRoot}/dist/http-demo"]
+            "outputs": ["{options.outputPath}"]
         },
         "serve": {
-            "executor": "@angular-devkit/build-angular:dev-server",
-            "options": {
-                "buildTarget": "http-demo:build"
-            },
+            "executor": "@angular/build:dev-server",
             "configurations": {
                 "production": {
                     "buildTarget": "http-demo:build:production"

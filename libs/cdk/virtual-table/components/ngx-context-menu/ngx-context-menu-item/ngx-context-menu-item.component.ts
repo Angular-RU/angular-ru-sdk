@@ -1,21 +1,16 @@
 /* eslint-disable @angular-eslint/no-input-rename */
 import {
+    ChangeDetectionStrategy,
     ChangeDetectorRef,
+    Component,
     ElementRef,
-    Inject,
-    INJECTOR,
-    Injector,
+    inject,
+    input,
+    NgZone,
     OnDestroy,
     OnInit,
-} from '@angular/core';
-import {
-    ChangeDetectionStrategy,
-    Component,
-    EventEmitter,
-    Input,
-    NgZone,
-    Output,
-    ViewChild,
+    output,
+    viewChild,
     ViewEncapsulation,
 } from '@angular/core';
 import {coerceBoolean} from '@angular-ru/cdk/coercion';
@@ -31,58 +26,44 @@ import {
     MIN_PADDING_CONTEXT_ITEM,
     SCROLLBAR_SIZE,
 } from '../../../table-builder.properties';
+import {NgxContextMenuDivider} from '../ngx-context-menu-divider/ngx-context-menu-divider.component';
 
 const MENU_WIDTH = 300;
 
 @Component({
     selector: 'ngx-context-menu-item',
+    imports: [NgxContextMenuDivider],
     templateUrl: './ngx-context-menu-item.component.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NgxContextMenuItemComponent<T = any> implements OnInit, OnDestroy {
+export class NgxContextMenuItem<T = any> implements OnInit, OnDestroy {
+    private readonly cd = inject<ChangeDetectorRef>(ChangeDetectorRef);
+
     private readonly destroy$ = new Subject<void>();
     private taskId: Nullable<number> = null;
-    private readonly contextMenu: ContextMenuService<T>;
-    private readonly ngZone: NgZone;
-    @Input()
-    public visible: boolean | string = true;
+    private readonly contextMenu = inject(ContextMenuService<T>);
+    private readonly ngZone = inject(NgZone);
+    public readonly visible = input<boolean | string>(true);
 
-    @Input()
-    public contextTitle: Nullable<boolean | string> = null;
+    public readonly contextTitle = input<Nullable<boolean | string>>(null);
 
-    @Input()
-    public disable: Nullable<boolean | string> = false;
+    public readonly disable = input<Nullable<boolean | string>>(false);
 
-    @Input()
-    public divider: Nullable<boolean | string> = false;
+    public readonly divider = input<Nullable<boolean | string>>(false);
 
-    @Input('disable-sub-menu')
-    public disableSubMenu = false;
+    public readonly disableSubMenu = input(false, {alias: 'disable-sub-menu'});
 
-    @Input('sub-menu-width')
-    public subMenuWidth: number = MENU_WIDTH;
+    public readonly subMenuWidth = input<number>(MENU_WIDTH, {alias: 'sub-menu-width'});
 
     // TODO: should be rename (breaking changes)
     // eslint-disable-next-line @angular-eslint/no-output-on-prefix
-    @Output()
-    public readonly onClick = new EventEmitter<ContextItemEvent>();
+    public readonly onClick = output<ContextItemEvent>();
 
-    @ViewChild('item', {static: false})
-    public itemRef: Nullable<ElementRef<HTMLDivElement>> = null;
+    public readonly itemRef = viewChild<Nullable<ElementRef<HTMLDivElement>>>('item');
 
     public offsetX: Nullable<number> = null;
     public offsetY: Nullable<number> = null;
-
-    constructor(
-        @Inject(ChangeDetectorRef)
-        private readonly cd: ChangeDetectorRef,
-        @Inject(INJECTOR)
-        injector: Injector,
-    ) {
-        this.contextMenu = injector.get<ContextMenuService<T>>(ContextMenuService);
-        this.ngZone = injector.get<NgZone>(NgZone);
-    }
 
     public get state(): ContextMenuState<T> {
         return this.contextMenu.state;
@@ -93,7 +74,7 @@ export class NgxContextMenuItemComponent<T = any> implements OnInit, OnDestroy {
     }
 
     private get itemElement(): Partial<HTMLDivElement> {
-        return this.itemRef?.nativeElement ?? {};
+        return this.itemRef()?.nativeElement ?? {};
     }
 
     public ngOnInit(): void {
@@ -103,7 +84,6 @@ export class NgxContextMenuItemComponent<T = any> implements OnInit, OnDestroy {
     }
 
     public ngOnDestroy(): void {
-        this.itemRef = null;
         this.destroy$.next();
         this.destroy$.complete();
     }
@@ -113,7 +93,7 @@ export class NgxContextMenuItemComponent<T = any> implements OnInit, OnDestroy {
 
         if (contentExist) {
             this.offsetX =
-                this.clientRect.left! + this.subMenuWidth - MIN_PADDING_CONTEXT_ITEM;
+                this.clientRect.left! + this.subMenuWidth() - MIN_PADDING_CONTEXT_ITEM;
             this.offsetX -= this.overflowX();
             this.offsetY = this.clientRect.top! - MIN_PADDING_CONTEXT_ITEM;
             this.offsetY -= this.overflowY(ref);
@@ -123,7 +103,7 @@ export class NgxContextMenuItemComponent<T = any> implements OnInit, OnDestroy {
 
     public overflowX(): number {
         const overflowX: number =
-            this.subMenuWidth + (this.offsetX ?? 0) - (getBodyRect()?.width ?? 0);
+            this.subMenuWidth() + (this.offsetX ?? 0) - (getBodyRect()?.width ?? 0);
 
         return overflowX > 0 ? overflowX + SCROLLBAR_SIZE : 0;
     }
@@ -136,7 +116,7 @@ export class NgxContextMenuItemComponent<T = any> implements OnInit, OnDestroy {
     }
 
     public emitClick(event: MouseEvent): void {
-        if (coerceBoolean(this.disable)) {
+        if (coerceBoolean(this.disable())) {
             return;
         }
 

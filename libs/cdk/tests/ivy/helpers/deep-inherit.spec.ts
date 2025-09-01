@@ -1,9 +1,9 @@
 import {
+    ChangeDetectionStrategy,
     Component,
     Directive,
     Injectable,
     Injector,
-    NgModule,
     NgZone,
     Type,
 } from '@angular/core';
@@ -29,7 +29,7 @@ class MockService {
     public testField = 'test';
 }
 
-@Directive()
+@Directive({})
 abstract class AbstractDemoChildComponent {
     @Injection(MockService)
     public anotherService1!: MockService;
@@ -40,26 +40,26 @@ abstract class AbstractDemoChildComponent {
     public hello(): string {
         try {
             return this.anotherService2.testField;
-        } catch (error: unknown) {
+        } catch {
             return 'INVALID';
         }
     }
 }
 
-@Directive()
+@Directive({selector: 'hello-world'})
 class HelloWorldComponent extends AbstractDemoChildComponent {
     @Injection(MockService)
     public anotherService3!: MockService;
 }
 
-@Directive()
+@Directive({selector: 'hello-world'})
 class A extends HelloWorldComponent {}
 
 class B extends A {
     public world(): string {
         try {
             return `${this.anotherService3.testField}__hello__`;
-        } catch (error: unknown) {
+        } catch {
             return 'INVALID';
         }
     }
@@ -72,6 +72,7 @@ class C extends B {}
     template: `
         <p class="service">{{ world() }}</p>
     `,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class MockComponent extends C {
     @Injection(MockService)
@@ -81,19 +82,16 @@ class MockComponent extends C {
     public ngZone!: NgZone;
 }
 
-@NgModule({
-    declarations: [MockComponent],
-    providers: [MockService],
-})
-class TestModule {}
-
 describe('[TEST] Ivy utils - check deep inheritance', () => {
     let componentFixture: ComponentFixture<MockComponent>;
 
     jest.spyOn(console, 'error').mockImplementation();
 
     beforeEach((): void => {
-        TestBed.configureTestingModule({imports: [TestModule]});
+        TestBed.configureTestingModule({
+            imports: [MockComponent],
+            providers: [MockService],
+        });
         componentFixture = TestBed.createComponent(MockComponent);
     });
 
@@ -115,7 +113,9 @@ describe('[TEST] Ivy utils - check deep inheritance', () => {
         expect(component.world()).toBe('test__hello__');
 
         expect(getHtml(componentFixture)).toBe('<p class="service"></p>');
+
         componentFixture.detectChanges();
+
         expect(getHtml(componentFixture)).toBe('<p class="service">test__hello__</p>');
     });
 

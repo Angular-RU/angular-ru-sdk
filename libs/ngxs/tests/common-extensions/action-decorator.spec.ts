@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
-import {NgxsDataPluginModule} from '@angular-ru/ngxs';
+import {provideNgxsDataPlugin} from '@angular-ru/ngxs';
 import {DataAction, Payload, StateRepository} from '@angular-ru/ngxs/decorators';
 import {getRepository} from '@angular-ru/ngxs/internals';
 import {NgxsImmutableDataRepository} from '@angular-ru/ngxs/repositories';
 import {NGXS_DATA_EXCEPTIONS} from '@angular-ru/ngxs/tokens';
-import {NgxsModule, State} from '@ngxs/store';
+import {provideStore, State} from '@ngxs/store';
 
 describe('[TEST]: Action decorator', () => {
     afterEach(() => TestBed.resetTestingModule());
@@ -24,9 +24,9 @@ describe('[TEST]: Action decorator', () => {
             }
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([InvalidState], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot(),
+                providers: [
+                    provideStore([InvalidState], {developmentMode: true}),
+                    provideNgxsDataPlugin(),
                 ],
                 teardown: {destroyAfterEach: true},
             });
@@ -54,9 +54,9 @@ describe('[TEST]: Action decorator', () => {
             }
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([InvalidState], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot(),
+                providers: [
+                    provideStore([InvalidState], {developmentMode: true}),
+                    provideNgxsDataPlugin(),
                 ],
                 teardown: {destroyAfterEach: true},
             });
@@ -87,9 +87,9 @@ describe('[TEST]: Action decorator', () => {
             }
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([InvalidState], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot(),
+                providers: [
+                    provideStore([InvalidState], {developmentMode: true}),
+                    provideNgxsDataPlugin(),
                 ],
                 teardown: {destroyAfterEach: true},
             });
@@ -118,11 +118,11 @@ describe('[TEST]: Action decorator', () => {
             }
 
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot(),
+                providers: [
+                    provideStore([], {developmentMode: true}),
+                    provideNgxsDataPlugin(),
+                    InvalidState,
                 ],
-                providers: [InvalidState],
                 teardown: {destroyAfterEach: true},
             });
 
@@ -148,9 +148,9 @@ describe('[TEST]: Action decorator', () => {
         }
 
         TestBed.configureTestingModule({
-            imports: [
-                NgxsModule.forRoot([A], {developmentMode: true}),
-                NgxsDataPluginModule.forRoot(),
+            providers: [
+                provideStore([A], {developmentMode: true}),
+                provideNgxsDataPlugin(),
             ],
             teardown: {destroyAfterEach: true},
         });
@@ -273,9 +273,9 @@ describe('[TEST]: Action decorator', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [
-                    NgxsModule.forRoot([A, B, C], {developmentMode: true}),
-                    NgxsDataPluginModule.forRoot(),
+                providers: [
+                    provideStore([A, B, C], {developmentMode: true}),
+                    provideNgxsDataPlugin(),
                 ],
                 teardown: {destroyAfterEach: true},
             });
@@ -420,7 +420,9 @@ describe('[TEST]: Action decorator', () => {
             // A
             expect(stateA.withValueSetStateAsAction('LEONARD')).toBe('a');
             expect(stateA.getState()).toBe('new value - hello - a - LEONARD');
+
             stateA.reset();
+
             expect(stateA.getState()).toBe('a');
             expect(stateA.withValueSetStateAsMethod('LEONARD')).toBe(
                 'new value as method - hello - a - LEONARD',
@@ -430,7 +432,9 @@ describe('[TEST]: Action decorator', () => {
             // B
             expect(stateB.withValueSetStateAsAction('SHELDON')).toBe('b');
             expect(stateB.getState()).toBe('new value - hello - b - SHELDON');
+
             stateB.reset();
+
             expect(stateB.getState()).toBe('b');
             expect(stateB.withValueSetStateAsMethod('SHELDON')).toBe(
                 'new value as method - hello - b - SHELDON',
@@ -440,7 +444,9 @@ describe('[TEST]: Action decorator', () => {
             // C
             expect(stateC.withValueSetStateAsAction('HOWARD')).toBe('c');
             expect(stateC.getState()).toBe('new value - hello - c - HOWARD');
+
             stateC.reset();
+
             expect(stateC.getState()).toBe('c');
             expect(stateC.withValueSetStateAsMethod('HOWARD')).toBe(
                 'new value as method - hello - c - HOWARD',

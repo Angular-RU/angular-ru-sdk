@@ -1,12 +1,30 @@
 {
     "name": "@angular-ru/cdk",
-    "version": "18.11.0",
+    "version": "19.0.0",
     "description": "Angular-RU package",
     "homepage": "https://github.com/Angular-RU/angular-ru-sdk/tree/master/libs/cdk#readme",
     "bugs": "https://github.com/Angular-RU/angular-ru-sdk/issues",
     "repository": "https://github.com/Angular-RU/angular-ru-sdk",
     "license": "MIT",
     "author": "angular-ru@yandex.ru",
+    "peerDependencies": {
+        "@angular/cdk": ">=20.0.0",
+        "@angular/common": ">=20.0.0",
+        "@angular/core": ">=20.0.0",
+        "@angular/forms": ">=20.0.0",
+        "@angular/router": ">=20.0.0"
+    },
+    "peerDependenciesMeta": {
+        "@angular/cdk": {
+            "optional": true
+        },
+        "@angular/forms": {
+            "optional": true
+        },
+        "@angular/router": {
+            "optional": true
+        }
+    },
     "publishConfig": {
         "access": "public"
     }

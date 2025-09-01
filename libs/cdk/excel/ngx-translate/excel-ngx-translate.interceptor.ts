@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {Nullable, PlainObject} from '@angular-ru/cdk/typings';
 import {isNil, isNotNil} from '@angular-ru/cdk/utils';
 import {TranslateService} from '@ngx-translate/core';
@@ -8,7 +8,7 @@ import {ExcelBuilderTextColumnInterceptor} from '../domain/excel-builder-text-co
 
 @Injectable()
 export class ExcelNgxTranslateInterceptor implements ExcelBuilderTextColumnInterceptor {
-    constructor(private readonly translate: TranslateService) {}
+    private readonly translate = inject(TranslateService);
 
     public instant(key?: Nullable<string>): Nullable<string> {
         return isNotNil(key) ? this.translate.instant(key) : key;

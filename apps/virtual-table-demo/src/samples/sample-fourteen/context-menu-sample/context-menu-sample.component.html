@@ -1,89 +1,78 @@
 <div class="my-filter">
-    <mat-form-field appearance="outline">
+    <mat-form-field>
         <mat-label>Find options</mat-label>
         <mat-select
-            [value]="$any(table.filterable.filterTypeDefinition)[state.key!]"
+            [value]="$any(table().filterable.filterTypeDefinition)[state().key!]"
             (valueChange)="updateFilterType($event)"
         >
-            <mat-option
-                *ngFor="let type of table.filterable.types | keyvalue"
-                [value]="type.value"
-            >
-                {{ type.key }}
-            </mat-option>
+            @for (type of table().filterable.types | keyvalue; track type.key) {
+                <mat-option [value]="type.value">
+                    {{ type.key }}
+                </mat-option>
+            }
         </mat-select>
     </mat-form-field>
-    <ng-container [ngSwitch]="$any(table.filterable.filterTypeDefinition)[state.key!]">
-        <mat-button-toggle-group
-            *ngSwitchCase="TableFilterType.IS_FILLED"
-            [ngModel]="$any(table.filterable.definition)[state.key!]"
-            (ngModelChange)="table.filterable.updateFilterValueBy($event, state.key); table.filter()"
-        >
-            <mat-button-toggle [value]="true">Filled</mat-button-toggle>
-            <mat-button-toggle [value]="false">Empty</mat-button-toggle>
-            <mat-button-toggle value>All</mat-button-toggle>
-        </mat-button-toggle-group>
-
-        <mat-form-field
-            *ngSwitchCase="TableFilterType.INTERVAL"
-            appearance="outline"
-            formType="daterange"
-        >
-            <mat-date-range-input [rangePicker]="rangePicker">
-                <input
-                    matStartDate
-                    placeholder="start"
-                    [(ngModel)]="dateRange[0]"
-                    (ngModelChange)="changeDateRange()"
+    @switch ($any(table().filterable.filterTypeDefinition)[state().key!]) {
+        @case (TableFilterType.IS_FILLED) {
+            <mat-button-toggle-group
+                [ngModel]="$any(table().filterable.definition)[state().key!]"
+                (ngModelChange)="table().filterable.updateFilterValueBy($event, state().key); table().filter()"
+            >
+                <mat-button-toggle [value]="true">Filled</mat-button-toggle>
+                <mat-button-toggle [value]="false">Empty</mat-button-toggle>
+                <mat-button-toggle value>All</mat-button-toggle>
+            </mat-button-toggle-group>
+        }
+        @case (TableFilterType.INTERVAL) {
+            <mat-form-field type="daterange">
+                <mat-date-range-input [rangePicker]="rangePicker">
+                    <input
+                        matStartDate
+                        placeholder="start"
+                        [(ngModel)]="dateRange[0]"
+                        (ngModelChange)="changeDateRange()"
+                    />
+                    <input
+                        matEndDate
+                        placeholder="end"
+                        [(ngModel)]="dateRange[1]"
+                        (ngModelChange)="changeDateRange()"
+                    />
+                </mat-date-range-input>
+                <mat-datepicker-toggle
+                    matSuffix
+                    [for]="rangePicker"
                 />
+                <mat-date-range-picker #rangePicker />
+            </mat-form-field>
+        }
+        @case (TableFilterType.EQUALS_DATES_WITHOUT_TIME) {
+            <mat-form-field class="date-picker">
                 <input
-                    matEndDate
-                    placeholder="end"
-                    [(ngModel)]="dateRange[1]"
-                    (ngModelChange)="changeDateRange()"
+                    matInput
+                    [matDatepicker]="picker"
+                    [ngModel]="$any(table().filterable.definition)[state().key!]"
+                    (ngModelChange)="table().filterable.updateFilterValueBy($event, state().key); table().filter()"
                 />
-            </mat-date-range-input>
-            <mat-datepicker-toggle
-                matSuffix
-                [for]="rangePicker"
-            />
-            <mat-date-range-picker
-                #rangePicker
-                dateEndOfDay
-            />
-        </mat-form-field>
-
-        <mat-form-field
-            *ngSwitchCase="TableFilterType.EQUALS_DATES_WITHOUT_TIME"
-            appearance="outline"
-            class="date-picker"
-        >
-            <input
-                matInput
-                [matDatepicker]="picker"
-                [ngModel]="$any(table.filterable.definition)[state.key!]"
-                (ngModelChange)="table.filterable.updateFilterValueBy($event, state.key); table.filter()"
-            />
-            <mat-datepicker-toggle
-                matIconSuffix
-                [for]="picker"
-            />
-            <mat-datepicker #picker />
-        </mat-form-field>
-
-        <mat-form-field
-            *ngSwitchDefault
-            appearance="outline"
-        >
-            <mat-label>Filter by {{ state.key! | uppercase }}</mat-label>
-            <input
-                autocomplete="off"
-                matInput
-                name="width"
-                [ngModel]="$any(table.filterable.definition)[state.key!]"
-                (ngModelChange)="table.filterable.updateFilterValueBy($event, state.key); table.filter()"
-            />
-            <mat-icon matSuffix>search</mat-icon>
-        </mat-form-field>
-    </ng-container>
+                <mat-datepicker-toggle
+                    matIconSuffix
+                    [for]="picker"
+                />
+                <mat-datepicker #picker />
+            </mat-form-field>
+        }
+        @default {
+            <mat-form-field>
+                <mat-label>Filter by {{ state().key! | uppercase }}</mat-label>
+                <input
+                    autocomplete="off"
+                    matInput
+                    name="width"
+                    [ngModel]="$any(table().filterable.definition)[state().key!]"
+                    (ngModelChange)="table().filterable.updateFilterValueBy($event, state().key); table().filter()"
+                />
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+        }
+    }
 </div>

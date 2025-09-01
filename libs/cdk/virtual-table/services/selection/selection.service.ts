@@ -1,4 +1,4 @@
-import {Injectable, NgZone, OnDestroy} from '@angular/core';
+import {inject, Injectable, NgZone, OnDestroy} from '@angular/core';
 import {Fn, Nullable, PlainObjectOf, PrimaryKey} from '@angular-ru/cdk/typings';
 import {checkValueIsEmpty, isMacOS, isNil} from '@angular-ru/cdk/utils';
 import {Subject} from 'rxjs';
@@ -10,6 +10,8 @@ import {SelectionRange} from './selection-range';
 
 @Injectable()
 export class SelectionService<T> implements OnDestroy {
+    private readonly ngZone = inject(NgZone);
+
     private readonly handler: PlainObjectOf<Fn> = {};
     public selectionModel = new SelectionMap<T>();
     public range: SelectionRange = new SelectionRange();
@@ -19,8 +21,6 @@ export class SelectionService<T> implements OnDestroy {
     public onChanges$: Subject<void> = new Subject<void>();
     public selectionModeIsEnabled = false;
     public rows: Nullable<T[]> = null;
-
-    constructor(private readonly ngZone: NgZone) {}
 
     public listenShiftKey(): void {
         this.listenShiftKeyByType(KeyType.KEYDOWN);
@@ -102,7 +102,7 @@ export class SelectionService<T> implements OnDestroy {
         const index: number = rows.findIndex(
             (item: T): boolean =>
                 ((item as any) ?? ({} as T))[this.primaryKey] ===
-                (row ?? {})[this.primaryKey],
+                row?.[this.primaryKey as keyof T],
         );
 
         if (shiftKey) {
@@ -117,7 +117,7 @@ export class SelectionService<T> implements OnDestroy {
     }
 
     public getIdByRow(row?: Nullable<T>): RowId {
-        const id: RowId = ((row as any) ?? {})[this.primaryKey];
+        const id: RowId = (row as any)?.[this.primaryKey];
 
         if (checkValueIsEmpty(id)) {
             throw new Error(

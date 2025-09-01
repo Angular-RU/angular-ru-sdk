@@ -1,35 +1,24 @@
 /* eslint-disable @angular-eslint/no-input-rename */
-import {AfterViewInit, ElementRef, Inject} from '@angular/core';
-import {Directive, Input} from '@angular/core';
+import {AfterViewInit, ElementRef, inject, input} from '@angular/core';
+import {Directive} from '@angular/core';
 
-import {AbstractFlexLayoutDirective} from './abstract-flex-layout.directive';
+import {AbstractFlexLayout} from './abstract-flex-layout.directive';
 
 @Directive({selector: '[flex-item]'})
-export class FlexItemDirective
-    extends AbstractFlexLayoutDirective
-    implements AfterViewInit
-{
-    @Input('flex-wide')
-    public wide: boolean | string = false;
+export class FlexItem extends AbstractFlexLayout implements AfterViewInit {
+    protected readonly elementRef = inject<ElementRef>(ElementRef);
 
-    @Input('flex-equal')
-    public equalWidth: boolean | string = false;
-
-    constructor(
-        @Inject(ElementRef)
-        protected readonly elementRef: ElementRef,
-    ) {
-        super();
-    }
+    public readonly wide = input<boolean | string>(false, {alias: 'flex-wide'});
+    public readonly equalWidth = input<boolean | string>(false, {alias: 'flex-equal'});
 
     public ngAfterViewInit(): void {
         this.classList.add('flex__item');
 
-        if (this.wide !== false) {
+        if (this.wide() !== false) {
             this.classList.add('flex__item--wide');
         }
 
-        if (this.equalWidth !== false) {
+        if (this.equalWidth() !== false) {
             this.classList.add('flex__item--equal-width');
         }
     }

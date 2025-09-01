@@ -1,14 +1,22 @@
+import {KeyValuePipe} from '@angular/common';
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
-    Injector,
-    NgZone,
+    inject,
     OnInit,
+    signal,
 } from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {MatButton} from '@angular/material/button';
+import {MatCheckbox} from '@angular/material/checkbox';
 import {MatDialog} from '@angular/material/dialog';
+import {MatIcon} from '@angular/material/icon';
+import {MatFormField, MatInput, MatLabel, MatSuffix} from '@angular/material/input';
+import {MatOption, MatSelect} from '@angular/material/select';
+import {MatToolbar} from '@angular/material/toolbar';
 import {PlainObject} from '@angular-ru/cdk/typings';
+import {VirtualTable} from '@angular-ru/cdk/virtual-table';
 
 import {hlJsCode} from '../../../../../.global/utils/hljs-code';
 import {MocksGenerator} from '../../mocks-generator';
@@ -16,23 +24,29 @@ import {CodeDialogComponent} from '../../shared/dialog/code-dialog.component';
 
 @Component({
     selector: 'sample-night',
+    imports: [
+        FormsModule,
+        KeyValuePipe,
+        MatButton,
+        MatCheckbox,
+        MatFormField,
+        MatIcon,
+        MatInput,
+        MatLabel,
+        MatOption,
+        MatSelect,
+        MatSuffix,
+        MatToolbar,
+        VirtualTable,
+    ],
     templateUrl: './sample-night.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SampleNightComponent implements OnInit, AfterViewInit {
-    private readonly ngZone: NgZone;
-    public dataFirst: PlainObject[] = [];
-    public dataSecond: PlainObject[] = [];
-    public nativeScrollbar = false;
-    public readonly dialog: MatDialog;
-
-    constructor(
-        private readonly cd: ChangeDetectorRef,
-        injector: Injector,
-    ) {
-        this.dialog = injector.get<MatDialog>(MatDialog);
-        this.ngZone = injector.get<NgZone>(NgZone);
-    }
+export default class SampleNightComponent implements OnInit, AfterViewInit {
+    public dataFirst = signal<PlainObject[]>([]);
+    public dataSecond = signal<PlainObject[]>([]);
+    public nativeScrollbar = signal(false);
+    public readonly dialog = inject(MatDialog);
 
     public ngOnInit(): void {
         const rows1 = 11;
@@ -45,23 +59,13 @@ export class SampleNightComponent implements OnInit, AfterViewInit {
             MocksGenerator.generator(rows1, cols1),
             MocksGenerator.generator(rows2, cols2),
         ]).then(([first, second]: [PlainObject[], PlainObject[]]): void => {
-            this.dataFirst = first;
-            this.dataSecond = second;
-            this.cd.detectChanges();
+            this.dataFirst.set(first);
+            this.dataSecond.set(second);
         });
     }
 
     public ngAfterViewInit(): void {
         hlJsCode();
-    }
-
-    public update(): void {
-        this.ngZone.runOutsideAngular((): void => {
-            // eslint-disable-next-line no-restricted-globals
-            setTimeout((): void => {
-                this.cd.detectChanges();
-            });
-        });
     }
 
     // eslint-disable-next-line max-lines-per-function
@@ -90,17 +94,15 @@ export class SampleNightComponent implements OnInit, AfterViewInit {
 
 <div id="main-column">
     <div id="widget1">
-        <ngx-table-builder [source]="data"></ngx-table-builder>
+        <ngx-table-builder [source]="data()"></ngx-table-builder>
     </div>
     <div id="widget2">
-        <ngx-table-builder [source]="data"></ngx-table-builder>
+        <ngx-table-builder [source]="data()"></ngx-table-builder>
     </div>
 </div>
 
                     `,
             },
-            height: '750px',
-            width: '700px',
         });
     }
 }

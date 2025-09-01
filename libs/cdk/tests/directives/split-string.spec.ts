@@ -1,7 +1,13 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    inject,
+    ViewChild,
+} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {SplitStringModule, SplitStringOptions} from '@angular-ru/cdk/directives';
+import {SplitString, SplitStringOptions} from '@angular-ru/cdk/directives';
 
 describe('[TEST]: Trim Input', function () {
     let fixture: ComponentFixture<TestComponent>;
@@ -12,7 +18,7 @@ describe('[TEST]: Trim Input', function () {
 
     @Component({
         selector: 'test',
-
+        imports: [FormsModule, ReactiveFormsModule, SplitString],
         template: `
             <form [formGroup]="form">
                 <textarea
@@ -38,8 +44,11 @@ describe('[TEST]: Trim Input', function () {
                 [(ngModel)]="list"
             />
         `,
+        changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class TestComponent {
+        private readonly fb = inject(FormBuilder);
+
         @ViewChild('textAreaElement')
         public textAreaElement!: ElementRef<HTMLTextAreaElement>;
 
@@ -50,16 +59,20 @@ describe('[TEST]: Trim Input', function () {
         public tdfInputElement!: ElementRef<HTMLInputElement>;
 
         public splitStringOptions?: Partial<SplitStringOptions>;
-        public form = this.fb.group({textarea: null, input: null});
-        public list?: string[];
+        public form = this.fb.group<{
+            textarea: string | null;
+            input: Array<number | string> | null;
+        }>({
+            textarea: null,
+            input: null,
+        });
 
-        constructor(private readonly fb: FormBuilder) {}
+        public list?: string[];
     }
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [ReactiveFormsModule, FormsModule, SplitStringModule],
-            declarations: [TestComponent],
+            imports: [ReactiveFormsModule, FormsModule, TestComponent],
         }).compileComponents();
         fixture = TestBed.createComponent(TestComponent);
         fixture.detectChanges();
@@ -71,9 +84,11 @@ describe('[TEST]: Trim Input', function () {
 
     it('should intercept split and join form group value', async () => {
         component.form.patchValue({input: null});
+
         expect(inputElement.value).toBe('');
 
         component.form.patchValue({input: [1, 'hey']});
+
         expect(inputElement.value).toBe('1, hey');
 
         expect(tdfInputElement.value).toBe('');
@@ -81,36 +96,44 @@ describe('[TEST]: Trim Input', function () {
         component.list = ['first', 'second'];
         fixture.detectChanges();
         await fixture.whenStable();
+
         expect(tdfInputElement.value).toBe('first, second');
 
         tdfInputElement.value = 'third, fourth';
         tdfInputElement.dispatchEvent(new Event('input'));
+
         expect(component.list).toEqual(['third', 'fourth']);
 
         component.splitStringOptions = {joinWith: '/'};
         fixture.detectChanges();
 
         component.form.patchValue({input: ['on', 'off']});
+
         expect(inputElement.value).toBe('on/off');
 
         inputElement.value = ' ';
         inputElement.dispatchEvent(new Event('input'));
+
         expect(component.form.value.input).toEqual([]);
 
         inputElement.value = 'one, two, three';
         inputElement.dispatchEvent(new Event('input'));
+
         expect(component.form.value.input).toEqual(['one', 'two', 'three']);
 
         inputElement.value = '';
         inputElement.dispatchEvent(new Event('input'));
+
         expect(component.form.value.input).toEqual([]);
 
         inputElement.value = 'four ,   five;six\nseven';
         inputElement.dispatchEvent(new Event('input'));
+
         expect(component.form.value.input).toEqual(['four', 'five', 'sixseven']);
 
         textAreaElement.value = 'four ,   five;six\nseven';
         textAreaElement.dispatchEvent(new Event('input'));
+
         expect(component.form.value.textarea).toEqual(['four', 'five', 'six', 'seven']);
 
         component.splitStringOptions = {separator: ';'};
@@ -118,10 +141,12 @@ describe('[TEST]: Trim Input', function () {
 
         inputElement.value = 'four ,   five;six\nseven';
         inputElement.dispatchEvent(new Event('input'));
+
         expect(component.form.value.input).toEqual(['four ,   five', 'sixseven']);
 
         textAreaElement.value = 'four ,   five;six\nseven';
         textAreaElement.dispatchEvent(new Event('input'));
+
         expect(component.form.value.textarea).toEqual(['four ,   five', 'six\nseven']);
     });
 });

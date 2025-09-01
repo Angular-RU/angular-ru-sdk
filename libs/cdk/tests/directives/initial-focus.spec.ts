@@ -1,8 +1,14 @@
-import {Component, DebugElement, Input} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    DebugElement,
+    inject,
+    Input,
+} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {BrowserModule, By} from '@angular/platform-browser';
-import {InitialFocusModule} from '@angular-ru/cdk/directives';
+import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
+import {By} from '@angular/platform-browser';
+import {InitialFocus} from '@angular-ru/cdk/directives';
 
 jest.useFakeTimers();
 
@@ -13,6 +19,7 @@ describe('[TEST]: Initial Focus', function () {
 
     @Component({
         selector: 'test',
+        imports: [InitialFocus, ReactiveFormsModule],
         template: `
             <form [formGroup]="form">
                 <input
@@ -36,8 +43,11 @@ describe('[TEST]: Initial Focus', function () {
                 />
             </form>
         `,
+        changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class TestComponent {
+        private readonly fb = inject(FormBuilder);
+
         @Input()
         public disableFocusText = true;
 
@@ -49,19 +59,11 @@ describe('[TEST]: Initial Focus', function () {
             wantFocusText: 'wanna be focused',
             wantFocusNumber: 7,
         });
-
-        constructor(private readonly fb: FormBuilder) {}
     }
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [TestComponent],
-            imports: [
-                BrowserModule,
-                ReactiveFormsModule,
-                FormsModule,
-                InitialFocusModule,
-            ],
+            imports: [TestComponent],
         }).compileComponents();
 
         fixture = TestBed.createComponent(TestComponent);
@@ -81,7 +83,9 @@ describe('[TEST]: Initial Focus', function () {
         expect(spiedFunctions[1]).not.toHaveBeenCalled();
         expect(spiedFunctions[2]).not.toHaveBeenCalled();
         expect(component.form?.value?.wantFocusText).toBe('wanna be focused');
+
         jest.runOnlyPendingTimers();
+
         expect(spiedFunctions[0]).not.toHaveBeenCalled();
         expect(spiedFunctions[1]).toHaveBeenCalledTimes(1);
         expect(spiedFunctions[2]).not.toHaveBeenCalled();
@@ -105,7 +109,9 @@ describe('[TEST]: Initial Focus', function () {
             'initial-focus',
         );
         expect(component.form?.value?.wantFocusText).toBe('wanna be focused');
+
         jest.runOnlyPendingTimers();
+
         expect(spiedFunctions[0]).not.toHaveBeenCalled();
         expect(spiedFunctions[1]).not.toHaveBeenCalled();
         expect((inputElements[1] as HTMLInputElement).className).not.toContain(

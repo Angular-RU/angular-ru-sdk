@@ -1,12 +1,14 @@
 <div class="button-actions">
     <button
         mat-stroked-button
+        type="button"
         (click)="createArticle()"
     >
         Add article
     </button>
     <button
         mat-stroked-button
+        type="button"
         (click)="articleEntities.removeAll()"
     >
         Remove all articles
@@ -80,12 +82,14 @@
         >
             <button
                 mat-icon-button
+                type="button"
                 (click)="editById(id)"
             >
                 <mat-icon>edit</mat-icon>
             </button>
             <button
                 mat-icon-button
+                type="button"
                 (click)="deleteById(id)"
             >
                 <mat-icon>delete</mat-icon>

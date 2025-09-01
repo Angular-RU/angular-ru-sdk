@@ -31,26 +31,31 @@ sample-eight ngx-table-builder * {
 }
 
 .my-filter {
-    padding: 10px 5px 10px 5px;
-}
-
-.my-filter .mat-form-field {
-    width: 100%;
+    padding: 10px;
 }
 
 .my-filter .filter-form {
     display: flex;
+    gap: 1rem;
+
+    mat-form-field {
+        width: 100%;
+
+        &.filter-options {
+            width: 25%;
+        }
+    }
 }
 
 .my-filter .filter-options.mat-form-field {
     margin-right: 0;
 }
 
-.my-filter .filter-options {
-    width: 40%;
-}
-
 .my-filter .mat-form-field-appearance-outline .mat-form-field-wrapper {
     margin-bottom: 0;
     padding: 2px 0;
+}
+
+mat-form-field.mat-mdc-form-field {
+    padding-top: 0.25rem;
 }

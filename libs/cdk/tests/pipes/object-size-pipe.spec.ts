@@ -1,12 +1,12 @@
 import {TestBed} from '@angular/core/testing';
-import {ObjectSizePipe, ObjectSizePipeModule} from '@angular-ru/cdk/pipes';
+import {ObjectSizePipe} from '@angular-ru/cdk/pipes';
 
 describe('[TEST] Object size pipe', () => {
     let pipe: ObjectSizePipe;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [ObjectSizePipeModule],
+            providers: [ObjectSizePipe],
         }).compileComponents();
         pipe = TestBed.inject(ObjectSizePipe);
     });
@@ -15,7 +15,7 @@ describe('[TEST] Object size pipe', () => {
         expect(pipe.transform()).toBe(0);
         expect(pipe.transform({})).toBe(0);
         expect(pipe.transform(null)).toBe(0);
-        expect(pipe.transform(undefined)).toBe(0);
+        expect(pipe.transform()).toBe(0);
         expect(pipe.transform([])).toBe(0);
         expect(pipe.transform([{a: 1}])).toBe(1);
         expect(pipe.transform({a: 1, b: 2})).toBe(2);

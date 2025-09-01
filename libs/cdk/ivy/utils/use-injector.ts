@@ -26,7 +26,7 @@ export function useInjector<T>(
     if (deferWrapping) {
         Promise.resolve()
             .then((): void => wrapFactory(constructor, effectFunction))
-            .catch((error: Error): void => console.error(error));
+            .catch((error: unknown): void => console.error(error));
     } else {
         wrapFactory(constructor, effectFunction);
     }

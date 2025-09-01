@@ -1,12 +1,19 @@
-import {CommonModule} from '@angular/common';
+import {provideHttpClient} from '@angular/common/http';
 import {
-    HttpClientTestingModule,
     HttpTestingController,
+    provideHttpClientTesting,
     TestRequest,
 } from '@angular/common/http/testing';
-import {Component, Injectable, OnDestroy, OnInit} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    inject,
+    Injectable,
+    OnDestroy,
+    OnInit,
+} from '@angular/core';
 import {ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
-import {DataHttpClient, DataHttpClientModule} from '@angular-ru/cdk/http';
+import {DataHttpClient, provideDataHttpClientOptions} from '@angular-ru/cdk/http';
 import {Get, RestClient} from '@angular-ru/cdk/http/decorators';
 import {Nullable} from '@angular-ru/cdk/typings';
 import {Observable, Subject} from 'rxjs';
@@ -88,10 +95,12 @@ describe('[TEST]: Canceling requests and unsubscribing', () => {
     @Component({
         selector: '',
         template: '',
+        changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class TestComponent implements OnInit, OnDestroy {
+        public readonly _api = inject(ApiClient);
+
         private readonly destroy$: Subject<boolean> = new Subject<boolean>();
-        constructor(public readonly _api: ApiClient) {}
         public ngOnInit(): void {
             this.generateRequests();
         }
@@ -127,11 +136,11 @@ describe('[TEST]: Canceling requests and unsubscribing', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [TestComponent],
-            imports: [
-                CommonModule,
-                HttpClientTestingModule,
-                DataHttpClientModule.forRoot([ApiClient], {limitConcurrency}),
+            imports: [TestComponent],
+            providers: [
+                provideHttpClient(),
+                provideHttpClientTesting(),
+                provideDataHttpClientOptions([ApiClient], {limitConcurrency}),
             ],
         });
 

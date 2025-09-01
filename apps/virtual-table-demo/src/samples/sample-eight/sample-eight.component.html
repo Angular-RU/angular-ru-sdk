@@ -19,7 +19,7 @@
 <ngx-table-builder
     #table
     [row-height]="40"
-    [source]="data"
+    [source]="data()"
     [vertical-border]="false"
 >
     <ngx-column
@@ -27,7 +27,8 @@
         key="active"
         sticky
         vertical-line
-        width="60"
+        width="46"
+        [css-class]="['checkbox-column']"
     >
         <ng-template ngx-th />
         <ng-template
@@ -57,28 +58,25 @@
         </ng-template>
     </ngx-column>
 
-    <ngx-column
-        *ngFor="let key of table.modelColumnKeys"
-        [key]="key"
-    >
-        <ng-container *ngIf="key === 'symbol'; else other">
-            <ng-template
-                let-symbol
-                ngx-td
-            >
-                {{ symbol }}
-            </ng-template>
-        </ng-container>
-
-        <ng-template
-            #other
-            let-cell
-            ngx-td
-            [nowrap]="false"
-        >
-            {{ cell }}
-        </ng-template>
-    </ngx-column>
+    @for (key of table.modelColumnKeys; track key) {
+        <ngx-column [key]="key">
+            @if (key === 'symbol') {
+                <ng-template
+                    let-symbol
+                    ngx-td
+                >
+                    {{ symbol }}
+                </ng-template>
+            } @else {
+                <ng-template
+                    let-cell
+                    ngx-td
+                >
+                    {{ cell }}
+                </ng-template>
+            }
+        </ngx-column>
+    }
 
     <ngx-column
         custom-key

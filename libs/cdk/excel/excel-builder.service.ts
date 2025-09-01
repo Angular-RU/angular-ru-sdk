@@ -1,6 +1,6 @@
 /* eslint-disable unicorn/consistent-function-scoping */
 // eslint-disable-next-line max-classes-per-file
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {toFormatDateTime} from '@angular-ru/cdk/date';
 import {PlainTableComposerService} from '@angular-ru/cdk/table-utils';
 import {EmptyValue, Nullable, PlainObject} from '@angular-ru/cdk/typings';
@@ -32,10 +32,8 @@ const enum StyleType {
 
 @Injectable()
 export class ExcelBuilderService {
-    constructor(
-        public plainTableComposer: PlainTableComposerService,
-        public webWorker: WebWorkerThreadService,
-    ) {}
+    public plainTableComposer = inject(PlainTableComposerService);
+    public webWorker = inject(WebWorkerThreadService);
 
     private static downloadWorkbook(blob: Blob, workbookName: string): void {
         downloadFile({
@@ -57,7 +55,7 @@ export class ExcelBuilderService {
                     const nextValue: any =
                         typeof value === 'string' ? value.trim() : value;
 
-                    return [undefined, null, NaN, '', Infinity].includes(nextValue);
+                    return ['', Infinity, NaN, null, undefined].includes(nextValue);
                 }
 
                 class ExcelBuilder {
@@ -87,7 +85,7 @@ export class ExcelBuilderService {
                                 ${ExcelBuilder.commonBorderStyles}
                             </Style>
                             <Style ss:ID="${StyleType.DATE}">
-                                <NumberFormat ss:Format="dd\.mm\.yyyy"/>
+                                <NumberFormat ss:Format="dd.mm.yyyy"/>
                                 <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="0" />
                                 <Font ss:Bold="0" ss:FontName="Arial" />
                                 ${ExcelBuilder.commonBorderStyles}

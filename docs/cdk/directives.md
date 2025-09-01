@@ -1,24 +1,18 @@
 #### `@angular-ru/cdk/directives`
 
-- `InitialFocusDirective, InitialFocusModule`
+- `InitialFocus`
 - Selector: `initialFocus`
 
 - API:
-
   - `Input() focusDisabled: boolean` - default: `false`
 
 ```typescript
-import {InitialFocusModule} from '@angular-ru/cdk/directives';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [InitialFocusModule],
-})
-export class AppModule {}
+import {InitialFocus} from '@angular-ru/cdk/directives';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [InitialFocus],
   template: `
     <input
       [focusDisabled]="false"
@@ -30,20 +24,15 @@ export class AppModule {}
 export class AppComponent {}
 ```
 
-- `AmountFormatDirective, AmountFormatDirectiveModule`
+- `AmountFormat`
 
 ```typescript
-import {AmountFormatDirectiveModule} from '@angular-ru/cdk/directives';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [AmountFormatDirectiveModule],
-})
-export class AppModule {}
+import {AmountFormat} from '@angular-ru/cdk/directives';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [AmountFormat],
   template: `
     <input
       amountFormat
@@ -54,20 +43,15 @@ export class AppModule {}
 export class AppComponent {}
 ```
 
-- `ConvertCaseDirective, ConvertCaseDirectiveModule`
+- `ConvertCase`
 
 ```typescript
-import {ConvertCaseDirectiveModule} from '@angular-ru/cdk/directives';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [ConvertCaseDirectiveModule],
-})
-export class AppModule {}
+import {ConvertCase} from '@angular-ru/cdk/directives';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [ConvertCase],
   template: `
     <input
       convertCase
@@ -78,20 +62,15 @@ export class AppModule {}
 export class AppComponent {}
 ```
 
-- `DisableControlDirective, DisableControlDirectiveModule`
+- `DisableControl`
 
 ```typescript
-import {DisableControlDirectiveModule} from '@angular-ru/cdk/directives';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [DisableControlDirectiveModule],
-})
-export class AppModule {}
+import {DisableControl} from '@angular-ru/cdk/directives';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [DisableControl],
   template: `
     <input
       disableControl
@@ -102,20 +81,15 @@ export class AppModule {}
 export class AppComponent {}
 ```
 
-- `MaxLengthDirective, MaxLengthDirectiveModule`
+- `MaxLength`
 
 ```typescript
-import {MaxLengthDirectiveModule} from '@angular-ru/cdk/directives';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [MaxLengthDirectiveModule],
-})
-export class AppModule {}
+import {MaxLength} from '@angular-ru/cdk/directives';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [MaxLength],
   template: `
     <input
       maxLength="3000"
@@ -126,7 +100,7 @@ export class AppModule {}
 export class AppComponent {}
 ```
 
-- `TrimInputDirective, TrimInputModule`
+- `TrimInput`
 - Selector: `trimInput`
 
 API:
@@ -134,17 +108,12 @@ API:
 - `@Input('trimDisabled') disabled: boolean` - default: `false`
 
 ```typescript
-import {TrimInputModule} from '@angular-ru/cdk/directives';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [TrimInputModule],
-})
-export class AppModule {}
+import {TrimInput} from '@angular-ru/cdk/directives';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [TrimInput],
   template: `
     <input
       [trimDisabled]="false"
@@ -156,20 +125,15 @@ export class AppModule {}
 export class AppComponent {}
 ```
 
-- `SplitStringDirective, SplitStringModule`
+- `SplitString`
 
 ```typescript
-import {SplitStringModule, SplitStringOptions} from '@angular-ru/cdk/directives';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [SplitStringModule],
-})
-export class AppModule {}
+import {SplitString, SplitStringOptions} from '@angular-ru/cdk/directives';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'test',
+  imports: [SplitString],
   template: `
         <form [formGroup]="form">
             <input type="text" formControlName="input1" splitString" />
@@ -202,20 +166,15 @@ class TestComponent {
 }
 ```
 
-- `InputFilterDirective, InputFilterModule`
+- `InputFilter`
 
 ```typescript
-import {InputFilterModule, FilterPredicate} from '@angular-ru/cdk/directives';
-import {Component, NgModule} from '@angular/core';
-
-@NgModule({
-  // ..
-  imports: [InputFilterModule],
-})
-export class AppModule {}
+import {InputFilter, FilterPredicate} from '@angular-ru/cdk/directives';
+import {Component} from '@angular/core';
 
 @Component({
   //...
+  imports: [InputFilter],
   template: `
     <div [formGroup]="form">
       <input
