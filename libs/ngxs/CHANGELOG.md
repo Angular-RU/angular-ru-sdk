@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.0](https://github.com/Angular-RU/angular-ru-sdk/compare/v18.11.0...v19.0.0) (2025-09-01)
+
+### Features
+ 
+* angular v20 and NX v21 ([1aa382d](https://github.com/Angular-RU/angular-ru-sdk/commit/1aa382d505962c260c6f8a871bdb7d58d2b8b1cb))
+* standalone components and pipes; root providers instead of forRoot(); removal of ngModules ([729959c](https://github.com/Angular-RU/angular-ru-sdk/commit/729959c201623ffc4406d680d46908059d9a5754))
+
 ## [14.2.2](https://github.com/Angular-RU/angular-ru-sdk/compare/@angular-ru/ngxs@14.2.1...@angular-ru/ngxs@14.2.2) (2023-10-21)
 
 ### Bug Fixes
