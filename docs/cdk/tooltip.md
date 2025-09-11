@@ -2,7 +2,7 @@
 
 ## Introduction
 
-[**Demo**](https://angular-ru.github.io/angular-ru-tooltip-example-app)
+[**Demo**](https://angular-ru.github.io/angular-ru-sdk/tooltip-demo)
 
 ```bash
 $ npm install @angular-ru/cdk/tooltip
