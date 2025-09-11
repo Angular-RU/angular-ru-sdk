@@ -14,10 +14,12 @@ describe('date limit validator', () => {
 
         // changing to extreme valid value
         control.setValue(toUtc({month: new Date().getMonth() - 2}));
+
         expect(control.valid).toBe(true);
 
         // changing to valid value
         control.setValue(toUtc({month: new Date().getMonth() - 3}));
+
         expect(control.valid).toBe(true);
     });
 
@@ -32,10 +34,12 @@ describe('date limit validator', () => {
 
         // changing to extreme valid value
         control.setValue(toUtc({month: new Date().getMonth() - 2}));
+
         expect(control.valid).toBe(true);
 
         // changing to valid value
         control.setValue(toUtc({month: new Date().getMonth() - 1}));
+
         expect(control.valid).toBe(true);
     });
 
@@ -53,17 +57,21 @@ describe('date limit validator', () => {
 
         // changing to extreme valid value
         control.setValue(toUtc({month: new Date().getMonth() - 3}));
+
         expect(control.valid).toBe(true);
 
         control.setValue(toUtc({month: new Date().getMonth() - 1}));
+
         expect(control.valid).toBe(true);
 
         // changing to valid value
         control.setValue(toUtc({month: new Date().getMonth() - 2}));
+
         expect(control.valid).toBe(true);
 
         // changing to invalid value again
         control.setValue(toUtc({month: new Date().getMonth()}));
+
         expect(control.errors).toEqual({maxDateLimitExceeded: true});
     });
 });

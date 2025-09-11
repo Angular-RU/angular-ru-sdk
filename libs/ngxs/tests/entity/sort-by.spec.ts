@@ -50,6 +50,7 @@ describe('sort by entities', () => {
             });
 
             people.sort();
+
             expect(spy).toHaveBeenCalledTimes(1);
 
             expect(console.warn).toHaveBeenLastCalledWith(

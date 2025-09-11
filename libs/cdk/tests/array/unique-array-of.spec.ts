@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-hardcoded-ip */
 import {uniqueArrayOf} from '@angular-ru/cdk/array';
 
 describe('[TEST]: unique array of', () => {

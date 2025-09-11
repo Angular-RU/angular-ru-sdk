@@ -273,6 +273,7 @@ describe('[TEST]: BigDecimal - main', () => {
                 '0',
             );
         });
+
         it('should: -0.0000005 * 13 = -0.0000065', () => {
             expect(
                 new BigDecimal('-0.0000005').multiply(new BigDecimal('13')).getValue(),

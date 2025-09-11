@@ -1,12 +1,11 @@
 import {mapToVoid} from '@angular-ru/cdk/rxjs';
-import {of} from 'rxjs';
+import {firstValueFrom, of} from 'rxjs';
 
 describe('[TEST]: RxJS', () => {
-    it('mapToVoid', () => {
-        of([1, 2, 3])
-            .pipe(mapToVoid())
-            .subscribe((result) => {
-                expect(result).toBeUndefined();
-            });
+    it('mapToVoid', async () => {
+        const value$ = of([1, 2, 3]).pipe(mapToVoid());
+        const result = await firstValueFrom(value$);
+
+        expect(result).toBeUndefined();
     });
 });

@@ -36,6 +36,7 @@ describe('[TEST]: requiredSomeValueByKeysValidator vs orderedIntervalValidator',
         controlFrom.setValue(toUtc());
         controlTo.setValue(toUtc({month: new Date().getMonth() + 1}));
         controlA.setValue(1);
+
         expect(form.valid).toBe(true);
     });
 
@@ -61,6 +62,7 @@ describe('[TEST]: requiredSomeValueByKeysValidator vs orderedIntervalValidator',
 
         controlFrom.setValue(toUtc());
         controlTo.setValue(toUtc());
+
         expect(form.errors).toEqual({requiredSomeValueByKeys: true});
     });
 
@@ -72,6 +74,7 @@ describe('[TEST]: requiredSomeValueByKeysValidator vs orderedIntervalValidator',
         controlFrom.setValue(toUtc());
         controlTo.setValue(toUtc({month: new Date().getMonth() - 1}));
         controlA.setValue(1);
+
         expect(form.errors).toEqual({orderedInterval: true});
     });
 });

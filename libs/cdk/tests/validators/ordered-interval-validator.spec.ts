@@ -21,27 +21,32 @@ describe('ordered interval validator', () => {
 
     it('should be valid if "from < to"', () => {
         form.controls?.['dateFrom']?.setValue(toUtc({month: new Date().getMonth() - 1}));
+
         expect(form.valid).toBe(true);
     });
 
     it('should be valid if "from = null"', () => {
         form.controls?.['dateFrom']?.setValue(null);
+
         expect(form.valid).toBe(true);
     });
 
     it('should be valid if "to = null"', () => {
         form.controls?.['dateTo']?.setValue(null);
+
         expect(form.valid).toBe(true);
     });
 
     it('should be valid if "from = null" and "to = null"', () => {
         form.controls?.['dateFrom']?.setValue(null);
         form.controls?.['dateTo']?.setValue(null);
+
         expect(form.valid).toBe(true);
     });
 
     it('should return error if "from > to"', () => {
         form.controls?.['dateFrom']?.setValue(toUtc({month: new Date().getMonth() + 1}));
+
         expect(form.errors).toEqual({orderedInterval: true});
     });
 

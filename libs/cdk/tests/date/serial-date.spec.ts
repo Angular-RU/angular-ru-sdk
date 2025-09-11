@@ -89,21 +89,27 @@ describe('[TEST]: Date', (): void => {
         expect(date).toBe('2019-07-05 00:00:00');
 
         date = toTimestamp('1.2.2019', isoFormat);
+
         expect(date).toBe('2019-02-01 00:00:00');
 
         date = toTimestamp('0.0.2019', isoFormat);
+
         expect(date).toBe('2019-01-01 00:00:00');
 
         date = toTimestamp('3..2019', isoFormat);
+
         expect(date).toBe('2019-01-03 00:00:00');
 
         date = toTimestamp('.2.2019', isoFormat);
+
         expect(date).toBe('2019-02-01 00:00:00');
 
         date = toTimestamp('..2019', isoFormat);
+
         expect(date).toBe('2019-01-01 00:00:00');
 
         date = toTimestamp('.2.2019 01:00', isoFormat);
+
         expect(date).toBe('2019-02-01 01:00:00');
     });
 

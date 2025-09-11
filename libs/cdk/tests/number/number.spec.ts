@@ -128,6 +128,7 @@ describe('[TEST]: Number', () => {
             '1 500 300',
         );
         expect(numberFormat(null)).toBe('');
+        // eslint-disable-next-line sonarjs/no-undefined-argument
         expect(numberFormat(undefined)).toBe('');
         expect(numberFormat()).toBe('');
         expect(numberFormat(NaN)).toBe('');

@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-undefined-argument */
 import {
     exclude,
     hasAtMostOneItem,
