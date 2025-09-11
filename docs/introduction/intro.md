@@ -1,9 +1,6 @@
-## Why
+## Introduction
 
-The Angular-RU Software Development Kit (SDK) is a set of tool chain that implement common interaction patterns whilst
-being un opinionated about their presentation for Angular. It represents an abstraction of the core functionalities
-found in the Angular.
-
-#### Version policy
-
-`X.Y.Z`, where `X` align with Angular version, `Y` align with features and `Z` align with bugfixes.
+The **Angular-RU Software Development Kit (SDK)** is a collection of tools designed to streamline common interaction
+patterns in Angular. It abstracts the core functionalities of the framework, providing a versatile foundation for your
+applications without dictating the visual presentation. This allows you to focus on building features while maintaining
+full control over the user interface.
