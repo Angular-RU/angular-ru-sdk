@@ -10,6 +10,10 @@ found in the Angular.
 
 ---
 
+### Documentation
+
+Documentation can be found at [angular-ru-1.gitbook.io](https://angular-ru-1.gitbook.io/sdk).
+
 ### Migration to v19
 
 Check out the [migration guide](docs/introduction/migration-v19.md) when migrating to `v19` from `v18` or earlier.
@@ -23,7 +27,7 @@ Check out the [migration guide](docs/introduction/migration-v19.md) when migrati
 
 ### Packages
 
-| **Package**                                                    | **Version**                                                       | **README**                                                                                           | **Downloads**                                                                                     |
-| -------------------------------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| **Package**                                                    | **Version**                                                       | **README**                                                                                             | **Downloads**                                                                                     |
+| -------------------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------- |
 | [@angular-ru/cdk](https://npmjs.com/package/@angular-ru/cdk)   | ![](https://img.shields.io/npm/v/%40angular-ru%2Fcdk/latest.svg)  | [![](https://img.shields.io/badge/Documentation--green.svg)](https://angular-ru-1.gitbook.io/sdk/cdk)  | [![](https://img.shields.io/npm/dw/@angular-ru/cdk)](https://npmjs.com/package/@angular-ru/cdk)   |
 | [@angular-ru/ngxs](https://npmjs.com/package/@angular-ru/ngxs) | ![](https://img.shields.io/npm/v/%40angular-ru%2Fngxs/latest.svg) | [![](https://img.shields.io/badge/Documentation--green.svg)](https://angular-ru-1.gitbook.io/sdk/ngxs) | [![](https://img.shields.io/npm/dw/@angular-ru/ngxs)](https://npmjs.com/package/@angular-ru/ngxs) |
