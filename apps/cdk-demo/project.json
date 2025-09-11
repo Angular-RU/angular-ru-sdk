@@ -45,7 +45,16 @@
                             "replace": "apps/cdk-demo/environments/environment.ts",
                             "with": "apps/cdk-demo/environments/environment.prod.ts"
                         }
-                    ]
+                    ],
+                    "optimization": {
+                        "scripts": true,
+                        "fonts": true,
+                        "styles": {
+                            "inlineCritical": false,
+                            "minify": true,
+                            "removeSpecialComments": true
+                        }
+                    }
                 },
                 "development": {
                     "optimization": false,
