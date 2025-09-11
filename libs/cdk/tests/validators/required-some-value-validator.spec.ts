@@ -19,9 +19,10 @@ describe('[TEST]: requiredSomeValueValidator', () => {
         const control: AbstractControl = new FormControl();
         const validator: ValidatorFn = requiredSomeValueValidator();
 
-        expect(() => validator(control))?.toThrow(
-            new Error('requiredSomeValue must be used on form group'),
-        );
+        const error = new Error('requiredSomeValue must be used on form group');
+        const testFn = () => validator(control);
+
+        expect(testFn).toThrow(error);
     });
 
     // TODO: refactor duplicate tests
@@ -29,6 +30,7 @@ describe('[TEST]: requiredSomeValueValidator', () => {
         form.controls?.['aaa']?.setValue(undefined);
         form.controls?.['bbb']?.setValue(null);
         form.controls?.['ccc']?.setValue(NaN);
+
         expect(form.errors).toEqual({requiredSomeValue: true});
     });
 
@@ -36,11 +38,13 @@ describe('[TEST]: requiredSomeValueValidator', () => {
         form.controls?.['aaa']?.setValue('');
         form.controls?.['bbb']?.setValue(null);
         form.controls?.['ccc']?.setValue(Infinity);
+
         expect(form.errors).toEqual({requiredSomeValue: true});
     });
 
     it('should return error if all controls with no values: []', () => {
         form.controls?.['aaa']?.setValue([]);
+
         expect(form.errors).toEqual({requiredSomeValue: true});
     });
 
@@ -50,16 +54,19 @@ describe('[TEST]: requiredSomeValueValidator', () => {
 
     it('should be valid if there is only one value with type number', () => {
         form.controls?.['aaa']?.setValue(13);
+
         expect(form.valid).toBe(true);
     });
 
     it('should be valid if there is only one value with type string', () => {
         form.controls?.['bbb']?.setValue('awesome');
+
         expect(form.valid).toBe(true);
     });
 
     it('should be valid if there is only one value with type Object', () => {
         form.controls?.['ccc']?.setValue({});
+
         expect(form.valid).toBe(true);
     });
 
@@ -67,6 +74,7 @@ describe('[TEST]: requiredSomeValueValidator', () => {
         form.controls?.['aaa']?.setValue(13);
         form.controls?.['bbb']?.setValue('awesome');
         form.controls?.['ccc']?.setValue({});
+
         expect(form.valid).toBe(true);
     });
 });

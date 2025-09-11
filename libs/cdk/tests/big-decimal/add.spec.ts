@@ -48,6 +48,7 @@ describe('[TEST]: BigDecimal - add', () => {
     it('should: 126.7-13 = 113.7', () => {
         expect(BigDecimal.add('126.7', '-13')).toBe('113.7');
     });
+
     it('should: 12.67-130.7 = -118.03', () => {
         expect(BigDecimal.add('12.67', '-130.7')).toBe('-118.03');
     });

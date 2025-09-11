@@ -278,6 +278,7 @@ describe('[TEST]: Common utils', () => {
         it('should correct build file name', () => {
             jest.spyOn(document, 'createElement').mockImplementation(() => link);
             downloadFile(file);
+
             expect(link.download).toBe('text.txt');
         });
 
@@ -306,6 +307,7 @@ describe('[TEST]: Common utils', () => {
         it('should create download link', () => {
             jest.spyOn(document, 'createElement').mockImplementation(() => link);
             downloadFile(file);
+
             expect(link.href).toBeDefined();
         });
 

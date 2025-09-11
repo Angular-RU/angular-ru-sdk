@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-hardcoded-ip */
 import {FilterUniquePipe} from '../../pipes/filter-unique/filter-unique.pipe';
 
 describe('[TEST]: Filter Unique Pipe', (): void => {

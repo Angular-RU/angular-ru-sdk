@@ -113,6 +113,7 @@ describe('[TEST]: Abstract ngxs data repository', () => {
             expect(a.name).toBe('a');
 
             a.setState({value: 2});
+
             expect(a.getState()).toStrictEqual({value: 2});
 
             a.initialState.value = 5; // not affected
@@ -172,6 +173,7 @@ describe('[TEST]: Abstract ngxs data repository', () => {
             expect(b.name).toBe('b');
 
             b.setState({value: 2});
+
             expect(b.getState()).toEqual({value: 2});
 
             (b.initialState as any).value = 5; // not affected

@@ -60,6 +60,7 @@ describe('[TEST]: Entity - primary key or unique id', () => {
                 });
 
                 lesson.set(createEntityCollections());
+
                 expect(lesson.getState()).toEqual({ids: [], entities: {}});
 
                 // eslint-disable-next-line rxjs/no-ignored-observable
@@ -147,6 +148,7 @@ describe('[TEST]: Entity - primary key or unique id', () => {
                 expect(lesson.getState()).toEqual({ids: [], entities: {}});
 
                 lesson.updateOne({id: 1, changes: {lessonId: 1, title: 'A'}});
+
                 expect(lesson.getState()).toEqual({ids: [], entities: {}});
 
                 lesson.upsertMany([
@@ -383,6 +385,7 @@ describe('[TEST]: Entity - primary key or unique id', () => {
                 ]);
 
                 studentEntities.removeByEntity(entity);
+
                 expect(studentEntities.selectAll()).toEqual([]);
 
                 expect(idEvents).toEqual([

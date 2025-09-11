@@ -48,6 +48,7 @@ describe('[TEST]: JWT', (): void => {
     });
 
     it('should be correct encode', (): void => {
+        // eslint-disable-next-line sonarjs/no-hardcoded-credentials
         expect(toBase64({login: 'username', password: 'password'})).toBe(
             'eyJsb2dpbiI6InVzZXJuYW1lIiwicGFzc3dvcmQiOiJwYXNzd29yZCJ9',
         );

@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-primitive-wrappers */
 import {
     checkIsShallowEmpty,
     clean,
@@ -254,9 +255,11 @@ describe('[TEST]: Object', () => {
             expect(Object.is(origin, copy)).toBe(false);
 
             copy.b.c = 4;
+
             expect(origin.b.c).toBe(2);
 
             origin.b.c = 3;
+
             expect(origin.b.c).toBe(3);
             expect(copy.b.c).toBe(4);
         });
@@ -274,6 +277,7 @@ describe('[TEST]: Object', () => {
             expect(deepClone(NaN)).toBeNull();
             expect(deepClone(Infinity)).toBeNull();
             expect(deepClone(null)).toBeNull();
+            // eslint-disable-next-line sonarjs/no-undefined-argument
             expect(deepClone(undefined)).toBeUndefined();
         });
 

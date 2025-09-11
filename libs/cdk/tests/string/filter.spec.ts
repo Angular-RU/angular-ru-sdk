@@ -26,7 +26,7 @@ describe('[TEST]: Filter', () => {
 
         it('should remove spaces', () => {
             expect(filter(' a b  c  ', ['a', 'b', 'c'])).toBe('abc');
-            expect(filter(' a b  c  ', ['a', 'b', 'c', '\\s'])).toBe('abc');
+            expect(filter(' a b  c  ', ['a', 'b', 'c', String.raw`\s`])).toBe('abc');
         });
 
         it('should keep spaces', () => {

@@ -129,6 +129,7 @@ describe('[TEST]: Integration with class-transformer', () => {
         const actual: DemoDto = new DemoDto();
 
         actual.numVal = 'INVALID NUMBER';
+
         expect(actual.numVal).toBe('INVALID NUMBER');
         expect(plainToClass(DemoDto, actual).numVal).toBeNaN();
     });
@@ -137,6 +138,7 @@ describe('[TEST]: Integration with class-transformer', () => {
         const actual: DemoDto = new DemoDto();
 
         actual.numVal = ' 100 ';
+
         expect(actual.numVal).toBe(' 100 ');
         expect(plainToClass(DemoDto, actual).numVal).toBe(100);
     });

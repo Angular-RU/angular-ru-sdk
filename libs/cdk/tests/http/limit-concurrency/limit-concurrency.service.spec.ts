@@ -1,3 +1,4 @@
+/* eslint-disable jest/prefer-ending-with-an-expect */
 import {LimitConcurrencyService} from '@angular-ru/cdk/http';
 import {merge} from 'rxjs';
 import {TestScheduler} from 'rxjs/testing';
