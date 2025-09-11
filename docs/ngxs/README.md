@@ -46,10 +46,10 @@ Benefits:
 - Persistence state out-of-the-box in sessionStorage, localStorage, custom (`@Persistence()`)
 - Automatic action naming by service methods for improved debugging (`@DataAction(), @Payload(), @Named()`)
 
-Minimal peer dependencies:
+Minimum peer dependencies:
 
-- Require minimal `@ngxs/store v3.6.2`
-- Require minimal `TypeScript v3.7.2`
+- `@ngxs/store`: `20.0.0`
+- `TypeScript`: `5.8.2`
 
 ### Simple example
 

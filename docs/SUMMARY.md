@@ -35,6 +35,7 @@
   - [@angular-ru/cdk/big-decimal](cdk/big-decimal.md)
 - NGXS
   - [Introduction](ngxs/README.md)
+  - [Quick Start](ngxs/quick-start.md)
   - [@StateRepository](ngxs/state-repository.md)
   - [@DataAction](ngxs/data-action.md)
   - [@Computed](ngxs/computed.md)

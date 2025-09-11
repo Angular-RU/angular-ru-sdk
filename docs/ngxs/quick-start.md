@@ -90,7 +90,7 @@ export class AppComponent {
 
 #### Debugging
 
-`Need provide logger-plugin`
+Can be debugged using NGXS logger plugin.
 
 ```typescript
 import {withNgxsLoggerPlugin} from '@ngxs/logger-plugin';
