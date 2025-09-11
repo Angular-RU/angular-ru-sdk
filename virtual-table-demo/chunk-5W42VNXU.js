@@ -1,0 +1,1 @@
+var r=class{static async generator(s,o,t=0){let e=new Worker(new URL("worker-2OHQMMRL.js",import.meta.url),{type:"module"});return new Promise(a=>{e.onmessage=({data:n})=>{a(n)},e.postMessage({rows:s,cols:o,start:t})})}};export{r as a};

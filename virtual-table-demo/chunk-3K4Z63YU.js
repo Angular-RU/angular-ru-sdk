@@ -1,0 +1,8 @@
+import{a as x}from"./chunk-OYNQ5WAV.js";import{c as S}from"./chunk-VP7U7VFG.js";import{a as _}from"./chunk-5W42VNXU.js";import"./chunk-CPBGOJHF.js";import{b as w}from"./chunk-4VS2STHW.js";import"./chunk-RHX3XEC6.js";import"./chunk-QAGGN5Z3.js";import"./chunk-5SMHXN7V.js";import{a as C}from"./chunk-YHPDSTAQ.js";import{r as u}from"./chunk-Z7M3UY5F.js";import{V as f,Y as b}from"./chunk-YPXCCQSY.js";import{Ca as d,Nb as g,Ob as a,Pb as i,Qb as h,Zb as s,fb as p,ka as m,mc as l,sb as c}from"./chunk-EMWOS5UK.js";var J=(()=>{let e=class e{constructor(){this.dialog=m(S),this.data=d([])}ngOnInit(){_.generator(1e4,59).then(o=>{this.data.set(o)})}ngAfterViewInit(){C()}updatedSchema(n){console.log(n)}showSample(){this.dialog.open(x,{data:{title:"Overview drag-and-drop table",description:"",code:`
+<ngx-table-builder
+    [source]="data"
+    (schemaChanges)="updatedSchema($event)"
+>
+    <ngx-options is-draggable />
+</ngx-table-builder>
+                `}})}};e.\u0275fac=function(t){return new(t||e)},e.\u0275cmp=c({type:e,selectors:[["sample-fifteen"]],decls:7,vars:2,consts:[[1,"simple-toolbar"],["mat-raised-button","","type","button",1,"show-simple",3,"click"],[3,"schemaChanges","row-height","source"],["is-draggable",""]],template:function(t,o){t&1&&(a(0,"mat-toolbar",0)(1,"span"),l(2,"Example drag-and-drop (drag-n-drop columns to re-order them)"),i(),a(3,"button",1),s("click",function(){return o.showSample()}),l(4," show code sample "),i()(),a(5,"ngx-table-builder",2),s("schemaChanges",function(y){return o.updatedSchema(y)}),h(6,"ngx-options",3),i()),t&2&&(p(5),g("row-height",40)("source",o.data()))},dependencies:[w,u,f,b],encapsulation:2,changeDetection:0});let r=e;return r})();export{J as default};

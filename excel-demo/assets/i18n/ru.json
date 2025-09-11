@@ -1,0 +1,14 @@
+{
+    "APP_KEYS": {
+        "MODELS": {
+            "description": "Описание",
+            "id": "id",
+            "info": {
+                "value": "Значение"
+            },
+            "name": "Имя"
+        },
+        "TITLE": "Название файла",
+        "WORKSHEET_NAME": "Лист 1"
+    }
+}
