@@ -46,28 +46,28 @@ jobs:
       # =================================================================
 
       - name: Build CDK Demo 🚀
-        run: npx nx build cdk-demo --configuration=production --base-href=/angular-ru-sdk/
+        run: npx nx build cdk-demo --configuration=production --base-href=/sdk/
 
       - name: Build Excel Demo 🚀
-        run: npx nx build excel-demo --configuration=production --base-href=/angular-ru-sdk/excel-demo/
+        run: npx nx build excel-demo --configuration=production --base-href=/sdk/excel-demo/
 
       - name: Build Flex Layout Demo 🚀
-        run: npx nx build flex-layout-demo --configuration=production --base-href=/angular-ru-sdk/flex-layout-demo/
+        run: npx nx build flex-layout-demo --configuration=production --base-href=/sdk/flex-layout-demo/
 
       - name: Build Http Demo 🚀
-        run: npx nx build http-demo --configuration=production --base-href=/angular-ru-sdk/http-demo/
+        run: npx nx build http-demo --configuration=production --base-href=/sdk/http-demo/
 
       - name: Build Logger Demo 🚀
-        run: npx nx build logger-demo --configuration=production --base-href=/angular-ru-sdk/logger-demo/
+        run: npx nx build logger-demo --configuration=production --base-href=/sdk/logger-demo/
 
       - name: Build NGXS Demo 🚀
-        run: npx nx build ngxs-demo --configuration=production --base-href=/angular-ru-sdk/ngxs-demo/
+        run: npx nx build ngxs-demo --configuration=production --base-href=/sdk/ngxs-demo/
 
       - name: Build Tooltip Demo 🚀
-        run: npx nx build tooltip-demo --configuration=production --base-href=/angular-ru-sdk/tooltip-demo/
+        run: npx nx build tooltip-demo --configuration=production --base-href=/sdk/tooltip-demo/
 
       - name: Build Virtual Table Demo 🚀
-        run: npx nx build virtual-table-demo --configuration=production --base-href=/angular-ru-sdk/virtual-table-demo/
+        run: npx nx build virtual-table-demo --configuration=production --base-href=/sdk/virtual-table-demo/
 
       # =================================================================
       # == PREPARE DEPLOYMENT ARTIFACTS ==
