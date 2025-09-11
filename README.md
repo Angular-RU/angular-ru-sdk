@@ -10,7 +10,7 @@ found in the Angular.
 
 ### Documentation
 
-Documentation can be found at [angular-ru-1.gitbook.io](https://angular-ru.gitbook.io/sdk).
+Documentation can be found at [angular-ru.gitbook.io](https://angular-ru.gitbook.io/sdk/getting-started/intro).
 
 ### Migration to v19
 
