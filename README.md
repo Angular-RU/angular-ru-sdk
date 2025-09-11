@@ -8,8 +8,6 @@ The Angular-RU Software Development Kit (SDK) is a set of tool chain that implem
 being un opinionated about their presentation for Angular. It represents an abstraction of the core functionalities
 found in the Angular.
 
----
-
 ### Documentation
 
 Documentation can be found at [angular-ru-1.gitbook.io](https://angular-ru-1.gitbook.io/sdk).
