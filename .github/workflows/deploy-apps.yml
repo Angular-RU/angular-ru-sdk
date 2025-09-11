@@ -1,0 +1,107 @@
+name: CI Deploy
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'apps/**'
+      - 'libs/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'nx.json'
+      - 'tsconfig.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      # =================================================================
+      # == BUILD EACH APPLICATION ==
+      # =================================================================
+
+      - name: Build CDK Demo 🚀
+        run: npx nx build cdk-demo --configuration=production --base-href=/angular-ru-sdk/
+
+      - name: Build Excel Demo 🚀
+        run: npx nx build excel-demo --configuration=production --base-href=/angular-ru-sdk/excel-demo/
+
+      - name: Build Flex Layout Demo 🚀
+        run: npx nx build flex-layout-demo --configuration=production --base-href=/angular-ru-sdk/flex-layout-demo/
+
+      - name: Build Http Demo 🚀
+        run: npx nx build http-demo --configuration=production --base-href=/angular-ru-sdk/http-demo/
+
+      - name: Build Logger Demo 🚀
+        run: npx nx build logger-demo --configuration=production --base-href=/angular-ru-sdk/logger-demo/
+
+      - name: Build NGXS Demo 🚀
+        run: npx nx build ngxs-demo --configuration=production --base-href=/angular-ru-sdk/ngxs-demo/
+
+      - name: Build Tooltip Demo 🚀
+        run: npx nx build tooltip-demo --configuration=production --base-href=/angular-ru-sdk/tooltip-demo/
+
+      - name: Build Virtual Table Demo 🚀
+        run: npx nx build virtual-table-demo --configuration=production --base-href=/angular-ru-sdk/virtual-table-demo/
+
+      # =================================================================
+      # == PREPARE DEPLOYMENT ARTIFACTS ==
+      # =================================================================
+
+      - name: Stage artifacts for deployment
+        run: |
+          mkdir deploy
+          cp -r dist/cdk-demo/* deploy/
+          mkdir deploy/excel-demo
+          cp -r dist/excel-demo/* deploy/excel-demo/
+          mkdir deploy/flex-layout-demo
+          cp -r dist/flex-layout-demo/* deploy/flex-layout-demo/
+          mkdir deploy/http-demo
+          cp -r dist/http-demo/* deploy/http-demo/
+          mkdir deploy/logger-demo
+          cp -r dist/logger-demo/* deploy/logger-demo/
+          mkdir deploy/ngxs-demo
+          cp -r dist/ngxs-demo/* deploy/ngxs-demo/
+          mkdir deploy/tooltip-demo
+          cp -r dist/tooltip-demo/* deploy/tooltip-demo/
+          mkdir deploy/virtual-table-demo
+          cp -r dist/virtual-table-demo/* deploy/virtual-table-demo/
+          
+          # Create a 404.html to handle SPA routing redirects
+          cp deploy/index.html deploy/404.html
+
+      # =================================================================
+      # == DEPLOY TO GITHUB PAGES ==
+      # =================================================================
+
+      - name: Deploy to GitHub Pages 🌐
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.ANGULAR_RU_BOT_PAT }}
+          # The directory that contains the built and staged applications
+          publish_dir: ./deploy
