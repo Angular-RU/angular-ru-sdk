@@ -48,7 +48,7 @@ export const appConfig: ApplicationConfig = {
 };
 ```
 
-[**Online demo**](https://angular-ru.github.io/angular-ru-sdk/logger-demo)
+[**Online demo**](https://angular-ru.github.io/sdk/logger-demo)
 
 ![](https://habrastorage.org/webt/lq/a9/_s/lqa9_sp8gxkwax_sy6x9w3qf5ry.gif)
 

@@ -3,7 +3,7 @@
 The Angular Table Builder includes a comprehensive set of ready-to-use features covering everything from paging,
 sorting, filtering, editing, and grouping to row and column virtualization, and accessibility support.
 
-[**Demo**](https://angular-ru.github.io/angular-ru-sdk/virtual-table-demo)
+[**Demo**](https://angular-ru.github.io/sdk/virtual-table-demo)
 
 ```bash
 $ npm install --save @angular-ru/cdk
