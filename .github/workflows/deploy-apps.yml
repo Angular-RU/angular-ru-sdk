@@ -2,7 +2,7 @@ name: CI Deploy
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ['main']
     paths:
       - 'apps/**'
       - 'libs/**'
@@ -20,7 +20,7 @@ permissions:
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: false
 
 jobs:
@@ -91,7 +91,7 @@ jobs:
           cp -r dist/tooltip-demo/* deploy/tooltip-demo/
           mkdir deploy/virtual-table-demo
           cp -r dist/virtual-table-demo/* deploy/virtual-table-demo/
-          
+
           # Create a 404.html to handle SPA routing redirects
           cp deploy/index.html deploy/404.html
 
