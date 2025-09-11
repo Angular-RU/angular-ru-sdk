@@ -17,11 +17,11 @@ PS: TodoState will be persisted in localStorage (ttl: 30sec)
     <input
         #text
         placeholder="New Todo"
-        (keydown.enter)="todo.addTodo(text.value)"
+        (keydown.enter)="todo.addTodo(text.value); text.value = ''"
     />
     <button
         type="button"
-        (click)="todo.addTodo(text.value)"
+        (click)="todo.addTodo(text.value); text.value = ''"
     >
         Add
     </button>
